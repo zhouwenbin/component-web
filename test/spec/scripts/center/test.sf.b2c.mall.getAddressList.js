@@ -1,4 +1,4 @@
-define(['sf.b2c.mall.api.user.webLogin', 'sf.b2c.mall.api.user.getRecAddressList', 'sf.b2c.mall.util.utils', 'sf.b2c.mall.util.testUtils'], function(SFUserWebLogin, SFGetRecAddressList, utils, testUtils) {
+require(['sf.b2c.mall.api.user.webLogin', 'sf.b2c.mall.api.user.getRecAddressList', 'sf.b2c.mall.util.utils', 'sf.b2c.mall.util.testUtils'], function(SFUserWebLogin, SFGetRecAddressList, utils, testUtils) {
 
   var should = chai.should();
 
