@@ -355,6 +355,19 @@ module.exports = function (grunt) {
       ]);
     }
 
+    if (target === 'browser') {
+      grunt.task.run([
+        // 'jshint',
+        'connect:test',
+        'watch'
+      ]);
+    }else{
+      grunt.task.run([
+        'connect:test',
+        'mocha'
+      ]);
+    }
+
     grunt.task.run([
       'connect:test',
       'mocha'
