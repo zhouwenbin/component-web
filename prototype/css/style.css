@@ -31,6 +31,7 @@
 .nav-c2 .icon{
 	margin-left: 9px;
 	vertical-align: -10px;
+	*vertical-align: -5px;
 }
 
 /*头部*/
@@ -166,6 +167,7 @@
 	top: 396px;
 	position: absolute;
 	left: 0;
+	z-index: 2;
 }
 .slider-num li{
 	display: inline-block;
@@ -225,6 +227,7 @@
 	padding: 0 7px 4px;
 	margin-right: 39px;
 	font-size: 18px;
+	transition: all 0.3s;
 }
 .product-tab li:hover{
 	border-bottom: 4px solid #DD3E3F;
@@ -245,6 +248,7 @@
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
 	color: #fff;
+	transition: all 0.5s;
 }
 .product-list li:hover .product-r3 strong{
 	color: #fff;

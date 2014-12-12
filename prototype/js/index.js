@@ -39,7 +39,7 @@ $(function(){
 		sliderPreving();
 		clearInterval(silderTimer);
 	})
-	
+	//向后按钮click
 	sliderNext.click(function(){
 		sliderNexting()	
 		clearInterval(silderTimer);
