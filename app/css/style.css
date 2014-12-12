@@ -1,129 +1,4 @@
-﻿.icon{
-	display: inline-block;
-	vertical-align: middle;
-	background: url(../img/icon.png) no-repeat;
-}
-.icon1{
-	width: 51px;
-	height: 51px;
-}
-.icon2{
-	width: 51px;
-	height: 51px;
-	background-position: 0 -53px;
-}
-.icon3{
-	width: 52px;
-	height: 51px;
-	background-position: 0 -106px;
-}
-.icon4{
-	width: 16px;
-	height: 16px;
-	background-position: -62px 0;
-}
-.icon5{
-	width: 38px;
-	height: 26px;
-	background-position: -62px -26px;
-}
-.icon6{
-	width: 68px;
-	padding-left: 16px;
-	height: 42px;
-	line-height: 42px;
-	background-position: -61px -58px;
-	color: #fff;
-	font-size: 14px;
-}
-.icon6 b{
-	font-size: 24px;
-	margin-right: 3px;
-}
-.icon7{
-	width: 26px;
-	height: 30px;
-	background-position: -62px -107px;
-}
-.icon8{
-	width: 29px;
-	height: 16px;
-	background-position: -62px -146px;
-}
-.icon9{
-	width: 213px;
-	height: 60px;
-	background-position: -160px 0;
-}
-.icon10{
-	width: 217px;
-	height: 61px;
-	background-position: -160px -72px;
-}
-.icon11{
-	width: 98px;
-	height: 54px;
-	background-position: -160px -141px;
-}
-.icon12{
-	width: 117px;
-	height: 117px;
-	background-position: -382px 0;
-}
-.icon13{
-	width: 117px;
-	height: 117px;
-	background-position: -382px -120px;
-}
-.icon14{
-	width: 117px;
-	height: 117px;
-	background-position: -382px -250px;
-}
-.icon15{
-	width: 117px;
-	height: 117px;
-	background-position: -382px -380px;
-}
-.icon16{
-	width: 0;
-	height: 0;
-	background: none;
-	border-style: solid;
-	border-width: 10px 7px;
-	border-color: transparent;
-	border-top-color: #C5C7C9;
-}
-
-.btn{
-	display: inline-block;
-	vertical-align: middle;
-}
-.btn-top{
-	padding: 18px 20px;
-	background: #a6a6a6;
-	border-radius: 5px;
-}
-.btn-more{
-	color: #999;
-	font-size: 18px;
-	text-align: center;
-	width: 220px;
-	height: 60px;
-	line-height: 60px;
-	border-radius: 30px;
-	border:1px solid #ccc;
-	background: #fff;
-}
-
-body{
-	background: #EEEEEE;
-}
-/*布局*/
-.pm{
-	width: 1180px;
-	margin: 0 auto;
-}
+﻿
 
 /*导航*/
 .nav{
@@ -249,10 +124,135 @@ body{
 .footer2 .time{
 	font-size: 18px;
 }
-/*banner*/
+/*slider*/
+.slider{
+	margin-bottom: 65px;
+}
 .slider li a{
 	display: block;
 	height: 420px;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+/*product*/
+.product{
+	margin-bottom: 28px;
+	*margin-bottom: 64px;
+}
+.product .mh{
+	line-height: 24px;
+	margin-bottom: 37px;
+	height: 31px;
+	padding-left: 4px;
+}
+.product h2{
+	font-size: 24px;
+	margin-right: 44px;
+}
+.product-tab li{
+	float: left;
+	padding: 0 7px 4px;
+	margin-right: 39px;
+	font-size: 18px;
+}
+.product-tab li:hover{
+	border-bottom: 4px solid #DD3E3F;
+}
+.product-list{
+	margin-left: -17px;
+	padding-bottom: 5px;
+}
+.product-list li{
+	float:left;
+	width: 380px;
+	margin-left: 17px;
+	border:1px solid #E5E5E5;
+	padding-top: 10px;
+	background: #fff;
+	margin-bottom: 38px;
+}
+.product-list li:hover .product-r3{
+	background: #DD3E3F;
+	color: #fff;
+}
+.product-list li:hover .product-r3 strong{
+	color: #fff;
+}
+.product-list li:hover .product-r3c2{
+	border-color:#fff;
+}
+.product-r1{
+	height:233px;
+	text-align: center;
+	margin-bottom: 22px;
+}
+.product-r1 a{
+	display: inline-block;
+	vertical-align: middle;
+}
+.product-r1 span{
+	width:0;
+	height:100%;
+	display:inline-block;
+	vertical-align:middle;
+	overflow: hidden;
+}
+.product h3{
+	margin-bottom: 13px;
+	padding-left: 23px;
+	font-size: 16px;
+}
+.product p{
+	padding-left: 23px;
+	margin-bottom: 30px;
+	font-size: 14px;
+	color: #949494;
+}
+.product-r2{
+	padding-left: 23px;
+	padding-right: 19px;
+	padding-bottom: 29px;
+	border-bottom:1px solid #E5E5E5;
+}
+.product-r2 .icon6{
+	margin-left: -23px;
+	margin-top: -10px;
+}
+.product-r2c1{
+	font-size: 14px;
+}
+.product-r2c1 .icon{
+	margin-right: 9px;
+}
+.product-r3{
+	height: 50px;
+	line-height: 50px;
+	padding: 10px 0 10px 23px;
+	background: #FAFAFA;
+}
+.product-r3c1 strong{
+	color: #dd3e3f;
+	margin-right: 5px;
+	font-size: 24px;
+}
+.product-r3c1 del{
+	
+	color:#949494;
+	font-size: 14px;
+}
+
+.product-r3c2{
+	width: 124px;
+	text-align: center;
+	border-left:1px solid #E5E5E5;
+}
+.product-r3c2 strong{
+	font-size: 24px;
+	margin-right: 5px;
+}
+.product .mf{
+	text-align: center;
+	padding-top: 5px;
+	*padding-top: 43px;
 }
