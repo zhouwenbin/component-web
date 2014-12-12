@@ -1,0 +1,78 @@
+$(function(){
+	var sliderIndex=0;
+	var sliderImg=$(".slider-img li");
+	var sliderLength=sliderImg.length;
+	var sliderPrev=$(".slider .btn-prev");
+	var sliderNext=$(".slider .btn-next");
+	var sliderLi="";
+	for(var i = 0; i < sliderLength; i++){
+	   sliderLi += '<li><a href="###"></a></li>'
+	}
+	$('.slider-num').append(sliderLi);
+	var sliderNum=$(".slider-num li");
+	sliderNum.eq(0).addClass("active");
+	
+
+	//左右按钮hover
+	$(".slider").hover(function(){
+		sliderPrev.stop(true,false).animate({
+			left : 0,
+			opacity : 1
+		},500);
+		sliderNext.stop(true,false).animate({
+			right : 0,
+			opacity : 1
+		},500);
+	},function(){
+		sliderPrev.stop(true,false).animate({
+			left : "-100px",
+			opacity : 0
+		},500);
+		sliderNext.stop(true,false).animate({
+			right : "-100px",
+			opacity : 0
+		},500);
+	})
+
+	//向前按钮click
+	sliderPrev.click(function(){		
+		sliderPreving();
+		clearInterval(silderTimer);
+	})
+	
+	sliderNext.click(function(){
+		sliderNexting()	
+		clearInterval(silderTimer);
+	})
+
+	//数字click
+	sliderNum.click(function(){
+		sliderIndex = sliderNum.index(this);
+		sliderSwitch();
+		clearInterval(silderTimer);
+	})
+
+	//定时器
+	var silderTimer=setInterval(sliderNexting,5000);
+	//向前
+	function sliderPreving(){
+		sliderIndex--;
+		if(sliderIndex < 0){
+			sliderIndex = sliderLength-1;
+		}
+		sliderSwitch();
+	}
+	//向后
+	function sliderNexting(){
+		sliderIndex++;
+		if(sliderIndex > sliderLength-1){
+			sliderIndex = 0;
+		}
+		sliderSwitch();
+	}
+	//状态切换
+	function sliderSwitch(){
+		sliderNum.removeClass('active').eq(sliderIndex).addClass("active");
+		sliderImg.removeClass('active').eq(sliderIndex).addClass("active");
+	}
+})
