@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.rapidseabuy', ['can'], function(can) {
+define('sf.b2c.mall.rapidseabuy', ['can','jquery'], function(can,$) {
   return can.Control.extend({
 
     /**
@@ -10,8 +10,21 @@ define('sf.b2c.mall.rapidseabuy', ['can'], function(can) {
      * @return {[type]}
      */
     init: function(element, options) {
-      var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache')({});
-      this.element.html(html);
+      this.render();
+      this.supplement();
+    },
+    render:function(){
+      var that = this;
+      $.ajax({
+        url:'json/sf-b2c.mall.index.rapidseabuy.json',
+        dataType:'json'
+      }).done(function(data){
+        var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',data);
+        that.element.html(html);
+      })
+    },
+    supplement:function(){
+
     }
   });
 })
