@@ -1,7 +1,7 @@
 'use strict';
 
-define('sf.b2c.mall.header', ['can'], function(can) {
-  can.Control.extend({
+define('sf.b2c.mall.footer', ['can'], function(can) {
+  return can.Control.extend({
 
     /**
      * 初始化slide控件

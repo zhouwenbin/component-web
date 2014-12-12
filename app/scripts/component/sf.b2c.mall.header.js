@@ -5,9 +5,15 @@
  * @param  {[type]} can
  * @return {[type]}
  */
-define('sf.b2c.mall.header', ['can'], function(can) {
+define('sf.b2c.mall.header', ['jquery',
+  'jquery.cookie',
+  'can',
+  'underscore',
+  'md5',
+  'sf.b2c.mall.api.user.getUserInfo'
+], function($, cookie, can, _, md5, SFGetUserInfo) {
 
-  can.Control.extend({
+  return can.Control.extend({
 
     defaults: {
       login: {
@@ -46,25 +52,27 @@ define('sf.b2c.mall.header', ['can'], function(can) {
      * @description 对页面进行渲染
      * @param  {Map} data 渲染页面的数据
      */
-    render: function(data) {debugger;
+    render: function(data) {
       var html = can.view('templates/component/sf.b2c.mall.header.mustache', data);
       this.element.html(html);
     },
 
     supplement: function() {
       var that = this;
-      can.when(sf.b2c.mall.model.user.getUserInfo())
-        .done(function(data) {
-          if (sf.util.access(data)) {
-            that.data.attr('user', data.content[0]);
 
-            //解决IE789重复登录后无法访问到cookie问题
-            that.data.attr('my', that.defaults.login.my);
-            that.data.attr('order', that.defaults.login.order);
-            that.data.attr('car', that.defaults.login.car);
-          }
+      var getUserInfo = new SFGetUserInfo();
+
+      getUserInfo
+        .sendRequest()
+        .done(function(data) {
+          that.data.attr('user', data);
+
+          //解决IE789重复登录后无法访问到cookie问题
+          that.data.attr('my', that.defaults.login.my);
+          that.data.attr('order', that.defaults.login.order);
+          that.data.attr('car', that.defaults.login.car);
         })
-        .fail(function(data) {})
+        .fail(function(data) {});
     },
 
     '#user-logout click': function(element, event) {
@@ -73,7 +81,7 @@ define('sf.b2c.mall.header', ['can'], function(can) {
       var that = this;
       can.when(sf.b2c.mall.model.user.logout())
         .done(function(data) {
-          if (sf.util.access(data) && data.content[0].value) {
+          if (SFUtil.access(data) && data.content[0].value) {
             that.data.attr('user', null);
             window.localStorage.removeItem('csrfToken');
             window.location.href = 'login.html'
