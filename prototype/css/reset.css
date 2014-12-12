@@ -22,6 +22,7 @@ a,a:hover{color:#333;}
 img{vertical-align: middle;}
 .fl{float:left;}
 .fr{float:right;}
+.clearfix:before,
 .clearfix:after{content:'';display:table; clear:both;}
 .clearfix{*zoom:1;}
 /*icon*/
@@ -175,10 +176,24 @@ img{vertical-align: middle;}
 	border-radius: 30px;
 	border:1px solid #ccc;
 	background: #fff;
-	*background: url(../img/icon.png) no-repeat 0 -437px;
-	*border: none;
-	*width: 222px;
-	*height: 62px;
+	background: url(../img/icon.png) no-repeat 0 -437px \9;
+	border: none \9;
+	width: 222px \9;
+	height: 62px \9;
+}
+.btn-prev,
+.btn-next{
+	width: 41px;
+	height: 95px;
+	background: url(../img/icon.png) no-repeat;
+	text-indent: -999em;
+	
+}
+.btn-prev{
+	background-position: 0 -162px;
+}
+.btn-next{
+	background-position: 0 -258px;
 }
 
 body{

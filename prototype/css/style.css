@@ -127,12 +127,74 @@
 /*slider*/
 .slider{
 	margin-bottom: 65px;
+	position: relative;;
 }
-.slider li a{
+.slider .pm{
+	height: 420px;
+	position: relative;
+}
+.slider-img{
+	position: absolute;
+	width: 100%;
+	height: 420px;
+	top: 0;
+}
+.slider-img li{
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 1s;
+}
+.slider-img .active{
+	opacity: 1;
+}
+.slider-img li a{
 	display: block;
 	height: 420px;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+.slider-img img{
+	width: 100%;
+}
+.slider-num{
+	text-align: center;
+	width: 100%;
+	top: 396px;
+	position: absolute;
+}
+.slider-num li{
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+	margin: 0 2px;
+}
+.slider-num a{
+	display: block;
+	width: 30px;
+	height: 0;
+	padding-top: 4px;
+	overflow: hidden;
+	background: #fff;
+	opacity: 0.5;
+}
+.slider-num .active a{
+	opacity: 1;
+}
+.slider .btn{
+	position: absolute;
+	z-index: 2;
+	top: 151px;
+}
+.slider .btn-prev{
+	left: -100px;
+	opacity: 0;
+
+}
+.slider .btn-next{
+	right: -100px;
+	opacity: 0;
+
 }
 
 /*product*/
