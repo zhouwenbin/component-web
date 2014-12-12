@@ -1,8 +1,8 @@
 'use strict';
 
-define('b2c.mall.launcher.home', ['can'], function(can) {debugger;
+require(['can', 'sf.b2c.mall.header', 'sf.b2c.mall.footer'], function(can, header, footer) {
 
-  var header = can.Control.extend({
+  var home = can.Control.extend({
 
     init: function(element, options) {
       this.render();
@@ -10,7 +10,7 @@ define('b2c.mall.launcher.home', ['can'], function(can) {debugger;
     },
 
     render: function() {
-      new sf.b2c.mall.header('.sf-b2c-mall-header');
+      new header('.sf-b2c-mall-header');
     },
 
     supplement: function() {
@@ -18,5 +18,5 @@ define('b2c.mall.launcher.home', ['can'], function(can) {debugger;
     }
   });
 
-  new header('#content');
+  new home('#content');
 });

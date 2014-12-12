@@ -1,61 +1,43 @@
-<div class="logBox">
-  <div class="login clearfix">
+<div class="ph">
+    <div class="nav">
+      <div class="pm clearfix">
 
-    <ul class="login-left-wrap clearfix">
-      {{^user}}
-      <li>
-        <a href="/login.html">登录</a>
-      </li>
-      <!-- <li><a href="/register.html">免费注册</a></li> -->
-      {{/user}}
+        <ul class="nav-c1 fl">
+          <li><a href="">顺丰海淘</a></li>
+          <li><a href="">限时特卖</a></li>
+          <li><a href="">急速海淘</a></li>
+        </ul>
+        <ul class="nav-c2 fr">
+          <li><a href="">账户<span class="icon icon16"></span></a></li>
+          <li><a href="">我的订单</a></li>
+        </ul>
 
-      {{#user}}
-      <li>
-        <a href="javascript:;" class="userId">{{user.nick}} 欢迎回来！</a>
-      </li>
-      <li><a href="javascript:;" id="user-logout">退出</a></li>
-      {{/user}}
-    </ul>
+      </div>
+    </div>
 
-    <ul class="login-right-wrap clearfix">
-      <li class="my-ht">
-        <a href="/index.html">
-          顺丰海淘首页
-        </a>
-      </li>
-
-      <li class="my-ht">
-        <a href="{{my}}" target="_blank" id="my-ht">
-          我的海淘
-        </a>
-      </li>
-
-      <li class="my-order">
-        <a href="{{order}}" target="_blank" id="my-order">
-          我的订单
-        </a>
-      </li>
-
-<!--       <li class="store-net">
-        <a href="{{car}}" target="_blank">
-          我的购物车
-        </a>
-      </li> -->
-
-      <li class="help-center">
-        <a href="/help-guide-promise.html" target="_blank">
-          帮助中心
-        </a>
-      </li>
-
-      <li class="hot-tel">
-        <a target="_blank" href="http://sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&configID=20&skillId=20&enterurl=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2Fpreview%2Ejsp&pagereferrer=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2FembedScript%2Ejsp%3FcurrentConfigId%3D20&k=1">
-          <span>
-            在线客服
-          </span>
-        </a>
-      </li>
-
-    </ul>
+    <div class="header">
+      <div class="pm clearfix">
+        <div class="header-c1 fl">
+          <a href="#" class="icon icon10">顺丰海淘</a>
+          <span class="icon icon11"></span>
+        </div>
+        <ul class="header-c2 fr">
+          <li>
+            <span class="icon icon1 fl"></span>
+            <h2>全站真品</h2>
+            <p><span class="icon icon17">Quality Lifestyle</span></p>
+          </li>
+          <li>
+            <span class="icon icon2 fl"></span>
+            <h2>含税一口价</h2>
+            <p><span class="icon icon18">Fixed Prices For All</span></p>
+          </li>
+          <li>
+            <span class="icon icon3 fl"></span>
+            <h2>物流全透明</h2>
+            <p><span class="icon icon19">Easy One-stop Shopping</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
