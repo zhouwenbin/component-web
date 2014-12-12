@@ -1,6 +1,6 @@
 'use strict';
 
-require(['can', 'sf.b2c.mall.header', 'sf.b2c.mall.footer'], function(can, header, footer) {
+require(['can', 'sf.b2c.mall.header', 'sf.b2c.mall.footer', 'sf.b2c.mall.limitedtimesale', 'sf.b2c.mall.rapidseabuy'], function(can, Header, Footer, LimitedTimeSale, RapidSeaBuy) {
 
   var home = can.Control.extend({
 
@@ -10,7 +10,9 @@ require(['can', 'sf.b2c.mall.header', 'sf.b2c.mall.footer'], function(can, heade
     },
 
     render: function() {
-      new header('.sf-b2c-mall-header');
+      new Header('.sf-b2c-mall-header');
+      new LimitedTimeSale('.sf-b2c-mall-limitedtimesale');
+      new RapidSeaBuy('.sf-b2c-mall-rapidseabuy');
     },
 
     supplement: function() {
