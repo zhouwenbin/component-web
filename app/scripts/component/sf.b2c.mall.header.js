@@ -10,21 +10,18 @@ define('sf.b2c.mall.header', ['jquery',
   'can',
   'underscore',
   'md5',
-  'sf.b2c.mall.api.user.getUserInfo'
-], function($, cookie, can, _, md5, SFGetUserInfo) {
+  'sf.b2c.mall.api.user.getUserInfo',
+  'sf.b2c.mall.api.user.logout'
+], function($, cookie, can, _, md5, SFGetUserInfo, SFLogout) {
 
   return can.Control.extend({
 
     defaults: {
       login: {
-        my: 'center.html',
-        order: 'center.html#!&type=booking',
-        car: 'shopping.html'
+        myOrder: 'center.html#!&type=booking'
       },
       nologin: {
-        my: 'login.html',
-        order: 'login.html',
-        car: 'login.html'
+        myOrder: 'login.html'
       }
     },
 
@@ -75,33 +72,69 @@ define('sf.b2c.mall.header', ['jquery',
         .fail(function(data) {});
     },
 
+    /**
+     * [description 登录状态下的个人设置]
+     * @param  {[type]} element
+     * @param  {[type]} event
+     * @return {[type]}
+     */
+    '#user-setting click': function(element, event) {
+      event && event.preventDefault()
+
+    },
+
+    /**
+     * [description 登录状态下的退出]
+     * @param  {[type]} element
+     * @param  {[type]} event
+     * @return {[type]}
+     */
     '#user-logout click': function(element, event) {
       event && event.preventDefault()
 
       var that = this;
       can.when(sf.b2c.mall.model.user.logout())
+
+      var logout = new SFLogout({});
+
+      logout
+        .sendRequest()
         .done(function(data) {
-          if (SFUtil.access(data) && data.content[0].value) {
-            that.data.attr('user', null);
-            window.localStorage.removeItem('csrfToken');
-            window.location.href = 'login.html'
-          };
+          that.data.attr('user', null);
+          window.localStorage.removeItem('csrfToken');
+          window.location.href = 'login.html'
         })
         .fail(function() {})
     },
 
-    '#my-ht click': function(element, event) {
-      event && event.preventDefault();
+    /**
+     * [description 未登录状态下的登录窗口]
+     * @param  {[type]} element
+     * @param  {[type]} event
+     * @return {[type]}
+     */
+    '#user-login click': function(element, event) {
+      event && event.preventDefault()
 
-      if (sf.util.isLogin()) {
-        window.open('center.html')
-      } else {
-        window.open('login.html?from=center.html')
-      }
-
-      return false;
     },
 
+    /**
+     * [description 未登录状态下得注册窗口]
+     * @param  {[type]} element
+     * @param  {[type]} event
+     * @return {[type]}
+     */
+    '#user-register click': function(element, event) {
+      event && event.preventDefault()
+
+    },
+
+    /**
+     * [description 我的订单]
+     * @param  {[type]} element
+     * @param  {[type]} event
+     * @return {[type]}
+     */
     '#my-order click': function(element, event) {
       event && event.preventDefault();
 
