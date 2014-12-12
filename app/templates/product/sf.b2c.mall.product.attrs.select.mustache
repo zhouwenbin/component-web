@@ -1,0 +1,14 @@
+{{#attrs}}
+<dl class="clearfix">
+  {{#specName}}<dt class="fl">{{specName}}：</dt>{{/specName}}
+  <dd class="item clearfix" >
+    {{#specs}}
+    <a href="#" class="{{focus specId selected}}" {{data 'attribute'}} >
+      {{#imgUrl}}
+      <img src="{{imgUrl}}">{{/imgUrl}}{{specValue}}
+      {{#isFocus specId selected}}<i></i>{{/#isFocus}}
+    </a>
+    {{/specs}}
+  </dd>
+</dl>
+{{/attrs}}
