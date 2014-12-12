@@ -5,7 +5,7 @@ $(function(){
 	var sliderPrev=$(".slider .btn-prev");
 	var sliderNext=$(".slider .btn-next");
 	var sliderLi="";
-	var silderTimer;
+	var silderTimer=setInterval(sliderNexting,5000);
 	for(var i = 0; i < sliderLength; i++){
 	   sliderLi += '<li><a href="###"></a></li>'
 	}
@@ -24,6 +24,7 @@ $(function(){
 			right : 0,
 			opacity : 1
 		},500);
+		clearInterval(silderTimer);
 	},function(){
 		sliderPrev.stop(true,false).animate({
 			left : "-100px",
@@ -39,12 +40,10 @@ $(function(){
 	//向前按钮click
 	sliderPrev.click(function(){		
 		sliderPreving();
-		clearInterval(silderTimer);
 	})
 	//向后按钮click
 	sliderNext.click(function(){
 		sliderNexting()	
-		clearInterval(silderTimer);
 	})
 
 	//数字click
@@ -54,8 +53,7 @@ $(function(){
 		clearInterval(silderTimer);
 	})
 
-	//定时器
-	silderTimer=setInterval(sliderNexting,5000);
+	
 	//向前
 	function sliderPreving(){
 		sliderIndex--;
