@@ -10,7 +10,9 @@ require(['can', 'sf.b2c.mall.header', 'sf.b2c.mall.footer', 'sf.b2c.mall.limited
     },
 
     render: function() {
+
       new Header('.sf-b2c-mall-header');
+	  new footer('.sf-b2c-mall-footer');
       new LimitedTimeSale('.sf-b2c-mall-limitedtimesale');
       new RapidSeaBuy('.sf-b2c-mall-rapidseabuy');
     },
