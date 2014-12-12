@@ -5,6 +5,7 @@ $(function(){
 	var sliderPrev=$(".slider .btn-prev");
 	var sliderNext=$(".slider .btn-next");
 	var sliderLi="";
+	var silderTimer;
 	for(var i = 0; i < sliderLength; i++){
 	   sliderLi += '<li><a href="###"></a></li>'
 	}
@@ -32,6 +33,7 @@ $(function(){
 			right : "-100px",
 			opacity : 0
 		},500);
+		silderTimer=setInterval(sliderNexting,5000);
 	})
 
 	//向前按钮click
@@ -53,7 +55,7 @@ $(function(){
 	})
 
 	//定时器
-	var silderTimer=setInterval(sliderNexting,5000);
+	silderTimer=setInterval(sliderNexting,5000);
 	//向前
 	function sliderPreving(){
 		sliderIndex--;
