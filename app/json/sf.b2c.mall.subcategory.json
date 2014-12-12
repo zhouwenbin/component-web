@@ -1,0 +1,48 @@
+{
+  "category": [
+    {
+      "title": "母婴用品",
+      "classname": "ico3",
+      "items": [{
+        "link": "#",
+        "name": " 孕产用品"
+      }, {
+        "link": "#",
+        "name": "奶粉"
+      }]
+    },
+    {
+      "title": "服饰鞋包",
+      "classname": "ico4",
+      "items": [{
+        "link": "#",
+        "name": " 孕产用品"
+      }, {
+        "link": "#",
+        "name": "奶粉"
+      }]
+    },
+    {
+      "title": "食品保健",
+      "classname": "ico5",
+      "items": [{
+        "link": "#",
+        "name": " 孕产用品"
+      }, {
+        "link": "#",
+        "name": "奶粉"
+      }]
+    },
+    {
+      "title": "生活居家",
+      "classname": "ico6",
+      "items": [{
+        "link": "#",
+        "name": " 孕产用品"
+      }, {
+        "link": "#",
+        "name": "奶粉"
+      }]
+    }
+  ]
+}

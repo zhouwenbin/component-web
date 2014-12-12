@@ -1,0 +1,61 @@
+<div class="logBox">
+  <div class="login clearfix">
+
+    <ul class="login-left-wrap clearfix">
+      {{^user}}
+      <li>
+        <a href="/login.html">登录</a>
+      </li>
+      <!-- <li><a href="/register.html">免费注册</a></li> -->
+      {{/user}}
+
+      {{#user}}
+      <li>
+        <a href="javascript:;" class="userId">{{user.nick}} 欢迎回来！</a>
+      </li>
+      <li><a href="javascript:;" id="user-logout">退出</a></li>
+      {{/user}}
+    </ul>
+
+    <ul class="login-right-wrap clearfix">
+      <li class="my-ht">
+        <a href="/index.html">
+          顺丰海淘首页
+        </a>
+      </li>
+
+      <li class="my-ht">
+        <a href="{{my}}" target="_blank" id="my-ht">
+          我的海淘
+        </a>
+      </li>
+
+      <li class="my-order">
+        <a href="{{order}}" target="_blank" id="my-order">
+          我的订单
+        </a>
+      </li>
+
+<!--       <li class="store-net">
+        <a href="{{car}}" target="_blank">
+          我的购物车
+        </a>
+      </li> -->
+
+      <li class="help-center">
+        <a href="/help-guide-promise.html" target="_blank">
+          帮助中心
+        </a>
+      </li>
+
+      <li class="hot-tel">
+        <a target="_blank" href="http://sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&configID=20&skillId=20&enterurl=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2Fpreview%2Ejsp&pagereferrer=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2FembedScript%2Ejsp%3FcurrentConfigId%3D20&k=1">
+          <span>
+            在线客服
+          </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>

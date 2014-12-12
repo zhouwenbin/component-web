@@ -1,0 +1,84 @@
+<div class="upload-show clearfix">
+  <div class="u-show-tops clearfix">
+
+    <span class="fl">{{addr.mainTitle.text}}</span>
+
+    <font class="fr">*均为必填项</font>
+  </div>
+
+  <div class="clearfix u-form">
+    <form name="frm">
+      <dl class="clearfix">
+        <dt class="fl">*国家/地区：</dt>
+        <dd>
+          <div class="info">
+            <select id="s1" can-value="addr.input.nationName">
+              {{#each addr.place.countries}}
+              <option value="{{id}}">{{name}}</option>
+              {{/each}}
+            </select>
+
+            <select id="s2"  can-value="addr.input.provinceName">
+              {{#each addr.place.provinces}}
+              <option value="{{id}}">{{name}}</option>
+              {{/each}}
+            </select>
+
+            <select id="s3"  can-value="addr.input.cityName">
+              {{#each addr.place.cities}}
+              <option value="{{id}}">{{name}}</option>
+              {{/each}}
+            </select>
+
+            <select id="s4"  can-value="addr.input.regionName">
+              {{#each addr.place.regions}}
+              <option value="{{id}}">{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt class="fl">*详细地址：</dt>
+        <dd>
+          <textarea class="textarea-input" can-value="addr.input.detail"></textarea>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt class="fl">&nbsp;邮编：</dt>
+        <dd>
+          <input type="text" class="input-texttel" can-value="addr.input.zipCode" value="{{zipCode}}">{{zipCode}}
+          <!-- <label for="" class="certificate-label">选填项</label> -->
+        </dd>
+      </dl>
+
+      <!-- add user -->
+      <dl class="clearfix" id="center-add-user"></dl>
+
+      <dl>
+        <dt class="fl">*手机号码：</dt>
+        <dd>
+          <input type="text" class="input-texttel" can-value="addr.input.mobile">
+           <b class="tel-hide">请输入收货人手机号</b>
+        </dd>
+      </dl>
+    </form>
+
+    <dl>
+      <dl style="width:0px;"></dl>
+        <dd class="clearfix">
+
+          {{#if isUpdate}}
+          <input type="submit" class="submit-preservation fl" id="center-address-update" value="保存收货地址">
+          {{else}}
+          <input type="submit" class="submit-preservation fl" id="center-address-save" value="保存收货地址">
+          {{/if}}
+
+          <a href="#" class="u-no2 fl" id="center-add-address-cancel-btn">取消保存</a>
+        </dd>
+    </dl>
+
+  </div>
+</div>

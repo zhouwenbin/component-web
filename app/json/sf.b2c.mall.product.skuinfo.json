@@ -1,0 +1,23 @@
+{
+  "skuId": "74992cc3482b3501",
+  "spuId": "01b6f3760ee49852",
+  "imgUrls": ["images/img15.jpg","images/img15.jpg","images/img15.jpg","images/img15.jpg"],
+  "stock": 58,
+  "status": "GROUPON",
+  "price": 1221,
+  "listPrice": 1894,
+  "skuSpec": [
+    {
+      "specId":"spec-color-b",
+      "specName": "颜色",
+      "specValue": "蓝色",
+      "url": "http://www.google.com"
+    },
+    {
+      "specId": "spec-size-b",
+      "specName": "规格",
+      "specValue": "大",
+      "url": "http://www.baidu.com"
+    }
+  ]
+}

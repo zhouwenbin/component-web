@@ -1,0 +1,83 @@
+{
+  "title": "美乐宝Aptamil新版爱他美奶粉 1段(0-6个月)",
+  "subtitle": "材质安全，耐酸碱性、不含BPA！",
+  "price": 3199,
+  "originalPrice": 5199,
+  "postage": 20.00,
+  "status": "soldout",
+  "fromCountry": "美国",
+  "toCountry": "中国大陆",
+  "fromCountryImgUrl": "images/usa.jpg",
+  "supplierImgUrl": "images/ymx.png",
+  "imgs": [{
+    "thumbImgUrl": "images/img15.jpg",
+    "midImgUrl": "images/img15.jpg",
+    "bigImgUrl": "images/img15.jpg"
+  }, {
+    "thumbImgUrl": "images/img15.jpg",
+    "midImgUrl": "images/img15.jpg",
+    "bigImgUrl": "images/img15.jpg"
+  }, {
+    "thumbImgUrl": "images/img15.jpg",
+    "midImgUrl": "images/img15.jpg",
+    "bigImgUrl": "images/img15.jpg"
+  }, {
+    "thumbImgUrl": "images/img15.jpg",
+    "midImgUrl": "images/img15.jpg",
+    "bigImgUrl": "images/img15.jpg"
+  }],
+  "attrs": [{
+    "title": "颜色",
+    "list": [{
+      "imgUrl": "images/img16.png",
+      "name": "蓝色"
+    }, {
+      "imgUrl": "images/img16.png",
+      "name": "红色"
+    }]
+  }, {
+    "title": "规格",
+    "list": [{
+      "name": "大"
+    }, {
+      "name": "中"
+    }, {
+      "name": "小"
+    }]
+  }],
+  "infos": [{
+    "key": "厂名",
+    "value": "milupa GmbH"
+  }, {
+    "key": "厂址",
+    "value": "Bahnstraβe 14-30"
+  }, {
+    "key": "厂家联系方式",
+    "value": "4906172990"
+  }, {
+    "key": "配料表",
+    "value": "脱盐乳精，植物油"
+  }, {
+    "key": "保质期",
+    "value": "540 天"
+  }, {
+    "key": "食品添加剂",
+    "value": "无食品添加剂"
+  }, {
+    "key": "名称",
+    "value": "Aptamil 新配方"
+  }, {
+    "key": "包装方式",
+    "value": "包装"
+  }],
+  "intro": "%3Cimg%20src%3D%22images/img17.jpg%22%3E",
+  "selected": {
+    "attrs": [{
+      "title": "颜色",
+      "value": "蓝色"
+    }, {
+      "title": "规格",
+      "value": "大"
+    }]
+  }
+}
