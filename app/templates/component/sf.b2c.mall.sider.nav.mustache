@@ -1,0 +1,35 @@
+<div class="list-navs clearfix">
+  <div>
+    <span class="list-titles">海淘商品</span>
+  </div>
+
+  {{#each catagories}}
+  <div class="sider-navs {{#on}}on{{/on}}">
+    <div class="list-slide">
+      <div class="sider-tops clearfix">
+        <a href="javascript:void(0);" class="fl">
+
+          {{#on}}
+            <em class="fr sf-sider-nav-close" data-title="{{categoryInfo.catagoryName}}">-</em>
+          {{/on}}
+
+          {{^on}}
+          <em class="fr sf-sider-nav-open" data-title="{{categoryInfo.catagoryName}}">+</em>
+          {{/on}}
+
+          <em class="{{classname}}"></em>
+
+          <span>{{categoryInfo.catagoryName}}</span>
+        </a>
+      </div>
+
+      <div class="sider-lists" style="{{#on}}display:block;{{/on}}">
+        {{#each children}}
+        <a target="_blank" href="#" class="sider-category" {{data 'category'}}>{{categoryInfo.catagoryName}}</a>
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+  {{/each}}
+</div>

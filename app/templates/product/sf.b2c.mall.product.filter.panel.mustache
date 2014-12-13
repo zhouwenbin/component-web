@@ -1,0 +1,59 @@
+{{#if filter}}
+<div class="shop-navmains clearfix">
+
+{{#filters}}
+<div class="nav-Country clearfix">
+  {{#equal type 'media'}}
+    <div class="nav-Country-left fl">{{value}}</div>
+    <div class="nav-Country-right fr clearfix">
+      <ul class="filter-panel-attrs" data-attr="{{name}}">
+        {{#list}}
+        <li>
+          <a href="{{link}}" data-name="{{name}}">
+            <img src="{{imgUrl}}">
+            {{#text}}
+            <span>{{text}}</span>
+            {{/text}}
+          </a>
+        </li>
+        {{/values}}
+      </ul>
+      <div class="fl coutry-rights clearfix">
+    </div>
+  </div>
+  {{/equal}}
+
+  {{#equal type 'plain'}}
+  <div class="nav-Country clearfix" style="border-bottom:none;">
+    <div class="nav-Country-left2 fl">{{value}}</div>
+    <div class="nav-Country-right2 fr clearfix">
+      <div class="fl coutry-lefts clearfix">
+        <ul class="filter-panel-attrs" data-attr="{{name}}">
+          {{#list}}
+          <li>
+            <a href="#" class="buyer-get"  data-name="{{name}}">{{text}}</a>
+          </li>
+          {{/list}}
+        </ul>
+      </div>
+      <div class="fl coutry-rights clearfix">
+        <a href="#" class="Multiple-choice fl filter-panel-multiple">
+          <em></em>
+          多选
+        </a>
+        {{#over list}}
+        <a href="#" class="mores fl filter-panel-more" data-status="close">
+          <em></em>
+          <span class="filter-panel-text-more">更多</span>
+        </a>
+        {{/over}}
+      </div>
+    </div>
+  </div>
+  {{/equal}}
+
+</div>
+{{/filters}}
+
+</div>
+{{/if}}

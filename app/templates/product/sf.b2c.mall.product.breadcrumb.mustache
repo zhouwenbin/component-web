@@ -1,0 +1,53 @@
+<div class="r-t-navs clearfix ">
+
+<div class="n-lefts">
+  <ul>
+    <li>
+      <a href="/" class="fl">首页</a>
+      <em class="s-i">&gt;</em>
+    </li>
+
+    {{#path}}
+    <li>
+      <a href="/list.html?cid={{categoryId}}" target="_blank" class="fl">{{catagoryName}}</a> {{&last path .}}
+      {{#noresult}}
+      <em class="s-i">&gt;</em>
+      {{/noresult}}
+    </li>
+    {{/path}}
+
+    <li>
+      <a href="/detail.html?sku={{sku}}" class="fl">{{title}}</a>
+    </li>
+
+    {{#keyword}}
+    <li class="search-list clearfix">
+      搜索<span>“{{keyword}}”</span>  共有<b> {{sum}} </b>件商品
+    </li>
+    {{/keyword}}
+  </ul>
+</div>
+
+{{^noresult}}
+{{#sum}}
+<div class="n-rights fr">
+  共 <b>{{sum}}</b> 件相关商品
+</div>
+{{/sum}}
+{{/noresult}}
+
+
+</div>
+<div>
+
+<!--
+{{#keyword}}
+<li class="search-list clearfix">
+  <span>相关分类</span>:
+  {{#categories}}
+    <a class="plain" target="_blank" href="list.html?cid={{categoryInfo.categoryId}}" data-id="{{categoryInfo.categoryId}}">{{categoryInfo.catagoryName}}</a> |
+  {{/categories}}
+</li>
+{{/keyword}}
+-->
+</div>

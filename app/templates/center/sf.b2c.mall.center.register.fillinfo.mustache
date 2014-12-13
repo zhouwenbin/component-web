@@ -1,0 +1,67 @@
+<div class="reg-mains clearfix">
+  <div class="fl reg-mains-left">
+    <dl class="clearfix">
+      <dt>*邮箱地址：</dt>
+      <dd>
+        <input type="text" class="reg-text" can-value="user.username" id="sf-b2c-mall-register-username-input" placeholder="请输入您的员工/常用邮箱">
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt>*登录密码：</dt>
+      <dd>
+        <input type="password" class="reg-text" can-value="user.password" placeholder="6-18位字母、数字或符号">
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt>*确认密码：</dt>
+      <dd>
+        <input type="password" class="reg-text" can-value="user.repeatPassword" placeholder="请再次输入登录密码">
+      </dd>
+    </dl>
+    {{#if isSfExpress}}
+    <dl class="clearfix">
+      <dt>*邀请码：</dt>
+      <dd>
+        <input type="text" class="reg-text" can-value="user.inviteCode"  placeholder="请输入邀请码">
+      </dd>
+    </dl>
+    {{/if}}
+
+    <dl class="clearfix">
+      <dt>*验证码：</dt>
+      <dd>
+        <input type="text" class="reg-text" style="width:127px;" can-value="user.verifiedCode" placeholder="请输入右侧图片内容">
+        {{#user.verifiedCodeUrl}}<img src="{{user.verifiedCodeUrl}}" class="yzm verified-code-img">{{/user.verifiedCodeUrl}}
+        <a href="#" id="sf-verified-code">点击更换验证码</a>
+      </dd>
+    </dl>
+    <dl>
+      <dd class="login-error">
+        {{#error}}
+        <div class="login-hide"><em></em>{{errorContent}}</div>
+        {{/error}}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt style="display:none;"></dt>
+      <dd>
+        <input type="submit" class="reg-submit" id="sf-b2c-mall-register-input-submit-btn" value="同意协议并注册">
+        <a href="help-guide-register.html" target="_blank">《顺丰海淘服务协议》</a>
+<!--         <div class="clearfix Agreement-links">
+          <a href="help-guide-register.html" target="_blank">《顺丰海淘服务协议》</a>
+        </div> -->
+      </dd>
+    </dl>
+
+  </div>
+  <div class="fl reg-mains-right">
+    <div class="l-titles" style="padding-left:0px;">{{title}}</div>
+    <div class="reg-navs clearfix">
+      <ul>
+        {{#each others}}
+        <li><a href="{{link}}"><img src="{{imgUrl}}">{{name}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

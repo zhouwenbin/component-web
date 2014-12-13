@@ -1,0 +1,207 @@
+{
+  "hotList": [{
+    "color": "#FD874B",
+    "recommended": {
+      "corner": "images/s1.png",
+      "backgroundUrl": "images/img3.jpg",
+      "category": "最新折扣",
+      "name": "新西兰直邮 Karicare",
+      "price": 500,
+      "buyType": "海外团购",
+      "imgUrl": "images/img9.jpg"
+    },
+    "products": [{
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }]
+  }, {
+    "color": "#63C1B9",
+    "recommended": {
+      "corner": "images/s2.png",
+      "backgroundUrl": "images/img4.jpg",
+      "category": "热卖商品",
+      "name": "新西兰直邮 Karicare",
+      "price": 500,
+      "buyType": "海外团购",
+      "imgUrl": "images/img10.jpg"
+    },
+    "products": [{
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }, {
+      "link": "#",
+      "imgUrl": "images/img4.png",
+      "name": "Karicare 可瑞康金装3段奶粉金装",
+      "buyType": "海外团价",
+      "price": 500,
+      "originalPrice": 990,
+      "country": "美国",
+      "countryImgUrl": "images/ico10.png",
+      "shopImgUrl": "images/b1.png"
+    }]
+  }]
+}

@@ -1,0 +1,79 @@
+<div class="order-table clearfix">
+  <div class="sf-b2c-mall-center-address"></div>
+  <div class="order-message">
+    <dl class="clearfix">
+      <dt class="fl">买家留言</dt>
+      <dd>
+        <textarea class="message-textarea" can-value="comment" maxlength="200"></textarea>
+      </dd>
+    </dl>
+  </div>
+  <div class="payment">
+    <h2 class="fl">支付方式</h2>
+    <ul class="clearfix">
+      <li data-type="alipay" class="{{activePayType payType 'alipay'}} sf-pay-type">
+        <img src="images/payment1.jpg" alt="">
+        <span class="icon-check"></span>
+      </li>
+<!--       <li data-type="sfp" class="{{activePayType payType 'sfp'}} sf-pay-type">
+        <img src="images/payment2.jpg" alt="">
+        <span class="icon-check"></span>
+      </li> -->
+    </ul>
+  </div>
+  {{#list products}}
+
+  {{#productList}}
+  <div class="order-listmain clearfix">
+    <table>
+      <tbody>
+        <tr class="order-title">
+          <td>
+            <img class="sf-country-icon-s" src="{{sf.nation.img tagCountry}}">{{sf.nation.name tagCountry}}直发</td>
+          <td>商品</td>
+          <td>数量</td>
+          <td>金额（元）</td>
+        </tr>
+        {{#tagItems}}
+        <tr class="order-lists">
+          <td>&nbsp;</td>
+          <td>
+            <div class="clearfix order-shop">
+              <a href="#" class="fl">
+                {{#sf.contain.img img}}<img src="{{sf.img img}}">{{/sf.contain.img}}
+              </a>
+              <div class="fl order-r">
+                <span>
+                  <a href="/detail.html?sku={{skuId}}" target="_blank">{{name}}</a>
+                </span>
+                <span>
+                  <font>{{#attrs}}{{specName}} : {{specValue}}{{/attrs}}</font>
+                </span>
+                <a href="#" style="font-family:'宋体'; color:#B8B8B8;">
+                  <img class="sf-country-icon-s" src="{{sf.nation.img shippingStartPointId}}">{{sf.nation.name shippingStartPointId}}
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>{{num}}</td>
+          <td class="order-m">商品单价：￥{{sf.price price}}</td>
+        </tr>
+        {{/tagItems}}
+      </tbody>
+    </table>
+  </div>
+  {{/productList}}
+
+  {{/list}}
+  <div class="cart-button clearfix">
+    <div class="fr">
+      <div class="cart-m">
+        实际应付款(含运费)：
+        <span>￥{{sf.price calculate}}</span>
+      </div>
+      <div>
+        <a href="#" class="submit-btns fr" id="booking-submit-btn">提交订单</a>
+      </div>
+    </div>
+  </div>
+</div>
