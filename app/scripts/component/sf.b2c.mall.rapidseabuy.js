@@ -15,9 +15,8 @@ define('sf.b2c.mall.rapidseabuy', ['can','jquery'], function(can,$) {
     },
     render:function(){
       var that = this;
-      $.ajax({
-        url:'json/sf-b2c.mall.index.rapidseabuy.json',
-        dataType:'json'
+      can.ajax({
+        url:'json/sf-b2c.mall.index.rapidseabuy.json'
       }).done(function(data){
         var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',data);
         that.element.html(html);
