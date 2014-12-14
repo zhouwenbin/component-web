@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.limitedtimesale', ['can'], function(can) {
+define('sf.b2c.mall.component.limitedtimesale', ['can'], function(can) {
   return can.Control.extend({
 
     /**
