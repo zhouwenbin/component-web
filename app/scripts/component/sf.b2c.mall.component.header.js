@@ -5,7 +5,7 @@
  * @param  {[type]} can
  * @return {[type]}
  */
-define('sf.b2c.mall.header', ['jquery',
+define('sf.b2c.mall.component.header', ['jquery',
   'jquery.cookie',
   'can',
   'underscore',
