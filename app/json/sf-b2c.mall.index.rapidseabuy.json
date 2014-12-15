@@ -1,74 +1,82 @@
 {
-  "jsht":[{
-    "product-list":[
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
-      },
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
+  "product": [
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
       }
-      ,
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
-      },
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
-      },
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
       }
-      ,
-      {
-        "goods-img-link":"",
-        "goods-img-src":"img/product.jpg",
-        "goods-title":"Kate Spade女款手提包手拎包",
-        "goods-sub-title":"美式休闲打牌，零利疯抢！",
-        "goods-arrived-time":"12",
-        "goods-from-country":"",
-        "goods-now-price":"12",
-        "goods-before-price":"12",
-        "goods-discount":"12"
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
       }
-    ]
-  }]
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
+      }
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
+      }
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "contentType": "PRODUCT",
+      "homePageProductInfo": {
+        "skuId": "199911",
+        "saleId": "28931",
+        "showNationalUrl": "img/icon-usa.png"
+      }
+    }
+  ]
 }
