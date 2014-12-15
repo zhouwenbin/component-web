@@ -165,6 +165,9 @@ img{vertical-align: middle;}
 	padding: 18px 20px;
 	background: #a6a6a6;
 	border-radius: 5px;
+	position: fixed;
+	bottom: 100px;
+	right: 0;
 }
 .btn-more{
 	color: #999;
