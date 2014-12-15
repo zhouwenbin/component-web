@@ -27,11 +27,11 @@ $(function(){
 		clearInterval(silderTimer);
 	},function(){
 		sliderPrev.stop(true,false).animate({
-			left : "-100px",
+			left : "-50px",
 			opacity : 0
 		},500);
 		sliderNext.stop(true,false).animate({
-			right : "-100px",
+			right : "-50px",
 			opacity : 0
 		},500);
 		silderTimer=setInterval(sliderNexting,5000);
@@ -75,4 +75,20 @@ $(function(){
 		sliderNum.removeClass('active').eq(sliderIndex).addClass("active");
 		sliderImg.removeClass('active').eq(sliderIndex).addClass("active");
 	}
+
+
+
+	//回到顶部
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 600){
+			$('.btn-top').fadeIn(500);
+		}else{
+			$('.btn-top').fadeOut(500);
+		}
+	})
+
+	$(".btn-top").click(function(){  
+        $('body,html').animate({scrollTop:0},1000);  
+        return false;  
+    });  
 })
