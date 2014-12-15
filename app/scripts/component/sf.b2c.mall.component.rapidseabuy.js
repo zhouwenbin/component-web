@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.rapidseabuy', ['can','jquery'], function(can,$) {
+define('sf.b2c.mall.component.rapidseabuy', ['can','jquery'], function(can,$) {
   return can.Control.extend({
 
     /**

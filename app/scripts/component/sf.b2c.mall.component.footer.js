@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.footer', ['can'], function(can) {
+define('sf.b2c.mall.component.footer', ['can'], function(can) {
   return can.Control.extend({
 
     /**
