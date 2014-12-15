@@ -198,13 +198,13 @@
 	top: 151px;
 }
 .slider .btn-prev{
-	left: -100px;
+	left: -50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 
 }
 .slider .btn-next{
-	right: -100px;
+	right: -50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 
