@@ -98,7 +98,7 @@ $(function(){
     $('.product-tab li').click(function(){
     	$(this).addClass('active').siblings().removeClass("active");
     	var index = $('.product-tab li').index(this);
-    	$('.product .mb').animate({
+    	$('#product-mb').animate({
     		left:-100 * index + "%"
     	},500);
     	return false;
