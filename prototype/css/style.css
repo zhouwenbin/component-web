@@ -146,6 +146,9 @@
 	width: 100%;
 	opacity: 0;
 	filter: alpha(opacity=0);
+	-webkit-transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-ms-transition: opacity 1s;
 	transition: opacity 1s;
 }
 .slider-img .active{
@@ -227,7 +230,7 @@
 	padding: 0 7px 4px;
 	margin-right: 39px;
 	font-size: 18px;
-	transition: all 0.3s;
+
 }
 .product-tab li:hover{
 	border-bottom: 4px solid #DD3E3F;
@@ -248,6 +251,9 @@
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
 	color: #fff;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
 	transition: all 0.5s;
 }
 .product-list li:hover .product-r3 strong{
