@@ -14,61 +14,46 @@
     })
     ```
 
-##使用QINIU作为fixture数据
+##使用ajax访问本地json文件，模拟数据请求
 
-1. 在`fixture`中编辑接口模拟数据，以`fixture/sf.b2c.mall.fixture.b2cmall.getFastSaleInfoList.json`为例
+1. 在`json`中编辑接口模拟数据，以`json/sf-b2c.mall.index.timelimitedsale.json`为例
 
     ```
     {
-      "stat": {
-        "cid": "a:4426e0|t:78|s:1418613503146",
-        "code": 0,
-        "stateList": [{
-          "code": 0,
-          "length": 1468,
-          "msg": "成功"
-        }],
-        "systime": 1418613503232
-      },
-      "content": [
-        {
-          "pageIndex": 1,
-          "pageSize": 36,
-          "hasMore": true,
-          "totalCount": 360,
-          "totalPageCount": 10,
-          "fastSaleInfos": [{
-            "title": "COACH Madison 单肩包",
-            "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
-            "imgUrl": "79b18fd4-c4f2-4cec-a597-5d67fa6e5900.png",
-            "link": "http://www.sfht.com/detail.html?sku=199911",
-            "fastSaleContentType": "PRODUCT",
-            "homePageProductInfo": {
-              "skuId": "199911",
-              "saleId": "28931",
-              "showNationalUrl": "http://www.sfht.com/images/america.jpg"
-            },
-            "homepageTopicInfo": "null"
-          },{
-            "title": "Gerber美国嘉宝3段苹果肉桂燕麦米粉 227g",
-            "subTitle": "宝宝第一辅食选择，美国原装营养燕麦米粉，营养丰富易吸收",
-            "imgUrl": "aus/images/I/81ImExhVRAL._SL1500_.jpg",
-            "link": "http://www.sfht.com/detail.html?sku=198637",
-            "fastSaleContentType": "PRODUCT",
-            "homePageProductInfo": {
-              "skuId": "198637",
-              "saleId": "17931",
-              "showNationalUrl": "http://www.sfht.com/images/america.jpg"
-            },
-            "homepageTopicInfo": "null"
-          }]
+    [
+      {
+        "title": "COACH Madison 单肩包",
+        "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+        "imgUrl": "79b18fd4-c4f2-4cec-a597-5d67fa6e5900.png",
+        "link": "http://www.sfht.com/detail.html?sku=199911",
+        "contentType": "PRODUCT",
+        "homePageProductInfo": {
+          "skuId": "199911",
+          "saleId": "28931",
+          "showNationalUrl": "http://www.sfht.com/images/america.jpg"
         }
-      ]
+      },{
+        "title": "Gerber美国嘉宝3段苹果肉桂燕麦米粉 227g",
+        "subTitle": "宝宝第一辅食选择，美国原装营养燕麦米粉，营养丰富易吸收",
+        "imgUrl": "aus/images/I/81ImExhVRAL._SL1500_.jpg",
+        "link": "http://www.sfht.com/detail.html?sku=198637",
+        "contentType": "PRODUCT",
+        "homePageProductInfo": {
+          "skuId": "198637",
+          "saleId": "17931",
+          "showNationalUrl": "http://www.sfht.com/images/america.jpg"
+        }
+      }
+    ]
     }
     ```
-2. 将`json`文件上传到[`QINIU`](https://portal.qiniu.com/signin)，登录用户名和密码
+2. 使用如下ajax进行请求
     ```
-    用户名: leewind1981209@gmail.com
-    密码: 13512172423
+      can.ajax({
+        url:'json/sf-b2c.mall.index.timelimitedsale.json'
+      })
+      .done(function(data){
+        var html = can.view('templates/component/sf.b2c.mall.limitedtimesale.mustache', data);
+        this.element.html(html);
+      })
     ```
-3. 登录之后在[上传文件](https://portal.qiniu.com/bucket/mdocshare/resource#1)中提交`json`文件
