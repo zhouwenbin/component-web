@@ -103,4 +103,27 @@ $(function(){
     	},500);
     	return false;
     })
+
+
+    //----------数量按钮-------------// 
+    $('.btn-num').on("click",".btn-num-add",function(){
+    	var input = $(this).siblings("input")
+    	var value = input.val();
+    	if(value < 2){
+    		value ++;
+    	}
+    	input.val(value);
+    })
+    $('.btn-num').on("click",".btn-num-reduce",function(){
+    	var input = $(this).siblings("input")
+    	var value = input.val();
+    	if(value > 0){
+    		value --;
+    	}
+    	input.val(value);
+    })
+    //----------商品颜色-------------// 
+    $('.btn-goods').on("click",function(){
+    	$(this).addClass("active").siblings().removeClass("active");
+    });
 })

@@ -129,6 +129,15 @@
 .footer2 .time{
 	font-size: 18px;
 }
+/*footer3*/
+.footer3{
+	height: 103px;
+	line-height: 103px;
+	background: #23262C;
+	color: #4b4f5e;
+	text-align: center;
+	font-size: 18px;
+}
 /*slider*/
 .slider{
 	margin-bottom: 65px;
