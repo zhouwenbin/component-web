@@ -1,4 +1,5 @@
 $(function(){
+	//----------slider-------------//
 	var sliderIndex=0;
 	var sliderImg=$(".slider-img li");
 	var sliderLength=sliderImg.length;
@@ -78,7 +79,7 @@ $(function(){
 
 
 
-	//回到顶部
+	//----------回到顶部-------------//
 	$(window).scroll(function(){
 		if($(window).scrollTop() > 600){
 			$('.btn-top').fadeIn(500);
@@ -90,5 +91,16 @@ $(function(){
 	$(".btn-top").click(function(){  
         $('body,html').animate({scrollTop:0},1000);  
         return false;  
-    });  
+    }); 
+
+
+    //----------限时特卖切换-------------// 
+    $('.product-tab li').click(function(){
+    	$(this).addClass('active').siblings().removeClass("active");
+    	var index = $('.product-tab li').index(this);
+    	$('.product .mb').animate({
+    		left:-100 * index + "%"
+    	},500);
+    	return false;
+    })
 })
