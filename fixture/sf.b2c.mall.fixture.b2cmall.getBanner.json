@@ -1,0 +1,26 @@
+{
+  "stat": {
+    "cid": "a:4426e0|t:78|s:1418613503146",
+    "code": 0,
+    "stateList": [{
+      "code": 0,
+      "length": 1468,
+      "msg": "成功"
+    }],
+    "systime": 1418613503232
+  },
+  "content": {
+    "value": [{
+        "id": 2014121401,
+        "link": "http://www.sfht.com/detail.html?sku=198637",
+        "imgUrl": "img/banner1.jpg",
+        "title": "平凡之路"
+      },{
+        "id": 2014121402,
+        "link": "http://www.sfht.com/detail.html?sku=199911",
+        "imgUrl": "img/banner2.jpg",
+        "title": "匆匆那年"
+      }
+    ]
+  }
+}
