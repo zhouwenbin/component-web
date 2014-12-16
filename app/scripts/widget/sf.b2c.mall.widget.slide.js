@@ -11,7 +11,9 @@ define(
 
       init: function (element, options) {
         this.options.sliderIndex = 0;
-        this.render(this.options);
+        if (this.options.imgs && this.options.imgs.length > 0) {
+          this.render(this.options);
+        }
       },
 
       /**
