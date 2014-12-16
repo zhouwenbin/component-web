@@ -1,0 +1,135 @@
+<div class="goods clearfix">
+        <div class="goods-c1 fl">
+          <div class="goods-c1r1">
+            <img src="{{currentImage}}" alt="" /><span></span>
+          </div>
+          <div class="goods-c1r2">
+            <ul class="clearfix">
+              {{#each images}}
+              <li><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>
+              {{/each}}
+            </ul>
+
+          </div>
+        </div>
+        <div class="goods-c2">
+          <h1>{{title}}</h1>
+          <p>{{subTitle}}</p>
+          <div class="mr1">单价：<strong>¥ {{priceInfo.sellingPrice}}</strong><span>（含税）</span><del>¥ {{priceInfo.originPrice}}</del></div>
+          <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>
+          <div class="mr3">国际物流：{{orderToDelivery}}</div>
+          <div class="mr4">发货商家：{{productShape}}</div>
+          <div class="mr5">品牌：{{brand}}</div>
+          <div class="mr6">颜色：
+            {{#each itemInfo.colorInfo.specs}}
+            <a href="#" class="btn btn-goods btn-goods-white"><b></b>{{specValue}}<span class="icon icon23"></span></a>
+            {{/each}}
+          </div>
+          <div class="mr7">尺码：
+            <div class="btn btn-select" role="btn">
+              <span class="btn-select-num">6</span><span class="icon icon16-1"></span>
+              <ul class="btnSelectUL">
+                {{#each itemInfo.sizeInfo.specs}}
+                <li><a href="">{{specValue}}</a></li></a>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <div class="mr8">购买数量：
+            <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
+          </div>
+          <div class="mr9">
+            {{#sf-is-soldout priceInfo.soldOut}}<span class="btn btn-tip">商品库存不足</span>{{/sf-is-soldout}}
+            {{#sf-is-restriction priceInfo.soldOut priceInfo.accountRestriction}}<span class="btn btn-tip">商品限购{{priceInfo.accountRestriction}}件</span>{{/sf-is-restriction}}
+          </div>
+
+          {{^if priceInfo.soldOut}}
+            <div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>
+          {{/if}}
+
+          <!--限时特卖-->
+          <div class="u1">
+            {{#sf-is-isPromotion priceInfo.soldOut priceInfo.isPromotion}}
+              <span class="icon icon6 icon6-2">限时特卖<i></i></span>
+              <div class="u1-r1"><span class="icon icon4"></span>{{priceInfo.time}}</div>
+            {{/sf-is-isPromotion}}
+          </div>
+          <!--限时特卖-->
+          <!--售完-->
+          {{#if priceInfo.soldOut}}
+            <span class="icon icon24">售完</span>
+          {{/if}}
+          <!--售完-->
+          <!--7天到--
+          <div class="u2">
+            <span class="icon icon25"></span><strong>7</strong>天到
+          </div>
+          <!--7天到-->
+          <!--运费-->
+          <div class="u3">
+            <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+          </div>
+          <!--运费-->
+        </div>
+      </div>
+      <!--商品-->
+
+      <!--推荐商品-->
+      <div class="recommend">
+        <h2>推荐商品</h2>
+        <ul class="clearfix">
+          <li>
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
+            <div class="recommend-c1">
+              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+              <div class="recommend-r1">¥1280</div>
+              <div class="recommend-r2"><del>¥1680</del></div>
+            </div>
+          </li>
+          <li>
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
+            <div class="recommend-c1">
+              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+              <div class="recommend-r1">¥1280</div>
+              <div class="recommend-r2"><del>¥1680</del></div>
+            </div>
+          </li>
+          <li>
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
+            <div class="recommend-c1">
+              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+              <div class="recommend-r1">¥1280</div>
+              <div class="recommend-r2"><del>¥1680</del></div>
+            </div>
+          </li>
+          <li>
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
+            <div class="recommend-c1">
+              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+              <div class="recommend-r1">¥1280</div>
+              <div class="recommend-r2"><del>¥1680</del></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!--推荐商品-->
+      <!--小编推荐-->
+      <div class="recommend2">
+        <h2>小编推荐</h2>
+        <p>{{recommend}}</p>
+      </div>
+      <!--小编推荐-->
+      <!--详情-->
+      <div class="detail">
+        <div class="detail-h">
+          <ul class="clearfix">
+          {{#each attributes}}
+            <li>【{{key}}】 {{value}}</li>
+          {{/each}}
+          </ul>
+        </div>
+
+        <div class="detail-b">
+          {{description}}
+        </div>
+      </div>

@@ -1,0 +1,343 @@
+﻿body{
+	background: #fff;
+	color: #272541;
+}
+.pb{
+	padding-bottom: 16px;
+}
+/*面包屑*/
+.crumbs{
+	margin-bottom: 52px;
+	border-bottom: 1px solid #DEDDDE;
+	padding-bottom: 5px;
+	margin-top: 59px;
+	color: #585758;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.crumbs a{
+	color: #585758;
+}
+.crumbs span{
+	margin:0 20px;
+}
+/*商品*/
+.goods{
+	padding-bottom: 52px;
+	border-bottom: 1px solid #DEDDDE;
+	margin-bottom: 47px;
+}
+.goods-c1{
+	width: 500px;
+}
+.goods-c1r1{
+	margin-bottom: 15px;
+	
+}
+.goods-c1r1 li{
+	border: 1px solid #efefef;
+	text-align: center;
+	height: 498px;
+	display: none;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-mstransition:all 0.5s;
+	transition:all 0.5s;
+}
+.goods-c1r1 .active{
+	display: block;
+}
+.goods-c1r1 img{
+	max-width: 498px;
+	max-height: 498px;
+	vertical-align: middle;
+}
+.goods-c1r2 img{
+	max-width: 112px;
+	max-height: 112px;
+	vertical-align: middle;
+}
+.goods-c1r1 span,
+.goods-c1r2 span{
+	height: 100%;
+	width: 0;
+	vertical-align: middle;
+	display: inline-block;
+}
+.goods-c1r2 ul{
+	margin-left: -14px;
+}
+.goods-c1r2 .active{
+	border-color: #23262C;
+}
+.goods-c1r2 li{
+	border: 1px solid #efefef;
+	float: left;
+	width: 112px;
+	height: 112px;
+	margin-left: 14px;
+	text-align: center;
+}
+.goods-c2{
+	margin-left: 563px;
+	font-size: 14px;
+	color: #272541;
+	position: relative;
+}
+.goods h1{
+	font-size: 18px;
+	margin-bottom: 17px;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.goods p{
+	padding-bottom: 26px;
+	border-bottom: 1px dashed #858390;
+	margin-bottom: 23px;
+	color: #686675;
+
+}
+.goods .mr1{
+	margin-bottom: 17px;
+}
+.goods .mr1 strong{
+	color:#df2323;
+	font-size: 24px;
+	margin-right: 14px;
+}
+.goods .mr1 span{
+	color:#686675;
+	font-size: 12px;
+	margin-right: 11px;
+}
+.goods .mr1 del{
+	color:#686675;
+}
+.goods .mr2{
+	padding-bottom: 30px;
+	border-bottom: 1px dashed #858390;
+	margin-bottom: 26px;
+}
+.goods .mr2 span{
+	margin-right: 13px;
+}
+.goods .mr3{
+	margin-bottom: 26px;
+}
+.goods .mr4{
+	margin-bottom: 22px;
+}
+
+.goods .mr5{
+	margin-bottom: 16px;
+}
+.goods .mr6{
+	margin-bottom: 18px;
+}
+.goods .mr7{
+	margin-bottom: 17px;
+}
+.goods .mr8{
+	margin-bottom: 18px;
+}
+.goods .mr8 .btn{
+	margin-right: 25px;
+}
+.goods .mr9{
+	margin-bottom: 24px;
+}
+.goods select{
+	width: 72px;
+}
+
+.goods .u1{
+	position: absolute;
+	top: 78px;
+	*top:80px;
+	right: 0;
+	text-align: right;
+}
+.goods .u1-r1{
+	margin-top: 36px;
+}
+.goods .icon4{
+	margin-right: 8px;
+}
+.goods .icon24{
+	position: absolute;
+	top: 91px;
+	right: 3px;
+}
+.goods .u2{
+	position: absolute;
+	top: 123px;
+	right: 0;
+	color: #dc3334;
+}
+.goods .u2 strong{
+	font-size: 42px;
+	margin:0 10px;
+}
+.goods .icon25{
+	vertical-align: 0;
+}
+.goods .u3{
+	position: absolute;
+	top: 208px;
+	right: 0;
+	text-align: right;
+}
+.goods .icon5{
+	margin-right: 7px;
+}
+.goods .s1{
+	margin-right: 15px;
+}
+/*推荐商品*/
+.recommend{
+	padding-bottom: 48px;
+	margin-bottom: 47px;
+	border-bottom: 1px solid #DEDDDE;
+}
+.recommend h2{
+	margin-bottom: 34px;
+	font-size: 18px;
+	margin-bottom: 40px;
+}
+.recommend h3{
+	font-size: 14px;
+	line-height: 18px;
+	margin-bottom: 34px;
+	height: 36px;
+	overflow: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.recommend li{
+	float: left;
+	width: 25%;
+}
+.recommend img{
+	border: 1px solid #EEEDEE;
+}
+.recommend-c1{
+	margin-left: 112px;
+	margin-right: 12px;
+}
+.recommend-r1{
+	font-size: 18px;
+}
+.recommend-r2{
+	padding-left: 68px;
+}
+/*小编推荐*/
+.recommend2{
+	padding:35px 134px; 
+	background: #f8f8f8;
+	border:1px solid #eeedee;
+	margin-bottom: 47px;
+}
+.recommend2 h2{
+	font-size: 18px;
+	color: #686675;
+	margin-bottom: 28px;
+}
+.recommend2 p{
+	font-size: 14px;
+	line-height: 21px;
+}
+
+/*详情*/
+.detail-h{
+	padding:28px 48px;
+	font-size: 14px;
+	border: 1px solid #F0F0F0;
+}
+.detail-h li{
+	margin-bottom: 17px;
+	width: 33.3%;
+	float: left;
+}
+.detail-c1{
+	width: 447px;
+}
+.detail-c2{
+	width: 375px;
+}
+.detail-c3{
+	line-height: 21px;
+}
+.detail-c3c2{
+	margin-left: 95px;
+}
+.detail-b{
+	font-size: 14px;	
+	line-height: 1.7;
+	text-align: center;
+	padding: 84px 0;
+	border-bottom: 1px solid #DEDDDE;
+	margin-bottom: 88px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+/*顺丰海淘服务承诺*/
+.service {
+    padding-bottom: 80px;
+}
+
+.service h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 66px;
+}
+.service ul{
+	margin-left: -215px;
+}
+.service li {
+    float: left;
+    width: 250px;
+    margin-left: 215px;
+    text-align: center
+}
+
+.service h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 26px;
+    margin-top: 18px
+}
+
+.service p {
+    font-size: 14px;
+    color: #666;
+    line-height: 24px
+}
+
+/*海淘小贴士*/
+.tip{
+	padding-top: 57px;
+	height: 396px;
+	background: #F8F8F8;
+}
+.tip h2{
+	font-size: 18px;
+	margin-bottom: 45px;
+	text-align: center;
+}
+.tip h3{
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.tip p{
+	color: #686675;
+	line-height: 21px;
+	height: 112px;
+}
+.tip-c1{
+	width: 443px;
+}
+.tip-c2{
+	width: 438px;
+}
