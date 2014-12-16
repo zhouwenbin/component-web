@@ -127,7 +127,6 @@ $(function(){
     //----------商品颜色-------------// 
     $(".btn-goods").on("click",function(){
     	$(this).addClass("active").siblings().removeClass("active");
-    	return false;
     });
     //----------select模拟-------------// 
     $(".btn-select").on("click",function(){
@@ -139,7 +138,7 @@ $(function(){
     		$(this).find("ul").show();
     	}
     });
-    $(".btn-select").on("click","a",function(){
+    $(".btn-select").on("click","label",function(){
     	$(this).parents(".btn-select").removeClass("active");
     	var value=$(this).text();
     	$(".btn-select-num").text(value);
