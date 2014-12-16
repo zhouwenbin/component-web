@@ -39,13 +39,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
         var that = this;
 
         if (this.options.serverRendered) {
-
-          $('.sf-b2c-mall-limitedtimesale').style.display = 'inline';
-          $('.sf-b2c-mall-limitedtimesale4Client').style.display = 'none';
-
-          var skuList = null;
-
-          that.supplement(skuList);
+          that.supplement();
         } else {
           can.ajax({
               url: 'json/sf-b2c.mall.index.timelimitedsale.json'
@@ -64,39 +58,131 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       supplement: function(skuIdList) {
-        var map = {
-          true: function(html) {
-            $('.sf-b2c-mall-limitedtimesale').html(html);
-          },
-          false: function(html) {
-            $('.sf-b2c-mall-limitedtimesale4Client').html(html);
-          }
-        };
-
         var that = this;
-        can.ajax({
-            url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
-          })
-          .done(function(data) {
-            SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, data, that.showCountDown);
 
-            var html = can.view('templates/component/sf.b2c.mall.component.limitedtimesale.mustache', that.options, that.helpers);
-            map[that.options.serverRendered].call(that, html);
+        if (that.options.serverRendered) {
 
-            that.setTimeInterval();
+          //进行显示和隐藏全局控制
+          $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'inline';
+          $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'none';
 
-          })
+          //获得节点
+          var ulNode = $('ul.product-list');
+          var timeNodeList = $('ul.product-list #timeAndNation4ProductClient');
+          var priceNodeList = $('ul.product-list #price4ProductClient');
+
+          //获得数据列表，传递给ajax请求，方便一次性获得价格信息
+          var skuIdList = ulNode.skuList;
+          var topicIdList = ulNode.topicIdList;
+
+          //获得价格信息
+          can.ajax({
+              url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
+            })
+            .done(function(data) {
+
+              //二次渲染价格信息
+              var template = can.view.mustache(that.priceTemplate());
+              _.each(priceNodeList, function(priceNode) {
+                _.each(data, function(priceItem) {
+                  if (priceItem.skuId == priceNode.attributes['skuid'].value) {
+                    priceItem.contentType = "PRODUCT";
+                    $(priceNode).html(template(priceItem));
+                  }
+                })
+              })
+
+              //二次渲染定时器信息
+              //TODO 优化成一个定时器，并进行销毁
+              var template = can.view.mustache(that.timeAndNationTemplate())
+              _.each(timeNodeList, function(timeNode) {
+                _.each(data, function(priceItem) {
+                  if (priceItem.skuId == timeNode.attributes['skuid'].value) {
+
+                    //进行数据转换
+                    var priceItemMap = SFLimitedTimeSaleAdapter.format4SecondParse(priceItem);
+                    $(timeNode).html(template(priceItemMap));
+
+                    //设置定时器
+                    that.interval = setInterval(function() {
+                      that.setCountDown(priceItemMap);
+                    }, '1000');
+                  }
+                })
+              })
+            })
+        } else {
+          //进行显示和隐藏全局控制
+          $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
+          $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'inline';
+
+          can.ajax({
+              url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
+            })
+            .done(function(data) {
+              SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, data, that.showCountDown);
+
+              var html = can.view('templates/component/sf.b2c.mall.component.limitedtimesale.mustache', that.options, that.helpers);
+              $('.sf-b2c-mall-limitedtimesale4Client').html(html);
+
+              that.setTimeInterval();
+            })
+        }
       },
 
+      timeAndNationTemplate: function() {
+        return '{{#sf-is-product contentType}}' +
+          '<div class="product-r2c1 fl"><span class="icon icon4"></span>{{time}}</div>' +
+          '<div class="product-r2c2 fr"><span class="icon icon5">' +
+          '<img src={{homePageProductInfo.showNationalUrl}} alt="nationImg"></span></div>' +
+          '{{/sf-is-product}}' +
+
+          '{{^sf-is-product contentType}}' +
+          '<div class="product-r2c1 fl"><span class="icon"></span></div>' +
+          '<div class="product-r2c2 fr"><span class="icon icon5"></span></div>' +
+          '{{/sf-is-product}}';
+      },
+
+      priceTemplate: function() {
+        return '{{#sf-is-product contentType}}' +
+          '<div class="product-r3c1 fl">' +
+          '<strong>￥{{sellingPrice}}</strong>' +
+          '<del>￥{{originPrice}}</del>' +
+          '</div>' +
+          '<div class="product-r3c2 fr">' +
+          '<strong>{{discount}}</strong>折' +
+          '</div>' +
+          '{{/sf-is-product}}' +
+
+          '{{^sf-is-product contentType}}' +
+          '<div class="product-r3c1 fl">' +
+          '<strong>￥{{homepageTopicInfo.price}}</strong>元起' +
+          '</div>' +
+          '<div class="product-r3c2 fr">' +
+          '<strong>{{homepageTopicInfo.discount}}</strong>折起' +
+          '</div>' +
+          '{{/sf-is-product}}'
+      },
+
+      /**
+       * [setTimeInterval 设置定时器]
+       */
       setTimeInterval: function() {
         var that = this;
-        _.each(this.options.limitedtimesaleInfoList, function(item) {
-          if (item.contentType == 'PRODUCT') {
-            setInterval(function() {
-              that.setCountDown(item, item.endTime);
-            }, '1000');
-          }
-        })
+
+        //消费后再创建，因为这个方法被多个地方调用
+        if (that.interval) {
+          clearInterval(that.interval);
+        }
+
+        //要进行销毁
+        that.interval = setInterval(function() {
+          _.each(that.options.limitedtimesaleInfoList, function(item) {
+            if (item.contentType == 'PRODUCT') {
+              that.setCountDown(item);
+            }
+          })
+        }, '1000');
       },
 
       /**
@@ -116,44 +202,36 @@ define('sf.b2c.mall.component.limitedtimesale', [
       },
 
       /**
-       * [description TODO 等接口下来后要和下面的点击方法合并重构]
+       * [description 点击事件]
        * @return {[type]}
        */
       "#current click": function() {
-        var that = this;
-
-        can.ajax({
-            url: 'json/sf-b2c.mall.index.timelimitedsaleCurrent.json'
-          })
-          .done(function(data) {
-            that.options.attr('limitedtimesaleInfoList', data);
-            that.supplement(that.getSkuList(data));
-          })
-          .then(function() {
-            can.ajax({
-                url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
-              })
-              .done(function(data) {
-                SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, data);
-              })
-          })
+        this.renderLimitedTimeSale('CURRENT');
       },
 
       "#future click": function() {
+        this.renderLimitedTimeSale('NEXT');
+      },
+
+      renderLimitedTimeSale: function(filter) {
+        var map = {
+          'CURRENT': 'json/sf-b2c.mall.index.timelimitedsaleCurrent.json',
+          'NEXT': 'json/sf-b2c.mall.index.timelimitedsaleFuture.json'
+        }
+
         var that = this;
         can.ajax({
-            url: 'json/sf-b2c.mall.index.timelimitedsaleFuture.json'
+            url: map[filter]
           })
           .done(function(data) {
+            //TODO 要放到done下一起触发绑定
             that.options.attr('limitedtimesaleInfoList', data);
-            that.supplement(that.getSkuList(data));
-          })
-          .then(function() {
             can.ajax({
                 url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
               })
               .done(function(data) {
                 SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, data);
+                that.setTimeInterval();
               })
           })
       },
@@ -164,8 +242,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @param  {[type]} destTime
        * @return {[type]}
        */
-      setCountDown: function(item, endDate) {
+      setCountDown: function(item) {
         var now = new Date();
+        var endDate = item.endTime;
         var leftTime = endDate - now.getTime();
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
@@ -173,6 +252,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
         item.attr('time', day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
+      },
+
+      /**
+       * [destory 销毁动作]
+       * @return {[type]}
+       */
+      destory: function() {
+        clearInterval(this.interval);
       }
 
     });
