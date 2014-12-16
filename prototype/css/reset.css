@@ -88,6 +88,20 @@ img{vertical-align: middle;}
 .icon6-1 i{
 	border-width: 13px 7px;
 }
+.icon6-2{
+	background: #dc3334;
+	height: 28px;
+	line-height: 28px;
+	width: 140px;
+	padding:0;
+	text-align: center;
+}
+.icon6-2 i{
+	border-color:#dc3334 transparent transparent transparent;
+	border-width: 14px 70px;
+	left: 0;
+	top:100%;
+}
 .icon7{
 	width: 26px;
 	height: 30px;
@@ -135,7 +149,8 @@ img{vertical-align: middle;}
 	height: 117px;
 	background-position: -382px -380px;
 }
-.icon16{
+.icon16,
+.icon16-1{
 	width: 0;
 	height: 0;
 	background: none;
@@ -143,6 +158,10 @@ img{vertical-align: middle;}
 	border-width: 10px 7px;
 	border-color: transparent;
 	border-top-color: #C5C7C9;
+}
+.icon16-1{
+	border-width: 3px 3px;
+	border-top-color: #272541;
 }
 .icon17{
 	width: 75px;
@@ -184,6 +203,18 @@ img{vertical-align: middle;}
 	width: 8px;
 	height: 8px;
 	background-position: -62px -53px;
+}
+.icon24{
+	width: 74px;
+	padding-top: 74px;
+	overflow: hidden;
+	height: 0;
+	background-position: -61px -238px;
+}
+.icon25{
+	width: 34px;
+	height: 25px;
+	background-position: -62px -74px;
 }
 /*btn*/
 .btn{
@@ -312,6 +343,57 @@ img{vertical-align: middle;}
 	border: none;
 	text-align: center;
 }
+.btn-tip{
+	height: 21px;
+	line-height: 21px;
+	background: #eb6877;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+}
+.btn-select{
+	border: 1px solid #c6c6c6;
+	padding-right:5px;
+	background: #fff;
+	cursor: pointer;
+	*display: inline;
+	*zoom:1;
+	position: relative;
+}
+.btn-select-num{
+	display: inline-block;
+	width: 57px;
+	height: 20px;
+	line-height: 20px;
+	background: #f2f2f2;
+	padding-left: 13px;
+	border-right: 1px solid #c6c6c6;
+	margin-right:5px;
+}
+.btn-select ul{
+	width: 91px;
+	border: 1px solid #c6c6c6;
+	position: absolute;
+	background: #fff;
+	color: #cdcdcd;
+	top: 23px;
+	left: 0;
+	border-radius: 2px;
+	display: none;
+}
+.btn-select li{
+	border-bottom: 1px solid #c6c6c6;
+	padding-left: 12px;
+	height: 20px;
+	line-height: 20px;
+}
+.btn-select li:last-child{
+	border: none;
+}
+.btn-select a{
+	display: block;
+}
 
 body{
 	background: #EEEEEE;
@@ -320,9 +402,6 @@ body{
 .pm{
 	width: 1180px;
 	margin: 0 auto;
-}
-.pb{
-	padding-bottom: 89px;
 }
 
 /*导航*/

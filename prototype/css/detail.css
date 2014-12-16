@@ -2,6 +2,9 @@
 	background: #fff;
 	color: #272541;
 }
+.pb{
+	padding-bottom: 16px;
+}
 /*面包屑*/
 .crumbs{
 	margin-bottom: 52px;
@@ -9,6 +12,9 @@
 	padding-bottom: 5px;
 	margin-top: 59px;
 	color: #585758;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
 }
 .crumbs a{
 	color: #585758;
@@ -63,10 +69,14 @@
 	margin-left: 563px;
 	font-size: 14px;
 	color: #272541;
+	position: relative;
 }
 .goods h1{
 	font-size: 18px;
 	margin-bottom: 17px;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
 }
 .goods p{
 	padding-bottom: 26px;
@@ -116,17 +126,59 @@
 	margin-bottom: 17px;
 }
 .goods .mr8{
-	margin-bottom: 63px;
+	margin-bottom: 18px;
 }
 .goods .mr8 .btn{
 	margin-right: 25px;
 }
 .goods .mr9{
-	
+	margin-bottom: 24px;
 }
 .goods select{
 	width: 72px;
-}	
+}
+
+.goods .u1{
+	position: absolute;
+	top: 78px;
+	right: 0;
+	text-align: right;
+}
+.goods .u1-r1{
+	margin-top: 36px;
+}
+.goods .icon4{
+	margin-right: 8px;
+}
+.goods .icon24{
+	position: absolute;
+	top: 91px;
+	right: 3px;
+}
+.goods .u2{
+	position: absolute;
+	top: 123px;
+	right: 0;
+	color: #dc3334;
+}
+.goods .u2 strong{
+	font-size: 42px;
+	margin:0 10px;
+}
+.goods .icon25{
+	vertical-align: 0;
+}
+.goods .u3{
+	position: absolute;
+	top: 208px;
+	right: 0;
+}
+.goods .icon5{
+	margin-right: 7px;
+}
+.goods .icon6{
+	margin-left: 15px;
+}
 /*推荐商品*/
 .recommend{
 	padding-bottom: 48px;
@@ -144,6 +196,8 @@
 	margin-bottom: 34px;
 	height: 36px;
 	overflow: hidden;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 .recommend li{
 	float: left;
@@ -202,44 +256,70 @@
 }
 .detail-b{
 	font-size: 14px;	
-	line-height: 1.5;
+	line-height: 1.7;
 	text-align: center;
 	padding: 84px 0;
 	border-bottom: 1px solid #DEDDDE;
 	margin-bottom: 88px;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 /*顺丰海淘服务承诺*/
 .service {
-    padding-bottom: 50px;
-    border-bottom: 1px solid #EBEBEB;
-    margin-bottom: 25px
+    padding-bottom: 80px;
 }
 
 .service h2 {
     font-size: 18px;
-    height: 30px;
-    line-height: 30px;
     text-align: center;
-    margin-bottom: 43px;
-    font-weight: 400
+    margin-bottom: 66px;
 }
-
+.service ul{
+	margin-left: -215px;
+}
 .service li {
     float: left;
-    width: 33%;
+    width: 250px;
+    margin-left: 215px;
     text-align: center
 }
 
 .service h3 {
     font-size: 18px;
     font-weight: 400;
-    margin-bottom: 16px;
-    margin-top: 23px
+    margin-bottom: 26px;
+    margin-top: 18px
 }
 
 .service p {
     font-size: 14px;
-    margin: 0 70px;
     color: #666;
     line-height: 24px
+}
+
+/*海淘小贴士*/
+.tip{
+	padding-top: 57px;
+	height: 396px;
+	background: #F8F8F8;
+}
+.tip h2{
+	font-size: 18px;
+	margin-bottom: 45px;
+	text-align: center;
+}
+.tip h3{
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.tip p{
+	color: #686675;
+	line-height: 21px;
+	height: 112px;
+}
+.tip-c1{
+	width: 443px;
+}
+.tip-c2{
+	width: 438px;
 }
