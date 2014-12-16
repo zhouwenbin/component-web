@@ -126,4 +126,14 @@ $(function(){
     $('.btn-goods').on("click",function(){
     	$(this).addClass("active").siblings().removeClass("active");
     });
+    //----------select模拟-------------// 
+    $('.btn-select').on("click",function(){
+    	$(this).find("ul").show();
+    });
+    $('.btn-select').on("click","a",function(){
+    	var value=$(this).text();
+    	$('.btn-select-num').text(value);
+    	$('.btn-select ul').hide();
+    	return false;
+    })
 })
