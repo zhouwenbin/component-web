@@ -33,9 +33,20 @@
 }
 .goods-c1r1{
 	margin-bottom: 15px;
+	
+}
+.goods-c1r1 li{
 	border: 1px solid #efefef;
 	text-align: center;
 	height: 498px;
+	display: none;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-mstransition:all 0.5s;
+	transition:all 0.5s;
+}
+.goods-c1r1 .active{
+	display: block;
 }
 .goods-c1r1 img{
 	max-width: 498px;
@@ -56,6 +67,9 @@
 }
 .goods-c1r2 ul{
 	margin-left: -14px;
+}
+.goods-c1r2 .active{
+	border-color: #23262C;
 }
 .goods-c1r2 li{
 	border: 1px solid #efefef;
@@ -141,6 +155,7 @@
 .goods .u1{
 	position: absolute;
 	top: 78px;
+	*top:80px;
 	right: 0;
 	text-align: right;
 }
@@ -172,12 +187,13 @@
 	position: absolute;
 	top: 208px;
 	right: 0;
+	text-align: right;
 }
 .goods .icon5{
 	margin-right: 7px;
 }
-.goods .icon6{
-	margin-left: 15px;
+.goods .s1{
+	margin-right: 15px;
 }
 /*推荐商品*/
 .recommend{

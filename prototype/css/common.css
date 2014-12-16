@@ -216,6 +216,15 @@ img{vertical-align: middle;}
 	height: 25px;
 	background-position: -62px -74px;
 }
+.icon26{
+	height: 21px;
+	line-height: 21px;
+	background: #eb6877;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+}
 /*btn*/
 .btn{
 	display: inline-block;
@@ -343,15 +352,7 @@ img{vertical-align: middle;}
 	border: none;
 	text-align: center;
 }
-.btn-tip{
-	height: 21px;
-	line-height: 21px;
-	background: #eb6877;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 0 15px;
-}
+
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
@@ -372,13 +373,13 @@ img{vertical-align: middle;}
 	margin-right:5px;
 }
 .btn-select ul{
-	width: 91px;
+	width: 88px;
 	border: 1px solid #c6c6c6;
 	position: absolute;
 	background: #fff;
 	color: #cdcdcd;
 	top: 23px;
-	left: 0;
+	left: -1px;
 	border-radius: 2px;
 	display: none;
 }
@@ -393,6 +394,11 @@ img{vertical-align: middle;}
 }
 .btn-select a{
 	display: block;
+}
+.btn-select.active .icon16-1{
+	border-bottom-color:#272541;
+	border-top-color:transparent;
+	margin-top: -5px;
 }
 
 body{
