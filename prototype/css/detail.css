@@ -257,6 +257,8 @@
 }
 .detail-h li{
 	margin-bottom: 17px;
+	width: 33.3%;
+	float: left;
 }
 .detail-c1{
 	width: 447px;
