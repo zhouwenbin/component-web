@@ -1,4 +1,5 @@
 $(function(){
+	//----------slider-------------//
 	var sliderIndex=0;
 	var sliderImg=$(".slider-img li");
 	var sliderLength=sliderImg.length;
@@ -78,7 +79,7 @@ $(function(){
 
 
 
-	//回到顶部
+	//----------回到顶部-------------//
 	$(window).scroll(function(){
 		if($(window).scrollTop() > 600){
 			$('.btn-top').fadeIn(500);
@@ -90,5 +91,39 @@ $(function(){
 	$(".btn-top").click(function(){  
         $('body,html').animate({scrollTop:0},1000);  
         return false;  
-    });  
+    }); 
+
+
+    //----------限时特卖切换-------------// 
+    $('.product-tab li').click(function(){
+    	$(this).addClass('active').siblings().removeClass("active");
+    	var index = $('.product-tab li').index(this);
+    	$('#product-mb').animate({
+    		left:-100 * index + "%"
+    	},500);
+    	return false;
+    })
+
+
+    //----------数量按钮-------------// 
+    $('.btn-num').on("click",".btn-num-add",function(){
+    	var input = $(this).siblings("input")
+    	var value = input.val();
+    	if(value < 2){
+    		value ++;
+    	}
+    	input.val(value);
+    })
+    $('.btn-num').on("click",".btn-num-reduce",function(){
+    	var input = $(this).siblings("input")
+    	var value = input.val();
+    	if(value > 0){
+    		value --;
+    	}
+    	input.val(value);
+    })
+    //----------商品颜色-------------// 
+    $('.btn-goods').on("click",function(){
+    	$(this).addClass("active").siblings().removeClass("active");
+    });
 })
