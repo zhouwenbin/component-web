@@ -33,9 +33,20 @@
 }
 .goods-c1r1{
 	margin-bottom: 15px;
+	
+}
+.goods-c1r1 li{
 	border: 1px solid #efefef;
 	text-align: center;
 	height: 498px;
+	display: none;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-mstransition:all 0.5s;
+	transition:all 0.5s;
+}
+.goods-c1r1 .active{
+	display: block;
 }
 .goods-c1r1 img{
 	max-width: 498px;
@@ -56,6 +67,9 @@
 }
 .goods-c1r2 ul{
 	margin-left: -14px;
+}
+.goods-c1r2 .active{
+	border-color: #23262C;
 }
 .goods-c1r2 li{
 	border: 1px solid #efefef;
