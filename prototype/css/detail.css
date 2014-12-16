@@ -141,6 +141,7 @@
 .goods .u1{
 	position: absolute;
 	top: 78px;
+	*top:80px;
 	right: 0;
 	text-align: right;
 }
@@ -172,12 +173,13 @@
 	position: absolute;
 	top: 208px;
 	right: 0;
+	text-align: right;
 }
 .goods .icon5{
 	margin-right: 7px;
 }
-.goods .icon6{
-	margin-left: 15px;
+.goods .s1{
+	margin-right: 15px;
 }
 /*推荐商品*/
 .recommend{

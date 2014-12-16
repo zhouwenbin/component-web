@@ -216,6 +216,15 @@ img{vertical-align: middle;}
 	height: 25px;
 	background-position: -62px -74px;
 }
+.icon26{
+	height: 21px;
+	line-height: 21px;
+	background: #eb6877;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+}
 /*btn*/
 .btn{
 	display: inline-block;
@@ -343,15 +352,7 @@ img{vertical-align: middle;}
 	border: none;
 	text-align: center;
 }
-.btn-tip{
-	height: 21px;
-	line-height: 21px;
-	background: #eb6877;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 0 15px;
-}
+
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
