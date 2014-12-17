@@ -57,27 +57,47 @@ define('sf.b2c.mall.product.detailcontent', [
             })
           })
           .done(function(priceData) {
-
             SFDetailcontentAdapter.formatPrice(that.options.detailContentInfo, priceData);
 
-            can.ajax({
-                url: 'json/sf-b2c.mall.index.getSkuInfoByItemIdItemInfo.json'
-              })
-              .done(function(itemInfoData) {
-
-                SFDetailcontentAdapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
-
-                that.options.detailContentInfo = SFDetailcontentAdapter.format(that.options.detailContentInfo);
-
-                var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
-                that.element.html(html);
-
-                that.interval = setInterval(function(){that.setCountDown(that.options.detailContentInfo.priceInfo)},'1000')
-
-              })
           })
+          .then(function(){
+            return can.ajax({
+              url: 'json/sf-b2c.mall.index.getSkuInfoByItemIdItemInfo.json'
+            })
+          })
+          .done(function(itemInfoData) {
+            SFDetailcontentAdapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
+          })
+          .then(function(){
+            return can.ajax({
+              url: 'json/sf-b2c.mall.detail.getRecommendProducts.json'
+            })
+          })
+          .done(function(recommendProducts) {
+            SFDetailcontentAdapter.formatRecommendProducts(that.options.detailContentInfo, recommendProducts);
+
+            that.options.detailContentInfo = SFDetailcontentAdapter.format(that.options.detailContentInfo);
+
+            var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
+            that.element.html(html);
+
+            that.interval = setInterval(function() {
+              that.setCountDown(that.options.detailContentInfo.priceInfo)
+            }, '1000')
+          })
+
       },
 
+      supplement: function() {
+
+      },
+
+      /**
+       * [description 选择size的下拉取值触发事件]
+       * @param  {[type]} element
+       * @param  {[type]} event
+       * @return {[type]}
+       */
       ".btnSelectUL click": function(element, event) {
         element.parents(".btn-select").removeClass("active");
         $(".btn-select-num").text(event.target.innerText);
@@ -85,6 +105,12 @@ define('sf.b2c.mall.product.detailcontent', [
         return false;
       },
 
+      /**
+       * [description 点击下拉按钮触发事件]
+       * @param  {[type]} element
+       * @param  {[type]} event
+       * @return {[type]}
+       */
       '.btn-select click': function(element, event) {
         if (element.hasClass("active")) {
           element.removeClass("active");
@@ -121,7 +147,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       /**
-       * @description event:数量较少，限制最小是0
+       * @description event:数量较少，限制最小是1
        * @param  {Dom} element 触发事件的元素
        * @param  {Event} event   事件对象
        */
@@ -130,6 +156,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var priceInfo = this.options.detailContentInfo.priceInfo;
         var input = this.options.detailContentInfo.input;
+
+        input.attr("showRestrictionTips", false);
 
         if (input.buyNum > 1) {
           input.attr('buyNum', --input.buyNum);

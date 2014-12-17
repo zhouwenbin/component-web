@@ -78,38 +78,16 @@
       <div class="recommend">
         <h2>推荐商品</h2>
         <ul class="clearfix">
+          {{#each recommendProducts}}
           <li>
-            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
+            <a class="fl" href=""><img src="{{imgUrl}}" alt="" /></a>
             <div class="recommend-c1">
-              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
-              <div class="recommend-r1">¥1280</div>
-              <div class="recommend-r2"><del>¥1680</del></div>
+              <h3><a href="{{link}}">{{title}}</a></h3>
+              <div class="recommend-r1">¥{{sellingPrice}}</div>
+              <div class="recommend-r2"><del>¥{{originPrice}}</del></div>
             </div>
           </li>
-          <li>
-            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
-            <div class="recommend-c1">
-              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
-              <div class="recommend-r1">¥1280</div>
-              <div class="recommend-r2"><del>¥1680</del></div>
-            </div>
-          </li>
-          <li>
-            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
-            <div class="recommend-c1">
-              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
-              <div class="recommend-r1">¥1280</div>
-              <div class="recommend-r2"><del>¥1680</del></div>
-            </div>
-          </li>
-          <li>
-            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
-            <div class="recommend-c1">
-              <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
-              <div class="recommend-r1">¥1280</div>
-              <div class="recommend-r2"><del>¥1680</del></div>
-            </div>
-          </li>
+          {{/each}}
         </ul>
       </div>
       <!--推荐商品-->

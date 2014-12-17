@@ -34,6 +34,10 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
 
       detailContentInfo.input = {};
       detailContentInfo.input.buyNum = 1;
+    },
+
+    formatRecommendProducts: function(detailContentInfo, recommendProducts){
+      detailContentInfo.recommendProducts = recommendProducts.value;
     }
   })
 })
