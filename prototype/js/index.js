@@ -125,7 +125,7 @@ $(function(){
     	return false;
     })
     //----------商品颜色-------------// 
-    $(".btn-goods").on("click",function(){
+    $('.btn-goods:not(".disable")').on("click",function(){
     	$(this).addClass("active").siblings().removeClass("active");
     });
     //----------select模拟-------------// 
