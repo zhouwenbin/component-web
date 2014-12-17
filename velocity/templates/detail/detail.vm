@@ -1,0 +1,16 @@
+#define($_content)
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="$!description">
+    <meta name="keywords" content="$!keywords">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>顺丰海淘</title>
+    $!{_const_detailCss}
+</head>
+<body>
+</div>
+    $!{_const_detailScript}
+</body>
+#end
