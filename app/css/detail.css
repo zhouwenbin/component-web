@@ -33,20 +33,24 @@
 }
 .goods-c1r1{
 	margin-bottom: 15px;
-	
+	height: 500px;
 }
 .goods-c1r1 li{
+	position: absolute;
 	border: 1px solid #efefef;
 	text-align: center;
 	height: 498px;
-	display: none;
+	width: 498px;
+	opacity: 0;
+	filter:alpha(opacity=0);
 	-webkit-transition:all 0.5s;
 	-moz-transition:all 0.5s;
 	-mstransition:all 0.5s;
 	transition:all 0.5s;
 }
 .goods-c1r1 .active{
-	display: block;
+	opacity: 1;
+	filter:alpha(opacity=100);
 }
 .goods-c1r1 img{
 	max-width: 498px;
