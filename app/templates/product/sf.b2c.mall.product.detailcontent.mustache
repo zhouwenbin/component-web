@@ -5,8 +5,8 @@
           </div>
           <div class="goods-c1r2">
             <ul class="clearfix">
-              {{#each images}}
-              <li><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>
+              {{#each itemInfo.basicInfo.images}}
+              <li class="thumb-item"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>
               {{/each}}
             </ul>
 
@@ -19,7 +19,9 @@
           <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>
           <div class="mr3">国际物流：{{itemInfo.basicInfo.orderToDelivery}}</div>
           <div class="mr4">发货商家：{{itemInfo.basicInfo.productShape}}</div>
-          <div class="mr5">品牌：{{itemInfo.basicInfo.brand}}</div>
+          <div class="mr5">品牌：
+            <label class="btn btn-goods">{{itemInfo.basicInfo.brand}}</label>
+          </div>
 
           {{#each itemInfo.specGroups}}
           <div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：
