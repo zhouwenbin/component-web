@@ -9,7 +9,7 @@
 <div id="content">
     <div class="sf-b2c-mall-header"></div>
     <div class="pb">
-        <div class="sf-b2c-mall-main-slider">
+        <div class="sf-b2c-mall-main-slider serverRendered">
             <div class="slider">
                 <ul class="slider-img">
                     #foreach ($el in $sliders)
@@ -33,7 +33,7 @@
         </div>
         <div class="pm">
             <!--限时特卖-->
-            <div class="sf-b2c-mall-limitedtimesale">
+            <div class="sf-b2c-mall-limitedtimesale serverRendered">
                 <div class="product">
                   <div id="LimitedTimeSale" class="mh clearfix">
                       <h2 class="fl">限时特卖</h2>
@@ -87,7 +87,7 @@
             <!--限时特卖-->
 
             <!--极速海淘-->
-            <div class="sf-b2c-mall-rapidseabuy">
+            <div class="sf-b2c-mall-rapidseabuy serverRendered">
                 <div class="product">
                     <div id="RapidSeaBuy" class="mh">
                         <h2>极速海淘</h2>
