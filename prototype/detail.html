@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width">
 <title>顺丰海淘</title>
-<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/detail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,7 +22,7 @@
           <li><a href="">账户<span class="icon icon16"></span></a></li>
           <li><a href="">我的订单</a></li>
         </ul>
-  
+
       </div>
     </div>
 
@@ -41,40 +41,81 @@
       <div class="goods clearfix">
         <div class="goods-c1 fl">
           <div class="goods-c1r1">
-            <img src="img/goods.jpg" alt="" /><span></span>
+            <ul>
+              <li class="active"><img src="img/goods.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods2.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods3.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods4.jpg" alt="" /><span></span></li>
+            </ul>
           </div>
           <div class="goods-c1r2">
             <ul class="clearfix">
-              <li><a href=""><img src="img/goods1.jpg" alt="" /></a><span></span></li>
+              <li class="active"><a href=""><img src="img/goods1.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods2.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods3.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods4.jpg" alt="" /></a><span></span></li>
             </ul>
-            
+
           </div>
         </div>
         <div class="goods-c2">
-          <h1>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴</h1>
-          <p>秋冬新款 林格纹链条包 复古造型</p>
-          <div class="mr1">单价：<strong>¥ 599</strong><span>（含税）</span><del>¥1200</del></div>
-          <div class="mr2"><span>4.5折</span>已降681元</div>
-          <div class="mr3">国际物流：美国发货，预计10-15天内到货</div>
-          <div class="mr4">发货商家：海外电商直发 顺丰海外直采</div>
-          <div class="mr5">品牌：<a href="#" class="btn btn-goods">UGG</a></div>
-          <div class="mr6">颜色：
-            <a href="#" class="btn btn-goods btn-goods-white"><b></b>白色<span class="icon icon23"></span></a>
-            <a href="#" class="btn btn-goods btn-goods-yellow"><b></b>黄色<span class="icon icon23"></span></a>
-            <a href="#" class="btn btn-goods btn-goods-gray"><b></b>灰色<span class="icon icon23"></span></a>
-          </div>
-          <div class="mr7">尺码：
-            <select name="" id="">
-              <option value="6">6</option>
-            </select>
-          </div>
-          <div class="mr8">购买数量：
-            <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1" /></span>每人限购2件
-          </div>
-          <div class="mr9"><a href="#" class="btn btn-buy">立即购买</a></div>
+          <form action="">
+            <h1>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴</h1>
+            <p>秋冬新款 林格纹链条包 复古造型</p>
+            <div class="mr1">单价：<strong>¥ 599</strong><span>（含税）</span><del>¥1200</del></div>
+            <div class="mr2"><span>4.5折</span>已降681元</div>
+            <div class="mr3">国际物流：美国发货，预计10-15天内到货</div>
+            <div class="mr4">发货商家：海外电商直发 顺丰海外直采</div>
+            <div class="mr5">品牌：
+              <label class="btn btn-goods">UGG<input type="radio" name="brank" value="UGG" class="visuallyhidden" /></label>
+            </div>
+            <div class="mr6">颜色：
+              <label class="btn btn-goods btn-goods-white"><b></b>白色<span class="icon icon23"></span><input type="radio" name="color" value="白色" class="visuallyhidden" /></label>
+              <label class="btn btn-goods btn-goods-yellow"><b></b>黄色<span class="icon icon23"></span><input type="radio" name="color" value="黄色" class="visuallyhidden" /></label>
+              <label class="btn btn-goods btn-goods-gray"><b></b>灰色<span class="icon icon23"></span><input type="radio" name="color" value="灰色" class="visuallyhidden" /></label>
+            </div>
+            <div class="mr7">尺码：
+              <div class="btn btn-select" role="btn">
+                <span class="btn-select-num">6</span><span class="icon icon16-1"></span>
+                <ul>
+                  <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden" /></label></li>
+                  <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden" /></label></li>
+                  <li>7.5</li>
+                  <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden" /></label></li>
+                  <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden" /></label></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mr8">购买数量：
+              <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1" /></span>每人限购2件
+            </div>
+            <div class="mr9">
+              <span class="icon icon26">商品库存不足</span>
+              <span class="icon icon26">商品限购2件</span>
+            </div>
+            <div class="mr10"><button type="submit" class="btn btn-buy">立即购买</button></div>
+
+            <!--限时特卖-->
+            <div class="u1">
+              <span class="icon icon6 icon6-2">限时特卖<i></i></span>
+              <div class="u1-r1"><span class="icon icon4"></span>01天23时09分44秒</div>
+            </div>
+            <!--限时特卖-->
+            <!--售完--
+            <span class="icon icon24">售完</span>
+            <!--售完-->
+            <!--7天到--
+            <div class="u2">
+              <span class="icon icon25"></span><strong>7</strong>天到
+            </div>
+            <!--7天到-->
+            <!--运费-->
+            <div class="u3">
+              <span class="icon icon5"></span><span class="s1">运费：</span><span class="icon icon6 icon6-1">免运费<i></i></span>
+            </div>
+            <!--运费-->
+          </form>
+
         </div>
       </div>
       <!--商品-->
@@ -84,7 +125,7 @@
         <h2>推荐商品</h2>
         <ul class="clearfix">
           <li>
-            <img src="img/recommend.jpg" alt="" class="fl" />
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
             <div class="recommend-c1">
               <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
               <div class="recommend-r1">¥1280</div>
@@ -92,7 +133,7 @@
             </div>
           </li>
           <li>
-            <img src="img/recommend.jpg" alt="" class="fl" />
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
             <div class="recommend-c1">
               <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
               <div class="recommend-r1">¥1280</div>
@@ -100,7 +141,7 @@
             </div>
           </li>
           <li>
-            <img src="img/recommend.jpg" alt="" class="fl" />
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
             <div class="recommend-c1">
               <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
               <div class="recommend-r1">¥1280</div>
@@ -108,7 +149,7 @@
             </div>
           </li>
           <li>
-            <img src="img/recommend.jpg" alt="" class="fl" />
+            <a class="fl" href=""><img src="img/recommend.jpg" alt="" /></a>
             <div class="recommend-c1">
               <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
               <div class="recommend-r1">¥1280</div>
@@ -126,24 +167,18 @@
       <!--小编推荐-->
       <!--详情-->
       <div class="detail">
-        <div class="detail-h clearfix">
-          <ul class="detail-c1 fl">
+        <div class="detail-h">
+          <ul class="clearfix">
             <li>【产品名称】New Balance 女士防风立领软壳夹克</li>
-            <li>【产品款式】春／秋 夹克</li>
-          </ul>
-          <ul class="detail-c2 fl">
             <li>【面料成分】92%涤纶，8%弹性纤维</li>
+            <li>【产品特点】1.   92%涤纶＋8%弹性纤维<br />
+              2.   防风且防水</li>
+            <li>【产品款式】春／秋 夹克</li>
             <li>【洗涤方式】可机洗</li>
-          </ul>
-          <div class="detail-c3 fl">
-            <div class="detail-c3c1 fl">【产品特点】</div>
-            <div class="detail-c3c2">
-              1.   92%涤纶＋8%弹性纤维<br />
-              2.   防风且防水
-            </div>
+           </ul>
           </div>
         </div>
-          
+
         <div class="detail-b">
           <h3>【泼墨】系列<br />
           新品复古泼墨男士真皮大手提包</h3>
@@ -158,31 +193,59 @@
       <!--详情-->
       <!--顺丰海淘服务承诺-->
       <div class="service">
+        <div class="pm">
           <h2>顺丰海淘服务承诺</h2>
           <ul class="clearfix">
               <li>
                   <span class="icon icon20"></span>
                   <h3>直采海外</h3>
-                  <p>我们承诺所有在顺丰海淘网站在售商品均为海外电商、厂家供货的原装正品。</p>
+                  <p>我们承诺所有在顺丰海淘网站在售商品<br />均为海外电商<br />厂家供货的原装正品。</p>
               </li>
               <li>
                   <span class="icon icon21"></span>
                   <h3>直邮中国</h3>
-                  <p>我们在美国、日本等商品原产地拥有仓库，为您商品的跨境运输提供了有效保障。</p>
+                  <p>我们在美国、日本等商品原产地<br />拥有仓库，为您商品的跨境运输提供了<br />有效保障。</p>
               </li>
               <li>
                   <span class="icon icon22"></span>
                   <h3>安心售后</h3>
-                  <p>非人为因素产生的商品破损或运输途中丢失，我们将第一时间安排客服处理。</p>
+                  <p>非人为因素产生的商品破损<br />或运输途中丢失<br />我们将第一时间安排客服处理。</p>
               </li>
           </ul>
+        </div>
+
       </div>
       <!--顺丰海淘服务承诺-->
     </div>
+
+    <!--海淘小贴士-->
+    <div class="tip">
+      <div class="pm">
+        <h2>顺丰海淘小贴士</h2>
+        <div class="tip-r1 clearfix">
+          <div class="tip-c1 fl">
+            <h3>01.顺丰海淘的商品都是正品吗？</h3>
+            <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
+            <h3>02.订购商品大致需要经过哪些流程？</h3>
+            <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
+          </div>
+          <div class="tip-c2 fr">
+            <h3>03.为什么要上传身份信息？</h3>
+            <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
+            <h3>04.购买海外商品会被额外收税吗？</h3>
+            <p>答:顺丰海淘商品已统一向海关申报缴税，无需用户再次缴纳。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--海淘小贴士-->
   </div>
   <!--main-->
   <!--尾部-->
   <div class="pf">
+    <!--回到顶部-->
+    <a href="#" class="btn btn-top"><span class="icon icon7"></span></a>
+    <!--回到顶部-->
     <div class="footer1">
       <div class="pm">
         <ul class="clearfix">
@@ -239,9 +302,9 @@
           <div class="phone">400-123-456123</div>
           <div class="time">周一至周日 8:00 - 18:00</div>
         </div>
-      </div>      
+      </div>
     </div>
-    
+
     <div class="footer3">Copyright 2014 版权所有sfht.com 沪ICP备 1404464</div>
 
   </div>
