@@ -46,29 +46,21 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         can.ajax({
-            url: 'json/sf-b2c.mall.detail.getSkuInfoByItemId.json'
+            url: 'json/sf-b2c.mall.detail.getItemInfo.json'
           })
-          .then(function(data) {
+          .then(function(itemInfoData) {
+            that.options.detailContentInfo = {};
+            SFDetailcontentAdapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
 
-            that.options.detailContentInfo = data;
-            data.currentImage = data.images[0].bigImgUrl;
             return can.ajax({
-              url: 'json/sf-b2c.mall.index.getSkuInfoByItemIdPrice.json'
+              url: 'json/sf-b2c.mall.detail.getSkuInfoByItemIdPrice.json'
             })
           })
           .done(function(priceData) {
             SFDetailcontentAdapter.formatPrice(that.options.detailContentInfo, priceData);
 
           })
-          .then(function(){
-            return can.ajax({
-              url: 'json/sf-b2c.mall.index.getSkuInfoByItemIdItemInfo.json'
-            })
-          })
-          .done(function(itemInfoData) {
-            SFDetailcontentAdapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
-          })
-          .then(function(){
+          .then(function() {
             return can.ajax({
               url: 'json/sf-b2c.mall.detail.getRecommendProducts.json'
             })
@@ -89,36 +81,6 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       supplement: function() {
-
-      },
-
-      /**
-       * [description 选择size的下拉取值触发事件]
-       * @param  {[type]} element
-       * @param  {[type]} event
-       * @return {[type]}
-       */
-      ".btnSelectUL click": function(element, event) {
-        element.parents(".btn-select").removeClass("active");
-        $(".btn-select-num").text(event.target.innerText);
-        $(".btn-select ul").hide();
-        return false;
-      },
-
-      /**
-       * [description 点击下拉按钮触发事件]
-       * @param  {[type]} element
-       * @param  {[type]} event
-       * @return {[type]}
-       */
-      '.btn-select click': function(element, event) {
-        if (element.hasClass("active")) {
-          element.removeClass("active");
-          element.find("ul").hide();
-        } else {
-          element.addClass("active");
-          element.find("ul").show();
-        }
       },
 
       /**
@@ -166,16 +128,78 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       /**
-       * [description 选择颜色]
+       * [description 规格选择]
        * @param  {[type]} element
        * @param  {[type]} event
        * @return {[type]}
        */
       '.btn-goods click': function(element, event) {
         event && event.preventDefault();
+        if (element.hasClass("disable")) {
+          return false;
+        }
 
-        element.addClass("active").siblings().removeClass("active");
+        //获得数据信息
+        var orderId = $(element)[0].parentElement.dataset.specidorder;
+        var specId = $(element)[0].dataset.specid;
+
+        var group = _.find(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
+          return group.specIdOrder == orderId;
+        })
+
+        //修改选择状态
+        _.each(group.specs, function(spec) {
+          if (spec.specId == specId) {
+            spec.attr("selected", true);
+            spec.attr("canSelected", false);
+          } else {
+            if (spec.attr("selected")) {
+              spec.attr("canSelected", true);
+            }
+            spec.attr("selected", false);
+          }
+        })
+
+        //去获得最新的sku信息
+        this.gotoNewItem();
         return false;
+      },
+
+      getSKUIdBySpecs: function(saleSkuSpecTupleList, gotoItemSpec) {
+        var saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+          return saleSkuSpecTuple.skuSpecTuple.specIds.indexOf(gotoItemSpec) > -1;
+        });
+
+        return saleSkuSpecTuple.skuSpecTuple.skuId;
+      },
+
+      /**
+       * [gotoNewItem description]
+       * @return {[type]}
+       */
+      gotoNewItem: function() {
+        //获得选中的表示列表
+        var gotoItemSpec = "";
+        _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
+          _.each(group.specs, function(spec) {
+            if (spec.attr("selected")) {
+              gotoItemSpec += spec.specId;
+            }
+          })
+        })
+
+
+        var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec);
+
+        var that = this;
+        can.ajax({
+            url: 'json/sf-b2c.mall.detail.getSkuInfo.json'
+          })
+          .then(function(skuInfoData) {
+            that.options.detailContentInfo.itemInfo.attr("basicInfo", skuInfoData);
+            SFDetailcontentAdapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
+          })
+
       },
 
       /**

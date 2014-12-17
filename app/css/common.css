@@ -305,6 +305,9 @@ img{vertical-align: middle;}
 	background: #fff;
 	position: relative;
 }
+.btn-goods.disable{
+	color: #ccc;
+}
 .btn-goods b{
 	display: inline-block;
 	vertical-align: middle;

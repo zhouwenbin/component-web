@@ -1,40 +1,48 @@
 <div class="goods clearfix">
         <div class="goods-c1 fl">
           <div class="goods-c1r1">
-            <img src="{{currentImage}}" alt="" /><span></span>
+            <img src="{{itemInfo.currentImage}}" alt="" /><span></span>
           </div>
           <div class="goods-c1r2">
             <ul class="clearfix">
-              {{#each images}}
-              <li><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>
+              {{#each itemInfo.basicInfo.images}}
+              <li class="thumb-item"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>
               {{/each}}
             </ul>
 
           </div>
         </div>
         <div class="goods-c2">
-          <h1>{{title}}</h1>
-          <p>{{subTitle}}</p>
+          <h1>{{itemInfo.basicInfo.title}}</h1>
+          <p>{{itemInfo.basicInfo.subTitle}}</p>
           <div class="mr1">单价：<strong>¥ {{priceInfo.sellingPrice}}</strong><span>（含税）</span><del>¥ {{priceInfo.originPrice}}</del></div>
           <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>
-          <div class="mr3">国际物流：{{orderToDelivery}}</div>
-          <div class="mr4">发货商家：{{productShape}}</div>
-          <div class="mr5">品牌：{{brand}}</div>
-          <div class="mr6">颜色：
-            {{#each itemInfo.colorInfo.specs}}
-            <a href="#" class="btn btn-goods btn-goods-white"><b></b>{{specValue}}<span class="icon icon23"></span></a>
+          <div class="mr3">国际物流：{{itemInfo.basicInfo.orderToDelivery}}</div>
+          <div class="mr4">发货商家：{{itemInfo.basicInfo.productShape}}</div>
+          <div class="mr5">品牌：
+            <label class="btn btn-goods">{{itemInfo.basicInfo.brand}}</label>
+          </div>
+
+          {{#each itemInfo.specGroups}}
+          <div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：
+            {{#each specs}}
+              {{#if selected}}
+              <label data-specid="{{specId}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>
+              {{/if}}
+
+              {{^if selected}}
+                {{#if canSelected}}
+                <label data-specid="{{specId}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>
+                {{/if}}
+                {{^if canSelected}}
+                <label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>
+                {{/if}}
+              {{/if}}
+
             {{/each}}
           </div>
-          <div class="mr7">尺码：
-            <div class="btn btn-select" role="btn">
-              <span class="btn-select-num">6</span><span class="icon icon16-1"></span>
-              <ul class="btnSelectUL">
-                {{#each itemInfo.sizeInfo.specs}}
-                <li><a href="">{{specValue}}</a></li></a>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
+          {{/each}}
+
           <div class="mr8">购买数量：
             <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
           </div>
@@ -94,21 +102,21 @@
       <!--小编推荐-->
       <div class="recommend2">
         <h2>小编推荐</h2>
-        <p>{{recommend}}</p>
+        <p>{{itemInfo.basicInfo.recommend}}</p>
       </div>
       <!--小编推荐-->
       <!--详情-->
       <div class="detail">
         <div class="detail-h">
           <ul class="clearfix">
-          {{#each attributes}}
+          {{#each itemInfo.basicInfo.attributes}}
             <li>【{{key}}】 {{value}}</li>
           {{/each}}
           </ul>
         </div>
 
         <div class="detail-b">
-          {{description}}
+          {{itemInfo.basicInfo.description}}
         </div>
       </div>
 
