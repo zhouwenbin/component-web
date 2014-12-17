@@ -35,55 +35,55 @@
             <!--限时特卖-->
             <div class="sf-b2c-mall-limitedtimesale">
                 <div class="product">
-                    <div id="LimitedTimeSale" class="mh clearfix">
-                        <h2 class="fl">限时特卖</h2>
-                        <ul class="fl product-tab">
-                            <li id="current"><a href="#">当前</a></li>
-                            <li id="future"><a href="#">即将开始</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mb">
-                    <ul class="clearfix product-list">
-                        #foreach ($el in $limitedTimeSale)
-                            <li>
-                                <div class="product-r1">
-                                    <a href="$!{el.link}" target="_blank">
-                                        <img src="$!{el.imgUrl}" alt="">
-                                    </a>
-                                    <span></span>
-                                </div>
-                                <h3>
-                                    <a href="$el.link" target="_blank">$!{el.title}</a>
-                                </h3>
+                  <div id="LimitedTimeSale" class="mh clearfix">
+                      <h2 class="fl">限时特卖</h2>
+                      <ul class="fl product-tab">
+                          <li id="current"><a href="#">当前</a></li>
+                          <li id="future"><a href="#">即将开始</a></li>
+                      </ul>
+                  </div>
+                  <div class="mb">
+                      <ul class="clearfix product-list">
+                          #foreach ($el in $limitedTimeSale)
+                              <li>
+                                  <div class="product-r1">
+                                      <a href="$!{el.link}" target="_blank">
+                                          <img src="$!{el.imgUrl}" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="$el.link" target="_blank">$!{el.title}</a>
+                                  </h3>
 
-                                <p>$!{el.subTitle}</p>
+                                  <p>$!{el.subTitle}</p>
 
-                                <div class="product-r2 clearfix">
-                                    <div class="product-r2c1 fl"><span class="icon icon4"></span>$!{el.displayEndTime}</div>
-                                    #if ($el.homepageProductInfo)
-                                        <div class="product-r2c2 fr">
-                    <span class="icon icon5">
-                      <img src="$!{el.homepageProductInfo.showNationalUrl}" alt="">
-                    </span>
-                                        </div>
-                                    #end
-                                </div>
-                                #if ($el.homepageProductInfo)
-                                    <div class="product-r3 clearfix" data-skuId="$!{el.homepageProductInfo.skuId}"></div>
-                                #elseif ($el.homepageTopicInfo)
-                                    <div class="product-r3 clearfix" data-topicId="$!{el.homepageTopicInfo.topicId}">
-                                        <div class="product-r3c1 fl">
-                                            <strong>￥$!{el.homepageTopicInfo.price}起</strong>
-                                        </div>
-                                        <div class="product-r3c2 fr">
-                                            <strong>$!{el.homepageTopicInfo.discount}</strong>折
-                                        </div>
-                                    </div>
-                                #end
-                            </li>
-                        #end
-                    </ul>
+                                  <div class="product-r2 clearfix">
+                                      <div class="product-r2c1 fl"><span class="icon icon4"></span>$!{el.displayEndTime}</div>
+                                      #if ($el.homepageProductInfo)
+                                          <div class="product-r2c2 fr">
+                      <span class="icon icon5">
+                        <img src="$!{el.homepageProductInfo.showNationalUrl}" alt="">
+                      </span>
+                                          </div>
+                                      #end
+                                  </div>
+                                  #if ($el.homepageProductInfo)
+                                      <div class="product-r3 clearfix" data-skuId="$!{el.homepageProductInfo.skuId}"></div>
+                                  #elseif ($el.homepageTopicInfo)
+                                      <div class="product-r3 clearfix" data-topicId="$!{el.homepageTopicInfo.topicId}">
+                                          <div class="product-r3c1 fl">
+                                              <strong>￥$!{el.homepageTopicInfo.price}起</strong>
+                                          </div>
+                                          <div class="product-r3c2 fr">
+                                              <strong>$!{el.homepageTopicInfo.discount}</strong>折
+                                          </div>
+                                      </div>
+                                  #end
+                              </li>
+                          #end
+                      </ul>
+                  </div>
                 </div>
             </div>
             <!--限时特卖-->
