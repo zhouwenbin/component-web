@@ -419,6 +419,7 @@ img{vertical-align: middle;}
 
 body{
 	background: #EEEEEE;
+	padding-top: 81px;
 }
 /*布局*/
 .pm{
@@ -431,6 +432,10 @@ body{
 	background: url(../img/nav.png) repeat-x;
 	height: 81px;
 	line-height: 81px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 3;
 }
 .nav li{
 	float: left;
