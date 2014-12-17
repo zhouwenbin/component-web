@@ -21,13 +21,13 @@ $!{_const_indexCss}
           <ul class="slider-num">
             #foreach ($el in $sliders)
               <li>
-                <a href="###"></a>
+                <a href="#"></a>
               </li>
             #end
           </ul>
           <div class="pm">
-            <a href="###" class="btn btn-prev" style="left: -100px; opacity: 0;">向前</a>
-            <a href="###" class="btn btn-next" style="right: -100px; opacity: 0;">向后</a>
+            <a href="#" class="btn btn-prev" style="left: -100px; opacity: 0;">向前</a>
+            <a href="#" class="btn btn-next" style="right: -100px; opacity: 0;">向后</a>
           </div>
         </div>
       </div>
