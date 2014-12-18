@@ -5,30 +5,44 @@
     </div>
     <div class="mb">
       <ul class="clearfix product-list">
-        {{#product}}
+        {{#fastSaleInfos}}
         <li>
           <div class="product-r1">
-            <a href="{{link}}"><img src="{{imgUrl}}" alt="" ></a><span></span>
+            <a href="{{link}}" target="_blank"><img src="{{imgUrl}}" alt="" ></a><span></span>
           </div>
-          <h3><a href="{{link}}">{{title}}</a></h3>
+          <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
           <p>{{subTitle}}</p>
           <div class="product-r2 clearfix">
             <div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>
-            {{#homePageProductInfo}}
-            <div class="product-r2c2 fr"><span class="icon icon5"><img src="{{showNationalUrl}}" alt=""/></span></div>
-            {{/homePageProductInfo}}
+            {{#sf-is-product fastSaleContentType}}
+            <div class="product-r2c2 fr"><span class="icon icon5"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></span></div>
+            {{/sf-is-product}}
+            {{^sf-is-product fastSaleContentType}}
+            <div class="product-r2c2 fr"><span class="icon icon5"></span></div>
+            {{/sf-is-product}}
           </div>
-          <div class="product-r3 clearfix">
+          <div  class="product-r3 clearfix">
+            {{#sf-is-product fastSaleContentType}}
             <div class="product-r3c1 fl">
-              <strong>￥12</strong>
+              <strong>￥{{sellingPrice}}</strong>
+              <del>￥{{originPrice}}</del>
+            </div>
+            <div class="product-r3c2 fr">
+              <strong>{{discount}}</strong>折
+            </div>
+            {{/sf-is-product}}
+            {{^sf-is-product fastSaleContentType}}
+            <div class="product-r3c1 fl">
+              <strong>￥{{homepageTopicInfo.price}}</strong>
               <del>￥12</del>
             </div>
             <div class="product-r3c2 fr">
-              <strong>12</strong>折
+              <strong>{{homepageTopicInfo.discount}}</strong>折
             </div>
+            {{/sf-is-product}}
           </div>
         </li>
-        {{/product}}
+        {{/fastSaleInfos}}
       </ul>
     </div>
     <div class="mf">
