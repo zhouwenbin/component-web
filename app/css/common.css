@@ -25,6 +25,17 @@ img{vertical-align: middle;}
 .clearfix:before,
 .clearfix:after{content:'';display:table; clear:both;}
 .clearfix{*zoom:1;}
+.visuallyhidden {
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
 /*icon*/
 .icon{
 	display: inline-block;
@@ -216,10 +227,21 @@ img{vertical-align: middle;}
 	height: 25px;
 	background-position: -62px -74px;
 }
+.icon26{
+	height: 21px;
+	line-height: 21px;
+	background: #eb6877;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+}
 /*btn*/
 .btn{
 	display: inline-block;
 	vertical-align: middle;
+	cursor: pointer;
+	border: none;
 }
 .btn-top{
 	padding: 18px 20px;
@@ -283,6 +305,9 @@ img{vertical-align: middle;}
 	background: #fff;
 	position: relative;
 }
+.btn-goods.disable{
+	color: #ccc;
+}
 .btn-goods b{
 	display: inline-block;
 	vertical-align: middle;
@@ -343,15 +368,7 @@ img{vertical-align: middle;}
 	border: none;
 	text-align: center;
 }
-.btn-tip{
-	height: 21px;
-	line-height: 21px;
-	background: #eb6877;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 0 15px;
-}
+
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
@@ -363,6 +380,7 @@ img{vertical-align: middle;}
 }
 .btn-select-num{
 	display: inline-block;
+	border: none;
 	width: 57px;
 	height: 20px;
 	line-height: 20px;
@@ -372,13 +390,13 @@ img{vertical-align: middle;}
 	margin-right:5px;
 }
 .btn-select ul{
-	width: 91px;
+	width: 88px;
 	border: 1px solid #c6c6c6;
 	position: absolute;
 	background: #fff;
 	color: #cdcdcd;
 	top: 23px;
-	left: 0;
+	left: -1px;
 	border-radius: 2px;
 	display: none;
 }
@@ -391,12 +409,20 @@ img{vertical-align: middle;}
 .btn-select li:last-child{
 	border: none;
 }
-.btn-select a{
+.btn-select label{
 	display: block;
+	cursor: pointer;
+	color: #272541;
+}
+.btn-select.active .icon16-1{
+	border-bottom-color:#272541;
+	border-top-color:transparent;
+	margin-top: -5px;
 }
 
 body{
 	background: #EEEEEE;
+	padding-top: 81px;
 }
 /*布局*/
 .pm{
@@ -409,6 +435,10 @@ body{
 	background: url(../img/nav.png) repeat-x;
 	height: 81px;
 	line-height: 81px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 3;
 }
 .nav li{
 	float: left;

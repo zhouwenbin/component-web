@@ -10,7 +10,7 @@ $(function(){
 	for(var i = 0; i < sliderLength; i++){
 	   sliderLi += '<li><a href="###"></a></li>'
 	}
-	$('.slider-num').append(sliderLi);
+	$(".slider-num").append(sliderLi);
 	var sliderNum=$(".slider-num li");
 	sliderNum.eq(0).addClass("active");
 	
@@ -73,8 +73,8 @@ $(function(){
 	}
 	//状态切换
 	function sliderSwitch(){
-		sliderNum.removeClass('active').eq(sliderIndex).addClass("active");
-		sliderImg.removeClass('active').eq(sliderIndex).addClass("active");
+		sliderNum.removeClass("active").eq(sliderIndex).addClass("active");
+		sliderImg.removeClass("active").eq(sliderIndex).addClass("active");
 	}
 
 
@@ -82,23 +82,23 @@ $(function(){
 	//----------回到顶部-------------//
 	$(window).scroll(function(){
 		if($(window).scrollTop() > 600){
-			$('.btn-top').fadeIn(500);
+			$(".btn-top").fadeIn(500);
 		}else{
-			$('.btn-top').fadeOut(500);
+			$(".btn-top").fadeOut(500);
 		}
 	})
 
 	$(".btn-top").click(function(){  
-        $('body,html').animate({scrollTop:0},1000);  
+        $("body,html").animate({scrollTop:0},1000);  
         return false;  
     }); 
 
 
     //----------限时特卖切换-------------// 
-    $('.product-tab li').click(function(){
-    	$(this).addClass('active').siblings().removeClass("active");
-    	var index = $('.product-tab li').index(this);
-    	$('#product-mb').animate({
+    $(".product-tab li").click(function(){
+    	$(this).addClass("active").siblings().removeClass("active");
+    	var index = $(".product-tab li").index(this);
+    	$("#product-mb").animate({
     		left:-100 * index + "%"
     	},500);
     	return false;
@@ -106,34 +106,50 @@ $(function(){
 
 
     //----------数量按钮-------------// 
-    $('.btn-num').on("click",".btn-num-add",function(){
+    $(".btn-num").on("click",".btn-num-add",function(){
     	var input = $(this).siblings("input")
     	var value = input.val();
     	if(value < 2){
     		value ++;
     	}
     	input.val(value);
+    	return false;
     })
-    $('.btn-num').on("click",".btn-num-reduce",function(){
+    $(".btn-num").on("click",".btn-num-reduce",function(){
     	var input = $(this).siblings("input")
     	var value = input.val();
     	if(value > 0){
     		value --;
     	}
     	input.val(value);
+    	return false;
     })
     //----------商品颜色-------------// 
-    $('.btn-goods').on("click",function(){
+    $('.btn-goods:not(".disable")').on("click",function(){
     	$(this).addClass("active").siblings().removeClass("active");
     });
     //----------select模拟-------------// 
-    $('.btn-select').on("click",function(){
-    	$(this).find("ul").show();
+    $(".btn-select").on("click",function(){
+    	if($(this).hasClass("active")){
+    		$(this).removeClass("active");
+    		$(this).find("ul").hide();
+    	}else{
+    		$(this).addClass("active");
+    		$(this).find("ul").show();
+    	}
     });
-    $('.btn-select').on("click","a",function(){
+    $(".btn-select").on("click","label",function(){
+    	$(this).parents(".btn-select").removeClass("active");
     	var value=$(this).text();
-    	$('.btn-select-num').text(value);
-    	$('.btn-select ul').hide();
+    	$(".btn-select-num").text(value);
+    	$(".btn-select ul").hide();
+    	return false;
+    })
+    //----------商品图片切换-------------// 
+    $(".goods-c1r2 li").on("click",function(){
+    	$(this).addClass("active").siblings().removeClass("active");
+    	var index = $(".goods-c1r2 li").index(this);
+    	$(".goods-c1r1 li").eq(index).addClass("active").siblings().removeClass("active");
     	return false;
     })
 })
