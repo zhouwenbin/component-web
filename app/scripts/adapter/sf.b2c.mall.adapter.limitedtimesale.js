@@ -10,6 +10,7 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
         that.attr(key, value);
       });
 
+      that.limitedtimesaleInfoList.attr();
       return that;
     },
 
@@ -19,27 +20,15 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
           if (item.homePageProductInfo && item.homePageProductInfo.skuId == priceItem.skuId) {
             item.attr('originPrice', priceItem.originPrice);
             item.attr('sellingPrice', priceItem.sellingPrice);
-            //TODO 要增加小数位数处理
-            item.attr('discount',priceItem.sellingPrice*10/priceItem.originPrice);
             item.attr('endTime', priceItem.endTime);
-            item.attr('time', '');
+            item.attr('time','');
+          }else if (item.homepageTopicInfo) {
+            item.attr('price', item.homepageTopicInfo.price);
+            item.attr('discount', item.homepageTopicInfo.discount);
           }
         });
       });
 
-    },
-
-    format4SecondParse: function(data) {
-      var that = this;
-
-      _.each(data, function(value, key, list) {
-        that.attr(key, value);
-      });
-
-      that.attr('contentType',"PRODUCT");
-      that.attr('time', "");
-
-      return that;
     }
   })
 })
