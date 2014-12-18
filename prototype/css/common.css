@@ -162,7 +162,9 @@ img{vertical-align: middle;}
 }
 .icon16,
 .icon16-1,
-.icon16-2{
+.icon16-2,
+.icon16-3,
+.icon16-4{
 	width: 0;
 	height: 0;
 	background: none;
@@ -179,6 +181,20 @@ img{vertical-align: middle;}
 	border-width: 9px 8px;
 	border-bottom-color: #fff;
 	border-top-color: transparent;
+}
+.icon16-3{
+	border-width: 13px 10px;
+	border-bottom-color: #DEDDDE;
+	border-top-color: transparent;
+	position: relative;
+}
+.icon16-4{
+	border-width: 13px 10px;
+	border-bottom-color: #f4f4f9;
+	border-top-color: transparent;
+	position: absolute;
+	top: -11px;
+	left: -10px;
 }
 .icon17{
 	width: 75px;
@@ -323,7 +339,8 @@ img{vertical-align: middle;}
 .btn-buy:hover{
 	background-position: -508px -61px;
 }
-.btn-goods{
+.btn-goods,
+.btn-brand{
 	padding:3px 6px;
 	border: 1px solid #BDBDBD;
 	color: #272541;
@@ -397,7 +414,7 @@ img{vertical-align: middle;}
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
-	background: #fff;
+	background: #fff url(../img/btn-select.png) repeat-x;
 	cursor: pointer;
 	*display: inline;
 	*zoom:1;
@@ -409,7 +426,6 @@ img{vertical-align: middle;}
 	width: 57px;
 	height: 20px;
 	line-height: 20px;
-	background: #f2f2f2;
 	padding-left: 13px;
 	border-right: 1px solid #c6c6c6;
 	margin-right:5px;
@@ -424,6 +440,7 @@ img{vertical-align: middle;}
 	left: -1px;
 	border-radius: 2px;
 	display: none;
+	box-shadow: 3px 3px 5px rgba(4,0,0,0.15);
 }
 .btn-select li{
 	border-bottom: 1px solid #c6c6c6;
@@ -470,6 +487,36 @@ img{vertical-align: middle;}
 }
 .btn-register:hover{
 	color: #fff;
+}
+.btn-brand{
+	*position: relative;
+	*z-index: 2;
+}
+.btn-brand .detail{
+	border:1px solid #DEDDDE;
+	padding: 24px 27px;
+	width: 348px;
+	line-height: 18px;
+	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
+	background: #f4f4f9;
+	position: absolute;
+	z-index: 2;
+	left: -48px;
+	top: 38px;
+	display: none;
+	color: #333840
+}
+.btn-brand.active{
+	background: #272541;
+	color: #fff;
+}
+.btn-brand.active .detail{
+	display: block;
+}
+.btn-brand .icon16-3{
+	position: absolute;
+	left: 56px;
+	top: -27px;
 }
 body{
 	background: #EEEEEE;
