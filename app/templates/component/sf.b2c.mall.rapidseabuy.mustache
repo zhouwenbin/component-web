@@ -1,36 +1,51 @@
-{{#jsht}}
+
 <div class="product">
     <div id="RapidSeaBuy" class="mh">
       <h2>极速海淘</h2>
     </div>
     <div class="mb">
       <ul class="clearfix product-list">
-        {{#product-list}}
+        {{#fastSaleInfos}}
         <li>
           <div class="product-r1">
-            <a href="{{goods-img-link}}"><img src="{{goods-img-src}}" alt="" ></a><span></span>
+            <a href="{{link}}" target="_blank"><img src="{{imgUrl}}" alt="" ></a><span></span>
           </div>
-          <h3><a href="">{{goods-title}}</a></h3>
-          <p>{{goods-sub-title}}</p>
+          <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+          <p>{{subTitle}}</p>
           <div class="product-r2 clearfix">
-            <div class="product-r2c1 fl"><span class="icon icon6"><b>{{goods-arrived-time}}</b>天到<i></i></span></div>
-            <div class="product-r2c2 fr"><span class="icon icon5">{{goods-from-country}}</span></div>
+            <div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>
+            {{#sf-is-product fastSaleContentType}}
+            <div class="product-r2c2 fr"><span class="icon icon5"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></span></div>
+            {{/sf-is-product}}
+            {{^sf-is-product fastSaleContentType}}
+            <div class="product-r2c2 fr"><span class="icon icon5"></span></div>
+            {{/sf-is-product}}
           </div>
-          <div class="product-r3 clearfix">
+          <div  class="product-r3 clearfix">
+            {{#sf-is-product fastSaleContentType}}
             <div class="product-r3c1 fl">
-              <strong>￥{{goods-now-price}}</strong>
-              <del>￥{{goods-before-price}}</del>
+              <strong>￥{{sellingPrice}}</strong>
+              <del>￥{{originPrice}}</del>
             </div>
             <div class="product-r3c2 fr">
-              <strong>{{goods-discount}}</strong>折
+              <strong>{{discount}}</strong>折
             </div>
+            {{/sf-is-product}}
+            {{^sf-is-product fastSaleContentType}}
+            <div class="product-r3c1 fl">
+              <strong>￥{{homepageTopicInfo.price}}</strong>
+              <del>￥12</del>
+            </div>
+            <div class="product-r3c2 fr">
+              <strong>{{homepageTopicInfo.discount}}</strong>折
+            </div>
+            {{/sf-is-product}}
           </div>
         </li>
-        {{/product-list}}
+        {{/fastSaleInfos}}
       </ul>
     </div>
     <div class="mf">
       <a href="#" class="btn btn-more">查看更多</a>
     </div>
   </div>
-{{/jsht}}

@@ -42,7 +42,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.render(this.data);
-      this.supplement();
+      //this.supplement();
     },
 
     /**
@@ -54,23 +54,9 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.element.html(html);
     },
 
-    supplement: function() {
-      var that = this;
-
-      var getUserInfo = new SFGetUserInfo();
-
-      getUserInfo
-        .sendRequest()
-        .done(function(data) {
-          that.data.attr('user', data);
-
-          //解决IE789重复登录后无法访问到cookie问题
-          that.data.attr('my', that.defaults.login.my);
-          that.data.attr('order', that.defaults.login.order);
-          that.data.attr('car', that.defaults.login.car);
-        })
-        .fail(function(data) {});
-    },
+    // supplement: function() {
+    //   var that = this;
+    // },
 
     /**
      * [description 登录状态下的个人设置]
