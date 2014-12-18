@@ -73,6 +73,9 @@ define('sf.b2c.mall.product.detailcontent', [
             var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
             that.element.html(html);
 
+            //设置为选中
+            that.setFirstPicSelected();
+
             that.interval = setInterval(function() {
               that.setCountDown(that.options.detailContentInfo.priceInfo)
             }, '1000')
@@ -80,7 +83,28 @@ define('sf.b2c.mall.product.detailcontent', [
 
       },
 
-      supplement: function() {
+      /**
+       * [setFirstPicSelected 设置图片为选中]
+       */
+      setFirstPicSelected: function(){
+        $('.thumb-item:lt(1)').addClass('active');
+      },
+
+      supplement: function() {},
+
+      /**
+       * @description event:点击thumb-item切换图片
+       * @param  {Dom} element 触发事件的元素
+       * @param  {Event} event   事件对象
+       */
+      '.thumb-item click': function(element, event) {debugger;
+        event && event.preventDefault() && event.stopPropogation();
+        // 删除所有的focus class
+        $('.thumb-item').removeClass('active');
+        element.addClass('active');
+
+        var image = $(element)[0].dataset.bigPic;
+        this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
 
       /**
@@ -188,7 +212,6 @@ define('sf.b2c.mall.product.detailcontent', [
           })
         })
 
-
         var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec);
 
         var that = this;
@@ -198,8 +221,10 @@ define('sf.b2c.mall.product.detailcontent', [
           .then(function(skuInfoData) {
             that.options.detailContentInfo.itemInfo.attr("basicInfo", skuInfoData);
             SFDetailcontentAdapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
-          })
 
+            //设置为选中
+            that.setFirstPicSelected();
+          })
       },
 
       /**
