@@ -16,7 +16,7 @@
     <p>{{itemInfo.basicInfo.subTitle}}</p>
     <div class="mr1">单价：<strong>¥ {{priceInfo.sellingPrice}}</strong><span>（含税）</span><del>¥ {{priceInfo.originPrice}}</del></div>
     <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>
-    <div class="mr3">国际物流：{{itemInfo.basicInfo.orderToDelivery}}</div>
+    <div class="mr3">国际物流：{{itemInfo.basicInfo.shippingPoint}}发货 {{itemInfo.basicInfo.orderToDelivery}}</div>
     <div class="mr4">发货商家：{{itemInfo.basicInfo.productShape}}</div>
     <div class="mr5">品牌：
       <label class="btn btn-goods">{{itemInfo.basicInfo.brand}}</label>
@@ -42,7 +42,7 @@
     {{/each}}
 
     <div class="mr8">购买数量：
-      <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
+      <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" class="input_txt" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
     </div>
     <div class="mr9">
       {{#sf-is-soldout priceInfo.soldOut}}<span class="icon icon26">商品库存不足</span>{{/sf-is-soldout}}

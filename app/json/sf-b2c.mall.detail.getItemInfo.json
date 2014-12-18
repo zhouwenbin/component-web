@@ -5,6 +5,9 @@
   "limitedBuy": "3",
   "saleInfo": {
     "saleId": "222",
+    "shippingPoint": "美国",
+    "orderToDelivery": "10-15天到",
+    "productShape": "顺丰海外直采:自营商品",
     "saleSkuSpecTupleList": [{
       "itemId": "100",
       "skuSpecTuple": {
@@ -94,9 +97,6 @@
     }],
     "title": "Gerber美国嘉宝3段苹果肉桂燕麦米粉 227g",
     "subTitle": "宝宝第一辅食选择，美国原装营养燕麦米粉，营养丰富易吸收",
-    "shippingPoint": "美国",
-    "orderToDelivery": "10-15天到",
-    "productShape": "顺丰海外直采:自营商品",
     "brand": "UGG",
     "recommend": "新百伦这款夹克, New balance 新百伦女士放风立领软壳到评价普遍时质量好，价格很合理。但是衣服偏小。采用92%涤纶＋8%弹性纤维混合而成，防风且防水。插肩袖设计胸前有nb的logo。适合秋季a运动a穿着。",
     "description": "【泼墨】系列<br>新品复古泼墨男士真皮大手提包<br>材质特征: 头层牛皮<br>内部结构: 拉链暗袋 手机袋 证件袋<br>提拎部件: 伸缩式提把<br>里料质地: 棉<br>尺寸：上宽34/下宽36/高42/厚度14/<br>肩带最长16最短12（cm）",

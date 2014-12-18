@@ -28,6 +28,9 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
       //设置商品详细信息，包括标题、副标题、描述等信息
       detailContentInfo.itemInfo = {};
       detailContentInfo.itemInfo.basicInfo = itemInfoData.skuInfo;
+      detailContentInfo.itemInfo.basicInfo.shippingPoint = itemInfoData.saleInfo.shippingPoint;
+      detailContentInfo.itemInfo.basicInfo.orderToDelivery = itemInfoData.saleInfo.orderToDelivery;
+      detailContentInfo.itemInfo.basicInfo.productShape = itemInfoData.saleInfo.productShape;
 
       //设置item的大图
       detailContentInfo.itemInfo.currentImage = itemInfoData.skuInfo.images[0].bigImgUrl;

@@ -86,7 +86,7 @@ define('sf.b2c.mall.product.detailcontent', [
       /**
        * [setFirstPicSelected 设置图片为选中]
        */
-      setFirstPicSelected: function(){
+      setFirstPicSelected: function() {
         $('.thumb-item:lt(1)').addClass('active');
       },
 
@@ -97,7 +97,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {Dom} element 触发事件的元素
        * @param  {Event} event   事件对象
        */
-      '.thumb-item click': function(element, event) {debugger;
+      '.thumb-item click': function(element, event) {
         event && event.preventDefault() && event.stopPropogation();
         // 删除所有的focus class
         $('.thumb-item').removeClass('active');
@@ -133,7 +133,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       /**
-       * @description event:数量较少，限制最小是1
+       * @description event:数量减少，限制最小是1
        * @param  {Dom} element 触发事件的元素
        * @param  {Event} event   事件对象
        */
@@ -149,6 +149,58 @@ define('sf.b2c.mall.product.detailcontent', [
           input.attr('buyNum', --input.buyNum);
         }
         return false;
+      },
+
+      /**
+       * [description 购买数量手工输入]
+       * @param  {[type]} element
+       * @param  {[type]} event
+       * @return {[type]}
+       */
+      '.input_txt keyup': function(element, event) {
+        event && event.preventDefault();
+
+        this.dealBuyNumByInput(element);
+
+        return false;
+      },
+
+      /**
+       * [description 购买数量手工输入]
+       * @param  {[type]} element
+       * @param  {[type]} event
+       * @return {[type]}
+       */
+      '.input_txt blur': function(element, event) {
+        event && event.preventDefault();
+
+        this.dealBuyNumByInput(element);
+
+        return false;
+      },
+
+      /**
+       * [description 购买数量手工输入]
+       * @param  {[type]} element
+       * @return {[type]}
+       */
+      dealBuyNumByInput: function(element) {
+        var priceInfo = this.options.detailContentInfo.priceInfo;
+        var input = this.options.detailContentInfo.input;
+
+        if (priceInfo.soldOut) {
+          return false;
+        }
+
+        var amount = element[0].value;
+        if (priceInfo.accountRestriction > 0 && amount > priceInfo.accountRestriction) {
+          input.attr("showRestrictionTips", true);
+          element.val(priceInfo.accountRestriction);
+          return false;
+        }
+
+        input.attr('buyNum', amount);
+        input.attr("showRestrictionTips", false);
       },
 
       /**
