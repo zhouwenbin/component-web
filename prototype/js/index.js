@@ -165,4 +165,9 @@ $(function(){
     	$(this).parents(".register").hide(300);
     	return false;
     }) 
+    //----------品牌选择-------------//
+    $(".btn-brand").on("click",function(){
+    	$(this).toggleClass("active");
+    	return false;
+    });
 })
