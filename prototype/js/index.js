@@ -152,4 +152,17 @@ $(function(){
     	$(".goods-c1r1 li").eq(index).addClass("active").siblings().removeClass("active");
     	return false;
     })
+
+    //----------注册切换-------------// 
+    $(".register-h li").on("click",function(){
+    	var index=$(".register-h li").index(this);
+    	$(this).addClass("active").siblings().removeClass("active");
+    	$(".register-b").eq(index).addClass("active").siblings().removeClass("active");
+    	return false;
+    })
+    //----------关闭注册弹窗-------------//
+    $(".register .btn-close").on("click",function(){
+    	$(this).parents(".register").hide(300);
+    	return false;
+    }) 
 })
