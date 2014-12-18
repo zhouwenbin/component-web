@@ -1,0 +1,21 @@
+##debug模式将异常栈打印出来
+#define($_content)
+<div class="m-inexistence-container">
+    <div class="m-inexistence">
+        <div>
+            <h1>[DEBUG MODE Error occured!]
+                #if(${exception.code})
+                    <br>code:$!{exception.code},msg:$!{exception.msg}
+                #end
+                #if(${exception.message})
+                    <br>message:$!{exception.message}
+                #end
+            </h1>
+            #foreach($trace in $exception.stackTrace)
+                <br>$!{trace}
+            #end
+            <p><a href="index.html" class="back-first">返回首页</a></p>
+        </div>
+    </div>
+</div>
+#end

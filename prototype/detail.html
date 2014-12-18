@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width">
 <title>顺丰海淘</title>
-<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/detail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,7 +22,7 @@
           <li><a href="">账户<span class="icon icon16"></span></a></li>
           <li><a href="">我的订单</a></li>
         </ul>
-  
+
       </div>
     </div>
 
@@ -41,71 +41,81 @@
       <div class="goods clearfix">
         <div class="goods-c1 fl">
           <div class="goods-c1r1">
-            <img src="img/goods.jpg" alt="" /><span></span>
+            <ul>
+              <li class="active"><img src="img/goods.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods2.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods3.jpg" alt="" /><span></span></li>
+              <li><img src="img/goods4.jpg" alt="" /><span></span></li>
+            </ul>
           </div>
           <div class="goods-c1r2">
             <ul class="clearfix">
-              <li><a href=""><img src="img/goods1.jpg" alt="" /></a><span></span></li>
+              <li class="active"><a href=""><img src="img/goods1.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods2.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods3.jpg" alt="" /></a><span></span></li>
               <li><a href=""><img src="img/goods4.jpg" alt="" /></a><span></span></li>
             </ul>
-            
+
           </div>
         </div>
         <div class="goods-c2">
-          <h1>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴</h1>
-          <p>秋冬新款 林格纹链条包 复古造型</p>
-          <div class="mr1">单价：<strong>¥ 599</strong><span>（含税）</span><del>¥1200</del></div>
-          <div class="mr2"><span>4.5折</span>已降681元</div>
-          <div class="mr3">国际物流：美国发货，预计10-15天内到货</div>
-          <div class="mr4">发货商家：海外电商直发 顺丰海外直采</div>
-          <div class="mr5">品牌：<a href="#" class="btn btn-goods">UGG</a></div>
-          <div class="mr6">颜色：
-            <a href="#" class="btn btn-goods btn-goods-white"><b></b>白色<span class="icon icon23"></span></a>
-            <a href="#" class="btn btn-goods btn-goods-yellow"><b></b>黄色<span class="icon icon23"></span></a>
-            <a href="#" class="btn btn-goods btn-goods-gray"><b></b>灰色<span class="icon icon23"></span></a>
-          </div>
-          <div class="mr7">尺码：
-            <div class="btn btn-select" role="btn">
-              <span class="btn-select-num">6</span><span class="icon icon16-1"></span>
-              <ul>
-                <li><a href="">6.5</a></li>
-                <li><a href="">7</a></li>
-                <li>7.5</li>
-                <li><a href="">8</a></li>
-                <li><a href="">9</a></li>
-              </ul>
+          <form action="">
+            <h1>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴</h1>
+            <p>秋冬新款 林格纹链条包 复古造型</p>
+            <div class="mr1">单价：<strong>¥ 599</strong><span>（含税）</span><del>¥1200</del></div>
+            <div class="mr2"><span>4.5折</span>已降681元</div>
+            <div class="mr3">国际物流：美国发货，预计10-15天内到货</div>
+            <div class="mr4">发货商家：海外电商直发 顺丰海外直采</div>
+            <div class="mr5">品牌：
+              <label class="btn btn-goods">UGG<input type="radio" name="brank" value="UGG" class="visuallyhidden" /></label>
             </div>
-          </div>
-          <div class="mr8">购买数量：
-            <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1" /></span>每人限购2件
-          </div>
-          <div class="mr9">
-            <span class="btn btn-tip">商品库存不足</span>
-            <span class="btn btn-tip">商品限购2件</span>
-          </div>
-          <div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>
+            <div class="mr6">颜色：
+              <label class="btn btn-goods btn-goods-white disabled"><b></b>白色<span class="icon icon23"></span><input type="radio" name="color" value="白色" class="visuallyhidden" /></label>
+              <label class="btn btn-goods btn-goods-yellow"><b></b>黄色<span class="icon icon23"></span><input type="radio" name="color" value="黄色" class="visuallyhidden" /></label>
+              <label class="btn btn-goods btn-goods-gray"><b></b>灰色<span class="icon icon23"></span><input type="radio" name="color" value="灰色" class="visuallyhidden" /></label>
+            </div>
+            <div class="mr7">尺码：
+              <div class="btn btn-select" role="btn">
+                <span class="btn-select-num">6</span><span class="icon icon16-1"></span>
+                <ul>
+                  <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden" /></label></li>
+                  <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden" /></label></li>
+                  <li>7.5</li>
+                  <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden" /></label></li>
+                  <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden" /></label></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mr8">购买数量：
+              <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1" /></span>每人限购2件
+            </div>
+            <div class="mr9">
+              <span class="icon icon26">商品库存不足</span>
+              <span class="icon icon26">商品限购2件</span>
+            </div>
+            <div class="mr10"><button type="submit" class="btn btn-buy">立即购买</button></div>
 
-          <!--限时特卖-->
-          <div class="u1">
-            <span class="icon icon6 icon6-2">限时特卖<i></i></span>
-            <div class="u1-r1"><span class="icon icon4"></span>01天23时09分44秒</div>
-          </div>
-          <!--限时特卖-->
-          <!--售完--
-          <span class="icon icon24">售完</span>
-          <!--售完-->
-          <!--7天到--
-          <div class="u2">
-            <span class="icon icon25"></span><strong>7</strong>天到
-          </div>
-          <!--7天到-->
-          <!--运费-->
-          <div class="u3">
-            <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
-          </div>
-          <!--运费-->
+            <!--限时特卖-->
+            <div class="u1">
+              <span class="icon icon6 icon6-2">限时特卖<i></i></span>
+              <div class="u1-r1"><span class="icon icon4"></span>01天23时09分44秒</div>
+            </div>
+            <!--限时特卖-->
+            <!--售完--
+            <span class="icon icon24">售完</span>
+            <!--售完-->
+            <!--7天到--
+            <div class="u2">
+              <span class="icon icon25"></span><strong>7</strong>天到
+            </div>
+            <!--7天到-->
+            <!--运费-->
+            <div class="u3">
+              <span class="icon icon5"></span><span class="s1">运费：</span><span class="icon icon6 icon6-1">免运费<i></i></span>
+            </div>
+            <!--运费-->
+          </form>
+
         </div>
       </div>
       <!--商品-->
@@ -157,24 +167,18 @@
       <!--小编推荐-->
       <!--详情-->
       <div class="detail">
-        <div class="detail-h clearfix">
-          <ul class="detail-c1 fl">
+        <div class="detail-h">
+          <ul class="clearfix">
             <li>【产品名称】New Balance 女士防风立领软壳夹克</li>
-            <li>【产品款式】春／秋 夹克</li>
-          </ul>
-          <ul class="detail-c2 fl">
             <li>【面料成分】92%涤纶，8%弹性纤维</li>
+            <li>【产品特点】1.   92%涤纶＋8%弹性纤维<br />
+              2.   防风且防水</li>
+            <li>【产品款式】春／秋 夹克</li>
             <li>【洗涤方式】可机洗</li>
-          </ul>
-          <div class="detail-c3 fl">
-            <div class="detail-c3c1 fl">【产品特点】</div>
-            <div class="detail-c3c2">
-              1.   92%涤纶＋8%弹性纤维<br />
-              2.   防风且防水
-            </div>
+           </ul>
           </div>
         </div>
-          
+
         <div class="detail-b">
           <h3>【泼墨】系列<br />
           新品复古泼墨男士真皮大手提包</h3>
@@ -189,6 +193,7 @@
       <!--详情-->
       <!--顺丰海淘服务承诺-->
       <div class="service">
+        <div class="pm">
           <h2>顺丰海淘服务承诺</h2>
           <ul class="clearfix">
               <li>
@@ -207,6 +212,8 @@
                   <p>非人为因素产生的商品破损<br />或运输途中丢失<br />我们将第一时间安排客服处理。</p>
               </li>
           </ul>
+        </div>
+
       </div>
       <!--顺丰海淘服务承诺-->
     </div>
@@ -295,9 +302,9 @@
           <div class="phone">400-123-456123</div>
           <div class="time">周一至周日 8:00 - 18:00</div>
         </div>
-      </div>      
+      </div>
     </div>
-    
+
     <div class="footer3">Copyright 2014 版权所有sfht.com 沪ICP备 1404464</div>
 
   </div>
