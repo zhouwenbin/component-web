@@ -335,6 +335,7 @@ img{vertical-align: middle;}
 	background: #ccc;
 	border: 1px solid #ccc;
 	box-shadow:none;
+	cursor: not-allowed;
 }
 
 .btn-close{
@@ -364,6 +365,7 @@ img{vertical-align: middle;}
 }
 .btn-goods.disable{
 	color: #ccc;
+	cursor: not-allowed;
 }
 .btn-goods b{
 	display: inline-block;
@@ -498,6 +500,7 @@ img{vertical-align: middle;}
 	background: #ccc;
 	border: 1px solid #ccc;
 	box-shadow: none;
+	cursor: not-allowed;
 }
 .btn-register{
 	width: 100%;
@@ -567,7 +570,7 @@ body{
 	top: 0;
 	z-index: 3;
 }
-.nav li{
+.nav .li1{
 	float: left;
 	font-size: 16px;
 	
@@ -575,28 +578,49 @@ body{
 .nav-c1{
 	margin-left: -40px;
 }
-.nav-c1 li{
+.nav-c1 .li1{
 	border-right: 1px solid #2A2D36;
+	
+}
+.nav-c1 .li1 a{
 	padding: 0 40px;
 }
 .nav-c{
 	margin-right: -27px;
 }
-.nav-c2 li{
+.nav-c2 .li1{
 	border-left: 1px solid #2A2D36;
-	padding: 0 27px;
 }
 .nav li a{
 	color: #C5C7C9;
+	display: block;
+	padding: 0 27px;
 }
-.nav li a:hover{
+.nav .li1:hover{	
+	background: #4C515B;
+}
+.nav .li1 a:hover{
 	color: #fff;
+}
+.nav .li1 ul{
+	position: absolute;
+	display: none;
+}
+.nav .li1:hover:hover ul{
+	display: block;
 }
 .nav-c2 .icon{
 	margin-left: 9px;
 	vertical-align: -10px;
 	*vertical-align: -5px;
 }
+.nav-c2 .li2 a{
+	padding-left: 29px;
+	padding-right: 0;
+	width: 153px;
+	background: #434852
+}
+
 
 /*头部*/
 .header{
