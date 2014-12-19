@@ -1,29 +1,40 @@
 'use strict';
+require([
+  'can',
+  'jquery',
+  'sf.b2c.mall.center.register'
+],function(can,$,SFRegister){
+  var register = can.Control.extend({
 
-sf.util.namespace('b2c.mall.launcher.register');
+    init:function(){
+      this.supplement();
+    },
 
-// 初始化route
-can.route.ready();
+    render:function(){
 
-sf.b2c.mall.launcher.register = can.Control.extend({
+    },
+    supplement:function(){
+      //----------注册切换-------------//
+      $(".register-h li").on("click",function(){
+        var index=$(".register-h li").index(this);
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".register-b").eq(index).addClass("active").siblings().removeClass("active");
+        return false;
+      });
+      //----------关闭注册弹窗-------------//
+      $(".register .btn-close").on("click",function(){
+        $(this).parents(".register").hide(300);
+        return false;
+      })
+    },
+    '.test-btn-register click':function(ele,event){
+      event && event.preventDefault();
+      new SFRegister('.sf-b2c-mall-register');
+    }
 
-  init: function() {
-    // 初始化header
-    new sf.b2c.mall.header('.sf-b2c-mall-header');
+  });
 
-    // 初始化footer
-    new sf.b2c.mall.footer('.sf-b2c-mall-footer');
+  new register('#content');
 
-    new sf.b2c.mall.widget.nav.board('.sf-b2c-mall-nav', {
-      data: {
-        title: '用户注册'
-      }
-    });
+})
 
-    // 通过获取tag加载不同的模板
-    var tag = can.route.attr('tag');
-    new sf.b2c.mall.center.register.board('.sf-b2c-register');
-  }
-});
-
-new sf.b2c.mall.launcher.register('#content');
