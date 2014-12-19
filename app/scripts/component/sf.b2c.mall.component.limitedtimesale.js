@@ -246,7 +246,6 @@ define('sf.b2c.mall.component.limitedtimesale', [
               .done(function(priceData) {
                 var serverTime = getProductHotDataList.getServerTime();
                 SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, priceData.value);
-                debugger;
                 that.setTimeInterval(serverTime);
               })
               .fail(function(error) {
