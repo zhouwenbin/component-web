@@ -81,7 +81,7 @@
 .register-b .icon26{
 	margin-top: 5px;
 	margin-left: 5px;
-	display: none;
+	visibility: hidden;
 }
 .register li input{
 	vertical-align: middle;
@@ -95,7 +95,7 @@
 	margin-right: 5px;
 }
 .register .input2{
-	width: 145px;
+	width: 130px;
 	margin-right: 5px;
 }
 .register input:focus{
