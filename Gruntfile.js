@@ -288,10 +288,11 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>',
           src: [
             '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
+            'img/{,*/}*',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*',
-            'scripts/base/*.js'
+            'scripts/base/*.js',
+            'templates/**/*.mustache'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
