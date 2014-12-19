@@ -13,14 +13,14 @@
   <div class="register-b active">
     <ol>
       <li>
-        <input id="input-mobile-num" type="text" class="input1" can-value="user.mobileNum" /><a id="btn-send-mobilecode" href="#" class="btn btn-send">发送验证码</a>{{#mobileNum}}<span class="icon icon26">{{numError}}</span>{{/mobileNum}}
+        <input id="input-mobile-num" type="text" class="input1" can-value="user.mobileNum" /><button id="btn-send-mobilecode" class="btn btn-send">发送验证码</button>{{#mobileNum}}<span id="mobileNumErrorTips" class="icon icon26">{{numError}}</span>{{/mobileNum}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
-        <input id="input-mobile-code" type="text" placeholder="手机验证码" can-value="user.mobileCode" />{{#mobileCode}}<span class="icon icon26">{{codeError}}</span>{{/mobileCode}}
+        <input id="input-mobile-code" type="text" placeholder="手机验证码" can-value="user.mobileCode" />{{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
       </li>
       <li>
-        <input id="input-user-password" type="passward" placeholder="设置密码" can-value="user.password" />{{#password}}<span class="icon icon26">{{pwdError}}</span>{{/password}}
+        <input id="input-user-password" type="password" placeholder="设置密码" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
       </li>
     </ol>
     <div class="register-br1">

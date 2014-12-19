@@ -81,6 +81,10 @@
 .register-b .icon26{
 	margin-top: 5px;
 	margin-left: 5px;
+  display: none;
+}
+.register-b .btn-send{
+  cursor: not-allowed;
 }
 .register li input{
 	vertical-align: middle;
