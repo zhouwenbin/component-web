@@ -25,13 +25,28 @@ require([
       $(".register .btn-close").on("click",function(){
         $(this).parents(".register").hide(300);
         return false;
+      });
+      //----------回到顶部-------------//
+      $(window).scroll(function(){
+        if($(window).scrollTop() > 300){
+          $(".m1").stop(true,false).animate({
+            "height":522
+          },700);
+        }else{
+          $(".m1").stop(true,false).animate({
+            "height":0
+          },700);
+        }
       })
     },
-    '.test-btn-register click':function(ele,event){
+    '#btn-register click':function(ele,event){
+      event && event.preventDefault();
+      new SFRegister('.sf-b2c-mall-register');
+    },
+    '#btn-register-sfht click':function(ele,event){
       event && event.preventDefault();
       new SFRegister('.sf-b2c-mall-register');
     }
-
   });
 
   new register('#content');

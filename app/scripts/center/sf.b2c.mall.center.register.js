@@ -21,10 +21,14 @@ define('sf.b2c.mall.center.register',[
       password:new can.Map({
         pwdError:''
       }),
+      repeatPwd:new can.Map({
+        repeatPwdError:''
+      }),
       user: new can.Map({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        repeatPwd:null
       })
     },
 
@@ -34,7 +38,8 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        repeatPwd:null
       });
 
       this.paint(this.defaults);
@@ -87,7 +92,16 @@ define('sf.b2c.mall.center.register',[
         pwdError:data
       });
     },
-
+    /**
+     * @description 重复密码错误提示
+     * @param {String} data 提示的文字信息
+     * @return {Boolean} 返回执行情况
+     */
+    setRepeatPwdError:function(data){
+      this.data.repeatPwd.attr({
+        repeatPwdError:data
+      });
+    },
     '.btn-register click':function(ele,event){
       event && event.preventDefault();
 
@@ -95,15 +109,17 @@ define('sf.b2c.mall.center.register',[
       $('#mobileNumErrorTips').hide();
       $('#mobileCodeErorTips').hide();
       $('#pwdErrorTips').hide();
-
+      $('#repeatPwdErrorTips').hide();
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
-        password:this.data.user.attr('password')
+        password:this.data.user.attr('password'),
+        repeatPwd:this.data.user.attr('repeatPwd')
       };
       var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);
       var validatePwd = /^\w{5,17}$/.test(params.password);
+      //var ischecked = $('#ischecked');
       if(!params.mobileNum || !validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('手机号码有误');
@@ -111,12 +127,20 @@ define('sf.b2c.mall.center.register',[
 
       if(!params.mobileCode || !validateMobileCode){
         $('#mobileCodeErorTips').show();
-        return this.setMobileCodeError('验证码输入错误');
+        return this.setMobileCodeError('验证码有误');
       }
 
       if(!params.password){
         $('#pwdErrorTips').show();
-        return this.setPwdError('密码输入错误');
+        return this.setPwdError('密码有误');
+      }
+
+      if(!params.repeatPwd || params.repeatPwd !== params.password){
+        $('#repeatPwdErrorTips').show();
+        return this.setRepeatPwdError('重复密码有误')
+      }
+      if(!$('#ischecked:checked')){
+        return false;
       }
 
       var data ={
@@ -128,14 +152,14 @@ define('sf.b2c.mall.center.register',[
       mobileRegister
           .sendRequest()
           .done(function(data){
-            debugger;
             if(data.csrfToken){
+
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
-              var time = 2;
+              var time = 5;
               var html = '<div class="register-h"><h2>注册成功</h2><a href="#" class="btn btn-close">关闭</a></div>'+
               '<div class="register-b1"><span class="icon icon27"></span><h3>注册成功</h3><p>'+ time +'秒后页面将自动跳转</p></div>';
               sfb2cmallregister.html(html);
-              setTimeout($('.sf-b2c-mall-register').hide(),time*1000);
+              setTimeout($('.sf-b2c-mall-register').html(''),time*1000);
             }
           })
 
@@ -144,12 +168,12 @@ define('sf.b2c.mall.center.register',[
       var that = this;
       if (wait == 0) {
         $(ele).css('cursor','pointer');
-        $(ele).addClass('active');
+        $(ele).removeClass('disable');
         $(ele).text('发送验证码');
         wait = 60;
       } else {
         $(ele).css('cursor','not-allowed');
-        $(ele).removeClass('active');
+        $(ele).addClass('disable');
         $(ele).text(wait+"s后重新发送");
         wait--;
         setTimeout(function() {
@@ -182,8 +206,14 @@ define('sf.b2c.mall.center.register',[
       if(mobileNum.length === 11){
         $('#mobileNumErrorTips').fadeOut(1000);
         $('#btn-send-mobilecode').css('cursor','pointer');
-        $('#btn-send-mobilecode').addClass('active');
+        $('#btn-send-mobilecode').removeClass('disable');
       }
+    },
+    '.btn-close click':function(ele,event){
+      event && event.preventDefault();
+
+      $('.sf-b2c-mall-register').html('');
+
     }
 
 
