@@ -250,7 +250,6 @@ img{vertical-align: middle;}
 	background-position: -62px -74px;
 }
 .icon26{
-  display: none;
 	height: 21px;
 	line-height: 21px;
 	background: #eb6877;
@@ -321,8 +320,23 @@ img{vertical-align: middle;}
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
-	background: url(../img/icon.png) no-repeat -508px 0;
+	background: #dd3e3f;
+	border:1px solid #c2363d;
+	border-radius: 2px;
+	box-shadow: 0 2px 1px rgba(4,0,0,0.1);
 }
+.btn-buy:hover{
+	background: #e84145;
+}
+.btn-buy:active{
+	background: #ce3a3d;
+}
+.btn-buy.disable{
+	background: #ccc;
+	border: 1px solid #ccc;
+	box-shadow:none;
+}
+
 .btn-close{
 	width: 16px;
 	height: 0;
@@ -467,14 +481,23 @@ img{vertical-align: middle;}
 	height: 40px;
 	line-height: 40px;
 	color: #fff;
-	background: #ccc;
+	background: #67b222;	
 	border-radius: 2px;
+	box-shadow: 0 2px 1px rgba(4,0,0,0.1);
+	border:1px solid #448509;
 }
-.btn-send.active{
-	background: #67b222;
-}
+
 .btn-send:hover{
 	color: #fff;
+	background: #6ec125;
+}
+.btn-send:active{
+	background: #5fa620;
+}
+.btn-send.disable{
+	background: #ccc;
+	border: 1px solid #ccc;
+	box-shadow: none;
 }
 .btn-register{
 	width: 100%;
@@ -483,11 +506,16 @@ img{vertical-align: middle;}
 	color: #fff;
 	background: #67b222;
 	border-radius: 2px;
-	box-shadow: 0 1px 1px rgba(4,0,0,0.3);
+	box-shadow: 0 2px 1px rgba(4,0,0,0.3);
 	text-align: center;
+	border:1px solid #448509;
 }
 .btn-register:hover{
 	color: #fff;
+	background: #6ec125;
+}
+.btn-register:active{
+	background: #5fa620;
 }
 .btn-brand{
 	*position: relative;
