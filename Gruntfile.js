@@ -319,6 +319,32 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    requirejs: {
+      business: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: '.',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.business.js',
+          paths: {
+            'sf.b2c.mall.component.header': 'app/scripts/component/sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer': 'app/scripts/component/sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.limitedtimesale': 'app/scripts/component/sf.b2c.mall.component.limitedtimesale',
+            'sf.b2c.mall.component.rapidseabuy': 'app/scripts/component/sf.b2c.mall.component.rapidseabuy',
+            'sf.b2c.mall.center.register': 'app/scripts/center/sf.b2c.mall.center.register',
+
+            'sf.b2c.mall.widget.slide': 'app/scripts/widget/sf.b2c.mall.widget.slide',
+            'sf.b2c.mall.adapter.limitedtimesale': 'app/scripts/adapter/sf.b2c.mall.adapter.limitedtimesale',
+
+            'sf.b2c.mall.adapter.rapidSeaBuy': 'app/scripts/adapter/sf.b2c.mall.adapter.rapidSeaBuy',
+
+            'sf.b2c.mall.product.breadscrumb': 'app/scripts/product/sf.b2c.mall.product.breadscrumb',
+            'sf.b2c.mall.product.detailcontent':'app/scripts/product/sf.b2c.mall.product.detailcontent',
+            'sf.b2c.mall.adapter.detailcontent': 'app/scripts/adapter/sf.b2c.mall.adapter.detailcontent'
+          }
+        }
+      }
     }
   });
 
@@ -384,6 +410,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'copy:dist',
+    'requirejs:business',
     'rev',
     'usemin',
     'htmlmin'
