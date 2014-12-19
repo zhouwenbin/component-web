@@ -163,6 +163,12 @@ $(function(){
     //----------关闭注册弹窗-------------//
     $(".register .btn-close").on("click",function(){
     	$(this).parents(".register").hide(300);
+    	$(".mask").hide();
     	return false;
     }) 
+    //----------品牌选择-------------//
+    $(".btn-brand").on("click",function(){
+    	$(this).toggleClass("active");
+    	return false;
+    });
 })

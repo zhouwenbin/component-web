@@ -60,7 +60,7 @@
 	color: #fff;
 }
 .register-b{
-	padding:40px 0 22px 130px;
+	padding:40px 130px 22px;
 	margin: 0 16px;
 	border-bottom: 1px solid  #EEE;
 	display: none;
@@ -80,7 +80,7 @@
 }
 .register-b .icon26{
 	margin-top: 5px;
-	margin-left: 5px;
+	display: none;
 }
 .register li input{
 	vertical-align: middle;
@@ -90,11 +90,11 @@
 	border-radius: 3px;
 }
 .register .input1{
-	width: 157px;
+	width: 155px;
 	margin-right: 5px;
 }
 .register .input2{
-	width: 145px;
+	width: 126px;
 	margin-right: 5px;
 }
 .register input:focus{
@@ -104,11 +104,9 @@
 .register-br1{
 	padding-top: 11px;
 	margin-bottom: 7px;
-	padding-right: 130px;
 }
 .register-br2{
 	text-align: right;
-	padding-right: 126px;
 }
 .register-br2 a{
 	color: #a3a2a3;
