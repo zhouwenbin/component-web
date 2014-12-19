@@ -165,9 +165,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
 //            var template = can.view.mustache(that.moreProductTemplate());
 //            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList, that.helpers));
 //          })
-
-
-
         },
 
         showPriceModel:function(){
@@ -177,39 +174,30 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var ulNode = $('ul.product-list');
           var priceNodeList = $('ul.product-list #price4ProductClient');
 
-          //获得数据列表，传递给ajax请求，方便一次性获得价格信息
-//          var skuIdList = ulNode.skuList;
-//          var topicIdList = ulNode.topicIdList;
+          var paramData = {
+            "itemIds": ulNode[0].dataset.itemids
+          };
 
           //渲染价格模块
-          var getProductHotDataList = new SFGetProductHotDataList();
+          var getProductHotDataList = new SFGetProductHotDataList(paramData);
+          //获得价格信息
           getProductHotDataList
-              .sendRequest()
-              .done(function(data){
-                var template = can.view.mustache(that.priceTemplate());
-                _.each(priceNodeList, function (priceNode) {
-                  _.each(data, function (priceItem) {
-                    if (priceItem.skuId == priceNode.attributes['skuid'].value) {
-                      priceItem.fastSaleContentType = "PRODUCT";
-                      $(priceNode).html(template(priceItem));
-                    }
-                  });
-                })
+            .sendRequest()
+            .fail(function(error) {
+              console.error(error);
+            })
+            .done(function(data){
+              var template = can.view.mustache(that.priceTemplate());
+              _.each(priceNodeList, function (priceNode) {
+                if(priceNode.dataset.contenttype == 'PRODUCT')
+                _.each(data.value, function (priceItem) {
+                  if (priceItem.itemId == priceNode.dataset.itemid) {
+                    priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
+                    $(priceNode).html(template(priceItem));
+                  }
+                });
               })
-//          can.ajax({
-//            url:'json/sf-b2c.mall.index.timelimitedsalePrice.json'
-//          })
-//          .done(function(data) {
-//              var template = can.view.mustache(that.priceTemplate());
-//              _.each(priceNodeList, function (priceNode) {
-//                _.each(data, function (priceItem) {
-//                  if (priceItem.skuId == priceNode.attributes['skuid'].value) {
-//                    priceItem.fastSaleContentType = "PRODUCT";
-//                    $(priceNode).html(template(priceItem));
-//                  }
-//                });
-//              })
-//          });
+            })
         }
       });
     })
