@@ -27,6 +27,7 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
             item.attr('endTime', item.displayEndTime);
             item.attr('price', item.price);
             item.attr('discount', item.discount);
+            item.attr('time','');
           }
         });
       });
