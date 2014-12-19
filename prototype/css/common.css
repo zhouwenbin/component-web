@@ -289,10 +289,10 @@ img{vertical-align: middle;}
 	color: #999;
 	font-size: 18px;
 	text-align: center;	
-	background: url(../img/icon.png) no-repeat 0 -437px;
+	background: url(../img/icon.png) no-repeat 0 -438px;
 	width: 222px;
-	height: 62px;
-	line-height: 62px;
+	height: 64px;
+	line-height: 64px;
 }
 .btn-more:hover{
 	background-position: 0 -506px;
