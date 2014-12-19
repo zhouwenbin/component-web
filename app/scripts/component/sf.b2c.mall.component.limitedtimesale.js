@@ -28,15 +28,6 @@ define('sf.b2c.mall.component.limitedtimesale', [
        */
       init: function(element, options) {
         this.render();
-        var that = this;
-
-        //服务端渲染的时候要绑定这两个事件
-        $('#current')[0].onclick = function() {
-          that.renderLimitedTimeSale('CURRENT');
-        };
-        $('#future')[0].onclick = function() {
-          that.renderLimitedTimeSale('NEXT');
-        };
       },
 
       /**
@@ -49,6 +40,15 @@ define('sf.b2c.mall.component.limitedtimesale', [
         var that = this;
 
         if (this.options.serverRendered) {
+
+          //服务端渲染的时候要绑定这两个事件
+          $('#current')[0].onclick = function() {
+            that.renderLimitedTimeSale('CURRENT');
+          };
+          $('#future')[0].onclick = function() {
+            that.renderLimitedTimeSale('NEXT');
+          };
+
           that.supplement();
         } else {
           can.ajax({
