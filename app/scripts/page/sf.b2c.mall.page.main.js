@@ -4,6 +4,7 @@ require(
   [
     'can',
     'jquery',
+    'underscore',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.limitedtimesale',
@@ -12,7 +13,7 @@ require(
     'sf.b2c.mall.widget.slide'
   ],
 
-  function(can, $, Header, Footer, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
+  function(can, $, _, Header, Footer, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
 
     var home = can.Control.extend({
 
@@ -26,23 +27,30 @@ require(
       renderMap: {
         'slide': function () {
           var $el = this.element.find('.sf-b2c-mall-main-slider.serverRendered');
+
+          var that = this;
           if ($el.length === 0) {
-
-            var that = this;
-
-            // var request = new SFApiGetBanner();
-            // can.when(request.sendRequest())
-            can.when(can.ajax({url: 'json/sf.b2c.mall.index.getBanner.json'}))
+            var request = new SFApiGetBanner();
+            can.when(request.sendRequest())
+            // can.when(can.ajax({url: 'json/sf.b2c.mall.index.getBanner.json'}))
               .done(function (data) {
-                that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {
-                  imgs: [{
-                    imgUrl: 'img/banner1.jpg',
-                    url: 'http://www.google.com'
-                  }, {
-                    imgUrl: 'img/banner2.jpg',
-                    url: 'http://www.baidu.com'
-                  }]
+                var arr = [];
+                _.each(data.value, function(value, key, list){
+                  arr.push({
+                    imgUrl: value.imgUrl,
+                    url: value.link
+                  });
                 });
+                that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {imgs: arr});
+                // that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {
+                //   imgs: [{
+                //     imgUrl: 'img/banner1.jpg',
+                //     url: 'http://www.google.com'
+                //   }, {
+                //     imgUrl: 'img/banner2.jpg',
+                //     url: 'http://www.baidu.com'
+                //   }]
+                // });
               })
               .fail(function () {
 

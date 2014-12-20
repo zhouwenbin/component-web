@@ -4,9 +4,10 @@ define('sf.b2c.mall.component.rapidseabuy', [
       'underscore',
       'jquery',
       'sf.b2c.mall.adapter.rapidSeaBuy',
-      'sf.b2c.mall.api.b2cmall.getFastSaleInfoList'
+      'sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
+      'sf.b2c.mall.api.b2cmall.getProductHotDataList'
     ],
-    function(can,_,$,SFAdapterRapidSeaBuy,SFGetFastSaleInfoList) {
+    function(can,_,$,SFAdapterRapidSeaBuy,SFGetFastSaleInfoList,SFGetProductHotDataList) {
       return can.Control.extend({
 
         helpers:{
@@ -89,25 +90,21 @@ define('sf.b2c.mall.component.rapidseabuy', [
           '{{/each}}'
         },
 
+        /**
+         * [init description]
+         * @param  {[type]}
+         * @param  {[type]} 价格模板
+         * @return {[type]}
+         */
         priceTemplate: function() {
-          return '{{#sf-is-product fastSaleContentType}}' +
-              '<div class="product-r3c1 fl">' +
+          return '<div class="product-r3c1 fl">' +
               '<strong>￥{{sellingPrice}}</strong>' +
               '<del>￥{{originPrice}}</del>' +
               '</div>' +
               '<div class="product-r3c2 fr">' +
               '<strong>{{discount}}</strong>折' +
-              '</div>' +
-              '{{/sf-is-product}}' +
+              '</div>'
 
-              '{{^sf-is-product fastSaleContentType}}' +
-              '<div class="product-r3c1 fl">' +
-              '<strong>￥{{price}}</strong>元起' +
-              '</div>' +
-              '<div class="product-r3c2 fr">' +
-              '<strong>{{discount}}</strong>折起' +
-              '</div>' +
-              '{{/sf-is-product}}'
         },
 
         /**
@@ -130,67 +127,77 @@ define('sf.b2c.mall.component.rapidseabuy', [
         showMoreProduct:function(){
           var that = this;
 
-          can.when(can.ajax({
-            url:'json/sf-b2c.mall.index.rapidseabuy.json'
-          }))
-          .done(function(data){
-            that.options.fastSaleInfoList = data;
-            that.options = SFAdapterRapidSeaBuy.format(that.options);
-          })
-          .then(function(){
-            return can.ajax({
-              url:'json/sf-b2c.mall.index.rapidseabuyPrice.json'
-            })
-          })
-          .done(function(data){
-            SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList,data);
-            //var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',that.options);
-            var template = can.view.mustache(that.moreProductTemplate());
-            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList));
-          })
+          var getFastSaleInfoList = new SFGetFastSaleInfoList();
+          getFastSaleInfoList
+              .sendRequest()
+              .done(function(data){
+                that.options.fastSaleInfoList = data;
+                that.options = SFAdapterRapidSeaBuy.format(that.options);
+              })
+              .then(function(){
+                var getProductHotDataList = new SFGetProductHotDataList();
+                return getProductHotDataList.sendRequest();
+              })
+              .done(function(data){
+                SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList,data);
+//            //var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',that.options);
+//            var template = can.view.mustache(that.moreProductTemplate());
+//            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList, that.helpers));
+              })
 
 
 
+//          can.when(can.ajax({
+//            url:'json/sf-b2c.mall.index.rapidseabuy.json'
+//          }))
+//          .done(function(data){
+//            that.options.fastSaleInfoList = data;
+//            that.options = SFAdapterRapidSeaBuy.format(that.options);
+//          })
+//          .then(function(){
+//            return can.ajax({
+//              url:'json/sf-b2c.mall.index.rapidseabuyPrice.json'
+//            })
+//          })
+//          .done(function(data){
+//            SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList,data);
+//            //var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',that.options);
+//            var template = can.view.mustache(that.moreProductTemplate());
+//            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList, that.helpers));
+//          })
         },
 
         showPriceModel:function(){
           var that = this;
 
-          //获取节点
+          //获取页面上没有价格的节点
           var ulNode = $('ul.product-list');
-          var priceNodeList = $('ul.product-list #priceWrap');
+          var priceNodeList = $('ul.product-list #price4ProductClient');
 
-          //获得数据列表，传递给ajax请求，方便一次性获得价格信息
-          var skuIdList = ulNode.skuList;
-          var topicIdList = ulNode.topicIdList;
+          var paramData = {
+            "itemIds": ulNode[0].dataset.itemids
+          };
 
           //渲染价格模块
-          can.ajax({
-            url:'json/sf-b2c.mall.index.timelimitedsalePrice.json'
-          })
-          .done(function(data) {
+          var getProductHotDataList = new SFGetProductHotDataList(paramData);
+          //获得价格信息
+          getProductHotDataList
+            .sendRequest()
+            .fail(function(error) {
+              console.error(error);
+            })
+            .done(function(data){
               var template = can.view.mustache(that.priceTemplate());
               _.each(priceNodeList, function (priceNode) {
-                _.each(data, function (priceItem) {
-                  if (priceItem.skuId == priceNode.attributes['skuid'].value) {
-                    priceItem.fastSaleContentType = "PRODUCT";
+                if(priceNode.dataset.contenttype == 'PRODUCT')
+                _.each(data.value, function (priceItem) {
+                  if (priceItem.itemId == priceNode.dataset.itemid) {
+                    priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
                     $(priceNode).html(template(priceItem));
                   }
                 });
               })
-          });
-        },
-
-        getSkuList: function(data) {
-          var result = "";
-          _.each(data, function (item) {
-            if (item.contentType == 'PRODUCT') {
-              result += item.homePageProductInfo.skuId + ',';
-            }
-          })
+            })
         }
-
-
-
       });
     })

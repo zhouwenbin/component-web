@@ -17,9 +17,22 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Configurable paths
+  var base = {
+    dev: {
+      dest: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js',
+      src: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js'
+    },
+    test2: {
+      dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js',
+      src: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js'
+    }
+  };
+
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    target: 'dev',
+    base: base.dev
   };
 
   // Define the configuration for all the tasks
@@ -191,7 +204,10 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= config.dist %>'
       },
-      html: '<%= config.app %>/index.html'
+      html: [
+        '<%= config.app %>/index.html',
+        '<%= config.app %>/preheat.html'
+      ]
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -201,7 +217,17 @@ module.exports = function (grunt) {
           '<%= config.dist %>',
           '<%= config.dist %>/images',
           '<%= config.dist %>/styles'
-        ]
+        ],
+        blockReplacements: {
+          js: function (block) {
+            if(block.dest === 'base'){
+              block.dest = config.base.dest;
+              block.src = config.base.src
+            }
+
+            return '<script src="'+block.dest+'"></script>';
+          }
+        }
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
       css: ['<%= config.dist %>/styles/{,*/}*.css']
@@ -239,7 +265,7 @@ module.exports = function (grunt) {
           removeAttributeQuotes: true,
           removeCommentsFromCDATA: true,
           removeEmptyAttributes: true,
-          removeOptionalTags: true,
+          removeOptionalTags: false,
           removeRedundantAttributes: true,
           useShortDoctype: true
         },
@@ -288,9 +314,16 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>',
           src: [
             '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'img/{,*/}*',
+
+            // '{,*/}*.html',
+            // 'index.html',
+            'preheat.html',
+            // 'detail.html',
+
+            'styles/fonts/{,*/}*.*',
+            '<%= config.base.dest %>',
+            'templates/**/*.mustache'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
@@ -319,6 +352,44 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    requirejs: {
+      all: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.all.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.limitedtimesale',
+            'sf.b2c.mall.component.rapidseabuy',
+            'sf.b2c.mall.center.register',
+            'sf.b2c.mall.widget.slide',
+            'sf.b2c.mall.adapter.limitedtimesale',
+            'sf.b2c.mall.adapter.rapidSeaBuy',
+            'sf.b2c.mall.product.breadscrumb',
+            'sf.b2c.mall.product.detailcontent',
+            'sf.b2c.mall.adapter.detailcontent',
+            'sf.b2c.mall.page.register'
+          ]
+        }
+      },
+      preheat: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.center.register',
+            'sf.b2c.mall.page.register'
+          ],
+          insertRequire: ['sf.b2c.mall.page.register']
+        }
+      }
     }
   });
 
@@ -374,20 +445,41 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
-    'concurrent:dist',
-    'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
-    'copy:dist',
-    'rev',
-    'usemin',
-    'htmlmin'
-  ]);
+  grunt.registerTask('build', function(target){
+    config.target = target;
+    config.base = base[target];
+
+    grunt.task.run([
+      'clean:dist',
+      'wiredep',
+      'useminPrepare',
+      'concurrent:dist',
+      'autoprefixer',
+      'concat',
+      'cssmin',
+      'uglify',
+      'copy:dist',
+      'requirejs:preheat',
+      'usemin',
+      'htmlmin'
+    ]);
+  })
+
+  // grunt.registerTask('build', [
+  //   'clean:dist',
+  //   'wiredep',
+  //   'useminPrepare',
+  //   'concurrent:dist',
+  //   'autoprefixer',
+  //   'concat',
+  //   'cssmin',
+  //   'uglify',
+  //   'copy:dist',
+  //   'requirejs:preheat',
+  //   'rev',
+  //   'usemin',
+  //   'htmlmin'
+  // ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
