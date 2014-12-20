@@ -33,7 +33,9 @@ define('sf.b2c.mall.center.register',[
     },
 
     init:function(element,options){
+    },
 
+    paint:function(data){
       //重置输入框内容
       this.defaults.user.attr({
         mobileNum: null,
@@ -42,11 +44,7 @@ define('sf.b2c.mall.center.register',[
         repeatPwd:null
       });
 
-      this.paint(this.defaults);
-    },
-
-    paint:function(data){
-      this.data = this.parse(data);
+      this.data = this.parse(this.defaults);
       this.render(this.data);
     },
 

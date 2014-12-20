@@ -3,10 +3,12 @@
 <head lang="en">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title></title>
+  <title>顺丰海淘</title>
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.preheat.css -->
   <link href="css/common.css" rel="stylesheet" type="text/css" />
   <link href="css/register.css" rel="stylesheet" type="text/css" />
   <link href="css/preheat.css" rel="stylesheet" type="text/css" />
+  <!-- endbuild -->
 </head>
 <body>
 <div id="content">
@@ -174,9 +176,16 @@
 
   </div>
 </div>
+<!-- build:js(.) scripts/require.min.js-->
 <script src="bower_components/requirejs/require.js"></script>
+<!-- endbuild -->
 <script src="scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js"></script>
+<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.register.min.js -->
 <script src="scripts/sf.b2c.mall.require.config.js"></script>
-<script src="scripts/page/register.js"></script>
+<script type="text/javascript">
+require(['sf.b2c.mall.page.register']);
+</script>
+<!-- endbuild -->
+
 </body>
 </html>
