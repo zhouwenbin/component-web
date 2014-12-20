@@ -22,9 +22,21 @@ module.exports = function (grunt) {
       dest: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js',
       src: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js'
     },
+    test: {
+      dest: 'scripts/base/sf.web.test.ver.1.0.build.1419060066296.js',
+      src: 'scripts/base/sf.web.test.ver.1.0.build.1419060066296.js'
+    },
     test2: {
       dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js',
       src: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js'
+    },
+    pre: {
+      dest: 'scripts/base/sf.web.pre.ver.1.0.build.1419060075425.js',
+      src: 'scripts/base/sf.web.pre.ver.1.0.build.1419060075425.js'
+    },
+    prd: {
+      dest: 'scripts/base/sf.web.prd.ver.1.0.build.1419060082833.js',
+      src: 'scripts/base/sf.web.prd.ver.1.0.build.1419060082833.js'
     }
   };
 
