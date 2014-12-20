@@ -17,9 +17,22 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Configurable paths
+  var base = {
+    dev: {
+      dest: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js',
+      src: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js'
+    },
+    test2: {
+      dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js',
+      src: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js'
+    }
+  };
+
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    target: 'dev',
+    base: base.dev
   };
 
   // Define the configuration for all the tasks
@@ -204,7 +217,17 @@ module.exports = function (grunt) {
           '<%= config.dist %>',
           '<%= config.dist %>/images',
           '<%= config.dist %>/styles'
-        ]
+        ],
+        blockReplacements: {
+          js: function (block) {
+            if(block.dest === 'base'){
+              block.dest = config.base.dest;
+              block.src = config.base.src
+            }
+
+            return '<script src="'+block.dest+'"></script>';
+          }
+        }
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
       css: ['<%= config.dist %>/styles/{,*/}*.css']
@@ -299,7 +322,7 @@ module.exports = function (grunt) {
             // 'detail.html',
 
             'styles/fonts/{,*/}*.*',
-            'scripts/base/*.js',
+            '<%= config.base.dest %>',
             'templates/**/*.mustache'
           ]
         }, {
@@ -422,21 +445,41 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
-    'concurrent:dist',
-    'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
-    'copy:dist',
-    'requirejs:preheat',
-    // 'rev',
-    'usemin',
-    'htmlmin'
-  ]);
+  grunt.registerTask('build', function(target){
+    config.target = target;
+    config.base = base[target];
+
+    grunt.task.run([
+      'clean:dist',
+      'wiredep',
+      'useminPrepare',
+      'concurrent:dist',
+      'autoprefixer',
+      'concat',
+      'cssmin',
+      'uglify',
+      'copy:dist',
+      'requirejs:preheat',
+      'usemin',
+      'htmlmin'
+    ]);
+  })
+
+  // grunt.registerTask('build', [
+  //   'clean:dist',
+  //   'wiredep',
+  //   'useminPrepare',
+  //   'concurrent:dist',
+  //   'autoprefixer',
+  //   'concat',
+  //   'cssmin',
+  //   'uglify',
+  //   'copy:dist',
+  //   'requirejs:preheat',
+  //   'rev',
+  //   'usemin',
+  //   'htmlmin'
+  // ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
