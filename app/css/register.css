@@ -10,6 +10,11 @@
 	border-radius: 3px;
 	z-index: 3;
 }
+
+.register.top{
+	margin-top: 0px;
+	top: 0;
+}
 .register h2{
 	font-size: 14px;
 	height: 52px;
@@ -28,7 +33,7 @@
 	top: 17px;
 }
 .register-h ul{
-	
+
 	background: #32363f;
 	text-align: center;
 }
