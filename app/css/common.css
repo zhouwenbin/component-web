@@ -94,7 +94,7 @@ img{vertical-align: middle;}
 	background: #DC3334;
 	padding-right: 24px;
 	height: 26px;
-	line-height: 26px;	
+	line-height: 26px;
 }
 .icon6-1 i{
 	border-width: 13px 7px;
@@ -288,7 +288,7 @@ img{vertical-align: middle;}
 .btn-more{
 	color: #999;
 	font-size: 18px;
-	text-align: center;	
+	text-align: center;
 	background: url(../img/icon.png) no-repeat 0 -438px;
 	width: 222px;
 	height: 64px;
@@ -304,7 +304,7 @@ img{vertical-align: middle;}
 	height: 95px;
 	background: url(../img/icon.png) no-repeat;
 	text-indent: -999em;
-	
+
 }
 .btn-prev{
 	background-position: 0 -162px;
@@ -316,7 +316,7 @@ img{vertical-align: middle;}
 	width: 247px;
 	height: 55px;
 	line-height: 53px;
-	color: #fff;	
+	color: #fff;
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
@@ -483,7 +483,7 @@ img{vertical-align: middle;}
 	height: 40px;
 	line-height: 40px;
 	color: #fff;
-	background: #67b222;	
+	background: #67b222;
 	border-radius: 2px;
 	box-shadow: 0 2px 1px rgba(4,0,0,0.1);
 	border:1px solid #448509;
@@ -550,9 +550,12 @@ img{vertical-align: middle;}
 	left: 56px;
 	top: -27px;
 }
-body{
+body.with-header{
 	background: #EEEEEE;
 	padding-top: 60px;
+}
+body.sub{
+	background: #F7F7F7;
 }
 /*布局*/
 .pm{
@@ -573,14 +576,14 @@ body{
 .nav .li1{
 	float: left;
 	font-size: 16px;
-	
+
 }
 .nav-c1{
 	margin-left: -40px;
 }
 .nav-c1 .li1{
 	border-right: 1px solid #2A2D36;
-	
+
 }
 .nav-c1 .li1 a{
 	padding: 0 40px;
@@ -596,7 +599,7 @@ body{
 	display: block;
 	padding: 0 27px;
 }
-.nav .li1:hover{	
+.nav .li1:hover{
 	background: #4C515B;
 }
 .nav .li1 a:hover{

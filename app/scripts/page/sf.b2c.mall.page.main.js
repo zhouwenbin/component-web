@@ -24,6 +24,10 @@ require(
         this.supplement();
       },
 
+      onLogin: function () {
+        // @todo 登录之后的回调
+      },
+
       renderMap: {
         'slide': function () {
           var $el = this.element.find('.sf-b2c-mall-main-slider.serverRendered');
@@ -63,7 +67,9 @@ require(
 
       render: function() {
 
-        new Header('.sf-b2c-mall-header');
+        new Header('.sf-b2c-mall-header', {
+          onLogin: _.bind(this.onLogin, this)
+        });
         new Footer('.sf-b2c-mall-footer');
 
         this.renderMap.slide.call(this);
