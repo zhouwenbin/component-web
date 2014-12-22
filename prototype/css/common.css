@@ -263,7 +263,30 @@ img{vertical-align: middle;}
 	height: 117px;
 	background-position: -147px -234px;
 }
-
+.icon28{
+	width: 102px;
+	height: 125px;
+	background-position: 0 -580px;
+}
+.icon29{
+	width: 24px;
+	height: 24px;
+	background-position: -102px -43px;
+}
+.icon30{
+	width: 14px;
+	height: 8px;
+	background-position: -105px -74px;
+}
+.icon31,
+.icon31-1{
+	width: 17px;
+	height: 17px;
+	background-position: -105px -89px;
+}
+.icon31-1{
+	background-position: -105px -112px;
+}
 /*btn*/
 .btn{
 	display: inline-block;
@@ -504,21 +527,8 @@ img{vertical-align: middle;}
 }
 .btn-register{
 	width: 100%;
-	height: 40px;
-	line-height: 40px;
-	color: #fff;
-	background: #67b222;
-	border-radius: 2px;
-	box-shadow: 0 2px 1px rgba(4,0,0,0.3);
 	text-align: center;
-	border:1px solid #448509;
-}
-.btn-register:hover{
-	color: #fff;
-	background: #6ec125;
-}
-.btn-register:active{
-	background: #5fa620;
+	padding: 0;
 }
 .btn-brand{
 	*position: relative;
@@ -739,4 +749,5 @@ body{
 	background: #000;
 	opacity: 0.5;
 	filter:alpha(opacity=50);
+	z-index: 3;
 }
