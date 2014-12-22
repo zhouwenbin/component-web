@@ -184,7 +184,6 @@
 	float: left;
 	padding-left: 66px;
 	height: 60px;
-	width: 327px;
 }
 .m5 h3{
 	font-size: 18px;
@@ -195,6 +194,7 @@
 }
 .m5 .li1{
 	background: url(../img/hot/m2-li1.png) no-repeat;
+	margin-right: 300px;
 }
 .m5 .li1 a{
 	display: inline-block;
@@ -210,10 +210,29 @@
 }
 .m5 .li3{
 	background: url(../img/hot/m2-li3.png) no-repeat;
+	float: right;
 }
 .footer{
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
 	border-top: 2px solid #696667;
+}
+.register-b{
+	padding-bottom: 87px;
+}
+.register-b1{
+	padding-left: 120px;
+	padding-right: 120px;
+}
+.register-b1 p{
+	text-align: left;
+	line-height: 1.5;
+	margin-bottom: 18px;
+}
+.register-b1 span{
+	color: #67b222;
+}
+.register-br2c1 a{
+  color: #333;
 }

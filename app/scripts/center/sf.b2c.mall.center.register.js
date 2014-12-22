@@ -173,14 +173,16 @@ define('sf.b2c.mall.center.register',[
     countTime:function(ele,wait){
       var that = this;
       if (wait == 0) {
-        $(ele).css('cursor','pointer');
+
+        $(ele).removeAttr('disabled');
         $(ele).removeClass('disable');
         $(ele).text('发送验证码');
         wait = 60;
       } else {
-        $(ele).css('cursor','not-allowed');
+        $(ele).attr('disabled','disabled');
         $(ele).addClass('disable');
         $(ele).text(wait+"s后重新发送");
+
         wait--;
         setTimeout(function() {
           that.countTime(ele,wait);
@@ -190,8 +192,10 @@ define('sf.b2c.mall.center.register',[
     },
     '#btn-send-mobilecode click':function(ele,event){
       event && event.preventDefault();
+      $(ele).attr('state','false');
       var wait = 60;
       this.countTime(ele,wait);
+      $('#input-mobile-num').unbind('blur');
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -224,31 +228,46 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
 
+      var state =$('#btn-send-mobilecode').attr('state');
       var mobileNum = $(ele).val();
-      if(mobileNum.length < 11 && mobileNum.length > 0){
+      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('手机号码有误');
       }
+
+      if(mobileNum.length === 11){
+        $('#mobileNumErrorTips').fadeOut(1000);
+        if(state === "true"){
+          $('#btn-send-mobilecode').removeAttr('disabled');
+          $('#btn-send-mobilecode').removeClass('disable');
+        }
+
+      }
+
     },
     '#input-mobile-num keyup':function(ele,event){
       event && event.preventDefault();
 
-      var mobileNum = $(ele).val();
-      if(mobileNum.length === 11){
-        $('#mobileNumErrorTips').fadeOut(1000);
-        $('#btn-send-mobilecode').css('cursor','pointer');
-        $('#btn-send-mobilecode').removeClass('disable');
-      }
-      if(mobileNum.length > 11){
-        $('#mobileNumErrorTips').show();
-        return this.setMobileNumError('手机号码有误');
-      }
+      $('#btn-send-mobilecode').addClass('disable');
+
     },
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
 
       $('.sf-b2c-mall-register').html('');
 
+    },
+    '#ischecked change':function(ele,event){
+      event && event.preventDefault();
+
+      if($(ele).attr('state') === 'false'){
+        $(ele).attr('state','true');
+        $('.btn-register').removeClass('disable');
+
+      }else{
+        $(ele).attr('state','false');
+        $('.btn-register').addClass('disable');
+      }
     }
 
 
