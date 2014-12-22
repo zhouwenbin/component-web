@@ -271,7 +271,8 @@ img{vertical-align: middle;}
 .icon29{
 	width: 24px;
 	height: 24px;
-	background-position: -102px -43px;
+	background-position: -128px -43px;
+	
 }
 .icon30{
 	width: 14px;
@@ -435,6 +436,10 @@ img{vertical-align: middle;}
 	display: inline-block;
 	vertical-align: middle;
 }
+.btn-num a.disable{
+	color: #ccc;
+	cursor: not-allowed;
+}
 .btn-num-reduce{
 	float: left;
 	border-right:1px solid #C6C6C6;
@@ -560,6 +565,17 @@ img{vertical-align: middle;}
 	left: 56px;
 	top: -27px;
 }
+.btn-add{
+	height: 34px;
+	line-height: 34px;
+	padding: 0 25px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #fff;
+	font-size: 14px;
+	color: #999;
+}
+
 body{
 	background: #EEEEEE;
 	padding-top: 60px;
