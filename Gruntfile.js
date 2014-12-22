@@ -393,13 +393,13 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.preheat.register.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
             'sf.b2c.mall.center.register',
-            'sf.b2c.mall.page.register'
+            'sf.b2c.mall.page.preheat.register'
           ],
-          insertRequire: ['sf.b2c.mall.page.register']
+          insertRequire: ['sf.b2c.mall.page.preheat.register']
         }
       }
     }

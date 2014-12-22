@@ -60,7 +60,7 @@
                                       <div id="timeAndNation4ProductClient" data-contentType="$!{el.contentType}" #if($el.homepageProductInfo) data-itemId="$!{el.homepageProductInfo.itemId}" #elseif($el.homepageTopicInfo) data-topicId="$!{el.homepageTopicInfo.topicId}" data-displayEndTime="$!{el.displayEndTime}" #end class="product-r2c1 fl"><span class="icon icon4"></span></div>
                                       #if ($el.homepageProductInfo)
                                           <div class="product-r2c2 fr">
-                                            <span class="icon icon5">
+                                            <span class="icon">
                                               <img src="$!{el.homepageProductInfo.showNationalUrl}" alt="">
                                             </span>
                                           </div>
