@@ -218,3 +218,18 @@
 	text-align: center;
 	border-top: 2px solid #696667;
 }
+.register-b{
+	padding-bottom: 87px;
+}
+.register-b1{
+	padding-left: 120px;
+	padding-right: 120px;
+}
+.register-b1 p{
+	text-align: left;
+	line-height: 1.5;
+	margin-bottom: 18px;
+}
+.register-b1 span{
+	color: #67b222;
+}
