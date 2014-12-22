@@ -1,5 +1,5 @@
 'use strict';
-require([
+define([
   'can',
   'jquery',
   'sf.b2c.mall.center.register'
@@ -7,12 +7,15 @@ require([
   var register = can.Control.extend({
 
     init:function(){
+      this.component = {};
+      this.component.register = new SFRegister('.sf-b2c-mall-register');
       this.supplement();
     },
 
     render:function(){
 
     },
+
     supplement:function(){
       //----------注册切换-------------//
       $(".register-h li").on("click",function(){
@@ -25,16 +28,32 @@ require([
       $(".register .btn-close").on("click",function(){
         $(this).parents(".register").hide(300);
         return false;
+      });
+      //----------回到顶部-------------//
+      $(window).scroll(function(){
+        if($(window).scrollTop() > 300){
+          $(".m1").stop(true,false).animate({
+            "height":522
+          },700);
+        }else{
+          $(".m1").stop(true,false).animate({
+            "height":0
+          },700);
+        }
       })
     },
-    '.test-btn-register click':function(ele,event){
-      event && event.preventDefault();
-      new SFRegister('.sf-b2c-mall-register');
-    }
 
+    '#btn-register click':function(ele,event){
+      event && event.preventDefault();
+      this.component.register.paint();
+    },
+
+    '#btn-register-sfht click':function(ele,event){
+      event && event.preventDefault();
+      this.component.register.paint();
+    }
   });
 
   new register('#content');
 
-})
-
+});
