@@ -1,0 +1,53 @@
+{
+  "products": [
+    {
+      "imgUrl": "images/hot01.jpg",
+      "name": "MAVEA过滤水壶",
+      "buyType": "到手价",
+      "price": 25600,
+      "countryImgUrl": "images/ico10.png",
+      "country": "美国",
+      "link": "/detail.html?sku=78266"
+    },
+    {
+      "imgUrl": "images/hot02.jpg",
+      "name": "巴斯光年可动手办 ",
+      "buyType": "到手价",
+      "price": 29000,
+      "countryImgUrl": "images/japan.jpg",
+      "country": "日本",
+      
+      "link": "/detail.html?sku=3774"
+    },
+    {
+      "imgUrl": "images/hot03.jpg",
+      "name": "Childlife牛初乳益生菌粉",
+      "buyType": "到手价",
+      "price": 14600,
+      "countryImgUrl": "images/ico10.png",
+      "country": "美国",
+      
+      "link": "/detail.html?sku=13387"
+    },
+    {
+      "imgUrl": "images/hot04.jpg",
+      "name": "Now Foods防脱发生物素",
+      "buyType": "到手价",
+      "price": 6600,
+      "countryImgUrl": "images/ico10.png",
+      "country": "美国",
+      
+      "link": "/detail.html?sku=183775"
+    },
+    {
+      "imgUrl": "images/hot05.jpg",
+      "name": "斯贝尔蒂生酵素×酵母",
+      "buyType": "到手价",
+      "price": 18700,
+      "countryImgUrl": "images/japan.jpg",
+      "country": "日本",
+      
+      "link": "/detail.html?sku=96059"
+    }
+  ]
+}

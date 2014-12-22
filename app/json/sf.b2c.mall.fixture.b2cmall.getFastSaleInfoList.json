@@ -1,0 +1,46 @@
+{
+  "stat": {
+    "cid": "a:4426e0|t:78|s:1418613503146",
+    "code": 0,
+    "stateList": [{
+      "code": 0,
+      "length": 1468,
+      "msg": "成功"
+    }],
+    "systime": 1418613503232
+  },
+  "content": [
+    {
+      "pageIndex": 1,
+      "pageSize": 36,
+      "hasMore": true,
+      "totalCount": 360,
+      "totalPageCount": 10,
+      "fastSaleInfos": [{
+        "title": "COACH Madison 单肩包",
+        "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+        "imgUrl": "79b18fd4-c4f2-4cec-a597-5d67fa6e5900.png",
+        "link": "http://www.sfht.com/detail.html?sku=199911",
+        "fastSaleContentType": "PRODUCT",
+        "homePageProductInfo": {
+          "skuId": "199911",
+          "saleId": "28931",
+          "showNationalUrl": "http://www.sfht.com/images/america.jpg"
+        },
+        "homepageTopicInfo": "null"
+      },{
+        "title": "Gerber美国嘉宝3段苹果肉桂燕麦米粉 227g",
+        "subTitle": "宝宝第一辅食选择，美国原装营养燕麦米粉，营养丰富易吸收",
+        "imgUrl": "aus/images/I/81ImExhVRAL._SL1500_.jpg",
+        "link": "http://www.sfht.com/detail.html?sku=198637",
+        "fastSaleContentType": "PRODUCT",
+        "homePageProductInfo": {
+          "skuId": "198637",
+          "saleId": "17931",
+          "showNationalUrl": "http://www.sfht.com/images/america.jpg"
+        },
+        "homepageTopicInfo": "null"
+      }]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<dt class="fl">*收货人：</dt>
+<dd class="fl">
+  <div class="name-list clearfix">
+    <ul>
+      {{#each ids.idList}}
+      <li class="clearfix">
+        <div class="fl name">
+          <label>
+            <input type="radio" can-value="input.recId" value="{{recId}}" name="recId">{{recName}}
+          </label>
+        </div>
+        <div class="name-z fl">{{sf-id-status status}}</div>
+        <div class="fl name-b">
+          {{#sf-allow status}}
+          <a href="#" class="name-x" data-index="{{@index}}">修改</a>
+          {{/sf-allow}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="mes-shop">
+    <a href="javascript:;" id="center-add-user-btn" class="add-user">+新增收货人信息</a>
+  </div>
+</dd>

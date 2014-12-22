@@ -1,0 +1,36 @@
+{
+  "pageInfo":{
+    "pageIndex": 1,
+    "pageSize": 15,
+    "hasMore": false,
+    "totalCount": 15,
+    "totalPageCount": 1
+  },
+  "fastSaleInfos":[
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "fastSaleContentType": "PRODUCT",
+      "homePageProductInfo": {
+        "itemId": "199911",
+        "showNationalUrl": "img/icon-usa.png"
+      }
+    },
+    {
+      "title": "COACH Madison 单肩包",
+      "subTitle": "白色 上等牛皮 有质感 光泽度好 手感极佳",
+      "imgUrl": "img/product.jpg",
+      "link": "http://www.sfht.com/detail.html?sku=199911",
+      "limitedTime": "22",
+      "fastSaleContentType": "TOPIC",
+      "homepageTopicInfo": {
+        "topicId": "198637",
+        "price":"120",
+        "discount": "2"
+      }
+    }
+  ]
+}
