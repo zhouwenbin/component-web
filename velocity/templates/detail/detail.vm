@@ -10,7 +10,209 @@
     $!{_const_detailCss}
 </head>
 <body>
-</div>
-    $!{_const_detailScript}
+  <!--头部-->
+  <div class="sf-b2c-mall-header"></div>
+  <!--头部-->
+
+  <!--main-->
+  <div class="pb">
+    <div class="pm">
+      <!--面包屑-->
+      <div class="sf-b2c-mall-product-breadcrumb">
+        <div class="crumbs">
+          <a href="http://www.sfht.com">首页</a>
+          <span>&gt;</span>$!{productInfo.skuInfo.title}
+        </div>
+      </div>
+      <!--面包屑-->
+
+      <!--详情-->
+      <div class="content-mains clearfix sf-b2c-mall-detail-content">
+        <div class="goods clearfix">
+          <div class="goods-c1 fl">
+            <div class="goods-c1r1">
+              <img src="$!{productInfo.skuInfo.images[0].bigImgUrl}" alt="" />
+              <span></span>
+            </div>
+            <div class="goods-c1r2">
+              <ul class="clearfix">
+                #foreach ($el in $productInfo.skuInfo.images)
+                <li class="thumb-item" data-big-pic="$!{el.bigImgUrl}">
+                  <a href="">
+                    <img src="$!{el.thumbImgUrl}" alt="" />
+                  </a>
+                  <span></span>
+                </li>
+                #end
+              </ul>
+            </div>
+          </div>
+          <div class="goods-c2">
+            <h1>$!{productInfo.skuInfo.title}</h1>
+            <p>$!{productInfo.skuInfo.subtitle}</p>
+            <div class="mr1">单价：<strong>¥ {{priceInfo.sellingPrice}}</strong><span>（含税）</span><del>¥ {{priceInfo.originPrice}}</del></div>
+            <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>
+            <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}发货 $!{productInfo.saleInfo.orderToDelivery}</div>
+            <div class="mr4">发货商家：$!{productInfo.skuInfo.productShape}</div>
+            <div class="mr5">品牌：
+              <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
+            </div>
+
+            {{#each itemInfo.specGroups}}
+            <div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：
+              {{#each specs}}
+                {{#if selected}}
+                <label data-specid="{{specId}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>
+                {{/if}}
+
+                {{^if selected}}
+                  {{#if canSelected}}
+                  <label data-specid="{{specId}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>
+                  {{/if}}
+                  {{^if canSelected}}
+                  <label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>
+                  {{/if}}
+                {{/if}}
+
+              {{/each}}
+            </div>
+            {{/each}}
+
+            <div class="mr8">购买数量：
+              <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" class="input_txt" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
+            </div>
+            <div class="mr9">
+              {{#sf-is-soldout priceInfo.soldOut}}
+              <span class="icon icon26">商品库存不足</span>
+              {{/sf-is-soldout}}
+              {{#sf-is-restriction priceInfo.soldOut priceInfo.accountRestriction}}
+              <span class="icon icon26">商品限购{{priceInfo.accountRestriction}}件</span>
+              {{/sf-is-restriction}}
+            </div>
+
+            {{^if priceInfo.soldOut}}
+              <div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>
+            {{/if}}
+
+            <!--限时特卖-->
+            <div class="u1">
+              {{#sf-is-isPromotion priceInfo.soldOut priceInfo.isPromotion}}
+                <span class="icon icon6 icon6-2">限时特卖<i></i></span>
+                <div class="u1-r1"><span class="icon icon4"></span>{{priceInfo.time}}</div>
+              {{/sf-is-isPromotion}}
+            </div>
+            <!--限时特卖-->
+            <!--售完-->
+            {{#if priceInfo.soldOut}}
+              <span class="icon icon24">售完</span>
+            {{/if}}
+            <!--售完-->
+            <!--7天到--
+            <div class="u2">
+              <span class="icon icon25"></span><strong>7</strong>天到
+            </div>
+            <!--7天到-->
+            <!--运费-->
+            <div class="u3">
+              <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+            </div>
+            <!--运费-->
+          </div>
+        </div>
+        <!--商品-->
+
+        <!--推荐商品-->
+        <div class="recommend">
+          <h2>推荐商品</h2>
+          <ul class="clearfix">
+            {{#each recommendProducts}}
+            <li>
+              <a class="fl" href=""><img src="{{imgUrl}}" alt="" /></a>
+              <div class="recommend-c1">
+                <h3><a href="{{link}}">{{title}}</a></h3>
+                <div class="recommend-r1">¥{{sellingPrice}}</div>
+                <div class="recommend-r2"><del>¥{{originPrice}}</del></div>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+        <!--推荐商品-->
+
+        <!--小编推荐-->
+        <div class="recommend2">
+          <h2>小编推荐</h2>
+          <p>$!{productInfo.skuInfo.recommend}</p>
+        </div>
+        <!--小编推荐-->
+
+        <!--详情-->
+        <div class="detail">
+          <div class="detail-h">
+            <ul class="clearfix">
+            #foreach ($el in $productInfo.skuInfo.attributes)
+              <li>【$!{key}】 $!{value}</li>
+            #end
+            </ul>
+          </div>
+
+          <div class="detail-b">
+            $!{productInfo.skuInfo.description}
+          </div>
+        </div>
+      </div>
+      <!--详情-->
+
+      <!--顺丰海淘服务承诺-->
+      <div class="service">
+          <h2>顺丰海淘服务承诺</h2>
+          <ul class="clearfix">
+              <li>
+                  <span class="icon icon20"></span>
+                  <h3>直采海外</h3>
+                  <p>我们承诺所有在顺丰海淘网站在售商品<br />均为海外电商<br />厂家供货的原装正品。</p>
+              </li>
+              <li>
+                  <span class="icon icon21"></span>
+                  <h3>直邮中国</h3>
+                  <p>我们在美国、日本等商品原产地<br />拥有仓库，为您商品的跨境运输提供了<br />有效保障。</p>
+              </li>
+              <li>
+                  <span class="icon icon22"></span>
+                  <h3>安心售后</h3>
+                  <p>非人为因素产生的商品破损<br />或运输途中丢失<br />我们将第一时间安排客服处理。</p>
+              </li>
+          </ul>
+      </div>
+      <!--顺丰海淘服务承诺-->
+      <!--海淘小贴士-->
+      <div class="tip">
+        <div class="pm">
+          <h2>顺丰海淘小贴士</h2>
+          <div class="tip-r1 clearfix">
+            <div class="tip-c1 fl">
+              <h3>01.顺丰海淘的商品都是正品吗？</h3>
+              <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
+              <h3>02.订购商品大致需要经过哪些流程？</h3>
+              <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
+            </div>
+            <div class="tip-c2 fr">
+              <h3>03.为什么要上传身份信息？</h3>
+              <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
+              <h3>04.购买海外商品会被额外收税吗？</h3>
+              <p>答:顺丰海淘商品已统一向海关申报缴税，无需用户再次缴纳。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--海淘小贴士-->
+    </div>
+  </div>
+  <!--main-->
+  <!--尾部-->
+  <div class="sf-b2c-mall-footer"></div>
+  <!--尾部-->
+
+  $!{_const_detailScript}
 </body>
 #end
