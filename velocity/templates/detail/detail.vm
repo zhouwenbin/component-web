@@ -36,22 +36,25 @@
         <!--面包屑-->
 
         <!--详情-->
-        <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered">
+        <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered" data-itemid="$!{productInfo.itemId}"
+             data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
             <div class="goods clearfix">
                 <div class="goods-c1 fl">
                     <div class="goods-c1r1">
-                        <img src="$!{productInfo.skuInfo.images[0].bigImgUrl}" alt=""/>
+                        <img src="#if(${productInfo.skuInfo.images})$!{productInfo.skuInfo.images[0].bigImgUrl}#end" alt=""/>
                         <span></span>
                     </div>
                     <div class="goods-c1r2" id="itemImages">
                         <ul class="clearfix">
-                          #foreach ($el in $productInfo.skuInfo.images)
-                              <li class="thumb-item #if(${velocityCount} == 1) tb-selected #end" data-big-pic="$!{el.bigImgUrl}">
-                                  <a href="">
-                                      <img src="$!{el.thumbImgUrl}" alt=""/>
-                                  </a>
-                                  <span></span>
-                              </li>
+                          #if(${productInfo.skuInfo.images})
+                            #foreach ($el in $productInfo.skuInfo.images)
+                                <li class="thumb-item #if(${velocityCount} == 1) tb-selected #end" data-big-pic="$!{el.bigImgUrl}">
+                                    <a href="">
+                                        <img src="$!{el.thumbImgUrl}" alt=""/>
+                                    </a>
+                                    <span></span>
+                                </li>
+                            #end
                           #end
                         </ul>
                     </div>
@@ -61,17 +64,17 @@
 
                     <p>$!{productInfo.skuInfo.subtitle}</p>
                 ##                  客户端渲染
-                    <div class="mr1" id="itemPrice">单价：<strong>¥ 22</strong><span>（含税）</span>
-                        <del>¥ 33</del>
+                    <div id="itemPrice">
                     </div>
-                    <div class="mr2" id="itemDiscount"><span>8折</span>已降11元</div>
                 ##                  客户端渲染end
-                    <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}发货 $!{productInfo.saleInfo.orderToDelivery}</div>
+                    <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
+                        发货 #if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
+                            天到#else$!{productInfo.saleInfo.logisticsEnd}天内到#end</div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
                     <div class="mr5">品牌：
                         <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
                     </div>
-                    <div id='specArea'>
+                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
                       #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
                         #foreach($el in $productInfo.saleInfo.specGroups)
                             <div class="mr6" data-specidorder="$!{el.specIdOrder}">$!{el.specName}：
@@ -110,7 +113,6 @@
 
                             <div class="u1-r1"><span class="icon icon4"></span>2时2分2秒</div>
                         </div>
-                    ##                  客户端渲染end
                         <!--限时特卖-->
                         <!--售完-->
                         <span class="icon icon24">售完</span>
@@ -125,16 +127,19 @@
                             <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
                         </div>
                         <!--运费-->
+                    ##                  客户端渲染end
                     </div>
                 </div>
                 <!--商品-->
 
                 <!--推荐商品-->
+            ##                  客户端渲染
                 <div class="recommend" id="recommend">
                     <h2>推荐商品</h2>
                     <ul class="clearfix" id="recommendProdList">
                     </ul>
                 </div>
+            ##                  客户端渲染end
                 <!--推荐商品-->
 
                 <!--小编推荐-->
@@ -149,8 +154,10 @@
                 <div class="detail">
                     <div class="detail-h">
                         <ul class="clearfix">
-                          #foreach ($el in ${productInfo.skuInfo.attributes.entrySet()})
-                              <li>【$!{el.key}】 $!{el.value}</li>
+                          #if(${productInfo.skuInfo.attributes})
+                            #foreach ($el in ${productInfo.skuInfo.attributes.entrySet()})
+                                <li>【$!{el.key}】 $!{el.value}</li>
+                            #end
                           #end
                         </ul>
                     </div>

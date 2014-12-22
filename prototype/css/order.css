@@ -1,0 +1,32 @@
+﻿/*步骤*/
+.step{
+	background: #fff;
+	padding-bottom: 50px;
+	padding-top: 65px;
+}
+.step li{
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	width: 372px;
+	font-size: 14px;
+}
+.step .line{
+	width: 331px;
+	height: 4px;
+	background: #ccc;
+	position: absolute;
+	left: 209px;
+	top: 7px;
+}
+.step .icon{
+	display: block;
+	margin: 0 auto 21px; 
+}
+.step .active{
+	color: #67b222;
+}
+.step .active .icon{
+	background-position: -105px -112px;
+}
+/*订单*/
