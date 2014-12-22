@@ -118,8 +118,7 @@ define('sf.b2c.mall.center.register',[
       };
       var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);
-      var validatePwd = /^\w{5,17}$/.test(params.password);
-      //var ischecked = $('#ischecked');
+      var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/.test(params.password);
       if(!params.mobileNum || !validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('手机号码有误');
@@ -130,7 +129,7 @@ define('sf.b2c.mall.center.register',[
         return this.setMobileCodeError('验证码有误');
       }
 
-      if(!params.password){
+      if(!params.password || !validatePwd){
         $('#pwdErrorTips').show();
         return this.setPwdError('密码有误');
       }
@@ -261,10 +260,14 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       if($(ele).attr('state') === 'false'){
+
+        $(ele).removeAttr('disabled');
         $(ele).attr('state','true');
         $('.btn-register').removeClass('disable');
 
       }else{
+
+        $(ele).attr('disabled','disabled');
         $(ele).attr('state','false');
         $('.btn-register').addClass('disable');
       }
