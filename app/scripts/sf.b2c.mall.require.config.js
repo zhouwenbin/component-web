@@ -99,7 +99,7 @@ requirejs.config({
     'sf.b2c.mall.product.detailcontent':'scripts/product/sf.b2c.mall.product.detailcontent',
     'sf.b2c.mall.adapter.detailcontent': 'scripts/adapter/sf.b2c.mall.adapter.detailcontent',
 
-    'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.register',
+    'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register'
   }

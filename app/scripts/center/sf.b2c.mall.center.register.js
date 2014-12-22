@@ -30,6 +30,8 @@ define('sf.b2c.mall.center.register',[
     },
 
     init:function(element,options){
+
+
     },
 
     paint:function(data){
@@ -204,12 +206,13 @@ define('sf.b2c.mall.center.register',[
           })
           .fail(function(errorCode){
             var map ={
+              '1000020':'账户已注册',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'
             };
             var errorText = map[errorCode].toString();
 
-            this.setMobileCodeError(errorText);
+            this.setMobileNumError(errorText);
           })
     },
     '#input-mobile-num focus':function(ele,event){
