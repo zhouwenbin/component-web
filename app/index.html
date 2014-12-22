@@ -313,10 +313,14 @@
   <!-- build:js(.) scripts/require.min.js-->
   <script src="bower_components/requirejs/require.js"></script>
   <!-- endbuild -->
+  <!-- build:js(.) base-->
   <script src="scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js"></script>
-  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.main.js -->
+  <!-- endbuild -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.main.min.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
-  <script src="scripts/page/sf.b2c.mall.page.main.js"></script>
+  <script type="text/javascript">
+    require(['sf.b2c.mall.page.main']);
+  </script>
   <!-- endbuild -->
 
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
