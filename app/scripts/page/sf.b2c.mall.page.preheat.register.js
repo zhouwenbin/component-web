@@ -33,27 +33,22 @@ define([
       $(window).scroll(function(){
         if($(window).scrollTop() > 300){
           $(".m1").stop(true,false).animate({
-            "height":422
+            "height":495
           },700);
         }else{
           $(".m1").stop(true,false).animate({
             "height":0
           },700);
         }
-      })
+      });
+
     },
 
-    '#btn-register click':function(ele,event){
-      event && event.preventDefault();
-
-
-      this.component.register.paint();
-    },
-
-    '#btn-register-sfht click':function(ele,event){
+    '.sf-in-order click':function(ele,event){
       event && event.preventDefault();
       this.component.register.paint();
     }
+
   });
 
   new register('#content');
