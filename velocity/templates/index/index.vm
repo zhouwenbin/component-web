@@ -75,7 +75,7 @@
                                               <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
                                           </div>
                                           <div class="product-r3c2 fr">
-                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折
+                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
                                           </div>
                                       </div>
                                   #end
@@ -130,7 +130,7 @@
                                                 <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
                                             </div>
                                             <div class="product-r3c2 fr">
-                                                <strong>$!{_el.homepageTopicInfo.discount}</strong>折
+                                                <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
                                             </div>
                                         </div>
                                     #end
