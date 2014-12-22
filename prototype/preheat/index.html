@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>系统升级中</title>
 <link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/register.css" rel="stylesheet" type="text/css" />
 <link href="css/preheat.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -58,7 +59,7 @@
         </li>
       </ul>
       <div class="mt">
-        <a href="#" class="btn btn-register">同意协议并注册</a>
+        <a href="#" class="btn btn-register">抢险预定</a>
       </div>
     </div>
   </div>
@@ -163,13 +164,48 @@
         </li>
       </ul>
       <div class="mt">
-        <a href="#" class="btn btn-register">同意协议并注册</a>
+        <a href="#" class="btn btn-register">抢险预定</a>
       </div>
     </div>
   </div>
   <div class="footer">copyright 2014 版权所有 sfht.com 沪ICP备 1404464</div>
-</body>
+  <!--注册-->
+  <div class="mask"></div>
+  <div class="register">
+    <div class="register-h">
+      <h2>抢先预约</h2>
+      <a href="#" class="btn btn-close">关闭</a>
+    </div>
+    <!--手机注册-->
+    <div class="register-b active">
+       <ol>
+        <li>
+           <input type="text" placeholder="手机号" /><span class="icon icon26">手机号输入错误</span>
+         </li>
+         <li>
+           <input type="text" class="input1" placeholder="手机验证码" /><a href="#" class="btn btn-send">发送验证码</a><span class="icon icon26">手机验证码错误</span>
+           <!--不可发送时--<a href="#" class="btn btn-send disable">发送验证码</a><!--不可发送时-->
+         </li>
+         
+         <li>
+           <input type="passward" placeholder="设置密码" />
+         </li>
+       </ol>
+       <div class="register-br1">
+         <a href="#" class="btn btn-register">同意协议并注册</a>
+       </div>
+       <div class="register-br2 clearfix">
+         <div class="register-br2c1 fl">
+          <label><input type="checkbox" checked="">我已阅读顺丰海淘注册协议</label>
+        </div>
+       </div>
+    </div>
+    <!--手机注册-->
+  </div>
+  <!--注册-->
 <script src="../js/jquery-1.11.1.min.js"></script>
-<script src="js/index.js"></script>
+<script src="../js/index.js"></script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+
 </html>
