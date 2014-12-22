@@ -27,6 +27,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
          * @param  {[type]} options
          * @return {[type]}
          */
+
         init: function(element, options) {
           this.data = {};
           this.data.fastSale = new SFAdapterRapidSeaBuy({fastSaleInfos: []});
@@ -164,7 +165,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
             })
 
         },
-
         showPriceModel:function(){
           var that = this;
 

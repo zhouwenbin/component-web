@@ -67,7 +67,13 @@ define(
        * @param  {event} event event对象
        */
       '.input-username blur': function (element, event) {
+        event && event.preventDefault();
 
+        var username = this.element.val();
+        var validateUserName = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(username);
+        if(!username){
+          this.showErrorAlert();
+        }
       },
 
       /**

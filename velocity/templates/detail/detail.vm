@@ -1,13 +1,4 @@
 #define($_content)
-##判断specId是否被选中
-  #macro(_isSelected $_isSelected_isSelected $_isSelected_specId $_isSelected_skuSpecIds)
-    #set($_isSelected_isSelected=false)
-    #foreach($el in $_isSelected_skuSpecIds)
-      #if($el==$_isSelected_specId)
-        #set($_isSelected_isSelected=true)
-      #end
-    #end
-  #end
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width">
@@ -47,10 +38,10 @@
                     <div class="goods-c1r2" id="itemImages">
                         <ul class="clearfix">
                           #if(${productInfo.skuInfo.images})
-                            #foreach ($el in $productInfo.skuInfo.images)
-                                <li class="thumb-item #if(${velocityCount} == 1) tb-selected #end" data-big-pic="$!{el.bigImgUrl}">
+                            #foreach ($_el in $productInfo.skuInfo.images)
+                                <li class="thumb-item #if(${velocityCount} == 1) active #end" data-big-pic="$!{_el.bigImgUrl}">
                                     <a href="">
-                                        <img src="$!{el.thumbImgUrl}" alt=""/>
+                                        <img src="$!{_el.thumbImgUrl}" alt=""/>
                                     </a>
                                     <span></span>
                                 </li>
@@ -76,59 +67,40 @@
                     </div>
                     <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
                       #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
-                        #foreach($el in $productInfo.saleInfo.specGroups)
-                            <div class="mr6" data-specidorder="$!{el.specIdOrder}">$!{el.specName}：
-                              #foreach($subel in $el.specs)
-                                #set($isSelected=false)
-                                #_isSelected(${isSelected},${subel.specId},${productInfo.skuInfo.skuSpecTuple.specIds})
-                                #if($isSelected)
-                                    <label data-specid="$!{subel.specId}" class="btn btn-goods active"><a href="$!{subel.url}">$!{subel.specValue}</a><span
+                        #foreach($_el in $productInfo.saleInfo.specGroups)
+                            <div class="mr6" data-specidorder="$!{_el.specIdOrder}">$!{_el.specName}：
+                              #foreach($_subel in $_el.specs)
+                                #set($_isSelected=false)
+                                #foreach($_elOfSpecIds in ${productInfo.skuInfo.skuSpecTuple.specIds})
+                                  #if($_elOfSpecIds==${_subel.specId})
+                                    #set($_isSelected=true)
+                                  #end
+                                #end
+                                #if($_isSelected)
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods active"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
                                             class="icon icon23"></span></label>
-                                #elseif(${subel.url})
-                                    <label data-specid="$!{subel.specId}" class="btn btn-goods"><a href="$!{subel.url}">$!{subel.specValue}</a><span
+                                #elseif(${_subel.url})
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
                                             class="icon icon23"></span></label>
                                 #else
-                                    <label data-specid="$!{subel.specId}" class="btn btn-goods disable">$!{subel.specValue}<span
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods disable">$!{_subel.specValue}<span
                                             class="icon icon23"></span></label>
                                 #end
                               #end
                             </div>
                         #end
                       #end
-                    ##                  客户端渲染
-                        <div class="mr8">购买数量：
-                        <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text"
-                                                                                                                                      class="input_txt"
-                                                                                                                                      value="2"/></span>
-                        </div>
-                        <div class="mr9">
-                            商品库存不足 商品限购2件
-                        </div>
-                    ##                  客户端渲染end
-                        <div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>
-                        <!--限时特卖-->
-                    ##                  客户端渲染
-                        <div class="u1">
-                            <span class="icon icon6 icon6-2">限时特卖<i></i></span>
-
-                            <div class="u1-r1"><span class="icon icon4"></span>2时2分2秒</div>
-                        </div>
-                        <!--限时特卖-->
-                        <!--售完-->
-                        <span class="icon icon24">售完</span>
-                        <!--售完-->
-                        <!--7天到--
-                        <div class="u2">
-                          <span class="icon icon25"></span><strong>7</strong>天到
-                        </div>
-                        <!--7天到-->
-                        <!--运费-->
-                        <div class="u3">
-                            <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
-                        </div>
-                        <!--运费-->
-                    ##                  客户端渲染end
                     </div>
+                ##客户端渲染
+                    <div id="buyInfo" data-logisticsstart="$!{productInfo.saleInfo.logisticsStart}"
+                         data-logisticsend="$!{productInfo.saleInfo.logisticsEnd}" data-productshape="$!{productInfo.saleInfo.productShape}">
+                    </div>
+                ##客户端渲染end
+                    <!--运费-->
+                    <div class="u3">
+                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+                    </div>
+                    <!--运费-->
                 </div>
                 <!--商品-->
 
@@ -155,8 +127,8 @@
                     <div class="detail-h">
                         <ul class="clearfix">
                           #if(${productInfo.skuInfo.attributes})
-                            #foreach ($el in ${productInfo.skuInfo.attributes.entrySet()})
-                                <li>【$!{el.key}】 $!{el.value}</li>
+                            #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
+                                <li>【$!{_el.key}】 $!{_el.value}</li>
                             #end
                           #end
                         </ul>
