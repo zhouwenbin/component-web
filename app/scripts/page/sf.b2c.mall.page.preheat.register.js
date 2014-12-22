@@ -45,6 +45,8 @@ define([
 
     '#btn-register click':function(ele,event){
       event && event.preventDefault();
+
+
       this.component.register.paint();
     },
 

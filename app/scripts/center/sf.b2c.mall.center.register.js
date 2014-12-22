@@ -260,10 +260,14 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       if($(ele).attr('state') === 'false'){
+
+        $(ele).removeAttr('disabled');
         $(ele).attr('state','true');
         $('.btn-register').removeClass('disable');
 
       }else{
+
+        $(ele).attr('disabled','disabled');
         $(ele).attr('state','false');
         $('.btn-register').addClass('disable');
       }
