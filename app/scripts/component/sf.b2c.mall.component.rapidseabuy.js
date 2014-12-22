@@ -27,6 +27,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
          * @param  {[type]} options
          * @return {[type]}
          */
+
         init: function(element, options) {
           this.data = {};
           this.data.fastSale = new SFAdapterRapidSeaBuy({fastSaleInfos: []});
@@ -162,9 +163,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
                 $('.sf-b2c-mall-rapidseabuy .btn-more').hide();
               }
             })
-
         },
-
         showPriceModel:function(){
           var that = this;
 
