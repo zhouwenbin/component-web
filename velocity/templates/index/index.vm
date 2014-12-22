@@ -63,6 +63,7 @@
                                             <span class="icon">
                                               <img src="$!{el.homepageProductInfo.showNationalUrl}" alt="">
                                             </span>
+                                            <span class="product-r2-time"></span>
                                           </div>
                                       #end
                                   </div>
@@ -136,6 +137,11 @@
                                 </li>
                             #end
                         </ul>
+                    </div>
+                    <div class="mf">
+                      #if( $fastSaleInfoList.pageInfo.hasMore )
+                      <a href="#" class="btn btn-more">查看更多</a>
+                      #end
                     </div>
                 </div>
             </div>

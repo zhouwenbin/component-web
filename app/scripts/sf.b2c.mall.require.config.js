@@ -92,13 +92,13 @@ requirejs.config({
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
     'sf.b2c.mall.adapter.limitedtimesale': 'scripts/adapter/sf.b2c.mall.adapter.limitedtimesale',
-
     'sf.b2c.mall.adapter.rapidSeaBuy': 'scripts/adapter/sf.b2c.mall.adapter.rapidSeaBuy',
 
     'sf.b2c.mall.product.breadscrumb': 'scripts/product/sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent':'scripts/product/sf.b2c.mall.product.detailcontent',
     'sf.b2c.mall.adapter.detailcontent': 'scripts/adapter/sf.b2c.mall.adapter.detailcontent',
 
+    'sf.b2c.mall.page.main': 'scripts/page/sf.b2c.mall.page.main',
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.register',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register'
