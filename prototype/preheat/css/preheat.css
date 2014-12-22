@@ -184,7 +184,6 @@
 	float: left;
 	padding-left: 66px;
 	height: 60px;
-	width: 327px;
 }
 .m5 h3{
 	font-size: 18px;
@@ -195,6 +194,7 @@
 }
 .m5 .li1{
 	background: url(../img/m2-li1.png) no-repeat;
+	margin-right: 300px;
 }
 .m5 .li1 a{
 	display: inline-block;
@@ -210,6 +210,7 @@
 }
 .m5 .li3{
 	background: url(../img/m2-li3.png) no-repeat;
+	float: right;
 }
 .footer{
 	height: 40px;
