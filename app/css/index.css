@@ -118,11 +118,10 @@
 }
 .product-tab span{
 	position: absolute;
-	bottom:-4px;		
-	left: 50%;		
+	bottom:-4px;
+	left: 50%;
 	left:0\0;
 	*left:0;
-	left: 50%\9\0;	
 	height: 4px;
 	width: 0;
 	background: #DD3E3F;
@@ -136,6 +135,7 @@
 	transform:translateX(-50%);
 
 }
+:root .product-tab span { left: 50%; }
 .product-tab li:hover span,
 .product-tab li.active span{
 	width: 100%;
@@ -158,6 +158,7 @@
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
 	color: #fff;
+	border-top-color: #c3373a;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-ms-transition: all 0.5s;
@@ -169,6 +170,11 @@
 .product-list li:hover .product-r3c2{
 	border-color:#fff;
 }
+.product-list li:hover del{
+	color: #fff;
+}
+
+
 .product-r1{
 	height:233px;
 	text-align: center;
@@ -208,7 +214,8 @@
 	padding-left: 23px;
 	padding-right: 19px;
 	padding-bottom: 29px;
-	border-bottom:1px solid #E5E5E5;
+	height: 26px;
+
 }
 .product-r2 .icon6{
 	margin-left: -23px;
@@ -225,6 +232,7 @@
 	line-height: 50px;
 	padding: 10px 0 10px 23px;
 	background: #FAFAFA;
+	border-top:1px solid #E5E5E5;
 }
 .product-r3c1 strong{
 	color: #dd3e3f;
@@ -232,7 +240,7 @@
 	font-size: 24px;
 }
 .product-r3c1 del{
-	
+
 	color:#949494;
 	font-size: 14px;
 }

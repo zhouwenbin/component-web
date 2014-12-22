@@ -27,6 +27,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       init: function(element, options) {
+        this.data = new SFLimitedTimeSaleAdapter({});
         this.render();
       },
 
@@ -42,12 +43,12 @@ define('sf.b2c.mall.component.limitedtimesale', [
         if (this.options.serverRendered) {
 
           //服务端渲染的时候要绑定这两个事件
-          $('#current')[0].onclick = function() {
-            that.renderLimitedTimeSale('CURRENT');
-          };
-          $('#future')[0].onclick = function() {
-            that.renderLimitedTimeSale('NEXT');
-          };
+          // $('#current')[0].onclick = function() {
+          //   that.renderLimitedTimeSale('CURRENT');
+          // };
+          // $('#future')[0].onclick = function() {
+          //   that.renderLimitedTimeSale('NEXT');
+          // };
 
           that.supplement();
         } else {
@@ -55,8 +56,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               url: 'json/sf-b2c.mall.index.timelimitedsale.json'
             })
             .done(function(data) {
-              that.options.limitedtimesaleInfoList = data;
-              that.options = SFLimitedTimeSaleAdapter.format(that.options);
+              that.data.attr('limitedtimesaleInfoList', data);
               that.supplement(that.getSkuList(data));
             })
         }
@@ -73,16 +73,16 @@ define('sf.b2c.mall.component.limitedtimesale', [
         if (that.options.serverRendered) {
 
           //进行显示和隐藏全局控制
-          $('.sf-b2c-mall-limitedtimesale').css('display', 'inline');
-          $('.sf-b2c-mall-limitedtimesale4Client').css('display', 'none');
+          // $('.sf-b2c-mall-limitedtimesale').css('display', 'inline');
+          // $('.sf-b2c-mall-limitedtimesale4Client').css('display', 'none');
           // $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'inline';
           // $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'none';
 
           //先提前渲染模板，后面触发数据变化
-          that.options.limitedtimesaleInfoList = [];
-          that.options = SFLimitedTimeSaleAdapter.format(that.options);
-          var html = can.view('templates/component/sf.b2c.mall.component.limitedtimesale.mustache', that.options, that.helpers);
-          $('.sf-b2c-mall-limitedtimesale4Client').html(html);
+          that.data.format({limitedtimesaleInfoList: []});
+          var html = can.view('templates/component/sf.b2c.mall.component.limitedtimesale.mustache', that.data, that.helpers);
+          // $('.sf-b2c-mall-limitedtimesale4Client').html(html);
+          that.element.find('.mb').append(html);
 
           var paramData = {
             "itemIds": $('ul.product-list')[0].dataset.itemids
@@ -113,14 +113,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
             })
         } else {
           //进行显示和隐藏全局控制
-          $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
-          $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'inline';
+          // $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
+          // $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'inline';
 
           can.ajax({
               url: 'json/sf-b2c.mall.index.timelimitedsalePrice.json'
             })
             .done(function(data) {
-              SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, data, that.showCountDown);
+              that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), data, that.showCountDown);
 
               that.setTimeInterval();
             })
@@ -198,7 +198,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
         //要进行销毁
         that.interval = setInterval(function() {
-          _.each(that.options.limitedtimesaleInfoList, function(item) {
+          _.each(that.data.limitedtimesaleInfoList, function(item) {
             that.setCountDown(item, distance, item.endTime);
           })
         }, '1000');
@@ -224,12 +224,29 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * [description 点击事件]
        * @return {[type]}
        */
-      "#current click": function() {
-        this.renderLimitedTimeSale('CURRENT');
+      "#current a click": function(element, event) {
+        event && event.preventDefault();
+        this.element.find('#future').removeClass('active');
+        this.element.find('#current').addClass('active');
+        var tag = this.element.find('.mb .product-list').get(0);
+        if($(tag).find('li').length > 0){
+          this.switchTab('CURRENT');
+        }else{
+          this.renderLimitedTimeSale('CURRENT');
+        }
       },
 
-      "#future click": function() {
-        this.renderLimitedTimeSale('NEXT');
+      "#future a click": function(element, event) {
+        event && event.preventDefault();
+        this.element.find('#current').removeClass('active');
+        this.element.find('#future').addClass('active');
+
+        var tag = this.element.find('.mb .product-list').get(1);
+        if($(tag).find('li').length > 0){
+          this.switchTab('NEXT');
+        }else{
+          this.renderLimitedTimeSale('NEXT');
+        }
       },
 
       /**
@@ -239,8 +256,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
        */
       renderLimitedTimeSale: function(filter) {
         //进行显示和隐藏全局控制
-        $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
-        $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'inline';
+        // $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
+        // $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'inline';
 
         var that = this;
 
@@ -257,25 +274,39 @@ define('sf.b2c.mall.component.limitedtimesale', [
             console.error(error);
           })
           .done(function(data) {
-            that.options.attr("limitedtimesaleInfoList", data.value);
+            that.data.attr("limitedtimesaleInfoList", data.value);
 
             var paramData = {
               "itemIds": JSON.stringify(that.getItems(data.value))
             };
 
-            var getProductHotDataList = new SFGetProductHotDataList(paramData);
+            var getProductHotDataList = new SFGetProductHotDataList({itemIds:'[1,1,1,1,1,1]'});
             //获得价格信息
             getProductHotDataList
               .sendRequest()
               .done(function(priceData) {
                 var serverTime = getProductHotDataList.getServerTime();
-                SFLimitedTimeSaleAdapter.formatPrice(that.options.limitedtimesaleInfoList, priceData.value);
+                that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), priceData.value);
                 that.setTimeInterval(serverTime);
+                that.switchTab.call(that, filter);
               })
               .fail(function(error) {
                 console.error(error);
               })
           })
+      },
+
+      switchTab: function(filter){
+        var index = 0;
+        if (filter == 'CURRENT') {
+          index = 0;
+        }else if(filter == 'NEXT'){
+          index = 1;
+        }
+
+        this.element.find(".mb").animate({
+          left:-100 * index + "%"
+        },500);
       },
 
       /**

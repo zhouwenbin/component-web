@@ -38,8 +38,14 @@
                   <div id="LimitedTimeSale" class="mh clearfix">
                       <h2 class="fl">限时特卖</h2>
                       <ul class="fl product-tab">
-                          <li id="current"><a href="#">当前</a></li>
-                          <li id="future"><a href="#">即将开始</a></li>
+                          <li id="current" class="active">
+                            <a href="#">当前</a>
+                            <span></span>
+                          </li>
+                          <li id="future">
+                            <a href="#">即将开始</a>
+                            <span></span>
+                          </li>
                       </ul>
                   </div>
                   <div class="mb">
@@ -75,7 +81,7 @@
                                               <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
                                           </div>
                                           <div class="product-r3c2 fr">
-                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折
+                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
                                           </div>
                                       </div>
                                   #end
@@ -130,7 +136,7 @@
                                                 <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
                                             </div>
                                             <div class="product-r3c2 fr">
-                                                <strong>$!{_el.homepageTopicInfo.discount}</strong>折
+                                                <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
                                             </div>
                                         </div>
                                     #end
