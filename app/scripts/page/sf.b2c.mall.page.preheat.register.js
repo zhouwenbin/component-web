@@ -33,7 +33,7 @@ define([
       $(window).scroll(function(){
         if($(window).scrollTop() > 300){
           $(".m1").stop(true,false).animate({
-            "height":522
+            "height":422
           },700);
         }else{
           $(".m1").stop(true,false).animate({
