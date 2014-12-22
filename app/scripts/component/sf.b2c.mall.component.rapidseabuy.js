@@ -140,23 +140,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var pageInfo = this.data.fastSale.attr('pageInfo');
           var getFastSaleInfoList = new SFGetFastSaleInfoList({pageIndex: pageInfo ? pageInfo.pageIndex+1 : 1, pageSize: 24});
           getFastSaleInfoList
-<<<<<<< HEAD
-              .sendRequest()
-              .fail(function(error) {
-                console.error(error);
-              })
-              .done(function(data){
-                that.options.fastSaleInfoList = data;
-                that.options = SFAdapterRapidSeaBuy.format(that.options);
-              })
-              .then(function(){
-                var getProductHotDataList = new SFGetProductHotDataList();
-                return getProductHotDataList.sendRequest();
-              })
-              .done(function(data) {
-                SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList, data);
-              })
-=======
             .sendRequest()
             .done(function(data){
               that.data.fastSale.format(data)
@@ -181,7 +164,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
               }
             })
 
->>>>>>> pr/22
         },
         showPriceModel:function(){
           var that = this;
