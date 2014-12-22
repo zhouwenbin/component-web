@@ -21,18 +21,17 @@ define('sf.b2c.mall.center.register',[
       password:new can.Map({
         pwdError:''
       }),
-      repeatPwd:new can.Map({
-        repeatPwdError:''
-      }),
       user: new can.Map({
         mobileNum: null,
         mobileCode: null,
-        password: null,
-        repeatPwd:null
+        password: null
+
       })
     },
 
     init:function(element,options){
+
+
     },
 
     paint:function(data){
@@ -40,8 +39,7 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null,
-        repeatPwd:null
+        password: null
       });
 
       this.data = this.parse(this.defaults);
@@ -90,16 +88,21 @@ define('sf.b2c.mall.center.register',[
         pwdError:data
       });
     },
-    /**
-     * @description 重复密码错误提示
-     * @param {String} data 提示的文字信息
-     * @return {Boolean} 返回执行情况
-     */
-    setRepeatPwdError:function(data){
-      this.data.repeatPwd.attr({
-        repeatPwdError:data
-      });
+    errorMap: {
+      1000010: '未找到用户',
+      1000040: '原密码错误',
+      1000060: '密码不能与原密码相同'
     },
+//    /**
+//     * @description 重复密码错误提示
+//     * @param {String} data 提示的文字信息
+//     * @return {Boolean} 返回执行情况
+//     */
+//    setRepeatPwdError:function(data){
+//      this.data.repeatPwd.attr({
+//        repeatPwdError:data
+//      });
+//    },
     '.btn-register click':function(ele,event){
       event && event.preventDefault();
 
@@ -107,12 +110,11 @@ define('sf.b2c.mall.center.register',[
       $('#mobileNumErrorTips').hide();
       $('#mobileCodeErorTips').hide();
       $('#pwdErrorTips').hide();
-      $('#repeatPwdErrorTips').hide();
+
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
-        password:this.data.user.attr('password'),
-        repeatPwd:this.data.user.attr('repeatPwd')
+        password:this.data.user.attr('password')
       };
       var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);
@@ -133,10 +135,7 @@ define('sf.b2c.mall.center.register',[
         return this.setPwdError('密码有误');
       }
 
-      if(!params.repeatPwd || params.repeatPwd !== params.password){
-        $('#repeatPwdErrorTips').show();
-        return this.setRepeatPwdError('重复密码有误')
-      }
+
       if(!$('#ischecked:checked')){
         return false;
       }
@@ -160,19 +159,30 @@ define('sf.b2c.mall.center.register',[
               setTimeout($('.sf-b2c-mall-register').html(''),time*1000);
             }
           })
+          .fail(function(errorCode){
+            var map ={
+              '1000240':'手机验证码错误',
+              '1000250':'手机验证码已过期'
+            };
+            var errorText = map[errorCode].toString();
+
+            this.setMobileCodeError(errorText);
+          })
 
     },
     countTime:function(ele,wait){
       var that = this;
       if (wait == 0) {
-        $(ele).css('cursor','pointer');
+
+        $(ele).removeAttr('disabled');
         $(ele).removeClass('disable');
         $(ele).text('发送验证码');
         wait = 60;
       } else {
-        $(ele).css('cursor','not-allowed');
+        $(ele).attr('disabled','disabled');
         $(ele).addClass('disable');
         $(ele).text(wait+"s后重新发送");
+
         wait--;
         setTimeout(function() {
           that.countTime(ele,wait);
@@ -182,8 +192,10 @@ define('sf.b2c.mall.center.register',[
     },
     '#btn-send-mobilecode click':function(ele,event){
       event && event.preventDefault();
+      $(ele).attr('state','false');
       var wait = 60;
       this.countTime(ele,wait);
+      $('#input-mobile-num').unbind('blur');
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -194,24 +206,68 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
-            debugger;
+
           })
+          .fail(function(errorCode){
+            var map ={
+              '1000020':'账户已注册',
+              '1000270':'短信请求太频繁',
+              '1000290':'短信请求太多'
+            };
+            var errorText = map[errorCode].toString();
+
+            this.setMobileNumError(errorText);
+          })
+    },
+    '#input-mobile-num focus':function(ele,event){
+      event && event.preventDefault();
+
+      $('#mobileNumErrorTips').fadeOut(1000);
+
+    },
+    '#input-mobile-num blur':function(ele,event){
+      event && event.preventDefault();
+
+      var state =$('#btn-send-mobilecode').attr('state');
+      var mobileNum = $(ele).val();
+      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('手机号码有误');
+      }
+
+      if(mobileNum.length === 11){
+        $('#mobileNumErrorTips').fadeOut(1000);
+        if(state === "true"){
+          $('#btn-send-mobilecode').removeAttr('disabled');
+          $('#btn-send-mobilecode').removeClass('disable');
+        }
+
+      }
+
     },
     '#input-mobile-num keyup':function(ele,event){
       event && event.preventDefault();
 
-      var mobileNum = $(ele).val();
-      if(mobileNum.length === 11){
-        $('#mobileNumErrorTips').fadeOut(1000);
-        $('#btn-send-mobilecode').css('cursor','pointer');
-        $('#btn-send-mobilecode').removeClass('disable');
-      }
+      $('#btn-send-mobilecode').addClass('disable');
+
     },
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
 
       $('.sf-b2c-mall-register').html('');
 
+    },
+    '#ischecked change':function(ele,event){
+      event && event.preventDefault();
+
+      if($(ele).attr('state') === 'false'){
+        $(ele).attr('state','true');
+        $('.btn-register').removeClass('disable');
+
+      }else{
+        $(ele).attr('state','false');
+        $('.btn-register').addClass('disable');
+      }
     }
 
 
