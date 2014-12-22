@@ -1,6 +1,6 @@
 'use strict';
 
-require(
+define(
   [
     'can',
     'jquery',
@@ -36,7 +36,6 @@ require(
           if ($el.length === 0) {
             var request = new SFApiGetBanner();
             can.when(request.sendRequest())
-            // can.when(can.ajax({url: 'json/sf.b2c.mall.index.getBanner.json'}))
               .done(function (data) {
                 var arr = [];
                 _.each(data.value, function(value, key, list){
@@ -46,15 +45,6 @@ require(
                   });
                 });
                 that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {imgs: arr});
-                // that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {
-                //   imgs: [{
-                //     imgUrl: 'img/banner1.jpg',
-                //     url: 'http://www.google.com'
-                //   }, {
-                //     imgUrl: 'img/banner2.jpg',
-                //     url: 'http://www.baidu.com'
-                //   }]
-                // });
               })
               .fail(function () {
 

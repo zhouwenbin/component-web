@@ -73,8 +73,10 @@ define('sf.b2c.mall.component.limitedtimesale', [
         if (that.options.serverRendered) {
 
           //进行显示和隐藏全局控制
-          $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'inline';
-          $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'none';
+          $('.sf-b2c-mall-limitedtimesale').css('display', 'inline');
+          $('.sf-b2c-mall-limitedtimesale4Client').css('display', 'none');
+          // $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'inline';
+          // $('.sf-b2c-mall-limitedtimesale4Client')[0].style.display = 'none';
 
           //先提前渲染模板，后面触发数据变化
           that.options.limitedtimesaleInfoList = [];

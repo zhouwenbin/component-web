@@ -389,6 +389,26 @@ module.exports = function (grunt) {
           ]
         }
       },
+      main: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.limitedtimesale',
+            'sf.b2c.mall.component.rapidseabuy',
+            'sf.b2c.mall.widget.slide',
+            'sf.b2c.mall.widget.modal',
+            'sf.b2c.mall.adapter.limitedtimesale',
+            'sf.b2c.mall.adapter.rapidSeaBuy',
+            'sf.b2c.mall.page.main'
+          ],
+          insertRequire: ['sf.b2c.mall.page.main']
+        }
+      },
       preheat: {
         options: {
           preserveLicenseComments: false,
@@ -472,6 +492,7 @@ module.exports = function (grunt) {
       'uglify',
       'copy:dist',
       'requirejs:preheat',
+      'requirejs:main',
       'usemin',
       'htmlmin'
     ]);
