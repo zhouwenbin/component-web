@@ -70,7 +70,7 @@ define(
         })
 
         //作为参数传递进去
-        new LimitedTimeSale('.sf-b2c-mall-limitedtimesale4Client', {'serverRendered': (typeof serverRendered != 'undefined')});
+        new LimitedTimeSale('.sf-b2c-mall-limitedtimesale', {'serverRendered': (typeof serverRendered != 'undefined')});
 
         new RapidSeaBuy('.sf-b2c-mall-rapidseabuy');
       },
