@@ -30,3 +30,130 @@
 	background-position: -105px -112px;
 }
 /*订单*/
+.order{
+	border: 3px solid #c6deee;
+	background: #f3f8fc;
+	border-radius: 4px;
+	padding: 45px 37px 80px;
+	margin-top: 82px;
+	margin-bottom: 137px;
+}
+.order h2{
+	font-size: 16px;
+	padding-left: 25px;
+	margin-bottom: 15px;
+	margin-top: 35px;
+}
+.order-r1{
+	height: 80px;
+	line-height: 80px;
+	border: 1px solid #dfe2e4;
+	border-radius: 5px;
+	background: #fff;
+	padding-left: 24px;
+	padding-right: 24px;
+	font-size: 14px;
+}
+.order-r1c1 span{
+	margin-right: 44px;
+}
+.order-r1c1 .icon{
+	margin-right: 28px;
+}
+.order-r1c1 img{
+	padding: 5px 10px;
+	border: 1px solid #ececec;
+}
+.order-r1c2 a{
+	margin-right: 72px;
+	color: #949494;
+	text-decoration: underline;
+
+}
+.order-f{
+	text-align: center;
+	margin-top: 39px;
+}
+.order-f .btn{
+	padding: 0 60px;
+}
+/*表格*/
+.table{
+	font-size: 14px;
+	border:1px solid #dfe2e4;
+	border-radius: 4px;
+	background: #fff;
+}
+.table-h{
+	height: 58px;
+	line-height: 58px;
+	border-bottom: 1px solid #e6e5e5;
+	background: #f4f4f4;
+	border-radius: 4px 4px 0 0;
+}
+.table-c1{
+	width: 710px;
+	padding-left: 23px;
+}
+.table-c3{
+	padding-right: 55px;
+}
+.table-img{
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border: 1px solid #ececec;
+	border-radius: 1px;
+}
+.table-img img{
+	vertical-align: middle;
+	max-width: 80px;
+	max-height: 80px;
+}
+.table-img span{
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.table-text{
+	margin-left: 100px;
+}
+.table-text h3{
+	margin-bottom: 17px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.table-text p{
+	margin-bottom: 13px;
+	color: #949494;
+}
+.table-b li{
+	padding-top:22px;
+	padding-bottom: 22px; 
+	border-bottom: 1px solid #ebebeb;
+	margin-bottom: 25px;
+}
+.table-fr1{
+	margin-bottom: 15px;
+}
+.table-fr2{
+	color: #949494;
+	margin-bottom: 20px;
+}
+.table-fr3{
+	margin-bottom: 12px;
+}
+.table-fr4{
+	color: #949494;
+	margin-bottom: 33px;
+}
+.table-f{
+	padding:0 57px 28px 0;
+	text-align: right; 
+}
+.table-f strong{
+	font-size: 20px;
+	color: #dd3e3f;
+}
