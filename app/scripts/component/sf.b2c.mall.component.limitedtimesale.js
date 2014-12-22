@@ -82,17 +82,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
           var html = can.view('templates/component/sf.b2c.mall.component.limitedtimesale.mustache', that.options, that.helpers);
           $('.sf-b2c-mall-limitedtimesale4Client').html(html);
 
-          //获得节点
-          var ulNode = $('ul.product-list');
-          var timeNodeList = $('ul.product-list #timeAndNation4ProductClient');
-          var priceNodeList = $('ul.product-list #price4ProductClient');
-
-          //获得数据列表，传递给ajax请求，方便一次性获得价格信息
-          var skuIdList = ulNode.skuList;
-          var topicIdList = ulNode.topicIdList;
-
           var paramData = {
-            "itemIds": ulNode[0].dataset.itemids
+            "itemIds": $('ul.product-list')[0].dataset.itemids
           };
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
           //获得价格信息
@@ -102,40 +93,21 @@ define('sf.b2c.mall.component.limitedtimesale', [
               console.error(error);
             })
             .done(function(data) {
-              var endTimeValue = data.value[0].endTime;
-
-              //二次渲染价格信息
-              //这里只渲染产品的价格，专题的价格服务器端渲染
-              var template = can.view.mustache(that.priceTemplate());
-              _.each(priceNodeList, function(priceNode) {
-                if (priceNode.dataset.contenttype == 'PRODUCT') {
-                  _.each(data.value, function(priceItem) {
-                    if (priceItem.itemId == priceNode.dataset.itemid) {
-                      priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
-                      $(priceNode).html(template(priceItem));
-                    }
-                  })
-                }
+              //转化为map对象 方便后面直接取用，防止两层嵌套
+              var priceMap = {};
+              _.each(data.value, function(priceItem) {
+                priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
+                priceMap[priceItem.itemId] = priceItem;
               })
 
-              //取服务器端的当前时间和当前时间取差值后传递给定时期
-              var currentServerTime = getProductHotDataList.getServerTime();
-              var currentClientTime = new Date().getTime();
-              var distance = currentServerTime - currentClientTime;
+              //二次渲染价格信息
+              that.renderPriceInfo(priceMap);
 
-              that.interval = setInterval(function() {
-                _.each(timeNodeList, function(timeNode) {
-                  if (timeNode.dataset.contenttype == 'PRODUCT') {
-                    _.each(data.value, function(priceItem) {
-                      if (priceItem.itemId == timeNode.dataset.itemid) {
-                        that.setCountDown(timeNode, distance, priceItem.endTime);
-                      }
-                    })
-                  } else {
-                    that.setCountDown(timeNode, distance, timeNode.dataset.displayendtime);
-                  }
-                })
-              }, '1000');
+              //二次渲染倒计时信息
+              //取服务器端的当前时间和当前时间取差值后传递给定时器
+              var currentServerTime = getProductHotDataList.getServerTime();
+              that.rendTimeDistanceInfo(currentServerTime, priceMap);
+
             })
         } else {
           //进行显示和隐藏全局控制
@@ -152,6 +124,51 @@ define('sf.b2c.mall.component.limitedtimesale', [
             })
         }
       },
+
+      /**
+       * [renderPriceInfo 二次渲染价格信息]
+       * @param  {[type]} priceMap 价格数据
+       * @return {[type]}
+       */
+      renderPriceInfo: function(priceMap) {
+        var priceNodeList = $('ul.product-list #price4ProductClient');
+
+        //这里只渲染产品的价格，专题的价格服务器端渲染
+        var template = can.view.mustache(this.priceTemplate());
+        _.each(priceNodeList, function(priceNode) {
+          if (priceNode.dataset.contenttype == 'PRODUCT') {
+            $(priceNode).html(template(priceMap[priceNode.dataset.itemid]));
+          }
+        })
+      },
+
+      /**
+       * [rendTimeDistanceInfo 二次渲染倒计时信息]
+       * @param  {[type]} currentServerTime 服务器时间
+       * @param  {[type]} priceMap 价格数据中包含活动结束时间
+       * @return {[type]}
+       */
+      rendTimeDistanceInfo: function(currentServerTime, priceMap) {
+        var that = this;
+
+        var timeNodeList = $('ul.product-list #timeAndNation4ProductClient');
+
+        var currentClientTime = new Date().getTime();
+        var distance = currentServerTime - currentClientTime;
+
+        that.interval = setInterval(function() {
+          _.each(timeNodeList, function(timeNode) {
+
+            var endTimeMap = {
+              'PRODUCT': timeNode.dataset.itemid ? priceMap[timeNode.dataset.itemid].endTime : '',
+              'TOPIC': timeNode.dataset.displayendtime
+            }
+
+            that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
+          })
+        }, '1000');
+      },
+
 
       priceTemplate: function() {
         return '<div class="product-r3c1 fl">' +
@@ -213,6 +230,11 @@ define('sf.b2c.mall.component.limitedtimesale', [
         this.renderLimitedTimeSale('NEXT');
       },
 
+      /**
+       * [renderLimitedTimeSale 点击事件后的一次性渲染]
+       * @param  {[type]} filter 过滤条件
+       * @return {[type]}
+       */
       renderLimitedTimeSale: function(filter) {
         //进行显示和隐藏全局控制
         $('.sf-b2c-mall-limitedtimesale')[0].style.display = 'none';
@@ -254,6 +276,11 @@ define('sf.b2c.mall.component.limitedtimesale', [
           })
       },
 
+      /**
+       * [getItems 获得items数组]
+       * @param  {[type]} data 总数据集
+       * @return {[type]}
+       */
       getItems: function(data) {
         var result = [];
         _.each(data, function(item) {
