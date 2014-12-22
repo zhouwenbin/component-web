@@ -2,26 +2,23 @@
 <div class="mask"></div>
 <div class="register">
   <div class="register-h">
-    <h2>抢先预约</h2>
+    <h2>抢先预定</h2>
     <a href="#" class="btn btn-close">关闭</a>
   </div>
   <!--手机注册-->
   <div class="register-b active">
     <ol>
       <li>
-        <input id="input-mobile-num" placeholder="请输入手机号码" type="text" can-value="user.mobileNum" />{{#mobileNum}}<span id="mobileNumErrorTips" class="icon icon26">{{numError}}</span>{{/mobileNum}}
+        <input id="input-mobile-num" placeholder="仅限中国大陆手机号" type="text" can-value="user.mobileNum" />{{#mobileNum}}<span id="mobileNumErrorTips" class="icon icon26">{{numError}}</span>{{/mobileNum}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
 
       <li>
-        <input id="input-mobile-code" placeholder="点击按钮获取验证码" type="text" class="input1" can-value="user.mobileCode" /><button id="btn-send-mobilecode" class="btn btn-send disable">发送验证码</button>{{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
+        <input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1" can-value="user.mobileCode" /><button id="btn-send-mobilecode" class="btn btn-send disable">发送验证码</button>{{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
-        <input id="input-user-password" type="password" placeholder="登录密码" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
-      </li>
-      <li>
-        <input id="input-user-repeatPwd" type="password" placeholder="重复密码" can-value="user.repeatPwd" />{{#repeatPwd}}<span id="repeatPwdErrorTips" class="icon icon26">{{repeatPwdError}}</span>{{/repeatPwd}}
+        <input id="input-user-password" type="password" placeholder="6-18位字母、数字或标点符号" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
       </li>
     </ol>
     <div class="register-br1">

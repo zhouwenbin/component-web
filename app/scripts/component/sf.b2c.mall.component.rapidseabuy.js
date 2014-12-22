@@ -27,7 +27,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
          * @param  {[type]} options
          * @return {[type]}
          */
-        init: function(element, options) {
+        init: function() {
           this.render();
         },
         /**
@@ -130,6 +130,9 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var getFastSaleInfoList = new SFGetFastSaleInfoList();
           getFastSaleInfoList
               .sendRequest()
+              .fail(function(error) {
+                console.error(error);
+              })
               .done(function(data){
                 that.options.fastSaleInfoList = data;
                 that.options = SFAdapterRapidSeaBuy.format(that.options);
@@ -138,35 +141,10 @@ define('sf.b2c.mall.component.rapidseabuy', [
                 var getProductHotDataList = new SFGetProductHotDataList();
                 return getProductHotDataList.sendRequest();
               })
-              .done(function(data){
-                SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList,data);
-//            //var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',that.options);
-//            var template = can.view.mustache(that.moreProductTemplate());
-//            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList, that.helpers));
+              .done(function(data) {
+                SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList, data);
               })
-
-
-
-//          can.when(can.ajax({
-//            url:'json/sf-b2c.mall.index.rapidseabuy.json'
-//          }))
-//          .done(function(data){
-//            that.options.fastSaleInfoList = data;
-//            that.options = SFAdapterRapidSeaBuy.format(that.options);
-//          })
-//          .then(function(){
-//            return can.ajax({
-//              url:'json/sf-b2c.mall.index.rapidseabuyPrice.json'
-//            })
-//          })
-//          .done(function(data){
-//            SFAdapterRapidSeaBuy.formatPrice(that.options.fastSaleInfoList,data);
-//            //var html = can.view('templates/component/sf.b2c.mall.rapidseabuy.mustache',that.options);
-//            var template = can.view.mustache(that.moreProductTemplate());
-//            $($('.product-list').get(2)).append(template(that.options.fastSaleInfoList, that.helpers));
-//          })
         },
-
         showPriceModel:function(){
           var that = this;
 

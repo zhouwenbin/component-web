@@ -21,14 +21,11 @@ define('sf.b2c.mall.center.register',[
       password:new can.Map({
         pwdError:''
       }),
-      repeatPwd:new can.Map({
-        repeatPwdError:''
-      }),
       user: new can.Map({
         mobileNum: null,
         mobileCode: null,
-        password: null,
-        repeatPwd:null
+        password: null
+
       })
     },
 
@@ -40,8 +37,7 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null,
-        repeatPwd:null
+        password: null
       });
 
       this.data = this.parse(this.defaults);
@@ -90,16 +86,21 @@ define('sf.b2c.mall.center.register',[
         pwdError:data
       });
     },
-    /**
-     * @description 重复密码错误提示
-     * @param {String} data 提示的文字信息
-     * @return {Boolean} 返回执行情况
-     */
-    setRepeatPwdError:function(data){
-      this.data.repeatPwd.attr({
-        repeatPwdError:data
-      });
+    errorMap: {
+      1000010: '未找到用户',
+      1000040: '原密码错误',
+      1000060: '密码不能与原密码相同'
     },
+//    /**
+//     * @description 重复密码错误提示
+//     * @param {String} data 提示的文字信息
+//     * @return {Boolean} 返回执行情况
+//     */
+//    setRepeatPwdError:function(data){
+//      this.data.repeatPwd.attr({
+//        repeatPwdError:data
+//      });
+//    },
     '.btn-register click':function(ele,event){
       event && event.preventDefault();
 
@@ -107,12 +108,11 @@ define('sf.b2c.mall.center.register',[
       $('#mobileNumErrorTips').hide();
       $('#mobileCodeErorTips').hide();
       $('#pwdErrorTips').hide();
-      $('#repeatPwdErrorTips').hide();
+
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
-        password:this.data.user.attr('password'),
-        repeatPwd:this.data.user.attr('repeatPwd')
+        password:this.data.user.attr('password')
       };
       var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);
@@ -133,10 +133,7 @@ define('sf.b2c.mall.center.register',[
         return this.setPwdError('密码有误');
       }
 
-      if(!params.repeatPwd || params.repeatPwd !== params.password){
-        $('#repeatPwdErrorTips').show();
-        return this.setRepeatPwdError('重复密码有误')
-      }
+
       if(!$('#ischecked:checked')){
         return false;
       }
@@ -159,6 +156,15 @@ define('sf.b2c.mall.center.register',[
               sfb2cmallregister.html(html);
               setTimeout($('.sf-b2c-mall-register').html(''),time*1000);
             }
+          })
+          .fail(function(errorCode){
+            var map ={
+              '1000240':'手机验证码错误',
+              '1000250':'手机验证码已过期'
+            };
+            var errorText = map[errorCode].toString();
+
+            this.setMobileCodeError(errorText);
           })
 
     },
@@ -194,8 +200,32 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
-            debugger;
+
           })
+          .fail(function(errorCode){
+            var map ={
+              '1000270':'短信请求太频繁',
+              '1000290':'短信请求太多'
+            };
+            var errorText = map[errorCode].toString();
+
+            this.setMobileCodeError(errorText);
+          })
+    },
+    '#input-mobile-num focus':function(ele,event){
+      event && event.preventDefault();
+
+      $('#mobileNumErrorTips').fadeOut(1000);
+
+    },
+    '#input-mobile-num blur':function(ele,event){
+      event && event.preventDefault();
+
+      var mobileNum = $(ele).val();
+      if(mobileNum.length < 11 && mobileNum.length > 0){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('手机号码有误');
+      }
     },
     '#input-mobile-num keyup':function(ele,event){
       event && event.preventDefault();
@@ -205,6 +235,10 @@ define('sf.b2c.mall.center.register',[
         $('#mobileNumErrorTips').fadeOut(1000);
         $('#btn-send-mobilecode').css('cursor','pointer');
         $('#btn-send-mobilecode').removeClass('disable');
+      }
+      if(mobileNum.length > 11){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('手机号码有误');
       }
     },
     '.btn-close click':function(ele,event){

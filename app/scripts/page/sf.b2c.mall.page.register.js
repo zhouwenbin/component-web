@@ -40,12 +40,19 @@ define([
             "height":0
           },700);
         }
-      })
+      });
+
+
+
     },
 
     '#btn-register click':function(ele,event){
       event && event.preventDefault();
       this.component.register.paint();
+      $('.register:first').on('css',function(){
+        var height = $(this).height();
+        $(this).css('marginTop',-(height/2))
+      })
     },
 
     '#btn-register-sfht click':function(ele,event){
