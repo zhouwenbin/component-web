@@ -37,6 +37,7 @@
 	padding: 45px 37px 80px;
 	margin-top: 82px;
 	margin-bottom: 137px;
+	position: relative;
 }
 .order h2{
 	font-size: 16px;
@@ -76,6 +77,11 @@
 }
 .order-f .btn{
 	padding: 0 60px;
+}
+.order .icon28{
+	position: absolute;
+	right: 56px;
+	top:-44px;
 }
 /*表格*/
 .table{
