@@ -154,6 +154,7 @@
 	padding-top: 10px;
 	background: #fff;
 	margin-bottom: 38px;
+	position: relative;
 }
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
@@ -173,7 +174,17 @@
 .product-list li:hover del{
 	color: #fff;
 }
-
+.product-list li .mask{
+	position: absolute;
+}
+.product-list li .icon24{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -37px;
+	margin-top: -37px;
+	z-index: 3
+}
 
 .product-r1{
 	height:233px;
