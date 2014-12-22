@@ -10,6 +10,13 @@
 	border-radius: 3px;
 	z-index: 3;
 }
+
+.register.register-top{
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 0 auto;
+}
 .register h2{
 	font-size: 14px;
 	height: 52px;
@@ -28,7 +35,7 @@
 	top: 17px;
 }
 .register-h ul{
-	
+
 	background: #32363f;
 	text-align: center;
 }
@@ -81,6 +88,10 @@
 .register-b .icon26{
 	margin-top: 5px;
 	margin-left: 5px;
+  display: none;
+}
+.register-b .btn-send{
+  cursor: not-allowed;
 }
 .register li input{
 	vertical-align: middle;
