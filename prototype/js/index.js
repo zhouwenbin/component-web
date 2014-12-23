@@ -171,4 +171,20 @@ $(function(){
     	$(this).toggleClass("active");
     	return false;
     });
+    //----------选择收货人-------------//
+    $(".order").on("click", ".icon30", function(){
+    	$(this).parents(".order-b").toggleClass("active");
+    	return false;
+    });
+    $(".order").on("click", ".icon29", function(){
+    	var li=$(this).parents("li");
+    	var ul=$(this).parents("ul");
+    	li.addClass("active").siblings().removeClass("active");
+    	ul.prepend(li);
+    })
+    $(".order").on("click", ".order-edit", function(){
+    	$(this).parents("li").find(".order-r2").toggle();
+    	return false;
+    });
+
 })

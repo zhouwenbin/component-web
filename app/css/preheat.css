@@ -17,8 +17,8 @@
 	background: #fffeff;
 }
 .m1 .pm{
-	padding-top: 116px;
-	padding-bottom: 60px;
+	padding-top: 90px;
+	padding-bottom: 87px;
 }
 .m1 h1{
 	font-size: 30px;
@@ -70,7 +70,7 @@
 .m3{
 	background: #f6f8f9 url(../img/hot/m3.jpg) no-repeat center top;
 	padding-bottom: 50px;
-	padding-top: 328px;
+	padding-top: 43px;
 	position: relative;
 }
 .m3 h3{
@@ -115,9 +115,9 @@
 .m3 .mt{
 	text-align: center;
 }
-.m3 .mt a{
-	width: 378px;
-}
+/*.m3 .mt a{*/
+	/*width: 378px;*/
+/*}*/
 .m3 .mh{
 	color: #fff;
 	background: url(../img/hot/m3-mh.png) no-repeat;
@@ -125,7 +125,7 @@
 	height: 535px;
 	position: absolute;
 	text-align: center;
-	top: -25px;
+	top: -123px;
 	left: 50%;
 	margin-left: -267px;
 }
@@ -176,8 +176,7 @@
 }
 
 .m5{
-	padding-top: 127px;
-	padding-bottom: 116px;
+	padding: 64px 0;
 	background: #fffeff;
 }
 .m5 li{
@@ -235,4 +234,15 @@
 }
 .register-br2c1 a{
   color: #333;
+}
+.m3 .mt a{
+  background: url(../img/hot/icon-01.png) no-repeat;
+  width: 220px;
+  height: 60px;
+  line-height: 60px;
+  display: inline-block;
+
+}
+.m3 .mt a:hover{
+  background: url(../img/hot/icon-02.png) no-repeat;
 }

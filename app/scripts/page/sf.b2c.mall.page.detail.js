@@ -30,7 +30,12 @@ require(
         new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
 
         //详情页
-        new DetailContent('.sf-b2c-mall-detail-content');
+        //看服务器端是否渲染了
+        var serverRendered = _.find($('.sf-b2c-mall-detail-content')[0].classList, function(item) {
+          return item == 'serverRendered'
+        })
+
+        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': (typeof serverRendered != 'undefined')});
 
       },
 

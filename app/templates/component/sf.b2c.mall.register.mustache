@@ -14,7 +14,11 @@
       </li>
 
       <li>
-        <input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1" can-value="user.mobileCode" /><button id="btn-send-mobilecode" state="true" class="btn btn-send disable" disabled="disabled">发送验证码</button>{{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
+        <div class="clearfix">
+            <input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1 fl" can-value="user.mobileCode" />
+            <button id="btn-send-mobilecode" state="true" class="btn btn-send disable fr" disabled="disabled">发送验证码</button>
+        </div>
+        {{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
