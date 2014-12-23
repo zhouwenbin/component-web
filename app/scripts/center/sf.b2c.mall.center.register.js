@@ -31,7 +31,6 @@ define('sf.b2c.mall.center.register',[
 
     init:function(element,options){
 
-
     },
 
     paint:function(data){
@@ -88,21 +87,7 @@ define('sf.b2c.mall.center.register',[
         pwdError:data
       });
     },
-    errorMap: {
-      1000010: '未找到用户',
-      1000040: '原密码错误',
-      1000060: '密码不能与原密码相同'
-    },
-//    /**
-//     * @description 重复密码错误提示
-//     * @param {String} data 提示的文字信息
-//     * @return {Boolean} 返回执行情况
-//     */
-//    setRepeatPwdError:function(data){
-//      this.data.repeatPwd.attr({
-//        repeatPwdError:data
-//      });
-//    },
+
     '.btn-register click':function(ele,event){
       event && event.preventDefault();
 
@@ -191,6 +176,8 @@ define('sf.b2c.mall.center.register',[
     },
     '#btn-send-mobilecode click':function(ele,event){
       event && event.preventDefault();
+
+      var that = this;
       $(ele).attr('state','false');
       var wait = 60;
       this.countTime(ele,wait);
@@ -205,6 +192,7 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
+            debugger;
 
           })
           .fail(function(errorCode){
@@ -214,8 +202,8 @@ define('sf.b2c.mall.center.register',[
               '1000290':'短信请求太多'
             };
             var errorText = map[errorCode].toString();
-
-            this.setMobileNumError(errorText);
+            $('#mobileNumErrorTips').show();
+            that.setMobileNumError(errorText);
           })
     },
     '#input-mobile-num focus':function(ele,event){
@@ -260,10 +248,17 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       if($(ele).attr('state') === 'false'){
+
+        $(ele).attr('checked','checked');
+        $('.btn-register').removeAttr('disabled');
+
         $(ele).attr('state','true');
         $('.btn-register').removeClass('disable');
 
       }else{
+
+        $(ele).removeAttr('checked');
+        $('.btn-register').attr('disabled','disabled');
         $(ele).attr('state','false');
         $('.btn-register').addClass('disable');
       }

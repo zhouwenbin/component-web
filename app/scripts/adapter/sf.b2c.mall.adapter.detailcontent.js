@@ -69,7 +69,7 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
         //设置选中
         that.setSelectedSpec(index, specId, group);
         //设置可选
-        that.setCanSelectedSpec(index, specId, group, detailContentInfo);
+        that.setCanSelectedSpec(index, specId, group, detailContentInfo.itemInfo.saleSkuSpecTupleList);
 
         ++index;
       })
@@ -88,7 +88,7 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
     setSelectedSpec: function(index, specId, group) {
       var selectedSpec = _.find(group.specs, function(spec) {
         //一位一位去匹配
-        return spec.specId == specId.substring(index, index + 1);
+        return spec.specId == specId[index];
       })
       selectedSpec.selected = true;
     },
@@ -103,14 +103,19 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
      * @param {[type]} group
      * @param {[type]} detailContentInfo
      */
-    setCanSelectedSpec: function(index, specId, group, detailContentInfo) {
+    setCanSelectedSpec: function(index, specId, group, saleSkuSpecTupleList) {
       //组合各种情况,看是否存在
       _.each(group.specs, function(spec) {
         spec.canSelected = false;
-        var compose = specId.substring(0, index) + spec.specId + specId.substring(index + 1, specId.length);
+        var composeArr = new Array();
+        composeArr = composeArr.concat(specId.slice(0, index));
+        composeArr.push(spec.specId);
+        composeArr = composeArr.concat(specId.slice(index + 1, specId.length));
 
-        var result = _.find(detailContentInfo.itemInfo.saleSkuSpecTupleList, function(saleSkuSpecTuple) {
-          return saleSkuSpecTuple.skuSpecTuple.specIds.indexOf(compose) > -1;
+        var compose = composeArr.join(",");
+
+        var result = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+          return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == compose;
         })
 
         if (typeof result != 'undefined') {
