@@ -139,10 +139,11 @@ $(function(){
     	}
     });
     $(".btn-select").on("click","label",function(){
-    	$(this).parents(".btn-select").removeClass("active");
+        var btnSelect=$(this).parents(".btn-select")
+    	btnSelect.removeClass("active");
     	var value=$(this).text();
-    	$(".btn-select-num").text(value);
-    	$(".btn-select ul").hide();
+    	btnSelect.find(".btn-select-num").text(value);
+    	btnSelect.find("ul").hide();
     	return false;
     })
     //----------商品图片切换-------------// 
@@ -171,4 +172,27 @@ $(function(){
     	$(this).toggleClass("active");
     	return false;
     });
+    //----------选择收货人-------------//
+    $(".order").on("click", ".icon30", function(){
+    	$(this).parents(".order-b").toggleClass("active");
+        $(".order-r2").hide();
+    	return false;
+    });
+    $(".order").on("click", ".icon29", function(){
+    	var li=$(this).parents("li");
+    	var ul=$(this).parents("ul");
+    	li.addClass("active").siblings().removeClass("active");
+    	ul.prepend(li);
+    })
+    $(".order").on("click", ".order-edit", function(){
+        $(".order-r2").hide();
+    	$(this).parents("li").find(".order-r2").toggle();
+    	return false;
+    });
+    $(".order").on("click", ".btn-add", function(){
+        $(".order-r2").hide();
+        $(this).prev().toggle();
+        return false;
+    });
+
 })
