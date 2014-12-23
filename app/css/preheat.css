@@ -104,9 +104,13 @@
 	float: left;
 	padding: 20px;
 	background: #fff;
-	width: 338px;
+	width: 337px;
 	margin-left: 21px;
+<<<<<<< HEAD
 	*margin-left: 20px;
+=======
+  border:1px solid #333;
+>>>>>>> pr/53
 }
 .m3 .li2{
 	margin-top: 115px;

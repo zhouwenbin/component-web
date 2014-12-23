@@ -98,6 +98,7 @@ define('sf.b2c.mall.center.register',[
 
       var that = this;
 
+
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
@@ -127,6 +128,7 @@ define('sf.b2c.mall.center.register',[
         smsCode:params.mobileCode,
         password:md5(params.password + 'www.sfht.com')
       };
+      var number = data.mobile;
       var mobileRegister = new SFUserMobileRegister(data);
       mobileRegister
           .sendRequest()
@@ -136,7 +138,7 @@ define('sf.b2c.mall.center.register',[
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
               var html = '<div class="register-h"><h2>抢先预约</h2><a href="#" class="btn btn-close">关闭</a></div>'+
               '<div class="register-b1"><span class="icon icon27"></span><h3>恭喜您预约成功!</h3><p>顺丰海淘即将正式开放，<br />'+
-              '届时使用手机号码<span>'+data.mobile+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
+              '届时使用手机号码<span>'+number+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
               sfb2cmallregister.html(html);
 
             }
@@ -144,12 +146,19 @@ define('sf.b2c.mall.center.register',[
           .fail(function(errorCode){
             debugger;
             var map ={
+              '1000020':'账户已注册',
               '1000240':'手机验证码错误',
               '1000250':'手机验证码已过期'
             };
             var errorText = map[errorCode].toString();
-            $('#mobileCodeErorTips').show();
-            that.setMobileCodeError(errorText);
+            if(errorText === "账户已注册"){
+              $('#mobileNumErrorTips').show();
+              that.setMobileNumError(errorText);
+            }else{
+              $('#mobileCodeErorTips').show();
+              that.setMobileCodeError(errorText);
+            }
+
           })
 
     },
@@ -182,7 +191,7 @@ define('sf.b2c.mall.center.register',[
       var wait = 60;//初始化倒计时时间
 
       $(ele).attr('state','false');
-      this.countTime(ele,wait);
+      //this.countTime(ele,wait);
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -193,9 +202,10 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
-
+            that.countTime(ele,wait);
           })
           .fail(function(errorCode){
+
             var map ={
               '1000020':'账户已注册',
               '1000270':'短信请求太频繁',
@@ -231,7 +241,7 @@ define('sf.b2c.mall.center.register',[
       if(mobileNum.length === 11){
         $('#btn-send-mobilecode').attr('state','true');
         $('#mobileNumErrorTips').fadeOut(1000);
-        if($('#btn-send-mobilecode').attr('state') === "true"){
+        if($('#btn-send-mobilecode').attr('state') === "true" && $('#btn-send-mobilecode').html() ==="发送验证码" ){
           $('#btn-send-mobilecode').removeAttr('disabled');
           $('#btn-send-mobilecode').removeClass('disable');
         }
