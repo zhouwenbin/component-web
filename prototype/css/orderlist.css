@@ -13,12 +13,14 @@
 .orderlist h2{
 	font-size: 16px;
 	margin-bottom: 14px;
+	padding-top: 5px;
 }
 .orderlist-hc2 .input{
 	width: 284px;
-	padding-top: 22px;
-	padding-bottom: 22px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	margin-right: 3px;
+	font-size: 14px;
 }
 .orderlist-hc2 .btn{
 	width: 92px;
@@ -49,7 +51,7 @@
 }
 .table-1 .table-c3{
 	width: 123px;
-	padding-right: 0;
+	
 }
 .table-1 .table-c4{
 	width: 132px;
@@ -60,6 +62,7 @@
 }
 .table-1 .table-c5{
 	width: 130px;
+	padding-right: 0;
 }
 .table-1 .table-r1{
 	margin-bottom: 29px;
@@ -79,5 +82,52 @@
 	color: #949494;
 }
 .table-1-logistics{
-	margin-top: 15px;
+	margin-top: 28px;
+	position: relative;;
+}
+.table-1-logistics:hover .tooltip{
+	display: block;
+}
+.table-1 .tooltip{
+	background: #fff;
+	position: absolute;
+	left: -136px;
+	top: 31px;
+	display: none;
+}
+.table-1 .icon16-4{
+	border-bottom-color: #fff;
+}
+.table-1 .tooltip h4{
+	margin-bottom:15px;
+}
+.table-1 .tooltip li{
+	margin-bottom: 12px;
+	padding: 0;
+	border:0;
+}
+.table-1 .tooltip .time{
+	margin-right: 38px;
+}
+.table-1 .tooltip .active{
+	color:#67b222;
+}
+.table-1-upload{
+	position: relative;
+}
+.table-1-upload h4{
+	border-bottom: 1px dashed #ccc;
+	padding-bottom: 16px;
+}
+.table-1-upload h5{
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+.table-1-upload p{
+	font-size: 12px;
+}
+.table-1-upload:hover .tooltip{
+	display: block;
+	left: -104px;
+	top:37px;
 }
