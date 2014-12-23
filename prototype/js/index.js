@@ -195,4 +195,28 @@ $(function(){
         return false;
     });
 
+
+    //----------注册页小章鱼特效-------------//
+    $('.password').focus(function(){
+        $(".icon34").animate({
+            "top":-28
+        },300)
+        .animate({
+            "top":-32
+        },50)
+        .animate({
+            "top":-30
+        },50);
+    })
+    $('.password').blur(function(){
+        $(".icon34").animate({
+            "top":-82
+        },300)
+        .animate({
+            "top":-78
+        },50)
+        .animate({
+            "top":-80
+        },50);
+    })
 })
