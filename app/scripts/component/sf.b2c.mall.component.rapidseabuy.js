@@ -138,7 +138,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
 
           var that = this;
           var pageInfo = this.data.fastSale.attr('pageInfo');
-          var getFastSaleInfoList = new SFGetFastSaleInfoList({pageIndex: pageInfo ? pageInfo.pageIndex+1 : 1, pageSize: 24});
+          var getFastSaleInfoList = new SFGetFastSaleInfoList({pageIndex: pageInfo ? pageInfo.pageIndex+1 : 2, pageSize: 24});
           getFastSaleInfoList
             .sendRequest()
             .done(function(data){
