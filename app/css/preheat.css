@@ -106,7 +106,7 @@
 	background: #fff;
 	width: 337px;
 	margin-left: 21px;
-	*margin-left: 20px;
+	*margin-left: 14px;
   border:1px solid #333;
 }
 .m3 .li2{
@@ -116,6 +116,7 @@
 }
 .m3 .mt{
 	text-align: center;
+	clear:both;
 }
 /*.m3 .mt a{*/
 	/*width: 378px;*/

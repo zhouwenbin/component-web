@@ -108,17 +108,27 @@ define('sf.b2c.mall.center.register',[
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);//验证码6位数字验证
       var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,18}$/.test(params.password);//密码正则验证
 
-      if(!validateMobileNum){
+      if(!params.mobileNum){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('请输入您的手机号码');
+      }else if(!validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('您的手机号码输入有误');
       }
 
-      if(!params.mobileCode || !validateMobileCode){
+
+      if(!params.mobileCode){
+        $('#mobileCodeErorTips').show();
+        return this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
         $('#mobileCodeErorTips').show();
         return this.setMobileCodeError('您输入的验证码有误，请重新输入');
       }
 
-      if(!params.password || !validatePwd){
+      if(!params.password){
+        $('#pwdErrorTips').show();
+        return this.setPwdError('请设置登录密码');
+      }else if(!validatePwd){
         $('#pwdErrorTips').show();
         return this.setPwdError('密码请设置6-18位字母、数字或标点符号');
       }
@@ -144,11 +154,10 @@ define('sf.b2c.mall.center.register',[
             }
           })
           .fail(function(errorCode){
-            debugger;
             var map ={
               '1000020':'账户已注册',
               '1000240':'手机验证码错误',
-              '1000250':'手机验证码已过期'
+              '1000250':'手机验证码错误'
             };
             var errorText = map[errorCode].toString();
             if(errorText === "账户已注册"){
