@@ -798,7 +798,7 @@ body{
 
 	border:1px solid #DEDDDE;
 	padding: 24px 27px;
-	width: 348px;
+	width: 280px;
 	line-height: 18px;
 	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
 	background: #f4f4f9;
@@ -808,7 +808,7 @@ body{
 }
 .tooltip .icon16-3{
 	position: absolute;
-	left: 56px;
+	left: 156px;
 	top: -27px;
 }
 /*表格*/
@@ -837,10 +837,10 @@ body{
 	width: 174px;
 }
 .table-c4{
-	width: 181px;
+	width: 170px;
 }
 .table-c5{
-	padding-right: 55px;
+	padding-right: 45px;
 }
 .table-img{
 	width: 80px;
