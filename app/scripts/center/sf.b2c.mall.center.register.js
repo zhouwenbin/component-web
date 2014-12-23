@@ -11,7 +11,6 @@ define('sf.b2c.mall.center.register',[
   return can.Control.extend({
 
     defaults:{
-
       mobileNum:new can.Map({
         numError:''
       }),
@@ -25,7 +24,6 @@ define('sf.b2c.mall.center.register',[
         mobileNum: null,
         mobileCode: null,
         password: null
-
       })
     },
 
@@ -34,6 +32,7 @@ define('sf.b2c.mall.center.register',[
     },
 
     paint:function(data){
+
       //重置输入框内容
       this.defaults.user.attr({
         mobileNum: null,
@@ -47,7 +46,6 @@ define('sf.b2c.mall.center.register',[
 
     render:function(data){
       var html = can.view('templates/component/sf.b2c.mall.register.mustache', data);
-
       this.element.html(html);
     },
 
@@ -57,6 +55,7 @@ define('sf.b2c.mall.center.register',[
     parse:function(data){
       return data;
     },
+
     /**
      * @description 手机号码错误提示
      * @param {String} data 提示的文字信息
@@ -88,6 +87,7 @@ define('sf.b2c.mall.center.register',[
       });
     },
 
+    //注册
     '.btn-register click':function(ele,event){
       event && event.preventDefault();
 
@@ -96,32 +96,30 @@ define('sf.b2c.mall.center.register',[
       $('#mobileCodeErorTips').hide();
       $('#pwdErrorTips').hide();
 
+      var that = this;
+
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
         password:this.data.user.attr('password')
       };
-      var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);
-      var validateMobileCode= /\d{6}$/.test(params.mobileCode);
-      var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/.test(params.password);
+      var validateMobileNum = /^1\d{10}$/.test(params.mobileNum);//电话号码正则验证（以1开始，11位验证）
+      var validateMobileCode= /\d{6}$/.test(params.mobileCode);//验证码6位数字验证
+      var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,18}$/.test(params.password);//密码正则验证
+
       if(!params.mobileNum || !validateMobileNum){
          $('#mobileNumErrorTips').show();
-         return this.setMobileNumError('手机号码有误');
+         return this.setMobileNumError('您的手机号码输入有误');
       }
 
       if(!params.mobileCode || !validateMobileCode){
         $('#mobileCodeErorTips').show();
-        return this.setMobileCodeError('验证码有误');
+        return this.setMobileCodeError('您输入的验证码有误，请重新输入');
       }
 
       if(!params.password || !validatePwd){
         $('#pwdErrorTips').show();
-        return this.setPwdError('密码有误');
-      }
-
-
-      if(!$('#ischecked:checked')){
-        return false;
+        return this.setPwdError('密码请设置6-18位字母、数字或标点符号');
       }
 
       var data ={
@@ -136,24 +134,26 @@ define('sf.b2c.mall.center.register',[
             if(data.csrfToken){
 
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
-              var time = 5;
-              var html = '<div class="register-h"><h2>注册成功</h2><a href="#" class="btn btn-close">关闭</a></div>'+
-              '<div class="register-b1"><span class="icon icon27"></span><h3>注册成功</h3><p>'+ time +'秒后页面将自动跳转</p></div>';
+              var html = '<div class="register-h"><h2>抢先预约</h2><a href="#" class="btn btn-close">关闭</a></div>'+
+              '<div class="register-b1"><span class="icon icon27"></span><h3>恭喜您预约成功!</h3><p>顺丰海淘即将正式开放，<br />'+
+              '届时使用手机号码<span>'+data.mobile+'</span>访问网站,抢购明星产品</p><a href="#" class="btn btn-register btn-send">确认</a></div>';
               sfb2cmallregister.html(html);
-              setTimeout($('.sf-b2c-mall-register').html(''),time*1000);
+
             }
           })
           .fail(function(errorCode){
+            debugger;
             var map ={
               '1000240':'手机验证码错误',
               '1000250':'手机验证码已过期'
             };
             var errorText = map[errorCode].toString();
-
-            this.setMobileCodeError(errorText);
+            $('#mobileCodeErorTips').show();
+            that.setMobileCodeError(errorText);
           })
 
     },
+    //验证码倒计时
     countTime:function(ele,wait){
       var that = this;
       if (wait == 0) {
@@ -174,14 +174,11 @@ define('sf.b2c.mall.center.register',[
         1000)
       }
     },
+    //发送手机验证码
     '#btn-send-mobilecode click':function(ele,event){
       event && event.preventDefault();
 
       var that = this;
-      $(ele).attr('state','false');
-      var wait = 60;
-      this.countTime(ele,wait);
-      $('#input-mobile-num').unbind('blur');
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -192,7 +189,10 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
-            debugger;
+
+            $(ele).attr('state','false');
+            var wait = 60;
+            that.countTime(ele,wait);
 
           })
           .fail(function(errorCode){
@@ -206,12 +206,14 @@ define('sf.b2c.mall.center.register',[
             that.setMobileNumError(errorText);
           })
     },
+    //手机号码输入框光标移上错误提示消失
     '#input-mobile-num focus':function(ele,event){
       event && event.preventDefault();
 
       $('#mobileNumErrorTips').fadeOut(1000);
 
     },
+    //手机号码输入框失去焦点验证
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
 
@@ -219,7 +221,12 @@ define('sf.b2c.mall.center.register',[
       var mobileNum = $(ele).val();
       if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
         $('#mobileNumErrorTips').show();
-        return this.setMobileNumError('手机号码有误');
+        return this.setMobileNumError('您的手机号码输入有误');
+      }
+
+      if(!mobileNum.length){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('请输入您的手机号码');
       }
 
       if(mobileNum.length === 11){
@@ -228,42 +235,58 @@ define('sf.b2c.mall.center.register',[
           $('#btn-send-mobilecode').removeAttr('disabled');
           $('#btn-send-mobilecode').removeClass('disable');
         }
-
       }
 
     },
+
     '#input-mobile-num keyup':function(ele,event){
       event && event.preventDefault();
 
       $('#btn-send-mobilecode').addClass('disable');
 
     },
+    //关闭注册悬浮框
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
 
       $('.sf-b2c-mall-register').html('');
 
     },
+
+    //验证码框光标移上错误提示消失
+    '#input-mobile-code focus':function(ele,event){
+      event && event.preventDefault();
+
+      $('#mobileCodeErorTips').fadeOut(1000);
+
+    },
+
+    //密码框光标移上错误提示消失
+    '#input-user-password focus':function(ele,event){
+      event && event.preventDefault();
+
+      $('#pwdErrorTips').fadeOut(1000);
+
+    },
+    //checkbox是否选中
     '#ischecked change':function(ele,event){
       event && event.preventDefault();
 
-      if($(ele).attr('state') === 'false'){
+      if($(ele).attr('state') === 'true'){
 
         $(ele).attr('checked','checked');
         $('.btn-register').removeAttr('disabled');
 
-        $(ele).attr('state','true');
+        $(ele).attr('state','false');
         $('.btn-register').removeClass('disable');
 
       }else{
 
         $(ele).removeAttr('checked');
         $('.btn-register').attr('disabled','disabled');
-        $(ele).attr('state','false');
+        $(ele).attr('state','true');
         $('.btn-register').addClass('disable');
       }
     }
-
-
   })
 })
