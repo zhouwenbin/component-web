@@ -108,7 +108,7 @@ define('sf.b2c.mall.center.register',[
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);//验证码6位数字验证
       var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,18}$/.test(params.password);//密码正则验证
 
-      if(!params.mobileNum || !validateMobileNum){
+      if(!validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('您的手机号码输入有误');
       }
@@ -227,13 +227,12 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
       var mobileNum = $(ele).val();
+      var validateMobileNum = /^1\d{10}$/.test(mobileNum);//电话号码正则验证（以1开始，11位验证
 
       if(!mobileNum.length){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('请输入您的手机号码');
-      }
-
-      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
+      }else if(!validateMobileNum){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('您的手机号码输入有误');
       }
@@ -249,12 +248,6 @@ define('sf.b2c.mall.center.register',[
 
     },
 
-//    '#input-mobile-num keyup':function(ele,event){
-//      event && event.preventDefault();
-//
-//      $('#btn-send-mobilecode').addClass('disable');
-//
-//    },
     //关闭注册悬浮框
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
@@ -274,12 +267,21 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       $('#mobileCodeErorTips').fadeOut(1000);
-
     },
 
     //密码框光标移上错误提示消失
     '#input-user-password focus':function(ele,event){
       event && event.preventDefault();
+
+      var mobileCode = $('#input-mobile-code').val();
+      var validateMobileCode= /\d{6}$/.test(mobileCode);
+      if(!mobileCode.length){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('您输入的验证码有误');
+      }
 
       $('#pwdErrorTips').fadeOut(1000);
 
@@ -289,15 +291,12 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       if($(ele).attr('state') === 'true'){
-
         $(ele).attr('checked','checked');
         $('.btn-register').removeAttr('disabled');
-
         $(ele).attr('state','false');
         $('.btn-register').removeClass('disable');
 
       }else{
-
         $(ele).removeAttr('checked');
         $('.btn-register').attr('disabled','disabled');
         $(ele).attr('state','true');
