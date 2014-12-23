@@ -297,8 +297,8 @@ define('sf.b2c.mall.center.register',[
 
     },
     //checkbox是否选中
-    '#ischecked change':function(ele,event){
-      event && event.preventDefault();
+    '#ischecked click':function(ele,event){
+      // event && event.preventDefault();
 
       var ischecked = this.defaults.user.attr('ischecked');
       if (ischecked) {
@@ -315,8 +315,6 @@ define('sf.b2c.mall.center.register',[
 
       }
     }
-
-
 
     //   if($(ele).attr('state') === 'true'){
     //     $(ele).attr('checked','checked');
