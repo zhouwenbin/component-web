@@ -136,7 +136,7 @@ define('sf.b2c.mall.center.register',[
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
               var html = '<div class="register-h"><h2>抢先预约</h2><a href="#" class="btn btn-close">关闭</a></div>'+
               '<div class="register-b1"><span class="icon icon27"></span><h3>恭喜您预约成功!</h3><p>顺丰海淘即将正式开放，<br />'+
-              '届时使用手机号码<span>'+data.mobile+'</span>访问网站,抢购明星产品</p><a href="#" class="btn btn-register btn-send">确认</a></div>';
+              '届时使用手机号码<span>'+data.mobile+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
               sfb2cmallregister.html(html);
 
             }
@@ -179,6 +179,10 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       var that = this;
+      var wait = 60;//初始化倒计时时间
+
+      $(ele).attr('state','false');
+      this.countTime(ele,wait);
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -190,9 +194,7 @@ define('sf.b2c.mall.center.register',[
           .sendRequest()
           .done(function(data){
 
-            $(ele).attr('state','false');
-            var wait = 60;
-            that.countTime(ele,wait);
+
 
           })
           .fail(function(errorCode){
@@ -247,6 +249,12 @@ define('sf.b2c.mall.center.register',[
     },
     //关闭注册悬浮框
     '.btn-close click':function(ele,event){
+      event && event.preventDefault();
+
+      $('.sf-b2c-mall-register').html('');
+
+    },
+    '#btn-close-window click':function(ele,event){
       event && event.preventDefault();
 
       $('.sf-b2c-mall-register').html('');

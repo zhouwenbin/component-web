@@ -46,7 +46,6 @@ define([
 
     '.sf-in-order click':function(ele,event){
       event && event.preventDefault();
-      alert(1);
       this.component.register.paint();
     }
 
