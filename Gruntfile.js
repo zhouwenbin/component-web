@@ -217,7 +217,7 @@ module.exports = function (grunt) {
         dest: '<%= config.dist %>'
       },
       html: [
-        '<%= config.app %>/index.html',
+        // '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html'
       ]
     },
