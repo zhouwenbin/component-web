@@ -2,7 +2,7 @@
 <div class="mask"></div>
 <div class="register">
   <div class="register-h">
-    <h2>抢先预定</h2>
+    <h2>抢先预约</h2>
     <a href="#" class="btn btn-close">关闭</a>
   </div>
   <!--手机注册-->
@@ -16,21 +16,21 @@
       <li>
         <div class="clearfix">
             <input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1 fl" can-value="user.mobileCode" />
-            <button id="btn-send-mobilecode" state="true" class="btn btn-send disable fr" disabled="disabled">发送验证码</button>
+            <button id="btn-send-mobilecode" state="false" class="btn btn-send disable fr" disabled="disabled">发送验证码</button>
         </div>
         {{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
-        <input id="input-user-password" type="password" placeholder="6-18位字母、数字或标点符号" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
+        <input id="input-user-password" type="password" placeholder="设置6-18位字母、数字或标点符号的密码" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
       </li>
     </ol>
     <div class="register-br1">
-      <button class="btn btn-send btn-register disable" disabled="disabled">同意协议并注册</button>
+      <button class="btn btn-send btn-register">同意协议并注册</button>
     </div>
     <div class="register-br2 clearfix">
       <div class="register-br2c1 fl">
-        <label><input type="checkbox" state="false" id="ischecked" />我已阅读<a href="#" target="_blank">顺丰海淘注册协议</a></label>
+        <label><input type="checkbox" state="false" id="ischecked" checked="checked" />我已阅读<a href="#" target="_blank">顺丰海淘注册协议</a></label>
       </div>
     </div>
 

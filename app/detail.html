@@ -16,7 +16,11 @@
   <div class="pb">
     <div class="pm">
       <!--面包屑-->
-      <div class="sf-b2c-mall-product-breadcrumb"></div>
+      <div class="sf-b2c-mall-product-breadcrumb serverRendered">
+        <div class="crumbs">
+          <a href="index.html">首页</a><span>&gt;</span>222
+        </div>
+      </div>
       <!--面包屑-->
 
       <!--详情-->
@@ -24,14 +28,14 @@
         <div class="goods clearfix">
           <div class="goods-c1 fl" id="allSkuImages">
             <div class="goods-c1r1">
-              <img src="img/goods.jpg" alt="" /><span></span>
+              <a href="img/goods.jpg"><img src="img/goods.jpg" rel="img/goods.jpg" alt="" class="jqzoom"/></a><span></span>
             </div>
             <div class="goods-c1r2" id="itemImages">
               <ul class="clearfix">
-                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="img/goods.jpg" alt="" /></a><span></span></li>
-                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="img/goods1.jpg" alt="" /></a><span></span></li>
-                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="img/goods2.jpg" alt="" /></a><span></span></li>
-                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="img/goods3.jpg" alt="" /></a><span></span></li>
+                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href="img/goods.jpg"><img src="img/goods.jpg" alt="" /></a><span></span></li>
+                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href="img/goods1.jpg"><img src="img/goods1.jpg" alt="" /></a><span></span></li>
+                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href="img/goods2.jpg"><img src="img/goods2.jpg" alt="" /></a><span></span></li>
+                <li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href="img/goods3.jpg"><img src="img/goods3.jpg" alt="" /></a><span></span></li>
               </ul>
             </div>
           </div>
@@ -75,10 +79,6 @@
 
         <!--推荐商品-->
         <div class="recommend" id="recommend">
-          <h2>推荐商品</h2>
-          <ul class="clearfix" id = "recommendProdList">
-
-          </ul>
         </div>
         <!--推荐商品-->
 
@@ -159,7 +159,8 @@
 </body>
 
 <script src="bower_components/requirejs/require.js"></script>
-<script src="scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js"></script>
+<script src="scripts/base/sf.web.dev.ver.1.0.build.1419317076163.js"></script>
+<script src='scripts/vendor/vendor.jquery.imagezoom.min.js'></script>
 <script src="scripts/sf.b2c.mall.require.config.js"></script>
 <script src="scripts/page/sf.b2c.mall.page.detail.js"></script>
 

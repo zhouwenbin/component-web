@@ -19,24 +19,24 @@ module.exports = function (grunt) {
   // Configurable paths
   var base = {
     dev: {
-      dest: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js',
-      src: 'scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js'
+      dest: 'scripts/base/sf.web.dev.ver.1.0.build.1419317076163.js',
+      src: 'scripts/base/sf.web.dev.ver.1.0.build.1419317076163.js'
     },
     test: {
-      dest: 'scripts/base/sf.web.test.ver.1.0.build.1419060066296.js',
-      src: 'scripts/base/sf.web.test.ver.1.0.build.1419060066296.js'
+      dest: 'scripts/base/sf.web.test.ver.1.0.build.1419317083283.js',
+      src: 'scripts/base/sf.web.test.ver.1.0.build.1419317083283.js'
     },
     test2: {
-      dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js',
-      src: 'scripts/base/sf.web.test2.ver.1.0.build.1419056627463.js'
+      dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419317089607.js',
+      src: 'scripts/base/sf.web.test2.ver.1.0.build.1419317089607.js'
     },
     pre: {
-      dest: 'scripts/base/sf.web.pre.ver.1.0.build.1419060075425.js',
-      src: 'scripts/base/sf.web.pre.ver.1.0.build.1419060075425.js'
+      dest: 'scripts/base/sf.web.pre.ver.1.0.build.1419317096704.js',
+      src: 'scripts/base/sf.web.pre.ver.1.0.build.1419317096704.js'
     },
     prd: {
-      dest: 'scripts/base/sf.web.prd.ver.1.0.build.1419060082833.js',
-      src: 'scripts/base/sf.web.prd.ver.1.0.build.1419060082833.js'
+      dest: 'scripts/base/sf.web.prd.ver.1.0.build.1419317103951.js',
+      src: 'scripts/base/sf.web.prd.ver.1.0.build.1419317103951.js'
     }
   };
 
@@ -217,7 +217,7 @@ module.exports = function (grunt) {
         dest: '<%= config.dist %>'
       },
       html: [
-        '<%= config.app %>/index.html',
+        // '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html'
       ]
     },
