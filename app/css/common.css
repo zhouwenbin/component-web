@@ -23,8 +23,11 @@ img{vertical-align: middle;}
 .fl{float:left;}
 .fr{float:right;}
 .clearfix:before,
-.clearfix:after{content:'';display:table; clear:both;}
-.clearfix{*zoom:1;}
+.clearfix:after{content:'';display:table;}
+.clearfix:after{
+	clear:both;
+}
+.clearfix{zoom:1;}
 .visuallyhidden {
   clip: rect(0, 0, 0, 0);
   border: 0;

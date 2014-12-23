@@ -37,7 +37,8 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        ischecked: true
       });
 
       this.data = this.parse(this.defaults);
@@ -108,17 +109,27 @@ define('sf.b2c.mall.center.register',[
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);//验证码6位数字验证
       var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,18}$/.test(params.password);//密码正则验证
 
-      if(!params.mobileNum || !validateMobileNum){
+      if(!params.mobileNum){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('请输入您的手机号码');
+      }else if(!validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('您的手机号码输入有误');
       }
 
-      if(!params.mobileCode || !validateMobileCode){
+
+      if(!params.mobileCode){
+        $('#mobileCodeErorTips').show();
+        return this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
         $('#mobileCodeErorTips').show();
         return this.setMobileCodeError('您输入的验证码有误，请重新输入');
       }
 
-      if(!params.password || !validatePwd){
+      if(!params.password){
+        $('#pwdErrorTips').show();
+        return this.setPwdError('请设置登录密码');
+      }else if(!validatePwd){
         $('#pwdErrorTips').show();
         return this.setPwdError('密码请设置6-18位字母、数字或标点符号');
       }
@@ -144,11 +155,10 @@ define('sf.b2c.mall.center.register',[
             }
           })
           .fail(function(errorCode){
-            debugger;
             var map ={
               '1000020':'账户已注册',
               '1000240':'手机验证码错误',
-              '1000250':'手机验证码已过期'
+              '1000250':'手机验证码错误'
             };
             var errorText = map[errorCode].toString();
             if(errorText === "账户已注册"){
@@ -227,13 +237,12 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
       var mobileNum = $(ele).val();
+      var validateMobileNum = /^1\d{10}$/.test(mobileNum);//电话号码正则验证（以1开始，11位验证
 
       if(!mobileNum.length){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('请输入您的手机号码');
-      }
-
-      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
+      }else if(!validateMobileNum){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('您的手机号码输入有误');
       }
@@ -249,12 +258,6 @@ define('sf.b2c.mall.center.register',[
 
     },
 
-//    '#input-mobile-num keyup':function(ele,event){
-//      event && event.preventDefault();
-//
-//      $('#btn-send-mobilecode').addClass('disable');
-//
-//    },
     //关闭注册悬浮框
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
@@ -274,12 +277,21 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       $('#mobileCodeErorTips').fadeOut(1000);
-
     },
 
     //密码框光标移上错误提示消失
     '#input-user-password focus':function(ele,event){
       event && event.preventDefault();
+
+      var mobileCode = $('#input-mobile-code').val();
+      var validateMobileCode= /\d{6}$/.test(mobileCode);
+      if(!mobileCode.length){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('您输入的验证码有误');
+      }
 
       $('#pwdErrorTips').fadeOut(1000);
 
@@ -288,21 +300,36 @@ define('sf.b2c.mall.center.register',[
     '#ischecked change':function(ele,event){
       event && event.preventDefault();
 
-      if($(ele).attr('state') === 'true'){
+      var ischecked = this.defaults.user.attr('ischecked');
+      if (ischecked) {
 
-        $(ele).attr('checked','checked');
-        $('.btn-register').removeAttr('disabled');
-
+        // $(ele).attr('checked','checked');
+        $('.btn-register').removeAttr('disabled').removeClass('disable');
         $(ele).attr('state','false');
-        $('.btn-register').removeClass('disable');
 
       }else{
 
-        $(ele).removeAttr('checked');
-        $('.btn-register').attr('disabled','disabled');
+        // $(ele).removeAttr('checked');
+        $('.btn-register').attr('disabled','disabled').addClass('disable');
         $(ele).attr('state','true');
-        $('.btn-register').addClass('disable');
+
       }
     }
+
+
+
+    //   if($(ele).attr('state') === 'true'){
+    //     $(ele).attr('checked','checked');
+    //     $('.btn-register').removeAttr('disabled');
+    //     $(ele).attr('state','false');
+    //     $('.btn-register').removeClass('disable');
+
+    //   }else{
+    //     $(ele).removeAttr('checked');
+    //     $('.btn-register').attr('disabled','disabled');
+    //     $(ele).attr('state','true');
+    //     $('.btn-register').addClass('disable');
+    //   }
+    // }
   })
 })
