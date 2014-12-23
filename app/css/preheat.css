@@ -104,8 +104,10 @@
 	float: left;
 	padding: 20px;
 	background: #fff;
-	width: 338px;
+	width: 337px;
 	margin-left: 21px;
+	*margin-left: 14px;
+  border:1px solid #333;
 }
 .m3 .li2{
 	margin-top: 115px;
@@ -114,10 +116,14 @@
 }
 .m3 .mt{
 	text-align: center;
+	clear:both;
 }
 /*.m3 .mt a{*/
 	/*width: 378px;*/
 /*}*/
+.m3 .pm{
+	position: relative;
+}
 .m3 .mh{
 	color: #fff;
 	background: url(../img/hot/m3-mh.png) no-repeat;
@@ -125,9 +131,11 @@
 	height: 535px;
 	position: absolute;
 	text-align: center;
-	top: -123px;
+	top: -147px;
 	left: 50%;
 	margin-left: -267px;
+	-webkit-transform:translate3d(0,0,0);
+	transform:translate3d(0,0,0);
 }
 .m3 h2{
 	font-size: 30px;
