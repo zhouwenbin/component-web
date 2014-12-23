@@ -199,6 +199,12 @@
 .goods .s1{
 	margin-right: 15px;
 }
+.goods .icon26{
+	visibility: hidden;
+}
+.goods .btn{
+	margin: 0 3px;
+}
 /*推荐商品*/
 .recommend{
 	padding-bottom: 48px;
