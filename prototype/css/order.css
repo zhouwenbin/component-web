@@ -109,8 +109,6 @@
 }
 .order-b.active .order-r1{
 	display: block;
-	
-
 } 
 .order-b.active .btn-add{
 	display: inline-block;
@@ -167,8 +165,41 @@
 	margin-left: 15px;
 	display: none;
 }
-.order-r2 .btn-select{
-	
+.order-r2 .btn-select{	
+	background: url(../img/btn-select1.png) repeat-x;
+}
+.order-r2 .btn-select-num{
+	height: 39px;
+	line-height: 39px;
+}
+.order-r2 .btn-select ul{
+	top: 42px;
+}
+.order .icon26-1{
+	display: none;
+}
+
+.order-r3{
+	text-align: center;
+}
+.order-r3 h2{
+	margin-top: 64px;
+	margin-bottom: 49px;
+	font-size: 18px;
+	padding-left: 0;
+}
+.order-r3 .btn{
+	padding: 0;
+	width: 218px;
+	height: 64px;
+	line-height: 64px;
+	font-size: 18px;
+	margin: 0 7px;
+}
+.order-r3 .icon33,
+.order-r3 .icon32{
+	margin-top: 24px;
+	margin-bottom: -34px;
 }
 /*表格*/
 .table{
@@ -181,8 +212,9 @@
 	height: 58px;
 	line-height: 58px;
 	border-bottom: 1px solid #e6e5e5;
-	background: #f4f4f4;
+	background: #f4f4f4 url(../img/table-h.png) repeat-x;
 	border-radius: 4px 4px 0 0;
+	font-weight: bold;
 }
 .table-c1{
 	width: 710px;
