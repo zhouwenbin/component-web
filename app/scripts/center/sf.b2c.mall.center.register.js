@@ -43,6 +43,9 @@ define('sf.b2c.mall.center.register',[
 
       this.data = this.parse(this.defaults);
       this.render(this.data);
+      this.functionPlaceHolder(document.getElementById("input-mobile-num"));
+      this.functionPlaceHolder(document.getElementById("input-mobile-code"));
+      this.functionPlaceHolder(document.getElementById("input-user-password"));
     },
 
     render:function(data){
@@ -313,6 +316,28 @@ define('sf.b2c.mall.center.register',[
         $('.btn-register').attr('disabled','disabled').addClass('disable');
         $(ele).attr('state','true');
 
+      }
+    },
+    //ie7,8,9输入框默认值
+    functionPlaceHolder:function(element){
+      var placeholder = '';
+      if (element && !("placeholder" in document.createElement("input")) && (placeholder = element.getAttribute("placeholder"))) {
+        element.onfocus = function() {
+          if (this.value === placeholder) {
+            this.value = "";
+          }
+          this.style.color = '';
+        };
+        element.onblur = function() {
+          if (this.value === "") {
+            this.value = placeholder;
+          }
+        };
+
+        //样式初始化
+        if (element.value === "") {
+          element.value = placeholder;
+        }
       }
     }
 

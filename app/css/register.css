@@ -92,6 +92,11 @@
 .register .input1{
 	width: 130px;
 }
+
+#btn-send-mobilecode{
+  *+padding:0 10px;
+}
+
 .register .input2{
 	width: 126px;
 	margin-right: 5px;
