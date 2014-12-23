@@ -240,15 +240,22 @@ define('sf.b2c.mall.product.detailcontent', [
             if (that.interval) {
               clearInterval(that.interval);
             }
-            //设置倒计时
-            that.interval = setInterval(function() {
 
-              if (data.endTime - new Date().getTime() + distance <= 0) {
-                that.refreshPage();
-              } else {
-                that.setCountDown(that.options.detailContentInfo.priceInfo, distance, data.endTime);
-              }
-            }, '1000')
+            //设置倒计时
+            //如果当前时间活动已经结束了 就不要走倒计时设定了
+            if (data.endTime - new Date().getTime() + distance > 0) {
+              that.interval = setInterval(function() {
+
+                //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
+                if (data.endTime - new Date().getTime() + distance <= 0) {
+                  that.refreshPage();
+                } else {
+                  that.setCountDown(that.options.detailContentInfo.priceInfo, distance, data.endTime);
+                }
+              }, '1000')
+            } else{
+              that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+            }
 
             //渲染购买信息
             that.renderBuyInfo(that.options.detailContentInfo);
@@ -257,6 +264,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
       refreshPage: function() {
         this.gotoNewItem();
+        clearInterval(this.interval);
+        this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
       },
 
       /**
@@ -306,7 +315,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="u1">' +
           '{{#sf-is-limitedTimeBuy priceInfo.productShape}}' +
           '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
-          '<div class="u1-r1"><span class="icon icon4"></span>{{priceInfo.time}}</div>' +
+          '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
           '{{/sf-is-limitedTimeBuy}}' +
           '</div>' +
 
@@ -662,6 +671,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
         item.attr('time', day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
+        item.attr('timeIcon', "icon4");
       }
 
     });
