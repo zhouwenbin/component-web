@@ -20,14 +20,6 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
-        'sf-is-restriction': function(soldOut, accountRestriction, options) {
-          if (!soldOut && accountRestriction() > 0) {
-            return options.fn(options.contexts || this);
-          } else {
-            return options.inverse(options.contexts || this);
-          }
-        },
-
         'sf-is-limitedTimeBuy': function(productShape, options) {
           if (productShape() == 'LIMITEDTIMEBUY') {
             return options.fn(options.contexts || this);
@@ -126,9 +118,14 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染价格信息
         this.renderPriceInfo();
 
+        //渲染推荐商品信息
         this.renderRecommendProducts();
       },
 
+      /**
+       * [renderRecommendProducts 渲染推荐商品信息]
+       * @return {[type]}
+       */
       renderRecommendProducts: function() {
         var that = this;
 
@@ -259,7 +256,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       refreshPage: function() {
-        this.supplement();
+        this.gotoNewItem();
       },
 
       /**
