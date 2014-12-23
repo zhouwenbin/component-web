@@ -1,7 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
-  return new can.Map({
+  return can.Map({
 
     format: function(data) {
       var that = this;
