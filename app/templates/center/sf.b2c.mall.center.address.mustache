@@ -1,0 +1,73 @@
+<div class="order-table clearfix">
+  <table>
+    <col width="400">
+    <col width="78">
+    <col width="124">
+    <col width="117">
+    <col width="71">
+    <tbody>
+
+      <tr class="t-title">
+        <td>收货地址</td>
+        <td>收货人</td>
+        <td>手机</td>
+        <td>身份证</td>
+        <td style="border-right:none;">操作</td>
+      </tr>
+
+      {{#each addressList}}
+      <tr class="t-list">
+        <td>
+          <label>
+            <input type="radio" name="address" class="input-radio" can-value="input.addrId" value="{{addrId}}"/>
+            <span class="address">{{nationName}} {{provinceName}} {{cityName}} {{regionName}} {{detail}}</span>
+          </label>
+        </td>
+        <td>{{recName}}</td>
+        <td>{{mobile}}</td>
+        <td class="col4">{{#if credtImgUrl1}}<a target="_blank" href="{{sf-user-img credtImgUrl1}}">身份证1</a>{{else}}<span>待上传</span>{{/credtImgUrl1}}<span>/</span>{{#if credtImgUrl2}}<a target="_blank" href="{{sf-user-img credtImgUrl2}}">身份证2</a>{{else}}<span>待上传</span>{{/credtImgUrl2}}</td>
+        <td>
+          <a href="#" data-index="{{@index}}" class="center-address-modify">修改</a>
+          <a href="#" data-index="{{@index}}" class="center-address-delete">删除</a>
+        </td>
+      </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+
+  <div class="i-upload clearfix">
+    <div id="address-editor"></div>
+
+    <a href="javascript:;" id="center-add-address-btn" class="add-address" {{sf.untoggle isAdded}}>[新增收货地址]</a>
+  </div>
+
+  {{#if canViewInviteCodes}}
+  <div class="m-invite">
+      <h2>邀请码</h2>
+      <div class="mh">迎黑五，邀请好友一起来血拼！</div>
+      <div class="mb">
+          <div class="mr1">
+              <h3>我的邀请码</h3>
+              <ul class="clearfix">
+                  {{#each inviteCodes}}
+                  <li>
+                    <div>{{invitationCode}}</div>
+                    <!--a class="btn" href="">复制</a-->
+                  </li>
+                  {{/each}}
+              </ul>
+          </div>
+          <div class="mr2">
+              <h3>使用TIPS:</h3>
+              <ul>
+                  <li>1、复制邀请码，将邀请码和注册链接发送好友</li>
+                  <li>2、好友使用邀请码完成注册</li>
+                  <li>3、每个邀请码仅限使用一次</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  {{/if}}
+
+</div>

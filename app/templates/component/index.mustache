@@ -1,0 +1,772 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>顺丰海淘</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/favicon.ico"/>
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!--<link rel="stylesheet" href="styles/547f316b.sf.css">-->
+  <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+  <div id="content">
+    <div class="sf-b2c-mall-header"></div>
+    <div class="sf-b2c-mall-nav"></div>
+
+      <div class="sf-b2c-mall-banner-promise"></div>
+      <div class="sf-b2c-mall-component-category"></div>
+
+      <div class="sf-b2c-mall-component-slide"></div>
+
+      <div class="guarantee-wrap">
+        <ul class="guarantee">
+          <li class="list-item-01"><span></span></li>
+          <li class="list-item-02"><span></span></li>
+          <li class="list-item-03"><span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="index-bj">
+      <div class="index-main w990 clearfix">
+        <div class="content1 clearfix">
+          {{#HOT_1_1}}
+          <div class="content1-left fl">
+            <!--定位三角-->
+            <div class="sanjiao1">
+              <img src="images/s1.png"></div>
+
+            <div class="hid">
+              <div class="i1" style="background:#FE884B;">
+                <a href="" class="main-title">心动</a>
+                <a href="#" class="links2">低价商品</a>
+                <a href="{{link}}">
+                  <img src="{{imgURL}}"></a>
+              </div>
+              <div class="tag-show">
+                <span class="tag1" style="left: -20px;">{{displayName}}</span>
+                {{#productInfo}}
+                <span class="tag2" style="left: -20px; background: rgb(252, 142, 88);">到手价：￥{{price}}</span>
+                {{/productInfo}}
+              </div>
+            </div>
+          </div>
+          {{/HOT_1_1}}
+          <div class="fl content1-right fl" style="border-top:2px solid #FD874B;">
+            {{#HOT_1_2}}
+            <div class="content1-list fl clearfix">
+              <div class="img1">
+                <a href="{{link}}">
+                  <img src="{{imgURL}}"></a>
+              </div>
+              <div class="t2">
+                <span class="text1">
+                  <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                </span>
+                  {{#productInfo}}
+                      <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                          <s>￥{{listPrice}}</s>
+                      </div>
+                  {{/productInfo}}
+              </div>
+                {{#productInfo}}
+                    <div class="t3 clearfix">
+                        {{#seller}}
+                            <div class="t3-left fl">
+                                <a href="#">
+                                    <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                            </div>
+                            <div class="t3-right fr">
+                                <a href="#">
+                                    <img src="{{logoUrl}}"></a>
+                            </div>
+                        {{/seller}}
+                    </div>
+                {{/productInfo}}
+            </div>
+            {{/HOT_1_2}}
+          </div>
+        </div>
+        <div class="content1 clearfix">
+          {{#HOT_2_1}}
+          <div class="content1-left fl">
+
+            <div class="sanjiao1">
+              <img src="images/s2.png"></div>
+
+            <div class="hid">
+              <div class="i1" style="background:#63c1b9;">
+                <a href="" class="main-title">海外</a>
+                <a href="#" class="links2">新奇商品</a>
+                <a href="{{link}}">
+                  <img src="{{imgURL}}"></a>
+              </div>
+              <div class="tag-show">
+                <span class="tag1">{{displayName}}</span>
+                  {{#productInfo}}
+                <span class="tag2" style="background:#4DBAB1;">到手价：￥{{price}}</span>
+                  {{/productInfo}}
+              </div>
+            </div>
+          </div>
+          {{/HOT_2_1}}
+          <div class="fl content1-right fl" style="border-top:2px solid #63C1B9;">
+            <div class="content2-slide bd clearfix">
+              <div class="tempWrap" style="overflow:hidden; position:relative; width:800px">
+                <ul style="width: 1600px; left: 0px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
+                  {{#HOT_2_2}}
+                  <li style="float: left; width: 200px;">
+                    <div class="content1-list fl clearfix">
+                      <div class="img1">
+                        <a href="{{link}}">
+                          <img src="{{imgURL}}"></a>
+                      </div>
+                      <div class="t2">
+                        <span class="text1">
+                          <a href="{{link}}">{{displayName}}</a>
+                        </span>
+                          {{#productInfo}}
+                              <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                                  <s>￥{{listPrice}}</s>
+                              </div>
+                          {{/productInfo}}
+                      </div>
+                        {{#productInfo}}
+                            <div class="t3 clearfix">
+                                {{#seller}}
+                                    <div class="t3-left fl">
+                                        <a href="#">
+                                            <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                    </div>
+                                    <div class="t3-right fr">
+                                        <a href="#">
+                                            <img src="{{logoUrl}}"></a>
+                                    </div>
+                                {{/seller}}
+                            </div>
+                        {{/productInfo}}
+                    </div>
+                  </li>
+                  {{/HOT_2_2}}
+                </ul>
+              </div>
+            </div>
+            <a class="next"></a>
+            <a class="prev"></a>
+          </div>
+        </div>
+
+        <div class="content1 clearfix">
+
+          <div class="content1-left fl">
+            <div class="sanjiao1">
+              <img src="images/s3.png"></div>
+            <div class="hid">
+              <div style="background:#74a6de;" class="i1 i2">
+                <a class="main-title" href="">母婴</a>
+                <a class="links2" href="#">用品专区</a>
+                <a href="#">
+                  <img src="images/20141104_03.jpg"></a>
+              </div>
+            </div>
+            <div class="content1-tags clearfix">
+              <div>
+                <a href="/search.html?q=爱他美Aptamil">爱他美Aptamil</a>
+                <a href="/search.html?q=雅培Similac">雅培Similac</a>
+                <a href="/search.html?q=花王Merries">花王Merries</a>
+                <a href="/search.html?q=加州宝宝CaliforniaBaby">加州宝宝CaliforniaBaby</a>
+                <a href="/search.html?q=新安怡AVENT">新安怡AVENT</a>
+                <a href="/search.html?q=小蜜蜂burt's bees">小蜜蜂burt's bees</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:2px solid #73A6DF; height:558px; padding:0px;" class="fl content1-right fl">
+            <div class="content3-tops clearfix">
+              {{#CHANNEL_1_1}}
+              <div class="c3-top-left fl">
+                <div class="c3-m clearfix">
+                  <div class="title1">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                  </div>
+                  <div class="t4">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{subname}}</a>
+                  </div>
+
+                    {{#productInfo}}
+                        <div class="c3-ts clearfix">
+
+                            <s>￥{{listPrice}}</s>
+                            <div class="t6">￥{{price}}</div>
+                            {{#seller}}
+                                <div class="c3-bottom clearfix">
+                                    <div class="t3-left fl">
+                                        <a href="#">
+                                            <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                    </div>
+                                    <div class="t3-right fr">
+                                        <a href="#" class="main-goods-img">
+                                            <img src="{{logoUrl}}"></a>
+                                    </div>
+                                </div>
+                            {{/seller}}
+                        </div>
+                    {{/productInfo}}
+                </div>
+                <div class="c3-img clearfix">
+                  <a href="{{link}}">
+                    <img src="{{imgURL}}"></a>
+                </div>
+              </div>
+              {{/CHANNEL_1_1}}
+              <div class="c3-right fl">
+                {{#CHANNEL_1_2}}
+                <div class="fl c3-list">
+                  <div style="padding-bottom:0px;" class="img1 img2">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                  <div class="t2">
+                    <span class="text1">
+                      <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                    </span>
+                      {{#productInfo}}
+                          <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                              <s>￥{{listPrice}}</s>
+                          </div>
+                      {{/productInfo}}
+                  </div>
+                    {{#productInfo}}
+                        <div style="padding-top:5px;" class="t3 clearfix">
+                            {{#seller}}
+                                <div class="t3-left fl">
+                                    <a href="#">
+                                        <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                </div>
+                                <div class="t3-right fr">
+                                    <a href="#">
+                                        <img src="{{logoUrl}}"></a>
+                                </div>
+                            {{/seller}}
+                        </div>
+                    {{/productInfo}}
+                </div>
+                {{/CHANNEL_1_2}}
+              </div>
+            </div>
+            <div class="c3-bottoms clearfix">
+              {{#CHANNEL_1_3}}
+              <div class="c3-list2 fl">
+                <div class="c3-bt-tops clearfix">
+                  <div class="c3-l fl">
+                    <div class="t2">
+                      <span class="text1">
+                        <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                      </span>
+                        {{#productInfo}}
+                            <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                                <s>￥{{listPrice}}</s>
+                            </div>
+                        {{/productInfo}}
+                    </div>
+                  </div>
+                  <div class="c3-r fr">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                </div>
+                  {{#productInfo}}
+                      <div class="t3 clearfix">
+                          {{#seller}}
+                              <div class="t3-left fl">
+                                  <a href="#">
+                                      <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                              </div>
+                              <div class="t3-right fr">
+                                  <a href="#">
+                                      <img src="{{logoUrl}}"></a>
+                              </div>
+                          {{/seller}}
+                      </div>
+                  {{/productInfo}}
+              </div>
+              {{/CHANNEL_1_3}}
+            </div>
+          </div>
+        </div>
+        <div class="content1 clearfix">
+          <div class="content1-left fl">
+            <div class="sanjiao1">
+              <img src="images/s4.png"></div>
+            <div class="hid">
+              <div style="background:#ddc79a;" class="i1 i2">
+                <a class="main-title" href="" style="font-size: 36px;">服饰鞋包</a>
+                <a class="links2" href="#" style="text-align: left;padding-left: 25px;">用品专区</a>
+                <a href="#">
+                  <img src="images/20141104_04.jpg"></a>
+              </div>
+            </div>
+            <div class="content1-tags clearfix">
+              <div>
+                <a href="/search.html?q=CK Calvin Klein">CK Calvin Klein</a>
+                <a href="/search.html?q=蔻驰COACH">蔻驰COACH</a>
+                <a href="/search.html?q=李维斯Levi's">李维斯Levi's</a>
+                <a href="/search.html?q=新百伦New Balance">新百伦New Balance</a>
+                <a href="/search.html?q=爱步ECCO">爱步ECCO</a>
+                <a href="/search.html?q=玖熙NINE WEST">玖熙NINE WEST</a>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:2px solid #ddc79a; height:558px; padding:0px;" class="fl content1-right fl">
+            <div class="content3-tops clearfix">
+              {{#CHANNEL_2_1}}
+              <div class="c3-top-left fl">
+                <div class="c3-m clearfix">
+                  <div class="title1">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                  </div>
+                  <div class="t4">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{subname}}</a>
+                  </div>
+
+                    {{#productInfo}}
+                        <div class="c3-ts clearfix">
+
+                            <s>￥{{listPrice}}</s>
+                            <div class="t6">￥{{price}}</div>
+                            {{#seller}}
+                                <div class="c3-bottom clearfix">
+                                    <div class="t3-left fl">
+                                        <a href="#">
+                                            <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                    </div>
+                                    <div class="t3-right fr">
+                                        <a href="#" class="main-goods-img">
+                                            <img src="{{logoUrl}}"></a>
+                                    </div>
+                                </div>
+                            {{/seller}}
+                        </div>
+                    {{/productInfo}}
+                </div>
+                <div class="c3-img clearfix">
+                  <a href="{{link}}">
+                    <img src="{{imgURL}}"></a>
+                </div>
+              </div>
+              {{/CHANNEL_2_1}}
+              <div class="c3-right fl">
+                {{#CHANNEL_2_2}}
+                <div class="fl c3-list">
+                  <div style="padding-bottom:0px;" class="img1 img2">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                  <div class="t2">
+                    <span class="text1">
+                      <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                    </span>
+                      {{#productInfo}}
+                          <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                              <s>￥{{listPrice}}</s>
+                          </div>
+                      {{/productInfo}}
+                  </div>
+                    {{#productInfo}}
+                        <div style="padding-top:5px;" class="t3 clearfix">
+                            {{#seller}}
+                                <div class="t3-left fl">
+                                    <a href="#">
+                                        <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                </div>
+                                <div class="t3-right fr">
+                                    <a href="#">
+                                        <img src="{{logoUrl}}"></a>
+                                </div>
+                            {{/seller}}
+                        </div>
+                    {{/productInfo}}
+                </div>
+                {{/CHANNEL_2_2}}
+              </div>
+            </div>
+            <div class="c3-bottoms clearfix">
+              {{#CHANNEL_2_3}}
+              <div class="c3-list2 fl">
+                <div class="c3-bt-tops clearfix">
+                  <div class="c3-l fl">
+                    <div class="t2">
+                      <span class="text1">
+                        <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                      </span>
+              {{#productInfo}}
+                      <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                        <s>￥{{listPrice}}</s>
+                      </div>
+                  {{/productInfo}}
+                    </div>
+                  </div>
+                  <div class="c3-r fr">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                </div>
+                  {{#productInfo}}
+                      <div class="t3 clearfix">
+                          {{#seller}}
+                              <div class="t3-left fl">
+                                  <a href="#">
+                                      <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                              </div>
+                              <div class="t3-right fr">
+                                  <a href="#">
+                                      <img src="{{logoUrl}}"></a>
+                              </div>
+                          {{/seller}}
+                      </div>
+                  {{/productInfo}}
+              </div>
+              {{/CHANNEL_2_3}}
+            </div>
+          </div>
+        </div>
+        <div class="content1 clearfix">
+          <div class="content1-left fl">
+            <div class="sanjiao1">
+              <img src="images/s5.png"></div>
+            <div class="hid">
+              <div style="background:#cfffbf;" class="i1 i2">
+                <a class="main-title" href="" style="font-size: 36px;">食品保健</a>
+                <a class="links2" href="#" style="text-align: left;padding-left: 25px;">用品专区</a>
+                <a href="#">
+                  <img src="images/20141104_05.jpg"></a>
+              </div>
+            </div>
+            <div class="content1-tags clearfix">
+              <div>
+                <a href="/search.html?q=健安喜GNC">健安喜GNC</a>
+                <a href="/search.html?q=Comvita康维他">Comvita康维他</a>
+                <a href="/search.html?q=莱萃美Nature Made">莱萃美Nature Made</a>
+                <a href="/search.html?q=Now Foods">Now Foods</a>
+                <a href="/search.html?q=欧姆龙Omron">欧姆龙Omron</a>
+                <a href="/search.html?q=自然之宝Nature's Bounty">自然之宝Nature's Bounty</a>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:2px solid #cfffbf; height:558px; padding:0px;" class="fl content1-right fl">
+            <div class="content3-tops clearfix">
+              {{#CHANNEL_3_1}}
+              <div class="c3-top-left fl">
+                <div class="c3-m clearfix">
+                  <div class="title1">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                  </div>
+                  <div class="t4">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{subname}}</a>
+                  </div>
+
+                    {{#productInfo}}
+                  <div class="c3-ts clearfix">
+
+                    <s>￥{{listPrice}}</s>
+                    <div class="t6">￥{{price}}</div>
+                      {{#seller}}
+                    <div class="c3-bottom clearfix">
+                      <div class="t3-left fl">
+                        <a href="#">
+                          <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                      </div>
+                      <div class="t3-right fr">
+                        <a href="#" class="main-goods-img">
+                          <img src="{{logoUrl}}"></a>
+                      </div>
+                    </div>
+                      {{/seller}}
+                  </div>
+                    {{/productInfo}}
+                </div>
+                <div class="c3-img clearfix">
+                  <a href="{{link}}">
+                    <img src="{{imgURL}}"></a>
+                </div>
+              </div>
+              {{/CHANNEL_3_1}}
+              <div class="c3-right fl">
+                {{#CHANNEL_3_2}}
+                <div class="fl c3-list">
+                  <div style="padding-bottom:0px;" class="img1 img2">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                  <div class="t2">
+                    <span class="text1">
+                      <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                    </span>
+                {{#productInfo}}
+                    <div class="text2">
+                      <span>
+                        到手价：￥
+                        <font>{{price}}</font>
+                      </span>
+                      <s>￥{{listPrice}}</s>
+                    </div>
+                    {{/productInfo}}
+                  </div>
+                    {{#productInfo}}
+                        <div style="padding-top:5px;" class="t3 clearfix">
+                            {{#seller}}
+                                <div class="t3-left fl">
+                                    <a href="#">
+                                        <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                                </div>
+                                <div class="t3-right fr">
+                                    <a href="#">
+                                        <img src="{{logoUrl}}"></a>
+                                </div>
+                            {{/seller}}
+                        </div>
+                    {{/productInfo}}
+                </div>
+                {{/CHANNEL_3_2}}
+              </div>
+            </div>
+            <div class="c3-bottoms clearfix">
+              {{#CHANNEL_3_3}}
+              <div class="c3-list2 fl">
+                <div class="c3-bt-tops clearfix">
+                  <div class="c3-l fl">
+                    <div class="t2">
+                      <span class="text1">
+                        <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                      </span>
+              {{#productInfo}}
+                      <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                        <s>￥{{listPrice}}</s>
+                      </div>
+              {{/productInfo}}
+                    </div>
+                  </div>
+                  <div class="c3-r fr">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                </div>
+              {{#productInfo}}
+                <div class="t3 clearfix">
+                {{#seller}}
+                  <div class="t3-left fl">
+                    <a href="#">
+                      <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                  </div>
+                  <div class="t3-right fr">
+                    <a href="#">
+                      <img src="{{logoUrl}}"></a>
+                  </div>
+                    {{/seller}}
+                </div>
+                  {{/productInfo}}
+              </div>
+              {{/CHANNEL_3_3}}
+            </div>
+          </div>
+        </div>
+        <div class="content1 clearfix">
+          <div class="content1-left fl">
+            <div class="sanjiao1">
+              <img src="images/s6.png"></div>
+            <div class="hid">
+              <div style="background:#ffbfbf;" class="i1 i2">
+                <a class="main-title" href="" style="font-size: 36px;">美容护肤</a>
+                <a class="links2" href="#" style="text-align: left;padding-left: 25px;">用品专区</a>
+                <a href="#">
+                  <img src="images/20141104_06.jpg"></a>
+              </div>
+            </div>
+            <div class="content1-tags clearfix">
+              <div>
+                <a href="/search.html?q=科颜氏Kiehl’s">科颜氏Kiehl’s</a>
+                <a href="/search.html?q=倩碧Clinique">倩碧Clinique</a>
+                <a href="/search.html?q=雅诗兰黛Estee Lauder">雅诗兰黛Estee Lauder</a>
+                <a href="/search.html?q=兰蔻Lancome">兰蔻Lancome</a>
+                <a href="/search.html?q=海蓝之谜LAMER">海蓝之谜LAMER</a>
+                <a href="/search.html?q=雅漾Eau Thermale Avene">雅漾Eau Thermale Avene</a>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:2px solid #ffbfbf; height:558px; padding:0px;" class="fl content1-right fl">
+            <div class="content3-tops clearfix">
+              {{#CHANNEL_4_1}}
+              <div class="c3-top-left fl">
+                <div class="c3-m clearfix">
+                  <div class="title1">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                  </div>
+                  <div class="t4">
+                    <a href="{{link}}" style="color: rgb(102, 102, 102);">{{subname}}</a>
+                  </div>
+
+              {{#productInfo}}
+                  <div class="c3-ts clearfix">
+
+                    <s>￥{{listPrice}}</s>
+                    <div class="t6">￥{{price}}</div>
+                  {{#seller}}
+                    <div class="c3-bottom clearfix">
+                      <div class="t3-left fl">
+                        <a href="#">
+                          <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                      </div>
+                      <div class="t3-right fr">
+                        <a href="#" class="main-goods-img">
+                          <img src="{{logoUrl}}"></a>
+                      </div>
+                    </div>
+                      {{/seller}}
+                  </div>
+              {{/productInfo}}
+                </div>
+                <div class="c3-img clearfix">
+                  <a href="{{link}}">
+                    <img src="{{imgURL}}"></a>
+                </div>
+              </div>
+              {{/CHANNEL_4_1}}
+              <div class="c3-right fl">
+                {{#CHANNEL_4_2}}
+                <div class="fl c3-list">
+                  <div style="padding-bottom:0px;" class="img1 img2">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                  <div class="t2">
+                    <span class="text1">
+                      <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                    </span>
+                {{#productInfo}}
+                    <div class="text2">
+                      <span>
+                        到手价：￥
+                        <font>{{productInfo.price}}</font>
+                      </span>
+                      <s>￥{{productInfo.listPrice}}</s>
+                    </div>
+                {{/productInfo}}
+                  </div>
+                    {{#productInfo}}
+                  <div style="padding-top:5px;" class="t3 clearfix">
+                    {{#seller}}
+                    <div class="t3-left fl">
+                      <a href="#">
+                        <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                    </div>
+                    <div class="t3-right fr">
+                      <a href="#">
+                        <img src="{{logoUrl}}"></a>
+                    </div>
+                    {{/seller}}
+                  </div>
+                    {{/productInfo}}
+                </div>
+                {{/CHANNEL_4_2}}
+              </div>
+            </div>
+            <div class="c3-bottoms clearfix">
+              {{#CHANNEL_4_3}}
+              <div class="c3-list2 fl">
+                <div class="c3-bt-tops clearfix">
+                  <div class="c3-l fl">
+                    <div class="t2">
+                      <span class="text1">
+                        <a href="{{link}}" style="color: rgb(102, 102, 102);">{{displayName}}</a>
+                      </span>
+                       {{#productInfo}}
+                      <div class="text2">
+                        <span>
+                          到手价：￥
+                          <font>{{price}}</font>
+                        </span>
+                        <s>￥{{listPrice}}</s>
+                      </div>
+                       {{/productInfo}}
+                    </div>
+                  </div>
+                  <div class="c3-r fr">
+                    <a href="{{link}}">
+                      <img src="{{imgURL}}"></a>
+                  </div>
+                </div>
+                  {{#productInfo}}
+                <div class="t3 clearfix">
+                    {{#seller}}
+                  <div class="t3-left fl">
+                    <a href="#">
+                      <img src="{{nationLogoUrl}}">{{nationName}}</a>
+                  </div>
+                  <div class="t3-right fr">
+                    <a href="#">
+                      <img src="{{logoUrl}}"></a>
+                  </div>
+                    {{/seller}}
+                </div>
+                  {{/productInfo}}
+              </div>
+
+              {{/CHANNEL_4_3}}
+            </div>
+          </div>
+        </div>
+
+        <div class="liucheng">
+          <img src="images/bj5.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf-b2c-mall-footer"></div>
+</div>
+
+<script src="scripts/a81c150b.vendor.js"></script>
+<script src="scripts/ea2afce7.sf.b2c.mall.vendor.js"></script>
+<script src="scripts/8db0ceef.sf.b2c.mall.base.js"></script>
+<script src="scripts/e0e5c6cd.sf.b2c.mall.model.js"></script>
+<script src="scripts/66e78e51.sf.b2c.mall.adapter.js"></script>
+<script src="scripts/a0ffd5cf.sf.b2c.mall.component.js"></script>
+<script src="scripts/01f8c3db.sf.b2c.mall.product.js"></script>
+<script src="scripts/1ecfc4b5.sf.b2c.mall.page.main.js"></script>
+
+</body>
+</html>
+
+

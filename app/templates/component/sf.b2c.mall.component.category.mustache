@@ -1,0 +1,57 @@
+<div class="banner-left fl">
+  <div id="nav">
+    <div class="area clearfix">
+      <div class="separate"></div>
+      <div class="category-content content-l-nav">
+        <div>
+          <a href="/"><span class="all-goods">全部海淘商品</span></a>
+        </div>
+        <div class="category">
+          <ul class="category-list">
+            {{#each children}}
+              <li class="js_toggle">
+
+                <div class="category-info {{classname}}">
+                  <h3 class="category-name">
+                    <i></i>
+                    {{!暂时没有频道}}
+                    <a href="/list.html?cid={{categoryInfo.categoryId}}" class="ml-22">{{categoryInfo.catagoryName}}</a>
+                  </h3>
+                  <p class="c-category-list">
+                    {{#limit children 4}}
+
+                    {{#items}}
+                    {{!暂时没有频道}}
+                    <a href="/list.html?cid={{id}}">{{name}}</a>
+                    {{/items}}
+
+                    {{/limit}}
+                  </p>
+                  <em>&gt;</em>
+                </div>
+
+                <!-- hover之后出现的sub menu list -->
+                <div class="menu-item menu-in" style="top:0px !important;">
+                  <div class="area-bg">
+                    <ul class="sublist clearfix">
+                      {{#each children}}
+                      <li>
+                        <h3 class="mcate-item-hd"><span>{{categoryInfo.catagoryName}}</span></h3>
+                        <p class="mcate-item-bd">
+                          {{#each children}}
+                          <a href="/list.html?cid={{categoryInfo.categoryId}}">{{categoryInfo.catagoryName}}</a>
+                          {{/each}}
+                        </p>
+                      </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

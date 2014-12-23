@@ -1,0 +1,16 @@
+{
+  "name": "haitao-web-baseline",
+  "private": true,
+  "dependencies": {
+    "chai": "~1.8.0",
+    "mocha": "~1.14.0",
+    "requirejs": "~2.1.15",
+    "blueimp-md5": "~1.1.0",
+    "canjs": "~2.1.4",
+    "jquery": "~2.1.1",
+    "jquery.cookie": "~1.4.1",
+    "underscore": "~1.7.0",
+    "underscore.string": "~2.4.0"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,36 @@
+{
+  "list": [{
+    "name": "Minnetonka 迷你唐卡 2013新款半豹纹 豆豆单鞋",
+    "attrs": [{
+      "name": "颜色",
+      "value": "蓝色"
+    }, {
+      "name": "尺码",
+      "value": "美国6/中国37"
+    }],
+    "imgUrl": "images/img19.jpg",
+    "country": "美国",
+    "num":2,
+    "limit": 6,
+    "price": 38,
+    "originalPrice": 400,
+    "postageEach": 30,
+    "countryImgUrl": "images/ico10.png"
+  },{
+    "name": "Minnetonka 迷你唐卡 2013新款半豹纹 豆豆单鞋",
+    "attrs": [{
+      "name": "颜色",
+      "value": "蓝色"
+    }, {
+      "name": "尺码",
+      "value": "美国6/中国37"
+    }],
+    "imgUrl": "images/img19.jpg",
+    "country": "美国",
+    "num":3,
+    "limit": 5,
+    "price": 38,
+    "originalPrice": 400,
+    "countryImgUrl": "images/ico10.png"
+  }]
+}

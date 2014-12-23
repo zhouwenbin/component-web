@@ -1,0 +1,73 @@
+<div class="tops clearfix">
+  <div class="w990 clearfix">
+    <div class="logo fl sfht-logo">
+      <h1>
+        <a href="index.html" class="logo-bd fl"><img src="images/sf_logo.png"></a>
+        <a href="index.html" class="sub-logo fl"><img src="images/sub-logo.png" alt=""/></a>
+      </h1>
+    </div>
+    <div class="fl top-form">
+      <div class="top-forms clearfix">
+        <form>
+          <!-- <input type="text" class="input-text fl" value="" placeholder="淘遍全球"> -->
+          <input type="text" class="input-text fl" value="">
+          <input type="submit" class="input-submit fl" value="搜索" id="sf-b2c-mall-nav-search">
+        </form>
+      </div>
+      <div class="form-hot clearfix">
+        <span>热门搜索：</span>
+        {{#each keywords}}
+        <a href="{{link}}">{{name}}</a><span>|</span>
+        {{/each}}
+      </div>
+    </div>
+<!--   <div class="Shopping-Cart fr">
+    <div class="shop-tops clearfix">
+    <a class="go-to-shopping-car" href="#">购物车</a>
+    {{#shopping.num}}<div class="shop-Number">{{shopping.num}}</div>{{/shopping.num}}
+    </div>
+    <div class="shop-bottom">
+    {{^if shopping.num}}
+    <div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>
+    {{/shopping.num}}
+    {{#if shopping.num}}
+    <div id="settleup-content">
+      <div class="smt">
+      <h4 class="fl">最新加入的商品</h4>
+      </div>
+      <div class="smc">
+      <ul id="mcart-sigle">
+        {{#each shopping.products}}
+        <li>
+        <div class="p-img fl">
+          <a href="/detail.html?sku={{skuId}}" target="_blank">
+            {{#sf.contain.img img}}<img src="{{sf.img img}}" alt="">{{/sf.contain.img}}
+          </a>
+        </div>
+        <div class="p-name fl">
+          <a href="/detail.html?sku={{skuId}}" target="_blank">{{name}}</a>
+        </div>
+        <div class="p-detail fr ar">
+          <span class="p-price">
+          <strong>{{sf.price price}}</strong>×{{num}}
+          </span>
+          <br>
+          <a class="delete shopcar-delete" data-index="{{@index}}" href="#">删除</a>
+        </div>
+        </li>
+        {{/each}}
+      </ul>
+      <ul id="mcart-gift"></ul>
+      </div>
+      <div class="smb ar">
+      共<b>{{shopping.num}}</b>件商品　
+      共计<strong>￥ {{!shopping.calculate}}</strong>
+      <br>
+      <a target="_blank" href="/shopping.html" title="去购物车结算" id="btn-payforgoods">去购物车结算</a>
+      </div>
+    </div>
+    {{/shopping.num}}
+    </div>
+  </div> -->
+  </div>
+</div>

@@ -1,0 +1,129 @@
+{{#orders}}
+
+{{#sf-status-check 'PAY' orderStatus}}
+<div class="order-listmain clearfix" style="border-bottom:none;">
+  <div class="d-formtop clearfix">
+    <div>
+      <table>
+        <col width="90">
+        <col width="144">
+        <col width="144">
+        <col width="90">
+        <col width="128">
+        <col width="36">
+        <col width="90">
+        <tbody>
+          <tr>
+            <td>{{orderId}}</td>
+            <td>{{sf.time gmtCreate}}</td>
+            <td>
+              ￥{{sf.price payPrice}}
+              {{#sf-should-show-refund orderStatus}}<br>（退款：￥{{sf.price refundPrice}}）{{/sf-should-show-refund}}
+            </td>
+            <td><b>{{sf.pay.status orderStatus}}</b></td>
+            <td align="center">
+              <a href="#" class="btn01 center-buy" {{data 'order'}}>
+                立即付款
+                <form method="post" class="pay-form" style="display:none;"></form>
+              </a>
+            </td>
+            <td align="center"><a href="#" class="btn02 center-buy-cancel" {{data 'order'}}>取消</a></td>
+            <td align="center"><a href="/center.order.detail.html?orderId={{orderId}}" class="btn01">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{/sf-status-check}}
+
+{{#sf-status-check 'CUSTOM' orderStatus}}
+<div class="order-listmain clearfix" style="border-bottom:none;">
+  <div class="d-formtop clearfix">
+    <div>
+      <table>
+        <col width="90">
+        <col width="144">
+        <col width="144">
+        <col width="254">
+        <col width="90">
+        <tbody>
+          <tr>
+            <td>{{orderId}}</td>
+            <td>{{sf.time gmtCreate}}</td>
+            <td>￥{{sf.price payPrice}}
+              {{#sf-should-show-refund orderStatus}}<br>（退款：￥{{sf.price refundPrice}}）{{/sf-should-show-refund}}
+            </td>
+            <td><b>{{sf.pay.status orderStatus}}</b></td>
+            <!-- <td align="center"><a href="#" class="btn02">联系客服</a></td> -->
+            <td align="center"><a href="/center.order.detail.html?orderId={{orderId}}" class="btn01">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{/sf-status-check}}
+
+{{#sf-status-check 'RECEIVED' orderStatus}}
+<div class="order-listmain clearfix" style="border-bottom:none;">
+  <div class="d-formtop clearfix">
+    <div>
+      <table>
+        <col width="90">
+        <col width="144">
+        <col width="144">
+        <col width="90">
+        <col width="164">
+        <col width="90">
+        <tbody>
+          <tr>
+            <td>{{orderId}}</td>
+            <td>{{sf.time gmtCreate}}</td>
+            <td>￥{{sf.price payPrice}}
+            {{#sf-should-show-refund orderStatus}}<br>（退款：￥{{sf.price refundPrice}}）{{/sf-should-show-refund}}</td>
+            <td>
+              <b>{{sf.pay.status orderStatus}}</b>
+            </td>
+            <td align="center">
+              <!-- <a href="#" class="btn01 btnshow1 center-confirm" style="background:url(images/btn03.png) no-repeat;" {{data 'order'}}>确认收货</a>-->
+            </td>
+            <!-- <td align="center"><a href="#" class="btn02">联系客服</a></td> -->
+            <td align="center"><a href="/center.order.detail.html?orderId={{orderId}}" class="btn01">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{/sf-status-check}}
+
+{{#sf-status-check 'COMMIT' orderStatus}}
+<div class="order-listmain clearfix" style="border-bottom:none;">
+  <div class="d-formtop clearfix">
+    <div>
+      <table>
+        <col width="90">
+        <col width="144">
+        <col width="144">
+        <col width="254">
+        <col width="90">
+        <tbody>
+          <tr>
+            <td>{{orderId}}</td>
+            <td>{{sf.time gmtCreate}}</td>
+            <td>￥{{sf.price payPrice}}
+              {{#sf-should-show-refund orderStatus}}<br>（退款：￥{{sf.price refundPrice}}）{{/sf-should-show-refund}}
+            </td>
+            <td><b>{{sf.pay.status orderStatus}}</b></td>
+            <!-- <td align="center"><a href="#" class="btn02">联系客服</a></td> -->
+            <td align="center"><a href="/center.order.detail.html?orderId={{orderId}}" class="btn01">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{/sf-status-check}}
+
+{{/orders}}

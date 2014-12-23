@@ -1,0 +1,54 @@
+{{#each hotList}}
+<div class="content1 clearfix">
+  <div class="content1-left fl">
+    <!--定位三角-->
+    <div class="sanjiao1">
+      <img src="{{recommended.corner}}" />
+    </div>
+    <!--定位三角-->
+    <div class="hid">
+      <div class="i1" style="background:url({{recommended.backgroundUrl}}) no-repeat;">
+        <a href="#" class="links2">{{recommended.category}}</a>
+        <a href="#"><img src="{{recommended.imgUrl}}" /></a>
+      </div>
+      <div class="tag-show">
+        <span class="tag1">{{recommended.name}}</span>
+        <span class="tag2" style="background:{{color}};">{{recommended.buyType}}：￥{{sf.price recommended.price}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fl content1-right fl" style="border-top:2px solid {{color}};">
+    <div class="content2-slide bd clearfix">
+      <ul>
+        {{#each products}}
+        <li>
+          <div class="content1-list fl clearfix">
+            <div class="img1">
+              <a href="{{link}}"><img src="{{imgUrl}}" /></a>
+            </div>
+            <div class="t2">
+              <span class="text1"><a href="#">{{name}}</a></span>
+              <div class="text2">
+                <span>{{buyType}}：￥<font>{{sf.price price}}</font></span>
+                <s>￥{{sf.price originalPrice}}</s>
+              </div>
+            </div>
+            <div class="t3 clearfix">
+              <div class="t3-left fl">
+                <a href="#"><img src="{{countryImgUrl}}" />{{country}}</a>
+              </div>
+              <div class="t3-right fr">
+                <a href="#"><img src="{{shopImgUrl}}" /></a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <a class="next"></a>
+    <a class="prev"></a>
+  </div>
+</div>
+{{/each}}

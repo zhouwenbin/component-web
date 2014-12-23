@@ -1,0 +1,208 @@
+#define($_content)
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="$!description">
+    <meta name="keywords" content="$!keywords">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>顺丰海淘</title>
+  $!{_const_detailCss}
+</head>
+<body>
+<!--头部-->
+<div class="sf-b2c-mall-header"></div>
+<!--头部-->
+
+<!--main-->
+<div class="pb">
+    <div class="pm">
+        <!--面包屑-->
+        <div class="sf-b2c-mall-product-breadcrumb">
+            <div class="crumbs">
+                <a href="http://www.sfht.com/index.html">首页</a>
+                <span>&gt;</span>$!{productInfo.skuInfo.title}
+            </div>
+        </div>
+        <!--面包屑-->
+
+        <!--详情-->
+        <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered" data-itemid="$!{productInfo.itemId}"
+             data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
+            <div class="goods clearfix">
+                <div class="goods-c1 fl">
+                    <div class="goods-c1r1">
+                        <img src="#if(${productInfo.skuInfo.images})$!{productInfo.skuInfo.images[0].bigImgUrl}#end" alt=""/>
+                        <span></span>
+                    </div>
+                    <div class="goods-c1r2" id="itemImages">
+                        <ul class="clearfix">
+                          #if(${productInfo.skuInfo.images})
+                            #foreach ($_el in $productInfo.skuInfo.images)
+                                <li class="thumb-item #if(${velocityCount} == 1) active #end" data-big-pic="$!{_el.bigImgUrl}">
+                                    <a href="">
+                                        <img src="$!{_el.thumbImgUrl}" alt=""/>
+                                    </a>
+                                    <span></span>
+                                </li>
+                            #end
+                          #end
+                        </ul>
+                    </div>
+                </div>
+                <div class="goods-c2">
+                    <h1>$!{productInfo.skuInfo.title}</h1>
+
+                    <p>$!{productInfo.skuInfo.subtitle}</p>
+                ##                  客户端渲染
+                    <div id="itemPrice">
+                    </div>
+                ##                  客户端渲染end
+                    <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
+                        发货 #if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
+                            天到#else$!{productInfo.saleInfo.logisticsEnd}天内到#end</div>
+                    <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
+                    <div class="mr5">品牌：
+                        <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
+                    </div>
+                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
+                      #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
+                        #foreach($_el in $productInfo.saleInfo.specGroups)
+                            <div class="mr6" data-specidorder="$!{_el.specIdOrder}">$!{_el.specName}：
+                              #foreach($_subel in $_el.specs)
+                                #set($_isSelected=false)
+                                #foreach($_elOfSpecIds in ${productInfo.skuInfo.skuSpecTuple.specIds})
+                                  #if($_elOfSpecIds==${_subel.specId})
+                                    #set($_isSelected=true)
+                                  #end
+                                #end
+                                #if($_isSelected)
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods active"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                            class="icon icon23"></span></label>
+                                #elseif(${_subel.url})
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                            class="icon icon23"></span></label>
+                                #else
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods disable">$!{_subel.specValue}<span
+                                            class="icon icon23"></span></label>
+                                #end
+                              #end
+                            </div>
+                        #end
+                      #end
+                    </div>
+                ##客户端渲染
+                    <div id="buyInfo" data-logisticsstart="$!{productInfo.saleInfo.logisticsStart}"
+                         data-logisticsend="$!{productInfo.saleInfo.logisticsEnd}" data-productshape="$!{productInfo.saleInfo.productShape}">
+                    </div>
+                ##客户端渲染end
+                    <!--运费-->
+                    <div class="u3">
+                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+                    </div>
+                    <!--运费-->
+                </div>
+                <!--商品-->
+
+                <!--推荐商品-->
+            ##                  客户端渲染
+                <div class="recommend" id="recommend">
+                    <h2>推荐商品</h2>
+                    <ul class="clearfix" id="recommendProdList">
+                    </ul>
+                </div>
+            ##                  客户端渲染end
+                <!--推荐商品-->
+
+                <!--小编推荐-->
+                <div class="recommend2">
+                    <h2>小编推荐</h2>
+
+                    <p>$!{productInfo.skuInfo.recommend}</p>
+                </div>
+                <!--小编推荐-->
+
+                <!--详情-->
+                <div class="detail">
+                    <div class="detail-h">
+                        <ul class="clearfix">
+                          #if(${productInfo.skuInfo.attributes})
+                            #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
+                                <li>【$!{_el.key}】 $!{_el.value}</li>
+                            #end
+                          #end
+                        </ul>
+                    </div>
+
+                    <div class="detail-b">
+                      $!{productInfo.skuInfo.description}
+                    </div>
+                </div>
+            </div>
+            <!--详情-->
+            <!--顺丰海淘服务承诺-->
+            <div class="service">
+                <h2>顺丰海淘服务承诺</h2>
+                <ul class="clearfix">
+                    <li>
+                        <span class="icon icon20"></span>
+
+                        <h3>直采海外</h3>
+
+                        <p>我们承诺所有在顺丰海淘网站在售商品<br/>均为海外电商<br/>厂家供货的原装正品。</p>
+                    </li>
+                    <li>
+                        <span class="icon icon21"></span>
+
+                        <h3>直邮中国</h3>
+
+                        <p>我们在美国、日本等商品原产地<br/>拥有仓库，为您商品的跨境运输提供了<br/>有效保障。</p>
+                    </li>
+                    <li>
+                        <span class="icon icon22"></span>
+
+                        <h3>安心售后</h3>
+
+                        <p>非人为因素产生的商品破损<br/>或运输途中丢失<br/>我们将第一时间安排客服处理。</p>
+                    </li>
+                </ul>
+            </div>
+            <!--顺丰海淘服务承诺-->
+            <!--海淘小贴士-->
+            <div class="tip">
+                <div class="pm">
+                    <h2>顺丰海淘小贴士</h2>
+
+                    <div class="tip-r1 clearfix">
+                        <div class="tip-c1 fl">
+                            <h3>01.顺丰海淘的商品都是正品吗？</h3>
+
+                            <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
+
+                            <h3>02.订购商品大致需要经过哪些流程？</h3>
+
+                            <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
+                        </div>
+                        <div class="tip-c2 fr">
+                            <h3>03.为什么要上传身份信息？</h3>
+
+                            <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
+
+                            <h3>04.购买海外商品会被额外收税吗？</h3>
+
+                            <p>答:顺丰海淘商品已统一向海关申报缴税，无需用户再次缴纳。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--海淘小贴士-->
+        </div>
+    </div>
+    <!--main-->
+    <!--尾部-->
+    <div class="sf-b2c-mall-footer"></div>
+    <!--尾部-->
+
+  $!{_const_detailScript}
+</body>
+#end
