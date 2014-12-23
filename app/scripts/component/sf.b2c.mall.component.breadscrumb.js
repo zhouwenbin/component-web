@@ -15,7 +15,7 @@ mall.breadscrumb = can.Control.extend({
   },
 
   render: function (data) {
-    var html = can.view('templates/component/sf.b2c.mall.breadscrumb.mustache')(data);
+    var html = can.view('templates/component/sf.b2c.mall.breadscrumb.mustache', data);
     this.element.html(html);
   }
 });
