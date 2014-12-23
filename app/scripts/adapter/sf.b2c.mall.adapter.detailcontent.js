@@ -20,6 +20,7 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
       detailContentInfo.priceInfo.discount = detailContentInfo.priceInfo.sellingPrice * 10 / detailContentInfo.priceInfo.originPrice
       detailContentInfo.priceInfo.lessspend = detailContentInfo.priceInfo.originPrice - detailContentInfo.priceInfo.sellingPrice;
       detailContentInfo.priceInfo.time = "";
+      detailContentInfo.priceInfo.timeIcon = "";
     },
 
     formatItemInfo: function(detailContentInfo, itemInfoData) {
