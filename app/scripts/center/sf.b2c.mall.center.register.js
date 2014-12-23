@@ -300,22 +300,16 @@ define('sf.b2c.mall.center.register',[
 
     },
     //checkbox是否选中
-    '#ischecked click':function(ele,event){
+    '#ischecked click':function($el,event){
       // event && event.preventDefault();
 
       var ischecked = this.defaults.user.attr('ischecked');
       if (ischecked) {
-
-        // $(ele).attr('checked','checked');
         $('.btn-register').removeAttr('disabled').removeClass('disable');
-        $(ele).attr('state','false');
-
+        $el.attr('state','false');
       }else{
-
-        // $(ele).removeAttr('checked');
         $('.btn-register').attr('disabled','disabled').addClass('disable');
-        $(ele).attr('state','true');
-
+        $el.attr('state','true');
       }
     },
     //ie7,8,9输入框默认值
@@ -340,19 +334,5 @@ define('sf.b2c.mall.center.register',[
         }
       }
     }
-
-    //   if($(ele).attr('state') === 'true'){
-    //     $(ele).attr('checked','checked');
-    //     $('.btn-register').removeAttr('disabled');
-    //     $(ele).attr('state','false');
-    //     $('.btn-register').removeClass('disable');
-
-    //   }else{
-    //     $(ele).removeAttr('checked');
-    //     $('.btn-register').attr('disabled','disabled');
-    //     $(ele).attr('state','true');
-    //     $('.btn-register').addClass('disable');
-    //   }
-    // }
-  })
+  });
 })
