@@ -9,7 +9,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', ['can'], function(can) {
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      var html = can.view('templates/order/sf.b2c.mall.order.selectreceiveaddr.mustache')({});
+      var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache')({});
       this.element.html(html);
     }
   });

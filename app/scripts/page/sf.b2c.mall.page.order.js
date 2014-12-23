@@ -39,5 +39,5 @@ require(
       }
     });
 
-    new home('#order');
+    new order('#order');
   });
