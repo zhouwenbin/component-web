@@ -37,7 +37,8 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        ischecked: true
       });
 
       this.data = this.parse(this.defaults);
@@ -299,18 +300,36 @@ define('sf.b2c.mall.center.register',[
     '#ischecked change':function(ele,event){
       event && event.preventDefault();
 
-      if($(ele).attr('state') === 'true'){
-        $(ele).attr('checked','checked');
-        $('.btn-register').removeAttr('disabled');
+      var ischecked = this.defaults.user.attr('ischecked');
+      if (ischecked) {
+
+        // $(ele).attr('checked','checked');
+        $('.btn-register').removeAttr('disabled').removeClass('disable');
         $(ele).attr('state','false');
-        $('.btn-register').removeClass('disable');
 
       }else{
-        $(ele).removeAttr('checked');
-        $('.btn-register').attr('disabled','disabled');
+
+        // $(ele).removeAttr('checked');
+        $('.btn-register').attr('disabled','disabled').addClass('disable');
         $(ele).attr('state','true');
-        $('.btn-register').addClass('disable');
+
       }
     }
+
+
+
+    //   if($(ele).attr('state') === 'true'){
+    //     $(ele).attr('checked','checked');
+    //     $('.btn-register').removeAttr('disabled');
+    //     $(ele).attr('state','false');
+    //     $('.btn-register').removeClass('disable');
+
+    //   }else{
+    //     $(ele).removeAttr('checked');
+    //     $('.btn-register').attr('disabled','disabled');
+    //     $(ele).attr('state','true');
+    //     $('.btn-register').addClass('disable');
+    //   }
+    // }
   })
 })
