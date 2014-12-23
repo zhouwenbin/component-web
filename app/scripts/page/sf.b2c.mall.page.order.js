@@ -5,36 +5,33 @@ require(
     'can',
     'jquery',
     'sf.b2c.mall.component.header',
-    'sf.b2c.mall.component.footer'
+    'sf.b2c.mall.component.footer',
+    'sf.b2c.mall.order.step',
+    'sf.b2c.mall.order.selectreceiveperson',
+    'sf.b2c.mall.order.selectreceiveaddr',
+    'sf.b2c.mall.order.iteminfo'
   ],
 
-  function(can, $, Header, Footer) {
+  function(can, $, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo) {
 
-    var home = can.Control.extend({
+    var order = can.Control.extend({
 
       init: function(element, options) {
-        this.component = {};
-
         this.render();
-        this.supplement();
       },
 
       render: function() {
-
         new Header('.sf-b2c-mall-header');
         new Footer('.sf-b2c-mall-footer');
 
-        //面包屑
-        new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
+        //step
+        new OrderSetp('.sf-b2c-mall-order-step');
 
-        //详情页
-        //看服务器端是否渲染了
-        var serverRendered = _.find($('.sf-b2c-mall-detail-content')[0].classList, function(item) {
-          return item == 'serverRendered'
-        })
+        new SelectReceivePerson('.sf-b2c-mall-order-selectReceivePerson');
 
-        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': (typeof serverRendered != 'undefined')});
+        new SelectReceiveAddr('.sf-b2c-mall-order-selectReceiveAddress');
 
+        new ItemInfo('.sf-b2c-mall-order-itemInfo');
       },
 
       supplement: function() {
@@ -42,5 +39,5 @@ require(
       }
     });
 
-    new home('#content');
+    new home('#order');
   });
