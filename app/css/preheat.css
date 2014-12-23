@@ -106,11 +106,8 @@
 	background: #fff;
 	width: 337px;
 	margin-left: 21px;
-<<<<<<< HEAD
 	*margin-left: 20px;
-=======
   border:1px solid #333;
->>>>>>> pr/53
 }
 .m3 .li2{
 	margin-top: 115px;
@@ -136,6 +133,8 @@
 	top: -147px;
 	left: 50%;
 	margin-left: -267px;
+	-webkit-transform:translate3d(0,0,0);
+	transform:translate3d(0,0,0);
 }
 .m3 h2{
 	font-size: 30px;
