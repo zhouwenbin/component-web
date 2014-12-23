@@ -18,7 +18,7 @@
 <div class="pb">
     <div class="pm">
         <!--面包屑-->
-        <div class="sf-b2c-mall-product-breadcrumb">
+        <div class="sf-b2c-mall-product-breadcrumb serverRendered">
             <div class="crumbs">
                 <a href="http://www.sfht.com/index.html">首页</a>
                 <span>&gt;</span>$!{productInfo.skuInfo.title}
@@ -30,7 +30,7 @@
         <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered" data-itemid="$!{productInfo.itemId}"
              data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
             <div class="goods clearfix">
-                <div class="goods-c1 fl">
+                <div id="allSkuImages" class="goods-c1 fl">
                     <div class="goods-c1r1">
                         <img src="#if(${productInfo.skuInfo.images})$!{productInfo.skuInfo.images[0].bigImgUrl}#end" alt=""/>
                         <span></span>
@@ -51,9 +51,11 @@
                     </div>
                 </div>
                 <div class="goods-c2">
-                    <h1>$!{productInfo.skuInfo.title}</h1>
+                    <div id="titleInfo">
+                        <h1>$!{productInfo.skuInfo.title}</h1>
 
-                    <p>$!{productInfo.skuInfo.subtitle}</p>
+                        <p>$!{productInfo.skuInfo.subtitle}</p>
+                    </div>
                 ##                  客户端渲染
                     <div id="itemPrice">
                     </div>
@@ -62,7 +64,7 @@
                         发货 #if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
                             天到#else$!{productInfo.saleInfo.logisticsEnd}天内到#end</div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
-                    <div class="mr5">品牌：
+                    <div id="bandInfo" class="mr5">品牌：
                         <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
                     </div>
                     <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
@@ -77,10 +79,12 @@
                                   #end
                                 #end
                                 #if($_isSelected)
-                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods active"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods active"><a
+                                            href="$!{_subel.url}">$!{_subel.specValue}</a><span
                                             class="icon icon23"></span></label>
                                 #elseif(${_subel.url})
-                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods"><a href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods"><a
+                                            href="$!{_subel.url}">$!{_subel.specValue}</a><span
                                             class="icon icon23"></span></label>
                                 #else
                                     <label data-specid="$!{_subel.specId}" class="btn btn-goods disable">$!{_subel.specValue}<span
