@@ -590,6 +590,7 @@ img{vertical-align: middle;}
 	color: #999;
 }
 
+
 body{
 	background: #EEEEEE;
 	padding-top: 60px;
@@ -780,4 +781,33 @@ body{
 	opacity: 0.5;
 	filter:alpha(opacity=50);
 	z-index: 3;
+}
+/*input*/
+.input{
+	vertical-align: middle;
+	padding: 12px 0 12px 16px;
+	border:1px solid #CCCCCC;
+	border-radius: 3px;
+}
+.input:focus{
+	box-shadow: 0 0 10px rgba(102,175,233,0.5);
+	border-color: #66afe9;
+}
+/*tooltip*/
+.tooltip{
+
+	border:1px solid #DEDDDE;
+	padding: 24px 27px;
+	width: 348px;
+	line-height: 18px;
+	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
+	background: #f4f4f9;
+	position: relative;
+	display: inline-block;
+	color: #333840
+}
+.tooltip .icon16-3{
+	position: absolute;
+	left: 56px;
+	top: -27px;
 }
