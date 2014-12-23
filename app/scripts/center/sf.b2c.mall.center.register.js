@@ -194,8 +194,6 @@ define('sf.b2c.mall.center.register',[
           .sendRequest()
           .done(function(data){
 
-
-
           })
           .fail(function(errorCode){
             var map ={
@@ -218,22 +216,22 @@ define('sf.b2c.mall.center.register',[
     //手机号码输入框失去焦点验证
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
-
-      var state =$('#btn-send-mobilecode').attr('state');
       var mobileNum = $(ele).val();
-      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
-        $('#mobileNumErrorTips').show();
-        return this.setMobileNumError('您的手机号码输入有误');
-      }
 
       if(!mobileNum.length){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('请输入您的手机号码');
       }
 
+      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('您的手机号码输入有误');
+      }
+
       if(mobileNum.length === 11){
+        $('#btn-send-mobilecode').attr('state','true');
         $('#mobileNumErrorTips').fadeOut(1000);
-        if(state === "true"){
+        if($('#btn-send-mobilecode').attr('state') === "true"){
           $('#btn-send-mobilecode').removeAttr('disabled');
           $('#btn-send-mobilecode').removeClass('disable');
         }
@@ -241,12 +239,12 @@ define('sf.b2c.mall.center.register',[
 
     },
 
-    '#input-mobile-num keyup':function(ele,event){
-      event && event.preventDefault();
-
-      $('#btn-send-mobilecode').addClass('disable');
-
-    },
+//    '#input-mobile-num keyup':function(ele,event){
+//      event && event.preventDefault();
+//
+//      $('#btn-send-mobilecode').addClass('disable');
+//
+//    },
     //关闭注册悬浮框
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
