@@ -15,6 +15,7 @@
 	height: 0;
 	text-align: center;
 	background: #fffeff;
+	overflow: hidden;
 }
 .m1 .pm{
 	padding-top: 116px;
@@ -111,6 +112,8 @@
 	margin-top: 115px;
 	position: relative;
 	z-index: 2;
+	*zoom:1;
+	margin-left: 21px;
 }
 .m3 .mt{
 	text-align: center;

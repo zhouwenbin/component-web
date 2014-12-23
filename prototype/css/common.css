@@ -798,7 +798,7 @@ body{
 
 	border:1px solid #DEDDDE;
 	padding: 24px 27px;
-	width: 348px;
+	width: 280px;
 	line-height: 18px;
 	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
 	background: #f4f4f9;
@@ -808,6 +808,74 @@ body{
 }
 .tooltip .icon16-3{
 	position: absolute;
-	left: 56px;
+	left: 156px;
 	top: -27px;
+}
+/*表格*/
+.table{
+	font-size: 14px;
+	border:1px solid #dfe2e4;
+	border-radius: 4px;
+	background: #fff;
+}
+.table-h{
+	height: 58px;
+	line-height: 58px;
+	border-bottom: 1px solid #e6e5e5;
+	background: #f4f4f4 url(../img/table-h.png) repeat-x;
+	border-radius: 4px 4px 0 0;
+	font-weight: bold;
+}
+.table-c1{
+	width: 500px;
+	padding-left: 23px;
+}
+.table-c2{
+	width: 130px;
+}
+.table-c3{
+	width: 174px;
+}
+.table-c4{
+	width: 170px;
+}
+.table-c5{
+	padding-right: 45px;
+}
+.table-img{
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border: 1px solid #ececec;
+	border-radius: 1px;
+}
+.table-img img{
+	vertical-align: middle;
+	max-width: 80px;
+	max-height: 80px;
+}
+.table-img span{
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.table-text{
+	margin-left: 100px;
+}
+.table-text h3{
+	margin-bottom: 17px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.table-text p{
+	margin-bottom: 13px;
+	color: #949494;
+}
+.table-b li{
+	padding-top:22px;
+	padding-bottom: 22px; 
+	border-bottom: 1px solid #ebebeb;
+	margin-bottom: 25px;
 }
