@@ -2,76 +2,40 @@
 <div class="mask"></div>
 <div class="register">
   <div class="register-h">
-    <h2>注册顺丰海淘</h2>
-    <ul>
-      <li class="active"><a href="###">手机注册</a><span class="icon icon16-2"></span></li>
-      <li><a href="###">邮箱注册</a><span class="icon icon16-2"></span></li>
-    </ul>
+    <h2>抢先预约</h2>
     <a href="#" class="btn btn-close">关闭</a>
   </div>
   <!--手机注册-->
   <div class="register-b active">
     <ol>
       <li>
-        <input id="input-mobile-num" type="text" class="input1" can-value="user.mobileNum" /><a id="btn-send-mobilecode" href="#" class="btn btn-send">发送验证码</a>{{#mobileNum}}<span class="icon icon26">{{numError}}</span>{{/mobileNum}}
+        <input id="input-mobile-num" placeholder="仅限中国大陆手机号" type="text" can-value="user.mobileNum" />{{#mobileNum}}<span id="mobileNumErrorTips" class="icon icon26">{{numError}}</span>{{/mobileNum}}
+        <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
+      </li>
+
+      <li>
+        <div class="clearfix">
+            <div class="fl"><input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1" can-value="user.mobileCode" /></div>
+            <div class="fr"><button id="btn-send-mobilecode" state="false" class="btn btn-send disable fr" disabled="disabled">发送验证码</button></div>
+        </div>
+        {{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
-        <input id="input-mobile-code" type="text" placeholder="手机验证码" can-value="user.mobileCode" />{{#mobileCode}}<span class="icon icon26">{{codeError}}</span>{{/mobileCode}}
-      </li>
-      <li>
-        <input id="input-user-password" type="passward" placeholder="设置密码" can-value="user.password" />{{#password}}<span class="icon icon26">{{pwdError}}</span>{{/password}}
+        <input id="input-user-password" type="password" placeholder="设置6-18位字母、数字或标点符号的密码" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
       </li>
     </ol>
     <div class="register-br1">
-      <a href="#" class="btn btn-register">同意协议并注册</a>
+      <button class="btn btn-send btn-register">同意协议并注册</button>
     </div>
-    <div class="register-br2">
-      <a href="">《顺丰海淘服务协议》</a>
+    <div class="register-br2 clearfix">
+      <div class="register-br2c1 fl">
+        <label><input type="checkbox" state="false" id="ischecked" checked="checked" />我已阅读<a href="agreement.html" target="_blank">《顺丰海淘注册协议》</a></label>
+      </div>
     </div>
+
   </div>
   <!--手机注册-->
-  <!--邮箱注册-->
-  <div class="register-b">
-    <ol>
 
-      <li>
-        <input type="email" placeholder="邮箱地址" />
-      </li>
-      <li>
-        <input type="text" class="input2" /><img src="img/code.jpg" width="80" alt="验证码" /><a class="a1" href="">换一个</a>
-      </li>
-      <li>
-        <input type="passward" placeholder="设置密码" />
-      </li>
-    </ol>
-    <div class="register-br1">
-      <a href="#" class="btn btn-register">同意协议并注册</a>
-    </div>
-    <div class="register-br2">
-      <a href="">《顺丰海淘服务协议》</a>
-    </div>
-  </div>
-  <!--邮箱注册-->
-  <div class="register-f">
-    <ul class="header-c2 clearfix">
-      <li>
-        <span class="icon icon1 fl"></span>
-        <h3>全站真品</h3>
-        <p><span class="icon icon17">Quality Lifestyle</span></p>
-      </li>
-      <li>
-        <span class="icon icon2 fl"></span>
-        <h3>含税一口价</h3>
-        <p><span class="icon icon18">Fixed Prices For All</span></p>
-      </li>
-      <li>
-        <span class="icon icon3 fl"></span>
-        <h3>物流全透明</h3>
-        <p><span class="icon icon19">Easy One-stop Shopping</span></p>
-      </li>
-    </ul>
-    <div class="register-fr2">已是会员？<a href="">在这里登录</a></div>
-  </div>
 </div>
 <!--注册-->

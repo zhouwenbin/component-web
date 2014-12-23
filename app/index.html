@@ -4,10 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width">
 <title>顺丰海淘</title>
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.index.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/index.css" rel="stylesheet" type="text/css" />
+<link href="css/register.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
 </head>
-<body>
+<body class="with-header">
 <div id="content">
   <div class="sf-b2c-mall-header"></div>
 
@@ -15,48 +18,152 @@
     <div class="sf-b2c-mall-main-slider"></div>
     <div class="pm">
       <!--限时特卖-->
-      <div class="sf-b2c-mall-limitedtimesale">
-
-        <div class="product">
-        <div id="LimitedTimeSale" class="mh clearfix">
-          <h2 class="fl">限时特卖</h2>
-          <ul class="fl product-tab">
-            <li id="current"><a href="#LimitedTimeSale">当前</a></li>
-            <li id="future"><a href="#LimitedTimeSale">即将开始</a></li>
-          </ul>
-        </div>
-
-        <div class="mb">
-          <ul class="clearfix product-list" skuIdList="199911" topicIdList="">
-
-            <li >
-              <div class="product-r1">
-                <a href="http://www.sfht.com/detail.html?sku=199911" target="_blank" title="COACH Madison 单肩包"><img src="{{imgUrl}}" alt="productImg" ></a><span></span>
-              </div>
-              <h3><a href="http://www.sfht.com/detail.html?sku=199911" target="_blank" title="COACH Madison 单肩包">COACH Madison 单肩包</a></h3>
-              <p title="白色 上等牛皮 有质感 光泽度好 手感极佳">白色 上等牛皮 有质感 光泽度好 手感极佳</p>
-              <div id="timeAndNation4ProductClient" class="product-r2 clearfix" data-displayendtime="1419417909000" contentType="PRODUCT" skuId="199911">
-
-                  <div class="product-r2c1 fl"><span class="icon"></span></div>
-                  <div class="product-r2c2 fr"><span class="icon icon5"></span></div>
-
-              </div>
-              <div id="price4ProductClient" class="product-r3 clearfix" data-limitedtimesalecontenttype="PRODUCT" data-itemid="1">
-                  <div class="product-r3c1 fl">
-                    <strong></strong>
-                    <del></del>
+      <div class="sf-b2c-mall-limitedtimesale serverRendered">
+                <div class="product">
+                  <div id="LimitedTimeSale" class="mh clearfix">
+                      <h2 class="fl">限时特卖</h2>
+                      <ul class="fl product-tab">
+                          <li id="current" class="active"><a href="#">当前</a><span></span></li>
+                          <li id="future"><a href="#">即将开始</a><span></span></li>
+                      </ul>
                   </div>
-                  <div class="product-r3c2 fr">
-                    <strong></strong>
+                  <div class="mb">
+                      <ul class="clearfix product-list" data-itemids="[1]">
+                           <li>
+                                  <div class="product-r1">
+                                      <a href="http://topic.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://topic.sfht.com/1.html" target="_blank">专题</a>
+                                  </h3>
+                                  <p>测试1</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="TOPIC" data-topicid="1" data-displayendtime="1419417909000" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                        </div>
+                                                                        <div class="product-r3 clearfix" data-contenttype="TOPIC" data-topicid="1">
+                                          <div class="product-r3c1 fl">
+                                              <strong>￥1800起</strong>
+                                          </div>
+                                          <div class="product-r3c2 fr">
+                                              <strong>7.8</strong>折
+                                          </div>
+                                      </div>
+                              </li>
+                              <li>
+                                  <div class="product-r1">
+                                      <a href="http://topic.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://topic.sfht.com/1.html" target="_blank">专题</a>
+                                  </h3>
+                                  <p>测试1</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="TOPIC" data-topicid="1" data-displayendtime="1419417909000" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                        </div>
+                                                                        <div class="product-r3 clearfix" data-contenttype="TOPIC" data-topicid="1">
+                                          <div class="product-r3c1 fl">
+                                              <strong>￥1800起</strong>
+                                          </div>
+                                          <div class="product-r3c2 fr">
+                                              <strong>7.8</strong>折
+                                          </div>
+                                      </div>
+                                 </li>
+                                 <li>
+                                  <div class="product-r1">
+                                      <a href="http://item.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://item.sfht.com/1.html" target="_blank">测试1</a>
+                                  </h3>
+                                  <p>测试1</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                                <div class="product-r2c2 fr">
+                                            <span class="icon">
+                                              <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                                            </span>
+                                          </div>
+                                                                        </div>
+                                                                        <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+                                                                </li>
+                                                        <li>
+                                  <div class="product-r1">
+                                      <a href="http://item.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://item.sfht.com/1.html" target="_blank">测试1</a>
+                                  </h3>
+                                  <p>测试1</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                                <div class="product-r2c2 fr">
+                                            <span class="icon">
+                                              <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                                            </span>
+                                          </div>
+                                                                        </div>
+                                                                        <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+                                                                </li>
+                                                        <li>
+                                  <div class="product-r1">
+                                      <a href="http://item.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://item.sfht.com/1.html" target="_blank">标题</a>
+                                  </h3>
+                                  <p>子标题</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                                <div class="product-r2c2 fr">
+                                            <span class="icon">
+                                              <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                                            </span>
+                                          </div>
+                                                                        </div>
+                                                                        <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+                                                                </li>
+                                                        <li>
+                                  <div class="product-r1">
+                                      <a href="http://item.sfht.com/1.html" target="_blank">
+                                          <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                                      </a>
+                                      <span></span>
+                                  </div>
+                                  <h3>
+                                      <a href="http://item.sfht.com/1.html" target="_blank">标题</a>
+                                  </h3>
+                                  <p>子标题</p>
+                                  <div class="product-r2 clearfix">
+                                      <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                                                                <div class="product-r2c2 fr">
+                                            <span class="icon">
+                                              <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                                            </span>
+                                          </div>
+                                                                        </div>
+                                                                        <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+                                                                </li>
+                                                </ul>
                   </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      </div>
-      <div class="sf-b2c-mall-limitedtimesale4Client"></div>
+                </div>
+            </div>
+      <!-- <div class="sf-b2c-mall-limitedtimesale4Client"></div> -->
       <!--限时特卖-->
 
       <!--极速海淘-->
@@ -66,7 +173,7 @@
             <h2>极速海淘</h2>
           </div>
           <div class="mb">
-            <ul class="clearfix product-list" skuIdList="199911" topicIdList="">
+            <ul class="clearfix product-list" data-itemids="[1]">
               <li>
                 <div class="product-r1">
                   <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
@@ -77,7 +184,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="199911">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -97,7 +204,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="198637">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -117,7 +224,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="199911">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -137,7 +244,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="199911">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -157,7 +264,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="199911">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -177,7 +284,7 @@
                   <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
                   <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
                 </div>
-                <div id="priceWrap" class="product-r3 clearfix" fastSaleContentType="PRODUCT" skuId="199911">
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
                   <div class="product-r3c1 fl">
                     <strong></strong>
                     <del></del>
@@ -203,11 +310,20 @@
   <!--尾部-->
   </div>
 
+  <!-- build:js(.) scripts/require.min.js-->
   <script src="bower_components/requirejs/require.js"></script>
-  <script src="scripts/base/sf.web.ver1.0.build1418874295836.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.) base-->
+  <script src="scripts/base/sf.web.dev.ver.1.0.build.1418969598456.js"></script>
+  <!-- endbuild -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.main.min.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
-  <script src="scripts/page/sf.b2c.mall.page.main.js"></script>
+  <script type="text/javascript">
+    require(['sf.b2c.mall.page.main']);
+  </script>
+  <!-- endbuild -->
 
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
 </body>
 </html>

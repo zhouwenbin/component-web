@@ -10,9 +10,11 @@ define('sf.b2c.mall.component.header', ['jquery',
   'can',
   'underscore',
   'md5',
+  'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
-  'sf.b2c.mall.api.user.logout'
-], function($, cookie, can, _, md5, SFGetUserInfo, SFLogout) {
+  'sf.b2c.mall.api.user.logout',
+  'sf.b2c.mall.widget.modal'
+], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal) {
 
   return can.Control.extend({
 
@@ -31,6 +33,9 @@ define('sf.b2c.mall.component.header', ['jquery',
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
+      this.component = {};
+      this.component.modal = new SFModal('body');
+
       if ($.cookie('ct') == 1) {
         this.data = new can.Map(_.extend(this.defaults.login, {
           user: null
@@ -79,7 +84,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault()
 
       var that = this;
-      can.when(sf.b2c.mall.model.user.logout())
+      // can.when(sf.b2c.mall.model.user.logout())
 
       var logout = new SFLogout({});
 
@@ -93,16 +98,32 @@ define('sf.b2c.mall.component.header', ['jquery',
         .fail(function() {})
     },
 
+    '#my-account click': function (element, event) {
+      event && event.preventDefault();
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+
+      }else{
+        this.showLogin();
+      }
+    },
+
+    showLogin: function () {
+      this.component.modal.show({
+        title: '登录顺丰海淘',
+        html: '<iframe height="462" width="562" frameborder="no" src="login.html">'
+      });
+    }
+
     /**
      * [description 未登录状态下的登录窗口]
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
      */
-    '#user-login click': function(element, event) {
-      event && event.preventDefault()
+    // '#user-login click': function(element, event) {
+    //   event && event.preventDefault()
 
-    },
+    // },
 
     /**
      * [description 未登录状态下得注册窗口]
@@ -110,10 +131,10 @@ define('sf.b2c.mall.component.header', ['jquery',
      * @param  {[type]} event
      * @return {[type]}
      */
-    '#user-register click': function(element, event) {
-      event && event.preventDefault()
+    // '#user-register click': function(element, event) {
+    //   event && event.preventDefault()
 
-    },
+    // },
 
     /**
      * [description 我的订单]
@@ -121,16 +142,16 @@ define('sf.b2c.mall.component.header', ['jquery',
      * @param  {[type]} event
      * @return {[type]}
      */
-    '#my-order click': function(element, event) {
-      event && event.preventDefault();
+    // '#my-order click': function(element, event) {
+    //   event && event.preventDefault();
 
-      if (sf.util.isLogin()) {
-        window.open('center.html#!&type=booking')
-      } else {
-        window.open('login.html?from=' + encodeURIComponent('center.html#!&type=booking'));
-      }
+    //   if (sf.util.isLogin()) {
+    //     window.open('center.html#!&type=booking')
+    //   } else {
+    //     window.open('login.html?from=' + encodeURIComponent('center.html#!&type=booking'));
+    //   }
 
-      return false;
-    }
+    //   return false;
+    // }
   });
 });
