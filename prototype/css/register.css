@@ -42,6 +42,7 @@
 	
 	background: #32363f;
 	text-align: center;
+	position: relative;
 }
 .register-h li{
 	display: inline-block;

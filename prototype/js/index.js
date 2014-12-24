@@ -194,6 +194,10 @@ $(function(){
         $(this).prev().toggle();
         return false;
     });
+    $(".order").on("click", ".disable", function(){
+        $(".order-r2").hide();
+        return false;
+    });
 
 
     //----------注册页小章鱼特效-------------//
@@ -215,7 +219,7 @@ $(function(){
     })
 
     //----------placeholder兼容-------------//
-    $(".register input").keyup(function(){
+    $(".password").keyup(function(){
         
         if($(this).val()){
             $(this).siblings("label").hide();
