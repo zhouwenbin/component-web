@@ -630,7 +630,7 @@ body{
 	
 }
 .nav-c1{
-	margin-left: -40px;
+	border-left: 1px solid #2A2D36;
 }
 .nav-c1 .li1{
 	border-right: 1px solid #2A2D36;
@@ -639,8 +639,8 @@ body{
 .nav-c1 .li1 a{
 	padding: 0 40px;
 }
-.nav-c{
-	margin-right: -27px;
+.nav-c2{
+	border-right: 1px solid #2A2D36;
 }
 .nav-c2 .li1{
 	border-left: 1px solid #2A2D36;
@@ -650,18 +650,17 @@ body{
 	display: block;
 	padding: 0 27px;
 }
-.nav .li1:hover{	
-	background: #4C515B;
-}
-.nav .li1 a:hover{
+.nav li a:hover{
 	color: #fff;
+	background: #4C515B;
 }
 .nav .li1 ul{
 	position: absolute;
 	display: none;
+	background: #333a40;	
 }
-.nav .li1:hover:hover ul{
-	display: block;
+.nav .li1:hover ul{
+	display: block;	
 }
 .nav-c2 .icon{
 	margin-left: 9px;
