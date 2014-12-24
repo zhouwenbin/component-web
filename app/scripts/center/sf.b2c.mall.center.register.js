@@ -37,11 +37,15 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        ischecked: true
       });
 
       this.data = this.parse(this.defaults);
       this.render(this.data);
+      this.functionPlaceHolder(document.getElementById("input-mobile-num"));
+      this.functionPlaceHolder(document.getElementById("input-mobile-code"));
+      this.functionPlaceHolder(document.getElementById("input-user-password"));
     },
 
     render:function(data){
@@ -296,21 +300,39 @@ define('sf.b2c.mall.center.register',[
 
     },
     //checkbox是否选中
-    '#ischecked change':function(ele,event){
-      event && event.preventDefault();
+    '#ischecked click':function($el,event){
+      // event && event.preventDefault();
 
-      if($(ele).attr('state') === 'true'){
-        $(ele).attr('checked','checked');
-        $('.btn-register').removeAttr('disabled');
-        $(ele).attr('state','false');
-        $('.btn-register').removeClass('disable');
-
+      var ischecked = this.defaults.user.attr('ischecked');
+      if (ischecked) {
+        $('.btn-register').removeAttr('disabled').removeClass('disable');
+        $el.attr('state','false');
       }else{
-        $(ele).removeAttr('checked');
-        $('.btn-register').attr('disabled','disabled');
-        $(ele).attr('state','true');
-        $('.btn-register').addClass('disable');
+        $('.btn-register').attr('disabled','disabled').addClass('disable');
+        $el.attr('state','true');
+      }
+    },
+    //ie7,8,9输入框默认值
+    functionPlaceHolder:function(element){
+      var placeholder = '';
+      if (element && !("placeholder" in document.createElement("input")) && (placeholder = element.getAttribute("placeholder"))) {
+        element.onfocus = function() {
+          if (this.value === placeholder) {
+            this.value = "";
+          }
+          this.style.color = '';
+        };
+        element.onblur = function() {
+          if (this.value === "") {
+            this.value = placeholder;
+          }
+        };
+
+        //样式初始化
+        if (element.value === "") {
+          element.value = placeholder;
+        }
       }
     }
-  })
+  });
 })
