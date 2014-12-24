@@ -354,18 +354,48 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.all.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
+            'vendor.jquery.imagezoom',
+
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.login',
+            'sf.b2c.mall.component.register',
             'sf.b2c.mall.component.limitedtimesale',
             'sf.b2c.mall.component.rapidseabuy',
             'sf.b2c.mall.center.register',
+
             'sf.b2c.mall.widget.slide',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.adapter.limitedtimesale',
             'sf.b2c.mall.adapter.rapidSeaBuy',
+
             'sf.b2c.mall.product.breadscrumb',
             'sf.b2c.mall.product.detailcontent',
             'sf.b2c.mall.adapter.detailcontent',
-            'sf.b2c.mall.page.register'
+
+            'sf.b2c.mall.page.main',
+            'sf.b2c.mall.page.preheat.register',
+
+            'sf.b2c.mall.page.order',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.page.login',
+            'sf.b2c.mall.page.register',
+            'sf.b2c.mall.page.detail'
+          ]
+        }
+      },
+      headerandfooter: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.headerandfooter.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
           ]
         }
       },
@@ -497,6 +527,7 @@ module.exports = function (grunt) {
           'requirejs:preheat',
           'requirejs:main',
           'requirejs:detail',
+          'requirejs:headerandfooter',
           'usemin',
           'htmlmin'
         ]);
