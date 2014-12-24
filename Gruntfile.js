@@ -196,7 +196,8 @@ module.exports = function (grunt) {
       html: [
         '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html',
-        '<%= config.app %>/agreement.html'
+        '<%= config.app %>/agreement.html',
+        '<%= config.app %>/detail.html'
       ]
     },
 
@@ -310,7 +311,7 @@ module.exports = function (grunt) {
             // 'index.html',
             'preheat.html',
             'agreement.html',
-            // 'detail.html',
+            'detail.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -400,7 +401,13 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.preheat.register']
         }
-      }
+      },
+      // detail: {
+      //   options: {
+      //     preserveLicenseComments: false,
+      //     baseUrl
+      //   }
+      // }
     }
   });
 

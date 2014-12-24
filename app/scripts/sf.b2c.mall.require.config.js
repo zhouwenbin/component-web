@@ -1,4 +1,9 @@
 requirejs.config({
+  shim: {
+    'vendor.jquery.imagezoom': {
+      deps: ['jquery']
+    }
+  },
   paths: {
     // ----------------------------------------
     // Pre Define
@@ -80,6 +85,7 @@ requirejs.config({
     'sf.b2c.mall.util.utils': 'http://www.google.com/app/scripts/util/sf.b2c.mall.util.utils',
     // --------------------------------------------
 
+    'vendor.jquery.imagezoom':'scripts／vender/vendor.jquery.imagezoom.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -108,6 +114,7 @@ requirejs.config({
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
 
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
-    'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register'
+    'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
+    'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail'
   }
 });
