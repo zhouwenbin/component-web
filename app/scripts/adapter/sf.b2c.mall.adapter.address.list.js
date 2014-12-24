@@ -1,12 +1,7 @@
 'use strict';
 
-define('b2c.mall.adapter.address.list', ['can'], function(can) {
-
-  /**
-   * @class sf.b2c.mall.adapter.address.list
-   * @description CityList
-   */
-  return can.Map.extend({
+define('sf.b2c.mall.adapter.address.list', ['can'], function(can) {
+  return can.Map({
 
     init: function(data) {
       this.attr('input', {
