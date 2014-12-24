@@ -219,6 +219,7 @@ define('sf.b2c.mall.center.register',[
           .fail(function(errorCode){
 
             var map ={
+              '-140':'请输入您的手机号码',
               '1000020':'用户已注册，上线时将短信提醒',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'

@@ -74,12 +74,10 @@
 	position: relative;
 }
 .m3 h3{
-	font-size: 18px;
+	font-size: 14px;
 	margin-bottom: 5px;
 	margin-top: 16px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow:ellipsis;
+	height: 14px;
 }
 .m3 p{
 	color:#72798b;
@@ -98,7 +96,7 @@
 }
 .m3 ul{
 	margin-left: -21px;
-	margin-bottom: 46px;
+	margin-bottom: 20px;
 }
 .m3 li{
 	float: left;
@@ -107,7 +105,7 @@
 	width: 337px;
 	margin-left: 21px;
 	*margin-left: 14px;
-  border:1px solid #bbb;
+  border:1px solid #ccc;
 }
 .m3 .li2{
 	margin-top: 115px;
@@ -245,17 +243,18 @@
   color: #3b86c4;
 }
 .m3 .mt a{
-  background: url(../img/hot/icon-01.png) no-repeat;
-  width: 220px;
-  height: 60px;
-  line-height: 60px;
+  background: url(../img/hot/btn.png) no-repeat;
+  width: 368px;
+  height: 113px;
   display: inline-block;
 
 }
 .m3 .mt a:hover{
-  background: url(../img/hot/icon-02.png) no-repeat;
+  background: url(../img/hot/btn.png) 0 -150px no-repeat;
 }
-
+.m3 .mt a:active{
+  background: url(../img/hot/btn.png) 0 -300px no-repeat;
+}
 
 
 
