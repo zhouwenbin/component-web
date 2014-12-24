@@ -215,7 +215,7 @@ $(function(){
     })
 
     //----------placeholder兼容-------------//
-    $(".register input").keyup(function(){
+    $(".password").keyup(function(){
         
         if($(this).val()){
             $(this).siblings("label").hide();
