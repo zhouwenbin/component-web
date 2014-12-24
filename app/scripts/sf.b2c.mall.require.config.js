@@ -1,4 +1,9 @@
 requirejs.config({
+  shim: {
+    'vendor.jquery.imagezoom': {
+      deps: ['jquery']
+    }
+  },
   paths: {
     // ----------------------------------------
     // Pre Define
@@ -61,6 +66,7 @@ requirejs.config({
     'sf.b2c.mall.api.user.downMobileVfCode':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.downMobileVfCode',
     'sf.b2c.mall.api.user.mobileRegister':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.needVfCode':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.needVfCode',
+    'sf.b2c.mall.api.product.findRecommendProducts':'http://www.google.com/app/scripts/api/product/sf.b2c.mall.api.product.findRecommendProducts',
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
@@ -80,6 +86,7 @@ requirejs.config({
     'sf.b2c.mall.util.utils': 'http://www.google.com/app/scripts/util/sf.b2c.mall.util.utils',
     // --------------------------------------------
 
+    'vendor.jquery.imagezoom':'scripts/vendor/vendor.jquery.imagezoom.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -108,6 +115,7 @@ requirejs.config({
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
 
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
-    'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register'
+    'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
+    'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail'
   }
 });

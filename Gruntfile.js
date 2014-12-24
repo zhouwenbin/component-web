@@ -196,7 +196,8 @@ module.exports = function (grunt) {
       html: [
         '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html',
-        '<%= config.app %>/agreement.html'
+        '<%= config.app %>/agreement.html',
+        '<%= config.app %>/detail.html'
       ]
     },
 
@@ -400,6 +401,23 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.preheat.register']
         }
+      },
+      detail: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.product.breadscrumb',
+            'sf.b2c.mall.product.detailcontent',
+            'vendor.jquery.imagezoom',
+            'sf.b2c.mall.adapter.detailcontent',
+          ],
+          insertRequire: ['sf.b2c.mall.page.detail']
+        }
       }
     }
   });
@@ -458,7 +476,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
-      if (filename.indexOf(target) > -1) {
+      if (filename.indexOf(target) > -1 && filename.slice(7, 7+target.length) == target) {
         config.target = target;
         config.base = {
           dest: 'scripts/base/'+filename,
@@ -473,10 +491,11 @@ module.exports = function (grunt) {
           'autoprefixer',
           'concat',
           'cssmin',
-          'uglify',
+          // 'uglify',
           'copy:dist',
           'requirejs:preheat',
           'requirejs:main',
+          'requirejs:detail',
           'usemin',
           'htmlmin'
         ]);
