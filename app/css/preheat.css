@@ -164,6 +164,7 @@
 .m3-1 li{
 	margin-bottom: 25px;
 }
+.m3 li a{cursor:default;}
 .m4{
 	background: #fff;
 }
@@ -241,7 +242,7 @@
 	color: #67b222;
 }
 .register-br2c1 a{
-  color: #333;
+  color: blue;
 }
 .m3 .mt a{
   background: url(../img/hot/icon-01.png) no-repeat;
