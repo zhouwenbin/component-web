@@ -17,34 +17,34 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Configurable paths
-  var base = {
-    dev: {
-      dest: 'scripts/base/sf.web.dev.ver.1.0.build.1419334115778.js',
-      src: 'scripts/base/sf.web.dev.ver.1.0.build.1419334115778.js'
-    },
-    test: {
-      dest: 'scripts/base/sf.web.test.ver.1.0.build.1419334126192.js',
-      src: 'scripts/base/sf.web.test.ver.1.0.build.1419334126192.js'
-    },
-    test2: {
-      dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419334132595.js',
-      src: 'scripts/base/sf.web.test2.ver.1.0.build.1419334132595.js'
-    },
-    pre: {
-      dest: 'scripts/base/sf.web.pre.ver.1.0.build.1419334140559.js',
-      src: 'scripts/base/sf.web.pre.ver.1.0.build.1419334140559.js'
-    },
-    prd: {
-      dest: 'scripts/base/sf.web.prd.ver.1.0.build.1419334147332.js',
-      src: 'scripts/base/sf.web.prd.ver.1.0.build.1419334147332.js'
-    }
-  };
+  // var base = {
+  //   dev: {
+  //     dest: 'scripts/base/sf.web.dev.ver.1.0.build.1419334115778.js',
+  //     src: 'scripts/base/sf.web.dev.ver.1.0.build.1419334115778.js'
+  //   },
+  //   test: {
+  //     dest: 'scripts/base/sf.web.test.ver.1.0.build.1419334126192.js',
+  //     src: 'scripts/base/sf.web.test.ver.1.0.build.1419334126192.js'
+  //   },
+  //   test2: {
+  //     dest: 'scripts/base/sf.web.test2.ver.1.0.build.1419334132595.js',
+  //     src: 'scripts/base/sf.web.test2.ver.1.0.build.1419334132595.js'
+  //   },
+  //   pre: {
+  //     dest: 'scripts/base/sf.web.pre.ver.1.0.build.1419334140559.js',
+  //     src: 'scripts/base/sf.web.pre.ver.1.0.build.1419334140559.js'
+  //   },
+  //   prd: {
+  //     dest: 'scripts/base/sf.web.prd.ver.1.0.build.1419334147332.js',
+  //     src: 'scripts/base/sf.web.prd.ver.1.0.build.1419334147332.js'
+  //   }
+  // };
 
   var config = {
     app: 'app',
     dist: 'dist',
     target: 'dev',
-    base: base.dev
+    base: null
   };
 
   // Define the configuration for all the tasks
@@ -478,24 +478,31 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', function(target){
-    config.target = target;
-    config.base = base[target];
+    grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
+      if (filename.indexOf(target) > -1) {
+        config.target = target;
+        config.base = {
+          dest: 'scripts/base/'+filename,
+          src: 'scripts/base/'+filename
+        }
 
-    grunt.task.run([
-      'clean:dist',
-      'wiredep',
-      'useminPrepare',
-      'concurrent:dist',
-      'autoprefixer',
-      'concat',
-      'cssmin',
-      'uglify',
-      'copy:dist',
-      'requirejs:preheat',
-      'requirejs:main',
-      'usemin',
-      'htmlmin'
-    ]);
+        grunt.task.run([
+          'clean:dist',
+          'wiredep',
+          'useminPrepare',
+          'concurrent:dist',
+          'autoprefixer',
+          'concat',
+          'cssmin',
+          'uglify',
+          'copy:dist',
+          'requirejs:preheat',
+          'requirejs:main',
+          'usemin',
+          'htmlmin'
+        ]);
+      }
+    })
   })
 
   // grunt.registerTask('build', [
