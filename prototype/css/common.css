@@ -320,7 +320,10 @@ img{vertical-align: middle;}
 	display: inline-block;
 	vertical-align: middle;
 	cursor: pointer;
-	border: none;
+	border: 0;
+}
+button.btn{
+	border:0 !important;
 }
 .btn-top{
 	padding: 8px 10px;
@@ -890,4 +893,20 @@ body{
 	padding-bottom: 22px; 
 	border-bottom: 1px solid #ebebeb;
 	margin-bottom: 25px;
+}
+
+.table-fr1 li{
+	margin-bottom: 10px;
+}
+.table-fr2{
+	color: #949494;
+	margin-bottom: 33px;
+}
+.table-f{
+	padding:0 45px 28px 0;
+	text-align: right; 
+}
+.table-f strong{
+	font-size: 20px;
+	color: #dd3e3f;
 }

@@ -1,0 +1,21 @@
+﻿/*订单列表*/
+.orderlist{
+	border: 1px solid #ddd;
+	background: #fff;
+	margin-top: 82px;
+}
+.orderlist-h{
+	padding: 49px 49px;
+}
+.orderlist h2{
+	font-size: 16px;
+	margin-bottom: 14px;
+}
+.orderlist-hc2 .input{
+	width: 284px;
+}
+.orderlist-hc2 .btn{
+	width: 92px;
+	height: 60px;
+	line-height: 60px;
+}
