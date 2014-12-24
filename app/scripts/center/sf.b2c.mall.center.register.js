@@ -299,7 +299,14 @@ define('sf.b2c.mall.center.register',[
 
     },
     '#input-user-password blur':function(ele,event){
-      $(ele).siblings('label').show();
+      var password = $(ele).val();
+      if(password){
+        $(ele).siblings('label').hide();
+      }else{
+        $(ele).siblings('label').show();
+      }
+
+
     },
     //checkbox是否选中
     '#ischecked click':function($el,event){
