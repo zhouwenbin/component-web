@@ -116,7 +116,9 @@
 }
 
 #btn-send-mobilecode{
+  *+width:112px;
   *+padding:0 10px;
+  
 }
 
 .register .input2{
