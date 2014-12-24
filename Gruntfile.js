@@ -196,7 +196,8 @@ module.exports = function (grunt) {
       html: [
         '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html',
-        '<%= config.app %>/agreement.html'
+        '<%= config.app %>/agreement.html',
+        '<%= config.app %>/detail.html'
       ]
     },
 
@@ -353,18 +354,48 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.all.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
+            'vendor.jquery.imagezoom',
+
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.login',
+            'sf.b2c.mall.component.register',
             'sf.b2c.mall.component.limitedtimesale',
             'sf.b2c.mall.component.rapidseabuy',
             'sf.b2c.mall.center.register',
+
             'sf.b2c.mall.widget.slide',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.adapter.limitedtimesale',
             'sf.b2c.mall.adapter.rapidSeaBuy',
+
             'sf.b2c.mall.product.breadscrumb',
             'sf.b2c.mall.product.detailcontent',
             'sf.b2c.mall.adapter.detailcontent',
-            'sf.b2c.mall.page.register'
+
+            'sf.b2c.mall.page.main',
+            'sf.b2c.mall.page.preheat.register',
+
+            'sf.b2c.mall.page.order',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.page.login',
+            'sf.b2c.mall.page.register',
+            'sf.b2c.mall.page.detail'
+          ]
+        }
+      },
+      headerandfooter: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.headerandfooter.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
           ]
         }
       },
@@ -399,6 +430,24 @@ module.exports = function (grunt) {
             'sf.b2c.mall.page.preheat.register'
           ],
           insertRequire: ['sf.b2c.mall.page.preheat.register']
+        }
+      },
+      detail: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.product.breadscrumb',
+            'sf.b2c.mall.product.detailcontent',
+            'vendor.jquery.imagezoom',
+            'sf.b2c.mall.adapter.detailcontent',
+            'sf.b2c.mall.page.detail'
+          ],
+          insertRequire: ['sf.b2c.mall.page.detail']
         }
       }
     }
@@ -458,7 +507,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
-      if (filename.indexOf(target) > -1) {
+      var arr = filename.split('.')
+      if (filename.indexOf(target) > -1 && arr[2] == target) {
         config.target = target;
         config.base = {
           dest: 'scripts/base/'+filename,
@@ -477,6 +527,8 @@ module.exports = function (grunt) {
           'copy:dist',
           'requirejs:preheat',
           'requirejs:main',
+          'requirejs:detail',
+          'requirejs:headerandfooter',
           'usemin',
           'htmlmin'
         ]);

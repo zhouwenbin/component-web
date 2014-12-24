@@ -16,13 +16,14 @@
       <li>
         <div class="clearfix">
             <div class="fl"><input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1" can-value="user.mobileCode" /></div>
-            <div class="fr"><button id="btn-send-mobilecode" state="false" class="btn btn-send disable fr" disabled="disabled">发送验证码</button></div>
+            <div class="fr"><button id="btn-send-mobilecode" state="false" class="btn btn-send">发送验证码</button></div>
         </div>
         {{#mobileCode}}<span id="mobileCodeErorTips" class="icon icon26">{{codeError}}</span>{{/mobileCode}}
         <!--可发送时--<a href="#" class="btn btn-send active">发送验证码</a><!--可发送时-->
       </li>
       <li>
-        <input id="input-user-password" type="password" placeholder="设置6-18位字母、数字或标点符号的密码" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
+        <label id="default-text" for="password">设置6-18位字母、数字或标点符号的密码</label>
+        <input id="input-user-password" type="password" can-value="user.password" />{{#password}}<span id="pwdErrorTips" class="icon icon26">{{pwdError}}</span>{{/password}}
       </li>
     </ol>
     <div class="register-br1">

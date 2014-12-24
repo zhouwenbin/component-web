@@ -45,7 +45,6 @@ define('sf.b2c.mall.center.register',[
       this.render(this.data);
       this.functionPlaceHolder(document.getElementById("input-mobile-num"));
       this.functionPlaceHolder(document.getElementById("input-mobile-code"));
-      this.functionPlaceHolder(document.getElementById("input-user-password"));
     },
 
     render:function(data){
@@ -166,7 +165,7 @@ define('sf.b2c.mall.center.register',[
             var errorText = map[errorCode].toString();
             if(errorText === "账户已注册"){
               $('#mobileNumErrorTips').show();
-              that.setMobileNumError(errorText);
+              that.setMobileNumError('用户已注册，上线时将短信提醒');
             }else{
               $('#mobileCodeErorTips').show();
               that.setMobileCodeError(errorText);
@@ -220,7 +219,7 @@ define('sf.b2c.mall.center.register',[
           .fail(function(errorCode){
 
             var map ={
-              '1000020':'账户已注册',
+              '1000020':'用户已注册，上线时将短信提醒',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'
             };
@@ -295,9 +294,22 @@ define('sf.b2c.mall.center.register',[
         $('#mobileCodeErorTips').show();
         this.setMobileCodeError('您输入的验证码有误');
       }
-
       $('#pwdErrorTips').fadeOut(1000);
 
+    },
+    '#input-user-password keyup':function(ele,event){
+      $(ele).siblings('label').hide();
+    },
+    '#input-user-password blur':function(ele,event){
+      var password = $(ele).val();
+      if(password){
+        $(ele).siblings('label').hide();
+      }else{
+        $(ele).siblings('label').show();
+      }
+    },
+    '#default-text click':function(){
+      $('#input-user-password').focus();
     },
     //checkbox是否选中
     '#ischecked click':function($el,event){
@@ -316,16 +328,18 @@ define('sf.b2c.mall.center.register',[
     functionPlaceHolder:function(element){
       var placeholder = '';
       if (element && !("placeholder" in document.createElement("input")) && (placeholder = element.getAttribute("placeholder"))) {
+        element.style.color = '#999';
         element.onfocus = function() {
           if (this.value === placeholder) {
             this.value = "";
           }
-          this.style.color = '';
+          this.style.color = '#333';
         };
         element.onblur = function() {
           if (this.value === "") {
             this.value = placeholder;
           }
+          this.style.color = '#999';
         };
 
         //样式初始化

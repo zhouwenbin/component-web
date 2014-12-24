@@ -2,13 +2,14 @@
 
 define('sf.b2c.mall.product.detailcontent', [
     'can',
+    'vendor.jquery.imagezoom',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.business.config'
   ],
-  function(can, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, SFConfig) {
+  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, SFConfig) {
     return can.Control.extend({
 
       helpers: {
