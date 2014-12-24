@@ -195,7 +195,8 @@ module.exports = function (grunt) {
       },
       html: [
         '<%= config.app %>/index.html',
-        '<%= config.app %>/preheat.html'
+        '<%= config.app %>/preheat.html',
+        '<%= config.app %>/agreement.html'
       ]
     },
 
