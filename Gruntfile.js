@@ -476,7 +476,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
-      if (filename.indexOf(target) > -1 && filename.slice(7, 7+target.length) == target) {
+      var arr = filename.split('.')
+      if (filename.indexOf(target) > -1 && arr[2] == target) {
         config.target = target;
         config.base = {
           dest: 'scripts/base/'+filename,
