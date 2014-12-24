@@ -396,6 +396,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal'
           ]
         }
       },
