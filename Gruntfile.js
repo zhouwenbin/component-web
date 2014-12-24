@@ -445,6 +445,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.product.detailcontent',
             'vendor.jquery.imagezoom',
             'sf.b2c.mall.adapter.detailcontent',
+            'sf.b2c.mall.page.detail'
           ],
           insertRequire: ['sf.b2c.mall.page.detail']
         }
