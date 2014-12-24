@@ -219,6 +219,7 @@ define('sf.b2c.mall.center.register',[
           .fail(function(errorCode){
 
             var map ={
+              '-140':'请输入您的手机号码',
               '1000020':'用户已注册，上线时将短信提醒',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'
@@ -285,6 +286,7 @@ define('sf.b2c.mall.center.register',[
     '#input-user-password focus':function(ele,event){
       event && event.preventDefault();
 
+      $(ele).css('color','#333');
       var mobileCode = $('#input-mobile-code').val();
       var validateMobileCode= /\d{6}$/.test(mobileCode);
       if(!mobileCode.length){
@@ -302,6 +304,7 @@ define('sf.b2c.mall.center.register',[
     },
     '#input-user-password blur':function(ele,event){
       var password = $(ele).val();
+      $(ele).css('color','#999');
       if(password){
         $(ele).siblings('label').hide();
       }else{

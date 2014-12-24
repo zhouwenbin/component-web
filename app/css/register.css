@@ -108,8 +108,12 @@
 	vertical-align: middle;
 	width: 253px;
 	padding: 12px 0 12px 16px;
-	border:1px solid #CCCCCC;
+	border:1px solid #ccc;
 	border-radius: 3px;
+  color:#999;
+}
+.register li input:focus{
+  color: #333;
 }
 .register .input1{
   width: 130px;
