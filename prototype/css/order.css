@@ -9,6 +9,8 @@
 .step li{
 	position: relative;
 	display: inline-block;
+	*display: inline;
+	*zoom:1;
 	text-align: center;
 	width: 372px;
 	font-size: 14px;
@@ -203,6 +205,9 @@
 .order-r3 .icon32{
 	margin-top: 24px;
 	margin-bottom: -34px;
+}
+.order .btn-send.disable{
+	cursor: pointer;
 }
 
 .table-fr1 li{

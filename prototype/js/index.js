@@ -194,29 +194,37 @@ $(function(){
         $(this).prev().toggle();
         return false;
     });
+    $(".order").on("click", ".disable", function(){
+        $(".order-r2").hide();
+        return false;
+    });
 
 
     //----------注册页小章鱼特效-------------//
     $('.password').focus(function(){
         $(".icon34").animate({
             "top":-28
-        },300)
-        .animate({
-            "top":-32
-        },50)
-        .animate({
-            "top":-30
-        },50);
+        },700);
     })
     $('.password').blur(function(){
         $(".icon34").animate({
-            "top":-82
+            "top":-78
         },300)
         .animate({
-            "top":-78
+            "top":-74
         },50)
         .animate({
-            "top":-80
+            "top":-76
         },50);
+    })
+
+    //----------placeholder兼容-------------//
+    $(".password").keyup(function(){
+        
+        if($(this).val()){
+            $(this).siblings("label").hide();
+        }else{
+            $(this).siblings("label").show();
+        }
     })
 })
