@@ -73,6 +73,8 @@
 .order-r1{
 	padding: 27px 0;
 	display: none;	
+}
+.order-b.active	.order-r1{
 	border-bottom: 1px solid #eee;
 }
 .order-b-1{
