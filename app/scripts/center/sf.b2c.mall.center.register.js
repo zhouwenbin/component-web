@@ -165,7 +165,7 @@ define('sf.b2c.mall.center.register',[
             var errorText = map[errorCode].toString();
             if(errorText === "账户已注册"){
               $('#mobileNumErrorTips').show();
-              that.setMobileNumError(errorText);
+              that.setMobileNumError('用户已注册，上线时将短信提醒');
             }else{
               $('#mobileCodeErorTips').show();
               that.setMobileCodeError(errorText);
@@ -219,7 +219,7 @@ define('sf.b2c.mall.center.register',[
           .fail(function(errorCode){
 
             var map ={
-              '1000020':'账户已注册',
+              '1000020':'用户已注册，上线时将短信提醒',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'
             };
