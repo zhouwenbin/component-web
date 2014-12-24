@@ -45,7 +45,6 @@ define('sf.b2c.mall.center.register',[
       this.render(this.data);
       this.functionPlaceHolder(document.getElementById("input-mobile-num"));
       this.functionPlaceHolder(document.getElementById("input-mobile-code"));
-      this.functionPlaceHolder(document.getElementById("input-user-password"));
     },
 
     render:function(data){
@@ -295,9 +294,12 @@ define('sf.b2c.mall.center.register',[
         $('#mobileCodeErorTips').show();
         this.setMobileCodeError('您输入的验证码有误');
       }
-
+      $(ele).siblings('label').hide();
       $('#pwdErrorTips').fadeOut(1000);
 
+    },
+    '#input-user-password blur':function(ele,event){
+      $(ele).siblings('label').show();
     },
     //checkbox是否选中
     '#ischecked click':function($el,event){
