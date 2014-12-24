@@ -2,13 +2,14 @@
 
 define('sf.b2c.mall.product.detailcontent', [
     'can',
+    'vendor.jquery.imagezoom',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.business.config'
   ],
-  function(can, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, SFConfig) {
+  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, SFConfig) {
     return can.Control.extend({
 
       helpers: {
@@ -44,6 +45,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         this.detailUrl = SFConfig.setting.api.detailurl;
+        this.adapter = new SFDetailcontentAdapter({});
         this.render();
       },
 
@@ -61,14 +63,14 @@ define('sf.b2c.mall.product.detailcontent', [
             })
             .then(function(itemInfoData) {
               that.options.detailContentInfo = {};
-              SFDetailcontentAdapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
+              that.adapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
 
               return can.ajax({
                 url: 'json/sf-b2c.mall.detail.getSkuInfoByItemIdPrice.json'
               })
             })
             .done(function(priceData) {
-              SFDetailcontentAdapter.formatPrice(that.options.detailContentInfo, priceData);
+              that.adapter.formatPrice(that.options.detailContentInfo, priceData);
 
             })
             .then(function() {
@@ -77,9 +79,9 @@ define('sf.b2c.mall.product.detailcontent', [
               })
             })
             .done(function(recommendProducts) {
-              SFDetailcontentAdapter.formatRecommendProducts(that.options.detailContentInfo, recommendProducts);
+              that.adapter.formatRecommendProducts(that.options.detailContentInfo, recommendProducts);
 
-              that.options.detailContentInfo = SFDetailcontentAdapter.format(that.options.detailContentInfo);
+              that.options.detailContentInfo = that.adapter.format(that.options.detailContentInfo);
 
               var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
               that.element.html(html);
@@ -188,17 +190,19 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.detailContentInfo.itemInfo.specGroups = specGroups;
         this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList = saleSkuSpecTupleList;
 
+        var that = this;
+
         _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
           //设置选中
-          SFDetailcontentAdapter.setSelectedSpec(index, specId, group);
+          that.adapter.setSelectedSpec(index, specId, group);
           //设置可选
-          SFDetailcontentAdapter.setCanSelectedSpec(index, specId, group, saleSkuSpecTupleList);
+          that.adapter.setCanSelectedSpec(index, specId, group, saleSkuSpecTupleList);
 
           ++index;
         })
 
         this.options.detailContentInfo.input = {};
-        this.options.detailContentInfo = SFDetailcontentAdapter.format(this.options.detailContentInfo);
+        this.options.detailContentInfo = that.adapter.format(this.options.detailContentInfo);
 
         var template = can.view.mustache(this.specTemplate());
         $('#specArea').html(template(this.options.detailContentInfo));
@@ -558,7 +562,7 @@ define('sf.b2c.mall.product.detailcontent', [
           })
           .done(function(skuInfoData) {
             that.options.detailContentInfo.itemInfo.attr("basicInfo", skuInfoData);
-            SFDetailcontentAdapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
+            that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
             that.renderPriceInfo();
 

@@ -1,0 +1,108 @@
+{{^if hasData}}
+<div class="order-b active">
+<!--新增区域-->
+  <div class="order-r2" id="addarea">
+    <h3>添加收货人信息</h3>
+    <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
+    <ul>
+      <li class="li">
+        <label for="username">收货人真实姓名：</label>
+        <input id="username" type="text" placeholder="需和身份证的姓名一致" can-value="user.recName" />
+      </li>
+      <li class="li">
+        <label for="identity">收货人身份证：</label>
+        <input id="identity" type="text" placeholder="填写身份证"  can-value="user.credtNum"/><span class="icon icon26">填写错误</span>
+        <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
+      </li>
+      <li class="li">
+        <label for="phone">联系电话：</label>
+        <input id="phone" type="text"  placeholder="填写手机号" can-value="user.cellphone"/>
+      </li>
+    </ul>
+    <div class="order-r2r3">
+      <a href="#" class="btn btn-send">保存</a>
+      <span class="icon icon26-1">保存成功</span>
+    </div>
+  </div>
+  <!--新增区域-->
+  <a href="#" class="btn btn-add">+ 添加收货人信息</a>
+</div>
+{{/if}}
+
+{{#if hasData}}
+<div class="order-b" id="personlist">
+  <ul>
+   {{#each userList}}
+    <li class="{{user.active}}" name="personEach">
+      <div class="order-r1 clearfix">
+        <div class="order-r1c1 fl">
+          <span class="icon icon29"></span>
+          <span>{{user.recName}}</span>
+          <span>身份证号：{{user.credtNum}}</span>
+          <span>联系方式：{{user.cellphone}}</span>
+        </div>
+        <div class="order-r1c2 fr">
+          <a class="order-edit" href="">修改</a>
+        </div>
+      </div>
+      <!--编辑区域-->
+      <div class="order-r2" id="editarea">
+          <h3>修改收货人信息</h3>
+          <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
+          <ul>
+            <li class="li">
+              <label for="username">收货人真实姓名：</label>
+              <input id="recId" type="hidden" can-value="user.recId" />
+              <input id="username" type="text" can-value="user.recName" />
+            </li>
+            <li class="li">
+              <label for="identity">收货人身份证：</label>
+              <input id="identity" type="text" can-value="user.credtNum" /><span class="icon icon26">填写错误</span>
+              <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
+            </li>
+            <li class="li">
+              <label for="phone">联系电话：</label>
+              <input id="phone" type="text" can-value="user.cellphone" />
+            </li>
+          </ul>
+          <div class="order-r2r3">
+            <a href="#" class="btn btn-send" id="editSave" data-recid="{{user.recId}}">保存</a>
+            <span class="icon icon26-1">保存成功</span>
+          </div>
+        </div>
+        <!--编辑区域-->
+    </li>
+
+   {{/each}}
+  </ul>
+
+  <!--新增区域-->
+  <div class="order-r2" id="addarea">
+    <h3>添加收货人信息</h3>
+    <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
+    <ul>
+      <li class="li">
+        <label for="username">收货人真实姓名：</label>
+        <input id="username" type="text" placeholder="需和身份证的姓名一致" can-value="user.recName" />
+      </li>
+      <li class="li">
+        <label for="identity">收货人身份证：</label>
+        <input id="identity" type="text" placeholder="填写身份证"  can-value="user.credtNum"/><span class="icon icon26">填写错误</span>
+        <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
+      </li>
+      <li class="li">
+        <label for="phone">联系电话：</label>
+        <input id="phone" type="text"  placeholder="填写手机号" can-value="user.cellphone"/>
+      </li>
+    </ul>
+    <div class="order-r2r3">
+      <a href="#" class="btn btn-send" id="addSave">保存</a>
+      <span class="icon icon26-1">保存成功</span>
+    </div>
+  </div>
+  <!--新增区域-->
+
+  <a href="#" class="btn btn-add">+ 添加收货人信息</a>
+  <a href="#" class="icon icon30"></a>
+</div>
+{{/if}}
