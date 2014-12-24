@@ -213,4 +213,14 @@ $(function(){
             "top":-76
         },50);
     })
+
+    //----------placeholder兼容-------------//
+    $(".register input").keyup(function(){
+        
+        if($(this).val()){
+            $(this).siblings("label").hide();
+        }else{
+            $(this).siblings("label").show();
+        }
+    })
 })
