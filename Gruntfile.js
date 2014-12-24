@@ -311,7 +311,7 @@ module.exports = function (grunt) {
             // 'index.html',
             'preheat.html',
             'agreement.html',
-            'detail.html',
+            // 'detail.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -402,12 +402,23 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.preheat.register']
         }
       },
-      // detail: {
-      //   options: {
-      //     preserveLicenseComments: false,
-      //     baseUrl
-      //   }
-      // }
+      detail: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.product.breadscrumb',
+            'sf.b2c.mall.product.detailcontent',
+            'vendor.jquery.imagezoom',
+            'sf.b2c.mall.adapter.detailcontent',
+          ],
+          insertRequire: ['sf.b2c.mall.page.detail']
+        }
+      }
     }
   });
 
@@ -480,10 +491,11 @@ module.exports = function (grunt) {
           'autoprefixer',
           'concat',
           'cssmin',
-          'uglify',
+          // 'uglify',
           'copy:dist',
           'requirejs:preheat',
           'requirejs:main',
+          'requirejs:detail',
           'usemin',
           'htmlmin'
         ]);
