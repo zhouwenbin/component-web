@@ -383,7 +383,12 @@ define('sf.b2c.mall.product.detailcontent', [
         element.addClass('active');
 
         var image = $(element)[0].dataset.bigPic;
-        this.options.detailContentInfo.itemInfo.attr("currentImage", image);
+
+        if (this.options.serverRendered){
+          $('#bigPicArea')[0].innerHTML = '<a href="'+image+'"><img src="'+image+'" rel="'+image+'" alt="" class="jqzoom"/></a>';
+        }
+
+        //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
 
       /**
@@ -643,7 +648,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       picInfoTemplate: function() {
-        return '<div class="goods-c1r1">' +
+        return '<div class="goods-c1r1" id="bigPicArea">' +
           '<a href="{{itemInfo.currentImage}}"><img src="{{itemInfo.currentImage}}" rel="{{itemInfo.currentImage}}" alt="" class="jqzoom"/></a>' +
           '</div>' +
           '<div class="goods-c1r2">' +
