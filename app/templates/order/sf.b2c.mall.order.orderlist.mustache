@@ -28,35 +28,50 @@
             </div>
           </div>
           <ul class="table-b">
+            {{#each orderlist}}
             <li class="clearfix">
               <div class="table-c1 fl">
                 <div class="table-r1 clearfix">
                   <div class="table-img fl">
-                    <a href=""><img src="img/product.jpg" alt="" width="68" height="42" /></a><span></span>
+                    <a href=""><img src="{{imageUril}}" alt="" width="68" height="42" /></a><span></span>
                   </div>
                   <div class="table-text">
-                    <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
-                    <p><img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />黑色</p>
+                    <h3><a href="">{{goodsName}}</a></h3>
+                    <p><img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />{{spec}}</p>
                   </div>
                 </div>
-                <div class="table-r2">订单号：35703505832085<span>下单日期：2014/12/12 13:34:25</span></div>
+                <div class="table-r2">订单号：{{orderId}}<span>下单日期：{{sf.time gmtPaid}}</span></div>
               </div>
 
               <div class="table-c2 fl">
-                黄小牙
+                {{orderAddressItem.revice_name}}
               </div>
               <div class="table-c3 fl">
-                ￥1280
+                ￥{{totalPrice - discount}}
               </div>
               <div class="table-c4 fl">
-                待付款
+                {{orderStatus}}
+                {{#if showRouter}}
+                <div class="table-1-logistics">
+                  <a href="">查看物流</a>
+                  <div class="tooltip">
+                    <h4>物流跟踪</h4>
+                    <ul>
+                      <li class="active"><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+                    </ul>
+                    <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                  </div>
+                </div>
+                {{/if}}
               </div>
               <div class="table-c5 fl">
-                <a href="#" class="btn btn-send">立即支付</a>
-                <a href="#" class="btn btn-add">查看订单</a>
-                <a href="#" class="btn btn-add">取消订单</a>
+                {{{optionHMTL}}}
               </div>
             </li>
+            {{/each}}
           </ul>
         </div>
       </div>
