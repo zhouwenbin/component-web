@@ -385,8 +385,10 @@ define('sf.b2c.mall.product.detailcontent', [
         var image = $(element)[0].dataset.bigPic;
 
         if (this.options.serverRendered){
-          $('#bigPicArea')[0].innerHTML = '<a href="'+image+'"><img src="'+image+'" rel="'+image+'" alt="" class="jqzoom"/></a>';
+          $('#bigPicArea')[0].innerHTML = '<a href="'+image+'"><img src="'+image+'" rel="'+image+'" alt="" class="jqzoom"/></a><span></span>';
         }
+
+        $(".jqzoom").imagezoom();
 
         //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
