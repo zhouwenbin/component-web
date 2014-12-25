@@ -96,15 +96,23 @@
 	padding: 5px 10px;
 	border: 1px solid #ececec;
 }
-.order-r1c2 a{
+.order-edit,
+.order-del{
 	margin-right: 87px;
 	color: #949494;
 	text-decoration: underline;
 
 }
+.order-edit:hover,
+.order-del:hover{
+	text-decoration: underline;
+}
 .order-cancel{
 	margin-left: 36px;
 	color: #949494;
+	text-decoration: underline;
+}
+.order-cancel:hover{
 	text-decoration: underline;
 }
 .order-f{
