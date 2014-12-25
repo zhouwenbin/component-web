@@ -25,7 +25,7 @@ require(
         new Footer('.sf-b2c-mall-footer');
 
         //step
-        new OrderSetp('.sf-b2c-mall-order-step');
+        new OrderSetp('.sf-b2c-mall-order-step', {"firststep":"active"});
 
         new SelectReceivePerson('.sf-b2c-mall-order-selectReceivePerson');
 

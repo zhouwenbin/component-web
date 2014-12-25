@@ -75,6 +75,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
           })
           .fail(function(errorCode) {
             debugger;
+            console.error(errorCode);
           })
       },
 

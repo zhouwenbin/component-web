@@ -1,5 +1,5 @@
-
-        <div class="table">
+<h2>商品信息</h2>
+<div class="table">
           <div class="table-h clearfix">
             <div class="table-c1 fl">
               商品
@@ -7,40 +7,55 @@
             <div class="table-c2 fl">
               数量
             </div>
-            <div class="table-c3 fr">
-              金额
+            <div class="table-c3 fl">
+              顺丰海淘价
+            </div>
+            <div class="table-c4 fl">
+              优惠金额
+            </div>
+            <div class="table-c5 fr">
+              小计
             </div>
           </div>
           <ul class="table-b">
             <li class="clearfix">
               <div class="table-c1 fl">
                 <div class="table-img fl">
-                  <a href=""><img src="img/product.jpg" alt="" width="68" height="42" /></a><span></span>
+                  <a href=""><img src="{{picUrl}}" alt="" width="68" height="42" /></a><span></span>
                 </div>
                 <div class="table-text">
-                  <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
-                  <p>黑色</p>
-                  <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />
+                  <h3><a href="">{{itemName}} </a></h3>
+                  <p>{{spec}}</p>
+                  <!--img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /-->
                 </div>
 
               </div>
               <div class="table-c2 fl">
-                1
+                {{amount}}
               </div>
-              <div class="table-c3 fr">
-                单价：￥1800
+              <div class="table-c3 fl">
+                ￥{{singlePrice}}
+              </div>
+              <div class="table-c4 fl">
+                ￥0
+              </div>
+              <div class="table-c5 fr">
+                ￥{{totalPrice}}
               </div>
             </li>
           </ul>
           <div class="table-f">
-            <div class="table-fr1">单价：￥1800</div>
-            <div class="table-fr2">x1</div>
-            <div class="table-fr3">运费：￥0</div>
-            <div class="table-fr4">开业全场免邮，有钱，任性！</div>
-            <div class="table-fr5">实际应付款：<strong>￥1800</strong></div>
+            <div class="table-fr1">
+                <li>商品总金额：￥{{allTotalPrice}}</li>
+                <li>-优惠金额：￥0</li>
+                <li>+税额：￥0</li>
+                <li>+运费：￥0</li>
+            </div>
+            <div class="table-fr2">开业全场免邮，有钱，任性！</div>
+            <div class="table-fr3">实际应付款：<strong>￥{{shouldPay}}</strong></div>
           </div>
         </div>
 
         <div class="order-f">
-          <a href="#" class="btn btn-send">提交订单</a>
+          <a href="#" class="btn btn-send" id="submitOrder">提交订单</a>
         </div>

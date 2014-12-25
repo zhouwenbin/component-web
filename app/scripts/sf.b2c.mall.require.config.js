@@ -105,14 +105,18 @@ requirejs.config({
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
 
     'sf.b2c.mall.page.order': 'scripts/page/sf.b2c.mall.page.order',
+    'sf.b2c.mall.page.gotopay': 'scripts/page/sf.b2c.mall.page.gotopay',
     'sf.b2c.mall.order.step': 'scripts/order/sf.b2c.mall.order.step',
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
 
     'sf.b2c.mall.adapter.address.list':'scripts/adapter/sf.b2c.mall.adapter.address.list',
+    'sf.b2c.mall.adapter.regions':'scripts/adapter/sf.b2c.mall.adapter.regions',
     'sf.b2c.mall.component.addrEditor':'scripts/component/sf.b2c.mall.component.addrEditor',
 
+    'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
+    'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
     'sf.b2c.mall.page.register.checklink': 'scripts/page/sf.b2c.mall.page.register.checkLink',
