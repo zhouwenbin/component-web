@@ -81,6 +81,7 @@ requirejs.config({
     'sf.b2c.mall.framework.view.controller': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.view.controller',
     'sf.b2c.mall.util.utils': 'http://www.google.com/app/scripts/util/sf.b2c.mall.util.utils',
     // --------------------------------------------
+    'placeholders': 'bower_components/Placeholders/build/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',

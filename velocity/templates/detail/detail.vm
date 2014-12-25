@@ -31,7 +31,7 @@
              data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
             <div class="goods clearfix">
                 <div id="allSkuImages" class="goods-c1 fl">
-                    <div class="goods-c1r1">
+                    <div class="goods-c1r1" id="bigPicArea">
                       #set($_selectedImg="")
                       #if(${productInfo.skuInfo.images}) #set($_selectedImg=$!{productInfo.skuInfo.images[0].bigImgUrl})#end
                         <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""

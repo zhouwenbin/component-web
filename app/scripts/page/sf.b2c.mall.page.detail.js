@@ -26,14 +26,17 @@ define(
         new Header('.sf-b2c-mall-header');
         new Footer('.sf-b2c-mall-footer');
 
-        //面包屑
-        new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
-
         //详情页
         //看服务器端是否渲染了
         var serverRendered = _.find($('.sf-b2c-mall-detail-content')[0].classList, function(item) {
           return item == 'serverRendered'
         })
+
+        //客户端渲染了 服务端就不要渲染了
+        if (typeof serverRendered == 'undefined'){
+          //面包屑
+          new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
+        }
 
         new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': (typeof serverRendered != 'undefined')});
 
