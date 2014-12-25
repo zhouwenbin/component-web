@@ -19,6 +19,8 @@
         <li class="active"><a href="">邮箱注册</a><span class="icon icon16-2"></span></li>
       </ul>
       <a href="#" class="btn btn-close">关闭</a>
+      <span class="icon icon34"></span>
+      <span class="icon icon35"></span>
     </div>
     <!--手机注册-->
     <div class="register-b">
@@ -28,7 +30,10 @@
          </li>
          <li>
             <div class="clearfix">
-              <input type="text" class="input1 fl" placeholder="手机验证码" />
+              <div class="fl">
+                <input type="text" class="input1" placeholder="手机验证码" />
+              </div>
+              
               <a href="#" class="btn btn-send fr">发送验证码</a>
               <!--不可发送时--<a href="#" class="btn btn-send disable">发送验证码</a><!--不可发送时-->
             </div>
@@ -37,11 +42,12 @@
          </li>
          
          <li>
-           <input type="passward" placeholder="设置密码" />
+          <label for="password">设置密码</label>
+           <input id="password" type="passward" class="password" />
          </li>
        </ol>
        <div class="register-br1">
-         <a href="#" class="btn btn-register">同意协议并注册</a>
+         <a href="#" class="btn btn-send btn-register">同意协议并注册</a>
        </div>
        <div class="register-br2">
          <a href="">《顺丰海淘服务协议》</a>
@@ -59,7 +65,8 @@
            <input type="text" class="input2" /><img src="img/code.jpg" width="80" alt="验证码" /><a class="a1" href="">换一个</a>
          </li>
          <li>
-           <input type="passward" placeholder="设置密码" />
+           <label for="password">设置密码</label>
+           <input id="password" type="passward" class="password" />
          </li>
        </ol>
        <div class="register-br1">

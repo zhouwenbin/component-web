@@ -37,11 +37,14 @@ define('sf.b2c.mall.center.register',[
       this.defaults.user.attr({
         mobileNum: null,
         mobileCode: null,
-        password: null
+        password: null,
+        ischecked: true
       });
 
       this.data = this.parse(this.defaults);
       this.render(this.data);
+      this.functionPlaceHolder(document.getElementById("input-mobile-num"));
+      this.functionPlaceHolder(document.getElementById("input-mobile-code"));
     },
 
     render:function(data){
@@ -98,6 +101,7 @@ define('sf.b2c.mall.center.register',[
 
       var that = this;
 
+
       var params = {
         mobileNum:this.data.user.attr('mobileNum'),
         mobileCode:this.data.user.attr('mobileCode'),
@@ -107,17 +111,27 @@ define('sf.b2c.mall.center.register',[
       var validateMobileCode= /\d{6}$/.test(params.mobileCode);//验证码6位数字验证
       var validatePwd = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,18}$/.test(params.password);//密码正则验证
 
-      if(!params.mobileNum || !validateMobileNum){
+      if(!params.mobileNum){
+        $('#mobileNumErrorTips').show();
+        return this.setMobileNumError('请输入您的手机号码');
+      }else if(!validateMobileNum){
          $('#mobileNumErrorTips').show();
          return this.setMobileNumError('您的手机号码输入有误');
       }
 
-      if(!params.mobileCode || !validateMobileCode){
+
+      if(!params.mobileCode){
+        $('#mobileCodeErorTips').show();
+        return this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
         $('#mobileCodeErorTips').show();
         return this.setMobileCodeError('您输入的验证码有误，请重新输入');
       }
 
-      if(!params.password || !validatePwd){
+      if(!params.password){
+        $('#pwdErrorTips').show();
+        return this.setPwdError('请设置登录密码');
+      }else if(!validatePwd){
         $('#pwdErrorTips').show();
         return this.setPwdError('密码请设置6-18位字母、数字或标点符号');
       }
@@ -127,6 +141,7 @@ define('sf.b2c.mall.center.register',[
         smsCode:params.mobileCode,
         password:md5(params.password + 'www.sfht.com')
       };
+      var number = data.mobile;
       var mobileRegister = new SFUserMobileRegister(data);
       mobileRegister
           .sendRequest()
@@ -136,20 +151,26 @@ define('sf.b2c.mall.center.register',[
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
               var html = '<div class="register-h"><h2>抢先预约</h2><a href="#" class="btn btn-close">关闭</a></div>'+
               '<div class="register-b1"><span class="icon icon27"></span><h3>恭喜您预约成功!</h3><p>顺丰海淘即将正式开放，<br />'+
-              '届时使用手机号码<span>'+data.mobile+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
+              '届时使用手机号码<span>'+number+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
               sfb2cmallregister.html(html);
 
             }
           })
           .fail(function(errorCode){
-            debugger;
             var map ={
+              '1000020':'账户已注册',
               '1000240':'手机验证码错误',
-              '1000250':'手机验证码已过期'
+              '1000250':'手机验证码错误'
             };
             var errorText = map[errorCode].toString();
-            $('#mobileCodeErorTips').show();
-            that.setMobileCodeError(errorText);
+            if(errorText === "账户已注册"){
+              $('#mobileNumErrorTips').show();
+              that.setMobileNumError('用户已注册，上线时将短信提醒');
+            }else{
+              $('#mobileCodeErorTips').show();
+              that.setMobileCodeError(errorText);
+            }
+
           })
 
     },
@@ -182,7 +203,7 @@ define('sf.b2c.mall.center.register',[
       var wait = 60;//初始化倒计时时间
 
       $(ele).attr('state','false');
-      this.countTime(ele,wait);
+      //this.countTime(ele,wait);
 
       var mobileNum = this.data.user.attr('mobileNum');
       var data ={
@@ -193,11 +214,13 @@ define('sf.b2c.mall.center.register',[
       downSmsCode
           .sendRequest()
           .done(function(data){
-
+            that.countTime(ele,wait);
           })
           .fail(function(errorCode){
+
             var map ={
-              '1000020':'账户已注册',
+              '-140':'请输入您的手机号码',
+              '1000020':'用户已注册，上线时将短信提醒',
               '1000270':'短信请求太频繁',
               '1000290':'短信请求太多'
             };
@@ -217,13 +240,12 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
       var mobileNum = $(ele).val();
+      var validateMobileNum = /^1\d{10}$/.test(mobileNum);//电话号码正则验证（以1开始，11位验证
 
       if(!mobileNum.length){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('请输入您的手机号码');
-      }
-
-      if( mobileNum.length > 0 && mobileNum.length <11 || mobileNum.length > 11){
+      }else if(!validateMobileNum){
         $('#mobileNumErrorTips').show();
         return this.setMobileNumError('您的手机号码输入有误');
       }
@@ -231,7 +253,7 @@ define('sf.b2c.mall.center.register',[
       if(mobileNum.length === 11){
         $('#btn-send-mobilecode').attr('state','true');
         $('#mobileNumErrorTips').fadeOut(1000);
-        if($('#btn-send-mobilecode').attr('state') === "true"){
+        if($('#btn-send-mobilecode').attr('state') === "true" && $('#btn-send-mobilecode').html() ==="发送验证码" ){
           $('#btn-send-mobilecode').removeAttr('disabled');
           $('#btn-send-mobilecode').removeClass('disable');
         }
@@ -239,12 +261,6 @@ define('sf.b2c.mall.center.register',[
 
     },
 
-//    '#input-mobile-num keyup':function(ele,event){
-//      event && event.preventDefault();
-//
-//      $('#btn-send-mobilecode').addClass('disable');
-//
-//    },
     //关闭注册悬浮框
     '.btn-close click':function(ele,event){
       event && event.preventDefault();
@@ -264,35 +280,76 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       $('#mobileCodeErorTips').fadeOut(1000);
-
     },
 
     //密码框光标移上错误提示消失
     '#input-user-password focus':function(ele,event){
       event && event.preventDefault();
 
+      $(ele).css('color','#333');
+      var mobileCode = $('#input-mobile-code').val();
+      var validateMobileCode= /\d{6}$/.test(mobileCode);
+      if(!mobileCode.length){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('请输入验证码');
+      }else if(!validateMobileCode){
+        $('#mobileCodeErorTips').show();
+        this.setMobileCodeError('您输入的验证码有误');
+      }
       $('#pwdErrorTips').fadeOut(1000);
 
     },
-    //checkbox是否选中
-    '#ischecked change':function(ele,event){
-      event && event.preventDefault();
-
-      if($(ele).attr('state') === 'true'){
-
-        $(ele).attr('checked','checked');
-        $('.btn-register').removeAttr('disabled');
-
-        $(ele).attr('state','false');
-        $('.btn-register').removeClass('disable');
-
+    '#input-user-password keyup':function(ele,event){
+      $(ele).siblings('label').hide();
+    },
+    '#input-user-password blur':function(ele,event){
+      var password = $(ele).val();
+      $(ele).css('color','#999');
+      if(password){
+        $(ele).siblings('label').hide();
       }else{
+        $(ele).siblings('label').show();
+      }
+    },
+    '#default-text click':function(){
+      $('#input-user-password').focus();
+    },
+    //checkbox是否选中
+    '#ischecked click':function($el,event){
+      // event && event.preventDefault();
 
-        $(ele).removeAttr('checked');
-        $('.btn-register').attr('disabled','disabled');
-        $(ele).attr('state','true');
-        $('.btn-register').addClass('disable');
+      var ischecked = this.defaults.user.attr('ischecked');
+      if (ischecked) {
+        $('.btn-register').removeAttr('disabled').removeClass('disable');
+        $el.attr('state','false');
+      }else{
+        $('.btn-register').attr('disabled','disabled').addClass('disable');
+        $el.attr('state','true');
+      }
+    },
+    //ie7,8,9输入框默认值
+    functionPlaceHolder:function(element){
+      var placeholder = '';
+      if (element && !("placeholder" in document.createElement("input")) && (placeholder = element.getAttribute("placeholder"))) {
+        element.style.color = '#999';
+        element.onfocus = function() {
+          if (this.value === placeholder) {
+            this.value = "";
+          }
+          this.style.color = '#333';
+        };
+        element.onblur = function() {
+          if (this.value === "") {
+            this.value = placeholder;
+          }
+          this.style.color = '#999';
+        };
+
+        //样式初始化
+        if (element.value === "") {
+          element.value = placeholder;
+        }
       }
     }
-  })
+  });
 })

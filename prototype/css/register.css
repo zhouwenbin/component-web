@@ -27,10 +27,22 @@
 	right: 16px;
 	top: 17px;
 }
+.register-h .icon35{
+	position: absolute;
+	left: 228px;
+	top: -9px;
+}
+.register-h .icon34{
+	position: absolute;
+	left: 239px;
+	top: -76px;
+	z-index: -1;
+}
 .register-h ul{
 	
 	background: #32363f;
 	text-align: center;
+	position: relative;
 }
 .register-h li{
 	display: inline-block;
@@ -64,6 +76,8 @@
 	margin: 0 16px;
 	border-bottom: 1px solid  #EEE;
 	display: none;
+	background: #fff;
+	position: relative;
 }
 .register-b.active{
 	display: block;
@@ -81,6 +95,14 @@
 .register-b .icon26{
 	margin-top: 5px;
 	display: none;
+}
+.register li{
+	position: relative;
+}
+.register li label{
+	position: absolute;
+	left: 17px;
+	top: 13px;
 }
 .register li input{
 	vertical-align: middle;

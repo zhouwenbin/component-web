@@ -200,7 +200,7 @@
 	margin-right: 15px;
 }
 .goods .icon26{
-	visibility: visible;
+	visibility: hidden;
 }
 .goods .btn{
 	margin: 0 3px;
@@ -244,7 +244,7 @@
 }
 /*小编推荐*/
 .recommend2{
-	padding:35px 134px;
+	padding:35px 134px; 
 	background: #f8f8f8;
 	border:1px solid #eeedee;
 	margin-bottom: 47px;
@@ -283,7 +283,7 @@
 	margin-left: 95px;
 }
 .detail-b{
-	font-size: 14px;
+	font-size: 14px;	
 	line-height: 1.7;
 	text-align: center;
 	padding: 84px 0;
@@ -351,5 +351,3 @@
 .tip-c2{
 	width: 438px;
 }
-div.zoomDiv{z-index:999;position:absolute;top:0px;left:0px;width:200px;height:200px;background:#ffffff;border:1px solid #CCCCCC;display:none;text-align:center;overflow:hidden;}
-div.zoomMask{position:absolute;background:url("/img/mask.png") repeat scroll 0 0 transparent;cursor:move;z-index:1;}
