@@ -49,16 +49,16 @@
   <div class="register-b {{#mobile}}active{{/mobile}}">
      <ol>
       <li>
-         <input type="text" placeholder="手机号" id="input-mobile" />
+         <input type="text" placeholder="仅限中国大陆手机号" id="input-mobile" />
          <span class="icon icon26" id="input-mobile-error">手机号输入错误</span>
        </li>
        <li>
           <div class="clearfix">
             <div class="fl">
-              <input type="text" class="input1" placeholder="手机验证码" id="input-mobile-code" />
+              <input type="text" class="input1" placeholder="点击按钮获取验证码" id="input-mobile-code" />
             </div>
 
-            <a href="#" class="btn btn-send fr" id="mobile-code-btn">发送验证码</a>
+            <a href="#" class="btn btn-send fr" id="mobile-code-btn">发送短信验证码</a>
             <!--不可发送时--<a href="#" class="btn btn-send disable">发送验证码</a><!--不可发送时-->
           </div>
          <span class="icon icon26" id="mobile-code-error">手机验证码错误</span>
@@ -67,7 +67,7 @@
 
        <li>
         {{! <label for="password">设置密码</label> }}
-         <input type="passward" class="password" id="input-password"  placeholder="设置密码"/>
+         <input type="passward" class="password" id="input-password"  placeholder="6-18位字母、数字或标点符号"/>
          <span class="icon icon26" id="password-error">密码设置错误</span>
        </li>
      </ol>

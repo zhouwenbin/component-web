@@ -31,6 +31,31 @@ define(
       '1000160':   '邮件请求频繁'
     };
 
+    var DEFAULT_DOWN_SMS_ERROR_MAP = {
+      '1000010' : '未找到手机用户',
+      '1000020' : '手机号已存在，<a href="login.html">立即登陆</a>',
+      '1000070' : '参数错误',
+      '1000230' : '手机号错误，请输入正确的手机号',
+      '1000270' : '短信请求太过频繁,请稍后重试',
+      '1000290' : '短信请求太多'
+    }
+
+    var DEFAULT_MOBILE_ACTIVATE_ERROR_MAP = {
+      '1000020': '账户已注册',
+      '1000230': '手机号错误，请输入正确的手机号',
+      '1000240': '手机验证码错误',
+      '1000250': '手机验证码已过期'
+    }
+
+    var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
+    var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
+    var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
+    var ERROR_EMAIL = '您的邮箱地址格式输入有误';
+    var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
+    var ERROR_NO_EMAIL_CODE = '请输入验证码';
+    var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
+
     can.route.ready();
 
     return can.Control.extend({
@@ -127,8 +152,11 @@ define(
       },
 
       checkMobile: function (mobile) {
-        if(!/^1[0-9]{10}$/.test(mobile)){
-          this.element.find('#input-mobile-error').show();
+        if (!mobile) {
+          this.element.find('#input-mobile-error').text(ERROR_NO_INPUT_MOBILE).show();
+          return false;
+        }else if(!/^1[0-9]{10}$/.test(mobile)){
+          this.element.find('#input-mobile-error').text(ERROR_INPUT_MOBILE).show();
           return false;
         }else{
           return true;
@@ -136,9 +164,8 @@ define(
       },
 
       checkCode: function (code) {
-        var defaultText = '请输入正确的手机验证码';
         if (!/^[0-9]{6}$/.test(code)) {
-          this.element.find('#mobile-code-error').text(defaultText).show();
+          this.element.find('#mobile-code-error').text(ERROR_MOBILE_CHECKCODE).show();
           return false;
         }else{
           return true;
@@ -146,9 +173,11 @@ define(
       },
 
       checkMailCode: function (code) {
-        var defaultText = '请输入正确的邮箱验证码';
-        if (!/^[0-9]{6}$/.test(code)) {
-          this.element.find('#mail-code-error').text(defaultText).show();
+        if (!code) {
+          this.element.find('#mail-code-error').text(ERROR_NO_EMAIL_CODE).show();
+          return false;
+        }else if (!/^[0-9]{6}$/.test(code)) {
+          this.element.find('#mail-code-error').text(ERROR_EMAIL_CODE).show();
           return false;
         }else{
           return true;
@@ -157,7 +186,7 @@ define(
 
       checkPassword: function (password, tag) {
         if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
-          this.element.find(tag).show();
+          this.element.find(tag).text(ERROR_PASSWORD).show();
           return false;
         }else{
           return true;
@@ -165,8 +194,11 @@ define(
       },
 
       checkEmail: function (email) {
-        if (!/^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(email)) {
-          this.element.find('#input-mail-error').text('邮箱地址输入错误').show();
+        if (!email) {
+          this.element.find('#input-mail-error').text(ERROR_NO_EMAIL).show();
+          return false;
+        }else if (!/^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(email)) {
+          this.element.find('#input-mail-error').text(ERROR_EMAIL).show();
           return false;
         }else{
           return true;
@@ -189,6 +221,19 @@ define(
         this.element.find('#input-mobile-error').hide()
       },
 
+      countdown: function (time) {
+        var that = this;
+        setTimeout(function() {
+          if (time > 0) {
+            time--;
+            that.element.find('#mobile-code-btn').text(time+'秒后可重新发送').addClass('disable');
+            that.countdown.call(that, time);
+          }else{
+            that.element.find('#mobile-code-btn').text('发送短信验证码').removeClass('disable');
+          }
+        }, 1000);
+      },
+
       '#mobile-code-btn click': function ($element, event) {
         event && event.preventDefault();
 
@@ -201,20 +246,13 @@ define(
           this.component.sms.sendRequest()
             .done(function (data) {
               // @todo 开始倒计时
+              that.countdown.call(that, 60);
+              that.element.find('#mobile-code-error').hide();
             })
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '短信请求发送失败';
-                var map = {
-                  '1000010' : '未找到用户',
-                  '1000020' : '账户已注册',
-                  '1000070' : '参数错误',
-                  '1000230' : '手机号错误，请输入正确的手机号',
-                  '1000270' : '短信请求太过频繁',
-                  '1000290' : '短信请求太多'
-                }
-
-                that.element.find('#mobile-code-error').text(map[errorCode.toString()] || defaultText).show();
+                that.element.find('#mobile-code-error').html(DEFAULT_DOWN_SMS_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         }
@@ -264,13 +302,7 @@ define(
             .faile(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                var map = {
-                  '1000020': '账户已注册',
-                  '1000230': '手机号错误，请输入正确的手机号',
-                  '1000240': '手机验证码错误',
-                  '1000250': '手机验证码已过期'
-                }
-                that.element.find('#mobile-register-error').text(map[errorCode.toString()] || defaultText).show();
+                that.element.find('#mobile-register-error').text(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         }
