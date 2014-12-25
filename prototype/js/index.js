@@ -237,5 +237,6 @@ $(function(){
     $(".dialog").on("click",".btn-close,.btn-cancel,.btn-send",function(){
         $(this).parents(".dialog").hide(300);
         $(".mask").hide();
+        return false;
     })
 })
