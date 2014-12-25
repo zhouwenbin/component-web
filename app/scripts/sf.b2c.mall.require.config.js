@@ -115,7 +115,9 @@ requirejs.config({
 
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
+    'sf.b2c.mall.page.register.checklink': 'scripts/page/sf.b2c.mall.page.register.checkLink',
     'sf.b2c.mall.adapter.order':'scripts/adapter/sf.b2c.mall.adapter.order',
     'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail'
+
   }
 });

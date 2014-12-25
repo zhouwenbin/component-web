@@ -373,8 +373,6 @@ define(
             // @todo 没有传递mailId
             alert('@todo activateMail no mailId')
           }
-
-
       }
     });
 
