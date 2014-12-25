@@ -62,7 +62,7 @@
 	font-size: 14px;
 	position: relative;
 }
-.order-b li{
+.order-b>ul>li{
 	display: none;
 }
 .order-b li.active,
@@ -73,6 +73,8 @@
 .order-r1{
 	padding: 27px 0;
 	display: none;	
+}
+.order-b.active	.order-r1{
 	border-bottom: 1px solid #eee;
 }
 .order-b-1{
@@ -86,7 +88,7 @@
 .order-r1c1 span{
 	margin-right: 44px;
 }
-.order-r1c1 .icon{
+.order-r1c1 .icon29{
 	margin-right: 28px;
 	cursor: pointer;
 }
@@ -94,11 +96,24 @@
 	padding: 5px 10px;
 	border: 1px solid #ececec;
 }
-.order-r1c2 a{
+.order-edit,
+.order-del{
 	margin-right: 87px;
 	color: #949494;
 	text-decoration: underline;
 
+}
+.order-edit:hover,
+.order-del:hover{
+	text-decoration: underline;
+}
+.order-cancel{
+	margin-left: 36px;
+	color: #949494;
+	text-decoration: underline;
+}
+.order-cancel:hover{
+	text-decoration: underline;
 }
 .order-f{
 	text-align: center;

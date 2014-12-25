@@ -27,6 +27,7 @@
 	text-align: center;
 	float: left;
 	margin-left: 32px;
+	position: relative;
 }
 .orderdetail-step li.active{
 	background: #67b222;
@@ -45,6 +46,14 @@
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
+}
+.orderdetail-step .line{
+	width: 26px;
+	height: 4px;
+	background: #ccc;
+	position: absolute;
+	top: 39px;
+	right: -29px;
 }
 .orderdetail-r1{
 	border-bottom: 1px dashed #ccc;

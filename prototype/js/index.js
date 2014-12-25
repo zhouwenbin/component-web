@@ -194,8 +194,13 @@ $(function(){
         $(this).prev().toggle();
         return false;
     });
-    $(".order").on("click", ".disable", function(){
+    $(".order").on("click", ".order-cancel", function(){
         $(".order-r2").hide();
+        return false;
+    });
+    $(".order").on("click", ".order-del", function(){
+        $(".dialog-center").show(300);
+        $(".mask").show();
         return false;
     });
 
@@ -226,5 +231,12 @@ $(function(){
         }else{
             $(this).siblings("label").show();
         }
+    })
+
+    //----------dialog关闭-------------//
+    $(".dialog").on("click",".btn-close,.btn-cancel,.btn-send",function(){
+        $(this).parents(".dialog").hide(300);
+        $(".mask").hide();
+        return false;
     })
 })

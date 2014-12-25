@@ -6,6 +6,7 @@
 <title>确定订单</title>
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/order.css" rel="stylesheet" type="text/css" />
+<link href="css/center.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--头部-->
@@ -56,40 +57,49 @@
         </ul>
       </div>  
     </div>
-    <!--步骤-->
-    <div class="pm">
-      <div class="step">
-        <ul>
-          <li class="active"><span class="icon icon31"></span>01 填写并核对订单信息<div class="line"></div></li>
-          <li><span class="icon icon31"></span>02 成功提交订单<div class="line"></div></li>
-          <li><span class="icon icon31"></span>03 订单支付成功</li>
-        </ul>
-        <span class="icon icon28"></span>
-      </div>
-    </div>
-    <!--步骤-->
-
-    
-
   </div>
   <!--头部-->
   <div class="pb">
     <div class="pm">
       <!--订单-->
-      <div class="order">
-        <h2>选择收货人</h2>
-        <div class="order-b">
+      <div class="center order">
+        <h2>基本资料</h2>
+        <div class="order-b center-info">
           <ul>
             <li class="active">
               <div class="order-r1 clearfix">
                 <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
+                  昵称：<input type="text" class="input" placeholder="输入昵称">
+                  性别：
+                    <div class="btn btn-select btn-select-1" role="btn">
+                    <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li><label>男<input type="radio" name="size" value="男" class="visuallyhidden"></label></li>
+                      <li><label>女<input type="radio" name="size" value="女" class="visuallyhidden"></label></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="order-r1c2 fr">
+                  <a href="#" class="btn btn-send">保存</a>      
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h2>收货人管理</h2>
+        <div class="order-b active">
+          <ul>
+            <li class="clearfix active">
+              <div class="order-r1 clearfix">
+                <div class="order-r1c1 fl">
                   <span>黄小牙</span>
                   <span>身份证号：350***********6233</span>
                   <span>联系方式：13699839901</span>
                 </div>
-                <div class="order-r1c2 fr">
-                  <a class="order-edit" href="">修改</a>                
+                <div class="order-r1c2 fl">
+                  <a class="order-edit" href="">修改</a>
+                  <a class="order-del" href="">删除</a>
                 </div>
               </div>
               <div class="order-r2">
@@ -97,62 +107,58 @@
                 <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
                 <ul>
                   <li class="li">
-                    <label for="username">收货人真实姓名：</label>
-                    <input id="username" type="text" value="黄小牙" />
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" value="黄小牙" />
                   </li>
                   <li class="li">
-                    <label for="identity">收货人身份证：</label>
-                    <input id="identity" type="text" value="350***********6233" /><span class="icon icon26">填写错误</span>
+                    <label for="identity">身份证</label>
+                    <input id="identity" type="text" value="350***********6233" />
                     <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
                   </li>
                   <li class="li">
-                    <label for="phone">联系电话：</label>
-                    <input id="phone" type="text" value="13699839901" />
+                    <label for="phone">电话</label>
+                    <input id="email" type="text" value="13699839901" />
                   </li>
                 </ul>
                 <div class="order-r2r3">
                   <a href="#" class="btn btn-send">保存</a>
                   <a href="#" class="order-cancel">取消保存</a>
-                  <span class="icon icon26-1">保存成功</span>
                 </div>
               </div>
             </li>
-            <li class="">
+            <li class="clearfix">
               <div class="order-r1 clearfix">
                 <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
                   <span>陈小雨</span>
                   <span>身份证号：350***********2229</span>
                   <span>联系方式：15990029910</span>
                 </div>
-                <div class="order-r1c2 fr">
-                  <a class="order-edit" href="">修改</a>   
-                </div>
+                <div class="order-r1c2 fl">
+                  <a class="order-edit" href="">修改</a>
+                  <a class="order-del" href="">删除</a>
+                </div> 
               </div>
               <div class="order-r2">
-                <h3>修改收货人信息</h3>
-                <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
+                <h3>修改收货地址信息</h3>
                 <ul>
                   <li class="li">
-                    <label for="username">收货人真实姓名：</label>
-                    <input id="username" type="text" value="陈小雨" />
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" value="黄小牙" />
                   </li>
                   <li class="li">
-                    <label for="identity">收货人身份证：</label>
-                    <input id="identity" type="text" value="350***********2229" /><span class="icon icon26">填写错误</span>
-                    <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
+                    <label for="identity">身份证</label>
+                    <input id="identity" type="text" value="350***********6233" />
                   </li>
                   <li class="li">
-                    <label for="phone">联系电话：</label>
-                    <input id="phone" type="text" value="15990029910" />
+                    <label for="phone">电话</label>
+                    <input id="email" type="text" value="13699839901" />
                   </li>
                 </ul>
                 <div class="order-r2r3">
                   <a href="#" class="btn btn-send">保存</a>
                   <a href="#" class="order-cancel">取消保存</a>
-                  <span class="icon icon26-1">保存成功</span>
                 </div>
-              </div>  
+              </div>     
             </li>
           </ul>
           <div class="order-r2">
@@ -160,17 +166,17 @@
             <p class="order-r2r1">由于国家政策规定，海淘商品进口需提供收货人的实名认证信息。</p>
             <ul>
               <li class="li">
-                <label for="username">收货人真实姓名：</label>
-                <input id="username" type="text" placeholder="需和身份证的姓名一致" />
+                <label for="name">姓名：</label>
+                <input type="text" id="name" value="黄小牙" />
               </li>
               <li class="li">
-                <label for="identity">收货人身份证：</label>
-                <input id="identity" type="text" placeholder="填写身份证" /><span class="icon icon26">填写错误</span>
+                <label for="identity">身份证</label>
+                <input id="identity" type="text" value="350***********6233" />
                 <p class="order-r2r2">为了使您可以顺畅的收到进口商品，请务必填写正确的身份证信息</p>
               </li>
               <li class="li">
-                <label for="phone">联系电话：</label>
-                <input id="phone" type="text"  placeholder="填写手机号" />
+                <label for="phone">电话</label>
+                <input id="email" type="text" value="13699839901" />
               </li>
             </ul>
             <div class="order-r2r3">
@@ -178,24 +184,24 @@
               <a href="#" class="order-cancel">取消保存</a>
               <span class="icon icon26-1">保存成功</span>
             </div>
-          </div>
-          <a href="#" class="btn btn-add">+ 添加收货人信息</a><a href="#" class="icon icon30"></a> 
+          </div>  
+          <a href="#" class="btn btn-add">+ 添加收货人信息</a>
         </div>
 
-        <h2>选择收货地址</h2>
-        <div class="order-b">
+        <h2>收货地址管理</h2>
+        <div class="order-b active">
           <ul>
             <li class="clearfix active">
               <div class="order-r1 clearfix">
                 <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
                   <span>上海</span>
                   <span>上海市</span>
                   <span>虹梅路2007号上海远中产业园1号楼8楼</span>
                   <span>200002</span>
                 </div>
-                <div class="order-r1c2 fr">
-                  <a class="order-edit" href="">修改</a>                
+                <div class="order-r1c2 fl">
+                  <a class="order-edit" href="">修改</a>
+                  <a class="order-del" href="">删除</a>
                 </div>
               </div>
               <div class="order-r2">
@@ -236,11 +242,11 @@
                   </li>
                   <li class="li">
                     <label for="address">地址详情</label>
-                    <input id="address" type="text" placeholder="填写详细地址" />
+                    <input id="address" type="text" placeholder="填写详细地址">
                   </li>
                   <li class="li">
                     <label for="email">邮箱</label>
-                    <input id="email" type="text" placeholder="填写邮箱" />
+                    <input id="email" type="text" placeholder="填写邮箱">
                   </li>
                 </ul>
                 <div class="order-r2r3">
@@ -252,14 +258,14 @@
             <li class="clearfix">
               <div class="order-r1 clearfix">
                 <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
                   <span>上海</span>
                   <span>上海市</span>
                   <span>虹梅路2007号上海远中产业园1号楼8楼</span>
                   <span>200001</span>
                 </div>
-                <div class="order-r1c2 fr">
-                  <a class="order-edit" href="">修改</a>                
+                <div class="order-r1c2 fl">
+                  <a class="order-edit" href="">修改</a>
+                  <a class="order-del" href="">删除</a>
                 </div> 
               </div>
               <div class="order-r2">
@@ -300,11 +306,11 @@
                   </li>
                   <li class="li">
                     <label for="address">地址详情</label>
-                    <input id="address" type="text" placeholder="填写详细地址" />
+                    <input id="address" type="text" placeholder="填写详细地址">
                   </li>
                   <li class="li">
                     <label for="email">邮箱</label>
-                    <input id="email" type="text" placeholder="填写邮箱" />
+                    <input id="email" type="text" placeholder="填写邮箱">
                   </li>
                 </ul>
                 <div class="order-r2r3">
@@ -352,11 +358,11 @@
               </li>
               <li class="li">
                 <label for="address">地址详情</label>
-                <input id="address" type="text" placeholder="填写详细地址" />
+                <input id="address" type="text" placeholder="填写详细地址">
               </li>
               <li class="li">
                 <label for="email">邮箱</label>
-                <input id="email" type="text" placeholder="填写邮箱" />
+                <input id="email" type="text" placeholder="填写邮箱">
               </li>
             </ul>
             <div class="order-r2r3">
@@ -365,85 +371,9 @@
               <span class="icon icon26-1">保存成功</span>
             </div>
           </div>  
-          <a href="#" class="btn btn-add">+ 添加收货人信息</a><a class="icon icon30"></a>     
+          <a href="#" class="btn btn-add">+ 添加收货人信息</a>
         </div>
-
-        <h2>支付方式</h2>
-        <div class="order-b order-b-1 clearfix">
-          <ul>
-            <li class="active clearfix">
-                <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
-                  <img src="img/alipay.jpg" alt="alipay" />
-                </div> 
-            </li>
-          </ul>
-              
-        </div>
-        
-        <h2>商品信息</h2>
-
-        <div class="table">
-          <div class="table-h clearfix">
-            <div class="table-c1 fl">
-              商品
-            </div>
-            <div class="table-c2 fl">
-              数量
-            </div>
-            <div class="table-c3 fl">
-              顺丰海淘价
-            </div>
-            <div class="table-c4 fl">
-              优惠金额
-            </div>
-            <div class="table-c5 fr">
-              小计
-            </div>
-          </div>
-          <ul class="table-b">
-            <li class="clearfix">
-              <div class="table-c1 fl">
-                <div class="table-img fl">
-                  <a href=""><img src="img/product.jpg" alt="" width="68" height="42" /></a><span></span>
-                </div>
-                <div class="table-text">
-                  <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
-                  <p>黑色</p>
-                  <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />
-                </div>
-                  
-              </div>
-              <div class="table-c2 fl">
-                1
-              </div>
-              <div class="table-c3 fl">
-                ￥1800
-              </div>
-              <div class="table-c4 fl">
-                ￥0
-              </div>
-              <div class="table-c5 fr">
-                ￥1800
-              </div>
-            </li>
-          </ul>
-          <div class="table-f">
-            <div class="table-fr1">
-                <li>商品总金额：￥1800</li>
-                <li>-优惠金额：￥0</li>
-                <li>+税额：￥0</li>
-                <li>+运费：￥0</li>
-            </div>
-            <div class="table-fr2">开业全场免邮，有钱，任性！</div>
-            <div class="table-fr3">实际应付款：<strong>￥1800</strong></div>
-          </div>
-        </div>
-        
-        <div class="order-f">
-          <a href="#" class="btn btn-send">提交订单</a>
-        </div>
-        
+        <span class="icon icon28"></span>
       </div>
       <!--订单-->
     </div>
@@ -513,6 +443,16 @@
         
     </div>
 
+  </div>
+  <div class="mask"></div>
+  <div class="dialog dialog-center">
+    <a href="#" class="btn btn-close">关闭</a>
+    <p>确定要删除收货人“陈小雨”的信息吗？</p>
+    <div class="dialog-r1">
+      <a href="#" class="btn btn-send">确定</a>
+      <a href="#" class="btn btn-cancel">取消</a>
+    </div>
+      
   </div>
   <!--尾部-->
   <script src="js/jquery-1.11.1.min.js"></script>
