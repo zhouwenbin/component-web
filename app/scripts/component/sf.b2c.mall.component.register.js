@@ -12,15 +12,24 @@ define(
     'placeholders',
     'sf.b2c.mall.api.user.downSmsCode',
     'sf.b2c.mall.api.user.mobileRegister',
+    'sf.b2c.mall.api.user.sendActivateMail',
     'sf.b2c.mall.business.config'
   ],
 
-  function ($, can, md5, _, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFBizConf) {
+  function ($, can, md5, _, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
+
+    var DEFAULT_ACTIVATE_ERROR_MAP = {
+      '1000020':   '账户已注册',
+      '1000050':   '邮箱地址错误',
+      '1000070':   '参数错误',
+      '1000100':   '验证码错误',
+      '1000160':   '邮件请求频繁'
+    };
 
     can.route.ready();
 
@@ -30,6 +39,7 @@ define(
         this.component = {};
         this.component.sms = new SFApiUserDownSmsCode();
         this.component.mobileRegister = new SFApiUserMobileRegister();
+        this.component.activateMail = new SFApiUserSendActivateMail();
 
         this.data = new can.Map({
           mobile: true,
@@ -62,6 +72,16 @@ define(
           this.element.find('.register').fadeIn('slow', function () {
             that.timmer.call(that)
           });
+        },
+
+        'confirminfo': function (data) {
+          var params = can.deparam(window.location.search.substr(1));
+          data.attr('mailId', params.mailId);
+          data.attr('mailLink', this.getEmailLink(params.mailId));
+
+          var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data);
+          this.element.html(html)
+          this.element.find('.register').fadeIn('slow');
         }
       },
 
@@ -86,6 +106,12 @@ define(
             }
           }
         }, 1000);
+      },
+
+      getEmailLink: function (email) {
+        // @todo 处理email链接
+        var arr = email.split('@');
+        return 'http://mail.'+arr[1];
       },
 
       switchTag: function (tag) {
@@ -119,9 +145,19 @@ define(
         }
       },
 
-      checkPassword: function (password) {
+      checkMailCode: function (code) {
+        var defaultText = '请输入正确的邮箱验证码';
+        if (!/^[0-9]{6}$/.test(code)) {
+          this.element.find('#mail-code-error').text(defaultText).show();
+          return false;
+        }else{
+          return true;
+        }
+      },
+
+      checkPassword: function (password, tag) {
         if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
-          this.element.find('#password-error').show();
+          this.element.find(tag).show();
           return false;
         }else{
           return true;
@@ -195,7 +231,7 @@ define(
 
       '#input-password blur': function ($element, event) {
         var password = $element.val();
-        this.checkPassword.call(this, password);
+        this.checkPassword.call(this, password, '#password-error');
       },
 
 
@@ -212,7 +248,7 @@ define(
         var code = this.element.find('#input-mobile-code').val();
         var password = this.element.find('#input-password').val();
 
-        if (this.checkMobile.call(this, mobile) && this.checkCode(code) && this.checkPassword(password)) {
+        if (this.checkMobile.call(this, mobile) && this.checkCode(code) && this.checkPassword(password, '#password-error')) {
           this.component.mobileRegister.setData({
             mobile: mobile,
             smsCode: code,
@@ -261,7 +297,85 @@ define(
         this.getVerifiedCode()
       },
 
+      '#input-mail-code focus': function ($element, event) {
+        this.element.find('#mail-code-error').hide();
+      },
 
+      '#input-mail-code blur': function ($element, event) {
+        var code = $element.val();
+        this.checkMailCode.call(this, code);
+      },
+
+      '#input-mail-password focus': function ($element, event) {
+        this.element.find('#mail-password-error').hide();
+      },
+
+      '#input-mail-password blur': function ($element, event) {
+        var password = $element.val();
+        this.checkPassword.call(this, password, '#mail-password-error');
+      },
+
+      '#mail-register-btn click': function ($element, event) {
+        event && event.preventDefault();
+
+        var email = this.element.find('#input-mail');
+        var code = this.element.find('#input-mail-code');
+        var password = this.element.find('#input-mail-password');
+        if (this.checkEmail.call(email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
+          this.component.activateMail.setData({
+            mailId: email,
+            vfCode: code
+          });
+
+          this.component.activateMail.sendRequest()
+            .done(function (data) {
+              if (data.value) {
+                route.attr('tag', 'confirminfo');
+              }
+            })
+            .fail(function (errorCode) {
+              if (_.isNumber(errorCode)) {
+                var defaultText = '注册失败';
+                that.element.find('#mail-register-error').text(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+              }
+            })
+        };
+      },
+
+      'input focus': function ($element, event) {
+        this.element.find('#mobile-register-error').hide();
+        this.element.find('#mail-register-error').hide();
+      },
+
+      '#mail-resend-activate click': function ($element, event) {
+        event && event.preventDefault();
+
+        var mailId = this.data.attr('mailId');
+
+        if (mailId) {
+          this.component.activateMail.setData({
+            mailId: mailId,
+            from: 'RESEND'
+          });
+
+          this.component.activateMail.sendRequest()
+            .done(function (data) {
+              if (data.value) {
+                // @todo 发送成功
+                alert('@todo activateMail send success')
+              }
+            })
+            .fail(function (errorCode) {
+              // @todo 处理错误码
+              alert('@todo activateMail send fail:'+errorCode)
+            })
+          }else{
+            // @todo 没有传递mailId
+            alert('@todo activateMail no mailId')
+          }
+
+
+      }
     });
 
   });
