@@ -70,7 +70,8 @@
                     <div id="bandInfo" class="mr5">品牌：
                         <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
                     </div>
-                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
+                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}
+                         data-saleskuspectuplelist=$!{saleSkuSpecTupleList}>
                       #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
                         #foreach($_el in $productInfo.saleInfo.specGroups)
                             <div class="mr6" data-specidorder="$!{_el.specIdOrder}">$!{_el.specName}：
