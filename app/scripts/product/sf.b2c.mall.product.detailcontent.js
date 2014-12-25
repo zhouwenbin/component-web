@@ -144,7 +144,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
             data.hasData = true;
 
-            if (data.value && data.value.length == 0) {
+            if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
               data.hasData = false;
             }
 
