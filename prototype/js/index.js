@@ -252,4 +252,10 @@ $(function(){
         $(".retrieve-b").eq(index).addClass("active").siblings().removeClass("active");
         return false;
     })
+
+    $("#orderdetail-view").on("click", function(){
+        $(".orderdetail-upload").show();
+        $(".mask").show();
+        return false;
+    })
 })
