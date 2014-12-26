@@ -4,8 +4,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
   'can',
   'sf.b2c.mall.api.order.getOrderList',
   'sf.b2c.mall.adapter.pagination',
-  'sf.b2c.mall.widget.pagination'
-], function(can, SFGetOrderList, PaginationAdapter, Pagination) {
+  'sf.b2c.mall.widget.pagination',
+  'sf.helpers'
+], function(can, SFGetOrderList, PaginationAdapter, Pagination, helpers) {
   return can.Control.extend({
 
     /**

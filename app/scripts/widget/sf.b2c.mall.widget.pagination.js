@@ -1,6 +1,6 @@
 'use strict';
 
-define('b2c.mall.widget.pagination', ['can'], function(can) {
+define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
   return can.Control.extend({
 
     /**
