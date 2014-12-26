@@ -85,6 +85,16 @@
 .register-b li{
 	margin-bottom: 9px;
 }
+.register-b li p{
+	font-size: 12px;
+	color: #949494;
+	margin-top: 12px;
+}
+.register-b li .btn{
+	width: 112px;
+	text-align: center;
+	padding: 0;
+}
 .register-b .a1{
 	color: #A3A2A3;
 	margin-left: 5px;
@@ -103,6 +113,7 @@
 	position: absolute;
 	left: 17px;
 	top: 13px;
+	color: #999;
 }
 .register li input{
 	vertical-align: middle;
