@@ -24,7 +24,7 @@ define(
         this.component.checklink = new SFApiUserChecklink();
 
         var params = can.deparam(window.location.search.substr(1));
-        var tag = route.attr('tag');
+        var tag = can.route.attr('tag');
         this.act(tag);
       },
 
