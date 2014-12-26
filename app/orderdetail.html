@@ -2,38 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width">
 <title>顺丰海淘</title>
 <!-- build:css({app, .tmp}) styles/sf.b2c.mall.index.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
-<link href="css/order.css" rel="stylesheet" type="text/css" />
+<link href="css/orderdetail.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
 </head>
 <body>
-<div id="order">
+
+  <!--头部-->
   <div class="sf-b2c-mall-header"></div>
+  <!--头部-->
 
   <div class="pb">
-
-
     <div class="pm">
 
-      <!--步骤-->
-      <div class="sf-b2c-mall-order-step"></div>
-      <!--步骤-->
+    <div class="sf-b2c-mall-orderdetail"></div>
 
-      <!--订单-->
-      <div id="gotopayDIV"></div>
-      <!--订单-->
     </div>
   </div>
 
-
   <!--尾部-->
   <div class="sf-b2c-mall-footer"></div>
-
   <!--尾部-->
-</div>
 
   <!-- build:js(.) scripts/require.min.js-->
   <script src="bower_components/requirejs/require.js"></script>
@@ -44,7 +36,7 @@
   <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.main.min.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
   <script type="text/javascript">
-    require(['sf.b2c.mall.page.gotopay']);
+    require(['sf.b2c.mall.page.orderdetail']);
   </script>
   <!-- endbuild -->
 

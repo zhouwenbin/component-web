@@ -2,8 +2,10 @@
 
 define('sf.b2c.mall.order.orderlistcontent', [
   'can',
-  'sf.b2c.mall.api.order.getOrderList'
-], function(can, SFGetOrderList) {
+  'sf.b2c.mall.api.order.getOrderList',
+  'sf.b2c.mall.adapter.pagination',
+  'sf.b2c.mall.widget.pagination'
+], function(can, SFGetOrderList, PaginationAdapter, Pagination) {
   return can.Control.extend({
 
     /**
@@ -45,6 +47,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
           var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
           that.element.html(html);
+
+          that.options.page = new PaginationAdapter();
+          that.options.page.format(data.page);
+          new Pagination('.sf-b2c-mall-pagination', that.options);
+
         })
         .fail(function(error){
           console.error(error);
