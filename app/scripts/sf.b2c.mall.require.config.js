@@ -91,6 +91,7 @@ requirejs.config({
     'sf.b2c.mall.component.limitedtimesale': 'scripts/component/sf.b2c.mall.component.limitedtimesale',
     'sf.b2c.mall.component.rapidseabuy': 'scripts/component/sf.b2c.mall.component.rapidseabuy',
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
+    'sf.b2c.mall.center.change.userinfo':'scripts/center/sf.b2c.mall.center.change.userinfo',
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -121,7 +122,8 @@ requirejs.config({
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
     'sf.b2c.mall.page.register.checklink': 'scripts/page/sf.b2c.mall.page.register.checkLink',
     'sf.b2c.mall.adapter.order':'scripts/adapter/sf.b2c.mall.adapter.order',
-    'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail'
+    'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail',
+    'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center'
 
   }
 });
