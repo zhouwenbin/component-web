@@ -253,7 +253,8 @@ img{vertical-align: middle;}
 	background-position: -62px -74px;
 }
 .icon26,
-.icon26-1{
+.icon26-1,
+.icon26-2{
 	height: 21px;
 	line-height: 21px;
 	background: #eb6877;
@@ -265,6 +266,9 @@ img{vertical-align: middle;}
 .icon26-1{
 	background: #67b222;
 }
+.icon26-2{
+	background: #a1d0ed;
+}
 .icon27{
 	width: 118px;
 	height: 117px;
@@ -275,11 +279,15 @@ img{vertical-align: middle;}
 	height: 125px;
 	background-position: 0 -580px;
 }
-.icon29{
+.icon29,
+.radio{
 	width: 24px;
 	height: 24px;
 	background-position: -128px -43px;
 	
+}
+.radio.active{
+	background-position: -102px -43px;
 }
 .icon30{
 	width: 14px;
@@ -314,6 +322,11 @@ img{vertical-align: middle;}
 	width: 106px;
 	height: 18px;
 	background-position: 0 -728px;
+}
+.icon36{
+	width: 54px;
+	height: 54px;
+	background-position: -65px -319px;
 }
 /*btn*/
 .btn{

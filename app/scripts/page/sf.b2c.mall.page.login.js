@@ -6,10 +6,13 @@ define(
   [
     'jquery',
     'can',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.login'
   ],
 
-  function ($, can, SFLogin) {
+  function ($, can, SFFrameworkComm, SFLogin) {
+    SFFrameworkComm.register(1)
+
     var login = can.Control.extend({
 
 

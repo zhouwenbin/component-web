@@ -1,14 +1,16 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.register.checklink',
+  'sf.b2c.mall.page.process',
   [
     'jquery',
     'can',
     'underscore',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.user.checkLink'
   ],
-  function ($, can, _, SFApiUserChecklink) {
+  function ($, can, _, SFFrameworkComm, SFApiUserChecklink) {
+    SFFrameworkComm.register(1);
 
     var ERROR_MAP = {
       '1000120' :  '链接已过期',
@@ -29,13 +31,14 @@ define(
       actionMap: {
         'confirminfo': function(){
           this.component.checklink.setData({
-            linkContent: window.location.href
+            linkContent: window.location.search.substr(1)
           });
 
           this.component.checklink.sendRequest()
             .done(function (data) {
               if (data.value) {
-                window.location.href = 'register.mail.acticated.html';
+                var params = can.deparam(window.location.search.substr(1));
+                window.location.href = 'acticated.html?'+$.param({email: params.email});
               }
             })
             .fail(function (errorCode) {
