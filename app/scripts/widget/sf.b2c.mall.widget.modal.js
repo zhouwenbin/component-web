@@ -20,6 +20,11 @@ define(
       hide: function () {
         this.element.find('.mask').remove();
         this.element.find('.register').remove();
+        this.isClosed = true;
+      },
+
+      isClosed: function () {
+        return this.isClosed;
       },
 
       template: function () {
@@ -28,6 +33,8 @@ define(
                   '<div class="register-h">' +
                     '<h2>{{title}}</h2>' +
                     '<a href="#" class="btn btn-close">关闭</a>'+
+                    '<span class="icon icon34"></span>'+
+                    '<span class="icon icon35"></span>'+
                   '</div>' +
                   '<div class="">' +
                     '{{&html}}' +
@@ -38,6 +45,10 @@ define(
       '.btn-close click': function (element, event) {
         event && event.preventDefault();
         this.hide();
+      },
+
+      setTitle: function (title) {
+        this.element.find('.register-h h2').text(title)
       }
     })
   })

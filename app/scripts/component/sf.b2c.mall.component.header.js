@@ -47,7 +47,6 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.render(this.data);
-      //this.supplement();
     },
 
     /**
@@ -59,12 +58,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.element.html(html);
     },
 
-    // supplement: function() {
-    //   var that = this;
-    // },
-
     /**
-     * [description 登录状态下的个人设置]
+     * 登录状态下的个人设置
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
@@ -75,7 +70,7 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     /**
-     * [description 登录状态下的退出]
+     * 登录状态下的退出
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
@@ -84,8 +79,6 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault()
 
       var that = this;
-      // can.when(sf.b2c.mall.model.user.logout())
-
       var logout = new SFLogout({});
 
       logout
@@ -98,60 +91,54 @@ define('sf.b2c.mall.component.header', ['jquery',
         .fail(function() {})
     },
 
-    '#my-account click': function (element, event) {
+    '#my-account click': function(element, event) {
       event && event.preventDefault();
       if (SFComm.prototype.checkUserLogin.call(this)) {
 
-      }else{
+      } else {
         this.showLogin();
       }
     },
 
-    showLogin: function () {
+    showLogin: function() {
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="462" width="562" frameborder="no" src="login.html">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="login.html">'
       });
+      this.setIframe.call(this);
+    },
+
+    setIframe: function() {
+      var link = $('iframe').contents().find('title').text();
+      if (link.indexOf('登陆') > -1) {
+        this.component.modal.setTitle('登录顺丰海淘');
+      } else if (link.indexOf('注册') > -1) {
+        this.component.modal.setTitle('注册顺丰海淘');
+      }
+
+      this.watchIframe.call(this);
+      this.watchLoginState.call(this);
+    },
+
+    watchIframe: function() {
+      var that = this;
+      if (!this.component.modal.isClosed()) {
+        setTimeout(function() {
+          that.setIframe.call(that);
+        }, 300);
+      };
+    },
+
+    watchLoginState: function(){
+      var that = this;
+      if (!this.component.modal.isClosed()) {
+        setTimeout(function() {
+          if (SFComm.prototype.checkUserLogin.call(that)) {
+            that.component.modal.hide();
+            that.watchLoginState.call(that);
+          }
+        }, 300);
+      }
     }
-
-    /**
-     * [description 未登录状态下的登录窗口]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#user-login click': function(element, event) {
-    //   event && event.preventDefault()
-
-    // },
-
-    /**
-     * [description 未登录状态下得注册窗口]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#user-register click': function(element, event) {
-    //   event && event.preventDefault()
-
-    // },
-
-    /**
-     * [description 我的订单]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#my-order click': function(element, event) {
-    //   event && event.preventDefault();
-
-    //   if (sf.util.isLogin()) {
-    //     window.open('center.html#!&type=booking')
-    //   } else {
-    //     window.open('login.html?from=' + encodeURIComponent('center.html#!&type=booking'));
-    //   }
-
-    //   return false;
-    // }
   });
 });
