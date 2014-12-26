@@ -191,14 +191,11 @@ define(
                 if (window.localStorage) {
                   window.localStorage.setItem('csrfToken', data.csrfToken)
                 } else {
-                  // 没什么用啊，写在hash上面
-                  // can.route.attr('csrfToken', data.content[0].csrfToken);
                   $.jStorage.set('csrfToken', data.csrfToken);
                 }
 
                 // deparam过程 -- 从url中获取需要请求的sku参数
                 var params = can.deparam(window.location.search.substr(1));
-
                 window.location.href = params.from || 'index.html';
               }
           })
