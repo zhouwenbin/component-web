@@ -4,13 +4,15 @@ define(
   [
     'can',
     'jquery',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent'
   ],
 
-  function(can, $, Header, Footer, Breadscrumb, DetailContent) {
+  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent) {
+    SFFrameworkComm.register(1);
 
     var home = can.Control.extend({
 

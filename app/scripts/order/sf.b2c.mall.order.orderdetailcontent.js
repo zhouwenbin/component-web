@@ -40,9 +40,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           that.options.productList = data.orderItem.orderGoodsItemList;
 
           _.each(that.options.productList, function(item) {
-            debugger;
             item.totalPrice = item.price * item.quantity;
           })
+          that.options.allTotalPrice = that.options.productList[0].totalPrice;
+          that.options.shouldPayPrice = that.options.allTotalPrice;
 
           var resultStep = [];
           _.each(that.defaults.steps, function(step){
@@ -50,9 +51,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               resultStep.push();
             }
           })
-
-          that.options.allTotalPrice = that.options.productList[0].totalPrice;
-          that.options.shouldPayPrice = that.options.allTotalPrice;
 
           var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
           that.element.html(html);

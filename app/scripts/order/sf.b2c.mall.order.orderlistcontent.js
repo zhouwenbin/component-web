@@ -15,7 +15,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      debugger;
       this.render();
     },
 
@@ -25,8 +24,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
       var params = {
         "query": JSON.stringify({
           "status": null,
-          "receiverName": null,
-          "orderId": null
+          "receiverName": that.options.searchValue,
+          "orderId": that.options.searchValue,
+          "pageNum":1,
+          "pageSize":100
         })
       }
 
@@ -49,9 +50,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
           var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
           that.element.html(html);
 
-          that.options.page = new PaginationAdapter();
-          that.options.page.format(data.page);
-          new Pagination('.sf-b2c-mall-pagination', that.options);
+          //分页 保留 已经调通 误删 后面设计会给样式
+          // that.options.page = new PaginationAdapter();
+          // that.options.page.format(data.page);
+          // new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
 
         })
         .fail(function(error){
@@ -59,7 +61,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         })
     },
 
-    getOptionHTML: function(operationsArr){debugger;
+    getOptionHTML: function(operationsArr){
       var that = this;
       var result = [];
       _.each(operationsArr, function(option){

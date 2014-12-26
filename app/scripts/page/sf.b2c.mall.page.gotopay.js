@@ -4,13 +4,15 @@ require(
   [
     'can',
     'jquery',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
     'sf.b2c.mall.api.order.requestPayV2'
   ],
 
-  function(can, $, Header, Footer, OrderSetp, SFRequestPayV2) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFRequestPayV2) {
+    SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
 
