@@ -31,7 +31,7 @@
              data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
             <div class="goods clearfix">
                 <div id="allSkuImages" class="goods-c1 fl">
-                    <div class="goods-c1r1">
+                    <div class="goods-c1r1" id="bigPicArea">
                       #set($_selectedImg="")
                       #if(${productInfo.skuInfo.images}) #set($_selectedImg=$!{productInfo.skuInfo.images[0].bigImgUrl})#end
                         <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
@@ -111,37 +111,34 @@
                     <!--运费-->
                 </div>
                 <!--商品-->
+            </div>
+            <!--推荐商品-->
+        ##                  客户端渲染
+            <div class="recommend" id="recommend">
+            </div>
+        ##                  客户端渲染end
+            <!--推荐商品-->
+            <!--小编推荐-->
+            <div class="recommend2">
+                <h2>小编推荐</h2>
 
-                <!--推荐商品-->
-            ##                  客户端渲染
-                <div class="recommend" id="recommend">
+                <p>$!{productInfo.skuInfo.recommend}</p>
+            </div>
+            <!--小编推荐-->
+            <!--详情-->
+            <div class="detail">
+                <div class="detail-h">
+                    <ul class="clearfix">
+                      #if(${productInfo.skuInfo.attributes})
+                        #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
+                            <li>【$!{_el.key}】 $!{_el.value}</li>
+                        #end
+                      #end
+                    </ul>
                 </div>
-            ##                  客户端渲染end
-                <!--推荐商品-->
 
-                <!--小编推荐-->
-                <div class="recommend2">
-                    <h2>小编推荐</h2>
-
-                    <p>$!{productInfo.skuInfo.recommend}</p>
-                </div>
-                <!--小编推荐-->
-
-                <!--详情-->
-                <div class="detail">
-                    <div class="detail-h">
-                        <ul class="clearfix">
-                          #if(${productInfo.skuInfo.attributes})
-                            #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
-                                <li>【$!{_el.key}】 $!{_el.value}</li>
-                            #end
-                          #end
-                        </ul>
-                    </div>
-
-                    <div class="detail-b">
-                      $!{productInfo.skuInfo.description}
-                    </div>
+                <div class="detail-b">
+                  $!{productInfo.skuInfo.description}
                 </div>
             </div>
             <!--详情-->

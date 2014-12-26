@@ -154,7 +154,7 @@
 	padding-top: 10px;
 	background: #fff;
 	margin-bottom: 38px;
-	position: relative;
+	
 }
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
@@ -183,17 +183,24 @@
 	left: 50%;
 	margin-left: -37px;
 	margin-top: -37px;
-	z-index: 3
+	z-index: 3;
+	width: 74px;
+	height: 0;
 }
 
 .product-r1{
 	height:233px;
 	text-align: center;
 	margin-bottom: 22px;
+	position: relative;
 }
 .product-r1 a{
 	display: inline-block;
 	vertical-align: middle;
+}
+.product-r1 img{
+	max-width: 360px;
+	max-height: 233px;
 }
 .product-r1 span{
 	width:0;

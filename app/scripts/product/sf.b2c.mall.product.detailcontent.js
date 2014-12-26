@@ -144,7 +144,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
             data.hasData = true;
 
-            if (data.value && data.value.length == 0) {
+            if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
               data.hasData = false;
             }
 
@@ -257,7 +257,7 @@ define('sf.b2c.mall.product.detailcontent', [
                   that.setCountDown(that.options.detailContentInfo.priceInfo, distance, data.endTime);
                 }
               }, '1000')
-            } else{
+            } else {
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
             }
 
@@ -294,6 +294,15 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
+      },
+
+      '.btn-buy click': function() {
+        debugger;
+        window.location.href = 'order.html?' + $.param({
+          "itemId": $('.sf-b2c-mall-detail-content')[0].dataset.itemid,
+          "saleid": $('.sf-b2c-mall-detail-content')[0].dataset.saleid,
+          "amount": this.options.detailContentInfo.input.buyNum
+        });
       },
 
       buyInfoTemplate: function() {
@@ -383,7 +392,14 @@ define('sf.b2c.mall.product.detailcontent', [
         element.addClass('active');
 
         var image = $(element)[0].dataset.bigPic;
-        this.options.detailContentInfo.itemInfo.attr("currentImage", image);
+
+        if (this.options.serverRendered) {
+          $('#bigPicArea')[0].innerHTML = '<a href="' + image + '"><img src="' + image + '" rel="' + image + '" alt="" class="jqzoom"/></a><span></span>';
+        }
+
+        $(".jqzoom").imagezoom();
+
+        //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
 
       /**
@@ -643,7 +659,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       picInfoTemplate: function() {
-        return '<div class="goods-c1r1">' +
+        return '<div class="goods-c1r1" id="bigPicArea">' +
           '<a href="{{itemInfo.currentImage}}"><img src="{{itemInfo.currentImage}}" rel="{{itemInfo.currentImage}}" alt="" class="jqzoom"/></a>' +
           '</div>' +
           '<div class="goods-c1r2">' +

@@ -1,3 +1,4 @@
+<h2>选择收货人</h2>
 {{^if hasData}}
 <div class="order-b active">
 <!--新增区域-->
@@ -33,7 +34,7 @@
 <div class="order-b" id="personlist">
   <ul>
    {{#each userList}}
-    <li class="{{user.active}}" name="personEach">
+    <li class="{{user.active}}" name="personEach" data-recid="{{user.recId}}">
       <div class="order-r1 clearfix">
         <div class="order-r1c1 fl">
           <span class="icon icon29"></span>
