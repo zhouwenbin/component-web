@@ -10,6 +10,12 @@
 	border-radius: 3px;
 	z-index: 3;
 }
+.register.register-top{
+	top: 0;
+	left: 0;
+	margin: 0px;
+	width: 100%
+}
 .register h2{
 	font-size: 14px;
 	height: 52px;
@@ -109,8 +115,12 @@
 	vertical-align: middle;
 	width: 260px;
 	padding: 13px 0 13px 8px;
-	border:1px solid #CCCCCC;
+	border:1px solid #ccc;
 	border-radius: 3px;
+  color: #999;
+}
+.register li input:focus{
+  color: #333;
 }
 .register .input1{
   width: 130px;
@@ -232,4 +242,10 @@
 .register-b4{
 	padding-top: 53px;
 	padding-bottom: 51px;
+}
+.register-main{
+	height: 246px;
+}
+.register-b-main{
+	height: 290px;
 }

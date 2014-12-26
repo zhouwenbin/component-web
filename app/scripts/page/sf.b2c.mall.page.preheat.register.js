@@ -2,8 +2,11 @@
 define([
   'can',
   'jquery',
-  'sf.b2c.mall.center.register'
-],function(can,$,SFRegister){
+  'sf.b2c.mall.framework.comm',
+  'sf.b2c.mall.center.register',
+],function(can,$, SFFrameworkComm, SFRegister){
+  SFFrameworkComm.register(1);
+
   var register = can.Control.extend({
 
     init:function(){

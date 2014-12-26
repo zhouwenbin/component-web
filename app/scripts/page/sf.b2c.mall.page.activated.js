@@ -1,13 +1,16 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.register.mailactivated',
+  'sf.b2c.mall.page.activated',
   [
     'jquery',
     'can',
-    'underscore'
+    'underscore',
+    'sf.b2c.mall.framework.comm'
   ],
-  function ($, can, _) {
+  function ($, can, _, SFFrameworkComm) {
+
+    SFFrameworkComm.register(1);
 
     var PageMailActivated = can.Control.extend({
       init: function () {
