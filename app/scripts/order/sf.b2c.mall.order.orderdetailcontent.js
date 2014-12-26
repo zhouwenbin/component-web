@@ -2,9 +2,14 @@
 
 define('sf.b2c.mall.order.orderdetailcontent', [
   'can',
-  'sf.b2c.mall.api.order.getOrder'
-], function(can, SFGetOrder) {
+  'sf.b2c.mall.api.order.getOrder',
+  'sf.helpers'
+], function(can, SFGetOrder, helpers) {
   return can.Control.extend({
+
+    defaults: {
+      'steps': ['SUBMITED', 'AUDITING', 'SHIPPING', 'COMPLETED']
+    },
 
     /**
      * 初始化
@@ -39,6 +44,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             item.totalPrice = item.price * item.quantity;
           })
 
+          var resultStep = [];
+          _.each(that.defaults.steps, function(step){
+            if (data.orderItem.orderStatus == step){
+              resultStep.push();
+            }
+          })
+
           that.options.allTotalPrice = that.options.productList[0].totalPrice;
           that.options.shouldPayPrice = that.options.allTotalPrice;
 
@@ -63,36 +75,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       return result.join("");
     },
 
-    routeMap: {
-      'SUBMITED': false,
-      'AUTO_CANCEL': false,
-      'USER_CANCEL': false,
-      'AUDITING': false,
-      'OPERATION_CANCEL': false,
-      'BUYING': true,
-      'BUYING_EXCEPTION': false,
-      'WAIT_SHIPPING': true,
-      'SHIPPING': true,
-      'LOGISTICS_EXCEPTION': false,
-      'SHIPPED': true,
-      'COMPLETED': true
-    },
-
-    optionMap: {
-      'SUBMITED': ['NEEDPAY', 'INFO', 'CANCEL'],
-      'AUTO_CANCEL': ['INFO'],
-      'USER_CANCEL': ['INFO'],
-      'AUDITING': ['INFO', 'CANCEL'],
-      'OPERATION_CANCEL': ['INFO', 'CANCEL'],
-      'BUYING': ['INFO'],
-      'BUYING_EXCEPTION': ['INFO'],
-      'WAIT_SHIPPING': ['INFO'],
-      'SHIPPING': ['INFO', 'ROUTE'],
-      'LOGISTICS_EXCEPTION': ['INFO', 'ROUTE'],
-      'SHIPPED': ['INFO', 'ROUTE'],
-      'COMPLETED': ['INFO', 'ROUTE']
-    },
-
     optionHTML: {
       "NEEDPAY": '<a href="#" class="btn btn-send">立即支付</a>',
       "INFO": '<a href="#" class="btn btn-add">查看订单</a>',
@@ -112,6 +94,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       'LOGISTICS_EXCEPTION': '物流异常',
       'SHIPPED': '已发货',
       'COMPLETED': '已完成'
+    },
+
+    stepMap: {
+      'SUBMITED': '<li class="active"><div><h3>提交订单</h3><p></p>2014/12/23 11:34:23<p></p></div><span></span><div class="line"></div></li>',
+      'AUDITING': '<li><div><h3>付款成功</h3></div><span></span><div class="line"></div></li>',
+      'BUYING': '<li><div><h3>采购中</h3></div><span></span><div class="line"></div></li>',
+      'SHIPPING': '<li><div><h3>商品出库</h3></div><span></span><div class="line"></div></li>',
+      'COMPLETED': '<li><div><h3>订单完成</h3></div><span></span><div class="line"></div></li>'
     },
 
     nextStepMap: {
