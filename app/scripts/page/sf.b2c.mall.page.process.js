@@ -31,13 +31,14 @@ define(
       actionMap: {
         'confirminfo': function(){
           this.component.checklink.setData({
-            linkContent: window.location.href
+            linkContent: window.location.search.substr(1)
           });
 
           this.component.checklink.sendRequest()
             .done(function (data) {
               if (data.value) {
-                window.location.href = 'acticated.html';
+                var params = can.deparam(window.location.search.substr(1));
+                window.location.href = 'acticated.html?'+$.param({email: params.email});
               }
             })
             .fail(function (errorCode) {
