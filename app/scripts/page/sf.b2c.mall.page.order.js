@@ -4,6 +4,7 @@ require(
   [
     'can',
     'jquery',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
@@ -12,7 +13,8 @@ require(
     'sf.b2c.mall.order.iteminfo'
   ],
 
-  function(can, $, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo) {
+    SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
 

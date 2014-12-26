@@ -10,6 +10,12 @@
 	border-radius: 3px;
 	z-index: 3;
 }
+.register.register-top{
+	top: 0;
+	left: 0;
+	margin: 0px;
+	width: 100%
+}
 .register h2{
 	font-size: 14px;
 	height: 52px;
@@ -236,4 +242,10 @@
 .register-b4{
 	padding-top: 53px;
 	padding-bottom: 51px;
+}
+.register-main{
+	height: 246px;
+}
+.register-b-main{
+	height: 290px;
 }

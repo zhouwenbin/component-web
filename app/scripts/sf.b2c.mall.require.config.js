@@ -83,6 +83,7 @@ requirejs.config({
     // --------------------------------------------
     'placeholders': 'bower_components/Placeholders/build/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
+    'moment':'bower_components/momentjs/min/moment.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -101,6 +102,7 @@ requirejs.config({
     'sf.b2c.mall.product.breadscrumb': 'scripts/product/sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent':'scripts/product/sf.b2c.mall.product.detailcontent',
     'sf.b2c.mall.adapter.detailcontent': 'scripts/adapter/sf.b2c.mall.adapter.detailcontent',
+    'sf.b2c.mall.adapter.pagination':'scripts/adapter/sf.b2c.mall.adapter.pagination',
 
     'sf.b2c.mall.page.main': 'scripts/page/sf.b2c.mall.page.main',
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
@@ -118,12 +120,17 @@ requirejs.config({
 
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
+    'sf.b2c.mall.page.orderdetail': 'scripts/page/sf.b2c.mall.page.orderdetail',
+    'sf.b2c.mall.order.orderdetailcontent': 'scripts/order/sf.b2c.mall.order.orderdetailcontent',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
     'sf.b2c.mall.page.register': 'scripts/page/sf.b2c.mall.page.register',
-    'sf.b2c.mall.page.register.checklink': 'scripts/page/sf.b2c.mall.page.register.checkLink',
+    'sf.b2c.mall.page.process': 'scripts/page/sf.b2c.mall.page.process',
+    'sf.b2c.mall.page.activated': 'scripts/page/sf.b2c.mall.page.activated',
     'sf.b2c.mall.adapter.order':'scripts/adapter/sf.b2c.mall.adapter.order',
     'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail',
-    'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center'
+    'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center',
+    'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
 
+    'sf.helpers':'scripts/util/sf.helpers'
   }
 });

@@ -18,21 +18,21 @@ $(function(){
 	//左右按钮hover
 	$(".slider").hover(function(){
 		sliderPrev.stop(true,false).animate({
-			left : 0,
+			left : "150px",
 			opacity : 1
 		},500);
 		sliderNext.stop(true,false).animate({
-			right : 0,
+			right : "150px",
 			opacity : 1
 		},500);
 		clearInterval(silderTimer);
 	},function(){
 		sliderPrev.stop(true,false).animate({
-			left : "-50px",
+			left : "50px",
 			opacity : 0
 		},500);
 		sliderNext.stop(true,false).animate({
-			right : "-50px",
+			right : "50px",
 			opacity : 0
 		},500);
 		silderTimer=setInterval(sliderNexting,5000);
@@ -237,6 +237,25 @@ $(function(){
     $(".dialog").on("click",".btn-close,.btn-cancel,.btn-send",function(){
         $(this).parents(".dialog").hide(300);
         $(".mask").hide();
+        return false;
+    })
+    //----------查看物流-------------//
+    $(".table-1-logistics").hover(function(){
+        $(this).find(".tooltip").show();
+    },function(){
+        $(this).find(".tooltip").hide();
+    })
+    //----------radio模拟-------------//
+    $(".radio").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var index=$('.radio').index(this);
+        $(".retrieve-b").eq(index).addClass("active").siblings().removeClass("active");
+        return false;
+    })
+
+    $("#orderdetail-view").on("click", function(){
+        $(".orderdetail-upload").show();
+        $(".mask").show();
         return false;
     })
 })

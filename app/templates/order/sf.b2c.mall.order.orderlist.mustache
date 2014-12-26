@@ -1,15 +1,4 @@
-<div class="orderlist">
-        <div class="orderlist-h clearfix">
-          <div class="orderlist-hc1 fl">
-            <h2>温馨提示：</h2>
-            <p>顺丰海淘试运营期间，未付款顺丰闪电送订单超过30分钟将被自动取消，提交订单请尽快完成支付。</p>
-          </div>
-          <div class="orderlist-hc2 fr">
-            <input type="text" class="input" placeholder="输入订单号/收货人" />
-            <a href="#" class="btn btn-buy">搜索</a>
-          </div>
-        </div>
-        <div class="table table-1">
+<div class="table table-1">
           <div class="table-h clearfix">
             <div class="table-c1 fl">
               订单信息
@@ -47,22 +36,15 @@
                 {{orderAddressItem.revice_name}}
               </div>
               <div class="table-c3 fl">
-                ￥{{totalPrice - discount}}
+                ￥{{sf.price totalPrice - discount}}
               </div>
               <div class="table-c4 fl">
                 {{orderStatus}}
                 {{#if showRouter}}
-                <div class="table-1-logistics">
-                  <a href="">查看物流</a>
-                  <div class="tooltip">
-                    <h4>物流跟踪</h4>
-                    <ul>
-                      <li class="active"><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                    </ul>
-                    <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                <div class="table-1-logistics" data-orderid="{{orderId}}">
+                  <a href="javascript:return false;">查看物流</a>
+                  <div class="tooltip" id="traceList">
+                    努力加载中
                   </div>
                 </div>
                 {{/if}}
@@ -74,4 +56,3 @@
             {{/each}}
           </ul>
         </div>
-      </div>
