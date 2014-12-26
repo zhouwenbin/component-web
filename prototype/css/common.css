@@ -279,11 +279,15 @@ img{vertical-align: middle;}
 	height: 125px;
 	background-position: 0 -580px;
 }
-.icon29{
+.icon29,
+.radio{
 	width: 24px;
 	height: 24px;
 	background-position: -128px -43px;
 	
+}
+.radio.active{
+	background-position: -102px -43px;
 }
 .icon30{
 	width: 14px;

@@ -22,6 +22,9 @@
 }
 .verification label{
 	margin-right: 18px;
+	display: inline-block;
+	width: 5em;
+	text-align: right;
 }
 .verification .btn{
 	padding: 0 120px;
@@ -60,4 +63,8 @@
 	height: 27px;
 	line-height: 27px;
 	border-radius: 4px;
+}
+.verification.retrieve h1{
+	padding-left: 88px;
+	margin-bottom: 25px;
 }
