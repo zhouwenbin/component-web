@@ -130,6 +130,5 @@ requirejs.config({
     'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
 
     'sf.helpers':'scripts/util/sf.helpers'
-
   }
 });

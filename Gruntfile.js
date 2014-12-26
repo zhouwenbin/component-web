@@ -466,7 +466,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
-            'sf.b2c.mall.component.login'
+            'sf.b2c.mall.component.login',
             'sf.b2c.mall.page.login'
           ],
           insertRequire: ['sf.b2c.mall.page.login']
@@ -478,8 +478,12 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/build/placeholders'
+          },
           include: [
-            'sf.b2c.mall.component.register'
+            'placeholders',
+            'sf.b2c.mall.component.register',
             'sf.b2c.mall.page.register'
           ],
           insertRequire: ['sf.b2c.mall.page.register']
