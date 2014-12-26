@@ -5,9 +5,12 @@ define(
   [
     'jquery',
     'can',
-    'underscore'
+    'underscore',
+    'sf.b2c.mall.framework.comm'
   ],
-  function ($, can, _) {
+  function ($, can, _, SFFrameworkComm) {
+
+    SFFrameworkComm.register(1);
 
     var PageMailActivated = can.Control.extend({
       init: function () {

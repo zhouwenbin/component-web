@@ -6,9 +6,11 @@ define(
     'jquery',
     'can',
     'underscore',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.user.checkLink'
   ],
-  function ($, can, _, SFApiUserChecklink) {
+  function ($, can, _, SFFrameworkComm, SFApiUserChecklink) {
+    SFFrameworkComm.register(1);
 
     var ERROR_MAP = {
       '1000120' :  '链接已过期',

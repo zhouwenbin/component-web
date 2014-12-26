@@ -4,12 +4,14 @@ require(
   [
     'can',
     'jquery',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.orderdetailcontent'
   ],
 
-  function(can, $, Header, Footer, SFOrderDetailContent) {
+  function(can, $, SFFrameworkComm, Header, Footer, SFOrderDetailContent) {
+    SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
 
