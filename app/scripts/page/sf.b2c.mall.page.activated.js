@@ -1,7 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.register.mailactivated',
+  'sf.b2c.mall.page.activated',
   [
     'jquery',
     'can',

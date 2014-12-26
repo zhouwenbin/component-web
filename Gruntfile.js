@@ -197,7 +197,11 @@ module.exports = function (grunt) {
         '<%= config.app %>/index.html',
         '<%= config.app %>/preheat.html',
         '<%= config.app %>/agreement.html',
-        '<%= config.app %>/detail.html'
+        '<%= config.app %>/detail.html',
+        '<%= config.app %>/login.html',
+        '<%= config.app %>/register.html',
+        '<%= config.app %>/process.html',
+        '<%= config.app %>/activated.html'
       ]
     },
 
@@ -311,7 +315,11 @@ module.exports = function (grunt) {
             // 'index.html',
             'preheat.html',
             'agreement.html',
-            // 'detail.html',
+            'detail.html',
+            'login.html',
+            'register.html',
+            'process.html',
+            'activated.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -450,6 +458,56 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.detail']
         }
+      },
+      login: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.login'
+            'sf.b2c.mall.page.login'
+          ],
+          insertRequire: ['sf.b2c.mall.page.login']
+        }
+      },
+      register: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.register'
+            'sf.b2c.mall.page.register'
+          ],
+          insertRequire: ['sf.b2c.mall.page.register']
+        }
+      },
+      process: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.process.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.page.process'
+          ],
+          insertRequire: ['sf.b2c.mall.page.process']
+        }
+      },
+      activated: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.page.activated'
+          ],
+          insertRequire: ['sf.b2c.mall.page.activated']
+        }
       }
     }
   });
@@ -530,6 +588,10 @@ module.exports = function (grunt) {
           'requirejs:main',
           'requirejs:detail',
           'requirejs:headerandfooter',
+          'requirejs:login',
+          'requirejs:register',
+          'requirejs:process',
+          'requirejs:activated',
           'usemin',
           'htmlmin'
         ]);

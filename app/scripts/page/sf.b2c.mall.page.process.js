@@ -1,7 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.register.checklink',
+  'sf.b2c.mall.page.process',
   [
     'jquery',
     'can',
@@ -37,7 +37,7 @@ define(
           this.component.checklink.sendRequest()
             .done(function (data) {
               if (data.value) {
-                window.location.href = 'register.mail.acticated.html';
+                window.location.href = 'acticated.html';
               }
             })
             .fail(function (errorCode) {
