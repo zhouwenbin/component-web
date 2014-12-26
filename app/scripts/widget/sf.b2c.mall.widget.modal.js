@@ -20,11 +20,11 @@ define(
       hide: function () {
         this.element.find('.mask').remove();
         this.element.find('.register').remove();
-        this.isClosed = true;
+        this.closed = true;
       },
 
       isClosed: function () {
-        return this.isClosed;
+        return this.closed;
       },
 
       template: function () {

@@ -5,6 +5,7 @@ define(
     'can',
     'jquery',
     'underscore',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.limitedtimesale',
@@ -13,7 +14,8 @@ define(
     'sf.b2c.mall.widget.slide'
   ],
 
-  function(can, $, _, Header, Footer, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
+  function(can, $, _, SFFrameworkComm, Header, Footer, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
+    SFFrameworkComm.register(1);
 
     var home = can.Control.extend({
 

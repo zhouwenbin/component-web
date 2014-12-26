@@ -133,6 +133,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       var that = this;
       if (!this.component.modal.isClosed()) {
         setTimeout(function() {
+          console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
             that.component.modal.hide();
             that.watchLoginState.call(that);
