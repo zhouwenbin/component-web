@@ -374,39 +374,6 @@ define(
               }
             })
         };
-      },
-
-      'input focus': function ($element, event) {
-        this.element.find('#mobile-register-error').hide();
-        this.element.find('#mail-register-error').hide();
-      },
-
-      '#mail-resend-activate click': function ($element, event) {
-        event && event.preventDefault();
-
-        var mailId = this.data.attr('mailId');
-
-        if (mailId) {
-          this.component.activateMail.setData({
-            mailId: mailId,
-            from: 'RESEND'
-          });
-
-          this.component.activateMail.sendRequest()
-            .done(function (data) {
-              if (data.value) {
-                // @todo 发送成功
-                alert('@todo activateMail send success')
-              }
-            })
-            .fail(function (errorCode) {
-              // @todo 处理错误码
-              alert('@todo activateMail send fail:'+errorCode)
-            })
-          }else{
-            // @todo 没有传递mailId
-            alert('@todo activateMail no mailId')
-          }
       }
     });
 

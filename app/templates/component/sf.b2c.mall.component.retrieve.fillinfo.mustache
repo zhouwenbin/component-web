@@ -11,34 +11,35 @@
         <ol>
           <li class="li2">
             <label for="phone">手机号：</label>
-            <input id="phone" type="text" class="input">
+            <input id="input-mobile" type="text" class="input">
           </li>
           <li class="li3">
             <label for="sms">短信验证码：</label>
-            <input id="sms" type="text" class="input" value="">
+            <input id="input-sms" type="text" class="input" value="">
             {{! <a href="#" class="btn btn-send disable">60s后重新发送</a> }}
-            <a href="#" class="btn btn-send">发送验证码</a>
+            <a href="#" class="btn btn-send" id="send-code-btn">发送验证码</a>
           </li>
         </ol>
         <div class="retrieve-r1">
-          <a href="#" class="btn btn-send">下一步</a>
+          <a href="#" class="btn btn-send" id="send-mobile-activate-btn">下一步</a>
+          {{#msg}}<span class="icon {{msgType}}">{{msg}}</span>{{/msg}}
         </div>
       </div>
       <div class="retrieve-b {{#mail}}active{{/mail}}">
         <ol>
           <li class="li2">
             <label for="email">邮箱：</label>
-            <input id="email" type="text" class="input">
+            <input id="input-email" type="text" class="input">
           </li>
           <li class="li3">
             <label for="emailcode">验证码：</label>
-            <input id="sms" type="text" class="input">
-            <img src="img/code2.jpg" alt="验证码">
+            <input id="input-mail-code" type="text" class="input">
+            {{#verifiedCodeUrl}}<img src="{{verifiedCodeUrl}}" id="verified-code" alt="验证码">{{/verifiedCodeUrl}}
           </li>
         </ol>
         <div class="retrieve-r1">
-          <a href="#" class="btn btn-send">下一步</a>
-          <span class="icon icon26-2">验证邮件已发送，请注意查收。</span>
+          <a href="#" class="btn btn-send" id="send-mail-activate-btn">下一步</a>
+          {{#msg}}<span class="icon {{msgType}}">{{msg}}</span>{{/msg}}
         </div>
       </div>
 
