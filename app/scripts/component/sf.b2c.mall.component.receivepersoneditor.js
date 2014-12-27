@@ -57,7 +57,7 @@ define('sf.b2c.mall.component.receivepersoneditor',
       };
       var info = map[tag].call(this, params);
       this.adapter.person = new can.Map(info);
-
+      debugger;
       this.render(this.adapter, tag, element);
     },
 
@@ -86,7 +86,7 @@ define('sf.b2c.mall.component.receivepersoneditor',
           that.onSuccess();
         })
         .fail(function() {
-
+          console.error(error)
         });
     },
 
@@ -100,30 +100,29 @@ define('sf.b2c.mall.component.receivepersoneditor',
           that.hide();
           that.onSuccess();
         })
-        .fail(function() {
-
+        .fail(function(error) {
+          console.error(error)
         });
     },
 
     '#personSaveCancel click': function(element, event){
-      // this.hide();
       this.element.hide();
       this.element.empty();
 
       return false;
     },
 
-    '#personSave click': function(element, event) {
+    '#personSave click': function(element, event) {debugger;
       event && event.preventDefault();
 
       var person = this.adapter.person.input.attr();
 
       if (person.recId) {
         this.update(person);
-        element.parents('div#editAdrArea').toggle();
+        element.parents('div#editPersonArea').toggle();
       } else {
         this.add(person);
-        element.parents('div#addAdrArea').toggle();
+        element.parents('div#addPersonArea').toggle();
       }
     }
   });
