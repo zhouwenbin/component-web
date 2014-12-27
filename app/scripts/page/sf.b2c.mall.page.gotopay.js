@@ -34,7 +34,7 @@ require(
         });
 
         var template = can.view.mustache(this.gotopayTemplate());
-        $('#gotopay').html(template());
+        $('#gotopayDIV').html(template());
       },
 
       gotopayTemplate: function() {
@@ -51,8 +51,8 @@ require(
           '<div class="order-r3">' +
           '<span class="icon icon32"></span>' +
           '<h2>订单支付失败</h2>' +
-          '<a href="#" class="btn btn-send">查看订单</a>' +
-          '<a href="#" class="btn btn-send">去支付</a>' +
+          '<a href="#" class="btn btn-send" id="viewOrderDetail">查看订单</a>' +
+          '<a href="#" class="btn btn-send" id="gotopayBtn">去支付</a>' +
           '</div>'
       },
 
@@ -62,30 +62,30 @@ require(
         '3000007': '用户订单不正确'
       },
 
+      '#viewOrderDetail click': function(){
+        window.open("/orderdetail.html?orderid=" + this.options.orderid,"_blank");
+        return false;
+      },
+
       '#gotopayBtn click': function() {
-        debugger;
         var that = this;
 
-        var requestPayV2 = new SFRequestPayV2();
+        var requestPayV2 = new SFRequestPayV2({
+          "orderId": that.options.orderid,
+          'payType': 'alipay'
+        });
         requestPayV2
           .sendRequest()
           .done(function(data) {
-            if (sf.util.access(data) && data.content[0]) {
-              var payinfo = data.content[0];
-
-              window.location.href = payinfo.url + '?' + payinfo.postBody;
-
-              that.request.call(that, orderInfo.orderId);
-            } else {
-              var errorCode = data.stat.stateList[0].code;
-              var errorText = that.payErrorMap[errorCode.toString()] || '支付失败';
-              console.error(errorText);
-              var template = can.view.mustache(this.gotopayTemplate());
-              $('#gotopay').html(template());
-            }
+            var payinfo = data.content[0];
+            window.location.href = payinfo.url + '?' + payinfo.postBody;
+            that.request.call(that, orderInfo.orderId);
           })
           .fail(function(error) {
-
+            var errorText = that.payErrorMap[error.toString()] || '支付失败';
+            console.error(errorText);
+            var template = can.view.mustache(that.payerrorTemplate());
+            $('#gotopayDIV').html(template());
           });
       },
 

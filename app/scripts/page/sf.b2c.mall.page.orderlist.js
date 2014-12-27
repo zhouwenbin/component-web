@@ -11,14 +11,23 @@ require(
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent) {
+
     SFFrameworkComm.register(1);
 
     var orderList = can.Control.extend({
 
+      /**
+       * [init 初始化]
+       * @param  {[type]} element 元素
+       * @param  {[type]} options 选项
+       */
       init: function(element, options) {
         this.render();
       },
 
+      /**
+       * [render 执行渲染]
+       */
       render: function() {
         new Header('.sf-b2c-mall-header');
         new Footer('.sf-b2c-mall-footer');
@@ -31,6 +40,10 @@ require(
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist',{"searchValue":null});
       },
 
+      /**
+       * [searchTemplate 搜索区域模板]
+       * @return {[string 模板字符串]}
+       */
       searchTemplate: function() {
         return '<div class="orderlist-h clearfix">' +
           '<div class="orderlist-hc1 fl">' +
@@ -44,7 +57,13 @@ require(
           '</div>'
       },
 
+      /**
+       * [description 点击搜索后执行动作]
+       * @param  {[type]} element 元素
+       * @param  {[type]} event 事件
+       */
       '#search click': function(element, event) {
+        //进行销毁
         if (this.orderListComponent){
           this.orderListComponent.destroy();
         }
@@ -55,7 +74,7 @@ require(
           searchValue = null;
         }
 
-        new SFOrderListContent('.sf-b2c-mall-order-orderlist', {"searchValue":searchValue});
+        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {"searchValue":searchValue});
       }
     });
 

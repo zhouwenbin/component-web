@@ -45,6 +45,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         this.detailUrl = SFConfig.setting.api.detailurl;
+        this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.render();
       },
@@ -297,8 +298,8 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '.btn-buy click': function() {
-        debugger;
-        window.location.href = 'order.html?' + $.param({
+
+        window.location.href = this.mainUrl + '/order.html?' + $.param({
           "itemId": $('.sf-b2c-mall-detail-content')[0].dataset.itemid,
           "saleid": $('.sf-b2c-mall-detail-content')[0].dataset.saleid,
           "amount": this.options.detailContentInfo.input.buyNum
