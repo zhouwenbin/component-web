@@ -298,7 +298,7 @@ define(
           this.component.mobileRegister.sendRequest()
             .done(function (data) {
               if (data.csrfToken) {
-                route.attr('tag', 'success');
+                can.route.attr('tag', 'success');
               }
             })
             .faile(function (errorCode) {
@@ -364,7 +364,7 @@ define(
           this.component.activateMail.sendRequest()
             .done(function (data) {
               if (data.value) {
-                route.attr('tag', 'confirminfo');
+                can.route.attr('tag', 'confirminfo');
               }
             })
             .fail(function (errorCode) {
