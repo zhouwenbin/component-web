@@ -391,12 +391,21 @@ define(
         }
 
         var params = can.deparam(window.location.search.substr(1));
-        this.component.resetpw.setData({
-          accountId: params.accountId,
-          type: params.type,
-          newPassword: md5(password+SFBizConf.setting.md5_key),
-          smsCode: params.sms
-        });
+        if (params.tp == 'RESETPWD') {
+          this.component.resetpw.setData({
+            accountId: params.mailId,
+            type: 'MAIL',
+            newPassword: md5(password+SFBizConf.setting.md5_key),
+            linkContent: window.location.search.substr(1)
+          });
+        }else{
+          this.component.resetpw.setData({
+            accountId: params.accountId,
+            type: params.type,
+            newPassword: md5(password+SFBizConf.setting.md5_key),
+            smsCode: params.sms
+          });
+        }
 
         var that = this;
         this.component.resetpw.sendRequest()
