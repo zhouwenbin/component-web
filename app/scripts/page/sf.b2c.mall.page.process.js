@@ -38,7 +38,7 @@ define(
             .done(function (data) {
               if (data.value) {
                 var params = can.deparam(window.location.search.substr(1));
-                window.location.href = 'acticated.html?'+$.param({email: params.email});
+                window.location.href = 'acticated.html?'+window.location.search;
               }
             })
             .fail(function (errorCode) {

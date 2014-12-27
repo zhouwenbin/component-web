@@ -135,8 +135,10 @@ define(
 
       getEmailLink: function (email) {
         // @todo 处理email链接
-        var arr = email.split('@');
-        return 'http://mail.'+arr[1];
+        if (email) {
+          var arr = email.split('@');
+          return 'http://mail.'+arr[1];
+        }
       },
 
       switchTag: function (tag) {
