@@ -74,7 +74,8 @@ define('sf.b2c.mall.order.selectreceiveperson', [
             that.element.html(html);
           })
           .fail(function(errorCode) {
-            debugger;
+
+            console.error(errorCode);
           })
       },
 
@@ -85,7 +86,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @return {[type]}
        */
       "#editSave click": function(element, event) {
-        debugger;
+
         var that = this;
         var recId = element[0].dataset.recid;
 
@@ -142,7 +143,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @return {[type]}
        */
       "#addSave click": function(element, event) {
-        debugger;
+
         var that = this;
 
         var createReceiverInfo = new SFCreateReceiverInfo({
@@ -199,7 +200,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @return {[type]}
        */
       ".order-edit click": function(element, event) {
-        debugger;
+
         this.clearActive();
         element.parents("li").find(".order-r2").toggle();
         element.parents("li").addClass("active");

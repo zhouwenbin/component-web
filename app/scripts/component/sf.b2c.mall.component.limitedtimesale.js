@@ -98,7 +98,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               //转化为map对象 方便后面直接取用，防止两层嵌套
               var priceMap = {};
               _.each(data.value, function(priceItem) {
-                priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
+                priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
                 priceMap[priceItem.itemId] = priceItem;
               })
 

@@ -25,10 +25,13 @@ define(
 
         this.data = new can.Map({
           username: null,
-          password: null,
+          password:null,
           verifiedCode: null,
-          isNeedVerifiedCode: false
-        });
+          isNeedVerifiedCode: false,
+          userNameError:null,
+          pwdError:null,
+          autologin:false
+        })
 
         this.render(this.data);
       },
@@ -40,9 +43,36 @@ define(
       render: function (data) {
         var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data);
         this.element.append(html)
-        this.element.find('.register').fadeIn('slow');
+
+        this.funPlaceholder(document.getElementById('user-name'));
       },
 
+      /**
+       * @description 修复ie7,8,9placeholder bug
+       * @param  {String}
+       * @return {String}
+       */
+      funPlaceholder:function(element){
+        var placeholder = '';
+        if(element && !("placeholder" in document.createElement("input")) && (placeholder = element.getAttribute("placeholder"))){
+          element.onfocus = function(){
+            if(this.value === placeholder){
+              this.value = "";
+            }
+          };
+
+          element.onblur = function(){
+            if(this.value === ""){
+              this.value = placeholder;
+            }
+          };
+
+          if(element.value === ""){
+            element.value = placeholder;
+          }
+
+        }
+      },
       /**
        * @description 通过正则表达式检查账号类型
        * @param  {String} account 账号
@@ -50,17 +80,52 @@ define(
        */
       checkTypeOfAccount: function (account) {
         // 检查账号的类型返回MOBILE或者MAIL
-        return 'MAIL';
+        var isTelNum =/^1\d{10}$/.test(account);
+        var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(account);
+        if(isTelNum){
+          return 'MOBILE';
+        }
+        if(isEmail){
+          return 'MAIL';
+        }
       },
 
       /**
-       * @description 显示错误信息
+       * @description 显示用户名错误信息
        * @param  {String} data 错误信息提示内容
        */
-      showErrorAlert: function (data) {
-
+      showUserNameError: function (data) {
+        this.data.attr("userNameError",data);
       },
 
+      /**
+       * @description 显示密码错误信息
+       * @param  {String} data 错误信息提示内容
+       */
+      showPwdError: function (data) {
+        this.data.attr('pwdError',data)
+      },
+
+      /**
+       * @description 获得焦点之后对账号输入内容做检查
+       * @param  {dom} element jquery dom对象
+       * @param  {event} event event对象
+       */
+      '.input-username keyup': function (element, event) {
+        event && event.preventDefault();
+        $('#username-error-tips').hide();
+      },
+
+      /**
+       * @description 获得焦点之后对密码输入内容做检查
+       * @param  {dom} element jquery dom对象
+       * @param  {event} event event对象
+       */
+      '.input-password keyup': function (element, event) {
+        event && event.preventDefault();
+        $('#pwd-error-tips').hide();
+        $(element).siblings('label').hide();
+      },
       /**
        * @description 失去焦点之后对账号输入内容做检查
        * @param  {dom} element jquery dom对象
@@ -70,10 +135,12 @@ define(
         event && event.preventDefault();
 
         var username = $(element).val();
-        var validateUserName = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(username);
+
         if(!username){
-          this.showErrorAlert();
+          $('#username-error-tips').show();
+          return this.showUserNameError('用户名不能为空');
         }
+
       },
 
       /**
@@ -82,6 +149,15 @@ define(
        * @param  {event} event event对象
        */
       '.input-password blur': function (element, event) {
+        event && event.preventDefault();
+
+        var password = $(element).val();
+
+        if(!password){
+          $(element).siblings('label').show();
+          $('#pwd-error-tips').show();
+          return this.showPwdError('密码不能为空');
+        }
 
       },
 
@@ -93,6 +169,9 @@ define(
       '.btn-register click': function (element, event) {
         event && event.preventDefault();
 
+        var that = this;
+        $('#username-error-tips').hide();
+        $('#pwd-error-tips').hide();
         // @todo 检查用户名和密码是否符合规范
 
         // 设置登录请求信息
@@ -105,10 +184,36 @@ define(
 
         // @todo 发起登录请求
         this.component.login.sendRequest()
-          .done(function (done) {
+          .done(function (data) {
+              if (data.userId) {
+                that.data.attr('autologin')
 
+                if (window.localStorage) {
+                  window.localStorage.setItem('csrfToken', data.csrfToken)
+                } else {
+                  $.jStorage.set('csrfToken', data.csrfToken);
+                }
+
+                // deparam过程 -- 从url中获取需要请求的sku参数
+                var params = can.deparam(window.location.search.substr(1));
+                setTimeout(function() {
+                  window.location.href = params.from || 'index.html';
+                }, 2000);
+              }
           })
           .fail(function (error) {
+            var map ={
+              '-140':'参数错误',
+              '1000010':'未找到用户',
+              '1000030':'用户名或密码错误',
+              '1000070':'参数错误',
+              '1000100':'验证码错误',
+              '1000110':'账户尚未激活'
+            };
+
+            var errorText = map[error.toString()];
+            $('#username-error-tips').show();
+            that.showUserNameError(errorText);
 
           })
 

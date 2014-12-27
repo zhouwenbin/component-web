@@ -85,9 +85,9 @@
 	margin-top: 28px;
 	position: relative;;
 }
-.table-1-logistics:hover .tooltip{
+/*.table-1-logistics:hover .tooltip{
 	display: block;
-}
+}*/
 .table-1 .tooltip{
 	background: #fff;
 	position: absolute;

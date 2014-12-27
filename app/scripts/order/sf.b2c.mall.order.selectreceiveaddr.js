@@ -4,8 +4,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'can',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.adapter.address.list',
-  'sf.b2c.mall.component.addrEditor'
-], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor) {
+  'sf.b2c.mall.component.addrEditor',
+  'sf.b2c.mall.api.user.webLogin',
+  'md5'
+], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5) {
   return can.Control.extend({
 
     /**
@@ -14,12 +16,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      this.adapter = {};
+      this.adapter4List = {};
       this.component = {};
-      this.render();
+      this.paint();
     },
 
-    render: function(data){
+    render: function(data) {
       var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data);
       this.element.html(html);
     },
@@ -27,43 +29,56 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     paint: function() {
       var that = this;
 
-      var getRecAddressList = new SFGetRecAddressList();
+      var webLogin = new SFUserWebLogin({
+        accountId: 'jiyanliang@sf-express.com',
+        type: 'MAIL',
+        password: md5('123456' + 'www.sfht.com')
+      });
 
-      getRecAddressList
+      webLogin
         .sendRequest()
+        .then(function() {
+          var getRecAddressList = new SFGetRecAddressList();
+          return getRecAddressList.sendRequest();
+        })
+        .fail(function(error) {
+          console.error(error);
+        })
         .done(function(reAddrs) {
-          debugger;
+
 
           //获得地址列表
-          that.adapter.addrs = new AddressAdapter({
-            addressList: reAddrs.items
+          that.adapter4List.addrs = new AddressAdapter({
+            addressList: reAddrs.items,
+            hasData: false
           });
 
-          //进行渲染
-          that.render(that.adapter.addrs);
+          //进行倒排序
+          that.adapter4List.addrs.addressList.reverse();
 
-          if (that.component.addressEditor) {
-            that.component.addressEditor.destroy();
+          if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
+            that.adapter4List.addrs.addressList[0].attr("active", "active");
+            that.adapter4List.addrs.attr("hasData", true);
           }
 
-          that.component.addressEditor = new SFAddressEditor('#addAdrArea',{});
+          //进行渲染
+          that.render(that.adapter4List.addrs);
+
+          // if (that.component.addressEditor) {
+          //   that.component.addressEditor.destroy();
+          // }
+
+          that.component.addressEditor = new SFAddressEditor('#addAdrArea', {
+            onSuccess: _.bind(that.paint, that)
+          });
         })
-        .fail(function() {
-
-        });
     },
 
-    /**
-     * [description 编辑保存]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    "#editSave click": function(element, event) {
-      debugger;
-
-      return false;
+    getCityList: function() {
+      return can.ajax('json/sf.b2c.mall.regions.json');
     },
+
+
 
     /**
      * [description 新增保存]
@@ -72,7 +87,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#addSave click": function(element, event) {
-      debugger;
+
 
       return false;
     },
@@ -96,7 +111,14 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     ".order-edit click": function(element, event) {
-      debugger;
+
+      var index = element.data('index');
+      var addr = this.adapter4List.addrs.get(index);
+      this.adapter4List.addrs.input.attr('addrId', addr.addrId);
+
+      var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
+      this.component.addressEditor.show("editor", addr, $(editAdrArea));
+
       this.clearActive();
       element.parents("li").find(".order-r2").toggle();
       element.parents("li").addClass("active");
@@ -109,11 +131,29 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {[type]} event
      * @return {[type]}
      */
-    ".btn-add click": function(element, event) {debugger;
+    ".btn-add click": function(element, event) {
+
       //隐藏其它编辑和新增状态
 
-      $("#addarea").show();
+      $("#addAdrArea").show();
+      this.component.addressEditor.show('create', null, $("#addAdrArea"));
+      console.log(this.component.addressEditor.adapter);
       return false;
+    },
+
+    /**
+     * [description 点击选中事件]
+     * @param  {[type]} element
+     * @param  {[type]} e
+     * @return {[type]}
+     */
+    "#addrList click": function(element, e) {
+      if (event.srcElement.tagName == 'SPAN') {
+        this.clearActive();
+        $(event.srcElement).parents("li[name='addrEach']").addClass("active");
+
+        return false;
+      }
     },
 
     /**
@@ -122,9 +162,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      */
     clearActive: function() {
       //其他所有节点都是非active状态
-      $("li[name='personEach']").removeClass("active");
+      $("li[name='addrEach']").removeClass("active");
       //隐藏其它编辑和新增状态
-      $("#personlist").find(".order-r2").hide();
+      $("#addrList").find(".order-r2").hide();
     }
   });
 })

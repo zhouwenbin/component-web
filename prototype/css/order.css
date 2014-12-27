@@ -230,3 +230,8 @@
 .order .btn-send.disable{
 	cursor: pointer;
 }
+.order .icon28{
+	position: absolute;
+	right: 56px;
+	top: -44px;
+}

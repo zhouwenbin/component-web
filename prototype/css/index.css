@@ -6,6 +6,7 @@
 .slider{
 	margin-bottom: 65px;
 	position: relative;;
+	height: 420px;
 }
 .slider .pm{
 	height: 420px;
@@ -75,13 +76,13 @@
 	top: 151px;
 }
 .slider .btn-prev{
-	left: -50px;
+	left: 50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 
 }
 .slider .btn-next{
-	right: -50px;
+	right: 50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 

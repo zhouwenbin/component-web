@@ -8200,7 +8200,8 @@
       u = {
         url: "http://dev.sfht.com/m.api",
         fileurl: "http://dev.sfht.com/file.api",
-        detailurl: "http://dev.item.sfht.com"
+        detailurl: "http://dev.item.sfht.com",
+        mailurl: "http://dev.sfht.com"
       };
     return {
       setting: {
@@ -8234,124 +8235,130 @@
       a = -300,
       f = -180,
       l = -160,
-      c = [u, a, f, l];
-    return n.Construct.extend({
-      api: {},
-      buildRequestData: function() {
-        if (this.api) {
-          var e = {};
-          r.extend(e, {
-            _mt: this.api.METHOD_NAME
-          }), r.extend(e, this.api.COMMON);
-          var t;
-          for (t in this.api.REQUIRED) e[t] = this.data[t];
-          for (t in this.api.OPTIONAL) e[t] = this.data[t];
-          return e
-        }
-      },
-      init: function(e) {
-        this.setData(e)
-      },
-      setData: function(e) {
-        this.data = e
-      },
-      sendRequest: function(e) {
-        var t = this.validate(e);
-        if (t !== !0) return t;
-        var n = this.buildRequestData();
-        return this.request(n, e)
-      },
-      validate: function(e) {
-        if (this.api) {
-          if (!this.api.METHOD_NAME) return "缺少_mt";
-          for (var t in this.api.REQUIRED)
-            if (!r.has(this.data, t)) return new Error("缺少必填字段" + t)
-        }
-        if (this.api.SECURITY_TYPE === o.UserLogin.name && !this.checkUserLogin()) {
-          if (!e) return new Error("该请求需要在登录后发起");
-          this.goToLogin()
-        }
-        return !0
-      },
-      checkUserLogin: function() {
-        var t = window.localStorage ? window.localStorage.getItem("csrfToken") : e.jStorage.get("csrfToken");
-        return !!e.cookie("ct") && !!t
-      },
-      goToLogin: function() {
-        var e = window.location.pathname;
-        e !== s.setting.login && (window.location.href = s.setting.login + "?from" + e)
-      },
-      access: function(e, t) {
-        if (e.stat.code === 0 && e.content[0] && e.stat.stateList[0].code === 0) return !0;
-        if (!r.contains(c, e.stat.code) || !t) return !1;
-        this.goToLogin()
-      },
-      encrypt: function(e, t) {
-        var n = [];
-        r.each(e, function(e, t) {
-          n.push(t + "=" + e)
-        }), n.sort();
-        var s = n.join("");
-        return s += t, i(s)
-      },
-      sign: function(e, t) {
-        var i = {
-          None: function(e, t) {
-            return r.extend(e, {
-              _sig: this.encrypt(e, s.setting.none_append_word)
-            })
-          },
-          RegisteredDevice: function(e, t) {
-            return r.extend(e, {
-              _sig: this.encrypt(e, s.setting.none_append_word)
-            })
-          },
-          UserLogin: function(e, t) {
-            var i = window.localStorage ? window.localStorage.getItem("csrfToken") : n.route.attr("csrfToken");
-            if (i) return r.extend(e, {
-              _sig: this.encrypt(e, i)
-            });
+      c = [u, a, f, l],
+      h = n.Construct.extend({
+        api: {},
+        buildRequestData: function() {
+          if (this.api) {
+            var e = {};
+            r.extend(e, {
+              _mt: this.api.METHOD_NAME
+            }), r.extend(e, this.api.COMMON);
+            var t;
+            for (t in this.api.REQUIRED) e[t] = this.data[t];
+            for (t in this.api.OPTIONAL) e[t] = this.data[t];
+            return e
+          }
+        },
+        init: function(e) {
+          this.setData(e)
+        },
+        setData: function(e) {
+          this.data = e
+        },
+        sendRequest: function(e) {
+          var t = this.validate(e);
+          if (t !== !0) return t;
+          var n = this.buildRequestData();
+          return this.request(n, e)
+        },
+        validate: function(e) {
+          if (this.api) {
+            if (!this.api.METHOD_NAME) return "缺少_mt";
+            for (var t in this.api.REQUIRED)
+              if (!r.has(this.data, t)) return new Error("缺少必填字段" + t)
+          }
+          if (this.api.SECURITY_TYPE === o.UserLogin.name && !this.checkUserLogin()) {
+            if (!e) return new Error("该请求需要在登录后发起");
             this.goToLogin()
           }
-        };
-        if (r.isFunction(i[this.api.SECURITY_TYPE])) {
-          r.each(e, function(t, n, i) {
-            (r.isUndefined(t) || r.isNull(t)) && delete e[n]
-          });
-          var o = r.extend(e, s.setting.default_header),
-            u = i[this.api.SECURITY_TYPE].call(this, o, t);
-          return r.extend(o, u)
-        }
-        return e
-      },
-      request: function(e, t) {
-        var r = n.Deferred(),
-          i = this;
-        return n.ajax({
-          url: s.setting.api.url,
-          type: "post",
-          data: i.sign(e)
-        }).done(function(n) {
-          n && n.stat && (i.serverTime = n.stat.systime), i.access(n, t) ? (i.afterRequest(e._mt, n.content[0]), r.resolve(n.content[0])) : n.stat.stateList.length == 0 ? r.reject(n.stat.code) : r.reject(n.stat.stateList[0].code)
-        }).fail(function(e) {
-          r.reject(e)
-        }), r
-      },
-      getServerTime: function() {
-        return this.serverTime
-      },
-      afterRequest: function(t, n) {
-        var i = {
-          "user.webLogin": function(t) {
-            window.localStorage ? window.localStorage.setItem("csrfToken", t.csrfToken) : e.jStorage.set("csrfToken", t.csrfToken)
+          return !0
+        },
+        checkUserLogin: function() {
+          var t = window.localStorage ? window.localStorage.getItem("csrfToken") : e.jStorage.get("csrfToken");
+          return !!e.cookie(h._aid + "_ct") && !!t
+        },
+        goToLogin: function() {
+          var e = window.location.pathname;
+          e !== s.setting.login && (window.location.href = s.setting.login + "?from" + e)
+        },
+        access: function(e, t) {
+          if (e.stat.code === 0 && e.content[0] && e.stat.stateList[0].code === 0) return !0;
+          if (!r.contains(c, e.stat.code) || !t) return !1;
+          this.goToLogin()
+        },
+        encrypt: function(e, t) {
+          var n = [];
+          r.each(e, function(e, t) {
+            n.push(t + "=" + e)
+          }), n.sort();
+          var s = n.join("");
+          return s += t, i(s)
+        },
+        sign: function(t, n) {
+          var i = {
+            None: function(e, t) {
+              return r.extend(e, {
+                _sig: this.encrypt(e, s.setting.none_append_word)
+              })
+            },
+            RegisteredDevice: function(e, t) {
+              return r.extend(e, {
+                _sig: this.encrypt(e, s.setting.none_append_word)
+              })
+            },
+            UserLogin: function(t, n) {
+              var i = window.localStorage ? window.localStorage.getItem("csrfToken") : e.jStorage.get("csrfToken");
+              if (i) return r.extend(t, {
+                _sig: this.encrypt(t, i)
+              });
+              this.goToLogin()
+            }
+          };
+          if (r.isFunction(i[this.api.SECURITY_TYPE])) {
+            r.each(t, function(e, n, i) {
+              (r.isUndefined(e) || r.isNull(e)) && delete t[n]
+            });
+            var o = r.extend(t, s.setting.default_header);
+            o = r.extend(o, {
+              _aid: h._aid
+            });
+            var u = i[this.api.SECURITY_TYPE].call(this, o, n);
+            return r.extend(o, u)
           }
-        };
-        r.isFunction(i[t]) && i[t].call(this, n)
-      },
-      ajax: function(e) {
-        return n.ajax(e)
-      }
-    })
+          return t
+        },
+        request: function(e, t) {
+          var r = n.Deferred(),
+            i = this;
+          return n.ajax({
+            url: s.setting.api.url,
+            type: "post",
+            data: i.sign(e)
+          }).done(function(n) {
+            n && n.stat && (i.serverTime = n.stat.systime), i.access(n, t) ? (i.afterRequest(e._mt, n.content[0]), r.resolve(n.content[0])) : n.stat.stateList.length == 0 ? r.reject(n.stat.code) : r.reject(n.stat.stateList[0].code)
+          }).fail(function(e) {
+            r.reject(e)
+          }), r
+        },
+        getServerTime: function() {
+          return this.serverTime
+        },
+        afterRequest: function(t, n) {
+          var i = {
+            "user.webLogin": function(t) {
+              window.localStorage ? window.localStorage.setItem("csrfToken", t.csrfToken) : e.jStorage.set("csrfToken", t.csrfToken)
+            }
+          };
+          r.isFunction(i[t]) && i[t].call(this, n)
+        },
+        ajax: function(e) {
+          return n.ajax(e)
+        }
+      });
+    return h.register = function(e) {
+      this._aid = e
+    }, h
   }), define("sf.b2c.mall.api.b2cmall.getBanner", ["jquery", "can", "underscore", "sf.b2c.mall.framework.comm", "sf.b2c.mall.api.security.type"], function(e, t, n, r, i) {
     return r.extend({
       api: {
@@ -8550,7 +8557,6 @@
         SECURITY_TYPE: i.UserLogin.name,
         REQUIRED: {
           orderId: "string",
-          amount: "int",
           payType: "string"
         },
         OPTIONAL: {},
@@ -9282,6 +9288,38 @@
           1000070: "参数错误",
           1000100: "验证码错误",
           1000110: "账户尚未激活"
+        }
+      }
+    })
+  }), define("sf.b2c.mall.api.user.setDefaultRecv", ["jquery", "can", "underscore", "sf.b2c.mall.framework.comm", "sf.b2c.mall.api.security.type"], function(e, t, n, r, i) {
+    return r.extend({
+      api: {
+        METHOD_NAME: "user.setDefaultRecv",
+        SECURITY_TYPE: i.UserLogin.name,
+        REQUIRED: {
+          recId: "long"
+        },
+        OPTIONAL: {},
+        VERIFY: {},
+        ERROR_CODE: {
+          1000070: "参数错误"
+        }
+      }
+    })
+  }), define("sf.b2c.mall.api.user.updateUserInfo", ["jquery", "can", "underscore", "sf.b2c.mall.framework.comm", "sf.b2c.mall.api.security.type"], function(e, t, n, r, i) {
+    return r.extend({
+      api: {
+        METHOD_NAME: "user.updateUserInfo",
+        SECURITY_TYPE: i.UserLogin.name,
+        REQUIRED: {},
+        OPTIONAL: {
+          gender: "string",
+          nick: "string",
+          headImgUrl: "string"
+        },
+        VERIFY: {},
+        ERROR_CODE: {
+          1000070: "参数错误"
         }
       }
     })
