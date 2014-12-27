@@ -255,6 +255,14 @@ define('sf.b2c.mall.component.addrEditor', [
       }
     },
 
+    '#paddressSaveCancel click': function(element, event){
+      // this.hide();
+      this.element.hide();
+      this.element.empty();
+
+      return false;
+    },
+
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
