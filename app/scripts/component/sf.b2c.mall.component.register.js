@@ -352,10 +352,11 @@ define(
       '#mail-register-btn click': function ($element, event) {
         event && event.preventDefault();
 
-        var email = this.element.find('#input-mail');
-        var code = this.element.find('#input-mail-code');
-        var password = this.element.find('#input-mail-password');
-        if (this.checkEmail.call(email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
+        var that = this;
+        var email = this.element.find('#input-mail').val();
+        var code = this.element.find('#input-mail-code').val();
+        var password = this.element.find('#input-mail-password').val();
+        if (this.checkEmail.call(this, email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
           this.component.activateMail.setData({
             mailId: email,
             vfCode: code
