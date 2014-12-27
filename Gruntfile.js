@@ -203,7 +203,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/process.html',
         '<%= config.app %>/activated.html',
         '<%= config.app %>/nullactivated.html',
-        '<%= config.app %>/retrieve.html'
+        '<%= config.app %>/retrieve.html',
+        '<%= config.app %>/order.html'
       ]
     },
 
@@ -324,6 +325,7 @@ module.exports = function (grunt) {
             'activated.html',
             'nullactivated.html',
             'retrieve.html',
+            'order.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -547,7 +549,29 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.retrieve']
         }
-      }
+      },
+      order: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.adapter.address.list',
+            'sf.b2c.mall.component.addrEditor',
+            'sf.b2c.mall.adapter.order',
+            'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.page.order'
+          ],
+          insertRequire: ['sf.b2c.mall.page.retrieve']
+        }
+      },
     }
   });
 
@@ -631,6 +655,9 @@ module.exports = function (grunt) {
           'requirejs:register',
           'requirejs:process',
           'requirejs:activated',
+          'requirejs:nullactivated',
+          'requirejs:retrieve',
+          'requirejs:order',
           'usemin',
           'htmlmin'
         ]);
