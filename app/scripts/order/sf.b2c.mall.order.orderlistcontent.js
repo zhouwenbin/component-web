@@ -6,8 +6,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
   'sf.b2c.mall.adapter.pagination',
   'sf.b2c.mall.widget.pagination',
   'sf.b2c.mall.api.order.getOrder',
-  'sf.helpers'
-], function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers) {
+  'sf.helpers',
+  'sf.b2c.mall.api.order.cancelOrder'
+],
+function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder) {
+
   return can.Control.extend({
 
     /**
@@ -19,6 +22,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
       this.render();
     },
 
+    /**
+     * [render 渲染]
+     * @param  {[type]} data 数据
+     */
     render: function(data) {
       var that = this;
 
@@ -36,7 +43,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       getOrderList
         .sendRequest()
         .done(function(data) {
-          debugger;
+
           that.options.orderlist = data.orders;
 
           _.each(that.options.orderlist, function(order) {
@@ -63,8 +70,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
         })
     },
 
+    /**
+     * [description 查看物流触发鼠标悬停事件]
+     * @param  {[type]} element 触发事件的元素
+     * @param  {[type]} event 事件
+     */
     '.table-1-logistics mouseover': function(element, event) {
-      debugger;
+
       var that = this;
       element.find('.tooltip').show();
 
@@ -85,12 +97,20 @@ define('sf.b2c.mall.order.orderlistcontent', [
       return false;
     },
 
+    /**
+     * [description 鼠标移过后要隐藏该区域]
+     * @param  {[type]} element 元素
+     * @param  {[type]} event 事件
+     */
     '.table-1-logistics mouseout': function(element, event) {
       element.find('.tooltip').hide();
-
       return false;
     },
 
+    /**
+     * [getTraceListTemplate 获得查看物流模板]
+     * @return {[string]} 模板字符串
+     */
     getTraceListTemplate: function() {
       return '<h4>物流跟踪</h4>' +
         '<ul>' +
@@ -101,6 +121,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
     },
 
+    /**
+     * [getOptionHTML 获得操作Html拼接]
+     * @param  {[type]} operationsArr 操作数组
+     * @return {[type]} 拼接html
+     */
     getOptionHTML: function(operationsArr) {
       var that = this;
       var result = [];
@@ -113,6 +138,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
       return result.join("");
     },
 
+    /**
+     * [routeMap 查看物流状态标示 哪些状态可以查看物流]
+     */
     routeMap: {
       'SUBMITED': false,
       'AUTO_CANCEL': false,
@@ -128,6 +156,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
       'COMPLETED': true
     },
 
+    /**
+     * [optionMap 状态下允许执行的操作]
+     */
     optionMap: {
       'SUBMITED': ['NEEDPAY', 'INFO', 'CANCEL'],
       'AUTO_CANCEL': ['INFO'],
@@ -143,12 +174,93 @@ define('sf.b2c.mall.order.orderlistcontent', [
       'COMPLETED': ['INFO', 'ROUTE']
     },
 
+    /**
+     * [optionHTML 操作对应的html]
+     */
     optionHTML: {
-      "NEEDPAY": '<a href="#" class="btn btn-send">立即支付</a>',
-      "INFO": '<a href="#" class="btn btn-add">查看订单</a>',
-      "CANCEL": '<a href="#" class="btn btn-add">取消订单</a>'
+      "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
+      "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
+      "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>'
     },
 
+    '.gotoPay click': function() {
+
+      var that = this;
+      var orderId = element.parent('div#operationarea')[0].dataset.orderid;
+
+      var requestPayV2 = new SFRequestPayV2({
+        "orderId": orderId,
+        'payType': 'alipay'
+      });
+      requestPayV2
+        .sendRequest()
+        .done(function(data) {
+          if (sf.util.access(data) && data.content[0]) {
+            var payinfo = data.content[0];
+
+            window.location.href = payinfo.url + '?' + payinfo.postBody;
+
+            //轮训订单状态，看是否支付成功
+            that.request.call(that, orderInfo.orderId);
+          } else {
+            var errorCode = data.stat.stateList[0].code;
+            var errorText = that.payErrorMap[errorCode.toString()] || '支付失败';
+            console.error(errorText);
+            var template = can.view.mustache(this.gotopayTemplate());
+            $('#gotopay').html(template());
+          }
+        })
+        .fail(function(error) {
+
+        });
+    },
+
+    request: function(orderId) {
+      var that = this;
+      setTimeout(function() {
+
+        var getOrder = new SFGetOrder({
+          "orderId": orderId
+        });
+        getOrder
+          .sendRequest()
+          .done(function(data) {
+            var order = data.content[0].basicInfo;
+            if (order.orderStatus == 'AUDITING') {
+              window.location.href = '/orderlist.html';
+            } else {
+              that.request.call(that, orderId);
+            }
+          })
+          .fail(function(error) {
+            that.request.call(that, orderId);
+          })
+      }, 1000);
+    },
+
+    ".viewOrder click": function(element, event) {
+      var orderid = element.parent('div#operationarea')[0].dataset.orderid;
+      window.open("/orderdetail.html?orderid=" + orderid,"_blank");
+    },
+
+    ".cancelOrder click": function(element, event) {
+      var orderid = element.parent('div#operationarea')[0].dataset.orderid;
+      var cancelOrder = new SFCancelOrder({"orderId": orderid});
+
+      cancelOrder
+          .sendRequest()
+          .done(function(data) {
+
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+    },
+
+    /**
+     * [statsMap 状态对应界面词汇]
+     * @type {Object}
+     */
     statsMap: {
       'SUBMITED': '已提交',
       'AUTO_CANCEL': '自动取消',

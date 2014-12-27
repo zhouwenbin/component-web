@@ -298,10 +298,10 @@ define(
           this.component.mobileRegister.sendRequest()
             .done(function (data) {
               if (data.csrfToken) {
-                route.attr('tag', 'success');
+                can.route.attr('tag', 'success');
               }
             })
-            .faile(function (errorCode) {
+            .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
                 that.element.find('#mobile-register-error').text(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
@@ -352,10 +352,11 @@ define(
       '#mail-register-btn click': function ($element, event) {
         event && event.preventDefault();
 
-        var email = this.element.find('#input-mail');
-        var code = this.element.find('#input-mail-code');
-        var password = this.element.find('#input-mail-password');
-        if (this.checkEmail.call(email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
+        var that = this;
+        var email = this.element.find('#input-mail').val();
+        var code = this.element.find('#input-mail-code').val();
+        var password = this.element.find('#input-mail-password').val();
+        if (this.checkEmail.call(this, email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
           this.component.activateMail.setData({
             mailId: email,
             vfCode: code
@@ -364,7 +365,7 @@ define(
           this.component.activateMail.sendRequest()
             .done(function (data) {
               if (data.value) {
-                route.attr('tag', 'confirminfo');
+                can.route.attr('tag', 'confirminfo');
               }
             })
             .fail(function (errorCode) {
@@ -374,39 +375,6 @@ define(
               }
             })
         };
-      },
-
-      'input focus': function ($element, event) {
-        this.element.find('#mobile-register-error').hide();
-        this.element.find('#mail-register-error').hide();
-      },
-
-      '#mail-resend-activate click': function ($element, event) {
-        event && event.preventDefault();
-
-        var mailId = this.data.attr('mailId');
-
-        if (mailId) {
-          this.component.activateMail.setData({
-            mailId: mailId,
-            from: 'RESEND'
-          });
-
-          this.component.activateMail.sendRequest()
-            .done(function (data) {
-              if (data.value) {
-                // @todo 发送成功
-                alert('@todo activateMail send success')
-              }
-            })
-            .fail(function (errorCode) {
-              // @todo 处理错误码
-              alert('@todo activateMail send fail:'+errorCode)
-            })
-          }else{
-            // @todo 没有传递mailId
-            alert('@todo activateMail no mailId')
-          }
       }
     });
 

@@ -45,9 +45,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           console.error(error);
         })
         .done(function(reAddrs) {
+
+
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
-            addressList: reAddrs.items
+            addressList: reAddrs.items,
+            hasData: false
           });
 
           //进行倒排序
@@ -55,6 +58,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
           if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
             that.adapter4List.addrs.addressList[0].attr("active", "active");
+            that.adapter4List.addrs.attr("hasData", true);
           }
 
           //进行渲染
@@ -83,7 +87,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#addSave click": function(element, event) {
-      debugger;
+
 
       return false;
     },
@@ -107,12 +111,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     ".order-edit click": function(element, event) {
-      debugger;
+
       var index = element.data('index');
       var addr = this.adapter4List.addrs.get(index);
       this.adapter4List.addrs.input.attr('addrId', addr.addrId);
 
-      var editAdrArea = element.parents("li#addrEach").find("#editAdrArea");
+      var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
       this.component.addressEditor.show("editor", addr, $(editAdrArea));
 
       this.clearActive();
@@ -128,13 +132,28 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     ".btn-add click": function(element, event) {
-      debugger;
+
       //隐藏其它编辑和新增状态
 
       $("#addAdrArea").show();
       this.component.addressEditor.show('create', null, $("#addAdrArea"));
       console.log(this.component.addressEditor.adapter);
       return false;
+    },
+
+    /**
+     * [description 点击选中事件]
+     * @param  {[type]} element
+     * @param  {[type]} e
+     * @return {[type]}
+     */
+    "#addrList click": function(element, e) {
+      if (event.srcElement.tagName == 'SPAN') {
+        this.clearActive();
+        $(event.srcElement).parents("li[name='addrEach']").addClass("active");
+
+        return false;
+      }
     },
 
     /**

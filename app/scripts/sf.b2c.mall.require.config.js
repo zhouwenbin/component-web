@@ -131,7 +131,14 @@ requirejs.config({
     'sf.b2c.mall.page.nullactivated': 'scripts/page/sf.b2c.mall.page.nullactivated',
     'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center',
     'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
+    'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
+    'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
 
-    'sf.helpers':'scripts/util/sf.helpers'
+    'sf.helpers':'scripts/util/sf.helpers',
+
+    'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
+    'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
+    'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
+    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list'
   }
 });

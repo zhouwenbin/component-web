@@ -13,17 +13,18 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
-  'sf.b2c.mall.widget.modal'
-], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal) {
+  'sf.b2c.mall.widget.modal',
+  'sf.b2c.mall.business.config'
+], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
 
   return can.Control.extend({
 
     defaults: {
       login: {
-        myOrder: 'center.html#!&type=booking'
+        myOrder: SFConfig.setting.api.mailurl + '/orderList.html'
       },
       nologin: {
-        myOrder: 'login.html'
+        myOrder: SFConfig.setting.api.mailurl + 'login.html'
       }
     },
 
@@ -86,7 +87,7 @@ define('sf.b2c.mall.component.header', ['jquery',
         .done(function(data) {
           that.data.attr('user', null);
           window.localStorage.removeItem('csrfToken');
-          window.location.href = 'login.html'
+          window.location.href = SFConfig.setting.api.mailurl + 'login.html'
         })
         .fail(function() {})
     },
