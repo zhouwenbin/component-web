@@ -91,7 +91,7 @@ define('sf.b2c.mall.center.register',[
     },
 
     //注册
-    '.btn-register click':function(ele,event){
+    '#agree-and-register click':function(ele,event){
       event && event.preventDefault();
 
       //重置错误信息
