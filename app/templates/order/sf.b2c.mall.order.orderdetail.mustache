@@ -6,7 +6,7 @@
           <div class="orderdetail-r1cr fr">{{{nextStep}}}</div>
         </div>
         <p class="orderdetail-r2">
-        {{{nextStepTips}}}
+        {{{currentStepTips}}}
         <ul class="orderdetail-step clearfix">
           <li class="{{submitedActive}}" id="SUBMITED">
             <div>
@@ -24,16 +24,19 @@
             <span></span>
             <div class="line"></div>
           </li>
-          <li class="{{shippingActive}}" id="SHIPPING">
+          <li class="{{wait_shippingActive}}" id="WAIT_SHIPPING">
             <div>
               <h3>商品出库</h3>
-              <p>{{shippingTime}}</p>
+              <p>{{wait_shippingTime}}</p>
             </div>
             <span></span>
             <div class="line"></div>
           </li>
-          <li>
-            <div><h3>等待收货</h3></div>
+          <li class="{{shippingActive}}" id="SHIPPING">
+            <div>
+              <h3>等待收货</h3>
+              <p>{{shippingTime}}</p>
+            </div>
             <div class="line"></div>
             <span></span>
           </li>

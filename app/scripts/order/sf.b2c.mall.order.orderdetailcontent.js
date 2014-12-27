@@ -11,7 +11,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
      * [defaults 定义默认值]
      */
     defaults: {
-      'steps': ['SUBMITED', 'AUDITING', 'SHIPPING', 'COMPLETED']
+      'steps': ['SUBMITED', 'AUDITING', 'WAIT_SHIPPING','SHIPPING', 'COMPLETED']
     },
 
     /**
@@ -42,39 +42,44 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           that.options.orderId = data.orderId;
           that.options.status = that.statsMap[data.orderItem.orderStatus];
           that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]]
-          that.options.nextStepTips = that.nextStepTipsMap[data.orderItem.orderStatus];
+          that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
           that.options.traceList = data.orderActionTraceItemList;
 
           // that.options.traceList[0].status = 'SUBMITED';
           // that.options.traceList[1].status = 'AUDITING';
 
           var map = {
-            'SUBMITED': function(trace){
+            'SUBMITED': function(trace) {
               that.options.submitedTime = trace.gmtHappened;
               that.options.submitedActive = "active";
             },
 
-            'AUDITING': function(trace){
+            'AUDITING': function(trace) {
               that.options.auditingTime = trace.gmtHappened;
               that.options.auditingActive = "active";
             },
 
-            'SHIPPING': function(trace){
+            'WAIT_SHIPPING': function(trace) {
+              that.options.wait_shippingTime = trace.gmtHappened;
+              that.options.wait_shippingActive = "active";
+            },
+
+            'SHIPPING': function(trace) {
               that.options.shippingTime = trace.gmtHappened;
               that.options.shippingActive = "active";
             },
 
-            'COMPLETED': function(trace){
+            'COMPLETED': function(trace) {
               that.options.completedTime = trace.gmtHappened;
               that.options.completedActive = "active";
             }
           }
-          _.each(that.options.traceList, function(trace){
+          _.each(that.options.traceList, function(trace) {
             trace.operator = that.operatorMap[trace.operator];
             trace.description = that.statusDescription[trace.status];
 
-            if (typeof map[trace.status] != 'undefined'){
-              map[trace.status].call(that,trace);
+            if (typeof map[trace.status] != 'undefined') {
+              map[trace.status].call(that, trace);
             }
           })
 
@@ -160,9 +165,22 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       'SUBMITED': 'NEEDPAY'
     },
 
-    nextStepTipsMap: {
+    currentStepTipsMap: {
       'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />' +
-        '该订单会为您保留24小时（从下单时间算起），24小时后系统将自动取消未付款的订单。</p>'
+        '该订单会为您保留24小时（从下单时间算起），24小时后系统将自动取消未付款的订单。',
+      'AUTO_CANCEL': '尊敬的客户，我们由于2小时内未收到您的订单款项，订单已被自动取消。<br />' +
+        '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
+      'USER_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
+      'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
+      'OPERATION_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
+      'BUYING': '尊敬的客户，您的订单已经审核通过，不能修改。<br />' +
+        '订单正在进行境外采购，请等待采购结果。',
+      'WAIT_SHIPPING': '尊敬的客户，您的订单已经通过系统审核，不能修改。<br />' +
+        '订单正在等待仓库发货。',
+      'SHIPPING': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。。<br />' +
+        '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
+      'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
+      'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。'
     }
 
   });

@@ -50,7 +50,7 @@ define('sf.b2c.mall.component.receivepersoneditor',
               cellphone: data.cellphone
             },
             mainTitle: {
-              text: '修改收货地址'
+              text: '修改收货人'
             }
           };
         }
