@@ -128,6 +128,7 @@ requirejs.config({
     'sf.b2c.mall.page.activated': 'scripts/page/sf.b2c.mall.page.activated',
     'sf.b2c.mall.adapter.order':'scripts/adapter/sf.b2c.mall.adapter.order',
     'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail',
+    'sf.b2c.mall.page.nullactivated': 'scripts/page/sf.b2c.mall.page.nullactivated',
     'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center',
     'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
 
