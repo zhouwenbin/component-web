@@ -301,7 +301,7 @@ define(
                 can.route.attr('tag', 'success');
               }
             })
-            .faile(function (errorCode) {
+            .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
                 that.element.find('#mobile-register-error').text(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
