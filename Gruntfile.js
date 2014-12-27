@@ -204,7 +204,9 @@ module.exports = function (grunt) {
         '<%= config.app %>/activated.html',
         '<%= config.app %>/nullactivated.html',
         '<%= config.app %>/retrieve.html',
-        '<%= config.app %>/order.html'
+        '<%= config.app %>/order.html',
+        '<%= config.app %>/orderlist.html',
+        '<%= config.app %>/orderdetail.html'
       ]
     },
 
@@ -326,6 +328,8 @@ module.exports = function (grunt) {
             'nullactivated.html',
             'retrieve.html',
             'order.html',
+            'orderlist.html',
+            'orderdetail.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -569,7 +573,53 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.page.order'
           ],
-          insertRequire: ['sf.b2c.mall.page.retrieve']
+          insertRequire: ['sf.b2c.mall.page.order']
+        }
+      },
+      orderlist: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.list.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.adapter.address.list',
+            'sf.b2c.mall.component.addrEditor',
+            'sf.b2c.mall.adapter.order',
+            'sf.b2c.mall.adapter.regions',
+            'moment',
+            'sf.b2c.mall.page.orderlist'
+          ],
+          insertRequire: ['sf.b2c.mall.page.orderlist']
+        }
+      },
+      orderdetail: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.orderdetailcontent',
+            'sf.helpers',
+            'moment',
+            'sf.b2c.mall.page.orderdetail'
+          ],
+          insertRequire: ['sf.b2c.mall.page.orderdetail']
         }
       },
     }
@@ -658,6 +708,8 @@ module.exports = function (grunt) {
           'requirejs:nullactivated',
           'requirejs:retrieve',
           'requirejs:order',
+          'requirejs:orderlist',
+          'requirejs:orderdetail',
           'usemin',
           'htmlmin'
         ]);
