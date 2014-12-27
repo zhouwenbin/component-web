@@ -201,7 +201,9 @@ module.exports = function (grunt) {
         '<%= config.app %>/login.html',
         '<%= config.app %>/register.html',
         '<%= config.app %>/process.html',
-        '<%= config.app %>/activated.html'
+        '<%= config.app %>/activated.html',
+        '<%= config.app %>/nullactivated.html',
+        '<%= config.app %>/retrieve.html'
       ]
     },
 
@@ -320,6 +322,8 @@ module.exports = function (grunt) {
             'register.html',
             'process.html',
             'activated.html',
+            'nullactivated.html',
+            'retrieve.html',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -508,9 +512,40 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
             'sf.b2c.mall.page.activated'
           ],
           insertRequire: ['sf.b2c.mall.page.activated']
+        }
+      },
+      nullactivated: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.page.nullactivated'
+          ],
+          insertRequire: ['sf.b2c.mall.page.nullactivated']
+        }
+      },
+      retrieve: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.retrieve',
+            'sf.b2c.mall.page.retrieve',
+          ],
+          insertRequire: ['sf.b2c.mall.page.retrieve']
         }
       }
     }
