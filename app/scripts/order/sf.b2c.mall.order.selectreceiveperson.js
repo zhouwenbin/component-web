@@ -10,6 +10,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
     'sf.b2c.mall.adapter.order'
   ],
   function(can, md5, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter) {
+
     return can.Control.extend({
 
       defaults: {
