@@ -71,7 +71,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           }
           _.each(that.options.traceList, function(trace){
             trace.operator = that.operatorMap[trace.operator];
-            map[trace.status].call(that,trace);
+            trace.description = that.statusDescription[trace.status];
+
+            if (typeof map[trace.status] != 'undefined'){
+              map[trace.status].call(that,trace);
+            }
           })
 
           that.options.receiveInfo = data.orderItem.orderAddressItem;
@@ -90,6 +94,21 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    statusDescription: {
+      'SUBMITED': '您提交了订单，请等待系统确认',
+      'AUTO_CANCEL': '系统自动取消',
+      'USER_CANCEL': '用户取消',
+      'AUDITING': '您的订单已经付款成功，请等待审核',
+      'OPERATION_CANCEL': '运营取消',
+      'BUYING': '您的宝贝已经审核通过，正在采购',
+      'BUYING_EXCEPTION': '采购异常',
+      'WAIT_SHIPPING': '您的宝贝已经采购到，请等待发货',
+      'SHIPPING': '您的宝贝已经发货，请保持手机畅通',
+      'LOGISTICS_EXCEPTION': '物流异常',
+      'SHIPPED': '发货成功',
+      'COMPLETED': '已完成'
     },
 
     getOptionHTML: function(operationsArr) {
