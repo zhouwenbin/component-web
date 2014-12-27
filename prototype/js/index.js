@@ -239,4 +239,23 @@ $(function(){
         $(".mask").hide();
         return false;
     })
+    //----------查看物流-------------//
+    $(".table-1-logistics").hover(function(){
+        $(this).find(".tooltip").show();
+    },function(){
+        $(this).find(".tooltip").hide();
+    })
+    //----------radio模拟-------------//
+    $(".radio").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var index=$('.radio').index(this);
+        $(".retrieve-b").eq(index).addClass("active").siblings().removeClass("active");
+        return false;
+    })
+
+    $("#orderdetail-view").on("click", function(){
+        $(".orderdetail-upload").show();
+        $(".mask").show();
+        return false;
+    })
 })
