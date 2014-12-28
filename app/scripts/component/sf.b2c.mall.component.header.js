@@ -70,6 +70,26 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     },
 
+    '#user-orderlist click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.pathname = 'orderlist.html'
+      }else{
+        this.showLogin();
+      }
+    },
+
+    '#user-center click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.pathname = 'center.html'
+      }else{
+        this.showLogin();
+      }
+    },
+
     /**
      * 登录状态下的退出
      * @param  {[type]} element
@@ -80,16 +100,20 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault()
 
       var that = this;
-      var logout = new SFLogout({});
 
-      logout
-        .sendRequest()
-        .done(function(data) {
-          that.data.attr('user', null);
-          window.localStorage.removeItem('csrfToken');
-          window.location.href = SFConfig.setting.api.mailurl + 'login.html'
-        })
-        .fail(function() {})
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        var logout = new SFLogout({});
+
+        logout
+          .sendRequest()
+          .done(function(data) {
+            that.data.attr('user', null);
+            window.localStorage.removeItem('csrfToken');
+            window.location.reload();
+            // window.location.href = SFConfig.setting.api.mailurl + 'login.html'
+          })
+          .fail(function() {})
+      }
     },
 
     '#my-account click': function(element, event) {
