@@ -32,7 +32,7 @@ define(
     var ERROR_NO_EMAIL_CODE = '请输入验证码';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
-    var ERROR_NOT_SAME = '两次填写的密码不一致';
+    var ERROR_NOT_SAME = '重复密码输入有误，请重新输入';
 
     var DEFAULT_DOWN_SMS_ERROR_MAP = {
       '1000010' : '未找到手机用户',
