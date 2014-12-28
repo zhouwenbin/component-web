@@ -358,6 +358,28 @@ define(
         this.checkPassword.call(this, password, '#mail-password-error');
       },
 
+      '#mail-resend-activate click': function ($element, event) {
+        event && event.preventDefault();
+
+        var email = this.data.attr('mailId');
+        this.component.activateMail.setData({
+          mailId: email,
+          from: 'RESEND'
+        });
+
+        this.component.activateMail.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              alert('@todo 重新发送邮件成功')
+            }
+          })
+          .fail(function (errorCode) {
+            if (_.isNumber(errorCode)) {
+              alert(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+            }
+          })
+      },
+
       '#mail-register-btn click': function ($element, event) {
         event && event.preventDefault();
 
