@@ -170,6 +170,7 @@ define(
         event && event.preventDefault();
 
         var that = this;
+        var count = 0;
         $('#username-error-tips').hide();
         $('#pwd-error-tips').hide();
         // @todo 检查用户名和密码是否符合规范
@@ -202,6 +203,9 @@ define(
               }
           })
           .fail(function (error) {
+            if(count <=3){
+              count++;
+            }
             var map ={
               '-140':'参数错误',
               '1000010':'未找到用户',
