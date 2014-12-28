@@ -431,6 +431,8 @@ define(
         var email = this.element.find('#input-email').val();
         var code = this.element.find('#input-mail-code').val();
 
+        code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
+
         this.component.sendResetPwdLink.setData({
           mailId: email,
           vfCode: code

@@ -32,26 +32,29 @@ define(
       render: function(data) {
         var that = this;
 
-        var webLogin = new SFUserWebLogin({
-          accountId: 'jiyanliang@sf-express.com',
-          type: 'MAIL',
-          password: md5('123456' + 'www.sfht.com')
-        });
+        // var webLogin = new SFUserWebLogin({
+        //   accountId: 'jiyanliang@sf-express.com',
+        //   type: 'MAIL',
+        //   password: md5('123456' + 'www.sfht.com')
+        // });
 
-        webLogin
-          .sendRequest()
-          .fail(function(error){
-            console.error(error);
-          })
-          .then(function() {
-            var getIDCardUrlList = new SFGetIDCardUrlList();
-            return getIDCardUrlList.sendRequest();
-          })
+        var getIDCardUrlList = new SFGetIDCardUrlList();
+
+        // webLogin
+        //   .sendRequest()
+        //   .fail(function(error){
+        //     console.error(error);
+        //   })
+        //   .then(function() {
+        //     var getIDCardUrlList = new SFGetIDCardUrlList();
+        //     return getIDCardUrlList.sendRequest();
+        //   })
+        getIDCardUrlList.sendRequest()
           .done(function(message) {
 
             //获得地址列表
             that.adapter4List.persons = new ReceivePersonAdapter({
-              personList: message.items,
+              personList: message.items || [],
               hasData: false
             });
 

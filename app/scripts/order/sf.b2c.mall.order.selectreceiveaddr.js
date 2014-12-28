@@ -4,7 +4,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'can',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.adapter.address.list',
-  'sf.b2c.mall.component.addrEditor',
+  'sf.b2c.mall.component.addreditor',
   'sf.b2c.mall.api.user.webLogin',
   'md5'
 ], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5) {

@@ -6,9 +6,18 @@ define(
     [
       'can',
       'jquery',
+      'jquery.cookie',
+      'sf.b2c.mall.api.user.getUserInfo',
       'sf.b2c.mall.api.user.upateUserInfo'
     ],
-    function(can,$,UpateUserInfo){
+    function(can,$, $cookie, SFGetUserInfo, UpateUserInfo){
+
+      var GENDER_MAP = {
+        'INVALID_GENDER': '男',
+        'MALE': '男',
+        'FEMALE': '女'
+      }
+
       return can.Control.extend({
 
         defaults:{
@@ -18,13 +27,14 @@ define(
         init:function(){
           this.component = {};
           this.component.updateInfo = new UpateUserInfo();
+          this.component.getUserInfo = new SFGetUserInfo();
 
           this.data = new can.Map({
             isModified:false,
-//            user:{
-//              nick:null,
-//              genderStr:null
-//            },
+             user:{
+               nick: $.cookie('nick'),
+               gender: GENDER_MAP[$.cookie('gender')],
+             },
             input:{
               nick:null,
               gender:null
@@ -35,6 +45,25 @@ define(
         render:function(data){
           var html = can.view('templates/center/sf.b2c.mall.center.userinfo.mustache', data);
           this.element.html(html);
+
+          var that = this;
+          if (!this.data.user.nick) {
+            this.component.getUserInfo.sendRequest()
+              .done(function (data) {
+
+                $.cookie('gender', data.gender);
+                $.cookie('nick', data.nick);
+
+                that.data.user.attr({
+                  nick: data.nick,
+                  gender: GENDER_MAP[data.gender]
+                });
+
+              })
+              .fail(function (errorCode) {
+                throw new Error(errorCode)
+              })
+          }
         },
 
         /**
