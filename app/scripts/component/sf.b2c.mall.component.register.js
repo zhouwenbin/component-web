@@ -24,7 +24,7 @@ define(
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
     var DEFAULT_ACTIVATE_ERROR_MAP = {
-      '1000020':   '账户已注册',
+      '1000020':   '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000050':   '邮箱地址错误',
       '1000070':   '参数错误',
       '1000100':   '验证码错误',
@@ -41,7 +41,7 @@ define(
     }
 
     var DEFAULT_MOBILE_ACTIVATE_ERROR_MAP = {
-      '1000020': '账户已注册',
+      '1000020': '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000230': '手机号错误，请输入正确的手机号',
       '1000240': '手机验证码错误',
       '1000250': '手机验证码已过期'
@@ -292,6 +292,7 @@ define(
 
         // 发起请求注册
 
+        var that = this;
         var mobile = this.element.find('#input-mobile').val();
         var code = this.element.find('#input-mobile-code').val();
         var password = this.element.find('#input-password').val();
@@ -312,7 +313,7 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mobile-register-error').text(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         }
@@ -382,7 +383,7 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mail-register-error').text(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                that.element.find('#mail-register-error').html(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         };
