@@ -37,18 +37,21 @@ define('sf.b2c.mall.center.receiveaddr', [
       paint: function() {
         var that = this;
 
-        var webLogin = new SFUserWebLogin({
-          accountId: 'jiyanliang@sf-express.com',
-          type: 'MAIL',
-          password: md5('123456' + 'www.sfht.com')
-        });
+        // var webLogin = new SFUserWebLogin({
+        //   accountId: 'jiyanliang@sf-express.com',
+        //   type: 'MAIL',
+        //   password: md5('123456' + 'www.sfht.com')
+        // });
 
-        webLogin
-          .sendRequest()
-          .then(function() {
-            var getRecAddressList = new SFGetRecAddressList();
-            return getRecAddressList.sendRequest();
-          })
+        var getRecAddressList = new SFGetRecAddressList();
+
+        // webLogin
+        //   .sendRequest()
+        //   .then(function() {
+        //     var getRecAddressList = new SFGetRecAddressList();
+        //     return getRecAddressList.sendRequest();
+        //   })
+        getRecAddressList.sendRequest()
           .fail(function(error) {
             console.error(error);
           })
