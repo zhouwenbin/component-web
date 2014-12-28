@@ -55,7 +55,7 @@ define(
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_EMAIL = '邮箱格式有误';
     var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
-    var ERROR_NO_EMAIL_CODE = '请输入验证码';
+    var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
 
     can.route.ready();
