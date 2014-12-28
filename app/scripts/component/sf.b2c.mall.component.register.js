@@ -377,7 +377,8 @@ define(
           this.component.activateMail.sendRequest()
             .done(function (data) {
               if (data.value) {
-                can.route.attr('tag', 'confirminfo');
+                window.location.href = window.location.pathname + '?' + $.param({mailId: email}) + '#!&tag=confirminfo';
+                // can.route.attr('tag', 'confirminfo');
               }
             })
             .fail(function (errorCode) {
