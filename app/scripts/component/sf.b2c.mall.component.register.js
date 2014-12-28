@@ -49,7 +49,9 @@ define(
 
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
     var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
+    var ERROR_NO_PASSWORD = '请设置登录密码';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_EMAIL = '您的邮箱地址格式输入有误';
     var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
@@ -166,7 +168,10 @@ define(
       },
 
       checkCode: function (code) {
-        if (!/^[0-9]{6}$/.test(code)) {
+        if (!code) {
+          this.element.find('#mobile-code-error').text(ERROR_NO_MOBILE_CHECKCODE).show();
+          return false;
+        }else if (!/^[0-9]{6}$/.test(code)) {
           this.element.find('#mobile-code-error').text(ERROR_MOBILE_CHECKCODE).show();
           return false;
         }else{
@@ -187,7 +192,10 @@ define(
       },
 
       checkPassword: function (password, tag) {
-        if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
+        if (!password) {
+          this.element.find(tag).text(ERROR_NO_PASSWORD).show();
+          return false;
+        }else if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           this.element.find(tag).text(ERROR_PASSWORD).show();
           return false;
         }else{
