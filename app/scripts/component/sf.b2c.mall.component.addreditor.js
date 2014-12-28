@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.component.addrEditor', [
+define('sf.b2c.mall.component.addreditor', [
   'can',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',

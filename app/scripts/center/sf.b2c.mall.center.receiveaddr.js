@@ -6,7 +6,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.upateUserInfo',
     'sf.b2c.mall.api.user.getRecAddressList',
     'sf.b2c.mall.adapter.address.list',
-    'sf.b2c.mall.component.addrEditor',
+    'sf.b2c.mall.component.addreditor',
     'sf.b2c.mall.api.user.webLogin',
     'md5',
     'sf.b2c.mall.framework.comm',

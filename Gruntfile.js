@@ -570,7 +570,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.order.selectreceiveaddr',
             'sf.b2c.mall.order.iteminfo',
             'sf.b2c.mall.adapter.address.list',
-            'sf.b2c.mall.component.addrEditor',
+            'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.page.order'
@@ -595,7 +595,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.order.selectreceiveaddr',
             'sf.b2c.mall.order.iteminfo',
             'sf.b2c.mall.adapter.address.list',
-            'sf.b2c.mall.component.addrEditor',
+            'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'moment',
@@ -641,7 +641,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.center.receiveaddr',
             'sf.b2c.mall.component.receivepersoneditor',
             'sf.b2c.mall.adapter.receiveperson.list',
-            'sf.b2c.mall.component.addrEditor',
+            'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.page.center'
           ],

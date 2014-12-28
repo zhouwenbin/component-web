@@ -116,7 +116,7 @@ requirejs.config({
 
     'sf.b2c.mall.adapter.address.list':'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions':'scripts/adapter/sf.b2c.mall.adapter.regions',
-    'sf.b2c.mall.component.addrEditor':'scripts/component/sf.b2c.mall.component.addrEditor',
+    'sf.b2c.mall.component.addreditor':'scripts/component/sf.b2c.mall.component.addreditor',
 
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
