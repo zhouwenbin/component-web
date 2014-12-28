@@ -25,6 +25,7 @@ define(
 
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
     var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_EMAIL = '您的邮箱地址格式输入有误';
@@ -175,7 +176,13 @@ define(
       },
 
       checkCode: function (code) {
-        if (!/^[0-9]{6}$/.test(code)) {
+        if (!code) {
+          this.data.attr({
+            'msgType': 'icon26',
+            'msg': ERROR_NO_MOBILE_CHECKCODE
+          });
+          return false;
+        }else if (!/^[0-9]{6}$/.test(code)) {
           this.data.attr({
             'msgType': 'icon26',
             'msg': ERROR_MOBILE_CHECKCODE
