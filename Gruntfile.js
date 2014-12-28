@@ -333,6 +333,8 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
 
+            'json/*.json',
+
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
             'templates/**/*.mustache'

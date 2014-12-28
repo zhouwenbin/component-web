@@ -54,7 +54,7 @@ define(
 
             //获得地址列表
             that.adapter4List.persons = new ReceivePersonAdapter({
-              personList: message.items,
+              personList: message.items || [],
               hasData: false
             });
 

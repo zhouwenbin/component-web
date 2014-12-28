@@ -356,7 +356,10 @@ define(
         var email = this.element.find('#input-mail').val();
         var code = this.element.find('#input-mail-code').val();
         var password = this.element.find('#input-mail-password').val();
+
         if (this.checkEmail.call(this, email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
+          code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
+
           this.component.activateMail.setData({
             mailId: email,
             vfCode: code
