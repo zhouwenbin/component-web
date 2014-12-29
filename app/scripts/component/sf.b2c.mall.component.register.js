@@ -57,6 +57,7 @@ define(
     var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
     var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
+    var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
 
     var MAIL_MAP = {
       '163': 'http://mail.163.com',
@@ -65,7 +66,7 @@ define(
       'sohu': 'http://mail.sohu.com',
       '21cn': 'http://mail.21cn.com',
       'hotmail': 'http://www.hotmail.com',
-      'google': 'https://mail.google.com',
+      'gmail': 'https://mail.google.com',
       '126': 'http://mail.126.com/'
     }
 
@@ -116,6 +117,8 @@ define(
           var params = can.deparam(window.location.search.substr(1));
           data.attr('mailId', params.mailId);
           data.attr('mailLink', this.getEmailLink(params.mailId));
+          data.attr('msg', null);
+          data.attr('msgType', 'icon26-2');
 
           var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data);
           this.element.html(html)
@@ -150,7 +153,7 @@ define(
         // @todo 处理email链接
         if (email) {
           var arr = email.split('@');
-          var siteArr = arr[1].split('@');
+          var siteArr = arr[1].split('.');
 
           var mailAddr = MAIL_MAP[siteArr[0]];
           return mailAddr;
@@ -386,15 +389,18 @@ define(
           from: 'RESEND'
         });
 
+        var that = this;
         this.component.activateMail.sendRequest()
           .done(function (data) {
             if (data.value) {
-              alert('@todo 重新发送邮件成功')
+              that.data.attr('msgType', 'icon26-2');
+              that.data.attr('msg', DEFAULT_RESEND_SUCCESS);
             }
           })
           .fail(function (errorCode) {
             if (_.isNumber(errorCode)) {
-              alert(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+              that.data.attr('msgType', 'icon26');
+              that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
             }
           })
       },
