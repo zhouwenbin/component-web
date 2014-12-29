@@ -94,10 +94,16 @@ define(
        * @return {String}
        */
       checkUserName: function (username) {
+        var username= $.trim(username);
+        var isTelNum =/^1\d{10}$/.test(username);
+        var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(username);
         if (!username) {
           this.element.find('#username-error-tips').text(ERROR_NO_INPUT_USERNAME).show();
           return false;
-        }else if(username.length>30){
+        }else if(username.length>30) {
+          this.element.find('#username-error-tips').text(ERROR_INPUT_USERNAME).show();
+          return false;
+        }else if(!isTelNum && !isEmail){
           this.element.find('#username-error-tips').text(ERROR_INPUT_USERNAME).show();
           return false;
         }else{
@@ -110,10 +116,12 @@ define(
        * @return {String}
        */
       checkPwd: function (password) {
+        var password = $.trim(password);
+        var isPwd =/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)
         if (!password) {
           this.element.find('#pwd-error-tips').text(ERROR_NO_INPUT_PWD).show();
           return false;
-        }else if(password.length>30){
+        }else if(password.length>30 || !isPwd){
           this.element.find('#pwd-error-tips').text(ERROR_INPUT_PWD).show();
           return false;
         }else{
@@ -126,10 +134,12 @@ define(
        * @return {String}
        */
       checkVerCode: function (code) {
+        var code = $.trim(code);
+        var isCode = /^\d{6}$/.test(code);
         if (!code) {
           this.element.find('#code-error-tips').text(ERROR_NO_INPUT_VERCODE).show();
           return false;
-        }else if(code.length>30){
+        }else if(code.length>30 || !isCode){
           this.element.find('#code-error-tips').text(ERROR_INPUT_VERCODE).show();
           return false;
         }else{
@@ -268,7 +278,7 @@ define(
             }
           })
           .fail(function (error) {
-            if(error === '1000300'){
+            if(error === 1000300){
               that.data.attr('isNeedVerifiedCode',true);
             }
             var map = {
