@@ -224,10 +224,14 @@
 }
 .register-b2r4{
 	text-align: center;
+	margin-bottom: 10px;
 }
 .register-b2r4 a{
 	color: #2a4dff;
 	text-decoration: underline;
+}
+.register-b2r5{
+	text-align: center;
 }
 .register-b3{
 	padding-top: 75px;
