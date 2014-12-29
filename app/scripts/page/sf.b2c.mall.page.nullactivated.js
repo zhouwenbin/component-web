@@ -19,8 +19,10 @@ define(
 
     var DEFAULT_ERROR = '邮箱激活失败'
     var ERROR_REGISTER_MAP = {
-      '1000120':   '很抱歉，您的邮箱验证链接已失效',
-      '1000130' :  '很抱歉，您的邮箱已注册'
+      '1000020': '很抱歉，您的邮箱已注册',
+      '1000120': '很抱歉，您的邮箱验证链接已失效'||'链接已过期',
+      '1000130': '很抱歉，您的邮箱验证链接已失效'||'签名验证失败',
+      '1000140': '发送验证邮箱的频率较高，请过2分钟再试'||'密码修改间隔太短'
     }
     var ERROR_RESEND_MAP = {
       '1000020':   '账户已注册',
@@ -62,9 +64,21 @@ define(
         }
       },
 
+      expiredTemplate: function () {
+        return '<div class="pb">'+
+                '<div class="pm">'+
+                  '<div class="order verification-failure">'+
+                    '<h1>{{errorText}}</h1>'+
+                    '<div class="verification-failure-r1">您可以：<a href="index.html#!&lt=login" class="btn btn-send">立即登录</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
+                    '<span class="icon icon28"></span>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'
+      },
+
       template: function(errorCode){
         var map = {
-          '1000120': function () {
+          '1000020': function () {
             return '<div class="pb">'+
                     '<div class="pm">'+
                       '<div class="order verification-failure">'+
@@ -76,17 +90,9 @@ define(
                     '</div>'+
                   '</div>'
           },
-          '1000130': function () {
-            return '<div class="pb">'+
-                    '<div class="pm">'+
-                      '<div class="order verification-failure">'+
-                        '<h1>{{errorText}}</h1>'+
-                        '<div class="verification-failure-r1">您可以：<a href="index.html#!&lt=login" class="btn btn-send">立即登录</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
-                        '<span class="icon icon28"></span>'+
-                      '</div>'+
-                    '</div>'+
-                  '</div>'
-          }
+          '1000120': this.expiredTemplate,
+          '1000130': this.expiredTemplate,
+          '1000140': this.expiredTemplate
         }
 
         return map[errorCode];
