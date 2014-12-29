@@ -142,15 +142,15 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
      * [routeMap 查看物流状态标示 哪些状态可以查看物流]
      */
     routeMap: {
-      'SUBMITED': true,
-      'AUTO_CANCEL': true,
-      'USER_CANCEL': true,
-      'AUDITING': true,
-      'OPERATION_CANCEL': true,
-      'BUYING': true,
+      'SUBMITED': false,
+      'AUTO_CANCEL': false,
+      'USER_CANCEL': false,
+      'AUDITING': false,
+      'OPERATION_CANCEL': false,
+      'BUYING': false,
       'BUYING_EXCEPTION': false,
-      'WAIT_SHIPPING': true,
-      'SHIPPING': true,
+      'WAIT_SHIPPING': false,
+      'SHIPPING': false,
       'LOGISTICS_EXCEPTION': false,
       'SHIPPED': true,
       'COMPLETED': true
