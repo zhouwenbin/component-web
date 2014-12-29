@@ -45,6 +45,7 @@
 }
 .retrieve .radio2{
 	margin-left: 50px;
+	*position: relative;
 }
 .retrieve-h{
 	margin-bottom: 34px;

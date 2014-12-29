@@ -207,7 +207,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/order.html',
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
-        '<%= config.app %>/center.html'
+        '<%= config.app %>/center.html',
+        '<%= config.app %>/gotopay.html'
       ]
     },
 
@@ -332,6 +333,7 @@ module.exports = function (grunt) {
             'orderlist.html',
             'orderdetail.html',
             'center.html',
+            'gotopay.html',
 
             'json/*.json',
 
@@ -649,6 +651,26 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.center']
         }
+      },
+      gotopay: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.step',
+            'sf.helpers',
+            'moment',
+            'sf.b2c.mall.page.gotopay'
+          ],
+          insertRequire: ['sf.b2c.mall.page.gotopay']
+        }
       }
     }
   });
@@ -717,7 +739,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
           'clean:dist',
-          'wiredep',
           'useminPrepare',
           'concurrent:dist',
           'autoprefixer',
@@ -739,6 +760,7 @@ module.exports = function (grunt) {
           'requirejs:orderlist',
           'requirejs:orderdetail',
           'requirejs:center',
+          'requirejs:gotopay',
           'usemin',
           'htmlmin'
         ]);

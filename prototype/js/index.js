@@ -173,7 +173,8 @@ $(function(){
     	return false;
     });
     //----------选择收货人-------------//
-    $(".order").on("click", ".icon30", function(){debugger;
+    $(".order").on("click", ".icon30", function(){
+        $(this).toggleClass("active")
     	$(this).parents(".order-b").toggleClass("active");
         $(".order-r2").hide();
     	return false;
@@ -186,7 +187,8 @@ $(function(){
     })
     $(".order").on("click", ".order-edit", function(){debugger;
         $(".order-r2").hide();
-    	$(this).parents("li").find(".order-r2").toggle();
+    	$(this).parents("li").find(".order-r2").show();
+        $(this).parents(".order-b").find(".icon30").addClass("active");
     	return false;
     });
     $(".order").on("click", ".btn-add", function(){debugger;
@@ -196,6 +198,7 @@ $(function(){
     });
     $(".order").on("click", ".order-cancel", function(){
         $(".order-r2").hide();
+        $(this).parents(".order-b").find(".icon30").removeClass("active");
         return false;
     });
     $(".order").on("click", ".order-del", function(){

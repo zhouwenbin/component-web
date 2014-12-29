@@ -7,9 +7,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
   'sf.b2c.mall.widget.pagination',
   'sf.b2c.mall.api.order.getOrder',
   'sf.helpers',
-  'sf.b2c.mall.api.order.cancelOrder'
+  'sf.b2c.mall.api.order.cancelOrder',
+  'sf.b2c.mall.api.order.requestPayV2'
 ],
-function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder) {
+function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2) {
 
   return can.Control.extend({
 
@@ -47,7 +48,6 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           that.options.orderlist = data.orders;
 
           _.each(that.options.orderlist, function(order) {
-            order.orderStatus = 'BUYING';
 
             order.goodsName = order.orderGoodsItemList[0].goodsName;
             order.spec = order.orderGoodsItemList[0].spec;
@@ -115,7 +115,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
       return '<h4>物流跟踪</h4>' +
         '<ul>' +
         '{{#each traceList}}' +
-        '<li><span class="time">{{gmtHappened}}</span>从海外仓发出</li>' +
+        '<li><span class="time">{{gmtHappened}}</span>{{status}} 具体描述待产品给出</li>' +
         '{{/each}}' +
         '</ul>' +
         '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
@@ -142,11 +142,11 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
      * [routeMap 查看物流状态标示 哪些状态可以查看物流]
      */
     routeMap: {
-      'SUBMITED': false,
-      'AUTO_CANCEL': false,
-      'USER_CANCEL': false,
-      'AUDITING': false,
-      'OPERATION_CANCEL': false,
+      'SUBMITED': true,
+      'AUTO_CANCEL': true,
+      'USER_CANCEL': true,
+      'AUDITING': true,
+      'OPERATION_CANCEL': true,
       'BUYING': true,
       'BUYING_EXCEPTION': false,
       'WAIT_SHIPPING': true,
@@ -183,7 +183,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
       "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>'
     },
 
-    '.gotoPay click': function() {
+    '.gotoPay click': function(element,event) {
 
       var that = this;
       var orderId = element.parent('div#operationarea')[0].dataset.orderid;
@@ -211,7 +211,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           }
         })
         .fail(function(error) {
-
+          console.error(error);
         });
     },
 
@@ -244,13 +244,14 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
     },
 
     ".cancelOrder click": function(element, event) {
+      var that = this;
       var orderid = element.parent('div#operationarea')[0].dataset.orderid;
       var cancelOrder = new SFCancelOrder({"orderId": orderid});
 
       cancelOrder
           .sendRequest()
           .done(function(data) {
-
+            that.render();
           })
           .fail(function(error) {
             console.error(error);
