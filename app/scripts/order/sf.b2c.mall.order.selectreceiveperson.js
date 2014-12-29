@@ -7,19 +7,13 @@ define('sf.b2c.mall.order.selectreceiveperson', [
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.createReceiverInfo',
     'sf.b2c.mall.api.user.updateReceiverInfo',
-    'sf.b2c.mall.adapter.order'
+    'sf.b2c.mall.adapter.order',
+    'sf.b2c.mall.adapter.receiveperson.list',
+    'sf.b2c.mall.component.receivepersoneditor',
   ],
-  function(can, md5, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter) {
-    return can.Control.extend({
+  function(can, md5, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter, ReceivePersonAdapter, SFRecpersoneditor) {
 
-      defaults: {
-        user: new can.Map({
-          recName: null,
-          credtNum: null,
-          cellphone: null,
-          recId: null
-        })
-      },
+    return can.Control.extend({
 
       /**
        * 初始化
@@ -27,7 +21,8 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
-        this.adapter = new SFOrderAdapter();
+        this.adapter4List = {};
+        this.component = {};
         this.render(this.data);
       },
 
@@ -42,143 +37,79 @@ define('sf.b2c.mall.order.selectreceiveperson', [
 
         webLogin
           .sendRequest()
+          .fail(function(error) {
+            console.error(error);
+          })
           .then(function() {
             var getIDCardUrlList = new SFGetIDCardUrlList();
             return getIDCardUrlList.sendRequest();
           })
           .done(function(message) {
-            //模型转换，方便编辑数据填充
-            that.options.userList = new Array();
-            _.each(message.items, function(item) {
-              that.options.userList.push({
-                user: item
-              });
+
+            //获得地址列表
+            that.adapter4List.persons = new ReceivePersonAdapter({
+              personList: message.items,
+              hasData: false
             });
 
             //进行倒排序
-            that.options.userList.reverse();
+            that.adapter4List.persons.personList.reverse();
 
-            //用于新增
-            that.options.user = that.defaults.user;
-
-            //进行属性设定，保证列表初始化时候只有一行可见
-            that.options.hasData = that.options.userList.length > 0 ? true : false;
-
-            if (that.options.hasData) {
-              that.options.userList[0].user.active = "active";
-              that.options = that.adapter.format(that.options);
+            if (that.adapter4List.persons.personList != null && that.adapter4List.persons.personList.length > 0) {
+              that.adapter4List.persons.attr("hasData", true);
+              that.adapter4List.persons.personList[0].attr("active", "active");
             }
 
             //进行渲染
-            var html = can.view('templates/order/sf.b2c.mall.order.selectrecperson.mustache', that.options);
+            var html = can.view('templates/order/sf.b2c.mall.order.selectrecperson.mustache', that.adapter4List.persons);
             that.element.html(html);
+
+            that.component.personEditor = new SFRecpersoneditor('#addPersonArea', {
+              onSuccess: _.bind(that.render, that)
+            });
+
           })
           .fail(function(errorCode) {
-            debugger;
             console.error(errorCode);
           })
       },
 
       /**
-       * [description 编辑保存]
+       * [description 点击编辑]
        * @param  {[type]} element
        * @param  {[type]} event
        * @return {[type]}
        */
-      "#editSave click": function(element, event) {
-        debugger;
-        var that = this;
-        var recId = element[0].dataset.recid;
+      ".order-edit click": function(element, event) {debugger;
+        this.clearActive();
+        element.parents("li").addClass("active");
 
-        var data = _.find(this.options.userList, function(item) {
-          return item.user.recId == recId;
-        });
+        var index = element.data('index');
+        var person = this.adapter4List.persons.get(index);
+        this.adapter4List.persons.input.attr('recId', person.recId);
 
-        data.attr("active", "active");
+        var editPersonArea = element.parents("li[name='personEach']").find("#editPersonArea");
 
-        var updateReceiverInfo = new SFUpdateReceiverInfo({
-          recId: recId,
-          recName: data.user.recName,
-          credtNum: data.user.credtNum,
-          type: "ID",
-          cellphone: data.user.cellphone
-        });
-
-        updateReceiverInfo
-          .sendRequest()
-          .fail(function(error) {
-            console.error(error);
-          })
-          .done(function(message) {
-            $("#addarea").hide();
-            //重新执行查询
-            var getIDCardUrlList = new SFGetIDCardUrlList();
-            getIDCardUrlList
-              .sendRequest()
-              .done(function(message) {
-                var userList = [];
-                _.each(message.items, function(item) {
-
-                  if (item.recId == recId) {
-                    item.active = "active";
-                  }
-
-                  userList.push({
-                    user: item
-                  });
-                });
-
-                that.options.attr("userList", userList);
-                that.options.attr("hasData", true);
-              })
-          })
-
+        editPersonArea.show();
+        this.component.personEditor.show("editor", person, $(editPersonArea));
         return false;
       },
 
       /**
-       * [description 新增保存]
+       * [description 点击新增]
        * @param  {[type]} element
        * @param  {[type]} event
        * @return {[type]}
        */
-      "#addSave click": function(element, event) {
-        debugger;
-        var that = this;
+      ".btn-add click": function(element, event) {debugger;
+        //隐藏其它编辑和新增状态
+        $("#personlist").find(".order-r2").hide();
 
-        var createReceiverInfo = new SFCreateReceiverInfo({
-          recName: this.options.user.recName,
-          credtNum: this.options.user.credtNum,
-          type: "ID",
-          cellphone: this.options.user.cellphone
-        });
-        createReceiverInfo
-          .sendRequest()
-          .fail(function(error) {
-            console.error(error);
-          })
-          .done(function(message) {
-            $("#addarea").hide();
-            //重新执行查询
-            var getIDCardUrlList = new SFGetIDCardUrlList();
-            getIDCardUrlList
-              .sendRequest()
-              .done(function(message) {
-                var userList = new Array();
-                _.each(message.items, function(item) {
-                  userList.push({
-                    user: item
-                  });
-                });
+        //this.options.userList[0].user.attr("active", "active");
 
-                //进行倒排序
-                userList.reverse();
-
-                that.options.attr("userList", userList);
-                that.options.attr("hasData", true);
-                that.options.userList[0].user.attr("active", "active");
-              })
-          })
+        $("#addPersonArea").show();
+        this.component.personEditor.show('create', null, $("#addPersonArea"));
+        return false;
       },
 
       /**
@@ -190,35 +121,6 @@ define('sf.b2c.mall.order.selectreceiveperson', [
       ".icon30 click": function(element, event) {
         element.parents(".order-b").toggleClass("active");
         element.parent("div").find(".order-r2").hide();
-        return false;
-      },
-
-      /**
-       * [description 点击编辑]
-       * @param  {[type]} element
-       * @param  {[type]} event
-       * @return {[type]}
-       */
-      ".order-edit click": function(element, event) {
-        debugger;
-        this.clearActive();
-        element.parents("li").find(".order-r2").toggle();
-        element.parents("li").addClass("active");
-        return false;
-      },
-
-      /**
-       * [description 点击新增]
-       * @param  {[type]} element
-       * @param  {[type]} event
-       * @return {[type]}
-       */
-      ".btn-add click": function(element, event) {
-        //隐藏其它编辑和新增状态
-        $("#personlist").find(".order-r2").hide();
-
-        this.options.userList[0].user.attr("active", "active");
-        $("#addarea").show();
         return false;
       },
 

@@ -201,7 +201,13 @@ module.exports = function (grunt) {
         '<%= config.app %>/login.html',
         '<%= config.app %>/register.html',
         '<%= config.app %>/process.html',
-        '<%= config.app %>/activated.html'
+        '<%= config.app %>/activated.html',
+        '<%= config.app %>/nullactivated.html',
+        '<%= config.app %>/retrieve.html',
+        '<%= config.app %>/order.html',
+        '<%= config.app %>/orderlist.html',
+        '<%= config.app %>/orderdetail.html',
+        '<%= config.app %>/center.html'
       ]
     },
 
@@ -320,6 +326,14 @@ module.exports = function (grunt) {
             'register.html',
             'process.html',
             'activated.html',
+            'nullactivated.html',
+            'retrieve.html',
+            'order.html',
+            'orderlist.html',
+            'orderdetail.html',
+            'center.html',
+
+            'json/*.json',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
@@ -508,9 +522,132 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
             'sf.b2c.mall.page.activated'
           ],
           insertRequire: ['sf.b2c.mall.page.activated']
+        }
+      },
+      nullactivated: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.page.nullactivated'
+          ],
+          insertRequire: ['sf.b2c.mall.page.nullactivated']
+        }
+      },
+      retrieve: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.component.retrieve',
+            'sf.b2c.mall.page.retrieve',
+          ],
+          insertRequire: ['sf.b2c.mall.page.retrieve']
+        }
+      },
+      order: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.adapter.address.list',
+            'sf.b2c.mall.component.addreditor',
+            'sf.b2c.mall.adapter.order',
+            'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.page.order'
+          ],
+          insertRequire: ['sf.b2c.mall.page.order']
+        }
+      },
+      orderlist: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.list.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.adapter.address.list',
+            'sf.b2c.mall.component.addreditor',
+            'sf.b2c.mall.adapter.order',
+            'sf.b2c.mall.adapter.regions',
+            'moment',
+            'sf.b2c.mall.page.orderlist'
+          ],
+          insertRequire: ['sf.b2c.mall.page.orderlist']
+        }
+      },
+      orderdetail: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.order.orderdetailcontent',
+            'sf.helpers',
+            'moment',
+            'sf.b2c.mall.page.orderdetail'
+          ],
+          insertRequire: ['sf.b2c.mall.page.orderdetail']
+        }
+      },
+      center: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.center.change.userinfo',
+            'sf.b2c.mall.center.receiveperson',
+            'sf.b2c.mall.center.receiveaddr',
+            'sf.b2c.mall.component.receivepersoneditor',
+            'sf.b2c.mall.adapter.receiveperson.list',
+            'sf.b2c.mall.component.addreditor',
+            'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.page.center'
+          ],
+          insertRequire: ['sf.b2c.mall.page.center']
         }
       }
     }
@@ -596,6 +733,12 @@ module.exports = function (grunt) {
           'requirejs:register',
           'requirejs:process',
           'requirejs:activated',
+          'requirejs:nullactivated',
+          'requirejs:retrieve',
+          'requirejs:order',
+          'requirejs:orderlist',
+          'requirejs:orderdetail',
+          'requirejs:center',
           'usemin',
           'htmlmin'
         ]);

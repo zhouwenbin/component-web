@@ -41,22 +41,15 @@
               <div class="table-c4 fl">
                 {{orderStatus}}
                 {{#if showRouter}}
-                <div class="table-1-logistics">
-                  <a href="">查看物流</a>
-                  <div class="tooltip">
-                    <h4>物流跟踪</h4>
-                    <ul>
-                      <li class="active"><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                      <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
-                    </ul>
-                    <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                <div class="table-1-logistics" data-orderid="{{orderId}}">
+                  <a href="javascript:return false;">查看物流</a>
+                  <div class="tooltip" id="traceList">
+                    努力加载中
                   </div>
                 </div>
                 {{/if}}
               </div>
-              <div class="table-c5 fl">
+              <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}'>
                 {{{optionHMTL}}}
               </div>
             </li>

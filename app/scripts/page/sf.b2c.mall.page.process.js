@@ -31,18 +31,38 @@ define(
       actionMap: {
         'confirminfo': function(){
           this.component.checklink.setData({
-            linkContent: window.location.href
+            linkContent: window.decodeURIComponent(window.location.search.substr(1))
           });
 
           this.component.checklink.sendRequest()
             .done(function (data) {
               if (data.value) {
-                window.location.href = 'acticated.html';
+                var params = can.deparam(window.location.search.substr(1));
+                window.location.href = 'activated.html'+window.location.search;
               }
             })
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
-                alert("@todo error:"+ERROR_MAP[errorCode]);
+                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode});
+              }
+            })
+        },
+
+        'setpwd': function () {
+          this.component.checklink.setData({
+            linkContent:  window.decodeURIComponent(window.location.search.substr(1))
+          });
+
+          this.component.checklink.sendRequest()
+            .done(function (data) {
+              if (data.value) {
+                var params = can.deparam(window.location.search.substr(1));
+                window.location.href = 'retrieve.html' + window.location.search + window.location.hash;
+              }
+            })
+            .fail(function (errorCode) {
+              if (_.isNumber(errorCode)) {
+                window.location.href = 'nullactivated.html'+ '?' + $.params({er: errorCode});
               }
             })
         }

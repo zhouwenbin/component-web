@@ -97,7 +97,7 @@ img{vertical-align: middle;}
 	background: #DC3334;
 	padding-right: 24px;
 	height: 26px;
-	line-height: 26px;	
+	line-height: 26px;
 }
 .icon6-1 i{
 	border-width: 13px 7px;
@@ -253,7 +253,8 @@ img{vertical-align: middle;}
 	background-position: -62px -74px;
 }
 .icon26,
-.icon26-1{
+.icon26-1,
+.icon26-2{
 	height: 21px;
 	line-height: 21px;
 	background: #eb6877;
@@ -265,6 +266,9 @@ img{vertical-align: middle;}
 .icon26-1{
 	background: #67b222;
 }
+.icon26-2{
+	background: #a1d0ed;
+}
 .icon27{
 	width: 118px;
 	height: 117px;
@@ -275,11 +279,15 @@ img{vertical-align: middle;}
 	height: 125px;
 	background-position: 0 -580px;
 }
-.icon29{
+.icon29,
+.radio{
 	width: 24px;
 	height: 24px;
 	background-position: -128px -43px;
-	
+
+}
+.radio.active{
+	background-position: -102px -43px;
 }
 .icon30{
 	width: 14px;
@@ -315,6 +323,11 @@ img{vertical-align: middle;}
 	height: 18px;
 	background-position: 0 -728px;
 }
+.icon36{
+	width: 54px;
+	height: 54px;
+	background-position: -65px -319px;
+}
 /*btn*/
 .btn{
 	display: inline-block;
@@ -342,7 +355,7 @@ button.btn{
 .btn-more{
 	color: #999;
 	font-size: 18px;
-	text-align: center;	
+	text-align: center;
 	background: url(../img/icon.png) no-repeat 0 -437px;
 	width: 222px;
 	height: 64px;
@@ -358,7 +371,7 @@ button.btn{
 	height: 95px;
 	background: url(../img/icon.png) no-repeat;
 	text-indent: -999em;
-	
+
 }
 .btn-prev{
 	background-position: 0 -162px;
@@ -370,7 +383,7 @@ button.btn{
 	width: 247px;
 	height: 55px;
 	line-height: 53px;
-	color: #fff;	
+	color: #fff;
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
@@ -536,7 +549,7 @@ button.btn{
 	border-top-color:transparent;
 	margin-top: -5px;
 }
-.btn-select-1{	
+.btn-select-1{
 	background: url(../img/btn-select1.png) repeat-x;
 	z-index: 1;
 }
@@ -552,7 +565,7 @@ button.btn{
 	height: 40px;
 	line-height: 40px;
 	color: #fff;
-	background: #67b222;	
+	background: #67b222;
 	border-radius: 2px;
 	box-shadow: 0 2px 1px rgba(4,0,0,0.1);
 	border:1px solid #448509;
@@ -642,14 +655,14 @@ body{
 .nav .li1{
 	float: left;
 	font-size: 16px;
-	
+
 }
 .nav-c1{
 	border-left: 1px solid #2A2D36;
 }
 .nav-c1 .li1{
 	border-right: 1px solid #2A2D36;
-	
+
 }
 .nav-c1 .li1 a{
 	padding: 0 40px;
@@ -672,10 +685,10 @@ body{
 .nav .li1 ul{
 	position: absolute;
 	display: none;
-	background: #333a40;	
+	background: #333a40;
 }
 .nav .li1:hover ul{
-	display: block;	
+	display: block;
 }
 .nav-c2 .icon{
 	margin-left: 9px;
@@ -902,7 +915,7 @@ body{
 }
 .table-b li{
 	padding-top:22px;
-	padding-bottom: 22px; 
+	padding-bottom: 22px;
 	border-bottom: 1px solid #ebebeb;
 	margin-bottom: 25px;
 }
@@ -916,7 +929,7 @@ body{
 }
 .table-f{
 	padding:0 45px 28px 0;
-	text-align: right; 
+	text-align: right;
 }
 .table-f strong{
 	font-size: 20px;

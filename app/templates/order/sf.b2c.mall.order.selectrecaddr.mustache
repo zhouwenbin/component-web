@@ -1,8 +1,18 @@
 <h2>选择收货地址</h2>
+{{^if hasData}}
+<div class="order-b active">
+<div class="order-r2" id="addAdrArea">
+
+  </div>
+    <a href="#" class="btn btn-add">+ 添加收货地址</a>
+</div>
+{{/if}}
+
+{{#if hasData}}
 <div class="order-b" id="addrList">
   <ul>
     {{#each addressList}}
-    <li class="clearfix {{active}}" id="addrEach" data-addressid="{{addrId}}">
+    <li class="clearfix {{active}}" name="addrEach" data-addressid="{{addrId}}">
       <div class="order-r1 clearfix">
         <div class="order-r1c1 fl">
           <span class="icon icon29"></span>
@@ -27,6 +37,7 @@
 
   </div>
 
-  <a href="#" class="btn btn-add">+ 添加收货人信息</a>
+  <a href="#" class="btn btn-add">+ 添加收货地址</a>
   <a class="icon icon30"></a>
 </div>
+{{/if}}

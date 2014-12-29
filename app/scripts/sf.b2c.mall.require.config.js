@@ -92,6 +92,7 @@ requirejs.config({
     'sf.b2c.mall.component.limitedtimesale': 'scripts/component/sf.b2c.mall.component.limitedtimesale',
     'sf.b2c.mall.component.rapidseabuy': 'scripts/component/sf.b2c.mall.component.rapidseabuy',
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
+    'sf.b2c.mall.center.change.userinfo':'scripts/center/sf.b2c.mall.center.change.userinfo',
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -115,7 +116,7 @@ requirejs.config({
 
     'sf.b2c.mall.adapter.address.list':'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions':'scripts/adapter/sf.b2c.mall.adapter.regions',
-    'sf.b2c.mall.component.addrEditor':'scripts/component/sf.b2c.mall.component.addrEditor',
+    'sf.b2c.mall.component.addreditor':'scripts/component/sf.b2c.mall.component.addreditor',
 
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
@@ -127,8 +128,17 @@ requirejs.config({
     'sf.b2c.mall.page.activated': 'scripts/page/sf.b2c.mall.page.activated',
     'sf.b2c.mall.adapter.order':'scripts/adapter/sf.b2c.mall.adapter.order',
     'sf.b2c.mall.page.detail': 'scripts/page/sf.b2c.mall.page.detail',
+    'sf.b2c.mall.page.nullactivated': 'scripts/page/sf.b2c.mall.page.nullactivated',
+    'sf.b2c.mall.page.center':'scripts/page/sf.b2c.mall.page.center',
     'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
+    'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
+    'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
 
-    'sf.helpers':'scripts/util/sf.helpers'
+    'sf.helpers':'scripts/util/sf.helpers',
+
+    'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
+    'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
+    'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
+    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list'
   }
 });
