@@ -122,12 +122,16 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
     '#personSave click': function(element, event) {
       event && event.preventDefault();
-
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
       $('#cellphoneerror').hide();
 
       var person = this.adapter.person.input.attr();
+
+      var key;
+      for (key in person) {
+        person[key] = _.str.trim(person[key]);
+      }
 
       if (!person.recName) {
         this.adapter.person.attr("error", {

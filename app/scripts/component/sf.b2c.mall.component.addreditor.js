@@ -251,6 +251,11 @@ define('sf.b2c.mall.component.addreditor', [
       $('.tel-hide').hide();
       var addr = this.adapter.addr.input.attr();
 
+      var key;
+      for (key in addr) {
+        addr[key] = _.str.trim(addr[key]);
+      }
+
       addr.nationName = '中国 ';
       addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
