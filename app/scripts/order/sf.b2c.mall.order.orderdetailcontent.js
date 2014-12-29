@@ -84,7 +84,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           })
 
           that.options.receiveInfo = data.orderItem.orderAddressItem;
-
           that.options.productList = data.orderItem.orderGoodsItemList;
 
           _.each(that.options.productList, function(item) {
