@@ -260,10 +260,18 @@ define('sf.b2c.mall.component.addreditor', [
       $('#zipcodeerror').hide();
 
       //验证详细地址
+      if (!addr.detail) {
+        this.adapter.addr.attr("error", {
+          "detail": '请填写详细地址信息！'
+        })
+        $('#detailerror').show();
+        return false;
+      }
+
       // 5~120字符之间
       if (!addr.detail || addr.detail.length > 120 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
-          "detail": '您输入的收货地址有误。收货地址为必填，且长度要在5~120个字符之间。'
+          "detail": '您输入的收货地址有误。长度要在5~120个字符之间。'
         })
         $('#detailerror').show();
         return false;
@@ -274,7 +282,7 @@ define('sf.b2c.mall.component.addreditor', [
         var zipCodeRegex = /[1-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
         if (!zipCodeRegex || addr.zipCode.length > 6) {
           this.adapter.addr.attr("error", {
-            "zipCode": '邮编输入错误。'
+            "zipCode": '邮编填写有误！'
           })
 
           $('#zipcodeerror').show();

@@ -548,6 +548,8 @@ define('sf.b2c.mall.product.detailcontent', [
           return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == gotoItemSpec;
         });
 
+        //重新设定itemid
+        $(".sf-b2c-mall-detail-content")[0].dataset.itemid = saleSkuSpecTuple.itemid;
         return saleSkuSpecTuple.skuSpecTuple.skuId;
       },
 
@@ -601,6 +603,45 @@ define('sf.b2c.mall.product.detailcontent', [
         this.renderBandInfo();
 
         this.renderPicInfo();
+
+        //小编推荐
+        this.renderRecommend2();
+
+        //详情属性
+        this.renderDetailattributes();
+
+        //详情
+        this.renderDetail();
+      },
+
+      renderRecommend2: function() {
+        var template = can.view.mustache(this.recommend2Template());
+        $('#titleInfo').html(template(this.options.detailContentInfo));
+      },
+
+      renderDetailattributes: function() {
+        var template = can.view.mustache(this.detailattributesTemplate());
+        $('#titleInfo').html(template(this.options.detailContentInfo));
+      },
+
+      renderDetail: function() {
+        var template = can.view.mustache(this.detailTemplate());
+        $('#titleInfo').html(template(this.options.detailContentInfo));
+      },
+
+      recommend2Template: function() {
+        return '<h2>小编推荐</h2>' +
+          '<p>{{itemInfo.basicInfo.recommend}}</p>';
+      },
+
+      detailattributesTemplate: function() {
+        return '{{#each itemInfo.basicInfo.attributes}}' +
+          '<li>【{{key}}】 {{value}}</li>' +
+          '{{/each}}';
+      },
+
+      detailTemplate: function(){
+        return '{{itemInfo.basicInfo.description}}';
       },
 
       /**
@@ -644,7 +685,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       titleTemplate: function() {
         return '<h1>{{itemInfo.basicInfo.title}}</h1>' +
-          '<p>{{itemInfo.basicInfo.subTitle}}</p>'
+          '<p>{{itemInfo.basicInfo.subtitle}}</p>'
       },
 
       /**
