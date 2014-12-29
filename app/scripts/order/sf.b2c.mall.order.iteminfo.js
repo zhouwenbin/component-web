@@ -119,11 +119,11 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function(message) {
           window.location.href = 'gotopay.html?' +
             $.param({
-              "orderid": message
+              "orderid": message.value
             });
         })
         .fail(function(error) {
-          debugger;
+
         });
     }
   });

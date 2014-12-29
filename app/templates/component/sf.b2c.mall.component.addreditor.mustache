@@ -1,4 +1,4 @@
-<h3>添加收货地址</h3>
+<h3>{{person.mainTitle.text}}</h3>
     <ul>
       <li class="li">
         <label for="area">选择地区：</label>
@@ -29,15 +29,16 @@
 
       </li>
       <li class="li">
-        <label for="address">地址详情</label>
+        <label for="address">地址详情：</label>
         <input id="address" type="text" can-value="addr.input.detail" placeholder="填写详细地址" />
       </li>
       <li class="li">
-        <label for="email">邮编</label>
+        <label for="email">邮编：</label>
         <input id="email" type="text" can-value="addr.input.zipCode" placeholder="填写邮编" />
       </li>
     </ul>
     <div class="order-r2r3">
       <a href="#" class="btn btn-send" id="addressSave">保存</a>
+      <a href="#" class="order-cancel" id="paddressSaveCancel">取消添加</a>
       <span class="icon icon26-1">保存成功</span>
     </div>

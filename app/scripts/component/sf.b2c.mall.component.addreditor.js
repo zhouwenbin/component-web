@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.component.addrEditor', [
+define('sf.b2c.mall.component.addreditor', [
   'can',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
@@ -253,6 +253,14 @@ define('sf.b2c.mall.component.addrEditor', [
       } else {
         this.add(addr);
       }
+    },
+
+    '#paddressSaveCancel click': function(element, event){
+      // this.hide();
+      this.element.hide();
+      this.element.empty();
+
+      return false;
     },
 
     '#addressSave click': function(element, event) {

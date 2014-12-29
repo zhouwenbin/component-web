@@ -6,33 +6,45 @@
           <div class="orderdetail-r1cr fr">{{{nextStep}}}</div>
         </div>
         <p class="orderdetail-r2">
-        {{{nextStepTips}}}
+        {{{currentStepTips}}}
         <ul class="orderdetail-step clearfix">
-          <li class="active">
+          <li class="{{submitedActive}}" id="SUBMITED">
             <div>
               <h3>提交订单</h3>
-              </p>2014/12/23 11:34:23</p>
+              <p>{{submitedTime}}</p>
             </div>
             <span></span>
             <div class="line"></div>
           </li>
-          <li>
-            <div><h3>付款成功</h3></div>
+          <li class="{{auditingActive}}" id="AUDITING">
+            <div>
+              <h3>付款成功</h3>
+              <p>{{auditingTime}}</p>
+            </div>
             <span></span>
             <div class="line"></div>
           </li>
-          <li>
-            <div><h3>商品出库</h3></div>
+          <li class="{{wait_shippingActive}}" id="WAIT_SHIPPING">
+            <div>
+              <h3>商品出库</h3>
+              <p>{{wait_shippingTime}}</p>
+            </div>
             <span></span>
             <div class="line"></div>
           </li>
-          <li>
-            <div><h3>等待收货</h3></div>
+          <li class="{{shippingActive}}" id="SHIPPING">
+            <div>
+              <h3>等待收货</h3>
+              <p>{{shippingTime}}</p>
+            </div>
             <div class="line"></div>
             <span></span>
           </li>
-          <li>
-            <div><h3>订单完成</h3></div>
+          <li class="{{completedActive}}" id="COMPLETED">
+            <div>
+              <h3>订单完成</h3>
+              <p>{{completedTime}}</p>
+            </div>
             <span></span>
           </li>
         </ul>

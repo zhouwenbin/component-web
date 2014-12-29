@@ -8,7 +8,7 @@ define('sf.b2c.mall.order.step', ['can'], function(can) {
      * @param  {DOM} element 容器element
      * @param  {Object} options 传递的参数
      */
-    init: function(element, options) {debugger;
+    init: function(element, options) {
       var html = can.view('templates/order/sf.b2c.mall.order.step.mustache', {
         "firststep": this.options.firststep,
         "secondstep": this.options.secondstep,
