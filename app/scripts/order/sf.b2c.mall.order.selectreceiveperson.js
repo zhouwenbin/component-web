@@ -69,7 +69,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @param  {[type]} event
        * @return {[type]}
        */
-      ".order-edit click": function(element, event) {debugger;
+      ".order-edit click": function(element, event) {
         this.clearActive();
         element.parents("li").addClass("active");
 
@@ -90,7 +90,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @param  {[type]} event
        * @return {[type]}
        */
-      ".btn-add click": function(element, event) {debugger;
+      ".btn-add click": function(element, event) {
         //隐藏其它编辑和新增状态
         $("#personlist").find(".order-r2").hide();
 
