@@ -100,6 +100,10 @@ define('sf.b2c.mall.component.addreditor', [
             },
             mainTitle: {
               text: '新增收货地址'
+            },
+            error: {
+              detail: null,
+              zipCode: null
             }
           };
         },
@@ -133,6 +137,10 @@ define('sf.b2c.mall.component.addreditor', [
             },
             mainTitle: {
               text: '修改收货地址'
+            },
+            error: {
+              detail: null,
+              zipCode: null
             }
           };
         }
@@ -197,6 +205,16 @@ define('sf.b2c.mall.component.addreditor', [
       this.element.empty();
     },
 
+    '#address blur': function(element, event) {
+      $('#detailerror').hide();
+      return false;
+    },
+
+    '#zipcode blur': function(element, event) {
+      $('#zipcodeerror').hide();
+      return false;
+    },
+
     add: function(addr) {
       var that = this;
 
@@ -227,35 +245,7 @@ define('sf.b2c.mall.component.addreditor', [
         });
     },
 
-    buttonClick: function() {
-      $('.tel-hide').hide();
-      var addr = this.adapter.addr.input.attr();
-
-      addr.nationName = '中国 ';
-      addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
-      addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
-      addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
-
-      //验证详细地址
-      if (!addr.detail || addr.detail.length > 50) {
-        return window.alert('您输入的收货地址有误');
-      }
-      //验证邮编，如果用户没输，跳过；反之进行验证
-      if (!addr.zipCode) {} else {
-        var zipCodeRegex = /[1-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
-        if (!zipCodeRegex || addr.zipCode.length > 6) {
-          return window.alert('邮编输入错误');
-        }
-      }
-
-      if (addr.addrId) {
-        this.update(addr);
-      } else {
-        this.add(addr);
-      }
-    },
-
-    '#paddressSaveCancel click': function(element, event){
+    '#paddressSaveCancel click': function(element, event) {
       // this.hide();
       this.element.hide();
       this.element.empty();
@@ -277,14 +267,25 @@ define('sf.b2c.mall.component.addreditor', [
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
 
       //验证详细地址
-      if (!addr.detail || addr.detail.length > 50) {
-        return window.alert('您输入的收货地址有误');
+      // 5~120字符之间
+      if (!addr.detail || addr.detail.length > 120 || addr.detail.length < 5) {
+        this.adapter.addr.attr("error", {
+          "detail": '您输入的收货地址有误。收货地址为必填，且长度要在5~120个字符之间。'
+        })
+        $('#detailerror').show();
+        return false;
       }
+
       //验证邮编，如果用户没输，跳过；反之进行验证
       if (!addr.zipCode) {} else {
         var zipCodeRegex = /[1-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
         if (!zipCodeRegex || addr.zipCode.length > 6) {
-          return window.alert('邮编输入错误');
+          this.adapter.addr.attr("error", {
+            "zipCode": '邮编输入错误。'
+          })
+
+          $('#zipcodeerror').show();
+          return false;
         }
       }
 
