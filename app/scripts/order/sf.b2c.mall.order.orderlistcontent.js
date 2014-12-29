@@ -47,7 +47,6 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           that.options.orderlist = data.orders;
 
           _.each(that.options.orderlist, function(order) {
-            order.orderStatus = 'BUYING';
 
             order.goodsName = order.orderGoodsItemList[0].goodsName;
             order.spec = order.orderGoodsItemList[0].spec;

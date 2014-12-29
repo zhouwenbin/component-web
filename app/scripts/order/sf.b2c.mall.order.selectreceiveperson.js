@@ -29,21 +29,10 @@ define('sf.b2c.mall.order.selectreceiveperson', [
       render: function(data) {
         var that = this;
 
-        var webLogin = new SFUserWebLogin({
-          accountId: 'jiyanliang@sf-express.com',
-          type: 'MAIL',
-          password: md5('123456' + 'www.sfht.com')
-        });
+        var getIDCardUrlList = new SFGetIDCardUrlList();
 
-        webLogin
+        getIDCardUrlList
           .sendRequest()
-          .fail(function(error) {
-            console.error(error);
-          })
-          .then(function() {
-            var getIDCardUrlList = new SFGetIDCardUrlList();
-            return getIDCardUrlList.sendRequest();
-          })
           .done(function(message) {
 
             //获得地址列表

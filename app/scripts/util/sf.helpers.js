@@ -41,7 +41,7 @@ define('sf.helpers', ['jquery',
     }
 
     // return (price/100).toFixed(2).toString();
-    return (price / 100)
+    return (price / 100).toString();
   });
 
 });

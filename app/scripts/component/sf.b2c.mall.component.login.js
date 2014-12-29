@@ -13,6 +13,19 @@ define(
   ],
 
   function($, can, md5, SFConfig, SFLogin){
+
+    var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
+    var DEFAULT_CAPTCHA_ID = 'haitaob2c';
+    var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
+
+    var COUNT = 0;
+
+    var ERROR_NO_INPUT_USERNAME = '请输入顺丰海淘帐号';
+    var ERROR_INPUT_USERNAME = '账户有误，请重新输入';
+    var ERROR_NO_INPUT_PWD = '请输入密码';
+    var ERROR_INPUT_PWD = '密码有误，请重新输入';
+    var ERROR_NO_INPUT_VERCODE = '请输入验证码';
+
     return can.Control.extend({
 
       /**
@@ -28,8 +41,6 @@ define(
           password:null,
           verifiedCode: null,
           isNeedVerifiedCode: false,
-          userNameError:null,
-          pwdError:null,
           autologin:false
         })
 
@@ -42,11 +53,66 @@ define(
        */
       render: function (data) {
         var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data);
-        this.element.append(html)
+        this.element.append(html);
+
+        if(COUNT >=3){
+          this.data.attr('isNeedVerifiedCode',true);
+        }
 
         this.funPlaceholder(document.getElementById('user-name'));
       },
+      /**
+       * @description 验证码更换
+       * @param  {String}
+       * @return {String}
+       */
+      getVerifiedCode: function () {
+        var sessionId = md5(Date().valueOf() + window.parseInt(Math.random()*10000));
+        this.data.attr('sessionId', sessionId);
+        var verifiedCodeUrl = DEFAULT_CAPTCHA_LINK + '?' + $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: sessionId});
 
+        this.data.attr('verifiedCodeUrl', verifiedCodeUrl);
+      },
+      /**
+       * @description 换一张验证码错误提示
+       * @param  {String}
+       * @return {String}
+       */
+      '#verified-code-btn click': function () {
+        this.getVerifiedCode()
+      },
+      /**
+       * @description 用户名验证
+       * @param  {String}
+       * @return {String}
+       */
+      checkUserName: function (username) {
+        if (!username) {
+          this.element.find('#username-error-tips').text(ERROR_NO_INPUT_USERNAME).show();
+          return false;
+        }else if(username.length>30){
+          this.element.find('#username-error-tips').text(ERROR_INPUT_USERNAME).show();
+          return false;
+        }else{
+          return true;
+        }
+      },
+      /**
+       * @description 密码验证
+       * @param  {String}
+       * @return {String}
+       */
+      checkPwd: function (password) {
+        if (!password) {
+          this.element.find('#pwd-error-tips').text(ERROR_NO_INPUT_PWD).show();
+          return false;
+        }else if(password.length>30){
+          this.element.find('#pwd-error-tips').text(ERROR_INPUT_PWD).show();
+          return false;
+        }else{
+          return true;
+        }
+      },
       /**
        * @description 修复ie7,8,9placeholder bug
        * @param  {String}
@@ -91,29 +157,13 @@ define(
       },
 
       /**
-       * @description 显示用户名错误信息
-       * @param  {String} data 错误信息提示内容
-       */
-      showUserNameError: function (data) {
-        this.data.attr("userNameError",data);
-      },
-
-      /**
-       * @description 显示密码错误信息
-       * @param  {String} data 错误信息提示内容
-       */
-      showPwdError: function (data) {
-        this.data.attr('pwdError',data)
-      },
-
-      /**
        * @description 获得焦点之后对账号输入内容做检查
        * @param  {dom} element jquery dom对象
        * @param  {event} event event对象
        */
       '.input-username keyup': function (element, event) {
         event && event.preventDefault();
-        $('#username-error-tips').hide();
+        this.element.find('#username-error-tips').hide();
       },
 
       /**
@@ -123,7 +173,7 @@ define(
        */
       '.input-password keyup': function (element, event) {
         event && event.preventDefault();
-        $('#pwd-error-tips').hide();
+        this.element.find('#pwd-error-tips').hide();
         $(element).siblings('label').hide();
       },
       /**
@@ -135,12 +185,7 @@ define(
         event && event.preventDefault();
 
         var username = $(element).val();
-
-        if(!username){
-          $('#username-error-tips').show();
-          return this.showUserNameError('用户名不能为空');
-        }
-
+        this.checkUserName.call(this,username);
       },
 
       /**
@@ -152,12 +197,7 @@ define(
         event && event.preventDefault();
 
         var password = $(element).val();
-
-        if(!password){
-          $(element).siblings('label').show();
-          $('#pwd-error-tips').show();
-          return this.showPwdError('密码不能为空');
-        }
+        this.checkPwd.call(this,password);
 
       },
 
@@ -170,53 +210,58 @@ define(
         event && event.preventDefault();
 
         var that = this;
+        var username = $('#user-name').val();
+        var password = $('#user-pwd').val();
+
         $('#username-error-tips').hide();
         $('#pwd-error-tips').hide();
         // @todo 检查用户名和密码是否符合规范
+        if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password)) {
 
-        // 设置登录请求信息
-        this.component.login.setData({
-          accountId: this.data.attr('username'),
-          type: this.checkTypeOfAccount(this.data.attr('username')),
-          password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
-          vfCode: this.data.attr('verifiedCode')
-        });
+          // 设置登录请求信息
+          this.component.login.setData({
+            accountId: this.data.attr('username'),
+            type: this.checkTypeOfAccount(this.data.attr('username')),
+            password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
+            vfCode: this.data.attr('verifiedCode')
+          });
 
-        // @todo 发起登录请求
-        this.component.login.sendRequest()
-          .done(function (data) {
-              if (data.userId) {
-                that.data.attr('autologin')
+          // @todo 发起登录请求
+          this.component.login.sendRequest()
+              .done(function (data) {
+                if (data.userId) {
+                  that.data.attr('autologin')
 
-                if (window.localStorage) {
-                  window.localStorage.setItem('csrfToken', data.csrfToken)
-                } else {
-                  $.jStorage.set('csrfToken', data.csrfToken);
+                  if (window.localStorage) {
+                    window.localStorage.setItem('csrfToken', data.csrfToken)
+                  } else {
+                    $.jStorage.set('csrfToken', data.csrfToken);
+                  }
+
+                  // deparam过程 -- 从url中获取需要请求的sku参数
+                  var params = can.deparam(window.location.search.substr(1));
+                  setTimeout(function () {
+                    window.location.href = params.from || 'index.html';
+                  }, 2000);
                 }
+              })
+              .fail(function (error) {
+                if (COUNT <= 3) {
+                  COUNT++;
+                }
+                var map = {
+                  '-140': '账户名或登录密码错误，请重新输入',
+                  '1000010': '账户未注册，立即注册',
+                  '1000030': '账户名或登录密码错误，请重新输入',
+                  '1000070': '账户名或登录密码错误，请重新输入',
+                  '1000100': '验证码错误',
+                  '1000110': '账户尚未激活'
+                };
 
-                // deparam过程 -- 从url中获取需要请求的sku参数
-                var params = can.deparam(window.location.search.substr(1));
-                setTimeout(function() {
-                  window.location.href = params.from || 'index.html';
-                }, 2000);
-              }
-          })
-          .fail(function (error) {
-            var map ={
-              '-140':'参数错误',
-              '1000010':'未找到用户',
-              '1000030':'用户名或密码错误',
-              '1000070':'参数错误',
-              '1000100':'验证码错误',
-              '1000110':'账户尚未激活'
-            };
-
-            var errorText = map[error.toString()];
-            $('#username-error-tips').show();
-            that.showUserNameError(errorText);
-
-          })
-
+                var errorText = map[error.toString()];
+                $('#username-error-tips').text(errorText).show();
+              })
+        }
       }
     });
   });
