@@ -67,7 +67,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active")[0].dataset.addressid;
-      var personid = element.parents().find("#personlist").find("li.active")[0].dataset.recid;
+      var personid = element.parents().find("#personList").find("li.active")[0].dataset.recid;
 
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();
