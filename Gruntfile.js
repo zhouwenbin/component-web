@@ -566,6 +566,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
