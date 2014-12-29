@@ -205,16 +205,6 @@ define('sf.b2c.mall.component.addreditor', [
       this.element.empty();
     },
 
-    '#address blur': function(element, event) {
-      $('#detailerror').hide();
-      return false;
-    },
-
-    '#zipcode blur': function(element, event) {
-      $('#zipcodeerror').hide();
-      return false;
-    },
-
     add: function(addr) {
       var that = this;
 
@@ -265,6 +255,9 @@ define('sf.b2c.mall.component.addreditor', [
       addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
+
+      $('#detailerror').hide();
+      $('#zipcodeerror').hide();
 
       //验证详细地址
       // 5~120字符之间

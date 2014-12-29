@@ -66,7 +66,6 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       };
       var info = map[tag].call(this, params);
       this.adapter.person = new can.Map(info);
-      debugger;
       this.render(this.adapter, tag, element);
     },
 
@@ -122,7 +121,6 @@ define('sf.b2c.mall.component.receivepersoneditor', [
     },
 
     '#personSave click': function(element, event) {
-      debugger;
       event && event.preventDefault();
 
       $('#recnameerror').hide();
