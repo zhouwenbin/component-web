@@ -106,7 +106,7 @@
                 ##客户端渲染end
                     <!--运费-->
                     <div class="u3">
-                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">运费0元<i></i></span>
                     </div>
                     <!--运费-->
                 </div>
