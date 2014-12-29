@@ -99,7 +99,7 @@
 <!--推荐商品-->
 
 <!--小编推荐-->
-<div class="recommend2">
+<div class="recommend2" id="recommend2">
   <h2>小编推荐</h2>
   <p>{{itemInfo.basicInfo.recommend}}</p>
 </div>
@@ -108,14 +108,14 @@
 <!--详情-->
 <div class="detail">
   <div class="detail-h">
-    <ul class="clearfix">
+    <ul class="clearfix" id="detailattributes">
     {{#each itemInfo.basicInfo.attributes}}
       <li>【{{key}}】 {{value}}</li>
     {{/each}}
     </ul>
   </div>
 
-  <div class="detail-b">
+  <div class="detail-b" id="detailcontent">
     {{itemInfo.basicInfo.description}}
   </div>
 </div>
