@@ -24,7 +24,7 @@ define(
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
     var DEFAULT_ACTIVATE_ERROR_MAP = {
-      '1000020':   '账户已注册',
+      '1000020':   '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000050':   '邮箱地址错误',
       '1000070':   '参数错误',
       '1000100':   '验证码错误',
@@ -41,7 +41,7 @@ define(
     }
 
     var DEFAULT_MOBILE_ACTIVATE_ERROR_MAP = {
-      '1000020': '账户已注册',
+      '1000020': '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000230': '手机号错误，请输入正确的手机号',
       '1000240': '手机验证码错误',
       '1000250': '手机验证码已过期'
@@ -49,11 +49,13 @@ define(
 
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
     var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
+    var ERROR_NO_PASSWORD = '请设置登录密码';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
-    var ERROR_EMAIL = '您的邮箱地址格式输入有误';
+    var ERROR_EMAIL = '邮箱格式有误';
     var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
-    var ERROR_NO_EMAIL_CODE = '请输入验证码';
+    var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
 
     can.route.ready();
@@ -166,7 +168,10 @@ define(
       },
 
       checkCode: function (code) {
-        if (!/^[0-9]{6}$/.test(code)) {
+        if (!code) {
+          this.element.find('#mobile-code-error').text(ERROR_NO_MOBILE_CHECKCODE).show();
+          return false;
+        }else if (!/^[0-9]{6}$/.test(code)) {
           this.element.find('#mobile-code-error').text(ERROR_MOBILE_CHECKCODE).show();
           return false;
         }else{
@@ -187,7 +192,10 @@ define(
       },
 
       checkPassword: function (password, tag) {
-        if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
+        if (!password) {
+          this.element.find(tag).text(ERROR_NO_PASSWORD).show();
+          return false;
+        }else if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           this.element.find(tag).text(ERROR_PASSWORD).show();
           return false;
         }else{
@@ -284,6 +292,7 @@ define(
 
         // 发起请求注册
 
+        var that = this;
         var mobile = this.element.find('#input-mobile').val();
         var code = this.element.find('#input-mobile-code').val();
         var password = this.element.find('#input-password').val();
@@ -304,7 +313,7 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mobile-register-error').text(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         }
@@ -349,15 +358,37 @@ define(
         this.checkPassword.call(this, password, '#mail-password-error');
       },
 
+      '#mail-resend-activate click': function ($element, event) {
+        event && event.preventDefault();
+
+        var email = this.data.attr('mailId');
+        this.component.activateMail.setData({
+          mailId: email,
+          from: 'RESEND'
+        });
+
+        this.component.activateMail.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              alert('@todo 重新发送邮件成功')
+            }
+          })
+          .fail(function (errorCode) {
+            if (_.isNumber(errorCode)) {
+              alert(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+            }
+          })
+      },
+
       '#mail-register-btn click': function ($element, event) {
         event && event.preventDefault();
 
         var that = this;
         var email = this.element.find('#input-mail').val();
         var code = this.element.find('#input-mail-code').val();
-        var password = this.element.find('#input-mail-password').val();
+        // var password = this.element.find('#input-mail-password').val();
 
-        if (this.checkEmail.call(this, email) && this.checkPassword.call(this, password, '#mail-password-error') && this.checkMailCode.call(this, code)) {
+        if (this.checkEmail.call(this, email) && this.checkMailCode.call(this, code)) {
           code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
 
           this.component.activateMail.setData({
@@ -368,13 +399,14 @@ define(
           this.component.activateMail.sendRequest()
             .done(function (data) {
               if (data.value) {
-                can.route.attr('tag', 'confirminfo');
+                window.location.href = window.location.pathname + '?' + $.param({mailId: email}) + '#!&tag=confirminfo';
+                // can.route.attr('tag', 'confirminfo');
               }
             })
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mail-register-error').text(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                that.element.find('#mail-register-error').html(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
               }
             })
         };

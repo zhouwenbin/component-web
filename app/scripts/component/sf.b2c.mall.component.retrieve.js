@@ -25,17 +25,18 @@ define(
 
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
     var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
-    var ERROR_EMAIL = '您的邮箱地址格式输入有误';
-    var ERROR_NO_EMAIL = '请输入您的常用邮箱地址';
+    var ERROR_EMAIL = '邮箱地址格式错误';
+    var ERROR_NO_EMAIL = '请输入邮箱地址';
     var ERROR_NO_EMAIL_CODE = '请输入验证码';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
-    var ERROR_NOT_SAME = '两次填写的密码不一致';
+    var ERROR_NOT_SAME = '重复密码输入有误，请重新输入';
 
     var DEFAULT_DOWN_SMS_ERROR_MAP = {
-      '1000010' : '未找到手机用户',
+      '1000010' : '账户名不存在',
       '1000020' : '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000070' : '参数错误',
       '1000230' : '手机号错误，请输入正确的手机号',
@@ -49,7 +50,7 @@ define(
     }
 
     var ERROR_RESET_PASSWORD_MAP = {
-      '1000010':  '未找到用户',
+      '1000010':  '账户名不存在',
       '1000070':  '参数错误',
       '1000120':  '链接已过期',
       '1000130':  '签名验证失败',
@@ -60,7 +61,7 @@ define(
     }
 
     var ERROR_RESND_MAIL_LINK_MAP = {
-      '1000010':   '未找到用户',
+      '1000010':   '账户名不存在',
       '1000050':   '邮箱地址错误',
       '1000070':   '参数错误',
       '1000100':   '验证码错误',
@@ -175,7 +176,13 @@ define(
       },
 
       checkCode: function (code) {
-        if (!/^[0-9]{6}$/.test(code)) {
+        if (!code) {
+          this.data.attr({
+            'msgType': 'icon26',
+            'msg': ERROR_NO_MOBILE_CHECKCODE
+          });
+          return false;
+        }else if (!/^[0-9]{6}$/.test(code)) {
           this.data.attr({
             'msgType': 'icon26',
             'msg': ERROR_MOBILE_CHECKCODE
