@@ -22,15 +22,19 @@
       <li class="active">
         <div class="order-r1 clearfix">
             <div class="order-r1c1 fl">
-              昵称：<input type="text" class="input" can-value="input.nick" value="周文斌">
+              昵称：<input type="text" class="input" can-value="input.nick">
               性别：
-              <div class="btn btn-select btn-select-1" role="btn">
-                <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                <ul style="display: none;">
-                  <li><label>男<input type="radio" can-value='input.gender' value='MALE' name="gender" class="visuallyhidden"></label></li>
-                  <li><label>女<input type="radio" can-value='input.gender' value='FEMALE' name="gender" class="visuallyhidden"></label></li>
-                </ul>
-              </div>
+              <!--<div class="btn btn-select btn-select-1" role="btn">-->
+                <!--<span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>-->
+                <!--<ul style="display: none;">-->
+                  <!--<li><label>男<input type="radio" can-value='input.gender' value='MALE' name="gender" class="visuallyhidden"></label></li>-->
+                  <!--<li><label>女<input type="radio" can-value='input.gender' value='FEMALE' name="gender" class="visuallyhidden"></label></li>-->
+                <!--</ul>-->
+              <!--</div>-->
+              <select name="" id="select-sex" can-value='input.gender'>
+                <option value="male">男</option>
+                <option value="female">女</option>
+              </select>
             </div>
             <div class="order-r1c2 fr">
               <a href="#" class="btn btn-send" id="user-info-confirm-btn">保存</a>
