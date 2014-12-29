@@ -36,7 +36,7 @@ define('sf.b2c.mall.component.receivepersoneditor',
               cellphone: null
             },
             mainTitle: {
-              text: '新增收货人'
+              text: '添加收货人信息'
             }
           };
         },
@@ -50,7 +50,7 @@ define('sf.b2c.mall.component.receivepersoneditor',
               cellphone: data.cellphone
             },
             mainTitle: {
-              text: '修改收货人'
+              text: '修改收货人信息'
             }
           };
         }
