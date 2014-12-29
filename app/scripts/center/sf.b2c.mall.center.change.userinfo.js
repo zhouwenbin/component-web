@@ -33,7 +33,7 @@ define(
             isModified:false,
              user:{
                nick: $.cookie('nick'),
-               gender: GENDER_MAP[$.cookie('gender')],
+               gender: GENDER_MAP[$.cookie('gender')]
              },
             input:{
               nick:null,
