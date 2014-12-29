@@ -8,25 +8,21 @@ define(
       'jquery',
       'jquery.cookie',
       'sf.b2c.mall.api.user.getUserInfo',
-      'sf.b2c.mall.api.user.upateUserInfo'
+      'sf.b2c.mall.api.user.updateUserInfo'
     ],
-    function(can,$, $cookie, SFGetUserInfo, UpateUserInfo){
+    function(can,$, $cookie, SFGetUserInfo, UpdateUserInfo){
 
       var GENDER_MAP = {
         'INVALID_GENDER': '男',
         'MALE': '男',
         'FEMALE': '女'
-      }
+      };
 
       return can.Control.extend({
 
-        defaults:{
-
-        },
-
         init:function(){
           this.component = {};
-          this.component.updateInfo = new UpateUserInfo();
+          this.component.updateUserInfo = new UpdateUserInfo();
           this.component.getUserInfo = new SFGetUserInfo();
 
           this.data = new can.Map({
@@ -36,13 +32,16 @@ define(
                gender: GENDER_MAP[$.cookie('gender')]
              },
             input:{
-              nick:null,
-              gender:null
+              nick:$.cookie('nick'),
+              gender:GENDER_MAP[$.cookie('gender')]
             }
           });
           this.render(this.data);
         },
         render:function(data){
+          if($.cookie('gender')){
+            this.data.user.attr('gender',$.cookie('gender') === 'FEMALE' ? '女' : '男')
+          }
           var html = can.view('templates/center/sf.b2c.mall.center.userinfo.mustache', data);
           this.element.html(html);
 
@@ -104,16 +103,17 @@ define(
 
             // @todo 向服务器提交修改
             var that = this;
-            this.component.updateInfo.setData(params);
-            this.component.updateInfo.sendRequest()
+            this.component.updateUserInfo.setData(params);
+            this.component.updateUserInfo.sendRequest()
                 .done(function (data) {
-                  if (sf.util.access(data) && data.content[0].value) {
+                  if (data.value) {
                     var nick = that.data.input.attr('nick');
                     var gender = that.data.input.attr('gender');
-
-                    that.data.user.attr({'nick': nick, 'gender': gender, 'genderStr': gender === 'FEMALE' ? '女' : '男'});
-
+                    that.data.user.attr({'nick': nick, 'gender': gender});
                     that.data.attr('isModified',false);
+
+                    $.cookie('gender', gender);
+                    $.cookie('nick', nick);
                     window.location.reload();
                   }
                 })
