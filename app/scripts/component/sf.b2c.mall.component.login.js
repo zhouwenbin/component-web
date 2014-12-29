@@ -137,6 +137,27 @@ define(
         }
       },
       /**
+       * @description 是否需要显示验证码
+       * @param  {String}
+       * @return {String}
+       */
+      isNeedVerCode:function(){
+        var username =this.data.attr('username');
+        var that = this;
+        this.component.needVfCode.setData({accountId:username});
+        this.component.needVfCode.sendRequest()
+          .done(function(data){
+            if(data.value){
+              that.data.attr('isNeedVerifiedCode',true);
+            }else{
+              that.data.attr('isNeedVerifiedCode',false);
+            }
+          })
+          .fail(function(error){
+            console.error(error);
+          })
+      },
+      /**
        * @description 修复ie7,8,9placeholder bug
        * @param  {String}
        * @return {String}
@@ -208,20 +229,9 @@ define(
         event && event.preventDefault();
 
         var username =this.data.attr('username');
-        var that = this;
+
         this.checkUserName.call(this,username);
-        this.component.needVfCode.setData({accountId:username});
-        this.component.needVfCode.sendRequest()
-          .done(function(data){
-            if(data){
-              that.data.attr('isNeedVerifiedCode',true);
-            }else{
-              that.data.attr('isNeedVerifiedCode',false);
-            }
-          })
-          .fail(function(error){
-            console.error(error);
-          })
+        this.isNeedVerCode();
       },
 
       /**
@@ -245,7 +255,7 @@ define(
               that.data.attr('autologin')
 
               if (window.localStorage) {
-                window.localStorage.setItem('csrfToken', data.csrfToken)
+                window.localStorage.setItem('csrfToken', data.csrfToken);
               } else {
                 $.jStorage.set('csrfToken', data.csrfToken);
               }
@@ -258,6 +268,9 @@ define(
             }
           })
           .fail(function (error) {
+            if(error === '1000300'){
+              that.data.attr('isNeedVerifiedCode',true);
+            }
             var map = {
               '-140': '账户名或登录密码错误，请重新输入',
               '1000010': '账户未注册，立即注册',
@@ -297,7 +310,7 @@ define(
         // 设置登录请求信息
         if(this.data.attr('isNeedVerifiedCode')){
           if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password) && this.checkVerCode.call(this,verCode)) {
-            var vfCode = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer:this.data.verifiedCode});
+            var vfCode = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer:this.data.attr('verifiedCode')});
 
             this.component.login.setData({
               accountId: this.data.attr('username'),
@@ -306,6 +319,7 @@ define(
               vfCode: vfCode
             });
             that.sendRequest();
+            that.getVerifiedCode();
           }
         }else{
           if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password)) {
@@ -315,6 +329,7 @@ define(
               password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
             });
             that.sendRequest();
+
           }
         }
       }
