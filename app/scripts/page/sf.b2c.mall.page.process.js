@@ -38,7 +38,7 @@ define(
             .done(function (data) {
               if (data.value) {
                 var params = can.deparam(window.location.search.substr(1));
-                window.location.href = 'activated.html?'+window.location.search;
+                window.location.href = 'activated.html'+window.location.search;
               }
             })
             .fail(function (errorCode) {
@@ -57,7 +57,7 @@ define(
             .done(function (data) {
               if (data.value) {
                 var params = can.deparam(window.location.search.substr(1));
-                window.location.href = 'retrieve.html?' + window.location.search + window.location.hash;
+                window.location.href = 'retrieve.html' + window.location.search + window.location.hash;
               }
             })
             .fail(function (errorCode) {
