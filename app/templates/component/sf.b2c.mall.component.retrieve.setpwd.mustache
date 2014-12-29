@@ -8,9 +8,9 @@
         <li class="li2"><label for="repassword">确认密码：</label><input type="password" class="input" id="input-repassword"></li>
       </ol>
       <div class="retrieve-r1">
+        {{#msg}}<div><span class="icon {{msgType}}">{{msg}}</span></div><br/>{{/msg}}
         <a href="#" class="btn btn-send" id="reset-password-btn">确认</a>
         <span class="icon icon28"></span>
-        {{#msg}}<span class="icon {{msgType}}">{{msg}}</span>{{/msg}}
       </div>
     </div>
     <!--订单-->

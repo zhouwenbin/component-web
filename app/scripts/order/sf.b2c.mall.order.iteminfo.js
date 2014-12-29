@@ -6,9 +6,10 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.user.getRecAddressList',
-  'sf.b2c.mall.api.user.getIDCardUrlList'
+  'sf.b2c.mall.api.user.getIDCardUrlList',
+  'sf.helpers'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers) {
   return can.Control.extend({
 
     /**
