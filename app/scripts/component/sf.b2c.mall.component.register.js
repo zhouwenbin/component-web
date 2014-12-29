@@ -276,7 +276,12 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '短信请求发送失败';
-                that.element.find('#mobile-code-error').html(DEFAULT_DOWN_SMS_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                var errorText = DEFAULT_DOWN_SMS_ERROR_MAP[errorCode.toString()] || defaultText;
+                if (errorCode === 1000020) {
+                  that.element.find('#input-mobile-error').html(errorText).show();
+                }else{
+                  that.element.find('#mobile-code-error').html(errorText).show();
+                }
               }
             })
         }
