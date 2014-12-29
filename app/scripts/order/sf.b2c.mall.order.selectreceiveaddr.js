@@ -33,7 +33,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
       getRecAddressList
         .sendRequest()
-        .done(function(reAddrs) {debugger;
+        .done(function(reAddrs) {
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
             addressList: reAddrs.items,
@@ -59,7 +59,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             onSuccess: _.bind(that.paint, that)
           });
         })
-        .fail(function(error) {debugger;
+        .fail(function(error) {
           console.error(error);
         })
     },

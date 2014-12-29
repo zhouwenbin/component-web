@@ -403,7 +403,7 @@ define(
             accountId: params.mailId,
             type: 'MAIL',
             newPassword: md5(password+SFBizConf.setting.md5_key),
-            linkContent: window.location.search.substr(1)
+            linkContent:  window.decodeURIComponent(window.location.search.substr(1))
           });
         }else{
           this.component.resetpw.setData({

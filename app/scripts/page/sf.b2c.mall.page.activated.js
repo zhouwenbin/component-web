@@ -96,7 +96,7 @@ define(
         this.component.mailRegister.setData({
           mailId: email,
           passWord: md5(password+SFBizConf.setting.md5_key),
-          linkContent: linkContent
+          linkContent:  window.decodeURIComponent(linkContent)
         });
 
         this.component.mailRegister.sendRequest()

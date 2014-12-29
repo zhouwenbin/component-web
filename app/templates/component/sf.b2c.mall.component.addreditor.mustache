@@ -31,10 +31,12 @@
       <li class="li">
         <label for="address">地址详情：</label>
         <input id="address" type="text" can-value="addr.input.detail" placeholder="填写详细地址" />
+        <span class="icon icon26" id="detailerror">{{addr.error.detail}}</span>
       </li>
       <li class="li">
-        <label for="email">邮编：</label>
-        <input id="email" type="text" can-value="addr.input.zipCode" placeholder="填写邮编" />
+        <label for="zipcode">邮编：</label>
+        <input id="zipcode" type="text" can-value="addr.input.zipCode" placeholder="填写邮编" />
+        <span class="icon icon26" id="zipcodeerror">{{addr.error.zipCode}}</span>
       </li>
     </ul>
     <div class="order-r2r3">
