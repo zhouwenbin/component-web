@@ -58,6 +58,17 @@ define(
     var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
 
+    var MAIL_MAP = {
+      '163': 'http://mail.163.com',
+      'qq': 'http://mail.qq.com',
+      'sina': 'http://mail.sina.com.cn',
+      'sohu': 'http://mail.sohu.com',
+      '21cn': 'http://mail.21cn.com',
+      'hotmail': 'http://www.hotmail.com',
+      'google': 'https://mail.google.com',
+      '126': 'http://mail.126.com/'
+    }
+
     can.route.ready();
 
     return can.Control.extend({
@@ -139,7 +150,10 @@ define(
         // @todo 处理email链接
         if (email) {
           var arr = email.split('@');
-          return 'http://mail.'+arr[1];
+          var siteArr = arr[1].split('@');
+
+          var mailAddr = MAIL_MAP[siteArr[0]];
+          return mailAddr;
         }
       },
 
