@@ -50,6 +50,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           _.each(that.options.orderlist, function(order) {
 
             order.goodsName = order.orderGoodsItemList[0].goodsName;
+            order.imageUrl = order.orderGoodsItemList[0].imageUrl;
             order.spec = order.orderGoodsItemList[0].spec;
             order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
             order.showRouter = that.routeMap[order.orderStatus];
