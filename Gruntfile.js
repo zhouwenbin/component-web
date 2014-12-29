@@ -739,7 +739,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
           'clean:dist',
-          'wiredep',
           'useminPrepare',
           'concurrent:dist',
           'autoprefixer',
