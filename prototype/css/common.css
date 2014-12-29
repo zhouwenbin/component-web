@@ -294,6 +294,10 @@ img{vertical-align: middle;}
 	height: 8px;
 	background-position: -105px -74px;
 }
+
+.icon30.active{
+	background-position: -128px -74px;
+}
 .icon31,
 .icon31-1{
 	width: 17px;

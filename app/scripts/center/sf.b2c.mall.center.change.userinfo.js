@@ -33,7 +33,7 @@ define(
             isModified:false,
              user:{
                nick: $.cookie('nick'),
-               gender: GENDER_MAP[$.cookie('gender')],
+               gender: GENDER_MAP[$.cookie('gender')]
              },
             input:{
               nick:null,
@@ -77,6 +77,10 @@ define(
             this.data.attr('isModified',true);
           }
         },
+
+        '#select-sex change':function(element,event){
+          this.data.input.attr('gender');
+        },
         /**
          * @description event:用户确认修改用户信息
          * @param  {Dom} element 触发事件的元素
@@ -114,7 +118,7 @@ define(
                   }
                 })
                 .fail(function () {
-                  that.data.isModified(false);
+                  that.data.attr('isModified',false);
                 });
           }
         }
