@@ -6,9 +6,10 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.user.getRecAddressList',
-  'sf.b2c.mall.api.user.getIDCardUrlList'
+  'sf.b2c.mall.api.user.getIDCardUrlList',
+  'sf.helpers'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers) {
   return can.Control.extend({
 
     /**
@@ -67,7 +68,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active")[0].dataset.addressid;
-      var personid = element.parents().find("#personlist").find("li.active")[0].dataset.recid;
+      var personid = element.parents().find("#personList").find("li.active")[0].dataset.recid;
 
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();

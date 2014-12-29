@@ -7,9 +7,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
   'sf.b2c.mall.widget.pagination',
   'sf.b2c.mall.api.order.getOrder',
   'sf.helpers',
-  'sf.b2c.mall.api.order.cancelOrder'
+  'sf.b2c.mall.api.order.cancelOrder',
+  'sf.b2c.mall.api.order.requestPayV2'
 ],
-function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder) {
+function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2) {
 
   return can.Control.extend({
 
@@ -47,9 +48,9 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           that.options.orderlist = data.orders;
 
           _.each(that.options.orderlist, function(order) {
-            order.orderStatus = 'BUYING';
 
             order.goodsName = order.orderGoodsItemList[0].goodsName;
+            order.imageUrl = order.orderGoodsItemList[0].imageUrl;
             order.spec = order.orderGoodsItemList[0].spec;
             order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
             order.showRouter = that.routeMap[order.orderStatus];
@@ -115,7 +116,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
       return '<h4>物流跟踪</h4>' +
         '<ul>' +
         '{{#each traceList}}' +
-        '<li><span class="time">{{gmtHappened}}</span>从海外仓发出</li>' +
+        '<li><span class="time">{{gmtHappened}}</span>{{status}} 具体描述待产品给出</li>' +
         '{{/each}}' +
         '</ul>' +
         '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
@@ -147,10 +148,10 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
       'USER_CANCEL': false,
       'AUDITING': false,
       'OPERATION_CANCEL': false,
-      'BUYING': true,
+      'BUYING': false,
       'BUYING_EXCEPTION': false,
-      'WAIT_SHIPPING': true,
-      'SHIPPING': true,
+      'WAIT_SHIPPING': false,
+      'SHIPPING': false,
       'LOGISTICS_EXCEPTION': false,
       'SHIPPED': true,
       'COMPLETED': true
@@ -183,7 +184,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
       "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>'
     },
 
-    '.gotoPay click': function() {
+    '.gotoPay click': function(element,event) {
 
       var that = this;
       var orderId = element.parent('div#operationarea')[0].dataset.orderid;
@@ -211,7 +212,7 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
           }
         })
         .fail(function(error) {
-
+          console.error(error);
         });
     },
 
@@ -244,13 +245,14 @@ function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers
     },
 
     ".cancelOrder click": function(element, event) {
+      var that = this;
       var orderid = element.parent('div#operationarea')[0].dataset.orderid;
       var cancelOrder = new SFCancelOrder({"orderId": orderid});
 
       cancelOrder
           .sendRequest()
           .done(function(data) {
-
+            that.render();
           })
           .fail(function(error) {
             console.error(error);

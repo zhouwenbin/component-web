@@ -34,25 +34,25 @@
                 {{amount}}
               </div>
               <div class="table-c3 fl">
-                ￥{{singlePrice}}
+                ￥{{sf.price singlePrice}}
               </div>
               <div class="table-c4 fl">
                 ￥0
               </div>
               <div class="table-c5 fr">
-                ￥{{totalPrice}}
+                ￥{{sf.price totalPrice}}
               </div>
             </li>
           </ul>
           <div class="table-f">
             <div class="table-fr1">
-                <li>商品总金额：￥{{allTotalPrice}}</li>
+                <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
                 <li>-优惠金额：￥0</li>
                 <li>+税额：￥0</li>
                 <li>+运费：￥0</li>
             </div>
             <div class="table-fr2">开业全场免邮，有钱，任性！</div>
-            <div class="table-fr3">实际应付款：<strong>￥{{shouldPay}}</strong></div>
+            <div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPay}}</strong></div>
           </div>
         </div>
 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=1280">
 <title>订单列表</title>
 <link href="css/common.css" rel="stylesheet" type="text/css" />
-<link href="css/orderdetail.css" rel="stylesheet" type="text/css" />
+<link href="css/orderlist.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--头部-->
@@ -61,144 +61,40 @@
   <!--头部-->
   <div class="pb">
     <div class="pm">
-      <div class="orderdetail">
-        <div class="orderdetail-r1 clearfix">
-          <div class="orderdetail-r1c1 fl">订单号：35703505832085</div>
-          <div class="orderdetail-r1c2 fl">状态：待付款</div>
-          <div class="orderdetail-r1cr fr"><a href="#" class="btn btn-send">立即付款</a></div>
+      <!--订单列表-->
+      <div class="orderlist">
+        <div class="orderlist-h clearfix">
+          <div class="orderlist-hc1 fl">
+            <h2>温馨提示：</h2>
+            <p>顺丰海淘试运营期间，未付款顺丰闪电送订单超过30分钟将被自动取消，提交订单请尽快完成支付。</p>
+          </div>
+          <div class="orderlist-hc2 fr">
+            <input type="text" class="input" placeholder="输入订单号/收货人" />
+            <a href="#" class="btn btn-buy">搜索</a>
+          </div>
         </div>
-        <p class="orderdetail-r2">尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />
-        该订单会为您保留24小时（从下单时间算起），24小时后系统将自动取消未付款的订单。</p>
-        <ul class="orderdetail-step clearfix">
-          <li class="active">
-            <div>
-              <h3>提交订单</h3>
-              </p>2014/12/23 11:34:23</p>
-            </div>            
-            <span></span>
-            <div class="line"></div>
-          </li>
-          <li>
-            <div><h3>付款成功</h3></div>            
-            <span></span>
-            <div class="line"></div>
-          </li>
-          <li>
-            <div><h3>商品出库</h3></div>            
-            <span></span>
-            <div class="line"></div>
-          </li>
-          <li>
-            <div><h3>等待收货</h3></div>            
-            <div class="line"></div>
-            <span></span>
-          </li>
-          <li>
-            <div><h3>订单完成</h3></div>            
-            <span></span>
-          </li>
-        </ul>
-        <h2>订单跟踪</h2>
-        <div class="table table-2">
+        <div class="table table-1">
           <div class="table-h clearfix">
             <div class="table-c1 fl">
-              处理时间
+              订单信息
             </div>
             <div class="table-c2 fl">
-              处理信息
+              收货人
             </div>
             <div class="table-c3 fl">
-              操作人
-            </div>
-          </div>
-          <ul class="table-b">
-            <li class="clearfix">
-              <div class="table-c1 fl">2014/12/23  11:34:25</div>
-              <div class="table-c2 fl">您提交了订单，请等待系统确认</div>
-              <div class="table-c3 fl">用户</div>
-            </li>
-          </ul>
-        </div>
-        <h2>收货信息</h2>
-        <div class="info">
-          <div class="info-r1">
-            <div class="info-c1 fl">收货人信息</div>
-            <ul class="info-c2">
-              <li>收货人：黄小牙</li>
-              <li>地址：虹梅路2007号上海园中产业园1号楼8楼</li>
-              <li>联系电话：15900830081</li>
-              <li>身份证号码：350**********1120</li>
-            </ul>
-          </div>
-          <div class="info-r2">
-            <div class="info-c1 fl">支付及配送方式</div>
-            <ul class="info-c2">
-              <li>支付方式：在线支付</li>
-              <li>运费：￥0</li>
-              <li>配送方式：顺丰配送</li>
-              <li>送货日期：未配送</li>
-              <li>配送时间：未配送</li>
-            </ul>
-          </div>
-        </div>
-        <h2>商品信息</h2>
-        <div class="table">
-          <div class="table-h clearfix">
-            <div class="table-c1 fl">
-              商品
-            </div>
-            <div class="table-c2 fl">
-              数量
-            </div>
-            <div class="table-c3 fl">
-              单价
+              订单金额
             </div>
             <div class="table-c4 fl">
-              优惠金额
+              订单状态
             </div>
-            <div class="table-c5 fr">
-              小计
+            <div class="table-c5 fl">
+              操作
             </div>
           </div>
-          <ul class="table-b">
-            <li class="clearfix">
-              <div class="table-c1 fl">
-                <div class="table-img fl">
-                  <a href=""><img src="img/product.jpg" alt="" width="68" height="42" /></a><span></span>
-                </div>
-                <div class="table-text">
-                  <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
-                  <p>黑色</p>
-                  <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />
-                </div>
-                  
-              </div>
-              <div class="table-c2 fl">
-                1
-              </div>
-              <div class="table-c3 fl">
-                ￥1800
-              </div>
-              <div class="table-c4 fl">
-                ￥0
-              </div>
-              <div class="table-c5 fr">
-                ￥1800
-              </div>
-            </li>
-          </ul>
-          <div class="table-f">
-            <div class="table-fr1">
-                <li>商品总金额：￥1800</li>
-                <li>-优惠金额：￥0</li>
-                <li>+税额：￥0</li>
-                <li>+运费：￥0</li>
-            </div>
-            <div class="table-fr2">开业全场免邮，有钱，任性！</div>
-            <div class="table-fr3">实际应付款：<strong>￥1800</strong></div>
-          </div>
-        </div>
+          <p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>
       </div>
+      <!--订单列表-->
+
     </div>
   </div>
   <!--尾部-->

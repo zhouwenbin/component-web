@@ -29,24 +29,11 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     paint: function() {
       var that = this;
 
-      var webLogin = new SFUserWebLogin({
-        accountId: 'jiyanliang@sf-express.com',
-        type: 'MAIL',
-        password: md5('123456' + 'www.sfht.com')
-      });
+      var getRecAddressList = new SFGetRecAddressList();
 
-      webLogin
+      getRecAddressList
         .sendRequest()
-        .then(function() {
-          var getRecAddressList = new SFGetRecAddressList();
-          return getRecAddressList.sendRequest();
-        })
-        .fail(function(error) {
-          console.error(error);
-        })
         .done(function(reAddrs) {
-
-
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
             addressList: reAddrs.items,
@@ -71,6 +58,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           that.component.addressEditor = new SFAddressEditor('#addAdrArea', {
             onSuccess: _.bind(that.paint, that)
           });
+        })
+        .fail(function(error) {
+          console.error(error);
         })
     },
 
