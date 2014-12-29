@@ -50,7 +50,7 @@ define(
 
         'setpwd': function () {
           this.component.checklink.setData({
-            linkContent: window.location.search.substr(1)
+            linkContent:  window.decodeURIComponent(window.location.search.substr(1))
           });
 
           this.component.checklink.sendRequest()
