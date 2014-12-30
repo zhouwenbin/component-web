@@ -77,8 +77,7 @@ require(
         requestPayV2
           .sendRequest()
           .done(function(data) {
-            var payinfo = data.content[0];
-            window.location.href = payinfo.url + '?' + payinfo.postBody;
+            window.location.href = data.url + '?' + data.postBody;
             that.request.call(that, orderInfo.orderId);
           })
           .fail(function(error) {
