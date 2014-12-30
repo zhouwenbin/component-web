@@ -93,6 +93,8 @@ requirejs.config({
     'sf.b2c.mall.component.rapidseabuy': 'scripts/component/sf.b2c.mall.component.rapidseabuy',
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo':'scripts/center/sf.b2c.mall.center.change.userinfo',
+    'sf.b2c.mall.center.change.password':'scripts/center/sf.b2c.mall.center.change.password',
+
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -133,6 +135,7 @@ requirejs.config({
     'sf.b2c.mall.widget.pagination':'scripts/widget/sf.b2c.mall.widget.pagination',
     'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
     'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
+    'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
 
     'sf.helpers':'scripts/util/sf.helpers',
 
