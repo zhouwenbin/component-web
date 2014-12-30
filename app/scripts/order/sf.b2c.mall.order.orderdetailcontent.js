@@ -11,7 +11,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
      * [defaults 定义默认值]
      */
     defaults: {
-      'steps': ['SUBMITED', 'AUDITING', 'WAIT_SHIPPING','SHIPPING', 'COMPLETED']
+      'steps': ['SUBMITED', 'AUDITING', 'WAIT_SHIPPING', 'SHIPPING', 'COMPLETED']
     },
 
     /**
@@ -43,6 +43,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           that.options.status = that.statsMap[data.orderItem.orderStatus];
           that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]]
           that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
+
+          that.options.IDCard = {};
+          that.options.IDCard.needUpload = (data.orderItem.rcvrState == 0);
+          that.options.IDCard.state = data.orderItem.rcvrState;
+          if (that.options.IDCard.needUpload){
+            $('#uploadidcard').show();
+            that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
+          }
+
           that.options.traceList = data.orderActionTraceItemList;
 
           // that.options.traceList[0].status = 'SUBMITED';
@@ -180,6 +189,22 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
       'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
       'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。'
+    },
+
+    IDCardStatusTipsMap: {
+      0: '<p class="orderdetail-r2"><strong>尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</strong></p>'
+    },
+
+    "#orderdetail-view click": function(element, event) {debugger;
+      $(".orderdetail-upload").show();
+      $(".mask").show();
+      return false;
+    },
+
+    "#closeDialog click": function(element, event){debugger;
+        $(element).parents(".register").hide(300);
+        $(".mask").hide();
+        return false;
     }
 
   });
