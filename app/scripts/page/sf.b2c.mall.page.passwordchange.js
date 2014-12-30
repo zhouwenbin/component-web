@@ -40,5 +40,5 @@ define(
 
         }
       });
-      new changePwd('.verification-1');
+      new changePwd('.change-password-wrap');
     })
