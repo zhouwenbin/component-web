@@ -4,9 +4,11 @@ define('sf.b2c.mall.component.limitedtimesale', [
     'can',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.adapter.limitedtimesale',
-    'sf.b2c.mall.api.b2cmall.getProductHotDataList'
+    'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'moment-zh-cn',
+    'moment'
   ],
-  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList) {
+  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment) {
     return can.Control.extend({
 
       helpers: {
@@ -333,7 +335,22 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       setCountDown: function(timeNode, distance, endDate) {
-        var leftTime = endDate - new Date().getTime() + distance;
+
+        // endDate = 1429933141007;
+        // var leftTime = endDate - new Date().getTime() - distance;
+
+        // if (leftTime > 0) {
+        //   // 12月26日（明天）12:00 开始
+        //   var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
+
+        //   if (timeNode.attr) {
+        //     timeNode.attr('time', time);
+        //   }else{
+        //     timeNode.innerHTML = time;
+        //   }
+        // };
+
+        var leftTime = endDate - new Date().getTime() - distance;
 
         if (leftTime > 0) {
           var leftsecond = parseInt(leftTime / 1000);
@@ -344,9 +361,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
           if (timeNode.attr) {
             timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
           } else {
-            timeNode.innerHTML = day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+            timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
           }
-        };
+        }
       },
 
       /**
