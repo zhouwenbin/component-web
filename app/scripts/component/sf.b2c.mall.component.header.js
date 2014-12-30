@@ -80,6 +80,16 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
     },
 
+    '#user-password-change click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.pathname = 'password-change.html';
+      }else{
+        this.showLogin();
+      }
+    },
+
     '#user-center click': function ($element, event) {
       event && event.preventDefault();
 

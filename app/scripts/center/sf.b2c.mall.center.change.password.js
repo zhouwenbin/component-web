@@ -121,12 +121,17 @@ define(
           var confirmPwd = this.data.attr('confirmPwd');
           this.checkConfirmPwd.call(this, confirmPwd);
           if(newPwd !==confirmPwd){
-            this.element.find('#confirmPwd-error-tips').text(ERROR_SAME_PWD).show();
+            this.element.find('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
+            return false;
           }
         },
 
         '#btn-confirm click': function (element, event) {
           event && event.preventDefault();
+
+          $('#oldPwd-error-tips').hide();
+          $('#newPwd-error-tips').hide();
+          $('#confirmPwd-error-tips').hide();
           var that = this;
           if (SFComm.prototype.checkUserLogin.call(that)) {
 
@@ -135,6 +140,9 @@ define(
               newPassword: this.data.attr('newPwd'),
               repeatPassword: this.data.attr('confirmPwd')
             };
+            if(inputData.newPassword !==inputData.repeatPassword){
+              $('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
+            }
             if (this.checkOldPwd.call(this, inputData.oldPassword) && this.checkNewPwd.call(this, inputData.newPassword) && this.checkConfirmPwd.call(this, inputData.repeatPassword)) {
               var params = {
                 oldPassword: md5(inputData.oldPassword + 'www.sfht.com'),
@@ -143,14 +151,16 @@ define(
               this.component.changePwd.setData(params);
               this.component.changePwd.sendRequest()
                 .done(function (data) {
-
+                    var html ='<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a><span class="icon icon28"></span></div>'
+                    $('.change-password-wrap').html(html);
                 })
                 .fail(function (error) {
                   if (error === 1000040) {
                     $('#oldPwd-error-tips').text(ERROR_INPUT_OLDPWD).show();
-                  }
-                  if (error === 1000060) {
+                  }else if (error === 1000060) {
                     $('#newPwd-error-tips').text(ERROR_SAME_PWD).show();
+                  }else{
+                    console.error(error);
                   }
                 })
             }
