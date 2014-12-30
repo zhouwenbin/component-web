@@ -208,7 +208,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
-        '<%= config.app %>/gotopay.html'
+        '<%= config.app %>/gotopay.html',
+        '<%= config.app %>/password-change.html'
       ]
     },
 
@@ -334,6 +335,7 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            'password-change.html',
 
             'json/*.json',
 
@@ -679,6 +681,24 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.gotopay']
         }
+      },
+      passwordchange: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.passwordchange.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.center.change.password',
+            'sf.b2c.mall.page.passwordchange'
+          ],
+          insertRequire: ['sf.b2c.mall.page.passwordchange']
+        }
       }
     }
   });
@@ -769,6 +789,7 @@ module.exports = function (grunt) {
           'requirejs:orderdetail',
           'requirejs:center',
           'requirejs:gotopay',
+          'requirejs:passwordchange',
           'usemin',
           'htmlmin'
         ]);
