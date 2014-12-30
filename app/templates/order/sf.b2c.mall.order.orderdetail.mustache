@@ -83,25 +83,24 @@
                 <li>收货人：{{receiveInfo.receiveName}}</li>
                 <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
                 <li>联系电话：{{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
-                <li>身份证号码：{{receiveInfo.certNo}}</li>
+                <li>身份证号码：{{receiveInfo.certNo}} {{{idcardDescription}}}</li>
               </ul>
               {{#if IDCard.needUpload}}
               <div id="uploadidcard">
                 <a href="#" id="orderdetail-view" class="btn btn-add">查看身份证参考样本</a>
                 <ul class="info-c2r2 clearfix">
                   <li>
-                    <div class="info-img" id="file-submit-input-photo-p">
-                      身份证正面<span></span>
+                    <div class="info-img" id="file-submit-input-photo-p" style="position:relative;">
+                      点击上传身份证正面<img style="position:absolute;top:0;left:0;" src=""/><span></span>
                     </div>
-                    <label class="btn btn-send btn-register">上传<input type="file" class="visuallyhidden" /></label>
                   </li>
                   <li>
-                    <div class="info-img" id="file-submit-input-photo-n">
-                      身份证正面<span></span>
+                    <div class="info-img" id="file-submit-input-photo-n" style="position:relative;">
+                      点击上传身份证反面<img style="position:absolute;top:0;left:0;" src=""/><span></span>
                     </div>
-                    <label class="btn btn-send btn-register">上传<input type="file" class="visuallyhidden" /></label>
                   </li>
                 </ul>
+                <a href="#" id="orderdetail-save" class="btn btn-send">保存</a>
               </div>
               {{/if}}
             </div>

@@ -243,7 +243,7 @@ define('sf.b2c.mall.component.addreditor', [
       return false;
     },
 
-    '#addressSave click': function(element, event) {debugger;
+    '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
       console.log(this.adapter)
