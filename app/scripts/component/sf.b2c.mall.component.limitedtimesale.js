@@ -193,7 +193,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
         //消费后再创建，因为这个方法被多个地方调用
         if (that.interval) {
-          clearInterval(that.interval);
+          // @author Michael.Lee
+          // 暂时干掉[FRONT-58]
+          // clearInterval(that.interval);
         }
 
         //要进行销毁
