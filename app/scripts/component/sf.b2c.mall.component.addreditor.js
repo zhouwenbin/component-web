@@ -82,8 +82,7 @@ define('sf.b2c.mall.component.addreditor', [
               regionName: null,
               detail: null,
               recId: null,
-              mobile: null,
-              telephone: null,
+              cellphone: null,
               zipCode: null
             },
             place: {
@@ -103,7 +102,8 @@ define('sf.b2c.mall.component.addreditor', [
             },
             error: {
               detail: null,
-              zipCode: null
+              zipCode: null,
+              cellphone: null
             }
           };
         },
@@ -118,8 +118,7 @@ define('sf.b2c.mall.component.addreditor', [
               cityName: cityId,
               regionName: this.adapter.regions.getIdBySuperreginIdAndName(cityId, data.regionName),
               detail: data.detail,
-              mobile: data.mobile,
-              telephone: data.telephone,
+              cellphone: data.cellphone,
               zipCode: data.zipCode,
               recId: data.recId
             },
@@ -140,7 +139,8 @@ define('sf.b2c.mall.component.addreditor', [
             },
             error: {
               detail: null,
-              zipCode: null
+              zipCode: null,
+              cellphone: null
             }
           };
         }
@@ -207,7 +207,7 @@ define('sf.b2c.mall.component.addreditor', [
 
     add: function(addr) {
       var that = this;
-
+      delete addr.recId;
       var createRecAddress = new SFCreateRecAddress(addr);
       createRecAddress
         .sendRequest()
@@ -215,8 +215,8 @@ define('sf.b2c.mall.component.addreditor', [
           that.hide();
           that.onSuccess();
         })
-        .fail(function() {
-
+        .fail(function(error) {
+          console.error(error);
         });
     },
 
@@ -230,8 +230,8 @@ define('sf.b2c.mall.component.addreditor', [
           that.hide();
           that.onSuccess();
         })
-        .fail(function() {
-
+        .fail(function(error) {
+          console.error(error);
         });
     },
 
@@ -243,7 +243,7 @@ define('sf.b2c.mall.component.addreditor', [
       return false;
     },
 
-    '#addressSave click': function(element, event) {
+    '#addressSave click': function(element, event) {debugger;
       event && event.preventDefault();
 
       console.log(this.adapter)
@@ -256,7 +256,7 @@ define('sf.b2c.mall.component.addreditor', [
         addr[key] = _.str.trim(addr[key]);
       }
 
-      addr.nationName = '中国 ';
+      addr.nationName = '中国';
       addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
@@ -293,6 +293,23 @@ define('sf.b2c.mall.component.addreditor', [
           $('#zipcodeerror').show();
           return false;
         }
+      }
+
+      if (!addr.cellphone) {
+        this.adapter.addr.attr("error", {
+          "cellphone": '请填写收货人手机号码！'
+        })
+        $('#cellphoneerror').show();
+        return false;
+      }
+
+      //电话号码正则验证（以1开始，11位验证）)
+      if (!/^1\d{10}$/.test(addr.cellphone)){
+        this.adapter.addr.attr("error", {
+          "cellphone": '收货人手机号码填写有误！'
+        })
+        $('#cellphoneerror').show();
+        return false;
       }
 
       if (addr.addrId) {
