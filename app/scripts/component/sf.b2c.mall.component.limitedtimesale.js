@@ -334,16 +334,19 @@ define('sf.b2c.mall.component.limitedtimesale', [
        */
       setCountDown: function(timeNode, distance, endDate) {
         var leftTime = endDate - new Date().getTime() + distance;
-        var leftsecond = parseInt(leftTime / 1000);
-        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
-        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
-        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
-        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        if (timeNode.attr) {
-          timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
-        } else {
-          timeNode.innerHTML = day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
-        }
+
+        if (leftTime > 0) {
+          var leftsecond = parseInt(leftTime / 1000);
+          var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+          var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+          var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+          var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+          if (timeNode.attr) {
+            timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
+          } else {
+            timeNode.innerHTML = day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+          }
+        };
       },
 
       /**
