@@ -314,7 +314,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '<div class="mr9">' +
           '{{#sf-showCurrentStock priceInfo.currentStock}}<span class="icon icon26">商品库存{{priceInfo.currentStock}}件</span>{{/sf-showCurrentStock}}' +
-          '{{#if input.showRestrictionTips}}<span class="icon icon26">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
+          '{{#if input.showRestrictionTips}}<span class="icon icon26" id="showrestrictiontipsspan">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
 
           '{{#if priceInfo.soldOut}}' +
