@@ -31,16 +31,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
               recId: null,
               recName: null,
               type: "ID",
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             },
             mainTitle: {
               text: '添加收货人信息'
             },
             error: {
               recName: null,
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             }
           };
         },
@@ -50,16 +48,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
               recId: data.recId,
               recName: data.recName,
               type: "ID",
-              credtNum: data.credtNum,
-              cellphone: data.cellphone
+              credtNum: data.credtNum
             },
             mainTitle: {
               text: '修改收货人信息'
             },
             error: {
               recName: null,
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             }
           };
         }
@@ -120,14 +116,18 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       return false;
     },
 
-    '#personSave click': function(element, event) {
+    '#personSave click': function(element, event) {debugger;
       event && event.preventDefault();
-
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
       $('#cellphoneerror').hide();
 
       var person = this.adapter.person.input.attr();
+
+      var key;
+      for (key in person) {
+        person[key] = _.str.trim(person[key]);
+      }
 
       if (!person.recName) {
         this.adapter.person.attr("error", {
@@ -207,23 +207,6 @@ define('sf.b2c.mall.component.receivepersoneditor', [
           "credtNum": '收货人身份证号码填写有误！'
         })
         $('#credtnumerror').show();
-        return false;
-      }
-
-      if (!person.cellphone) {
-        this.adapter.person.attr("error", {
-          "cellphone": '请填写收货人手机号码！'
-        })
-        $('#cellphoneerror').show();
-        return false;
-      }
-
-      //电话号码正则验证（以1开始，11位验证）)
-      if (!/^1\d{10}$/.test(person.cellphone)){
-        this.adapter.person.attr("error", {
-          "cellphone": '收货人手机号码填写有误！'
-        })
-        $('#cellphoneerror').show();
         return false;
       }
 
