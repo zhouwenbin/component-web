@@ -17,7 +17,7 @@ define(
         'MALE': '男',
         'FEMALE': '女'
       };
-
+      
       return can.Control.extend({
 
         init:function(){
@@ -33,15 +33,13 @@ define(
              },
             input:{
               nick:$.cookie('nick'),
-              gender:GENDER_MAP[$.cookie('gender')]
+              gender:$.cookie('gender')
             }
           });
           this.render(this.data);
         },
         render:function(data){
-          if($.cookie('gender')){
-            this.data.user.attr('gender',$.cookie('gender') === 'FEMALE' ? '女' : '男')
-          }
+
           var html = can.view('templates/center/sf.b2c.mall.center.userinfo.mustache', data);
           this.element.html(html);
 
@@ -109,12 +107,11 @@ define(
                   if (data.value) {
                     var nick = that.data.input.attr('nick');
                     var gender = that.data.input.attr('gender');
-                    that.data.user.attr({'nick': nick, 'gender': gender});
+                    that.data.user.attr({'nick': nick, 'gender': GENDER_MAP[gender]});
                     that.data.attr('isModified',false);
 
                     $.cookie('gender', gender);
                     $.cookie('nick', nick);
-                    window.location.reload();
                   }
                 })
                 .fail(function () {
