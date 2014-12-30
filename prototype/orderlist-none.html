@@ -3,10 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
-<title>确定订单</title>
+<title>订单列表</title>
 <link href="css/common.css" rel="stylesheet" type="text/css" />
-<link href="css/order.css" rel="stylesheet" type="text/css" />
-<link href="css/retrieve.css" rel="stylesheet" type="text/css" />
+<link href="css/orderlist.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--头部-->
@@ -32,6 +31,7 @@
   
       </div>
     </div>
+
     <div class="header">
       <div class="pm clearfix">
         <div class="header-c1 fl">
@@ -61,14 +61,40 @@
   <!--头部-->
   <div class="pb">
     <div class="pm">
-      <!--订单-->
-      <div class="order retrieve-success">
-        <span class="icon icon33"></span>
-        <h1>密码修改成功</h1>
-        <a href="#" class="btn btn-send">返回首页</a>
-        <span class="icon icon28"></span>
+      <!--订单列表-->
+      <div class="orderlist">
+        <div class="orderlist-h clearfix">
+          <div class="orderlist-hc1 fl">
+            <h2>温馨提示：</h2>
+            <p>顺丰海淘试运营期间，未付款顺丰闪电送订单超过30分钟将被自动取消，提交订单请尽快完成支付。</p>
+          </div>
+          <div class="orderlist-hc2 fr">
+            <input type="text" class="input" placeholder="输入订单号/收货人" />
+            <a href="#" class="btn btn-buy">搜索</a>
+          </div>
+        </div>
+        <div class="table table-1">
+          <div class="table-h clearfix">
+            <div class="table-c1 fl">
+              订单信息
+            </div>
+            <div class="table-c2 fl">
+              收货人
+            </div>
+            <div class="table-c3 fl">
+              订单金额
+            </div>
+            <div class="table-c4 fl">
+              订单状态
+            </div>
+            <div class="table-c5 fl">
+              操作
+            </div>
+          </div>
+          <p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>
       </div>
-      <!--订单-->
+      <!--订单列表-->
+
     </div>
   </div>
   <!--尾部-->

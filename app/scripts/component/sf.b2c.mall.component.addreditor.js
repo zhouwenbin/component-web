@@ -82,8 +82,7 @@ define('sf.b2c.mall.component.addreditor', [
               regionName: null,
               detail: null,
               recId: null,
-              mobile: null,
-              telephone: null,
+              cellphone: null,
               zipCode: null
             },
             place: {
@@ -103,7 +102,8 @@ define('sf.b2c.mall.component.addreditor', [
             },
             error: {
               detail: null,
-              zipCode: null
+              zipCode: null,
+              cellphone: null
             }
           };
         },
@@ -118,8 +118,7 @@ define('sf.b2c.mall.component.addreditor', [
               cityName: cityId,
               regionName: this.adapter.regions.getIdBySuperreginIdAndName(cityId, data.regionName),
               detail: data.detail,
-              mobile: data.mobile,
-              telephone: data.telephone,
+              cellphone: data.cellphone,
               zipCode: data.zipCode,
               recId: data.recId
             },
@@ -140,7 +139,8 @@ define('sf.b2c.mall.component.addreditor', [
             },
             error: {
               detail: null,
-              zipCode: null
+              zipCode: null,
+              cellphone: null
             }
           };
         }
@@ -207,7 +207,7 @@ define('sf.b2c.mall.component.addreditor', [
 
     add: function(addr) {
       var that = this;
-
+      delete addr.recId;
       var createRecAddress = new SFCreateRecAddress(addr);
       createRecAddress
         .sendRequest()
@@ -215,8 +215,8 @@ define('sf.b2c.mall.component.addreditor', [
           that.hide();
           that.onSuccess();
         })
-        .fail(function() {
-
+        .fail(function(error) {
+          console.error(error);
         });
     },
 
@@ -230,8 +230,8 @@ define('sf.b2c.mall.component.addreditor', [
           that.hide();
           that.onSuccess();
         })
-        .fail(function() {
-
+        .fail(function(error) {
+          console.error(error);
         });
     },
 
@@ -243,7 +243,7 @@ define('sf.b2c.mall.component.addreditor', [
       return false;
     },
 
-    '#addressSave click': function(element, event) {
+    '#addressSave click': function(element, event) {debugger;
       event && event.preventDefault();
 
       console.log(this.adapter)
@@ -251,7 +251,12 @@ define('sf.b2c.mall.component.addreditor', [
       $('.tel-hide').hide();
       var addr = this.adapter.addr.input.attr();
 
-      addr.nationName = '中国 ';
+      var key;
+      for (key in addr) {
+        addr[key] = _.str.trim(addr[key]);
+      }
+
+      addr.nationName = '中国';
       addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
@@ -260,10 +265,18 @@ define('sf.b2c.mall.component.addreditor', [
       $('#zipcodeerror').hide();
 
       //验证详细地址
+      if (!addr.detail) {
+        this.adapter.addr.attr("error", {
+          "detail": '请填写详细地址信息！'
+        })
+        $('#detailerror').show();
+        return false;
+      }
+
       // 5~120字符之间
       if (!addr.detail || addr.detail.length > 120 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
-          "detail": '您输入的收货地址有误。收货地址为必填，且长度要在5~120个字符之间。'
+          "detail": '您输入的收货地址有误。长度要在5~120个字符之间。'
         })
         $('#detailerror').show();
         return false;
@@ -274,12 +287,29 @@ define('sf.b2c.mall.component.addreditor', [
         var zipCodeRegex = /[1-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
         if (!zipCodeRegex || addr.zipCode.length > 6) {
           this.adapter.addr.attr("error", {
-            "zipCode": '邮编输入错误。'
+            "zipCode": '邮编填写有误！'
           })
 
           $('#zipcodeerror').show();
           return false;
         }
+      }
+
+      if (!addr.cellphone) {
+        this.adapter.addr.attr("error", {
+          "cellphone": '请填写收货人手机号码！'
+        })
+        $('#cellphoneerror').show();
+        return false;
+      }
+
+      //电话号码正则验证（以1开始，11位验证）)
+      if (!/^1\d{10}$/.test(addr.cellphone)){
+        this.adapter.addr.attr("error", {
+          "cellphone": '收货人手机号码填写有误！'
+        })
+        $('#cellphoneerror').show();
+        return false;
       }
 
       if (addr.addrId) {

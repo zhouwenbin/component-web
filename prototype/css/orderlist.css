@@ -131,3 +131,14 @@
 	left: -104px;
 	top:37px;
 }
+.table-none{
+	text-align: center;
+	font-size: 16px;
+	padding: 90px 0 50px;
+}
+.table-none a{
+	color: #939393;
+	font-size: 14px;
+	margin-left: 34px;
+	text-decoration: underline;
+}

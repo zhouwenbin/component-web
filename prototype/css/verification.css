@@ -68,3 +68,10 @@
 	padding-left: 88px;
 	margin-bottom: 25px;
 }
+.verification-1 h1{
+	color: #333;
+	font-weight: normal;
+}
+.verification-1 .icon26{
+	display: none;
+}
