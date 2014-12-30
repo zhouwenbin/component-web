@@ -164,7 +164,7 @@ define(
             }
           })
           .fail(function(error){
-            console.error(error);
+            //console.error(error);
           })
       },
       /**
@@ -252,6 +252,11 @@ define(
       '.input-password blur': function (element, event) {
         event && event.preventDefault();
         var password = $(element).val();
+        if(password){
+          $(element).siblings('label').hide();
+        }else{
+          $(element).siblings('label').show();
+        }
         this.checkPwd.call(this,password);
 
       },
