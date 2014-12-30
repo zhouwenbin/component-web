@@ -187,25 +187,31 @@ define('sf.b2c.mall.component.limitedtimesale', [
       /**
        * [setTimeInterval 设置定时器]
        */
-      setTimeInterval: function(currentServerTime) {
+      setTimeInterval: function(currentServerTime, filter) {
         var that = this;
 
         var currentClientTime = new Date().getTime();
         var distance = currentServerTime - currentClientTime;
 
-        //消费后再创建，因为这个方法被多个地方调用
-        if (that.interval) {
-          // @author Michael.Lee
-          // 暂时干掉[FRONT-58]
-          // clearInterval(that.interval);
-        }
-
-        //要进行销毁
-        that.interval = setInterval(function() {
+        if (filter == 'NEXT') {
           _.each(that.data.limitedtimesaleInfoList, function(item) {
-            that.setCountDown(item, distance, item.endTime);
+            that.setBeginingTime(item, distance, item.endTime);
           })
-        }, '1000');
+        }else{
+          //消费后再创建，因为这个方法被多个地方调用
+          if (that.interval) {
+            // @author Michael.Lee
+            // 暂时干掉[FRONT-58]
+            clearInterval(that.interval);
+          }
+
+          //要进行销毁
+          that.interval = setInterval(function() {
+            _.each(that.data.limitedtimesaleInfoList, function(item) {
+              that.setCountDown(item, distance, item.endTime);
+            })
+          }, '1000');
+        }
       },
 
       /**
@@ -291,7 +297,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               .done(function(priceData) {
                 var serverTime = getProductHotDataList.getServerTime();
                 that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), priceData.value);
-                that.setTimeInterval(serverTime);
+                that.setTimeInterval(serverTime, filter);
                 that.switchTab.call(that, filter);
               })
               .fail(function(error) {
@@ -326,6 +332,22 @@ define('sf.b2c.mall.component.limitedtimesale', [
           }
         })
         return result;
+      },
+
+      setBeginingTime: function (timeNode, distance, endDate) {
+        // endDate = 1429933141007;
+        var leftTime = endDate - new Date().getTime() - distance;
+
+        if (leftTime > 0) {
+          // 12月26日（明天）12:00 开始
+          var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
+
+          if (timeNode.attr) {
+            timeNode.attr('time', time);
+          }else{
+            timeNode.innerHTML = time;
+          }
+        }
       },
 
       /**
