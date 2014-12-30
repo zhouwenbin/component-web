@@ -119,7 +119,7 @@
         ##                  客户端渲染end
             <!--推荐商品-->
             <!--小编推荐-->
-            <div class="recommend2">
+            <div class="recommend2" id="recommend2">
                 <h2>小编推荐</h2>
 
                 <p>$!{productInfo.skuInfo.recommend}</p>
@@ -128,7 +128,7 @@
             <!--详情-->
             <div class="detail">
                 <div class="detail-h">
-                    <ul class="clearfix">
+                    <ul class="clearfix" id="detailattributes">
                       #if(${productInfo.skuInfo.attributes})
                         #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
                             <li>【$!{_el.key}】 $!{_el.value}</li>
@@ -137,7 +137,7 @@
                     </ul>
                 </div>
 
-                <div class="detail-b">
+                <div class="detail-b" id="detailcontent">
                   $!{productInfo.skuInfo.description}
                 </div>
             </div>
