@@ -97,7 +97,6 @@
 }
 .register-b .a1{
 	color: #A3A2A3;
-	margin-left: 5px;
 }
 .register-b .a1:hover{
 	color: #333;
@@ -127,7 +126,6 @@
 }
 .register .input2{
 	width: 126px;
-	margin-right: 5px;
 }
 .register input:focus{
 	box-shadow: 0 0 10px rgba(102,175,233,0.5);
