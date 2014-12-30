@@ -162,7 +162,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           _.each(timeNodeList, function(timeNode) {
 
             var endTimeMap = {
-              'PRODUCT': timeNode.dataset.itemid ? priceMap[timeNode.dataset.itemid].endTime : '',
+              'PRODUCT': timeNode.dataset.itemid ? (priceMap[timeNode.dataset.itemid] && priceMap[timeNode.dataset.itemid].endTime) : '',
               'TOPIC': timeNode.dataset.displayendtime
             }
 
