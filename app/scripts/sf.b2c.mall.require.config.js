@@ -85,6 +85,7 @@ requirejs.config({
     'placeholders': 'bower_components/Placeholders/build/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'moment':'bower_components/momentjs/min/moment.min',
+    'moment-zh-cn': 'bower_components/momentjs/locale/zh-cn',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',

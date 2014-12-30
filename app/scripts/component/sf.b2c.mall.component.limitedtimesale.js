@@ -4,9 +4,11 @@ define('sf.b2c.mall.component.limitedtimesale', [
     'can',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.adapter.limitedtimesale',
-    'sf.b2c.mall.api.b2cmall.getProductHotDataList'
+    'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'moment-zh-cn',
+    'moment'
   ],
-  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList) {
+  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment) {
     return can.Control.extend({
 
       helpers: {
@@ -162,7 +164,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           _.each(timeNodeList, function(timeNode) {
 
             var endTimeMap = {
-              'PRODUCT': timeNode.dataset.itemid ? priceMap[timeNode.dataset.itemid].endTime : '',
+              'PRODUCT': timeNode.dataset.itemid ? (priceMap[timeNode.dataset.itemid] && priceMap[timeNode.dataset.itemid].endTime) : '',
               'TOPIC': timeNode.dataset.displayendtime
             }
 
@@ -185,23 +187,31 @@ define('sf.b2c.mall.component.limitedtimesale', [
       /**
        * [setTimeInterval 设置定时器]
        */
-      setTimeInterval: function(currentServerTime) {
+      setTimeInterval: function(currentServerTime, filter) {
         var that = this;
 
         var currentClientTime = new Date().getTime();
         var distance = currentServerTime - currentClientTime;
 
-        //消费后再创建，因为这个方法被多个地方调用
-        if (that.interval) {
-          clearInterval(that.interval);
-        }
-
-        //要进行销毁
-        that.interval = setInterval(function() {
+        if (filter == 'NEXT') {
           _.each(that.data.limitedtimesaleInfoList, function(item) {
-            that.setCountDown(item, distance, item.endTime);
+            that.setBeginingTime(item, distance, item.endTime);
           })
-        }, '1000');
+        }else{
+          //消费后再创建，因为这个方法被多个地方调用
+          if (that.interval) {
+            // @author Michael.Lee
+            // 暂时干掉[FRONT-58]
+            clearInterval(that.interval);
+          }
+
+          //要进行销毁
+          that.interval = setInterval(function() {
+            _.each(that.data.limitedtimesaleInfoList, function(item) {
+              that.setCountDown(item, distance, item.endTime);
+            })
+          }, '1000');
+        }
       },
 
       /**
@@ -287,7 +297,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               .done(function(priceData) {
                 var serverTime = getProductHotDataList.getServerTime();
                 that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), priceData.value);
-                that.setTimeInterval(serverTime);
+                that.setTimeInterval(serverTime, filter);
                 that.switchTab.call(that, filter);
               })
               .fail(function(error) {
@@ -324,6 +334,22 @@ define('sf.b2c.mall.component.limitedtimesale', [
         return result;
       },
 
+      setBeginingTime: function (timeNode, distance, endDate) {
+        // endDate = 1429933141007;
+        var leftTime = endDate - new Date().getTime() - distance;
+
+        if (leftTime > 0) {
+          // 12月26日（明天）12:00 开始
+          var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
+
+          if (timeNode.attr) {
+            timeNode.attr('time', time);
+          }else{
+            timeNode.innerHTML = time;
+          }
+        }
+      },
+
       /**
        * [showCountDown 参考倒计时]
        * @param  {[type]} currentTime
@@ -331,16 +357,34 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       setCountDown: function(timeNode, distance, endDate) {
-        var leftTime = endDate - new Date().getTime() + distance;
-        var leftsecond = parseInt(leftTime / 1000);
-        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
-        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
-        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
-        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        if (timeNode.attr) {
-          timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
-        } else {
-          timeNode.innerHTML = day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+
+        // endDate = 1429933141007;
+        // var leftTime = endDate - new Date().getTime() - distance;
+
+        // if (leftTime > 0) {
+        //   // 12月26日（明天）12:00 开始
+        //   var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
+
+        //   if (timeNode.attr) {
+        //     timeNode.attr('time', time);
+        //   }else{
+        //     timeNode.innerHTML = time;
+        //   }
+        // };
+
+        var leftTime = endDate - new Date().getTime() - distance;
+
+        if (leftTime > 0) {
+          var leftsecond = parseInt(leftTime / 1000);
+          var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+          var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+          var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+          var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+          if (timeNode.attr) {
+            timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
+          } else {
+            timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+          }
         }
       },
 
