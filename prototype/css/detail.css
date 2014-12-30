@@ -101,7 +101,9 @@
 	border-bottom: 1px dashed #858390;
 	margin-bottom: 23px;
 	color: #686675;
-
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
 }
 .goods .mr1{
 	margin-bottom: 17px;
