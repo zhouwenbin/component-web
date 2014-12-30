@@ -444,6 +444,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           insertRequire: ['sf.b2c.mall.page.main']
         }

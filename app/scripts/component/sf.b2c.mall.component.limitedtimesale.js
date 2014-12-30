@@ -6,9 +6,12 @@ define('sf.b2c.mall.component.limitedtimesale', [
     'sf.b2c.mall.adapter.limitedtimesale',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
     'moment-zh-cn',
-    'moment'
+    'moment',
+    'fastclick'
   ],
-  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment) {
+  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment, fastclick) {
+
+    fastclick.attach(document.body);
     return can.Control.extend({
 
       helpers: {
