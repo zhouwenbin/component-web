@@ -12,6 +12,8 @@ define(
     ],
     function(can,$,md5,SFComm,SFChangePwd){
 
+      SFComm.register(1);
+
       var ERROR_NO_INPUT_OLDPWD = '请输入原密码';
       var ERROR_INPUT_OLDPWD = '原密码输入有误';
       var ERROR_NO_INPUT_NEWPWD = '请输入新密码';
