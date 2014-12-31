@@ -240,12 +240,16 @@ img{vertical-align: middle;}
 	height: 8px;
 	background-position: -62px -53px;
 }
-.icon24{
+.icon24,
+.icon24-1{
 	width: 74px;
 	padding-top: 74px;
 	overflow: hidden;
 	height: 0;
 	background-position: -61px -238px;
+}
+.icon24-1{
+	background-position: -148px -355px;
 }
 .icon25{
 	width: 34px;
@@ -942,7 +946,7 @@ body{
 	font-size: 20px;
 	color: #dd3e3f;
 }
-
+/*找回密码成功*/
 
 .retrieve-success{
 	text-align: center;

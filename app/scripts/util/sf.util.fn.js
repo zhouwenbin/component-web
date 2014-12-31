@@ -81,6 +81,7 @@ define('sf.util', ['jquery',
     },
 
     sign: function(params, isForce) {
+      var that = this;
       var map = {
         'NONE': function(data, force) {
           var word = 'sfhaitao.xyz!';
@@ -100,7 +101,7 @@ define('sf.util', ['jquery',
 
           if (csrf) {
             return _.extend(data, {
-              _sig: sf.util.encrypt(data, csrf)
+              _sig: that.encrypt(data, csrf)
             });
           } else {
 

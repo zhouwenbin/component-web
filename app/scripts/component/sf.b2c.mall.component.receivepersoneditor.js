@@ -116,7 +116,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       return false;
     },
 
-    '#personSave click': function(element, event) {debugger;
+    '#personSave click': function(element, event) {
       event && event.preventDefault();
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
