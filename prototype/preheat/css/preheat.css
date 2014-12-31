@@ -5,9 +5,11 @@
 .banner1{
 	height: 513px;
 	background: url(../img/banner1.jpg) no-repeat center;
+	position: relative;
+	z-index: 2;
 }
 .banner1 p{
-	padding-top: 323px;
+	padding-top: 60px;
 	color: #fff;
 	font-size: 24px;
 	text-align: center;
@@ -15,7 +17,7 @@
 .banner1 p strong{
 	color: #f64142;
 }
-.banner1 a{
+.btn1{
 	width: 220px;
 	margin: 0 auto;
 	height: 60px;
@@ -27,6 +29,10 @@
 	font-size: 24px;
 	margin-top: 50px;
 }
+.btn1:hover{
+	color: #fff;
+}
+
 .banner2{
 	height: 85px;
 	background: url(../img/banner2.jpg) no-repeat center;
@@ -105,8 +111,7 @@
 
 .m3{
 	background: #f6f8f9 url(../img/m3.jpg) no-repeat center top;
-	padding-bottom: 50px;
-	padding-top: 328px;
+	padding-top: 43px;
 	position: relative;
 }
 .m3 h3{
@@ -144,7 +149,7 @@
 	margin-left: 21px;
 }
 .m3 .li2{
-	margin-top: 115px;
+	margin-top: 286px;
 	position: relative;
 	z-index: 2;
 	*zoom:1;
@@ -153,8 +158,8 @@
 .m3 .mt{
 	text-align: center;
 }
-.m3 .mt a{
-	width: 378px;
+.m3 .pm{
+	position: relative;
 }
 .m3 .mh{
 	color: #fff;
@@ -163,9 +168,10 @@
 	height: 535px;
 	position: absolute;
 	text-align: center;
-	top: -25px;
+	top: -123px;
 	left: 50%;
 	margin-left: -267px;
+	z-index: 1;
 }
 .m3 h2{
 	font-size: 30px;
@@ -175,6 +181,7 @@
 .m3 .hr1{
 	font-size: 53px;
 	font-weight: bold;
+	padding-top: 115px;
 }
 .m3 .hr2{
 	font-size: 63px;
@@ -270,4 +277,8 @@
 }
 .register-b1 span{
 	color: #67b222;
+}
+.countdown{
+	text-align: center;
+	padding-top: 91px;
 }
