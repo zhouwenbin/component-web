@@ -65,7 +65,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
-            that.options.IDCard.needUpload = true; //(data.orderItem.rcvrState == 0 || data.orderItem.rcvrState == 1 || data.orderItem.rcvrState == 3);
+            that.options.IDCard.needUpload = (data.orderItem.rcvrState == 0 || data.orderItem.rcvrState == 1 || data.orderItem.rcvrState == 3);
             that.options.IDCard.state = data.orderItem.rcvrState;
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
