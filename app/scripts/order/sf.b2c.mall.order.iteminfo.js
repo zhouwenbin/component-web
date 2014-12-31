@@ -67,8 +67,8 @@ define('sf.b2c.mall.order.iteminfo', [
     '#submitOrder click': function(element, event) {
       var that = this;
 
-      var addressid = element.parents().find("#addrList").find("li.active")[0].dataset.addressid;
-      var personid = element.parents().find("#personList").find("li.active")[0].dataset.recid;
+      var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
+      var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
 
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();
