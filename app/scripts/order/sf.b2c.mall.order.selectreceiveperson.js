@@ -119,7 +119,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @param  {[type]} e
        * @return {[type]}
        */
-      "#personlist click": function(element, e) {
+      "#personList click": function(element, e) {
         if (event.srcElement.tagName == 'SPAN') {
           this.clearActive();
           $(event.srcElement).parents("li[name='personEach']").addClass("active");
