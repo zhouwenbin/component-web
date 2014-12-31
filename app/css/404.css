@@ -1,0 +1,14 @@
+﻿/*404*/
+.pagenofind{
+	padding-top: 911px;
+	height: 289px;
+	background: url(../img/404.jpg) no-repeat center;
+	text-align: center;
+	margin-top: -60px;
+}
+.pagenofind a{
+	font-size: 30px;
+	color: #fff;
+	margin: 0 37px;
+	text-decoration: underline;
+}

@@ -209,7 +209,11 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
+<<<<<<< HEAD
         '<%= config.app %>/password-change.html'
+=======
+        '<%= config.app %>/404.html',
+>>>>>>> 5725ba644cbce16f98042d47974b25636d312fb0
       ]
     },
 
@@ -335,7 +339,11 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+<<<<<<< HEAD
             'password-change.html',
+=======
+            '404.html',
+>>>>>>> 5725ba644cbce16f98042d47974b25636d312fb0
 
             'json/*.json',
 

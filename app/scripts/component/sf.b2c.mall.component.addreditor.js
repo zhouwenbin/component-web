@@ -274,7 +274,7 @@ define('sf.b2c.mall.component.addreditor', [
       }
 
       // 5~120字符之间
-      if (!addr.detail || addr.detail.length > 120 || addr.detail.length < 5) {
+      if (addr.detail.length > 120 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
           "detail": '您输入的收货地址有误。长度要在5~120个字符之间。'
         })
