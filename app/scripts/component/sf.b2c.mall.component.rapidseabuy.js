@@ -73,7 +73,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
               '<div class="product-r2c2 fr"><span class="icon icon5"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></span></div>' +
               '{{/sf-is-product}}'+
               '{{^sf-is-product fastSaleContentType}}' +
-              '<div class="product-r2c2 fr"><span class="icon icon5"></span></div>' +
+              '<div class="product-r2c2 fr"></div>' +
               '{{/sf-is-product}}'+
             '</div>'+
             '<div class="product-r3 clearfix">' +
@@ -173,7 +173,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var priceNodeList = $('ul.product-list #price4ProductClient');
 
           var paramData = {
-            "itemIds": ulNode[0].dataset.itemids
+            "itemIds": $(ulNode[0]).attr('data-itemids')
           };
 
           //渲染价格模块
@@ -187,10 +187,10 @@ define('sf.b2c.mall.component.rapidseabuy', [
             .done(function(data){
               var template = can.view.mustache(that.priceTemplate());
               _.each(priceNodeList, function (priceNode) {
-                if(priceNode.dataset.contenttype == 'PRODUCT')
+                if($(priceNode).attr('data-contenttype') == 'PRODUCT')
                 _.each(data.value, function (priceItem) {
-                  if (priceItem.itemId == priceNode.dataset.itemid) {
-                    priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
+                  if (priceItem.itemId == $(priceNode).attr('data-itemid')) {
+                    priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
                     $(priceNode).html(template(priceItem));
                   }
                 });
