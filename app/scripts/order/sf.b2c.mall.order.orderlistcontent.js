@@ -61,6 +61,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
             var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
             that.element.html(html);
 
+            //var noDataTemplate = can.view.mustache(that.noDataTemplate());
+            //that.element.html(noDataTemplate());
+
             //分页 保留 已经调通 误删 后面设计会给样式
             // that.options.page = new PaginationAdapter();
             // that.options.page.format(data.page);
@@ -70,6 +73,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .fail(function(error) {
             console.error(error);
           })
+      },
+
+      noDataTemplate: function(){
+        return '<p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>'
       },
 
       /**
@@ -166,7 +173,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'AUTO_CANCEL': ['INFO'],
         'USER_CANCEL': ['INFO'],
         'AUDITING': ['INFO', 'CANCEL'],
-        'OPERATION_CANCEL': ['INFO', 'CANCEL'],
+        'OPERATION_CANCEL': ['INFO'],
         'BUYING': ['INFO'],
         'BUYING_EXCEPTION': ['INFO'],
         'WAIT_SHIPPING': ['INFO'],
