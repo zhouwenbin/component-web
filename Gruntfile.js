@@ -208,7 +208,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
-        '<%= config.app %>/gotopay.html'
+        '<%= config.app %>/gotopay.html',
+        '<%= config.app %>/404.html',
       ]
     },
 
@@ -334,6 +335,7 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            '404.html',
 
             'json/*.json',
 
@@ -441,6 +443,10 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.rapidSeaBuy',
             'sf.b2c.mall.page.main'
           ],
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+          },
           insertRequire: ['sf.b2c.mall.page.main']
         }
       },
@@ -495,7 +501,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders': '../bower_components/Placeholders/build/placeholders'
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
           },
           include: [
             'placeholders',
@@ -566,6 +572,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',

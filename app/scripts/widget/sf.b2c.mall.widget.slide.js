@@ -90,10 +90,8 @@ define(
                       '<li><a href="###"></a></li>' +
                     '{{/imgs}}' +
                   '</ul>' +
-                  '<div class="pm">' +
-                    '<a href="###" class="btn btn-prev">向前</a>' +
-                    '<a href="###" class="btn btn-next">向后</a>' +
-                  '</div>' +
+                  '<a href="###" class="btn btn-prev">向前</a>' +
+                  '<a href="###" class="btn btn-next">向后</a>' +
                 '</div>'
       },
 

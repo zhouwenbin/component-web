@@ -44,7 +44,7 @@
 	background: #f3f8fc;
 	border-radius: 4px;
 	padding: 45px 37px 80px;
-	margin-top: 30px;
+	margin-top: 56px;
 	margin-bottom: 137px;
 	position: relative;
 }
@@ -165,7 +165,7 @@
 }
 .order-r2r2{
 	color: #999;
-	margin-left: 136px;
+	margin-left: 138px;
 	margin-top: 13px;
 }
 .order-r2r3{
@@ -186,8 +186,8 @@
 	padding: 0 71px; 
 }
 .order-r2 .icon26{
-	margin-left: 15px;
-	display: none;
+	margin-top: 10px;
+	margin-left: 140px;
 }
 .order-r2 .btn-select{	
 	background: url(../img/btn-select1.png) repeat-x;

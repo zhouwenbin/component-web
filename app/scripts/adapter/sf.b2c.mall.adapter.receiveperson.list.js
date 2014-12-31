@@ -10,8 +10,10 @@ define('sf.b2c.mall.adapter.receiveperson.list', ['can'], function(can) {
     },
 
     findDefaultPerson: function() {
-      var address = this.personList.attr('0');
-      return address && address.addrId;
+      if (this.personList) {
+        var address = this.personList.attr('0');
+        return address && address.addrId;
+      }
     },
 
     remove: function(index) {

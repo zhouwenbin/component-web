@@ -8,10 +8,11 @@ require(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
+    'sf.b2c.mall.api.order.getOrder',
     'sf.b2c.mall.api.order.requestPayV2'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFRequestPayV2) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -62,8 +63,8 @@ require(
         '3000007': '用户订单不正确'
       },
 
-      '#viewOrderDetail click': function(){
-        window.open("/orderdetail.html?orderid=" + this.options.orderid,"_blank");
+      '#viewOrderDetail click': function() {
+        window.open("/orderdetail.html?orderid=" + this.options.orderid, "_blank");
         return false;
       },
 
@@ -77,9 +78,8 @@ require(
         requestPayV2
           .sendRequest()
           .done(function(data) {
-            var payinfo = data.content[0];
-            window.location.href = payinfo.url + '?' + payinfo.postBody;
-            that.request.call(that, orderInfo.orderId);
+            window.open(data.url + '?' + data.postBody,"_blank");
+            that.request.call(that, that.options.orderid);
           })
           .fail(function(error) {
             var errorText = that.payErrorMap[error.toString()] || '支付失败';
@@ -92,13 +92,14 @@ require(
       request: function(orderId) {
         var that = this;
         setTimeout(function() {
-          can.when(sf.b2c.mall.model.order.getOrder({
-              orderId: orderId
-            }))
+          var getOrder = new SFGetOrder({
+            "orderId": orderId
+          });
+          getOrder
+            .sendRequest()
             .done(function(data) {
-              var order = data.content[0].basicInfo;
-              if (order.orderStatus == 'AUDITING') {
-                window.location.href = '/center.html';
+              if (data.orderItem.orderStatus == 'AUDITING') {
+                window.location.href = '/orderlist.html';
               } else {
                 that.request.call(that, orderId);
               }

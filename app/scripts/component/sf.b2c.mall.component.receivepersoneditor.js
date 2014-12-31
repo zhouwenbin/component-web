@@ -31,16 +31,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
               recId: null,
               recName: null,
               type: "ID",
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             },
             mainTitle: {
               text: '添加收货人信息'
             },
             error: {
               recName: null,
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             }
           };
         },
@@ -50,16 +48,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
               recId: data.recId,
               recName: data.recName,
               type: "ID",
-              credtNum: data.credtNum,
-              cellphone: data.cellphone
+              credtNum: data.credtNum
             },
             mainTitle: {
               text: '修改收货人信息'
             },
             error: {
               recName: null,
-              credtNum: null,
-              cellphone: null
+              credtNum: null
             }
           };
         }
@@ -122,16 +118,20 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
     '#personSave click': function(element, event) {
       event && event.preventDefault();
-
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
       $('#cellphoneerror').hide();
 
       var person = this.adapter.person.input.attr();
 
+      var key;
+      for (key in person) {
+        person[key] = _.str.trim(person[key]);
+      }
+
       if (!person.recName) {
         this.adapter.person.attr("error", {
-          "recName": '请输入姓名。'
+          "recName": '请填写收货人姓名！'
         })
         $('#recnameerror').show();
         return false;
@@ -147,14 +147,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
       if (!person.credtNum) {
         this.adapter.person.attr("error", {
-          "credtNum": '请输入身份证。'
+          "credtNum": '请填写收货人身份证号码！'
         })
         $('#credtnumerror').show();
         return false;
       }
       if (person.credtNum.length < 18 || person.credtNum.length > 18) {
         this.adapter.person.attr("error", {
-          "credtNum": '身份证位数不正确'
+          "credtNum": '收货人身份证号码填写有误！'
         })
         $('#credtnumerror').show();
         return false;
@@ -204,26 +204,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       }
       if (!info.isTrue) {
         this.adapter.person.attr("error", {
-          "credtNum": '身份证不合法'
+          "credtNum": '收货人身份证号码填写有误！'
         })
         $('#credtnumerror').show();
-        return false;
-      }
-
-      if (!person.cellphone) {
-        this.adapter.person.attr("error", {
-          "cellphone": '请输入手机号码。'
-        })
-        $('#cellphoneerror').show();
-        return false;
-      }
-
-      //电话号码正则验证（以1开始，11位验证）)
-      if (!/^1\d{10}$/.test(person.cellphone)){
-        this.adapter.person.attr("error", {
-          "cellphone": '您输入的手机号码有误。'
-        })
-        $('#cellphoneerror').show();
         return false;
       }
 

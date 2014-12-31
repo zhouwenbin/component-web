@@ -1,6 +1,6 @@
 'use strict';
 
-require(
+define(
   [
     'can',
     'jquery',
@@ -48,7 +48,7 @@ require(
         return '<div class="orderlist-h clearfix">' +
           '<div class="orderlist-hc1 fl">' +
           '<h2>温馨提示：</h2>' +
-          '<p>顺丰海淘试运营期间，未付款顺丰闪电送订单超过30分钟将被自动取消，提交订单请尽快完成支付。</p>' +
+          '<p>顺丰海淘试运营期间，未付款顺丰闪电送订单超过2小时将被自动取消，提交订单请尽快完成支付。</p>' +
           '</div>' +
           '<div class="orderlist-hc2 fr">' +
           '<input type="text" class="input" placeholder="输入订单号/收货人" id="searchValue"/>' +

@@ -6,9 +6,10 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.user.getRecAddressList',
-  'sf.b2c.mall.api.user.getIDCardUrlList'
+  'sf.b2c.mall.api.user.getIDCardUrlList',
+  'sf.helpers'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers) {
   return can.Control.extend({
 
     /**
@@ -94,10 +95,10 @@ define('sf.b2c.mall.order.iteminfo', [
               "regionName": selectAddr.regionName,
               "detail": selectAddr.detail,
               "recName": selectPer.recName,
-              "mobile": selectPer.mobile,
-              "telephone": selectPer.nationName,
-              "zipCode": selectPer.nationName,
-              "recId": selectPer.nationName
+              "mobile": selectAddr.cellphone,
+              "telephone": selectAddr.cellphone,
+              "zipCode": selectAddr.zipCode,
+              "recId": selectPer.recId
             }),
             "userMsg": "",
             "items": JSON.stringify([{

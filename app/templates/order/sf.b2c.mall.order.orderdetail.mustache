@@ -5,8 +5,10 @@
           <div class="orderdetail-r1c2 fl">状态：{{status}}</div>
           <div class="orderdetail-r1cr fr">{{{nextStep}}}</div>
         </div>
+
         <p class="orderdetail-r2">
         {{{currentStepTips}}}
+        </p>
         <ul class="orderdetail-step clearfix">
           <li class="{{submitedActive}}" id="SUBMITED">
             <div>
@@ -74,13 +76,34 @@
         <h2>收货信息</h2>
         <div class="info">
           <div class="info-r1">
+
             <div class="info-c1 fl">收货人信息</div>
-            <ul class="info-c2">
-              <li>收货人：{{receiveInfo.revice_name}}</li>
-              <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
-              <li>联系电话：{{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
-              <li>身份证号码：{{receiveInfo.certNo}}</li>
-            </ul>
+            <div class="info-c2">
+              <ul class="info-c2r1">
+                <li>收货人：{{receiveInfo.receiveName}}</li>
+                <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
+                <li>联系电话：{{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
+                <li>身份证号码：{{receiveInfo.certNo}} {{{idcardDescription}}}</li>
+              </ul>
+              {{#if IDCard.needUpload}}
+              <div id="uploadidcard">
+                <a href="#" id="orderdetail-view" class="btn btn-add">查看身份证参考样本</a>
+                <ul class="info-c2r2 clearfix">
+                  <li>
+                    <div class="info-img" id="file-submit-input-photo-p" style="position:relative;">
+                      点击上传身份证正面<img style="position:absolute;top:0;left:0;" src=""/><span></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="info-img" id="file-submit-input-photo-n" style="position:relative;">
+                      点击上传身份证反面<img style="position:absolute;top:0;left:0;" src=""/><span></span>
+                    </div>
+                  </li>
+                </ul>
+                <a href="#" id="orderdetail-save" class="btn btn-send">保存</a>
+              </div>
+              {{/if}}
+            </div>
           </div>
           <div class="info-r2">
             <div class="info-c1 fl">支付及配送方式</div>
@@ -117,12 +140,12 @@
             <li class="clearfix">
               <div class="table-c1 fl">
                 <div class="table-img fl">
-                  <a href="{{detailUrl}}"><img src="{{imgUrl}}" alt="" width="68" height="42" /></a><span></span>
+                  <a href="#"><img src="{{imageUrl}}" alt="" width="68" height="42" /></a><span></span>
                 </div>
                 <div class="table-text">
-                  <h3><a href="{{detailUrl}}">{{goodsName}} </a></h3>
+                  <h3><a href="#">{{goodsName}} </a></h3>
                   <p>{{spec}}</p>
-                  <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" />
+                  {{! <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /> }}
                 </div>
 
               </div>

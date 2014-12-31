@@ -146,3 +146,23 @@
 	display: block;
 	height: 100%;
 }
+.orderdetail-upload{
+	text-align: center;
+	display: none;
+}
+.orderdetail-upload img{
+	padding: 3px;
+	border:1px solid #ccc;
+}
+.orderdetail-upload p{
+	color: #949494;
+	margin-top: 7px;
+	margin-bottom: 37px;
+}
+.orderdetail-upload .register-b1{
+	padding-top: 53px;
+	padding-bottom: 40px;
+}
+.mask{
+	display: none;
+}
