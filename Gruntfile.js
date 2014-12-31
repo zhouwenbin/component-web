@@ -209,7 +209,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
-        '<%= config.app %>/404.html',
+        '<%= config.app %>/password-change.html',
+        '<%= config.app %>/404.html'
       ]
     },
 
@@ -335,6 +336,7 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            'password-change.html',
             '404.html',
 
             'json/*.json',
@@ -447,6 +449,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           insertRequire: ['sf.b2c.mall.page.main']
         }
@@ -681,6 +684,24 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.gotopay']
         }
+      },
+      passwordchange: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.passwordchange.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.center.change.password',
+            'sf.b2c.mall.page.passwordchange'
+          ],
+          insertRequire: ['sf.b2c.mall.page.passwordchange']
+        }
       }
     }
   });
@@ -771,6 +792,7 @@ module.exports = function (grunt) {
           'requirejs:orderdetail',
           'requirejs:center',
           'requirejs:gotopay',
+          'requirejs:passwordchange',
           'usemin',
           'htmlmin'
         ]);

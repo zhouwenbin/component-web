@@ -83,7 +83,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.find('.tooltip').show();
 
         var getOrder = new SFGetOrder({
-          "orderId": $(element)[0].dataset.orderid
+          "orderId": $(element).eq(0).attr('data-orderid')
         });
         getOrder
           .sendRequest()
@@ -188,7 +188,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '.gotoPay click': function(element, event) {
 
         var that = this;
-        var orderId = element.parent('div#operationarea')[0].dataset.orderid;
+        var orderId = element.parent('div#operationarea')[0].eq(0).attr('data-orderid');
 
         var requestPayV2 = new SFRequestPayV2({
           "orderId": orderId,
@@ -241,13 +241,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       ".viewOrder click": function(element, event) {
-        var orderid = element.parent('div#operationarea')[0].dataset.orderid;
+        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
         window.open("/orderdetail.html?orderid=" + orderid, "_blank");
       },
 
       ".cancelOrder click": function(element, event) {
         var that = this;
-        var orderid = element.parent('div#operationarea')[0].dataset.orderid;
+        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var cancelOrder = new SFCancelOrder({
           "orderId": orderid
         });

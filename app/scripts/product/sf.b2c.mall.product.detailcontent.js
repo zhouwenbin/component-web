@@ -133,7 +133,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': $('.sf-b2c-mall-detail-content')[0].dataset.itemid
+          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')
         });
 
         findRecommendProducts
@@ -180,9 +180,9 @@ define('sf.b2c.mall.product.detailcontent', [
        * [renderSpecInfo 渲染规格信息]
        */
       renderSpecInfo: function() {
-        var specGroups = JSON.parse($('#specArea')[0].dataset.specgroups);
-        var specId = JSON.parse($('#specArea')[0].dataset.skuspectuple);
-        var saleSkuSpecTupleList = JSON.parse($('#specArea')[0].dataset.saleskuspectuplelist);
+        var specGroups = JSON.parse($('#specArea').eq(0).attr('data-specgroups'));
+        var specId = JSON.parse($('#specArea').eq(0).attr('data-skuspectuple'));
+        var saleSkuSpecTupleList = JSON.parse($('#specArea').eq(0).attr('data-saleskuspectuplelist'));
 
         var index = 0;
 
@@ -214,7 +214,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       renderPriceInfo: function() {
         var that = this;
-        var itemid = $('.sf-b2c-mall-detail-content')[0].dataset.itemid;
+        var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
 
         var getProductHotData = new SFGetProductHotData({
           'itemId': itemid
@@ -282,8 +282,8 @@ define('sf.b2c.mall.product.detailcontent', [
         detailContentInfo.input.attr("buyNum", 1);
         detailContentInfo.input.attr("reduceDisable", "disable");
 
-        var logisticsstart = $('#buyInfo')[0].dataset.logisticsstart;
-        var logisticsend = $('#buyInfo')[0].dataset.logisticsend;
+        var logisticsstart = $('#buyInfo').eq(0).attr('data-logisticsstart');
+        var logisticsend = $('#buyInfo').eq(0).attr('data-logisticsend');
 
         if (parseInt(logisticsend, 10) > parseInt(logisticsstart, 10)) {
           detailContentInfo.priceInfo.attr("sendTime", logisticsstart + '-' + logisticsend);
@@ -291,17 +291,16 @@ define('sf.b2c.mall.product.detailcontent', [
           detailContentInfo.priceInfo.attr("sendTime", logisticsstart);
         }
 
-        detailContentInfo.priceInfo.attr("productShape", $('#buyInfo')[0].dataset.productshape);
+        detailContentInfo.priceInfo.attr("productShape", $('#buyInfo').eq(0).attr('data-productshape'));
 
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
       },
 
-      '.btn-buy click': function() {
-
+      '#gotobuy click': function() {
         window.location.href = this.mainUrl + '/order.html?' + $.param({
-          "itemId": $('.sf-b2c-mall-detail-content')[0].dataset.itemid,
-          "saleid": $('.sf-b2c-mall-detail-content')[0].dataset.saleid,
+          "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+          "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
         });
       },
@@ -318,7 +317,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy disable">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy disable" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
@@ -392,7 +391,7 @@ define('sf.b2c.mall.product.detailcontent', [
         $('.thumb-item').removeClass('active');
         element.addClass('active');
 
-        var image = $(element)[0].dataset.bigPic;
+        var image = $(element).eq(0).attr('data-big-pic');
 
         if (this.options.serverRendered) {
           $('#bigPicArea')[0].innerHTML = '<a href="' + image + '"><img src="' + image + '" rel="' + image + '" alt="" class="jqzoom"/></a><span></span>';
@@ -522,8 +521,8 @@ define('sf.b2c.mall.product.detailcontent', [
         }
 
         //获得数据信息
-        var orderId = $(element)[0].parentElement.dataset.specidorder;
-        var specId = $(element)[0].dataset.specid;
+        var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
+        var specId = $(element).eq(0).attr('data-specid');
 
         var group = _.find(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
           return group.specIdOrder == orderId;
@@ -553,7 +552,7 @@ define('sf.b2c.mall.product.detailcontent', [
         });
 
         //重新设定itemid
-        $(".sf-b2c-mall-detail-content")[0].dataset.itemid = saleSkuSpecTuple.itemId;
+        $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid',saleSkuSpecTuple.itemId);
         return saleSkuSpecTuple.skuSpecTuple.skuId;
       },
 
