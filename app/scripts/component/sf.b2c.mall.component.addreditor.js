@@ -100,6 +100,9 @@ define('sf.b2c.mall.component.addreditor', [
             mainTitle: {
               text: '新增收货地址'
             },
+            cancle: {
+              text: '取消添加'
+            },
             error: {
               detail: null,
               zipCode: null,
@@ -136,6 +139,9 @@ define('sf.b2c.mall.component.addreditor', [
             },
             mainTitle: {
               text: '修改收货地址'
+            },
+            cancle: {
+              text: '取消修改'
             },
             error: {
               detail: null,

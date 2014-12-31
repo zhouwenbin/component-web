@@ -36,6 +36,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             mainTitle: {
               text: '添加收货人信息'
             },
+            cancle: {
+              text: '取消添加'
+            },
             error: {
               recName: null,
               credtNum: null
@@ -52,6 +55,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             },
             mainTitle: {
               text: '修改收货人信息'
+            },
+            cancle: {
+              text: '取消修改'
             },
             error: {
               recName: null,
