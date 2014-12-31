@@ -10,9 +10,10 @@ define(
     'sf.b2c.mall.component.receivepersoneditor',
     'md5',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.adapter.receiveperson.list'
+    'sf.b2c.mall.adapter.receiveperson.list',
+    'sf.b2c.mall.api.user.delRecvInfo'
   ],
-  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter) {
+  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter,SFUerDelRecvInfo) {
 
     SFFrameworkComm.register(1);
 
@@ -26,6 +27,7 @@ define(
       init: function(element, options) {
         this.adapter4List = {};
         this.component = {};
+        this.component.delRecvInfo = new SFUerDelRecvInfo();
         this.render(this.data);
       },
 
@@ -86,7 +88,7 @@ define(
        * @return {[type]}
        */
       ".order-edit click": function(element, event) {
-
+        event && event.preventDefault();
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
@@ -96,7 +98,27 @@ define(
         this.component.personEditor.show("editor", person, $(editPersonArea));
         return false;
       },
+      '.order-del click':function(element, event){
+        event && event.preventDefault();
 
+        var index = element.data('index');
+        var person = this.adapter4List.persons.get(index);
+
+        this.adapter4List.persons.input.attr('recId', person.recId);
+        var that = this;
+        this.component.delRecvInfo.setData({
+          recId:person.recId
+        });
+        this.component.delRecvInfo.sendRequest()
+          .done(function(data){
+            if(data.value){
+              that.render(that.adapter4List.persons);
+            }
+          })
+          .fail(function(error){
+            console.error(error);
+          })
+      },
       /**
        * [description 点击新增]
        * @param  {[type]} element
