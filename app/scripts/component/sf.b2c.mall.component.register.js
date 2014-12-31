@@ -406,6 +406,7 @@ define(
             }
           })
           .fail(function (errorCode) {
+            that.getVerifiedCode();
             if (_.isNumber(errorCode)) {
               that.data.attr('msgType', 'icon26');
 
