@@ -208,7 +208,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
-        '<%= config.app %>/gotopay.html'
+        '<%= config.app %>/gotopay.html',
+        '<%= config.app %>/404.html',
       ]
     },
 
@@ -334,6 +335,7 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            '404.html',
 
             'json/*.json',
 
