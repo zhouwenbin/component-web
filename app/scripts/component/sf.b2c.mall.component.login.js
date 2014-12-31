@@ -283,21 +283,22 @@ define(
             }
           })
           .fail(function (error) {
-            if(error === 1000300){
-              that.data.attr('isNeedVerifiedCode',true);
-            }
             var map = {
               '-140': '账户名或登录密码错误，请重新输入',
               '1000010': '账户未注册，立即注册',
               '1000030': '账户名或登录密码错误，请重新输入',
               '1000070': '账户名或登录密码错误，请重新输入',
               '1000100': '验证码错误',
-              '1000110': '账户尚未激活'
+              '1000110': '账户尚未激活',
+              '1000300': '密码输入超过三次'
             };
 
             var errorText = map[error.toString()];
-            if(errorText === '验证码错误'){
+            if(error === 1000100){
               $('#code-error-tips').text(errorText).show();
+            }else if(error === 1000300){
+              that.data.attr('isNeedVerifiedCode',true);
+              $('#username-error-tips').text('账户名或登录密码错误，请重新输入').show();
             }else{
               $('#username-error-tips').text(errorText).show();
             }

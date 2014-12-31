@@ -85,6 +85,7 @@ requirejs.config({
     'placeholders': 'bower_components/Placeholders/build/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'moment':'bower_components/momentjs/min/moment.min',
+    'moment-zh-cn': 'bower_components/momentjs/locale/zh-cn',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -139,6 +140,10 @@ requirejs.config({
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
 
     'sf.helpers':'scripts/util/sf.helpers',
+    'sf.util':'scripts/util/sf.util.fn',
+    'webuploader':'scripts/vendor/vendor.webuploader',
+    'sf.b2c.mall.widget.file.uploader': 'scripts/widget/sf.b2c.mall.widget.file.uploader',
+    'sf.b2c.mall.widget.loading': 'scripts/widget/sf.b2c.mall.widget.loading',
 
     'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',

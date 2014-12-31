@@ -6,6 +6,27 @@
 	height: 513px;
 	background: url(../img/banner1.jpg) no-repeat center;
 }
+.banner1 p{
+	padding-top: 323px;
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+}
+.banner1 p strong{
+	color: #f64142;
+}
+.banner1 a{
+	width: 220px;
+	margin: 0 auto;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	display: block;
+	background: url(../img/btn.png) no-repeat;
+	color: #fff;
+	font-size: 24px;
+	margin-top: 50px;
+}
 .banner2{
 	height: 85px;
 	background: url(../img/banner2.jpg) no-repeat center;
@@ -18,12 +39,12 @@
 	overflow: hidden;
 }
 .m1 .pm{
-	padding-top: 116px;
-	padding-bottom: 87px;
+	padding-top: 62px;
+	padding-bottom: 62px;
 }
 .m1 h1{
 	font-size: 30px;
-	margin-bottom: 71px;
+	margin-bottom: 40px;
 }
 .m1 h1 span{
 	margin: 0 43px;
@@ -38,14 +59,28 @@
 	line-height: 30px;
 	margin-bottom: 50px;
 }
+.m1 p strong{
+	color: #dc3334;
+	font-weight: normal;
+}
 .m1 span{
 	color: #d84c4b;
 }
-.m1 h2{
-	background: url(../img/m1-h2.png) no-repeat center;
-	padding-top: 19px;
-	height: 55px;
-	font-size: 14px;
+.m1 ul{
+	background: url(../img/icon.png) no-repeat center top;
+	padding-top: 35px;
+	font-size: 0;
+	text-align: center;
+	margin: 0 134px;
+}
+.m1 li{
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+	font-size: 12px;
+	color: #575757;
+	width: 16.6%;
+	text-align: center;
 }
 
 .m2{
