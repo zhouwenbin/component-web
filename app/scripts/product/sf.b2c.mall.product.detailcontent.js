@@ -616,17 +616,17 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
-        $('#titleInfo').html(template(this.options.detailContentInfo));
+        $('#recommend2').html(template(this.options.detailContentInfo));
       },
 
       renderDetailattributes: function() {
         var template = can.view.mustache(this.detailattributesTemplate());
-        $('#titleInfo').html(template(this.options.detailContentInfo));
+        $('#detailattributes').html(template(this.options.detailContentInfo));
       },
 
       renderDetail: function() {
         var template = can.view.mustache(this.detailTemplate());
-        $('#titleInfo').html(template(this.options.detailContentInfo));
+        $('#detailcontent').html(template(this.options.detailContentInfo));
       },
 
       recommend2Template: function() {
