@@ -450,33 +450,35 @@ define(
 
         code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
 
-        this.component.sendResetPwdLink.setData({
-          mailId: email,
-          vfCode: code
-        });
+        if (this.checkEmail(email) && this.checkMailCode(code)) {
+          this.component.sendResetPwdLink.setData({
+            mailId: email,
+            vfCode: code
+          });
 
-        this.component.sendResetPwdLink.sendRequest()
-          .done(function (data) {
-            if (data.value) {
-              that.data.attr({
-                msg: '邮件已发送至您的邮箱，请查收',
-                msgType: 'icon26-2'
-              });
-            }else{
-              that.data.attr({
-                msg: ERROR_RETRIEVE_MAP['MAIL'],
-                msgType: 'icon26'
-              })
-            }
-          })
-          .fail(function (errorCode) {
-            if (_.isNumber(errorCode)) {
-              that.data.attr({
-                msg: ERROR_RESND_MAIL_LINK_MAP[errorCode.toString()],
-                msgType: 'icon26'
-              })
-            }
-          })
+          this.component.sendResetPwdLink.sendRequest()
+            .done(function (data) {
+              if (data.value) {
+                that.data.attr({
+                  msg: '邮件已发送至您的邮箱，请查收',
+                  msgType: 'icon26-2'
+                });
+              }else{
+                that.data.attr({
+                  msg: ERROR_RETRIEVE_MAP['MAIL'],
+                  msgType: 'icon26'
+                })
+              }
+            })
+            .fail(function (errorCode) {
+              if (_.isNumber(errorCode)) {
+                that.data.attr({
+                  msg: ERROR_RESND_MAIL_LINK_MAP[errorCode.toString()],
+                  msgType: 'icon26'
+                })
+              }
+            })
+        }
       }
 
     })
