@@ -87,7 +87,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           that.element.find('.mb').append(html);
 
           var paramData = {
-            "itemIds": $('ul.product-list')[0].dataset.itemids
+            itemIds: $('ul.product-list').eq(0).attr('data-itemids')
           };
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
           //获得价格信息
@@ -140,8 +140,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
         //这里只渲染产品的价格，专题的价格服务器端渲染
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
-          if (priceNode.dataset.contenttype == 'PRODUCT') {
-            $(priceNode).html(template(priceMap[priceNode.dataset.itemid]));
+          if ($(priceNode).attr('data-contenttype')== 'PRODUCT') {
+            $(priceNode).html(template(priceMap[$(priceNode).attr('data-itemid')]));
           }
         })
       },
@@ -164,11 +164,10 @@ define('sf.b2c.mall.component.limitedtimesale', [
           _.each(timeNodeList, function(timeNode) {
 
             var endTimeMap = {
-              'PRODUCT': timeNode.dataset.itemid ? (priceMap[timeNode.dataset.itemid] && priceMap[timeNode.dataset.itemid].endTime) : '',
-              'TOPIC': timeNode.dataset.displayendtime
+              'PRODUCT':$(timeNode).attr('data-itemid')? (priceMap[$(timeNode).attr('data-itemid')] && priceMap[$(timeNode).attr('data-itemid')].endTime) : '',
+              'TOPIC': $(timeNode).attr('data-displayendtime')
             }
-
-            var time = that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
+            var time = that.setCountDown(timeNode, distance, endTimeMap[$(timeNode).attr('data-contenttype')]);
             if (time <= 0) {
               var $el = $(timeNode).closest('li').find('.product-r1');
               if($el.length > 0){

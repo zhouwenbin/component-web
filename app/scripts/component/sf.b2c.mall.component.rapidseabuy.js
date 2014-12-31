@@ -173,7 +173,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var priceNodeList = $('ul.product-list #price4ProductClient');
 
           var paramData = {
-            "itemIds": ulNode[0].dataset.itemids
+            "itemIds": $(ulNode[0]).attr('data-itemids')
           };
 
           //渲染价格模块
@@ -187,9 +187,9 @@ define('sf.b2c.mall.component.rapidseabuy', [
             .done(function(data){
               var template = can.view.mustache(that.priceTemplate());
               _.each(priceNodeList, function (priceNode) {
-                if(priceNode.dataset.contenttype == 'PRODUCT')
+                if($(priceNode).attr('data-contenttype') == 'PRODUCT')
                 _.each(data.value, function (priceItem) {
-                  if (priceItem.itemId == priceNode.dataset.itemid) {
+                  if (priceItem.itemId == $(priceNode).attr('data-itemid')) {
                     priceItem.discount = priceItem.sellingPrice * 10 / priceItem.originPrice;
                     $(priceNode).html(template(priceItem));
                   }
