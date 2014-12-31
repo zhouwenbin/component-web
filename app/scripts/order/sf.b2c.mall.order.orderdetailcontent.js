@@ -11,8 +11,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.util',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.updateReceiverInfo',
+    'sf.b2c.mall.api.user.getIDCardUrlList'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList) {
 
     return can.Control.extend({
 
@@ -45,22 +46,31 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var getOrder = new SFGetOrder({
           "orderId": params.orderid
         });
-        getOrder
-          .sendRequest()
-          .done(function(data) {
+
+        var getIDCardUrlList = new SFGetIDCardUrlList();
+
+        can.when(getOrder.sendRequest(), getIDCardUrlList.sendRequest())
+          .done(function(data, idcardList) {
 
             that.options.orderId = data.orderId;
-            that.options.userId = data.orderItem.userId;
+            that.options.recId = data.orderItem.rcvrId;
+
+            var idcardItem = _.find(idcardList.items, function(item) {
+              return item.recId == that.options.recId
+            });
+
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]]
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
-            debugger;
+
             that.options.user = new can.Map();
             that.options.IDCard = {};
-            that.options.IDCard.needUpload = true; //(data.orderItem.rcvrState == 0);
+            that.options.IDCard.needUpload = true; //(data.orderItem.rcvrState == 0 || data.orderItem.rcvrState == 1 || data.orderItem.rcvrState == 3);
             that.options.IDCard.state = data.orderItem.rcvrState;
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
+              //读取身份证的状态
+              that.options.IDCard.state = idcardItem.status;
               that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || ''
               that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
             }
@@ -118,6 +128,20 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               that.component.loading = new loading('.sf-b2c-mall-loading');
               that.setPhotoP();
               that.setPhotoN();
+
+              if (null != idcardItem.credtImgUrl1 && "" != idcardItem.credtImgUrl1) {
+                that.options.user.attr('credtImgUrl1', idcardItem.credtImgUrl1);
+                $('#file-submit-input-photo-p img').attr('src', that.getUserPhotoUrl({
+                  n: idcardItem.credtImgUrl1
+                }))
+              }
+
+              if (null != idcardItem.credtImgUrl2 && "" != idcardItem.credtImgUrl2) {
+                that.options.user.attr('credtImgUrl2', idcardItem.credtImgUrl2);
+                $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
+                  n: idcardItem.credtImgUrl2
+                }))
+              }
             }
           })
           .fail(function(error) {
@@ -341,7 +365,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return false;
       },
 
-      "#orderdetail-save click": function(element, event){
+      "#orderdetail-save click": function(element, event) {
 
         var that = this;
         var user = this.options.user.attr();
@@ -358,7 +382,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var person = {};
         person.credtImgUrl1 = user.credtImgUrl1;
         person.credtImgUrl2 = user.credtImgUrl2;
-        person.recId = this.options.userId;
+        person.recId = this.options.recId;
 
         var updateReceiverInfo = new SFUpdateReceiverInfo(person);
         updateReceiverInfo
