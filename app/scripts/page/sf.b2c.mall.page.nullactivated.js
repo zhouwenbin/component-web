@@ -64,22 +64,20 @@ define(
         }
       },
 
-      expiredTemplate: function () {
+      existedTemplate: function () {
         return '<div class="pb">'+
                 '<div class="pm">'+
                   '<div class="order verification-failure">'+
                     '<h1>{{errorText}}</h1>'+
-                    '<div class="verification-failure-r1">您可以：<a href="index.html#!&lt=login" class="btn btn-send">立即登录</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
+                    '<div class="verification-failure-r1">您可以：<a href="index.html#!&=login" class="btn btn-send">立即登录</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
                     '<span class="icon icon28"></span>'+
                   '</div>'+
                 '</div>'+
               '</div>'
       },
 
-      template: function(errorCode){
-        var map = {
-          '1000020': function () {
-            return '<div class="pb">'+
+      expiredTemplate: function () {
+        return '<div class="pb">'+
                     '<div class="pm">'+
                       '<div class="order verification-failure">'+
                         '<h1>{{errorText}}</h1>'+
@@ -89,7 +87,11 @@ define(
                       '</div>'+
                     '</div>'+
                   '</div>'
-          },
+      },
+
+      template: function(errorCode){
+        var map = {
+          '1000020': this.existedTemplate,
           '1000120': this.expiredTemplate,
           '1000130': this.expiredTemplate,
           '1000140': this.expiredTemplate
