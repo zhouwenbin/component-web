@@ -209,11 +209,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
-<<<<<<< HEAD
         '<%= config.app %>/404.html',
-=======
         '<%= config.app %>/password-change.html'
->>>>>>> FETCH_HEAD
       ]
     },
 
