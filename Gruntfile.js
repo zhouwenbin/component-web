@@ -336,12 +336,8 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
-<<<<<<< HEAD
             '404.html',
-=======
             'password-change.html',
->>>>>>> FETCH_HEAD
-
             'json/*.json',
 
             'styles/fonts/{,*/}*.*',
