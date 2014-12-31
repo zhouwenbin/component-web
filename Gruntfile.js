@@ -338,6 +338,7 @@ module.exports = function (grunt) {
             'gotopay.html',
             '404.html',
             'password-change.html',
+
             'json/*.json',
 
             'styles/fonts/{,*/}*.*',
