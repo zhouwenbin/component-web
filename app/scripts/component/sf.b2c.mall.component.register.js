@@ -24,7 +24,7 @@ define(
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
     var DEFAULT_ACTIVATE_ERROR_MAP = {
-      '1000020':   '手机号已存在，<a href="login.html">立即登录</a>',
+      '1000020':   '邮箱地址已存在，<a href="login.html">立即登录</a>',
       '1000050':   '邮箱地址错误',
       '1000070':   '参数错误',
       '1000100':   '验证码错误',
