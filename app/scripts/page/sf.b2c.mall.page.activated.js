@@ -99,16 +99,17 @@ define(
           linkContent:  window.decodeURIComponent(linkContent)
         });
 
+        var that = this;
         this.component.mailRegister.sendRequest()
           .done(function (data) {
             if (data.csrfToken) {
-              alert('@todo 注册成功')
+              window.location.href = 'index.html'
             }
           })
           .fail(function (errorCode) {
             if (_.isNumber(errorCode)) {
               var errorText = ERROR_REGISTER_MAP[errorCode.toString()];
-              alert('@todo'+errorText)
+              that.data.attr('errorText', errorText);
             }
           })
       },
