@@ -168,7 +168,10 @@ define('sf.b2c.mall.component.limitedtimesale', [
               'TOPIC': timeNode.dataset.displayendtime
             }
 
-            that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
+            var time = that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
+            if (time <= 0) {
+              $(timeNode).closet('.product-r1').append('<div class="mask"></div><span class="icon icon25">售完</span>')
+            }
           })
         }, '1000');
       },
@@ -386,6 +389,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
             timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
           }
         }
+
+        return leftTime;
       },
 
       /**
