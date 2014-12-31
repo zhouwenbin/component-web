@@ -290,6 +290,10 @@ define(
         }
       },
 
+      'input focus': function ($element, event) {
+        this.element.find('#input-mobile-error').hide();
+      },
+
       '#input-mobile-code focus': function ($element, event) {
         this.element.find('#mobile-code-error').hide();
       },
@@ -335,7 +339,11 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                if (errorCode == 1000020) {
+                  that.element.find('#input-mobile-error').html(errorText).show();
+                }else{
+                  that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                }
               }
             })
         }
@@ -400,7 +408,12 @@ define(
           .fail(function (errorCode) {
             if (_.isNumber(errorCode)) {
               that.data.attr('msgType', 'icon26');
-              that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+
+              if (errorCode == 1000020) {
+                that.element.find('#input-mobile-error').html(errorText).show();
+              }else{
+                that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+              }
             }
           })
       },
