@@ -549,7 +549,7 @@ define('sf.b2c.mall.product.detailcontent', [
         });
 
         //重新设定itemid
-        $(".sf-b2c-mall-detail-content")[0].dataset.itemid = saleSkuSpecTuple.itemid;
+        $(".sf-b2c-mall-detail-content")[0].dataset.itemid = saleSkuSpecTuple.itemId;
         return saleSkuSpecTuple.skuSpecTuple.skuId;
       },
 
