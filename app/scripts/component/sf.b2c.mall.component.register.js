@@ -155,7 +155,7 @@ define(
           var arr = email.split('@');
           var siteArr = arr[1].split('.');
 
-          var mailAddr = MAIL_MAP[siteArr[0]];
+          var mailAddr = MAIL_MAP[siteArr[0].toLowerCase()];
           return mailAddr;
         }
       },
