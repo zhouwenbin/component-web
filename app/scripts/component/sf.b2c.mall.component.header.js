@@ -37,13 +37,13 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.component = {};
       this.component.modal = new SFModal('body');
 
-      if ($.cookie('ct') == 1) {
+      if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
-          user: null
+          isUserLogin: true
         }));
-      } else {
+      }else{
         this.data = new can.Map(_.extend(this.defaults.nologin, {
-          user: null
+          isUserLogin: false
         }));
       }
 
@@ -133,6 +133,24 @@ define('sf.b2c.mall.component.header', ['jquery',
       } else {
         this.showLogin();
       }
+    },
+
+    '#user-login click': function (element, event) {
+      event && event.preventDefault();
+      this.showLogin();
+    },
+
+    '#user-register click': function (element, event) {
+      event && event.preventDefault();
+      this.showRegister();
+    },
+
+    showRegister: function () {
+      this.component.modal.show({
+        title: '登录顺丰海淘',
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="register.html">'
+      });
+      this.setIframe.call(this);
     },
 
     showLogin: function() {
