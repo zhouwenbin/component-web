@@ -17,7 +17,7 @@ define(
         'MALE': '男',
         'FEMALE': '女'
       };
-      
+
       return can.Control.extend({
 
         init:function(){

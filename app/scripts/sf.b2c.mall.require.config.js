@@ -62,6 +62,7 @@ requirejs.config({
     'sf.b2c.mall.api.user.mobileRegister':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.needVfCode':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.needVfCode',
     'sf.b2c.mall.api.user.updateUserInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.updateUserInfo',
+    'sf.b2c.mall.api.user.delRecvInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.delRecvInfo',
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
@@ -86,6 +87,7 @@ requirejs.config({
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'moment':'bower_components/momentjs/min/moment.min',
     'moment-zh-cn': 'bower_components/momentjs/locale/zh-cn',
+    'fastclick': 'bower_components/fastclick/lib/fastclick',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
