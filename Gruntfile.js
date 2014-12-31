@@ -430,7 +430,7 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
-          optimize: "none",
+          // optimize: "none",
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
@@ -476,6 +476,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.product.breadscrumb',
             'sf.b2c.mall.product.detailcontent',
             'vendor.jquery.imagezoom',
@@ -536,6 +537,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.page.activated'
           ],
           insertRequire: ['sf.b2c.mall.page.activated']
@@ -550,6 +552,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.page.nullactivated'
           ],
           insertRequire: ['sf.b2c.mall.page.nullactivated']
@@ -557,6 +560,7 @@ module.exports = function (grunt) {
       },
       retrieve: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.min.js',
@@ -564,6 +568,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.component.retrieve',
             'sf.b2c.mall.page.retrieve',
           ],
@@ -582,6 +587,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.order.step',
             'sf.b2c.mall.order.selectreceiveperson',
             'sf.b2c.mall.order.selectreceiveaddr',
@@ -607,6 +613,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.order.step',
             'sf.b2c.mall.order.selectreceiveperson',
             'sf.b2c.mall.order.selectreceiveaddr',
@@ -633,6 +640,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.order.orderdetailcontent',
             'sf.helpers',
             'moment',
@@ -653,6 +661,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.center.change.userinfo',
             'sf.b2c.mall.center.receiveperson',
             'sf.b2c.mall.center.receiveaddr',
@@ -677,6 +686,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.order.step',
             'sf.helpers',
             'moment',
@@ -697,6 +707,7 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
             'sf.b2c.mall.center.change.password',
             'sf.b2c.mall.page.passwordchange'
           ],
