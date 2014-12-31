@@ -580,7 +580,7 @@ define('sf.b2c.mall.product.detailcontent', [
             console.error(error);
           })
           .done(function(skuInfoData) {
-            that.options.detailContentInfo.itemInfo.attr("basicInfo", skuInfoData);
+            that.options.detailContentInfo.itemInfo.attr("basicInfo", new can.Map(skuInfoData));
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
             that.renderPriceInfo();
@@ -621,7 +621,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderDetailattributes: function() {
         var template = can.view.mustache(this.detailattributesTemplate());
-        $('#detailattributes').html(template(this.options.detailContentInfo));
+        $('#detailattributes').html(template(this.options.detailContentInfo.attr()));
       },
 
       renderDetail: function() {
