@@ -90,7 +90,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           that.element.find('.mb').append(html);
 
           var paramData = {
-            "itemIds": $('ul.product-list')[0].dataset.itemids
+            itemIds: $('ul.product-list').eq(0).attr('data-itemids')
           };
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
           //获得价格信息
@@ -143,8 +143,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
         //这里只渲染产品的价格，专题的价格服务器端渲染
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
-          if (priceNode.dataset.contenttype == 'PRODUCT') {
-            $(priceNode).html(template(priceMap[priceNode.dataset.itemid]));
+          if ($(priceNode).attr('data-contenttype')== 'PRODUCT') {
+            $(priceNode).html(template(priceMap[$(priceNode).attr('data-itemid')]));
           }
         })
       },
@@ -167,11 +167,18 @@ define('sf.b2c.mall.component.limitedtimesale', [
           _.each(timeNodeList, function(timeNode) {
 
             var endTimeMap = {
-              'PRODUCT': timeNode.dataset.itemid ? (priceMap[timeNode.dataset.itemid] && priceMap[timeNode.dataset.itemid].endTime) : '',
-              'TOPIC': timeNode.dataset.displayendtime
+              'PRODUCT':$(timeNode).attr('data-itemid')? (priceMap[$(timeNode).attr('data-itemid')] && priceMap[$(timeNode).attr('data-itemid')].endTime) : '',
+              'TOPIC': $(timeNode).attr('data-displayendtime')
             }
-
-            that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
+            var time = that.setCountDown(timeNode, distance, endTimeMap[$(timeNode).attr('data-contenttype')]);
+            if (time <= 0) {
+              var $el = $(timeNode).closest('li').find('.product-r1');
+              if($el.length > 0){
+                if ($el.find('.mask').length == 0) {
+                  $el.append('<div class="mask"></div><span class="icon icon37">超时</span>');
+                }
+              }
+            }
           })
         }, '1000');
       },
@@ -361,20 +368,6 @@ define('sf.b2c.mall.component.limitedtimesale', [
        */
       setCountDown: function(timeNode, distance, endDate) {
 
-        // endDate = 1429933141007;
-        // var leftTime = endDate - new Date().getTime() - distance;
-
-        // if (leftTime > 0) {
-        //   // 12月26日（明天）12:00 开始
-        //   var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
-
-        //   if (timeNode.attr) {
-        //     timeNode.attr('time', time);
-        //   }else{
-        //     timeNode.innerHTML = time;
-        //   }
-        // };
-
         var leftTime = endDate - new Date().getTime() - distance;
 
         if (leftTime > 0) {
@@ -388,7 +381,15 @@ define('sf.b2c.mall.component.limitedtimesale', [
           } else {
             timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
           }
+        }else{
+          if (timeNode.attr) {
+            timeNode.attr("抢购结束");
+          } else {
+            timeNode.innerHTML = '<span class="icon icon4"></span>抢购结束';
+          }
         }
+
+        return leftTime;
       },
 
       /**

@@ -11,9 +11,7 @@ define(
 
       init: function (element, options) {
         this.options.sliderIndex = 0;
-        if (this.options.imgs && this.options.imgs.length > 0) {
-          this.render(this.options);
-        }
+        this.render(this.options);
       },
 
       /**
@@ -96,9 +94,10 @@ define(
       },
 
       render: function () {
-        // this.element.html(this.options.tpl, this.options);
-        var template = can.view.mustache(this.template())
-        this.element.html(template(this.options));
+        if (this.options.imgs && this.options.imgs.length > 0) {
+          var template = can.view.mustache(this.template())
+          this.element.html(template(this.options));
+        }
 
         this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
         this.element.hover(_.bind(this.hoverOver, this), _.bind(this.hoverOut, this));

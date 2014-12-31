@@ -436,6 +436,7 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
+          optimize: "none",
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
