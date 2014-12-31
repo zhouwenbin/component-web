@@ -170,7 +170,12 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
             var time = that.setCountDown(timeNode, distance, endTimeMap[timeNode.dataset.contenttype]);
             if (time <= 0) {
-              $(timeNode).closet('.product-r1').append('<div class="mask"></div><span class="icon icon25">售完</span>')
+              var $el = $(timeNode).closest('li').find('.product-r1');
+              if($el.length > 0){
+                if ($el.find('.mask').length == 0) {
+                  $el.append('<div class="mask"></div><span class="icon icon37">超时</span>');
+                }
+              }
             }
           })
         }, '1000');
@@ -361,20 +366,6 @@ define('sf.b2c.mall.component.limitedtimesale', [
        */
       setCountDown: function(timeNode, distance, endDate) {
 
-        // endDate = 1429933141007;
-        // var leftTime = endDate - new Date().getTime() - distance;
-
-        // if (leftTime > 0) {
-        //   // 12月26日（明天）12:00 开始
-        //   var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
-
-        //   if (timeNode.attr) {
-        //     timeNode.attr('time', time);
-        //   }else{
-        //     timeNode.innerHTML = time;
-        //   }
-        // };
-
         var leftTime = endDate - new Date().getTime() - distance;
 
         if (leftTime > 0) {
@@ -387,6 +378,12 @@ define('sf.b2c.mall.component.limitedtimesale', [
             timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
           } else {
             timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+          }
+        }else{
+          if (timeNode.attr) {
+            timeNode.attr("抢购结束");
+          } else {
+            timeNode.innerHTML = '<span class="icon icon4"></span>抢购结束';
           }
         }
 
