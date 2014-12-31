@@ -35,6 +35,11 @@ define(
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_NOT_SAME = '重复密码输入有误，请重新输入';
 
+    var ERROR_RETRIEVE_MAP = {
+      'MOBILE': '手机号或验证码错误',
+      'MAIL': '邮箱或验证码错误'
+    }
+
     var DEFAULT_DOWN_SMS_ERROR_MAP = {
       '1000010' : '账户名不存在',
       '1000020' : '手机号已存在，<a href="login.html">立即登陆</a>',
@@ -282,6 +287,11 @@ define(
               if (data.value) {
                 window.location.href = window.location.pathname + '?' + $.param({accountId: mobile, type: 'MOBILE', sms: sms}) + '#!&tag=setpwd'
                 // can.route.attr('tag', 'setpwd')
+              }else{
+                that.data.attr({
+                  msg: ERROR_RETRIEVE_MAP['MOBILE'],
+                  msgType: 'icon26'
+                })
               }
             })
             .fail(function (errorCode) {
@@ -452,6 +462,11 @@ define(
                 msg: '邮件已发送至您的邮箱，请查收',
                 msgType: 'icon26-2'
               });
+            }else{
+              that.data.attr({
+                msg: ERROR_RETRIEVE_MAP['MAIL'],
+                msgType: 'icon26'
+              })
             }
           })
           .fail(function (errorCode) {
