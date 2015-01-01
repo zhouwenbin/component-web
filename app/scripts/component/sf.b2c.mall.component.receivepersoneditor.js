@@ -98,7 +98,8 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         .fail(function(error) {
           console.error(error);
           if(error === 1000310){
-            window.alert('可添加的收货人信息已达到上线')
+            window.alert('可添加的收货人信息已达到上线');
+            return false;
           }
         });
     },
@@ -151,7 +152,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         $('#recnameerror').show();
         return false;
       }
-      var testRecName = /^[\u4e00-\u9fa5]{0,8}$/.test($.trim(person.recName));
+      var testRecName = /^[\u4e00-\u9fa5]{0,10}$/.test($.trim(person.recName));
       if (testRecName) {} else {
         this.adapter.person.attr("error", {
           "recName": '请填写身份证上真实姓名'
