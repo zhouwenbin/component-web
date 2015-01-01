@@ -199,6 +199,9 @@ define(
        * @return {String} 返回MAIL或者MOBILE
        */
       checkTypeOfAccount: function (account) {
+
+        account = $.trim(account);
+
         // 检查账号的类型返回MOBILE或者MAIL
         var isTelNum =/^1\d{10}$/.test(account);
         var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(account);
@@ -341,7 +344,7 @@ define(
             var vfCode = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer:this.data.attr('verifiedCode')});
 
             this.component.login.setData({
-              accountId: this.data.attr('username'),
+              accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
               password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
               vfCode: vfCode
@@ -352,7 +355,7 @@ define(
         }else{
           if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password)) {
             this.component.login.setData({
-              accountId: this.data.attr('username'),
+              accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
               password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
             });
