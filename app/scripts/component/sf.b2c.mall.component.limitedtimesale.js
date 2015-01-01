@@ -171,14 +171,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
               'TOPIC': $(timeNode).attr('data-displayendtime')
             }
             var time = that.setCountDown(timeNode, distance, endTimeMap[$(timeNode).attr('data-contenttype')]);
-            if (time <= 0) {
-              var $el = $(timeNode).closest('li').find('.product-r1');
-              if($el.length > 0){
-                if ($el.find('.mask').length == 0) {
-                  $el.append('<div class="mask"></div><span class="icon icon37">超时</span>');
-                }
-              }
-            }
+            // if (time <= 0) {
+            //   var $el = $(timeNode).closest('li').find('.product-r1');
+            //   if($el.length > 0){
+            //     if ($el.find('.mask').length == 0) {
+            //       $el.append('<div class="mask"></div><span class="icon icon37">超时</span>');
+            //     }
+            //   }
+            // }
           })
         }, '1000');
       },
