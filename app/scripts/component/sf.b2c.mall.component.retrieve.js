@@ -23,8 +23,8 @@ define(
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
-    var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
-    var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
+    var ERROR_NO_INPUT_MOBILE = '请输入手机号';
+    var ERROR_INPUT_MOBILE = '手机号填写有误';
     var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
@@ -41,7 +41,7 @@ define(
     }
 
     var DEFAULT_DOWN_SMS_ERROR_MAP = {
-      '1000010' : '账户名不存在',
+      '1000010' : '手机号不存在',
       '1000020' : '手机号已存在，<a href="login.html">立即登陆</a>',
       '1000070' : '参数错误',
       '1000230' : '手机号错误，请输入正确的手机号',
