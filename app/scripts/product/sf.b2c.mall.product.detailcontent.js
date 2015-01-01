@@ -355,7 +355,7 @@ define('sf.b2c.mall.product.detailcontent', [
       itemPriceTemplate: function() {
         return '<div class="mr1">单价：<strong>¥ {{sf.price sellingPrice}}</strong><span>（含税）</span>{{#if showDiscount}}<del>¥ {{sf.price originPrice}}</del>{{/if}}</div>' +
           '{{#if showDiscount}}' +
-          '<div class="mr2"><span>{{discount}}折</span>已降{{lessspend}}元</div>' +
+          '<div class="mr2"><span>{{discount}}折</span>已降{{sf.price lessspend}}元</div>' +
           '{{/if}}';
       },
 

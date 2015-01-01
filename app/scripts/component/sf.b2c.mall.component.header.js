@@ -21,10 +21,10 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     defaults: {
       login: {
-        myOrder: SFConfig.setting.api.mailurl + '/orderList.html'
+        myOrder: SFConfig.setting.api.mainurl + '/orderList.html'
       },
       nologin: {
-        myOrder: SFConfig.setting.api.mailurl + 'login.html'
+        myOrder: SFConfig.setting.api.mainurl + 'login.html'
       }
     },
 
@@ -39,11 +39,13 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
-          isUserLogin: true
+          isUserLogin: true,
+          domain: SFConfig.setting.api.mainurl
         }));
       }else{
         this.data = new can.Map(_.extend(this.defaults.nologin, {
-          isUserLogin: false
+          isUserLogin: false,
+          domain: SFConfig.setting.api.mainurl
         }));
       }
 
@@ -119,7 +121,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           .done(function(data) {
             that.data.attr('user', null);
             window.localStorage.removeItem('csrfToken');
-            window.location.href = 'index.html';
+            window.location.href = SFConfig.setting.api.mainurl + 'index.html';
             // window.location.reload();
             // window.location.href = SFConfig.setting.api.mailurl + 'login.html'
           })
