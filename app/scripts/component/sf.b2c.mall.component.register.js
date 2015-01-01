@@ -24,7 +24,7 @@ define(
     var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
     var DEFAULT_ACTIVATE_ERROR_MAP = {
-      '1000020':   '手机号已存在，<a href="login.html">立即登录</a>',
+      '1000020':   '邮箱地址已存在，<a href="login.html">立即登录</a>',
       '1000050':   '邮箱地址错误',
       '1000070':   '参数错误',
       '1000100':   '验证码错误',
@@ -155,7 +155,7 @@ define(
           var arr = email.split('@');
           var siteArr = arr[1].split('.');
 
-          var mailAddr = MAIL_MAP[siteArr[0]];
+          var mailAddr = MAIL_MAP[siteArr[0].toLowerCase()];
           return mailAddr;
         }
       },
@@ -290,6 +290,10 @@ define(
         }
       },
 
+      'input focus': function ($element, event) {
+        this.element.find('#input-mobile-error').hide();
+      },
+
       '#input-mobile-code focus': function ($element, event) {
         this.element.find('#mobile-code-error').hide();
       },
@@ -335,7 +339,11 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
-                that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                if (errorCode == 1000020) {
+                  that.element.find('#input-mobile-error').html(errorText).show();
+                }else{
+                  that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                }
               }
             })
         }
@@ -398,9 +406,15 @@ define(
             }
           })
           .fail(function (errorCode) {
+            that.getVerifiedCode();
             if (_.isNumber(errorCode)) {
               that.data.attr('msgType', 'icon26');
-              that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+
+              if (errorCode == 1000020) {
+                that.element.find('#input-mobile-error').html(errorText).show();
+              }else{
+                that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+              }
             }
           })
       },

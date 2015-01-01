@@ -55,11 +55,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 order.showRouter = that.routeMap[order.orderStatus];
                 order.orderStatus = that.statsMap[order.orderStatus];
+                order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
               }
             })
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
             that.element.html(html);
+
+            //var noDataTemplate = can.view.mustache(that.noDataTemplate());
+            //that.element.html(noDataTemplate());
 
             //分页 保留 已经调通 误删 后面设计会给样式
             // that.options.page = new PaginationAdapter();
@@ -70,6 +74,22 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .fail(function(error) {
             console.error(error);
           })
+      },
+
+      uploadIDCardTemplateMap: {
+        0: '<div class="table-1-upload">' +
+          '<span class="icon icon26">上传身份证照片</span>' +
+          '<div class="tooltip">' +
+          '<h4>请在“查看订单”中上传身份照片</h4>' +
+          '<h5>为什么要传身份证？</h5>' +
+          '<p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>' +
+          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
+          '</div>' +
+          '</div>'
+      },
+
+      noDataTemplate: function() {
+        return '<p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>'
       },
 
       /**
@@ -166,7 +186,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'AUTO_CANCEL': ['INFO'],
         'USER_CANCEL': ['INFO'],
         'AUDITING': ['INFO', 'CANCEL'],
-        'OPERATION_CANCEL': ['INFO', 'CANCEL'],
+        'OPERATION_CANCEL': ['INFO'],
         'BUYING': ['INFO'],
         'BUYING_EXCEPTION': ['INFO'],
         'WAIT_SHIPPING': ['INFO'],
@@ -188,7 +208,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '.gotoPay click': function(element, event) {
 
         var that = this;
-        var orderId = element.parent('div#operationarea')[0].eq(0).attr('data-orderid');
+        var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
 
         var requestPayV2 = new SFRequestPayV2({
           "orderId": orderId,
@@ -197,48 +217,41 @@ define('sf.b2c.mall.order.orderlistcontent', [
         requestPayV2
           .sendRequest()
           .done(function(data) {
-            if (sf.util.access(data) && data.content[0]) {
-              var payinfo = data.content[0];
-
-              window.location.href = payinfo.url + '?' + payinfo.postBody;
-
-              //轮训订单状态，看是否支付成功
-              that.request.call(that, orderInfo.orderId);
-            } else {
-              var errorCode = data.stat.stateList[0].code;
-              var errorText = that.payErrorMap[errorCode.toString()] || '支付失败';
-              console.error(errorText);
-              var template = can.view.mustache(this.gotopayTemplate());
-              $('#gotopay').html(template());
-            }
+            window.location.href = data.url + '?' + data.postBody;
+            //that.request.call(that, that.options.orderid);
           })
           .fail(function(error) {
-            console.error(error);
+            //var errorText = that.payErrorMap[error.toString()] || '支付失败';
+            console.error(errorText);
+            var template = can.view.mustache(this.gotopayTemplate());
+            $('#gotopay').html(template());
           });
+
+        return false;
       },
 
-      request: function(orderId) {
-        var that = this;
-        setTimeout(function() {
+      // request: function(orderId) {
+      //   var that = this;
+      //   setTimeout(function() {
 
-          var getOrder = new SFGetOrder({
-            "orderId": orderId
-          });
-          getOrder
-            .sendRequest()
-            .done(function(data) {
-              var order = data.content[0].basicInfo;
-              if (order.orderStatus == 'AUDITING') {
-                window.location.href = '/orderlist.html';
-              } else {
-                that.request.call(that, orderId);
-              }
-            })
-            .fail(function(error) {
-              that.request.call(that, orderId);
-            })
-        }, 1000);
-      },
+      //     var getOrder = new SFGetOrder({
+      //       "orderId": orderId
+      //     });
+      //     getOrder
+      //       .sendRequest()
+      //       .done(function(data) {
+      //         var order = data.content[0].basicInfo;
+      //         if (order.orderStatus == 'AUDITING') {
+      //           window.location.href = '/orderlist.html';
+      //         } else {
+      //           that.request.call(that, orderId);
+      //         }
+      //       })
+      //       .fail(function(error) {
+      //         that.request.call(that, orderId);
+      //       })
+      //   }, 1000);
+      // },
 
       ".viewOrder click": function(element, event) {
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
@@ -260,6 +273,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .fail(function(error) {
             console.error(error);
           })
+        return false;
       },
 
       /**

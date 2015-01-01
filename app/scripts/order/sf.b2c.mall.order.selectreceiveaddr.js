@@ -41,7 +41,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           });
 
           //进行倒排序
-          that.adapter4List.addrs.addressList.reverse();
+          //that.adapter4List.addrs.addressList.reverse();
 
           if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
             that.adapter4List.addrs.addressList[0].attr("active", "active");
@@ -122,9 +122,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     ".btn-add click": function(element, event) {
-
       //隐藏其它编辑和新增状态
-
+      $("#addrList").find(".order-r2").hide();
       $("#addAdrArea").show();
       this.component.addressEditor.show('create', null, $("#addAdrArea"));
       console.log(this.component.addressEditor.adapter);

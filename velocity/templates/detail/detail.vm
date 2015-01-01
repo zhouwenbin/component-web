@@ -120,9 +120,11 @@
             <!--推荐商品-->
             <!--小编推荐-->
             <div class="recommend2" id="recommend2">
-                <h2>小编推荐</h2>
+              #if($!{productInfo.skuInfo.recommend})
+                  <h2>小编推荐</h2>
 
-                <p>$!{productInfo.skuInfo.recommend}</p>
+                  <p>$!{productInfo.skuInfo.recommend}</p>
+              #end
             </div>
             <!--小编推荐-->
             <!--详情-->
