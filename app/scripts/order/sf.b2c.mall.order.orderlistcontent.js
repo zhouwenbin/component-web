@@ -51,7 +51,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             _.each(that.options.orderlist, function(order) {
               if (order.orderGoodsItemList[0]) {
                 order.goodsName = order.orderGoodsItemList[0].goodsName;
-                order.imageUrl = order.orderGoodsItemList[0].imageUrl;
+                order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
                 order.spec = order.orderGoodsItemList[0].spec;
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 order.showRouter = that.routeMap[order.orderStatus];
