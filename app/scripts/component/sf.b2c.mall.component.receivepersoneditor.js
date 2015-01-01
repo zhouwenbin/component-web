@@ -121,12 +121,18 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
       return false;
     },
-
+    '#recRealName focus':function(element, event){
+      event && event.preventDefault();
+      $('#recnameerror').hide();
+    },
+    '#identity focus':function(element, event){
+      event && event.preventDefault();
+      $('#credtnumerror').hide();
+    },
     '#personSave click': function(element, event) {
       event && event.preventDefault();
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
-      $('#cellphoneerror').hide();
 
       var person = this.adapter.person.input.attr();
 
