@@ -74,6 +74,11 @@ define(
           searchValue = null;
         }
 
+        if (null != searchValue && searchValue.length > 20){
+          alert("搜索关键词太长，请小于20个字符！");
+          return false;
+        }
+
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {"searchValue":searchValue});
       }
     });

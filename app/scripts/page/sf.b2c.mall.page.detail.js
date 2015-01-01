@@ -30,17 +30,20 @@ define(
 
         //详情页
         //看服务器端是否渲染了
-        var serverRendered = _.find($('.sf-b2c-mall-detail-content')[0].classList, function(item) {
-          return item == 'serverRendered'
-        })
+        var serverRendered = _.str.include($('.sf-b2c-mall-detail-content')[0].className, 'serverRendered')
+
+        //classlist IE不兼容
+        // var serverRendered = _.find($('.sf-b2c-mall-detail-content')[0].className, function(item) {
+        //   return item == 'serverRendered'
+        // })
 
         //客户端渲染了 服务端就不要渲染了
-        if (typeof serverRendered == 'undefined'){
+        if (!serverRendered){
           //面包屑
           new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
         }
 
-        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': (typeof serverRendered != 'undefined')});
+        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': serverRendered});
 
       },
 

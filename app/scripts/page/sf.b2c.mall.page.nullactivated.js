@@ -100,7 +100,9 @@ define(
         return map[errorCode];
       },
 
-      '#resend click': function () {
+      '#resend click': function ($element, event) {
+        event && event.preventDefault();
+
         var that = this;
         this.component.sendActivateMail.setData({
           mailId: this.data.attr('email'),

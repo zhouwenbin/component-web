@@ -120,6 +120,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      extra: {
+        files:[{
+          dot: true,
+          src: [
+            '<%= config.dist %>/base',
+            '<%= config.dist %>/com',
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -209,8 +218,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
-        '<%= config.app %>/password-change.html',
-        '<%= config.app %>/404.html'
+        '<%= config.app %>/404.html',
+        '<%= config.app %>/password-change.html'
       ]
     },
 
@@ -227,6 +236,9 @@ module.exports = function (grunt) {
             if(block.dest === 'base'){
               block.dest = config.base.dest;
               block.src = config.base.src
+            }else if (block.dest === 'com') {
+              block.dest = config.com;
+              block.src = config.com
             }
 
             return '<script src="'+block.dest+'"></script>';
@@ -336,18 +348,22 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
-            'password-change.html',
             '404.html',
+            'password-change.html',
 
             'json/*.json',
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
+            '<%= config.com %>',
             'templates/**/*.mustache'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
+        }, {
+          src: '<%= config.app %>/scripts/vendor/Uploader.swf',
+          dest: '<%= config.dist %>/scripts/Uploader.swf'
         }]
       },
       styles: {
@@ -473,6 +489,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
@@ -481,6 +500,8 @@ module.exports = function (grunt) {
             'sf.b2c.mall.product.detailcontent',
             'vendor.jquery.imagezoom',
             'sf.b2c.mall.adapter.detailcontent',
+            'moment',
+            'sf.helpers',
             'sf.b2c.mall.page.detail'
           ],
           insertRequire: ['sf.b2c.mall.page.detail']
@@ -772,6 +793,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
       var arr = filename.split('.')
+      if (arr[2] == 'com') {
+        config.com = 'scripts/base/'+filename
+      }
+
       if (filename.indexOf(target) > -1 && arr[2] == target) {
         config.target = target;
         config.base = {
@@ -805,7 +830,8 @@ module.exports = function (grunt) {
           'requirejs:gotopay',
           'requirejs:passwordchange',
           'usemin',
-          'htmlmin'
+          'htmlmin',
+          'clean:extra'
         ]);
       }
     })
