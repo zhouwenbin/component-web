@@ -70,6 +70,16 @@ define('sf.b2c.mall.order.iteminfo', [
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
       var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
 
+      if (typeof personid == 'undefined'){
+        alert('没有选择收货人！');
+        return false;
+      }
+
+      if (typeof addressid == 'undefined'){
+        alert('没有选择收货地址！');
+        return false;
+      }
+
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();
 
