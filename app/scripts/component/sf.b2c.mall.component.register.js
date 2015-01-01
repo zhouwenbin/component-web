@@ -339,10 +339,11 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
+                var errorText = DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText;
                 if (errorCode == 1000020) {
                   that.element.find('#input-mobile-error').html(errorText).show();
                 }else{
-                  that.element.find('#mobile-register-error').html(DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
+                  that.element.find('#mobile-register-error').html(errorText).show();
                 }
               }
             })
@@ -409,11 +410,11 @@ define(
             that.getVerifiedCode();
             if (_.isNumber(errorCode)) {
               that.data.attr('msgType', 'icon26');
-
+              var errorText = DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()]
               if (errorCode == 1000020) {
                 that.element.find('#input-mobile-error').html(errorText).show();
               }else{
-                that.data.attr('msg', DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()])
+                that.data.attr('msg', errorText)
               }
             }
           })
