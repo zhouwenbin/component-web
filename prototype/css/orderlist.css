@@ -85,15 +85,13 @@
 	margin-top: 28px;
 	position: relative;;
 }
-/*.table-1-logistics:hover .tooltip{
-	display: block;
-}*/
 .table-1 .tooltip{
 	background: #fff;
 	position: absolute;
 	left: -136px;
 	top: 31px;
 	display: none;
+	z-index: 1;
 }
 .table-1 .icon16-4{
 	border-bottom-color: #fff;
