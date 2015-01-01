@@ -61,7 +61,7 @@ define(
             });
 
             //进行倒排序
-            that.adapter4List.persons.personList.reverse();
+            //that.adapter4List.persons.personList.reverse();
 
             if (that.adapter4List.persons.personList != null && that.adapter4List.persons.personList.length > 0) {
               that.adapter4List.persons.attr("hasData", true);

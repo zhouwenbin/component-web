@@ -64,7 +64,7 @@ define('sf.b2c.mall.center.receiveaddr', [
             });
 
             //进行倒排序
-            that.adapter4List.addrs.addressList.reverse();
+            //that.adapter4List.addrs.addressList.reverse();
 
             if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
               that.adapter4List.addrs.attr("hasData", true);
