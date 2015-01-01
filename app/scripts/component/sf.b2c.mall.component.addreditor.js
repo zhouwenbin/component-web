@@ -249,6 +249,14 @@ define('sf.b2c.mall.component.addreditor', [
       return false;
     },
 
+    '#address focus':function(element, event){
+      event && event.preventDefault();
+      $('#detailerror').hide();
+    },
+    '#cellphone focus':function(element, event){
+      event && event.preventDefault();
+      $('#cellphoneerror').hide();
+    },
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
