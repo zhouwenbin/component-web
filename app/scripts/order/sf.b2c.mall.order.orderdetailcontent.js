@@ -119,6 +119,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               item.totalPrice = item.price * item.quantity;
             })
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
+
+            //是否是宁波保税，是得话才展示税额
+            that.options.showTax = (that.options.productList[0].abbreviation == 'NBBS');
             that.options.shouldPayPrice = that.options.allTotalPrice;
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
