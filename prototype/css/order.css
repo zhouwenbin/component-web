@@ -87,6 +87,7 @@
 .order-b-1{
 	padding:14px 24px;
 }
+
 .order-b .icon30{
 	position:absolute;
 	right: 21px;
@@ -239,4 +240,7 @@
 	position: absolute;
 	right: 56px;
 	top: -44px;
+}
+.order-b-1 .icon29{
+	cursor: inherit;
 }
