@@ -95,6 +95,9 @@ define('sf.b2c.mall.center.receiveaddr', [
         var addr = this.adapter4List.addrs.get(index);
         this.adapter4List.addrs.input.attr('addrId', addr.addrId);
 
+        $('#editAdrArea').hide();
+        $('#addAdrArea').hide();
+
         var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
         editAdrArea.show();
         this.component.addressEditor.show("editor", addr, $(editAdrArea));
@@ -130,7 +133,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       ".btn-add click": function(element, event) {
 
         //隐藏其它编辑和新增状态
-
+        $('#editAdrArea').hide();
         $("#addAdrArea").show();
         this.component.addressEditor.show('create', null, $("#addAdrArea"));
         return false;

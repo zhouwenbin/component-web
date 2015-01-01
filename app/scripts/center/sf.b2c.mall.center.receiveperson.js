@@ -93,6 +93,9 @@ define(
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
 
+        $('#editPersonArea').hide();
+        $('#addPersonArea').hide();
+
         var editPersonArea = element.parents("li[name='personEach']").find("#editPersonArea");
         editPersonArea.show();
         this.component.personEditor.show("editor", person, $(editPersonArea));
@@ -126,6 +129,7 @@ define(
        * @return {[type]}
        */
       ".btn-add click": function(element, event) {
+        $('#editPersonArea').hide();
         $("#addPersonArea").show();
         this.component.personEditor.show('create', null, $("#addPersonArea"));
         return false;
