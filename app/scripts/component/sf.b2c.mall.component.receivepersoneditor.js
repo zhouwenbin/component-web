@@ -13,6 +13,12 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       this.onSuccess = this.options.onSuccess;
     },
 
+    idErrorMap: {
+      //"1000070": "参数错误",
+      "1000200": "该身份证信息已存在！",
+      "1000280": "身份证号码错误！"
+    },
+
     /**
      * @description 对页面进行渲染
      * @param  {Map} data 渲染页面的数据
@@ -36,6 +42,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             mainTitle: {
               text: '添加收货人信息'
             },
+            cancle: {
+              text: '取消添加'
+            },
             error: {
               recName: null,
               credtNum: null
@@ -52,6 +61,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             },
             mainTitle: {
               text: '修改收货人信息'
+            },
+            cancle: {
+              text: '取消修改'
             },
             error: {
               recName: null,
@@ -80,33 +92,42 @@ define('sf.b2c.mall.component.receivepersoneditor', [
     },
 
     add: function(person) {
+      var def = can.Deferred();
       var that = this;
 
       var createReceiverInfo = new SFCreateReceiverInfo(person);
       createReceiverInfo
         .sendRequest()
         .done(function(data) {
-          that.hide();
-          that.onSuccess();
+          def.resolve(data);
+          //that.hide();
+          //that.onSuccess();
         })
         .fail(function(error) {
+          def.reject(error);
           console.error(error)
         });
+      return def;
     },
 
     update: function(person) {
+      var def = can.Deferred();
       var that = this;
 
       var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       updateReceiverInfo
         .sendRequest()
         .done(function(data) {
-          that.hide();
-          that.onSuccess();
+          def.resolve(data);
+          //that.hide();
+          //that.onSuccess();
         })
         .fail(function(error) {
+          def.reject(error);
           console.error(error)
         });
+
+      return def;
     },
 
     '#personSaveCancel click': function(element, event) {
@@ -115,12 +136,18 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
       return false;
     },
-
+    '#recRealName focus':function(element, event){
+      event && event.preventDefault();
+      $('#recnameerror').hide();
+    },
+    '#identity focus':function(element, event){
+      event && event.preventDefault();
+      $('#credtnumerror').hide();
+    },
     '#personSave click': function(element, event) {
       event && event.preventDefault();
       $('#recnameerror').hide();
       $('#credtnumerror').hide();
-      $('#cellphoneerror').hide();
 
       var person = this.adapter.person.input.attr();
 
@@ -139,7 +166,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       var testRecName = /^[\u4e00-\u9fa5]{0,8}$/.test($.trim(person.recName));
       if (testRecName) {} else {
         this.adapter.person.attr("error", {
-          "recName": '您输入的姓名有误。'
+          "recName": '请填写身份证上真实姓名'
         })
         $('#recnameerror').show();
         return false;
@@ -210,12 +237,45 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         return false;
       }
 
+      var that = this;
+
       if (person.recId) {
-        this.update(person);
-        element.parents('div#editPersonArea').toggle();
+        var result = this.update(person);
+        result
+          .done(function(result) {
+            element.parents('div#editPersonArea').toggle();
+          })
+          .fail(function(error) {
+            //显示错误
+            if (that.idErrorMap[error]) {
+              that.adapter.person.attr("error", {
+                "credtNum": that.idErrorMap[error]
+              })
+
+              $('#credtnumerror')[0].style.display = "inline";//.show();
+              //$('#credtnumerror').show();
+            }
+
+            return false;
+          })
+
       } else {
-        this.add(person);
-        element.parents('div#addPersonArea').toggle();
+        var result = this.add(person);
+        result
+          .done(function(result) {
+            element.parents('div#addPersonArea').toggle();
+          })
+          .fail(function(error) {
+            //显示错误
+            if (that.idErrorMap[error]) {
+              that.adapter.person.attr("error", {
+                "credtNum": that.idErrorMap[error]
+              })
+              $('#credtnumerror').show();
+            }
+
+            return false;
+          })
       }
     }
   });

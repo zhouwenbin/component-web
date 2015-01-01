@@ -13,7 +13,14 @@
             {{#each limitedtimesaleInfoList}}
             <li>
               <div class="product-r1">
-                <a href="{{link}}" target="_blank" title="{{title}}"><img src="{{imgUrl}}" alt="productImg" ></a><span></span>
+                <a href="{{link}}" target="_blank" title="{{title}}"><img src="{{imgUrl}}" alt="productImg" ></a>
+                <span></span>
+
+                {{#soldOut}}
+                <div class="mask"></div>
+                <span class="icon icon24">售完</span>
+                {{/soldOut}}
+
               </div>
               <h3><a href="{{link}}" target="_blank" title="{{title}}">{{title}}</a></h3>
               <p title="{{subTitle}}">{{subTitle}}</p>

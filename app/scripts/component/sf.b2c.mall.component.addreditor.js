@@ -98,7 +98,10 @@ define('sf.b2c.mall.component.addreditor', [
               add: false
             },
             mainTitle: {
-              text: '新增收货地址'
+              text: '添加收货地址'
+            },
+            cancle: {
+              text: '取消添加'
             },
             error: {
               detail: null,
@@ -136,6 +139,9 @@ define('sf.b2c.mall.component.addreditor', [
             },
             mainTitle: {
               text: '修改收货地址'
+            },
+            cancle: {
+              text: '取消修改'
             },
             error: {
               detail: null,
@@ -276,7 +282,7 @@ define('sf.b2c.mall.component.addreditor', [
       // 5~120字符之间
       if (addr.detail.length > 120 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
-          "detail": '您输入的收货地址有误。长度要在5~120个字符之间。'
+          "detail": '请输入正确地址信息!'
         })
         $('#detailerror').show();
         return false;

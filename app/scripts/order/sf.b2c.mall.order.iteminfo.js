@@ -45,6 +45,9 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.allTotalPrice = itemObj.totalPrice;
           itemObj.shouldPay = itemObj.totalPrice;
 
+          //是否是宁波保税，是得话才展示税额
+          itemObj.showTax = (iteminfo.abbreviation == 'NBBS');
+
           itemObj.itemName = iteminfo.skuInfo.title;
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
 
@@ -64,11 +67,30 @@ define('sf.b2c.mall.order.iteminfo', [
 
     },
 
+    errorMap: {
+      "4000100": "order unkown error",
+      "4000200": "订单地址不存在",
+      "4000400": "订单商品信息改变",
+      "4000500": "订单商品库存不足",
+      "4000600": "订单商品超过限额",
+      "4000700": "订单商品金额改变"
+    },
+
     '#submitOrder click': function(element, event) {
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
       var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
+
+      if (typeof personid == 'undefined') {
+        alert('没有选择收货人！');
+        return false;
+      }
+
+      if (typeof addressid == 'undefined') {
+        alert('没有选择收货地址！');
+        return false;
+      }
 
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();
@@ -124,7 +146,7 @@ define('sf.b2c.mall.order.iteminfo', [
             });
         })
         .fail(function(error) {
-
+          alert(that.errorMap[error] || '下单失败');
         });
     }
   });

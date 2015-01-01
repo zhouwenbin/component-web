@@ -82,7 +82,7 @@
               <ul class="info-c2r1">
                 <li>收货人：{{receiveInfo.receiveName}}</li>
                 <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
-                <li>联系电话：{{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
+                <li>联系电话：{{! {{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
                 <li>身份证号码：{{receiveInfo.certNo}} {{{idcardDescription}}}</li>
               </ul>
               {{#if IDCard.needUpload}}
@@ -168,7 +168,9 @@
             <div class="table-fr1">
                 <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
                 <li>-优惠金额：￥0</li>
-                <li>+税额：￥0</li>
+                {{#if showTax}}
+                  <li>+税额：￥0</li>
+                {{/if}}
                 <li>+运费：￥0</li>
             </div>
             <div class="table-fr2">开业全场免邮，有钱，任性！</div>

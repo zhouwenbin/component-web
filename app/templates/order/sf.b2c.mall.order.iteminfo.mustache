@@ -8,7 +8,7 @@
               数量
             </div>
             <div class="table-c3 fl">
-              顺丰海淘价
+              单价
             </div>
             <div class="table-c4 fl">
               优惠金额
@@ -47,8 +47,10 @@
           <div class="table-f">
             <div class="table-fr1">
                 <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
-                <li>-优惠金额：￥0</li>
-                <li>+税额：￥0</li>
+                {{! <li>-优惠金额：￥0</li> }}
+                {{#if showTax}}
+                  <li>+税额：￥0</li>
+                {{/if}}
                 <li>+运费：￥0</li>
             </div>
             <div class="table-fr2">开业全场免邮，有钱，任性！</div>

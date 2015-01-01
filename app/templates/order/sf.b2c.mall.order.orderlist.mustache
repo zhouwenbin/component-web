@@ -41,7 +41,7 @@
               <div class="table-c4 fl">
                 {{orderStatus}}
                 {{#if showRouter}}
-                <div class="table-1-logistics" data-orderid="{{orderId}}">
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
                   <a href="javascript:return false;">查看物流</a>
                   <div class="tooltip" id="traceList">
                     努力加载中
@@ -49,8 +49,8 @@
                 </div>
                 {{/if}}
               </div>
-              <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}'>
-                {{{optionHMTL}}}
+              <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}' data-suborderid="{{subOrderId}}">
+                {{{optionHMTL}}}  {{{needUploadIDCardHTML}}}
               </div>
             </li>
             {{/each}}
