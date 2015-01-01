@@ -926,6 +926,7 @@ body{
 	line-height: 1.5;
 	max-height: 42px;
 	overflow: hidden;
+	width: 377px;
 }
 .table-text p{
 	margin-bottom: 13px;
