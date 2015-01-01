@@ -123,6 +123,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             })
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
+            var cancelArr = new Array();
+            cancelArr.push('AUTO_CANCEL');
+            cancelArr.push('USER_CANCEL');
+            cancelArr.push('OPERATION_CANCEL');
+            that.options.showShouldPayPrice = (cancelArr.indexOf(data.orderItem.orderStatus) == -1)
+
             //是否是宁波保税，是得话才展示税额
             that.options.showTax = that.options.productList[0].bonded;
             that.options.shouldPayPrice = that.options.allTotalPrice;
