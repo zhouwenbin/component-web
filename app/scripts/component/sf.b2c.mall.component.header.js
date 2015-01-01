@@ -119,7 +119,8 @@ define('sf.b2c.mall.component.header', ['jquery',
           .done(function(data) {
             that.data.attr('user', null);
             window.localStorage.removeItem('csrfToken');
-            window.location.reload();
+            window.location.href = 'index.html';
+            // window.location.reload();
             // window.location.href = SFConfig.setting.api.mailurl + 'login.html'
           })
           .fail(function() {})
