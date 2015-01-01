@@ -261,6 +261,18 @@ define(
 
       },
 
+      '#user-name focus': function (element, event) {
+        $('#username-error-tips').hide();
+      },
+
+      '#user-pwd focus': function (element, event) {
+        $('#pwd-error-tips').hide();
+      },
+
+      'input focus': function (element, event) {
+        $('#code-error-tips').hide();
+      },
+
       sendRequest:function(){
         var that =this;
         // @todo 发起登录请求
