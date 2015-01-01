@@ -61,7 +61,7 @@ define(
             });
 
             //进行倒排序
-            that.adapter4List.persons.personList.reverse();
+            //that.adapter4List.persons.personList.reverse();
 
             if (that.adapter4List.persons.personList != null && that.adapter4List.persons.personList.length > 0) {
               that.adapter4List.persons.attr("hasData", true);
@@ -92,6 +92,9 @@ define(
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
+
+        $('#editPersonArea').hide();
+        $('#addPersonArea').hide();
 
         var editPersonArea = element.parents("li[name='personEach']").find("#editPersonArea");
         editPersonArea.show();
@@ -126,6 +129,7 @@ define(
        * @return {[type]}
        */
       ".btn-add click": function(element, event) {
+        $('#editPersonArea').hide();
         $("#addPersonArea").show();
         this.component.personEditor.show('create', null, $("#addPersonArea"));
         return false;

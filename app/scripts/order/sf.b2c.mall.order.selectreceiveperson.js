@@ -77,6 +77,9 @@ define('sf.b2c.mall.order.selectreceiveperson', [
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
 
+        $('#editPersonArea').hide();
+        $('#addPersonArea').hide();
+
         var editPersonArea = element.parents("li[name='personEach']").find("#editPersonArea");
 
         editPersonArea.show();
@@ -95,7 +98,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
         $("#personlist").find(".order-r2").hide();
 
         //this.options.userList[0].user.attr("active", "active");
-
+        $('#editPersonArea').hide();
         $("#addPersonArea").show();
         this.component.personEditor.show('create', null, $("#addPersonArea"));
         return false;
