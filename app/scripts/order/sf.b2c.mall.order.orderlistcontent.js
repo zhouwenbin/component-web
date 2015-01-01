@@ -193,6 +193,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': ['INFO', 'ROUTE'],
         'LOGISTICS_EXCEPTION': ['INFO', 'ROUTE'],
         'SHIPPED': ['INFO', 'ROUTE'],
+        // 'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
         'COMPLETED': ['INFO', 'ROUTE']
       },
 
@@ -202,7 +203,26 @@ define('sf.b2c.mall.order.orderlistcontent', [
       optionHTML: {
         "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>'
+        "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
+      },
+
+      '.received click': function(element, event){
+        var that = this;
+        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var cancelOrder = new SFCancelOrder({
+          "orderId": orderid
+        });
+
+        cancelOrder
+          .sendRequest()
+          .done(function(data) {
+            that.render();
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+        return false;
       },
 
       '.gotoPay click': function(element, event) {
@@ -289,7 +309,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'BUYING': '采购中',
         'BUYING_EXCEPTION': '采购异常',
         'WAIT_SHIPPING': '待发货',
-        'SHIPPING': '发货中',
+        'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
         'COMPLETED': '已完成'
