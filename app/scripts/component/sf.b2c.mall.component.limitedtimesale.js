@@ -205,7 +205,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
         if (filter == 'NEXT') {
           _.each(that.data.limitedtimesaleInfoList, function(item) {
-            that.setBeginingTime(item, distance, item.endTime);
+            that.setBeginingTime(item, distance, item.startTime);
           })
         }else{
           //消费后再创建，因为这个方法被多个地方调用
@@ -218,9 +218,21 @@ define('sf.b2c.mall.component.limitedtimesale', [
           //要进行销毁
           that.interval = setInterval(function() {
             _.each(that.data.limitedtimesaleInfoList, function(item) {
-              that.setCountDown(item, distance, item.endTime);
+              if(item.soldOut){
+                that.setSoldout(item)
+              }else{
+                that.setCountDown(item, distance, item.endTime);
+              }
             })
           }, '1000');
+        }
+      },
+
+      setSoldout: function (node) {
+        if (node) {
+          node.attr("抢购结束");
+        } else {
+          node.innerHTML = '<span class="icon icon4"></span>抢购结束';
         }
       },
 
@@ -344,13 +356,13 @@ define('sf.b2c.mall.component.limitedtimesale', [
         return result;
       },
 
-      setBeginingTime: function (timeNode, distance, endDate) {
+      setBeginingTime: function (timeNode, distance, startDate) {
         // endDate = 1429933141007;
-        var leftTime = endDate - new Date().getTime() - distance;
+        var leftTime = startDate - new Date().getTime() - distance;
 
         if (leftTime > 0) {
           // 12月26日（明天）12:00 开始
-          var time = moment(endDate).format('MM月DD日')+'（'+ moment(endDate).fromNow() +'）'+moment(endDate).format('hh:mm:ss')+ ' 开始';
+          var time = moment(startDate).format('MM月DD日')+'（'+ moment(startDate).fromNow() +'）'+moment(startDate).format('hh:mm:ss')+ ' 开始';
 
           if (timeNode.attr) {
             timeNode.attr('time', time);
