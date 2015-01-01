@@ -82,7 +82,7 @@
               <ul class="info-c2r1">
                 <li>收货人：{{receiveInfo.receiveName}}</li>
                 <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
-                <li>联系电话：{{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
+                <li>联系电话：{{! {{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
                 <li>身份证号码：{{receiveInfo.certNo}} {{{idcardDescription}}}</li>
               </ul>
               {{#if IDCard.needUpload}}

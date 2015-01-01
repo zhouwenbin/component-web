@@ -481,8 +481,12 @@ module.exports = function (grunt) {
             'sf.b2c.mall.product.detailcontent',
             'vendor.jquery.imagezoom',
             'sf.b2c.mall.adapter.detailcontent',
+            'sf.helpers',
             'sf.b2c.mall.page.detail'
           ],
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min'
+          },
           insertRequire: ['sf.b2c.mall.page.detail']
         }
       },
