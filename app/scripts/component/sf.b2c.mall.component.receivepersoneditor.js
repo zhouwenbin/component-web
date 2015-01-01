@@ -96,7 +96,10 @@ define('sf.b2c.mall.component.receivepersoneditor', [
           that.onSuccess();
         })
         .fail(function(error) {
-          console.error(error)
+          console.error(error);
+          if(error === 1000310){
+            window.alert('可添加的收货人信息已达到上线')
+          }
         });
     },
 
