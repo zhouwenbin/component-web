@@ -119,7 +119,8 @@ define('sf.b2c.mall.component.header', ['jquery',
           .done(function(data) {
             that.data.attr('user', null);
             window.localStorage.removeItem('csrfToken');
-            window.location.reload();
+            window.location.href = 'index.html';
+            // window.location.reload();
             // window.location.href = SFConfig.setting.api.mailurl + 'login.html'
           })
           .fail(function() {})
@@ -186,10 +187,12 @@ define('sf.b2c.mall.component.header', ['jquery',
       var that = this;
       if (!this.component.modal.isClosed()) {
         setTimeout(function() {
-          console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
             that.component.modal.hide();
             that.watchLoginState.call(that);
+            that.data.attr('isUserLogin', true);
+          }else{
+            that.data.attr('isUserLogin', false);
           }
         }, 300);
       }
