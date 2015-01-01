@@ -8,9 +8,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.getOrder',
     'sf.helpers',
     'sf.b2c.mall.api.order.cancelOrder',
-    'sf.b2c.mall.api.order.requestPayV2'
+    'sf.b2c.mall.api.order.requestPayV2',
+    'sf.b2c.mall.api.order.confirmReceive'
   ],
-  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2) {
+  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive) {
 
     return can.Control.extend({
 
@@ -192,8 +193,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'WAIT_SHIPPING': ['INFO'],
         'SHIPPING': ['INFO', 'ROUTE'],
         'LOGISTICS_EXCEPTION': ['INFO', 'ROUTE'],
-        'SHIPPED': ['INFO', 'ROUTE'],
-        // 'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
         'COMPLETED': ['INFO', 'ROUTE']
       },
 
@@ -207,19 +207,20 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
       },
 
-      '.received click': function(element, event){
+      '.received click': function(element, event) {
         var that = this;
-        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        var cancelOrder = new SFCancelOrder({
-          "orderId": orderid
+        var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
+        var confirmReceive = new SFConfirmReceive({
+          "subOrderId": subOrderId
         });
 
-        cancelOrder
+        confirmReceive
           .sendRequest()
           .done(function(data) {
             that.render();
           })
           .fail(function(error) {
+            alert(that.receiveDErrorMap[error] || '确认签收失败！');
             console.error(error);
           })
         return false;
@@ -292,8 +293,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
           })
           .fail(function(error) {
             console.error(error);
+            alert(that.errorMap[error] || '订单取消失败！');
           })
         return false;
+      },
+
+      errorMap: {
+        //"4000100": 'order unkown error！',
+        "4000800": '订单状态不能取消！'
+      },
+
+      receiveDErrorMap: {
+        //'4000100': 'order unkown error！',
+        '4000900': '子订单状态不符合确认操作！'
       },
 
       /**
