@@ -207,7 +207,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
       },
 
-      '.received click': function(element, event){
+      '.received click': function(element, event) {
         var that = this;
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var cancelOrder = new SFCancelOrder({
@@ -292,8 +292,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
           })
           .fail(function(error) {
             console.error(error);
+            alert(that.errorMap[error] || '订单取消失败！');
           })
         return false;
+      },
+
+      errorMap: {
+        "4000100": 'order unkown error',
+        "4000800": '订单状态不能取消'
       },
 
       /**
