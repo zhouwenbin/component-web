@@ -448,9 +448,8 @@ define(
         var email = this.element.find('#input-email').val();
         var code = this.element.find('#input-mail-code').val();
 
-        code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
-
         if (this.checkEmail(email) && this.checkMailCode(code)) {
+          code = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer: code});
           this.component.sendResetPwdLink.setData({
             mailId: email,
             vfCode: code
@@ -471,6 +470,7 @@ define(
               }
             })
             .fail(function (errorCode) {
+              that.getVerifiedCode();
               if (_.isNumber(errorCode)) {
                 that.data.attr({
                   msg: ERROR_RESND_MAIL_LINK_MAP[errorCode.toString()],
