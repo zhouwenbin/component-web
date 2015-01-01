@@ -63,6 +63,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]]
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
+            data.orderItem.rcvrState = 0;
+
             that.options.user = new can.Map();
             that.options.IDCard = {};
             that.options.IDCard.needUpload = (data.orderItem.rcvrState == 0 || data.orderItem.rcvrState == 1 || data.orderItem.rcvrState == 3);
@@ -117,6 +119,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
+              item.imageUrl = JSON.parse(item.imageUrl)[0];
             })
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
