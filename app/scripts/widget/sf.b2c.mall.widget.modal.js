@@ -18,8 +18,9 @@ define(
       },
 
       hide: function () {
-        this.element.find('.mask').remove();
-        this.element.find('.register').remove();
+        // this.element.find('.mask').remove();
+        // this.element.find('.register').remove();
+        this.element.empty();
         this.closed = true;
       },
 
