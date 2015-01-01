@@ -185,7 +185,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     watchLoginState: function(){
       var that = this;
-      if (!this.component.modal.isClosed()) {
+      // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
           console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
@@ -195,8 +195,8 @@ define('sf.b2c.mall.component.header', ['jquery',
           }else{
             that.data.attr('isUserLogin', false);
           }
-        }, 300);
-      }
+        }, 500);
+      // }
     }
   });
 });

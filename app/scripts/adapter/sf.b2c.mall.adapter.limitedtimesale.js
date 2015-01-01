@@ -18,13 +18,15 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
         _.each(priceData, function(priceItem) {
           if (item.homepageProductInfo && item.homepageProductInfo.itemId == priceItem.itemId) {
             item.attr('currentStock', priceItem.currentStock);
-            item.attr('originPrice', priceItem.originPrice);
-            item.attr('sellingPrice', priceItem.sellingPrice);
+            item.attr('originPrice', priceItem.originPrice/100);
+            item.attr('sellingPrice', priceItem.sellingPrice/100);
             item.attr('discount',(priceItem.sellingPrice*10/priceItem.originPrice).toFixed(1));
+            item.attr('startTime', priceItem.startTime);
             item.attr('endTime', priceItem.endTime);
             item.attr('time','');
           }else if (item.contentType == 'TOPIC') {
             item.attr('currentStock', item.currentStock);
+            item.attr('startTime', item.startTime);
             item.attr('endTime', item.displayEndTime);
             item.attr('price', item.price);
             item.attr('discount', item.discount);
