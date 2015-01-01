@@ -145,7 +145,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       var testRecName = /^[\u4e00-\u9fa5]{0,8}$/.test($.trim(person.recName));
       if (testRecName) {} else {
         this.adapter.person.attr("error", {
-          "recName": '您输入的姓名有误。'
+          "recName": '请填写身份证上真实姓名'
         })
         $('#recnameerror').show();
         return false;
