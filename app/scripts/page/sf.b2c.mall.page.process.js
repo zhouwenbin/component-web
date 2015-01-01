@@ -62,7 +62,7 @@ define(
             })
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
-                window.location.href = 'nullactivated.html'+ '?' + $.params({er: errorCode});
+                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode});
               }
             })
         }
