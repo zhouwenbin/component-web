@@ -13,6 +13,12 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       this.onSuccess = this.options.onSuccess;
     },
 
+    idErrorMap: {
+      //"1000070": "参数错误",
+      "1000200": "该身份证信息已存在！",
+      "1000280": "身份证号码错误！"
+    },
+
     /**
      * @description 对页面进行渲染
      * @param  {Map} data 渲染页面的数据
@@ -86,37 +92,46 @@ define('sf.b2c.mall.component.receivepersoneditor', [
     },
 
     add: function(person) {
+      var def = can.Deferred();
       var that = this;
 
       var createReceiverInfo = new SFCreateReceiverInfo(person);
       createReceiverInfo
         .sendRequest()
         .done(function(data) {
-          that.hide();
-          that.onSuccess();
+          def.resolve(data);
+          //that.hide();
+          //that.onSuccess();
         })
         .fail(function(error) {
-          console.error(error);
           if(error === 1000310){
             window.alert('可添加的收货人信息已达到上线');
             return false;
           }
+          def.reject(error);
+          console.error(error)
         });
+      return def;
     },
 
     update: function(person) {
+      var def = can.Deferred();
       var that = this;
 
       var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       updateReceiverInfo
         .sendRequest()
         .done(function(data) {
-          that.hide();
-          that.onSuccess();
+          def.resolve(data);
+          //that.hide();
+          //that.onSuccess();
         })
         .fail(function(error) {
+          def.reject(error);
           console.error(error)
         });
+
+      return def;
     },
 
     '#personSaveCancel click': function(element, event) {
@@ -226,12 +241,45 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         return false;
       }
 
+      var that = this;
+
       if (person.recId) {
-        this.update(person);
-        element.parents('div#editPersonArea').toggle();
+        var result = this.update(person);
+        result
+          .done(function(result) {
+            element.parents('div#editPersonArea').toggle();
+          })
+          .fail(function(error) {
+            //显示错误
+            if (that.idErrorMap[error]) {
+              that.adapter.person.attr("error", {
+                "credtNum": that.idErrorMap[error]
+              })
+
+              $('#credtnumerror')[0].style.display = "inline";//.show();
+              //$('#credtnumerror').show();
+            }
+
+            return false;
+          })
+
       } else {
-        this.add(person);
-        element.parents('div#addPersonArea').toggle();
+        var result = this.add(person);
+        result
+          .done(function(result) {
+            element.parents('div#addPersonArea').toggle();
+          })
+          .fail(function(error) {
+            //显示错误
+            if (that.idErrorMap[error]) {
+              that.adapter.person.attr("error", {
+                "credtNum": that.idErrorMap[error]
+              })
+              $('#credtnumerror').show();
+            }
+
+            return false;
+          })
       }
     }
   });

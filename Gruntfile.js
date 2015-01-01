@@ -209,8 +209,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
-        '<%= config.app %>/password-change.html',
-        '<%= config.app %>/404.html'
+        '<%= config.app %>/404.html',
+        '<%= config.app %>/password-change.html'
       ]
     },
 
@@ -336,8 +336,8 @@ module.exports = function (grunt) {
             'orderdetail.html',
             'center.html',
             'gotopay.html',
-            'password-change.html',
             '404.html',
+            'password-change.html',
 
             'json/*.json',
 
@@ -348,6 +348,9 @@ module.exports = function (grunt) {
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
+        }, {
+          src: '<%= config.app %>/scripts/vendor/Uploader.swf',
+          dest: '<%= config.dist %>/scripts/Uploader.swf'
         }]
       },
       styles: {
@@ -473,6 +476,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
@@ -481,6 +487,8 @@ module.exports = function (grunt) {
             'sf.b2c.mall.product.detailcontent',
             'vendor.jquery.imagezoom',
             'sf.b2c.mall.adapter.detailcontent',
+            'moment',
+            'sf.helpers',
             'sf.b2c.mall.page.detail'
           ],
           insertRequire: ['sf.b2c.mall.page.detail']
