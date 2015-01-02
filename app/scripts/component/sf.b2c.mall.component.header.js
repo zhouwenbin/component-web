@@ -217,7 +217,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           }else{
             that.data.attr('isUserLogin', false);
           }
-        }, 10000  );
+        }, 300);
       // }
     }
   });
