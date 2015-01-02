@@ -77,6 +77,8 @@ define(
             $('#gotopayDIV').html(template());
           }
         }
+
+        var that = this;
         SFOrderFn.payV2({orderid: that.options.orderid}, callback);
 
         // var that = this;
