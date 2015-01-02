@@ -4,7 +4,8 @@ define([
   'jquery',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.center.register',
-],function(can,$, SFFrameworkComm, SFRegister){
+  'vendor.jquery.jcountdown'
+],function(can,$, SFFrameworkComm, SFRegister, jcountdown){
   SFFrameworkComm.register(1);
 
   var register = can.Control.extend({
@@ -42,6 +43,16 @@ define([
           $(".m1").stop(true,false).animate({
             "height":0
           },700);
+        }
+      });
+
+      $(function() {
+        for (var b = new Date, i = b.getFullYear() + "/" + (b.getMonth() + 1) + "/" + (b.getDate() + 1) + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), e = b.getFullYear() + 1 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), b = -b.getTimezoneOffset() / 60, j = [{timeText: i,timeZone: b,style: "flip",color: "white",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !1,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
+          }}, {timeText: e,timeZone: b,style: "slide",color: "black",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !0,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
+          }}], i = $("#countcontent"), e = $("#countcontent>.page"), h = 0; h < j.length - 1; h++) {
+          var b = j[h], k = e.clone();
+          k.children(".countdown").jCountdown(b);
+          i.append(k)
         }
       });
 

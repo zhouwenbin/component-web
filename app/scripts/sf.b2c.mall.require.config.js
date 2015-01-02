@@ -151,6 +151,8 @@ requirejs.config({
     'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
     'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
-    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list'
+    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list',
+
+    'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min'
   }
 });
