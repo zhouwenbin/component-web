@@ -168,9 +168,10 @@ $(function(){
     	return false;
     })
     //----------品牌选择-------------//
-    $(".btn-brand").on("click",function(){
-    	$(this).toggleClass("active");
-    	return false;
+    $(".btn-brand").hover(function(){
+    	$(this).addClass("active");
+    },function(){
+        $(this).removeClass("active");
     });
     //----------选择收货人-------------//
     $(".order").on("click", ".icon30", function(){
