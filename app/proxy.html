@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <!-- build:js(.) scripts/require.min.js-->
+  <script src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.) base-->
+  <script src="scripts/base/sf.web.dev.ver.1.0.build.1420170310771.js"></script>
+  <!-- endbuild -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.proxy.min.js -->
+  <script src="scripts/sf.b2c.mall.require.config.js"></script>
+  <script type="text/javascript">
+  require(['sf.b2c.mall.page.proxy']);
+  </script>
+  <!-- endbuild -->
+</body>
+</html>

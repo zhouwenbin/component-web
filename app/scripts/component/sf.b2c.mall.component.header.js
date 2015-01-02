@@ -10,12 +10,13 @@ define('sf.b2c.mall.component.header', ['jquery',
   'can',
   'underscore',
   'md5',
+  'store',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config'
-], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
 
   return can.Control.extend({
 
@@ -122,7 +123,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           .sendRequest()
           .done(function(data) {
             that.data.attr('user', null);
-            window.localStorage.removeItem('csrfToken');
+            store.remove('csrfToken')
             $.removeCookie('nick');
             $.removeCookie('gender');
             window.location.href = SFConfig.setting.link.index;
@@ -157,7 +158,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;">'
       });
       this.setIframe.call(this);
     },
@@ -169,7 +171,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;">'
       });
       this.setIframe.call(this);
     },
@@ -202,13 +205,18 @@ define('sf.b2c.mall.component.header', ['jquery',
       var that = this;
       // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
+          var csrfToken = $('#proxy').get(0).contentWindow.name;
+          console.log(csrfToken);
+          if(csrfToken){
+            store.set('csrfToken', csrfToken);
+          }
+
           if (that.component.modal.isClosed()) {
             that.afterLoginDest = null
           }
 
           console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
-            console.log('logined')
             that.component.modal.hide();
 
             if (that.afterLoginDest) {

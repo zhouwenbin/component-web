@@ -220,7 +220,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/gotopay.html',
         '<%= config.app %>/404.html',
         '<%= config.app %>/p404.html',
-        '<%= config.app %>/password-change.html'
+        '<%= config.app %>/password-change.html',
+        '<%= config.app %>/proxy.html'
       ]
     },
 
@@ -352,6 +353,7 @@ module.exports = function (grunt) {
             '404.html',
             'p404.html',
             'password-change.html',
+            'proxy.html',
 
             'json/*.json',
 
@@ -740,6 +742,18 @@ module.exports = function (grunt) {
             'sf.b2c.mall.page.passwordchange'
           ],
           insertRequire: ['sf.b2c.mall.page.passwordchange']
+        }
+      },
+      proxy:{
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.proxy.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.page.proxy'
+          ],
+          insertRequire: ['sf.b2c.mall.page.proxy']
         }
       }
     }
