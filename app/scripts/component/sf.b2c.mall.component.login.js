@@ -284,12 +284,6 @@ define(
             if (data.userId) {
               that.data.attr('autologin')
 
-              if (window.localStorage) {
-                window.localStorage.setItem('csrfToken', data.csrfToken);
-              } else {
-                $.jStorage.set('csrfToken', data.csrfToken);
-              }
-
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));
               setTimeout(function () {

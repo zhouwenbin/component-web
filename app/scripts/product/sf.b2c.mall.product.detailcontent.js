@@ -299,7 +299,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = this.mainUrl + '/order.html?' + $.param({
+        window.location.href = SFConfig.setting.link.detail + '?' + $.param({
           "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
@@ -322,7 +322,8 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          // '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +

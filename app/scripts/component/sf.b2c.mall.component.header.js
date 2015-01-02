@@ -10,12 +10,14 @@ define('sf.b2c.mall.component.header', ['jquery',
   'can',
   'underscore',
   'md5',
+  'store',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config'
-], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+
 
   return can.Control.extend({
 
@@ -122,7 +124,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           .sendRequest()
           .done(function(data) {
             that.data.attr('user', null);
-            window.localStorage.removeItem('csrfToken');
+            store.remove('csrfToken')
             $.removeCookie('nick');
             $.removeCookie('gender');
             window.location.href = SFConfig.setting.link.index;
@@ -157,7 +159,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;"></iframe>'
       });
       this.setIframe.call(this);
     },
@@ -169,36 +172,46 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;"></iframe>'
       });
       this.setIframe.call(this);
     },
 
     setIframe: function() {
-      var link = $('iframe').contents().find('title').text();
-      if (link.indexOf('登陆') > -1) {
+      if (!this.component.modal.isClosed()) {
+        // var link = $('iframe').contents().find('title').text();
+        // if (link.indexOf('登陆') > -1) {
+        //   this.component.modal.setTitle('登录顺丰海淘');
+        // } else if (link.indexOf('注册') > -1) {
+        //   this.component.modal.setTitle('注册顺丰海淘');
+        // }
         this.component.modal.setTitle('登录顺丰海淘');
-      } else if (link.indexOf('注册') > -1) {
-        this.component.modal.setTitle('注册顺丰海淘');
       }
 
-      this.watchIframe.call(this);
+      // this.watchIframe.call(this);
       this.watchLoginState.call(this);
     },
 
-    watchIframe: function() {
-      var that = this;
-      if (!this.component.modal.isClosed()) {
-        setTimeout(function() {
-          that.setIframe.call(that);
-        }, 300);
-      };
-    },
+    // watchIframe: function() {
+    //   var that = this;
+    //   // if (!this.component.modal.isClosed()) {
+    //     setTimeout(function() {
+    //       that.setIframe.call(that);
+    //     }, 300);
+    //   // };
+    // },
 
     watchLoginState: function(){
       var that = this;
       // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
+          var csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
+          console.log(csrfToken);
+          if(csrfToken){
+            store.set('csrfToken', csrfToken);
+          }
+
           if (that.component.modal.isClosed()) {
             that.afterLoginDest = null
           }
@@ -217,7 +230,9 @@ define('sf.b2c.mall.component.header', ['jquery',
           }else{
             that.data.attr('isUserLogin', false);
           }
-        }, 10000  );
+
+          that.setIframe.call(that);
+        }, 300);
       // }
     }
   });

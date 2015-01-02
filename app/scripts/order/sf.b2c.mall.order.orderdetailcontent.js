@@ -11,9 +11,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.util',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.updateReceiverInfo',
-    'sf.b2c.mall.api.user.getIDCardUrlList'
+    'sf.b2c.mall.api.user.getIDCardUrlList',
+    'sf.b2c.mall.order.fn'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn) {
 
     return can.Control.extend({
 
@@ -289,18 +290,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       statusDescription: {
-        'SUBMITED': '您提交了订单，请等待系统确认',
-        'AUTO_CANCEL': '系统自动取消',
-        'USER_CANCEL': '用户取消',
-        'AUDITING': '您的订单已经付款成功，请等待审核',
-        'OPERATION_CANCEL': '运营取消',
-        'BUYING': '您的宝贝已经审核通过，正在采购',
-        'BUYING_EXCEPTION': '采购异常',
-        'WAIT_SHIPPING': '您的宝贝已经采购到，请等待发货',
-        'SHIPPING': '您的宝贝已经发货，请保持手机畅通',
-        'LOGISTICS_EXCEPTION': '物流异常',
-        'SHIPPED': '发货成功',
-        'COMPLETED': '已完成'
+        'SUBMITED': '用户已经下单，正在等待用户支付',
+        'AUTO_CANCEL': '超时未支付，订单自动取消',
+        'USER_CANCEL': '用户取消订单成功',
+        'AUDITING': '订单正在等待顺丰审核',
+        'OPERATION_CANCEL': '订单取消成功',
+        'BUYING': '尊敬的用户，您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
+        // 'BUYING_EXCEPTION': '采购异常',
+        'WAIT_SHIPPING': '订单正在等待仓库发货',
+        'SHIPPING': '您的订单正在顺丰海外仓进行出库操作。网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理',
+        // 'LOGISTICS_EXCEPTION': '物流异常',
+        'SHIPPED': '尊敬的用户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+        'COMPLETED': '用户确认收货，订单已完成'
       },
 
       getOptionHTML: function(operationsArr) {
@@ -320,7 +321,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-send">立即支付</a>',
+        "NEEDPAY": '<a href="#" class="btn btn-send" id="pay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add">查看订单</a>',
         "CANCEL": '<a href="#" class="btn btn-add">取消订单</a>'
       },
@@ -418,6 +419,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         $(element).parents(".register").hide(300);
         $(".mask").hide();
         return false;
+      },
+
+      '#pay click': function (element, event) {
+        event && event.preventDefault();
+
+        var params = can.deparam(window.location.search.substr(1));
+        SFOrderFn.payV2({orderid: params.orderid})
       }
 
     });

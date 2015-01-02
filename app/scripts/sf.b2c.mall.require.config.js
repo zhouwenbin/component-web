@@ -8,6 +8,7 @@ requirejs.config({
     'jquery.cookie': 'http://www.google.com/bower_components/jquery.cookie/jquery.cookie',
     'md5': 'http://www.google.com/bower_components/blueimp-md5/js/md5.min',
     'underscore.string': 'http://www.google.com/bower_components/underscore.string/dist/underscore.string.min',
+    'store': 'http://www.google.com/bower_components/store/dist/store',
 
     'sf.b2c.mall.api.logistics.getUserRoutes': 'http://www.google.com/app/scripts/api/logistics/sf.b2c.mall.api.logistics.getUserRoutes',
 
@@ -140,16 +141,20 @@ requirejs.config({
     'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
     'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
+    'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
 
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',
     'webuploader':'scripts/vendor/vendor.webuploader',
     'sf.b2c.mall.widget.file.uploader': 'scripts/widget/sf.b2c.mall.widget.file.uploader',
     'sf.b2c.mall.widget.loading': 'scripts/widget/sf.b2c.mall.widget.loading',
+    'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
 
     'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
     'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
-    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list'
+    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list',
+
+    'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min'
   }
 });
