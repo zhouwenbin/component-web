@@ -71,7 +71,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               $('#uploadidcard').show();
               //读取身份证的状态
               that.options.IDCard.state = idcardItem.status;
-              that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || ''
+              that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || '';
               that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
             }
 
@@ -117,6 +117,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
+              item.spec = that.options.productList[0].spec.split(',').join("<br/>");
             })
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
