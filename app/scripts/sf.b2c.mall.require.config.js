@@ -8,7 +8,7 @@ requirejs.config({
     'jquery.cookie': 'http://www.google.com/bower_components/jquery.cookie/jquery.cookie',
     'md5': 'http://www.google.com/bower_components/blueimp-md5/js/md5.min',
     'underscore.string': 'http://www.google.com/bower_components/underscore.string/dist/underscore.string.min',
-    'store': 'http://www.google.com/bower_components/store/dist/store.min',
+    'store': 'http://www.google.com/bower_components/store/dist/store',
 
     'sf.b2c.mall.api.logistics.getUserRoutes': 'http://www.google.com/app/scripts/api/logistics/sf.b2c.mall.api.logistics.getUserRoutes',
 

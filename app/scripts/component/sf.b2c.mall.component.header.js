@@ -18,6 +18,7 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.business.config'
 ], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
 
+
   return can.Control.extend({
 
     defaults: {
@@ -158,8 +159,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'+
-              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;"></iframe>'
       });
       this.setIframe.call(this);
     },
@@ -171,8 +172,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'+
-              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'+
+              '<iframe id="proxy" src="'+ SFConfig.setting.api.mainurl + '/proxy.html" style="display:none;"></iframe>'
       });
       this.setIframe.call(this);
     },
@@ -205,7 +206,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       var that = this;
       // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
-          var csrfToken = $('#proxy').get(0).contentWindow.name;
+          var csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
           console.log(csrfToken);
           if(csrfToken){
             store.set('csrfToken', csrfToken);
