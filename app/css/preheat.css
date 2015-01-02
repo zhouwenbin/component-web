@@ -4,7 +4,7 @@
 }
 .banner1{
 	height: 513px;
-	background: url(../img/banner1.jpg) no-repeat center;
+	background: url(../img/preheat/banner1.jpg) no-repeat center;
 	position: relative;
 	z-index: 2;
 }
@@ -24,7 +24,7 @@
 	line-height: 60px;
 	text-align: center;
 	display: block;
-	background: url(../img/btn.png) no-repeat;
+	background: url(../img/preheat/btn.png) no-repeat;
 	color: #fff;
 	font-size: 24px;
 	margin-top: 50px;
@@ -35,7 +35,7 @@
 
 .banner2{
 	height: 85px;
-	background: url(../img/banner2.jpg) no-repeat center;
+	background: url(../img/preheat/banner2.jpg) no-repeat center;
 	margin-bottom: 50px;
 }
 .m1{
@@ -58,7 +58,7 @@
 	vertical-align: middle;
 	width: 7px;
 	height: 7px;
-	background: url(../img/m1-h1.png) no-repeat;
+	background: url(../img/preheat/m1-h1.png) no-repeat;
 }
 .m1 p{
 	font-size: 14px;
@@ -93,7 +93,7 @@
 	padding-top: 130px;
 	background: #fffeff;
 	padding-bottom: 108px;
-	background: url(../img/m2.jpg) no-repeat center;
+	background: url(../img/preheat/m2.jpg) no-repeat center;
 }
 .m2 h2{
 	font-size: 36px;
@@ -110,7 +110,7 @@
 
 
 .m3{
-	background: #f6f8f9 url(../img/m3.jpg) no-repeat center top;
+	background: #f6f8f9 url(../img/preheat/m3.jpg) no-repeat center top;
 	padding-top: 43px;
 	position: relative;
 }
@@ -163,7 +163,7 @@
 }
 .m3 .mh{
 	color: #fff;
-	background: url(../img/m3-mh.png) no-repeat;
+	background: url(../img/preheat/m3-mh.png) no-repeat;
 	width: 535px;
 	height: 535px;
 	position: absolute;
@@ -205,7 +205,7 @@
 	background: #fff;
 }
 .m4 .pm{
-	background: url(../img/m4.png) no-repeat 201px 126px;
+	background: url(../img/preheat/m4.png) no-repeat 201px 126px;
 	padding: 157px 0;
 }
 .m4 p{
@@ -238,7 +238,7 @@
 	line-height: 1.5;
 }
 .m5 .li1{
-	background: url(../img/m2-li1.png) no-repeat;
+	background: url(../img/preheat/m2-li1.png) no-repeat;
 	margin-right: 300px;
 }
 .m5 .li1 a{
@@ -251,10 +251,10 @@
 	border-radius: 20px;
 ;}
 .m5 .li2{
-	background: url(../img/m2-li2.png) no-repeat;
+	background: url(../img/preheat/m2-li2.png) no-repeat;
 }
 .m5 .li3{
-	background: url(../img/m2-li3.png) no-repeat;
+	background: url(../img/preheat/m2-li3.png) no-repeat;
 	float: right;
 }
 .footer{

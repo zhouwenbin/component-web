@@ -83,6 +83,6 @@ define(
       }
     });
 
-    document.domain = 'sfht.com';
+    window.name = 'sfht.com';
     new orderList('#orderList');
   });

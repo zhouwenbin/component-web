@@ -134,6 +134,6 @@ define(
       }
     });
 
-    document.domain = 'sfht.com';
+    window.name = 'sfht.com';
     var pageMailactivated = new PageMailActivated('body');
   });
