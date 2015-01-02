@@ -850,6 +850,7 @@ module.exports = function (grunt) {
           'requirejs:center',
           'requirejs:gotopay',
           'requirejs:passwordchange',
+          'requirejs:proxy',
           'usemin',
           'htmlmin',
           'clean:extra'
