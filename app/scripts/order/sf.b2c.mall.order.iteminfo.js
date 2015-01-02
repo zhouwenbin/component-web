@@ -50,8 +50,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           itemObj.itemName = iteminfo.skuInfo.title;
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-
-          itemObj.spec = "黑色";
+          itemObj.spec = iteminfo.skuInfo.attributes;
 
 
           that.options.allTotalPrice = itemObj.allTotalPrice;
