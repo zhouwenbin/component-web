@@ -337,12 +337,11 @@ img{vertical-align: middle;}
 	background-position: -65px -319px;
 }
 .icon37{
-	width: 74px;
-	padding-top: 74px;
-	overflow: hidden;
-	height: 0;
-	background-position: -148px -353px;
+	width: 16px;
+	height: 12px;
+	background-position: -106px -135px;
 }
+
 /*btn*/
 .btn{
 	display: inline-block;
@@ -645,6 +644,7 @@ button.btn{
 	font-size: 14px;
 	color: #999;
 }
+.btn-cancle
 
 
 body{
@@ -868,6 +868,19 @@ body{
 	position: absolute;
 	left: 156px;
 	top: -27px;
+}
+.tooptip-success{
+	display: inline-block;
+	font-size: 14px;
+	color: #67b222;
+	height: 46px;
+	line-height: 46px;
+	padding: 0 20px;
+	border:2px solid #67b222;
+	background: #fff;
+}
+.tooptip-success .icon{
+	margin-right: 10px;
 }
 /*表格*/
 .table{
