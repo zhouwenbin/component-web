@@ -219,6 +219,7 @@ module.exports = function (grunt) {
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
         '<%= config.app %>/404.html',
+        '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html'
       ]
     },
@@ -349,6 +350,7 @@ module.exports = function (grunt) {
             'center.html',
             'gotopay.html',
             '404.html',
+            'p404.html',
             'password-change.html',
 
             'json/*.json',
@@ -617,6 +619,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.order.fn',
             'sf.b2c.mall.page.order'
           ],
           insertRequire: ['sf.b2c.mall.page.order']
@@ -644,6 +647,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'moment',
+            'sf.b2c.mall.order.fn',
             'sf.b2c.mall.page.orderlist'
           ],
           insertRequire: ['sf.b2c.mall.page.orderlist']
@@ -665,6 +669,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.order.orderdetailcontent',
             'sf.helpers',
             'moment',
+            'sf.b2c.mall.order.fn',
             'sf.b2c.mall.page.orderdetail'
           ],
           insertRequire: ['sf.b2c.mall.page.orderdetail']
@@ -711,6 +716,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.order.step',
             'sf.helpers',
             'moment',
+            'sf.b2c.mall.order.fn',
             'sf.b2c.mall.page.gotopay'
           ],
           insertRequire: ['sf.b2c.mall.page.gotopay']

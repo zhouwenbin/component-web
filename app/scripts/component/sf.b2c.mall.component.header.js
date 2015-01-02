@@ -37,6 +37,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.component = {};
       this.component.modal = new SFModal('body');
 
+      this.afterLoginDest = null;
+
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
@@ -76,9 +78,9 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = SFConfig.setting.link.orderlist;
+        window.location.href = SFConfig.setting.link.orderlist;
       }else{
-        this.showLogin();
+        this.showLogin('orderlist');
       }
     },
 
@@ -86,9 +88,9 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = SFConfig.setting.link.passwordchange;
+        window.location.href = SFConfig.setting.link.passwordchange;
       }else{
-        this.showLogin();
+        this.showLogin('passwordchange');
       }
     },
 
@@ -96,9 +98,9 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = SFConfig.setting.link.center;
+        window.location.href = SFConfig.setting.link.center;
       }else{
-        this.showLogin();
+        this.showLogin('center');
       }
     },
 
@@ -134,7 +136,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       if (SFComm.prototype.checkUserLogin.call(this)) {
 
       } else {
-        this.showLogin();
+        this.showLogin('center');
       }
     },
 
@@ -148,7 +150,11 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.showRegister();
     },
 
-    showRegister: function () {
+    showRegister: function (dest) {
+      if (dest) {
+        this.afterLoginDest = dest
+      }
+
       this.component.modal.show({
         title: '登录顺丰海淘',
         html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'
@@ -156,7 +162,11 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.setIframe.call(this);
     },
 
-    showLogin: function() {
+    showLogin: function(dest) {
+      if (dest) {
+        this.afterLoginDest = dest
+      }
+
       this.component.modal.show({
         title: '登录顺丰海淘',
         html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'
@@ -165,11 +175,13 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     setIframe: function() {
-      var link = $('iframe').contents().find('title').text();
-      if (link.indexOf('登陆') > -1) {
-        this.component.modal.setTitle('登录顺丰海淘');
-      } else if (link.indexOf('注册') > -1) {
-        this.component.modal.setTitle('注册顺丰海淘');
+      if (!this.component.modal.isClosed()) {
+        var link = $('iframe').contents().find('title').text();
+        if (link.indexOf('登陆') > -1) {
+          this.component.modal.setTitle('登录顺丰海淘');
+        } else if (link.indexOf('注册') > -1) {
+          this.component.modal.setTitle('注册顺丰海淘');
+        }
       }
 
       this.watchIframe.call(this);
@@ -178,26 +190,36 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     watchIframe: function() {
       var that = this;
-      if (!this.component.modal.isClosed()) {
+      // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
           that.setIframe.call(that);
         }, 300);
-      };
+      // };
     },
 
     watchLoginState: function(){
       var that = this;
       // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
+          if (that.component.modal.isClosed()) {
+            that.afterLoginDest = null
+          }
+
           console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
             that.component.modal.hide();
+
+            if (that.afterLoginDest) {
+              var link = SFConfig.setting.link[that.afterLoginDest];
+              window.location.href = link;
+            }
+
             that.watchLoginState.call(that);
             that.data.attr('isUserLogin', true);
           }else{
             that.data.attr('isUserLogin', false);
           }
-        }, 500);
+        }, 300);
       // }
     }
   });

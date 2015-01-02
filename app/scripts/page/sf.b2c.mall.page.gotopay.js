@@ -1,6 +1,6 @@
 'use strict';
 
-require(
+define(
   [
     'can',
     'jquery',
@@ -9,10 +9,11 @@ require(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
     'sf.b2c.mall.api.order.getOrder',
-    'sf.b2c.mall.api.order.requestPayV2'
+    'sf.b2c.mall.api.order.requestPayV2',
+    'sf.b2c.mall.order.fn'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -69,24 +70,35 @@ require(
       },
 
       '#gotopayBtn click': function() {
-        var that = this;
-
-        var requestPayV2 = new SFRequestPayV2({
-          "orderId": that.options.orderid,
-          'payType': 'alipay'
-        });
-        requestPayV2
-          .sendRequest()
-          .done(function(data) {
-            window.open(data.url + '?' + data.postBody,"_blank");
-            that.request.call(that, that.options.orderid);
-          })
-          .fail(function(error) {
-            var errorText = that.payErrorMap[error.toString()] || '支付失败';
-            console.error(errorText);
+        var callback = {
+          error: function (errorText) {
+            console.log(errorText)
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
-          });
+          }
+        }
+
+        var that = this;
+        SFOrderFn.payV2({orderid: that.options.orderid}, callback);
+
+        // var that = this;
+
+        // var requestPayV2 = new SFRequestPayV2({
+        //   "orderId": that.options.orderid,
+        //   'payType': 'alipay'
+        // });
+        // requestPayV2
+        //   .sendRequest()
+        //   .done(function(data) {
+        //     window.open(data.url + '?' + data.postBody,"_blank");
+        //     that.request.call(that, that.options.orderid);
+        //   })
+        //   .fail(function(error) {
+        //     var errorText = that.payErrorMap[error.toString()] || '支付失败';
+        //     console.error(errorText);
+        //     var template = can.view.mustache(that.payerrorTemplate());
+        //     $('#gotopayDIV').html(template());
+        //   });
       },
 
       request: function(orderId) {
