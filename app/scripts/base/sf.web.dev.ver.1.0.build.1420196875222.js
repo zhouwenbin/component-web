@@ -24884,30 +24884,30 @@ define('sf.b2c.mall.business.config',[], function () {
 
   var host = window.location.hostname;
   var DEV_API_URL = {
-    url: 'http://www.sfht.com/m.api',
-    fileurl: 'http://www.sfht.com/file.api',
-    detailurl: 'http://item.sfht.com',
-    topicurl: 'http://topic.sfht.com',
-    mainurl: 'http://www.sfht.com'
+    url: 'http://dev.sfht.com/m.api',
+    fileurl: 'http://dev.sfht.com/file.api',
+    detailurl: 'http://dev-item.sfht.com',
+    topicurl: 'http://dev-topic.sfht.com',
+    mainurl: 'http://dev.sfht.com'
   };
 
   var DEV_FILE_LINK = {
-    '404': 'http://www.sfht.com/404.html',
-    'activated': 'http://www.sfht.com/activated.html',
-    'agreement': 'http://www.sfht.com/agreement.html',
-    'center': 'http://www.sfht.com/center.html',
-    'gotopay': 'http://www.sfht.com/gotopay.html',
-    'index': 'http://www.sfht.com/index.html',
-    'login': 'http://www.sfht.com/login.html',
-    'nullactivated':'http://www.sfht.com/nullactivated.html',
-    'order': 'http://www.sfht.com/order.html',
-    'orderdetail': 'http://www.sfht.com/orderdetail.html',
-    'orderlist': 'http://www.sfht.com/orderlist.html',
-    'passwordchange': 'http://www.sfht.com/password-change.html',
-    'preheat': 'http://www.sfht.com/preheat.html',
-    'process': 'http://www.sfht.com/process.html',
-    'register': 'http://www.sfht.com/register.html',
-    'retrieve': 'http://www.sfht.com/retrieve.html'
+    '404': 'http://dev.sfht.com/404.html',
+    'activated': 'http://dev.sfht.com/activated.html',
+    'agreement': 'http://dev.sfht.com/agreement.html',
+    'center': 'http://dev.sfht.com/center.html',
+    'gotopay': 'http://dev.sfht.com/gotopay.html',
+    'index': 'http://dev.sfht.com/index.html',
+    'login': 'http://dev.sfht.com/login.html',
+    'nullactivated':'http://dev.sfht.com/nullactivated.html',
+    'order': 'http://dev.sfht.com/order.html',
+    'orderdetail': 'http://dev.sfht.com/orderdetail.html',
+    'orderlist': 'http://dev.sfht.com/orderlist.html',
+    'passwordchange': 'http://dev.sfht.com/password-change.html',
+    'preheat': 'http://dev.sfht.com/preheat.html',
+    'process': 'http://dev.sfht.com/process.html',
+    'register': 'http://dev.sfht.com/register.html',
+    'retrieve': 'http://dev.sfht.com/retrieve.html'
   }
 
   return {
@@ -24956,7 +24956,7 @@ define('sf.b2c.mall.framework.comm',[
     'sf.b2c.mall.api.security.type'
   ],
 
-  function($, cookie, can, _, md5, SFBizConfig, SecurityType) {
+  function($, cookie, can, _, md5, store, SFBizConfig, SecurityType) {
 
     var ERROR_CODE_TOKEN_ERROR = -360;
     var ERROR_CODE_TOKEN_EXPIRE = -300;

@@ -24956,7 +24956,7 @@ define('sf.b2c.mall.framework.comm',[
     'sf.b2c.mall.api.security.type'
   ],
 
-  function($, cookie, can, _, md5, SFBizConfig, SecurityType) {
+  function($, cookie, can, _, md5, store, SFBizConfig, SecurityType) {
 
     var ERROR_CODE_TOKEN_ERROR = -360;
     var ERROR_CODE_TOKEN_EXPIRE = -300;

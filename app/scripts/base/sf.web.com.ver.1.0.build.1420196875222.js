@@ -24873,7 +24873,7 @@ define('can',["can/util/library", "can/control/route", "can/model", "can/view/mu
 define('sf.b2c.mall.business.config',[], function () {
   
 
-  var MD5_KEY = 'test.sfht.com';
+  var MD5_KEY = 'www.sfht.com';
 
   var NONE_APPEND_WORD = 'sfhaitao.xyz!';
 
@@ -24884,30 +24884,31 @@ define('sf.b2c.mall.business.config',[], function () {
 
   var host = window.location.hostname;
   var DEV_API_URL = {
-    url: 'http://test.sfht.com/m.api',
-    fileurl: 'http://test.sfht.com/file.api',
-    detailurl: 'http://test-item.sfht.com',
-    topicurl: 'http://test-topic.sfht.com',
-    mainurl: 'http://test.sfht.com'
+    url: 'http://'+host+'/m.api',
+    fileurl: 'http://'+host+'/file.api',
+    detailurl: 'http://'+host,
+    topicurl: 'http://'+host,
+    mainurl: 'http://'+host
   };
 
+  var main = 'www.sfht.com';
   var DEV_FILE_LINK = {
-    '404': 'http://test.sfht.com/404.html',
-    'activated': 'http://test.sfht.com/activated.html',
-    'agreement': 'http://test.sfht.com/agreement.html',
-    'center': 'http://test.sfht.com/center.html',
-    'gotopay': 'http://test.sfht.com/gotopay.html',
-    'index': 'http://test.sfht.com/index.html',
-    'login': 'http://test.sfht.com/login.html',
-    'nullactivated':'http://test.sfht.com/nullactivated.html',
-    'order': 'http://test.sfht.com/order.html',
-    'orderdetail': 'http://test.sfht.com/orderdetail.html',
-    'orderlist': 'http://test.sfht.com/orderlist.html',
-    'passwordchange': 'http://test.sfht.com/password-change.html',
-    'preheat': 'http://test.sfht.com/preheat.html',
-    'process': 'http://test.sfht.com/process.html',
-    'register': 'http://test.sfht.com/register.html',
-    'retrieve': 'http://test.sfht.com/retrieve.html'
+    '404': 'http://'+main+'/404.html',
+    'activated': 'http://'+main+'/activated.html',
+    'agreement': 'http://'+main+'/agreement.html',
+    'center': 'http://'+main+'/center.html',
+    'gotopay': 'http://'+main+'/gotopay.html',
+    'index': 'http://'+main+'/index.html',
+    'login': 'http://'+main+'/login.html',
+    'nullactivated':'http://'+main+'/nullactivated.html',
+    'order': 'http://'+main+'/order.html',
+    'orderdetail': 'http://'+main+'/orderdetail.html',
+    'orderlist': 'http://'+main+'/orderlist.html',
+    'passwordchange': 'http://'+main+'/password-change.html',
+    'preheat': 'http://'+main+'/preheat.html',
+    'process': 'http://'+main+'/process.html',
+    'register': 'http://'+main+'/register.html',
+    'retrieve': 'http://'+main+'/retrieve.html'
   }
 
   return {
@@ -24956,7 +24957,7 @@ define('sf.b2c.mall.framework.comm',[
     'sf.b2c.mall.api.security.type'
   ],
 
-  function($, cookie, can, _, md5, SFBizConfig, SecurityType) {
+  function($, cookie, can, _, md5, store, SFBizConfig, SecurityType) {
 
     var ERROR_CODE_TOKEN_ERROR = -360;
     var ERROR_CODE_TOKEN_EXPIRE = -300;
