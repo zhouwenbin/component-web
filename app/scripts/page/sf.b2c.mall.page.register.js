@@ -10,6 +10,8 @@ define(
   ],
   function ($, can, SFRegister, SFFrameworkComm) {
     SFFrameworkComm.register(1);
+
+    document.domain = 'sfht.com';
     var login = new SFRegister('body');
   });
 

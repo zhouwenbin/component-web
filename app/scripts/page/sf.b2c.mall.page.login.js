@@ -54,5 +54,6 @@ define(
 
     });
 
+    document.domain = 'sfht.com';
     new login('body');
   });

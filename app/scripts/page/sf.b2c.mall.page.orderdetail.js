@@ -30,5 +30,6 @@ define(
       }
     });
 
+    document.domain = 'sfht.com';
     new order('#order');
   });

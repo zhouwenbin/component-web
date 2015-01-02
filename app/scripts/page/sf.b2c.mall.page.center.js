@@ -61,5 +61,7 @@ define(
         })
       }
     });
+
+    document.domain = 'sfht.com';
     new center('.center');
   })

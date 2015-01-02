@@ -40,5 +40,7 @@ define(
 
         }
       });
+
+      document.domain = 'sfht.com';
       new changePwd('.change-password-wrap');
     })

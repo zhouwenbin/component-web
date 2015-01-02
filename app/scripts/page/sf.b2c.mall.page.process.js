@@ -76,5 +76,6 @@ define(
       }
     });
 
+    document.domain = 'sfht.com';
     var pageloader = new PageRegisterCheckLink();
   });

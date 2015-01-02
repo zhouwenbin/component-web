@@ -54,6 +54,7 @@ define([
 
   });
 
+  document.domain = 'sfht.com';
   new register('#content');
 
 });
