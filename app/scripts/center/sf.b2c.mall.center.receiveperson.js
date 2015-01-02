@@ -110,15 +110,14 @@ define(
         var html = '<div class="mask"></div><div class="dialog dialog-center"><a href="#" class="btn btn-close">关闭</a>'+
             '<p>确定要删除收货人“'+ person.recName+'”的信息吗？</p><div class="dialog-r1"><a id="btn-confirm-del" href="#" class="btn btn-send">确定</a>'+
             '<a href="#" class="btn btn-cancel">取消</a></div></div>';
+        $('body').append(html);
         $(".mask").show();
         $(".dialog-center").show();
-        $('body').append(html);
-
       },
 
       '#btn-confirm-del click':function(element, event){
         event && event.preventDefault();
-
+        debugger;
         $(".mask").hide();
         $(".dialog-center").hide();
         var index = element.data('index');
