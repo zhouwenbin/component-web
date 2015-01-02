@@ -159,9 +159,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'+
-              '<iframe id="proxy" src="http://www.sfht.com/proxy.html" style="display:none;"></iframe>'
-      });
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'      });
       this.setIframe.call(this);
     },
 
@@ -172,8 +170,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'+
-              '<iframe id="proxy" src="http://www.sfht.com/proxy.html" style="display:none;"></iframe>'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'
       });
       this.setIframe.call(this);
     },
