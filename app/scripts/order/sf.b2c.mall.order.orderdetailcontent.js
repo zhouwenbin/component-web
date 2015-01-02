@@ -286,18 +286,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       statusDescription: {
-        'SUBMITED': '您提交了订单，请等待系统确认',
-        'AUTO_CANCEL': '系统自动取消',
-        'USER_CANCEL': '用户取消',
-        'AUDITING': '您的订单已经付款成功，请等待审核',
-        'OPERATION_CANCEL': '运营取消',
-        'BUYING': '您的宝贝已经审核通过，正在采购',
-        'BUYING_EXCEPTION': '采购异常',
-        'WAIT_SHIPPING': '您的宝贝已经采购到，请等待发货',
-        'SHIPPING': '您的宝贝已经发货，请保持手机畅通',
-        'LOGISTICS_EXCEPTION': '物流异常',
-        'SHIPPED': '发货成功',
-        'COMPLETED': '已完成'
+        'SUBMITED': '用户已经下单，正在等待用户支付',
+        'AUTO_CANCEL': '超时未支付，订单自动取消',
+        'USER_CANCEL': '用户取消订单成功',
+        'AUDITING': '订单正在等待顺丰审核',
+        'OPERATION_CANCEL': '订单取消成功',
+        'BUYING': '尊敬的用户，您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
+        // 'BUYING_EXCEPTION': '采购异常',
+        'WAIT_SHIPPING': '订单正在等待仓库发货',
+        'SHIPPING': '您的订单正在顺丰海外仓进行出库操作。网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理',
+        // 'LOGISTICS_EXCEPTION': '物流异常',
+        'SHIPPED': '尊敬的用户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+        'COMPLETED': '用户确认收货，订单已完成'
       },
 
       getOptionHTML: function(operationsArr) {
