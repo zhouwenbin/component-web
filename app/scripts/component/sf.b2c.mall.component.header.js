@@ -206,7 +206,14 @@ define('sf.b2c.mall.component.header', ['jquery',
       var that = this;
       // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
-          var csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
+          var csrfToken = null;
+
+          try{
+            csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
+          }catch(e){
+
+          }
+
           console.log(csrfToken);
           if(csrfToken){
             store.set('csrfToken', csrfToken);
