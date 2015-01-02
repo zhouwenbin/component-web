@@ -24884,31 +24884,30 @@ define('sf.b2c.mall.business.config',[], function () {
 
   var host = window.location.hostname;
   var DEV_API_URL = {
-    url: 'http://'+host+'/m.api',
-    fileurl: 'http://'+host+'/file.api',
-    detailurl: 'http://'+host,
-    topicurl: 'http://'+host,
-    mainurl: 'http://'+host
+    url: 'http://www.sfht.com/m.api',
+    fileurl: 'http://www.sfht.com/file.api',
+    detailurl: 'http://item.sfht.com',
+    topicurl: 'http://topic.sfht.com',
+    mainurl: 'http://www.sfht.com'
   };
 
-  var main = 'www.sfht.com';
   var DEV_FILE_LINK = {
-    '404': 'http://'+main+'/404.html',
-    'activated': 'http://'+main+'/activated.html',
-    'agreement': 'http://'+main+'/agreement.html',
-    'center': 'http://'+main+'/center.html',
-    'gotopay': 'http://'+main+'/gotopay.html',
-    'index': 'http://'+main+'/index.html',
-    'login': 'http://'+main+'/login.html',
-    'nullactivated':'http://'+main+'/nullactivated.html',
-    'order': 'http://'+main+'/order.html',
-    'orderdetail': 'http://'+main+'/orderdetail.html',
-    'orderlist': 'http://'+main+'/orderlist.html',
-    'passwordchange': 'http://'+main+'/password-change.html',
-    'preheat': 'http://'+main+'/preheat.html',
-    'process': 'http://'+main+'/process.html',
-    'register': 'http://'+main+'/register.html',
-    'retrieve': 'http://'+main+'/retrieve.html'
+    '404': 'http://www.sfht.com/404.html',
+    'activated': 'http://www.sfht.com/activated.html',
+    'agreement': 'http://www.sfht.com/agreement.html',
+    'center': 'http://www.sfht.com/center.html',
+    'gotopay': 'http://www.sfht.com/gotopay.html',
+    'index': 'http://www.sfht.com/index.html',
+    'login': 'http://www.sfht.com/login.html',
+    'nullactivated':'http://www.sfht.com/nullactivated.html',
+    'order': 'http://www.sfht.com/order.html',
+    'orderdetail': 'http://www.sfht.com/orderdetail.html',
+    'orderlist': 'http://www.sfht.com/orderlist.html',
+    'passwordchange': 'http://www.sfht.com/password-change.html',
+    'preheat': 'http://www.sfht.com/preheat.html',
+    'process': 'http://www.sfht.com/process.html',
+    'register': 'http://www.sfht.com/register.html',
+    'retrieve': 'http://www.sfht.com/retrieve.html'
   }
 
   return {
@@ -24957,7 +24956,7 @@ define('sf.b2c.mall.framework.comm',[
     'sf.b2c.mall.api.security.type'
   ],
 
-  function($, cookie, can, _, md5, SFBizConfig, SecurityType) {
+  function($, cookie, can, _, md5, store, SFBizConfig, SecurityType) {
 
     var ERROR_CODE_TOKEN_ERROR = -360;
     var ERROR_CODE_TOKEN_EXPIRE = -300;
