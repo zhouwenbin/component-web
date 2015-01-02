@@ -70,7 +70,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
             '<div class="product-r2 clearfix">' +
               '<div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>' +
               '{{#sf-is-product fastSaleContentType}}' +
-              '<div class="product-r2c2 fr"><span class="icon icon5"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></span></div>' +
+              '<div class="product-r2c2 fr"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></div>' +
               '{{/sf-is-product}}'+
               '{{^sf-is-product fastSaleContentType}}' +
               '<div class="product-r2c2 fr"></div>' +

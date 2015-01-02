@@ -63,6 +63,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
+            data.orderItem.rcvrState = 0;
+
             that.options.user = new can.Map();
             that.options.IDCard = {};
             that.options.IDCard.needUpload = (data.orderItem.rcvrState == 0 || data.orderItem.rcvrState == 1 || data.orderItem.rcvrState == 3);
@@ -123,6 +125,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
+              item.imageUrl = JSON.parse(item.imageUrl)[0];
+            //that.options.allTotalPrice = that.options.productList[0].totalPrice;
+
+            var cancelArr = new Array();
+            cancelArr.push('AUTO_CANCEL');
+            cancelArr.push('USER_CANCEL');
+            cancelArr.push('OPERATION_CANCEL');
+            that.options.showShouldPayPrice = (cancelArr.indexOf(data.orderItem.orderStatus) == -1);
             //是否是宁波保税，是得话才展示税额
             that.options.showTax = that.options.productList[0].bonded;
             that.options.shouldPayPrice = that.options.allTotalPrice;

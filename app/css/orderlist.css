@@ -94,6 +94,7 @@
 	left: -136px;
 	top: 31px;
 	display: none;
+	z-index: 1;
 }
 .table-1 .icon16-4{
 	border-bottom-color: #fff;
