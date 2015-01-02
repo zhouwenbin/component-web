@@ -219,6 +219,7 @@ module.exports = function (grunt) {
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
         '<%= config.app %>/404.html',
+        '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html'
       ]
     },
@@ -349,6 +350,7 @@ module.exports = function (grunt) {
             'center.html',
             'gotopay.html',
             '404.html',
+            'p404.html',
             'password-change.html',
 
             'json/*.json',
