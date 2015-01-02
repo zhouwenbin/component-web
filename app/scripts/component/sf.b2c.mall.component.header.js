@@ -184,18 +184,18 @@ define('sf.b2c.mall.component.header', ['jquery',
         }
       }
 
-      this.watchIframe.call(this);
+      // this.watchIframe.call(this);
       this.watchLoginState.call(this);
     },
 
-    watchIframe: function() {
-      var that = this;
-      // if (!this.component.modal.isClosed()) {
-        setTimeout(function() {
-          that.setIframe.call(that);
-        }, 300);
-      // };
-    },
+    // watchIframe: function() {
+    //   var that = this;
+    //   // if (!this.component.modal.isClosed()) {
+    //     setTimeout(function() {
+    //       that.setIframe.call(that);
+    //     }, 300);
+    //   // };
+    // },
 
     watchLoginState: function(){
       var that = this;
@@ -207,6 +207,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
           console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
+            console.log('logined')
             that.component.modal.hide();
 
             if (that.afterLoginDest) {
@@ -219,6 +220,8 @@ define('sf.b2c.mall.component.header', ['jquery',
           }else{
             that.data.attr('isUserLogin', false);
           }
+
+          that.setIframe.call(that);
         }, 300);
       // }
     }
