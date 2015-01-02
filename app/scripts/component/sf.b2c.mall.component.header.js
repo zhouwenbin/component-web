@@ -21,10 +21,10 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     defaults: {
       login: {
-        myOrder: SFConfig.setting.api.mainurl + '/orderList.html'
+        myOrder: SFConfig.setting.link.orderlist
       },
       nologin: {
-        myOrder: SFConfig.setting.api.mainurl + 'login.html'
+        myOrder: SFConfig.setting.link.login
       }
     },
 
@@ -76,7 +76,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = 'orderlist.html'
+        window.location.pathname = SFConfig.setting.link.orderlist;
       }else{
         this.showLogin();
       }
@@ -86,7 +86,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = 'password-change.html';
+        window.location.pathname = SFConfig.setting.link.passwordchange;
       }else{
         this.showLogin();
       }
@@ -96,7 +96,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.pathname = 'center.html'
+        window.location.pathname = SFConfig.setting.link.center;
       }else{
         this.showLogin();
       }
@@ -121,9 +121,9 @@ define('sf.b2c.mall.component.header', ['jquery',
           .done(function(data) {
             that.data.attr('user', null);
             window.localStorage.removeItem('csrfToken');
-            window.location.href = SFConfig.setting.api.mainurl + 'index.html';
-            // window.location.reload();
-            // window.location.href = SFConfig.setting.api.mailurl + 'login.html'
+            $.removeCookie('nick');
+            $.removeCookie('gender');
+            window.location.href = SFConfig.setting.link.index;
           })
           .fail(function() {})
       }
@@ -151,7 +151,7 @@ define('sf.b2c.mall.component.header', ['jquery',
     showRegister: function () {
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="register.html">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'">'
       });
       this.setIframe.call(this);
     },
@@ -159,7 +159,7 @@ define('sf.b2c.mall.component.header', ['jquery',
     showLogin: function() {
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="login.html">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'">'
       });
       this.setIframe.call(this);
     },
