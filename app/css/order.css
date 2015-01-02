@@ -73,6 +73,13 @@
 .order-r1{
 	padding: 27px 0;
 	display: none;
+	line-height: 1.5;
+}
+.order-r1c1{
+	width: 900px;
+}
+.order-r1c1c1{
+	overflow: hidden;
 }
 .order-b.active	.order-r1{
 	border-bottom: 1px solid #eee;
@@ -234,4 +241,7 @@
 	position: absolute;
 	right: 56px;
 	top: -44px;
+}
+.order-b-1 .icon29{
+	cursor: inherit;
 }

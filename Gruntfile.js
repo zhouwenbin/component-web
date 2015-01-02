@@ -120,6 +120,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      extra: {
+        files:[{
+          dot: true,
+          src: [
+            '<%= config.dist %>/base',
+            '<%= config.dist %>/com',
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -227,6 +236,9 @@ module.exports = function (grunt) {
             if(block.dest === 'base'){
               block.dest = config.base.dest;
               block.src = config.base.src
+            }else if (block.dest === 'com') {
+              block.dest = config.com;
+              block.src = config.com
             }
 
             return '<script src="'+block.dest+'"></script>';
@@ -343,6 +355,7 @@ module.exports = function (grunt) {
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
+            '<%= config.com %>',
             'templates/**/*.mustache'
           ]
         }, {
@@ -780,6 +793,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
       var arr = filename.split('.')
+      if (arr[2] == 'com') {
+        config.com = 'scripts/base/'+filename
+      }
+
       if (filename.indexOf(target) > -1 && arr[2] == target) {
         config.target = target;
         config.base = {
@@ -813,7 +830,8 @@ module.exports = function (grunt) {
           'requirejs:gotopay',
           'requirejs:passwordchange',
           'usemin',
-          'htmlmin'
+          'htmlmin',
+          'clean:extra'
         ]);
       }
     })

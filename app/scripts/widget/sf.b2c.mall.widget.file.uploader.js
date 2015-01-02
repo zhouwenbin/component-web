@@ -34,7 +34,7 @@ define(
           // swf文件路径
           // !注意这里的路径一定要配置正确
           //swf: sf.config.current.swf + 'Uploader.swf',
-          swf: 'scripts/vendor/' + 'Uploader.swf',
+          swf: 'scripts/' + 'Uploader.swf',
 
           // 文件接收服务端。
           //server: sf.config.current.fileurl,

@@ -919,9 +919,10 @@ body{
 }
 .table-text h3{
 	margin-bottom: 17px;
-	white-space: nowrap;
+	line-height: 1.5;
+	max-height: 42px;
 	overflow: hidden;
-	text-overflow:ellipsis;
+	width: 377px;
 }
 .table-text p{
 	margin-bottom: 13px;
