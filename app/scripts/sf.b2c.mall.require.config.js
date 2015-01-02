@@ -146,6 +146,7 @@ requirejs.config({
     'webuploader':'scripts/vendor/vendor.webuploader',
     'sf.b2c.mall.widget.file.uploader': 'scripts/widget/sf.b2c.mall.widget.file.uploader',
     'sf.b2c.mall.widget.loading': 'scripts/widget/sf.b2c.mall.widget.loading',
+    'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
 
     'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',

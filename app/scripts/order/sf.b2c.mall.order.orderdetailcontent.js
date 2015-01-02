@@ -11,9 +11,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.util',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.updateReceiverInfo',
-    'sf.b2c.mall.api.user.getIDCardUrlList'
+    'sf.b2c.mall.api.user.getIDCardUrlList',
+    'sf.b2c.mall.order.fn'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn) {
 
     return can.Control.extend({
 
@@ -316,7 +317,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-send">立即支付</a>',
+        "NEEDPAY": '<a href="#" class="btn btn-send" id="pay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add">查看订单</a>',
         "CANCEL": '<a href="#" class="btn btn-add">取消订单</a>'
       },
@@ -414,6 +415,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         $(element).parents(".register").hide(300);
         $(".mask").hide();
         return false;
+      },
+
+      '#pay click': function (element, event) {
+        event && event.preventDefault();
+
+        var params = can.deparam(window.location.search.substr(1));
+        SFOrderFn.payV2({orderid: params.orderid})
       }
 
     });
