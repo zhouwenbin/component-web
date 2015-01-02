@@ -175,11 +175,13 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     setIframe: function() {
-      var link = $('iframe').contents().find('title').text();
-      if (link.indexOf('登陆') > -1) {
-        this.component.modal.setTitle('登录顺丰海淘');
-      } else if (link.indexOf('注册') > -1) {
-        this.component.modal.setTitle('注册顺丰海淘');
+      if (!this.component.modal.isClosed()) {
+        var link = $('iframe').contents().find('title').text();
+        if (link.indexOf('登陆') > -1) {
+          this.component.modal.setTitle('登录顺丰海淘');
+        } else if (link.indexOf('注册') > -1) {
+          this.component.modal.setTitle('注册顺丰海淘');
+        }
       }
 
       this.watchIframe.call(this);
@@ -188,11 +190,11 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     watchIframe: function() {
       var that = this;
-      if (!this.component.modal.isClosed()) {
+      // if (!this.component.modal.isClosed()) {
         setTimeout(function() {
           that.setIframe.call(that);
         }, 300);
-      };
+      // };
     },
 
     watchLoginState: function(){
