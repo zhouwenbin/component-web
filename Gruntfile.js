@@ -480,7 +480,8 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           include: [
             'sf.b2c.mall.center.register',
-            'sf.b2c.mall.page.preheat.register'
+            'sf.b2c.mall.page.preheat.register',
+            'vendor.jquery.jcountdown'
           ],
           insertRequire: ['sf.b2c.mall.page.preheat.register']
         }
