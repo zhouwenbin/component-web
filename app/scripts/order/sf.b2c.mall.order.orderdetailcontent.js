@@ -56,11 +56,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.recId = data.orderItem.rcvrId;
 
             var idcardItem = _.find(idcardList.items, function(item) {
-              return item.recId == that.options.recId
+              return item.recId == that.options.recId;
             });
 
             that.options.status = that.statsMap[data.orderItem.orderStatus];
-            that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]]
+            that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
             that.options.user = new can.Map();
@@ -71,6 +71,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               $('#uploadidcard').show();
               //读取身份证的状态
               that.options.IDCard.state = idcardItem.status;
+
               that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || '';
               that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
             }
@@ -113,14 +114,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             })
 
             that.options.receiveInfo = data.orderItem.orderAddressItem;
+            that.options.receiveInfo.certNo = idcardItem.credtNum;
             that.options.productList = data.orderItem.orderGoodsItemList;
 
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
               item.spec = that.options.productList[0].spec.split(',').join("<br/>");
-            })
-            that.options.allTotalPrice = that.options.productList[0].totalPrice;
+            });
 
+            that.options.allTotalPrice = that.options.productList[0].totalPrice;
             //是否是宁波保税，是得话才展示税额
             that.options.showTax = that.options.productList[0].bonded;
             that.options.shouldPayPrice = that.options.allTotalPrice;
