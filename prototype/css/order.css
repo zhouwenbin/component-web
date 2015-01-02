@@ -191,7 +191,9 @@
 	border-color: #66afe9;
 }
 .order-r2r3 .btn{
-	padding: 0 71px; 
+	padding: 0 60px; 
+	height: 48px;
+	line-height: 48px;
 }
 .order-r2 .icon26{
 	margin-top: 10px;
@@ -243,4 +245,9 @@
 }
 .order-b-1 .icon29{
 	cursor: inherit;
+}
+.order .tooptip-success{
+	position: absolute;
+	margin-left: 10px;
+	margin-top: -58px;
 }
