@@ -18,21 +18,21 @@ $(function(){
 	//左右按钮hover
 	$(".slider").hover(function(){
 		sliderPrev.stop(true,false).animate({
-			left : "150px",
+			left : "0px",
 			opacity : 1
 		},500);
 		sliderNext.stop(true,false).animate({
-			right : "150px",
+			right : "0px",
 			opacity : 1
 		},500);
 		clearInterval(silderTimer);
 	},function(){
 		sliderPrev.stop(true,false).animate({
-			left : "50px",
+			left : "-50px",
 			opacity : 0
 		},500);
 		sliderNext.stop(true,false).animate({
-			right : "50px",
+			right : "-50px",
 			opacity : 0
 		},500);
 		silderTimer=setInterval(sliderNexting,5000);

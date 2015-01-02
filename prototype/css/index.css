@@ -9,7 +9,6 @@
 	height: 420px;
 }
 .slider .pm{
-	height: 420px;
 	position: relative;
 }
 .slider-img{
@@ -76,13 +75,13 @@
 	top: 151px;
 }
 .slider .btn-prev{
-	left: 50px;
+	left: -50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 
 }
 .slider .btn-next{
-	right: 50px;
+	right: -50px;
 	opacity: 0;
 	filter: alpha(opacity=0);
 
@@ -178,7 +177,8 @@
 .product-list li .mask{
 	position: absolute;
 }
-.product-list li .icon24{
+.product-list li .icon24,
+.product-list li .icon24-1{
 	position: absolute;
 	top: 50%;
 	left: 50%;
