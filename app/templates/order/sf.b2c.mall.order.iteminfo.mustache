@@ -25,7 +25,9 @@
                 </div>
                 <div class="table-text">
                   <h3><a href="javascript:void(0);">{{itemName}} </a></h3>
-                  <p>{{spec}}</p>
+                  {{#spec}}
+                  <p>{{key}}:{{value}}</p>
+                  {{/spec}}
                   <!--img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /-->
                 </div>
 

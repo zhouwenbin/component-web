@@ -188,7 +188,7 @@ $(function(){
     })
     $(".order").on("click", ".order-edit", function(){debugger;
         $(".order-r2").hide();
-    	$(this).parents("li").find(".order-r2").show();
+    	$(this).parents("li").find(".order-r2").toggle();
         $(this).parents(".order-b").find(".icon30").addClass("active");
     	return false;
     });
