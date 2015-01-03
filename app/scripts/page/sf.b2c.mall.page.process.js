@@ -44,7 +44,7 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var params = can.deparam(window.location.search.substr(1));
-                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode, mailId: params.mailId});
+                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode, mailId: params.mailId, type: 'register'});
               }
             })
         },
@@ -64,7 +64,7 @@ define(
             .fail(function (errorCode) {
               if (_.isNumber(errorCode)) {
                 var params = can.deparam(window.location.search.substr(1));
-                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode, mailId: params.mailId});
+                window.location.href = 'nullactivated.html'+ '?' + $.param({er: errorCode, mailId: params.mailId, type: 'retrieve'});
               }
             })
         }

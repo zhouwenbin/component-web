@@ -11,9 +11,10 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.api.user.sendActivateMail',
+    'sf.b2c.mall.api.user.sendResetPwdLink',
     'sf.b2c.mall.business.config'
   ],
-  function ($, can, _, md5, SFFrameworkComm, SFHeader, SFFooter, SFApiUserSendActivateMail, SFBizConf) {
+  function ($, can, _, md5, SFFrameworkComm, SFHeader, SFFooter, SFApiUserSendActivateMail, SFApiUserSendResetPwdLink, SFBizConf) {
 
     SFFrameworkComm.register(1);
 
@@ -31,13 +32,25 @@ define(
       '1000100':   '验证码错误',
       '1000160':   '发送验证邮箱的频率较高，请过2分钟再试'
     }
+
+    var ERROR_RESEND_RESET_LINK_MAP = {
+      '1000010':   '未找到用户',
+      '1000050':   '邮箱地址错误',
+      '1000070':   '参数错误',
+      '1000100':   '验证码错误',
+      '1000110':   '账户尚未激活',
+      '1000160':   '发送验证邮箱的频率较高，请过2分钟再试'
+    }
+
     var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收。';
+    var DEFAULT_RESEND_RESET_LINK_SUCCESS = '密码重置邮件已重新发送，请注意查收';
 
 
     var PageNullActivated = can.Control.extend({
       init: function () {
         this.component = {};
         this.component.sendActivateMail = new SFApiUserSendActivateMail();
+        this.component.sendResetPwdLink = new SFApiUserSendResetPwdLink();
         this.paint();
       },
 
@@ -103,6 +116,40 @@ define(
       '#resend click': function ($element, event) {
         event && event.preventDefault();
 
+        var params = can.deparam(window.location.search.substr(1));
+        var map = {
+          'register': this.sendActivateMail,
+          'retrieve': this.sendResetLink
+        }
+
+        var fn = map[params.type];
+        if (_.isFunction(fn)) {
+          fn.call(this);
+        }
+      },
+
+      sendResetLink: function () {
+        var that = this;
+        this.component.sendResetPwdLink.setData({
+          mailId: this.data.attr('email'),
+          from: 'RESEND'
+        });
+
+        this.component.sendResetPwdLink.sendRequest()
+          .done(function (data) {
+            that.data.attr('msg', DEFAULT_RESEND_RESET_LINK_SUCCESS);
+            that.data.attr('msgType', 'icon26-2');
+          })
+          .fail(function (errorCode) {
+            if (_.isNumber(errorCode)) {
+              var errorText = ERROR_RESEND_RESET_LINK_MAP[errorCode.toString()];
+              that.data.attr('msg', errorText);
+              that.data.attr('msgType', 'icon26');
+            }
+          })
+      },
+
+      sendActivateMail: function () {
         var that = this;
         this.component.sendActivateMail.setData({
           mailId: this.data.attr('email'),
@@ -116,12 +163,13 @@ define(
           })
           .fail(function (errorCode) {
             if (_.isNumber(errorCode)) {
-              var errorText = ERROR_RESEND_MAP[errorCode];
+              var errorText = ERROR_RESEND_MAP[errorCode.toString()];
               that.data.attr('msg', errorText);
               that.data.attr('msgType', 'icon26');
             }
           })
       }
+
     });
 
     window.name = 'sfht.com';
