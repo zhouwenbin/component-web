@@ -123,10 +123,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
               item.spec = that.options.productList[0].spec.split(',').join("<br/>");
+              item.imageUrl = JSON.parse(item.imageUrl)[0];
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
-              item.imageUrl = JSON.parse(item.imageUrl)[0];
             //that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
             var cancelArr = new Array();

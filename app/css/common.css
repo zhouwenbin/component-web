@@ -651,6 +651,9 @@ body{
 	padding-top: 60px;
 	min-width: 1280px;
 }
+body.sub{
+	min-width: inherit;
+}
 /*布局*/
 .pm{
 	width: 1180px;

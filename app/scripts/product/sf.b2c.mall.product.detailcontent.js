@@ -364,18 +364,27 @@ define('sf.b2c.mall.product.detailcontent', [
         return '{{#each itemInfo.specGroups}}' +
           '<div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：' +
           '{{#each specs}}' +
-          '{{#if selected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
 
-          '{{^if selected}}' +
-          '{{#if canSelected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
-          '{{^if canSelected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
-          '{{/if}}' +
+              '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
+
+
+              // '{{#if selected}}' +
+              //   '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
+              // '{{else}}' +
+
+              //   '{{#if canSelected}}' +
+              //     '<label data-specid="{{specId}}" id="2" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
+              //   '{{else}}' +
+
+              //     '{{#if canShowDottedLine}}' +
+              //       '<label data-specid="{{specId}}" id="3" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods dashed">{{specValue}}<span class="icon icon23"></span></label>' +
+              //     '{{else}}' +
+              //       '<label data-specid="{{specId}}" id="4" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+              //     '{{/if}}' +
+
+              //   // '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+              //   '{{/if}}' +
+              // '{{/if}}' +
 
           '{{/each}}' +
           '</div>' +
@@ -518,43 +527,64 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       '.btn-goods click': function(element, event) {
         event && event.preventDefault();
+
+        var type = "";
         if (element.hasClass("disable")) {
           return false;
+        }
+
+        if (element.hasClass("dashed")) {
+          type = "dashed";
         }
 
         //获得数据信息
         var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
         var specId = $(element).eq(0).attr('data-specid');
 
-        var group = _.find(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
-          return group.specIdOrder == orderId;
-        })
+        _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
 
-        //修改选择状态
-        _.each(group.specs, function(spec) {
-          if (spec.specId == specId) {
-            spec.attr("selected", true);
-            spec.attr("canSelected", false);
+          if (group.specIdOrder == orderId) {
+            //修改选择状态  如果之前选中的 则要修改为未选中状态
+            _.each(group.specs, function(spec) {
+              if (spec.selected) {
+                spec.attr("selected", "");
+              }
+            })
           } else {
-            if (spec.attr("selected")) {
-              spec.attr("canSelected", true);
-            }
-            spec.attr("selected", false);
+            //修改选择状态
+            _.each(group.specs, function(spec) {
+              if (spec.specId == specId) {
+                spec.attr("selected", "active");
+                spec.attr("canSelected", "");
+              } else {
+                if (spec.selected) {
+                  spec.attr("canSelected", "");
+                  spec.attr("selected", "");
+                }
+              }
+            })
           }
         })
 
         //去获得最新的sku信息
-        this.gotoNewItem();
+        this.gotoNewItem(element, type);
         return false;
       },
 
-      getSKUIdBySpecs: function(saleSkuSpecTupleList, gotoItemSpec) {
-        var saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
-          return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == gotoItemSpec;
-        });
+      getSKUIdBySpecs: function(saleSkuSpecTupleList, gotoItemSpec, element, type) {
+        var saleSkuSpecTuple;
+        if (type == 'dashed') {
+          saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+            return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == $(element).eq(0).attr('data-compose');
+          })
+        } else {
+          saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+            return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == gotoItemSpec;
+          });
+        }
 
         //重新设定itemid
-        $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid',saleSkuSpecTuple.itemId);
+        $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid', saleSkuSpecTuple.itemId);
         return saleSkuSpecTuple.skuSpecTuple.skuId;
       },
 
@@ -562,18 +592,11 @@ define('sf.b2c.mall.product.detailcontent', [
        * [gotoNewItem description]
        * @return {[type]}
        */
-      gotoNewItem: function() {
+      gotoNewItem: function(element, type) {
         //获得选中的表示列表
-        var gotoItemSpec = [];
-        _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
-          _.each(group.specs, function(spec) {
-            if (spec.attr("selected")) {
-              gotoItemSpec.push(spec.specId);
-            }
-          })
-        })
+        var gotoItemSpec = new String($(element).eq(0).attr('data-compose')).split(",");
 
-        var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec.join(","));
+        var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec.join(","), element, type);
 
         var that = this;
         var getSKUInfo = new SFGetSKUInfo({
@@ -645,7 +668,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/each}}';
       },
 
-      detailTemplate: function(){
+      detailTemplate: function() {
         return '{{itemInfo.basicInfo.description}}';
       },
 
