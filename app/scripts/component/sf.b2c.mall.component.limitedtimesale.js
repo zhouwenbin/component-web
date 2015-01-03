@@ -235,9 +235,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
       setSoldout: function (node) {
         if (node) {
-          node.attr("抢购结束");
+          node.attr("促销已结束");
         } else {
-          node.innerHTML = '<span class="icon icon4"></span>抢购结束';
+          node.innerHTML = '<span class="icon icon4"></span>促销已结束';
         }
       },
 
@@ -400,9 +400,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
           }
         }else{
           if (timeNode.attr) {
-            timeNode.attr("抢购结束");
+            timeNode.attr("促销已结束");
           } else {
-            timeNode.innerHTML = '<span class="icon icon4"></span>抢购结束';
+            timeNode.innerHTML = '<span class="icon icon4"></span>促销已结束';
           }
         }
 
