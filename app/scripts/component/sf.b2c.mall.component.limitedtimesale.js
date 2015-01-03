@@ -144,7 +144,12 @@ define('sf.b2c.mall.component.limitedtimesale', [
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
           if ($(priceNode).attr('data-contenttype')== 'PRODUCT') {
-            $(priceNode).html(template(priceMap[$(priceNode).attr('data-itemid')]));
+            var info = priceMap[$(priceNode).attr('data-itemid')];
+
+            $(priceNode).html(template(info));
+            if (info && info.soldOut) {
+              $(priceNode).parent().find('.product-r1').append('<span class="icon icon24">售完</span>')
+            };
           }
         })
       },
@@ -224,7 +229,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
                 that.setCountDown(item, distance, item.endTime);
               }
             })
-          }, '1000');
+          }, 1000);
         }
       },
 
