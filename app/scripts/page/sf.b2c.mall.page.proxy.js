@@ -20,4 +20,6 @@ define(
       }
 
     });
+
+    new scanner();
   })
