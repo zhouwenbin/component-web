@@ -226,7 +226,7 @@ define('sf.b2c.mall.component.header', ['jquery',
             that.afterLoginDest = null
           }
 
-          console.log(SFComm.prototype.checkUserLogin.call(that))
+          //console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
             that.component.modal.hide();
 
