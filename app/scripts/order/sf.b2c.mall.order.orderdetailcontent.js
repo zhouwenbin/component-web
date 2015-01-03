@@ -60,7 +60,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               return item.recId == that.options.recId;
             });
 
-            //data.orderItem.orderStatus = "SHIPPING";
+            //data.orderItem.orderStatus = "COMPLETED";
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
@@ -81,8 +81,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.traceList = data.orderActionTraceItemList;
+//            that.options.traceList =  [
+//              {"gmtHappened":"2015/01/01 20:43:32","operator":"USER","status":"SUBMITED"},
+//              {"gmtHappened":"2015/01/01 20:44:32","operator":"USER","status":"AUDITING"},
+//              {"gmtHappened":"2015/01/01 20:45:58","operator":"SYSTEM","status":"WAIT_SHIPPING"},
+//              {"gmtHappened":"2015/01/01 20:46:05","operator":"SYSTEM","status":"SHIPPING"},
+//              {"gmtHappened":"2015/01/01 21:08:57","operator":"LOGISTICS","status":"SHIPPED"},
+//              {"gmtHappened":"2015/01/02 11:09:10","operator":"SYSTEM","status":"COMPLETED"}
+//            ];
 
-            var map = {
+              var map = {
               'SUBMITED': function(trace) {
                 that.options.submitedTime = trace.gmtHappened;
                 that.options.submitedActive = "active";
@@ -92,13 +100,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 that.options.auditingTime = trace.gmtHappened;
                 that.options.auditingActive = "active";
               },
-
+              'BUYING':function(trace){
+              },
               'WAIT_SHIPPING': function(trace) {
+              },
+
+              'SHIPPING': function(trace) {
                 that.options.wait_shippingTime = trace.gmtHappened;
                 that.options.wait_shippingActive = "active";
               },
 
-              'SHIPPING': function(trace) {
+              'SHIPPED':function(trace) {
                 that.options.shippingTime = trace.gmtHappened;
                 that.options.shippingActive = "active";
               },
@@ -336,7 +348,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'BUYING': '采购中',
         'BUYING_EXCEPTION': '采购异常',
         'WAIT_SHIPPING': '待发货',
-        'SHIPPING': '发货中',
+        'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
         'COMPLETED': '已完成'

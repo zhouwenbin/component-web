@@ -66,6 +66,13 @@
                     <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
                         发货,预计#if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
                             天内到货#else$!{productInfo.saleInfo.logisticsEnd}天内到货#end</div>
+                    <div class="goods-rel">
+                        <!--运费-->
+                        <div class="u3">
+                            <span class="icon icon5"></span><span class="s1">运费：</span><span class="icon icon6 icon6-1">0元<i></i></span>
+                        </div>
+                        <!--运费-->
+                    </div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
                     <div id="bandInfo" class="mr5">品牌：
                         <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
@@ -104,11 +111,6 @@
                          data-logisticsend="$!{productInfo.saleInfo.logisticsEnd}" data-productshape="$!{productInfo.saleInfo.productShape}">
                     </div>
                 ##客户端渲染end
-                    <!--运费-->
-                    <div class="u3">
-                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">运费0元<i></i></span>
-                    </div>
-                    <!--运费-->
                 </div>
                 <!--商品-->
             </div>
