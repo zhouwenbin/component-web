@@ -23,7 +23,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-limitedTimeBuy': function(productShape, options) {
-          if (productShape() == 'LIMITEDTIMEBUY') {
+          if (productShape() == 'XSTM') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -31,7 +31,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-rapidSeaBuy': function(productShape, options) {
-          if (productShape() == 'RAPIDSEABUY') {
+          if (productShape() == 'JSHT') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
