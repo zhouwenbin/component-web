@@ -17,11 +17,11 @@ $(function(){
 
 	//左右按钮hover
 	$(".slider").hover(function(){
-		sliderPrev.stop(true,false).animate({
+		sliderPrev.show().stop(true,false).animate({
 			left : "0px",
 			opacity : 1
 		},500);
-		sliderNext.stop(true,false).animate({
+		sliderNext.show().stop(true,false).animate({
 			right : "0px",
 			opacity : 1
 		},500);
@@ -30,11 +30,15 @@ $(function(){
 		sliderPrev.stop(true,false).animate({
 			left : "-50px",
 			opacity : 0
-		},500);
+		},500,function(){
+            sliderPrev.hide()
+        });
 		sliderNext.stop(true,false).animate({
 			right : "-50px",
 			opacity : 0
-		},500);
+		},500,function(){
+           sliderNext.hide()
+        });
 		silderTimer=setInterval(sliderNexting,5000);
 	})
 
