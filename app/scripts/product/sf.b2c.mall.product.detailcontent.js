@@ -134,7 +134,8 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')
+          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+          'size':4
         });
 
         findRecommendProducts
@@ -151,7 +152,9 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
             _.each(data.value, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html"
+              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+              item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+              //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
             })
 
             var template = can.view.mustache(that.recommendProductsTemplate());
@@ -324,8 +327,8 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          // '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
-          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
+             '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +
