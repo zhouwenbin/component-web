@@ -69,12 +69,12 @@ define('sf.b2c.mall.component.rapidseabuy', [
             '<p>{{subTitle}}</p>' +
             '<div class="product-r2 clearfix">' +
               '<div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>' +
-              '{{#sf-is-product fastSaleContentType}}' +
-              '<div class="product-r2c2 fr"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></div>' +
-              '{{/sf-is-product}}'+
-              '{{^sf-is-product fastSaleContentType}}' +
-              '<div class="product-r2c2 fr"></div>' +
-              '{{/sf-is-product}}'+
+              // '{{#sf-is-product fastSaleContentType}}' +
+              '<div class="product-r2c2 fr"><img src="{{homepageProductInfo.showNationalUrl}}" alt=""/></div>' +
+              // '{{/sf-is-product}}'+
+              // '{{^sf-is-product fastSaleContentType}}' +
+              // '<div class="product-r2c2 fr"></div>' +
+              // '{{/sf-is-product}}'+
             '</div>'+
             '<div class="product-r3 clearfix">' +
               '{{#sf-is-product fastSaleContentType}}' +
@@ -182,10 +182,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var paramData = {
             'itemIds': JSON.stringify(arr)
           }
-
-          // var paramData = {
-          //   "itemIds": $(ulNode[0]).attr('data-itemids')
-          // };
 
           //渲染价格模块
           var getProductHotDataList = new SFGetProductHotDataList(paramData);

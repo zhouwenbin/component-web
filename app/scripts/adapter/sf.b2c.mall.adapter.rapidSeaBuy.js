@@ -16,7 +16,7 @@ define(
           var arr = this.attr('fastSaleInfos');
 
           _.each(data.fastSaleInfos, function(value, key, list){
-            arr.push(value)
+            arr.push(new can.Map(value))
           });
 
           this.attr('pageInfo', data.pageInfo);
