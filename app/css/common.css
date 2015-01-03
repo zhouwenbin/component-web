@@ -445,6 +445,9 @@ button.btn{
 	color: #ccc;
 	cursor: not-allowed;
 }
+.btn-goods.dashed{
+	border-style: dashed;
+}
 .btn-goods b{
 	display: inline-block;
 	vertical-align: middle;
