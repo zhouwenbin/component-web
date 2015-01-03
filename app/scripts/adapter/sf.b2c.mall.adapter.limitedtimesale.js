@@ -30,8 +30,8 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
             item.attr('currentStock', item.currentStock);
             item.attr('startTime', item.startTime);
             item.attr('endTime', item.displayEndTime);
-            item.attr('price', item.price/100);
-            item.attr('discount', item.discount);
+            item.attr('price', item.homepageTopicInfo.price/100);
+            item.attr('discount', item.homepageTopicInfo.discount);
             item.attr('time','');
           }
         });
