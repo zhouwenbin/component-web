@@ -83,6 +83,8 @@ define(
       },
 
       '.btn-send click': function ($element, event) {
+        event && event.preventDefault();
+
         var password = this.data.attr('password');
         var repassword = this.data.attr('repassword');
         var email = this.data.attr('email');
@@ -90,7 +92,7 @@ define(
 
         if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           return this.data.attr('errorText', ERROR_PASSWORD);
-        }else if (!_.isEmpty(repassword) && password !== repassword) {
+        }else if (_.isEmpty(repassword) && password !== repassword) {
           return this.data.attr('errorText', ERROR_NOT_SAME);
         }
 
