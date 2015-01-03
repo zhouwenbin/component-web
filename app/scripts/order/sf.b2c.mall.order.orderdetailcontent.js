@@ -60,6 +60,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               return item.recId == that.options.recId;
             });
 
+            //data.orderItem.orderStatus = "SHIPPING";
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
