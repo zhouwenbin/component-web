@@ -64,17 +64,18 @@ define('sf.b2c.mall.component.rapidseabuy', [
           '<li>'+
             '<div class="product-r1">' +
               '<a href="{{link}}" target="_blank"><img src="{{imgUrl}}" alt="" ></a><span></span>' +
+              '{{#soldOut}}<span class="icon icon24">售完</span>{{/soldOut}}'+
             '</div>' +
             '<h3><a href="{{link}}" target="_blank">{{title}}</a></h3>' +
             '<p>{{subTitle}}</p>' +
             '<div class="product-r2 clearfix">' +
               '<div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>' +
-              // '{{#sf-is-product fastSaleContentType}}' +
+              '{{#sf-is-product fastSaleContentType}}' +
               '<div class="product-r2c2 fr"><img src="{{homepageProductInfo.showNationalUrl}}" alt=""/></div>' +
-              // '{{/sf-is-product}}'+
-              // '{{^sf-is-product fastSaleContentType}}' +
-              // '<div class="product-r2c2 fr"></div>' +
-              // '{{/sf-is-product}}'+
+              '{{/sf-is-product}}'+
+              '{{^sf-is-product fastSaleContentType}}' +
+              '<div class="product-r2c2 fr"></div>' +
+              '{{/sf-is-product}}'+
             '</div>'+
             '<div class="product-r3 clearfix">' +
               '{{#sf-is-product fastSaleContentType}}' +
