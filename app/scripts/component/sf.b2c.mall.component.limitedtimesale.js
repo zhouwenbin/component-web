@@ -140,9 +140,9 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       renderPriceInfo: function(priceMap) {
-        var priceNodeList = $('ul.product-list #price4ProductClient');
+        var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
 
-        // console.log('-------------renderPriceInfo-------------')
+        console.log('-------------renderPriceInfo-------------')
         //这里只渲染产品的价格，专题的价格服务器端渲染
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
