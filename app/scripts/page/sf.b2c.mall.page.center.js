@@ -9,9 +9,11 @@ define(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.center.change.userinfo',
     'sf.b2c.mall.center.receiveperson',
-    'sf.b2c.mall.center.receiveaddr'
+    'sf.b2c.mall.center.receiveaddr',
+    'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, Header, Footer, ChangeUserInfo, SFReceiveperson, SFReceiveaddr) {
+  function(can, $, Header, Footer, ChangeUserInfo, SFReceiveperson, SFReceiveaddr,SFFrameworkComm) {
+    SFFrameworkComm.register(1);
 
     var center = can.Control.extend({
 
