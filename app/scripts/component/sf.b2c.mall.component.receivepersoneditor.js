@@ -101,7 +101,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         .done(function(data) {
           def.resolve(data);
           //that.hide();
-          //that.onSuccess();
+          that.onSuccess();
         })
         .fail(function(error) {
           if(error === 1000310){
@@ -124,7 +124,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         .done(function(data) {
           def.resolve(data);
           //that.hide();
-          //that.onSuccess();
+          that.onSuccess();
         })
         .fail(function(error) {
           def.reject(error);
