@@ -104,6 +104,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
               var priceMap = {};
               _.each(data.value, function(priceItem) {
                 priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
+                priceItem.originPrice = priceItem.originPrice / 100;
+                priceItem.sellingPrice = priceItem.sellingPrice / 100;
                 priceMap[priceItem.itemId] = priceItem;
               })
 
@@ -140,11 +142,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
       renderPriceInfo: function(priceMap) {
         var priceNodeList = $('ul.product-list #price4ProductClient');
 
+        // console.log('-------------renderPriceInfo-------------')
         //这里只渲染产品的价格，专题的价格服务器端渲染
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
           if ($(priceNode).attr('data-contenttype')== 'PRODUCT') {
-            $(priceNode).html(template(priceMap[$(priceNode).attr('data-itemid')]));
+            var info = priceMap[$(priceNode).attr('data-itemid')];
+            // console.log(info);
+            $(priceNode).html(template(info));
           }
         })
       },
