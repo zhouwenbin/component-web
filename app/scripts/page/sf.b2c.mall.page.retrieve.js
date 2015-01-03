@@ -31,6 +31,7 @@ define(
       }
     });
 
+    window.name = 'sfht.com';
     var pageRetireve = new PageRetrieve('body');
 
   })

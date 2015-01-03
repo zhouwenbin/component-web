@@ -7,13 +7,14 @@ define(
     'can',
     'underscore',
     'md5',
+    'store',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.api.user.mailRegister',
     'sf.b2c.mall.business.config'
   ],
-  function ($, can, _, md5, SFFrameworkComm, SFHeader, SFFooter, SFApiUserMailRegister, SFBizConf) {
+  function ($, can, _, md5, store, SFFrameworkComm, SFHeader, SFFooter, SFApiUserMailRegister, SFBizConf) {
 
     SFFrameworkComm.register(1);
 
@@ -103,6 +104,7 @@ define(
         this.component.mailRegister.sendRequest()
           .done(function (data) {
             if (data.csrfToken) {
+              store.set('csrfToken', data.csrfToken);
               window.location.href = 'index.html'
             }
           })
@@ -134,5 +136,6 @@ define(
       }
     });
 
+    window.name = 'sfht.com';
     var pageMailactivated = new PageMailActivated('body');
   });

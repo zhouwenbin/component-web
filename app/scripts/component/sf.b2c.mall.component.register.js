@@ -9,6 +9,7 @@ define(
     'can',
     'md5',
     'underscore',
+    'store',
     'placeholders',
     'sf.b2c.mall.api.user.downSmsCode',
     'sf.b2c.mall.api.user.mobileRegister',
@@ -16,7 +17,7 @@ define(
     'sf.b2c.mall.business.config'
   ],
 
-  function ($, can, md5, _, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf) {
+  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -333,6 +334,7 @@ define(
           this.component.mobileRegister.sendRequest()
             .done(function (data) {
               if (data.csrfToken) {
+                store.set('csrfToken', data.csrfToken);
                 can.route.attr('tag', 'success');
               }
             })
