@@ -304,7 +304,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = SFConfig.setting.link.detail + '?' + $.param({
+        window.location.href = 'http://www.sfht.com' + '?' + $.param({
           "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
