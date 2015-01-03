@@ -11,9 +11,7 @@ define(
 
       init: function (element, options) {
         this.options.sliderIndex = 0;
-        if (this.options.imgs && this.options.imgs.length > 0) {
-          this.render(this.options);
-        }
+        this.render(this.options);
       },
 
       /**
@@ -53,14 +51,14 @@ define(
       },
 
       hoverOver: function (element, event) {
-        this.element.find('.slider .btn-prev').stop(true, false).animate({ left:  0, opacity: 1 }, 500);
-        this.element.find('.slider .btn-next').stop(true, false).animate({ right: 0, opacity: 1 }, 500);
+        this.element.find('.slider .btn-prev').show().stop(true, false).animate({ left:  0, opacity: 1 }, 500);
+        this.element.find('.slider .btn-next').show().stop(true, false).animate({ right: 0, opacity: 1 }, 500);
         clearInterval(this.options.silderTimer);
       },
 
       hoverOut: function (element, event) {
-        this.element.find('.slider .btn-prev').stop(true, false).animate({ left:  '-100px', opacity: 0 }, 500);
-        this.element.find('.slider .btn-next').stop(true, false).animate({ right: '-100px', opacity: 0 }, 500);
+        this.element.find('.slider .btn-prev').stop(true, false).animate({ left:  '-50px', opacity: 0 }, 500, function(){ this.element.find('.slider .btn-prev').hide() });
+        this.element.find('.slider .btn-next').stop(true, false).animate({ right: '-50px', opacity: 0 }, 500, function(){ this.element.find('.slider .btn-prev').hide() });
         this.options.silderTimer=setInterval(_.bind(this.sliderNexting, this),5000);
       },
 
@@ -90,17 +88,16 @@ define(
                       '<li><a href="###"></a></li>' +
                     '{{/imgs}}' +
                   '</ul>' +
-                  '<div class="pm">' +
-                    '<a href="###" class="btn btn-prev">向前</a>' +
-                    '<a href="###" class="btn btn-next">向后</a>' +
-                  '</div>' +
+                  '<a href="###" class="btn btn-prev">向前</a>' +
+                  '<a href="###" class="btn btn-next">向后</a>' +
                 '</div>'
       },
 
       render: function () {
-        // this.element.html(this.options.tpl, this.options);
-        var template = can.view.mustache(this.template())
-        this.element.html(template(this.options));
+        if (this.options.imgs && this.options.imgs.length > 0) {
+          var template = can.view.mustache(this.template())
+          this.element.html(template(this.options));
+        }
 
         this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
         this.element.hover(_.bind(this.hoverOver, this), _.bind(this.hoverOut, this));

@@ -101,7 +101,6 @@
 	border-bottom: 1px dashed #858390;
 	margin-bottom: 23px;
 	color: #686675;
-
 }
 .goods .mr1{
 	margin-bottom: 17px;
@@ -231,6 +230,7 @@
 }
 .recommend img{
 	border: 1px solid #EEEDEE;
+	max-width: 102px;
 }
 .recommend-c1{
 	margin-left: 112px;

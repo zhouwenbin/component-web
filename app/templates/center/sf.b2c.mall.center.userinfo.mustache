@@ -1,62 +1,46 @@
-<div class="clearfix Data-tops">
-  <b class="fl">基本资料</b>
-  {{^isModified}}<a href="#" class="fr Unmodified" id="user-info-modify-btn">修改</a>{{/isModified}}
-</div>
-
-<div class="date-mains clearfix">
-  <form>
-    {{^isModified}}
-    <div class="date-Unmodified date-hides clearfix">
-      <dl class="clearfix fl">
-        <dt class="fl">昵称：</dt>
-        <dd id="name">{{user.nick}}</dd>
-      </dl>
-      <dl class="clearfix fl">
-        <dt class="fl">性别：</dt>
-        <dd>{{user.genderStr}}</dd>
-      </dl>
-      <!--
-      <dl class="clearfix fl">
-        <dt class="fl">手机号码：</dt>
-        <dd>
-          {{user.mobile}}
-          {{^user.bindMobile}}<a href="#">绑定</a>{{/user.bindMobile}}
-        </dd>
-      </dl>
-      <dl class="clearfix fl">
-        <dt class="fl">支付币种：</dt>
-        <dd>{{user.buyType}}</dd>
-      </dl>
-      -->
-    </div>
-    {{/isModified}}
-
-    {{#isModified}}
-    <div class="date-Unmodified date-shows clearfix">
-      <dl class="clearfix fl">
-        <dt class="fl">昵称：</dt>
-        <dd>
-          <input type="text" class="input-nanmes" can-value="input.nick" value="{{input.nick}}">
-        </dd>
-      </dl>
-      <dl class="clearfix fl">
-        <dt class="fl">性别：</dt>
-        <dd>
-          <label><input type='radio' can-value='input.gender' value='MALE' name="gender" /> 男</label>
-          <label><input type='radio' can-value='input.gender' value='FEMALE' name="gender" /> 女</label>
-        </dd>
-      </dl>
-      <dl class="clearfix fl">
-        <dt class="fl"></dt>
-        <dd class="clearfix">
-          <input type="submit" value="确定修改" class="btn7 fl" id="user-info-confirm-btn">
-          <a href="#" id="user-info-cancel-btn" class="btn8 fl">取消</a>
-        </dd>
-      </dl>
-    </div>
-    {{/isModified}}
-
-  </form>
-</div>
-
-
+<h2>基本资料</h2>
+{{^isModified}}
+  <div class="order-b">
+    <ul>
+      <li class="active">
+        <div class="order-r1 clearfix">
+          <div class="order-r1c1 fl">
+            <span>昵称：{{user.nick}}</span>
+            <span>性别：{{user.gender}}</span>
+          </div>
+          <div class="order-r1c2 fl">
+            <a class="order-edit" href="" id="user-info-modify-btn">修改</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+{{/isModified}}
+{{#isModified}}
+  <div class="order-b center-info">
+    <ul>
+      <li class="active">
+        <div class="order-r1 clearfix">
+            <div class="order-r1c1 fl">
+              昵称：<input type="text" class="input" can-value="input.nick">
+              性别：
+              <!--<div class="btn btn-select btn-select-1" role="btn">-->
+                <!--<span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>-->
+                <!--<ul style="display: none;">-->
+                  <!--<li><label>男<input type="radio" can-value='input.gender' value='MALE' name="gender" class="visuallyhidden"></label></li>-->
+                  <!--<li><label>女<input type="radio" can-value='input.gender' value='FEMALE' name="gender" class="visuallyhidden"></label></li>-->
+                <!--</ul>-->
+              <!--</div>-->
+              <select can-value='input.gender' name="" id="select-sex">
+                <option value="MALE">男</option>
+                <option value="FEMALE">女</option>
+              </select>
+            </div>
+            <div class="order-r1c2 fr">
+              <a href="#" class="btn btn-send" id="user-info-confirm-btn">保存</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+{{/isModified}}

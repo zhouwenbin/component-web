@@ -1,82 +1,94 @@
 #define($_content)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=1280">
+    <meta name="description" content="顺丰海淘网 - 直采海外_直邮中国_安心售后_顺丰海淘网,sfht.com">
+    <meta name="keywords" content="顺丰海淘,SFHT,SF海淘,海淘网站,海淘攻略,海淘网址,海淘教程,特卖,限时抢购,海淘品牌,折扣,母婴,鞋子,包包,保健,辅食">
     <title>顺丰海淘</title>
-    $!{_const_indexCss}
+  $!{_const_indexCss}
 </head>
 <body>
 <div id="content">
     <div class="sf-b2c-mall-header"></div>
     <div class="pb">
-        <div class="sf-b2c-mall-main-slider serverRendered">
-            <div class="slider">
-                <ul class="slider-img">
+      #if($sliders&&$sliders.size()!=0)
+          <div class="sf-b2c-mall-main-slider serverRendered">
+              <div class="slider">
+                  <ul class="slider-img">
                     #foreach ($_el in $sliders)
                         <li  #if($velocityCount==1)class="active"#end>
-                            <a href="$!{_el.link}" style="background-image: url($!{_el.imgUrl})"></a>
+                            <a href="$!{_el.link}" target="_blank" style="background-image: url($!{_el.imgUrl})"></a>
                         </li>
                     #end
-                </ul>
-                <ul class="slider-num">
+                  </ul>
+                  <ul class="slider-num">
                     #foreach ($_el in $sliders)
                         <li #if($velocityCount==1)class="active"#end>
                             <a href="#"></a>
                         </li>
                     #end
-                </ul>
-                <div class="pm">
-                <a href="#" class="btn btn-prev" style="left: -100px; opacity: 0;">向前</a>
-                <a href="#" class="btn btn-next" style="right: -100px; opacity: 0;">向后</a>
-                </div>
-            </div>
-        </div>
-        <div class="pm">
-            <!--限时特卖-->
-            <div class="sf-b2c-mall-limitedtimesale serverRendered">
-                <div class="product">
-                  <div id="LimitedTimeSale" class="mh clearfix">
-                      <h2 class="fl">限时特卖</h2>
-                      <ul class="fl product-tab">
-                          <li id="current" class="active">
-                            <a href="#">当前</a>
-                            <span></span>
-                          </li>
-                          <li id="future">
-                            <a href="#">即将开始</a>
-                            <span></span>
-                          </li>
-                      </ul>
+                  </ul>
+                  <div class="pm">
+                      <a href="#" class="btn btn-prev" style="left: -100px; opacity: 0;">向前</a>
+                      <a href="#" class="btn btn-next" style="right: -100px; opacity: 0;">向后</a>
                   </div>
-                  <div class="mb">
-                      <ul class="clearfix product-list" data-itemIds=$!{timeLimitedSaleItemIds}>
-                          #foreach ($_el in $limitedTimeSale)
-                              <li>
-                                  <div class="product-r1">
-                                      <a href="$!{_el.link}" target="_blank">
-                                          <img src="$!{_el.imgUrl}" alt="">
-                                      </a>
-                                      <span></span>
-                                  </div>
-                                  <h3>
-                                      <a href="$_el.link" target="_blank">$!{_el.title}</a>
-                                  </h3>
-                                  <p>$!{_el.subTitle}</p>
-                                  <div class="product-r2 clearfix" >
-                                      <div id="timeAndNation4ProductClient" data-contentType="$!{_el.contentType}" #if($_el.homepageProductInfo) data-itemId="$!{_el.homepageProductInfo.itemId}" #elseif($_el.homepageTopicInfo) data-topicId="$!{_el.homepageTopicInfo.topicId}" data-displayEndTime="$!{_el.displayEndTime}" #end class="product-r2c1 fl"><span class="icon icon4"></span></div>
+              </div>
+          </div>
+      #end
+        <div class="pm">
+          #if($limitedTimeSale&&$limitedTimeSale.size()!=0)
+              <!--限时特卖-->
+              <div class="sf-b2c-mall-limitedtimesale serverRendered">
+                  <div class="product">
+                      <div id="LimitedTimeSale" class="mh clearfix">
+                          <h2 class="fl">限时特卖</h2>
+                          <ul class="fl product-tab">
+                              <li id="current" class="active">
+                                  <a href="#">当前</a>
+                                  <span></span>
+                              </li>
+                              <li id="future">
+                                  <a href="#">即将开始</a>
+                                  <span></span>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="mb">
+                          <ul class="clearfix product-list" data-itemIds=$!{timeLimitedSaleItemIds}>
+                            #foreach ($_el in $limitedTimeSale)
+                                <li>
+                                    <div class="product-r1">
+                                        <a href="$!{_el.link}" target="_blank">
+                                            <img src="$!{_el.imgUrl}" alt="">
+                                        </a>
+                                        <span></span>
+                                    </div>
+                                    <h3>
+                                        <a href="$!{_el.link}" target="_blank">$!{_el.title}</a>
+                                    </h3>
+
+                                    <p>$!{_el.subTitle}</p>
+
+                                    <div class="product-r2 clearfix">
+                                        <div id="timeAndNation4ProductClient" data-contentType="$!{_el.contentType}" #if($_el.homepageProductInfo)
+                                             data-itemId="$!{_el.homepageProductInfo.itemId}" #elseif($_el.homepageTopicInfo)
+                                             data-topicId="$!{_el.homepageTopicInfo.topicId}" data-displayEndTime="$!{_el.displayEndTime}" #end
+                                             class="product-r2c1 fl"><span class="icon icon4"></span></div>
                                       #if ($_el.homepageProductInfo)
                                           <div class="product-r2c2 fr">
                                             <span class="icon">
                                               <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt="">
                                             </span>
-                                            <span class="product-r2-time"></span>
+                                              <span class="product-r2-time"></span>
                                           </div>
                                       #end
-                                  </div>
+                                    </div>
                                   #if ($_el.homepageProductInfo)
-                                      <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.contentType}" data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
+                                      <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
+                                           data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
                                   #elseif ($_el.homepageTopicInfo)
-                                      <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}" data-topicId="$!{_el.homepageTopicInfo.topicId}">
+                                      <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
+                                           data-topicId="$!{_el.homepageTopicInfo.topicId}">
                                           <div class="product-r3c1 fl">
                                               <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
                                           </div>
@@ -85,22 +97,23 @@
                                           </div>
                                       </div>
                                   #end
-                              </li>
-                          #end
-                      </ul>
+                                </li>
+                            #end
+                          </ul>
+                      </div>
                   </div>
-                </div>
-            </div>
-            <!--限时特卖-->
-
-            <!--极速海淘-->
-            <div class="sf-b2c-mall-rapidseabuy serverRendered">
-                <div class="product">
-                    <div id="RapidSeaBuy" class="mh">
-                        <h2>极速海淘</h2>
-                    </div>
-                    <div class="mb">
-                        <ul class="clearfix product-list" data-itemIds=${fastSaleInfoItemIds}>
+              </div>
+              <!--限时特卖-->
+          #end
+          #if($fastSaleInfoList)
+              <!--极速海淘-->
+              <div class="sf-b2c-mall-rapidseabuy serverRendered">
+                  <div class="product">
+                      <div id="RapidSeaBuy" class="mh">
+                          <h2>极速海淘</h2>
+                      </div>
+                      <div class="mb">
+                          <ul class="clearfix product-list" data-itemIds=${fastSaleInfoItemIds}>
                             #foreach ($_el in $fastSaleInfoList.fastSaleInfos )
                                 <li>
                                     <div class="product-r1">
@@ -120,38 +133,41 @@
                                               <i></i>
                                             </span>
                                         </div>
-                                        #if ($_el.homepageProductInfo)
-                                            <div class="product-r2c2 fr">
+                                      #if ($_el.homepageProductInfo)
+                                          <div class="product-r2c2 fr">
                                               <span class="icon icon5">
                                                 <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt="">
                                               </span>
-                                            </div>
-                                        #end
+                                          </div>
+                                      #end
                                     </div>
-                                    #if ($_el.homepageProductInfo)
-                                        <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}" data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
-                                    #elseif ($_el.homepageTopicInfo)
-                                        <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}" data-topicId="$!{_el.homepageTopicInfo.topicId}">
-                                            <div class="product-r3c1 fl">
-                                                <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
-                                            </div>
-                                            <div class="product-r3c2 fr">
-                                                <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
-                                            </div>
-                                        </div>
-                                    #end
+                                  #if ($_el.homepageProductInfo)
+                                      <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
+                                           data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
+                                  #elseif ($_el.homepageTopicInfo)
+                                      <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
+                                           data-topicId="$!{_el.homepageTopicInfo.topicId}">
+                                          <div class="product-r3c1 fl">
+                                              <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                          </div>
+                                          <div class="product-r3c2 fr">
+                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
+                                          </div>
+                                      </div>
+                                  #end
                                 </li>
                             #end
-                        </ul>
-                    </div>
-                    <div class="mf">
-                      #if( $fastSaleInfoList.pageInfo.hasMore )
-                      <a href="#" class="btn btn-more">查看更多</a>
-                      #end
-                    </div>
-                </div>
-            </div>
-            <!--极速海淘-->
+                          </ul>
+                      </div>
+                      <div class="mf">
+                        #if( $fastSaleInfoList.pageInfo.hasMore )
+                            <a href="#" class="btn btn-more">查看更多</a>
+                        #end
+                      </div>
+                  </div>
+              </div>
+              <!--极速海淘-->
+          #end
         </div>
     </div>
     <!--尾部-->
@@ -159,6 +175,6 @@
 
     <!--尾部-->
 </div>
-    $!{_const_indexScript}
+  $!{_const_indexScript}
 </body>
 #end

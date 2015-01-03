@@ -5,9 +5,13 @@ define(
   [
     'jquery',
     'can',
-    'sf.b2c.mall.component.register'
+    'sf.b2c.mall.component.register',
+    'sf.b2c.mall.framework.comm'
   ],
-  function ($, can, SFRegister) {
+  function ($, can, SFRegister, SFFrameworkComm) {
+    SFFrameworkComm.register(1);
+
+    window.name = 'sfht.com';
     var login = new SFRegister('body');
   });
 

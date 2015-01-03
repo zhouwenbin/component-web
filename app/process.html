@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.process.css -->
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/process.css"/>
+<!-- endbuild -->
+</head>
+<body>
+  <div class="m-inexistence">
+    <div class="mc1 fl">
+      <img src="img/icon-octopus.png" alt="" />
+    </div>
+    <div class="mc2">
+      <h1>处理中...</h1>
+    </div>
+  </div>
+  <!-- build:js(.) scripts/require.min.js-->
+  <script src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.) base-->
+  <script src="scripts/base/sf.web.dev.ver.1.0.build.1420256152406.js"></script>
+  <!-- endbuild -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.process.min.js -->
+  <script src="scripts/sf.b2c.mall.require.config.js"></script>
+  <script type="text/javascript">
+  require(['sf.b2c.mall.page.process']);
+  </script>
+  <!-- endbuild -->
+</body>
+</html>

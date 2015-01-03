@@ -8,33 +8,52 @@
   <link href="css/common.css" rel="stylesheet" type="text/css" />
   <link href="css/register.css" rel="stylesheet" type="text/css" />
   <link href="css/preheat.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="css/jcountdown.css">
   <!-- endbuild -->
 </head>
 <body>
 <div id="content">
-  <div class="banner1"><a class="preheat-logo" href=""></a></div>
-  <div class="m1">
-    <div class="pm">
-      <h1>喜迎上线<span></span>预约惊喜</h1>
-      <p>好货不间断，顺丰海淘节即将惊喜上线…….<br />
-        网站升级中，如有不便，敬请谅解。<br />
-        感谢各位用户在网站内测期给予的极大支持，我们将提供更多优质的商品与完善的服务。<br />
-        已下单客户可通过客服热线进行订单查询，TEL：021 - 69763622
-      </p>
+  <div class="banner1">
+    <div id="countcontent">
+      <div class="page">
+        <div class="countdown"></div>
+      </div>
     </div>
+
+    <p>已新增<strong>523，103</strong>位注册用户</p>
+    <a href="#" class="btn1 sf-in-order">抢先注册</a>
+  </div>
+  <div class="m1">
+      <div class="pm">
+        <h1>喜迎上线<span></span>预约惊喜</h1>
+        <p>顺丰海淘隶属顺丰集团，<br />
+致力于创建专业、便捷、丰富、低价的全球化海淘电子商务平台。<br />
+对于时下热卖的母婴用品、食品保健、美妆个护等商品，我们正在积极地从欧美、新澳、日韩等<br />
+产品线引进更多品牌，丰富并细化各个类目。<br />
+<strong>正式上线时，每天均有3款特价商品参与限时抢购活动，敬请关注。</strong><br />
+前期已下单客户可通过客服热线进行订单查询<br />
+TEL：021 - 69763622</p>
+        <ul>
+          <li>100%正品保证</li>
+          <li>售价包邮含税</li>
+          <li>中文详细介绍 </li>
+          <li>源头供应链</li>
+          <li>全网抄底价</li>
+          <li>365天空运不间断</li>
+        </ul>
+      </div>
 
   </div>
 
   <div class="m3">
     <div class="pm">
       <div class="mh">
-        <h2>&nbsp;</h2>
         <div class="hr1">抢货</div>
         <div class="hr2">一步之遥</div>
         <div class="hr3">网站升级期间，<br />
-          顺丰海淘精心准备了时下正热的多款明星商品。<br />
-          点击“抢先预约”，输入您的手机号码，<br />
-          即可预订惊喜。</div>
+        顺丰海淘精心准备了时下正热的多款明星商品。<br />
+        点击“抢先预约”，输入您的手机号码，<br />
+        即可预订惊喜。</div>
       </div>
       <ul class="clearfix">
         <li>
@@ -45,7 +64,8 @@
             <span class="mc1">疯抢价 ¥<strong>1 ? 8</strong></span>
           </div>
         </li>
-        <li style="margin-top:289px;position: relative;">
+
+        <li class="li2">
           <span><img src="img/hot/3.jpg" alt="" /></span>
           <h3><span>美国ChildLife童年时光宝宝婴儿液体钙镁锌补剂</span></h3>
           <p>474ml钙镁锌补剂</p>
@@ -63,7 +83,7 @@
         </li>
       </ul>
       <div class="mt">
-        <a href="#" class="sf-in-order" id="btn-register"></a>
+        <a href="" class="btn1">抢先注册</a>
       </div>
     </div>
   </div>
@@ -227,7 +247,7 @@
       <ul class="clearfix">
         <li class="li1">
           <h3>在线客服</h3>
-          <a href="http://sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&configID=20&skillId=20&enterurl=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2Fpreview%2Ejsp&pagereferrer=http%3A%2F%2Fsf%2Docs%2Esf%2Dexpress%2Ecom%3A8080%2Flive800%2FembedScript%2Ejsp%3FcurrentConfigId%3D20&k=1" target="_blank">点击联系</a>
+          <a href="">点击联系</a>
         </li>
         <li class="li2">
           <h3>客服邮箱</h3>
@@ -235,23 +255,23 @@
         </li>
         <li class="li3">
           <h3>客服热线</h3>
-          <p>021 - 69763622</p>
+          <p>点击联系</p>
           <p>周一至周五 8:00-22:00</p>
         </li>
       </ul>
     </div>
-
+      
   </div>
   <div class="footer">copyright 2015 版权所有 sfht.com 沪ICP备 1404464</div>
-  <div class="sf-b2c-mall-register">
 
+  <div class="sf-b2c-mall-register">
   </div>
 </div>
 <!-- build:js(.) scripts/require.min.js-->
 <script src="bower_components/requirejs/require.js"></script>
 <!-- endbuild -->
 <!-- build:js(.) base-->
-<script src="scripts/base/sf.web.dev.ver.1.0.build.1419320066886.js"></script>
+<script src="scripts/base/sf.web.dev.ver.1.0.build.1420256152406.js"></script>
 <!-- endbuild -->
 <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.preheat.register.min.js -->
 <script src="scripts/sf.b2c.mall.require.config.js"></script>
@@ -259,6 +279,9 @@
 require(['sf.b2c.mall.page.preheat.register']);
 </script>
 <!-- endbuild -->
+
+<!-- <script src="scripts/vendor/jcountdown/jcountdown/jquery.jcountdown.min.js"></script> -->
+<!-- <script src="scripts/vendor/jcountdown/index.min.js"></script> -->
 
 </body>
 </html>

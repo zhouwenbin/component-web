@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
 <!-- build:css({app, .tmp}) styles/sf.b2c.mall.detail.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/detail.css" rel="stylesheet" type="text/css" />
+<link href="css/register.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
 </head>
 <body>
@@ -29,7 +30,7 @@
       <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered" data-itemid="2", data-saleid="1", data-skuid="2">
         <div class="goods clearfix">
           <div class="goods-c1 fl" id="allSkuImages">
-            <div class="goods-c1r1">
+            <div class="goods-c1r1" id="bigPicArea">
               <a href="img/goods.jpg"><img src="img/goods.jpg" rel="img/goods.jpg" alt="" class="jqzoom"/></a><span></span>
             </div>
             <div class="goods-c1r2" id="itemImages">
@@ -60,7 +61,7 @@
               </div>
             </div>
 
-            <div id='specArea' data-skuspectuple= '["6", "7"]' data-specgroups='[{"specIdOrder":3,"specName":"包装规格","specs":[{"specId":"1","specValue":"1瓶装"},{"specId":"6","specValue":"3瓶装"},{"specId":"11","specValue":"6瓶装"}]},{"specIdOrder":5,"specName":"口味","specs":[{"specId":"2","specValue":"橘子"},{"specId":"7","specValue":"橘子"},{"specId":"12","specValue":"苹果"}]}]' data-saleskuspectuplelist='[{"itemId":1,"skuSpecTuple":{"skuId":1,"specIds":["1","7"]}},{"itemId":2,"skuSpecTuple":{"skuId":2,"specIds":["6","7"]}},{"itemId":3,"skuSpecTuple":{"skuId":3,"specIds":["11","12"]}}]'>
+            <div id='specArea' data-skuspectuple= '["6", "7"]' data-specgroups='[{"specIdOrder":3,"specName":"包装规格","specs":[{"specId":"1","specValue":"1瓶装"},{"specId":"6","specValue":"3瓶装"},{"specId":"11","specValue":"6瓶装"}]},{"specIdOrder":5,"specName":"口味","specs":[{"specId":"2","specValue":"香蕉"},{"specId":"7","specValue":"橘子"},{"specId":"12","specValue":"苹果"}]}]' data-saleskuspectuplelist='[{"itemId":1,"skuSpecTuple":{"skuId":1,"specIds":["1","7"]}},{"itemId":2,"skuSpecTuple":{"skuId":2,"specIds":["6","7"]}},{"itemId":3,"skuSpecTuple":{"skuId":3,"specIds":["11","12"]}}]'>
 
             </div>
 
@@ -80,7 +81,8 @@
         <!--商品-->
 
         <!--推荐商品-->
-        <div class="recommend" id="recommend">
+        <div id="recommend-wrap">
+
         </div>
         <!--推荐商品-->
 
@@ -163,15 +165,17 @@
 <!-- build:js(.) scripts/require.min.js-->
 <script src="bower_components/requirejs/require.js"></script>
 <!-- endbuild -->
-<!-- build:js(.) base-->
-<script src="scripts/base/sf.web.dev.ver.1.0.build.1419320066886.js"></script>
+<!-- build:js(.) com-->
+<script src="scripts/base/sf.web.dev.ver.1.0.build.1420256152406.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.detail.min.js -->
 <script src="scripts/sf.b2c.mall.require.config.js"></script>
+
 <script type="text/javascript">
-  require(['sf.b2c.mall.page.detail']);
+require(['sf.b2c.mall.page.detail']);
 </script>
+
 <!-- endbuild -->
 
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>

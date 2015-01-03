@@ -3,21 +3,32 @@
       <div class="pm clearfix">
 
         <ul class="nav-c1 fl">
-          <li class="li1"><a href="index.html">顺丰海淘</a></li>
-          <li class="li1"><a href="index.html#LimitedTimeSale">限时特卖</a></li>
-          <li class="li1"><a href="index.html#RapidSeaBuy">急速海淘</a></li>
+          <li class="li1"><a href="{{domain}}/index.html">顺丰海淘</a></li>
+          <li class="li1"><a href="{{domain}}/index.html#LimitedTimeSale">限时特卖</a></li>
+          <li class="li1"><a href="{{domain}}/index.html#RapidSeaBuy">极速海淘</a></li>
         </ul>
         <ul class="nav-c2 fr">
+          {{#if isUserLogin}}
           <li class="li1">
             <a href="#" id="my-account">账户<span class="icon icon16"></span></a>
             <ul>
-              <li class="li2"><a href="">个人中心</a></li>
-              <li class="li2"><a href="">退出</a></li>
+              <li class="li2"><a href="#" id="user-center">个人中心</a></li>
+              <li class="li2"><a href="#" id="user-password-change">修改密码</a></li>
+              <li class="li2"><a href="#" id="user-logout">退出</a></li>
             </ul>
           </li>
-          <li class="li1"><a href="">我的订单</a></li>
-          <!--<li class="li2"><a href="">账户<span class="icon icon16"></span></a></li>
-          <li class="li2"><a href="{{myOrder}}">我的订单</a></li>-->
+          {{else}}
+          <li class="li1">
+            <a href="#" id="my-account">账户<span class="icon icon16"></span></a>
+            <ul>
+              <li class="li2"><a href="#" id="user-login">登录</a></li>
+              <li class="li2"><a href="#" id="user-register">注册</a></li>
+            </ul>
+          </li>
+          {{/if}}
+          <li class="li1"><a href="/orderlist.html" id="user-orderlist">我的订单</a></li>
+
+
         </ul>
 
       </div>
@@ -26,7 +37,7 @@
     <div class="header">
       <div class="pm clearfix">
         <div class="header-c1 fl">
-          <a href="#" class="icon icon10">顺丰海淘</a>
+          <a href="{{domain}}/index.html" class="icon icon10">顺丰海淘</a>
           <span class="icon icon11"></span>
         </div>
         <ul class="header-c2 fr">

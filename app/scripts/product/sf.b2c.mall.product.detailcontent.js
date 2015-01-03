@@ -7,9 +7,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.helpers',
     'sf.b2c.mall.business.config'
   ],
-  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, SFConfig) {
+  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFConfig) {
     return can.Control.extend({
 
       helpers: {
@@ -45,6 +46,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         this.detailUrl = SFConfig.setting.api.detailurl;
+        this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.render();
       },
@@ -132,19 +134,19 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': $('.sf-b2c-mall-detail-content')[0].dataset.itemid
+          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')
         });
 
         findRecommendProducts
           .sendRequest()
           .fail(function(error) {
-            console.error(error);
+            //console.error(error);
           })
           .done(function(data) {
 
             data.hasData = true;
 
-            if (data.value && data.value.length == 0) {
+            if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
               data.hasData = false;
             }
 
@@ -153,12 +155,13 @@ define('sf.b2c.mall.product.detailcontent', [
             })
 
             var template = can.view.mustache(that.recommendProductsTemplate());
-            $('#recommend').html(template(data));
+            $('#recommend-wrap').html(template(data));
           });
       },
 
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
+          '<div class="recommend" id="recommend">'+
           '<h2>推荐商品</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
@@ -172,6 +175,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</li>' +
           '{{/each}}' +
           '</ul>' +
+          '</div>'+
           '{{/if}}'
       },
 
@@ -179,9 +183,9 @@ define('sf.b2c.mall.product.detailcontent', [
        * [renderSpecInfo 渲染规格信息]
        */
       renderSpecInfo: function() {
-        var specGroups = JSON.parse($('#specArea')[0].dataset.specgroups);
-        var specId = JSON.parse($('#specArea')[0].dataset.skuspectuple);
-        var saleSkuSpecTupleList = JSON.parse($('#specArea')[0].dataset.saleskuspectuplelist);
+        var specGroups = JSON.parse($('#specArea').eq(0).attr('data-specgroups'));
+        var specId = JSON.parse($('#specArea').eq(0).attr('data-skuspectuple'));
+        var saleSkuSpecTupleList = JSON.parse($('#specArea').eq(0).attr('data-saleskuspectuplelist'));
 
         var index = 0;
 
@@ -213,7 +217,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       renderPriceInfo: function() {
         var that = this;
-        var itemid = $('.sf-b2c-mall-detail-content')[0].dataset.itemid;
+        var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
 
         var getProductHotData = new SFGetProductHotData({
           'itemId': itemid
@@ -222,7 +226,7 @@ define('sf.b2c.mall.product.detailcontent', [
         getProductHotData
           .sendRequest()
           .fail(function(error) {
-            console.error(error);
+            //console.error(error);
           })
           .done(function(data) {
             //获得服务器时间
@@ -257,7 +261,7 @@ define('sf.b2c.mall.product.detailcontent', [
                   that.setCountDown(that.options.detailContentInfo.priceInfo, distance, data.endTime);
                 }
               }, '1000')
-            } else{
+            } else {
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
             }
 
@@ -281,8 +285,8 @@ define('sf.b2c.mall.product.detailcontent', [
         detailContentInfo.input.attr("buyNum", 1);
         detailContentInfo.input.attr("reduceDisable", "disable");
 
-        var logisticsstart = $('#buyInfo')[0].dataset.logisticsstart;
-        var logisticsend = $('#buyInfo')[0].dataset.logisticsend;
+        var logisticsstart = $('#buyInfo').eq(0).attr('data-logisticsstart');
+        var logisticsend = $('#buyInfo').eq(0).attr('data-logisticsend');
 
         if (parseInt(logisticsend, 10) > parseInt(logisticsstart, 10)) {
           detailContentInfo.priceInfo.attr("sendTime", logisticsstart + '-' + logisticsend);
@@ -290,10 +294,18 @@ define('sf.b2c.mall.product.detailcontent', [
           detailContentInfo.priceInfo.attr("sendTime", logisticsstart);
         }
 
-        detailContentInfo.priceInfo.attr("productShape", $('#buyInfo')[0].dataset.productshape);
+        detailContentInfo.priceInfo.attr("productShape", $('#buyInfo').eq(0).attr('data-productshape'));
 
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
+      },
+
+      '#gotobuy click': function() {
+        window.location.href = SFConfig.setting.link.detail + '?' + $.param({
+          "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+          "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
+          "amount": this.options.detailContentInfo.input.buyNum
+        });
       },
 
       buyInfoTemplate: function() {
@@ -304,15 +316,16 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '<div class="mr9">' +
           '{{#sf-showCurrentStock priceInfo.currentStock}}<span class="icon icon26">商品库存{{priceInfo.currentStock}}件</span>{{/sf-showCurrentStock}}' +
-          '{{#if input.showRestrictionTips}}<span class="icon icon26">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
+          '{{#if input.showRestrictionTips}}<span class="icon icon26" style="visibility:visible" id="showrestrictiontipsspan">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy disable">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy disable" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          // '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +
@@ -343,9 +356,9 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       itemPriceTemplate: function() {
-        return '<div class="mr1">单价：<strong>¥ {{sellingPrice}}</strong><span>（含税）</span>{{#if showDiscount}}<del>¥ {{originPrice}}</del>{{/if}}</div>' +
+        return '<div class="mr1">单价：<strong>¥ {{sf.price sellingPrice}}</strong><span>（含税）</span>{{#if showDiscount}}<del>¥ {{sf.price originPrice}}</del>{{/if}}</div>' +
           '{{#if showDiscount}}' +
-          '<div class="mr2"><span>{{discount}}折</span>已降{{lessspend}}元</div>' +
+          '<div class="mr2"><span>{{discount}}折</span>已降{{sf.price lessspend}}元</div>' +
           '{{/if}}';
       },
 
@@ -353,18 +366,27 @@ define('sf.b2c.mall.product.detailcontent', [
         return '{{#each itemInfo.specGroups}}' +
           '<div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：' +
           '{{#each specs}}' +
-          '{{#if selected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
 
-          '{{^if selected}}' +
-          '{{#if canSelected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
-          '{{^if canSelected}}' +
-          '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-          '{{/if}}' +
-          '{{/if}}' +
+              '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
+
+
+              // '{{#if selected}}' +
+              //   '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
+              // '{{else}}' +
+
+              //   '{{#if canSelected}}' +
+              //     '<label data-specid="{{specId}}" id="2" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
+              //   '{{else}}' +
+
+              //     '{{#if canShowDottedLine}}' +
+              //       '<label data-specid="{{specId}}" id="3" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods dashed">{{specValue}}<span class="icon icon23"></span></label>' +
+              //     '{{else}}' +
+              //       '<label data-specid="{{specId}}" id="4" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+              //     '{{/if}}' +
+
+              //   // '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+              //   '{{/if}}' +
+              // '{{/if}}' +
 
           '{{/each}}' +
           '</div>' +
@@ -382,8 +404,15 @@ define('sf.b2c.mall.product.detailcontent', [
         $('.thumb-item').removeClass('active');
         element.addClass('active');
 
-        var image = $(element)[0].dataset.bigPic;
-        this.options.detailContentInfo.itemInfo.attr("currentImage", image);
+        var image = $(element).eq(0).attr('data-big-pic');
+
+        if (this.options.serverRendered) {
+          $('#bigPicArea')[0].innerHTML = '<a href="' + image + '"><img src="' + image + '" rel="' + image + '" alt="" class="jqzoom"/></a><span></span>';
+        }
+
+        $(".jqzoom").imagezoom();
+
+        //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
 
       /**
@@ -404,6 +433,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var amount = parseInt(input.attr("buyNum"));
         if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy - 1) {
           input.attr("showRestrictionTips", true);
+          $('#showrestrictiontipsspan').show();
           input.attr("addDisable", "disable");
           return false;
         }
@@ -425,6 +455,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var input = this.options.detailContentInfo.input;
 
         input.attr("showRestrictionTips", false);
+        $('#showrestrictiontipsspan').hide();
 
         if (input.buyNum > 1) {
           input.attr('buyNum', --input.buyNum);
@@ -480,12 +511,14 @@ define('sf.b2c.mall.product.detailcontent', [
         var amount = element[0].value;
         if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy) {
           input.attr("showRestrictionTips", true);
+          $('#showrestrictiontipsspan').show();
           element.val(priceInfo.limitBuy);
           return false;
         }
 
         input.attr('buyNum', amount);
         input.attr("showRestrictionTips", false);
+        $('#showrestrictiontipsspan').hide();
       },
 
       /**
@@ -496,41 +529,64 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       '.btn-goods click': function(element, event) {
         event && event.preventDefault();
+
+        var type = "";
         if (element.hasClass("disable")) {
           return false;
         }
 
+        if (element.hasClass("dashed")) {
+          type = "dashed";
+        }
+
         //获得数据信息
-        var orderId = $(element)[0].parentElement.dataset.specidorder;
-        var specId = $(element)[0].dataset.specid;
+        var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
+        var specId = $(element).eq(0).attr('data-specid');
 
-        var group = _.find(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
-          return group.specIdOrder == orderId;
-        })
+        _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
 
-        //修改选择状态
-        _.each(group.specs, function(spec) {
-          if (spec.specId == specId) {
-            spec.attr("selected", true);
-            spec.attr("canSelected", false);
+          if (group.specIdOrder == orderId) {
+            //修改选择状态  如果之前选中的 则要修改为未选中状态
+            _.each(group.specs, function(spec) {
+              if (spec.selected) {
+                spec.attr("selected", "");
+              }
+            })
           } else {
-            if (spec.attr("selected")) {
-              spec.attr("canSelected", true);
-            }
-            spec.attr("selected", false);
+            //修改选择状态
+            _.each(group.specs, function(spec) {
+              if (spec.specId == specId) {
+                spec.attr("selected", "active");
+                spec.attr("canSelected", "");
+              } else {
+                if (spec.selected) {
+                  spec.attr("canSelected", "");
+                  spec.attr("selected", "");
+                }
+              }
+            })
           }
         })
 
         //去获得最新的sku信息
-        this.gotoNewItem();
+        this.gotoNewItem(element, type);
         return false;
       },
 
-      getSKUIdBySpecs: function(saleSkuSpecTupleList, gotoItemSpec) {
-        var saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
-          return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == gotoItemSpec;
-        });
+      getSKUIdBySpecs: function(saleSkuSpecTupleList, gotoItemSpec, element, type) {
+        var saleSkuSpecTuple;
+        if (type == 'dashed') {
+          saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+            return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == $(element).eq(0).attr('data-compose');
+          })
+        } else {
+          saleSkuSpecTuple = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+            return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == gotoItemSpec;
+          });
+        }
 
+        //重新设定itemid
+        $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid', saleSkuSpecTuple.itemId);
         return saleSkuSpecTuple.skuSpecTuple.skuId;
       },
 
@@ -538,18 +594,11 @@ define('sf.b2c.mall.product.detailcontent', [
        * [gotoNewItem description]
        * @return {[type]}
        */
-      gotoNewItem: function() {
+      gotoNewItem: function(element, type) {
         //获得选中的表示列表
-        var gotoItemSpec = [];
-        _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
-          _.each(group.specs, function(spec) {
-            if (spec.attr("selected")) {
-              gotoItemSpec.push(spec.specId);
-            }
-          })
-        })
+        var gotoItemSpec = new String($(element).eq(0).attr('data-compose')).split(",");
 
-        var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec.join(","));
+        var skuId = this.getSKUIdBySpecs(this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList, gotoItemSpec.join(","), element, type);
 
         var that = this;
         var getSKUInfo = new SFGetSKUInfo({
@@ -561,7 +610,7 @@ define('sf.b2c.mall.product.detailcontent', [
             console.error(error);
           })
           .done(function(skuInfoData) {
-            that.options.detailContentInfo.itemInfo.attr("basicInfo", skuInfoData);
+            that.options.detailContentInfo.itemInfo.attr("basicInfo", new can.Map(skuInfoData));
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
             that.renderPriceInfo();
@@ -584,6 +633,45 @@ define('sf.b2c.mall.product.detailcontent', [
         this.renderBandInfo();
 
         this.renderPicInfo();
+
+        //小编推荐
+        this.renderRecommend2();
+
+        //详情属性
+        this.renderDetailattributes();
+
+        //详情
+        this.renderDetail();
+      },
+
+      renderRecommend2: function() {
+        var template = can.view.mustache(this.recommend2Template());
+        $('#recommend2').html(template(this.options.detailContentInfo));
+      },
+
+      renderDetailattributes: function() {
+        var template = can.view.mustache(this.detailattributesTemplate());
+        $('#detailattributes').html(template(this.options.detailContentInfo.attr()));
+      },
+
+      renderDetail: function() {
+        var template = can.view.mustache(this.detailTemplate());
+        $('#detailcontent').html(template(this.options.detailContentInfo));
+      },
+
+      recommend2Template: function() {
+        return '<h2>小编推荐</h2>' +
+          '<p>{{itemInfo.basicInfo.recommend}}</p>';
+      },
+
+      detailattributesTemplate: function() {
+        return '{{#each itemInfo.basicInfo.attributes}}' +
+          '<li>【{{key}}】 {{value}}</li>' +
+          '{{/each}}';
+      },
+
+      detailTemplate: function() {
+        return '{{itemInfo.basicInfo.description}}';
       },
 
       /**
@@ -627,7 +715,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       titleTemplate: function() {
         return '<h1>{{itemInfo.basicInfo.title}}</h1>' +
-          '<p>{{itemInfo.basicInfo.subTitle}}</p>'
+          '<p>{{itemInfo.basicInfo.subtitle}}</p>'
       },
 
       /**
@@ -643,7 +731,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       picInfoTemplate: function() {
-        return '<div class="goods-c1r1">' +
+        return '<div class="goods-c1r1" id="bigPicArea">' +
           '<a href="{{itemInfo.currentImage}}"><img src="{{itemInfo.currentImage}}" rel="{{itemInfo.currentImage}}" alt="" class="jqzoom"/></a>' +
           '</div>' +
           '<div class="goods-c1r2">' +

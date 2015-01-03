@@ -1,9 +1,10 @@
 'use strict';
 
-require(
+define(
   [
     'can',
     'jquery',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
@@ -12,7 +13,8 @@ require(
     'sf.b2c.mall.order.iteminfo'
   ],
 
-  function(can, $, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo) {
+    SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
 
@@ -25,7 +27,7 @@ require(
         new Footer('.sf-b2c-mall-footer');
 
         //step
-        new OrderSetp('.sf-b2c-mall-order-step');
+        new OrderSetp('.sf-b2c-mall-order-step', {"firststep":"active"});
 
         new SelectReceivePerson('.sf-b2c-mall-order-selectReceivePerson');
 
@@ -39,5 +41,6 @@ require(
       }
     });
 
+    window.name = 'sfht.com';
     new order('#order');
   });

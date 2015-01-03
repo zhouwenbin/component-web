@@ -3,6 +3,10 @@
   "private": true,
   "dependencies": {
     "jquery": "~1.11.1",
-    "requirejs": "~2.1.15"
+    "requirejs": "~2.1.15",
+    "Placeholders": "https://github.com/jamesallardice/Placeholders.js.git",
+    "moment": "~2.8.4",
+    "momentjs": "~2.8.4",
+    "fastclick": "~1.0.3"
   }
 }

@@ -85,9 +85,18 @@
 .register-b li{
 	margin-bottom: 9px;
 }
+.register-b li p{
+	font-size: 12px;
+	color: #949494;
+	margin-top: 12px;
+}
+.register-b li .btn{
+	width: 112px;
+	text-align: center;
+	padding: 0;
+}
 .register-b .a1{
 	color: #A3A2A3;
-	margin-left: 5px;
 }
 .register-b .a1:hover{
 	color: #333;
@@ -103,6 +112,7 @@
 	position: absolute;
 	left: 17px;
 	top: 13px;
+	color: #999;
 }
 .register li input{
 	vertical-align: middle;
@@ -116,7 +126,6 @@
 }
 .register .input2{
 	width: 126px;
-	margin-right: 5px;
 }
 .register input:focus{
 	box-shadow: 0 0 10px rgba(102,175,233,0.5);
@@ -124,7 +133,7 @@
 }
 .register-br1{
 	padding-top: 11px;
-	margin-bottom: 7px;
+	margin-bottom: 10px;
 }
 .register-br2{
 	text-align: right;
@@ -213,10 +222,14 @@
 }
 .register-b2r4{
 	text-align: center;
+	margin-bottom: 10px;
 }
 .register-b2r4 a{
 	color: #2a4dff;
 	text-decoration: underline;
+}
+.register-b2r5{
+	text-align: center;
 }
 .register-b3{
 	padding-top: 75px;

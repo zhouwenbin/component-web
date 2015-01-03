@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=1280">
 <title>订单列表</title>
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/orderdetail.css" rel="stylesheet" type="text/css" />
+<link href="css/register.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--头部-->
@@ -146,7 +147,7 @@
                 <li>联系电话：15900830081</li>
                 <li>身份证号码：350**********1120</li>
               </ul>
-              <a href="#" class="btn btn-add">查看身份证参考样本</a>
+              <a href="#" id="orderdetail-view" class="btn btn-add">查看身份证参考样本</a>
               <ul class="info-c2r2 clearfix">
                 <li>
                   <div class="info-img">
@@ -185,7 +186,7 @@
               数量
             </div>
             <div class="table-c3 fl">
-              顺丰海淘价
+              单价
             </div>
             <div class="table-c4 fl">
               优惠金额
@@ -302,6 +303,24 @@
 
   </div>
   <!--尾部-->
+  <!--身份证参考样本-->
+  <div class="mask"></div>
+  <div class="register orderdetail-upload">
+    <div class="register-h">
+      <h2>注册成功</h2>
+      <a href="#" class="btn btn-close">关闭</a>
+    </div>
+    <!--注册成功-->
+    <div class="register-b1">
+       <img src="img/front.jpg" alt="" />
+       <p>正面样本</p>
+       <img src="img/behind.jpg" alt="" />
+       <p>反面样本</p>
+
+    </div>
+    <!--注册成功-->
+  </div>
+  <!--身份证参考样本-->
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/index.js"></script>
 </body>

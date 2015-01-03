@@ -1,69 +1,75 @@
 'use strict';
 
-// @description 申明命名空间
-sf.util.namespace('b2c.mall.widget.file.uploader');
+define(
+  'sf.b2c.mall.widget.file.uploader',
 
-/**
- * @class sf.b2c.mall.widget.file.uploader
- * @author Michael.Lee (leewind19841209@gmail.com)
- * @description 可定制化的步骤board widget
- */
-sf.b2c.mall.widget.file.uploader = can.Control.extend({
+  [
+    'jquery',
+    'can',
+    'webuploader',
+    'sf.b2c.mall.business.config'
+  ],
 
-  init: function() {
-    if ( !WebUploader.Uploader.support() ) {
-      alert( '图片上传工具，不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
-    }
+  function($, can, WebUploader, SFConfig) {
+    return can.Control.extend({
 
-    this.params = {};
-  },
+      init: function() {
+        if (!WebUploader.Uploader.support()) {
+          alert('图片上传工具，不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
+        }
 
-  setFileVal: function (name) {
-    this.uploader.option('fileVal', name);
-  },
-
-  config: function(data, callback) {
-    this.uploader = WebUploader.create({
-
-      // 选完文件后，是否自动上传。
-      auto: true,
-
-      // swf文件路径
-      // !注意这里的路径一定要配置正确
-      swf: sf.config.current.swf + 'Uploader.swf',
-
-      // 文件接收服务端。
-      server: sf.config.current.fileurl,
-
-      // 选择文件的按钮。可选。
-      // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-      // pick: data.pick,
-
-      // 只允许选择图片文件。
-      accept: {
-        title: 'Images',
-        extensions: 'jpg,jpeg,bmp,png',
-        mimeTypes: 'image/*'
+        this.params = {};
       },
 
-      fileSingleSizeLimit: 10 * 1024 * 1024
-    });
+      setFileVal: function(name) {
+        this.uploader.option('fileVal', name);
+      },
 
-    this.uploader.addButton({
-      id: data.pick
-    });
+      config: function(data, callback) {
+        this.uploader = WebUploader.create({
 
-    var that = this;
-    this.uploader.on('uploadSuccess', callback.onUploadSuccess);
-    this.uploader.on('uploadError', callback.onUploadError);
-    this.uploader.on('uploadBeforeSend', callback.onUploadBeforeSend);
-    this.uploader.on('fileQueued', function (file) {
-      that.uploader.trigger('startUpload');
-    });
-    this.uploader.on('error', callback.onError);
-  },
+          // 选完文件后，是否自动上传。
+          auto: true,
 
-  reset: function () {
-    this.uploader.reset();
-  }
-});
+          // swf文件路径
+          // !注意这里的路径一定要配置正确
+          //swf: sf.config.current.swf + 'Uploader.swf',
+          swf: 'scripts/' + 'Uploader.swf',
+
+          // 文件接收服务端。
+          //server: sf.config.current.fileurl,
+          server: SFConfig.setting.api.fileurl + "?_aid=1",
+
+          // 选择文件的按钮。可选。
+          // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+          // pick: data.pick,
+
+          // 只允许选择图片文件。
+          accept: {
+            title: 'Images',
+            extensions: 'jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+          },
+
+          fileSingleSizeLimit: 10 * 1024 * 1024
+        });
+
+        this.uploader.addButton({
+          id: data.pick
+        });
+
+        var that = this;
+        this.uploader.on('uploadSuccess', callback.onUploadSuccess);
+        this.uploader.on('uploadError', callback.onUploadError);
+        this.uploader.on('uploadBeforeSend', callback.onUploadBeforeSend);
+        this.uploader.on('fileQueued', function(file) {
+          that.uploader.trigger('startUpload');
+        });
+        this.uploader.on('error', callback.onError);
+      },
+
+      reset: function() {
+        this.uploader.reset();
+      }
+    });
+  })

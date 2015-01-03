@@ -10,20 +10,24 @@ define('sf.b2c.mall.component.header', ['jquery',
   'can',
   'underscore',
   'md5',
+  'store',
+  'sf.b2c.mall.component.login.status.scanner',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
-  'sf.b2c.mall.widget.modal'
-], function($, cookie, can, _, md5, SFComm, SFGetUserInfo, SFLogout, SFModal) {
+  'sf.b2c.mall.widget.modal',
+  'sf.b2c.mall.business.config'
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+
 
   return can.Control.extend({
 
     defaults: {
       login: {
-        myOrder: 'center.html#!&type=booking'
+        myOrder: SFConfig.setting.link.orderlist
       },
       nologin: {
-        myOrder: 'login.html'
+        myOrder: SFConfig.setting.link.login
       }
     },
 
@@ -35,19 +39,24 @@ define('sf.b2c.mall.component.header', ['jquery',
     init: function(element, options) {
       this.component = {};
       this.component.modal = new SFModal('body');
+      this.component.scanner = new SFLoginScanner();
+      this.watchLoginState.call(this);
 
-      if ($.cookie('ct') == 1) {
+      this.afterLoginDest = null;
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
-          user: null
+          isUserLogin: true,
+          domain: SFConfig.setting.api.mainurl
         }));
-      } else {
+      }else{
         this.data = new can.Map(_.extend(this.defaults.nologin, {
-          user: null
+          isUserLogin: false,
+          domain: SFConfig.setting.api.mainurl
         }));
       }
 
       this.render(this.data);
-      //this.supplement();
     },
 
     /**
@@ -59,12 +68,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.element.html(html);
     },
 
-    // supplement: function() {
-    //   var that = this;
-    // },
-
     /**
-     * [description 登录状态下的个人设置]
+     * 登录状态下的个人设置
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
@@ -74,8 +79,38 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     },
 
+    '#user-orderlist click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.orderlist;
+      }else{
+        this.showLogin('orderlist');
+      }
+    },
+
+    '#user-password-change click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.passwordchange;
+      }else{
+        this.showLogin('passwordchange');
+      }
+    },
+
+    '#user-center click': function ($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.center;
+      }else{
+        this.showLogin('center');
+      }
+    },
+
     /**
-     * [description 登录状态下的退出]
+     * 登录状态下的退出
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
@@ -84,74 +119,130 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault()
 
       var that = this;
-      // can.when(sf.b2c.mall.model.user.logout())
 
-      var logout = new SFLogout({});
-
-      logout
-        .sendRequest()
-        .done(function(data) {
-          that.data.attr('user', null);
-          window.localStorage.removeItem('csrfToken');
-          window.location.href = 'login.html'
-        })
-        .fail(function() {})
-    },
-
-    '#my-account click': function (element, event) {
-      event && event.preventDefault();
       if (SFComm.prototype.checkUserLogin.call(this)) {
+        var logout = new SFLogout({});
 
-      }else{
-        this.showLogin();
+        logout
+          .sendRequest()
+          .done(function(data) {
+            that.data.attr('user', null);
+            store.remove('csrfToken')
+            $.removeCookie('nick');
+            $.removeCookie('gender');
+            window.location.href = SFConfig.setting.link.index;
+          })
+          .fail(function() {})
       }
     },
 
-    showLogin: function () {
+    '#my-account click': function(element, event) {
+      event && event.preventDefault();
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+
+      } else {
+        this.showLogin('center');
+      }
+    },
+
+    '#user-login click': function (element, event) {
+      event && event.preventDefault();
+      this.showLogin();
+    },
+
+    '#user-register click': function (element, event) {
+      event && event.preventDefault();
+      this.showRegister();
+    },
+
+    showRegister: function (dest) {
+      if (dest) {
+        this.afterLoginDest = dest
+      }
+
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="462" width="562" frameborder="no" src="login.html">'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'      });
+      // this.watchLoginState.call(this);
+      // this.setIframe.call(this);
+    },
+
+    showLogin: function(dest) {
+      if (dest) {
+        this.afterLoginDest = dest
+      }
+
+      this.component.modal.show({
+        title: '登录顺丰海淘',
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'
       });
+      this.component.modal.setTitle('顺丰海淘');
+      // this.watchLoginState.call(this);
+      // this.setIframe.call(this);
+    },
+
+    // setIframe: function() {
+      // if (!this.component.modal.isClosed()) {
+        // var link = $('iframe').contents().find('title').text();
+        // if (link.indexOf('登陆') > -1) {
+        //   this.component.modal.setTitle('登录顺丰海淘');
+        // } else if (link.indexOf('注册') > -1) {
+        //   this.component.modal.setTitle('注册顺丰海淘');
+        // }
+        // this.component.modal.setTitle('顺丰海淘');
+      // }
+
+      // this.watchIframe.call(this);
+      // this.watchLoginState.call(this);
+    // },
+
+    // watchIframe: function() {
+    //   var that = this;
+    //   // if (!this.component.modal.isClosed()) {
+    //     setTimeout(function() {
+    //       that.setIframe.call(that);
+    //     }, 300);
+    //   // };
+    // },
+
+    watchLoginState: function(){
+      var that = this;
+      // if (!this.component.modal.isClosed()) {
+        setTimeout(function() {
+          // var csrfToken = null;
+
+          // try{
+          //   csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
+          // }catch(e){
+
+          // }
+
+          // console.log(csrfToken);
+          // if(csrfToken){
+          //   store.set('csrfToken', csrfToken);
+          // }
+
+          if (that.component.modal.isClosed()) {
+            that.afterLoginDest = null
+          }
+
+          //console.log(SFComm.prototype.checkUserLogin.call(that))
+          if (SFComm.prototype.checkUserLogin.call(that)) {
+            that.component.modal.hide();
+
+            if (that.afterLoginDest) {
+              var link = SFConfig.setting.link[that.afterLoginDest];
+              window.location.href = link;
+            }
+
+            that.data.attr('isUserLogin', true);
+          }else{
+            that.data.attr('isUserLogin', false);
+          }
+
+          that.watchLoginState.call(that);
+        }, 300);
+      // }
     }
-
-    /**
-     * [description 未登录状态下的登录窗口]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#user-login click': function(element, event) {
-    //   event && event.preventDefault()
-
-    // },
-
-    /**
-     * [description 未登录状态下得注册窗口]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#user-register click': function(element, event) {
-    //   event && event.preventDefault()
-
-    // },
-
-    /**
-     * [description 我的订单]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    // '#my-order click': function(element, event) {
-    //   event && event.preventDefault();
-
-    //   if (sf.util.isLogin()) {
-    //     window.open('center.html#!&type=booking')
-    //   } else {
-    //     window.open('login.html?from=' + encodeURIComponent('center.html#!&type=booking'));
-    //   }
-
-    //   return false;
-    // }
   });
 });

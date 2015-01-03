@@ -4,8 +4,9 @@ define('sf.util', ['jquery',
   'jquery.cookie',
   'can',
   'underscore',
-  'md5'
-], function($, cookie, can, _, md5) {
+  'md5',
+  'store'
+], function($, cookie, can, _, md5, store) {
 
   //$(window).hashchange();
   can.route.ready();
@@ -81,6 +82,7 @@ define('sf.util', ['jquery',
     },
 
     sign: function(params, isForce) {
+      var that = this;
       var map = {
         'NONE': function(data, force) {
           var word = 'sfhaitao.xyz!';
@@ -90,17 +92,11 @@ define('sf.util', ['jquery',
         },
 
         'USERLOGIN': function(data, force) {
-          var csrf = null;
-
-          if (window.localStorage) {
-            csrf = localStorage.getItem('csrfToken');
-          } else {
-            csrf = $.jStorage.get('csrfToken');
-          }
+          var csrf = store.get('csrfToken')
 
           if (csrf) {
             return _.extend(data, {
-              _sig: sf.util.encrypt(data, csrf)
+              _sig: that.encrypt(data, csrf)
             });
           } else {
 

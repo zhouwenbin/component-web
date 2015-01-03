@@ -1,12 +1,12 @@
 #define($_content)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=1280">
     <meta name="description" content="$!description">
     <meta name="keywords" content="$!keywords">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=1280">
     <link rel="shortcut icon" href="/favicon.ico">
-    <title>顺丰海淘</title>
+    <title>$!{title}</title>
   $!{_const_detailCss}
 </head>
 <body>
@@ -31,7 +31,7 @@
              data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
             <div class="goods clearfix">
                 <div id="allSkuImages" class="goods-c1 fl">
-                    <div class="goods-c1r1">
+                    <div class="goods-c1r1" id="bigPicArea">
                       #set($_selectedImg="")
                       #if(${productInfo.skuInfo.images}) #set($_selectedImg=$!{productInfo.skuInfo.images[0].bigImgUrl})#end
                         <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
@@ -64,13 +64,14 @@
                     </div>
                 ##                  客户端渲染end
                     <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
-                        发货 #if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
-                            天到#else$!{productInfo.saleInfo.logisticsEnd}天内到#end</div>
+                        发货,预计#if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
+                            天内到货#else$!{productInfo.saleInfo.logisticsEnd}天内到货#end</div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
                     <div id="bandInfo" class="mr5">品牌：
                         <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
                     </div>
-                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}>
+                    <div id='specArea' data-skuspectuple=$!{skuspectuple} data-specgroups=$!{specgroups}
+                         data-saleskuspectuplelist=$!{saleSkuSpecTupleList}>
                       #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
                         #foreach($_el in $productInfo.saleInfo.specGroups)
                             <div class="mr6" data-specidorder="$!{_el.specIdOrder}">$!{_el.specName}：
@@ -105,42 +106,41 @@
                 ##客户端渲染end
                     <!--运费-->
                     <div class="u3">
-                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">免运费<i></i></span>
+                        <span class="icon icon5"></span>运费：<span class="icon icon6 icon6-1">运费0元<i></i></span>
                     </div>
                     <!--运费-->
                 </div>
                 <!--商品-->
+            </div>
+            <!--推荐商品-->
+        ##                  客户端渲染
+            <div class="recommend" id="recommend">
+            </div>
+        ##                  客户端渲染end
+            <!--推荐商品-->
+            <!--小编推荐-->
+            <div class="recommend2" id="recommend2">
+              #if($!{productInfo.skuInfo.recommend})
+                  <h2>小编推荐</h2>
 
-                <!--推荐商品-->
-            ##                  客户端渲染
-                <div class="recommend" id="recommend">
+                  <p>$!{productInfo.skuInfo.recommend}</p>
+              #end
+            </div>
+            <!--小编推荐-->
+            <!--详情-->
+            <div class="detail">
+                <div class="detail-h">
+                    <ul class="clearfix" id="detailattributes">
+                      #if(${productInfo.skuInfo.attributes})
+                        #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
+                            <li>【$!{_el.key}】 $!{_el.value}</li>
+                        #end
+                      #end
+                    </ul>
                 </div>
-            ##                  客户端渲染end
-                <!--推荐商品-->
 
-                <!--小编推荐-->
-                <div class="recommend2">
-                    <h2>小编推荐</h2>
-
-                    <p>$!{productInfo.skuInfo.recommend}</p>
-                </div>
-                <!--小编推荐-->
-
-                <!--详情-->
-                <div class="detail">
-                    <div class="detail-h">
-                        <ul class="clearfix">
-                          #if(${productInfo.skuInfo.attributes})
-                            #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
-                                <li>【$!{_el.key}】 $!{_el.value}</li>
-                            #end
-                          #end
-                        </ul>
-                    </div>
-
-                    <div class="detail-b">
-                      $!{productInfo.skuInfo.description}
-                    </div>
+                <div class="detail-b" id="detailcontent">
+                  $!{productInfo.skuInfo.description}
                 </div>
             </div>
             <!--详情-->
