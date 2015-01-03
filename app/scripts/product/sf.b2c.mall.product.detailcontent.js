@@ -134,7 +134,8 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')
+          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+          'size':4
         });
 
         findRecommendProducts
@@ -324,8 +325,8 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          // '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
-          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
+             '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +
