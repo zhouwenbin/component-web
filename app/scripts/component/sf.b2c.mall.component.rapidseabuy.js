@@ -172,9 +172,20 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var ulNode = $('ul.product-list');
           var priceNodeList = $('ul.product-list #price4ProductClient');
 
+          var arr = [];
+          $('ul.product-list #price4ProductClient').each(function (index,element) {
+            arr.push(parseInt($(element).attr('data-itemid')));
+          });
+
+          arr = _.uniq(arr);
+
           var paramData = {
-            "itemIds": $(ulNode[0]).attr('data-itemids')
-          };
+            'itemIds': JSON.stringify(arr)
+          }
+
+          // var paramData = {
+          //   "itemIds": $(ulNode[0]).attr('data-itemids')
+          // };
 
           //渲染价格模块
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
