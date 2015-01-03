@@ -48,7 +48,7 @@ define(
       },
 
       supplement: function() {
-        $('body').append('<iframe id="proxy" src="http://www.sfht.com/proxy.html" style="display:none;"></iframe>')
+        // $('body').append('<iframe id="proxy" src="http://www.sfht.com/proxy.html" style="display:none;"></iframe>')
       }
     });
 
