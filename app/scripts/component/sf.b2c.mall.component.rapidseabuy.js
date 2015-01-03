@@ -170,11 +170,11 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var that = this;
 
           //获取页面上没有价格的节点
-          var ulNode = $('ul.product-list');
-          var priceNodeList = $('ul.product-list #price4ProductClient');
+          var ulNode = this.element.find('ul.product-list');
+          var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
 
           var arr = [];
-          $('ul.product-list #price4ProductClient').each(function (index,element) {
+          this.element.find('ul.product-list #price4ProductClient').each(function (index,element) {
             arr.push(parseInt($(element).attr('data-itemid')));
           });
 
@@ -194,6 +194,11 @@ define('sf.b2c.mall.component.rapidseabuy', [
             })
             .done(function(data){
               var template = can.view.mustache(that.priceTemplate());
+              _.each(data.value, function(priceItem){
+                priceItem.sellingPrice = priceItem.sellingPrice / 100;
+                priceItem.originPrice = priceItem.originPrice / 100;
+              });
+
               _.each(priceNodeList, function (priceNode) {
                 if($(priceNode).attr('data-contenttype') == 'PRODUCT')
                 _.each(data.value, function (priceItem) {

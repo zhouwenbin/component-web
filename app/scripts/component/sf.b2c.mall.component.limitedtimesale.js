@@ -104,6 +104,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
               var priceMap = {};
               _.each(data.value, function(priceItem) {
                 priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
+                priceItem.originPrice = priceItem.originPrice / 100;
+                priceItem.sellingPrice = priceItem.sellingPrice / 100;
                 priceMap[priceItem.itemId] = priceItem;
               })
 
@@ -138,14 +140,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       renderPriceInfo: function(priceMap) {
-        var priceNodeList = $('ul.product-list #price4ProductClient');
+        var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
 
+        console.log('-------------renderPriceInfo-------------')
         //这里只渲染产品的价格，专题的价格服务器端渲染
         var template = can.view.mustache(this.priceTemplate());
         _.each(priceNodeList, function(priceNode) {
           if ($(priceNode).attr('data-contenttype')== 'PRODUCT') {
             var info = priceMap[$(priceNode).attr('data-itemid')];
-
             $(priceNode).html(template(info));
             if (info && info.soldOut) {
               $(priceNode).parent().find('.product-r1').append('<span class="icon icon24">售完</span>')

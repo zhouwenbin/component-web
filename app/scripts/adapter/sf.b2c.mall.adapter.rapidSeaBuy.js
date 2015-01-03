@@ -28,12 +28,12 @@ define(
             _.each(priceData.value,function(priceItem){
               if(item.homepageProductInfo && item.homepageProductInfo.itemId == priceItem.itemId){
                 item.attr('soldOut', priceItem.soldOut);
-                item.attr('originPrice',priceItem.originPrice);
-                item.attr('sellingPrice',priceItem.sellingPrice);
+                item.attr('originPrice',priceItem.originPrice/100);
+                item.attr('sellingPrice',priceItem.sellingPrice/100);
                 item.attr('discount', ((priceItem.sellingPrice/priceItem.originPrice)*10).toFixed(1));
               }else if(item.homepageTopicInfo){
                 item.attr('soldOut', priceItem.soldOut);
-                item.attr('price', item.homepageTopicInfo.price);
+                item.attr('price', item.homepageTopicInfo.price/100);
                 item.attr('discount', item.homepageTopicInfo.discount);
               }
             });

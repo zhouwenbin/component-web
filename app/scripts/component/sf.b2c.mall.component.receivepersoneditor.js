@@ -109,7 +109,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             return false;
           }
           def.reject(error);
-          console.error(error)
+          //console.error(error)
         });
       return def;
     },
@@ -128,7 +128,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         })
         .fail(function(error) {
           def.reject(error);
-          console.error(error)
+          //console.error(error)
         });
 
       return def;
@@ -277,7 +277,6 @@ define('sf.b2c.mall.component.receivepersoneditor', [
               })
               $('#credtnumerror').show();
             }
-
             return false;
           })
       }
