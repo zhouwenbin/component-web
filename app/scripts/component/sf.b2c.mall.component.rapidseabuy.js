@@ -64,13 +64,14 @@ define('sf.b2c.mall.component.rapidseabuy', [
           '<li>'+
             '<div class="product-r1">' +
               '<a href="{{link}}" target="_blank"><img src="{{imgUrl}}" alt="" ></a><span></span>' +
+              '{{#soldOut}}<span class="icon icon24">售完</span>{{/soldOut}}'+
             '</div>' +
             '<h3><a href="{{link}}" target="_blank">{{title}}</a></h3>' +
             '<p>{{subTitle}}</p>' +
             '<div class="product-r2 clearfix">' +
               '<div class="product-r2c1 fl"><span class="icon icon6"><b>{{limitedTime}}</b>天到<i></i></span></div>' +
               '{{#sf-is-product fastSaleContentType}}' +
-              '<div class="product-r2c2 fr"><img src="{{homePageProductInfo.showNationalUrl}}" alt=""/></div>' +
+              '<div class="product-r2c2 fr"><img src="{{homepageProductInfo.showNationalUrl}}" alt=""/></div>' +
               '{{/sf-is-product}}'+
               '{{^sf-is-product fastSaleContentType}}' +
               '<div class="product-r2c2 fr"></div>' +
@@ -169,12 +170,19 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var that = this;
 
           //获取页面上没有价格的节点
-          var ulNode = $('ul.product-list');
-          var priceNodeList = $('ul.product-list #price4ProductClient');
+          var ulNode = this.element.find('ul.product-list');
+          var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
+
+          var arr = [];
+          this.element.find('ul.product-list #price4ProductClient').each(function (index,element) {
+            arr.push(parseInt($(element).attr('data-itemid')));
+          });
+
+          arr = _.uniq(arr);
 
           var paramData = {
-            "itemIds": $(ulNode[0]).attr('data-itemids')
-          };
+            'itemIds': JSON.stringify(arr)
+          }
 
           //渲染价格模块
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
@@ -186,6 +194,11 @@ define('sf.b2c.mall.component.rapidseabuy', [
             })
             .done(function(data){
               var template = can.view.mustache(that.priceTemplate());
+              _.each(data.value, function(priceItem){
+                priceItem.sellingPrice = priceItem.sellingPrice / 100;
+                priceItem.originPrice = priceItem.originPrice / 100;
+              });
+
               _.each(priceNodeList, function (priceNode) {
                 if($(priceNode).attr('data-contenttype') == 'PRODUCT')
                 _.each(data.value, function (priceItem) {

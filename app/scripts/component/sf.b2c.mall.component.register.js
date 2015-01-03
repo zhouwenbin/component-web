@@ -142,6 +142,9 @@ define(
             that.data.attr('timmer', timmer - 1);
             that.timmer.call(that);
           }else{
+            var csrfToken = can.route.attr('csrfToken');
+            store.set('csrfToken', csrfToken);
+
             // @todo调用onRegistered 回调
             if (_.isFunction(that.options.onRegistered)) {
               that.options.onRegistered();
@@ -334,8 +337,8 @@ define(
           this.component.mobileRegister.sendRequest()
             .done(function (data) {
               if (data.csrfToken) {
-                store.set('csrfToken', data.csrfToken);
-                can.route.attr('tag', 'success');
+                // store.set('csrfToken', data.csrfToken);
+                can.route.attr({'tag':'success', 'csrfToken': data.csrfToken});
               }
             })
             .fail(function (errorCode) {

@@ -128,7 +128,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
-
             //that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
             var cancelArr = new Array();

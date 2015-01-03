@@ -230,6 +230,7 @@
 }
 .recommend img{
 	border: 1px solid #EEEDEE;
+	max-width: 102px;
 }
 .recommend-c1{
 	margin-left: 112px;

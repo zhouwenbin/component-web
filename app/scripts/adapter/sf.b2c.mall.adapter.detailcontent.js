@@ -91,7 +91,17 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
         //一位一位去匹配
         return spec.specId == specId[index];
       })
-      selectedSpec.selected = true;
+      if (typeof selectedSpec.attr != 'undefined') {
+        selectedSpec.attr("selected", "active");
+        selectedSpec.attr("canSelected", "");
+        selectedSpec.attr("canShowDottedLine", "");
+      } else {
+        // selectedSpec.canSelected = false;
+        // selectedSpec.canShowDottedLine = false;
+        selectedSpec.selected = "active";
+        selectedSpec.canSelected = "";
+        selectedSpec.canShowDottedLine = "";
+      }
     },
 
     /**
@@ -119,21 +129,45 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
           return saleSkuSpecTuple.skuSpecTuple.specIds.join(",") == compose;
         })
 
+        var showDottedLine = _.find(saleSkuSpecTupleList, function(saleSkuSpecTuple) {
+          return saleSkuSpecTuple.skuSpecTuple.specIds.slice(index, index + 1).join('') == spec.specId;
+        })
+
         if (typeof result != 'undefined') {
           if (!spec.selected) {
             //因初次渲染时候还未放入到Map中去，所以要做下判断
             if (typeof spec.attr != 'undefined') {
-              spec.attr("canSelected", true);
+              spec.attr("canSelected", "");
+              spec.attr("compose", result.skuSpecTuple.specIds.join(","));
             } else {
-              spec.canSelected = true;
+              spec.canSelected = "";
+              spec.compose = result.skuSpecTuple.specIds.join(",");
             }
           }
         } else {
+
           if (typeof spec.attr != 'undefined') {
-              spec.attr("canSelected", false);
+            spec.attr("canSelected", "");
+          } else {
+            spec.canSelected = "";
+          }
+
+          //显示虚线框
+          if (typeof showDottedLine != 'undefined') {
+            if (typeof spec.attr != 'undefined') {
+              spec.attr("canShowDottedLine", "dashed");
+              spec.attr("compose", showDottedLine.skuSpecTuple.specIds.join(","));
             } else {
-              spec.canSelected = false;
+              spec.canShowDottedLine = "dashed";
+              spec.compose = showDottedLine.skuSpecTuple.specIds.join(",");
             }
+          } else {
+            if (typeof spec.attr != 'undefined') {
+              spec.attr("disabled", "disable");
+            } else {
+              spec.disabled = "disable";
+            }
+          }
         }
       })
     },

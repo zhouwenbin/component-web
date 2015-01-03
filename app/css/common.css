@@ -649,6 +649,10 @@ button.btn{
 body{
 	background: #EEEEEE;
 	padding-top: 60px;
+	min-width: 1280px;
+}
+body.sub{
+	min-width: inherit;
 }
 /*布局*/
 .pm{
