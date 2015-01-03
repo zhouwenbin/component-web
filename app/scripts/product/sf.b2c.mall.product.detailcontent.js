@@ -140,7 +140,7 @@ define('sf.b2c.mall.product.detailcontent', [
         findRecommendProducts
           .sendRequest()
           .fail(function(error) {
-            console.error(error);
+            //console.error(error);
           })
           .done(function(data) {
 
@@ -155,12 +155,13 @@ define('sf.b2c.mall.product.detailcontent', [
             })
 
             var template = can.view.mustache(that.recommendProductsTemplate());
-            $('#recommend').html(template(data));
+            $('#recommend-wrap').html(template(data));
           });
       },
 
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
+          '<div class="recommend" id="recommend">'+
           '<h2>推荐商品</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
@@ -174,6 +175,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</li>' +
           '{{/each}}' +
           '</ul>' +
+          '</div>'+
           '{{/if}}'
       },
 
@@ -224,7 +226,7 @@ define('sf.b2c.mall.product.detailcontent', [
         getProductHotData
           .sendRequest()
           .fail(function(error) {
-            console.error(error);
+            //console.error(error);
           })
           .done(function(data) {
             //获得服务器时间
