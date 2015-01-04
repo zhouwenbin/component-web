@@ -4,15 +4,16 @@ define([
   'jquery',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.center.register',
-  'vendor.jquery.jcountdown'
-],function(can,$, SFFrameworkComm, SFRegister, jcountdown){
+  'vendor.jquery.jcountdown',
+  'sf.b2c.mall.api.user.getBirthInfo'
+],function(can,$, SFFrameworkComm, SFRegister, jcountdown,SFGetBirthInfo){
   SFFrameworkComm.register(1);
 
   var register = can.Control.extend({
 
     init:function(){
       this.component = {};
-      this.component.register = new SFRegister('.sf-b2c-mall-register');
+      this.component.getBirthInfo = new SFGetBirthInfo();
       this.supplement();
     },
 
@@ -60,7 +61,7 @@ define([
 
     '.sf-in-order click':function(ele,event){
       event && event.preventDefault();
-      this.component.register.paint();
+      this.component.register = new SFRegister('.sf-b2c-mall-register');
     }
 
   });
