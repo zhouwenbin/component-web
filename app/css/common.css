@@ -144,23 +144,23 @@ img{vertical-align: middle;}
 	background-position: -160px -141px;
 }
 .icon12{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px 0;
 }
 .icon13{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -120px;
 }
 .icon14{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -250px;
 }
 .icon15{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -380px;
 }
 .icon16,
@@ -773,6 +773,7 @@ body.sub{
 	width: 117px;
 	margin-left: 228px;
 	font-size: 18px;
+	text-align: center;
 }
 .footer1 .icon8{
 	position: absolute;
@@ -781,6 +782,7 @@ body.sub{
 }
 .footer1 h2{
 	margin-top: 20px;
+	color: #949494;
 }
 
 /*footer2*/
