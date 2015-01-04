@@ -65,7 +65,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
-            // data.orderItem.rcvrState = -1;
+            // data.orderItem.rcvrState = 0;
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -81,16 +81,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.traceList = data.orderActionTraceItemList;
-//            that.options.traceList =  [
-//              {"gmtHappened":"2015/01/01 20:43:32","operator":"USER","status":"SUBMITED"},
-//              {"gmtHappened":"2015/01/01 20:44:32","operator":"USER","status":"AUDITING"},
-//              {"gmtHappened":"2015/01/01 20:45:58","operator":"SYSTEM","status":"WAIT_SHIPPING"},
-//              {"gmtHappened":"2015/01/01 20:46:05","operator":"SYSTEM","status":"SHIPPING"},
-//              {"gmtHappened":"2015/01/01 21:08:57","operator":"LOGISTICS","status":"SHIPPED"},
-//              {"gmtHappened":"2015/01/02 11:09:10","operator":"SYSTEM","status":"COMPLETED"}
-//            ];
+            //            that.options.traceList =  [
+            //              {"gmtHappened":"2015/01/01 20:43:32","operator":"USER","status":"SUBMITED"},
+            //              {"gmtHappened":"2015/01/01 20:44:32","operator":"USER","status":"AUDITING"},
+            //              {"gmtHappened":"2015/01/01 20:45:58","operator":"SYSTEM","status":"WAIT_SHIPPING"},
+            //              {"gmtHappened":"2015/01/01 20:46:05","operator":"SYSTEM","status":"SHIPPING"},
+            //              {"gmtHappened":"2015/01/01 21:08:57","operator":"LOGISTICS","status":"SHIPPED"},
+            //              {"gmtHappened":"2015/01/02 11:09:10","operator":"SYSTEM","status":"COMPLETED"}
+            //            ];
 
-              var map = {
+            var map = {
               'SUBMITED': function(trace) {
                 that.options.submitedTime = trace.gmtHappened;
                 that.options.submitedActive = "active";
@@ -100,17 +100,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 that.options.auditingTime = trace.gmtHappened;
                 that.options.auditingActive = "active";
               },
-              'BUYING':function(trace){
-              },
-              'WAIT_SHIPPING': function(trace) {
-              },
+              'BUYING': function(trace) {},
+              'WAIT_SHIPPING': function(trace) {},
 
               'SHIPPING': function(trace) {
                 that.options.wait_shippingTime = trace.gmtHappened;
                 that.options.wait_shippingActive = "active";
               },
 
-              'SHIPPED':function(trace) {
+              'SHIPPED': function(trace) {
                 that.options.shippingTime = trace.gmtHappened;
                 that.options.shippingActive = "active";
               },
@@ -196,6 +194,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return SFConfig.setting.api.fileurl + '?' + $.param(data);
       },
 
+      setError: function(errorText) {debugger;
+        //this.options.error.attr('errorText', errorText);
+        this.element.find('.error-tips').text(errorText);
+      },
+
       setPhotoP: function() {
 
         this.component.uploaderPhotoP = new FileUploader();
@@ -205,7 +208,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           onUploadSuccess: function(obj, data) {
 
             that.component.loading.hide();
-            $('.error-tips').remove();
+            $('.error-tips').empty();
 
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl1', img);
@@ -237,7 +240,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.component.uploaderPhotoP.reset();
             var map = {
               'Q_TYPE_DENIED': '电子照上传失败，选取的文件类型不支持',
-              'Q_EXCEED_SIZE_LIMIT': '电子照上传失败，大小请控制在5M以内'
+              'F_EXCEED_SIZE': '电子照上传失败，大小请控制在5M以内'
             }
 
             var errorText = map[errorCode] || that.defaults.alert;
@@ -258,7 +261,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var callback = {
           onUploadSuccess: function(obj, data) {
             that.component.loading.hide();
-            $('.error-tips').remove();
+            $('.error-tips').empty();
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl2', img);
             $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
@@ -288,7 +291,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.component.uploaderPhotoP.reset();
             var map = {
               'Q_TYPE_DENIED': '电子照上传失败，选取的文件类型不支持',
-              'Q_EXCEED_SIZE_LIMIT': '电子照上传失败，大小请控制在5M以内'
+              'F_EXCEED_SIZE': '电子照上传失败，大小请控制在5M以内'
             }
 
             var errorText = map[errorCode] || that.defaults.alert;
@@ -433,11 +436,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return false;
       },
 
-      '#pay click': function (element, event) {
+      '#pay click': function(element, event) {
         event && event.preventDefault();
 
         var params = can.deparam(window.location.search.substr(1));
-        SFOrderFn.payV2({orderid: params.orderid})
+        SFOrderFn.payV2({
+          orderid: params.orderid
+        })
       }
 
     });
