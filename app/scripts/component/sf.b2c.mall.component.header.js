@@ -59,6 +59,16 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.render(this.data);
+
+      if (this.options.isForceLogin) {
+        var that = this;
+        // 暂时没有跨域存在在需要控制跳转的页面
+        // setTimeout(function() {
+          if (!SFComm.prototype.checkUserLogin.call(that)) {
+            window.location.href = SFConfig.setting.link.index;
+          }
+        // }, 800);
+      }
     },
 
     /**

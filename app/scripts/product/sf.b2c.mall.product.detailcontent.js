@@ -323,11 +323,11 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy disable" id="gotobuy">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy disable">立即购买</a></div>' +
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-             '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+             '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
@@ -674,7 +674,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       detailTemplate: function() {
-        return '{{itemInfo.basicInfo.description}}';
+        return '{{&itemInfo.basicInfo.description}}';
       },
 
       /**

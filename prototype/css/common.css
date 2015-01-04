@@ -144,23 +144,23 @@ img{vertical-align: middle;}
 	background-position: -160px -141px;
 }
 .icon12{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px 0;
 }
 .icon13{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -120px;
 }
 .icon14{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -250px;
 }
 .icon15{
-	width: 117px;
-	height: 117px;
+	width: 83px;
+	height: 83px;
 	background-position: -382px -380px;
 }
 .icon16,
@@ -425,6 +425,14 @@ button.btn{
 	padding-top: 16px;
 	background: url(../img/icon.png) no-repeat -101px 0;
 	overflow: hidden;
+}
+.btn-close:before{
+	content: '';
+	position: absolute;
+	left: -15px;
+	right: -15px;
+	top:-15px;
+	bottom:-15px;
 }
 .btn-close:hover{
 	background-position: -102px -19px;
@@ -774,7 +782,8 @@ body.sub{
 	position: relative;
 	width: 117px;
 	margin-left: 228px;
-	font-size: 18px;
+	font-size: 16px;
+	text-align: center;
 }
 .footer1 .icon8{
 	position: absolute;
@@ -783,6 +792,7 @@ body.sub{
 }
 .footer1 h2{
 	margin-top: 20px;
+	color: #949494;
 }
 
 /*footer2*/

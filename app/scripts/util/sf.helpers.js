@@ -44,4 +44,19 @@ define('sf.helpers', ['jquery',
     return (price / 100).toString();
   });
 
+  can.Mustache.registerHelper('sf.img', function(img, options) {
+    if (_.isFunction(img)) {
+      img = img();
+    }
+
+    var arr = [];
+    if (_.isString(img)) {
+      arr = img.split(',');
+    } else if (_.isArray(img)) {
+      arr = img;
+    }
+
+    return 'http://img0.sfht.com/spu/' + arr[0];
+  });
+
 });

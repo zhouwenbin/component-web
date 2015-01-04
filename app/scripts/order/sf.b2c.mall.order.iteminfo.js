@@ -7,9 +7,11 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
-  'sf.helpers'
+  'sf.helpers',
+  'sf.b2c.mall.api.user.setDefaultAddr',
+  'sf.b2c.mall.api.user.setDefaultRecv'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv) {
   return can.Control.extend({
 
     /**
@@ -75,7 +77,7 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
-    '#submitOrder click': function(element, event) {
+    '#submitOrder click': function(element, event) {debugger;
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
@@ -93,11 +95,17 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var getRecAddressList = new SFGetRecAddressList();
       var getIDCardUrlList = new SFGetIDCardUrlList();
+      var setDefaultAddr = new SFSetDefaultAddr({
+        "addrId": addressid
+      });
+      var setDefaultRecv = new SFSetDefaultRecv({
+        "recId": personid
+      });
 
       var params = {};
 
-      can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())
-        .done(function(addrList, personList) {
+      can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
+        .done(function(addrList, personList, addrDefault, personDefault) {debugger;
 
           var selectAddr = _.find(addrList.items, function(item) {
             return item.addrId == addressid;

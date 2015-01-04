@@ -29,7 +29,7 @@ define(
        * [render 执行渲染]
        */
       render: function() {
-        new Header('.sf-b2c-mall-header');
+        new Header('.sf-b2c-mall-header', {isForceLogin: true});
         new Footer('.sf-b2c-mall-footer');
 
         // 搜索区域
@@ -37,7 +37,9 @@ define(
         $('.sf-b2c-mall-order-orderlist-searcharea').html(template());
 
         // 列表区域
-        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist',{"searchValue":null});
+        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
+          "searchValue": null
+        });
       },
 
       /**
@@ -57,14 +59,17 @@ define(
           '</div>'
       },
 
-      /**
-       * [description 点击搜索后执行动作]
-       * @param  {[type]} element 元素
-       * @param  {[type]} event 事件
-       */
-      '#search click': function(element, event) {
+      "{document} keydown": function(element, event) {
+        var e = event || window.event,
+          currKey = e.keyCode || e.which || e.charCode;
+        if (currKey === 13) {
+          return this.search()
+        }
+      },
+
+      search: function() {
         //进行销毁
-        if (this.orderListComponent){
+        if (this.orderListComponent) {
           this.orderListComponent.destroy();
         }
 
@@ -74,12 +79,23 @@ define(
           searchValue = null;
         }
 
-        if (null != searchValue && searchValue.length > 20){
+        if (null != searchValue && searchValue.length > 20) {
           alert("搜索关键词太长，请小于20个字符！");
           return false;
         }
 
-        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {"searchValue":searchValue});
+        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
+          "searchValue": searchValue
+        });
+      },
+
+      /**
+       * [description 点击搜索后执行动作]
+       * @param  {[type]} element 元素
+       * @param  {[type]} event 事件
+       */
+      '#search click': function(element, event) {
+        return this.search();
       }
     });
 
