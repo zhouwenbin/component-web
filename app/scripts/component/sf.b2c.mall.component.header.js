@@ -59,6 +59,15 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.render(this.data);
+
+      if (this.options.isForceLogin) {
+        var that = this;
+        setTimeout(function() {
+          if (SFComm.prototype.checkUserLogin.call(that)) {
+            window.location.href = SFConfig.setting.link.index;
+          }
+        }, 800);
+      }
     },
 
     /**

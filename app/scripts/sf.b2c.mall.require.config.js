@@ -64,6 +64,8 @@ requirejs.config({
     'sf.b2c.mall.api.user.needVfCode':'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.needVfCode',
     'sf.b2c.mall.api.user.updateUserInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.updateUserInfo',
     'sf.b2c.mall.api.user.delRecvInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.delRecvInfo',
+    'sf.b2c.mall.api.user.getBirthInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.delRecvInfo',
+
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
