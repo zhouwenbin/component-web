@@ -141,9 +141,9 @@ define(
               repeatPassword: this.data.attr('confirmPwd')
             };
             if(inputData.newPassword !==inputData.repeatPassword){
-              $('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
+              return $('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
             }
-            if (this.checkOldPwd.call(this, inputData.oldPassword) && this.checkNewPwd.call(this, inputData.newPassword) && this.checkConfirmPwd.call(this, inputData.repeatPassword)) {
+            if (this.checkOldPwd.call(this, inputData.oldPassword) && this.checkNewPwd.call(this, inputData.newPassword) && this.checkConfirmPwd.call(this, inputData.newPassword)) {
               var params = {
                 oldPassword: md5(inputData.oldPassword + 'www.sfht.com'),
                 newPassword: md5(inputData.newPassword + 'www.sfht.com')

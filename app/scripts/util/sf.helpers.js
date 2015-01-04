@@ -44,4 +44,25 @@ define('sf.helpers', ['jquery',
     return (price / 100).toString();
   });
 
+  can.Mustache.registerHelper('sf.img', function(img, options) {
+    if (_.isFunction(img)) {
+      img = img();
+    }
+
+    var arr = [];
+    if (_.isString(img)) {
+      arr = img.split(',');
+    } else if (_.isArray(img)) {
+      arr = img;
+    }
+
+    //做线上兼容，如果有http了 就不要再加前缀
+    var hasURL = _.str.include(arr[0], 'mg0.sfht.com')
+    if (hasURL){
+      return arr[0];
+    }
+
+    return 'http://img0.sfht.com/spu/' + arr[0];
+  });
+
 });
