@@ -59,9 +59,10 @@ define([
         var getBirthInfo = new SFGetBirthInfo();
         getBirthInfo.sendRequest()
           .done(function(data){
-              console.log(data);
               var time = getBirthInfo.getServerTime();
               console.log(data);
+              console.log(time);
+              console.log((data.onlineTime-time)/60/60/1000)
               console.log(new Date(data.onlineTime));
               console.log(new Date(time));
               for (
@@ -71,29 +72,28 @@ define([
                   // 当前时间
                       b = new Date(time),
 
-                      i = b.getFullYear()       + "/" + (t.getMonth() + 1) + "/" + (t.getDate() + 0)  + " " + (t.getHours()+0)  + ":" + t.getMinutes() + ":" + t.getSeconds(),
-                      e = b.getFullYear() + 1   + "/" + (b.getMonth() + 1) + "/" + b.getDate()        + " " + b.getHours()      + ":" + b.getMinutes() + ":" + b.getSeconds(),
-                      h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate()        + " " + b.getHours()      + ":" + b.getMinutes() + ":" + b.getSeconds(),
+                      i = b.getFullYear()       + "/" + (t.getMonth() + 1) + "/" + t.getDate()  + " " + t.getHours()  + ":" + t.getMinutes() + ":" + t.getSeconds(),
+                      e = b.getFullYear() + 1   + "/" + (b.getMonth() + 1) + "/" + b.getDate()  + " " + b.getHours()  + ":" + b.getMinutes() + ":" + b.getSeconds(),
+                      h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate()  + " " + b.getHours()  + ":" + b.getMinutes() + ":" + b.getSeconds(),
                       b = -b.getTimezoneOffset() / 60,
-
-
 
                       j = [{
                         timeText: i,
                         timeZone: b,
                         style: "flip",
                         color: "white",
+                        // hoursOnly: true,
                         width: 0,
                         textGroupSpace: 15,
                         textSpace: 0,
                         reflection: !1,
                         reflectionOpacity: 10,
                         reflectionBlur: 0,
-                        dayTextNumber: 3,
-                        displayDay: !1,
+                        // dayTextNumber: 0,
+                        displayDay: !0,
                         displayHour: !0,
                         displayMinute: !0,
-                        displaySecond: !0,
+                        displaySecond: !1,
                         displayLabel: !0,
                         onFinish: function() {}
                       }, {
@@ -101,17 +101,18 @@ define([
                         timeZone: b,
                         style: "slide",
                         color: "black",
+                        // hoursOnly: true,
                         width: 0,
                         textGroupSpace: 15,
                         textSpace: 0,
                         reflection: !1,
                         reflectionOpacity: 10,
                         reflectionBlur: 0,
-                        dayTextNumber: 3,
+                        // dayTextNumber: 0,
                         displayDay: !0,
                         displayHour: !0,
                         displayMinute: !0,
-                        displaySecond: !0,
+                        displaySecond: !1,
                         displayLabel: !0,
                         onFinish: function() {}
                       }], i = jQuery("#countcontent"), e = jQuery("#countcontent>.page"), h = 0; h < j.length - 1; h++) {
