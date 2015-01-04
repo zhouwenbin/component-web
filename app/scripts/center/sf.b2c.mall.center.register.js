@@ -121,7 +121,7 @@ define('sf.b2c.mall.center.register',[
               var sfb2cmallregister = $('.sf-b2c-mall-register .register');
               var html = '<div class="register-h"><h2>抢先注册</h2><a href="#" class="btn btn-close">关闭</a></div>'+
                   '<div class="register-b1"><span class="icon icon27"></span><h3>恭喜您注册成功!</h3><p>顺丰海淘即将正式开放，<br />'+
-                  '届时使用手机号码<span>'+number+'</span>访问网站,抢购明星产品</p><a href="#" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
+                  '届时使用手机号码<span>'+number+'</span>访问网站,抢购明星产品</p><a href="" id="btn-close-window" class="btn btn-register btn-send">确认</a></div>';
               sfb2cmallregister.html(html);
             }
           })
@@ -225,6 +225,7 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       $('.sf-b2c-mall-register').html('');
+      window.location.reload();
 
     },
 
