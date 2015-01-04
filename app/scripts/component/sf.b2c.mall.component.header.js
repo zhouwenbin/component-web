@@ -243,7 +243,7 @@ define('sf.b2c.mall.component.header', ['jquery',
             that.component.modal.hide();
 
             if (that.afterLoginDest) {
-              var link = SFConfig.setting.link[that.afterLoginDest];
+              var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
               window.location.href = link;
             }
 

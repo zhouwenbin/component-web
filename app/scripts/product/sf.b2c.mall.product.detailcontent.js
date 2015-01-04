@@ -8,9 +8,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.helpers',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config'
   ],
-  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFConfig) {
+  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
     return can.Control.extend({
 
       helpers: {
@@ -48,6 +49,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.detailUrl = SFConfig.setting.api.detailurl;
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
+        this.header = this.options.header;
         this.render();
       },
 
@@ -135,7 +137,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var findRecommendProducts = new SFFindRecommendProducts({
           'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
-          'size':4
+          'size': 4
         });
 
         findRecommendProducts
@@ -184,13 +186,19 @@ define('sf.b2c.mall.product.detailcontent', [
        * [renderSpecInfo 渲染规格信息]
        */
       renderSpecInfo: function() {
-        var specGroups = JSON.parse($('#specArea').eq(0).attr('data-specgroups'));
-        var specId = JSON.parse($('#specArea').eq(0).attr('data-skuspectuple'));
-        var saleSkuSpecTupleList = JSON.parse($('#specArea').eq(0).attr('data-saleskuspectuplelist'));
+        this.options.detailContentInfo = {};
+        this.options.detailContentInfo.input = {};
+        if ($('#specArea').eq(0).attr('data-specgroups') == null || $('#specArea').eq(0).attr('data-specgroups') == "") {
+          this.options.detailContentInfo = this.adapter.format(this.options.detailContentInfo);
+          return false;
+        }
+
+        var specGroups = JSON.parse(decodeURIComponent($('#specArea').eq(0).attr('data-specgroups')));
+        var specId = JSON.parse(decodeURIComponent($('#specArea').eq(0).attr('data-skuspectuple')));
+        var saleSkuSpecTupleList = JSON.parse(decodeURIComponent($('#specArea').eq(0).attr('data-saleskuspectuplelist')));
 
         var index = 0;
 
-        this.options.detailContentInfo = {};
         this.options.detailContentInfo.itemInfo = {};
         this.options.detailContentInfo.itemInfo.specGroups = specGroups;
         this.options.detailContentInfo.itemInfo.saleSkuSpecTupleList = saleSkuSpecTupleList;
@@ -206,7 +214,6 @@ define('sf.b2c.mall.product.detailcontent', [
           ++index;
         })
 
-        this.options.detailContentInfo.input = {};
         this.options.detailContentInfo = that.adapter.format(this.options.detailContentInfo);
 
         var template = can.view.mustache(this.specTemplate());
@@ -302,11 +309,18 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = 'http://www.sfht.com/order.html' + '?' + $.param({
+        var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
           "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
         });
+
+        if (!SFComm.prototype.checkUserLogin.call(this)) {
+          this.header.showLogin(gotoUrl);
+          return false;
+        }
+
+        window.location.href = gotoUrl;
       },
 
       buyInfoTemplate: function() {
@@ -325,7 +339,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-             '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
+          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
@@ -368,26 +382,26 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：' +
           '{{#each specs}}' +
 
-              '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
+          '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
 
 
-              // '{{#if selected}}' +
-              //   '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
-              // '{{else}}' +
+          // '{{#if selected}}' +
+          //   '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
+          // '{{else}}' +
 
-              //   '{{#if canSelected}}' +
-              //     '<label data-specid="{{specId}}" id="2" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
-              //   '{{else}}' +
+          //   '{{#if canSelected}}' +
+          //     '<label data-specid="{{specId}}" id="2" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
+          //   '{{else}}' +
 
-              //     '{{#if canShowDottedLine}}' +
-              //       '<label data-specid="{{specId}}" id="3" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods dashed">{{specValue}}<span class="icon icon23"></span></label>' +
-              //     '{{else}}' +
-              //       '<label data-specid="{{specId}}" id="4" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-              //     '{{/if}}' +
+          //     '{{#if canShowDottedLine}}' +
+          //       '<label data-specid="{{specId}}" id="3" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods dashed">{{specValue}}<span class="icon icon23"></span></label>' +
+          //     '{{else}}' +
+          //       '<label data-specid="{{specId}}" id="4" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+          //     '{{/if}}' +
 
-              //   // '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-              //   '{{/if}}' +
-              // '{{/if}}' +
+          //   // '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
+          //   '{{/if}}' +
+          // '{{/if}}' +
 
           '{{/each}}' +
           '</div>' +
