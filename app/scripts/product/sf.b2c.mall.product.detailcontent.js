@@ -168,7 +168,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
           '<li>' +
-          '<a class="fl" href="{{linkUrl}}"><img src="{{imageName}}" alt="" /></a>' +
+          '<a class="fl" href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" /></a>' +
           '<div class="recommend-c1">' +
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
           '<div class="recommend-r1">¥{{sellingPrice}}</div>' +
