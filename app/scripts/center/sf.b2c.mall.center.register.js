@@ -45,7 +45,7 @@ define('sf.b2c.mall.center.register',[
         mobileNum:null,
         mobileCode:null,
         password:null,
-        ischecked:null
+        ischecked:true
       });
       this.render(this.data);
       this.functionPlaceHolder(document.getElementById("input-mobile-num"));
@@ -113,7 +113,7 @@ define('sf.b2c.mall.center.register',[
           smsCode:params.mobileCode,
           password:md5(params.password + 'www.sfht.com')
         });
-        var number = data.mobile;
+        var number = params.mobileNum;
         this.component.mobileRegister.sendRequest()
           .done(function(data){
             if(data.csrfToken){
