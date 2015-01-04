@@ -29,7 +29,7 @@ define(
        * [render 渲染]
        */
       render: function() {
-        new Header('.sf-b2c-mall-header');
+        new Header('.sf-b2c-mall-header', {isForceLogin: true});
         new Footer('.sf-b2c-mall-footer');
         new ChangeUserInfo('.user-basic-info');
 

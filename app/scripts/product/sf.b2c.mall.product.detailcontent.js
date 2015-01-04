@@ -674,7 +674,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       detailTemplate: function() {
-        return '{{itemInfo.basicInfo.description}}';
+        return '{{&itemInfo.basicInfo.description}}';
       },
 
       /**
