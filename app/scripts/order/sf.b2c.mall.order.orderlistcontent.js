@@ -110,8 +110,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '操作' +
           '</div>' +
           '</div>' +
-          '<p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>' +
+          '<p class="table-none">未找到相关订单记录！<a href="javascript:void(0)" class="viewAllList">查看全部订单</a></p>' +
           '</div>'
+      },
+
+      '.viewAllList click': function(){
+        this.render();
       },
 
       /**
