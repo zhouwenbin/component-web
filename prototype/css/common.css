@@ -426,6 +426,14 @@ button.btn{
 	background: url(../img/icon.png) no-repeat -101px 0;
 	overflow: hidden;
 }
+.btn-close:before{
+	content: '';
+	position: absolute;
+	left: -15px;
+	right: -15px;
+	top:-15px;
+	bottom:-15px;
+}
 .btn-close:hover{
 	background-position: -102px -19px;
 }
@@ -774,7 +782,7 @@ body.sub{
 	position: relative;
 	width: 117px;
 	margin-left: 228px;
-	font-size: 18px;
+	font-size: 16px;
 	text-align: center;
 }
 .footer1 .icon8{
