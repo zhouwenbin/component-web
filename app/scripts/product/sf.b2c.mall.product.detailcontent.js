@@ -23,7 +23,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-limitedTimeBuy': function(productShape, options) {
-          if (productShape() == 'LIMITEDTIMEBUY') {
+          if (productShape() == 'XSTM') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -31,7 +31,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-rapidSeaBuy': function(productShape, options) {
-          if (productShape() == 'RAPIDSEABUY') {
+          if (productShape() == 'JSHT') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -304,7 +304,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = SFConfig.setting.link.detail + '?' + $.param({
+        window.location.href = 'http://www.sfht.com' + '?' + $.param({
           "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
