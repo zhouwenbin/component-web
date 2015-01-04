@@ -989,3 +989,53 @@ body.sub{
 	line-height: 64px;
 	padding: 0 72px;
 }
+
+.u-loading{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+.u-loading-bg{
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  -ms-filter:”progid:DXImageTransform.Microsoft.Alpha(Opacity=30)”;
+  filter: alpha(opacity=30);
+}
+.icon-loading{
+  background:url(../images/icon-loading.gif) no-repeat center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+}
+.u-loading-icon{
+    width: 128px;
+    height: 156px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -64px;
+    margin-top: -78px;
+ }
+ .icon-loading1{
+    position:absolute;
+    width: 128px;
+    height: 0px;
+    background:url(../img/icon-loading1.png) no-repeat bottom;
+    bottom: 0;
+ }
+ .icon-loading2{
+    position: absolute;
+    width: 128px;
+    height: 156px;
+    background:url(../img/icon-loading2.png) no-repeat bottom;
+ }
