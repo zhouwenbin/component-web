@@ -47,12 +47,14 @@ define('sf.b2c.mall.component.header', ['jquery',
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
-          domain: SFConfig.setting.api.mainurl
+          index: SFConfig.setting.link.index
+          // domain: SFConfig.setting.api.mainurl
         }));
       }else{
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
-          domain: SFConfig.setting.api.mainurl
+          index: SFConfig.setting.link.index
+          // domain: SFConfig.setting.api.mainurl
         }));
       }
 
