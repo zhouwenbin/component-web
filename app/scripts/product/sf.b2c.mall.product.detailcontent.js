@@ -340,7 +340,6 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{^if priceInfo.soldOut}}' +
           '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
-          // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +
@@ -361,7 +360,6 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{/sf-is-rapidSeaBuy}}' +
 
-          '</div>' +
           '<!--限时特卖-->' +
           '<!--售完-->' +
           '{{#if priceInfo.soldOut}}' +
