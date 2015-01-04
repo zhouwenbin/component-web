@@ -33,6 +33,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       init: function(element, options) {
         this.component = {};
         this.render();
+
+        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
+        $('#closeExample')[0].onclick = function(){
+          $(".orderdetail-upload").hide();
+          $(".mask2").hide();
+          return false;
+        }
       },
 
       /**
@@ -65,7 +72,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
-            //data.orderItem.rcvrState = 0;
+            data.orderItem.rcvrState = 0;
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -385,7 +392,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       "#orderdetail-view click": function(element, event) {
         $(".orderdetail-upload").show();
-        $(".mask").show();
+        $(".mask2").show();
         return false;
       },
 
