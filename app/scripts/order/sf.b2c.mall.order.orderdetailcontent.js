@@ -419,6 +419,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         updateReceiverInfo
           .sendRequest()
           .done(function(data) {
+            alert("保存成功");
             that.render();
           })
           .fail(function(error) {
