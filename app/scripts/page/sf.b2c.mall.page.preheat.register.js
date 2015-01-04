@@ -15,10 +15,18 @@ define([
       this.component = {};
       this.component.getBirthInfo = new SFGetBirthInfo();
       this.supplement();
+      this.render();
+
     },
 
     render:function(){
+      this.component.getBirthInfo.sendRequest()
+        .done(function(data){
+            $('.total-user-num').text(data.curNum);
+        })
+        .fail(function(){
 
+        })
     },
 
     supplement:function(){
@@ -48,6 +56,7 @@ define([
       });
 
       $(function() {
+
         for (var b = new Date, i = b.getFullYear() + "/" + (b.getMonth() + 1) + "/" + (b.getDate() + 1) + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), e = b.getFullYear() + 1 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), b = -b.getTimezoneOffset() / 60, j = [{timeText: i,timeZone: b,style: "flip",color: "white",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !1,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
           }}, {timeText: e,timeZone: b,style: "slide",color: "black",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !0,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
           }}], i = $("#countcontent"), e = $("#countcontent>.page"), h = 0; h < j.length - 1; h++) {
