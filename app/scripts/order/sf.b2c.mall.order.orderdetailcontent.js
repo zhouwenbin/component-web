@@ -65,7 +65,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
 
-            // data.orderItem.rcvrState = 0;
+            //data.orderItem.rcvrState = 0;
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -74,10 +74,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
               //读取身份证的状态
-              that.options.IDCard.state = idcardItem.status;
-
-              that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || '';
-              that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
+              that.options.currentStepTips = that.cardStatusMap[idcardItem.status] || '';
             }
 
             that.options.traceList = data.orderActionTraceItemList;
@@ -178,10 +175,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       cardStatusMap: {
-        0: "<font color=red>待上传身份证照片</font>",
+        0: '<span class="error-tips">尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</span>',
         1: "<font color=red>已上传身份证照片，等待审核</font>",
         2: "<font color=red>身份证照片审核通过</font>",
-        3: "<font color=red>身份证照片审核未通过</font>"
+        3: "<font color=red>身份证照片审核未通过，请重新上传</font>"
       },
 
       getUserPhotoUrl: function(param) {
@@ -386,12 +383,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。'
       },
 
-      IDCardStatusTipsMap: {
-        0: '<p class="orderdetail-r2"><strong>尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</strong></p>'
-      },
-
       "#orderdetail-view click": function(element, event) {
-
         $(".orderdetail-upload").show();
         $(".mask").show();
         return false;
