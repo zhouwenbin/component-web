@@ -74,6 +74,7 @@
 	position: absolute;
 	z-index: 2;
 	top: 151px;
+	display: none;
 }
 .slider .btn-prev{
 	left: -50px;

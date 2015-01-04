@@ -23,7 +23,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-limitedTimeBuy': function(productShape, options) {
-          if (productShape() == 'LIMITEDTIMEBUY') {
+          if (productShape() == 'XSTM') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -31,7 +31,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-rapidSeaBuy': function(productShape, options) {
-          if (productShape() == 'RAPIDSEABUY') {
+          if (productShape() == 'JSHT') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -134,7 +134,8 @@ define('sf.b2c.mall.product.detailcontent', [
         var that = this;
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')
+          'itemId': $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+          'size':4
         });
 
         findRecommendProducts
@@ -151,7 +152,9 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
             _.each(data.value, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html"
+              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+              item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+              //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
             })
 
             var template = can.view.mustache(that.recommendProductsTemplate());
@@ -301,7 +304,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = SFConfig.setting.link.detail + '?' + $.param({
+        window.location.href = 'http://www.sfht.com' + '?' + $.param({
           "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
@@ -324,8 +327,8 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          // '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
-          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
+             '<div class="mr10"><a href="#" class="btn btn-buy">立即购买</a></div>' +
+          // '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
           '{{/if}}' +
 
           '<!--限时特卖-->' +
