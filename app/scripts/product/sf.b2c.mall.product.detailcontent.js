@@ -676,7 +676,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       recommend2Template: function() {
         return '<h2>小编推荐</h2>' +
-          '<p>{{itemInfo.basicInfo.recommend}}</p>';
+          '<p>{{&itemInfo.basicInfo.recommend}}</p>';
       },
 
       detailattributesTemplate: function() {
