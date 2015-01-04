@@ -56,6 +56,12 @@ define('sf.helpers', ['jquery',
       arr = img;
     }
 
+    //做线上兼容，如果有http了 就不要再加前缀
+    var hasURL = _.str.include(arr[0], 'mg0.sfht.com')
+    if (hasURL){
+      return arr[0];
+    }
+
     return 'http://img0.sfht.com/spu/' + arr[0];
   });
 

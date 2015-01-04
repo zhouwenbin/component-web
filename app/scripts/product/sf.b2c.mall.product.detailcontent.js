@@ -158,27 +158,25 @@ define('sf.b2c.mall.product.detailcontent', [
             })
 
             var template = can.view.mustache(that.recommendProductsTemplate());
-            $('#recommend-wrap').html(template(data));
+            $('#recommend').html(template(data));
           });
       },
 
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
-          '<div class="recommend" id="recommend">'+
           '<h2>推荐商品</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
           '<li>' +
-          '<a class="fl" href="{{linkUrl}}"><img src="{{imageName}}" alt="" /></a>' +
+          '<a class="fl" href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" /></a>' +
           '<div class="recommend-c1">' +
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
-          '<div class="recommend-r1">¥{{sellingPrice}}</div>' +
-          '<div class="recommend-r2"><del>¥{{originPrice}}</del></div>' +
+          '<div class="recommend-r1">¥{{sf.price sellingPrice}}</div>' +
+          '<div class="recommend-r2"><del>¥{{sf.price originPrice}}</del></div>' +
           '</div>' +
           '</li>' +
           '{{/each}}' +
           '</ul>' +
-          '</div>'+
           '{{/if}}'
       },
 
@@ -304,8 +302,8 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
-        window.location.href = 'http://www.sfht.com' + '?' + $.param({
-          "itemId": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+        window.location.href = 'http://www.sfht.com/order.html' + '?' + $.param({
+          "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
           "amount": this.options.detailContentInfo.input.buyNum
         });
