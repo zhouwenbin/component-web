@@ -106,7 +106,8 @@ define('sf.b2c.mall.center.register',[
         mobileNum:this.data.attr('mobileNum'),
         mobileCode:this.data.attr('mobileCode'),
         password:this.data.attr('password')
-      };
+      }
+
       if(this.checkMobile.call(this,params.mobileNum) && this.checkCode.call(this,params.mobileCode) && this.checkPassword.call(this,params.password)){
         this.component.mobileRegister.setData({
           mobile:params.mobileNum,
@@ -168,7 +169,8 @@ define('sf.b2c.mall.center.register',[
       var wait = 60;//初始化倒计时时间
 
       $(ele).attr('state','false');
-      var mobileNum = this.data.attr('mobileNum');
+      // var mobileNum = this.data.attr('mobileNum');
+      var mobileNum = this.element.find('#input-mobile-num').val();
       if(this.checkMobile.call(this,mobileNum)){
         this.component.downSmsCode.setData({
           mobile:mobileNum,
@@ -202,8 +204,7 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
       var mobileNum = $(ele).val();
-      this.checkMobile.call(this,mobileNum);
-      if(mobileNum.length === 11){
+      if(mobileNum.length === 11 && this.checkMobile.call(this,mobileNum)){
         $('#btn-send-mobilecode').attr('state','true');
         $('#mobileNumErrorTips').fadeOut(1000);
         if($('#btn-send-mobilecode').attr('state') === "true" && $('#btn-send-mobilecode').html() ==="发送验证码" ){
@@ -239,7 +240,8 @@ define('sf.b2c.mall.center.register',[
       event && event.preventDefault();
 
       $(ele).css('color','#333');
-      var mobileCode = this.data.attr('mobileCode');
+      // var mobileCode = this.data.attr('mobileCode');
+      var mobileCode = this.element.find('#input-mobile-code').val();
       this.checkCode.call(this,mobileCode);
       $('#pwdErrorTips').hide();
 
