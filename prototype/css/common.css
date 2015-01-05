@@ -90,7 +90,7 @@ img{vertical-align: middle;}
 	border-style: solid;
 	border-color: transparent #fff transparent transparent;
 	border-width: 21px 9px;
-	right:0;
+	right:-1px;
 	top:0;
 }
 .icon6-1{
