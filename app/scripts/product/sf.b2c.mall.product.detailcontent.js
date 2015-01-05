@@ -531,6 +531,10 @@ define('sf.b2c.mall.product.detailcontent', [
         var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
         var specId = $(element).eq(0).attr('data-specid');
 
+        if (typeof specId == 'undefined'){
+          return false;
+        }
+
         _.each(this.options.detailContentInfo.itemInfo.specGroups, function(group) {
 
           if (group.specIdOrder == orderId) {
