@@ -615,6 +615,8 @@ button.btn{
 .btn-brand{
 	*position: relative;
 	*z-index: 2;
+	background: #272541;
+	color: #fff;
 }
 .btn-brand .detail{
 	border:1px solid #DEDDDE;
@@ -630,11 +632,8 @@ button.btn{
 	display: none;
 	color: #333840
 }
-.btn-brand.active{
-	background: #272541;
-	color: #fff;
-}
-.btn-brand.active .detail{
+.btn-brand.active .detail,
+.btn-brand:hover .detail{
 	display: block;
 }
 .btn-brand .icon16-3{
