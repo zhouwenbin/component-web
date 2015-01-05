@@ -60,11 +60,6 @@ define([
         getBirthInfo.sendRequest()
           .done(function(data){
               var time = getBirthInfo.getServerTime();
-              console.log(data);
-              console.log(time);
-              console.log((data.onlineTime-time)/60/60/1000)
-              console.log(new Date(data.onlineTime));
-              console.log(new Date(time));
               for (
                 // 目标时间
                   var t = new Date(data.onlineTime),
