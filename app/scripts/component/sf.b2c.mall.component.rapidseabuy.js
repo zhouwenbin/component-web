@@ -32,7 +32,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
           this.data = {};
           this.data.fastSale = new SFAdapterRapidSeaBuy({fastSaleInfos: []});
 
-          console.log(this.data.fastSale)
+          // console.log(this.data.fastSale)
           this.render();
         },
         /**

@@ -260,8 +260,6 @@ define('sf.b2c.mall.component.addreditor', [
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
-      console.log(this.adapter)
-
       $('.tel-hide').hide();
       var addr = this.adapter.addr.input.attr();
 

@@ -20,7 +20,6 @@ define(
           });
 
           this.attr('pageInfo', data.pageInfo);
-          console.log(this)
         },
 
         formatPrice:function(data,priceData){

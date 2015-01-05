@@ -72,7 +72,7 @@ define(
       '#gotopayBtn click': function() {
         var callback = {
           error: function (errorText) {
-            console.log(errorText)
+            // console.log(errorText)
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
           }
