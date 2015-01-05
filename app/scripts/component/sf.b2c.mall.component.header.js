@@ -174,7 +174,8 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'      });
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'
+      });
       // this.watchLoginState.call(this);
       // this.setIframe.call(this);
     },
