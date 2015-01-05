@@ -57,6 +57,9 @@
 	max-height: 498px;
 	vertical-align: middle;
 }
+.goods-c1r2 a{
+	outline: none;
+}
 .goods-c1r2 img{
 	max-width: 112px;
 	max-height: 112px;

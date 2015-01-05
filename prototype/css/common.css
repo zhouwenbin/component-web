@@ -425,6 +425,7 @@ button.btn{
 	padding-top: 16px;
 	background: url(../img/icon.png) no-repeat -101px 0;
 	overflow: hidden;
+	position: relative;
 }
 .btn-close:before{
 	content: '';
@@ -788,7 +789,7 @@ body.sub{
 .footer1 .icon8{
 	position: absolute;
 	left: 219px;
-	top: 53px;
+	top: 35px;
 }
 .footer1 h2{
 	margin-top: 20px;
@@ -1050,3 +1051,177 @@ body.sub{
     background:url(../img/icon-loading2.png) no-repeat bottom;
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
+/*retina*/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)and (-webkit-min-device-pixel-ratio: 2) {
+	.icon{
+		background: url(../img/icon@x2.png) no-repeat;
+		background-size: 800px 1500px;
+	}
+	.icon1{
+		background-position: -78px -47px;
+	}
+	.icon2{
+		background-position: -161px -47px;
+	}
+	.icon3{
+		width: 52px;
+		height: 51px;
+		background-position: -239px -47px;
+	}
+	.icon4{
+		background-position: -281px -270px;
+	}
+	.icon5{
+		background-position: -136px -978px;
+	}
+	.icon6{
+		background: #425164;
+	}
+	.icon6-1 {
+		background: #DC3334;
+	}
+	.icon6-2 {
+		background: #DC3334;
+	}
+	.icon7{
+		background-position: -597px -176px;
+	}
+	.icon8{
+		background-position: -506px -178px;
+	}
+	.icon9{
+		background-position: -71px -676px;
+	}
+	.icon10{
+		background-position: -72px -596px;
+	}
+	.icon11{
+		background-position: -319px -600px;
+	}
+	.icon12{
+		background-position: -63px -141px;
+	}
+	.icon13{
+		background-position: -169px -141px;
+	}
+	.icon14{
+		
+		background-position: -278px -141px;
+	}
+	.icon15{
+		background-position: -392px -142px;
+	}
+	.icon17{
+		background-position: -331px -75px;
+	}
+	.icon18{
+		background-position: -432px -76px;
+	}
+	.icon19{
+		background-position: -549px -76px;
+	}
+	.icon20{
+		width: 76px;
+		height: 76px;
+		background-position: -71px -343px;
+	}
+	.icon21{
+		width: 76px;
+		height: 76px;
+		background-position: -174px -343px;
+	}
+	.icon22{
+		width: 76px;
+		height: 76px;
+		background-position: -279px -343px;
+	}
+	.icon23{
+		background-position: -188px -991px;
+	}
+	.icon24,
+	.icon24-1{
+		background-position: -167px -1254px;
+	}
+	.icon24-1{
+		background-position: -62px -1254px;
+	}
+	.icon25{
+		background-position: -74px -978px;
+	}
+	.icon26,
+	.icon26-1,
+	.icon26-2{
+		background: #eb6877;
+	}
+	.icon26-1{
+		background: #67b222;
+	}
+	.icon26-2{
+		background: #a1d0ed;
+	}
+
+	.icon28{
+		width: 110px;
+		height: 134px;
+		background-position: -73px -1059px;
+	}
+	.icon29,
+	.radio{
+		width: 22px;
+		height: 22px;
+		background-position: -128px -268px;
+
+	}
+	.radio.active{
+		background-position: -87px -268px;
+	}
+	.icon30{
+		width: 15px;
+		height: 9px;
+		background-position: -237px -988px;
+	}
+
+	.icon30.active{
+		background-position: -285px -987px;
+	}
+	.icon31,
+	.icon31-1{
+		width: 18px;
+		height: 18px;
+		background-position: -369px -983px;
+	}
+	.icon31-1{
+		background-position: -339px -983px;
+	}
+	.icon32{
+		width: 79px;
+		height: 79px;
+		background-position: -177px -463px;
+	}
+	.icon27,
+	.icon33{
+		width: 79px;
+		height: 79px;
+		background-position: -72px -464px;
+	}
+	.icon34{
+		width: 96px;
+		height: 116px;
+		background-position: -254px -1060px;
+	}
+	.icon35{
+		width: 121px;
+		height: 20px;
+		background-position: -248px -1206px;
+	}
+	.icon36{
+		width: 60px;
+		height: 60px;
+		background-position: -285px -480px;
+	}
+	.icon37{
+		width: 18px;
+		height: 14px;
+		background-position: -413px -984px;
+	}
+}
