@@ -549,7 +549,7 @@ define('sf.b2c.mall.product.detailcontent', [
         event && event.preventDefault();
 
         var type = "";
-        if (element.hasClass("disable")) {
+        if (element.hasClass("disable") || element.hasClass("active")) {
           return false;
         }
 
