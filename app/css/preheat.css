@@ -288,6 +288,6 @@
 	text-align: center;
 	padding-top: 91px;
 }
-.jCountdownContainer{
-	min-height: 85px;
+#content{
+	height: 267px;
 }
