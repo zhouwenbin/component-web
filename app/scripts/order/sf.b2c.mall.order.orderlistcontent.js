@@ -10,9 +10,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.cancelOrder',
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.confirmReceive',
-    'sf.b2c.mall.order.fn'
+    'sf.b2c.mall.order.fn',
+    'sf.b2c.mall.api.sc.getUserRoutes'
   ],
-  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn) {
+  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes) {
 
     return can.Control.extend({
 
@@ -130,7 +131,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.find('.tooltip').show();
 
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': params.orderid
+          'bizId': $(element).eq(0).attr('data-orderid')
         });
         getUserRoutes
           .sendRequest()
