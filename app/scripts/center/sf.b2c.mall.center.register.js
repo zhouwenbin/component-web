@@ -260,7 +260,7 @@ define('sf.b2c.mall.center.register',[
       $('#input-user-password').focus();
     },
     //checkbox是否选中
-    '#ischecked click':function($el,event){
+    '#ischecked change':function($el,event){
       // event && event.preventDefault();
 
       var ischecked = this.data.attr('ischecked');
