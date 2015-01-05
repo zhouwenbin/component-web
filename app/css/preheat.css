@@ -2,6 +2,12 @@
 	padding: 0;
 	background: #f6f8f9;
 }
+.register li input{
+  color: #999;
+}
+.register li input:focus{
+  color: #333;
+}
 .banner1{
 	height: 513px;
 	background: url(../img/preheat/banner1.jpg) no-repeat center;
