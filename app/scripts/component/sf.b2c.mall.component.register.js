@@ -444,7 +444,9 @@ define(
           this.component.activateMail.sendRequest()
             .done(function (data) {
               if (data.value) {
-                window.location.href = window.location.pathname + '?' + $.param({mailId: email}) + '#!&tag=confirminfo';
+                window.location.href = SFBizConf.setting.link.register + '?' + $.param({mailId: email}) + '#!&tag=confirminfo';
+
+                // window.location.href = window.location.pathname + '?' + $.param({mailId: email}) + '#!&tag=confirminfo';
                 // can.route.attr('tag', 'confirminfo');
               }
             })

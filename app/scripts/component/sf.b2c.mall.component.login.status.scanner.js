@@ -24,6 +24,21 @@ define(
       },
 
       setScanner: function () {
+        if (window.postMessage) {
+          this.setPostMesageScanner();
+        }else{
+          this.setWindowNameScanner()
+        }
+      },
+
+      setPostMesageScanner: function () {
+        window.onMessage = function (event) {
+          var info = JSON.parse(event.data);
+          store.set('csrfToken', info.csrfToken);
+        }
+      },
+
+      setWindowNameScanner: function () {
         var that = this;
         this.handler = setInterval(function () {
           try{

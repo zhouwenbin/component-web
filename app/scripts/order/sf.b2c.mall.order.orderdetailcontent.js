@@ -33,6 +33,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       init: function(element, options) {
         this.component = {};
         this.render();
+
+        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
+        $('#closeExample')[0].onclick = function(){
+          $(".orderdetail-upload").hide();
+          $(".mask2").hide();
+          return false;
+        }
       },
 
       /**
@@ -64,8 +71,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
-
-            //data.orderItem.rcvrState = 0;
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -191,7 +196,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return SFConfig.setting.api.fileurl + '?' + $.param(data);
       },
 
-      setError: function(errorText) {debugger;
+      setError: function(errorText) {
         //this.options.error.attr('errorText', errorText);
         this.element.find('.error-tips').text(errorText);
       },
@@ -368,7 +373,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       currentStepTipsMap: {
         'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />' +
           '该订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
-        'AUTO_CANCEL': '尊敬的客户，我们由于2小时内未收到您的订单款项，订单已被自动取消。<br />' +
+        'AUTO_CANCEL': '尊敬的客户，由于我们2小时内未收到您的订单款项，订单已被自动取消。<br />' +
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'USER_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
         'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
@@ -385,7 +390,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       "#orderdetail-view click": function(element, event) {
         $(".orderdetail-upload").show();
-        $(".mask").show();
+        $(".mask2").show();
         return false;
       },
 
@@ -412,6 +417,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         updateReceiverInfo
           .sendRequest()
           .done(function(data) {
+            alert("保存成功");
             that.render();
           })
           .fail(function(error) {
