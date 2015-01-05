@@ -91,14 +91,14 @@
                                 #end
                                 #if($_isSelected)
                                     <label data-specid="$!{_subel.specId}" class="btn btn-goods active"><a
-                                            href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                            href="$!{_subel.url}">$esc.html($!{_subel.specValue})</a><span
                                             class="icon icon23"></span></label>
                                 #elseif(${_subel.url})
                                     <label data-specid="$!{_subel.specId}" class="btn btn-goods"><a
-                                            href="$!{_subel.url}">$!{_subel.specValue}</a><span
+                                            href="$!{_subel.url}">$esc.html($!{_subel.specValue})</a><span
                                             class="icon icon23"></span></label>
                                 #else
-                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods disable">$!{_subel.specValue}<span
+                                    <label data-specid="$!{_subel.specId}" class="btn btn-goods disable">$esc.html($!{_subel.specValue})<span
                                             class="icon icon23"></span></label>
                                 #end
                               #end
