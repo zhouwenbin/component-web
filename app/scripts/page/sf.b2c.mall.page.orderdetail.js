@@ -20,7 +20,7 @@ define(
       },
 
       render: function() {
-        new Header('.sf-b2c-mall-header');
+        new Header('.sf-b2c-mall-header', {isForceLogin: true});
         new Footer('.sf-b2c-mall-footer');
         new SFOrderDetailContent('.sf-b2c-mall-orderdetail');
       },

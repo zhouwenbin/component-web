@@ -47,16 +47,28 @@ define('sf.b2c.mall.component.header', ['jquery',
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
-          domain: SFConfig.setting.api.mainurl
+          index: SFConfig.setting.link.index
+          // domain: SFConfig.setting.api.mainurl
         }));
       }else{
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
-          domain: SFConfig.setting.api.mainurl
+          index: SFConfig.setting.link.index
+          // domain: SFConfig.setting.api.mainurl
         }));
       }
 
       this.render(this.data);
+
+      if (this.options.isForceLogin) {
+        var that = this;
+        // 暂时没有跨域存在在需要控制跳转的页面
+        // setTimeout(function() {
+          if (!SFComm.prototype.checkUserLogin.call(that)) {
+            window.location.href = SFConfig.setting.link.index;
+          }
+        // }, 800);
+      }
     },
 
     /**
@@ -231,7 +243,7 @@ define('sf.b2c.mall.component.header', ['jquery',
             that.component.modal.hide();
 
             if (that.afterLoginDest) {
-              var link = SFConfig.setting.link[that.afterLoginDest];
+              var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
               window.location.href = link;
             }
 
