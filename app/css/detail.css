@@ -207,7 +207,7 @@
 	position: relative;
 }
 /*推荐商品*/
-.recommend{
+.recommend ul{
 	padding-bottom: 48px;
 	margin-bottom: 47px;
 	border-bottom: 1px solid #DEDDDE;

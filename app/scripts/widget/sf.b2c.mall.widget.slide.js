@@ -57,8 +57,9 @@ define(
       },
 
       hoverOut: function (element, event) {
-        this.element.find('.slider .btn-prev').stop(true, false).animate({ left:  '-50px', opacity: 0 }, 500, function(){ this.element.find('.slider .btn-prev').hide() });
-        this.element.find('.slider .btn-next').stop(true, false).animate({ right: '-50px', opacity: 0 }, 500, function(){ this.element.find('.slider .btn-prev').hide() });
+        var that = this;
+        this.element.find('.slider .btn-prev').stop(true, false).animate({ left:  '-50px', opacity: 0 }, 500, function(){ that.element.find('.slider .btn-prev').hide() });
+        this.element.find('.slider .btn-next').stop(true, false).animate({ right: '-50px', opacity: 0 }, 500, function(){ that.element.find('.slider .btn-prev').hide() });
         this.options.silderTimer=setInterval(_.bind(this.sliderNexting, this),5000);
       },
 
