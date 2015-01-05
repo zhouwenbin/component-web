@@ -25,7 +25,7 @@ define(
 
       render: function() {
 
-        new Header('.sf-b2c-mall-header');
+        var header = new Header('.sf-b2c-mall-header');
         new Footer('.sf-b2c-mall-footer');
 
         //详情页
@@ -43,7 +43,7 @@ define(
           new Breadscrumb('.sf-b2c-mall-product-breadcrumb');
         }
 
-        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': serverRendered});
+        new DetailContent('.sf-b2c-mall-detail-content', {'serverRendered': serverRendered, 'header': header});
 
       },
 

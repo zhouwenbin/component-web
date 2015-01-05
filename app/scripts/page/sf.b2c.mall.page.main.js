@@ -67,12 +67,13 @@ define(
         this.renderMap.slide.call(this);
 
         //看服务器端是否渲染了
-        var serverRendered = _.find($('.sf-b2c-mall-limitedtimesale')[0].classList, function(item) {
-          return item == 'serverRendered'
-        })
+        // var serverRendered = _.find($('.sf-b2c-mall-limitedtimesale')[0].classList, function(item) {
+        //   return item == 'serverRendered'
+        // })
+        var serverRendered = this.element.find('.sf-b2c-mall-limitedtimesale.serverRendered').length > 0 ? true : false
 
         //作为参数传递进去
-        new LimitedTimeSale('.sf-b2c-mall-limitedtimesale', {'serverRendered': (typeof serverRendered != 'undefined')});
+        new LimitedTimeSale('.sf-b2c-mall-limitedtimesale', {'serverRendered': serverRendered});
 
         new RapidSeaBuy('.sf-b2c-mall-rapidseabuy');
       },

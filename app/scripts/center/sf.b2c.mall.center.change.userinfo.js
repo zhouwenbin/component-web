@@ -18,6 +18,8 @@ define(
         'FEMALE': '女'
       };
 
+      var APPID = 1;
+
       return can.Control.extend({
 
         init:function(){
@@ -25,15 +27,21 @@ define(
           this.component.updateUserInfo = new UpdateUserInfo();
           this.component.getUserInfo = new SFGetUserInfo();
 
+          var userinfo = $.cookie(APPID+'_uinfo');
+          var arr = [];
+          if (userinfo) {
+            arr = userinfo.split(',');
+          }
+
           this.data = new can.Map({
             isModified:false,
              user:{
-               nick: $.cookie('nick'),
-               gender: GENDER_MAP[$.cookie('gender')]
+               nick: arr[0],
+               gender: GENDER_MAP[arr[1]]
              },
             input:{
-              nick:$.cookie('nick'),
-              gender:$.cookie('gender')
+              nick: arr[0],
+              gender: arr[1]
             }
           });
           this.render(this.data);
@@ -48,8 +56,8 @@ define(
             this.component.getUserInfo.sendRequest()
               .done(function (data) {
 
-                $.cookie('gender', data.gender);
-                $.cookie('nick', data.nick);
+                // $.cookie('gender', data.gender);
+                // $.cookie('nick', data.nick);
 
                 that.data.user.attr({
                   nick: data.nick,
@@ -110,8 +118,8 @@ define(
                     that.data.user.attr({'nick': nick, 'gender': GENDER_MAP[gender]});
                     that.data.attr('isModified',false);
 
-                    $.cookie('gender', gender);
-                    $.cookie('nick', nick);
+                    // $.cookie('gender', gender);
+                    // $.cookie('nick', nick);
                   }
                 })
                 .fail(function () {
