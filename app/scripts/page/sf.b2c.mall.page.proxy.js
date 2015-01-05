@@ -13,8 +13,13 @@ define(
         setInterval(function () {
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
-            window.name = csrfToken;
-            window.location.href = 'about:blank'
+
+            if (window.postMessage) {
+              window.postMessage(JSON.stringify({csrfToken: csrfToken}),'*')
+            }else{
+              window.name = csrfToken;
+              window.location.href = 'about:blank'
+            }
           }
         }, 300)
       }
