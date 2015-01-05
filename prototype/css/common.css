@@ -425,6 +425,7 @@ button.btn{
 	padding-top: 16px;
 	background: url(../img/icon.png) no-repeat -101px 0;
 	overflow: hidden;
+	position: relative;
 }
 .btn-close:before{
 	content: '';
@@ -1050,6 +1051,7 @@ body.sub{
     background:url(../img/icon-loading2.png) no-repeat bottom;
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
+/*retina*/
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)and (-webkit-min-device-pixel-ratio: 2) {
 	.icon{
 		background: url(../img/icon@x2.png) no-repeat;
@@ -1097,128 +1099,59 @@ body.sub{
 		background-position: -319px -600px;
 	}
 	.icon12{
-		width: 81px;
-		height: 81px;
 		background-position: -63px -141px;
 	}
 	.icon13{
-		width: 81px;
-		height: 81px;
 		background-position: -169px -141px;
 	}
 	.icon14{
-		width: 83px;
-		height: 83px;
-		background-position: -382px -250px;
+		
+		background-position: -278px -141px;
 	}
 	.icon15{
-		width: 83px;
-		height: 83px;
-		background-position: -382px -380px;
-	}
-	.icon16,
-	.icon16-1,
-	.icon16-2,
-	.icon16-3,
-	.icon16-4{
-		width: 0;
-		height: 0;
-		background: none;
-		border-style: solid;
-		border-width: 10px 7px;
-		border-color: transparent;
-		border-top-color: #C5C7C9;
-	}
-	.icon16-1{
-		border-width: 3px 3px;
-		border-top-color: #272541;
-	}
-	.icon16-2{
-		border-width: 9px 8px;
-		border-bottom-color: #fff;
-		border-top-color: transparent;
-	}
-	.icon16-3{
-		border-width: 13px 10px;
-		border-bottom-color: #DEDDDE;
-		border-top-color: transparent;
-		position: relative;
-	}
-	.icon16-4{
-		border-width: 13px 10px;
-		border-bottom-color: #f4f4f9;
-		border-top-color: transparent;
-		position: absolute;
-		top: -11px;
-		left: -10px;
+		background-position: -392px -142px;
 	}
 	.icon17{
-		width: 75px;
-		height: 0px;
-		padding-top: 12px;
-		overflow: hidden;
-		background-position: -62px -172px;
+		background-position: -331px -75px;
 	}
 	.icon18{
-		width: 91px;
-		height: 0px;
-		padding-top: 9px;
-		overflow: hidden;
-		background-position: -62px -194px;
+		background-position: -432px -76px;
 	}
 	.icon19{
-		width: 112px;
-		height: 0px;
-		padding-top: 12px;
-		overflow: hidden;
-		background-position: -62px -215px;
+		background-position: -549px -76px;
 	}
 	.icon20{
-		width: 102px;
-		height: 101px;
-		background-position: -271px -144px;
+		width: 76px;
+		height: 76px;
+		background-position: -71px -343px;
 	}
 	.icon21{
-		width: 102px;
-		height: 101px;
-		background-position: -271px -250px;
+		width: 76px;
+		height: 76px;
+		background-position: -174px -343px;
 	}
 	.icon22{
-		width: 102px;
-		height: 101px;
-		background-position: -271px -358px;
+		width: 76px;
+		height: 76px;
+		background-position: -279px -343px;
 	}
 	.icon23{
-		width: 8px;
-		height: 8px;
-		background-position: -62px -53px;
+		background-position: -188px -991px;
 	}
 	.icon24,
 	.icon24-1{
-		width: 74px;
-		padding-top: 74px;
-		overflow: hidden;
-		height: 0;
-		background-position: -61px -238px;
+		background-position: -167px -1254px;
 	}
 	.icon24-1{
-		background-position: -148px -355px;
+		background-position: -62px -1254px;
 	}
 	.icon25{
-		width: 34px;
-		height: 25px;
-		background-position: -62px -74px;
+		background-position: -74px -978px;
 	}
 	.icon26,
 	.icon26-1,
 	.icon26-2{
-		height: 21px;
-		line-height: 21px;
 		background: #eb6877;
-		color: #fff;
-		text-align: center;
-		border-radius: 2px;
-		padding: 0 15px;
 	}
 	.icon26-1{
 		background: #67b222;
@@ -1226,72 +1159,69 @@ body.sub{
 	.icon26-2{
 		background: #a1d0ed;
 	}
-	.icon27{
-		width: 118px;
-		height: 117px;
-		background-position: -147px -234px;
-	}
+
 	.icon28{
-		width: 102px;
-		height: 125px;
-		background-position: 0 -580px;
+		width: 110px;
+		height: 134px;
+		background-position: -73px -1059px;
 	}
 	.icon29,
 	.radio{
-		width: 24px;
-		height: 24px;
-		background-position: -128px -43px;
+		width: 22px;
+		height: 22px;
+		background-position: -128px -268px;
 
 	}
 	.radio.active{
-		background-position: -102px -43px;
+		background-position: -87px -268px;
 	}
 	.icon30{
-		width: 14px;
-		height: 8px;
-		background-position: -105px -74px;
+		width: 15px;
+		height: 9px;
+		background-position: -237px -988px;
 	}
 
 	.icon30.active{
-		background-position: -128px -74px;
+		background-position: -285px -987px;
 	}
 	.icon31,
 	.icon31-1{
-		width: 17px;
-		height: 17px;
-		background-position: -105px -89px;
+		width: 18px;
+		height: 18px;
+		background-position: -369px -983px;
 	}
 	.icon31-1{
-		background-position: -105px -112px;
+		background-position: -339px -983px;
 	}
 	.icon32{
-		width: 100px;
-		height: 100px;
-		background-position: -263px -473px;
+		width: 79px;
+		height: 79px;
+		background-position: -177px -463px;
 	}
+	.icon27,
 	.icon33{
-		width: 100px;
-		height: 100px;
-		background-position: -263px -582px;
+		width: 79px;
+		height: 79px;
+		background-position: -72px -464px;
 	}
 	.icon34{
-		width: 84px;
-		height: 102px;
-		background-position: -113px -583px;
+		width: 96px;
+		height: 116px;
+		background-position: -254px -1060px;
 	}
 	.icon35{
-		width: 106px;
-		height: 18px;
-		background-position: 0 -728px;
+		width: 121px;
+		height: 20px;
+		background-position: -248px -1206px;
 	}
 	.icon36{
-		width: 54px;
-		height: 54px;
-		background-position: -65px -319px;
+		width: 60px;
+		height: 60px;
+		background-position: -285px -480px;
 	}
 	.icon37{
-		width: 16px;
-		height: 12px;
-		background-position: -106px -135px;
+		width: 18px;
+		height: 14px;
+		background-position: -413px -984px;
 	}
 }
