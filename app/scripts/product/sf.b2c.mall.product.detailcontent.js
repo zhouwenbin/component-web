@@ -334,7 +334,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<input type="text" class="input_txt" value="{{input.buyNum}}" /></span>' +
           '</div>' +
           '<div class="mr9">' +
-          '{{#sf-showCurrentStock priceInfo.currentStock}}<span class="icon icon26">商品库存{{priceInfo.currentStock}}件</span>{{/sf-showCurrentStock}}' +
+          '{{#sf-showCurrentStock priceInfo.currentStock}}<span class="icon icon26" style="visibility:visible">商品库存{{priceInfo.currentStock}}件</span>{{/sf-showCurrentStock}}' +
           '{{#if input.showRestrictionTips}}<span class="icon icon26" style="visibility:visible" id="showrestrictiontipsspan">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
 

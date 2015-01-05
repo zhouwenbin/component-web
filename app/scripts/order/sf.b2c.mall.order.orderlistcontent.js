@@ -242,6 +242,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         confirmReceive
           .sendRequest()
           .done(function(data) {
+            alert('确认签收成功！');
             that.render();
           })
           .fail(function(error) {
@@ -326,6 +327,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         cancelOrder
           .sendRequest()
           .done(function(data) {
+            alert("订单取消成功！");
             that.render();
           })
           .fail(function(error) {
