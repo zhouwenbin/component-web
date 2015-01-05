@@ -202,8 +202,7 @@ define('sf.b2c.mall.center.register',[
     '#input-mobile-num blur':function(ele,event){
       event && event.preventDefault();
       var mobileNum = $(ele).val();
-      this.checkMobile.call(this,mobileNum);
-      if(mobileNum.length === 11){
+      if(mobileNum.length === 11 && this.checkMobile.call(this,mobileNum)){
         $('#btn-send-mobilecode').attr('state','true');
         $('#mobileNumErrorTips').fadeOut(1000);
         if($('#btn-send-mobilecode').attr('state') === "true" && $('#btn-send-mobilecode').html() ==="发送验证码" ){
