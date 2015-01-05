@@ -33,14 +33,14 @@
                 <div id="allSkuImages" class="goods-c1 fl">
                     <div class="goods-c1r1" id="bigPicArea">
                       #set($_selectedImg="")
-                      #if(${productInfo.skuInfo.images}) #set($_selectedImg=$!{productInfo.skuInfo.images[0].bigImgUrl})#end
+                      #if(${productInfo.skuInfo.images}&&${productInfo.skuInfo.images.size()}>0) #set($_selectedImg=$!{productInfo.skuInfo.images.get(0).bigImgUrl})#end
                         <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
                                                         class="jqzoom"/></a>
                         <span></span>
                     </div>
                     <div class="goods-c1r2" id="itemImages">
                         <ul class="clearfix">
-                          #if(${productInfo.skuInfo.images})
+                          #if(${productInfo.skuInfo.images}&&${productInfo.skuInfo.images.size()}>0)
                             #foreach ($_el in $productInfo.skuInfo.images)
                                 <li class="thumb-item #if(${velocityCount} == 1) active #end" data-big-pic="$!{_el.bigImgUrl}">
                                     <a href="">
@@ -79,7 +79,7 @@
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">
-                      #if(${productInfo.skuInfo.skuSpecTuple}&&$productInfo.saleInfo.specGroups)
+                      #if(${productInfo.skuInfo.skuSpecTuple}&&${productInfo.saleInfo.specGroups})
                         #foreach($_el in $productInfo.saleInfo.specGroups)
                             <div class="mr6" data-specidorder="$!{_el.specIdOrder}">$!{_el.specName}：
                               #foreach($_subel in $_el.specs)
