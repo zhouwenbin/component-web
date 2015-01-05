@@ -380,7 +380,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：' +
           '{{#each specs}}' +
 
-          '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
+          '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{&specValue}}<span class="icon icon23"></span></label>' +
 
 
           // '{{#if selected}}' +
