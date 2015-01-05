@@ -110,12 +110,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '操作' +
           '</div>' +
           '</div>' +
-          '<p class="table-none">未找到相关订单记录！<a href="javascript:void(0)" class="viewAllList">查看全部订单</a></p>' +
+          '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="javascript:void(0)" class="viewAllList">去首页</a></p>' +
           '</div>'
       },
 
       '.viewAllList click': function(){
-        this.render();
+        window.open("www.sfht.com/index.html");
+        return false;
       },
 
       /**
@@ -128,13 +129,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var that = this;
         element.find('.tooltip').show();
 
-        var getOrder = new SFGetOrder({
-          "orderId": $(element).eq(0).attr('data-orderid')
+        var getUserRoutes = new SFGetUserRoutes({
+          'bizId': params.orderid
         });
-        getOrder
+        getUserRoutes
           .sendRequest()
           .done(function(data) {
-            that.options.traceList = data.orderActionTraceItemList;
+            that.options.userRoutes = data;
             var template = can.view.mustache(that.getTraceListTemplate())
             element.find('#traceList').html(template(that.options));
           })
@@ -162,8 +163,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       getTraceListTemplate: function() {
         return '<h4>物流跟踪</h4>' +
           '<ul>' +
-          '{{#each traceList}}' +
-          '<li><span class="time">{{gmtHappened}}</span>{{status}} 具体描述待产品给出</li>' +
+          '{{#each userRoutes}}' +
+          '<li><span class="time">{{eventTime}}</span>{{position}} {{remark}}</li>' +
           '{{/each}}' +
           '</ul>' +
           '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
