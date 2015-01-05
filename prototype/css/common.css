@@ -90,7 +90,7 @@ img{vertical-align: middle;}
 	border-style: solid;
 	border-color: transparent #fff transparent transparent;
 	border-width: 21px 9px;
-	right:0;
+	right:-1px;
 	top:0;
 }
 .icon6-1{
@@ -242,8 +242,8 @@ img{vertical-align: middle;}
 }
 .icon24,
 .icon24-1{
-	width: 74px;
-	padding-top: 74px;
+	width: 75px;
+	padding-top: 75px;
 	overflow: hidden;
 	height: 0;
 	background-position: -61px -238px;
