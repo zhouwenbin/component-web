@@ -340,32 +340,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{^if priceInfo.soldOut}}' +
           '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
-          '{{/if}}' +
-
-          '<!--限时特卖-->' +
-          '<div class="u1">' +
-          '{{#sf-is-limitedTimeBuy priceInfo.productShape}}' +
-          '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
-          '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
-          '{{/sf-is-limitedTimeBuy}}' +
-          '</div>' +
-
-          '<!--急速海淘-->' +
-          '{{#sf-is-rapidSeaBuy priceInfo.productShape}}' +
-          '<!--7天到-->' +
-          '<div class="u2">' +
-          '<span class="icon icon25"></span><strong>{{priceInfo.sendTime}}</strong>天到' +
-          '</div>' +
-          '<!--7天到-->' +
-
-          '{{/sf-is-rapidSeaBuy}}' +
-
-          '<!--限时特卖-->' +
-          '<!--售完-->' +
-          '{{#if priceInfo.soldOut}}' +
-          '<span class="icon icon24">售完</span>' +
-          '{{/if}}' +
-          '<!--售完-->';
+          '{{/if}}';
       },
 
       itemPriceTemplate: function() {
@@ -693,7 +668,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       renderTitleInfo: function() {
         var template = can.view.mustache(this.titleTemplate());
-        $('#titleInfo').html(template(this.options.detailContentInfo));
+        $('#titleInfo').html(template(this.options.detailContentInfo, this.helpers));
       },
 
       /**
@@ -728,7 +703,34 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       titleTemplate: function() {
         return '<h1>{{itemInfo.basicInfo.title}}</h1>' +
-          '<p>{{itemInfo.basicInfo.subtitle}}</p>'
+          '<p>{{itemInfo.basicInfo.subtitle}}</p>' +
+
+          '<div class="goods-rel">' +
+          '<!--限时特卖-->' +
+          '<div class="u1">' +
+          '{{#sf-is-limitedTimeBuy priceInfo.productShape}}' +
+          '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
+          '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
+          '{{/sf-is-limitedTimeBuy}}' +
+          '</div>' +
+
+          '<!--急速海淘-->' +
+          '{{#sf-is-rapidSeaBuy priceInfo.productShape}}' +
+          '<!--7天到-->' +
+          '<div class="u2">' +
+          '<span class="icon icon25"></span><strong>{{priceInfo.sendTime}}</strong>天到' +
+          '</div>' +
+          '<!--7天到-->' +
+
+          '{{/sf-is-rapidSeaBuy}}' +
+
+          '<!--限时特卖-->' +
+          '<!--售完-->' +
+          '{{#if priceInfo.soldOut}}' +
+          '<span class="icon icon24">售完</span>' +
+          '{{/if}}' +
+          '<!--售完-->' +
+          '</div>';
       },
 
       /**
