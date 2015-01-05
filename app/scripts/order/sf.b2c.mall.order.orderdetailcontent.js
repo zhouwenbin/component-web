@@ -33,6 +33,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       init: function(element, options) {
         this.component = {};
         this.render();
+
+        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
+        $('#closeExample')[0].onclick = function(){
+          $(".orderdetail-upload").hide();
+          $(".mask2").hide();
+          return false;
+        }
       },
 
       /**
@@ -60,7 +67,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               return item.recId == that.options.recId;
             });
 
-            //data.orderItem.orderStatus = "SHIPPING";
+            //data.orderItem.orderStatus = "COMPLETED";
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
@@ -74,13 +81,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
               //读取身份证的状态
-              that.options.IDCard.state = idcardItem.status;
-
-              that.options.idcardDescription = that.cardStatusMap[that.options.IDCard.state] || '';
-              that.options.currentStepTips = "尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。"
+              that.options.currentStepTips = that.cardStatusMap[idcardItem.status] || '';
             }
 
             that.options.traceList = data.orderActionTraceItemList;
+            //            that.options.traceList =  [
+            //              {"gmtHappened":"2015/01/01 20:43:32","operator":"USER","status":"SUBMITED"},
+            //              {"gmtHappened":"2015/01/01 20:44:32","operator":"USER","status":"AUDITING"},
+            //              {"gmtHappened":"2015/01/01 20:45:58","operator":"SYSTEM","status":"WAIT_SHIPPING"},
+            //              {"gmtHappened":"2015/01/01 20:46:05","operator":"SYSTEM","status":"SHIPPING"},
+            //              {"gmtHappened":"2015/01/01 21:08:57","operator":"LOGISTICS","status":"SHIPPED"},
+            //              {"gmtHappened":"2015/01/02 11:09:10","operator":"SYSTEM","status":"COMPLETED"}
+            //            ];
 
             var map = {
               'SUBMITED': function(trace) {
@@ -92,13 +104,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 that.options.auditingTime = trace.gmtHappened;
                 that.options.auditingActive = "active";
               },
+              'BUYING': function(trace) {},
+              'WAIT_SHIPPING': function(trace) {},
 
-              'WAIT_SHIPPING': function(trace) {
+              'SHIPPING': function(trace) {
                 that.options.wait_shippingTime = trace.gmtHappened;
                 that.options.wait_shippingActive = "active";
               },
 
-              'SHIPPING': function(trace) {
+              'SHIPPED': function(trace) {
                 that.options.shippingTime = trace.gmtHappened;
                 that.options.shippingActive = "active";
               },
@@ -168,14 +182,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       cardStatusMap: {
-        0: "<font color=red>待上传身份证照片</font>",
+        0: '<span class="error-tips">尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</span>',
         1: "<font color=red>已上传身份证照片，等待审核</font>",
         2: "<font color=red>身份证照片审核通过</font>",
-        3: "<font color=red>身份证照片审核未通过</font>"
+        3: "<font color=red>身份证照片审核未通过，请重新上传</font>"
       },
 
       getUserPhotoUrl: function(param) {
-
         var data = Utils.sign({
           level: 'USERLOGIN',
           data: {
@@ -183,6 +196,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           }
         })
         return SFConfig.setting.api.fileurl + '?' + $.param(data);
+      },
+
+      setError: function(errorText) {
+        //this.options.error.attr('errorText', errorText);
+        this.element.find('.error-tips').text(errorText);
       },
 
       setPhotoP: function() {
@@ -194,7 +212,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           onUploadSuccess: function(obj, data) {
 
             that.component.loading.hide();
-            $('.error-tips').remove();
+            $('.error-tips').empty();
 
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl1', img);
@@ -226,7 +244,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.component.uploaderPhotoP.reset();
             var map = {
               'Q_TYPE_DENIED': '电子照上传失败，选取的文件类型不支持',
-              'Q_EXCEED_SIZE_LIMIT': '电子照上传失败，大小请控制在5M以内'
+              'F_EXCEED_SIZE': '电子照上传失败，大小请控制在5M以内'
             }
 
             var errorText = map[errorCode] || that.defaults.alert;
@@ -247,7 +265,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var callback = {
           onUploadSuccess: function(obj, data) {
             that.component.loading.hide();
-            $('.error-tips').remove();
+            $('.error-tips').empty();
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl2', img);
             $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
@@ -277,7 +295,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.component.uploaderPhotoP.reset();
             var map = {
               'Q_TYPE_DENIED': '电子照上传失败，选取的文件类型不支持',
-              'Q_EXCEED_SIZE_LIMIT': '电子照上传失败，大小请控制在5M以内'
+              'F_EXCEED_SIZE': '电子照上传失败，大小请控制在5M以内'
             }
 
             var errorText = map[errorCode] || that.defaults.alert;
@@ -336,7 +354,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'BUYING': '采购中',
         'BUYING_EXCEPTION': '采购异常',
         'WAIT_SHIPPING': '待发货',
-        'SHIPPING': '发货中',
+        'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
         'COMPLETED': '已完成'
@@ -357,7 +375,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       currentStepTipsMap: {
         'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />' +
           '该订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
-        'AUTO_CANCEL': '尊敬的客户，我们由于2小时内未收到您的订单款项，订单已被自动取消。<br />' +
+        'AUTO_CANCEL': '尊敬的客户，由于我们2小时内未收到您的订单款项，订单已被自动取消。<br />' +
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'USER_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
         'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
@@ -372,14 +390,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。'
       },
 
-      IDCardStatusTipsMap: {
-        0: '<p class="orderdetail-r2"><strong>尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</strong></p>'
-      },
-
       "#orderdetail-view click": function(element, event) {
-
         $(".orderdetail-upload").show();
-        $(".mask").show();
+        $(".mask2").show();
         return false;
       },
 
@@ -406,6 +419,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         updateReceiverInfo
           .sendRequest()
           .done(function(data) {
+            alert("保存成功");
             that.render();
           })
           .fail(function(error) {
@@ -422,11 +436,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return false;
       },
 
-      '#pay click': function (element, event) {
+      '#pay click': function(element, event) {
         event && event.preventDefault();
 
         var params = can.deparam(window.location.search.substr(1));
-        SFOrderFn.payV2({orderid: params.orderid})
+        SFOrderFn.payV2({
+          orderid: params.orderid
+        })
       }
 
     });

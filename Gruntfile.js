@@ -394,6 +394,15 @@ module.exports = function (grunt) {
       ]
     },
 
+    strip:{
+      main: {
+        src: '<%= config.dist %>/scripts/**/*.js',
+        options: {
+          inline: true
+        }
+      }
+    },
+
     requirejs: {
       all: {
         options: {
@@ -842,7 +851,7 @@ module.exports = function (grunt) {
           'concurrent:dist',
           'autoprefixer',
           'concat',
-          'cssmin',
+          // 'cssmin',
           'uglify',
           'copy:dist',
           'requirejs:preheat',
@@ -864,6 +873,7 @@ module.exports = function (grunt) {
           'requirejs:proxy',
           'usemin',
           'htmlmin',
+          'strip:main',
           'clean:extra'
         ]);
       }

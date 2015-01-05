@@ -89,6 +89,7 @@
               {{#if IDCard.needUpload}}
               <div id="uploadidcard">
                 <a href="#" id="orderdetail-view" class="btn btn-add">查看身份证参考样本</a>
+                <div class="error-tips">{{error.errorText}}</div>
                 <ul class="info-c2r2 clearfix">
                   <li>
                     <div class="info-img" id="file-submit-input-photo-p" style="position:relative;">
@@ -141,7 +142,7 @@
             <li class="clearfix">
               <div class="table-c1 fl">
                 <div class="table-img fl">
-                  <a href="#"><img src="{{imageUrl}}" alt="" width="68" height="42" /></a><span></span>
+                  <a href="#"><img src="{{sf.img imageUrl}}" alt="" width="68" height="42" /></a><span></span>
                 </div>
                 <div class="table-text">
                   <h3><a href="#">{{goodsName}} </a></h3>

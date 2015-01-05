@@ -46,26 +46,27 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getOrderList
           .sendRequest()
           .done(function(data) {
+            if (data.orders) {
+              that.options.orderlist = data.orders;
 
-            that.options.orderlist = data.orders;
+              _.each(that.options.orderlist, function(order) {
+                if (order.orderGoodsItemList[0]) {
+                  order.goodsName = order.orderGoodsItemList[0].goodsName;
+                  order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
+                  order.spec = order.orderGoodsItemList[0].spec.split(',').join("<br/>");
+                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                  order.showRouter = that.routeMap[order.orderStatus];
+                  order.orderStatus = that.statsMap[order.orderStatus];
+                  order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
+                }
+              })
 
-            _.each(that.options.orderlist, function(order) {
-              if (order.orderGoodsItemList[0]) {
-                order.goodsName = order.orderGoodsItemList[0].goodsName;
-                order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                order.spec = order.orderGoodsItemList[0].spec.split(',').join("<br/>");
-                order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                order.showRouter = that.routeMap[order.orderStatus];
-                order.orderStatus = that.statsMap[order.orderStatus];
-                order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
-              }
-            })
-
-            var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
-            that.element.html(html);
-
-            //var noDataTemplate = can.view.mustache(that.noDataTemplate());
-            //that.element.html(noDataTemplate());
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
+              that.element.html(html);
+            } else {
+              var noDataTemplate = can.view.mustache(that.noDataTemplate());
+              that.element.html(noDataTemplate());
+            }
 
             //分页 保留 已经调通 误删 后面设计会给样式
             // that.options.page = new PaginationAdapter();
@@ -91,7 +92,30 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       noDataTemplate: function() {
-        return '<p class="table-none">未找到相关订单记录！<a href="">查看全部订单</a></p>'
+        return '<div class="table table-1">' +
+          '<div class="table-h clearfix">' +
+          '<div class="table-c1 fl">' +
+          '订单信息' +
+          '</div>' +
+          '<div class="table-c2 fl">' +
+          '收货人' +
+          '</div>' +
+          '<div class="table-c3 fl">' +
+          '订单金额' +
+          '</div>' +
+          '<div class="table-c4 fl">' +
+          '订单状态' +
+          '</div>' +
+          '<div class="table-c5 fl">' +
+          '操作' +
+          '</div>' +
+          '</div>' +
+          '<p class="table-none">未找到相关订单记录！<a href="javascript:void(0)" class="viewAllList">查看全部订单</a></p>' +
+          '</div>'
+      },
+
+      '.viewAllList click': function(){
+        this.render();
       },
 
       /**
@@ -234,13 +258,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
 
         var callback = {
-          error: function () {
+          error: function() {
             var template = can.view.mustache(this.gotopayTemplate());
             $('#gotopay').html(template());
           }
         }
 
-        SFOrderFn.payV2({orderid: orderId}, callback);
+        SFOrderFn.payV2({
+          orderid: orderId
+        }, callback);
 
         // var requestPayV2 = new SFRequestPayV2({
         //   "orderId": orderId,

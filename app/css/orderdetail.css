@@ -166,3 +166,7 @@
 .mask{
 	display: none;
 }
+.orderdetail .btn-send{
+	width: 170px;
+	text-align: center;
+}

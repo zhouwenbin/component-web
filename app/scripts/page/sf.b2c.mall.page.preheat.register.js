@@ -4,20 +4,29 @@ define([
   'jquery',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.center.register',
-  'vendor.jquery.jcountdown'
-],function(can,$, SFFrameworkComm, SFRegister, jcountdown){
+  'vendor.jquery.jcountdown',
+  'sf.b2c.mall.api.user.getBirthInfo'
+],function(can,$, SFFrameworkComm, SFRegister, jcountdown,SFGetBirthInfo){
   SFFrameworkComm.register(1);
 
   var register = can.Control.extend({
 
     init:function(){
       this.component = {};
-      this.component.register = new SFRegister('.sf-b2c-mall-register');
+      this.component.getBirthInfo = new SFGetBirthInfo();
       this.supplement();
+      this.render();
+
     },
 
     render:function(){
+      this.component.getBirthInfo.sendRequest()
+        .done(function(data){
+            $('.total-user-num').text(data.curNum);
+        })
+        .fail(function(){
 
+        })
     },
 
     supplement:function(){
@@ -47,20 +56,84 @@ define([
       });
 
       $(function() {
-        for (var b = new Date, i = b.getFullYear() + "/" + (b.getMonth() + 1) + "/" + (b.getDate() + 1) + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), e = b.getFullYear() + 1 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate() + " " + b.getHours() + ":" + b.getMinutes() + ":" + b.getSeconds(), b = -b.getTimezoneOffset() / 60, j = [{timeText: i,timeZone: b,style: "flip",color: "white",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !1,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
-          }}, {timeText: e,timeZone: b,style: "slide",color: "black",width: 0,textGroupSpace: 15,textSpace: 0,reflection: !1,reflectionOpacity: 10,reflectionBlur: 0,dayTextNumber: 3,displayDay: !0,displayHour: !0,displayMinute: !0,displaySecond: !0,displayLabel: !0,onFinish: function() {
-          }}], i = $("#countcontent"), e = $("#countcontent>.page"), h = 0; h < j.length - 1; h++) {
-          var b = j[h], k = e.clone();
-          k.children(".countdown").jCountdown(b);
-          i.append(k)
-        }
+        var getBirthInfo = new SFGetBirthInfo();
+        getBirthInfo.sendRequest()
+          .done(function(data){
+              var time = getBirthInfo.getServerTime();
+              console.log(data);
+              console.log(time);
+              console.log((data.onlineTime-time)/60/60/1000)
+              console.log(new Date(data.onlineTime));
+              console.log(new Date(time));
+              for (
+                // 目标时间
+                  var t = new Date(data.onlineTime),
+
+                  // 当前时间
+                      b = new Date(time),
+
+                      i = b.getFullYear()       + "/" + (t.getMonth() + 1) + "/" + t.getDate()  + " " + t.getHours()  + ":" + t.getMinutes() + ":" + t.getSeconds(),
+                      e = b.getFullYear() + 1   + "/" + (b.getMonth() + 1) + "/" + b.getDate()  + " " + b.getHours()  + ":" + b.getMinutes() + ":" + b.getSeconds(),
+                      h = b.getFullYear() + 1E4 + "/" + (b.getMonth() + 1) + "/" + b.getDate()  + " " + b.getHours()  + ":" + b.getMinutes() + ":" + b.getSeconds(),
+                      b = -b.getTimezoneOffset() / 60,
+
+                      j = [{
+                        timeText: i,
+                        timeZone: b,
+                        style: "flip",
+                        color: "white",
+                        // hoursOnly: true,
+                        width: 0,
+                        textGroupSpace: 15,
+                        textSpace: 0,
+                        reflection: !1,
+                        reflectionOpacity: 10,
+                        reflectionBlur: 0,
+                        // dayTextNumber: 0,
+                        displayDay: !0,
+                        displayHour: !0,
+                        displayMinute: !0,
+                        displaySecond: !1,
+                        displayLabel: !0,
+                        onFinish: function() {}
+                      }, {
+                        timeText: e,
+                        timeZone: b,
+                        style: "slide",
+                        color: "black",
+                        // hoursOnly: true,
+                        width: 0,
+                        textGroupSpace: 15,
+                        textSpace: 0,
+                        reflection: !1,
+                        reflectionOpacity: 10,
+                        reflectionBlur: 0,
+                        // dayTextNumber: 0,
+                        displayDay: !0,
+                        displayHour: !0,
+                        displayMinute: !0,
+                        displaySecond: !1,
+                        displayLabel: !0,
+                        onFinish: function() {}
+                      }], i = jQuery("#countcontent"), e = jQuery("#countcontent>.page"), h = 0; h < j.length - 1; h++) {
+                var b = j[h],
+                    k = e.clone();
+                k.children(".countdown").jCountdown(b);
+                i.append(k)
+              }
+          })
+          .fail(function(){
+
+          })
+
+
       });
 
     },
 
     '.sf-in-order click':function(ele,event){
       event && event.preventDefault();
-      this.component.register.paint();
+      this.component.register = new SFRegister('.sf-b2c-mall-register');
     }
 
   });
