@@ -287,5 +287,7 @@
 .countdown{
 	text-align: center;
 	padding-top: 91px;
-	min-height: 176px;
+}
+.jCountdownContainer{
+	min-height: 85px;
 }
