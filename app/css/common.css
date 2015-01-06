@@ -1088,7 +1088,7 @@ body.sub{
 	border-radius: 4px;
 	z-index: 3;
 	text-align: center;
-	display: none;
+	/*display: none;*/
 }
 .dialog-center .btn-close{
 	position: absolute;
