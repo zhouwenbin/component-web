@@ -10,17 +10,17 @@ define(
     return can.Control.extend({
 
       init: function (element, options) {
-        this.options.id = Date.now();
+        this.modalid = Date.now();
       },
 
       show: function (data) {
-        data = _.extend(data, {id: this.options.id});
+        data = _.extend(data, {id: this.modalid});
         var template = can.view.mustache((data && data.template) || this.template())
         this.element.append(template(data || this.options));
       },
 
       hide: function () {
-        this.element.find('#'+this.options.id).remove();
+        this.element.find('#'+this.modalid).remove();
         this.closed = true;
       },
 
