@@ -10,7 +10,8 @@ define(
     return can.Control.extend({
 
       init: function (element, options) {
-        this.modalid = Date.now();
+        // this.modalid = Date.now();
+        this.modalid =  new Date().valueOf();
       },
 
       show: function (data) {
