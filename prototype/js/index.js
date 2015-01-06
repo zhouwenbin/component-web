@@ -102,9 +102,12 @@ $(function(){
     $(".product-tab li").click(function(){
     	$(this).addClass("active").siblings().removeClass("active");
     	var index = $(".product-tab li").index(this);
+        var height = $(".product-list").eq(index).height();
     	$("#product-mb").animate({
     		left:-100 * index + "%"
-    	},500);
+    	},500,function(){
+            $(this).height(height);
+        });
     	return false;
     })
 

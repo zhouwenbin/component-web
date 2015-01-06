@@ -361,6 +361,11 @@ define(
           }
       },
 
+      '#verified-code-btn click': function ($element, event) {
+        event && event.preventDefault();
+        this.getVerifiedCode();
+      },
+
       '#input-password blur': function ($element, event) {
         var password = $element.val();
 
@@ -400,7 +405,7 @@ define(
             msg: ERROR_PASSWORD,
             msgType: 'icon26'
           });
-        }else if (!_.isEmpty(repassword) && password !== repassword) {
+        }else if (_.isEmpty(repassword) || password !== repassword) {
           return this.data.attr({
             msg: ERROR_NOT_SAME,
             msgType: 'icon26'

@@ -11,9 +11,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.order.fn',
-    'sf.b2c.mall.api.sc.getUserRoutes'
+    'sf.b2c.mall.api.sc.getUserRoutes',
+    'sf.b2c.mall.widget.message'
   ],
-  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes) {
+  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
@@ -54,7 +55,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 if (order.orderGoodsItemList[0]) {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
                   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  if(order.orderGoodsItemList[0].spec){
+                  if (order.orderGoodsItemList[0].spec) {
                     order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
                   }
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
@@ -233,6 +234,17 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       '.received click': function(element, event) {
         var that = this;
+
+        var message = new SFMessage(null, {
+          'tip': '确认要签收该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.cancelOrder, that, element)
+        });
+
+        return false;
+      },
+
+      received: function(element) {
         var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
@@ -241,14 +253,23 @@ define('sf.b2c.mall.order.orderlistcontent', [
         confirmReceive
           .sendRequest()
           .done(function(data) {
-            alert('确认签收成功！');
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收成功！',
+              'type': 'success'
+            });
+
             that.render();
           })
           .fail(function(error) {
-            alert(that.receiveDErrorMap[error] || '确认签收失败！');
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收失败！',
+              'type': 'error'
+            });
+
             console.error(error);
           })
-        return false;
       },
 
       '.gotoPay click': function(element, event) {
@@ -259,8 +280,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var callback = {
           error: function() {
-            var template = can.view.mustache(this.gotopayTemplate());
-            $('#gotopay').html(template());
+            var message = new SFMessage(null, {
+              'tip': '支付失败！',
+              'type': 'error'
+            });
           }
         }
 
@@ -313,10 +336,23 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       ".viewOrder click": function(element, event) {
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        window.open("/orderdetail.html?orderid=" + orderid, "_blank");
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+        window.open("/orderdetail.html?orderid=" + orderid + "&recid=" + recid, "_blank");
       },
 
       ".cancelOrder click": function(element, event) {
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'tip': '确认要取消该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.cancelOrder, that, element)
+        });
+
+        return false;
+      },
+
+      cancelOrder: function(element) {
         var that = this;
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var cancelOrder = new SFCancelOrder({
@@ -326,14 +362,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
         cancelOrder
           .sendRequest()
           .done(function(data) {
-            alert("订单取消成功！");
+            new SFMessage(null, {
+              'tip': '订单取消成功！',
+              'type': 'success'
+            });
             that.render();
           })
           .fail(function(error) {
-            console.error(error);
-            alert(that.errorMap[error] || '订单取消失败！');
+            new SFMessage(null, {
+              'tip': '订单取消失败！',
+              'type': 'error'
+            });
           })
-        return false;
       },
 
       errorMap: {
