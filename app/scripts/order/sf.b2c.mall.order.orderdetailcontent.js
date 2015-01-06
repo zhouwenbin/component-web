@@ -12,9 +12,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.updateReceiverInfo',
     'sf.b2c.mall.api.user.getIDCardUrlList',
-    'sf.b2c.mall.order.fn'
+    'sf.b2c.mall.order.fn',
+    'sf.b2c.mall.api.sc.getUserRoutes'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes) {
 
     return can.Control.extend({
 
@@ -35,7 +36,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         this.render();
 
         //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
-        $('#closeExample')[0].onclick = function(){
+        $('#closeExample')[0].onclick = function() {
           $(".orderdetail-upload").hide();
           $(".mask2").hide();
           return false;
@@ -57,6 +58,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         var getIDCardUrlList = new SFGetIDCardUrlList();
 
+        var getUserRoutes = new SFGetUserRoutes({
+          'bizId': params.orderid
+        });
+
+        this.options.userRoutes = new Array();
+
         can.when(getOrder.sendRequest(), getIDCardUrlList.sendRequest())
           .done(function(data, idcardList) {
 
@@ -68,11 +75,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             });
 
             //data.orderItem.orderStatus = "COMPLETED";
+            data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
-
-            data.orderItem.rcvrState = 0;
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -81,8 +87,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
               //读取身份证的状态
-              that.options.currentStepTips = that.cardStatusMap[idcardItem.status] || '';
+              that.options.currentStepTips = that.cardTipsMap[idcardItem.status] || '';
             }
+
+            that.options.currentStatus = that.cardStatusMap[idcardItem.status] || '';
 
             that.options.traceList = data.orderActionTraceItemList;
             //            that.options.traceList =  [
@@ -123,11 +131,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             }
             _.each(that.options.traceList, function(trace) {
-              trace.operator = that.operatorMap[trace.operator];
+              trace.operator = that.operatorMap[trace.operator] || '系统';
               trace.description = that.statusDescription[trace.status];
 
               if (typeof map[trace.status] != 'undefined') {
                 map[trace.status].call(that, trace);
+              }
+            })
+
+            //加入路由
+            _.each(that.options.traceList, function(trace) {
+              if (trace.status != 'SHIPPED' && trace.status != 'COMPLETED') {
+                that.options.userRoutes.push(trace);
               }
             })
 
@@ -179,13 +194,31 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .fail(function(error) {
             console.error(error);
           })
+          .then(function() {
+            return getUserRoutes.sendRequest();
+          })
+          .done(function(routes) {
+            _.each(routes, function(route) {
+              that.options.userRoutes.push({
+                "gmtHappened": route.eventTime,
+                "description": reoute.position + " " + reoute.remark,
+                "operator": "系统"
+              });
+            })
+          })
+          .fail()
       },
 
       cardStatusMap: {
-        0: '<span class="error-tips">尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</span>',
-        1: "<font color=red>已上传身份证照片，等待审核</font>",
-        2: "<font color=red>身份证照片审核通过</font>",
-        3: "<font color=red>身份证照片审核未通过，请重新上传</font>"
+        1: "<span class='label label-disabled'>身份证照片正在审核</span>",
+        2: "<span class='label label-success'>身份证照片已审核</span>",
+        3: "<span class='label label-error'>身份证照片审核不通过，请重新上传</span>"
+      },
+
+      cardTipsMap: {
+        0: "<span class='label label-error'>尊敬的客户，该笔订单清关时需要上传收货人的身份证照片，为了您更快的收到商品，请尽快上传收货人的身份证照片。</span>",
+        1: "<span class='label label-error'>尊敬的客户，您上传的身份证照片正在审核中，请耐心等待。</span>",
+        3: "<span class='label label-error'>尊敬的客户，您上传的身份证照片审核不通过，请重新上传！为了您更快的收到商品，请尽快上传正确的身份证照片。</span>"
       },
 
       getUserPhotoUrl: function(param) {

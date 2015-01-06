@@ -78,11 +78,10 @@
 	font-size: 0;
 	text-align: center;
 	margin: 0 134px;
+	overflow: hidden;
 }
 .m1 li{
-	display: inline-block;
-	*display: inline;
-	*zoom:1;
+	float: left;
 	font-size: 12px;
 	color: #575757;
 	width: 16.6%;
@@ -282,4 +281,7 @@
 .countdown{
 	text-align: center;
 	padding-top: 91px;
+}
+#content{
+	height: 267px;
 }

@@ -165,7 +165,7 @@
 	margin-bottom: 34px;
 }
 .order-r2 .li{
-	margin-bottom: 21px;
+	margin-bottom: 10px;
 }
 .order-r2 label{
 	display: inline-block;
@@ -256,4 +256,9 @@
 }
 .order-r1c1c4{
 	width: 3em;
+}
+.order-name{
+	display: inline-block;
+	width: 3em;
+	vertical-align: top;
 }

@@ -23,9 +23,9 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
 
       var params = can.deparam(window.location.search.substr(1));
-      this.options.itemid = params.itemid;
+      that.options.itemid = params.itemid;
       that.options.saleid = params.saleid;
-      this.options.amount = params.amount;
+      that.options.amount = params.amount;
 
       // var receiverper =
       // var receiveraddr = element.parents
@@ -43,6 +43,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
+
           itemObj.totalPrice = priceinfo.sellingPrice * that.options.amount;
           itemObj.allTotalPrice = itemObj.totalPrice;
           itemObj.shouldPay = itemObj.totalPrice;
@@ -54,8 +55,8 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
           itemObj.spec = iteminfo.skuInfo.attributes;
 
-
           that.options.allTotalPrice = itemObj.allTotalPrice;
+          that.options.sellingPrice = priceinfo.sellingPrice;
 
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
           that.element.html(html);
@@ -133,7 +134,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "items": JSON.stringify([{
               "itemId": that.options.itemid,
               "num": that.options.amount,
-              "price": that.options.allTotalPrice
+              "price": that.options.sellingPrice
             }]),
             "sysType": "b2c"
           }

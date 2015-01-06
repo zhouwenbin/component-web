@@ -53,7 +53,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         //   })
         getRecAddressList.sendRequest()
           .fail(function(error) {
-            console.error(error);
+            //console.error(error);
           })
           .done(function(reAddrs) {
 
@@ -119,7 +119,7 @@ define('sf.b2c.mall.center.receiveaddr', [
             }
           })
           .fail(function(error){
-            console.error(error);
+            //console.error(error);
           })
         return false;
       },

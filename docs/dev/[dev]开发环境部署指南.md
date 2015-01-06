@@ -20,7 +20,7 @@
 4、文件拷贝。使用lichunmin用户登录开发环境115.28.145.123，执行如下命令
 
     ```
-    ssh lichunmin@115.28.145.123 
+    ssh lichunmin@115.28.145.123
     cd jiyanliang
     sudo cp dist.zip /home/admin/statics
     ```
@@ -29,6 +29,7 @@
 
     ```
     sudo su admin
+    cd
     cd statics
     unzip -o -d /home/admin/statics dist.zip
     ```

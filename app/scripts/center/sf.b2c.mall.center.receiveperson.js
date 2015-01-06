@@ -11,9 +11,10 @@ define(
     'md5',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.adapter.receiveperson.list',
-    'sf.b2c.mall.api.user.delRecvInfo'
+    'sf.b2c.mall.api.user.delRecvInfo',
+    'sf.b2c.mall.widget.modal'
   ],
-  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter,SFUerDelRecvInfo) {
+  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter,SFUerDelRecvInfo,SFModal) {
 
     SFFrameworkComm.register(1);
 
@@ -27,6 +28,7 @@ define(
       init: function(element, options) {
         this.adapter4List = {};
         this.component = {};
+        this.component.modal = new SFModal('body');
         this.component.delRecvInfo = new SFUerDelRecvInfo();
         this.render(this.data);
       },
@@ -77,7 +79,7 @@ define(
 
           })
           .fail(function(errorCode) {
-            console.error(errorCode);
+            //console.error(errorCode);
           })
       },
 
@@ -107,12 +109,6 @@ define(
 
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
-//        var html = '<div class="mask"></div><div class="dialog dialog-center"><a href="#" class="btn btn-close">关闭</a>'+
-//            '<p>确定要删除收货人“'+ person.recName+'”的信息吗？</p><div class="dialog-r1"><a id="btn-confirm-del" href="#" class="btn btn-send">确定</a>'+
-//            '<a href="#" class="btn btn-cancel">取消</a></div></div>';
-//        $('body').append(html);
-//        $(".mask").show();
-//        $(".dialog-center").show();
         this.adapter4List.persons.input.attr('recId', person.recId);
         var that = this;
         this.component.delRecvInfo.setData({
@@ -128,26 +124,6 @@ define(
             })
       },
 
-//      '#btn-confirm-del click':function(element, event){
-//        event && event.preventDefault();
-//        $(".mask").hide();
-//        $(".dialog-center").hide();
-//        var index = element.data('index');
-//        var person = this.adapter4List.persons.get(index);
-//        this.adapter4List.persons.input.attr('recId', person.recId);
-//        var that = this;
-//        this.component.delRecvInfo.setData({
-//          recId:person.recId
-//        });
-//        this.component.delRecvInfo.sendRequest()
-//          .done(function(data){
-//            if(data.value){
-//              that.render(that.adapter4List.persons);
-//            }
-//          })
-//          .fail(function(error){
-//          })
-//      },
       /**
        * [description 点击新增]
        * @param  {[type]} element
