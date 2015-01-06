@@ -67,8 +67,6 @@ requirejs.config({
     'sf.b2c.mall.api.user.getBirthInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.delRecvInfo',
     'sf.b2c.mall.api.user.setDefaultRecv': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.setDefaultRecv',
 
-    'sf.b2c.mall.api.sc.getUserRoutes': 'http://www.google.com/app/scripts/api/sc/sf.b2c.mall.api.sc.getUserRoutes',
-
     'sf.b2c.mall.api.b2cmall.getBanner': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
     'sf.b2c.mall.api.b2cmall.getItemInfo': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getItemInfo',
