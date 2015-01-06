@@ -121,12 +121,11 @@
 	padding-bottom: 40px;
 }
 .m3 h3{
-	font-size: 18px;
+	font-size: 16px;
 	margin-bottom: 5px;
 	margin-top: 16px;
-	white-space: nowrap;
+	height: 48px;
 	overflow: hidden;
-	text-overflow:ellipsis;
 }
 .m3 p{
 	color:#72798b;
