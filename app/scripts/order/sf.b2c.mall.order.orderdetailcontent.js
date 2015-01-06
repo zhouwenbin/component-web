@@ -175,17 +175,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               that.setPhotoP();
               that.setPhotoN();
 
-              if (null != idcardItem.credtImgUrl1 && "" != idcardItem.credtImgUrl1) {
-                that.options.user.attr('credtImgUrl1', idcardItem.credtImgUrl1);
+              if (null != idcard.credtImgUrl1 && "" != idcard.credtImgUrl1) {
+                that.options.user.attr('credtImgUrl1', idcard.credtImgUrl1);
                 $('#file-submit-input-photo-p img').attr('src', that.getUserPhotoUrl({
-                  n: idcardItem.credtImgUrl1
+                  n: idcard.credtImgUrl1
                 }))
               }
 
-              if (null != idcardItem.credtImgUrl2 && "" != idcardItem.credtImgUrl2) {
-                that.options.user.attr('credtImgUrl2', idcardItem.credtImgUrl2);
+              if (null != idcard.credtImgUrl2 && "" != idcard.credtImgUrl2) {
+                that.options.user.attr('credtImgUrl2', idcard.credtImgUrl2);
                 $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
-                  n: idcardItem.credtImgUrl2
+                  n: idcard.credtImgUrl2
                 }))
               }
             }
@@ -409,7 +409,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           '该订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'AUTO_CANCEL': '尊敬的客户，由于我们2小时内未收到您的订单款项，订单已被自动取消。<br />' +
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
-        'USER_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
+        'USER_CANCEL': '尊敬的客户，您的订单已成功取消，期待您再次使用顺丰海淘。',
         'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
         'OPERATION_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
         'BUYING': '尊敬的客户，您的订单已经审核通过，不能修改。<br />' +

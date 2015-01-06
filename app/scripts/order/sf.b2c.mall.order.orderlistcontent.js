@@ -244,7 +244,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         return false;
       },
 
-      received: function(element){
+      received: function(element) {
         var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
@@ -253,11 +253,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
         confirmReceive
           .sendRequest()
           .done(function(data) {
-            alert('确认签收成功！');
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收成功！',
+              'type': 'success'
+            });
+
             that.render();
           })
           .fail(function(error) {
-            alert(that.receiveDErrorMap[error] || '确认签收失败！');
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收失败！',
+              'type': 'error'
+            });
+
             console.error(error);
           })
       },
@@ -270,8 +280,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var callback = {
           error: function() {
-            var template = can.view.mustache(this.gotopayTemplate());
-            $('#gotopay').html(template());
+            var message = new SFMessage(null, {
+              'tip': '支付失败！',
+              'type': 'error'
+            });
           }
         }
 
@@ -350,11 +362,17 @@ define('sf.b2c.mall.order.orderlistcontent', [
         cancelOrder
           .sendRequest()
           .done(function(data) {
-            alert("订单取消成功！");
+            new SFMessage(null, {
+              'tip': '订单取消成功！',
+              'type': 'success'
+            });
             that.render();
           })
           .fail(function(error) {
-            alert(that.errorMap[error] || '订单取消失败！');
+            new SFMessage(null, {
+              'tip': '订单取消失败！',
+              'type': 'success'
+            });
           })
       },
 
