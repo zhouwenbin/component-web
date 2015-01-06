@@ -31,11 +31,28 @@ define(
         }
       },
 
-      setPostMesageScanner: function () {
-        window.onMessage = function (event) {
-          var info = JSON.parse(event.data);
-          store.set('csrfToken', info.csrfToken);
+      setCsrfToken: function (evet) {
+        if (event) {
+          try{
+            var info = JSON.parse(event.data);
+            var ocsrfToken = store.get('csrfToken');
+            if (ocsrfToken != info.csrfToken) {
+              store.set('csrfToken', info.csrfToken);
+            }
+          }catch(e){
+
+          }
         }
+      },
+
+      setPostMesageScanner: function () {
+        window.onmessage = this.setCsrfToken;
+        // $(window).on('message', this.setCsrfToken);
+        // if (window.addEventListener) {
+        //   window.addEventListener("message", this.setCsrfToken, false);
+        // }else {
+        //   window.attachEvent("message", this.setCsrfToken);
+        // }
       },
 
       setWindowNameScanner: function () {
@@ -56,7 +73,7 @@ define(
           }catch(e){
 
           }
-        }, 3000);
+        }, 300);
       }
 
     });

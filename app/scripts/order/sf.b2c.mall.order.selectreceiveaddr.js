@@ -127,7 +127,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       $("#addAdrArea").show();
       $(element).hide();
       this.component.addressEditor.show('create', null, $("#addAdrArea"));
-      console.log(this.component.addressEditor.adapter);
+      // console.log(this.component.addressEditor.adapter);
       return false;
     },
 

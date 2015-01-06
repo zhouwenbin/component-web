@@ -81,7 +81,7 @@
             <div class="info-c2">
               <ul class="info-c2r1">
                 <li>收货人：{{receiveInfo.receiveName}}</li>
-                <li>身份证号码：{{receiveInfo.certNo}} {{{idcardDescription}}}</li>
+                <li>身份证号码：{{receiveInfo.certNo}} {{{currentStatus}}}</li>
                 <li>联系电话：{{! {{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
                 <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
                 <li>邮编：{{receiveInfo.zipCode}}</li>
@@ -169,7 +169,7 @@
           <div class="table-f">
             <div class="table-fr1">
                 <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
-                <li>-优惠金额：￥0</li>
+                {{! <li>-优惠金额：￥0</li> }}
                 {{#if showTax}}
                   <li>+税额：￥0</li>
                 {{/if}}

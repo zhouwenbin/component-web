@@ -42,7 +42,8 @@ define(
       gotopayTemplate: function() {
         return '<div class="order">' +
           '<div class="order-r3">' +
-          '<h2>订单提交成功</h2>' +
+          '<h2>订单提交成功，请您尽快完成付款！</h2>' +
+          '<p>请您在提交订单后2小时内完成支付，否则订单会自动取消。</p>' +
           '<a href="#" class="btn btn-send" id="gotopayBtn">去支付</a>' +
           '</div>' +
           '</div>'
@@ -72,7 +73,7 @@ define(
       '#gotopayBtn click': function() {
         var callback = {
           error: function (errorText) {
-            console.log(errorText)
+            // console.log(errorText)
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
           }

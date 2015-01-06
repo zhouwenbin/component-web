@@ -9,7 +9,8 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.webLogin',
     'md5',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.api.user.delRecAddress'
+    'sf.b2c.mall.api.user.delRecAddress',
+    'sf.b2c.mall.widget.message'
   ],
   function(can, $, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress) {
 
@@ -90,6 +91,17 @@ define('sf.b2c.mall.center.receiveaddr', [
       },
 
       ".order-del click": function(element, event){
+        var that = this;
+        var message = new SFMessage(null, {
+          'tip': '确定删除该收货地址？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.delAddress, that, element)
+        });
+
+        return false;
+      },
+
+      delAddress: function(element){
         var index = element.data('index');
         var addr = this.adapter4List.addrs.get(index);
 
@@ -107,7 +119,6 @@ define('sf.b2c.mall.center.receiveaddr', [
           .fail(function(error){
             //console.error(error);
           })
-        return false;
       },
 
       /**

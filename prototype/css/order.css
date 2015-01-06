@@ -151,7 +151,6 @@
 .order-r2{
 	padding-left: 58px;
 	padding-bottom: 40px;
-	border-bottom: 1px solid #eee;
 	margin-top: 27px;
 	display: none;
 }
@@ -262,4 +261,13 @@
 }
 .order-r1c1c4{
 	width: 3em;
+}
+.order-name{
+	display: inline-block;
+	width: 3em;
+	vertical-align: top;
+}
+.order-r3 p{
+	margin:-20px 0 20px; 
+	color: #999;
 }

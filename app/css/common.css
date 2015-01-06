@@ -1037,3 +1037,60 @@ body.sub{
     background:url(../img/icon-loading2.png) no-repeat bottom;
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
+ /*label*/
+ .label-error,
+ .label-success,
+ .label-waining,
+ .label-disabled {
+ 	height: 21px;
+	line-height: 21px;	
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+	display: inline-block;
+	vertical-align: middle;
+ }
+ .label-error{
+ 	background: #eb6877;
+ }
+ .label-success{
+ 	background: #67b222;
+ }
+ .label-waining{
+ 	background: #a1d0ed;
+ }
+ .label-disabled{
+ 	background: #ccc;
+ }
+  /*dialog*/
+ .dialog-center{
+	width: 615px;
+	height: 326px;
+	left: 50%;
+	top: 50%;
+	margin-left: -307px;
+	margin-top: -163px;
+	position: fixed;
+	background: #fff;
+	border-radius: 4px;
+	z-index: 3;
+	text-align: center;
+	display: none;
+}
+.dialog-center .btn-close{
+	position: absolute;
+	right: 26px;
+	top: 26px;
+}
+.dialog-center p{
+	padding-top: 93px;
+	margin-bottom: 61px;
+	font-size: 14px;
+}
+.dialog-r1 .btn{
+	margin: 0 9px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 56px;
+}
