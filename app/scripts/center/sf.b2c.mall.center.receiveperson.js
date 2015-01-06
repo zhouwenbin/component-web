@@ -1,8 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.center.receiveperson',
-  [
+  'sf.b2c.mall.center.receiveperson', [
     'can',
     'jquery',
     'sf.b2c.mall.api.user.getIDCardUrlList',
@@ -12,9 +11,10 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.adapter.receiveperson.list',
     'sf.b2c.mall.api.user.delRecvInfo',
-    'sf.b2c.mall.widget.modal'
+    'sf.b2c.mall.widget.modal',
+    'sf.b2c.mall.widget.message'
   ],
-  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter,SFUerDelRecvInfo,SFModal) {
+  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter, SFUerDelRecvInfo, SFModal, SFMessage) {
 
     SFFrameworkComm.register(1);
 
@@ -104,24 +104,31 @@ define(
         return false;
       },
 
-      '.order-del click':function(element, event){
+      '.order-del click': function(element, event) {
         event && event.preventDefault();
+        var that = this;
+        var message = new SFMessage(null, {
+          'tip': '确定删除该收货人？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.delPerson, that, element)
+        });
+      },
 
+      delPerson: function(element) {
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
         var that = this;
         this.component.delRecvInfo.setData({
-          recId:person.recId
+          recId: person.recId
         });
         this.component.delRecvInfo.sendRequest()
-            .done(function(data){
-              if(data.value){
-                that.render(that.adapter4List.persons);
-              }
-            })
-            .fail(function(error){
-            })
+          .done(function(data) {
+            if (data.value) {
+              that.render(that.adapter4List.persons);
+            }
+          })
+          .fail(function(error) {})
       },
 
       /**
