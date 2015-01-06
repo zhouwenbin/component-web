@@ -85,9 +85,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               $('#uploadidcard').show();
               //读取身份证的状态
               that.options.currentStepTips = that.cardTipsMap[idcard.status] || '';
+              that.options.currentStatus = that.cardStatusMap[idcard.status] || '';
             }
-
-            that.options.currentStatus = that.cardStatusMap[idcard.status] || '';
 
             that.options.traceList = data.orderActionTraceItemList;
             //            that.options.traceList =  [

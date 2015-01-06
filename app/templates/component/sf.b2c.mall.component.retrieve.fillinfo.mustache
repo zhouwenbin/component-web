@@ -35,11 +35,12 @@
             <label for="emailcode">验证码：</label>
             <input id="input-mail-code" type="text" class="input">
             {{#verifiedCodeUrl}}<img src="{{verifiedCodeUrl}}" id="verified-code" alt="验证码">{{/verifiedCodeUrl}}
+            <a class="a1" href="#" id="verified-code-btn">换一个</a>
           </li>
         </ol>
         <div class="retrieve-r1">
           {{#msg}}<div><span class="icon {{msgType}}">{{msg}}</span></div><br/>{{/msg}}
-          <a href="#" class="btn btn-send" id="send-mail-activate-btn">下一步</a>
+          <a href="#" class="btn btn-send" id="send-mail-activate-btn">发送验证邮件</a>
         </div>
       </div>
 

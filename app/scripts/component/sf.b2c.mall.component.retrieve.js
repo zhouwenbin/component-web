@@ -361,6 +361,11 @@ define(
           }
       },
 
+      '#verified-code-btn click': function ($element, event) {
+        event && event.preventDefault();
+        this.getVerifiedCode();
+      },
+
       '#input-password blur': function ($element, event) {
         var password = $element.val();
 
