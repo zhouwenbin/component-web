@@ -74,6 +74,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               return item.recId == that.options.recId;
             });
 
+            //可能存在的情况：下完订单之后用户删掉了收货人信息，这个时候要以订单的状态为准。订单状态只有待上传身份证 和审核通过两种状态
+            if (typeof idcardItem == 'undefined') {
+              idcardItem = {};
+              idcardItem.status = data.orderItem.rcvrState
+            }
+
             //data.orderItem.orderStatus = "COMPLETED";
             //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
@@ -87,6 +93,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
               //读取身份证的状态
+
               that.options.currentStepTips = that.cardTipsMap[idcardItem.status] || '';
             }
 
