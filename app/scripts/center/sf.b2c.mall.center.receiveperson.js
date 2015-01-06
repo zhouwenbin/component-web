@@ -1,8 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.center.receiveperson',
-  [
+  'sf.b2c.mall.center.receiveperson', [
     'can',
     'jquery',
     'sf.b2c.mall.api.user.getIDCardUrlList',
@@ -12,9 +11,10 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.adapter.receiveperson.list',
     'sf.b2c.mall.api.user.delRecvInfo',
-    'sf.b2c.mall.widget.modal'
+    'sf.b2c.mall.widget.modal',
+    'sf.b2c.mall.widget.message'
   ],
-  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter,SFUerDelRecvInfo,SFModal) {
+  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter, SFUerDelRecvInfo, SFModal, SFMessage) {
 
     SFFrameworkComm.register(1);
 
@@ -31,6 +31,18 @@ define(
         this.component.modal = new SFModal('body');
         this.component.delRecvInfo = new SFUerDelRecvInfo();
         this.render(this.data);
+      },
+
+      helpers:{
+        'isover': function (personList, options) {
+          var data = personList();
+          if (data && data.length > 15) {
+            var text = '已保存了'+data.length+'条地址，还能保存'+(20-data.length)+'条地址';
+            return options.fn(new can.Map({errorText: text}));
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
       },
 
       render: function(data) {
@@ -70,7 +82,7 @@ define(
             }
 
             //进行渲染
-            var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', that.adapter4List.persons);
+            var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', that.adapter4List.persons, that.helpers);
             that.element.html(html);
 
             that.component.personEditor = new SFRecpersoneditor('#addPersonArea', {
@@ -104,24 +116,31 @@ define(
         return false;
       },
 
-      '.order-del click':function(element, event){
+      '.order-del click': function(element, event) {
         event && event.preventDefault();
+        var that = this;
+        var message = new SFMessage(null, {
+          'tip': '确定删除该收货人？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.delPerson, that, element)
+        });
+      },
 
+      delPerson: function(element) {
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
         this.adapter4List.persons.input.attr('recId', person.recId);
         var that = this;
         this.component.delRecvInfo.setData({
-          recId:person.recId
+          recId: person.recId
         });
         this.component.delRecvInfo.sendRequest()
-            .done(function(data){
-              if(data.value){
-                that.render(that.adapter4List.persons);
-              }
-            })
-            .fail(function(error){
-            })
+          .done(function(data) {
+            if (data.value) {
+              that.render(that.adapter4List.persons);
+            }
+          })
+          .fail(function(error) {})
       },
 
       /**
