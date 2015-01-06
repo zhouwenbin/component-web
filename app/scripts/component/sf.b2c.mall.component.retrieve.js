@@ -400,7 +400,7 @@ define(
             msg: ERROR_PASSWORD,
             msgType: 'icon26'
           });
-        }else if (!_.isEmpty(repassword) && password !== repassword) {
+        }else if (_.isEmpty(repassword) || password !== repassword) {
           return this.data.attr({
             msg: ERROR_NOT_SAME,
             msgType: 'icon26'
