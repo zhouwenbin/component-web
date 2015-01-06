@@ -1,4 +1,4 @@
-﻿/*步骤*/
+/*步骤*/
 .step{
 	position: relative;
 	border: 3px solid #c6deee;
@@ -261,4 +261,8 @@
 	display: inline-block;
 	width: 3em;
 	vertical-align: top;
+}
+.order-r3 p{
+	margin:-20px 0 20px; 
+	color: #999;
 }
