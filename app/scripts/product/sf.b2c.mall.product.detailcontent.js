@@ -16,7 +16,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       helpers: {
         'sf-showCurrentStock': function(currentStock, options) {
-          if (currentStock() != -1 && currentStock() != -2) {
+          if (currentStock() != 0  && currentStock() != -1 && currentStock() != -2) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
