@@ -31,11 +31,26 @@ define(
         }
       },
 
+      setCsrfToken: function (evet) {
+        if (event) {
+          try{
+            var info = JSON.parse(event.data);
+            var ocsrfToken = store.get('csrfToken');
+            if (ocsrfToken != info.csrfToken) {
+              store.set('csrfToken', info.csrfToken);
+            }
+          }catch(e){
+
+          }
+        }
+      },
+
       setPostMesageScanner: function () {
-        window.addEventListener('message', function (event) {
-          var info = JSON.parse(event.data);
-          store.set('csrfToken', info.csrfToken);
-        }, false);
+        if (window.addEventListener) {
+          window.addEventListener("message", this.setCsrfToken, false);
+        }else {
+          window.attachEvent("message", this.setCsrfToken);
+        }
       },
 
       setWindowNameScanner: function () {
