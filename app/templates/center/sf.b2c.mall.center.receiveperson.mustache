@@ -7,8 +7,9 @@
 </div>
 {{/if}}
 
-{{#if hasData}}
+
 <div class="order-b active" id="personList">
+{{#if hasData}}
   <ul>
     {{#each personList}}
     <li class="clearfix active" name="personEach" data-recid="{{recId}}">
@@ -29,5 +30,5 @@
 
   <div class="order-r2" id="addPersonArea"></div>
   <a href="#" class="btn btn-add">+ 添加收货人信息</a>
+  {{/if}}
 </div>
-{{/if}}
