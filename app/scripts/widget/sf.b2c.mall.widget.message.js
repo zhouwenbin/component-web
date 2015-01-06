@@ -58,6 +58,8 @@ define(
 
       close: function(){
         $('#messagedialog').remove();
+        //要做销毁，否则绑定的事件还会存在
+        this.destroy();
       }
     });
   })
