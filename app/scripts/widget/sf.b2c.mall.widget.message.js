@@ -41,7 +41,7 @@ define(
       },
 
       '#ok click': function() {
-        if (typeof this.data.okFunction != ''){
+        if (typeof this.data.okFunction != 'undefined'){
           this.data.okFunction.apply(this);
         }
         this.close();
@@ -49,7 +49,7 @@ define(
       },
 
       '#cancel click': function() {
-        if (typeof this.data.closeFunction != ''){
+        if (typeof this.data.closeFunction != 'undefined'){
           this.data.closeFunction.apply(this);
         }
         this.close();
