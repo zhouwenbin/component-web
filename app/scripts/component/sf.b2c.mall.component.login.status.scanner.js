@@ -46,11 +46,13 @@ define(
       },
 
       setPostMesageScanner: function () {
-        if (window.addEventListener) {
-          window.addEventListener("message", this.setCsrfToken, false);
-        }else {
-          window.attachEvent("message", this.setCsrfToken);
-        }
+        window.onmessage = this.setCsrfToken;
+        // $(window).on('message', this.setCsrfToken);
+        // if (window.addEventListener) {
+        //   window.addEventListener("message", this.setCsrfToken, false);
+        // }else {
+        //   window.attachEvent("message", this.setCsrfToken);
+        // }
       },
 
       setWindowNameScanner: function () {

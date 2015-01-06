@@ -111,13 +111,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '操作' +
           '</div>' +
           '</div>' +
-          '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="javascript:void(0)" class="viewAllList">去首页</a></p>' +
+          '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="http://www.sfht.com/index.html">去首页</a></p>' +
           '</div>'
-      },
-
-      '.viewAllList click': function(){
-        window.open("www.sfht.com/index.html");
-        return false;
       },
 
       /**
