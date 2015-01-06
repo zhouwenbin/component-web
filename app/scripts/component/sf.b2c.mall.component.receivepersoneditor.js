@@ -173,7 +173,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
     '#personSaveCancel click': function(element, event) {
       this.element.hide();
       this.element.empty();
-
+      $('#btn-add-person').show();
       return false;
     },
     '#recRealName focus':function(element, event){
@@ -195,6 +195,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       for (key in person) {
         person[key] = _.str.trim(person[key]);
       }
+
 
       if (!person.recName) {
         this.adapter.person.attr("error", {
@@ -303,7 +304,9 @@ define('sf.b2c.mall.component.receivepersoneditor', [
         var result = this.add(person);
         result
           .done(function(result) {
+            person.recId = result.value;
             element.parents('div#addPersonArea').toggle();
+            $('#btn-add-person').show();
           })
           .fail(function(error) {
             //显示错误
