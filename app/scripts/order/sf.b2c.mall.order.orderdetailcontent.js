@@ -13,9 +13,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.user.updateReceiverInfo',
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.order.fn',
-    'sf.b2c.mall.api.sc.getUserRoutes'
+    'sf.b2c.mall.api.sc.getUserRoutes',
+    'sf.b2c.mall.api.user.getRecvInfo'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo) {
 
     return can.Control.extend({
 
@@ -56,7 +57,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           "orderId": params.orderid
         });
 
-        var getIDCardUrlList = new SFGetIDCardUrlList();
+        var getRecvInfo = new SFGetRecvInfo({"recId": params.recid});
 
         var getUserRoutes = new SFGetUserRoutes({
           'bizId': params.orderid
@@ -64,21 +65,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         this.options.userRoutes = new Array();
 
-        can.when(getOrder.sendRequest(), getIDCardUrlList.sendRequest())
-          .done(function(data, idcardList) {
+        can.when(getOrder.sendRequest(), getRecvInfo.sendRequest())
+          .done(function(data, idcard) {
 
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
-
-            var idcardItem = _.find(idcardList.items, function(item) {
-              return item.recId == that.options.recId;
-            });
-
-            //可能存在的情况：下完订单之后用户删掉了收货人信息，这个时候要以订单的状态为准。订单状态只有待上传身份证 和审核通过两种状态
-            if (typeof idcardItem == 'undefined') {
-              idcardItem = {};
-              idcardItem.status = data.orderItem.rcvrState
-            }
 
             //data.orderItem.orderStatus = "COMPLETED";
             //data.orderItem.rcvrState = 0
@@ -93,11 +84,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.options.IDCard.needUpload) {
               $('#uploadidcard').show();
               //读取身份证的状态
-
-              that.options.currentStepTips = that.cardTipsMap[idcardItem.status] || '';
+              that.options.currentStepTips = that.cardTipsMap[idcard.status] || '';
             }
 
-            that.options.currentStatus = that.cardStatusMap[idcardItem.status] || '';
+            that.options.currentStatus = that.cardStatusMap[idcard.status] || '';
 
             that.options.traceList = data.orderActionTraceItemList;
             //            that.options.traceList =  [
@@ -154,7 +144,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             })
 
             that.options.receiveInfo = data.orderItem.orderAddressItem;
-            that.options.receiveInfo.certNo = idcardItem.credtNum;
+            that.options.receiveInfo.certNo = idcard.credtNum;
             that.options.productList = data.orderItem.orderGoodsItemList;
 
             _.each(that.options.productList, function(item) {
