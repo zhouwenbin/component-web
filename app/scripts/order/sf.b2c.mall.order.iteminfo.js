@@ -53,8 +53,26 @@ define('sf.b2c.mall.order.iteminfo', [
 
           itemObj.itemName = iteminfo.skuInfo.title;
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-          itemObj.spec = iteminfo.skuInfo.attributes;
-
+          //itemObj.spec = iteminfo.skuInfo.attributes;
+          console.log(iteminfo.skuInfo.skuSpecTuple.specIds);
+          console.log(iteminfo.saleInfo.specGroups);
+          console.log(iteminfo.saleInfo.saleSkuSpecTupleList);
+          itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
+          var itemSpecArr = [];
+          _.each(iteminfo.saleInfo.specGroups,function(item){
+            _.each(item.specs,function(value){
+              itemSpecArr.push(value);
+            })
+          });
+          var specArr = [];
+          _.each(itemObj.specIds,function(spec){
+            _.each(itemSpecArr,function(item){
+              if (spec === item.specId){
+                specArr.push(item);
+              }
+            })
+          });
+          itemObj.spec = specArr;
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
