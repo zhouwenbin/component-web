@@ -49,7 +49,7 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.shouldPay = itemObj.totalPrice;
 
           //是否是宁波保税，是得话才展示税额
-          itemObj.showTax = iteminfo.bonded;
+          itemObj.showTax = iteminfo.saleInfo.bonded;
 
           itemObj.itemName = iteminfo.skuInfo.title;
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
