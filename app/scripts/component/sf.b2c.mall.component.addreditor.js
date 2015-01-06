@@ -4,9 +4,10 @@ define('sf.b2c.mall.component.addreditor', [
   'can',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
-  'sf.b2c.mall.api.user.updateRecAddress'
+  'sf.b2c.mall.api.user.updateRecAddress',
+    'sf.b2c.mall.widget.message'
 
-], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress) {
+], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, SFMessage) {
   return can.Control.extend({
 
     init: function() {
@@ -218,6 +219,12 @@ define('sf.b2c.mall.component.addreditor', [
       createRecAddress
         .sendRequest()
         .done(function(data) {
+
+          var message = new SFMessage(null, {
+            'tip': '新增收货地址成功！',
+            'type': 'success'
+          });
+
           that.hide();
           that.onSuccess();
         })
@@ -233,6 +240,12 @@ define('sf.b2c.mall.component.addreditor', [
       updateRecAddress
         .sendRequest()
         .done(function(data) {
+
+          var message = new SFMessage(null, {
+            'tip': '修改收货地址成功！',
+            'type': 'success'
+          });
+
           that.hide();
           that.onSuccess();
         })
@@ -249,11 +262,11 @@ define('sf.b2c.mall.component.addreditor', [
       return false;
     },
 
-    '#address focus':function(element, event){
+    '#address focus': function(element, event) {
       event && event.preventDefault();
       $('#detailerror').hide();
     },
-    '#cellphone focus':function(element, event){
+    '#cellphone focus': function(element, event) {
       event && event.preventDefault();
       $('#cellphoneerror').hide();
     },
@@ -316,7 +329,7 @@ define('sf.b2c.mall.component.addreditor', [
       }
 
       //电话号码正则验证（以1开始，11位验证）)
-      if (!/^1\d{10}$/.test(addr.cellphone)){
+      if (!/^1\d{10}$/.test(addr.cellphone)) {
         this.adapter.addr.attr("error", {
           "cellphone": '收货人手机号码填写有误！'
         })
