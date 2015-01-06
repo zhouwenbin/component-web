@@ -398,7 +398,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           if (timeNode.attr) {
             timeNode.attr("time", day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
           } else {
-            timeNode.innerHTML = '<span class="icon icon4"></span>'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+            timeNode.innerHTML = '<span class="icon icon4"></span>剩余:'+day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
           }
         }else{
           if (timeNode.attr) {
