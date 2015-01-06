@@ -32,10 +32,10 @@ define(
       },
 
       setPostMesageScanner: function () {
-        window.addEventListener('message',function(event){
+        window.addEventListener('message', function (event) {
           var info = JSON.parse(event.data);
           store.set('csrfToken', info.csrfToken);
-        },false);
+        }, false);
       },
 
       setWindowNameScanner: function () {

@@ -1056,6 +1056,30 @@ body.sub{
     background:url(../img/icon-loading2.png) no-repeat bottom;
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
+
+ /*label*/
+ .label{
+ 	height: 21px;
+	line-height: 21px;	
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+	display: inline-block;
+	vertical-align: middle;
+ }
+ .label-error{
+ 	background: #eb6877;
+ }
+ .label-success{
+ 	background: #67b222;
+ }
+ .label-waining{
+ 	background: #a1d0ed;
+ }
+ .label-disabled{
+ 	background: #ccc;
+ }
 /*retina*/
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)and (-webkit-min-device-pixel-ratio: 2) {
 	.icon{
