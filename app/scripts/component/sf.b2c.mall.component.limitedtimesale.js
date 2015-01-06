@@ -319,7 +319,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               "itemIds": JSON.stringify(that.getItems(data.value))
             };
 
-            var getProductHotDataList = new SFGetProductHotDataList({itemIds:'[1,1,1,1,1,1]'});
+            var getProductHotDataList = new SFGetProductHotDataList(paramData);
             //获得价格信息
             getProductHotDataList
               .sendRequest()
