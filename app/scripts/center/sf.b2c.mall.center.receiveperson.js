@@ -52,7 +52,7 @@ define(
 
       render: function(data) {
           //进行渲染
-          var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', data);
+          var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', data, this.helpers);
           this.element.html(html);
       },
 
