@@ -241,7 +241,10 @@ define('sf.b2c.mall.component.header', ['jquery',
 
           //console.log(SFComm.prototype.checkUserLogin.call(that))
           if (SFComm.prototype.checkUserLogin.call(that)) {
-            that.component.modal.hide();
+            if (!that.component.modal.isClosed()) {
+              that.component.modal.hide();
+            }
+
 
             if (that.afterLoginDest) {
               var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;

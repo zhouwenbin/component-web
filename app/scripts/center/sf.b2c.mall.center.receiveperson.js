@@ -38,9 +38,21 @@ define(
         this.paint();
       },
 
+      helpers:{
+        'isover': function (personList, options) {
+          var data = personList();
+          if (data && data.length > 15) {
+            var text = '已保存了'+data.length+'条地址，还能保存'+(20-data.length)+'条地址';
+            return options.fn(new can.Map({errorText: text}));
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       render: function(data) {
           //进行渲染
-          var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', data);
+          var html = can.view('templates/center/sf.b2c.mall.center.receiveperson.mustache', data, this.helpers);
           this.element.html(html);
       },
 
@@ -49,6 +61,7 @@ define(
 
         this.component.getIDCardUrlList.sendRequest()
         .done(function(message) {
+
 
           //获得地址列表
           that.adapter4List.persons = new ReceivePersonAdapter({
