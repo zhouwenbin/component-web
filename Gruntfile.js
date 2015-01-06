@@ -638,7 +638,6 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.order.fn',
-            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.order'
           ],
           insertRequire: ['sf.b2c.mall.page.order']
@@ -666,6 +665,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.order.orderlistcontent',
             'moment',
             'sf.b2c.mall.order.fn',
             'sf.b2c.mall.widget.message',
@@ -692,7 +692,6 @@ module.exports = function (grunt) {
             'sf.helpers',
             'moment',
             'sf.b2c.mall.order.fn',
-            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.orderdetail'
           ],
           insertRequire: ['sf.b2c.mall.page.orderdetail']
