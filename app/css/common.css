@@ -1038,7 +1038,10 @@ body.sub{
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
  /*label*/
- .label{
+ .label-error,
+ .label-success,
+ .label-waining,
+ .label-disabled {
  	height: 21px;
 	line-height: 21px;	
 	color: #fff;

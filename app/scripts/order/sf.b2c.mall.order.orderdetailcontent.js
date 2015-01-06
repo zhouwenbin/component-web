@@ -75,7 +75,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             });
 
             //data.orderItem.orderStatus = "COMPLETED";
-            data.orderItem.rcvrState = 0
+            //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
