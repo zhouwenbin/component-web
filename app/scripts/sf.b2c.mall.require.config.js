@@ -10,7 +10,7 @@ requirejs.config({
     'underscore.string': 'http://www.google.com/bower_components/underscore.string/dist/underscore.string.min',
     'store': 'http://www.google.com/bower_components/store/dist/store',
 
-    'sf.b2c.mall.api.logistics.getUserRoutes': 'http://www.google.com/app/scripts/api/logistics/sf.b2c.mall.api.logistics.getUserRoutes',
+    'sf.b2c.mall.api.sc.getUserRoutes':'http://www.google.com/app/scripts/api/sc/sf.b2c.mall.api.sc.getUserRoutes',
 
     'sf.b2c.mall.api.order.submitOrder': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.submitOrder',
     'sf.b2c.mall.api.order.submitOrderV2': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.submitOrderV2',
@@ -67,8 +67,6 @@ requirejs.config({
     'sf.b2c.mall.api.user.getBirthInfo': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.delRecvInfo',
     'sf.b2c.mall.api.user.setDefaultRecv': 'http://www.google.com/app/scripts/api/user/sf.b2c.mall.api.user.setDefaultRecv',
 
-    'sf.b2c.mall.api.sc.getUserRoutes': 'http://www.google.com/app/scripts/api/sc/sf.b2c.mall.api.sc.getUserRoutes',
-
     'sf.b2c.mall.api.b2cmall.getBanner': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
     'sf.b2c.mall.api.b2cmall.getItemInfo': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getItemInfo',
@@ -78,7 +76,6 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getSkuInfo': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.product.findRecommendProducts': 'http://www.google.com/sf.b2c.mall.api.product.findRecommendProducts',
-
 
     'sf.b2c.mall.business.config': 'http://www.google.com/app/scripts/config/sf.b2c.mall.business.<%= config.target %>.config',
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
