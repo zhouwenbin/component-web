@@ -91,20 +91,20 @@ define('sf.b2c.mall.center.receiveaddr', [
       },
 
       ".order-del click": function(element, event){
+        var index = element.data('index');
+        var addr = this.adapter4List.addrs.get(index);
+
         var that = this;
         var message = new SFMessage(null, {
-          'tip': '确定删除该收货地址？',
+          'tip': '确认要删除该收货地址信息吗？',
           'type': 'confirm',
-          'okFunction': _.bind(that.delAddress, that, element)
+          'okFunction': _.bind(that.delAddress, that, element, addr)
         });
 
         return false;
       },
 
-      delAddress: function(element){
-        var index = element.data('index');
-        var addr = this.adapter4List.addrs.get(index);
-
+      delAddress: function(element, addr){
         var that = this;
 
         var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});

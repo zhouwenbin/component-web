@@ -50,7 +50,7 @@ define(
 
       '#cancel click': function() {
         if (typeof this.data.closeFunction != ''){
-          this.data.okFunction.apply(this);
+          this.data.closeFunction.apply(this);
         }
         this.close();
         return false;

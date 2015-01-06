@@ -95,28 +95,20 @@ define(
 
       '.order-del click': function(element, event) {
         event && event.preventDefault();
-        var that = this;
-        var message = new SFMessage(null, {
-          'tip': '确定删除该收货人？',
-          'type': 'confirm',
-          'okFunction': _.bind(that.delPerson, that, element)
-        });
-      },
-
-      delPerson: function(element) {
         var index = element.data('index');
         var person = this.adapter4List.persons.get(index);
 
         var that = this;
-//        this.data.attr({
-//          confirmText:true,
-//          username:person.recName
-//        });
-//
-//        var template = can.view.mustache(this.showTemplate());
-//        $('body').append(template(this.data));
+        var message = new SFMessage(null, {
+          'tip': '确认要删除该收货人“'+person.recName+'”的信息吗？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.delPerson, that, element, person)
+        });
+      },
 
-
+      delPerson: function(element, person) {
+        this.adapter4List.persons.input.attr('recId', person.recId);
+        var that = this;
         this.component.delRecvInfo.setData({
           recId: person.recId
         });
