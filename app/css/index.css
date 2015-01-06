@@ -138,7 +138,7 @@
 
 }
 :root .product-tab span { left: 50%; }
-.product-tab li:hover span,
+
 .product-tab li.active span{
 	width: 100%;
 }
