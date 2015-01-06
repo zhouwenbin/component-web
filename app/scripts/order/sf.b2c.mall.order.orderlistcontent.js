@@ -371,7 +371,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .fail(function(error) {
             new SFMessage(null, {
               'tip': '订单取消失败！',
-              'type': 'success'
+              'type': 'error'
             });
           })
       },

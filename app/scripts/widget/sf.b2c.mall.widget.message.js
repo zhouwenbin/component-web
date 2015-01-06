@@ -16,8 +16,8 @@ define(
         this.data = {};
         this.data.type = this.options.type;
         this.data.tip = this.options.tip;
-        this.data.okFunction = this.options.okFunction;
-        this.data.closeFunction = this.options.closeFunction;
+        this.data.okFunction = typeof this.options.okFunction != 'undefined' ? this.options.okFunction : null;
+        this.data.closeFunction = typeof this.options.closeFunction != 'undefined' ? this.options.closeFunction : null;
         this.data.buttons = this.buttonsMap[this.data.type];
 
         this.render();
@@ -41,7 +41,7 @@ define(
       },
 
       '#ok click': function() {
-        if (typeof this.data.okFunction != 'undefined'){
+        if (typeof this.data.okFunction != 'undefined' && this.data.okFunction != null){
           this.data.okFunction.apply(this);
         }
         this.close();
@@ -49,7 +49,7 @@ define(
       },
 
       '#cancel click': function() {
-        if (typeof this.data.closeFunction != 'undefined'){
+        if (typeof this.data.closeFunction != 'undefined' && this.data.closeFunction != null){
           this.data.closeFunction.apply(this);
         }
         this.close();
