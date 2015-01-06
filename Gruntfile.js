@@ -459,7 +459,7 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
-          // optimize: "none",
+          optimize: "none",
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
@@ -638,6 +638,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.order.fn',
+            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.order'
           ],
           insertRequire: ['sf.b2c.mall.page.order']
@@ -667,6 +668,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.regions',
             'moment',
             'sf.b2c.mall.order.fn',
+            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.orderlist'
           ],
           insertRequire: ['sf.b2c.mall.page.orderlist']
@@ -690,6 +692,7 @@ module.exports = function (grunt) {
             'sf.helpers',
             'moment',
             'sf.b2c.mall.order.fn',
+            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.orderdetail'
           ],
           insertRequire: ['sf.b2c.mall.page.orderdetail']
@@ -697,6 +700,7 @@ module.exports = function (grunt) {
       },
       center: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.min.js',
@@ -716,6 +720,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.receiveperson.list',
             'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.center'
           ],
           insertRequire: ['sf.b2c.mall.page.center']
