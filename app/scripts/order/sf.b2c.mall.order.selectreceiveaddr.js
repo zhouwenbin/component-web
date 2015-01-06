@@ -125,6 +125,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       //隐藏其它编辑和新增状态
       $("#addrList").find(".order-r2").hide();
       $("#addAdrArea").show();
+      $(element).hide();
       this.component.addressEditor.show('create', null, $("#addAdrArea"));
       console.log(this.component.addressEditor.adapter);
       return false;

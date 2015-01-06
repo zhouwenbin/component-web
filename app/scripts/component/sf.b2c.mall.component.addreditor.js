@@ -245,7 +245,7 @@ define('sf.b2c.mall.component.addreditor', [
       // this.hide();
       this.element.hide();
       this.element.empty();
-
+      $('#btn-add-addr').show();
       return false;
     },
 
@@ -332,6 +332,7 @@ define('sf.b2c.mall.component.addreditor', [
       } else {
         this.add(addr);
         element.parents('div#addAdrArea').toggle();
+        $('#btn-add-addr').show();
       }
     }
   });

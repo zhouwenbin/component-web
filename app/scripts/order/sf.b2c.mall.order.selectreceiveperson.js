@@ -23,21 +23,19 @@ define('sf.b2c.mall.order.selectreceiveperson', [
       init: function(element, options) {
         this.adapter4List = {};
         this.component = {};
+        this.component.getIDCardUrlList = new SFGetIDCardUrlList();
         this.render(this.data);
       },
 
       render: function(data) {
         var that = this;
 
-        var getIDCardUrlList = new SFGetIDCardUrlList();
-
-        getIDCardUrlList
-          .sendRequest()
+        this.component.getIDCardUrlList.sendRequest()
           .done(function(message) {
 
             //获得地址列表
             that.adapter4List.persons = new ReceivePersonAdapter({
-              personList: message.items,
+              personList: message.items || [],
               hasData: false
             });
 
@@ -59,7 +57,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
 
           })
           .fail(function(errorCode) {
-            console.error(errorCode);
+            //console.error(errorCode);
           })
       },
 
@@ -100,6 +98,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
         //this.options.userList[0].user.attr("active", "active");
         $('#editPersonArea').hide();
         $("#addPersonArea").show();
+        $(element).hide();
         this.component.personEditor.show('create', null, $("#addPersonArea"));
         return false;
       },

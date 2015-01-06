@@ -3,7 +3,6 @@
 define('sf.b2c.mall.center.receiveaddr', [
     'can',
     'jquery',
-    'sf.b2c.mall.api.user.upateUserInfo',
     'sf.b2c.mall.api.user.getRecAddressList',
     'sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.component.addreditor',
@@ -12,7 +11,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.user.delRecAddress'
   ],
-  function(can, $, UpateUserInfo, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress) {
+  function(can, $, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress) {
 
     SFFrameworkComm.register(1);
 
@@ -26,6 +25,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       init: function(element, options) {
         this.adapter4List = {};
         this.component = {};
+        this.component.getRecAddressList = new SFGetRecAddressList();
         this.paint();
       },
 
@@ -37,23 +37,8 @@ define('sf.b2c.mall.center.receiveaddr', [
       paint: function() {
         var that = this;
 
-        // var webLogin = new SFUserWebLogin({
-        //   accountId: 'jiyanliang@sf-express.com',
-        //   type: 'MAIL',
-        //   password: md5('123456' + 'www.sfht.com')
-        // });
-
-        var getRecAddressList = new SFGetRecAddressList();
-
-        // webLogin
-        //   .sendRequest()
-        //   .then(function() {
-        //     var getRecAddressList = new SFGetRecAddressList();
-        //     return getRecAddressList.sendRequest();
-        //   })
-        getRecAddressList.sendRequest()
+        this.component.getRecAddressList.sendRequest()
           .fail(function(error) {
-            //console.error(error);
           })
           .done(function(reAddrs) {
 
@@ -114,6 +99,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         delRecAddress
           .sendRequest()
           .done(function(result){
+
             if (result.value){
               that.paint();
             }
@@ -135,6 +121,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         //隐藏其它编辑和新增状态
         $('#editAdrArea').hide();
         $("#addAdrArea").show();
+        $(element).hide();
         this.component.addressEditor.show('create', null, $("#addAdrArea"));
         return false;
       }
