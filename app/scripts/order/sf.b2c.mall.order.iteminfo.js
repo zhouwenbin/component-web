@@ -53,27 +53,20 @@ define('sf.b2c.mall.order.iteminfo', [
 
             itemObj.itemName = iteminfo.skuInfo.title;
             itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-            itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
 
-//            var map = new Map();
-//
-//            for (var i = 0; i < itemObj.specIds.length; i++) {
-//              _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
-//                if (itemObj.specIds[i] == item.specId) {
-//                  map.set(iteminfo.saleInfo.specGroups[i].specName, item.specValue);
-//                }
-//              })
-//            }
-            var result = new Array();
-            for (var i = 0; i < itemObj.specIds.length; i++) {
-              _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
-                if (itemObj.specIds[i] == item.specId) {
-                  result.push(iteminfo.saleInfo.specGroups[i].specName + ":" + item.specValue);
-                }
-              })
+            if(iteminfo.skuInfo && iteminfo.saleInfo){
+              itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
+              var result = new Array();
+              for (var i = 0; i < itemObj.specIds.length; i++) {
+                _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
+                  if (itemObj.specIds[i] == item.specId) {
+                    result.push(iteminfo.saleInfo.specGroups[i].specName + ":" + item.specValue);
+                  }
+                })
+              }
             }
 
-            itemObj.spec =result.join('&nbsp;/&nbsp;');;
+            itemObj.spec =result.join('&nbsp;/&nbsp;');
 
             that.options.allTotalPrice = itemObj.allTotalPrice;
             that.options.sellingPrice = priceinfo.sellingPrice;
