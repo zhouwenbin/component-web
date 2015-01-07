@@ -34,6 +34,7 @@ define(
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_NOT_SAME = '重复密码输入有误，请重新输入';
+    var ERROR_DEFAULT = '找回密码失败，请重试';
 
     var ERROR_RETRIEVE_MAP = {
       'MOBILE': '手机号或验证码错误',
@@ -298,6 +299,11 @@ define(
               if (_.isNumber(errorCode)) {
                 that.data.attr({
                   msg: ERROR_CHECK_SMS_MAP[errorCode.toString()],
+                  msgType: 'icon26'
+                });
+              }else{
+                that.data.attr({
+                  msg: ERROR_DEFAULT,
                   msgType: 'icon26'
                 });
               }
