@@ -79,7 +79,7 @@
                     </div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
                     <div id="bandInfo" class="mr5">品牌：
-                        <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
+                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">

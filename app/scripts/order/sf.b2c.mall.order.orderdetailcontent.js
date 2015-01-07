@@ -14,9 +14,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
-    'sf.b2c.mall.api.user.getRecvInfo'
+    'sf.b2c.mall.api.user.getRecvInfo',
+    'sf.b2c.mall.widget.message'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage) {
 
     return can.Control.extend({
 
@@ -71,7 +72,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
 
-            //data.orderItem.orderStatus = "COMPLETED";
+            //data.orderItem.orderStatus = "SUBMITED";
             //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
@@ -479,11 +480,21 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       '#pay click': function(element, event) {
         event && event.preventDefault();
+        var that = this;
+        var callback = {
+          error: function() {
+            var message = new SFMessage(null, {
+              'tip': '支付失败！',
+              'type': 'error',
+              'okFunction': function(){that.render();}
+            });
+          }
+        }
 
         var params = can.deparam(window.location.search.substr(1));
         SFOrderFn.payV2({
           orderid: params.orderid
-        })
+        }, callback)
       }
 
     });
