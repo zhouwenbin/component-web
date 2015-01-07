@@ -530,6 +530,7 @@ module.exports = function (grunt) {
       },
       login: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.min.js',
@@ -790,6 +791,7 @@ module.exports = function (grunt) {
       },
       proxy:{
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.proxy.min.js',
