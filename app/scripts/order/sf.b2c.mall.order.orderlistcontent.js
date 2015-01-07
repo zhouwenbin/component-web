@@ -281,7 +281,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           error: function() {
             var message = new SFMessage(null, {
               'tip': '支付失败！',
-              'type': 'error'
+              'type': 'error',
+              'okFunction': function(){that.render();}
             });
           }
         }

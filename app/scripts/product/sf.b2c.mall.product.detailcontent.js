@@ -2,7 +2,7 @@
 
 define('sf.b2c.mall.product.detailcontent', [
     'can',
-    'vendor.jquery.imagezoom',
+    'zoom',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
@@ -11,7 +11,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config'
   ],
-  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
+  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
     return can.Control.extend({
 
       helpers: {
@@ -113,7 +113,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       supplement: function() {
         //渲染放大镜
-        $(".jqzoom").imagezoom();
+        $(".goods-c1r1 li").zoom();
 
         //设置为选中
         this.setFirstPicSelected();
@@ -755,7 +755,7 @@ define('sf.b2c.mall.product.detailcontent', [
       picInfoTemplate: function() {
         return '<div class="goods-c1r1" id="bigPicArea">' +
           '<ul>' +
-          '<li class="active"><img src="http://img0.sfht.com/sf/bundefined/3b529e3188e96e6b9b269d98097dd9ef.jpg" alt=""><span></span></li>' +
+          '<li class="active"><img src="{{itemInfo.currentImage}}" alt=""><span></span></li>' +
           '</ul>' +
           '</div>' +
           '<div class="goods-c1r2">' +
