@@ -8,12 +8,13 @@ define(
     'jquery',
     'can',
     'md5',
+    'store'
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.needVfCode'
   ],
 
-  function($, can, md5, SFConfig, SFLogin,SFNeedVfCode){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -281,6 +282,11 @@ define(
         // @todo 发起登录请求
         this.component.login.sendRequest()
           .done(function (data) {
+
+            if (data.csrfToken) {
+              store.set('csrfToken', data.csrfToken);
+            }
+
             if (data.userId) {
               that.data.attr('autologin')
 
