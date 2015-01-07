@@ -22,6 +22,7 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
             item.attr('originPrice', priceItem.originPrice/100);
             item.attr('sellingPrice', priceItem.sellingPrice/100);
             item.attr('discount',(priceItem.sellingPrice*10/priceItem.originPrice).toFixed(1));
+            item.attr('displayStartTime',item.displayStartTime);
             item.attr('startTime', priceItem.startTime);
             item.attr('endTime', priceItem.endTime);
             item.attr('time','');
@@ -29,6 +30,7 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
             item.attr('item', item.soldOut);
             item.attr('currentStock', item.currentStock);
             item.attr('startTime', item.startTime);
+            item.attr('displayStartTime',item.displayStartTime);
             item.attr('endTime', item.displayEndTime);
             item.attr('price', item.homepageTopicInfo.price/100);
             item.attr('discount', item.homepageTopicInfo.discount);

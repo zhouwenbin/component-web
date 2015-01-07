@@ -11,10 +11,9 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.adapter.receiveperson.list',
     'sf.b2c.mall.api.user.delRecvInfo',
-    'sf.b2c.mall.widget.modal',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter, SFUerDelRecvInfo, SFModal, SFMessage) {
+  function(can, $, SFGetIDCardUrlList, SFUserWebLogin, SFRecpersoneditor, md5, SFFrameworkComm, ReceivePersonAdapter, SFUerDelRecvInfo, SFMessage) {
 
     SFFrameworkComm.register(1);
 
@@ -29,7 +28,6 @@ define(
         this.adapter4List = {};
         this.component = {};
         this.component.getIDCardUrlList = new SFGetIDCardUrlList();
-        this.component.modal = new SFModal('body');
         this.component.delRecvInfo = new SFUerDelRecvInfo();
 //        this.data = new can.Map({
 //          confirmText:true,
@@ -42,7 +40,7 @@ define(
         'isover': function (personList, options) {
           var data = personList();
           if (data && data.length > 15) {
-            var text = '已保存了'+data.length+'条地址，还能保存'+(20-data.length)+'条地址';
+            var text = '已保存了'+data.length+'条收货人，还能保存'+(20-data.length)+'条收货人。';
             return options.fn(new can.Map({errorText: text}));
           }else{
             return options.inverse(options.contexts || this);

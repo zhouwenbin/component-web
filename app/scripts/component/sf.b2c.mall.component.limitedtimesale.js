@@ -212,7 +212,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
         if (filter == 'NEXT') {
           _.each(that.data.limitedtimesaleInfoList, function(item) {
-            that.setBeginingTime(item, distance, item.startTime);
+            that.setBeginingTime(item, distance, item.displayStartTime);
           })
         }else{
           //消费后再创建，因为这个方法被多个地方调用

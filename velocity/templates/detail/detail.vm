@@ -33,7 +33,7 @@
                 <div id="allSkuImages" class="goods-c1 fl">
                     <div class="goods-c1r1" id="bigPicArea">
                         <ul>
-                            <li>
+                            <li class="active">
                               #set($_selectedImg="")
                               #if(${productInfo.skuInfo.images}&&${productInfo.skuInfo.images.size()}>0) #set($_selectedImg=$!{productInfo.skuInfo.images.get(0).bigImgUrl})#end
                                 <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
@@ -79,7 +79,7 @@
                     </div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
                     <div id="bandInfo" class="mr5">品牌：
-                        <label class="btn btn-goods">$!{productInfo.skuInfo.brand}</label>
+                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">
@@ -155,20 +155,26 @@
                 <h2>顺丰海淘服务承诺</h2>
                 <ul class="clearfix">
                     <li>
-                      <span class="icon icon20"></span>
-                      <h3>正品保障</h3>
-                      <p>我们承诺所有在<br>顺丰海淘网站上售卖的商品，<br>均为100%海外原装正品。</p>
-                  </li>
-                  <li>
-                      <span class="icon icon21"></span>
-                      <h3>专业仓储</h3>
-                      <p>顺丰海淘在美国、日本、香港等多地设有海外仓库，<br>为您提供更加便捷快速的购物时效保障。</p>
-                  </li>
-                  <li>
-                      <span class="icon icon22"></span>
-                      <h3>海外直采</h3>
-                      <p>所有在售商品均由品牌合作方与<br>源头供应商提供。海外采买，原装进口，<br>保证商品的渠道正规与高性价比。</p>
-                  </li>
+                        <span class="icon icon20"></span>
+
+                        <h3>正品保障</h3>
+
+                        <p>我们承诺所有在<br>顺丰海淘网站上售卖的商品，<br>均为100%海外原装正品。</p>
+                    </li>
+                    <li>
+                        <span class="icon icon21"></span>
+
+                        <h3>专业仓储</h3>
+
+                        <p>顺丰海淘在美国、日本、香港等多地设有海外仓库，<br>为您提供更加便捷快速的购物时效保障。</p>
+                    </li>
+                    <li>
+                        <span class="icon icon22"></span>
+
+                        <h3>海外直采</h3>
+
+                        <p>所有在售商品均由品牌合作方与<br>源头供应商提供。海外采买，原装进口，<br>保证商品的渠道正规与高性价比。</p>
+                    </li>
                 </ul>
             </div>
             <!--顺丰海淘服务承诺-->
@@ -198,7 +204,7 @@
                     <h3>04.看到心仪的宝贝，我该如何下单购买？</h3>
 
                     <p>答：使用支付宝支付即可将您心仪宝贝纳为己有，且费用透明，包含税费。海外商品由于国外政策限制，暂无法提供发票。
-</p>
+                    </p>
                 </div>
             </div>
         </div>

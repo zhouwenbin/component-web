@@ -2,7 +2,7 @@
 
 define('sf.b2c.mall.product.detailcontent', [
     'can',
-    'vendor.jquery.imagezoom',
+    'zoom',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
@@ -11,12 +11,12 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config'
   ],
-  function(can, imagezoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
+  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
     return can.Control.extend({
 
       helpers: {
         'sf-showCurrentStock': function(currentStock, options) {
-          if (currentStock() != 0  && currentStock() != -1 && currentStock() != -2) {
+          if (currentStock() != 0 && currentStock() != -1 && currentStock() != -2) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -113,7 +113,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       supplement: function() {
         //渲染放大镜
-        $(".jqzoom").imagezoom();
+        $(".goods-c1r1 li").zoom();
 
         //设置为选中
         this.setFirstPicSelected();
@@ -425,10 +425,12 @@ define('sf.b2c.mall.product.detailcontent', [
         var image = $(element).eq(0).attr('data-big-pic');
 
         if (this.options.serverRendered) {
-          $('#bigPicArea')[0].innerHTML = '<a href="' + image + '"><img src="' + image + '" rel="' + image + '" alt="" class="jqzoom"/></a><span></span>';
+          $('#bigPicArea')[0].innerHTML = '<ul>' +
+            '<li class="active"><img src="' + image + '"/><span></span></li>' +
+            '</ul>';
         }
 
-        $(".jqzoom").imagezoom();
+        $(".goods-c1r1 li").zoom();
 
         //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
@@ -561,7 +563,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
         var specId = $(element).eq(0).attr('data-specid');
 
-        if (typeof specId == 'undefined'){
+        if (typeof specId == 'undefined') {
           return false;
         }
 
@@ -722,8 +724,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));
-
-        $(".jqzoom").imagezoom();
+        debugger;
       },
 
       renderBreadScrumbInfo: function() {
@@ -745,7 +746,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       bandInfoTemplate: function() {
-        return '品牌：<label class="btn btn-goods">{{itemInfo.basicInfo.brand}}</label>';
+        return '品牌：<label class="btn btn-brand active">{{itemInfo.basicInfo.brand}}</label>';
       },
 
       /**
@@ -754,7 +755,9 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       picInfoTemplate: function() {
         return '<div class="goods-c1r1" id="bigPicArea">' +
-          '<a href="{{itemInfo.currentImage}}"><img src="{{itemInfo.currentImage}}" rel="{{itemInfo.currentImage}}" alt="" class="jqzoom"/></a>' +
+          '<ul>' +
+          '<li class="active"><img src="{{itemInfo.currentImage}}" alt=""><span></span></li>' +
+          '</ul>' +
           '</div>' +
           '<div class="goods-c1r2">' +
           '<ul class="clearfix">' +
