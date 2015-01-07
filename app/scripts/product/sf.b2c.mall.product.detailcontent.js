@@ -755,7 +755,7 @@ define('sf.b2c.mall.product.detailcontent', [
       picInfoTemplate: function() {
         return '<div class="goods-c1r1" id="bigPicArea">' +
           '<ul>' +
-          '<li class="active"><img src="http://img0.sfht.com/sf/bundefined/3b529e3188e96e6b9b269d98097dd9ef.jpg" alt=""><span></span></li>' +
+          '<li class="active"><img src="{{itemInfo.currentImage}}" alt=""><span></span></li>' +
           '</ul>' +
           '</div>' +
           '<div class="goods-c1r2">' +
