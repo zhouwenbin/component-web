@@ -92,6 +92,13 @@ define(
           $("body,html").animate({scrollTop:0},1000);
           return false;
         });
+
+//        var limitedTimeSaleTop = $('#LimitedTimeSale').offset().top;
+//
+//        $('#limitedTimeSaleLink').click(function(){
+//          $("body,html").animate({scrollTop:limitedTimeSaleTop},1000);
+//          return false;
+//        })
       }
     });
 

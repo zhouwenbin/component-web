@@ -12,7 +12,8 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.delRecAddress',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, $, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress, SFMessage) {
+  function(can, $, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
+
 
     SFFrameworkComm.register(1);
 
