@@ -13,9 +13,8 @@ define(
         setInterval(function () {
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
-
             if (window.postMessage) {
-              window.top.postMessage(JSON.stringify({csrfToken: csrfToken}),'*')
+              window.parent.postMessage(JSON.stringify({csrfToken: csrfToken}),'*')
             }else{
               window.name = csrfToken;
               window.location.href = 'about:blank'

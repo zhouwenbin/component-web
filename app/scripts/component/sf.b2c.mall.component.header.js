@@ -16,10 +16,11 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.widget.modal',
-  'sf.b2c.mall.business.config'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+  'sf.b2c.mall.business.config',
+  'fastclick'
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, fastclick) {
 
-
+  fastclick.attach(document.body);
   return can.Control.extend({
 
     defaults: {
