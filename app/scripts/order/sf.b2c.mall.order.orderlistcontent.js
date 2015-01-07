@@ -245,11 +245,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       received: function(element) {
+        var that = this;
         var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
         });
-
         confirmReceive
           .sendRequest()
           .done(function(data) {
@@ -268,7 +268,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
               'type': 'error'
             });
 
-            console.error(error);
           })
       },
 
