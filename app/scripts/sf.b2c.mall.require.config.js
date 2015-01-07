@@ -148,6 +148,7 @@ requirejs.config({
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',
     'webuploader':'scripts/vendor/vendor.webuploader',
+    'zoom':'scripts/vendor/vendro.jquery.zoom',
     'sf.b2c.mall.widget.file.uploader': 'scripts/widget/sf.b2c.mall.widget.file.uploader',
     'sf.b2c.mall.widget.loading': 'scripts/widget/sf.b2c.mall.widget.loading',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',

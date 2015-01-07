@@ -55,7 +55,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 if (order.orderGoodsItemList[0]) {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
                   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  if (order.orderGoodsItemList[0].spec) {
+                  if (typeof order.orderGoodsItemList[0].spec !== 'underfined' ) {
                     order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
                   }
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
@@ -68,7 +68,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
             } else {
-              var noDataTemplate = can.view.mustache(that.noDataTemplate());
+              var noDataTemplate = {};
+              if (that.options.searchValue == null) {
+                noDataTemplate = can.view.mustache(that.noDataTemplate());
+              } else {
+                noDataTemplate = can.view.mustache(that.queryNoDataTemplate());
+              }
               that.element.html(noDataTemplate());
             }
 
@@ -115,6 +120,29 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '</div>' +
           '</div>' +
           '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="http://www.sfht.com/index.html">去首页</a></p>' +
+          '</div>'
+      },
+
+      queryNoDataTemplate: function() {
+        return '<div class="table table-1">' +
+          '<div class="table-h clearfix">' +
+          '<div class="table-c1 fl">' +
+          '订单信息' +
+          '</div>' +
+          '<div class="table-c2 fl">' +
+          '收货人' +
+          '</div>' +
+          '<div class="table-c3 fl">' +
+          '订单金额' +
+          '</div>' +
+          '<div class="table-c4 fl">' +
+          '订单状态' +
+          '</div>' +
+          '<div class="table-c5 fl">' +
+          '操作' +
+          '</div>' +
+          '</div>' +
+          '<p class="table-none">未找到相关订单记录哟！<a href="http://www.sfht.com/orderlist.html">查看全部订单</a></p>' +
           '</div>'
       },
 
@@ -281,7 +309,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
           error: function() {
             var message = new SFMessage(null, {
               'tip': '支付失败！',
-              'type': 'error'
+              'type': 'error',
+              'okFunction': function() {
+                that.render();
+              }
             });
           }
         }
@@ -401,7 +432,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
-        'COMPLETED': '已完成'
+        'COMPLETED': '已完成',
+        'AUTO_COMPLETED': '自动完成'
       }
 
     });

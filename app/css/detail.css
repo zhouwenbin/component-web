@@ -10,7 +10,7 @@
 	margin-bottom: 52px;
 	border-bottom: 1px solid #DEDDDE;
 	padding-bottom: 5px;
-	margin-top: 59px;
+	margin-top: 19px;
 	color: #585758;
 	white-space: nowrap;
 	text-overflow:ellipsis;
@@ -177,12 +177,13 @@
 }
 .goods .u2{
 	position: absolute;
-	top: 14px;
+	top: 0;
 	right: 0;
 	color: #dc3334;
+	font-weight: bold;
 }
 .goods .u2 strong{
-	font-size: 42px;
+	font-size: 20px;
 	margin:0 10px;
 }
 .goods .icon25{
