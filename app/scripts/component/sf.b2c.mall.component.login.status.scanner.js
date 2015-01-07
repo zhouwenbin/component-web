@@ -40,7 +40,7 @@ define(
               store.set('csrfToken', info.csrfToken);
             }
           }catch(e){
-
+            throw e;
           }
         }
       },
