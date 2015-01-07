@@ -366,6 +366,16 @@ img{vertical-align: middle;}
 	overflow: hidden;
 	background-position: 0 -762px;
 }
+.icon41{
+	width: 16px;
+	height: 12px;
+	background-position: -107px -151px;
+}
+.icon42{
+	width: 13px;
+	height: 16px;
+	background-position: -107px -167px;
+}
 /*btn*/
 .btn{
 	display: inline-block;

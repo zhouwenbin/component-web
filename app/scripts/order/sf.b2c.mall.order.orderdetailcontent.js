@@ -124,6 +124,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               'COMPLETED': function(trace) {
                 that.options.completedTime = trace.gmtHappened;
                 that.options.completedActive = "active";
+              },
+
+              'AUTO_COMPLETED': function(trace) {
+                that.options.completedTime = trace.gmtHappened;
+                that.options.completedActive = "active";
               }
             }
             _.each(that.options.traceList, function(trace) {
@@ -244,6 +249,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.component.loading.hide();
             $('.error-tips').empty();
+            $('#leftTip').empty();
 
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl1', img);
@@ -297,6 +303,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           onUploadSuccess: function(obj, data) {
             that.component.loading.hide();
             $('.error-tips').empty();
+            $('#rightTip').empty();
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl2', img);
             $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
@@ -351,7 +358,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPING': '您的订单正在顺丰海外仓进行出库操作。网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理',
         // 'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '尊敬的用户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-        'COMPLETED': '用户确认收货，订单已完成'
+        'COMPLETED': '用户确认收货，订单已完成',
+        'AUTO_COMPLETED':'系统确认订单已签收超过7天，订单自动完成'
       },
 
       getOptionHTML: function(operationsArr) {
@@ -388,7 +396,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
-        'COMPLETED': '已完成'
+        'COMPLETED': '已完成',
+        'AUTO_COMPLETED': '自动完成'
       },
 
       stepMap: {
@@ -418,7 +427,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPING': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。。<br />' +
           '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
         'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
-        'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。'
+        'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。',
+        'AUTO_COMPLETED':'尊敬的用户，您的订单已经签收超过7天，已自动完成。期待您再次使用顺丰海淘'
       },
 
       "#orderdetail-view click": function(element, event) {

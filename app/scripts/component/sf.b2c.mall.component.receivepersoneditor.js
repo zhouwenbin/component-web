@@ -4,38 +4,14 @@ define('sf.b2c.mall.component.receivepersoneditor', [
   'can',
   'sf.b2c.mall.api.user.createReceiverInfo',
   'sf.b2c.mall.api.user.updateReceiverInfo',
-  'sf.b2c.mall.widget.modal'
+  'sf.b2c.mall.widget.message'
 
-], function(can, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFWidgetModal) {
-
-  var Modal = SFWidgetModal.extend({
-    template: function () {
-        return      '<div class="modal" id="{{id}}">' +
-                      '<div class="mask-live"></div>' +
-                      '<div class="dialog dialog-center">'+
-                        '<a href="#" class="btn btn-close">关闭</a>'+
-                        '{{&html}}' +
-                      '</div>' +
-                    '</div>'
-    },
-
-    '.modal .btn-close click': function (element, event) {
-      event && event.preventDefault();
-      this.hide();
-    },
-
-    '.modal .btn-send click': function (element, event) {
-      event && event.preventDefault();
-      this.hide();
-    }
-  })
+], function(can, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFMessage) {
 
   return can.Control.extend({
 
     init: function() {
       this.adapter = {};
-      this.component = {}
-      this.component.modal = new Modal('body');
       this.onSuccess = this.options.onSuccess;
     },
 
@@ -130,17 +106,11 @@ define('sf.b2c.mall.component.receivepersoneditor', [
           that.onSuccess();
         })
         .fail(function(error) {
-          if(error === 1000310){
-            // window.alert('可添加的收货人信息已达到上线');
-            that.component.modal.show({
-              title:'顺丰海淘',
-              html: '<p>您已添加20条收货人信息，请返回修改</p>'+
-                    '<div class="dialog-r1">'+
-                      '<a href="#" class="btn btn-send">确定</a>'+
-                    '</div>'
-            })
-
-            return false;
+          if (error === 1000310) {
+            new SFMessage(null, {
+              'tip': '您已添加20条收货人信息，请返回修改！',
+              'type': 'error'
+            });
           }
           def.reject(error);
           //console.error(error)
@@ -174,11 +144,11 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       $('#btn-add-person').show();
       return false;
     },
-    '#recRealName focus':function(element, event){
+    '#recRealName focus': function(element, event) {
       event && event.preventDefault();
       $('#recnameerror').hide();
     },
-    '#identity focus':function(element, event){
+    '#identity focus': function(element, event) {
       event && event.preventDefault();
       $('#credtnumerror').hide();
     },
@@ -291,22 +261,22 @@ define('sf.b2c.mall.component.receivepersoneditor', [
                 "credtNum": that.idErrorMap[error]
               })
 
-              $('#credtnumerror')[0].style.display = "inline";//.show();
+              $('#credtnumerror')[0].style.display = "inline"; //.show();
               //$('#credtnumerror').show();
             }
 
             return false;
           })
 
-      } else {
+      } else {debugger;
         var result = this.add(person);
         result
-          .done(function(result) {
+          .done(function(result) {debugger;
             person.recId = result.value;
             element.parents('div#addPersonArea').toggle();
             $('#btn-add-person').show();
           })
-          .fail(function(error) {
+          .fail(function(error) {debugger;
             //显示错误
             if (that.idErrorMap[error]) {
               that.adapter.person.attr("error", {
