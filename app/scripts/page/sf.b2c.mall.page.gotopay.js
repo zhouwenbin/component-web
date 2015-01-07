@@ -21,13 +21,16 @@ define(
       init: function(element, options) {
         var params = can.deparam(window.location.search.substr(1));
         this.options.orderid = params.orderid;
+        this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
 
         this.render();
       },
 
       render: function() {
-        new Header('.sf-b2c-mall-header', {isForceLogin: true});
+        new Header('.sf-b2c-mall-header', {
+          isForceLogin: true
+        });
         new Footer('.sf-b2c-mall-footer');
 
         //step
@@ -44,7 +47,7 @@ define(
           '<div class="order-r3">' +
           '<h2>订单提交成功，请您尽快完成付款！</h2>' +
           '<p>请您在提交订单后2小时内完成支付，否则订单会自动取消。</p>' +
-          '<a href="#" class="btn btn-send" id="gotopayBtn">去支付</a>' +
+          '<a href="javascript:void(0)" class="btn btn-send" id="gotopayBtn">去支付</a>' +
           '</div>' +
           '</div>'
       },
@@ -54,8 +57,8 @@ define(
           '<div class="order-r3">' +
           '<span class="icon icon32"></span>' +
           '<h2>订单支付失败</h2>' +
-          '<a href="#" class="btn btn-send" id="viewOrderDetail">查看订单</a>' +
-          '<a href="#" class="btn btn-send" id="gotopayBtn">去支付</a>' +
+          '<a href="javascript:void(0)" class="btn btn-send" id="viewOrderDetail">查看订单</a>' +
+          '<a href="javascript:void(0)" class="btn btn-send" id="gotopayBtn">去支付</a>' +
           '</div>'
       },
 
@@ -66,13 +69,13 @@ define(
       },
 
       '#viewOrderDetail click': function() {
-        window.open("/orderdetail.html?orderid=" + this.options.orderid, "_blank");
+        window.open("/orderdetail.html?orderid=" + this.options.orderid + "&recid=" + this.options.recid, "_blank");
         return false;
       },
 
       '#gotopayBtn click': function() {
         var callback = {
-          error: function (errorText) {
+          error: function(errorText) {
             // console.log(errorText)
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
@@ -80,7 +83,9 @@ define(
         }
 
         var that = this;
-        SFOrderFn.payV2({orderid: that.options.orderid}, callback);
+        SFOrderFn.payV2({
+          orderid: that.options.orderid
+        }, callback);
 
         // var that = this;
 
