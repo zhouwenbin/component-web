@@ -30,8 +30,20 @@ define('sf.b2c.mall.center.receiveaddr', [
         this.paint();
       },
 
+      helpers:{
+        'isover': function (addressList, options) {debugger;
+          var data = addressList();
+          if (data && data.length > 15) {
+            var text = '已保存了'+data.length+'条收货地址，还能保存'+(20-data.length)+'条收货地址。';
+            return options.fn(new can.Map({errorText: text}));
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       render: function(data) {
-        var html = can.view('templates/center/sf.b2c.mall.center.receiveaddr.mustache', data);
+        var html = can.view('templates/center/sf.b2c.mall.center.receiveaddr.mustache', data, this.helpers);
         this.element.html(html);
       },
 
