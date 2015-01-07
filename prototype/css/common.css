@@ -1164,8 +1164,8 @@ body.sub{
  }
  /*dialog*/
  .dialog-center{
-	width: 615px;
-	height: 326px;
+	width: 482px;
+	height: 211px;
 	left: 50%;
 	top: 50%;
 	margin-left: -307px;
@@ -1183,8 +1183,8 @@ body.sub{
 	top: 26px;
 }
 .dialog-center p{
-	padding-top: 93px;
-	margin-bottom: 61px;
+	padding-top: 53px;
+	margin-bottom: 37px;
 	font-size: 14px;
 }
 .dialog-r1 .btn{
