@@ -141,7 +141,9 @@ define(
         var params = can.deparam(window.location.search.substr(1));
         var fn = this.renderMap[tag];
         if (_.isFunction(fn)) {
-          data.attr('platform', params.platform);
+          if(SFFn.isMobile.any() || params.platform){
+            data.attr('platform', params.platform || (SFFn.isMobile.any()?'mobile':null));
+          }
           fn.call(this, data);
         }
       },

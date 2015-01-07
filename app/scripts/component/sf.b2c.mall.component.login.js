@@ -11,10 +11,11 @@ define(
     'store',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.webLogin',
-    'sf.b2c.mall.api.user.needVfCode'
+    'sf.b2c.mall.api.user.needVfCode',
+    'sf.util'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -60,7 +61,7 @@ define(
           verifiedCodeUrl:null,
           autologin:false,
           sessionId:null,
-          platform: params.platform
+          platform: params.platform || (SFFn.isMobile.any()?'mobile':null)
         })
 
         this.render(this.data);
