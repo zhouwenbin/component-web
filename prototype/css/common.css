@@ -368,6 +368,46 @@ img{vertical-align: middle;}
 	overflow: hidden;
 	background-position: 0 -762px;
 }
+.icon41{
+	width: 16px;
+	height: 12px;
+	background-position: -107px -151px;
+}
+.icon42{
+	width: 13px;
+	height: 16px;
+	background-position: -107px -167px;
+}
+.icon43{
+	width: 58px;
+	height: 58px;
+	background-position: -486px 0;
+}
+.icon44{
+	width: 65px;
+	height: 65px;
+	background-position: -486px -72px;
+}
+.icon45{
+	width: 61px;
+	height: 58px;
+	background-position: -486px -151px;
+}
+.icon46{
+	width: 116px;
+	height: 116px;
+	background-position: -486px -219px;
+}
+.icon47{
+	width: 106px;
+	height: 118px;
+	background-position: -486px -347px;
+}
+.icon48{
+	width: 12px;
+	height: 12px;
+	background-position: -130px -90px;
+}
 
 /*btn*/
 .btn{
@@ -852,15 +892,27 @@ body.sub{
 .footer2-c1{
 	margin-right: 130px;
 }
-.footer2-c3{
-	text-align: right;
-}
+
 .footer2 .phone{
 	font-size: 24px;
-	margin-bottom: 15px;
+	margin-bottom: 12px;
 }
 .footer2 .time{
 	font-size: 16px;
+	margin-bottom: 26px;
+}
+.footer2-email{
+	font-size: 14px;
+	margin-bottom: 18px;
+}
+.footer2-email .icon{
+	margin-right: 10px;
+}
+.footer2-service{
+	font-size: 14px;
+}
+.footer2-service .icon{
+	margin-right: 12px;
 }
 /*footer3*/
 .footer3{
