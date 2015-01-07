@@ -238,18 +238,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var message = new SFMessage(null, {
           'tip': '确认要签收该订单？',
           'type': 'confirm',
-          'okFunction': _.bind(that.cancelOrder, that, element)
+          'okFunction': _.bind(that.received, that, element)
         });
 
         return false;
       },
 
       received: function(element) {
+        var that = this;
         var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
         });
-
         confirmReceive
           .sendRequest()
           .done(function(data) {
@@ -268,7 +268,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
               'type': 'error'
             });
 
-            console.error(error);
           })
       },
 
