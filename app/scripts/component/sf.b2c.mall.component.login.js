@@ -8,7 +8,7 @@ define(
     'jquery',
     'can',
     'md5',
-    'store'
+    'store',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.needVfCode'
