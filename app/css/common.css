@@ -879,6 +879,19 @@ body.sub{
 .footer2 .time{
 	font-size: 16px;
 }
+.footer2-email{
+	font-size: 14px;
+	margin-bottom: 18px;
+}
+.footer2-email .icon{
+	margin-right: 10px;
+}
+.footer2-service{
+	font-size: 14px;
+}
+.footer2-service .icon{
+	margin-right: 12px;
+}
 /*footer3*/
 .footer3{
 	height: 50px;
