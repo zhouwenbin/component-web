@@ -9,9 +9,10 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.getIDCardUrlList',
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
-  'sf.b2c.mall.api.user.setDefaultRecv'
+  'sf.b2c.mall.api.user.setDefaultRecv',
+  'sf.b2c.mall.widget.message'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
   return can.Control.extend({
 
     /**
@@ -59,15 +60,15 @@ define('sf.b2c.mall.order.iteminfo', [
           console.log(iteminfo.saleInfo.saleSkuSpecTupleList);
           itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
           var itemSpecArr = [];
-          _.each(iteminfo.saleInfo.specGroups,function(item){
-            _.each(item.specs,function(value){
+          _.each(iteminfo.saleInfo.specGroups, function(item) {
+            _.each(item.specs, function(value) {
               itemSpecArr.push(value);
             })
           });
           var specArr = [];
-          _.each(itemObj.specIds,function(spec){
-            _.each(itemSpecArr,function(item){
-              if (spec === item.specId){
+          _.each(itemObj.specIds, function(spec) {
+            _.each(itemSpecArr, function(item) {
+              if (spec === item.specId) {
                 specArr.push(item);
               }
             })
@@ -96,7 +97,7 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
-    '#submitOrder click': function(element, event) {debugger;
+    '#submitOrder click': function(element, event) {
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
@@ -124,7 +125,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var params = {};
 
       can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
-        .done(function(addrList, personList, addrDefault, personDefault) {debugger;
+        .done(function(addrList, personList, addrDefault, personDefault) {
 
           var selectAddr = _.find(addrList.items, function(item) {
             return item.addrId == addressid;
@@ -172,7 +173,10 @@ define('sf.b2c.mall.order.iteminfo', [
             });
         })
         .fail(function(error) {
-          alert(that.errorMap[error] || '下单失败');
+          new SFMessage(null, {
+            'tip': that.errorMap[error] || '下单失败',
+            'type': 'error'
+          });
         });
     }
   });
