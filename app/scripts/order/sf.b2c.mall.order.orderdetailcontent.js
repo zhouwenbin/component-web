@@ -249,6 +249,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.component.loading.hide();
             $('.error-tips').empty();
+            $('#leftTip').empty();
 
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl1', img);
@@ -302,6 +303,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           onUploadSuccess: function(obj, data) {
             that.component.loading.hide();
             $('.error-tips').empty();
+            $('#rightTip').empty();
             var img = data.content[0][that.cardPUpname];
             that.options.user.attr('credtImgUrl2', img);
             $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
