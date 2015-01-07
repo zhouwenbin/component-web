@@ -167,7 +167,8 @@ img{vertical-align: middle;}
 .icon16-1,
 .icon16-2,
 .icon16-3,
-.icon16-4{
+.icon16-4,
+.icon16-5{
 	width: 0;
 	height: 0;
 	background: none;
@@ -198,6 +199,10 @@ img{vertical-align: middle;}
 	position: absolute;
 	top: -11px;
 	left: -10px;
+}
+.icon16-5{
+	border-width: 5px 5px;
+	border-color: transparent transparent transparent #e03d40;
 }
 .icon17{
 	width: 112px;
@@ -351,8 +356,17 @@ img{vertical-align: middle;}
 }
 .icon39{
 	width: 186px;
-	height: 27px;
+	height: 0;
+	padding-top: 27px;
+	overflow: hidden;
 	background-position: -118px -719px;
+}
+.icon40{
+	width: 242px;
+	height: 0;
+	padding-top: 27px;
+	overflow: hidden;
+	background-position: 0 -762px;
 }
 
 /*btn*/
