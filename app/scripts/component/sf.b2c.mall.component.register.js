@@ -75,6 +75,16 @@ define(
 
     return can.Control.extend({
 
+      helpers: {
+        ismobile: function (mobile, options) {
+          if (mobile() == 'mobile') {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       init: function (element, event) {
         this.component = {};
         this.component.sms = new SFApiUserDownSmsCode();
@@ -100,14 +110,14 @@ define(
 
       renderMap: {
         'fillinfo': function (data) {
-          var html = can.view('templates/component/sf.b2c.mall.component.register.fillinfo.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.fillinfo.mustache', data, this.helpers);
           this.element.html(html)
           this.element.find('.register').fadeIn('slow');
         },
 
         'success': function(data) {
           var that = this;
-          var html = can.view('templates/component/sf.b2c.mall.component.register.success.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.success.mustache', data, this.helpers);
           this.element.html(html);
           this.element.find('.register').fadeIn('slow', function () {
             that.timmer.call(that)
@@ -121,7 +131,7 @@ define(
           data.attr('msg', null);
           data.attr('msgType', 'icon26-2');
 
-          var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data, this.helpers);
           this.element.html(html)
           this.element.find('.register').fadeIn('slow');
         }

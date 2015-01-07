@@ -16,6 +16,27 @@ define('sf.util', ['jquery',
       return /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(data)
     },
 
+    isMobile: {
+      Android: function() {
+          return navigator.userAgent.match(/Android/i);
+      },
+      BlackBerry: function() {
+          return navigator.userAgent.match(/BlackBerry/i);
+      },
+      iOS: function() {
+          return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+      },
+      Opera: function() {
+          return navigator.userAgent.match(/Opera Mini/i);
+      },
+      Windows: function() {
+          return navigator.userAgent.match(/IEMobile/i);
+      },
+      any: function() {
+          return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+      }
+    },
+
     isLogin: function() {
       if ($.cookie('ct') == 1) {
         return true;

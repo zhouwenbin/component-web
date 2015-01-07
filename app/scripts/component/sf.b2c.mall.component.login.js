@@ -31,6 +31,16 @@ define(
 
     return can.Control.extend({
 
+      helpers: {
+        ismobile: function (mobile, options) {
+          if (mobile() == 'mobile') {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       /**
        * @override
        * @description 初始化方法
@@ -40,6 +50,8 @@ define(
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
 
+        var params = can.deparam(window.location.search.substr(1));
+
         this.data = new can.Map({
           username: null,
           password:null,
@@ -47,7 +59,8 @@ define(
           isNeedVerifiedCode: false,
           verifiedCodeUrl:null,
           autologin:false,
-          sessionId:null
+          sessionId:null,
+          platform: params.platform
         })
 
         this.render(this.data);
@@ -59,7 +72,7 @@ define(
        * @param  {can.Map} data 输入的观察者对象
        */
       render: function (data) {
-        var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data);
+        var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data, this.helpers);
         this.element.append(html);
 
         if(COUNT >=3){
