@@ -10,10 +10,11 @@ define(
     'sf.b2c.mall.order.step',
     'sf.b2c.mall.api.order.getOrder',
     'sf.b2c.mall.api.order.requestPayV2',
-    'sf.b2c.mall.order.fn'
+    'sf.b2c.mall.order.fn',
+    'sf.b2c.mall.widget.message'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -23,7 +24,7 @@ define(
         this.options.orderid = params.orderid;
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
-
+        this.step = null;
         this.render();
       },
 
@@ -34,7 +35,7 @@ define(
         new Footer('.sf-b2c-mall-footer');
 
         //step
-        new OrderSetp('.sf-b2c-mall-order-step', {
+        this.step = new OrderSetp('.sf-b2c-mall-order-step', {
           "secondstep": "active"
         });
 
@@ -74,9 +75,16 @@ define(
       },
 
       '#gotopayBtn click': function() {
+        var that = this;
         var callback = {
           error: function(errorText) {
-            // console.log(errorText)
+
+            var message = new SFMessage(null, {
+              'tip': '订单支付失败！',
+              'type': 'error'
+            });
+
+            that.step.setActive("thirdstep");
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
           }
@@ -86,50 +94,6 @@ define(
         SFOrderFn.payV2({
           orderid: that.options.orderid
         }, callback);
-
-        // var that = this;
-
-        // var requestPayV2 = new SFRequestPayV2({
-        //   "orderId": that.options.orderid,
-        //   'payType': 'alipay'
-        // });
-        // requestPayV2
-        //   .sendRequest()
-        //   .done(function(data) {
-        //     window.open(data.url + '?' + data.postBody,"_blank");
-        //     that.request.call(that, that.options.orderid);
-        //   })
-        //   .fail(function(error) {
-        //     var errorText = that.payErrorMap[error.toString()] || '支付失败';
-        //     console.error(errorText);
-        //     var template = can.view.mustache(that.payerrorTemplate());
-        //     $('#gotopayDIV').html(template());
-        //   });
-      },
-
-      request: function(orderId) {
-        var that = this;
-        setTimeout(function() {
-          var getOrder = new SFGetOrder({
-            "orderId": orderId
-          });
-          getOrder
-            .sendRequest()
-            .done(function(data) {
-              if (data.orderItem.orderStatus == 'AUDITING') {
-                window.location.href = '/orderlist.html';
-              } else {
-                that.request.call(that, orderId);
-              }
-            })
-            .fail(function() {
-              that.request.call(that, orderId);
-            });
-        }, 1000);
-      },
-
-      supplement: function() {
-
       }
     });
 

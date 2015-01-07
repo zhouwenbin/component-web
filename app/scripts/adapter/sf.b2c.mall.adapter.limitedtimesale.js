@@ -23,6 +23,7 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
             item.attr('sellingPrice', priceItem.sellingPrice/100);
             item.attr('discount',(priceItem.sellingPrice*10/priceItem.originPrice).toFixed(1));
             item.attr('startTime', priceItem.startTime);
+            item.attr('displayStartTime',item.startTime);
             item.attr('endTime', priceItem.endTime);
             item.attr('time','');
           }else if (item.contentType == 'TOPIC') {
