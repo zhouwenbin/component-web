@@ -41,6 +41,5 @@ define(
         }
       });
 
-      window.name = 'sfht.com';
       new changePwd('.change-password-wrap');
     })

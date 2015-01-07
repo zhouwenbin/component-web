@@ -102,6 +102,5 @@ define(
       }
     });
 
-    window.name = 'sfht.com';
     new home('#content');
   });

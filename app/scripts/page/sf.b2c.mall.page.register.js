@@ -11,7 +11,6 @@ define(
   function ($, can, SFRegister, SFFrameworkComm) {
     SFFrameworkComm.register(1);
 
-    window.name = 'sfht.com';
     var login = new SFRegister('body');
   });
 

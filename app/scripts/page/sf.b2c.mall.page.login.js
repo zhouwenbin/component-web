@@ -54,6 +54,5 @@ define(
 
     });
 
-    window.name = 'sfht.com';
     new login('body');
   });
