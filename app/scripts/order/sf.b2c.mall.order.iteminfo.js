@@ -104,12 +104,21 @@ define('sf.b2c.mall.order.iteminfo', [
       var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
 
       if (typeof personid == 'undefined') {
-        alert('没有选择收货人！');
+
+        new SFMessage(null, {
+          'tip': '请选择收货人！',
+          'type': 'error'
+        });
+
         return false;
       }
 
       if (typeof addressid == 'undefined') {
-        alert('没有选择收货地址！');
+
+        new SFMessage(null, {
+          'tip': '请选择收货地址！',
+          'type': 'error'
+        });
         return false;
       }
 
@@ -169,7 +178,8 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function(message) {
           window.location.href = 'gotopay.html?' +
             $.param({
-              "orderid": message.value
+              "orderid": message.value,
+              "recid": personid
             });
         })
         .fail(function(error) {
