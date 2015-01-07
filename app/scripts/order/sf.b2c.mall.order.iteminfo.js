@@ -11,7 +11,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv) {
+], function (can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv) {
   return can.Control.extend({
 
     /**
@@ -19,7 +19,7 @@ define('sf.b2c.mall.order.iteminfo', [
      * @param  {DOM} element 容器element
      * @param  {Object} options 传递的参数
      */
-    init: function(element, options) {
+    init: function (element, options) {
       var that = this;
 
       var params = can.deparam(window.location.search.substr(1));
@@ -38,51 +38,53 @@ define('sf.b2c.mall.order.iteminfo', [
       });
 
       can.when(getItemInfo.sendRequest(), prceInfo.sendRequest())
-        .done(function(iteminfo, priceinfo) {
-          var itemObj = {};
+          .done(function (iteminfo, priceinfo) {
+            var itemObj = {};
 
-          itemObj.singlePrice = priceinfo.sellingPrice;
-          itemObj.amount = that.options.amount;
+            itemObj.singlePrice = priceinfo.sellingPrice;
+            itemObj.amount = that.options.amount;
 
-          itemObj.totalPrice = priceinfo.sellingPrice * that.options.amount;
-          itemObj.allTotalPrice = itemObj.totalPrice;
-          itemObj.shouldPay = itemObj.totalPrice;
+            itemObj.totalPrice = priceinfo.sellingPrice * that.options.amount;
+            itemObj.allTotalPrice = itemObj.totalPrice;
+            itemObj.shouldPay = itemObj.totalPrice;
 
-          //是否是宁波保税，是得话才展示税额
-          itemObj.showTax = iteminfo.saleInfo.bonded;
+            //是否是宁波保税，是得话才展示税额
+            itemObj.showTax = iteminfo.saleInfo.bonded;
 
-          itemObj.itemName = iteminfo.skuInfo.title;
-          itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-          //itemObj.spec = iteminfo.skuInfo.attributes;
-          console.log(iteminfo.skuInfo.skuSpecTuple.specIds);
-          console.log(iteminfo.saleInfo.specGroups);
-          console.log(iteminfo.saleInfo.saleSkuSpecTupleList);
-          itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
-          var itemSpecArr = [];
-          _.each(iteminfo.saleInfo.specGroups,function(item){
-            _.each(item.specs,function(value){
-              itemSpecArr.push(value);
-            })
-          });
-          var specArr = [];
-          _.each(itemObj.specIds,function(spec){
-            _.each(itemSpecArr,function(item){
-              if (spec === item.specId){
-                specArr.push(item);
-              }
-            })
-          });
-          itemObj.spec = specArr;
-          that.options.allTotalPrice = itemObj.allTotalPrice;
-          that.options.sellingPrice = priceinfo.sellingPrice;
+            itemObj.itemName = iteminfo.skuInfo.title;
+            itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
+            itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
 
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
-          that.element.html(html);
+//            var map = new Map();
+//
+//            for (var i = 0; i < itemObj.specIds.length; i++) {
+//              _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
+//                if (itemObj.specIds[i] == item.specId) {
+//                  map.set(iteminfo.saleInfo.specGroups[i].specName, item.specValue);
+//                }
+//              })
+//            }
+            var result = new Array();
+            for (var i = 0; i < itemObj.specIds.length; i++) {
+              _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
+                if (itemObj.specIds[i] == item.specId) {
+                  result.push(iteminfo.saleInfo.specGroups[i].specName + ":" + item.specValue);
+                }
+              })
+            }
 
-        })
-        .fail(function(error) {
+            itemObj.spec =result.join('&nbsp;/&nbsp;');;
 
-        })
+            that.options.allTotalPrice = itemObj.allTotalPrice;
+            that.options.sellingPrice = priceinfo.sellingPrice;
+
+            var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
+            that.element.html(html);
+
+          })
+          .fail(function (error) {
+
+          })
 
 
     },
@@ -96,7 +98,8 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
-    '#submitOrder click': function(element, event) {debugger;
+    '#submitOrder click': function (element, event) {
+      debugger;
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
@@ -124,56 +127,59 @@ define('sf.b2c.mall.order.iteminfo', [
       var params = {};
 
       can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
-        .done(function(addrList, personList, addrDefault, personDefault) {debugger;
+          .done(function (addrList, personList, addrDefault, personDefault) {
+            debugger;
 
-          var selectAddr = _.find(addrList.items, function(item) {
-            return item.addrId == addressid;
-          });
-
-          var selectPer = _.find(personList.items, function(item) {
-            return item.recId == personid;
-          });
-
-          params = {
-            "addressId": JSON.stringify({
-              "addrId": selectAddr.addrId,
-              "nationName": selectAddr.nationName,
-              "provinceName": selectAddr.provinceName,
-              "cityName": selectAddr.cityName,
-              "regionName": selectAddr.regionName,
-              "detail": selectAddr.detail,
-              "recName": selectPer.recName,
-              "mobile": selectAddr.cellphone,
-              "telephone": selectAddr.cellphone,
-              "zipCode": selectAddr.zipCode,
-              "recId": selectPer.recId
-            }),
-            "userMsg": "",
-            "items": JSON.stringify([{
-              "itemId": that.options.itemid,
-              "num": that.options.amount,
-              "price": that.options.sellingPrice
-            }]),
-            "sysType": "b2c"
-          }
-
-        })
-        .fail(function(error) {
-
-        })
-        .then(function() {
-          var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
-          return submitOrderForAllSys.sendRequest();
-        })
-        .done(function(message) {
-          window.location.href = 'gotopay.html?' +
-            $.param({
-              "orderid": message.value
+            var selectAddr = _.find(addrList.items, function (item) {
+              return item.addrId == addressid;
             });
-        })
-        .fail(function(error) {
-          alert(that.errorMap[error] || '下单失败');
-        });
+
+            var selectPer = _.find(personList.items, function (item) {
+              return item.recId == personid;
+            });
+
+            params = {
+              "addressId": JSON.stringify({
+                "addrId": selectAddr.addrId,
+                "nationName": selectAddr.nationName,
+                "provinceName": selectAddr.provinceName,
+                "cityName": selectAddr.cityName,
+                "regionName": selectAddr.regionName,
+                "detail": selectAddr.detail,
+                "recName": selectPer.recName,
+                "mobile": selectAddr.cellphone,
+                "telephone": selectAddr.cellphone,
+                "zipCode": selectAddr.zipCode,
+                "recId": selectPer.recId
+              }),
+              "userMsg": "",
+              "items": JSON.stringify([
+                {
+                  "itemId": that.options.itemid,
+                  "num": that.options.amount,
+                  "price": that.options.sellingPrice
+                }
+              ]),
+              "sysType": "b2c"
+            }
+
+          })
+          .fail(function (error) {
+
+          })
+          .then(function () {
+            var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
+            return submitOrderForAllSys.sendRequest();
+          })
+          .done(function (message) {
+            window.location.href = 'gotopay.html?' +
+                $.param({
+                  "orderid": message.value
+                });
+          })
+          .fail(function (error) {
+            alert(that.errorMap[error] || '下单失败');
+          });
     }
   });
 })
