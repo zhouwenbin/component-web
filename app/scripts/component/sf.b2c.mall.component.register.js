@@ -14,10 +14,11 @@ define(
     'sf.b2c.mall.api.user.downSmsCode',
     'sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.sendActivateMail',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.business.config',
+    'sf.util'
   ],
 
-  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf) {
+  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
