@@ -229,7 +229,7 @@ define('sf.b2c.mall.component.addreditor', [
           that.onSuccess();
         })
         .fail(function(error) {
-          console.error(error);
+          //console.error(error);
         });
     },
 
