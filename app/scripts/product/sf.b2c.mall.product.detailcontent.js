@@ -425,10 +425,12 @@ define('sf.b2c.mall.product.detailcontent', [
         var image = $(element).eq(0).attr('data-big-pic');
 
         if (this.options.serverRendered) {
-          $('#bigPicArea')[0].innerHTML = '<a href="' + image + '"><img src="' + image + '" rel="' + image + '" alt="" class="jqzoom"/></a><span></span>';
+          $('#bigPicArea')[0].innerHTML = '<ul>' +
+            '<li class="active"><img src="' + image + '"/><span></span></li>' +
+            '</ul>';
         }
 
-        $(".jqzoom").imagezoom();
+        $(".goods-c1r1 li").zoom();
 
         //this.options.detailContentInfo.itemInfo.attr("currentImage", image);
       },
@@ -722,8 +724,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));
-
-        $(".jqzoom").imagezoom();
+        debugger;
       },
 
       renderBreadScrumbInfo: function() {
@@ -745,7 +746,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       bandInfoTemplate: function() {
-        return '品牌：<label class="btn btn-goods">{{itemInfo.basicInfo.brand}}</label>';
+        return '品牌：<label class="btn btn-brand active">{{itemInfo.basicInfo.brand}}</label>';
       },
 
       /**
