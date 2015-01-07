@@ -280,12 +280,14 @@ define(
       sendRequest:function(){
         var that =this;
         // @todo 发起登录请求
+
+        document.domain = window.location.host;
         this.component.login.sendRequest()
           .done(function (data) {
 
-            if (data.csrfToken) {
-              store.set('csrfToken', data.csrfToken);
-            }
+            // if (data.csrfToken) {
+            //   store.set('csrfToken', data.csrfToken);
+            // }
 
             if (data.userId) {
               that.data.attr('autologin')

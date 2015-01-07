@@ -133,7 +133,6 @@ define([
 
   });
 
-  window.name = 'sfht.com';
   new register('#content');
 
 });
