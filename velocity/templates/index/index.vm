@@ -59,7 +59,7 @@
                                 <li>
                                     <div class="product-r1">
                                         <a href="$!{_el.link}" target="_blank">
-                                            <img src="$!{_el.imgUrl}" alt="">
+                                            <img src="$!{_el.imgUrl}" alt=""/>
                                         </a>
                                         <span></span>
                                     </div>
@@ -77,7 +77,7 @@
                                       #if ($_el.homepageProductInfo)
                                           <div class="product-r2c2 fr">
                                             <span class="icon">
-                                              <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt="">
+                                              <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
                                             </span>
                                               <span class="product-r2-time"></span>
                                           </div>
@@ -117,7 +117,7 @@
                             #foreach ($_el in $fastSaleInfoList.fastSaleInfos )
                                 <li>
                                     <div class="product-r1">
-                                        <a href="$!{_el.link}" target="_blank"><img src="$!{_el.imgUrl}" alt=""></a>
+                                        <a href="$!{_el.link}" target="_blank"><img src="$!{_el.imgUrl}" alt=""/></a>
                                         <span></span>
                                     </div>
                                     <h3>
@@ -136,7 +136,7 @@
                                       #if ($_el.homepageProductInfo)
                                           <div class="product-r2c2 fr">
                                               <span class="icon icon5">
-                                                <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt="">
+                                                <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
                                               </span>
                                           </div>
                                       #end
