@@ -9,9 +9,10 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.getIDCardUrlList',
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
-  'sf.b2c.mall.api.user.setDefaultRecv'
+  'sf.b2c.mall.api.user.setDefaultRecv',
+  'sf.b2c.mall.widget.message'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv) {
+], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
   return can.Control.extend({
 
     /**
@@ -53,8 +54,26 @@ define('sf.b2c.mall.order.iteminfo', [
 
           itemObj.itemName = iteminfo.skuInfo.title;
           itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-          itemObj.spec = iteminfo.skuInfo.attributes;
-
+          //itemObj.spec = iteminfo.skuInfo.attributes;
+          console.log(iteminfo.skuInfo.skuSpecTuple.specIds);
+          console.log(iteminfo.saleInfo.specGroups);
+          console.log(iteminfo.saleInfo.saleSkuSpecTupleList);
+          itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
+          var itemSpecArr = [];
+          _.each(iteminfo.saleInfo.specGroups, function(item) {
+            _.each(item.specs, function(value) {
+              itemSpecArr.push(value);
+            })
+          });
+          var specArr = [];
+          _.each(itemObj.specIds, function(spec) {
+            _.each(itemSpecArr, function(item) {
+              if (spec === item.specId) {
+                specArr.push(item);
+              }
+            })
+          });
+          itemObj.spec = specArr;
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
@@ -78,19 +97,28 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
-    '#submitOrder click': function(element, event) {debugger;
+    '#submitOrder click': function(element, event) {
       var that = this;
 
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
       var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
 
       if (typeof personid == 'undefined') {
-        alert('没有选择收货人！');
+
+        new SFMessage(null, {
+          'tip': '请选择收货人！',
+          'type': 'error'
+        });
+
         return false;
       }
 
       if (typeof addressid == 'undefined') {
-        alert('没有选择收货地址！');
+
+        new SFMessage(null, {
+          'tip': '请选择收货地址！',
+          'type': 'error'
+        });
         return false;
       }
 
@@ -106,7 +134,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var params = {};
 
       can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
-        .done(function(addrList, personList, addrDefault, personDefault) {debugger;
+        .done(function(addrList, personList, addrDefault, personDefault) {
 
           var selectAddr = _.find(addrList.items, function(item) {
             return item.addrId == addressid;
@@ -150,11 +178,15 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function(message) {
           window.location.href = 'gotopay.html?' +
             $.param({
-              "orderid": message.value
+              "orderid": message.value,
+              "recid": personid
             });
         })
         .fail(function(error) {
-          alert(that.errorMap[error] || '下单失败');
+          new SFMessage(null, {
+            'tip': that.errorMap[error] || '下单失败',
+            'type': 'error'
+          });
         });
     }
   });

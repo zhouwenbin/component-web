@@ -16,7 +16,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       helpers: {
         'sf-showCurrentStock': function(currentStock, options) {
-          if (currentStock() != 0  && currentStock() != -1 && currentStock() != -2) {
+          if (currentStock() != 0 && currentStock() != -1 && currentStock() != -2) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -561,7 +561,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var orderId = $($(element)[0].parentElement).eq(0).attr('data-specidorder');
         var specId = $(element).eq(0).attr('data-specid');
 
-        if (typeof specId == 'undefined'){
+        if (typeof specId == 'undefined') {
           return false;
         }
 
@@ -754,7 +754,9 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       picInfoTemplate: function() {
         return '<div class="goods-c1r1" id="bigPicArea">' +
-          '<a href="{{itemInfo.currentImage}}"><img src="{{itemInfo.currentImage}}" rel="{{itemInfo.currentImage}}" alt="" class="jqzoom"/></a>' +
+          '<ul>' +
+          '<li class="active"><img src="http://img0.sfht.com/sf/bundefined/3b529e3188e96e6b9b269d98097dd9ef.jpg" alt=""><span></span></li>' +
+          '</ul>' +
           '</div>' +
           '<div class="goods-c1r2">' +
           '<ul class="clearfix">' +

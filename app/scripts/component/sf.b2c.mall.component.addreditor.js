@@ -5,14 +5,40 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
   'sf.b2c.mall.api.user.updateRecAddress',
-    'sf.b2c.mall.widget.message'
+  'sf.b2c.mall.widget.message',
+  'sf.b2c.mall.widget.modal'
 
-], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, SFMessage) {
+], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, SFMessage, SFWidgetModal) {
+
+
+  var Modal = SFWidgetModal.extend({
+    template: function () {
+        return      '<div class="modal" id="{{id}}">' +
+                      '<div class="mask-live"></div>' +
+                      '<div class="dialog dialog-center">'+
+                        '<a href="#" class="btn btn-close">关闭</a>'+
+                        '{{&html}}' +
+                      '</div>' +
+                    '</div>'
+    },
+
+    '.modal .btn-close click': function (element, event) {
+      event && event.preventDefault();
+      this.hide();
+    },
+
+    '.modal .btn-send click': function (element, event) {
+      event && event.preventDefault();
+      this.hide();
+    }
+  })
+
   return can.Control.extend({
 
     init: function() {
       this.adapter = {};
       this.component = {};
+      this.component.modal = new Modal('body');
       this.request();
       this.onSuccess = this.options.onSuccess;
     },
@@ -229,7 +255,16 @@ define('sf.b2c.mall.component.addreditor', [
           that.onSuccess();
         })
         .fail(function(error) {
-          console.error(error);
+          if(error === 1000310){
+            that.component.modal.show({
+              title:'顺丰海淘',
+              html: '<p>您已添加20条收货地址信息，请返回修改</p>'+
+                    '<div class="dialog-r1">'+
+                      '<a href="#" class="btn btn-send">确定</a>'+
+                    '</div>'
+            });
+          }
+
         });
     },
 
@@ -250,7 +285,6 @@ define('sf.b2c.mall.component.addreditor', [
           that.onSuccess();
         })
         .fail(function(error) {
-          console.error(error);
         });
     },
 

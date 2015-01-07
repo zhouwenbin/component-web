@@ -319,7 +319,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
               "itemIds": JSON.stringify(that.getItems(data.value))
             };
 
-            var getProductHotDataList = new SFGetProductHotDataList({itemIds:'[1,1,1,1,1,1]'});
+            var getProductHotDataList = new SFGetProductHotDataList(paramData);
             //获得价格信息
             getProductHotDataList
               .sendRequest()
@@ -343,9 +343,19 @@ define('sf.b2c.mall.component.limitedtimesale', [
           index = 1;
         }
 
+        var height = $(".product-list").eq(index).height();
         this.element.find(".mb").animate({
           left:-100 * index + "%"
-        },500);
+        },500,function(){
+          $(this).height(height);
+        });
+
+        // this.element.find(".mb").animate({
+        //   left:-100 * index + "%",
+        //   display:'none'
+        // },500, function () {
+        //   $('#'+filter).hide();
+        // });
       },
 
       /**

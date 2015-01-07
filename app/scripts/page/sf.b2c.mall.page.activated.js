@@ -77,7 +77,7 @@ define(
 
         if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           return this.data.attr('errorText', ERROR_PASSWORD);
-        }else if (!_.isEmpty(repassword) && password !== repassword) {
+        }else if (_.isEmpty(repassword) || password !== repassword) {
           return this.data.attr('errorText', ERROR_NOT_SAME);
         }
       },
@@ -92,7 +92,7 @@ define(
 
         if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           return this.data.attr('errorText', ERROR_PASSWORD);
-        }else if (_.isEmpty(repassword) && password !== repassword) {
+        }else if (_.isEmpty(repassword) || password !== repassword) {
           return this.data.attr('errorText', ERROR_NOT_SAME);
         }
 
