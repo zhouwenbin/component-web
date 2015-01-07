@@ -281,7 +281,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           error: function() {
             var message = new SFMessage(null, {
               'tip': '支付失败！',
-              'type': 'error'
+              'type': 'error',
+              'okFunction': function(){that.render();}
             });
           }
         }
@@ -401,7 +402,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
-        'COMPLETED': '已完成'
+        'COMPLETED': '已完成',
+        'AUTO_COMPLETED': '自动完成'
       }
 
     });
