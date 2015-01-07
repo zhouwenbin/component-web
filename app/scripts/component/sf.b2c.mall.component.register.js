@@ -138,8 +138,10 @@ define(
       },
 
       render: function (tag, data) {
+        var params = can.deparam(window.location.search.substr(1));
         var fn = this.renderMap[tag];
         if (_.isFunction(fn)) {
+          data.attr('platform', params.platform);
           fn.call(this, data);
         }
       },
