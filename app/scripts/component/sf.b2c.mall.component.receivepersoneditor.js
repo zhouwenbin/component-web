@@ -134,13 +134,11 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             // window.alert('可添加的收货人信息已达到上线');
             that.component.modal.show({
               title:'顺丰海淘',
-              html: '<p>您已添加20条收货信息，请返回修改</p>'+
+              html: '<p>您已添加20条收货人信息，请返回修改</p>'+
                     '<div class="dialog-r1">'+
                       '<a href="#" class="btn btn-send">确定</a>'+
                     '</div>'
             })
-
-
 
             return false;
           }

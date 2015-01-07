@@ -451,6 +451,7 @@ define(
               }
             })
             .fail(function (errorCode) {
+              that.getVerifiedCode();
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
                 that.element.find('#mail-register-error').html(DEFAULT_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText).show();
