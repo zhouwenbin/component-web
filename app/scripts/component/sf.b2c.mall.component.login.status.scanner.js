@@ -31,7 +31,7 @@ define(
         }
       },
 
-      setCsrfToken: function (evet) {
+      setCsrfToken: function (event) {
         if (event) {
           try{
             var info = JSON.parse(event.data);
@@ -47,12 +47,6 @@ define(
 
       setPostMesageScanner: function () {
         window.onmessage = this.setCsrfToken;
-        // $(window).on('message', this.setCsrfToken);
-        // if (window.addEventListener) {
-        //   window.addEventListener("message", this.setCsrfToken, false);
-        // }else {
-        //   window.attachEvent("message", this.setCsrfToken);
-        // }
       },
 
       setWindowNameScanner: function () {
