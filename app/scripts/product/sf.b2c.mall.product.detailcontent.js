@@ -528,6 +528,9 @@ define('sf.b2c.mall.product.detailcontent', [
         }
 
         var amount = element[0].value;
+        if (amount < 1){
+          element.val(1);
+        }
         if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy) {
           input.attr("showRestrictionTips", true);
           $('#showrestrictiontipsspan').show();
