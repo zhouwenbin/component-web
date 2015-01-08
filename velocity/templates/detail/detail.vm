@@ -126,17 +126,20 @@
         ##                  客户端渲染end
             <!--推荐商品-->
             <!--小编推荐-->
-            <div class="recommend2" id="recommend2">
-              #if($!{productInfo.skuInfo.recommend})
+          #if($!{productInfo.skuInfo.recommend})
+              <div class="recommend2" id="recommend2">
                   <h2>小编推荐</h2>
 
                   <p>$!{productInfo.skuInfo.recommend}</p>
-              #end
-            </div>
+              </div>
+          #else
+              <div id="recommend2">
+              </div>
+          #end
             <!--小编推荐-->
             <!--详情-->
             <div class="detail">
-                <div class="detail-h">
+                <div #if(${productInfo.skuInfo.attributes})class="detail-h"#end>
                     <ul class="clearfix" id="detailattributes">
                       #if(${productInfo.skuInfo.attributes})
                         #foreach ($_el in ${productInfo.skuInfo.attributes.entrySet()})
