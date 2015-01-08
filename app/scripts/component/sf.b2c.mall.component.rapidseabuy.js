@@ -204,6 +204,9 @@ define('sf.b2c.mall.component.rapidseabuy', [
                   if (priceItem.itemId == $(priceNode).attr('data-itemid')) {
                     priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
                     $(priceNode).html(template(priceItem));
+                    if (priceItem.soldOut){
+                       $(priceNode).parent().find("div.product-r1").append('<span class="icon icon24">售完</span>');
+                    }
                   }
                 });
               })
