@@ -11,7 +11,6 @@ define(
 
       init: function (element, options) {
         setInterval(function () {
-          var csrfToken_example = window.localStorage.getItem('csrfToken');
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
             if (window.postMessage) {
@@ -21,7 +20,7 @@ define(
               window.location.href = 'about:blank'
             }
           }
-        }, 10000)
+        }, 300)
       }
 
     });
