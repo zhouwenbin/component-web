@@ -32,8 +32,11 @@ define('sf.util', ['jquery',
       Windows: function() {
           return navigator.userAgent.match(/IEMobile/i);
       },
+      Firefox: function () {
+          return (navigator.userAgent.indexOf("Firefox") > -1)
+      },
       any: function() {
-          return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());
+          return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows()) || this.Firefox();
       }
     },
 
