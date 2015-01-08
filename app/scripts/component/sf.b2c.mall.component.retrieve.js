@@ -52,7 +52,7 @@ define(
 
     var ERROR_CHECK_SMS_MAP = {
       '1000230':   '手机号错误，请输入正确的手机号',
-      '1000250':   '手机验证码已过期'
+      '1000250':   '验证码输入有误，请重新输入'
     }
 
     var ERROR_RESET_PASSWORD_MAP = {
