@@ -52,7 +52,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.orderlist = data.orders;
 
               _.each(that.options.orderlist, function(order) {
-                if (order.orderGoodsItemList[0]) {
+                if (typeof order.orderGoodsItemList[0] !== 'undefined') {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
                   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
                   if (typeof order.orderGoodsItemList[0].spec !== 'undefined' ) {
