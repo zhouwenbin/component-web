@@ -690,8 +690,13 @@ define('sf.b2c.mall.product.detailcontent', [
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
         $('#recommend2').html(template(this.options.detailContentInfo))
-        if (this.options.detailContentInfo && this.options.detailContentInfo.recommendProducts) {
-          $('#recommend2').addClass('recommend2');
+        if (this.options.detailContentInfo &&
+            this.options.detailContentInfo.itemInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
+          $('#recommend2').addClass('recommend2').show();
+        }else{
+          $('#recommend2').removeClass('recommend2').hide();
         }
       },
 
