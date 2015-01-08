@@ -46,9 +46,7 @@ define(
       },
 
       setPostMesageScanner: function () {
-        // window.onmessage = this.setCsrfToken;
         window.onmessage = function () {
-          arguments
           if (event) {
             try{
               var info = JSON.parse(event.data);
