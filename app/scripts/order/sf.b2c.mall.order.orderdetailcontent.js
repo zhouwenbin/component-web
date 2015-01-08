@@ -162,7 +162,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               if(typeof that.options.productList[0].spec !== "undefined"){
                 item.spec = that.options.productList[0].spec.split(',').join("&nbsp;/&nbsp;");
               }
-              item.imageUrl = JSON.parse(item.imageUrl)[0];
+              if (item.imageUrl == "" || item.imageUrl == null){
+                item.imageUrl = "http://www.sfht.com/img/no.png";
+              } else {
+                item.imageUrl = JSON.parse(item.imageUrl)[0];
+              }
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
