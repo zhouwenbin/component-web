@@ -150,11 +150,17 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     '#my-account click': function(element, event) {
       event && event.preventDefault();
-      if (SFComm.prototype.checkUserLogin.call(this)) {
+      // event.stopPropagation();
 
-      } else {
-        this.showLogin('center');
-      }
+      // if(SFFn.isMobile.any()){
+      //   return element.hover();
+      // }
+
+      // if (SFComm.prototype.checkUserLogin.call(this)) {
+
+      // } else {
+      //   this.showLogin('center');
+      // }
     },
 
     '#user-login click': function (element, event) {
