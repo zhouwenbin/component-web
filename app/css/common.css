@@ -893,10 +893,10 @@ body.sub{
 .footer2 dd{
 	margin-top: 24px;
 }
-.footer2 a{
+.footer2 dd a{
 	font-size: 12px;
 }
-.footer2 dd a:hover{
+.footer2 a:hover{
 	color: #fff;
 }
 .footer2-c1{
@@ -1152,7 +1152,7 @@ body.sub{
  .label-waining,
  .label-disabled {
  	height: 21px;
-	line-height: 21px;
+	line-height: 21px;	
 	color: #fff;
 	text-align: center;
 	border-radius: 2px;
@@ -1278,7 +1278,7 @@ body.sub{
 		background-position: -169px -141px;
 	}
 	.icon14{
-
+		
 		background-position: -278px -141px;
 	}
 	.icon15{
