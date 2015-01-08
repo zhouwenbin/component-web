@@ -175,7 +175,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     showRegister: function (dest) {
       if (SFFn.isMobile.any()) {
-        return window.location.href = SFConfig.setting.link.register;
+        return window.location.href = SFConfig.setting.link.iregister;
       }
 
       if (dest) {
@@ -192,7 +192,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     showLogin: function(dest) {
       if (SFFn.isMobile.any()) {
-        return window.location.href = SFConfig.setting.link.login + '?' + $.param({platform: 'mobile'});
+        return window.location.href = SFConfig.setting.link.ilogin;
       }
 
 
