@@ -222,6 +222,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html',
         '<%= config.app %>/proxy.html',
+        '<%= config.app %>/i.login.html',
+        '<%= config.app %>/i.register.html',
         '<%= config.app %>/helpcenter-*.html',
         '<%= config.app %>/aboutus-*.html',
       ]
@@ -343,6 +345,8 @@ module.exports = function (grunt) {
             'detail.html',
             'login.html',
             'register.html',
+            'i.login.html',
+            'i.register.html',
             'process.html',
             'activated.html',
             'nullactivated.html',
@@ -467,6 +471,7 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',

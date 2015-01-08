@@ -303,9 +303,9 @@ define(
 
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));
-              setTimeout(function () {
-                window.location.href = params.from || 'index.html';
-              }, 2000);
+              // setTimeout(function () {
+              //   window.location.href = params.from || 'index.html';
+              // }, 2000);
             }
           })
           .fail(function (error) {
