@@ -154,7 +154,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
-              if(that.options.productList[0].spec){
+              if(typeof that.options.productList[0].spec !== "undefined"){
                 item.spec = that.options.productList[0].spec.split(',').join("&nbsp;/&nbsp;");
               }
               item.imageUrl = JSON.parse(item.imageUrl)[0];
