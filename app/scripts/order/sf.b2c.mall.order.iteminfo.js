@@ -56,7 +56,7 @@ define('sf.b2c.mall.order.iteminfo', [
 		      if(typeof iteminfo.skuInfo.images !== 'undefined'){
             itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
           }
-          if(iteminfo.skuInfo.skuSpecTuple && iteminfo.saleInfo.specGroups){
+          if(typeof iteminfo.skuInfo.skuSpecTuple !== 'undefined' && typeof iteminfo.saleInfo.specGroups !== 'undefined'){
               itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
               var result = new Array();
               for (var i = 0; i < itemObj.specIds.length; i++) {
@@ -66,10 +66,9 @@ define('sf.b2c.mall.order.iteminfo', [
                   }
                 })
               }
-            }
+              itemObj.spec =result.join('&nbsp;/&nbsp;');
+          }
 
-		  itemObj.spec =result.join('&nbsp;/&nbsp;');
-			
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
