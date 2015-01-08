@@ -745,7 +745,8 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       bandInfoTemplate: function() {
-        return '品牌：<label class="btn btn-brand active">{{itemInfo.basicInfo.brand}}</label>';
+        //return '品牌：<label class="btn btn-brand active">{{itemInfo.basicInfo.brand}}</label>';
+        return '品牌：<label class="">{{itemInfo.basicInfo.brand}}</label>';
       },
 
       /**
