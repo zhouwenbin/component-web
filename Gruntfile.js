@@ -467,7 +467,6 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
-          optimize: "none",
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
@@ -509,7 +508,6 @@ module.exports = function (grunt) {
       },
       detail: {
         options: {
-          optimize:'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.min.js',
@@ -537,7 +535,6 @@ module.exports = function (grunt) {
       },
       login: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.min.js',
@@ -620,7 +617,6 @@ module.exports = function (grunt) {
       },
       retrieve: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.min.js',
@@ -737,7 +733,6 @@ module.exports = function (grunt) {
       },
       center: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.min.js',
@@ -817,7 +812,6 @@ module.exports = function (grunt) {
       },
       proxy:{
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.proxy.min.js',
