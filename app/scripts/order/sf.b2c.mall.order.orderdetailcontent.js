@@ -72,11 +72,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
 
-            //data.orderItem.orderStatus = "SUBMITED";
+            //data.orderItem.orderStatus = "AUTO_CANCEL";
             //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
+
+            that.options.showStep = true;
+            if (data.orderItem.orderStatus == 'AUTO_CANCEL' || data.orderItem.orderStatus == 'USER_CANCEL' || data.orderItem.orderStatus == 'OPERATION_CANCEL'){
+              that.options.showStep = false;
+            }
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
