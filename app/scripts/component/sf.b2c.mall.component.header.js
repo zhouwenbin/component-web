@@ -229,7 +229,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           }
 
           that.watchLoginState.call(that);
-        }, 300);
+        }, 30000);
       // }
     }
   });
