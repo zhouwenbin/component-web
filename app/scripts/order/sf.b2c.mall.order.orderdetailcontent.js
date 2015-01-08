@@ -218,12 +218,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return getUserRoutes.sendRequest();
           })
           .done(function(routes) {
-            _.each(routes, function(route) {
-              that.options.userRoutes.push({
-                "gmtHappened": route.eventTime,
-                "description": reoute.position + " " + reoute.remark,
-                "operator": "系统"
-              });
+            _.each(routes.value, function(route) {
+              if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF'){
+                that.options.userRoutes.push({
+                  "gmtHappened": route.eventTime,
+                  "description": (typeof reoute.position != 'undefined' ? reoute.position : "") + " " + reoute.remark,
+                  "operator": "系统"
+                });
+              }
             })
           })
           .fail()

@@ -611,7 +611,6 @@ define('sf.b2c.mall.product.detailcontent', [
         //去获得最新的sku信息
         this.gotoNewItem(element, type);
 
-        $(".goods-c1r1 li").zoom();
         return false;
       },
 
@@ -661,6 +660,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
             //设置为选中
             that.setFirstPicSelected();
+
+            $(".goods-c1r1 li").zoom();
           })
       },
 

@@ -84,7 +84,7 @@ define('sf.b2c.mall.order.iteminfo', [
     },
 
     errorMap: {
-      "4000100": "order unkown error",
+      //"4000100": "order unkown error",
       "4000200": "订单地址不存在",
       "4000400": "订单商品信息改变",
       "4000500": "订单商品库存不足",
