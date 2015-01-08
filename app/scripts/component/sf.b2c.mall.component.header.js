@@ -231,7 +231,7 @@ define('sf.b2c.mall.component.header', ['jquery',
             that.data.attr('isUserLogin', false);
           }
 
-          that.watchLoginState.call(that);
+          // that.watchLoginState.call(that);
         }, 300);
       // }
     }
