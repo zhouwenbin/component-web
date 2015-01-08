@@ -4,11 +4,10 @@ define(
     'jquery',
     'can',
     'underscore',
-    'store',
-    'sf.util'
+    'store'
   ],
 
-  function ($, can, _, store, SFFn) {
+  function ($, can, _, store) {
 
     return can.Control.extend({
 
@@ -25,7 +24,7 @@ define(
       },
 
       setScanner: function () {
-        if (window.postMessage && !SFFn.isMobile.any()) {
+        if (window.postMessage) {
           this.setPostMesageScanner();
         }else{
           this.setWindowNameScanner()
