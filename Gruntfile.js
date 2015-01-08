@@ -741,7 +741,6 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
@@ -923,7 +922,7 @@ module.exports = function (grunt) {
           'requirejs:passwordchange',
           'requirejs:proxy',
           'usemin',
-          'htmlmin',
+          // 'htmlmin',
           'strip:main',
           'clean:extra'
         ]);
