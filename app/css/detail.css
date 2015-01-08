@@ -37,7 +37,7 @@
 }
 .goods-c1r1 li{
 	position: absolute;
-	border: 1px solid #efefef;
+	border: 1px solid #ccc;
 	text-align: center;
 	height: 498px;
 	width: 498px;
@@ -48,6 +48,9 @@
 	-moz-transition:all 0.5s;
 	-mstransition:all 0.5s;
 	transition:all 0.5s;
+}
+.goods-c1r1 li:hover{
+	border-color: #999;
 }
 .goods-c1r1 .active{
 	opacity: 1;
@@ -80,13 +83,16 @@
 	border-color: #23262C;
 }
 .goods-c1r2 li{
-	border: 1px solid #efefef;
+	border: 1px solid #ccc;
 	float: left;
 	width: 112px;
 	height: 112px;
 	margin-left: 14px;
 	text-align: center;
 	font-size: 0;
+}
+.goods-c1r2 li:hover{
+	border-color: #999;
 }
 .goods-c2{
 	margin-left: 563px;
@@ -226,7 +232,7 @@
 .recommend h3{
 	font-size: 14px;
 	line-height: 18px;
-	margin-bottom: 34px;
+	margin-bottom: 13px;
 	height: 36px;
 	overflow: hidden;
 	word-wrap: break-word;
@@ -237,18 +243,24 @@
 	width: 25%;
 }
 .recommend img{
-	border: 1px solid #EEEDEE;
+	border: 1px solid #ccc;
 	max-width: 102px;
+}
+.recommend img:hover{
+	border-color: #999;
 }
 .recommend-c1{
 	margin-left: 112px;
 	margin-right: 12px;
+	padding-top: 10px;
 }
 .recommend-r1{
 	font-size: 18px;
 }
-.recommend-r2{
-	padding-left: 68px;
+.recommend-r1 del{
+	font-size: 12px;
+	color: #949494;
+	margin-left: 5px;
 }
 /*小编推荐*/
 .recommend2{
