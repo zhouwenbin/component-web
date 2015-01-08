@@ -11,7 +11,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.order.fn',
-    'sf.b2c.mall.api.sc.getUserRoutesByOrderId',
+    'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
   function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
@@ -161,10 +161,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.find('.tooltip').show();
 
         var getUserRoutes = new SFGetUserRoutes({
-          'orderId': $(element).eq(0).attr('data-orderid'),
-          'subOrderId': $(element).eq(0).attr('data-suborderid')
+          'bizId': $(element).eq(0).attr('data-orderid')
         });
-
         getUserRoutes
           .sendRequest()
           .done(function(data) {
@@ -372,9 +370,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       ".viewOrder click": function(element, event) {
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
-        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid+ "&recid=" + recid, "_blank");
+        window.open("/orderdetail.html?orderid=" + orderid + "&recid=" + recid, "_blank");
       },
 
       ".cancelOrder click": function(element, event) {

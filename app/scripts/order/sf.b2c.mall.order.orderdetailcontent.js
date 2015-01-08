@@ -13,7 +13,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.user.updateReceiverInfo',
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.order.fn',
-    'sf.b2c.mall.api.sc.getUserRoutesByOrderId',
+    'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.widget.message'
   ],
@@ -61,8 +61,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var getRecvInfo = new SFGetRecvInfo({"recId": params.recid});
 
         var getUserRoutes = new SFGetUserRoutes({
-          'orderId': params.orderid,
-          'subOrderId': params.suborderid
+          'bizId': params.orderid
         });
 
         this.options.userRoutes = new Array();

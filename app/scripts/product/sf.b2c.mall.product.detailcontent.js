@@ -610,6 +610,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //去获得最新的sku信息
         this.gotoNewItem(element, type);
+
+        $(".goods-c1r1 li").zoom();
         return false;
       },
 
@@ -686,7 +688,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
-        $('#recommend2').html(template(this.options.detailContentInfo));
+        $('#recommend2').html(template(this.options.detailContentInfo)).addClass('recommend2');
       },
 
       renderDetailattributes: function() {
@@ -786,7 +788,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       breadScrumbTemplate: function() {
         return '<div class="crumbs">' +
-          '<a href="index.html">首页</a><span>&gt;</span>{{itemInfo.basicInfo.title}}' +
+          '<a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>{{itemInfo.basicInfo.title}}' +
           '</div>'
       },
 
