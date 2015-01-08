@@ -54,7 +54,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
               _.each(that.options.orderlist, function(order) {
                 if (typeof order.orderGoodsItemList[0] !== 'undefined') {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
+                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl){
+                    order.imageUrl = "http://www.sfht.com/img/no.png";
+                  } else {
+                    order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
+                  }
                   if (typeof order.orderGoodsItemList[0].spec !== 'undefined' ) {
                     order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
                   }
