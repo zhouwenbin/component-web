@@ -102,6 +102,12 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       createReceiverInfo
         .sendRequest()
         .done(function(data) {
+
+          var message = new SFMessage(null, {
+            'tip': '新增收货人成功！',
+            'type': 'success'
+          });
+
           def.resolve(data);
           //that.hide();
           that.onSuccess();

@@ -324,11 +324,17 @@ define(
 
       '#input-password blur': function ($element, event) {
         var password = $element.val();
+        if(password){
+          $element.val(password);
+        }else{
+          $('#pwd-default-text').show();
+        }
         this.checkPassword.call(this, password, '#password-error');
       },
 
 
       '#input-password focus': function ($element, event) {
+        $('#pwd-default-text').hide();
         this.element.find('#password-error').hide();
       },
 
