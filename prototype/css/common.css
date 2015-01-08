@@ -896,7 +896,7 @@ body.sub{
 .footer2 dd a{
 	font-size: 12px;
 }
-.footer2 dd a:hover{
+.footer2 a:hover{
 	color: #fff;
 }
 .footer2-c1{

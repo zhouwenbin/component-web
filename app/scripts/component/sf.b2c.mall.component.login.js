@@ -8,12 +8,14 @@ define(
     'jquery',
     'can',
     'md5',
+    'store',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.webLogin',
-    'sf.b2c.mall.api.user.needVfCode'
+    'sf.b2c.mall.api.user.needVfCode',
+    'sf.util'
   ],
 
-  function($, can, md5, SFConfig, SFLogin,SFNeedVfCode){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -30,6 +32,16 @@ define(
 
     return can.Control.extend({
 
+      helpers: {
+        ismobile: function (mobile, options) {
+          if (mobile() == 'mobile') {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       /**
        * @override
        * @description 初始化方法
@@ -39,6 +51,8 @@ define(
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
 
+        var params = can.deparam(window.location.search.substr(1));
+
         this.data = new can.Map({
           username: null,
           password:null,
@@ -46,7 +60,8 @@ define(
           isNeedVerifiedCode: false,
           verifiedCodeUrl:null,
           autologin:false,
-          sessionId:null
+          sessionId:null,
+          platform: params.platform || (SFFn.isMobile.any()?'mobile':null)
         })
 
         this.render(this.data);
@@ -58,7 +73,7 @@ define(
        * @param  {can.Map} data 输入的观察者对象
        */
       render: function (data) {
-        var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data);
+        var html = can.view('templates/component/sf.b2c.mall.component.login.mustache', data, this.helpers);
         this.element.append(html);
 
         if(COUNT >=3){
@@ -279,6 +294,8 @@ define(
       sendRequest:function(){
         var that =this;
         // @todo 发起登录请求
+
+        document.domain = window.location.host;
         this.component.login.sendRequest()
           .done(function (data) {
             if (data.userId) {

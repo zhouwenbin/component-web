@@ -16,10 +16,12 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.widget.modal',
-  'sf.b2c.mall.business.config'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig) {
+  'sf.b2c.mall.business.config',
+  'fastclick',
+  'sf.util'
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, fastclick, SFFn) {
 
-
+  fastclick.attach(document.body);
   return can.Control.extend({
 
     defaults: {
@@ -140,8 +142,6 @@ define('sf.b2c.mall.component.header', ['jquery',
           .done(function(data) {
             that.data.attr('user', null);
             store.remove('csrfToken')
-            $.removeCookie('nick');
-            $.removeCookie('gender');
             window.location.href = SFConfig.setting.link.index;
           })
           .fail(function() {})
@@ -168,6 +168,10 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     showRegister: function (dest) {
+      if (SFFn.isMobile.any()) {
+        return window.location.href = SFConfig.setting.link.register;
+      }
+
       if (dest) {
         this.afterLoginDest = dest
       }
@@ -181,6 +185,11 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     showLogin: function(dest) {
+      if (SFFn.isMobile.any()) {
+        return window.location.href = SFConfig.setting.link.login + '?' + $.param({platform: 'mobile'});
+      }
+
+
       if (dest) {
         this.afterLoginDest = dest
       }

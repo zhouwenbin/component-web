@@ -42,6 +42,7 @@
 	height: 498px;
 	width: 498px;
 	opacity: 0;
+	font-size: 0;
 	filter:alpha(opacity=0);
 	-webkit-transition:all 0.5s;
 	-moz-transition:all 0.5s;
@@ -85,6 +86,7 @@
 	height: 112px;
 	margin-left: 14px;
 	text-align: center;
+	font-size: 0;
 }
 .goods-c2{
 	margin-left: 563px;
