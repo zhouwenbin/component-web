@@ -278,6 +278,10 @@ define('sf.b2c.mall.component.addreditor', [
       event && event.preventDefault();
       $('#cellphoneerror').hide();
     },
+    '#zipcode focus': function(element, event) {
+      event && event.preventDefault();
+      $('#zipcodeerror').hide();
+    },
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
