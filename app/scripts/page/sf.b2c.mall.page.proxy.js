@@ -10,7 +10,6 @@ define(
     var scanner = can.Control.extend({
 
       init: function (element, options) {
-        store.set('sign', 1);
         setInterval(function () {
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
@@ -21,7 +20,7 @@ define(
               window.location.href = 'about:blank'
             }
           }
-        }, 300)
+        }, 10000)
       }
 
     });
