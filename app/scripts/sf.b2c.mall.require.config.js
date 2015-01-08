@@ -144,6 +144,7 @@ requirejs.config({
     'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
+    'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
 
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',
