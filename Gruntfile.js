@@ -643,9 +643,11 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
+            'placeholders',
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
             'sf.b2c.mall.component.footer',
@@ -673,9 +675,11 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
+            'placeholders',
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
             'sf.b2c.mall.component.footer',
@@ -706,9 +710,11 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
+            'placeholders',
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
             'sf.b2c.mall.component.footer',
@@ -732,9 +738,11 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
+            'placeholders',
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
             'sf.b2c.mall.component.footer',
