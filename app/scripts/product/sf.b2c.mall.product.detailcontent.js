@@ -611,7 +611,6 @@ define('sf.b2c.mall.product.detailcontent', [
         //去获得最新的sku信息
         this.gotoNewItem(element, type);
 
-        $(".goods-c1r1 li").zoom();
         return false;
       },
 
@@ -661,6 +660,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
             //设置为选中
             that.setFirstPicSelected();
+
+            $(".goods-c1r1 li").zoom();
           })
       },
 
@@ -689,8 +690,13 @@ define('sf.b2c.mall.product.detailcontent', [
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
         $('#recommend2').html(template(this.options.detailContentInfo))
-        if (this.options.detailContentInfo && this.options.detailContentInfo.recommendProducts) {
-          $('#recommend2').addClass('recommend2');
+        if (this.options.detailContentInfo &&
+            this.options.detailContentInfo.itemInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
+          $('#recommend2').addClass('recommend2').show();
+        }else{
+          $('#recommend2').removeClass('recommend2').hide();
         }
       },
 
