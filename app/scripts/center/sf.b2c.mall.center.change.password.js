@@ -9,9 +9,9 @@ define(
       'md5',
       'sf.b2c.mall.framework.comm',
       'sf.b2c.mall.api.user.changePassword',
-      'fastclick'
+      'sf.util'
     ],
-    function(can,$,md5,SFComm,SFChangePwd, fastclick){
+    function(can,$,md5,SFComm,SFChangePwd, SFFn){
 
       SFComm.register(1);
 
@@ -23,7 +23,6 @@ define(
       var ERROR_INPUT_CONFIRMPWD = '您两次输入的密码不一致，请重新输入';
       var ERROR_SAME_PWD = '新密码与原密码一致，请重新设置密码';
 
-      fastclick.attach(document.body);
       return can.Control.extend({
 
         init: function () {

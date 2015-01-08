@@ -90,7 +90,7 @@ requirejs.config({
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'moment':'bower_components/momentjs/min/moment.min',
     'moment-zh-cn': 'bower_components/momentjs/locale/zh-cn',
-    'fastclick': 'bower_components/fastclick/lib/fastclick',
+    // 'fastclick': 'bower_components/fastclick/lib/fastclick',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -144,6 +144,7 @@ requirejs.config({
     'sf.b2c.mall.page.retrieve': 'scripts/page/sf.b2c.mall.page.retrieve',
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
+    'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
 
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',
@@ -158,6 +159,8 @@ requirejs.config({
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
     'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
     'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list',
+
+    'sf.b2c.mall.widget.not.support': 'scripts/widget/sf.b2c.mall.widget.not.support',
 
     'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
     'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner'

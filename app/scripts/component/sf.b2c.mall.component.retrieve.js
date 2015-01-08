@@ -34,6 +34,7 @@ define(
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var ERROR_PASSWORD = '密码请设置6-18位字母、数字或标点符号';
     var ERROR_NOT_SAME = '重复密码输入有误，请重新输入';
+    var ERROR_DEFAULT = '找回密码失败，请重试';
 
     var ERROR_RETRIEVE_MAP = {
       'MOBILE': '手机号或验证码错误',
@@ -51,7 +52,7 @@ define(
 
     var ERROR_CHECK_SMS_MAP = {
       '1000230':   '手机号错误，请输入正确的手机号',
-      '1000250':   '手机验证码已过期'
+      '1000250':   '验证码输入有误，请重新输入'
     }
 
     var ERROR_RESET_PASSWORD_MAP = {
@@ -298,6 +299,11 @@ define(
               if (_.isNumber(errorCode)) {
                 that.data.attr({
                   msg: ERROR_CHECK_SMS_MAP[errorCode.toString()],
+                  msgType: 'icon26'
+                });
+              }else{
+                that.data.attr({
+                  msg: ERROR_DEFAULT,
                   msgType: 'icon26'
                 });
               }
