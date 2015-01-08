@@ -1,6 +1,6 @@
 'use strict';
 
-define(
+define('sf.b2c.mall.page.common',
   [
     'can',
     'jquery',
@@ -20,5 +20,5 @@ define(
       }
     });
 
-    new home('#common');
+    new common();
   });
