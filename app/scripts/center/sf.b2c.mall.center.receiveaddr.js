@@ -32,7 +32,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       },
 
       helpers:{
-        'isover': function (addressList, options) {debugger;
+        'isover': function (addressList, options) {
           var data = addressList();
           if (data && data.length > 15) {
             var text = '已保存了'+data.length+'条收货地址，还能保存'+(20-data.length)+'条收货地址。';
