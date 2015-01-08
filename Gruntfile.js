@@ -221,7 +221,9 @@ module.exports = function (grunt) {
         '<%= config.app %>/404.html',
         '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html',
-        '<%= config.app %>/proxy.html'
+        '<%= config.app %>/proxy.html',
+        '<%= config.app %>/helpcenter-*.html',
+        '<%= config.app %>/aboutus-*.html',
       ]
     },
 
@@ -825,7 +827,25 @@ module.exports = function (grunt) {
           ],
           insertRequire: ['sf.b2c.mall.page.proxy']
         }
-      }
+      },
+      common: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.common.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            'fastclick': '../bower_components/fastclick/lib/fastclick'
+          },
+          include: [
+            'sf.b2c.mall.page.common',
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.footer'
+          ],
+          insertRequire: ['sf.b2c.mall.page.common']
+        }
+      },
     }
   });
 
@@ -921,6 +941,8 @@ module.exports = function (grunt) {
           'requirejs:gotopay',
           'requirejs:passwordchange',
           'requirejs:proxy',
+          'requirejs:common',
+
           'usemin',
           // 'htmlmin',
           'strip:main',
