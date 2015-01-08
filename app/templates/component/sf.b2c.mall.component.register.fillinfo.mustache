@@ -18,6 +18,7 @@
 
   <!--邮箱注册-->
   <div class="register-b register-b-main {{#mail}}active{{/mail}}">
+    <form action="">
      <ol>
        <li>
          <input type="text" placeholder="邮箱地址" id="input-mail" />
@@ -35,17 +36,19 @@
        {{! </li> }}
      </ol>
      <div class="register-br1">
-       <a href="#" class="btn btn-send btn-register" id="mail-register-btn">同意协议并注册</a>
+       <button type="submit" class="btn btn-send btn-register" id="mail-register-btn">同意协议并注册</button>
        <span class="icon icon26" id="mail-register-error">注册失败</span>
      </div>
      <div class="register-br2">
        <a href="agreement.html" target="_blank">《顺丰海淘服务协议》</a>
      </div>
+     </form>
   </div>
   <!--邮箱注册-->
 
   <!--手机注册-->
   <div class="register-b register-b-main {{#mobile}}active{{/mobile}}">
+    <form action="">
      <ol>
       <li>
          <input type="text" placeholder="仅限中国大陆手机号" id="input-mobile" />
@@ -71,12 +74,13 @@
        </li>
      </ol>
      <div class="register-br1">
-       <a href="#" class="btn btn-send btn-register" id="mobile-register-btn">同意协议并注册</a>
+       <button type="submit" class="btn btn-send btn-register" id="mobile-register-btn">同意协议并注册</button>
        <span class="icon icon26" id="mobile-register-error">注册失败</span>
      </div>
      <div class="register-br2">
        <a href="agreement.html" target="_blank">《顺丰海淘服务协议》</a>
      </div>
+     </form>
   </div>
   <!--手机注册-->
   <div class="register-f">

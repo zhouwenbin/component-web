@@ -232,7 +232,7 @@
 .recommend h3{
 	font-size: 14px;
 	line-height: 18px;
-	margin-bottom: 34px;
+	margin-bottom: 13px;
 	height: 36px;
 	overflow: hidden;
 	word-wrap: break-word;
@@ -252,14 +252,15 @@
 .recommend-c1{
 	margin-left: 112px;
 	margin-right: 12px;
+	padding-top: 10px;
 }
 .recommend-r1{
 	font-size: 18px;
 }
-.recommend-r2{
-	padding-left: 68px;
-	color: #686675;
-	margin-top: -5px;
+.recommend-r1 del{
+	font-size: 12px;
+	color: #949494;
+	margin-left: 5px;
 }
 /*小编推荐*/
 .recommend2{
