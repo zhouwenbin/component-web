@@ -57,46 +57,46 @@
                           <ul class="clearfix product-list" data-itemIds=$!{timeLimitedSaleItemIds}>
                             #foreach ($_el in $limitedTimeSale)
                                 <li>
-                                    <div class="product-r1">
-                                        <a href="$!{_el.link}" target="_blank">
+                                    <a href="$!{_el.link}" target="_blank">
+                                        <div class="product-r1">
                                             <img src="$!{_el.imgUrl}" alt=""/>
-                                        </a>
-                                        <span></span>
-                                    </div>
-                                    <h3>
-                                        <a href="$!{_el.link}" target="_blank">$!{_el.title}</a>
-                                    </h3>
+                                            <span></span>
+                                        </div>
+                                        <h3>
+                                          $!{_el.title}
+                                        </h3>
 
-                                    <p>$!{_el.subTitle}</p>
+                                        <p>$!{_el.subTitle}</p>
 
-                                    <div class="product-r2 clearfix">
-                                        <div id="timeAndNation4ProductClient" data-contentType="$!{_el.contentType}" #if($_el.homepageProductInfo)
-                                             data-itemId="$!{_el.homepageProductInfo.itemId}" #elseif($_el.homepageTopicInfo)
-                                             data-topicId="$!{_el.homepageTopicInfo.topicId}" data-displayEndTime="$!{_el.displayEndTime}" #end
-                                             class="product-r2c1 fl"><span class="icon icon4"></span></div>
-                                      #if ($_el.homepageProductInfo)
-                                          <div class="product-r2c2 fr">
+                                        <div class="product-r2 clearfix">
+                                            <div id="timeAndNation4ProductClient" data-contentType="$!{_el.contentType}" #if($_el.homepageProductInfo)
+                                                 data-itemId="$!{_el.homepageProductInfo.itemId}" #elseif($_el.homepageTopicInfo)
+                                                 data-topicId="$!{_el.homepageTopicInfo.topicId}" data-displayEndTime="$!{_el.displayEndTime}" #end
+                                                 class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                                          #if ($_el.homepageProductInfo)
+                                              <div class="product-r2c2 fr">
                                             <span class="icon">
                                               <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
                                             </span>
-                                              <span class="product-r2-time"></span>
+                                                  <span class="product-r2-time"></span>
+                                              </div>
+                                          #end
+                                        </div>
+                                      #if ($_el.homepageProductInfo)
+                                          <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
+                                               data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
+                                      #elseif ($_el.homepageTopicInfo)
+                                          <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
+                                               data-topicId="$!{_el.homepageTopicInfo.topicId}">
+                                              <div class="product-r3c1 fl">
+                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                              </div>
+                                              <div class="product-r3c2 fr">
+                                                  <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
+                                              </div>
                                           </div>
                                       #end
-                                    </div>
-                                  #if ($_el.homepageProductInfo)
-                                      <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
-                                           data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
-                                  #elseif ($_el.homepageTopicInfo)
-                                      <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
-                                           data-topicId="$!{_el.homepageTopicInfo.topicId}">
-                                          <div class="product-r3c1 fl">
-                                              <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
-                                          </div>
-                                          <div class="product-r3c2 fr">
-                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
-                                          </div>
-                                      </div>
-                                  #end
+                                    </a>
                                 </li>
                             #end
                           </ul>
@@ -116,43 +116,45 @@
                           <ul class="clearfix product-list" data-itemIds=${fastSaleInfoItemIds}>
                             #foreach ($_el in $fastSaleInfoList.fastSaleInfos )
                                 <li>
-                                    <div class="product-r1">
-                                        <a href="$!{_el.link}" target="_blank"><img src="$!{_el.imgUrl}" alt=""/></a>
-                                        <span></span>
-                                    </div>
-                                    <h3>
-                                        <a href="$!{_el.link}" target="_blank" title="$!{_el.title}">$!{_el.title}</a>
-                                    </h3>
+                                    <a href="$!{_el.link}" target="_blank" title="$!{_el.title}">
+                                        <div class="product-r1">
+                                            <img src="$!{_el.imgUrl}" alt=""/>
+                                            <span></span>
+                                        </div>
+                                        <h3>
+                                          $!{_el.title}
+                                        </h3>
 
-                                    <p>$!{_el.subTitle}</p>
+                                        <p>$!{_el.subTitle}</p>
 
-                                    <div class="product-r2 clearfix">
-                                        <div class="product-r2c1 fl">
+                                        <div class="product-r2 clearfix">
+                                            <div class="product-r2c1 fl">
                                             <span class="icon icon6">
                                               <b>$!{_el.limitedTime}</b>天到
                                               <i></i>
                                             </span>
+                                            </div>
+                                          #if ($_el.homepageProductInfo)
+                                              <div class="product-r2c2 fr">
+                                                  <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
+                                              </div>
+                                          #end
                                         </div>
                                       #if ($_el.homepageProductInfo)
-                                          <div class="product-r2c2 fr">
-                                              <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
+                                          <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
+                                               data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
+                                      #elseif ($_el.homepageTopicInfo)
+                                          <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
+                                               data-topicId="$!{_el.homepageTopicInfo.topicId}">
+                                              <div class="product-r3c1 fl">
+                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                              </div>
+                                              <div class="product-r3c2 fr">
+                                                  <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
+                                              </div>
                                           </div>
                                       #end
-                                    </div>
-                                  #if ($_el.homepageProductInfo)
-                                      <div id="price4ProductClient" class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
-                                           data-itemId="$!{_el.homepageProductInfo.itemId}"></div>
-                                  #elseif ($_el.homepageTopicInfo)
-                                      <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
-                                           data-topicId="$!{_el.homepageTopicInfo.topicId}">
-                                          <div class="product-r3c1 fl">
-                                              <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
-                                          </div>
-                                          <div class="product-r3c2 fr">
-                                              <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
-                                          </div>
-                                      </div>
-                                  #end
+                                    </a>
                                 </li>
                             #end
                           </ul>
