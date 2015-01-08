@@ -159,6 +159,8 @@ requirejs.config({
     'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
     'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list',
 
+    'sf.b2c.mall.widget.not.support': 'scripts/widget/sf.b2c.mall.widget.not.support',
+
     'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
     'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner'
   }
