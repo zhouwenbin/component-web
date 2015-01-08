@@ -11,6 +11,7 @@ define(
 
       init: function (element, options) {
         setInterval(function () {
+          var csrfToken_example = window.localStorage.getItem('csrfToken');
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
             if (window.postMessage) {
