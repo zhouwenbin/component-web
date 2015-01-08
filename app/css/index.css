@@ -4,7 +4,6 @@
 
 /*slider*/
 .slider{
-	margin-bottom: 65px;
 	position: relative;;
 	height: 420px;
 }
@@ -91,8 +90,7 @@
 
 /*product*/
 .product{
-	margin-bottom: 28px;
-	*margin-bottom: 64px;
+	padding-top: 65px;
 	overflow: hidden;
 	*position: relative;
 }
