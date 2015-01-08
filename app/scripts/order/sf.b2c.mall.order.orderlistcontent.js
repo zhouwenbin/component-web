@@ -243,7 +243,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': false,
         'LOGISTICS_EXCEPTION': false,
         'SHIPPED': true,
-        'COMPLETED': true
+        'COMPLETED': true,
+        'AUTO_COMPLETED': true
       },
 
       /**
@@ -261,7 +262,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': ['INFO', 'ROUTE'],
         'LOGISTICS_EXCEPTION': ['INFO', 'ROUTE'],
         'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
-        'COMPLETED': ['INFO', 'ROUTE']
+        'COMPLETED': ['INFO', 'ROUTE'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE']
       },
 
       /**
