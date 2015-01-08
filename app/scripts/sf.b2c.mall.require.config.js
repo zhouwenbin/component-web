@@ -10,7 +10,7 @@ requirejs.config({
     'underscore.string': 'http://www.google.com/bower_components/underscore.string/dist/underscore.string.min',
     'store': 'http://www.google.com/bower_components/store/dist/store',
 
-    'sf.b2c.mall.api.sc.getUserRoutes':'http://www.google.com/app/scripts/api/sc/sf.b2c.mall.api.sc.getUserRoutes',
+    'sf.b2c.mall.api.sc.getUserRoutesByOrderId':'http://www.google.com/app/scripts/api/sc/sf.b2c.mall.api.sc.getUserRoutesByOrderId',
 
     'sf.b2c.mall.api.order.submitOrder': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.submitOrder',
     'sf.b2c.mall.api.order.submitOrderV2': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.submitOrderV2',
