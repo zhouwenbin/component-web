@@ -688,7 +688,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
-        $('#recommend2').html(template(this.options.detailContentInfo));
+        $('#recommend2').html(template(this.options.detailContentInfo)).addClass('recommend2');
       },
 
       renderDetailattributes: function() {
