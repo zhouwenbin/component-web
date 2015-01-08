@@ -51,11 +51,12 @@ define('sf.b2c.mall.order.iteminfo', [
 
           //是否是宁波保税，是得话才展示税额
           itemObj.showTax = iteminfo.saleInfo.bonded;
-
           itemObj.itemName = iteminfo.skuInfo.title;
-          itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
-		  
-          if(iteminfo.skuInfo && iteminfo.saleInfo){
+
+		      if(typeof iteminfo.skuInfo.images !== 'undefined'){
+            itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
+          }
+          if(iteminfo.skuInfo.skuSpecTuple && iteminfo.saleInfo.specGroups){
               itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
               var result = new Array();
               for (var i = 0; i < itemObj.specIds.length; i++) {
