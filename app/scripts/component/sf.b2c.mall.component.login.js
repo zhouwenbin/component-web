@@ -30,8 +30,6 @@ define(
     var ERROR_NO_INPUT_VERCODE = '请输入验证码';
     var ERROR_INPUT_VERCODE = '您的验证码输入有误，请重新输入';
 
-    var subdomain = ['http://item.sfht.com/proxy.html', 'http://topic.sfht.com/proxy.html'];
-
     return can.Control.extend({
 
       helpers: {
@@ -293,18 +291,11 @@ define(
         $('#code-error-tips').hide();
       },
 
-      attachProxy: function (csrfToken) {
-        _.each(subdomain, function(value, key, list){
-          var link  = value + '?' + $.param({csrfToken: csrfToken});
-          $('body').append('<iframe src="'+ link +'" style="display:none;" />')
-        });
-
-      },
-
       sendRequest:function(){
         var that =this;
         // @todo 发起登录请求
-        // document.domain = window.location.host;
+
+        document.domain = window.location.host;
         this.component.login.sendRequest()
           .done(function (data) {
             if (data.userId) {
@@ -312,10 +303,9 @@ define(
 
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));
-              that.attachProxy(data.csrfToken);
               setTimeout(function () {
                 window.location.href = params.from || 'index.html';
-              }, 10000);
+              }, 2000);
             }
           })
           .fail(function (error) {
