@@ -863,6 +863,7 @@ module.exports = function (grunt) {
       },
       common: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.common.min.js',
@@ -874,7 +875,10 @@ module.exports = function (grunt) {
           include: [
             'sf.b2c.mall.page.common',
             'sf.b2c.mall.component.header',
-            'sf.b2c.mall.component.footer'
+            'sf.b2c.mall.component.login.status.scanner',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
+            'sf.b2c.mall.widget.not.support'
           ],
           insertRequire: ['sf.b2c.mall.page.common']
         }
