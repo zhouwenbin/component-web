@@ -126,7 +126,7 @@
         ##                  客户端渲染end
             <!--推荐商品-->
             <!--小编推荐-->
-          #if($!{productInfo.skuInfo.recommend})
+          #if($!{productInfo.skuInfo.recommend}&&$!{productInfo.skuInfo.recommend.length()}>0)
               <div class="recommend2" id="recommend2">
                   <h2>小编推荐</h2>
 

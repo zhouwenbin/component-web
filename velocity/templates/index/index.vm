@@ -38,6 +38,7 @@
         <div class="pm">
           #if($limitedTimeSale&&$limitedTimeSale.size()!=0)
               <!--限时特卖-->
+              <span id="LimitedTimeSale" style="display: block;text-indent: -999em;">s</span>
               <div class="sf-b2c-mall-limitedtimesale serverRendered">
                   <div class="product">
                       <div id="LimitedTimeSale" class="mh clearfix">
@@ -107,6 +108,7 @@
           #end
           #if($fastSaleInfoList)
               <!--极速海淘-->
+              <span id="RapidSeaBuy" style="display: block;text-indent: -999em;">s</span>
               <div class="sf-b2c-mall-rapidseabuy serverRendered">
                   <div class="product">
                       <div id="RapidSeaBuy" class="mh">
