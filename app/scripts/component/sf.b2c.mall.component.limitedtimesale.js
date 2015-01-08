@@ -382,7 +382,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
         if (leftTime > 0) {
           // 12月26日（明天）12:00 开始
-          var time = moment(startDate).format('MM月DD日')+'（'+ moment(startDate).fromNow() +'）'+moment(startDate).format('hh:mm:ss')+ ' 开始';
+          var time = moment(startDate).format('MM月DD日')+'（'+ moment(startDate).fromNow() +'）'+moment(startDate).format('HH:mm:ss')+ ' 开始';
 
           if (timeNode.attr) {
             timeNode.attr('time', time);
