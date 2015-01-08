@@ -90,7 +90,7 @@ requirejs.config({
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'moment':'bower_components/momentjs/min/moment.min',
     'moment-zh-cn': 'bower_components/momentjs/locale/zh-cn',
-    'fastclick': 'bower_components/fastclick/lib/fastclick',
+    // 'fastclick': 'bower_components/fastclick/lib/fastclick',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',

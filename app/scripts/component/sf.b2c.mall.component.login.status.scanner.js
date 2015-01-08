@@ -46,7 +46,19 @@ define(
       },
 
       setPostMesageScanner: function () {
-        window.onmessage = this.setCsrfToken;
+        window.onmessage = function () {
+          if (event) {
+            try{
+              var info = JSON.parse(event.data);
+              var ocsrfToken = store.get('csrfToken');
+              if (ocsrfToken != info.csrfToken) {
+                store.set('csrfToken', info.csrfToken);
+              }
+            }catch(e){
+              throw e;
+            }
+          }
+        }
       },
 
       setWindowNameScanner: function () {

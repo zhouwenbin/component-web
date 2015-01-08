@@ -34,33 +34,3 @@
 .mask{
 	display: none;
 }
-.dialog-center{
-	width: 615px;
-	height: 326px;
-	left: 50%;
-	top: 50%;
-	margin-left: -307px;
-	margin-top: -163px;
-	position: fixed;
-	background: #fff;
-	border-radius: 4px;
-	z-index: 3;
-	text-align: center;
-	/*display: none;*/
-}
-.dialog-center .btn-close{
-	position: absolute;
-	right: 26px;
-	top: 26px;
-}
-.dialog-center p{
-	padding-top: 93px;
-	margin-bottom: 61px;
-	font-size: 14px;
-}
-.dialog-r1 .btn{
-	margin: 0 9px;
-	height: 50px;
-	line-height: 50px;
-	padding: 0 56px;
-}
