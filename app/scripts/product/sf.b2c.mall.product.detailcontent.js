@@ -9,9 +9,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.business.config',
+    'sf.b2c.mall.widget.message'
   ],
-  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig) {
+  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage) {
     return can.Control.extend({
 
       helpers: {
@@ -314,6 +315,17 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       '#gotobuy click': function() {
+        var amount = this.options.detailContentInfo.input.buyNum;
+        if (amount < 1 || isNaN(amount)){
+          this.options.detailContentInfo.input.attr("buyNum", 1);
+          var message = new SFMessage(null, {
+            'tip': '请输入正确的购买数量！',
+            'type': 'error'
+          });
+
+          return false;
+        }
+
         var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
           "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
           "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
@@ -728,7 +740,6 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));
-        debugger;
       },
 
       renderBreadScrumbInfo: function() {

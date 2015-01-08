@@ -533,6 +533,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.widget.not.support',
             'moment',
             'sf.helpers',
+            'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.detail'
           ],
           insertRequire: ['sf.b2c.mall.page.detail']
