@@ -366,7 +366,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'OPERATION_CANCEL': '订单取消成功',
         'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
         // 'BUYING_EXCEPTION': '采购异常',
-        'WAIT_SHIPPING': '订单正在等待仓库发货',
+        'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
         'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
         // 'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
@@ -425,7 +425,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       currentStepTipsMap: {
-        'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />' +
+        'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款。<br />' +
           '该订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'AUTO_CANCEL': '尊敬的客户，由于我们2小时内未收到您的订单款项，订单已被自动取消。<br />' +
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
