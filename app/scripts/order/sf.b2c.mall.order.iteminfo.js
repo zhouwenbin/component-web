@@ -53,7 +53,7 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.showTax = iteminfo.saleInfo.bonded;
           itemObj.itemName = iteminfo.skuInfo.title;
 
-		      if(typeof iteminfo.skuInfo.images !== 'underfined'){
+		      if(typeof iteminfo.skuInfo.images !== 'undefined'){
             itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
           }
           if(iteminfo.skuInfo.skuSpecTuple && iteminfo.saleInfo.specGroups){
