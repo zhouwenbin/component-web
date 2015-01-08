@@ -1152,7 +1152,7 @@ body.sub{
  .label-waining,
  .label-disabled {
  	height: 21px;
-	line-height: 21px;	
+	line-height: 21px;
 	color: #fff;
 	text-align: center;
 	border-radius: 2px;
@@ -1224,6 +1224,12 @@ body.sub{
 .page .icon16-6{
 	margin-right: -5px;
 }
+
+a[title="站长统计"]{
+	display: none;
+}
+
+
 /*retina*/
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)and (-webkit-min-device-pixel-ratio: 2) {
 	.icon{
@@ -1278,7 +1284,7 @@ body.sub{
 		background-position: -169px -141px;
 	}
 	.icon14{
-		
+
 		background-position: -278px -141px;
 	}
 	.icon15{
