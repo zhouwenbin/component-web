@@ -5,9 +5,10 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
   'sf.b2c.mall.api.user.updateRecAddress',
+  'placeholders',
   'sf.b2c.mall.widget.message'
 
-], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, SFMessage) {
+], function(can, RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, placeholders, SFMessage) {
 
   return can.Control.extend({
 

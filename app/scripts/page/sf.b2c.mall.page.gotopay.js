@@ -97,6 +97,5 @@ define(
       }
     });
 
-    window.name = 'sfht.com';
     new order('#order');
   });

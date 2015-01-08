@@ -4,9 +4,10 @@ define('sf.b2c.mall.component.receivepersoneditor', [
   'can',
   'sf.b2c.mall.api.user.createReceiverInfo',
   'sf.b2c.mall.api.user.updateReceiverInfo',
-  'sf.b2c.mall.widget.message'
+  'sf.b2c.mall.widget.message',
+  'placeholders'
 
-], function(can, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFMessage) {
+], function(can, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFMessage, placeholders) {
 
   return can.Control.extend({
 
