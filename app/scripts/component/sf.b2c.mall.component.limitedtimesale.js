@@ -7,11 +7,14 @@ define('sf.b2c.mall.component.limitedtimesale', [
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
     'moment-zh-cn',
     'moment',
-    'fastclick'
+    'fastclick',
+    'sf.util'
   ],
-  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment, fastclick) {
+  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment, fastclick, SFFn) {
 
-    fastclick.attach(document.body);
+    if (SFFn.isMobile.any()) {
+      fastclick.attach(document.body);
+    }
     return can.Control.extend({
 
       helpers: {
