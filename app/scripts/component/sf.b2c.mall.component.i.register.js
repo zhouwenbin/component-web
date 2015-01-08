@@ -144,6 +144,7 @@ define(
         if (_.isFunction(fn)) {
           if(SFFn.isMobile.any() || params.platform){
             data.attr('platform', params.platform || (SFFn.isMobile.any()?'mobile':null));
+            data.attr('ilogin', SFBizConf.setting.link.ilogin);
           }
           fn.call(this, data);
         }

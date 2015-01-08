@@ -61,7 +61,8 @@ define(
           verifiedCodeUrl:null,
           autologin:false,
           sessionId:null,
-          platform: params.platform || (SFFn.isMobile.any()?'mobile':null)
+          platform: params.platform || (SFFn.isMobile.any()?'mobile':null),
+          iregister: SFConfig.setting.link.iregister
         })
 
         this.render(this.data);
