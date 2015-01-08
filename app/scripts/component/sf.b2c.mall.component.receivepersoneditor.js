@@ -275,15 +275,15 @@ define('sf.b2c.mall.component.receivepersoneditor', [
             return false;
           })
 
-      } else {debugger;
+      } else {
         var result = this.add(person);
         result
-          .done(function(result) {debugger;
+          .done(function(result) {
             person.recId = result.value;
             element.parents('div#addPersonArea').toggle();
             $('#btn-add-person').show();
           })
-          .fail(function(error) {debugger;
+          .fail(function(error) {
             //显示错误
             if (that.idErrorMap[error]) {
               that.adapter.person.attr("error", {
