@@ -455,7 +455,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.headerandfooter.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -488,7 +488,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           insertRequire: ['sf.b2c.mall.page.main']
         }
@@ -516,7 +516,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -585,7 +585,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -605,7 +605,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -626,7 +626,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -647,7 +647,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'fastclick': '../bower_components/fastclick/lib/fastclick',
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick',
             'placeholders': '../bower_components/Placeholders/build/placeholders'
           },
           include: [
@@ -681,7 +681,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'placeholders',
@@ -717,7 +717,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'placeholders',
@@ -745,7 +745,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'placeholders',
@@ -776,7 +776,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -801,7 +801,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -836,7 +836,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'sf.b2c.mall.page.common',

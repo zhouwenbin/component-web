@@ -18,13 +18,9 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
-  'fastclick',
   'sf.util'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, fastclick, SFFn) {
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
 
-  if (SFFn.isMobile.any()) {
-    fastclick.attach(document.body);
-  }
   return can.Control.extend({
 
     defaults: {
@@ -154,11 +150,17 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     '#my-account click': function(element, event) {
       event && event.preventDefault();
-      if (SFComm.prototype.checkUserLogin.call(this)) {
+      // event.stopPropagation();
 
-      } else {
-        this.showLogin('center');
-      }
+      // if(SFFn.isMobile.any()){
+      //   return element.hover();
+      // }
+
+      // if (SFComm.prototype.checkUserLogin.call(this)) {
+
+      // } else {
+      //   this.showLogin('center');
+      // }
     },
 
     '#user-login click': function (element, event) {
