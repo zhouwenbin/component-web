@@ -173,8 +173,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<a class="fl" href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" /></a>' +
           '<div class="recommend-c1">' +
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
-          '<div class="recommend-r1">¥{{sf.price sellingPrice}}</div>' +
-          '<div class="recommend-r2"><del>¥{{sf.price originPrice}}</del></div>' +
+          '<div class="recommend-r1">¥{{sf.price sellingPrice}}<del>¥{{sf.price originPrice}}</del></div>' +
           '</div>' +
           '</li>' +
           '{{/each}}' +
