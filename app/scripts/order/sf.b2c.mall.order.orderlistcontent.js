@@ -55,7 +55,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 if (order.orderGoodsItemList[0]) {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
                   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  if (typeof order.orderGoodsItemList[0].spec !== 'underfined' ) {
+                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined' ) {
                     order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
                   }
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
