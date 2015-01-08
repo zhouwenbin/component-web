@@ -13,7 +13,6 @@ define(
         setInterval(function () {
           var csrfToken = store.get('csrfToken')
           if (csrfToken) {
-
             if (window.postMessage) {
               window.parent.postMessage(JSON.stringify({csrfToken: csrfToken}),'*')
             }else{

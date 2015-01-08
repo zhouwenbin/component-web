@@ -76,6 +76,5 @@ define(
       }
     });
 
-    window.name = 'sfht.com';
     var pageloader = new PageRegisterCheckLink();
   });

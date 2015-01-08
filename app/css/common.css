@@ -860,7 +860,7 @@ body.sub{
 .footer2 dd{
 	margin-top: 24px;
 }
-.footer2 dd a{
+.footer2 a{
 	font-size: 12px;
 }
 .footer2 dd a:hover{

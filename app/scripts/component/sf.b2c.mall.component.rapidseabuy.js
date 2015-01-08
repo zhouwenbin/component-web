@@ -17,7 +17,6 @@ define('sf.b2c.mall.component.rapidseabuy', [
             }else{
               return options.inverse(options.contexts || this);
             }
-
           }
         },
 

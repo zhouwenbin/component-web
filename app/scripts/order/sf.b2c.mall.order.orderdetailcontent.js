@@ -167,7 +167,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             cancelArr.push('AUTO_CANCEL');
             cancelArr.push('USER_CANCEL');
             cancelArr.push('OPERATION_CANCEL');
-            that.options.showShouldPayPrice = (cancelArr.indexOf(data.orderItem.orderStatus) == -1);
+            //判断浏览器是否支持indexOf方法，如果不支持执行下面方法
+            if(!Array.prototype.indexOf){
+              Array.prototype.indexOf = function(obj, start) {
+                for (var i = (start || 0), j = this.length; i < j; i++) {
+                  if (this[i] === obj) { return i; }
+                }
+                return -1;
+              }
+            }
+            that.options.showShouldPayPrice = (cancelArr.indexOf(data.orderItem.orderStatus) === -1);
             //是否是宁波保税，是得话才展示税额
             that.options.showTax = that.options.productList[0].bonded;
             that.options.shouldPayPrice = that.options.allTotalPrice;

@@ -14,10 +14,11 @@ define(
     'sf.b2c.mall.api.user.downSmsCode',
     'sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.sendActivateMail',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.business.config',
+    'sf.util'
   ],
 
-  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf) {
+  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -45,7 +46,7 @@ define(
       '1000020': '手机号已存在，<a href="login.html">立即登录</a>',
       '1000230': '手机号错误，请输入正确的手机号',
       '1000240': '手机验证码错误',
-      '1000250': '手机验证码已过期'
+      '1000250': '验证码输入有误，请重新输入'
     }
 
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
@@ -75,6 +76,16 @@ define(
 
     return can.Control.extend({
 
+      helpers: {
+        ismobile: function (mobile, options) {
+          if (mobile() == 'mobile') {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
+
       init: function (element, event) {
         this.component = {};
         this.component.sms = new SFApiUserDownSmsCode();
@@ -100,14 +111,14 @@ define(
 
       renderMap: {
         'fillinfo': function (data) {
-          var html = can.view('templates/component/sf.b2c.mall.component.register.fillinfo.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.fillinfo.mustache', data, this.helpers);
           this.element.html(html)
           this.element.find('.register').fadeIn('slow');
         },
 
         'success': function(data) {
           var that = this;
-          var html = can.view('templates/component/sf.b2c.mall.component.register.success.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.success.mustache', data, this.helpers);
           this.element.html(html);
           this.element.find('.register').fadeIn('slow', function () {
             that.timmer.call(that)
@@ -121,15 +132,19 @@ define(
           data.attr('msg', null);
           data.attr('msgType', 'icon26-2');
 
-          var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data);
+          var html = can.view('templates/component/sf.b2c.mall.component.register.confirminfo.mustache', data, this.helpers);
           this.element.html(html)
           this.element.find('.register').fadeIn('slow');
         }
       },
 
       render: function (tag, data) {
+        var params = can.deparam(window.location.search.substr(1));
         var fn = this.renderMap[tag];
         if (_.isFunction(fn)) {
+          if(SFFn.isMobile.any() || params.platform){
+            data.attr('platform', params.platform || (SFFn.isMobile.any()?'mobile':null));
+          }
           fn.call(this, data);
         }
       },
