@@ -210,7 +210,7 @@ define('sf.b2c.mall.component.header', ['jquery',
     watchLoginState: function(){
       var that = this;
       // if (!this.component.modal.isClosed()) {
-        setTimeout(function() {
+        setInterval(function() {
           if (that.component.modal.isClosed()) {
             that.afterLoginDest = null
           }
@@ -220,7 +220,6 @@ define('sf.b2c.mall.component.header', ['jquery',
             if (!that.component.modal.isClosed()) {
               that.component.modal.hide();
             }
-
 
             if (that.afterLoginDest) {
               var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
