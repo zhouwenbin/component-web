@@ -126,7 +126,7 @@
         ##                  客户端渲染end
             <!--推荐商品-->
             <!--小编推荐-->
-          #if($!{productInfo.skuInfo.recommend})
+          #if($!{productInfo.skuInfo.recommend}&&$!{productInfo.skuInfo.recommend.length()}>0)
               <div class="recommend2" id="recommend2">
                   <h2>小编推荐</h2>
 
@@ -219,5 +219,7 @@
     <!--尾部-->
 
   $!{_const_detailScript}
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 #end

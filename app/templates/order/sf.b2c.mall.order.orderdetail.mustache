@@ -9,6 +9,7 @@
         <p class="orderdetail-r2">
         {{{currentStepTips}}}
         </p>
+        {{#if showStep}}
         <ul class="orderdetail-step clearfix">
           <li class="{{submitedActive}}" id="SUBMITED">
             <div>
@@ -50,6 +51,7 @@
             <span></span>
           </li>
         </ul>
+        {{/if}}
         <h2>订单跟踪</h2>
         <div class="table table-2">
           <div class="table-h clearfix">
@@ -175,7 +177,7 @@
                 {{/if}}
                 <li>+运费：￥0</li>
             </div>
-            <div class="table-fr2">开业全场免邮，有钱，任性！</div>
+            <div class="table-fr2">开业全场免邮，飞机太多了，任性！</div>
             {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
           </div>
         </div>
