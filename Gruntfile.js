@@ -354,6 +354,8 @@ module.exports = function (grunt) {
             'p404.html',
             'password-change.html',
             'proxy.html',
+            'helpcenter-*.html',
+            'aboutus-*.html',
 
             'json/*.json',
 
@@ -643,8 +645,8 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'fastclick': '../bower_components/fastclick/lib/fastclick'
+            'fastclick': '../bower_components/fastclick/lib/fastclick',
+            'placeholders': '../bower_components/Placeholders/build/placeholders'
           },
           include: [
             'placeholders',
@@ -662,6 +664,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.order',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.order.fn',
+            'placeholders',
             'sf.b2c.mall.page.order'
           ],
           insertRequire: ['sf.b2c.mall.page.order']
@@ -695,6 +698,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.order.orderlistcontent',
             'moment',
+            'placeholders',
             'sf.b2c.mall.order.fn',
             'sf.b2c.mall.widget.message',
             'sf.b2c.mall.page.orderlist'
@@ -737,6 +741,7 @@ module.exports = function (grunt) {
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
             'fastclick': '../bower_components/fastclick/lib/fastclick'
@@ -756,6 +761,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.regions',
             'sf.b2c.mall.widget.message',
+            'placeholders',
             'sf.b2c.mall.page.center'
           ],
           insertRequire: ['sf.b2c.mall.page.center']
