@@ -12,7 +12,7 @@ define(
       init: function (element, options) {
         var params = can.deparam(window.location.search.substr(1));
         if (params) {
-          store.set('csrfToken' params.csrfToken);
+          store.set('csrfToken', params.csrfToken);
         }
 
         // setInterval(function () {
