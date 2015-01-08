@@ -135,9 +135,7 @@
                                         </div>
                                       #if ($_el.homepageProductInfo)
                                           <div class="product-r2c2 fr">
-                                              <span class="icon icon5">
-                                                <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
-                                              </span>
+                                              <img src="$!{_el.homepageProductInfo.showNationalUrl}" alt=""/>
                                           </div>
                                       #end
                                     </div>
