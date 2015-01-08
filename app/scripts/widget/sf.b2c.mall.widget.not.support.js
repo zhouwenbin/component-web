@@ -12,14 +12,16 @@ define(
 
       init:function  () {
 
-        var isIE = !!window.ActiveXObject;
-        var isIE6 = isIE&&!window.XMLHttpRequest;
-        var isIE8 = isIE&&!!document.documentMode;
-        var isIE7 = isIE&&!isIE6&&!isIE8;
-
-        if (isIE6 || isIE7) {
+        if(this.isIE(6) || this.isIE(7)){
           this.render();
         }
+      },
+
+      //判断浏览器是IE几
+      isIE:function(ver){
+        var b = document.createElement('b');
+        b.innerHTML = '<!--[if IE ' + ver + ']><i></i><![endif]-->';
+        return b.getElementsByTagName('i').length === 1;
       },
 
       '.btn-close click': function ($element, event) {

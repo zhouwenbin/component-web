@@ -68,9 +68,9 @@ define(
             var csrfToken = $('#proxy').get(0) && $('#proxy').get(0).contentWindow.name;
             if(csrfToken){
               store.set('csrfToken', csrfToken);
-              if (that.handler) {
-                clearInterval(that.handler);
-              }
+              // if (that.handler) {
+              //   clearInterval(that.handler);
+              // }
 
               if (this.userStatus != true && _.isFunction(that.options.changeStatus)) {
                 that.options.changeStatus(true);
@@ -79,7 +79,7 @@ define(
           }catch(e){
 
           }
-        }, 300);
+        }, 500);
       }
 
     });

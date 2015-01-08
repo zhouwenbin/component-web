@@ -546,6 +546,19 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.login']
         }
       },
+      ilogin: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.i.login.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.component.i.login',
+            'sf.b2c.mall.page.i.login'
+          ],
+          insertRequire: ['sf.b2c.mall.page.i.login']
+        }
+      },
       register: {
         options: {
           preserveLicenseComments: false,
@@ -561,6 +574,23 @@ module.exports = function (grunt) {
             'sf.b2c.mall.page.register'
           ],
           insertRequire: ['sf.b2c.mall.page.register']
+        }
+      },
+      iregister: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.i.register.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
+          },
+          include: [
+            'placeholders',
+            'sf.b2c.mall.component.i.register',
+            'sf.b2c.mall.page.i.register'
+          ],
+          insertRequire: ['sf.b2c.mall.page.i.register']
         }
       },
       process: {
@@ -923,7 +953,9 @@ module.exports = function (grunt) {
           'requirejs:detail',
           'requirejs:headerandfooter',
           'requirejs:login',
+          'requirejs:ilogin',
           'requirejs:register',
+          'requirejs:iregister',
           'requirejs:process',
           'requirejs:activated',
           'requirejs:nullactivated',
