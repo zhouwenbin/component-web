@@ -153,7 +153,7 @@ define(
         var that = this;
         setTimeout(function() {
           var timmer = that.data.attr('timmer');
-          if (timmer > 0) {
+          if (timmer > 1) {
             that.data.attr('timmer', timmer - 1);
             that.timmer.call(that);
           }else{
