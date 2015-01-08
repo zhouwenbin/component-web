@@ -15,8 +15,8 @@
           <span id="username-error-tips" class="icon icon26"></span>
         </li>
         <li>
-          <label id="pwd-default-text" class="pwd-default-text" for="password">密码</label>
-          <input id="user-pwd" type="password" class="input-password" can-value="password" />
+          {{^isPlaceholderSupport}}<label id="pwd-default-text" class="pwd-default-text" for="password">密码</label>{{/isPlaceholderSupport}}
+          <input id="user-pwd" type="password" class="input-password" can-value="password" {{#isPlaceholderSupport}}placeholder="密码"{{/isPlaceholderSupport}} />
           <span id="pwd-error-tips" class="icon icon26"></span>
         </li>
         {{#isNeedVerifiedCode}}

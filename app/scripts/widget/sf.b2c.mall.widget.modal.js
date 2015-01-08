@@ -18,7 +18,7 @@ define(
         data = _.extend(data, {id: this.modalid});
         var template = can.view.mustache((data && data.template) || this.template())
         this.element.append(template(data || this.options));
-        this.element.find('modal#'+this.modalid+' .mask').show();
+        this.element.find('.modal#'+this.modalid+' .mask').show();
       },
 
       hide: function () {
