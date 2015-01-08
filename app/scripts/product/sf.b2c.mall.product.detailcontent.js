@@ -295,6 +295,8 @@ define('sf.b2c.mall.product.detailcontent', [
       renderBuyInfo: function(detailContentInfo) {
         detailContentInfo.input.attr("buyNum", 1);
         detailContentInfo.input.attr("reduceDisable", "disable");
+        detailContentInfo.input.attr("addDisable", "");
+        detailContentInfo.input.attr("showRestrictionTips", false);
 
         var logisticsstart = $('#buyInfo').eq(0).attr('data-logisticsstart');
         var logisticsend = $('#buyInfo').eq(0).attr('data-logisticsend');
@@ -528,6 +530,9 @@ define('sf.b2c.mall.product.detailcontent', [
         }
 
         var amount = element[0].value;
+        if (amount < 1 || isNaN(amount)){
+          element.val(1);
+        }
         if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy) {
           input.attr("showRestrictionTips", true);
           $('#showrestrictiontipsspan').show();

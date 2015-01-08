@@ -190,7 +190,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               that.setPhotoN();
 
               if (null != idcard.credtImgUrl1 && "" != idcard.credtImgUrl1) {
-                $('#leftTip').empty();
+                // $('#leftTip').empty();
                 that.options.user.attr('credtImgUrl1', idcard.credtImgUrl1);
                 $('#file-submit-input-photo-p img').attr('src', that.getUserPhotoUrl({
                   n: idcard.credtImgUrl1
@@ -198,7 +198,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
 
               if (null != idcard.credtImgUrl2 && "" != idcard.credtImgUrl2) {
-                $('#rightTip').empty();
+                // $('#rightTip').empty();
                 that.options.user.attr('credtImgUrl2', idcard.credtImgUrl2);
                 $('#file-submit-input-photo-n img').attr('src', that.getUserPhotoUrl({
                   n: idcard.credtImgUrl2
