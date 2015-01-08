@@ -78,8 +78,7 @@
                         <!--运费-->
                     </div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
-                    <div id="bandInfo" class="mr5">品牌：
-                        <label>$!{productInfo.skuInfo.brand}</label>
+                    <div id="bandInfo" class="mr5">品牌：<label>$!{productInfo.skuInfo.brand}</label>
                     ##                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
@@ -219,7 +218,5 @@
     <!--尾部-->
 
   $!{_const_detailScript}
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 #end

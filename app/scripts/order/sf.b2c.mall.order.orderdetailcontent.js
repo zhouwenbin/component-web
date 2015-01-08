@@ -218,12 +218,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return getUserRoutes.sendRequest();
           })
           .done(function(routes) {
-            _.each(routes, function(route) {
-              that.options.userRoutes.push({
-                "gmtHappened": route.eventTime,
-                "description": reoute.position + " " + reoute.remark,
-                "operator": "系统"
-              });
+            _.each(routes.value, function(route) {
+              if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF'){
+                that.options.userRoutes.push({
+                  "gmtHappened": route.eventTime,
+                  "description": (typeof reoute.position != 'undefined' ? reoute.position : "") + " " + reoute.remark,
+                  "operator": "系统"
+                });
+              }
             })
           })
           .fail()
@@ -436,7 +438,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'USER_CANCEL': '尊敬的客户，您的订单已成功取消，期待您再次使用顺丰海淘。',
         'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
-        'OPERATION_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
+        'OPERATION_CANCEL': '尊敬的客户，您的订单已被运营取消，期待您再次使用顺丰海淘。',
         'BUYING': '尊敬的客户，您的订单已经审核通过，不能修改。<br />' +
           '订单正在进行境外采购，请等待采购结果。',
         'WAIT_SHIPPING': '尊敬的客户，您的订单已经通过系统审核，不能修改。<br />' +
