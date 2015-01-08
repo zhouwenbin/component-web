@@ -676,6 +676,7 @@ module.exports = function (grunt) {
       },
       order: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
@@ -745,6 +746,7 @@ module.exports = function (grunt) {
       },
       orderdetail: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail.min.js',
