@@ -376,6 +376,9 @@ module.exports = function (grunt) {
         }, {
           src: '<%= config.app %>/scripts/vendor/Uploader.swf',
           dest: '<%= config.dist %>/scripts/Uploader.swf'
+        }, {
+          src: '<%= config.app %>/css/browser.css',
+          dest: '<%= config.dist %>/css/browser.css'
         }]
       },
       styles: {
