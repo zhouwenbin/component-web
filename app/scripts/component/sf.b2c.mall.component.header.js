@@ -18,13 +18,9 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
-  'fastclick',
   'sf.util'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, fastclick, SFFn) {
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
 
-  if (SFFn.isMobile.any()) {
-    fastclick.attach(document.body);
-  }
   return can.Control.extend({
 
     defaults: {
