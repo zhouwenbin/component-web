@@ -90,7 +90,7 @@
 
 /*product*/
 .product{
-	padding-top: 65px;
+	padding-top: 60px;
 	overflow: hidden;
 	*position: relative;
 }
@@ -291,4 +291,7 @@
 }
 .product .btn-more{
 	border-radius: 28px;
+}
+.product2{
+	margin-top: -38px;
 }
