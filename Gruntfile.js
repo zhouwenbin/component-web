@@ -226,6 +226,7 @@ module.exports = function (grunt) {
         '<%= config.app %>/i.register.html',
         '<%= config.app %>/helpcenter-*.html',
         '<%= config.app %>/aboutus-*.html',
+        '<%= config.app %>/federatedLogin.html'
       ]
     },
 
@@ -362,6 +363,7 @@ module.exports = function (grunt) {
             'proxy.html',
             'helpcenter-*.html',
             'aboutus-*.html',
+            'federatedLogin.html',
 
             'json/*.json',
 
@@ -861,6 +863,19 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.proxy']
         }
       },
+      federallogin: {
+        options: {
+          optimize: 'none',
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          include: [
+            'sf.b2c.mall.page.federal.login'
+          ],
+          insertRequire: ['sf.b2c.mall.page.federal.login']
+        }
+      },
       common: {
         options: {
           optimize: 'none',
@@ -981,6 +996,7 @@ module.exports = function (grunt) {
           'requirejs:passwordchange',
           'requirejs:proxy',
           'requirejs:common',
+          'requirejs:federallogin',
 
           'usemin',
           // 'htmlmin',
