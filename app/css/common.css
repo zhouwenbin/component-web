@@ -988,6 +988,9 @@ body.sub{
 .tooptip-success .icon{
 	margin-right: 10px;
 }
+.tooltip-c2{
+	overflow: hidden;
+}
 /*表格*/
 .table{
 	font-size: 14px;
