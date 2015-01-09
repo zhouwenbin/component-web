@@ -11,6 +11,11 @@
   .register{
     background: none;
   }
+  .register .btn-close{
+    top: 98px;
+    right: 10px;
+    position: absolute;
+  }
 </style>
 </head>
 <body>
@@ -543,7 +548,11 @@
 
   <!--登陆-->
   <div class="mask"></div>
-  <iframe src="login-iframe.html" frameborder="0" width="100%" height="600" class="register"><a href="#" class="btn btn-close">关闭</a></iframe>
+  <div class="register">
+    <iframe src="login-iframe.html" frameborder="0" width="100%" height="600"></iframe>
+    <a href="#" class="btn btn-close">关闭</a>
+  </div>
+  
   <!--登陆-->
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/index.js"></script>
