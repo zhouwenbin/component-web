@@ -289,3 +289,6 @@
 	padding-top: 5px;
 	*padding-top: 43px;
 }
+.product .btn-buy{
+	border-radius: 28px;
+}
