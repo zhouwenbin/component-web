@@ -278,6 +278,10 @@ define('sf.b2c.mall.component.addreditor', [
       event && event.preventDefault();
       $('#cellphoneerror').hide();
     },
+    '#zipcode focus': function(element, event) {
+      event && event.preventDefault();
+      $('#zipcodeerror').hide();
+    },
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
@@ -295,6 +299,7 @@ define('sf.b2c.mall.component.addreditor', [
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
 
       $('#detailerror').hide();
+      $('#cellphoneerror').hide();
       $('#zipcodeerror').hide();
 
       //验证详细地址
@@ -315,19 +320,6 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      //验证邮编，如果用户没输，跳过；反之进行验证
-      if (!addr.zipCode) {} else {
-        var zipCodeRegex = /[1-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
-        if (!zipCodeRegex || addr.zipCode.length > 6) {
-          this.adapter.addr.attr("error", {
-            "zipCode": '邮编填写有误！'
-          })
-
-          $('#zipcodeerror').show();
-          return false;
-        }
-      }
-
       if (!addr.cellphone) {
         this.adapter.addr.attr("error", {
           "cellphone": '请填写收货人手机号码！'
@@ -344,6 +336,26 @@ define('sf.b2c.mall.component.addreditor', [
         $('#cellphoneerror').show();
         return false;
       }
+
+      //验证邮编，如果用户没输，跳过；反之进行验证
+      if (!addr.zipCode) {
+        this.adapter.addr.attr("error", {
+          "zipCode": '请填写邮编！'
+        });
+        $('#zipcodeerror').show();
+        return false;
+      }
+
+      var zipCodeRegex = /[0-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
+      if (!zipCodeRegex || addr.zipCode.length > 6) {
+        this.adapter.addr.attr("error", {
+          "zipCode": '邮编填写有误！'
+        })
+
+        $('#zipcodeerror').show();
+        return false;
+      }
+
 
       if (addr.addrId) {
         this.update(addr);

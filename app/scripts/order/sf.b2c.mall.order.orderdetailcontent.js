@@ -72,11 +72,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
 
-            //data.orderItem.orderStatus = "SUBMITED";
+            //data.orderItem.orderStatus = "AUTO_CANCEL";
             //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
+
+            that.options.showStep = true;
+            if (data.orderItem.orderStatus == 'AUTO_CANCEL' || data.orderItem.orderStatus == 'USER_CANCEL' || data.orderItem.orderStatus == 'OPERATION_CANCEL'){
+              that.options.showStep = false;
+            }
 
             that.options.user = new can.Map();
             that.options.IDCard = {};
@@ -157,7 +162,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               if(typeof that.options.productList[0].spec !== "undefined"){
                 item.spec = that.options.productList[0].spec.split(',').join("&nbsp;/&nbsp;");
               }
-              item.imageUrl = JSON.parse(item.imageUrl)[0];
+              if (item.imageUrl == "" || item.imageUrl == null){
+                item.imageUrl = "http://www.sfht.com/img/no.png";
+              } else {
+                item.imageUrl = JSON.parse(item.imageUrl)[0];
+              }
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
@@ -213,12 +222,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return getUserRoutes.sendRequest();
           })
           .done(function(routes) {
-            _.each(routes, function(route) {
-              that.options.userRoutes.push({
-                "gmtHappened": route.eventTime,
-                "description": reoute.position + " " + reoute.remark,
-                "operator": "系统"
-              });
+            _.each(routes.value, function(route) {
+              if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF'){
+                that.options.userRoutes.push({
+                  "gmtHappened": route.eventTime,
+                  "description": (typeof reoute.position != 'undefined' ? reoute.position : "") + " " + reoute.remark,
+                  "operator": "系统"
+                });
+              }
             })
           })
           .fail()
@@ -359,18 +370,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       statusDescription: {
-        'SUBMITED': '用户已经下单，正在等待用户支付',
+        'SUBMITED': '您的订单已提交，请尽快完成支付',
         'AUTO_CANCEL': '超时未支付，订单自动取消',
         'USER_CANCEL': '用户取消订单成功',
-        'AUDITING': '订单正在等待顺丰审核',
+        'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
         'OPERATION_CANCEL': '订单取消成功',
-        'BUYING': '尊敬的用户，您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
+        'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
         // 'BUYING_EXCEPTION': '采购异常',
-        'WAIT_SHIPPING': '订单正在等待仓库发货',
-        'SHIPPING': '您的订单正在顺丰海外仓进行出库操作。网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理',
+        'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
+        'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
         // 'LOGISTICS_EXCEPTION': '物流异常',
-        'SHIPPED': '尊敬的用户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-        'COMPLETED': '用户确认收货，订单已完成',
+        'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+        'COMPLETED': '您已确认收货，订单已完成',
         'AUTO_COMPLETED':'系统确认订单已签收超过7天，订单自动完成'
       },
 
@@ -425,18 +436,18 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       currentStepTipsMap: {
-        'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款（在线支付帮助）。<br />' +
+        'SUBMITED': '尊敬的客户，我们还未收到该订单的款项，请您尽快付款。<br />' +
           '该订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'AUTO_CANCEL': '尊敬的客户，由于我们2小时内未收到您的订单款项，订单已被自动取消。<br />' +
           '订单取消规则：订单会为您保留2小时（从下单时间算起），2小时后系统将自动取消未付款的订单。',
         'USER_CANCEL': '尊敬的客户，您的订单已成功取消，期待您再次使用顺丰海淘。',
         'AUDITING': '尊敬的客户，您的订单正在等待顺丰海淘运营审核。',
-        'OPERATION_CANCEL': '尊敬的客户，您的订单已成功取消，退款将会自动完成，请耐心等待。',
+        'OPERATION_CANCEL': '尊敬的客户，您的订单已被运营取消，期待您再次使用顺丰海淘。',
         'BUYING': '尊敬的客户，您的订单已经审核通过，不能修改。<br />' +
           '订单正在进行境外采购，请等待采购结果。',
         'WAIT_SHIPPING': '尊敬的客户，您的订单已经通过系统审核，不能修改。<br />' +
           '订单正在等待仓库发货。',
-        'SHIPPING': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。。<br />' +
+        'SHIPPING': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。<br />' +
           '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
         'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
         'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。',

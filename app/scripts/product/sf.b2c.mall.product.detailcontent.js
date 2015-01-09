@@ -47,7 +47,10 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
-        this.detailUrl = SFConfig.setting.api.detailurl;
+        // this.detailUrl = SFConfig.setting.api.detailurl;
+
+        // @todo 需要在配置文件中修改
+        this.detailUrl = 'http://item.sfht.com/';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
@@ -610,6 +613,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //去获得最新的sku信息
         this.gotoNewItem(element, type);
+
         return false;
       },
 
@@ -659,6 +663,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
             //设置为选中
             that.setFirstPicSelected();
+
+            $(".goods-c1r1 li").zoom();
           })
       },
 
@@ -686,7 +692,15 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
-        $('#recommend2').html(template(this.options.detailContentInfo));
+        $('#recommend2').html(template(this.options.detailContentInfo))
+        if (this.options.detailContentInfo &&
+            this.options.detailContentInfo.itemInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
+          $('#recommend2').addClass('recommend2').show();
+        }else{
+          $('#recommend2').removeClass('recommend2').hide();
+        }
       },
 
       renderDetailattributes: function() {
@@ -786,7 +800,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       breadScrumbTemplate: function() {
         return '<div class="crumbs">' +
-          '<a href="index.html">首页</a><span>&gt;</span>{{itemInfo.basicInfo.title}}' +
+          '<a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>{{itemInfo.basicInfo.title}}' +
           '</div>'
       },
 

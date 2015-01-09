@@ -78,8 +78,7 @@
                         <!--运费-->
                     </div>
                     <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
-                    <div id="bandInfo" class="mr5">品牌：
-                        <label>$!{productInfo.skuInfo.brand}</label>
+                    <div id="bandInfo" class="mr5">品牌：<label>$!{productInfo.skuInfo.brand}</label>
                     ##                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
@@ -126,7 +125,7 @@
         ##                  客户端渲染end
             <!--推荐商品-->
             <!--小编推荐-->
-          #if($!{productInfo.skuInfo.recommend})
+          #if($!{productInfo.skuInfo.recommend}&&$!{productInfo.skuInfo.recommend.length()}>0)
               <div class="recommend2" id="recommend2">
                   <h2>小编推荐</h2>
 

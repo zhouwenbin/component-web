@@ -127,7 +127,7 @@ define(
                 '<li><label for="">登录邮箱：</label>{{email}}</li>'+
                 '<li><label for="password">设置密码：</label><input type="password" class="input" id="input-password" can-value="password" placeholder=""><p>6-18位字母、数字或标点符号</p></li>'+
                 '<li><label for="repassword">重输密码：</label><input type="password" class="input" id="input-repassword" can-value="repassword" placeholder=""></li>'+
-                '{{#errorText}}<li><span class="icon icon26 error">{{errorText}}</span></li>{{/errorText}}'+
+                '{{#errorText}}<li style="padding-left: 88px;"><span class="icon icon26 error">{{errorText}}</span></li>{{/errorText}}'+
               '</ol>'+
 
               '<a href="#" class="btn btn-send">确认</a>'+

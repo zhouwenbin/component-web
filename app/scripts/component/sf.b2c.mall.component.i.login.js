@@ -61,11 +61,17 @@ define(
           verifiedCodeUrl:null,
           autologin:false,
           sessionId:null,
-          platform: params.platform || (SFFn.isMobile.any()?'mobile':null)
+          platform: params.platform || (SFFn.isMobile.any()?'mobile':null),
+          iregister: SFConfig.setting.link.iregister,
+          isPlaceholderSupport: this.isPlaceholderSupport()
         })
 
         this.render(this.data);
         this.getVerifiedCode();
+      },
+
+      isPlaceholderSupport: function() {
+        return 'placeholder' in document.createElement('input');
       },
 
       /**
