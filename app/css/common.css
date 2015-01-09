@@ -961,7 +961,7 @@ body.sub{
 
 	border:1px solid #DEDDDE;
 	padding: 24px 27px;
-	width: 280px;
+	width: 510px;
 	line-height: 18px;
 	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
 	background: #f4f4f9;
@@ -971,8 +971,9 @@ body.sub{
 }
 .tooltip .icon16-3{
 	position: absolute;
-	left: 156px;
+	left: 50%;
 	top: -27px;
+	margin-left: -10px
 }
 .tooptip-success{
 	display: inline-block;
