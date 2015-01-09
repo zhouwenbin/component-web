@@ -205,7 +205,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         return '<h4>物流跟踪</h4>' +
           '<ul>' +
           '{{#each userRoutes}}' +
-          '<li><span class="time">{{eventTime}}</span>{{position}} {{remark}}</li>' +
+          '<li><span class="time">{{sf.time eventTime}}</span>{{position}} {{remark}}</li>' +
           '{{/each}}' +
           '</ul>' +
           '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
