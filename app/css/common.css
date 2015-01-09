@@ -443,19 +443,7 @@ button.btn{
 	background: #7f7f7f;
 	background: rgba(0,0,0,0.5);
 }
-.btn-more{
-	color: #999;
-	font-size: 18px;
-	text-align: center;
-	background: url(../img/icon.png) no-repeat 0 -437px;
-	width: 222px;
-	height: 64px;
-	line-height: 64px;
-}
-.btn-more:hover{
-	background-position: 0 -506px;
-	color: #fff;
-}
+
 .btn-prev,
 .btn-next{
 	width: 41px;
@@ -470,7 +458,8 @@ button.btn{
 .btn-next{
 	background-position: 0 -258px;
 }
-.btn-buy{
+.btn-buy,
+.btn-more{
 	width: 247px;
 	height: 55px;
 	line-height: 53px;
@@ -483,13 +472,17 @@ button.btn{
 	border-radius: 2px;
 	box-shadow: 0 2px 1px rgba(4,0,0,0.1);
 }
-.btn-buy:hover{
+.btn-buy:hover,
+.btn-more:hover{
 	background: #e84145;
+	color: #fff;
 }
-.btn-buy:active{
+.btn-buy:active,
+.btn-more:active{
 	background: #ce3a3d;
 }
-.btn-buy.disable{
+.btn-buy.disable,
+.btn-more.disable{
 	background: #ccc;
 	border: 1px solid #ccc;
 	box-shadow:none;
@@ -515,13 +508,7 @@ button.btn{
 .btn-close:hover{
 	background-position: -102px -19px;
 }
-.btn-buy:hover{
-	color: #fff;
 
-}
-.btn-buy:hover{
-	background-position: -508px -61px;
-}
 .btn-goods,
 .btn-brand{
 	padding:3px 6px;
