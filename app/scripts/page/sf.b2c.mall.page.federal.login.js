@@ -37,7 +37,7 @@ define(
             }
           })
           .fail(function (errorCode) {
-            alert('@todo 跳转到错误页，等设计');
+            window.location.href = 'error.html'
           });
       }
 
