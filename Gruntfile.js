@@ -234,6 +234,27 @@ module.exports = function (grunt) {
       }
     },
 
+    rename: {
+      main: {
+        files: [
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.404', dest: '<%= config.dist %>/styles/sf.b2c.mall.404.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.common', dest: '<%= config.dist %>/styles/sf.b2c.mall.common.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.activated', dest: '<%= config.dist %>/styles/sf.b2c.mall.activated.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.agreement', dest: '<%= config.dist %>/styles/sf.b2c.mall.agreement.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.center', dest: '<%= config.dist %>/styles/sf.b2c.mall.center.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.detail.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.gotopay', dest: '<%= config.dist %>/styles/sf.b2c.mall.gotopay.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.register', dest: '<%= config.dist %>/styles/sf.b2c.mall.register.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.index', dest: '<%= config.dist %>/styles/sf.b2c.mall.index.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.order', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.order.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.detail.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.order.list', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.list.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.process', dest: '<%= config.dist %>/styles/sf.b2c.mall.process.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.retrieve', dest: '<%= config.dist %>/styles/sf.b2c.mall.retrieve.<%= config.version %>.<%= config.build %>.min.css' }
+        ]
+      }
+    },
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -281,6 +302,9 @@ module.exports = function (grunt) {
             if(typeof fn == 'function'){
               return fn(block);
             }
+          },
+          css: function (block) {
+            return '<link rel="stylesheet" href="'+block.dest+'.'+config.version+'.'+config.build+'.min.css">'
           }
         }
       },
@@ -933,28 +957,10 @@ module.exports = function (grunt) {
           'cssmin',
           'uglify',
           'copy:dist',
-          'requirejs:main',
-          'requirejs:detail',
-          'requirejs:headerandfooter',
-          'requirejs:login',
-          'requirejs:ilogin',
-          'requirejs:register',
-          'requirejs:iregister',
-          'requirejs:process',
-          'requirejs:activated',
-          'requirejs:nullactivated',
-          'requirejs:retrieve',
-          'requirejs:order',
-          'requirejs:orderlist',
-          'requirejs:orderdetail',
-          'requirejs:center',
-          'requirejs:gotopay',
-          'requirejs:passwordchange',
-          'requirejs:proxy',
-          'requirejs:common',
-
+          'requirejs',
+          'rename',
           'usemin',
-          // 'htmlmin',
+          'htmlmin',
           'strip:main',
           'clean:extra'
         ]);
