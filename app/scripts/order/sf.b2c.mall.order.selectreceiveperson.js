@@ -33,9 +33,14 @@ define('sf.b2c.mall.order.selectreceiveperson', [
         this.component.getIDCardUrlList.sendRequest()
           .done(function(message) {
 
+            var params = can.deparam(window.location.search.substr(1));
+            var map = {
+              'heike_online': []
+            }
+
             //获得地址列表
             that.adapter4List.persons = new ReceivePersonAdapter({
-              personList: message.items || [],
+              personList: map[params.saleid] || message.items || [],
               hasData: false
             });
 

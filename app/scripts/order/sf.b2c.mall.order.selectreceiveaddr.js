@@ -34,9 +34,15 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       getRecAddressList
         .sendRequest()
         .done(function(reAddrs) {
+
+          var params = can.deparam(window.location.search.substr(1));
+          var map = {
+            'heike_online': []
+          }
+
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
-            addressList: reAddrs.items,
+            addressList: map[params.saleid] || reAddrs.items || [],
             hasData: false
           });
 
