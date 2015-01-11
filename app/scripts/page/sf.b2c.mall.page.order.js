@@ -38,7 +38,7 @@ define(
         this.component.sfvendorinfo = new SFVendorInfo('.sf-b2c-mall-order-vendor-info');
 
         new ItemInfo('.sf-b2c-mall-order-itemInfo', {
-          vendorinfo: this.component.sfvendorinfo;
+          vendorinfo: this.component.sfvendorinfo
         });
       },
 
