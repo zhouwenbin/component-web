@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     app: 'app',
     dist: 'dist',
     target: 'dev',
+    version: 'ver.1.0',
+    build: 'build.'+Date.now(),
     base: null
   };
 
@@ -246,7 +248,8 @@ module.exports = function (grunt) {
               block.src = config.com
             }
 
-            return '<script src="'+block.dest+'"></script>';
+            // return '<script src="'+block.dest+'"></script>';
+            return '<script src="'+block.dest+'.'+config.version+'.'+config.build+'.min.js"></script>';
           }
         }
       },
