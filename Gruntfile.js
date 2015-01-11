@@ -678,13 +678,13 @@ module.exports = function (grunt) {
       },
       order: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            // 'fastclick': '../bower_components/fastclick/lib/fastclick',
             'placeholders': '../bower_components/Placeholders/build/placeholders'
           },
           include: [
@@ -698,6 +698,7 @@ module.exports = function (grunt) {
             'sf.b2c.mall.order.selectreceiveperson',
             'sf.b2c.mall.order.selectreceiveaddr',
             'sf.b2c.mall.order.iteminfo',
+            'sf.b2c.mall.order.vendor.info',
             'sf.b2c.mall.adapter.address.list',
             'sf.b2c.mall.component.addreditor',
             'sf.b2c.mall.adapter.order',
@@ -754,7 +755,6 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
-            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
           },
           include: [
             'placeholders',

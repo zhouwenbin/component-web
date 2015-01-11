@@ -92,6 +92,20 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
+    getSysType: function (saleid) {
+      var defaultKey = 'b2c';
+      var mapKey = {
+        'heike_online': 'heike'
+      }
+      return mapKey[saleid] || defaultKey;
+    },
+
+    getSysInfo: function () {
+      var mapKey = {
+        'heike_online': this.options.vendorinfo.get
+      }
+    },
+
     '#submitOrder click': function(element, event) {
       var that = this;
 
@@ -159,7 +173,8 @@ define('sf.b2c.mall.order.iteminfo', [
               "num": that.options.amount,
               "price": that.options.sellingPrice
             }]),
-            "sysType": "b2c"
+            "sysType": that.getSysType(that.options.saleid),
+            "sysInfo": that.options.getVendorInfo(that.options.saleid)
           }
 
         })

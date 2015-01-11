@@ -40,8 +40,6 @@ define(
             window.location.href = 'error.html'
           });
       }
-
-
     });
 
     new Launcher();
