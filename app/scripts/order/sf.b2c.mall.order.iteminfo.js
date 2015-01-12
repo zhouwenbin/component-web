@@ -95,6 +95,13 @@ define('sf.b2c.mall.order.iteminfo', [
     '#submitOrder click': function(element, event) {
       var that = this;
 
+      //防止重复提交
+      if (element.hasClass("disable")){
+        return false;
+      }
+
+      element.addClass("disable");
+
       var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
       var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
 
@@ -178,6 +185,7 @@ define('sf.b2c.mall.order.iteminfo', [
             });
         })
         .fail(function(error) {
+          element.removeClass("disable");
           new SFMessage(null, {
             'tip': that.errorMap[error] || '下单失败',
             'type': 'error'
