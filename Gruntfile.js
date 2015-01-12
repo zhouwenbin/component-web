@@ -226,7 +226,8 @@ module.exports = function (grunt) {
         '<%= config.app %>/i.register.html',
         '<%= config.app %>/helpcenter-*.html',
         '<%= config.app %>/aboutus-*.html',
-        '<%= config.app %>/federatedLogin.html'
+        '<%= config.app %>/federatedLogin.html',
+        '<%= config.app %>/error.html'
       ]
     },
 
@@ -364,6 +365,7 @@ module.exports = function (grunt) {
             'helpcenter-*.html',
             'aboutus-*.html',
             'federatedLogin.html',
+            'error.html',
 
             'json/*.json',
 
