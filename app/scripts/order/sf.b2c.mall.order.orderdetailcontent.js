@@ -151,7 +151,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             //加入订单状态
             _.each(that.options.traceList, function(trace) {
-              if (trace.status != 'SHIPPED' && trace.status != 'COMPLETED') {
+              if (trace.status != 'COMPLETED' && trace.status != 'AUTO_COMPLETED') {
                 that.options.userRoutes.push(trace);
               }
             })
@@ -168,6 +168,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 }
               })
             }
+
+            //增加剩下的
+            _.each(that.options.traceList, function(trace) {
+              if (trace.status == 'COMPLETED' || trace.status == 'AUTO_COMPLETED') {
+                that.options.userRoutes.push(trace);
+              }
+            })
 
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             that.options.receiveInfo.certNo = idcard.credtNum;
