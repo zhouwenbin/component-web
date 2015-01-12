@@ -45,7 +45,11 @@ define(
       vendorInfoMap: {
         'heike_online': function () {
           var params = can.deparam(window.location.search.substr(1));
-          return JSON.stringify({orgCode: params.orgCode, sellerId: this.data.sellid, sellername: this.data.sellname});
+          if (params.orgCode) {
+            return JSON.stringify({orgCode: params.orgCode, sellerId: this.data.sellid, sellername: this.data.sellname});
+          }else{
+            return null;
+          }
         }
       },
 
