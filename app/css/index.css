@@ -90,7 +90,7 @@
 
 /*product*/
 .product{
-	padding-top: 65px;
+	padding-top: 60px;
 	overflow: hidden;
 	*position: relative;
 }
@@ -288,4 +288,10 @@
 	text-align: center;
 	padding-top: 5px;
 	*padding-top: 43px;
+}
+.product .btn-more{
+	border-radius: 28px;
+}
+.product2{
+	margin-top: -38px;
 }

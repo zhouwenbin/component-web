@@ -47,7 +47,10 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
-        this.detailUrl = SFConfig.setting.api.detailurl;
+        // this.detailUrl = SFConfig.setting.api.detailurl;
+
+        // @todo 需要在配置文件中修改
+        this.detailUrl = 'http://item.sfht.com/';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
@@ -690,8 +693,13 @@ define('sf.b2c.mall.product.detailcontent', [
       renderRecommend2: function() {
         var template = can.view.mustache(this.recommend2Template());
         $('#recommend2').html(template(this.options.detailContentInfo))
-        if (this.options.detailContentInfo && this.options.detailContentInfo.recommendProducts) {
-          $('#recommend2').addClass('recommend2');
+        if (this.options.detailContentInfo &&
+            this.options.detailContentInfo.itemInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo &&
+            this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
+          $('#recommend2').addClass('recommend2').show();
+        }else{
+          $('#recommend2').removeClass('recommend2').hide();
         }
       },
 
