@@ -26,7 +26,9 @@ define(
       renderMap: {
         'heike_online': function (data) {
           this.data = new can.Map({
-            sellerid: null
+            sellerid: null,
+            orgCode: data.orgCode,
+            sellname: null
           });
           var html = can.view('templates/order/sf.b2c.mall.order.vendor.heike.mustache', this.data);
           this.element.html(html);
@@ -43,7 +45,7 @@ define(
       vendorInfoMap: {
         'heike_online': function () {
           var params = can.deparam(window.location.search.substr(1));
-          return JSON.stringify({orgCode: params.orgCode, sellerId: this.data.sellerid});
+          return JSON.stringify({orgCode: params.orgCode, sellerId: this.data.sellid, sellername: this.data.sellname});
         }
       },
 
