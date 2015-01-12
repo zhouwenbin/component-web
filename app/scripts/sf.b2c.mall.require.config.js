@@ -124,6 +124,7 @@ requirejs.config({
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
+    'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info',
 
     'sf.b2c.mall.adapter.address.list':'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions':'scripts/adapter/sf.b2c.mall.adapter.regions',
@@ -149,6 +150,7 @@ requirejs.config({
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
     'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
+    'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
 
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',

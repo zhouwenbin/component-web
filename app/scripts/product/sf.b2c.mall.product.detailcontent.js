@@ -50,7 +50,7 @@ define('sf.b2c.mall.product.detailcontent', [
         // this.detailUrl = SFConfig.setting.api.detailurl;
 
         // @todo 需要在配置文件中修改
-        this.detailUrl = 'http://item.sfht.com/';
+        this.detailUrl = 'http://item.sfht.com';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
