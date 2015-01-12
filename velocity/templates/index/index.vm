@@ -38,11 +38,10 @@
         <div class="pm">
           #if($limitedTimeSale&&$limitedTimeSale.size()!=0)
               <!--限时特卖-->
-              <span id="LimitedTimeSale" style="display: block;text-indent: -999em;">s</span>
 
               <div class="sf-b2c-mall-limitedtimesale serverRendered">
-                  <div class="product">
-                      <div id="LimitedTimeSale" class="mh clearfix">
+                  <div class="product product1" id="LimitedTimeSale">
+                      <div class="mh clearfix">
                           <h2 class="fl">限时特卖</h2>
                           <ul class="fl product-tab">
                               <li id="current" class="active">
@@ -109,11 +108,10 @@
           #end
           #if($fastSaleInfoList)
               <!--极速海淘-->
-              <span id="RapidSeaBuy" style="display: block;text-indent: -999em;">s</span>
 
               <div class="sf-b2c-mall-rapidseabuy serverRendered">
-                  <div class="product">
-                      <div id="RapidSeaBuy" class="mh">
+                  <div class="product product2" id="RapidSeaBuy">
+                      <div class="mh">
                           <h2>极速海淘</h2>
                       </div>
                       <div class="mb">

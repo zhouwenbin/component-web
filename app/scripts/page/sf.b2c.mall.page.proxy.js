@@ -20,7 +20,7 @@ define(
               window.location.href = 'about:blank'
             }
           }
-        }, 300)
+        }, 500)
       }
 
     });
