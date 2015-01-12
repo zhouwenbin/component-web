@@ -227,7 +227,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess();
+          that.onSuccess(data);
 
           return true;
         })

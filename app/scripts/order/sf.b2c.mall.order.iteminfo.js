@@ -174,7 +174,7 @@ define('sf.b2c.mall.order.iteminfo', [
               "price": that.options.sellingPrice
             }]),
             "sysType": that.getSysType(that.options.saleid),
-            "sysInfo": that.options.getVendorInfo(that.options.saleid)
+            "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
 
         })

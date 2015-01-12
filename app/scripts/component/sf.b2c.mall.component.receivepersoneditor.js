@@ -110,7 +110,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
           def.resolve(data);
           //that.hide();
-          that.onSuccess();
+          that.onSuccess(data);
         })
         .fail(function(error) {
           if (error === 1000310) {
