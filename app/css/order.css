@@ -62,6 +62,9 @@
 	font-size: 14px;
 	position: relative;
 }
+.order-b .input-light{
+	margin: 15px 0;
+}
 .order-b>ul>li{
 	display: none;
 }
@@ -262,6 +265,6 @@
 	vertical-align: top;
 }
 .order-r3 p{
-	margin:-20px 0 20px; 
+	margin:-20px 0 20px;
 	color: #999;
 }
