@@ -26,7 +26,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.element.html(html);
     },
 
-    paint: function() {
+    paint: function(data) {
       var that = this;
 
       var getRecAddressList = new SFGetRecAddressList();
@@ -34,9 +34,28 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       getRecAddressList
         .sendRequest()
         .done(function(reAddrs) {
+
+          var params = can.deparam(window.location.search.substr(1));
+          var map = {
+            'heike_online': function (list, id) {
+              var value = _.findWhere(list, {addrId: id});
+              if (value) {
+                return [value];
+              }else{
+                return []
+              }
+            }
+          }
+
+          var fn = map[params.saleid];
+          var list = null
+          if (_.isFunction(fn)) {
+            list = fn(reAddrs.items, data && data.value)
+          }
+
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
-            addressList: reAddrs.items,
+            addressList: list || reAddrs.items || [],
             hasData: false
           });
 
