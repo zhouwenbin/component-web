@@ -26,7 +26,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.element.html(html);
     },
 
-    paint: function() {
+    paint: function(data) {
       var that = this;
 
       var getRecAddressList = new SFGetRecAddressList();
@@ -34,9 +34,28 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       getRecAddressList
         .sendRequest()
         .done(function(reAddrs) {
+
+          var params = can.deparam(window.location.search.substr(1));
+          var map = {
+            'heike_online': function (list, id) {
+              var value = _.findWhere(list, {addrId: id});
+              if (value) {
+                return [value];
+              }else{
+                return []
+              }
+            }
+          }
+
+          var fn = map[params.saleid];
+          var list = null
+          if (_.isFunction(fn)) {
+            list = fn(reAddrs.items, data && data.value)
+          }
+
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
-            addressList: reAddrs.items,
+            addressList: list || reAddrs.items || [],
             hasData: false
           });
 
@@ -68,6 +87,17 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       return can.ajax('json/sf.b2c.mall.regions.json');
     },
 
+    /**
+     * [getSelectedIDCard 获得选中的收货地址]
+     * @return {[type]} [description]
+     */
+    getSelectedAddr: function() {
+      var index = $("#addrList").find("li.active").eq(0).attr('data-index');
+      if (typeof index == 'undefined'){
+          return false;
+        }
+      return this.adapter4List.addrs.get(index);
+    },
 
 
     /**

@@ -92,13 +92,34 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000700": "订单商品金额改变"
     },
 
+    getSysType: function (saleid) {
+      var defaultKey = 'b2c';
+      var mapKey = {
+        'heike_online': 'HEIKE_ONLINE'
+      }
+      return mapKey[saleid] || defaultKey;
+    },
+
+    getSysInfo: function () {
+      var mapKey = {
+        'heike_online': this.options.vendorinfo.get
+      }
+    },
+
     '#submitOrder click': function(element, event) {
       var that = this;
 
-      var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
-      var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
+      //防止重复提交
+      if (element.hasClass("disable")){
+        return false;
+      }
 
-      if (typeof personid == 'undefined') {
+      element.addClass("disable");
+
+      var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
+      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
+
+      if (typeof selectPer == 'undefined' || selectPer === false) {
 
         new SFMessage(null, {
           'tip': '请选择收货人！',
@@ -108,7 +129,7 @@ define('sf.b2c.mall.order.iteminfo', [
         return false;
       }
 
-      if (typeof addressid == 'undefined') {
+      if (typeof selectAddr == 'undefined' || selectAddr == false) {
 
         new SFMessage(null, {
           'tip': '请选择收货地址！',
@@ -117,27 +138,18 @@ define('sf.b2c.mall.order.iteminfo', [
         return false;
       }
 
-      var getRecAddressList = new SFGetRecAddressList();
-      var getIDCardUrlList = new SFGetIDCardUrlList();
-      var setDefaultAddr = new SFSetDefaultAddr({
-        "addrId": addressid
-      });
       var setDefaultRecv = new SFSetDefaultRecv({
-        "recId": personid
+        "recId": selectPer.recId
+      });
+
+      var setDefaultAddr = new SFSetDefaultAddr({
+        "addrId": selectAddr.addrId
       });
 
       var params = {};
 
-      can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
-        .done(function(addrList, personList, addrDefault, personDefault) {
-
-          var selectAddr = _.find(addrList.items, function(item) {
-            return item.addrId == addressid;
-          });
-
-          var selectPer = _.find(personList.items, function(item) {
-            return item.recId == personid;
-          });
+      can.when(setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
+        .done(function(addrDefault, personDefault) {
 
           params = {
             "addressId": JSON.stringify({
@@ -159,7 +171,8 @@ define('sf.b2c.mall.order.iteminfo', [
               "num": that.options.amount,
               "price": that.options.sellingPrice
             }]),
-            "sysType": "b2c"
+            "sysType": that.getSysType(that.options.saleid),
+            "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
 
         })
@@ -174,10 +187,11 @@ define('sf.b2c.mall.order.iteminfo', [
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
-              "recid": personid
+              "recid": selectPer.recId
             });
         })
         .fail(function(error) {
+          element.removeClass("disable");
           new SFMessage(null, {
             'tip': that.errorMap[error] || '下单失败',
             'type': 'error'
