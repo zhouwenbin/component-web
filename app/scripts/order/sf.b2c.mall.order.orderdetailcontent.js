@@ -16,9 +16,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.widget.message',
-    'moment'
+    'moment',
+    'sf.b2c.mall.api.order.confirmReceive'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment) {
+  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment, SFConfirmReceive) {
 
     return can.Control.extend({
 
@@ -75,7 +76,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
 
-            //data.orderItem.orderStatus = "AUTO_CANCEL";
+            //data.orderItem.orderStatus = "SHIPPED";
             //data.orderItem.rcvrState = 0
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
@@ -413,8 +414,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       optionHTML: {
         "NEEDPAY": '<a href="#" class="btn btn-send" id="pay">立即支付</a>',
-        "INFO": '<a href="#" class="btn btn-add">查看订单</a>',
-        "CANCEL": '<a href="#" class="btn btn-add">取消订单</a>'
+        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
       },
 
       statsMap: {
@@ -442,7 +442,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       nextStepMap: {
-        'SUBMITED': 'NEEDPAY'
+        'SUBMITED': 'NEEDPAY',
+        'SHIPPED': 'RECEIVED'
       },
 
       currentStepTipsMap: {
@@ -508,6 +509,45 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         $(element).parents(".register").hide(300);
         $(".mask").hide();
         return false;
+      },
+
+      '.received click': function(element, event) {
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'tip': '确认要签收该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.received, that, element)
+        });
+
+        return false;
+      },
+
+      received: function(element) {debugger;
+        var that = this;
+        var params = can.deparam(window.location.search.substr(1));
+        var confirmReceive = new SFConfirmReceive({
+          "subOrderId": params.suborderid
+        });
+        confirmReceive
+          .sendRequest()
+          .done(function(data) {
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收成功！',
+              'type': 'success'
+            });
+
+            that.render();
+          })
+          .fail(function(error) {
+
+            var message = new SFMessage(null, {
+              'tip': '确认签收失败！',
+              'type': 'error'
+            });
+
+          })
       },
 
       '#pay click': function(element, event) {
