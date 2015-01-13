@@ -80,6 +80,18 @@ define('sf.b2c.mall.order.selectreceiveperson', [
       },
 
       /**
+       * [getSelectedIDCard 获得选中的收货人]
+       * @return {[type]} [description]
+       */
+      getSelectedIDCard: function(){
+        var index = $("#personList").find("li.active").eq(0).attr('data-index');
+        if (typeof index == 'undefined'){
+          return false;
+        }
+        return this.adapter4List.persons.get(index);
+      },
+
+      /**
        * [description 点击编辑]
        * @param  {[type]} element
        * @param  {[type]} event
