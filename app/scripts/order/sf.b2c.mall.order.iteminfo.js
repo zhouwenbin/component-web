@@ -3,7 +3,8 @@
 define('sf.b2c.mall.order.iteminfo', [
   'can',
   'sf.b2c.mall.api.b2cmall.getProductHotData',
-  'sf.b2c.mall.api.b2cmall.getItemInfo',
+//  'sf.b2c.mall.api.b2cmall.getItemInfo',
+  'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
@@ -12,7 +13,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message'
 
-], function(can, SFGetProductHotData, SFGetItemInfo, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
+], function(can, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
   return can.Control.extend({
 
     /**
@@ -31,14 +32,17 @@ define('sf.b2c.mall.order.iteminfo', [
       // var receiverper =
       // var receiveraddr = element.parents
 
-      var getItemInfo = new SFGetItemInfo({
-        "itemId": this.options.itemid
+//      var getItemInfo = new SFGetItemInfo({
+//        "itemId": this.options.itemid
+//      });
+      var getItemSummary = new SFGetItemSummary({
+        "itemId":this.options.itemid
       });
       var prceInfo = new SFGetProductHotData({
         'itemId': this.options.itemid
       });
 
-      can.when(getItemInfo.sendRequest(), prceInfo.sendRequest())
+      can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
           var itemObj = {};
 
@@ -50,23 +54,19 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.shouldPay = itemObj.totalPrice;
 
           //是否是宁波保税，是得话才展示税额
-          itemObj.showTax = iteminfo.saleInfo.bonded;
-          itemObj.itemName = iteminfo.skuInfo.title;
+          itemObj.showTax = iteminfo.bonded;
+          itemObj.itemName = iteminfo.title;
 
-		      if(typeof iteminfo.skuInfo.images !== 'undefined'){
-            itemObj.picUrl = iteminfo.skuInfo.images[0].thumbImgUrl;
+		      if(typeof iteminfo.image !== 'undefined'){
+            itemObj.picUrl = iteminfo.image.thumbImgUrl;
           }
-          if(typeof iteminfo.skuInfo.skuSpecTuple !== 'undefined' && typeof iteminfo.saleInfo.specGroups !== 'undefined'){
-              itemObj.specIds = iteminfo.skuInfo.skuSpecTuple.specIds;
-              var result = new Array();
-              for (var i = 0; i < itemObj.specIds.length; i++) {
-                _.each(iteminfo.saleInfo.specGroups[i].specs, function (item) {
-                  if (itemObj.specIds[i] == item.specId) {
-                    result.push(iteminfo.saleInfo.specGroups[i].specName + ":" + item.specValue);
-                  }
-                })
-              }
-              itemObj.spec =result.join('&nbsp;/&nbsp;');
+
+          if(typeof iteminfo.specs != "undefined"){
+            var result = new Array();
+            _.each(iteminfo.specs,function(item){
+              result.push(item.specName + ":" +item.spec.specValue);
+            });
+            itemObj.spec =result.join('&nbsp;/&nbsp;');
           }
 
           that.options.allTotalPrice = itemObj.allTotalPrice;
@@ -95,7 +95,7 @@ define('sf.b2c.mall.order.iteminfo', [
     getSysType: function (saleid) {
       var defaultKey = 'b2c';
       var mapKey = {
-        'heike_online': 'heike'
+        'heike_online': 'HEIKE_ONLINE'
       }
       return mapKey[saleid] || defaultKey;
     },
@@ -116,49 +116,45 @@ define('sf.b2c.mall.order.iteminfo', [
 
       element.addClass("disable");
 
-      var addressid = element.parents().find("#addrList").find("li.active").eq(0).attr('data-addressid');
-      var personid = element.parents().find("#personList").find("li.active").eq(0).attr('data-recid');
+      var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
+      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
 
-      if (typeof personid == 'undefined') {
+      //进行校验，不通过则把提交订单点亮
+      if (typeof selectPer == 'undefined' || selectPer === false) {
 
         new SFMessage(null, {
           'tip': '请选择收货人！',
           'type': 'error'
         });
 
+        element.removeClass("disable");
         return false;
       }
 
-      if (typeof addressid == 'undefined') {
+      if (typeof selectAddr == 'undefined' || selectAddr == false) {
 
         new SFMessage(null, {
           'tip': '请选择收货地址！',
           'type': 'error'
         });
+
+        element.removeClass("disable");
         return false;
       }
 
-      var getRecAddressList = new SFGetRecAddressList();
-      var getIDCardUrlList = new SFGetIDCardUrlList();
-      var setDefaultAddr = new SFSetDefaultAddr({
-        "addrId": addressid
-      });
+      //实例化接口
       var setDefaultRecv = new SFSetDefaultRecv({
-        "recId": personid
+        "recId": selectPer.recId
+      });
+
+      var setDefaultAddr = new SFSetDefaultAddr({
+        "addrId": selectAddr.addrId
       });
 
       var params = {};
 
-      can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest(), setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
-        .done(function(addrList, personList, addrDefault, personDefault) {
-
-          var selectAddr = _.find(addrList.items, function(item) {
-            return item.addrId == addressid;
-          });
-
-          var selectPer = _.find(personList.items, function(item) {
-            return item.recId == personid;
-          });
+      can.when(setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
+        .done(function(addrDefault, personDefault) {
 
           params = {
             "addressId": JSON.stringify({
@@ -186,7 +182,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
         })
         .fail(function(error) {
-
+          element.removeClass("disable");
         })
         .then(function() {
           var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
@@ -196,7 +192,7 @@ define('sf.b2c.mall.order.iteminfo', [
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
-              "recid": personid
+              "recid": selectPer.recId
             });
         })
         .fail(function(error) {
