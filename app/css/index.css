@@ -179,6 +179,7 @@
 }
 .product-list li .mask{
 	position: absolute;
+	background: #fff;
 }
 .product-list li .icon24,
 .product-list li .icon24-1{
@@ -189,6 +190,7 @@
 	margin-top: -37px;
 	width: 74px;
 	height: 0;
+	z-index: 3;
 }
 
 .product-list li .icon25{
@@ -271,6 +273,9 @@
 	color: #dd3e3f;
 	margin-right: 5px;
 	font-size: 24px;
+}
+.product-r3c1 strong span{
+	font-size: 18px;
 }
 .product-r3c1 del{
 
