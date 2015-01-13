@@ -119,6 +119,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
 
+      //进行校验，不通过则把提交订单点亮
       if (typeof selectPer == 'undefined' || selectPer === false) {
 
         new SFMessage(null, {
@@ -126,6 +127,7 @@ define('sf.b2c.mall.order.iteminfo', [
           'type': 'error'
         });
 
+        element.removeClass("disable");
         return false;
       }
 
@@ -135,9 +137,12 @@ define('sf.b2c.mall.order.iteminfo', [
           'tip': '请选择收货地址！',
           'type': 'error'
         });
+
+        element.removeClass("disable");
         return false;
       }
 
+      //实例化接口
       var setDefaultRecv = new SFSetDefaultRecv({
         "recId": selectPer.recId
       });
@@ -177,7 +182,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
         })
         .fail(function(error) {
-
+          element.removeClass("disable");
         })
         .then(function() {
           var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
