@@ -156,9 +156,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * @param  {[type]} event 事件
        */
       '.table-1-logistics mouseover': function(element, event) {
-
+        event && event.preventDefault();
         var that = this;
         element.find('.tooltip').show();
+
 
         var getUserRoutes = new SFGetUserRoutes({
           'bizId': $(element).eq(0).attr('data-orderid')
@@ -166,19 +167,23 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getUserRoutes
           .sendRequest()
           .done(function(data) {
-            that.options.userRoutes = data.value;
+              if (data.value) {
 
-            var result = {};
-            result.userRoutes = [];
+                var len = data.value.length;
+                that.options.userRoutes = data.value.slice(len - 5, len).reverse();
 
-            _.each(that.options.userRoutes, function(item){
-              if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF'){
-                result.userRoutes.push(item);
-              }
-            });
+                var result = {};
+                result.userRoutes = [];
 
-            var template = can.view.mustache(that.getTraceListTemplate())
-            element.find('#traceList').html(template(result));
+                _.each(that.options.userRoutes, function (item) {
+                  if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF') {
+                    result.userRoutes.push(item);
+                  }
+                });
+
+                var template = can.view.mustache(that.getTraceListTemplate());
+                element.find('#traceList').html(template(result));
+            }
           })
           .fail(function(error) {
             console.error(error);
@@ -208,6 +213,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
           '{{/each}}' +
           '</ul>' +
+          '<a id="find-more-info" href="#">查看全部</a>' +
           '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
       },
 
@@ -379,14 +385,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //       })
       //   }, 1000);
       // },
-
+      "#find-more-info click":function(element, event){
+        this.linkOrderDetail();
+      },
       ".viewOrder click": function(element, event) {
-        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
-        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+        event && event.preventDefault();
+        this.linkOrderDetail();
+      },
+      linkOrderDetail:function(){
+        var orderid = $('#operationarea').attr('data-orderid');
+        var suborderid = $('#operationarea').attr('data-suborderid');
+        var recid = $('#operationarea').eq(0).attr('data-recid');
         window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
-
       ".cancelOrder click": function(element, event) {
         var that = this;
 

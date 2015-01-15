@@ -90,7 +90,7 @@
                                           <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
                                                data-topicId="$!{_el.homepageTopicInfo.topicId}">
                                               <div class="product-r3c1 fl">
-                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                                  <strong><span>￥</span>$!{_el.homepageTopicInfo.price}起</strong>
                                               </div>
                                               <div class="product-r3c2 fr">
                                                   <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
@@ -149,7 +149,7 @@
                                           <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
                                                data-topicId="$!{_el.homepageTopicInfo.topicId}">
                                               <div class="product-r3c1 fl">
-                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                                  <strong><span>￥</span>$!{_el.homepageTopicInfo.price}起</strong>
                                               </div>
                                               <div class="product-r3c2 fr">
                                                   <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
