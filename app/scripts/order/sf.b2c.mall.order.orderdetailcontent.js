@@ -523,7 +523,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         return false;
       },
 
-      received: function(element) {debugger;
+      received: function(element) {
         var that = this;
         var params = can.deparam(window.location.search.substr(1));
         var confirmReceive = new SFConfirmReceive({
