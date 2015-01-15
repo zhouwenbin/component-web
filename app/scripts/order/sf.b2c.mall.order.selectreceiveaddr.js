@@ -47,7 +47,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             }
           }
 
-          var fn = _.isEmpty(params.orgCode) && map[params.saleid];
+          var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
             list = fn(reAddrs.items, data && data.value)
