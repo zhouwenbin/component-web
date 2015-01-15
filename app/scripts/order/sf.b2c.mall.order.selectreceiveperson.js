@@ -41,7 +41,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
                 if (value) {
                   return [value];
                 }else{
-                  return []
+                  return [];
                 }
               }
             }
