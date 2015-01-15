@@ -148,13 +148,16 @@
 }
 .product-list li{
 	float:left;
-	width: 380px;
+	width: 378px;
 	margin-left: 17px;
-	border:1px solid #E5E5E5;
+	border:2px solid #E5E5E5;
 	padding-top: 10px;
 	background: #fff;
 	margin-bottom: 38px;
 
+}
+.product-list li:hover{
+	border-color: #DD3E3F;
 }
 .product-list li:hover .product-r3{
 	background: #DD3E3F;
@@ -176,6 +179,7 @@
 }
 .product-list li .mask{
 	position: absolute;
+	background: #fff;
 }
 .product-list li .icon24,
 .product-list li .icon24-1{
@@ -186,6 +190,7 @@
 	margin-top: -37px;
 	width: 74px;
 	height: 0;
+	z-index: 3;
 }
 
 .product-list li .icon25{
@@ -268,6 +273,9 @@
 	color: #dd3e3f;
 	margin-right: 5px;
 	font-size: 24px;
+}
+.product-r3c1 strong span{
+	font-size: 18px;
 }
 .product-r3c1 del{
 

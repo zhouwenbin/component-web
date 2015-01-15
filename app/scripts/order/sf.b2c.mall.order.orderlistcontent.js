@@ -278,8 +278,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       optionHTML: {
         "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>',
-        "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
+        "CANCEL": '<a href="#" class="link cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
       },
 
       '.received click': function(element, event) {

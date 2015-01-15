@@ -60,7 +60,6 @@ define(
         this.component.getIDCardUrlList.sendRequest()
         .done(function(message) {
 
-
           //获得地址列表
           that.adapter4List.persons = new ReceivePersonAdapter({
             personList: message.items,
