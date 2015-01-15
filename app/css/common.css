@@ -1229,3 +1229,12 @@ body.sub{
 a[title="站长统计"]{
 	display: none;
 }
+/*link*/
+.link{
+	color: #949494;
+	text-decoration: underline;
+}
+.link:hover{
+	color: #333;
+	text-decoration: underline;
+}
