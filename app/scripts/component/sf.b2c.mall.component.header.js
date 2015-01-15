@@ -141,8 +141,10 @@ define('sf.b2c.mall.component.header', ['jquery',
           .sendRequest()
           .done(function(data) {
             that.data.attr('user', null);
-            store.remove('csrfToken')
-            window.location.href = SFConfig.setting.link.index;
+            store.remove('csrfToken');
+            setTimeout(function(){
+              window.location.href = SFConfig.setting.link.index;
+            },2000);
           })
           .fail(function() {})
       }
