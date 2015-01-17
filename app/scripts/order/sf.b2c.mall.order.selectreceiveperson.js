@@ -3,6 +3,7 @@
 define('sf.b2c.mall.order.selectreceiveperson', [
     'can',
     'md5',
+    'underscore',
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.createReceiverInfo',
@@ -11,7 +12,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
     'sf.b2c.mall.adapter.receiveperson.list',
     'sf.b2c.mall.component.receivepersoneditor',
   ],
-  function(can, md5, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter, ReceivePersonAdapter, SFRecpersoneditor) {
+  function(can, md5, _, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter, ReceivePersonAdapter, SFRecpersoneditor) {
 
     return can.Control.extend({
 
@@ -33,9 +34,27 @@ define('sf.b2c.mall.order.selectreceiveperson', [
         this.component.getIDCardUrlList.sendRequest()
           .done(function(message) {
 
+            var params = can.deparam(window.location.search.substr(1));
+            var map = {
+              'heike_online': function (list, id) {
+                var value = _.findWhere(list, {recId: id});
+                if (value) {
+                  return [value];
+                }else{
+                  return [];
+                }
+              }
+            }
+
+            var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
+            var list = null
+            if (_.isFunction(fn)) {
+              list = fn(message.items, data && data.value)
+            }
+
             //获得地址列表
             that.adapter4List.persons = new ReceivePersonAdapter({
-              personList: message.items || [],
+              personList: list || message.items || [],
               hasData: false
             });
 
@@ -59,6 +78,18 @@ define('sf.b2c.mall.order.selectreceiveperson', [
           .fail(function(errorCode) {
             //console.error(errorCode);
           })
+      },
+
+      /**
+       * [getSelectedIDCard 获得选中的收货人]
+       * @return {[type]} [description]
+       */
+      getSelectedIDCard: function(){
+        var index = $("#personList").find("li.active").eq(0).attr('data-index');
+        if (typeof index == 'undefined'){
+          return false;
+        }
+        return this.adapter4List.persons.get(index);
       },
 
       /**

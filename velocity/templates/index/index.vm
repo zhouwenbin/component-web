@@ -39,9 +39,9 @@
           #if($limitedTimeSale&&$limitedTimeSale.size()!=0)
               <!--限时特卖-->
 
-              <div id="LimitedTimeSale" class="sf-b2c-mall-limitedtimesale serverRendered">
-                  <div class="product product1">
-                      <div id="LimitedTimeSale" class="mh clearfix">
+              <div class="sf-b2c-mall-limitedtimesale serverRendered">
+                  <div class="product product1" id="LimitedTimeSale">
+                      <div class="mh clearfix">
                           <h2 class="fl">限时特卖</h2>
                           <ul class="fl product-tab">
                               <li id="current" class="active">
@@ -90,7 +90,7 @@
                                           <div class="product-r3 clearfix" data-contentType="$!{_el.contentType}"
                                                data-topicId="$!{_el.homepageTopicInfo.topicId}">
                                               <div class="product-r3c1 fl">
-                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                                  <strong><span>￥</span>$!{_el.homepageTopicInfo.price}起</strong>
                                               </div>
                                               <div class="product-r3c2 fr">
                                                   <strong>$!{_el.homepageTopicInfo.discount}</strong>折起
@@ -109,9 +109,9 @@
           #if($fastSaleInfoList)
               <!--极速海淘-->
 
-              <div id="RapidSeaBuy" class="sf-b2c-mall-rapidseabuy serverRendered">
-                  <div class="product product2">
-                      <div id="RapidSeaBuy" class="mh">
+              <div class="sf-b2c-mall-rapidseabuy serverRendered">
+                  <div class="product product2" id="RapidSeaBuy">
+                      <div class="mh">
                           <h2>极速海淘</h2>
                       </div>
                       <div class="mb">
@@ -149,7 +149,7 @@
                                           <div class="product-r3 clearfix" data-contentType="$!{_el.fastSaleContentType}"
                                                data-topicId="$!{_el.homepageTopicInfo.topicId}">
                                               <div class="product-r3c1 fl">
-                                                  <strong>￥$!{_el.homepageTopicInfo.price}起</strong>
+                                                  <strong><span>￥</span>$!{_el.homepageTopicInfo.price}起</strong>
                                               </div>
                                               <div class="product-r3c2 fr">
                                                   <strong>$!{_el.homepageTopicInfo.discount}</strong>折起

@@ -216,6 +216,12 @@ define('sf.b2c.mall.component.addreditor', [
     add: function(addr) {
       var that = this;
       delete addr.recId;
+
+      var cinfo = can.deparam(window.location.search.substr(1));
+      if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
+        addr.partnerId = 'heike';
+      }
+
       var createRecAddress = new SFCreateRecAddress(addr);
       createRecAddress
         .sendRequest()
@@ -227,7 +233,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess();
+          that.onSuccess(data);
 
           return true;
         })

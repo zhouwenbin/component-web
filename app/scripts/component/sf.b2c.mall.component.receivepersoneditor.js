@@ -110,7 +110,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
 
           def.resolve(data);
           //that.hide();
-          that.onSuccess();
+          that.onSuccess(data);
         })
         .fail(function(error) {
           if (error === 1000310) {
@@ -276,6 +276,12 @@ define('sf.b2c.mall.component.receivepersoneditor', [
           })
 
       } else {
+
+        var cinfo = can.deparam(window.location.search.substr(1));
+        if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
+          person.partnerId = 'heike';
+        }
+
         var result = this.add(person);
         result
           .done(function(result) {

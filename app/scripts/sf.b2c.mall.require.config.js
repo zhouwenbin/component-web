@@ -77,6 +77,7 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getSkuInfo': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.product.findRecommendProducts': 'http://www.google.com/sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.b2cmall.getItemSummary': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getItemSummary',
 
     'sf.b2c.mall.business.config': 'http://www.google.com/app/scripts/config/sf.b2c.mall.business.<%= config.target %>.config',
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
@@ -124,6 +125,7 @@ requirejs.config({
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
+    'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info',
 
     'sf.b2c.mall.adapter.address.list':'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions':'scripts/adapter/sf.b2c.mall.adapter.regions',
@@ -149,6 +151,7 @@ requirejs.config({
     'sf.b2c.mall.page.passwordchange': 'scripts/page/sf.b2c.mall.page.passwordchange',
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
     'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
+    'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
 
     'sf.helpers':'scripts/util/sf.helpers',
     'sf.util':'scripts/util/sf.util.fn',

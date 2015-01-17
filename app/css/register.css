@@ -166,8 +166,10 @@
 	background: #F7F7F7;
 }
 .register-fr2 a{
-	color:#67b222;
 	margin-left: 12px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 30px;
 }
 .register-f .header-c2{
 	padding-top: 18px;
