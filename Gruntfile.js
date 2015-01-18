@@ -25,25 +25,30 @@ module.exports = function (grunt) {
     target: 'dev',
     version: 'ver.1.0',
     build: 'build.'+Date.now(),
-    base: null
+    base: null,
+    release: false
   };
 
+  var isRelease = function () {
+    return config.release?'static.sfht.com/':''
+  }
+
   var DEFAULT_JS_OUTPUT = function (block) {
-    return '<script src="'+block.dest+'.'+config.version+'.'+config.build+'.min.js"></script>';
+    return '<script src="'+ isRelease() +block.dest+'.'+config.version+'.'+config.build+'.min.js"></script>';
   }
   var JS_OUTPUT_MAP = {
     'require': function (block) {
-      return '<script src="scripts/require.min.js"></script>';
+      return '<script src="'+ isRelease() +'scripts/require.min.js"></script>';
     },
     'base': function (block) {
       block.dest = config.base.dest;
       block.src = config.base.src;
-      return '<script src="'+block.dest+'"></script>';
+      return '<script src="'+ isRelease() +block.dest+'"></script>';
     },
     'com': function (block) {
       block.dest = config.com;
       block.src = config.com;
-      return '<script src="'+block.dest+'"></script>';
+      return '<script src="'+ isRelease() +block.dest+'"></script>';
     }
   }
 
@@ -428,7 +433,6 @@ module.exports = function (grunt) {
 
             'styles/fonts/{,*/}*.*',
             '<%= config.base.dest %>',
-            '<%= config.com %>',
             'templates/**/*.mustache'
           ]
         }, {
@@ -482,6 +486,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.headerandfooter.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.footer',
@@ -513,6 +520,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           insertRequire: ['sf.b2c.mall.page.main']
         }
@@ -541,6 +549,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -566,6 +575,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.login',
             'sf.b2c.mall.page.login'
@@ -579,6 +591,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.i.login.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.i.login',
             'sf.b2c.mall.page.i.login'
@@ -594,6 +609,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -611,6 +627,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -626,6 +643,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.process.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.page.process'
           ],
@@ -638,6 +658,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
@@ -655,6 +678,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
@@ -672,6 +698,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.component.header',
             'sf.b2c.mall.component.login.status.scanner',
@@ -692,7 +721,8 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders'
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -726,6 +756,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -761,6 +792,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -787,6 +819,7 @@ module.exports = function (grunt) {
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
             'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'placeholders',
@@ -817,6 +850,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -841,6 +875,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'sf.b2c.mall.component.header',
@@ -860,6 +895,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.proxy.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.page.proxy'
           ],
@@ -873,6 +911,9 @@ module.exports = function (grunt) {
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths:{
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
           include: [
             'sf.b2c.mall.page.federal.login'
           ],
@@ -888,6 +929,7 @@ module.exports = function (grunt) {
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include: [
             'sf.b2c.mall.page.common',
@@ -962,35 +1004,28 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
-      var arr = filename.split('.')
-      if (arr[2] == 'com') {
-        config.com = 'scripts/base/'+filename
+      config.target = target;
+      config.base = {
+        dest: 'scripts/base/'+filename,
+        src: 'scripts/base/'+filename
       }
 
-      if (filename.indexOf(target) > -1 && arr[2] == target) {
-        config.target = target;
-        config.base = {
-          dest: 'scripts/base/'+filename,
-          src: 'scripts/base/'+filename
-        }
-
-        grunt.task.run([
-          'clean:dist',
-          'useminPrepare',
-          'concurrent:dist',
-          'autoprefixer',
-          'concat',
-          'cssmin',
-          'uglify',
-          'copy:dist',
-          'requirejs',
-          'rename',
-          'usemin',
-          'htmlmin',
-          'strip:main',
-          'clean:extra'
-        ]);
-      }
+      grunt.task.run([
+        'clean:dist',
+        'useminPrepare',
+        'concurrent:dist',
+        'autoprefixer',
+        'concat',
+        'cssmin',
+        'uglify',
+        'copy:dist',
+        'requirejs',
+        'rename',
+        'usemin',
+        'htmlmin',
+        'strip:main',
+        'clean:extra'
+      ]);
     })
   })
 
