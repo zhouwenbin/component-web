@@ -1027,7 +1027,12 @@ module.exports = function (grunt) {
         'clean:extra'
       ]);
     })
-  })
+  });
+
+  grunt.registerTask('release', function () {
+    config.release = true;
+    grunt.task.run(['build']);
+  });
 
   grunt.registerTask('default', [
     'newer:jshint',
