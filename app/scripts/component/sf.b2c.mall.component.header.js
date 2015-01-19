@@ -65,7 +65,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
-          index: SFConfig.setting.link.index
+          index: SFConfig.setting.link.index,
+          nickname:null
             // domain: SFConfig.setting.api.mainurl
         }));
       }
@@ -238,9 +239,17 @@ define('sf.b2c.mall.component.header', ['jquery',
             window.location.href = link;
           }
 
+          var userinfo = $.cookie(APPID + '_uinfo');
+          var arr = [];
+          if (userinfo) {
+            arr = userinfo.split(',');
+          }
+          //window.location.reload();
           that.data.attr('isUserLogin', true);
+          that.data.attr('nickname',arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0])
         } else {
           that.data.attr('isUserLogin', false);
+          that.data.attr('nickname',null);
         }
         // that.watchLoginState.call(that);
       }, 500);
