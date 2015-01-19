@@ -21,6 +21,8 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.util'
 ], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
 
+  var APPID = 1;
+
   return can.Control.extend({
 
     defaults: {
@@ -47,16 +49,25 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.afterLoginDest = null;
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
+
+        var userinfo = $.cookie(APPID + '_uinfo');
+        var arr = [];
+        if (userinfo) {
+          arr = userinfo.split(',');
+        }
+
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
-          index: SFConfig.setting.link.index
+          index: SFConfig.setting.link.index,
+          nickname: arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0]
           // domain: SFConfig.setting.api.mainurl
         }));
-      }else{
+      } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
-          index: SFConfig.setting.link.index
-          // domain: SFConfig.setting.api.mainurl
+          index: SFConfig.setting.link.index,
+          nickname:null
+            // domain: SFConfig.setting.api.mainurl
         }));
       }
 
@@ -66,9 +77,9 @@ define('sf.b2c.mall.component.header', ['jquery',
         var that = this;
         // 暂时没有跨域存在在需要控制跳转的页面
         // setTimeout(function() {
-          if (!SFComm.prototype.checkUserLogin.call(that)) {
-            window.location.href = SFConfig.setting.link.index;
-          }
+        if (!SFComm.prototype.checkUserLogin.call(that)) {
+          window.location.href = SFConfig.setting.link.index;
+        }
         // }, 800);
       }
     },
@@ -93,32 +104,32 @@ define('sf.b2c.mall.component.header', ['jquery',
 
     },
 
-    '#user-orderlist click': function ($element, event) {
+    '#user-orderlist click': function($element, event) {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = SFConfig.setting.link.orderlist;
-      }else{
+      } else {
         this.showLogin('orderlist');
       }
     },
 
-    '#user-password-change click': function ($element, event) {
+    '#user-password-change click': function($element, event) {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = SFConfig.setting.link.passwordchange;
-      }else{
+      } else {
         this.showLogin('passwordchange');
       }
     },
 
-    '#user-center click': function ($element, event) {
+    '#user-center click': function($element, event) {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = SFConfig.setting.link.center;
-      }else{
+      } else {
         this.showLogin('center');
       }
     },
@@ -141,8 +152,10 @@ define('sf.b2c.mall.component.header', ['jquery',
           .sendRequest()
           .done(function(data) {
             that.data.attr('user', null);
-            store.remove('csrfToken')
-            window.location.href = SFConfig.setting.link.index;
+            store.remove('csrfToken');
+            setTimeout(function(){
+              window.location.href = SFConfig.setting.link.index;
+            },2000);
           })
           .fail(function() {})
       }
@@ -163,17 +176,17 @@ define('sf.b2c.mall.component.header', ['jquery',
       // }
     },
 
-    '#user-login click': function (element, event) {
+    '#user-login click': function(element, event) {
       event && event.preventDefault();
       this.showLogin();
     },
 
-    '#user-register click': function (element, event) {
+    '#user-register click': function(element, event) {
       event && event.preventDefault();
       this.showRegister();
     },
 
-    showRegister: function (dest) {
+    showRegister: function(dest) {
       if (SFFn.isMobile.any()) {
         return window.location.href = SFConfig.setting.link.iregister;
       }
@@ -184,7 +197,7 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.register +'"></iframe>'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
       // this.watchLoginState.call(this);
       // this.setIframe.call(this);
@@ -202,37 +215,44 @@ define('sf.b2c.mall.component.header', ['jquery',
 
       this.component.modal.show({
         title: '登录顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="'+ SFConfig.setting.link.login +'"></iframe>'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.login + '"></iframe>'
       });
       this.component.modal.setTitle('顺丰海淘');
     },
 
-    watchLoginState: function(){
+    watchLoginState: function() {
       var that = this;
       // if (!this.component.modal.isClosed()) {
-        setInterval(function() {
-          if (that.component.modal.isClosed()) {
-            that.afterLoginDest = null
+      setInterval(function() {
+        if (that.component.modal.isClosed()) {
+          that.afterLoginDest = null
+        }
+
+        //console.log(SFComm.prototype.checkUserLogin.call(that))
+        if (SFComm.prototype.checkUserLogin.call(that)) {
+          if (!that.component.modal.isClosed()) {
+            that.component.modal.hide();
           }
 
-          //console.log(SFComm.prototype.checkUserLogin.call(that))
-          if (SFComm.prototype.checkUserLogin.call(that)) {
-            if (!that.component.modal.isClosed()) {
-              that.component.modal.hide();
-            }
-
-            if (that.afterLoginDest) {
-              var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
-              window.location.href = link;
-            }
-
-            that.data.attr('isUserLogin', true);
-          }else{
-            that.data.attr('isUserLogin', false);
+          if (that.afterLoginDest) {
+            var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
+            window.location.href = link;
           }
 
-          // that.watchLoginState.call(that);
-        }, 500);
+          var userinfo = $.cookie(APPID + '_uinfo');
+          var arr = [];
+          if (userinfo) {
+            arr = userinfo.split(',');
+          }
+          //window.location.reload();
+          that.data.attr('isUserLogin', true);
+          that.data.attr('nickname',arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0])
+        } else {
+          that.data.attr('isUserLogin', false);
+          that.data.attr('nickname',null);
+        }
+        // that.watchLoginState.call(that);
+      }, 500);
       // }
     }
   });

@@ -170,8 +170,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
               if (data.value) {
 
                 var len = data.value.length;
-                that.options.userRoutes = data.value.slice(len - 5, len).reverse();
-
+                 if(len <= 5){
+                   that.options.userRoutes = data.value.reverse();
+                 }else{
+                   that.options.userRoutes = data.value.slice(len - 5, len).reverse();
+                 }
                 var result = {};
                 result.userRoutes = [];
 
@@ -278,8 +281,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       optionHTML: {
         "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>',
-        "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
+        "CANCEL": '<a href="#" class="link cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
       },
 
       '.received click': function(element, event) {
@@ -386,6 +389,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //   }, 1000);
       // },
       "#find-more-info click":function(element, event){
+        event && event.preventDefault();
         this.linkOrderDetail();
       },
       ".viewOrder click": function(element, event) {
@@ -396,7 +400,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var orderid = $('#operationarea').attr('data-orderid');
         var suborderid = $('#operationarea').attr('data-suborderid');
         var recid = $('#operationarea').eq(0).attr('data-recid');
-        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid);
       },
       ".cancelOrder click": function(element, event) {
         var that = this;
