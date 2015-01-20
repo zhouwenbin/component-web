@@ -72,6 +72,9 @@ body{
 .aboutus-c2 .p3{
 	font-size: 14px;
 }
+.aboutus-c2 .p4{
+	font-size: 16px;
+}
 .aboutus .icon16-5{
 	display: none;
 	position: absolute;
@@ -92,4 +95,7 @@ body{
 }
 .aboutus-c2 img{
 	margin-bottom: 28px;
+}
+.aboutus-c2 strong{
+	color: #e13b3a;
 }

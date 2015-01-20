@@ -59,7 +59,7 @@ define('sf.b2c.mall.component.header', ['jquery',
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
           index: SFConfig.setting.link.index,
-          nickname: arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0]
+          nickname: arr[0]
           // domain: SFConfig.setting.api.mainurl
         }));
       } else {
@@ -246,7 +246,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           }
           //window.location.reload();
           that.data.attr('isUserLogin', true);
-          that.data.attr('nickname',arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0])
+          that.data.attr('nickname',arr[0])
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname',null);
