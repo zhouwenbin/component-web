@@ -278,7 +278,7 @@ define('sf.b2c.mall.component.receivepersoneditor', [
       } else {
 
         var cinfo = can.deparam(window.location.search.substr(1));
-        if (cinfo.saleid == 'heike_online') {
+        if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
           person.partnerId = 'heike';
         }
 
