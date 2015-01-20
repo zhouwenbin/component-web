@@ -169,12 +169,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
               if (data.value) {
 
-                var len = data.value.length;
-                 if(len <= 5){
-                   that.options.userRoutes = data.value.reverse();
-                 }else{
-                   that.options.userRoutes = data.value.slice(len - 5, len).reverse();
-                 }
+                that.options.userRoutes = data.value;
+
                 var result = {};
                 result.userRoutes = [];
 
@@ -184,6 +180,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   }
                 });
 
+                var len = result.userRoutes.length;
+                if(len <= 5){
+                  result.userRoutes = result.userRoutes.reverse();
+                }else{
+                  result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
+                }
                 var template = can.view.mustache(that.getTraceListTemplate());
                 element.find('#traceList').html(template(result));
             }
@@ -388,19 +390,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //       })
       //   }, 1000);
       // },
-      "#find-more-info click":function(element, event){
-        event && event.preventDefault();
-        this.linkOrderDetail();
-      },
+
       ".viewOrder click": function(element, event) {
-        event && event.preventDefault();
-        this.linkOrderDetail();
+        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
-      linkOrderDetail:function(){
-        var orderid = $('#operationarea').attr('data-orderid');
-        var suborderid = $('#operationarea').attr('data-suborderid');
-        var recid = $('#operationarea').eq(0).attr('data-recid');
-        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid);
+
+      "#find-more-info click": function(element, event) {
+        var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
+        var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
+        var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
+        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {
         var that = this;
