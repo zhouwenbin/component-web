@@ -97,8 +97,13 @@ define(
         if (this.data.isModified) {
 
           var nickName = this.data.input.attr('nick');
+          var index = nickName.indexOf(',');
+          if(index >=0){
+            window.alert('您的昵称中有非法字符');
+            return false;
+          }
           if (nickName.length > 10) {
-            window.alert('您的昵称太长，不能超过10个字节');
+            window.alert('您的昵称太长，请返回修改');
             return false;
           }
 
