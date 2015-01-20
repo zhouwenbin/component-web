@@ -214,10 +214,12 @@ module.exports = function (grunt) {
         '<%= config.app %>/nullactivated.html',
         '<%= config.app %>/retrieve.html',
         '<%= config.app %>/order.html',
+        '<%= config.app %>/order2.html',
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
+        '<%= config.app %>/gotopay2.html',
         '<%= config.app %>/404.html',
         '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html',
@@ -354,10 +356,12 @@ module.exports = function (grunt) {
             'nullactivated.html',
             'retrieve.html',
             'order.html',
+            'order2.html',
             'orderlist.html',
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            'gotopay2.html',
             '404.html',
             'p404.html',
             'password-change.html',
@@ -712,6 +716,40 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.order']
         }
       },
+      order2: {
+        options: {
+          optimize: 'none',
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders'
+          },
+          include: [
+            'placeholders',
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.login.status.scanner',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.not.support',
+            'sf.b2c.mall.widget.modal',
+            'sf.b2c.mall.order.step',
+            'sf.b2c.mall.order.selectreceiveperson',
+            'sf.b2c.mall.order.selectreceiveaddr',
+            'sf.b2c.mall.order.iteminfo2',
+            'sf.b2c.mall.order.vendor.info',
+            'sf.b2c.mall.adapter.address.list',
+            'sf.b2c.mall.component.addreditor',
+            'sf.b2c.mall.adapter.order',
+            'sf.b2c.mall.adapter.regions',
+            'sf.b2c.mall.order.fn',
+            'placeholders',
+            'sf.b2c.mall.page.order2'
+          ],
+          insertRequire: ['sf.b2c.mall.page.order2']
+        }
+      },
       orderlist: {
         options: {
           preserveLicenseComments: false,
@@ -829,6 +867,31 @@ module.exports = function (grunt) {
             'sf.b2c.mall.page.gotopay'
           ],
           insertRequire: ['sf.b2c.mall.page.gotopay']
+        }
+      },
+      gotopay2: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            // 'fastclick': '../bower_components/fastclick/lib/fastclick'
+          },
+          include: [
+            'sf.b2c.mall.component.header',
+            'sf.b2c.mall.component.login.status.scanner',
+            'sf.b2c.mall.component.footer',
+            'sf.b2c.mall.widget.modal',
+            'sf.b2c.mall.widget.not.support',
+            'sf.b2c.mall.order.step',
+            'sf.helpers',
+            'moment',
+            'sf.b2c.mall.order.fn',
+            'sf.b2c.mall.page.gotopay2'
+          ],
+          insertRequire: ['sf.b2c.mall.page.gotopay2']
         }
       },
       passwordchange: {
@@ -991,10 +1054,12 @@ module.exports = function (grunt) {
           'requirejs:nullactivated',
           'requirejs:retrieve',
           'requirejs:order',
+          'requirejs:order2',
           'requirejs:orderlist',
           'requirejs:orderdetail',
           'requirejs:center',
           'requirejs:gotopay',
+          'requirejs:gotopay2',
           'requirejs:passwordchange',
           'requirejs:proxy',
           'requirejs:common',
