@@ -27,48 +27,34 @@ define(
         this.component.updateUserInfo = new UpdateUserInfo();
         this.component.getUserInfo = new SFGetUserInfo();
 
-        var userinfo = $.cookie(APPID + '_uinfo');
-        var arr = [];
-        if (userinfo) {
-          arr = userinfo.split(',');
-        }
+        var that = this;
+        this.component.getUserInfo.sendRequest()
+            .done(function(data) {
 
-        this.data = new can.Map({
-          isModified: false,
-          user: {
-            nick: arr[0],
-            gender: GENDER_MAP[arr[1]]
-          },
-          input: {
-            nick: arr[0],
-            gender: arr[1]
-          }
-        });
-        this.render(this.data);
+              that.data = new can.Map({
+                isModified: false,
+                user: {
+                  nick: data.nick,
+                  gender: GENDER_MAP[data.gender]
+                },
+                input: {
+                  nick: data.nick,
+                  gender: data.gender
+                }
+              });
+
+              that.render(that.data);
+
+            })
+            .fail(function(errorCode) {
+              throw new Error(errorCode)
+            })
       },
       render: function(data) {
 
         var html = can.view('templates/center/sf.b2c.mall.center.userinfo.mustache', data);
         this.element.html(html);
 
-        var that = this;
-        if (!this.data.user.nick) {
-          this.component.getUserInfo.sendRequest()
-            .done(function(data) {
-
-              // $.cookie('gender', data.gender);
-              // $.cookie('nick', data.nick);
-
-              that.data.user.attr({
-                nick: data.nick,
-                gender: GENDER_MAP[data.gender]
-              });
-
-            })
-            .fail(function(errorCode) {
-              throw new Error(errorCode)
-            })
-        }
       },
 
       /**
