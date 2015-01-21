@@ -21,6 +21,13 @@ define(
 
       init: function(element, options) {
         var params = can.deparam(window.location.search.substr(1));
+
+        var getOrder = new SFGetOrder({
+          "orderId": params.orderid
+        });
+
+
+
         this.options.orderid = params.orderid;
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
