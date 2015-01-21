@@ -38,8 +38,8 @@
         <div class="pm">
           #if($freshFoodList)
               <!--生鲜-->
-              <div class="sf-b2c-mall-freshFoodList serverRendered">
-                  <div class="product product2" id="FreshFoodList">
+              <div class="sf-b2c-mall-freshfoodlist serverRendered">
+                  <div class="product product2" id="freshfoodlist">
                       <div class="mh">
                           <h2>Hi生鲜</h2>
                       </div>
