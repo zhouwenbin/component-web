@@ -28,6 +28,7 @@ define(
 
 
         this.options.orderid = params.orderid;
+        //ceshi
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
         this.step = null;
