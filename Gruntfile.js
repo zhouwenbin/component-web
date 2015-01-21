@@ -721,7 +721,7 @@ module.exports = function (grunt) {
           optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
@@ -873,7 +873,7 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
