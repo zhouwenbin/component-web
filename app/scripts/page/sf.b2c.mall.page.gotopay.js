@@ -28,7 +28,6 @@ define(
 
 
         this.options.orderid = params.orderid;
-        //
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
         this.step = null;
