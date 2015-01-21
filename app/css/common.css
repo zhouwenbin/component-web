@@ -1013,6 +1013,9 @@ body.sub{
 	width: 500px;
 	padding-left: 23px;
 }
+.table-c1 strong{
+	color: #e03d40;
+}
 .table-c2{
 	width: 130px;
 }
