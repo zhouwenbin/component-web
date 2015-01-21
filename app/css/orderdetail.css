@@ -193,3 +193,13 @@
 .pay-r .btn{
 	padding: 0 120px;
 }
+.pay-r2c2{
+	font-size: 14px;
+	font-weight: bold;
+}
+.pay-r2c2 strong{
+	color: #df3d40;
+}
+.pay-price{
+	font-size: 24px;
+}
