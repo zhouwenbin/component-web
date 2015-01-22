@@ -133,7 +133,7 @@ define(
         }
 
         SFOrderFn.payV2({
-          orderId: that.options.orderid,
+          orderid: that.options.orderid,
           payType: that.getPayType()
         }, callback);
       }

@@ -553,22 +553,25 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       '#pay click': function(element, event) {
         event && event.preventDefault();
         var that = this;
-        var callback = {
-          error: function() {
-            var message = new SFMessage(null, {
-              'tip': '支付失败！',
-              'type': 'error',
-              'okFunction': function() {
-                that.render();
-              }
-            });
-          }
-        }
-
         var params = can.deparam(window.location.search.substr(1));
-        SFOrderFn.payV2({
-          orderid: params.orderid
-        }, callback)
+
+        window.open("/gotopay.html?orderid=" + params.orderid + "&recid=" + params.recid, "_blank");
+//        var callback = {
+//          error: function() {
+//            var message = new SFMessage(null, {
+//              'tip': '支付失败！',
+//              'type': 'error',
+//              'okFunction': function() {
+//                that.render();
+//              }
+//            });
+//          }
+//        }
+
+
+//        SFOrderFn.payV2({
+//          orderid: params.orderid
+//        }, callback)
       }
 
     });

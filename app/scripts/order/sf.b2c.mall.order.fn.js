@@ -15,7 +15,7 @@ define(
     return {
       payV2: function (data, callback) {
         requestPayV2.setData({
-          "orderId": data.orderId,
+          "orderId": data.orderid,
           "payType": data.payType
         });
 
