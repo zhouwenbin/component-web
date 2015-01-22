@@ -108,8 +108,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.orderlist;
-      } else {
+        window.location.href = SFConfig.setting.link.orderlist + window.location.search + window.location.hash;
+      }else{
         this.showLogin('orderlist');
       }
     },
