@@ -20,12 +20,17 @@ define(
     var order = can.Control.extend({
 
       init: function(element, options) {
+        var params = can.deparam(window.location.search.substr(1));
+
+        this.options.orderid = params.orderid;
+        this.options.recid = params.recid;
+        this.options.alltotalamount = params.amount;
         this.step = null;
 
         this.render();
       },
 
-      render: function() {
+      render: function(data) {
         new Header('.sf-b2c-mall-header', {
           isForceLogin: true
         });
@@ -36,13 +41,8 @@ define(
           "secondstep": "active"
         });
 
+        //var template = can.view.mustache(this.gotopayTemplate());
         var that = this;
-
-        var params = can.deparam(window.location.search.substr(1));
-
-        that.options.orderid = params.orderid;
-        that.options.recid = params.recid;
-        that.options.alltotalamount = params.amount;
 
         var getOrder = new SFGetOrder({
           "orderId": params.orderid
@@ -62,35 +62,24 @@ define(
               that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
               that.options.mobile = data.orderItem.orderAddressItem.mobile;
               that.options.certNo = data.orderItem.orderAddressItem.certNo;
-              that.options.currentPayWay =that.showPayMap['alipay'];
 
-              var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',that.options);
-              $('#gotopayDIV').html(html);
+
+
             }).fail(function(){
 
             });
-
+        var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',this.options)
+        $('#gotopayDIV').html(html);
       },
 
-      showPayMap:{
-        'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
-      },
-      '.order-r1c1 click':function(element,event){
-        $(element).children('span').addClass('active');
-        $(element).siblings().children('span').removeClass('active');
-      },
-
-      //alipay,sfp,tenpay_forex,tenpay_forex_wxsm,alipay_intl
-      getPayType:function(){
-        var result = "";
-        _.each($('span[name="radio-pay"]'),function(ele){
-          if($(ele).hasClass('active')){
-            result = $(ele).attr('payType');
-          }
-        });
-        return result;
+      gotopayTemplate: function() {
+        return '<div class="order">' +
+          '<div class="order-r3">' +
+          '<h2>订单提交成功，请您尽快完成付款！</h2>' +
+          '<p>请您在提交订单后2小时内完成支付，否则订单会自动取消。</p>' +
+          '<a href="javascript:void(0)" class="btn btn-send" id="gotopayBtn">去支付</a>' +
+          '</div>' +
+          '</div>'
       },
 
       payerrorTemplate: function() {
@@ -115,9 +104,7 @@ define(
       },
 
       '#gotopayBtn click': function() {
-
         var that = this;
-
         var callback = {
           error: function(errorText) {
 
@@ -132,9 +119,9 @@ define(
           }
         }
 
+        var that = this;
         SFOrderFn.payV2({
-          orderId: that.options.orderid,
-          payType: that.getPayType()
+          orderid: that.options.orderid
         }, callback);
       }
     });
