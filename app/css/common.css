@@ -421,6 +421,11 @@ img{vertical-align: middle;}
 	height: 12px;
 	background-position: -130px -90px;
 }
+.icon49{
+	width: 12px;
+	height: 12px;
+	background-position: -130px -108px;
+}
 
 /*btn*/
 .btn{
@@ -756,8 +761,15 @@ body.sub{
 .nav-c1{
 	border-left: 1px solid #2A2D36;
 }
+.nav-c1 .icon49{
+	position: absolute;
+	right: 30px;
+	top: 10px;
+}
+
 .nav-c1 .li1{
 	border-right: 1px solid #2A2D36;
+	position: relative;
 
 }
 .nav-c1 .li1 a{
