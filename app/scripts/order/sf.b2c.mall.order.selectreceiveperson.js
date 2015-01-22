@@ -3,6 +3,7 @@
 define('sf.b2c.mall.order.selectreceiveperson', [
     'can',
     'md5',
+    'underscore',
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.createReceiverInfo',
@@ -11,7 +12,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
     'sf.b2c.mall.adapter.receiveperson.list',
     'sf.b2c.mall.component.receivepersoneditor',
   ],
-  function(can, md5, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter, ReceivePersonAdapter, SFRecpersoneditor) {
+  function(can, md5, _, SFGetIDCardUrlList, SFUserWebLogin, SFCreateReceiverInfo, SFUpdateReceiverInfo, SFOrderAdapter, ReceivePersonAdapter, SFRecpersoneditor) {
 
     return can.Control.extend({
 
@@ -40,12 +41,12 @@ define('sf.b2c.mall.order.selectreceiveperson', [
                 if (value) {
                   return [value];
                 }else{
-                  return []
+                  return [];
                 }
               }
             }
 
-            var fn = map[params.saleid];
+            var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
             var list = null
             if (_.isFunction(fn)) {
               list = fn(message.items, data && data.value)
@@ -77,6 +78,18 @@ define('sf.b2c.mall.order.selectreceiveperson', [
           .fail(function(errorCode) {
             //console.error(errorCode);
           })
+      },
+
+      /**
+       * [getSelectedIDCard 获得选中的收货人]
+       * @return {[type]} [description]
+       */
+      getSelectedIDCard: function(){
+        var index = $("#personList").find("li.active").eq(0).attr('data-index');
+        if (typeof index == 'undefined'){
+          return false;
+        }
+        return this.adapter4List.persons.get(index);
       },
 
       /**

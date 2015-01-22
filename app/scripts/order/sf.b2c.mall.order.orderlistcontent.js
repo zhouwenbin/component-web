@@ -156,9 +156,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * @param  {[type]} event 事件
        */
       '.table-1-logistics mouseover': function(element, event) {
-
+        event && event.preventDefault();
         var that = this;
         element.find('.tooltip').show();
+
 
         var getUserRoutes = new SFGetUserRoutes({
           'bizId': $(element).eq(0).attr('data-orderid')
@@ -166,19 +167,28 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getUserRoutes
           .sendRequest()
           .done(function(data) {
-            that.options.userRoutes = data.value;
+              if (data.value) {
 
-            var result = {};
-            result.userRoutes = [];
+                that.options.userRoutes = data.value;
 
-            _.each(that.options.userRoutes, function(item){
-              if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF'){
-                result.userRoutes.push(item);
-              }
-            });
+                var result = {};
+                result.userRoutes = [];
 
-            var template = can.view.mustache(that.getTraceListTemplate())
-            element.find('#traceList').html(template(result));
+                _.each(that.options.userRoutes, function (item) {
+                  if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF') {
+                    result.userRoutes.push(item);
+                  }
+                });
+
+                var len = result.userRoutes.length;
+                if(len <= 5){
+                  result.userRoutes = result.userRoutes.reverse();
+                }else{
+                  result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
+                }
+                var template = can.view.mustache(that.getTraceListTemplate());
+                element.find('#traceList').html(template(result));
+            }
           })
           .fail(function(error) {
             console.error(error);
@@ -208,6 +218,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
           '{{/each}}' +
           '</ul>' +
+          '<a id="find-more-info" href="#">查看全部</a>' +
           '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
       },
 
@@ -272,8 +283,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       optionHTML: {
         "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
         "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="btn btn-add cancelOrder">取消订单</a>',
-        "RECEIVED": '<a href="#" class="btn btn-add received">确认签收</a>'
+        "CANCEL": '<a href="#" class="link cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
       },
 
       '.received click': function(element, event) {
@@ -382,16 +393,23 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       ".viewOrder click": function(element, event) {
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
         var params = can.deparam(window.location.search.substr(1));
         if (params.saleid == 'heike_online') {
-          window.location.href = "/orderdetail.html?orderid=" + orderid + "&recid=" + recid;
+          window.location.href = "/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid;
         }else{
-          window.open("/orderdetail.html?orderid=" + orderid + "&recid=" + recid, "_blank");
+          window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
         }
       },
 
+      "#find-more-info click": function(element, event) {
+        var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
+        var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
+        var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
+        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+      },
       ".cancelOrder click": function(element, event) {
         var that = this;
 

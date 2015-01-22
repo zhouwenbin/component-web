@@ -47,7 +47,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             }
           }
 
-          var fn = map[params.saleid];
+          var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
             list = fn(reAddrs.items, data && data.value)
@@ -87,6 +87,17 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       return can.ajax('json/sf.b2c.mall.regions.json');
     },
 
+    /**
+     * [getSelectedIDCard 获得选中的收货地址]
+     * @return {[type]} [description]
+     */
+    getSelectedAddr: function() {
+      var index = $("#addrList").find("li.active").eq(0).attr('data-index');
+      if (typeof index == 'undefined'){
+          return false;
+        }
+      return this.adapter4List.addrs.get(index);
+    },
 
 
     /**
