@@ -28,4 +28,4 @@ define('sf.b2c.mall.component.orderstep', [
 
 
       })
-    )
+    })

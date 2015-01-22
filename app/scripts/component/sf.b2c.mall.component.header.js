@@ -11,7 +11,6 @@ define('sf.b2c.mall.component.header', ['jquery',
   'underscore',
   'md5',
   'store',
-  'sf.b2c.mall.component.login.status.scanner',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
@@ -19,7 +18,7 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
+], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
 
   var APPID = 1;
 
@@ -42,7 +41,7 @@ define('sf.b2c.mall.component.header', ['jquery',
     init: function(element, options) {
       this.component = {};
       this.component.modal = new SFModal('body');
-      this.component.scanner = new SFLoginScanner();
+      // this.component.scanner = new SFLoginScanner();
       this.component.notSupport = new SFNotSupport('body');
       this.watchLoginState.call(this);
 
