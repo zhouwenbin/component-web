@@ -1,0 +1,57 @@
+<div class="ph">
+    <div class="nav">
+      <div class="pm clearfix">
+
+        <ul class="nav-c1 fl">
+          <li class="li1"><a href="{{index}}">顺丰海淘</a></li>
+          <li class="li1"><a href="{{index}}#LimitedTimeSale">限时特卖</a></li>
+          <li class="li1"><a href="{{index}}#RapidSeaBuy">极速海淘</a></li>
+        </ul>
+        <ul class="nav-c2 fr">
+          {{#if isUserLogin}}
+          <li class="li1 nav-info">欢迎您：{{nickname}}</li>
+          <li class="li1">
+            <a href="#" id="my-account">账户<span class="icon icon16"></span></a>
+            <ul>
+              <li class="li2"><a href="#" id="user-center">个人中心</a></li>
+              <li class="li2"><a href="#" id="user-password-change">账户安全</a></li>
+              <li class="li2"><a href="#" id="user-logout">退出</a></li>
+            </ul>
+          </li>
+          <li class="li1"><a href="#" id="user-orderlist">我的订单</a></li>
+          {{else}}
+            <li class="li1"><a href="#" id="user-login">登录</a></li>
+            <li class="li1"><a href="#" id="user-register">注册</a></li>
+          {{/if}}
+
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="pm clearfix">
+        <div class="header-c1 fl">
+          <a href="{{index}}" class="icon icon10">顺丰海淘</a>
+          <span class="icon icon11"></span>
+        </div>
+        <ul class="header-c2 fr">
+          <li>
+            <span class="icon icon1 fl"></span>
+            <h2>正品保障</h2>
+            <p><span class="icon icon17">Genuine Guarantee</span></p>
+          </li>
+          <li>
+            <span class="icon icon2 fl"></span>
+            <h2>含税一口价</h2>
+            <p><span class="icon icon18">All-in-One Price</span></p>
+          </li>
+          <li>
+            <span class="icon icon3 fl"></span>
+            <h2>顶尖物流</h2>
+            <p><span class="icon icon19">SF-express</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

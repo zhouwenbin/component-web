@@ -1,0 +1,45 @@
+<!--注册-->
+<div class="mask"></div>
+<div class="register">
+  <div class="register-h">
+    <h2>抢先注册</h2>
+    <a href="#" class="btn btn-close">关闭</a>
+  </div>
+  <!--手机注册-->
+  <div class="register-b active">
+    <ol>
+      <li>
+        <input id="input-mobile-num" placeholder="仅限中国大陆手机号" type="text" can-value="mobileNum" />
+        <span id="input-mobile-error" class="icon icon26"></span>
+      </li>
+
+      <li>
+        <div class="clearfix">
+            <div class="fl"><input id="input-mobile-code" placeholder="输入短信验证码" type="text" class="input1" can-value="mobileCode" /></div>
+            <div class="fr"><button id="btn-send-mobilecode" state="false" class="btn btn-send">发送验证码</button></div>
+        </div>
+        <span id="mobile-code-error" class="icon icon26"></span>
+
+      </li>
+      <li>
+        <label id="default-text" for="password">设置6-18位字母、数字或标点符号的密码</label>
+        <input id="input-user-password" type="password" can-value="password" />
+        <span id="pwdErrorTips" class="icon icon26"></span>
+      </li>
+    </ol>
+    <div class="register-br1">
+      <button id="agree-and-register" class="btn btn-send btn-register">同意协议并注册</button>
+    </div>
+    <div class="register-br2 clearfix">
+      <div class="register-br2c1 fl">
+        <label>
+          <input type="checkbox" can-value='ischecked' state="false" id="ischecked" />我已阅读<a href="http://www.sfht.com/agreement.html" target="_blank">《顺丰海淘注册协议》</a>
+        </label>
+      </div>
+    </div>
+
+  </div>
+  <!--手机注册-->
+
+</div>
+<!--注册-->

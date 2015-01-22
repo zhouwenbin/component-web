@@ -1,0 +1,106 @@
+<div class="register register-top" style="display:none;">
+  <div class="register-h">
+    {{! <h2>注册顺丰海淘</h2> }}
+    <ul>
+      <li data-tag="mobile" class="{{#mobile}}active{{/mobile}}">
+        <a href="#">手机注册</a>
+        <span class="icon icon16-2"></span>
+      </li>
+      <li data-tag="mail" class="{{#mail}}active{{/mail}}">
+        <a href="">邮箱注册</a>
+        <span class="icon icon16-2"></span>
+      </li>
+    </ul>
+{{!     <a href="#" class="btn btn-close">关闭</a>
+    <span class="icon icon34"></span>
+    <span class="icon icon35"></span> }}
+  </div>
+
+  <!--邮箱注册-->
+  <div class="register-b register-b-main {{#mail}}active{{/mail}}">
+    <form action="">
+     <ol>
+       <li>
+         <input type="text" placeholder="邮箱地址" id="input-mail" />
+         <span class="icon icon26" id="input-mail-error">邮箱地址输入错误</span>
+       </li>
+       <li>
+         <input type="text" class="input2" placeholder="验证码" id="input-mail-code" />
+         <img src="{{verifiedCodeUrl}}" width="76" alt="验证码" /><a class="a1" href="#" id="verified-code-btn">换一个</a>
+         <span class="icon icon26" id="mail-code-error">邮箱验证码输入错误</span>
+       </li>
+       {{! <li> }}
+         {{! <label for="password">设置密码</label> }}
+          {{! <input id="input-mail-password" type="password" class="password" placeholder="设置密码" /> }}
+          {{! <span class="icon icon26" id="mail-password-error">密码设置错误</span> }}
+       {{! </li> }}
+     </ol>
+     <div class="register-br1">
+       <button type="submit" class="btn btn-send btn-register" id="mail-register-btn">同意协议并注册</button>
+       <span class="icon icon26" id="mail-register-error">注册失败</span>
+     </div>
+     <div class="register-br2">
+       <a href="agreement.html" target="_blank">《顺丰海淘服务协议》</a>
+     </div>
+     </form>
+  </div>
+  <!--邮箱注册-->
+
+  <!--手机注册-->
+  <div class="register-b register-b-main {{#mobile}}active{{/mobile}}">
+    <form action="">
+     <ol>
+      <li>
+         <input type="text" placeholder="仅限中国大陆手机号" id="input-mobile" />
+         <span class="icon icon26" id="input-mobile-error">手机号输入错误</span>
+       </li>
+       <li>
+          <div class="clearfix">
+            <div class="fl">
+              <input type="text" class="input1" placeholder="点击按钮获取验证码" id="input-mobile-code" />
+            </div>
+
+            <a href="#" class="btn btn-send fr" id="mobile-code-btn">发送短信验证码</a>
+            <!--不可发送时--<a href="#" class="btn btn-send disable">发送验证码</a><!--不可发送时-->
+          </div>
+         <span class="icon icon26" id="mobile-code-error">手机验证码错误</span>
+
+       </li>
+
+       <li>
+         <label for="input-password" id="pwd-default-text">设置6-18位字母、数字或标点符号的密码</label>
+         <input type="password" class="password" id="input-password" />
+         <span class="icon icon26" id="password-error">密码设置错误</span>
+       </li>
+     </ol>
+     <div class="register-br1">
+       <button type="submit" class="btn btn-send btn-register" id="mobile-register-btn">同意协议并注册</button>
+       <span class="icon icon26" id="mobile-register-error">注册失败</span>
+     </div>
+     <div class="register-br2">
+       <a href="agreement.html" target="_blank">《顺丰海淘服务协议》</a>
+     </div>
+     </form>
+  </div>
+  <!--手机注册-->
+  <div class="register-f">
+    <ul class="header-c2 clearfix">
+        <li>
+          <span class="icon icon1 fl"></span>
+          <h3>正品保障</h3>
+          <p><span class="icon icon17">Genuine Guarantee</span></p>
+        </li>
+        <li>
+          <span class="icon icon2 fl"></span>
+          <h3>含税一口价</h3>
+          <p><span class="icon icon18">All-in-One Price</span></p>
+        </li>
+        <li>
+          <span class="icon icon3 fl"></span>
+          <h3>顶尖物流</h3>
+          <p><span class="icon icon19">SF-express</span></p>
+        </li>
+      </ul>
+    <div class="register-fr2">已是会员？<a target="_self" class="btn btn-send" href="login.html">登录</a></div>
+  </div>
+</div>

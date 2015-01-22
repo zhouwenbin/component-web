@@ -1,0 +1,96 @@
+<div class="shop-yes clearfix">
+  <div class="clearfix" style="width:490px; margin:0 auto;">
+    <img src="images/ico15.png" class="fl">
+    <div class="yes-text fr">
+      <span>订单提交成功，请完成付款！</span>
+
+      {{^isSelfProduct saleType}}
+      <p>
+        请在24小时内完成付款，未付款订单超过24小时将取消。
+        <br>
+          订单付款后，如遇商品缺货，我们的客服将与您取得联系。
+        <br>
+      </p>
+      {{/isSelfProduct}}
+
+      {{#isSelfProduct saleType}}
+      <p>
+        黑五狂欢期间，未付款订单超过30分钟将被取消，请尽快付款。
+      </p>
+      {{/isSelfProduct}}
+
+    </div>
+  </div>
+</div>
+
+<div class="shop-address clearfix">
+  <div class="shop-address-tops">收货地址</div>
+  <div class="shop-address-main">
+    <span>{{address.nationName}} {{address.provinceName}} {{address.cityName}} {{address.regionName}} {{address.detail}}, {{address.recName}}, {{address.mobile}}</span>
+  </div>
+</div>
+
+{{#list products}}
+
+{{#productList}}
+<div class="order-listmain clearfix">
+  <table>
+    <tbody>
+      <tr class="order-title">
+        <td>
+          <img src="{{tagCountryImgUrl}}">{{tagCountry}}直发</td>
+        <td>商品</td>
+        <td>数量</td>
+        <td>金额（元）</td>
+      </tr>
+      {{#tagItems}}
+      <tr class="order-lists">
+        <td>&nbsp;</td>
+        <td>
+          <div class="clearfix order-shop">
+            <a href="#" class="fl">
+              <img src="{{imgUrl}}">
+            </a>
+            <div class="fl order-r">
+              <span>
+                <a href="#">{{name}}</a>
+              </span>
+              <span>
+                <font>{{#attrs}}{{name}} : {{text}}{{/attrs}}</font>
+              </span>
+              <a href="#" style="font-family:'宋体'; color:#B8B8B8;">
+                <img src="{{countryImgUrl}}">{{country}}</a>
+            </div>
+          </div>
+        </td>
+        <td>{{num}}</td>
+        <td class="order-m">商品单价：￥{{sf.price price}}</td>
+      </tr>
+      {{/tagItems}}
+    </tbody>
+  </table>
+</div>
+{{/productList}}
+
+{{/list}}
+
+<div class="cart-button clearfix">
+  <div class="fr">
+    <div class="cart-integral" style="text-align:right;">
+      <!-- <span>使用积分</span> <b>-￥10.00</b> -->
+    </div>
+    <div class="cart-m">
+      待付金额
+      <span>￥{{sf.price sum}}</span>
+    </div>
+    <div class="clearfix">
+      <a href="#" class="submit-btns2 fr" id="booking-request-pay"></a>
+    </div>
+  </div>
+
+  <form method="post" id="pay-form" enctype="text/plain;charset=UTF-8" style="display:none;">
+    <!-- <input type="button" id="pay-submit"> -->
+  </form>
+</div>
+
+

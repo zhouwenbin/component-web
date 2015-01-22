@@ -1,0 +1,63 @@
+{{! <div class="mask"></div> }}
+<div class="register {{^ismobile platform}}register-top{{/ismobile}}">
+{{!   <div class="register-h">
+    <h2>登录顺丰海淘</h2>
+    <a href="#" class="btn btn-close">关闭</a>
+    <span class="icon icon34"></span>
+    <span class="icon icon35"></span>
+  </div> }}
+  <!--登录顺丰海淘-->
+  <div class="register-b register-b3 register-main active">
+    <form action="">
+     <ol>
+        <li>
+          <input id="user-name" type="text" class="input-username" placeholder="手机号／邮箱" can-value="username" />
+          <span id="username-error-tips" class="icon icon26"></span>
+        </li>
+        <li>
+          {{^isPlaceholderSupport}}<label id="pwd-default-text" class="pwd-default-text" for="password">密码</label>{{/isPlaceholderSupport}}
+          <input id="user-pwd" type="password" class="input-password" can-value="password" {{#isPlaceholderSupport}}placeholder="密码"{{/isPlaceholderSupport}} />
+          <span id="pwd-error-tips" class="icon icon26"></span>
+        </li>
+        {{#isNeedVerifiedCode}}
+        <li>
+          <input id="verified-code" type="text" class="input2" placeholder="验证码" can-value="verifiedCode" />
+          <img src="{{verifiedCodeUrl}}" width="80" alt="验证码" />
+          <a class="a1" href="" id="verified-code-btn">换一个</a>
+          <span id="code-error-tips" class="icon icon26"></span>
+        </li>
+        {{/isNeedVerifiedCode}}
+     </ol>
+     <div class="register-br1">
+       <button type="submit" class="btn btn-register btn-send">登录</button>
+     </div>
+     <div class="register-br2 clearfix">
+      <!--<div class="register-br2c1 fl">-->
+        <!--<label><input type="checkbox" checked />记住我</label>-->
+      <!--</div>-->
+      <div class="register-br2c2 fr"><a target="_blank" href="retrieve.html">忘记密码</a></div>
+     </div>
+     </form>
+  </div>
+  <!--登录顺丰海淘-->
+  <div class="register-f">
+    <ul class="header-c2 clearfix">
+        <li>
+          <span class="icon icon1 fl"></span>
+          <h3>正品保障</h3>
+          <p><span class="icon icon17">Genuine Guarantee</span></p>
+        </li>
+        <li>
+          <span class="icon icon2 fl"></span>
+          <h3>含税一口价</h3>
+          <p><span class="icon icon18">All-in-One Price</span></p>
+        </li>
+        <li>
+          <span class="icon icon3 fl"></span>
+          <h3>顶尖物流</h3>
+          <p><span class="icon icon19">SF-express</span></p>
+        </li>
+      </ul>
+    <div class="register-fr2">不是会员？<a target="_self" class="btn btn-send" href="register.html">注册</a></div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<h2>收货人管理  {{#isover personList}}<span class="error-side"><span class="icon icon26">{{errorText}}</span></span>{{/isover}}</h2>
+
+{{^if hasData}}
+<div class="order-b active">
+<div class="order-r2" id="addPersonArea">
+  </div>
+    <a href="javascript:void(0)" class="btn btn-add" id="btn-add-person">+ 添加收货人信息</a>
+</div>
+{{/if}}
+
+
+<div class="order-b active" id="personList">
+{{#if hasData}}
+  <ul>
+    {{#each personList}}
+    <li class="clearfix active" name="personEach" data-recid="{{recId}}">
+      <div class="order-r1 clearfix">
+      <div class="order-r1c1 fl">
+        <span class="order-name">{{recName}}</span>
+        <span>身份证号：{{credtNum}}</span>
+      </div>
+      <div class="order-r1c2 fl">
+        <!--<a class="order-edit" href="" data-index="{{@index}}">修改</a>-->
+        <a class="order-del" href="javascript:void(0);" data-index="{{@index}}">删除</a>
+      </div>
+    </div>
+    <div class="order-r2" id="editPersonArea">
+    </li>
+    {{/each}}
+  </ul>
+
+  <div class="order-r2" id="addPersonArea"></div>
+  <a href="javascript:void(0)" class="btn btn-add" id="btn-add-person">+ 添加收货人信息</a>
+  {{/if}}
+
+</div>

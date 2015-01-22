@@ -1,0 +1,45 @@
+<div class="login-right fr">
+  <form action="#">
+  <div class="clearfix">
+    <br>
+    <br>
+    <br>
+    <dl>
+      <dt>邮箱:</dt>
+      <dd class="clearfix login-names">
+        <input type="text" class="login-text clearfix" can-value="user.username" id="login-text-username" />
+      </dd>
+    </dl>
+    <dl>
+      <dt>密码:</dt>
+      <dd>
+        <input type="password" class="login-text clearfix" can-value="user.password" id="login-text-password" />
+      </dd>
+    </dl>
+    <dl>
+      <dd class="login-error">
+        {{#if loginError}}
+        <div class="login-hide"><em></em>{{loginError}}</div>
+        {{/if}}
+      </dd>
+    </dl>
+  </div>
+  <div class="clearfix Method">
+    <div class="fl">
+      <label></label>
+    </div>
+    <div class="fr method-right"></div>
+  </div>
+  <div class="login-other">
+    <div class="login-other-btn">
+      <a href="find_password.html">忘记密码?</a>
+      <a href="register.html">注册</a>
+      <a class="resend-mail" href="#" id="resend-mail">重新发送激活邮件</a>
+    </div>
+  </div>
+  <div class="login-btns">
+    <br>
+    <input type="submit" class="login-submit" value="登陆" id="sf-b2c-mall-login-btn">
+  </div>
+  </form>
+</div>

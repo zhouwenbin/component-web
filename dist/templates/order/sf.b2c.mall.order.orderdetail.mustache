@@ -1,0 +1,184 @@
+<!--orderdetail-->
+      <div class="orderdetail">
+        <div class="orderdetail-r1 clearfix">
+          <div class="orderdetail-r1c1 fl">订单号：{{orderId}}</div>
+          <div class="orderdetail-r1c2 fl">状态：{{status}}</div>
+          <div class="orderdetail-r1cr fr">{{{nextStep}}}</div>
+        </div>
+
+        <p class="orderdetail-r2">
+        {{{currentStepTips}}}
+        </p>
+        {{#if showStep}}
+        <ul class="orderdetail-step clearfix">
+          <li class="{{submitedActive}}" id="SUBMITED">
+            <div>
+              <h3>提交订单</h3>
+              <p>{{submitedTime}}</p>
+            </div>
+            <span></span>
+            <div class="line"></div>
+          </li>
+          <li class="{{auditingActive}}" id="AUDITING">
+            <div>
+              <h3>付款成功</h3>
+              <p>{{auditingTime}}</p>
+            </div>
+            <span></span>
+            <div class="line"></div>
+          </li>
+          <li class="{{wait_shippingActive}}" id="WAIT_SHIPPING">
+            <div>
+              <h3>商品出库</h3>
+              <p>{{wait_shippingTime}}</p>
+            </div>
+            <span></span>
+            <div class="line"></div>
+          </li>
+          <li class="{{shippingActive}}" id="SHIPPING">
+            <div>
+              <h3>等待收货</h3>
+              <p>{{shippingTime}}</p>
+            </div>
+            <div class="line"></div>
+            <span></span>
+          </li>
+          <li class="{{completedActive}}" id="COMPLETED">
+            <div>
+              <h3>订单完成</h3>
+              <p>{{completedTime}}</p>
+            </div>
+            <span></span>
+          </li>
+        </ul>
+        {{/if}}
+        <h2>订单跟踪</h2>
+        <div class="table table-2">
+          <div class="table-h clearfix">
+            <div class="table-c1 fl">
+              处理时间
+            </div>
+            <div class="table-c2 fl">
+              处理信息
+            </div>
+            <div class="table-c3 fl">
+              操作人
+            </div>
+          </div>
+          <ul class="table-b">
+            {{#each userRoutes}}
+            <li class="clearfix">
+              <div class="table-c1 fl">{{gmtHappened}}</div>
+              <div class="table-c2 fl">{{description}}</div>
+              <div class="table-c3 fl">{{operator}}</div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+        <h2>收货信息</h2>
+        <div class="info">
+          <div class="info-r1">
+
+            <div class="info-c1 fl">收货人信息</div>
+            <div class="info-c2">
+              <ul class="info-c2r1">
+                <li>收货人：{{receiveInfo.receiveName}}</li>
+                <li>身份证号码：{{receiveInfo.certNo}} {{{currentStatus}}}</li>
+                <li>联系电话：{{! {{receiveInfo.telephone}} {{receiveInfo.mobile}}</li>
+                <li>地址：{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
+                <li>邮编：{{receiveInfo.zipCode}}</li>
+              </ul>
+              {{#if IDCard.needUpload}}
+              <div id="uploadidcard">
+                <a href="#" id="orderdetail-view" class="btn btn-add">查看身份证参考样本</a>
+                <div class="error-tips">{{error.errorText}}</div>
+                <ul class="info-c2r2 clearfix">
+                  <li>
+                    <div class="info-img" id="file-submit-input-photo-p" style="position:relative;">
+                      <span id='leftTip'>点击上传身份证正面</span><img style="position:absolute;top:0;left:0;" src="img/1x1.jpg"/><span></span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="info-img" id="file-submit-input-photo-n" style="position:relative;">
+                      <span id='rightTip'>点击上传身份证反面</span><img style="position:absolute;top:0;left:0;" src="img/1x1.jpg"/><span></span>
+                    </div>
+                  </li>
+                </ul>
+                <a href="#" id="orderdetail-save" class="btn btn-send">保存</a>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          <div class="info-r2">
+            <div class="info-c1 fl">支付及配送方式</div>
+            <ul class="info-c2">
+              <li>支付方式：在线支付</li>
+              <li>运费：￥0</li>
+              <li>配送方式：顺丰配送</li>
+              {{! <li>送货日期：未配送</li>
+              <li>配送时间：未配送</li> }}
+            </ul>
+          </div>
+        </div>
+        <h2>商品信息</h2>
+        <div class="table">
+          <div class="table-h clearfix">
+            <div class="table-c1 fl">
+              商品
+            </div>
+            <div class="table-c2 fl">
+              数量
+            </div>
+            <div class="table-c3 fl">
+              单价
+            </div>
+            <div class="table-c4 fl">
+              优惠金额
+            </div>
+            <div class="table-c5 fr">
+              小计
+            </div>
+          </div>
+          <ul class="table-b">
+            {{#each productList}}
+            <li class="clearfix">
+              <div class="table-c1 fl">
+                <div class="table-img fl">
+                  <img src="{{sf.img imageUrl}}" alt="" /><span></span>
+                </div>
+                <div class="table-text">
+                  <h3>{{goodsName}}</h3>
+                  <p>{{{spec}}}</p>
+                  {{! <img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /> }}
+                </div>
+
+              </div>
+              <div class="table-c2 fl">
+                {{quantity}}
+              </div>
+              <div class="table-c3 fl">
+                ￥{{sf.price price}}
+              </div>
+              <div class="table-c4 fl">
+                ￥0
+              </div>
+              <div class="table-c5 fr">
+                ￥{{sf.price totalPrice}}
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+          <div class="table-f">
+            <div class="table-fr1">
+                <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
+                {{! <li>-优惠金额：￥0</li> }}
+                {{#if showTax}}
+                  <li>+税额：￥0</li>
+                {{/if}}
+                <li>+运费：￥0</li>
+            </div>
+            <div class="table-fr2">开业全场免邮，飞机太多了，任性！</div>
+            {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
+          </div>
+        </div>
+      </div>

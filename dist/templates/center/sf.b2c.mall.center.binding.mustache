@@ -1,0 +1,90 @@
+<div class="c-binding-mains clearfix">
+  <div class="center-passdord-title">账户绑定</div>
+  <div class="clearfix c-binding">
+    <div class="bingding-tops clearfix">
+      <div class="clearfix fl bingding-tops-l">
+        邮箱地址：
+        <span>123456789@qq.com</span>
+      </div>
+      <div class="fr bingding-tops-r clearfix">
+        <span class="on fl">已验证</span>
+        <a href="#" class="bingding-btn fl">绑定其他邮箱</a>
+      </div>
+    </div>
+    <div class="bingding-tops clearfix">
+      <div class="clearfix fl bingding-tops-l">
+        手机号码：
+        <span>15112324567</span>
+      </div>
+      <div class="fr bingding-tops-r clearfix">
+        <span class="on fl">已绑定</span>
+        <a href="#" class="bingding-btn fl">绑定其他手机</a>
+      </div>
+    </div>
+    <div class="bingding-tops clearfix">
+      <div class="clearfix fl bingding-tops-l">
+        手机号码：
+        <span>
+          占未绑定
+          <a href="#" class="Immediately-binding">立即绑定</a>
+        </span>
+      </div>
+      <div class="fr bingding-tops-r clearfix">
+        <span class="fl">未绑定</span>
+        <a href="#" class="bingding-btn fl">绑定其他手机</a>
+      </div>
+    </div>
+    <!--绑定弹出层-->
+    <div class="u-bj" style="display:none;"></div>
+    <div class="c-shows" style="display:none;"> <b>手机绑定</b>
+      <form>
+        <dl class="clearfix">
+          <dt class="fl">手机号码：</dt>
+          <dd>
+            <input type="tel" class="c-tel"></dd>
+        </dl>
+        <dl class="clearfix">
+          <dt class="fl">验证码：</dt>
+          <dd>
+            <input type="text" class="c-text">
+            <input type="submit" class="submit-tel" value="获取手机验证码"></dd>
+        </dl>
+        <dl class="clearfix">
+          <dt class="fl"></dt>
+          <dd>
+            <input type="submit" class="c-submit2" value="提交"></dd>
+        </dl>
+      </form>
+    </div>
+    <script>
+      $(function(){
+        $(".Immediately-binding").click(function(){
+          $(".u-bj").show();
+          $(".c-shows").show();
+        })
+        $(".u-bj").click(function(){
+          $(".u-bj").hide();
+          $(".c-shows").hide();
+        })
+      })
+    </script>
+    <!--绑定弹出层-->
+  </div>
+  <div class="center-passdord-title">三方平台账户绑定</div>
+  <div class="clearfix c-binding">
+    <div class="bingding-tops clearfix">
+      <div class="clearfix fl bingding-tops-l">顺丰会员：</div>
+      <div class="fr bingding-tops-r clearfix">
+        <span class="on fl">已绑定</span>
+        <a href="#" class="bingding-btn fl">变更绑定账户</a>
+      </div>
+    </div>
+    <div class="bingding-tops clearfix">
+      <div class="clearfix fl bingding-tops-l">微博会员:</div>
+      <div class="fr bingding-tops-r clearfix">
+        <span class="fl">未绑定</span>
+        <a href="#" class="bingding-btn fl">绑定账户</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<h2>选择收货人</h2>
+{{^if hasData}}
+<div class="order-b active">
+<div class="order-r2" id="addPersonArea">
+  </div>
+    <a href="#" id="btn-add-person" class="btn btn-add">+ 添加收货人信息</a>
+</div>
+{{/if}}
+
+{{#if hasData}}
+<div class="order-b" id="personList">
+  <ul>
+    {{#each personList}}
+    <li class="clearfix {{active}}" name="personEach" data-recid="{{recId}}" data-index="{{@index}}">
+      <div class="order-r1 clearfix">
+      <div class="order-r1c1 fl">
+        <span class="icon icon29"></span>
+        <span class="order-name">{{recName}}</span>
+        <span>身份证号：{{credtNum}}</span>
+      </div>
+      <div class="order-r1c2 fr">
+        <!--<a class="order-edit" href="" data-index="{{@index}}">修改</a>-->
+      </div>
+    </div>
+    <div class="order-r2" id="editPersonArea">
+    </li>
+    {{/each}}
+  </ul>
+
+  <div class="order-r2" id="addPersonArea"></div>
+  <a href="#" id="btn-add-person" class="btn btn-add">+ 添加收货人信息</a>
+  <a href="#" class="icon icon30"></a>
+</div>
+{{/if}}
