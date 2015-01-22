@@ -69,7 +69,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 }
               })
 
-              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
+              var html = can.view('templates/order/detailsf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
             } else {
               var noDataTemplate = {};
@@ -383,7 +383,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
       ".viewOrder click": function(element, event) {
         var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
-        window.open("/orderdetail.html?orderid=" + orderid + "&recid=" + recid, "_blank");
+
+        var params = can.deparam(window.location.search.substr(1));
+        if (params.saleid == 'heike_online') {
+          window.location.href = "/orderdetail.html?orderid=" + orderid + "&recid=" + recid;
+        }else{
+          window.open("/orderdetail.html?orderid=" + orderid + "&recid=" + recid, "_blank");
+        }
       },
 
       ".cancelOrder click": function(element, event) {
