@@ -16,7 +16,7 @@ define(
       payV2: function (data, callback) {
         requestPayV2.setData({
           "orderId": data.orderid,
-          'payType': 'alipay'
+          'payType': data.payType
         });
 
         requestPayV2
