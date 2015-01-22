@@ -482,7 +482,6 @@ module.exports = function (grunt) {
       },
       main: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.min.js',
@@ -684,7 +683,6 @@ module.exports = function (grunt) {
       },
       order: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.min.js',
@@ -930,7 +928,6 @@ module.exports = function (grunt) {
       },
       federallogin: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.min.js',
@@ -943,7 +940,6 @@ module.exports = function (grunt) {
       },
       common: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.common.min.js',
