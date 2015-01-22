@@ -22,12 +22,21 @@ define(
       init: function(element, options) {
         var params = can.deparam(window.location.search.substr(1));
 
+        var getOrder = new SFGetOrder({
+          "orderId": params.orderid
+        });
+
+
         this.options.orderid = params.orderid;
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
         this.step = null;
 
-        this.render();
+        this.data = new can.Map({
+
+        })
+
+        this.render(this.data);
       },
 
       render: function(data) {
@@ -41,35 +50,8 @@ define(
           "secondstep": "active"
         });
 
-        //var template = can.view.mustache(this.gotopayTemplate());
-        var that = this;
-
-        var getOrder = new SFGetOrder({
-          "orderId": params.orderid
-        });
-
-        getOrder.sendRequest()
-            .done(function(data){
-              that.options.orderId = data.orderId;
-              that.options.orderMoney = data.orderItem.totalPrice/100;
-              that.options.orderPayWay = '在线支付';
-
-              that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
-              that.options.country = data.orderItem.orderAddressItem.country;
-              that.options.province = data.orderItem.orderAddressItem.province;
-              that.options.city = data.orderItem.orderAddressItem.city;
-              that.options.region = data.orderItem.orderAddressItem.region;
-              that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
-              that.options.mobile = data.orderItem.orderAddressItem.mobile;
-              that.options.certNo = data.orderItem.orderAddressItem.certNo;
-
-
-
-            }).fail(function(){
-
-            });
-        var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',this.options)
-        $('#gotopayDIV').html(html);
+        var template = can.view.mustache(this.gotopayTemplate());
+        $('#gotopayDIV').html(template());
       },
 
       gotopayTemplate: function() {
