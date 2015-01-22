@@ -52,7 +52,7 @@ define(
             .done(function(data){
               that.options.orderId = data.orderId;
               that.options.orderMoney = data.orderItem.totalPrice/100;
-              //that.options.orderPayWay = data.;
+              that.options.orderPayWay = '在线支付';
 
               that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
               that.options.country = data.orderItem.orderAddressItem.country;
