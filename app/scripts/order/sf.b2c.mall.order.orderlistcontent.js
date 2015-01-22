@@ -69,7 +69,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 }
               })
 
-              var html = can.view('templates/order/detailsf.b2c.mall.order.orderlist.mustache', that.options);
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
             } else {
               var noDataTemplate = {};
