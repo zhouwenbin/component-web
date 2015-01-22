@@ -27,19 +27,17 @@ define(
         });
 
 
+        //ceshi
+
+
         this.options.orderid = params.orderid;
         this.options.recid = params.recid;
         this.options.alltotalamount = params.amount;
         this.step = null;
-
-        this.data = new can.Map({
-
-        })
-
-        this.render(this.data);
+        this.render();
       },
 
-      render: function(data) {
+      render: function() {
         new Header('.sf-b2c-mall-header', {
           isForceLogin: true
         });
