@@ -263,7 +263,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess();
+          that.onSuccess({value: window.parseInt(addr.addrId)});
         })
         .fail(function(error) {});
     },
