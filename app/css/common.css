@@ -261,7 +261,7 @@ img{vertical-align: middle;}
 .icon24,
 .icon24-1{
 	width: 75px;
-	padding-top: 75px;
+	padding-top: 78px;
 	overflow: hidden;
 	height: 0;
 	background-position: -61px -238px;
@@ -426,7 +426,12 @@ img{vertical-align: middle;}
 	height: 13px;
 	background-position: -130px -108px;
 }
-
+.icon50{
+	width: 66px;
+	height: 28px;
+	background-position: -508px -476px;
+	text-indent: -999em;
+}
 /*btn*/
 .btn{
 	display: inline-block;

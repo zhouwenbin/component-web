@@ -331,22 +331,28 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var that = this;
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
-        var callback = {
-          error: function() {
-            var message = new SFMessage(null, {
-              'tip': '支付失败！',
-              'type': 'error',
-              'okFunction': function() {
-                that.render();
-              }
-            });
-          }
-        }
+        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid +"&otherlink=1", "_blank");
 
-        SFOrderFn.payV2({
-          orderid: orderId
-        }, callback);
+
+
+
+//        var callback = {
+//          error: function() {
+//            var message = new SFMessage(null, {
+//              'tip': '支付失败！',
+//              'type': 'error',
+//              'okFunction': function() {
+//                that.render();
+//              }
+//            });
+//          }
+//        }
+//
+//        SFOrderFn.payV2({
+//          orderid: orderId
+//        }, callback);
 
         // var requestPayV2 = new SFRequestPayV2({
         //   "orderId": orderId,
@@ -365,7 +371,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         //     $('#gotopay').html(template());
         //   });
 
-        return false;
+        //return false;
       },
 
       // request: function(orderId) {
