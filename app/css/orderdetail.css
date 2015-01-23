@@ -170,3 +170,36 @@
 	width: 170px;
 	text-align: center;
 }
+
+.pay h1{
+	font-size: 18px;
+	margin-bottom: 13px;
+	padding-left: 25px;
+}
+.pay p{
+	font-size: 14px;
+	color:#949494;
+	margin-bottom: 14px;
+	padding-left: 25px;
+}
+.pay .order-r1c1{
+	width: auto;
+	margin-right: 49px;
+}
+.pay-r1{
+	margin-top: 25px;
+	text-align: center;
+}
+.pay-r .btn{
+	padding: 0 120px;
+}
+.pay-r2c2{
+	font-size: 14px;
+	font-weight: bold;
+}
+.pay-r2c2 strong{
+	color: #df3d40;
+}
+.pay-price{
+	font-size: 24px;
+}
