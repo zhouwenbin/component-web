@@ -555,7 +555,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var that = this;
         var params = can.deparam(window.location.search.substr(1));
 
-        window.open("/gotopay.html?orderid=" + params.orderid + "&recid=" + params.recid, "_blank");
+        window.open("/gotopay.html?orderid=" + params.orderid + "&recid=" + params.recid +"&otherlink=1", "_blank");
 //        var callback = {
 //          error: function() {
 //            var message = new SFMessage(null, {

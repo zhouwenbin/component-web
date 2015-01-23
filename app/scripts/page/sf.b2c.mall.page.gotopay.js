@@ -31,14 +31,21 @@ define(
         });
         new Footer('.sf-b2c-mall-footer');
 
-        //step
-        this.step = new OrderSetp('.sf-b2c-mall-order-step', {
-          "secondstep": "active"
-        });
+
 
         var that = this;
-
+        this.options.tips = new can.Map({})
         var params = can.deparam(window.location.search.substr(1));
+
+        if(params.otherlink){
+          this.options.tips.attr('tipInfo','请您尽快完成付款，以便订单尽快处理！');
+        }else{
+          //step
+          this.step = new OrderSetp('.sf-b2c-mall-order-step', {
+            "secondstep": "active"
+          });
+          this.options.tips.attr('tipInfo','您已成功提交订单，请您尽快完成付款！');
+        }
 
         that.options.orderid = params.orderid;
         that.options.recid = params.recid;

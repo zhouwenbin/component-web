@@ -333,7 +333,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
-        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid, "_blank");
+        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid +"&otherlink=1", "_blank");
 
 
 
