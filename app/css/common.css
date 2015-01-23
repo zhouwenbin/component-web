@@ -426,7 +426,12 @@ img{vertical-align: middle;}
 	height: 13px;
 	background-position: -130px -108px;
 }
-
+.icon50{
+	width: 66px;
+	height: 28px;
+	background-position: -508px -476px;
+	text-indent: -999em;
+}
 /*btn*/
 .btn{
 	display: inline-block;
