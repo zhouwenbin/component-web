@@ -21,7 +21,6 @@ define(
 
       init: function(element, options) {
         this.step = null;
-
         this.render();
       },
 
@@ -30,9 +29,6 @@ define(
           isForceLogin: true
         });
         new Footer('.sf-b2c-mall-footer');
-
-
-
         var that = this;
         this.options.tips = new can.Map({})
         var params = can.deparam(window.location.search.substr(1));
@@ -78,25 +74,14 @@ define(
 
       },
 
-      showPayMap:{
-        'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>' +
-            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
-            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
-      },
-      '.order-r1c1 click':function(element,event){
-        $(element).children('span').addClass('active');
-        $(element).siblings().children('span').removeClass('active');
-      },
-
-      //alipay,sfp,tenpay_forex,tenpay_forex_wxsm,alipay_intl
-      getPayType:function(){
-        var result = "";
-        _.each($('span[name="radio-pay"]'),function(ele){
-          if($(ele).hasClass('active')){
-            result = $(ele).attr('payType');
-          }
-        });
-        return result;
+      gotopayTemplate: function() {
+        return '<div class="order">' +
+          '<div class="order-r3">' +
+          '<h2>订单提交成功，请您尽快完成付款！</h2>' +
+          '<p>请您在提交订单后2小时内完成支付，否则订单会自动取消。</p>' +
+          '<a href="javascript:void(0)" class="btn btn-send" id="gotopayBtn">去支付</a>' +
+          '</div>' +
+          '</div>'
       },
 
       payerrorTemplate: function() {
@@ -121,9 +106,7 @@ define(
       },
 
       '#gotopayBtn click': function() {
-
         var that = this;
-
         var callback = {
           error: function(errorText) {
 
@@ -138,6 +121,7 @@ define(
           }
         }
 
+        var that = this;
         SFOrderFn.payV2({
           orderid: that.options.orderid,
           payType: that.getPayType()

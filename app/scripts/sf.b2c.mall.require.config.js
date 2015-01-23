@@ -101,6 +101,7 @@ requirejs.config({
     'sf.b2c.mall.component.i.register': 'scripts/component/sf.b2c.mall.component.i.register',
     'sf.b2c.mall.component.limitedtimesale': 'scripts/component/sf.b2c.mall.component.limitedtimesale',
     'sf.b2c.mall.component.rapidseabuy': 'scripts/component/sf.b2c.mall.component.rapidseabuy',
+    'sf.b2c.mall.component.freshfood': 'scripts/component/sf.b2c.mall.component.freshfood',
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo':'scripts/center/sf.b2c.mall.center.change.userinfo',
     'sf.b2c.mall.center.change.password':'scripts/center/sf.b2c.mall.center.change.password',

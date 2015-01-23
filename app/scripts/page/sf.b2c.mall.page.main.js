@@ -8,13 +8,14 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
+    'sf.b2c.mall.component.freshfood',
     'sf.b2c.mall.component.limitedtimesale',
     'sf.b2c.mall.component.rapidseabuy',
     'sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.widget.slide'
   ],
 
-  function(can, $, _, SFFrameworkComm, Header, Footer, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
+  function(can, $, _, SFFrameworkComm, Header, Footer, FreshFood, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
     SFFrameworkComm.register(1);
 
     var home = can.Control.extend({
@@ -73,6 +74,8 @@ define(
         var serverRendered = this.element.find('.sf-b2c-mall-limitedtimesale.serverRendered').length > 0 ? true : false
 
         //作为参数传递进去
+        new FreshFood('.sf-b2c-mall-freshfoodlist');
+
         new LimitedTimeSale('.sf-b2c-mall-limitedtimesale', {'serverRendered': serverRendered});
 
         new RapidSeaBuy('.sf-b2c-mall-rapidseabuy');
