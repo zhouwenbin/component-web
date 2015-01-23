@@ -40,7 +40,6 @@ define(
         if(params.otherlink){
           this.options.tips.attr('tipInfo','请您尽快完成付款，以便订单尽快处理！');
         }else{
-          //step
           this.step = new OrderSetp('.sf-b2c-mall-order-step', {
             "secondstep": "active"
           });
