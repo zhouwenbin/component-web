@@ -43,13 +43,49 @@ define(
         });
         new Footer('.sf-b2c-mall-footer');
 
-        //step
-        this.step = new OrderSetp('.sf-b2c-mall-order-step', {
-          "secondstep": "active"
+        var that = this;
+        this.options.tips = new can.Map({})
+        var params = can.deparam(window.location.search.substr(1));
+
+        if(params.otherlink){
+          this.options.tips.attr('tipInfo','请您尽快完成付款，以便订单尽快处理！');
+        }else{
+          //step
+          this.step = new OrderSetp('.sf-b2c-mall-order-step', {
+            "secondstep": "active"
+          });
+          this.options.tips.attr('tipInfo','您已成功提交订单，请您尽快完成付款！');
+        }
+
+        that.options.orderid = params.orderid;
+        that.options.recid = params.recid;
+        that.options.alltotalamount = params.amount;
+
+        var getOrder = new SFGetOrder({
+          "orderId": params.orderid
         });
 
-        var template = can.view.mustache(this.gotopayTemplate());
-        $('#gotopayDIV').html(template());
+        getOrder.sendRequest()
+            .done(function(data){
+              that.options.orderId = data.orderId;
+              that.options.orderMoney = data.orderItem.totalPrice/100;
+              that.options.orderPayWay = '在线支付';
+
+              that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
+              that.options.country = data.orderItem.orderAddressItem.country;
+              that.options.province = data.orderItem.orderAddressItem.province;
+              that.options.city = data.orderItem.orderAddressItem.city;
+              that.options.region = data.orderItem.orderAddressItem.region;
+              that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
+              that.options.mobile = data.orderItem.orderAddressItem.mobile;
+              that.options.certNo = data.orderItem.orderAddressItem.certNo;
+              that.options.currentPayWay =that.showPayMap['alipay'];
+
+              var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',that.options);
+              $('#gotopayDIV').html(html);
+            }).fail(function(){
+
+            });
       },
 
       gotopayTemplate: function() {
@@ -101,7 +137,8 @@ define(
 
         var that = this;
         SFOrderFn.payV2({
-          orderid: that.options.orderid
+          orderid: that.options.orderid,
+          payType: that.getPayType()
         }, callback);
       }
     });
