@@ -28,7 +28,7 @@
 
         <!--详情-->
         <div class="content-mains clearfix sf-b2c-mall-detail-content serverRendered" data-itemid="$!{productInfo.itemId}"
-             data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}">
+             data-saleid="$!{productInfo.saleId}" data-skuid="$!{productInfo.skuInfo.skuId}" >
             <div class="goods clearfix">
                 <div id="allSkuImages" class="goods-c1 fl">
                     <div class="goods-c1r1" id="bigPicArea">
@@ -67,7 +67,7 @@
                     <div id="itemPrice">
                     </div>
                 ##                  客户端渲染end
-                    <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
+                    <div class="mr3">#if($!{productInfo.saleInfo.productShape}=="FRESHFOOD")物流配送：#else 国际物流：#end$!{productInfo.saleInfo.shippingPoint}
                         发货,预计#if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
                             天内到货#else$!{productInfo.saleInfo.logisticsEnd}天内到货#end</div>
                     <div class="goods-rel">
@@ -77,9 +77,11 @@
                         </div>
                         <!--运费-->
                     </div>
-                    <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
-                    <div id="bandInfo" class="mr5">品牌：<label>$!{productInfo.skuInfo.brand}</label>
-                    ##                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
+                    <div class="mr4">配送范围：#if($!{productInfo.saleInfo.areaDesc})$!{productInfo.saleInfo.areaDesc}#else 全国#end
+                    </div>
+                    <div id="logisticsArea" data-areaid="$!{productInfo.saleInfo.areaId}"></div>
+                    <div class="mr4">#if($!{productInfo.saleInfo.seller})发货商家：$!{productInfo.saleInfo.seller}#end</div>
+                    <div id="bandInfo" class="mr5">#if($!{productInfo.skuInfo.brand})品牌：<label>$!{productInfo.skuInfo.brand}</label>#end
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">
