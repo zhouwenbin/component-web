@@ -10,9 +10,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.adapter.regions'
   ],
-  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage) {
+  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,RegionsAdapter) {
     return can.Control.extend({
 
       helpers: {
@@ -38,7 +39,17 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
-        }
+        },
+
+        //生鲜展示
+        'sf-is-freshfood': function(productShape, options) {
+          if (productShape() == 'FRESHFOOD') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
       },
 
       /**
@@ -49,12 +60,28 @@ define('sf.b2c.mall.product.detailcontent', [
       init: function(element, options) {
         // this.detailUrl = SFConfig.setting.api.detailurl;
 
+
+
         // @todo 需要在配置文件中修改
         this.detailUrl = 'http://item.sfht.com';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
+
+        this.request();
         this.render();
+      },
+      //地址联动
+      request: function() {
+        return can.ajax('json/sf.b2c.mall.regions.json')
+            .done(_.bind(function(cities) {
+              this.adapter.regions = new RegionsAdapter({
+                cityList: cities
+              });
+            }, this))
+            .fail(function() {
+
+            });
       },
 
       /**
@@ -130,6 +157,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
+
+        //渲染选择区域
+        this.renderChooseArea();
       },
 
       /**
@@ -343,6 +373,63 @@ define('sf.b2c.mall.product.detailcontent', [
         window.location.href = gotoUrl;
       },
 
+      renderChooseArea:function(){
+
+        var template = can.view.mustache(this.checkAreaTemplate());
+        $('#logisticsArea').html(template());
+      },
+      changeCity: function() {
+        var pid = this.adapter.addr.input.attr('provinceName');
+
+        var cities = this.adapter.regions.findGroup(window.parseInt(pid));
+        this.adapter.addr.place.attr('cities', cities);
+        this.adapter.addr.input.attr('cityName', cities[0].id);
+      },
+
+      changeRegion: function() {
+        var cid = this.adapter.addr.input.attr('cityName');
+
+        var regions = this.adapter.regions.findGroup(window.parseInt(cid));
+        this.adapter.addr.place.attr('regions', regions);
+        this.adapter.addr.input.attr('regionName', regions[0].id);
+      },
+
+      '#s2 change': function(element, event) {
+        this.changeCity();
+        this.changeRegion();
+      },
+
+      /**
+       * @description 城市发生变化，区同时发生变化
+       * @param  {Dom}    element
+       * @param  {Event}  event
+       */
+      '#s3 change': function(element, event) {
+        this.changeRegion();
+      },
+
+      checkAreaTemplate:function(){
+        return '<label for="area">送至：</label>' +
+            '<select id="s2"  can-value="addr.input.provinceName">'+
+            '{{#each addr.place.provinces}}'+
+            '<option value="{{id}}">{{name}}</option>'+
+            '{{/each}}'+
+            '</select>'+
+
+            '<select id="s3"  can-value="addr.input.cityName">'+
+            '{{#each addr.place.cities}}'+
+            '<option value="{{id}}">{{name}}</option>'+
+            '{{/each}}'+
+            '</select>'+
+
+            '<select id="s4"  can-value="addr.input.regionName">'+
+            '{{#each addr.place.regions}}'+
+            '<option value="{{id}}">{{name}}</option>'+
+            '{{/each}}'+
+            '</select>'+
+            '<span>无法配送到此区域</span>'
+      },
+
       buyInfoTemplate: function() {
         return '<div class="mr8">购买数量：' +
           '<span class="btn btn-num">' +
@@ -371,6 +458,13 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
           '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
           '{{/sf-is-limitedTimeBuy}}' +
+          '</div>' +
+
+          '<!--生鲜-->' +
+          '<div class="u1">' +
+          '{{#sf-is-freshfood priceInfo.productShape}}' +
+          '<span class="icon icon50">生鲜</span>' +
+          '{{/sf-is-freshfood}}' +
           '</div>' +
 
           '<!--急速海淘-->' +
