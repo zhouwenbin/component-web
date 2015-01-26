@@ -138,11 +138,7 @@ requirejs.config({
     'sf.b2c.mall.page.main': 'scripts/page/sf.b2c.mall.page.main',
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
     'sf.b2c.mall.page.order': 'scripts/page/sf.b2c.mall.page.order',
-    'sf.b2c.mall.page.order2': 'scripts/page/sf.b2c.mall.page.order2',
     'sf.b2c.mall.page.gotopay': 'scripts/page/sf.b2c.mall.page.gotopay',
-    'sf.b2c.mall.page.gotopay2': 'scripts/page/sf.b2c.mall.page.gotopay2',
-    'sf.b2c.mall.order.iteminfo2': 'scripts/order/sf.b2c.mall.order.iteminfo2',
-
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.page.orderdetail': 'scripts/page/sf.b2c.mall.page.orderdetail',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',

@@ -69,7 +69,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 }
               })
 
-              var html = can.view('templates/order/detailsf.b2c.mall.order.orderlist.mustache', that.options);
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
             } else {
               var noDataTemplate = {};
@@ -331,22 +331,28 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var that = this;
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
-        var callback = {
-          error: function() {
-            var message = new SFMessage(null, {
-              'tip': '支付失败！',
-              'type': 'error',
-              'okFunction': function() {
-                that.render();
-              }
-            });
-          }
-        }
+        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid +"&otherlink=1", "_blank");
 
-        SFOrderFn.payV2({
-          orderid: orderId
-        }, callback);
+
+
+
+//        var callback = {
+//          error: function() {
+//            var message = new SFMessage(null, {
+//              'tip': '支付失败！',
+//              'type': 'error',
+//              'okFunction': function() {
+//                that.render();
+//              }
+//            });
+//          }
+//        }
+//
+//        SFOrderFn.payV2({
+//          orderid: orderId
+//        }, callback);
 
         // var requestPayV2 = new SFRequestPayV2({
         //   "orderId": orderId,
@@ -365,7 +371,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         //     $('#gotopay').html(template());
         //   });
 
-        return false;
+        //return false;
       },
 
       // request: function(orderId) {
@@ -397,7 +403,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
         var params = can.deparam(window.location.search.substr(1));
-        if (params.saleid == 'heike_online') {
+        if (params.app == 'pad') {
           window.location.href = "/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid;
         }else{
           window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
