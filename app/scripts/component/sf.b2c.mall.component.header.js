@@ -58,13 +58,14 @@ define('sf.b2c.mall.component.header', ['jquery',
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
           index: SFConfig.setting.link.index,
-          nickname: arr[0].length > 6 ? arr[0].substr(0, 5) + "...": arr[0]
+          nickname: arr[0]
           // domain: SFConfig.setting.api.mainurl
         }));
       } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
-          index: SFConfig.setting.link.index
+          index: SFConfig.setting.link.index,
+          nickname:null
             // domain: SFConfig.setting.api.mainurl
         }));
       }
@@ -106,8 +107,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.orderlist;
-      } else {
+        window.location.href = SFConfig.setting.link.orderlist + window.location.search + window.location.hash;
+      }else{
         this.showLogin('orderlist');
       }
     },
@@ -237,9 +238,17 @@ define('sf.b2c.mall.component.header', ['jquery',
             window.location.href = link;
           }
 
+          var userinfo = $.cookie(APPID + '_uinfo');
+          var arr = [];
+          if (userinfo) {
+            arr = userinfo.split(',');
+          }
+          //window.location.reload();
           that.data.attr('isUserLogin', true);
+          that.data.attr('nickname',arr[0])
         } else {
           that.data.attr('isUserLogin', false);
+          that.data.attr('nickname',null);
         }
         // that.watchLoginState.call(that);
       }, 500);

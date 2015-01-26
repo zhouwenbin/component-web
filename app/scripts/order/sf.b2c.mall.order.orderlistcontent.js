@@ -169,8 +169,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
               if (data.value) {
 
-                var len = data.value.length;
-                that.options.userRoutes = data.value.slice(len - 5, len).reverse();
+                that.options.userRoutes = data.value;
 
                 var result = {};
                 result.userRoutes = [];
@@ -181,6 +180,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   }
                 });
 
+                var len = result.userRoutes.length;
+                if(len <= 5){
+                  result.userRoutes = result.userRoutes.reverse();
+                }else{
+                  result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
+                }
                 var template = can.view.mustache(that.getTraceListTemplate());
                 element.find('#traceList').html(template(result));
             }
@@ -326,22 +331,28 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var that = this;
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
-        var callback = {
-          error: function() {
-            var message = new SFMessage(null, {
-              'tip': '支付失败！',
-              'type': 'error',
-              'okFunction': function() {
-                that.render();
-              }
-            });
-          }
-        }
+        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid +"&otherlink=1", "_blank");
 
-        SFOrderFn.payV2({
-          orderid: orderId
-        }, callback);
+
+
+
+//        var callback = {
+//          error: function() {
+//            var message = new SFMessage(null, {
+//              'tip': '支付失败！',
+//              'type': 'error',
+//              'okFunction': function() {
+//                that.render();
+//              }
+//            });
+//          }
+//        }
+//
+//        SFOrderFn.payV2({
+//          orderid: orderId
+//        }, callback);
 
         // var requestPayV2 = new SFRequestPayV2({
         //   "orderId": orderId,
@@ -360,7 +371,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         //     $('#gotopay').html(template());
         //   });
 
-        return false;
+        //return false;
       },
 
       // request: function(orderId) {
@@ -385,17 +396,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //       })
       //   }, 1000);
       // },
-      "#find-more-info click":function(element, event){
-        this.linkOrderDetail();
-      },
+
       ".viewOrder click": function(element, event) {
-        event && event.preventDefault();
-        this.linkOrderDetail();
+        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
+        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+
+        var params = can.deparam(window.location.search.substr(1));
+        if (params.app == 'pad') {
+          window.location.href = "/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid;
+        }else{
+          window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+        }
       },
-      linkOrderDetail:function(){
-        var orderid = $('#operationarea').attr('data-orderid');
-        var suborderid = $('#operationarea').attr('data-suborderid');
-        var recid = $('#operationarea').eq(0).attr('data-recid');
+
+      "#find-more-info click": function(element, event) {
+        var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
+        var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
+        var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
         window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {
