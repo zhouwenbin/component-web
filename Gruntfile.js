@@ -160,12 +160,14 @@ module.exports = function (grunt) {
             '<%= config.dist %>/scripts/sf.b2c.mall.page.common',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.detail',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay',
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.i.login',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.i.register',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.login',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.main',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.order',
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.order2',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.order.list',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.passwordchange',
@@ -252,9 +254,11 @@ module.exports = function (grunt) {
           { src: '<%= config.dist %>/styles/sf.b2c.mall.center', dest: '<%= config.dist %>/styles/sf.b2c.mall.center.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.detail.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.gotopay', dest: '<%= config.dist %>/styles/sf.b2c.mall.gotopay.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.gotopay2', dest: '<%= config.dist %>/styles/sf.b2c.mall.gotopay2.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.register', dest: '<%= config.dist %>/styles/sf.b2c.mall.register.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.index', dest: '<%= config.dist %>/styles/sf.b2c.mall.index.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.order', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.<%= config.version %>.<%= config.build %>.min.css' },
+          { src: '<%= config.dist %>/styles/sf.b2c.mall.order2', dest: '<%= config.dist %>/styles/sf.b2c.mall.order2.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.order.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.detail.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.order.list', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.list.<%= config.version %>.<%= config.build %>.min.css' },
           { src: '<%= config.dist %>/styles/sf.b2c.mall.process', dest: '<%= config.dist %>/styles/sf.b2c.mall.process.<%= config.version %>.<%= config.build %>.min.css' },
@@ -281,10 +285,12 @@ module.exports = function (grunt) {
         '<%= config.app %>/nullactivated.html',
         '<%= config.app %>/retrieve.html',
         '<%= config.app %>/order.html',
+        '<%= config.app %>/order2.html',
         '<%= config.app %>/orderlist.html',
         '<%= config.app %>/orderdetail.html',
         '<%= config.app %>/center.html',
         '<%= config.app %>/gotopay.html',
+        '<%= config.app %>/gotopay2.html',
         '<%= config.app %>/404.html',
         '<%= config.app %>/p404.html',
         '<%= config.app %>/password-change.html',
@@ -417,10 +423,12 @@ module.exports = function (grunt) {
             'nullactivated.html',
             'retrieve.html',
             'order.html',
+            'order2.html',
             'orderlist.html',
             'orderdetail.html',
             'center.html',
             'gotopay.html',
+            'gotopay2.html',
             '404.html',
             'p404.html',
             'password-change.html',
@@ -806,40 +814,53 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.order']
         }
       },
-      // order2: {
-      //   options: {
-      //     optimize: 'none',
-      //     preserveLicenseComments: false,
-      //     baseUrl: './app/',
-      //     out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.min.js',
-      //     mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-      //     paths: {
-      //       'moment':'../bower_components/momentjs/min/moment.min',
-      //       'placeholders': '../bower_components/Placeholders/build/placeholders'
-      //     },
-      //     include: [
-      //       'placeholders',
-      //       'sf.b2c.mall.component.header',
-      //       'sf.b2c.mall.component.login.status.scanner',
-      //       'sf.b2c.mall.component.footer',
-      //       'sf.b2c.mall.widget.not.support',
-      //       'sf.b2c.mall.widget.modal',
-      //       'sf.b2c.mall.order.step',
-      //       'sf.b2c.mall.order.selectreceiveperson',
-      //       'sf.b2c.mall.order.selectreceiveaddr',
-      //       'sf.b2c.mall.order.iteminfo2',
-      //       'sf.b2c.mall.order.vendor.info',
-      //       'sf.b2c.mall.adapter.address.list',
-      //       'sf.b2c.mall.component.addreditor',
-      //       'sf.b2c.mall.adapter.order',
-      //       'sf.b2c.mall.adapter.regions',
-      //       'sf.b2c.mall.order.fn',
-      //       'placeholders',
-      //       'sf.b2c.mall.page.order2'
-      //     ],
-      //     insertRequire: ['sf.b2c.mall.page.order2']
-      //   }
-      // },
+      order2: {
+        options: {
+          optimize: 'none',
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            'placeholders': '../bower_components/Placeholders/build/placeholders',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: [
+            "sf.b2c.mall.page.order2",
+            "sf.b2c.mall.component.header",
+            "sf.b2c.mall.component.footer",
+            "sf.b2c.mall.order.step",
+            "sf.b2c.mall.order.selectreceiveperson",
+            "sf.b2c.mall.order.selectreceiveaddr",
+            "sf.b2c.mall.order.iteminfo2",
+            "sf.b2c.mall.order.vendor.info",
+            "sf.b2c.mall.api.user.getUserInfo",
+            "sf.b2c.mall.api.user.logout",
+            "sf.b2c.mall.widget.modal",
+            "sf.b2c.mall.business.config",
+            "sf.b2c.mall.widget.not.support",
+            "sf.b2c.mall.api.user.getIDCardUrlList",
+            "sf.b2c.mall.api.user.webLogin",
+            "sf.b2c.mall.api.user.createReceiverInfo",
+            "sf.b2c.mall.api.user.updateReceiverInfo",
+            "sf.b2c.mall.adapter.order",
+            "sf.b2c.mall.adapter.receiveperson.list",
+            "sf.b2c.mall.component.receivepersoneditor",
+            "sf.b2c.mall.api.user.getRecAddressList",
+            "sf.b2c.mall.adapter.address.list",
+            "sf.b2c.mall.component.addreditor",
+            "sf.b2c.mall.api.b2cmall.getProductHotData",
+            "sf.b2c.mall.api.b2cmall.getItemSummary",
+            "sf.b2c.mall.api.order.submitOrderForAllSys",
+            "sf.helpers",
+            "sf.b2c.mall.api.user.setDefaultAddr",
+            "sf.b2c.mall.api.user.setDefaultRecv",
+            "sf.b2c.mall.widget.message"
+          ],
+          insertRequire: ['sf.b2c.mall.page.order2']
+        }
+      },
       orderlist: {
         options: {
           preserveLicenseComments: false,
@@ -985,31 +1006,35 @@ module.exports = function (grunt) {
           insertRequire: ['sf.b2c.mall.page.gotopay']
         }
       },
-      // gotopay2: {
-      //   options: {
-      //     preserveLicenseComments: false,
-      //     baseUrl: './app/',
-      //     out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.min.js',
-      //     mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-      //     paths: {
-      //       'moment':'../bower_components/momentjs/min/moment.min',
-      //       // 'fastclick': '../bower_components/fastclick/lib/fastclick'
-      //     },
-      //     include: [
-      //       'sf.b2c.mall.component.header',
-      //       'sf.b2c.mall.component.login.status.scanner',
-      //       'sf.b2c.mall.component.footer',
-      //       'sf.b2c.mall.widget.modal',
-      //       'sf.b2c.mall.widget.not.support',
-      //       'sf.b2c.mall.order.step',
-      //       'sf.helpers',
-      //       'moment',
-      //       'sf.b2c.mall.order.fn',
-      //       'sf.b2c.mall.page.gotopay2'
-      //     ],
-      //     insertRequire: ['sf.b2c.mall.page.gotopay2']
-      //   }
-      // },
+      gotopay2: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.min.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'moment':'../bower_components/momentjs/min/moment.min',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: [
+            "sf.b2c.mall.page.gotopay2",
+            "sf.b2c.mall.component.header",
+            "sf.b2c.mall.component.footer",
+            "sf.b2c.mall.order.step",
+            "sf.b2c.mall.api.order.getOrder",
+            "sf.b2c.mall.api.order.requestPayV2",
+            "sf.b2c.mall.order.fn",
+            "sf.b2c.mall.widget.message",
+            "sf.b2c.mall.api.user.getUserInfo",
+            "sf.b2c.mall.api.user.logout",
+            "sf.b2c.mall.widget.modal",
+            "sf.b2c.mall.business.config",
+            "sf.b2c.mall.widget.not.support",
+            "sf.util"
+          ],
+          insertRequire: ['sf.b2c.mall.page.gotopay2']
+        }
+      },
       passwordchange: {
         options: {
           preserveLicenseComments: false,
