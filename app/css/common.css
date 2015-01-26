@@ -734,6 +734,19 @@ button.btn{
 	color: #999;
 }
 
+/*text*/
+.text-success{
+	color: #67b222;
+}
+.text-error{
+	color: #eb6877;
+}
+.text-waining{
+	color: #a1d0ed;
+}
+.text-disabled{
+	color: #ccc;
+}
 body{
 	background: #EEEEEE;
 	padding-top: 60px;
