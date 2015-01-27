@@ -174,7 +174,11 @@ module.exports = function (grunt) {
             '<%= config.dist %>/scripts/sf.b2c.mall.page.process',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.proxy',
             '<%= config.dist %>/scripts/sf.b2c.mall.page.register',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve'
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve',
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2',
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.order2',
+            '<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login'
+
           ]
         }]
       },
@@ -493,7 +497,7 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.headerandfooter.<%= config.version %>.<%= config.build %>.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.headerandfooter.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
@@ -819,7 +823,7 @@ module.exports = function (grunt) {
           optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
@@ -1010,7 +1014,7 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'moment':'../bower_components/momentjs/min/moment.min',
@@ -1081,7 +1085,7 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.min.js',
+          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths:{
             'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
@@ -1220,6 +1224,35 @@ module.exports = function (grunt) {
     grunt.file.write('page.modules.json', JSON.stringify(modules));
   });
 
+  grunt.registerTask('createJSON', function () {
+    var map = {
+      'headerandfooter'             :'scripts/sf.b2c.mall.page.headerandfooter.' + config.version +'.'+ config.build +'.min.js',
+      'main'                        :'scripts/sf.b2c.mall.page.main.'            + config.version +'.'+ config.build +'.min.js',
+      'detail'                      :'scripts/sf.b2c.mall.page.detail.'          + config.version +'.'+ config.build +'.min.js',
+      'login'                       :'scripts/sf.b2c.mall.page.login.'           + config.version +'.'+ config.build +'.min.js',
+      'ilogin'                      :'scripts/sf.b2c.mall.page.i.login.'         + config.version +'.'+ config.build +'.min.js',
+      'register'                    :'scripts/sf.b2c.mall.page.register.'        + config.version +'.'+ config.build +'.min.js',
+      'iregister'                   :'scripts/sf.b2c.mall.page.i.register.'      + config.version +'.'+ config.build +'.min.js',
+      'process'                     :'scripts/sf.b2c.mall.page.process.'         + config.version +'.'+ config.build +'.min.js',
+      'activated'                   :'scripts/sf.b2c.mall.page.activated.'       + config.version +'.'+ config.build +'.min.js',
+      'nullactivated'               :'scripts/sf.b2c.mall.page.nullactivated.'   + config.version +'.'+ config.build +'.min.js',
+      'retrieve'                    :'scripts/sf.b2c.mall.page.retrieve.'        + config.version +'.'+ config.build +'.min.js',
+      'order'                       :'scripts/sf.b2c.mall.page.order.'           + config.version +'.'+ config.build +'.min.js',
+      'order2'                      :'scripts/sf.b2c.mall.page.order2.'          + config.version +'.'+ config.build +'.min.js',
+      'orderlist'                   :'scripts/sf.b2c.mall.page.order.list.'      + config.version +'.'+ config.build +'.min.js',
+      'orderdetail'                 :'scripts/sf.b2c.mall.page.order.detail.'    + config.version +'.'+ config.build +'.min.js',
+      'center'                      :'scripts/sf.b2c.mall.page.center.'          + config.version +'.'+ config.build +'.min.js',
+      'gotopay'                     :'scripts/sf.b2c.mall.page.gotopay.'         + config.version +'.'+ config.build +'.min.js',
+      'gotopay2'                    :'scripts/sf.b2c.mall.page.gotopay2.'        + config.version +'.'+ config.build +'.min.js',
+      'passwordchange'              :'scripts/sf.b2c.mall.page.passwordchange.'  + config.version +'.'+ config.build +'.min.js',
+      'federallogin'                :'scripts/sf.b2c.mall.page.federal.login.'   + config.version +'.'+ config.build +'.min.js',
+      'common'                      :'scripts/sf.b2c.mall.page.common.'          + config.version +'.'+ config.build +'.min.js'
+    }
+
+    grunt.file.write(config.dist+'/scripts/sf.b2c.mall.file.json', JSON.stringify(map), {encoding: 'utf8'});
+
+  });
+
   grunt.registerTask('build', function(target){
     grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
       if (filename.indexOf('sf.web.base')> -1) {
@@ -1243,7 +1276,8 @@ module.exports = function (grunt) {
           'usemin',
           'htmlmin',
           'strip:main',
-          'clean:extra'
+          'clean:extra',
+          'createJSON'
         ]);
       };
     })
