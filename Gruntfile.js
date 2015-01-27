@@ -1226,6 +1226,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('createJSON', function () {
     var map = {
+      'base'                        :'scripts/base/sf.web.base.ver.1.0.build.1421502116857.js',
       'headerandfooter'             :'scripts/sf.b2c.mall.page.headerandfooter.' + config.version +'.'+ config.build +'.min.js',
       'main'                        :'scripts/sf.b2c.mall.page.main.'            + config.version +'.'+ config.build +'.min.js',
       'detail'                      :'scripts/sf.b2c.mall.page.detail.'          + config.version +'.'+ config.build +'.min.js',
