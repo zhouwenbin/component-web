@@ -936,7 +936,8 @@ body.sub{
 /*footer3*/
 .footer3{
 	height: 50px;
-	line-height: 50px;
+	padding: 20px 0 10px 0;
+	line-height: 20px;
 	background: #23262C;
 	color: #4b4f5e;
 	text-align: center;
