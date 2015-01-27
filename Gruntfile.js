@@ -31,7 +31,7 @@ module.exports = function (grunt) {
   };
 
   var isRelease = function () {
-    return config.release?'static.sfht.com/':''
+    return config.release?'http://static.sfht.com/':''
   }
 
   var DEFAULT_JS_OUTPUT = function (block) {
@@ -1286,7 +1286,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('release', function () {
     config.release = true;
-    grunt.task.run(['build']);
+    grunt.task.run(['build:prd']);
   });
 
   grunt.registerTask('default', [
