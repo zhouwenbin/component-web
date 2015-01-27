@@ -36,7 +36,7 @@
                             <li class="active">
                               #set($_selectedImg="")
                               #if(${productInfo.skuInfo.images}&&${productInfo.skuInfo.images.size()}>0) #set($_selectedImg=$!{productInfo.skuInfo.images.get(0).bigImgUrl})#end
-                                <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
+                                <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt="$!{productInfo.skuInfo.title}"
                                                                 class="jqzoom"/></a>
                                 <span></span>
                             </li>
@@ -48,7 +48,7 @@
                             #foreach ($_el in $productInfo.skuInfo.images)
                                 <li class="thumb-item #if(${velocityCount} == 1) active #end" data-big-pic="$!{_el.bigImgUrl}">
                                     <a href="">
-                                        <img src="$!{_el.thumbImgUrl}" alt=""/>
+                                        <img src="$!{_el.thumbImgUrl}" alt="$!{productInfo.skuInfo.title}"/>
                                     </a>
                                     <span></span>
                                 </li>
