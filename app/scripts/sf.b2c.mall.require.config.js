@@ -22,6 +22,7 @@ requirejs.config({
     'sf.b2c.mall.api.order.requestPay': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.requestPay',
     'sf.b2c.mall.api.order.requestPayV2': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.submitOrderForAllSys': 'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.submitOrderForAllSys',
+    'sf.b2c.mall.api.order.getOrderConfirmInfo':'http://www.google.com/app/scripts/api/order/sf.b2c.mall.api.order.getOrderConfirmInfo',
 
     'sf.b2c.mall.api.products.getSKUBaseList': 'http://www.google.com/app/scripts/api/products/sf.b2c.mall.api.product.getSKUBaseList',
     'sf.b2c.mall.api.products.getSKUInfo': 'http://www.google.com/app/scripts/api/products/sf.b2c.mall.api.product.getSKUInfo',
@@ -78,6 +79,7 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.product.findRecommendProducts': 'http://www.google.com/sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.getItemSummary',
+    'sf.b2c.mall.api.b2cmall.checkLogistics':'http://www.google.com/app/scripts/api/b2cmall/sf.b2c.mall.api.b2cmall.checkLogistics',
 
     'sf.b2c.mall.business.config': 'http://www.google.com/app/scripts/config/sf.b2c.mall.business.<%= config.target %>.config',
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
@@ -165,6 +167,7 @@ requirejs.config({
     'sf.b2c.mall.widget.loading': 'scripts/widget/sf.b2c.mall.widget.loading',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
     'sf.b2c.mall.widget.message': 'scripts/widget/sf.b2c.mall.widget.message',
+    'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
 
     'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',

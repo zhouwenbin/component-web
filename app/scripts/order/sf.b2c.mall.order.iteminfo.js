@@ -11,9 +11,11 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
-  'sf.b2c.mall.widget.message'
+  'sf.b2c.mall.widget.message',
+  'sf.b2c.mall.api.b2cmall.checkLogistics',
+  //'sf.b2c.mall.widget.showArea'
 
-], function(can, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
+], function(can, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
   return can.Control.extend({
 
     /**
@@ -23,7 +25,7 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
-
+      this.component = {};
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
       that.options.saleid = params.saleid;
@@ -41,10 +43,34 @@ define('sf.b2c.mall.order.iteminfo', [
       var prceInfo = new SFGetProductHotData({
         'itemId': this.options.itemid
       });
+      this.component.checkLogistics = new CheckLogistics();
+      //this.component.showArea = new SFShowArea();
+//      var areaId = $('#logisticsArea').attr('data-areaid');
+//      var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+//      var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+//      var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+
 
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
           var itemObj = {};
+          itemObj.errorTips = '';
+          //检测是否是可配送区域
+          that.component.checkLogistics.setData({
+            areaId:iteminfo.areaId,
+            provinceId:$.cookie('provinceId'),
+            cityId:$.cookie('cityId'),
+            districtId:$.cookie('regionId')
+          });
+
+          that.component.checkLogistics.sendRequest()
+              .done(function(data){
+                  if(data.value == false){
+                    itemObj.errorTips = '该商品的配送不支持该区域';
+                  }
+              }).fail(function(){
+
+              });
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
@@ -105,7 +131,6 @@ define('sf.b2c.mall.order.iteminfo', [
         'heike_online': this.options.vendorinfo.get
       }
     },
-
     '#submitOrder click': function(element, event) {
       var that = this;
 
@@ -180,6 +205,17 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
 
+          // var areaId = $('#logisticsArea').attr('data-areaid');
+          // var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+          // var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+          // var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+
+          // this.component.checkLogistics.setData({
+          //   areaId:areaId,
+          //   provinceId:provinceId,
+          //   cityId:cityId,
+          //   districtId:districtId
+          // });
         })
         .fail(function(error) {
           element.removeClass("disable");

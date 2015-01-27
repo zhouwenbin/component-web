@@ -18,8 +18,10 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
-  'sf.util'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
+  'sf.util',
+  'sf.b2c.mall.widget.showArea',
+  'sf.b2c.mall.api.user.getRecAddressList'
+], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn,SFShowArea,GetRecAddressList) {
 
   var APPID = 1;
 
@@ -44,6 +46,8 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.component.modal = new SFModal('body');
       this.component.scanner = new SFLoginScanner();
       this.component.notSupport = new SFNotSupport('body');
+      this.component.getRecAddressList = new GetRecAddressList();
+      this.component.showArea = new SFShowArea();
       this.watchLoginState.call(this);
 
       this.afterLoginDest = null;
@@ -62,6 +66,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           nickname: arr[0]
           // domain: SFConfig.setting.api.mainurl
         }));
+
       } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
@@ -156,6 +161,10 @@ define('sf.b2c.mall.component.header', ['jquery',
             setTimeout(function(){
               window.location.href = SFConfig.setting.link.index;
             },2000);
+
+              $.removeCookie('provinceId', { path: '/' });
+              $.removeCookie('cityId', { path: '/' });
+              $.removeCookie('regionId', { path: '/' });
           })
           .fail(function() {})
       }
@@ -246,7 +255,32 @@ define('sf.b2c.mall.component.header', ['jquery',
           }
           //window.location.reload();
           that.data.attr('isUserLogin', true);
-          that.data.attr('nickname',arr[0])
+          that.data.attr('nickname',arr[0]);
+
+          if(!$.cookie('provinceId') && !$.cookie('provinceId') && !$.cookie('regionId')){
+            that.component.getRecAddressList.sendRequest()
+            .done(function(data){
+              if(data.items.length > 0){
+                var defaultAdde = {};
+                _.each(data.items,function(item){
+                  if(item.isDefault == 1){
+                    defaultAdde = item;
+                  }
+                });
+                var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
+                var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                $.cookie('provinceId',provinceId);
+                $.cookie('cityId',cityId);
+                $.cookie('regionId',regionId);
+              }
+            }).fail(function(){
+
+            })
+          }
+
+
+
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname',null);

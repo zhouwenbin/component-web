@@ -3,6 +3,7 @@
 define('sf.b2c.mall.product.detailcontent', [
     'can',
     'zoom',
+    'jquery.cookie',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
@@ -11,9 +12,11 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.adapter.regions'
+    'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.b2cmall.checkLogistics'
+
   ],
-  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,RegionsAdapter) {
+  function(can, zoom,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -48,7 +51,7 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
-        },
+        }
 
       },
 
@@ -59,8 +62,8 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         // this.detailUrl = SFConfig.setting.api.detailurl;
-
-
+        this.component = {};
+        this.component.checkLogistics = new CheckLogistics();
 
         // @todo 需要在配置文件中修改
         this.detailUrl = 'http://item.sfht.com';
@@ -68,20 +71,29 @@ define('sf.b2c.mall.product.detailcontent', [
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
 
-        this.request();
         this.render();
-      },
-      //地址联动
-      request: function() {
-        return can.ajax('json/sf.b2c.mall.regions.json')
-            .done(_.bind(function(cities) {
-              this.adapter.regions = new RegionsAdapter({
-                cityList: cities
-              });
-            }, this))
-            .fail(function() {
 
+        this.component.showArea = new SFShowArea();
+        this.component.showArea.show('create', null, $("#logisticsArea"));
+        var that = this;
+        setTimeout(function(){
+          if (SFComm.prototype.checkUserLogin.call(that)) {
+            that.component.showArea.adapter.addr.attr({
+              input:{
+                provinceName:$.cookie('provinceId')
+              }
             });
+            that.component.showArea.changeCity();
+            that.component.showArea.changeRegion();
+            that.component.showArea.adapter.addr.attr({
+              input:{
+                cityName:$.cookie('cityId'),
+                regionName:$.cookie('regionId')
+              }
+            });
+          }
+        },1000)
+        
       },
 
       /**
@@ -158,8 +170,6 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染推荐商品信息
         this.renderRecommendProducts();
 
-        //渲染选择区域
-        this.renderChooseArea();
       },
 
       /**
@@ -347,89 +357,89 @@ define('sf.b2c.mall.product.detailcontent', [
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
       },
 
-      '#gotobuy click': function() {
-        var amount = this.options.detailContentInfo.input.buyNum;
-        if (amount < 1 || isNaN(amount)){
-          this.options.detailContentInfo.input.attr("buyNum", 1);
-          var message = new SFMessage(null, {
-            'tip': '请输入正确的购买数量！',
-            'type': 'error'
-          });
+      '#gotobuy click': function(element,event) {
+        event && event.preventDefault();
+        $('#areaErrorTips').hide();
 
-          return false;
-        }
+        var areaId = $('#logisticsArea').attr('data-areaid');
+        var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+        var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+        var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
 
-        var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
-          "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
-          "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
-          "amount": this.options.detailContentInfo.input.buyNum
+        this.component.checkLogistics.setData({
+          areaId:areaId,
+          provinceId:provinceId,
+          cityId:cityId,
+          districtId:districtId
         });
 
-        if (!SFComm.prototype.checkUserLogin.call(this)) {
-          this.header.showLogin(gotoUrl);
-          return false;
-        }
+        var that = this;
+        this.component.checkLogistics.sendRequest()
+            .done(function(data){
+              if(data.value == false){
+                //that.component.showArea.adapter.addr.attr('errorTips','无法配送到此区域');
+                $('#areaErrorTips').text('无法配送到此区域').show();
+                return false;
+              }
 
-        window.location.href = gotoUrl;
+              var amount = that.options.detailContentInfo.input.buyNum;
+              if (amount < 1 || isNaN(amount)){
+                that.options.detailContentInfo.input.attr("buyNum", 1);
+                var message = new SFMessage(null, {
+                  'tip': '请输入正确的购买数量！',
+                  'type': 'error'
+                });
+
+                return false;
+              }
+
+              var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
+                "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+                "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
+                "amount": that.options.detailContentInfo.input.buyNum
+              });
+
+              if (!SFComm.prototype.checkUserLogin.call(that)) {
+                that.header.showLogin(gotoUrl);
+                return false;
+              }
+
+              window.location.href = gotoUrl;
+            }).fail(function(){
+
+            })
+
       },
 
-      renderChooseArea:function(){
-
-        var template = can.view.mustache(this.checkAreaTemplate());
-        $('#logisticsArea').html(template());
+      '#s4 change': function(element, event) {
+        this.checkAreaLogistics();
       },
-      changeCity: function() {
-        var pid = this.adapter.addr.input.attr('provinceName');
+      checkAreaLogistics:function(){
+        $('#areaErrorTips').hide();
+        var areaId = $('#logisticsArea').attr('data-areaid');
+        var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+        var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+        var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
 
-        var cities = this.adapter.regions.findGroup(window.parseInt(pid));
-        this.adapter.addr.place.attr('cities', cities);
-        this.adapter.addr.input.attr('cityName', cities[0].id);
+        this.component.checkLogistics.setData({
+          areaId:areaId,
+          provinceId:provinceId,
+          cityId:cityId,
+          districtId:districtId
+        });
+
+        var that = this;
+        this.component.checkLogistics.sendRequest()
+            .done(function(data) {
+              if (data.value == false) {
+                //that.component.showArea.adapter.addr.attr('errorTips', '无法配送到此区域');
+                $('#areaErrorTips').text('无法配送到此区域').show();
+                return false;
+              }
+            }).fail(function(){
+
+            })
       },
-
-      changeRegion: function() {
-        var cid = this.adapter.addr.input.attr('cityName');
-
-        var regions = this.adapter.regions.findGroup(window.parseInt(cid));
-        this.adapter.addr.place.attr('regions', regions);
-        this.adapter.addr.input.attr('regionName', regions[0].id);
-      },
-
-      '#s2 change': function(element, event) {
-        this.changeCity();
-        this.changeRegion();
-      },
-
-      /**
-       * @description 城市发生变化，区同时发生变化
-       * @param  {Dom}    element
-       * @param  {Event}  event
-       */
-      '#s3 change': function(element, event) {
-        this.changeRegion();
-      },
-
-      checkAreaTemplate:function(){
-        return '<label for="area">送至：</label>' +
-            '<select id="s2"  can-value="addr.input.provinceName">'+
-            '{{#each addr.place.provinces}}'+
-            '<option value="{{id}}">{{name}}</option>'+
-            '{{/each}}'+
-            '</select>'+
-
-            '<select id="s3"  can-value="addr.input.cityName">'+
-            '{{#each addr.place.cities}}'+
-            '<option value="{{id}}">{{name}}</option>'+
-            '{{/each}}'+
-            '</select>'+
-
-            '<select id="s4"  can-value="addr.input.regionName">'+
-            '{{#each addr.place.regions}}'+
-            '<option value="{{id}}">{{name}}</option>'+
-            '{{/each}}'+
-            '</select>'+
-            '<span>无法配送到此区域</span>'
-      },
-
       buyInfoTemplate: function() {
         return '<div class="mr8">购买数量：' +
           '<span class="btn btn-num">' +
@@ -463,7 +473,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<!--生鲜-->' +
           '<div class="u1">' +
           '{{#sf-is-freshfood priceInfo.productShape}}' +
-          '<span class="icon icon50">生鲜</span>' +
+          '<span class="icon icon50"></span>' +
           '{{/sf-is-freshfood}}' +
           '</div>' +
 
