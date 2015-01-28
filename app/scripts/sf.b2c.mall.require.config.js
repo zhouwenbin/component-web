@@ -83,6 +83,8 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getSkuInfo': 'scripts/api/sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'scripts/api/sf.b2c.mall.api.b2cmall.getItemSummary',
+    'sf.b2c.mall.api.b2cmall.checkLogistics': 'scripts/api/sf.b2c.mall.api.b2cmall.checkLogistics',
+    
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.dev.config',
 
