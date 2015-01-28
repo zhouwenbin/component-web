@@ -27,6 +27,8 @@ requirejs.config({
     'sf.b2c.mall.api.order.requestPay': 'scripts/api/sf.b2c.mall.api.order.requestPay',
     'sf.b2c.mall.api.order.requestPayV2': 'scripts/api/sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.submitOrderForAllSys': 'scripts/api/sf.b2c.mall.api.order.submitOrderForAllSys',
+    'sf.b2c.mall.api.order.getOrderConfirmInfo': 'scripts/api/sf.b2c.mall.api.order.getOrderConfirmInfo',
+    
 
     'sf.b2c.mall.api.products.getSKUBaseList': 'scripts/api/sf.b2c.mall.api.product.getSKUBaseList',
     'sf.b2c.mall.api.products.getSKUInfo': 'scripts/api/sf.b2c.mall.api.product.getSKUInfo',
@@ -83,6 +85,8 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getSkuInfo': 'scripts/api/sf.b2c.mall.api.b2cmall.getSkuInfo',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'scripts/api/sf.b2c.mall.api.b2cmall.getItemSummary',
+    'sf.b2c.mall.api.b2cmall.checkLogistics': 'scripts/api/sf.b2c.mall.api.b2cmall.checkLogistics',
+    
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.dev.config',
 
@@ -110,7 +114,6 @@ requirejs.config({
     'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
     'sf.b2c.mall.component.receivepersoneditor': 'scripts/component/sf.b2c.mall.component.receivepersoneditor',
     'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner',
->>>>>>> 2c6fcfcc561c41da71bf52d89128d229285a9435
 
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
@@ -170,23 +173,8 @@ requirejs.config({
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
     'sf.b2c.mall.order.orderdetailcontent': 'scripts/order/sf.b2c.mall.order.orderdetailcontent',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
-<<<<<<< HEAD
-    'sf.b2c.mall.widget.message': 'scripts/widget/sf.b2c.mall.widget.message',
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
 
-    'sf.b2c.mall.center.receiveperson':'scripts/center/sf.b2c.mall.center.receiveperson',
-    'sf.b2c.mall.center.receiveaddr':'scripts/center/sf.b2c.mall.center.receiveaddr',
-    'sf.b2c.mall.component.receivepersoneditor':'scripts/component/sf.b2c.mall.component.receivepersoneditor',
-    'sf.b2c.mall.adapter.receiveperson.list':'scripts/adapter/sf.b2c.mall.adapter.receiveperson.list',
-
-    'sf.b2c.mall.widget.not.support': 'scripts/widget/sf.b2c.mall.widget.not.support',
-
-    'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
-    'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner'
-
-
-=======
     'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info'
->>>>>>> 2c6fcfcc561c41da71bf52d89128d229285a9435
   }
 });

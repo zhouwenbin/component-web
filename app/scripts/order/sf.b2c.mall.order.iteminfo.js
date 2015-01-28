@@ -99,10 +99,12 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function (data) {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
           that.element.html(html);
-
-          if(data.value == false){
-            $('#errorTips').removeClass('visuallyhidden');
+          if(data){
+            if(data.value == false){
+              $('#errorTips').removeClass('visuallyhidden');
+            }
           }
+          
         })
         .fail(function () {
           
@@ -159,11 +161,12 @@ define('sf.b2c.mall.order.iteminfo', [
         });
         can.when(that.component.checkLogistics.sendRequest())
           .done(function(data){
-            if(data.value == false){
-              //that.options.attr('errorTips','该商品的配送不支持该区域');
-              $('#errorTips').removeClass('visuallyhidden');
-              return false;
-            }
+            if(data){
+              if(data.value == false){
+                $('#errorTips').removeClass('visuallyhidden');
+                return false;
+              }
+            }         
           })
           .fail(function(){
 
