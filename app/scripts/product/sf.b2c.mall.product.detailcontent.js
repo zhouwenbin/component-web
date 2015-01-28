@@ -374,7 +374,8 @@ define('sf.b2c.mall.product.detailcontent', [
         $('#areaErrorTips').hide();
 
         var areaId = $('#logisticsArea').attr('data-areaid');
-        if(areaId != 0){
+        var that = this;
+        if(areaId != 0 ){
           var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
           var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
           var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
@@ -385,8 +386,7 @@ define('sf.b2c.mall.product.detailcontent', [
             cityId:cityId,
             districtId:districtId
           });
-
-          var that = this;
+        
           this.component.checkLogistics.sendRequest()
             .done(function(data){
               if(data.value == false){
@@ -420,34 +420,36 @@ define('sf.b2c.mall.product.detailcontent', [
             }).fail(function(){
 
             })
-          }else{
-            var amount = that.options.detailContentInfo.input.buyNum;
-              if (amount < 1 || isNaN(amount)){
-                that.options.detailContentInfo.input.attr("buyNum", 1);
-                var message = new SFMessage(null, {
-                  'tip': '请输入正确的购买数量！',
-                  'type': 'error'
-                });
-                return false;
-              }
-
-              var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
-                "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
-                "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
-                "amount": that.options.detailContentInfo.input.buyNum
-              });
-
-              if (!SFComm.prototype.checkUserLogin.call(that)) {
-                that.header.showLogin(gotoUrl);
-                return false;
-              }
-
-              window.location.href = gotoUrl;
+        }else{
+          var amount = that.options.detailContentInfo.input.buyNum;
+          if (amount < 1 || isNaN(amount)){
+            that.options.detailContentInfo.input.attr("buyNum", 1);
+            var message = new SFMessage(null, {
+              'tip': '请输入正确的购买数量！',
+              'type': 'error'
+            });
+            return false;
           }
+
+          var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
+            "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+            "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
+            "amount": that.options.detailContentInfo.input.buyNum
+          });
+
+          if (!SFComm.prototype.checkUserLogin.call(that)) {
+            that.header.showLogin(gotoUrl);
+            return false;
+          }
+
+          window.location.href = gotoUrl;
+        }
         
 
       },
-
+      '#s2 change': function(element, event) {
+        $('#areaErrorTips').hide();
+      },
       '#s4 change': function(element, event) {
         this.checkAreaLogistics();
       },
