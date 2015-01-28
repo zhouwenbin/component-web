@@ -3,6 +3,7 @@
 define('sf.b2c.mall.product.detailcontent', [
     'can',
     'zoom',
+    'store',
     'jquery.cookie',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
@@ -16,7 +17,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.b2cmall.checkLogistics'
 
   ],
-  function(can, zoom,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,CheckLogistics) {
+  function(can, zoom,store,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -62,6 +63,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         // this.detailUrl = SFConfig.setting.api.detailurl;
+        var that = this;
         this.component = {};
         this.component.checkLogistics = new CheckLogistics();
 
@@ -73,27 +75,39 @@ define('sf.b2c.mall.product.detailcontent', [
 
         this.render();
 
-        this.component.showArea = new SFShowArea();
-        this.component.showArea.show('create', null, $("#logisticsArea"));
-        var that = this;
-        setTimeout(function(){
-          if (SFComm.prototype.checkUserLogin.call(that)) {
-            that.component.showArea.adapter.addr.attr({
-              input:{
-                provinceName:$.cookie('provinceId')
+        var areaId = $('#logisticsArea').attr('data-areaid');
+
+        if(areaId != 0){
+
+          this.component.showArea = new SFShowArea();
+          this.component.showArea.show('create', null, $("#logisticsArea"));
+
+          var provinceId = store.get('provinceId');
+          var cityId = store.get('cityId');
+          var regionId = store.get('regionId');
+
+          
+          setTimeout(function(){            
+            if(provinceId && cityId && regionId){
+              if (SFComm.prototype.checkUserLogin.call(that)) {
+                that.component.showArea.adapter.addr.attr({
+                  input:{
+                    provinceName:provinceId
+                  }
+                });
+                that.component.showArea.changeCity();
+                that.component.showArea.changeRegion();
+                that.component.showArea.adapter.addr.attr({
+                  input:{
+                    cityName:cityId,
+                    regionName:regionId
+                  }
+                });
               }
-            });
-            that.component.showArea.changeCity();
-            that.component.showArea.changeRegion();
-            that.component.showArea.adapter.addr.attr({
-              input:{
-                cityName:$.cookie('cityId'),
-                regionName:$.cookie('regionId')
-              }
-            });
-          }
-        },1000)
-        
+            }
+          },1000)
+        }
+               
       },
 
       /**
