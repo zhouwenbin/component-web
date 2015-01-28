@@ -53,7 +53,6 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.inverse(options.contexts || this);
           }
         }
-
       },
 
       /**
@@ -68,7 +67,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.component.checkLogistics = new CheckLogistics();
 
         // @todo 需要在配置文件中修改
-        this.detailUrl = 'http://item.sfht.com';
+        this.detailUrl = 'http://www.sfht.com/detail';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
@@ -107,7 +106,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
           },1000)
         }
-               
+
       },
 
       /**
@@ -183,7 +182,6 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
-
       },
 
       /**
@@ -403,7 +401,6 @@ define('sf.b2c.mall.product.detailcontent', [
                   'tip': '请输入正确的购买数量！',
                   'type': 'error'
                 });
-
                 return false;
               }
 
@@ -454,6 +451,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
             })
       },
+
       buyInfoTemplate: function() {
         return '<div class="mr8">购买数量：' +
           '<span class="btn btn-num">' +

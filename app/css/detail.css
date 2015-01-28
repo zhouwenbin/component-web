@@ -223,6 +223,9 @@
 .goods-rel{
 	position: relative;
 }
+.goods select{
+	margin-right: 5px;
+}
 /*推荐商品*/
 .recommend ul{
 	padding-bottom: 48px;

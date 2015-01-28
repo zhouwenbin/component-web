@@ -1,6 +1,7 @@
 'use strict';
 
 define(
+  'sf.b2c.mall.page.gotopay',
   [
     'can',
     'jquery',
