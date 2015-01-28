@@ -2,6 +2,7 @@
  * Created by 魏志强 on 2014/12/26.
  */
 define(
+  'sf.b2c.mall.page.center',
   [
     'can',
     'jquery',
