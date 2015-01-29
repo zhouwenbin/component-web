@@ -142,9 +142,9 @@ img{vertical-align: middle;}
 	background-position: -160px -72px;
 }
 .icon11{
-	width: 98px;
-	height: 54px;
-	background-position: -160px -141px;
+	width: 190px;
+	height: 71px;
+	background-position: -387px -544px;
 }
 .icon12{
 	width: 83px;
@@ -309,7 +309,7 @@ img{vertical-align: middle;}
 
 }
 .radio.active{
-	background-position: -102px -43px;
+	background-position: -101px -43px;
 }
 .icon30{
 	width: 14px;
@@ -460,7 +460,7 @@ button.btn{
 .btn-prev,
 .btn-next{
 	width: 41px;
-	height: 95px;
+	height: 94px;
 	background: url(../img/icon.png) no-repeat;
 	text-indent: -999em;
 
@@ -848,7 +848,7 @@ body.sub{
 	padding-top: 36px;
 }
 .header-c1 .icon10{
-	margin-right: 34px;
+	margin-right: 25px;
 }
 .header-c1 .icon11{
 	margin-top: 2px;
