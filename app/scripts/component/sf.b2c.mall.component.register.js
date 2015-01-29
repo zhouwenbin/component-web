@@ -15,10 +15,12 @@ define(
     'sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.sendActivateMail',
     'sf.b2c.mall.business.config',
-    'sf.util'
+    'sf.util',
+    'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.user.getRecAddressList'
   ],
 
-  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn) {
+  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn,SFShowArea,GetRecAddressList) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -91,6 +93,9 @@ define(
         this.component.sms = new SFApiUserDownSmsCode();
         this.component.mobileRegister = new SFApiUserMobileRegister();
         this.component.activateMail = new SFApiUserSendActivateMail();
+
+        this.component.getRecAddressList = new GetRecAddressList();
+        this.component.showArea = new SFShowArea();
 
         this.data = new can.Map({
           mobile: true,
@@ -360,6 +365,31 @@ define(
               if (data.csrfToken) {
                 // store.set('csrfToken', data.csrfToken);
                 can.route.attr({'tag':'success', 'csrfToken': data.csrfToken});
+                var provinceId = store.get('provinceId');
+                if(!provinceId){
+                  that.component.getRecAddressList.sendRequest()
+                  .done(function(data){
+                    if(data.items.length > 0){
+                      var defaultAdde = {};
+                      _.each(data.items,function(item){
+                        if(item.isDefault == 1){
+                          defaultAdde = item;
+                        }
+                      });
+                      if(typeof (defaultAdde.provinceName) !== 'undefined'){
+                        var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
+                        var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                        var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                        store.set('provinceId',provinceId);
+                        store.set('cityId',cityId);
+                        store.set('regionId',regionId);
+                      }
+                      
+                    }
+                  }).fail(function(){
+
+                  })
+                }
               }
             })
             .fail(function (errorCode) {

@@ -105,7 +105,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       ".order-del click": function(element, event){
         var index = element.data('index');
         var addr = this.adapter4List.addrs.get(index);
-
+        
         var that = this;
         var message = new SFMessage(null, {
           'tip': '确认要删除该收货地址信息吗？',
@@ -123,7 +123,12 @@ define('sf.b2c.mall.center.receiveaddr', [
         delRecAddress
           .sendRequest()
           .done(function(result){
-
+            var defaultId = element.attr('data-isdefault');
+            if (defaultId == 1) {
+              store.remove('provinceId');
+              store.remove('cityId');
+              store.remove('regionId');
+            };
             if (result.value){
               that.paint();
             }

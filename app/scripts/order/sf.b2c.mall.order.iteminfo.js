@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.iteminfo', [
   'can',
+  'store',
   'sf.b2c.mall.api.b2cmall.getProductHotData',
 //  'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
@@ -11,9 +12,14 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
-  'sf.b2c.mall.widget.message'
+  'sf.b2c.mall.widget.message',
+  'sf.b2c.mall.api.b2cmall.checkLogistics',
+  'sf.b2c.mall.widget.showArea'
 
-], function(can, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
+], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
+  
+  var AREAID;
+
   return can.Control.extend({
 
     /**
@@ -23,28 +29,33 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
-
+      
+      this.component = {};
+      var itemObj = {};
+      //this.options.errorTips = new can.Map({});
+      $('#errorTips').hide();
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
       that.options.saleid = params.saleid;
       that.options.amount = params.amount;
 
-      // var receiverper =
-      // var receiveraddr = element.parents
-
-//      var getItemInfo = new SFGetItemInfo({
-//        "itemId": this.options.itemid
-//      });
       var getItemSummary = new SFGetItemSummary({
         "itemId":this.options.itemid
       });
       var prceInfo = new SFGetProductHotData({
         'itemId': this.options.itemid
       });
+      this.component.checkLogistics = new CheckLogistics();
+
+      this.component.showArea = new SFShowArea();
 
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
-          var itemObj = {};
+          
+          //that.options.attr('errorTips','');
+          itemObj.errorTips = '';
+          AREAID = iteminfo.areaId;
+          //检测是否是可配送区域        
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
@@ -72,13 +83,33 @@ define('sf.b2c.mall.order.iteminfo', [
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
+        })
+        .then(function(){
+          if(AREAID != 0 ){
+            that.component.checkLogistics.setData({
+              areaId:AREAID,
+              provinceId:store.get('provinceId'),
+              cityId:store.get('cityId'),
+              districtId:store.get('regionId')
+            });
+
+            return that.component.checkLogistics.sendRequest();
+          }              
+        })
+        .done(function (data) {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
           that.element.html(html);
-
+          if(data){
+            if(data.value == false){
+              $('#errorTips').removeClass('visuallyhidden');
+            }
+          }
+          
         })
-        .fail(function(error) {
-
+        .fail(function () {
+          
         })
+
 
 
     },
@@ -105,11 +136,11 @@ define('sf.b2c.mall.order.iteminfo', [
         'heike_online': this.options.vendorinfo.get
       }
     },
-
     '#submitOrder click': function(element, event) {
       var that = this;
 
       //防止重复提交
+      $('#errorTips').addClass('visuallyhidden');
       if (element.hasClass("disable")){
         return false;
       }
@@ -118,7 +149,30 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
+      if(AREAID != 0 ){
+        var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
+        var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
+        var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
+        that.component.checkLogistics.setData({
+          areaId:AREAID,
+          provinceId:provinceId,
+          cityId:cityId,
+          districtId:regionId
+        });
+        can.when(that.component.checkLogistics.sendRequest())
+          .done(function(data){
+            if(data){
+              if(data.value == false){
+                $('#errorTips').removeClass('visuallyhidden');
+                return false;
+              }
+            }         
+          })
+          .fail(function(){
 
+          })
+      }
+      
       //进行校验，不通过则把提交订单点亮
       if (typeof selectPer == 'undefined' || selectPer === false) {
 
@@ -179,7 +233,6 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.options.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
-
         })
         .fail(function(error) {
           element.removeClass("disable");

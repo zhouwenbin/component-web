@@ -3,6 +3,8 @@
 define('sf.b2c.mall.product.detailcontent', [
     'can',
     'zoom',
+    'store',
+    'jquery.cookie',
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
@@ -10,9 +12,12 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.b2cmall.checkLogistics'
+
   ],
-  function(can, zoom, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage) {
+  function(can, zoom,store,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -38,6 +43,15 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+
+        //生鲜展示
+        'sf-is-freshfood': function(productShape, options) {
+          if (productShape() == 'FRESHFOOD') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
       },
 
@@ -48,13 +62,51 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       init: function(element, options) {
         // this.detailUrl = SFConfig.setting.api.detailurl;
+        var that = this;
+        this.component = {};
+        this.component.checkLogistics = new CheckLogistics();
 
         // @todo 需要在配置文件中修改
-        this.detailUrl = 'http://item.sfht.com';
+        this.detailUrl = 'http://www.sfht.com/detail';
         this.mainUrl = SFConfig.setting.api.mainurl;
         this.adapter = new SFDetailcontentAdapter({});
         this.header = this.options.header;
+
         this.render();
+
+        var areaId = $('#logisticsArea').attr('data-areaid');
+
+        if(areaId != 0){
+
+          this.component.showArea = new SFShowArea();
+          this.component.showArea.show('create', null, $("#logisticsArea"));
+
+          var provinceId = store.get('provinceId');
+          var cityId = store.get('cityId');
+          var regionId = store.get('regionId');
+
+          
+          setTimeout(function(){            
+            if(provinceId && cityId && regionId){
+              if (SFComm.prototype.checkUserLogin.call(that)) {
+                that.component.showArea.adapter.addr.attr({
+                  input:{
+                    provinceName:provinceId
+                  }
+                });
+                that.component.showArea.changeCity();
+                that.component.showArea.changeRegion();
+                that.component.showArea.adapter.addr.attr({
+                  input:{
+                    cityName:cityId,
+                    regionName:regionId
+                  }
+                });
+              }
+            }
+          },1000)
+        }
+
       },
 
       /**
@@ -317,30 +369,115 @@ define('sf.b2c.mall.product.detailcontent', [
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
       },
 
-      '#gotobuy click': function() {
-        var amount = this.options.detailContentInfo.input.buyNum;
-        if (amount < 1 || isNaN(amount)){
-          this.options.detailContentInfo.input.attr("buyNum", 1);
-          var message = new SFMessage(null, {
-            'tip': '请输入正确的购买数量！',
-            'type': 'error'
+      '#gotobuy click': function(element,event) {
+        event && event.preventDefault();
+        $('#areaErrorTips').hide();
+
+        var areaId = $('#logisticsArea').attr('data-areaid');
+        var that = this;
+        if(areaId != 0 ){
+          var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+          var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+          var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+
+          this.component.checkLogistics.setData({
+            areaId:areaId,
+            provinceId:provinceId,
+            cityId:cityId,
+            districtId:districtId
+          });
+        
+          this.component.checkLogistics.sendRequest()
+            .done(function(data){
+              if(data.value == false){
+                //that.component.showArea.adapter.addr.attr('errorTips','无法配送到此区域');
+                $('#areaErrorTips').text('无法配送到此区域').show();
+                return false;
+              }
+
+              var amount = that.options.detailContentInfo.input.buyNum;
+              if (amount < 1 || isNaN(amount)){
+                that.options.detailContentInfo.input.attr("buyNum", 1);
+                var message = new SFMessage(null, {
+                  'tip': '请输入正确的购买数量！',
+                  'type': 'error'
+                });
+                return false;
+              }
+
+              var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
+                "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+                "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
+                "amount": that.options.detailContentInfo.input.buyNum
+              });
+
+              if (!SFComm.prototype.checkUserLogin.call(that)) {
+                that.header.showLogin(gotoUrl);
+                return false;
+              }
+
+              window.location.href = gotoUrl;
+            }).fail(function(){
+
+            })
+        }else{
+          var amount = that.options.detailContentInfo.input.buyNum;
+          if (amount < 1 || isNaN(amount)){
+            that.options.detailContentInfo.input.attr("buyNum", 1);
+            var message = new SFMessage(null, {
+              'tip': '请输入正确的购买数量！',
+              'type': 'error'
+            });
+            return false;
+          }
+
+          var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
+            "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
+            "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
+            "amount": that.options.detailContentInfo.input.buyNum
           });
 
-          return false;
-        }
+          if (!SFComm.prototype.checkUserLogin.call(that)) {
+            that.header.showLogin(gotoUrl);
+            return false;
+          }
 
-        var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
-          "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
-          "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
-          "amount": this.options.detailContentInfo.input.buyNum
+          window.location.href = gotoUrl;
+        }
+        
+
+      },
+      '#s2 change': function(element, event) {
+        $('#areaErrorTips').hide();
+      },
+      '#s4 change': function(element, event) {
+        this.checkAreaLogistics();
+      },
+      checkAreaLogistics:function(){
+        $('#areaErrorTips').hide();
+        var areaId = $('#logisticsArea').attr('data-areaid');
+        var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
+        var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
+        var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+
+        this.component.checkLogistics.setData({
+          areaId:areaId,
+          provinceId:provinceId,
+          cityId:cityId,
+          districtId:districtId
         });
 
-        if (!SFComm.prototype.checkUserLogin.call(this)) {
-          this.header.showLogin(gotoUrl);
-          return false;
-        }
+        var that = this;
+        this.component.checkLogistics.sendRequest()
+            .done(function(data) {
+              if (data.value == false) {
+                //that.component.showArea.adapter.addr.attr('errorTips', '无法配送到此区域');
+                $('#areaErrorTips').text('无法配送到此区域').show();
+                return false;
+              }
+            }).fail(function(){
 
-        window.location.href = gotoUrl;
+            })
       },
 
       buyInfoTemplate: function() {
@@ -371,6 +508,13 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
           '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
           '{{/sf-is-limitedTimeBuy}}' +
+          '</div>' +
+
+          '<!--生鲜-->' +
+          '<div class="u1">' +
+          '{{#sf-is-freshfood priceInfo.productShape}}' +
+          '<span class="icon icon50"></span>' +
+          '{{/sf-is-freshfood}}' +
           '</div>' +
 
           '<!--急速海淘-->' +

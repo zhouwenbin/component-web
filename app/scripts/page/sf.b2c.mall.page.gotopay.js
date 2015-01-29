@@ -1,6 +1,7 @@
 'use strict';
 
 define(
+  'sf.b2c.mall.page.gotopay',
   [
     'can',
     'jquery',
@@ -11,10 +12,11 @@ define(
     'sf.b2c.mall.api.order.getOrder',
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.order.fn',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.order.getOrderConfirmInfo'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -48,7 +50,7 @@ define(
         that.options.recid = params.recid;
         that.options.alltotalamount = params.amount;
 
-        var getOrder = new SFGetOrder({
+        var getOrder = new GetOrderConfirmInfo({
           "orderId": params.orderid
         });
 
@@ -66,7 +68,7 @@ define(
               that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
               that.options.mobile = data.orderItem.orderAddressItem.mobile;
               that.options.certNo = data.orderItem.orderAddressItem.certNo;
-              that.options.currentPayWay =that.showPayMap['alipay'];
+              that.options.currentPayWay =that.showPayMap[JSON.parse(data.optionalPayTypeList)[0]];
 
               var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',that.options);
               $('#gotopayDIV').html(html);
@@ -76,9 +78,12 @@ define(
       },
 
       showPayMap:{
+        'alipay_intl':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>',
+
         'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>' +
-            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
-            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
+            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
+            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
+
       },
       '.order-r1c1 click':function(element,event){
         $(element).children('span').addClass('active');

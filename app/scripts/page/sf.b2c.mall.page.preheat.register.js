@@ -1,5 +1,7 @@
 'use strict';
-define([
+define(
+  'sf.b2c.mall.page.preheat.register',
+  [
   'can',
   'jquery',
   'sf.b2c.mall.framework.comm',

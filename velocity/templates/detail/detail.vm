@@ -36,7 +36,7 @@
                             <li class="active">
                               #set($_selectedImg="")
                               #if(${productInfo.skuInfo.images}&&${productInfo.skuInfo.images.size()}>0) #set($_selectedImg=$!{productInfo.skuInfo.images.get(0).bigImgUrl})#end
-                                <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt=""
+                                <a href="$!{_selectedImg}"><img src="$!{_selectedImg}" rel="$!{_selectedImg}" alt="$!{productInfo.skuInfo.title}"
                                                                 class="jqzoom"/></a>
                                 <span></span>
                             </li>
@@ -48,7 +48,7 @@
                             #foreach ($_el in $productInfo.skuInfo.images)
                                 <li class="thumb-item #if(${velocityCount} == 1) active #end" data-big-pic="$!{_el.bigImgUrl}">
                                     <a href="">
-                                        <img src="$!{_el.thumbImgUrl}" alt=""/>
+                                        <img src="$!{_el.thumbImgUrl}" alt="$!{productInfo.skuInfo.title}"/>
                                     </a>
                                     <span></span>
                                 </li>
@@ -67,7 +67,7 @@
                     <div id="itemPrice">
                     </div>
                 ##                  客户端渲染end
-                    <div class="mr3">国际物流：$!{productInfo.saleInfo.shippingPoint}
+                    <div class="mr3">#if($!{productInfo.saleInfo.productShape}=="FRESHFOOD")物流配送：#else 国际物流：#end$!{productInfo.saleInfo.shippingPoint}
                         发货,预计#if($!{productInfo.saleInfo.logisticsStart})$!{productInfo.saleInfo.logisticsStart}-$!{productInfo.saleInfo.logisticsEnd}
                             天内到货#else$!{productInfo.saleInfo.logisticsEnd}天内到货#end</div>
                     <div class="goods-rel">
@@ -77,9 +77,11 @@
                         </div>
                         <!--运费-->
                     </div>
-                    <div class="mr4">发货商家：$!{productInfo.saleInfo.seller}</div>
-                    <div id="bandInfo" class="mr5">品牌：<label>$!{productInfo.skuInfo.brand}</label>
-                    ##                        <label class="btn btn-brand active">$!{productInfo.skuInfo.brand}</label>
+                    <div class="mr4">配送范围：#if($!{productInfo.saleInfo.areaDesc})$!{productInfo.saleInfo.areaDesc}#else 全国#end
+                    </div>
+                    <div id="logisticsArea" data-areaid="$!{productInfo.saleInfo.areaId}" class="mr4"></div>
+                    <div class="mr4">#if($!{productInfo.saleInfo.seller})发货商家：$!{productInfo.saleInfo.seller}#end</div>
+                    <div id="bandInfo" class="mr5">#if($!{productInfo.skuInfo.brand})品牌：<label>$!{productInfo.skuInfo.brand}</label>#end
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">
@@ -153,66 +155,70 @@
                 </div>
             </div>
             <!--详情-->
-            <!--顺丰海淘服务承诺-->
-            <div class="service">
-                <h2>顺丰海淘服务承诺</h2>
-                <ul class="clearfix">
-                    <li>
-                        <span class="icon icon20"></span>
+          #if(${productInfo.saleInfo.productShape}!="FRESHFOOD")
+              <!--顺丰海淘服务承诺-->
+              <div class="service">
+                  <h2>顺丰海淘服务承诺</h2>
+                  <ul class="clearfix">
+                      <li>
+                          <span class="icon icon20"></span>
 
-                        <h3>正品保障</h3>
+                          <h3>正品保障</h3>
 
-                        <p>我们承诺所有在<br>顺丰海淘网站上售卖的商品，<br>均为100%海外原装正品。</p>
-                    </li>
-                    <li>
-                        <span class="icon icon21"></span>
+                          <p>我们承诺所有在<br>顺丰海淘网站上售卖的商品，<br>均为100%海外原装正品。</p>
+                      </li>
+                      <li>
+                          <span class="icon icon21"></span>
 
-                        <h3>专业仓储</h3>
+                          <h3>专业仓储</h3>
 
-                        <p>顺丰海淘在美国、日本、香港等多地设有海外仓库，<br>为您提供更加便捷快速的购物时效保障。</p>
-                    </li>
-                    <li>
-                        <span class="icon icon22"></span>
+                          <p>顺丰海淘在美国、日本、香港等多地设有海外仓库，<br>为您提供更加便捷快速的购物时效保障。</p>
+                      </li>
+                      <li>
+                          <span class="icon icon22"></span>
 
-                        <h3>海外直采</h3>
+                          <h3>海外直采</h3>
 
-                        <p>所有在售商品均由品牌合作方与<br>源头供应商提供。海外采买，原装进口，<br>保证商品的渠道正规与高性价比。</p>
-                    </li>
-                </ul>
-            </div>
-            <!--顺丰海淘服务承诺-->
+                          <p>所有在售商品均由品牌合作方与<br>源头供应商提供。海外采买，原装进口，<br>保证商品的渠道正规与高性价比。</p>
+                      </li>
+                  </ul>
+              </div>
+              <!--顺丰海淘服务承诺-->
+          #end
         </div>
     </div>
     <!--main-->
-    <!--海淘小贴士-->
-    <div class="tip">
-        <div class="pm">
-            <h2>顺丰海淘小贴士</h2>
+  #if(${productInfo.saleInfo.productShape}!="FRESHFOOD")
+      <!--海淘小贴士-->
+      <div class="tip">
+          <div class="pm">
+              <h2>顺丰海淘小贴士</h2>
 
-            <div class="tip-r1 clearfix">
-                <div class="tip-c1 fl">
-                    <h3>01.顺丰海淘的商品都是正品吗？</h3>
+              <div class="tip-r1 clearfix">
+                  <div class="tip-c1 fl">
+                      <h3>01.顺丰海淘的商品都是正品吗？</h3>
 
-                    <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
+                      <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
 
-                    <h3>02.订购商品大致需要经过哪些流程？</h3>
+                      <h3>02.订购商品大致需要经过哪些流程？</h3>
 
-                    <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
-                </div>
-                <div class="tip-c2 fr">
-                    <h3>03.为什么要上传身份信息？</h3>
+                      <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
+                  </div>
+                  <div class="tip-c2 fr">
+                      <h3>03.为什么要上传身份信息？</h3>
 
-                    <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
+                      <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
 
-                    <h3>04.看到心仪的宝贝，我该如何下单购买？</h3>
+                      <h3>04.看到心仪的宝贝，我该如何下单购买？</h3>
 
-                    <p>答：使用支付宝支付即可将您心仪宝贝纳为己有，且费用透明，包含税费。海外商品由于国外政策限制，暂无法提供发票。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--海淘小贴士-->
+                      <p>答：使用支付宝支付即可将您心仪宝贝纳为己有，且费用透明，包含税费。海外商品由于国外政策限制，暂无法提供发票。
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--海淘小贴士-->
+  #end
     <!--尾部-->
     <div class="sf-b2c-mall-footer"></div>
     <!--尾部-->

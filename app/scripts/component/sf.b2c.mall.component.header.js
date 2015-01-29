@@ -11,7 +11,6 @@ define('sf.b2c.mall.component.header', ['jquery',
   'underscore',
   'md5',
   'store',
-  'sf.b2c.mall.component.login.status.scanner',
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
@@ -19,7 +18,7 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util'
-], function($, cookie, can, _, md5, store, SFLoginScanner, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
+], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
 
   var APPID = 1;
 
@@ -42,8 +41,9 @@ define('sf.b2c.mall.component.header', ['jquery',
     init: function(element, options) {
       this.component = {};
       this.component.modal = new SFModal('body');
-      this.component.scanner = new SFLoginScanner();
+      // this.component.scanner = new SFLoginScanner();
       this.component.notSupport = new SFNotSupport('body');
+      
       this.watchLoginState.call(this);
 
       this.afterLoginDest = null;
@@ -62,6 +62,7 @@ define('sf.b2c.mall.component.header', ['jquery',
           nickname: arr[0]
           // domain: SFConfig.setting.api.mainurl
         }));
+
       } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
@@ -156,6 +157,11 @@ define('sf.b2c.mall.component.header', ['jquery',
             setTimeout(function(){
               window.location.href = SFConfig.setting.link.index;
             },2000);
+            
+              store.remove('provinceId');
+              store.remove('cityId');
+              store.remove('regionId');
+              
           })
           .fail(function() {})
       }
@@ -246,7 +252,8 @@ define('sf.b2c.mall.component.header', ['jquery',
           }
           //window.location.reload();
           that.data.attr('isUserLogin', true);
-          that.data.attr('nickname',arr[0])
+          that.data.attr('nickname',arr[0]);
+
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname',null);
