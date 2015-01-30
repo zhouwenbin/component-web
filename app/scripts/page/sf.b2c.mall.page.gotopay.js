@@ -81,8 +81,8 @@ define(
         'alipay_intl':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>',
 
         'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
+            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
+            '<div class="order-r1c1 fl visuallyhidden"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
 
       },
       '.order-r1c1 click':function(element,event){
