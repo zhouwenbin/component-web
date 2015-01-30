@@ -6,8 +6,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.component.addreditor',
   'sf.b2c.mall.api.user.webLogin',
-  'md5'
-], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5) {
+  'md5',
+  'sf.b2c.mall.api.b2cmall.checkLogistics',
+  'sf.b2c.mall.widget.showArea'
+], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea) {
   return can.Control.extend({
 
     /**

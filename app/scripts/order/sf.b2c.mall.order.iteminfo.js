@@ -54,8 +54,8 @@ define('sf.b2c.mall.order.iteminfo', [
           
           //that.options.attr('errorTips','');
           itemObj.errorTips = '';
-          AREAID = iteminfo.areaId;
-          //检测是否是可配送区域        
+          //AREAID = iteminfo.areaId;
+          AREAID = 1;      
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
@@ -83,6 +83,9 @@ define('sf.b2c.mall.order.iteminfo', [
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
+          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
+          that.element.html(html);
+
         })
         .then(function(){
           if(AREAID != 0 ){
@@ -96,22 +99,17 @@ define('sf.b2c.mall.order.iteminfo', [
             return that.component.checkLogistics.sendRequest();
           }              
         })
-        .done(function (data) {
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
-          that.element.html(html);
+        .done(function (data) { 
           if(data){
             if(data.value == false){
               $('#errorTips').removeClass('visuallyhidden');
+              $('#submitOrder').addClass('disable');
             }
-          }
-          
+          }                
         })
         .fail(function () {
           
         })
-
-
-
     },
 
     errorMap: {
@@ -233,6 +231,12 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.options.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
+          var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
+          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
+          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
+          store.set('provinceId',provinceId);
+          store.set('cityId',cityId);
+          store.set('regionId',regionId);
         })
         .fail(function(error) {
           element.removeClass("disable");

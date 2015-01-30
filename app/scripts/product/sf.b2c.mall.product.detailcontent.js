@@ -448,7 +448,10 @@ define('sf.b2c.mall.product.detailcontent', [
 
       },
       '#s2 change': function(element, event) {
-        $('#areaErrorTips').hide();
+        this.checkAreaLogistics();
+      },
+      '#s3 change': function(element, event) {
+        this.checkAreaLogistics();
       },
       '#s4 change': function(element, event) {
         this.checkAreaLogistics();
