@@ -463,6 +463,8 @@ button.btn{
 	height: 94px;
 	background: url(../img/icon.png) no-repeat;
 	text-indent: -999em;
+	background-color: #666;
+	background-color: rgba(0,0,0,0.5);
 
 }
 .btn-prev{
