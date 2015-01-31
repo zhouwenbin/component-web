@@ -54,8 +54,8 @@ define('sf.b2c.mall.order.iteminfo', [
           
           //that.options.attr('errorTips','');
           itemObj.errorTips = '';
-          //AREAID = iteminfo.areaId;
-          AREAID = 1;      
+          AREAID = iteminfo.areaId;
+          //AREAID = 1;      
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
