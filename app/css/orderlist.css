@@ -64,10 +64,6 @@
 	width: 130px;
 	padding-right: 0;
 }
-.table-1 .table-c5 .link{
-	margin-left: 25px;
-	display: block;
-}
 .table-1 .table-r1{
 	margin-bottom: 29px;
 }
@@ -89,14 +85,8 @@
 	margin-top: 28px;
 	position: relative;;
 }
-.table-1 .tooltip{
-	background: #fff;
-	position: absolute;
-	left: -258px;
-	top: 31px;
-	display: none;
-	z-index: 1;
-}
+
+
 .table-1 .icon16-4{
 	border-bottom-color: #fff;
 }
@@ -127,11 +117,6 @@
 }
 .table-1-upload p{
 	font-size: 12px;
-}
-.table-1-upload:hover .tooltip{
-	display: block;
-	left: -104px;
-	top:37px;
 }
 .table-none{
 	text-align: center;
