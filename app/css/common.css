@@ -1027,6 +1027,30 @@ body.sub{
 .tooltip-c2{
 	overflow: hidden;
 }
+.tooltip-pos{
+	position: relative;
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+}
+.tooltip-pos:hover .tooltip{
+	display: block;
+}
+.tooltip-outer{
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	margin-top: 13px;
+}
+.tooltip{
+	display: none;
+	background: #fff;
+	position: relative;
+	left: -50%;
+	
+	z-index: 1;
+	
+}
 /*表格*/
 .table{
 	font-size: 14px;
