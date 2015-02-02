@@ -32,7 +32,6 @@ define('sf.b2c.mall.order.iteminfo', [
       
       this.component = {};
       var itemObj = {};
-      //this.options.errorTips = new can.Map({});
       $('#errorTips').hide();
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
@@ -52,8 +51,6 @@ define('sf.b2c.mall.order.iteminfo', [
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
           
-          //that.options.attr('errorTips','');
-          itemObj.errorTips = '';
           AREAID = iteminfo.areaId;
           //AREAID = 1;      
 
@@ -104,6 +101,9 @@ define('sf.b2c.mall.order.iteminfo', [
             if(data.value == false){
               $('#errorTips').removeClass('visuallyhidden');
               $('#submitOrder').addClass('disable');
+            }else{
+              $('#errorTips').addClass('visuallyhidden');
+              $('#submitOrder').removeClass('disable');
             }
           }                
         })
@@ -137,12 +137,11 @@ define('sf.b2c.mall.order.iteminfo', [
     '#submitOrder click': function(element, event) {
       var that = this;
 
-      //防止重复提交
-      $('#errorTips').addClass('visuallyhidden');
+      //防止重复提交  
       if (element.hasClass("disable")){
         return false;
       }
-
+      $('#errorTips').addClass('visuallyhidden');
       element.addClass("disable");
 
       var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
@@ -162,6 +161,7 @@ define('sf.b2c.mall.order.iteminfo', [
             if(data){
               if(data.value == false){
                 $('#errorTips').removeClass('visuallyhidden');
+                $('#submitOrder').addClass('disable');
                 return false;
               }
             }         
