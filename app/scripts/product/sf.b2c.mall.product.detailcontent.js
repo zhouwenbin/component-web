@@ -104,7 +104,7 @@ define('sf.b2c.mall.product.detailcontent', [
                 });
               }
             }
-          },1000)
+          },1000);
         }
 
       },
@@ -823,8 +823,12 @@ define('sf.b2c.mall.product.detailcontent', [
 
         this.renderTitleInfo();
 
-        this.renderBandInfo();
-
+        //如果是生鲜商品，不渲染品牌
+        var productShape = $('#buyInfo').attr('data-productshape');
+        if (productShape != 'FRESHFOOD') {
+          this.renderBandInfo();
+        };
+        
         this.renderPicInfo();
 
         //小编推荐
