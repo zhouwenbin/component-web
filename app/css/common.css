@@ -1085,6 +1085,9 @@ body.sub{
 .table-c5{
 	padding-right: 45px;
 }
+.table-c5 .tooltip{
+	width: 210px;
+}
 .table-img{
 	width: 80px;
 	height: 80px;
