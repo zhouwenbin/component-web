@@ -8,8 +8,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.api.user.webLogin',
   'md5',
   'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.widget.showArea'
-], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea) {
+  'sf.b2c.mall.widget.showArea',
+  'sf.b2c.mall.api.b2cmall.getItemSummary'
+], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea,SFGetItemSummary) {
+  var AREAID;
   return can.Control.extend({
 
     /**
@@ -21,6 +23,22 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.adapter4List = {};
       this.component = {};
       this.paint();
+
+      this.component.checkLogistics = new CheckLogistics();
+      this.component.showArea = new SFShowArea();
+
+      var params = can.deparam(window.location.search.substr(1));
+
+      var getItemSummary = new SFGetItemSummary({
+        "itemId":params.itemid
+      });
+      getItemSummary.sendRequest()
+        .done(function(data){
+          AREAID = data.areaId;
+        })
+        .fail(function(){
+
+        })
     },
 
     render: function(data) {
@@ -171,8 +189,39 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      */
     "#addrList click": function(element, e) {
       if (event.srcElement.tagName == 'SPAN') {
+        $('#errorTips').addClass('visuallyhidden');
         this.clearActive();
         $(event.srcElement).parents("li[name='addrEach']").addClass("active");
+        var that = this;
+        if(AREAID != 0){
+          var dataValue = this.getSelectedAddr();
+          var provinceId = that.component.showArea.adapter.regions.getIdByName(dataValue.provinceName);
+          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, dataValue.cityName);
+          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, dataValue.regionName);
+          that.component.checkLogistics.setData({
+            areaId:AREAID,
+            provinceId:provinceId,
+            cityId:cityId,
+            districtId:regionId
+          });
+          can.when(that.component.checkLogistics.sendRequest())
+            .done(function(data){
+              if(data){
+                if(data.value == false){
+                  $('#errorTips').removeClass('visuallyhidden');
+                  $('#submitOrder').addClass('disable');
+                  return false;
+                }else{
+                  $('#errorTips').addClass('visuallyhidden');
+                  $('#submitOrder').removeClass('disable');
+                  return true;
+                }
+              }         
+            })
+            .fail(function(){
+
+            })
+        } 
 
         return false;
       }
