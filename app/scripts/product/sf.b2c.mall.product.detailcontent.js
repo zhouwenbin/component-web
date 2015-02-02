@@ -75,7 +75,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.render();
 
         var areaId = $('#logisticsArea').attr('data-areaid');
-
+        
         if(areaId != 0){
 
           this.component.showArea = new SFShowArea();

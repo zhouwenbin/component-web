@@ -231,12 +231,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.options.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
-          var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
-          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
-          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
-          store.set('provinceId',provinceId);
-          store.set('cityId',cityId);
-          store.set('regionId',regionId);
+          
         })
         .fail(function(error) {
           element.removeClass("disable");
@@ -246,6 +241,14 @@ define('sf.b2c.mall.order.iteminfo', [
           return submitOrderForAllSys.sendRequest();
         })
         .done(function(message) {
+          var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
+          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
+          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
+
+          store.set('provinceId',provinceId);
+          store.set('cityId',cityId);
+          store.set('regionId',regionId);
+
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
