@@ -165,6 +165,9 @@ define(
             if (_.isFunction(that.options.onRegistered)) {
               that.options.onRegistered();
             }
+
+            window.location.href = 'index.html';
+
           }
         }, 1000);
       },

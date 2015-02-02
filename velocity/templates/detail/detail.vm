@@ -81,7 +81,8 @@
                     </div>
                     <div id="logisticsArea" data-areaid="$!{productInfo.saleInfo.areaId}" class="mr4"></div>
                     <div class="mr4">#if($!{productInfo.saleInfo.seller})发货商家：$!{productInfo.saleInfo.seller}#end</div>
-                    <div id="bandInfo" class="mr5">#if($!{productInfo.skuInfo.brand})品牌：<label>$!{productInfo.skuInfo.brand}</label>#end
+                    <div id="bandInfo" class="mr5">#if($!{productInfo.saleInfo.productShape}!="FRESHFOOD" && $!{productInfo.skuInfo.brand})
+                        品牌：<label>$!{productInfo.skuInfo.brand}</label>#end
                     </div>
                     <div id='specArea' data-skuspectuple="$!{skuspectuple}" data-specgroups="$!{specgroups}"
                          data-saleskuspectuplelist="$!{saleSkuSpecTupleList}">
