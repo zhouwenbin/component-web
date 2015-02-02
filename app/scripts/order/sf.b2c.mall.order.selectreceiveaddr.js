@@ -95,7 +95,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           // }
 
           that.component.addressEditor = new SFAddressEditor('#addAdrArea', {
-            onSuccess: _.bind(that.paint, that)
+            onSuccess: _.bind(that.paint, that),
+            from: 'order'
           });
         })
         .fail(function(error) {
@@ -158,6 +159,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
       var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
       this.component.addressEditor.show("editor", addr, $(editAdrArea));
+
 
       this.clearActive();
       element.parents("li").find(".order-r2").toggle();
