@@ -94,16 +94,20 @@ define('sf.b2c.mall.order.iteminfo', [
                 districtId:store.get('regionId')
               });
             }else{
+              
               var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-              var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
-              var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
-              var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
-              that.component.checkLogistics.setData({
-                areaId:AREAID,
-                provinceId:provinceId,
-                cityId:cityId,
-                districtId:regionId
-              });
+              if(selectAddr != false){
+                var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
+                var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
+                var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
+                that.component.checkLogistics.setData({
+                  areaId:AREAID,
+                  provinceId:provinceId,
+                  cityId:cityId,
+                  districtId:regionId
+                });
+              }
+              
             }
             
             return that.component.checkLogistics.sendRequest();
@@ -159,7 +163,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-      if(AREAID != 0 ){
+      if(AREAID != 0 && selectAddr != false){
         var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
         var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
         var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);

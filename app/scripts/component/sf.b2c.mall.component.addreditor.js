@@ -300,7 +300,7 @@ define('sf.b2c.mall.component.addreditor', [
         });
     },
 
-    update: function(addr) {
+    update: function(addr,element) {
       var that = this;
       if(typeof this.from != 'undefined' && this.from == 'order'){
         if (AREAID != 0) {
@@ -344,17 +344,7 @@ define('sf.b2c.mall.component.addreditor', [
             })
          
         }
-      }
-
-      if(typeof this.from != 'undefined' && this.from == 'center'){
-        var provinceId = that.adapter.addr.input.attr('provinceName');
-        var cityId = that.adapter.addr.input.attr('cityName');
-        var regionId = that.adapter.addr.input.attr('regionName');
-
-        store.set('provinceId',provinceId);
-        store.set('cityId',cityId);
-        store.set('regionId',regionId);
-      }
+      }     
 
       var updateRecAddress = new SFUpdateRecAddress(addr);
       updateRecAddress
@@ -366,6 +356,16 @@ define('sf.b2c.mall.component.addreditor', [
             'type': 'success'
           });
 
+          var isDefault = $(element).parents('.order-r2r3').parents('#editAdrArea').siblings('.order-r1').children('.order-r1c2').find('.order-edit').attr('data-isdefault');
+          if(typeof this.from != 'undefined' && isDefault ==1 ){
+            var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
+
+            store.set('provinceId',provinceId);
+            store.set('cityId',cityId);
+            store.set('regionId',regionId);
+          }
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
         })
@@ -468,7 +468,7 @@ define('sf.b2c.mall.component.addreditor', [
 
 
       if (addr.addrId) {
-        this.update(addr);
+        this.update(addr,element);
         element.parents('div#editAdrArea').toggle();
       } else {
         var result = this.add(addr);
