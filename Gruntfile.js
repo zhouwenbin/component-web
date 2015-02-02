@@ -27,7 +27,10 @@ module.exports = function (grunt) {
     version: 'ver.1.0',
     build: 'build.'+Date.now(),
     base: null,
-    release: false
+    release: false,
+    publish: 'publish',
+    file: 'publish/files',
+    source: 'publish/source'
   };
 
   var isRelease = function () {
@@ -139,6 +142,14 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
+      publish: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= config.publish %>/*',
+          ]
+        }]
+      },
       dist: {
         files: [{
           dot: true,
@@ -405,6 +416,31 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      publish: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= config.dist %>',
+          dest: '<%= config.source %>',
+          src:[
+            'css/{,*/}*',
+            'img/{,*/}*',
+            'scripts/{,*/}*',
+            'styles/{,*/}*'
+          ]
+        },{
+          expand: true,
+          dot: true,
+          cwd: '<%= config.dist %>',
+          dest: '<%= config.file %>',
+          src:[
+            'json/{,*/}*',
+            'img/{,*/}*',
+            'templates/{,*/}*',
+            '*.html'
+          ]
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -1286,7 +1322,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('release', function () {
     config.release = true;
+    grunt.task.run(['clean:publish']);
     grunt.task.run(['build:prd']);
+    grunt.task.run(['copy:publish']);
   });
 
   grunt.registerTask('default', [
