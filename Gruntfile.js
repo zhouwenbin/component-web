@@ -34,7 +34,7 @@ module.exports = function (grunt) {
   };
 
   var isRelease = function () {
-    return config.release?'http://static0.s.com/sfht/':''
+    return config.release?'http://img.sfht.com/sfht/':''
   }
 
   var DEFAULT_JS_OUTPUT = function (block) {
@@ -437,6 +437,7 @@ module.exports = function (grunt) {
             'json/{,*/}*',
             'img/{,*/}*',
             'templates/{,*/}*',
+            'styles/{,*/}*',
             '*.html'
           ]
         }]
