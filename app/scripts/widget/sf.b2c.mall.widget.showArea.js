@@ -88,7 +88,7 @@ define('sf.b2c.mall.widget.showArea', [
         'create': function() {
           return {
             input: {
-              provinceName: this.adapter.regions.findGroup(0)[0].id,
+              provinceName: this.adapter.regions.findGroup(0)[8].id,
               cityName: null,
               regionName: null
             },
