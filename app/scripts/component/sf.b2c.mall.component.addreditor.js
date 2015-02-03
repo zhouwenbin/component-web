@@ -227,19 +227,20 @@ define('sf.b2c.mall.component.addreditor', [
       var that = this;
       delete addr.recId;
       if(typeof this.from != 'undefined' && this.from == 'order'){
-        if (AREAID != 0) {
-          var params = can.deparam(window.location.search.substr(1));
-          var getItemSummary = new SFGetItemSummary({
-            "itemId":params.itemid
-          });
-          can.when(getItemSummary.sendRequest())
-            .done(function(data){
+        var params = can.deparam(window.location.search.substr(1));
+        var getItemSummary = new SFGetItemSummary({
+          "itemId":params.itemid
+        });
+        getItemSummary.sendRequest()
+          .done(function(data){
+            AREAID = data.areaId;
+            if (AREAID != 0) {
               var provinceId = that.adapter.addr.input.attr('provinceName');
               var cityId = that.adapter.addr.input.attr('cityName');
               var regionId = that.adapter.addr.input.attr('regionName');
 
               that.component.checkLogistics.setData({
-                areaId:data.areaId,
+                areaId:AREAID,
                 provinceId:provinceId,
                 cityId:cityId,
                 districtId:regionId
@@ -261,12 +262,12 @@ define('sf.b2c.mall.component.addreditor', [
                 })
                 .fail(function(data){
 
-                })
-            })
-            .fail(function(data){
+                })              
+            }
+          })
+          .fail(function(){
 
-            })         
-        }
+          });       
       }
       var cinfo = can.deparam(window.location.search.substr(1));
       if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
@@ -303,19 +304,20 @@ define('sf.b2c.mall.component.addreditor', [
     update: function(addr,element) {
       var that = this;
       if(typeof this.from != 'undefined' && this.from == 'order'){
-        if (AREAID != 0) {
-          var params = can.deparam(window.location.search.substr(1));
-          var getItemSummary = new SFGetItemSummary({
-            "itemId":params.itemid
-          });
-          can.when(getItemSummary.sendRequest())
-            .done(function(data){
+        var params = can.deparam(window.location.search.substr(1));
+        var getItemSummary = new SFGetItemSummary({
+          "itemId":params.itemid
+        });
+        getItemSummary.sendRequest()
+          .done(function(data){
+            AREAID = data.areaId;
+            if (AREAID != 0) {
               var provinceId = that.adapter.addr.input.attr('provinceName');
               var cityId = that.adapter.addr.input.attr('cityName');
               var regionId = that.adapter.addr.input.attr('regionName');
 
               that.component.checkLogistics.setData({
-                areaId:data.areaId,
+                areaId:AREAID,
                 provinceId:provinceId,
                 cityId:cityId,
                 districtId:regionId
@@ -337,14 +339,13 @@ define('sf.b2c.mall.component.addreditor', [
                 })
                 .fail(function(data){
 
-                })
-            })
-            .fail(function(data){
+                })              
+            }
+          })
+          .fail(function(){
 
-            })
-         
-        }
-      }     
+          });       
+      } 
 
       var updateRecAddress = new SFUpdateRecAddress(addr);
       updateRecAddress
