@@ -16,7 +16,7 @@
     <p>{{itemInfo.basicInfo.subTitle}}</p>
     <div class="mr1">
       单价：<strong>¥ {{priceInfo.sellingPrice}}</strong>
-      <span>（含税）</span>
+      {{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}
       <del>¥ {{priceInfo.originPrice}}</del>
     </div>
     <div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{priceInfo.lessspend}}元</div>

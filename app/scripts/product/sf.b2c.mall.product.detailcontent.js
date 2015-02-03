@@ -80,36 +80,37 @@ define('sf.b2c.mall.product.detailcontent', [
 
           this.component.showArea = new SFShowArea();
           this.component.showArea.show('create', null, $("#logisticsArea"));
-
-          var provinceId = store.get('provinceId');
-          var cityId = store.get('cityId');
-          var regionId = store.get('regionId');
-
           
-          setTimeout(function(){            
-            if(provinceId && cityId && regionId){
-              if (SFComm.prototype.checkUserLogin.call(that)) {
-                that.component.showArea.adapter.addr.attr({
-                  input:{
-                    provinceName:provinceId
-                  }
-                });
-                that.component.showArea.changeCity();
-                that.component.showArea.changeRegion();
-                that.component.showArea.adapter.addr.attr({
-                  input:{
-                    cityName:cityId
-                  }
-                });
-                that.component.showArea.changeRegion();
-                that.component.showArea.adapter.addr.attr({
-                  input:{
-                    regionName:regionId
-                  }
-                });
+          var time = setInterval(function(){
+            var provinceId = store.get('provinceId');
+            var cityId = store.get('cityId');
+            var regionId = store.get('regionId');            
+              if(typeof provinceId != 'undefined'){
+                if (SFComm.prototype.checkUserLogin.call(that)) {
+                  that.component.showArea.adapter.addr.attr({
+                    input:{
+                      provinceName:provinceId
+                    }
+                  });
+                  that.component.showArea.changeCity();
+                  that.component.showArea.changeRegion();
+                  that.component.showArea.adapter.addr.attr({
+                    input:{
+                      cityName:cityId
+                    }
+                  });
+                  that.component.showArea.changeRegion();
+                  that.component.showArea.adapter.addr.attr({
+                    input:{
+                      regionName:regionId
+                    }
+                  });
+
+                  clearInterval(time);
+                }
               }
-            }
           },1000);
+
         }
 
       },
