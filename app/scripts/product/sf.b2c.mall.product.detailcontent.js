@@ -98,13 +98,18 @@ define('sf.b2c.mall.product.detailcontent', [
                 that.component.showArea.changeRegion();
                 that.component.showArea.adapter.addr.attr({
                   input:{
-                    cityName:cityId,
+                    cityName:cityId
+                  }
+                });
+                that.component.showArea.changeRegion();
+                that.component.showArea.adapter.addr.attr({
+                  input:{
                     regionName:regionId
                   }
                 });
               }
             }
-          },1000)
+          },1000);
         }
 
       },
@@ -326,9 +331,17 @@ define('sf.b2c.mall.product.detailcontent', [
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
             }
 
+            var productShape = $('#buyInfo').attr('data-productshape');
+            if (productShape == 'FRESHFOOD') {
+              that.options.detailContentInfo.priceInfo.attr("showTax", false);
+            }else{
+              that.options.detailContentInfo.priceInfo.attr("showTax", true);
+            }
 
             //渲染购买信息
             that.renderBuyInfo(that.options.detailContentInfo);
+
+            
 
             //渲染模板
             var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
@@ -537,7 +550,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
           '<!--售完-->' +
           '</div>' +
-          '<div class="mr1">单价：<strong>¥ {{sf.price priceInfo.sellingPrice}}</strong><span>（含税）</span>{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
+          '<div class="mr1">单价：<strong>¥ {{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
           '{{#if priceInfo.showDiscount}}' +
           '<div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{sf.price priceInfo.lessspend}}元</div>' +
           '{{/if}}';
@@ -823,8 +836,12 @@ define('sf.b2c.mall.product.detailcontent', [
 
         this.renderTitleInfo();
 
-        this.renderBandInfo();
-
+        //如果是生鲜商品，不渲染品牌
+        var productShape = $('#buyInfo').attr('data-productshape');
+        if (productShape != 'FRESHFOOD') {
+          this.renderBandInfo();
+        };
+        
         this.renderPicInfo();
 
         //小编推荐

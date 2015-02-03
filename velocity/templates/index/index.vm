@@ -1,4 +1,11 @@
 #define($_content)
+##格式化商品图片大小
+  #macro(_homepage_formatImgUrl $_homepage_formatImgUrl_itemImgUrl)
+    #set ($_homepage_formatImgUrl_suffix ="@233h_360w_100Q_1x.jpg")
+    #if ( ${_homepage_formatImgUrl_itemImgUrl})
+      $!{_homepage_formatImgUrl_itemImgUrl}${_homepage_formatImgUrl_suffix}
+    #end
+  #end
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=1280">
@@ -49,7 +56,7 @@
                                 <li>
                                     <a href="$!{_el.property.link}" target="_blank" title="$!{_el.property.title}">
                                         <div class="product-r1">
-                                            <img src="$!{_el.property.imgUrl}" alt="$!{_el.property.title}"/>
+                                            <img src="#_homepage_formatImgUrl($!{_el.property.imgUrl})" alt="$!{_el.property.title}"/>
                                             <span></span>
                                         </div>
                                         <h3>
@@ -93,7 +100,7 @@
                                 <li>
                                     <a href="$!{_el.link}" target="_blank">
                                         <div class="product-r1">
-                                            <img src="$!{_el.imgUrl}" alt="$!{_el.title}"/>
+                                            <img src="#_homepage_formatImgUrl($!{_el.imgUrl})" alt="$!{_el.title}"/>
                                             <span></span>
                                         </div>
                                         <h3>
@@ -153,7 +160,7 @@
                                 <li>
                                     <a href="$!{_el.link}" target="_blank" title="$!{_el.title}">
                                         <div class="product-r1">
-                                            <img src="$!{_el.imgUrl}" alt="$!{_el.title}"/>
+                                            <img src="#_homepage_formatImgUrl($!{_el.imgUrl})" alt="$!{_el.title}"/>
                                             <span></span>
                                         </div>
                                         <h3>

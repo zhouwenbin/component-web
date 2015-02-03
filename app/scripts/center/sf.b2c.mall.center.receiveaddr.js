@@ -3,6 +3,7 @@
 define('sf.b2c.mall.center.receiveaddr', [
     'can',
     'jquery',
+    'store',
     'sf.b2c.mall.api.user.getRecAddressList',
     'sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.component.addreditor',
@@ -12,7 +13,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.delRecAddress',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, $, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
+  function(can, $,store, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
 
     SFFrameworkComm.register(1);
 
@@ -72,7 +73,8 @@ define('sf.b2c.mall.center.receiveaddr', [
             that.render(that.adapter4List.addrs);
 
             that.component.addressEditor = new SFAddressEditor('#addAdrArea', {
-              onSuccess: _.bind(that.paint, that)
+              onSuccess: _.bind(that.paint, that),
+              from:'center'
             });
           })
       },

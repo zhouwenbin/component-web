@@ -309,40 +309,36 @@ define(
         this.component.login.sendRequest()
           .done(function (data) {
             if (data.userId) {
-              that.data.attr('autologin')
+              that.data.attr('autologin');
 
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));
               // setTimeout(function () {
               //   window.location.href = params.from || 'index.html';
               // }, 2000);
-              var provinceId = store.get('provinceId');
-              if(!provinceId){
-                that.component.getRecAddressList.sendRequest()
-                .done(function(data){
-                  if(data.items.length > 0){
-                    var defaultAdde = {};
-                    _.each(data.items,function(item){
-                      if(item.isDefault == 1){
-                        defaultAdde = item;
-                      }
-                    });
-                    if(typeof (defaultAdde.provinceName) !== 'undefined'){
-                      var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
-                      var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
-                      var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
-                      
-                      store.set('provinceId',provinceId);
-                      store.set('cityId',cityId);
-                      store.set('regionId',regionId);
+              that.component.getRecAddressList.sendRequest()
+              .done(function(data){
+                if(data.items.length > 0){
+                  var defaultAdde = {};
+                  _.each(data.items,function(item){
+                    if(item.isDefault == 1){
+                      defaultAdde = item;
                     }
-                    
-                  }
-                }).fail(function(){
+                  });
 
-                })
-              }
+                  var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
+                  var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                  var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                  
+                  store.set('provinceId',provinceId);
+                  store.set('cityId',cityId);
+                  store.set('regionId',regionId);
 
+                  
+                }
+              }).fail(function(){
+
+              })
 
             }
           })
