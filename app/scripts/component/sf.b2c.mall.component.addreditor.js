@@ -10,13 +10,15 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.api.user.getRecAddressList'
+  'sf.b2c.mall.api.user.getRecAddressList',
+  'sf.b2c.mall.adapter.address.list'
 
-], function(can,store,RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, placeholders, SFMessage,SFGetItemSummary,CheckLogistics,SFGetRecAddressList) {
+], function(can,store,RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, placeholders, SFMessage,SFGetItemSummary,CheckLogistics,SFGetRecAddressList,AddressAdapter) {
   var AREAID;
   return can.Control.extend({
 
     init: function() {
+      this.adapter4List = {};
       this.adapter = {};
       this.component = {};
       this.request();
@@ -24,6 +26,25 @@ define('sf.b2c.mall.component.addreditor', [
       this.from = this.options.from;
       this.component.checkLogistics = new CheckLogistics();
       this.component.getRecAddressList = new SFGetRecAddressList();
+      var that = this;
+      this.component.getRecAddressList.sendRequest()
+        .done(function(resAddr){
+          if(resAddr.items.length > 0){
+            that.adapter4List.addrs = new AddressAdapter({
+              addressList: resAddr.items,
+              hasData: false
+            });
+          }          
+        })
+
+      var params = can.deparam(window.location.search.substr(1));
+      var getItemSummary = new SFGetItemSummary({
+        "itemId":params.itemid
+      });
+      getItemSummary.sendRequest()
+        .done(function(data){
+          AREAID = data.areaId;
+        });
       
     },
 
@@ -234,47 +255,37 @@ define('sf.b2c.mall.component.addreditor', [
         })
         .then(function(data){
           if(data.items.length == 0 && that.from == 'order'){
-            var params = can.deparam(window.location.search.substr(1));
-            var getItemSummary = new SFGetItemSummary({
-              "itemId":params.itemid
-            });
-            getItemSummary.sendRequest()
-              .done(function(data){
-                AREAID = data.areaId;
-                if (AREAID != 0) {
-                  var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
-                  var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
-                  var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
+            if (AREAID != 0) {
+              var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
+              var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
+              var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
 
-                  that.component.checkLogistics.setData({
-                    areaId:AREAID,
-                    provinceId:provinceId,
-                    cityId:cityId,
-                    districtId:regionId
-                  });
+              that.component.checkLogistics.setData({
+                areaId:AREAID,
+                provinceId:provinceId,
+                cityId:cityId,
+                districtId:regionId
+              });
 
-                  that.component.checkLogistics.sendRequest()
-                    .done(function(data){
-                      if(data){
-                        if(data.value == false){
-                          $('#errorTips').removeClass('visuallyhidden');
-                          $('#submitOrder').addClass('disable');
-                          return false;
-                        }else{
-                          $('#errorTips').addClass('visuallyhidden');
-                          $('#submitOrder').removeClass('disable');
-                          return true;
-                        }
-                      }
-                    })
-                    .fail(function(data){
+              that.component.checkLogistics.sendRequest()
+                .done(function(data){
+                  if(data){
+                    if(data.value == false){
+                      $('#errorTips').removeClass('visuallyhidden');
+                      $('#submitOrder').addClass('disable');
+                      return false;
+                    }else{
+                      $('#errorTips').addClass('visuallyhidden');
+                      $('#submitOrder').removeClass('disable');
+                      return true;
+                    }
+                  }
+                })
+                .fail(function(data){
 
-                    })              
-                }
-              })
-              .fail(function(){
-
-              });       
+                })              
+            }
+     
 
           }
         })
@@ -314,50 +325,7 @@ define('sf.b2c.mall.component.addreditor', [
 
     update: function(addr,element) {
       var that = this;
-      if(this.from == 'order'){
-        var params = can.deparam(window.location.search.substr(1));
-        var getItemSummary = new SFGetItemSummary({
-          "itemId":params.itemid
-        });
-        getItemSummary.sendRequest()
-          .done(function(data){
-            AREAID = data.areaId;
-            if (AREAID != 0) {
-              var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
-              var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
-              var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
-
-              that.component.checkLogistics.setData({
-                areaId:AREAID,
-                provinceId:provinceId,
-                cityId:cityId,
-                districtId:regionId
-              });
-
-              that.component.checkLogistics.sendRequest()
-                .done(function(data){
-                  if(data){
-                    if(data.value == false){
-                      $('#errorTips').removeClass('visuallyhidden');
-                      $('#submitOrder').addClass('disable');
-                      return false;
-                    }else{
-                      $('#errorTips').addClass('visuallyhidden');
-                      $('#submitOrder').removeClass('disable');
-                      return true;
-                    }
-                  }
-                })
-                .fail(function(data){
-
-                })              
-            }
-          })
-          .fail(function(){
-
-          });       
-      } 
-
+           
       var updateRecAddress = new SFUpdateRecAddress(addr);
       updateRecAddress
         .sendRequest()
@@ -378,8 +346,39 @@ define('sf.b2c.mall.component.addreditor', [
             store.set('cityId',cityId);
             store.set('regionId',regionId);
           }
+
+          var firstAddr = that.adapter4List.addrs.get(0);
+          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
+
+          that.component.checkLogistics.setData({
+            areaId:AREAID,
+            provinceId:provinceId,
+            cityId:cityId,
+            districtId:regionId
+          });
+
+                       
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
+          that.component.checkLogistics.sendRequest()
+            .done(function(data){
+              if(data){
+                if(data.value == false){
+                  $('#errorTips').removeClass('visuallyhidden');
+                  $('#submitOrder').addClass('disable');
+                  return false;
+                }else{
+                  $('#errorTips').addClass('visuallyhidden');
+                  $('#submitOrder').removeClass('disable');
+                  return true;
+                }
+              }
+            })
+            .fail(function(data){
+
+            }) 
         })
         .fail(function(error) {});
     },
@@ -434,7 +433,7 @@ define('sf.b2c.mall.component.addreditor', [
       }
 
       // 5~120字符之间
-      if (addr.detail.length > 120 || addr.detail.length < 5) {
+      if (addr.detail.length > 60 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
           "detail": '请输入正确地址信息!'
         })
