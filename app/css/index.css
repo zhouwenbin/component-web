@@ -30,7 +30,6 @@
 .slider-img .active{
 	opacity: 1;
 	filter: alpha(opacity=100);
-	z-index: 1;
 }
 .slider-img li a{
 	display: block;
@@ -47,7 +46,6 @@
 	top: 396px;
 	position: absolute;
 	left: 0;
-	z-index: 2;
 }
 .slider-num li{
 	display: inline-block;
@@ -71,7 +69,6 @@
 }
 .slider .btn{
 	position: absolute;
-	z-index: 2;
 	top: 151px;
 }
 .slider .btn-prev{
@@ -179,6 +176,7 @@
 .product-list li .mask{
 	position: absolute;
 	background: #fff;
+	z-index: 0;
 }
 .product-list li .icon24,
 .product-list li .icon24-1{
@@ -189,7 +187,6 @@
 	margin-top: -37px;
 	width: 75px;
 	height: 0;
-	z-index: 3;
 }
 
 .product-list li .icon25{
