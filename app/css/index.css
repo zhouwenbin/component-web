@@ -26,10 +26,13 @@
 	-moz-transition: opacity 1s;
 	-ms-transition: opacity 1s;
 	transition: opacity 1s;
+	z-index: -1;
 }
 .slider-img .active{
 	opacity: 1;
 	filter: alpha(opacity=100);
+	position: absolute;
+	z-index: 0;
 }
 .slider-img li a{
 	display: block;
