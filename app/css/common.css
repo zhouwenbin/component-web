@@ -316,6 +316,14 @@ img{vertical-align: middle;}
 	height: 8px;
 	background-position: -105px -74px;
 }
+.icon30:before{
+	content: '';
+	position: absolute;
+	left: -15px;
+	right:-15px;
+	top: -15px;
+	bottom:-15px;
+}
 
 .icon30.active{
 	background-position: -128px -74px;
@@ -771,7 +779,7 @@ body.sub{
 	position: fixed;
 	width: 100%;
 	top: 0;
-	z-index: 4;
+	z-index: 1;
 }
 .nav .li1{
 	float: left;
@@ -1296,6 +1304,7 @@ a[title="站长统计"]{
 .link{
 	color: #949494;
 	text-decoration: underline;
+	display: inline-block;
 }
 .link:hover{
 	color: #333;
