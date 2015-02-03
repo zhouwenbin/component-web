@@ -248,50 +248,7 @@ define('sf.b2c.mall.component.addreditor', [
     add: function(addr) {
       var that = this;
       delete addr.recId;
-      var addrList = this.adapter.addr;
-      this.component.getRecAddressList.sendRequest()
-        .done(function(item){
-          return item;
-        })
-        .then(function(data){
-          if(data.items.length == 0 && that.from == 'order'){
-            if (AREAID != 0) {
-              var firstAddr = that.adapter4List.addrs.get(0);
-          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-              that.component.checkLogistics.setData({
-                areaId:AREAID,
-                provinceId:provinceId,
-                cityId:cityId,
-                districtId:regionId
-              });
-
-              that.component.checkLogistics.sendRequest()
-                .done(function(data){
-                  if(data){
-                    if(data.value == false){
-                      $('#errorTips').removeClass('visuallyhidden');
-                      $('#submitOrder').addClass('disable');
-                      return false;
-                    }else{
-                      $('#errorTips').addClass('visuallyhidden');
-                      $('#submitOrder').removeClass('disable');
-                      return true;
-                    }
-                  }
-                })
-                .fail(function(data){
-
-                })              
-            }
-     
-
-          }
-        })
       
-
       var cinfo = can.deparam(window.location.search.substr(1));
       if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
         addr.partnerId = 'heike';
@@ -309,7 +266,37 @@ define('sf.b2c.mall.component.addreditor', [
 
           that.hide();
           that.onSuccess(data);
+          if(AREAID != 0){
+            var firstAddr = that.adapter4List.addrs.get(0);
+            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
 
+            that.component.checkLogistics.setData({
+              areaId:AREAID,
+              provinceId:provinceId,
+              cityId:cityId,
+              districtId:regionId
+            });
+            that.component.checkLogistics.sendRequest()
+              .done(function(data){
+                if(data){
+                  if(data.value == false){
+                    $('#errorTips').removeClass('visuallyhidden');
+                    $('#submitOrder').addClass('disable');
+                    return false;
+                  }else{
+                    $('#errorTips').addClass('visuallyhidden');
+                    $('#submitOrder').removeClass('disable');
+                    return true;
+                  }
+                }
+              })
+              .fail(function(data){
+
+              }) 
+            }
+          
           return true;
         })
         .fail(function(error) {
@@ -347,23 +334,23 @@ define('sf.b2c.mall.component.addreditor', [
             store.set('cityId',cityId);
             store.set('regionId',regionId);
           }
-
-          var firstAddr = that.adapter4List.addrs.get(0);
-          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-          that.component.checkLogistics.setData({
-            areaId:AREAID,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:regionId
-          });
-
-                       
+               
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-          that.component.checkLogistics.sendRequest()
+
+          if (AREAID != 1) {
+            var firstAddr = that.adapter4List.addrs.get(0);
+            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
+
+            that.component.checkLogistics.setData({
+              areaId:AREAID,
+              provinceId:provinceId,
+              cityId:cityId,
+              districtId:regionId
+            });
+            that.component.checkLogistics.sendRequest()
             .done(function(data){
               if(data){
                 if(data.value == false){
@@ -380,6 +367,8 @@ define('sf.b2c.mall.component.addreditor', [
             .fail(function(data){
 
             }) 
+          };
+          
         })
         .fail(function(error) {});
     },
