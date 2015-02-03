@@ -51,7 +51,7 @@
                           <h2>Hi生鲜</h2>
                       </div>
                       <div class="mb">
-                          <ul class="clearfix product-list" data-itemIds=${freshFoodListItemIds}>
+                          <ul class="clearfix product-list product-list-freshfood" data-itemIds=${freshFoodListItemIds}>
                             #foreach ($_el in $freshFoodList)
                                 <li>
                                     <a href="$!{_el.property.link}" target="_blank" title="$!{_el.property.title}">
