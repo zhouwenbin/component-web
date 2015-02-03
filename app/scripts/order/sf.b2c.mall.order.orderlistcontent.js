@@ -93,13 +93,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       uploadIDCardTemplateMap: {
-        0: '<div class="table-1-upload">' +
+        0: '<div class="tooltip-pos">' +
           '<span class="icon icon26">上传身份证照片</span>' +
+          '<div class="tooltip-ourer">' +
           '<div class="tooltip">' +
           '<h4>请在“查看订单”中上传身份照片</h4>' +
           '<h5>为什么要传身份证？</h5>' +
           '<p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>' +
           '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
+          '</div>' +
           '</div>' +
           '</div>'
       },
