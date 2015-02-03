@@ -17,7 +17,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.widget.message',
     'moment',
-    'sf.b2c.mall.api.order.confirmReceive'
+    'sf.b2c.mall.api.order.confirmReceive',
+    ''
   ],
   function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment, SFConfirmReceive) {
 
@@ -81,8 +82,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
 
-            var productShape = 'FRESHFOOD';
-            if (productShape == 'FRESHFOOD' && (data.orderItem.orderStatus == 'SHIPPED' || data.orderItem.orderStatus == 'SHIPPING')){
+            var productShape = data.orderItem.orderGoodsItemList[0].abbreviation;           
+
+            if (productShape == 'SF-SHLK' && (data.orderItem.orderStatus == 'SHIPPED' || data.orderItem.orderStatus == 'SHIPPING')){
               that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus+"_FRESH"];
             } else {
               that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
@@ -149,7 +151,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
             _.each(that.options.traceList, function(trace) {
               trace.operator = that.operatorMap[trace.operator] || '系统';
-              if (productShape == 'FRESHFOOD' && (trace.status == 'SHIPPED' || trace.status == 'SHIPPING')){
+              if (productShape == 'SF-SHLK' && (trace.status == 'SHIPPED' || trace.status == 'SHIPPING')){
                 trace.description = that.statusDescription[trace.status+"_FRESH"];
               }else{
                 trace.description = that.statusDescription[trace.status];
@@ -402,8 +404,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
         'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
         'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-        'SHIPPING_FRESH': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
-        'SHIPPED_FRESH': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+        'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
+        'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
         'COMPLETED': '您已确认收货，订单已完成',
         'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
       },
@@ -474,9 +476,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           '订单正在等待仓库发货。',
         'SHIPPING': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。<br />' +
           '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
-        'SHIPPED_FRESH': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
-        'SHIPPING_FRESH': '尊敬的客户，您的订单正在顺丰海外仓进行出库操作。<br />' +
-          '网上订单已被打印，目前订单正在等待海外仓库人员进行出库处理。',
+        'SHIPPED_FRESH': '尊敬的客户，您的订单已从顺丰仓库出库完成，正在进行物流配送。',
+        'SHIPPING_FRESH': '尊敬的客户，您的订单已经分配给顺丰仓库。<br />' +
+          '网上订单已被打印，目前订单正在等待顺丰仓库人员进行出库处理。',
         'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
         'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。',
         'AUTO_COMPLETED': '尊敬的用户，您的订单已经签收超过7天，已自动完成。期待您再次使用顺丰海淘'
