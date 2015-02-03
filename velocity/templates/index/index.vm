@@ -95,7 +95,7 @@
                           </ul>
                       </div>
                       <div class="mb">
-                          <ul class="clearfix product-list" data-itemIds=$!{timeLimitedSaleItemIds}>
+                          <ul class="clearfix product-list product-list-limited" data-itemIds=$!{timeLimitedSaleItemIds}>
                             #foreach ($_el in $limitedTimeSale)
                                 <li>
                                     <a href="$!{_el.link}" target="_blank">
@@ -155,7 +155,7 @@
                           <h2>极速海淘</h2>
                       </div>
                       <div class="mb">
-                          <ul class="clearfix product-list" data-itemIds=${fastSaleInfoItemIds}>
+                          <ul class="clearfix product-list product-list-fast" data-itemIds=${fastSaleInfoItemIds}>
                             #foreach ($_el in $fastSaleInfoList.fastSaleInfos )
                                 <li>
                                     <a href="$!{_el.link}" target="_blank" title="$!{_el.title}">
