@@ -266,35 +266,37 @@ define('sf.b2c.mall.component.addreditor', [
 
           that.hide();
           that.onSuccess(data);
+          if(AREAID != 0){
+            var firstAddr = that.adapter4List.addrs.get(0);
+            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
 
-          var firstAddr = that.adapter4List.addrs.get(0);
-          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-          that.component.checkLogistics.setData({
-            areaId:AREAID,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:regionId
-          });
-          that.component.checkLogistics.sendRequest()
-            .done(function(data){
-              if(data){
-                if(data.value == false){
-                  $('#errorTips').removeClass('visuallyhidden');
-                  $('#submitOrder').addClass('disable');
-                  return false;
-                }else{
-                  $('#errorTips').addClass('visuallyhidden');
-                  $('#submitOrder').removeClass('disable');
-                  return true;
+            that.component.checkLogistics.setData({
+              areaId:AREAID,
+              provinceId:provinceId,
+              cityId:cityId,
+              districtId:regionId
+            });
+            that.component.checkLogistics.sendRequest()
+              .done(function(data){
+                if(data){
+                  if(data.value == false){
+                    $('#errorTips').removeClass('visuallyhidden');
+                    $('#submitOrder').addClass('disable');
+                    return false;
+                  }else{
+                    $('#errorTips').addClass('visuallyhidden');
+                    $('#submitOrder').removeClass('disable');
+                    return true;
+                  }
                 }
-              }
-            })
-            .fail(function(data){
+              })
+              .fail(function(data){
 
-            }) 
+              }) 
+            }
+          
           return true;
         })
         .fail(function(error) {
@@ -332,23 +334,23 @@ define('sf.b2c.mall.component.addreditor', [
             store.set('cityId',cityId);
             store.set('regionId',regionId);
           }
-
-          var firstAddr = that.adapter4List.addrs.get(0);
-          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-          that.component.checkLogistics.setData({
-            areaId:AREAID,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:regionId
-          });
-
-                       
+               
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-          that.component.checkLogistics.sendRequest()
+
+          if (AREAID != 1) {
+            var firstAddr = that.adapter4List.addrs.get(0);
+            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
+
+            that.component.checkLogistics.setData({
+              areaId:AREAID,
+              provinceId:provinceId,
+              cityId:cityId,
+              districtId:regionId
+            });
+            that.component.checkLogistics.sendRequest()
             .done(function(data){
               if(data){
                 if(data.value == false){
@@ -365,6 +367,8 @@ define('sf.b2c.mall.component.addreditor', [
             .fail(function(data){
 
             }) 
+          };
+          
         })
         .fail(function(error) {});
     },
