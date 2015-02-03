@@ -316,6 +316,14 @@ img{vertical-align: middle;}
 	height: 8px;
 	background-position: -105px -74px;
 }
+.icon30:before{
+	content: '';
+	position: absolute;
+	left: -15px;
+	right:-15px;
+	top: -15px;
+	bottom:-15px;
+}
 
 .icon30.active{
 	background-position: -128px -74px;
