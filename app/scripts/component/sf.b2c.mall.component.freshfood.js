@@ -47,11 +47,11 @@ define('sf.b2c.mall.component.freshfood', [
           var that = this;
 
           //获取页面上没有价格的节点
-          var ulNode = this.element.find('ul.product-list');
-          var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
+          var ulNode = this.element.find('ul.product-list-freshfood');
+          var priceNodeList = this.element.find('ul.product-list-freshfood #price4ProductClient');
 
           var arr = [];
-          this.element.find('ul.product-list #price4ProductClient').each(function (index, element) {
+          this.element.find('ul.product-list-freshfood #price4ProductClient').each(function (index, element) {
             arr.push(parseInt($(element).attr('data-itemid')));
           });
           if (arr.length != 0) {
