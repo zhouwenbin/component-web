@@ -338,7 +338,7 @@ define('sf.b2c.mall.component.addreditor', [
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
 
-          if (AREAID != 1) {
+          if (AREAID != 0) {
             var firstAddr = that.adapter4List.addrs.get(0);
             var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
             var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);

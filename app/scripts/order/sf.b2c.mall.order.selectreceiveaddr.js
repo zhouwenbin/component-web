@@ -200,6 +200,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     ".icon30 click": function(element, event) {
       element.parents(".order-b").toggleClass("active");
       element.parent("div").find(".order-r2").hide();
+      $('#btn-add-addr').show();
       return false;
     },
 
@@ -223,38 +224,38 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       element.parents("li").find(".order-r2").toggle();
       element.parents("li").addClass("active");
 
-      if (AREAID != 0) {
+      // if (AREAID != 0) {
 
-        var dataValue = this.getSelectedAddr();
-        var provinceId = this.component.showArea.adapter.regions.getIdByName(dataValue.provinceName);
-        var cityId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, dataValue.cityName);
-        var regionId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, dataValue.regionName);
+      //   var dataValue = this.getSelectedAddr();
+      //   var provinceId = this.component.showArea.adapter.regions.getIdByName(dataValue.provinceName);
+      //   var cityId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, dataValue.cityName);
+      //   var regionId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, dataValue.regionName);
 
-        this.component.checkLogistics.setData({
-          areaId:AREAID,
-          provinceId:provinceId,
-          cityId:cityId,
-          districtId:regionId
-        });
+      //   this.component.checkLogistics.setData({
+      //     areaId:AREAID,
+      //     provinceId:provinceId,
+      //     cityId:cityId,
+      //     districtId:regionId
+      //   });
 
-        this.component.checkLogistics.sendRequest()
-          .done(function(data){
-            if(data){
-              if(data.value == false){
-                $('#errorTips').removeClass('visuallyhidden');
-                $('#submitOrder').addClass('disable');
-                return false;
-              }else{
-                $('#errorTips').addClass('visuallyhidden');
-                $('#submitOrder').removeClass('disable');
-                return true;
-              }
-            }
-          })
-          .fail(function(data){
+      //   this.component.checkLogistics.sendRequest()
+      //     .done(function(data){
+      //       if(data){
+      //         if(data.value == false){
+      //           $('#errorTips').removeClass('visuallyhidden');
+      //           $('#submitOrder').addClass('disable');
+      //           return false;
+      //         }else{
+      //           $('#errorTips').addClass('visuallyhidden');
+      //           $('#submitOrder').removeClass('disable');
+      //           return true;
+      //         }
+      //       }
+      //     })
+      //     .fail(function(data){
 
-          })
-      }
+      //     })
+      // }
       return false;
     },
 
