@@ -85,16 +85,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
         })
         .then(function(){
-          if(AREAID != 0 ){
-            if(typeof store.get('provinceId') != 'undefined'){
-              that.component.checkLogistics.setData({
-                areaId:AREAID,
-                provinceId:store.get('provinceId'),
-                cityId:store.get('cityId'),
-                districtId:store.get('regionId')
-              });
-            }else{
-              
+          if(AREAID != 0 ){             
               var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
               if(selectAddr != false){
                 var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
@@ -106,13 +97,11 @@ define('sf.b2c.mall.order.iteminfo', [
                   cityId:cityId,
                   districtId:regionId
                 });
-              }
-              
+              }              
             }
             
             return that.component.checkLogistics.sendRequest();
-          }              
-        })
+          })
         .done(function (data) { 
           if(data){
             if(data.value == false){
