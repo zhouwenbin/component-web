@@ -89,7 +89,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           that.element.find('.mb').append(html);
 
           var paramData = {
-            itemIds: $('ul.product-list').eq(0).attr('data-itemids')
+            itemIds: $('ul.product-list-limited').eq(0).attr('data-itemids')
           };
           var getProductHotDataList = new SFGetProductHotDataList(paramData);
           //获得价格信息
@@ -139,7 +139,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
        * @return {[type]}
        */
       renderPriceInfo: function(priceMap) {
-        var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
+        var priceNodeList = this.element.find('ul.product-list-limited #price4ProductClient');
 
         // console.log('-------------renderPriceInfo-------------')
         //这里只渲染产品的价格，专题的价格服务器端渲染
@@ -164,7 +164,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
       rendTimeDistanceInfo: function(currentServerTime, priceMap) {
         var that = this;
 
-        var timeNodeList = $('ul.product-list #timeAndNation4ProductClient');
+        var timeNodeList = $('ul.product-list-limited #timeAndNation4ProductClient');
 
         var currentClientTime = new Date().getTime();
         var distance = currentServerTime - currentClientTime;
@@ -266,7 +266,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
         event && event.preventDefault();
         this.element.find('#future').removeClass('active');
         this.element.find('#current').addClass('active');
-        var tag = this.element.find('.mb .product-list').get(0);
+        var tag = this.element.find('.mb .product-list-limited').get(0);
         if($(tag).find('li').length > 0){
           this.switchTab('CURRENT');
         }else{
@@ -279,7 +279,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
         this.element.find('#current').removeClass('active');
         this.element.find('#future').addClass('active');
 
-        var tag = this.element.find('.mb .product-list').get(1);
+        var tag = this.element.find('.mb .product-list-limited').get(1);
         if($(tag).find('li').length > 0){
           this.switchTab('NEXT');
         }else{
@@ -342,7 +342,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           index = 1;
         }
 
-        var height = $(".product-list").eq(index).height();
+        var height = $(".product-list-limited").eq(index).height();
         this.element.find(".mb").animate({
           left:-100 * index + "%"
         },500,function(){
