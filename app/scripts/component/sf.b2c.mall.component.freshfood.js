@@ -43,7 +43,7 @@ define('sf.b2c.mall.component.freshfood', [
 
         },
 
-        showPriceModel:function(){
+        showPriceModel:function() {
           var that = this;
 
           //获取页面上没有价格的节点
@@ -51,43 +51,44 @@ define('sf.b2c.mall.component.freshfood', [
           var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
 
           var arr = [];
-          this.element.find('ul.product-list #price4ProductClient').each(function (index,element) {
+          this.element.find('ul.product-list #price4ProductClient').each(function (index, element) {
             arr.push(parseInt($(element).attr('data-itemid')));
           });
+          if (arr.length != 0) {
+            arr = _.uniq(arr);
 
-          arr = _.uniq(arr);
+            var paramData = {
+              'itemIds': JSON.stringify(arr)
+            }
 
-          var paramData = {
-            'itemIds': JSON.stringify(arr)
-          }
-
-          //渲染价格模块
-          var getProductHotDataList = new SFGetProductHotDataList(paramData);
-          //获得价格信息
-          getProductHotDataList
-            .sendRequest()
-            .fail(function(error) {
-              console.error(error);
-            })
-            .done(function(data){
-              var template = can.view.mustache(that.priceTemplate());
-              _.each(data.value, function(priceItem){
-                priceItem.sellingPrice = priceItem.sellingPrice / 100;
-                priceItem.originPrice = priceItem.originPrice / 100;
-              });
-
-              _.each(priceNodeList, function (priceNode) {
-                _.each(data.value, function (priceItem) {
-                  if (priceItem.itemId == $(priceNode).attr('data-itemid')) {
-                    priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
-                    $(priceNode).html(template(priceItem));
-                    if (priceItem.soldOut){
-                       $(priceNode).parent().find("div.product-r1").append('<span class="icon icon24">售完</span>');
-                    }
-                  }
-                });
+            //渲染价格模块
+            var getProductHotDataList = new SFGetProductHotDataList(paramData);
+            //获得价格信息
+            getProductHotDataList
+              .sendRequest()
+              .fail(function (error) {
+                console.error(error);
               })
-            })
+              .done(function (data) {
+                var template = can.view.mustache(that.priceTemplate());
+                _.each(data.value, function (priceItem) {
+                  priceItem.sellingPrice = priceItem.sellingPrice / 100;
+                  priceItem.originPrice = priceItem.originPrice / 100;
+                });
+
+                _.each(priceNodeList, function (priceNode) {
+                  _.each(data.value, function (priceItem) {
+                    if (priceItem.itemId == $(priceNode).attr('data-itemid')) {
+                      priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
+                      $(priceNode).html(template(priceItem));
+                      if (priceItem.soldOut) {
+                        $(priceNode).parent().find("div.product-r1").append('<span class="icon icon24">售完</span>');
+                      }
+                    }
+                  });
+                })
+              })
+          }
         }
       });
     })
