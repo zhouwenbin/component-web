@@ -37,7 +37,7 @@
 	border-radius: 0;
 }
 .table-1 .table-b{
-	padding: 0 40px; 
+	padding: 0 40px;
 }
 .table-1 .table-c1{
 	padding-left: 60px;
@@ -51,14 +51,14 @@
 }
 .table-1 .table-c3{
 	width: 123px;
-	
+
 }
 .table-1 .table-c4{
 	width: 132px;
 }
 .table-1 .table-c4 a{
 	color: #949494;
-	text-decoration: underline;	
+	text-decoration: underline;
 }
 .table-1 .table-c5{
 	width: 130px;
@@ -121,6 +121,11 @@
 }
 .table-1-upload p{
 	font-size: 12px;
+}
+.table-1-upload:hover .tooltip{
+	display: block;
+	left: -224px;
+	top:37px;
 }
 .table-none{
 	text-align: center;
