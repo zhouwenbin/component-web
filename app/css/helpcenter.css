@@ -11,13 +11,13 @@ body{
 .aboutus-c2{
 	width: 763px;
 }
-.aboutus h1{
+.aboutus-c1 h1{
 	font-size: 18px;
 	font-weight: normal;
 	margin-bottom: 28px;
 	margin-top: 7px;
 }
-.aboutus h2{
+.aboutus-c1 h2{
 	font-size: 18px;
 	
 	text-align: center;
@@ -54,23 +54,15 @@ body{
 	margin: 0 20px;
 }
 .aboutus-c2 p{
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 22px;
 	margin-bottom: 24px;
-}
-.aboutus-c2 .p1{
-	font-size: 18px;
-	line-height: 30px;
-	margin-bottom: 28px;
 }
 .aboutus-c2 .p2{
 	color: #7a7a7a;
 }
 .aboutus-c2 .p2 a{
 	color:#004eff; 
-}
-.aboutus-c2 .p3{
-	font-size: 14px;
 }
 .aboutus .icon16-5{
 	display: none;
@@ -81,8 +73,12 @@ body{
 .aboutus-c1 li.active .icon16-5{
 	display: block;
 }
+.aboutus-c2 h2{
+	font-size: 18px;
+	margin-bottom: 20px;
+}
 .aboutus-c2 h3{
-	font-size: 14px;
+	font-size: 16px;
 	margin-bottom: 18px;
 }
 .aboutus-c2 h3 strong{
