@@ -160,8 +160,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '.table-1-logistics mouseover': function(element, event) {
         event && event.preventDefault();
         var that = this;
-        element.find('.tooltip').show();
 
+        if (element.attr('data-is-show') == 'true') {
+          return;
+        }
+
+        element.attr('data-is-show', 'true');
+        element.find('.tooltip').show();
 
         var getUserRoutes = new SFGetUserRoutes({
           'bizId': $(element).eq(0).attr('data-orderid')
@@ -206,6 +211,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
        */
       '.table-1-logistics mouseout': function(element, event) {
         element.find('.tooltip').hide();
+        element.removeAttr('data-is-show');
         return false;
       },
 
@@ -413,9 +419,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       "#find-more-info click": function(element, event) {
-        var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
-        var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
-        var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
+        event && event.preventDefault();
+
+        var $el = element.closest('.table-1-logistics');
+        var orderid = $el.attr('data-orderid');
+        var suborderid = $el.attr('data-suborderid');
+        var recid = element.closest('.table-c4').siblings('#operationarea').attr('data-recid');
+
+        // var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
+        // var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
+        // var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
         window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {

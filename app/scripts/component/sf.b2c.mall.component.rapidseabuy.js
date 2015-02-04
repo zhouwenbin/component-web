@@ -48,7 +48,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
             this.showPriceModel();
             var template = can.view.mustache(this.moreProductTemplate());
 
-            var el = this.element.find('.product-list').get(0);
+            var el = this.element.find('.product-list-fast').get(0);
             $(el).append(template(this.data.fastSale, this.helpers));
           }else{
             this.supplement();
@@ -169,11 +169,11 @@ define('sf.b2c.mall.component.rapidseabuy', [
           var that = this;
 
           //获取页面上没有价格的节点
-          var ulNode = this.element.find('ul.product-list');
-          var priceNodeList = this.element.find('ul.product-list #price4ProductClient');
+          var ulNode = this.element.find('ul.product-list-fast');
+          var priceNodeList = this.element.find('ul.product-list-fast #price4ProductClient');
 
           var arr = [];
-          this.element.find('ul.product-list #price4ProductClient').each(function (index,element) {
+          this.element.find('ul.product-list-fast #price4ProductClient').each(function (index,element) {
             arr.push(parseInt($(element).attr('data-itemid')));
           });
 

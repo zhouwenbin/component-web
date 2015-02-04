@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.selectreceiveaddr', [
   'can',
+  'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.component.addreditor',
@@ -10,7 +11,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.api.b2cmall.checkLogistics',
   'sf.b2c.mall.widget.showArea',
   'sf.b2c.mall.api.b2cmall.getItemSummary'
-], function(can, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea,SFGetItemSummary) {
+], function(can, RegionsAdapter, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea,SFGetItemSummary) {
   var AREAID;
   return can.Control.extend({
 
@@ -20,6 +21,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
+      this.adapter = {}
       this.adapter4List = {};
       this.component = {};
       this.paint();
@@ -98,10 +100,66 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             onSuccess: _.bind(that.paint, that),
             from: 'order'
           });
+
+          that.request();
         })
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    check: function () {
+      var that = this;
+      if(AREAID != 0){
+          var firstAddr = that.adapter4List.addrs.get(0);
+          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
+          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
+          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
+
+          that.component.checkLogistics.setData({
+            areaId:AREAID,
+            provinceId:provinceId,
+            cityId:cityId,
+            districtId:regionId
+          });
+          that.component.checkLogistics.sendRequest()
+            .done(function(data){
+              if(data){
+                if(data.value == false){
+                  $('#errorTips').removeClass('visuallyhidden');
+                  $('#submitOrder').addClass('disable');
+                  return false;
+                }else{
+                  $('#errorTips').addClass('visuallyhidden');
+                  $('#submitOrder').removeClass('disable');
+                  return true;
+                }
+              }
+            })
+            .fail(function(data){
+
+            })
+        }
+    },
+
+    request: function() {
+      var that = this;
+      return can.ajax('json/sf.b2c.mall.regions.json')
+        .done(_.bind(function(cities) {
+          this.adapter.regions = new RegionsAdapter({
+            cityList: cities
+          });
+
+          this.check();
+        }, this))
+        //   function(cities) {
+        //   that.adapter.regions = new RegionsAdapter({
+        //     cityList: cities
+        //   });
+        // })
+        .fail(function() {
+
+        });
     },
 
     getCityList: function() {
@@ -142,6 +200,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     ".icon30 click": function(element, event) {
       element.parents(".order-b").toggleClass("active");
       element.parent("div").find(".order-r2").hide();
+      $('#btn-add-addr').show();
       return false;
     },
 
@@ -164,6 +223,39 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.clearActive();
       element.parents("li").find(".order-r2").toggle();
       element.parents("li").addClass("active");
+
+      // if (AREAID != 0) {
+
+      //   var dataValue = this.getSelectedAddr();
+      //   var provinceId = this.component.showArea.adapter.regions.getIdByName(dataValue.provinceName);
+      //   var cityId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, dataValue.cityName);
+      //   var regionId = this.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, dataValue.regionName);
+
+      //   this.component.checkLogistics.setData({
+      //     areaId:AREAID,
+      //     provinceId:provinceId,
+      //     cityId:cityId,
+      //     districtId:regionId
+      //   });
+
+      //   this.component.checkLogistics.sendRequest()
+      //     .done(function(data){
+      //       if(data){
+      //         if(data.value == false){
+      //           $('#errorTips').removeClass('visuallyhidden');
+      //           $('#submitOrder').addClass('disable');
+      //           return false;
+      //         }else{
+      //           $('#errorTips').addClass('visuallyhidden');
+      //           $('#submitOrder').removeClass('disable');
+      //           return true;
+      //         }
+      //       }
+      //     })
+      //     .fail(function(data){
+
+      //     })
+      // }
       return false;
     },
 
@@ -218,12 +310,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
                   $('#submitOrder').removeClass('disable');
                   return true;
                 }
-              }         
+              }
             })
             .fail(function(){
 
             })
-        } 
+        }
 
         return false;
       }

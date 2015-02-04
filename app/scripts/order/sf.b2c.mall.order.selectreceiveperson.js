@@ -143,6 +143,7 @@ define('sf.b2c.mall.order.selectreceiveperson', [
       ".icon30 click": function(element, event) {
         element.parents(".order-b").toggleClass("active");
         element.parent("div").find(".order-r2").hide();
+        $('#btn-add-person').show();
         return false;
       },
 
