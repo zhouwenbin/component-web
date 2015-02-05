@@ -101,7 +101,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             from: 'order'
           });
 
-          that.request();
+          that.request(); 
         })
         .fail(function(error) {
           console.error(error);
