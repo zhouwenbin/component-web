@@ -95,7 +95,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       uploadIDCardTemplateMap: {
         0: '<div class="tooltip-pos">' +
           '<span class="icon icon26">上传身份证照片</span>' +
-          '<div class="tooltip-ourer">' +
+          '<div class="tooltip-outer">' +
           '<div class="tooltip">' +
           '<h4>请在“查看订单”中上传身份照片</h4>' +
           '<h5>为什么要传身份证？</h5>' +
