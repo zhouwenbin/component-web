@@ -153,11 +153,12 @@ define('sf.b2c.mall.order.selectreceiveperson', [
        * @param  {[type]} e
        * @return {[type]}
        */
-      "#personList click": function(element, e) {
-        if (event.srcElement.tagName == 'SPAN') {
+      "#personList click": function(element, event) {
+        var event = event || window.event;
+        var obj = event.srcElement ? event.srcElement : event.target;
+        if (obj.tagName == 'SPAN') {
           this.clearActive();
-          $(event.srcElement).parents("li[name='personEach']").addClass("active");
-
+          $(obj).parents("li[name='personEach']").addClass("active");
           return false;
         }
       },

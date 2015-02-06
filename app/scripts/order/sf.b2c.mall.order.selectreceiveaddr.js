@@ -281,11 +281,13 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {[type]} e
      * @return {[type]}
      */
-    "#addrList click": function(element, e) {
-      if (event.srcElement.tagName == 'SPAN') {
+    "#addrList click": function(element, event) {
+      var event = event || window.event; 
+      var obj=event.srcElement ? event.srcElement : event.target;
+      if (obj.tagName == 'SPAN') {
         $('#errorTips').addClass('visuallyhidden');
         this.clearActive();
-        $(event.srcElement).parents("li[name='addrEach']").addClass("active");
+        $(obj).parents("li[name='addrEach']").addClass("active");
         var that = this;
         if(AREAID != 0){
           var dataValue = this.getSelectedAddr();
