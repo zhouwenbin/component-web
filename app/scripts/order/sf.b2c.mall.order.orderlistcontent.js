@@ -151,13 +151,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<p class="table-none">未找到相关订单记录哟！<a href="http://www.sfht.com/orderlist.html">查看全部订单</a></p>' +
           '</div>'
       },
-
+      
       /**
        * [description 查看物流触发鼠标悬停事件]
        * @param  {[type]} element 触发事件的元素
        * @param  {[type]} event 事件
        */
-      '.table-1-logistics mouseover': function(element, event) {
+      '.find-route-list mouseover': function(element, event) {
         event && event.preventDefault();
         var that = this;
 
@@ -166,10 +166,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         }
 
         element.attr('data-is-show', 'true');
-        element.find('.tooltip').show();
 
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).eq(0).attr('data-orderid')
+          'bizId': $(element).closest('.table-1-logistics').attr('data-orderid')
         });
         getUserRoutes
           .sendRequest()
@@ -194,7 +193,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
                 }
                 var template = can.view.mustache(that.getTraceListTemplate());
-                element.find('#traceList').html(template(result));
+                $(element).siblings('.tooltip-outer').children('#traceList').html(template(result));
             }
           })
           .fail(function(error) {
@@ -210,7 +209,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * @param  {[type]} event 事件
        */
       '.table-1-logistics mouseout': function(element, event) {
-        element.find('.tooltip').hide();
+        event && event.preventDefault();
         element.removeAttr('data-is-show');
         return false;
       },
