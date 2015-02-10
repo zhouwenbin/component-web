@@ -311,12 +311,6 @@ define(
           .done(function (data) {
             if (data.userId) {
               that.data.attr('autologin');
-
-              // deparam过程 -- 从url中获取需要请求的sku参数
-              var params = can.deparam(window.location.search.substr(1));
-              // setTimeout(function () {
-                window.location.href = params.from || 'index.html';
-              // }, 2000);
               that.component.getRecAddressList.sendRequest()
               .done(function(data){
                 if(data.items.length > 0){
@@ -327,21 +321,28 @@ define(
                     }
                   });
 
-                  var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
-                  var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
-                  var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
-                  
-                  store.set('provinceId',provinceId);
-                  store.set('cityId',cityId);
-                  store.set('regionId',regionId);
+                  if(typeof defaultAdde.provinceName != 'undefined'){
+                    var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
+                    var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                    var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                    
+                    store.set('provinceId',provinceId);
+                    store.set('cityId',cityId);
+                    store.set('regionId',regionId);
+                  }      
 
-                  console.log(1);
+                  // deparam过程 -- 从url中获取需要请求的sku参数
+                  var params = can.deparam(window.location.search.substr(1));
+                  // setTimeout(function () {
+                  window.location.href = params.from || 'index.html';
+                  // }, 2000);
 
                   
                 }
               }).fail(function(){
 
               })
+              
             }
           })
           .fail(function (error) {

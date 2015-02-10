@@ -109,7 +109,7 @@ define('sf.b2c.mall.component.addreditor', [
             input: {
               addrId: null,
               nationName: '0',
-              provinceName: this.adapter.regions.findGroup(0)[0].id,
+              provinceName: '0',
               cityName: null,
               regionName: null,
               detail: null,
@@ -136,6 +136,7 @@ define('sf.b2c.mall.component.addreditor', [
               text: '取消添加'
             },
             error: {
+              consignee:null,
               detail: null,
               zipCode: null,
               cellphone: null
@@ -207,18 +208,26 @@ define('sf.b2c.mall.component.addreditor', [
 
     changeCity: function() {
       var pid = this.adapter.addr.input.attr('provinceName');
-
-      var cities = this.adapter.regions.findGroup(window.parseInt(pid));
-      this.adapter.addr.place.attr('cities', cities);
-      this.adapter.addr.input.attr('cityName', cities[0].id);
+      if (pid == 0) {
+        this.adapter.addr.input.attr('cityName', '0');
+      }else{
+        var cities = this.adapter.regions.findGroup(window.parseInt(pid));
+        this.adapter.addr.place.attr('cities', cities);
+        this.adapter.addr.input.attr('cityName', cities[0].id);
+      }
+      
     },
 
     changeRegion: function() {
       var cid = this.adapter.addr.input.attr('cityName');
-
-      var regions = this.adapter.regions.findGroup(window.parseInt(cid));
-      this.adapter.addr.place.attr('regions', regions);
-      this.adapter.addr.input.attr('regionName', regions[0].id);
+      if (cid == 0) {
+        this.adapter.addr.input.attr('regionName', '0');
+      }else{
+        var regions = this.adapter.regions.findGroup(window.parseInt(cid));
+        this.adapter.addr.place.attr('regions', regions);
+        this.adapter.addr.input.attr('regionName', regions[0].id);
+      }
+      
     },
 
     '#s2 change': function(element, event) {
@@ -409,10 +418,18 @@ define('sf.b2c.mall.component.addreditor', [
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
 
+      $('#consigneeError').hide();
       $('#detailerror').hide();
       $('#cellphoneerror').hide();
       $('#zipcodeerror').hide();
 
+      if(typeof addr.provinceName == 'undefined' || typeof addr.cityName == 'undefined' || typeof addr.regionName == 'undefined'){
+        this.adapter.addr.attr("error", {
+          "consignee": '请选择收货地区'
+        })
+        $('#consigneeError').show();
+        return false;
+      }
       //验证详细地址
       if (!addr.detail) {
         this.adapter.addr.attr("error", {
