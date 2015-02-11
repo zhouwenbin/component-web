@@ -12,10 +12,12 @@ define(
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.needVfCode',
-    'sf.util'
+    'sf.util',
+    'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.user.getRecAddressList'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,GetRecAddressList){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -50,6 +52,9 @@ define(
         this.component = {};
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
+
+        this.component.getRecAddressList = new GetRecAddressList();
+        this.component.showArea = new SFShowArea();
 
         var params = can.deparam(window.location.search.substr(1));
 
@@ -305,13 +310,39 @@ define(
         this.component.login.sendRequest()
           .done(function (data) {
             if (data.userId) {
-              that.data.attr('autologin')
+              that.data.attr('autologin');
+              that.component.getRecAddressList.sendRequest()
+              .done(function(data){
+                if(data.items.length > 0){
+                  var defaultAdde = {};
+                  _.each(data.items,function(item){
+                    if(item.isDefault == 1){
+                      defaultAdde = item;
+                    }
+                  });
 
-              // deparam过程 -- 从url中获取需要请求的sku参数
-              var params = can.deparam(window.location.search.substr(1));
-              // setTimeout(function () {
-                window.location.href = params.from || 'index.html';
-              // }, 2000);
+                  if(typeof defaultAdde.provinceName != 'undefined'){
+                    var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
+                    var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                    var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                    
+                    store.set('provinceId',provinceId);
+                    store.set('cityId',cityId);
+                    store.set('regionId',regionId);
+                  }      
+
+                  // deparam过程 -- 从url中获取需要请求的sku参数
+                  var params = can.deparam(window.location.search.substr(1));
+                  // setTimeout(function () {
+                  window.location.href = params.from || 'index.html';
+                  // }, 2000);
+
+                  
+                }
+              }).fail(function(){
+
+              })
+              
             }
           })
           .fail(function (error) {
