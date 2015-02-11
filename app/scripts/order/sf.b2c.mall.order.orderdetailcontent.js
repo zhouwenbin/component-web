@@ -69,7 +69,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           'bizId': params.orderid
         });
 
-        this.options.userRoutes = new Array();
+        this.options.userRoutes = new Array()
+        this.options.mailNo = "";
 
         can.when(getOrder.sendRequest(), getRecvInfo.sendRequest(), getUserRoutes.sendRequest())
           .done(function(data, idcard, routesList) {
@@ -82,7 +83,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.status = that.statsMap[data.orderItem.orderStatus];
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
 
-            var productShape = data.orderItem.orderGoodsItemList[0].abbreviation;           
+            var productShape = data.orderItem.orderGoodsItemList[0].abbreviation;
 
             if (productShape == 'SF-SHLK' && (data.orderItem.orderStatus == 'SHIPPED' || data.orderItem.orderStatus == 'SHIPPING')){
               that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus+"_FRESH"];
@@ -156,7 +157,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }else{
                 trace.description = that.statusDescription[trace.status];
               }
-             
+
 
               if (typeof map[trace.status] != 'undefined') {
                 map[trace.status].call(that, trace);
@@ -172,13 +173,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             //合并路由
             if (routesList && routesList.value) {
-              _.each(routesList.value, function(route) {
-                if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF') {
-                  that.options.userRoutes.push({
-                    "gmtHappened": moment(route.eventTime).format('YYYY/MM/DD HH:mm:ss'),
-                    "description": (typeof route.position != 'undefined' ? route.position : "") + " " + route.remark,
-                    "operator": "系统"
-                  });
+              _.each(_.filter(routesList.value, function(route) {
+                return typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF';
+              }), function(route, index) {
+                that.options.userRoutes.push({
+                  "gmtHappened": moment(route.eventTime).format('YYYY/MM/DD HH:mm:ss'),
+                  "description": (typeof route.position != 'undefined' ? route.position : "") + " " + route.remark,
+                  "operator": "系统"
+                });
+                if (index == 0) {
+                  that.options.mailNo = route.mailNo;
+                  _.last(that.options.userRoutes).description += " ， 承运单号：" + that.options.mailNo;
                 }
               })
             }

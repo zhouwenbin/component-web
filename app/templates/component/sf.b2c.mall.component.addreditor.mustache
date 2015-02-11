@@ -3,30 +3,33 @@
       <li class="li">
         <label for="area">选择地区：</label>
 
-        <select id="s1" can-value="addr.input.nationName">
+        <select id="s1" can-value="addr.input.nationName">          
           {{#each addr.place.countries}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
 
         <select id="s2"  can-value="addr.input.provinceName">
+          <option value="0">请选择</option>
           {{#each addr.place.provinces}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
 
         <select id="s3"  can-value="addr.input.cityName">
+          <option value="0">请选择</option>
           {{#each addr.place.cities}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
 
         <select id="s4"  can-value="addr.input.regionName">
+          <option value="0">请选择</option>
           {{#each addr.place.regions}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
-
+        <span class="icon icon26" id="consigneeError">{{addr.error.consignee}}</span>
       </li>
       <li class="li">
         <label for="address">地址详情：</label>

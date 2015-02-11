@@ -32,6 +32,9 @@
 .orderdetail-step li.active{
 	background: #67b222;
 }
+.orderdetail-step li:first-child .line{
+	display: none;
+}
 .orderdetail-step h3{
 	font-size: 14px;
 }
@@ -53,7 +56,10 @@
 	background: #ccc;
 	position: absolute;
 	top: 39px;
-	right: -29px;
+	left: -29px;
+}
+.orderdetail-step .active .line{
+	background: #67b222;
 }
 .orderdetail-r1{
 	border-bottom: 1px dashed #ccc;

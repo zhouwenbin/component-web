@@ -304,6 +304,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
           "size": 6
         };
 
+        //var limitedtimesaleItems;
         var getTimeLimitedSaleInfoList = new SFGetTimeLimitedSaleInfoList(paramData);
 
         getTimeLimitedSaleInfoList
@@ -313,7 +314,8 @@ define('sf.b2c.mall.component.limitedtimesale', [
           })
           .done(function(data) {
             that.data.attr("limitedtimesaleInfoList", data.value);
-
+            //that.data.attr("limitedtimesaleInfoList.sellingPrice", data.value);
+            //limitedtimesaleItems = data.value;
             var paramData = {
               "itemIds": JSON.stringify(that.getItems(data.value))
             };
@@ -324,9 +326,10 @@ define('sf.b2c.mall.component.limitedtimesale', [
               .sendRequest()
               .done(function(priceData) {
                 var serverTime = getProductHotDataList.getServerTime();
-                that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), priceData.value);
+                that.data.formatPrice(that.data.attr('limitedtimesaleInfoList'), priceData.value,null,filter);
                 that.setTimeInterval(serverTime, filter);
                 that.switchTab.call(that, filter);
+
               })
               .fail(function(error) {
                 console.error(error);
