@@ -210,6 +210,7 @@ define('sf.b2c.mall.component.addreditor', [
       var pid = this.adapter.addr.input.attr('provinceName');
       if (pid == 0) {
         this.adapter.addr.input.attr('cityName', '0');
+        this.adapter.addr.place.attr('cities', '0');
       }else{
         var cities = this.adapter.regions.findGroup(window.parseInt(pid));
         this.adapter.addr.place.attr('cities', cities);
@@ -222,6 +223,7 @@ define('sf.b2c.mall.component.addreditor', [
       var cid = this.adapter.addr.input.attr('cityName');
       if (cid == 0) {
         this.adapter.addr.input.attr('regionName', '0');
+        this.adapter.addr.place.attr('regions', '0');
       }else{
         var regions = this.adapter.regions.findGroup(window.parseInt(cid));
         this.adapter.addr.place.attr('regions', regions);
@@ -231,6 +233,7 @@ define('sf.b2c.mall.component.addreditor', [
     },
 
     '#s2 change': function(element, event) {
+      var cid = this.adapter.addr.input.attr('cityName');
       this.changeCity();
       this.changeRegion();
     },
