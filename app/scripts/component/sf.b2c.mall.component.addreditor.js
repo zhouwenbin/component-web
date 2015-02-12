@@ -233,7 +233,6 @@ define('sf.b2c.mall.component.addreditor', [
     },
 
     '#s2 change': function(element, event) {
-      $('#consigneeError').hide();
       var cid = this.adapter.addr.input.attr('cityName');
       this.changeCity();
       this.changeRegion();
@@ -397,18 +396,6 @@ define('sf.b2c.mall.component.addreditor', [
     '#address focus': function(element, event) {
       event && event.preventDefault();
       $('#detailerror').hide();
-      $('#consigneeError').hide();
-      var addr = this.adapter.addr.input.attr();
-      addr.provinceName = this.adapter.regions.findOneName(window.parseInt(addr.provinceName));
-      addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
-      addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
-      if(typeof addr.provinceName == 'undefined' || typeof addr.cityName == 'undefined' || typeof addr.regionName == 'undefined'){
-        this.adapter.addr.attr("error", {
-          "consignee": '请选择收货地区'
-        })
-        $('#consigneeError').show();
-        return false;
-      }
     },
     '#cellphone focus': function(element, event) {
       event && event.preventDefault();
