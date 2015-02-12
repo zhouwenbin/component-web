@@ -183,7 +183,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 });
                 if (index == 0) {
                   that.options.mailNo = route.mailNo;
-                  _.last(that.options.userRoutes).description += " 承运单号：" + that.options.mailNo;
+                  if(typeof that.options.mailNo != "undefined" && that.options.mailNo !== ""){
+                    _.last(that.options.userRoutes).description += " ， 承运单号：" + that.options.mailNo;
+                  }else{
+                    _.last(that.options.userRoutes).description;
+                  }
+                  
                 }
               })
             }

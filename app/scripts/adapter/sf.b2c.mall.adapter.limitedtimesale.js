@@ -13,15 +13,20 @@ define('sf.b2c.mall.adapter.limitedtimesale', ['can'], function(can) {
       return that;
     },
 
-    formatPrice: function(data, priceData, showCountDown) {
+    formatPrice: function(data, priceData, showCountDown,filter) {
       _.each(data, function(item) {
         _.each(priceData, function(priceItem) {
           if (item.homepageProductInfo && item.homepageProductInfo.itemId == priceItem.itemId) {
             item.attr('soldOut', priceItem.soldOut);
             item.attr('currentStock', priceItem.currentStock);
             item.attr('originPrice', priceItem.originPrice/100);
-            item.attr('sellingPrice', priceItem.sellingPrice/100);
-            item.attr('discount',(priceItem.sellingPrice*10/priceItem.originPrice).toFixed(1));
+            if(filter == "NEXT"){
+              item.attr('sellingPrice', item.marketingPrice);
+              item.attr('discount',(item.marketingPrice*1000/priceItem.originPrice).toFixed(1));
+            }else{
+              item.attr('sellingPrice', priceItem.sellingPrice/100);
+              item.attr('discount',(priceItem.sellingPrice*10/priceItem.originPrice).toFixed(1));
+            }           
             item.attr('displayStartTime',item.displayStartTime);
             item.attr('startTime', priceItem.startTime);
             item.attr('endTime', priceItem.endTime);
