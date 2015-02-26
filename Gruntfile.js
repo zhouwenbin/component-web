@@ -1,4 +1,4 @@
-// Generated on 2014-12-11 using
+// Generated on 2015-02-03 using
 // generator-webapp 0.5.1
 'use strict';
 
@@ -17,44 +17,17 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   var generator = require('./apigen');
-  var _ = require('underscore');
 
   // Configurable paths
   var config = {
     app: 'app',
     dist: 'dist',
-    target: 'dev',
-    version: 'ver.1.0',
-    build: 'build.'+Date.now(),
-    base: null,
-    release: false,
+    tmp: '.tmp',
     publish: 'publish',
-    file: 'publish/files',
-    source: 'publish/source'
+    timestamp: Date.now()
   };
 
-  var isRelease = function () {
-    return config.release?'http://img.sfht.com/sfht/':''
-  }
-
-  var DEFAULT_JS_OUTPUT = function (block) {
-    return '<script src="'+ isRelease() +block.dest+'.'+config.version+'.'+config.build+'.min.js"></script>';
-  }
-  var JS_OUTPUT_MAP = {
-    'require': function (block) {
-      return '<script src="'+ isRelease() +'scripts/require.min.js"></script>';
-    },
-    'base': function (block) {
-      block.dest = config.base.dest;
-      block.src = config.base.src;
-      return '<script src="'+ isRelease() +block.dest+'"></script>';
-    },
-    'com': function (block) {
-      block.dest = config.com;
-      block.src = config.com;
-      return '<script src="'+ isRelease() +block.dest+'"></script>';
-    }
-  }
+  var OSS_HOST = 'http://img.sfht.com/sfht';
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -142,14 +115,6 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      publish: {
-        files: [{
-          dot: true,
-          src: [
-            '<%= config.publish %>/*',
-          ]
-        }]
-      },
       dist: {
         files: [{
           dot: true,
@@ -160,40 +125,23 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      extra: {
-        files:[{
+      server: '.tmp',
+      publish:{
+        files: [{
           dot: true,
           src: [
-            '<%= config.dist %>/base',
-            '<%= config.dist %>/com',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.activated',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.center',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.common',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.detail',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.i.login',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.i.register',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.login',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.main',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.order',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.order2',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.order.list',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.passwordchange',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.process',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.proxy',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.register',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.order2',
-            '<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login'
-
+            '<%= config.publish %>/*'
           ]
         }]
       },
-      server: '.tmp'
+      extra: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= config.dist %>/index.html'
+          ]
+        }]
+      }
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -215,7 +163,6 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          reporter: 'Spec',
           urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
         }
       }
@@ -240,7 +187,8 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html']
+        src: ['<%= config.app %>/index.html'],
+        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
 
@@ -259,29 +207,6 @@ module.exports = function (grunt) {
       }
     },
 
-    rename: {
-      main: {
-        files: [
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.404', dest: '<%= config.dist %>/styles/sf.b2c.mall.404.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.common', dest: '<%= config.dist %>/styles/sf.b2c.mall.common.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.activated', dest: '<%= config.dist %>/styles/sf.b2c.mall.activated.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.agreement', dest: '<%= config.dist %>/styles/sf.b2c.mall.agreement.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.center', dest: '<%= config.dist %>/styles/sf.b2c.mall.center.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.detail.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.gotopay', dest: '<%= config.dist %>/styles/sf.b2c.mall.gotopay.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.gotopay2', dest: '<%= config.dist %>/styles/sf.b2c.mall.gotopay2.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.register', dest: '<%= config.dist %>/styles/sf.b2c.mall.register.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.index', dest: '<%= config.dist %>/styles/sf.b2c.mall.index.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.order', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.order2', dest: '<%= config.dist %>/styles/sf.b2c.mall.order2.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.order.detail', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.detail.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.order.list', dest: '<%= config.dist %>/styles/sf.b2c.mall.order.list.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.process', dest: '<%= config.dist %>/styles/sf.b2c.mall.process.<%= config.version %>.<%= config.build %>.min.css' },
-          { src: '<%= config.dist %>/styles/sf.b2c.mall.retrieve', dest: '<%= config.dist %>/styles/sf.b2c.mall.retrieve.<%= config.version %>.<%= config.build %>.min.css' }
-        ]
-      }
-    },
-
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -290,32 +215,7 @@ module.exports = function (grunt) {
         dest: '<%= config.dist %>'
       },
       html: [
-        '<%= config.app %>/index.html',
-        '<%= config.app %>/agreement.html',
-        '<%= config.app %>/detail.html',
-        '<%= config.app %>/login.html',
-        '<%= config.app %>/register.html',
-        '<%= config.app %>/process.html',
-        '<%= config.app %>/activated.html',
-        '<%= config.app %>/nullactivated.html',
-        '<%= config.app %>/retrieve.html',
-        '<%= config.app %>/order.html',
-        '<%= config.app %>/order2.html',
-        '<%= config.app %>/orderlist.html',
-        '<%= config.app %>/orderdetail.html',
-        '<%= config.app %>/center.html',
-        '<%= config.app %>/gotopay.html',
-        '<%= config.app %>/gotopay2.html',
-        '<%= config.app %>/404.html',
-        '<%= config.app %>/p404.html',
-        '<%= config.app %>/password-change.html',
-        '<%= config.app %>/proxy.html',
-        '<%= config.app %>/i.login.html',
-        '<%= config.app %>/i.register.html',
-        '<%= config.app %>/helpcenter-*.html',
-        '<%= config.app %>/aboutus-*.html',
-        '<%= config.app %>/federatedLogin.html',
-        '<%= config.app %>/error.html'
+        '<%= config.app %>/*.html',
       ]
     },
 
@@ -324,18 +224,40 @@ module.exports = function (grunt) {
       options: {
         assetsDirs: [
           '<%= config.dist %>',
-          '<%= config.dist %>/images',
+          '<%= config.dist %>/img',
+          '<%= config.dist %>/scripts',
           '<%= config.dist %>/styles'
         ],
         blockReplacements: {
           js: function (block) {
-            var fn = JS_OUTPUT_MAP[block.dest] || DEFAULT_JS_OUTPUT;
-            if(typeof fn == 'function'){
-              return fn(block);
+            if (config.version) {
+              if (block.dest[0] != '/') {
+                return '<script src="'+ OSS_HOST + '/' + config.version + '/' + block.dest +'"></script>';
+              }else{
+                return '<script src="'+ OSS_HOST + '/' + config.version +  block.dest +'"></script>';
+              }
+            }else{
+              if (block.dest[0] != '/') {
+                return '<script src="' + '/' + block.dest +'"></script>';
+              }else{
+                return '<script src="' + block.dest +'"></script>';
+              }
             }
           },
           css: function (block) {
-            return '<link rel="stylesheet" href="'+block.dest+'.'+config.version+'.'+config.build+'.min.css">'
+            if (config.version) {
+              if (block.dest[0] !='/') {
+                return '<link rel="stylesheet" href="'+ OSS_HOST + '/' + config.version + '/' + block.dest +'">';
+              }else{
+                return '<link rel="stylesheet" href="'+ OSS_HOST + '/' + config.version  + block.dest +'">';
+              }
+            }else{
+              if (block.dest[0] != '/') {
+                return '<link rel="stylesheet" href="'+ '/' + block.dest +'">';
+              }else{
+                return '<link rel="stylesheet" href="'+ block.dest +'">';
+              }
+            }
           }
         }
       },
@@ -375,7 +297,7 @@ module.exports = function (grunt) {
           removeAttributeQuotes: true,
           removeCommentsFromCDATA: true,
           removeEmptyAttributes: true,
-          removeOptionalTags: false,
+          removeOptionalTags: true,
           removeRedundantAttributes: true,
           useShortDoctype: true
         },
@@ -416,92 +338,129 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      publish: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.dist %>',
-          dest: '<%= config.source %>',
-          src:[
-            'css/{,*/}*',
-            'img/{,*/}*',
-            'scripts/{,*/}*',
-            'styles/{,*/}*'
-          ]
-        },{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.dist %>',
-          dest: '<%= config.file %>',
-          src:[
-            'json/{,*/}*',
-            'img/{,*/}*',
-            'templates/{,*/}*',
-            'styles/{,*/}*',
-            '*.html'
-          ]
-        }]
-      },
       dist: {
         files: [{
           expand: true,
           dot: true,
+          timestamp: true,
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
             '*.{ico,png,txt}',
-            'img/{,*/}*',
+            'images/{,*/}*.webp',
 
+            // 不需要static中的html
             // '{,*/}*.html',
-            'agreement.html',
-            'detail.html',
-            'login.html',
-            'register.html',
-            'i.login.html',
-            'i.register.html',
-            'process.html',
-            'activated.html',
-            'nullactivated.html',
-            'retrieve.html',
-            'order.html',
-            'order2.html',
-            'orderlist.html',
-            'orderdetail.html',
-            'center.html',
-            'gotopay.html',
-            'gotopay2.html',
-            '404.html',
-            'p404.html',
-            'password-change.html',
-            'proxy.html',
-            'helpcenter-*.html',
-            'aboutus-*.html',
-            'federatedLogin.html',
-            'error.html',
 
-            'json/*.json',
-
-            'styles/fonts/{,*/}*.*',
-            '<%= config.base.dest %>',
-            'templates/**/*.mustache'
+            'json/{,*/}*.json',
+            // 'templates/{,*/}*.mustache',
+            // '*.html',
+            'styles/fonts/{,*/}*.*'
           ]
-        }, {
-          src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
-        }, {
-          src: '<%= config.app %>/scripts/vendor/Uploader.swf',
-          dest: '<%= config.dist %>/scripts/Uploader.swf'
-        }, {
-          src: '<%= config.app %>/css/browser.css',
-          dest: '<%= config.dist %>/css/browser.css'
         }]
       },
+
+      html: {
+        expand: true,
+        dot: true,
+        timestamp: true,
+        cwd: '<%= config.app %>',
+        dest: '<%= config.dist %>',
+        src: [
+          '*.html'
+        ],
+        options:{
+          process: function (content, srcpath) {
+            // if (config.version) {
+            //   content = content.replace(/\{version\}/g, config.timestamp);
+            //   content = content.replace(/img\/qrcode.png/g, OSS_HOST+ '/'+ config.version +'/img/qrcode.png');
+            // }
+            return content;
+          }
+        }
+      },
+
+      image: {
+        expand: true,
+        dot: true,
+        timestamp: true,
+        cwd: '<%= config.app %>',
+        dest: '<%= config.dist %>',
+        src: [
+          'img/{,*/}*.*',
+        ]
+      },
+
+      // @todo需要修改，自动笔变化图片
+      templates: {
+        expand: true,
+        dot: true,
+        timestamp: true,
+        cwd: '<%= config.app %>',
+        dest: '<%= config.dist %>',
+        src: [
+          'templates/{,*/}*.mustache'
+        ],
+        options:{
+          process: function (content, srcpath) {
+            // if (config.version) {
+            //   return content.replace(/img\/recommend.jpg/g, OSS_HOST+ '/'+ config.version +'/img/recommend.jpg')
+            // }else{
+            //   return content;
+            // }
+            return content;
+          }
+        }
+      },
+
       styles: {
         expand: true,
         dot: true,
         cwd: '<%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      }
+    },
+
+    compress: {
+      oss: {
+        options: {
+          archive: '<%=config.publish%>/oss.release.<%=config.version%>.tar'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%=config.dist%>',
+            src: ['scripts/**', 'styles/**', 'img/**'],
+            dest: '<%=config.version%>'
+          }
+        ]
+      },
+      statics: {
+        options: {
+          archive: '<%=config.publish%>/statics.release.<%=config.version%>.tar'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%=config.dist%>',
+            src: ['templates/**', '*.html', 'json/**'],
+            dest: 'statics.h5.<%=config.version%>'
+          }
+        ]
+      },
+      test: {
+        options: {
+          archive: '<%=config.publish%>/statics.<%=config.target%>.<%=config.timestamp%>.tar'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%=config.dist%>',
+            src: ['templates/**', '*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**'],
+            dest: '<%=config.version%>'
+          }
+        ]
       }
     },
 
@@ -520,20 +479,12 @@ module.exports = function (grunt) {
       ]
     },
 
-    strip:{
-      main: {
-        src: '<%= config.dist %>/scripts/**/*.js',
-        options: {
-          inline: true
-        }
-      }
-    },
-
     requirejs: {
       headerandfooter: {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
+
           out: './<%= config.dist %>/scripts/sf.b2c.mall.page.headerandfooter.<%= config.version %>.<%= config.build %>.min.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
@@ -550,41 +501,24 @@ module.exports = function (grunt) {
           ]
         }
       },
+
       main: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.main.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.main.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-          include: [
-            "sf.b2c.mall.page.main",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.component.limitedtimesale",
-            "sf.b2c.mall.component.rapidseabuy",
-            "sf.b2c.mall.api.b2cmall.getBanner",
-            "sf.b2c.mall.widget.slide",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList",
-            "sf.b2c.mall.adapter.limitedtimesale",
-            "sf.b2c.mall.api.b2cmall.getProductHotDataList",
-            "moment-zh-cn",
-            "moment",
-            "sf.b2c.mall.adapter.rapidSeaBuy",
-            "sf.b2c.mall.api.b2cmall.getFastSaleInfoList"
-          ],
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          insertRequire: ['sf.b2c.mall.page.main']
+          include:        ["sf.b2c.mall.page.main"],
+          insertRequire:  ['sf.b2c.mall.page.main']
         }
       },
+
       // @deprecated
       // 线上代码已经发布不在需要preheat页面
       // preheat: {
@@ -594,514 +528,301 @@ module.exports = function (grunt) {
       //     out: './<%= config.dist %>/scripts/sf.b2c.mall.page.preheat.register.min.js',
       //     mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
       //     include: [
-      //       'sf.b2c.mall.center.register',
       //       'sf.b2c.mall.page.preheat.register',
-      //       'vendor.jquery.jcountdown'
       //     ],
       //     insertRequire: ['sf.b2c.mall.page.preheat.register']
       //   }
       // },
+
       detail: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.detail.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.detail",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.product.breadscrumb",
-            "sf.b2c.mall.product.detailcontent",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            "zoom",
-            "sf.b2c.mall.adapter.detailcontent",
-            "sf.b2c.mall.api.b2cmall.getProductHotData",
-            "sf.b2c.mall.api.b2cmall.getSkuInfo",
-            "sf.b2c.mall.api.product.findRecommendProducts",
-            "sf.helpers",
-            "sf.b2c.mall.widget.message"
-          ],
-          insertRequire: ['sf.b2c.mall.page.detail']
+          include:        ["sf.b2c.mall.page.detail"],
+          insertRequire:  ['sf.b2c.mall.page.detail']
         }
       },
+
       login: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.login.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.login",
-            "sf.b2c.mall.component.login",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.api.user.webLogin",
-            "sf.b2c.mall.api.user.needVfCode"
-          ],
-          insertRequire: ['sf.b2c.mall.page.login']
+          include:        ["sf.b2c.mall.page.login"],
+          insertRequire:  ['sf.b2c.mall.page.login']
         }
       },
+
       ilogin: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.i.login.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.page.i.login",
-            "sf.b2c.mall.component.i.login",
-            "sf.b2c.mall.api.user.webLogin",
-            "sf.b2c.mall.api.user.needVfCode"
-          ],
-          insertRequire: ['sf.b2c.mall.page.i.login']
+          include:        ["sf.b2c.mall.page.i.login"],
+          insertRequire:  ['sf.b2c.mall.page.i.login']
         }
       },
+
       register: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.register.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.register",
-            "sf.b2c.mall.component.register",
-            "placeholders",
-            "sf.b2c.mall.api.user.downSmsCode",
-            "sf.b2c.mall.api.user.mobileRegister",
-            "sf.b2c.mall.api.user.sendActivateMail",
-            "sf.b2c.mall.business.config"
-          ],
-          insertRequire: ['sf.b2c.mall.page.register']
+          include:        ["sf.b2c.mall.page.register"],
+          insertRequire:  ['sf.b2c.mall.page.register']
         }
       },
+
       iregister: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.i.register.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.i.register",
-            "sf.b2c.mall.component.i.register",
-            "placeholders",
-            "sf.b2c.mall.api.user.downSmsCode",
-            "sf.b2c.mall.api.user.mobileRegister",
-            "sf.b2c.mall.api.user.sendActivateMail",
-            "sf.b2c.mall.business.config"
-          ],
-          insertRequire: ['sf.b2c.mall.page.i.register']
+          include:        ['sf.b2c.mall.page.i.register'],
+          insertRequire:  ['sf.b2c.mall.page.i.register']
         }
       },
+
       process: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.process.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.process.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.page.process",
-            "sf.b2c.mall.api.user.checkLink"
-          ],
-          insertRequire: ['sf.b2c.mall.page.process']
+          include:        ["sf.b2c.mall.page.process"],
+          insertRequire:  ['sf.b2c.mall.page.process']
         }
       },
+
       activated: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.activated.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.api.user.mailRegister",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            'sf.b2c.mall.page.activated'
-          ],
-          insertRequire: ['sf.b2c.mall.page.activated']
+          include:        ['sf.b2c.mall.page.activated'],
+          insertRequire:  ['sf.b2c.mall.page.activated']
         }
       },
+
       nullactivated: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.nullactivated.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.nullactivated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.page.nullactivated",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.api.user.sendActivateMail",
-            "sf.b2c.mall.api.user.sendResetPwdLink",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.widget.not.support"
-          ],
-          insertRequire: ['sf.b2c.mall.page.nullactivated']
+          include:        ["sf.b2c.mall.page.nullactivated"],
+          insertRequire:  ['sf.b2c.mall.page.nullactivated']
         }
       },
+
       retrieve: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.retrieve.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.retrieve.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.retrieve",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.component.retrieve",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            "sf.b2c.mall.api.user.downSmsCode",
-            "sf.b2c.mall.api.user.checkSmsCode",
-            "sf.b2c.mall.api.user.resetPassword",
-            "sf.b2c.mall.api.user.sendResetPwdLink"
-          ],
-          insertRequire: ['sf.b2c.mall.page.retrieve']
+          include:        ["sf.b2c.mall.page.retrieve"],
+          insertRequire:  ['sf.b2c.mall.page.retrieve']
         }
       },
+
       order: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.order",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.step",
-            "sf.b2c.mall.order.selectreceiveperson",
-            "sf.b2c.mall.order.selectreceiveaddr",
-            "sf.b2c.mall.order.iteminfo",
-            "sf.b2c.mall.order.vendor.info",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.b2c.mall.api.user.getIDCardUrlList",
-            "sf.b2c.mall.api.user.webLogin",
-            "sf.b2c.mall.api.user.createReceiverInfo",
-            "sf.b2c.mall.api.user.updateReceiverInfo",
-            "sf.b2c.mall.adapter.order",
-            "sf.b2c.mall.adapter.receiveperson.list",
-            "sf.b2c.mall.component.receivepersoneditor",
-            "sf.b2c.mall.api.user.getRecAddressList",
-            "sf.b2c.mall.adapter.address.list",
-            "sf.b2c.mall.component.addreditor",
-            "sf.b2c.mall.api.b2cmall.getProductHotData",
-            "sf.b2c.mall.api.b2cmall.getItemSummary",
-            "sf.b2c.mall.api.order.submitOrderForAllSys",
-            "sf.helpers",
-            "sf.b2c.mall.api.user.setDefaultAddr",
-            "sf.b2c.mall.api.user.setDefaultRecv",
-            "sf.b2c.mall.widget.message"
-          ],
-          insertRequire: ['sf.b2c.mall.page.order']
+          include:        ["sf.b2c.mall.page.order"],
+          insertRequire:  ['sf.b2c.mall.page.order']
         }
       },
+
       order2: {
         options: {
-          optimize: 'none',
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order2.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order2.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.order2",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.step",
-            "sf.b2c.mall.order.selectreceiveperson",
-            "sf.b2c.mall.order.selectreceiveaddr",
-            "sf.b2c.mall.order.iteminfo2",
-            "sf.b2c.mall.order.vendor.info",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.b2c.mall.api.user.getIDCardUrlList",
-            "sf.b2c.mall.api.user.webLogin",
-            "sf.b2c.mall.api.user.createReceiverInfo",
-            "sf.b2c.mall.api.user.updateReceiverInfo",
-            "sf.b2c.mall.adapter.order",
-            "sf.b2c.mall.adapter.receiveperson.list",
-            "sf.b2c.mall.component.receivepersoneditor",
-            "sf.b2c.mall.api.user.getRecAddressList",
-            "sf.b2c.mall.adapter.address.list",
-            "sf.b2c.mall.component.addreditor",
-            "sf.b2c.mall.api.b2cmall.getProductHotData",
-            "sf.b2c.mall.api.b2cmall.getItemSummary",
-            "sf.b2c.mall.api.order.submitOrderForAllSys",
-            "sf.helpers",
-            "sf.b2c.mall.api.user.setDefaultAddr",
-            "sf.b2c.mall.api.user.setDefaultRecv",
-            "sf.b2c.mall.widget.message"
-          ],
-          insertRequire: ['sf.b2c.mall.page.order2']
+          include:        ["sf.b2c.mall.page.order2"],
+          insertRequire:  ['sf.b2c.mall.page.order2']
         }
       },
+
       orderlist: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.list.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.list.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.orderlist",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.orderlistcontent",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            "sf.b2c.mall.api.order.getOrderList",
-            "sf.b2c.mall.adapter.pagination",
-            "sf.b2c.mall.widget.pagination",
-            "sf.b2c.mall.api.order.getOrder",
-            "sf.helpers",
-            "sf.b2c.mall.api.order.cancelOrder",
-            "sf.b2c.mall.api.order.requestPayV2",
-            "sf.b2c.mall.api.order.confirmReceive",
-            "sf.b2c.mall.order.fn",
-            "sf.b2c.mall.api.sc.getUserRoutes",
-            "sf.b2c.mall.widget.message"
-          ],
-          insertRequire: ['sf.b2c.mall.page.orderlist']
+          include:        ["sf.b2c.mall.page.orderlist"],
+          insertRequire:  ['sf.b2c.mall.page.orderlist']
         }
       },
+
       orderdetail: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.order.detail.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.orderdetail",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.orderdetailcontent",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            "sf.b2c.mall.api.order.getOrder",
-            "sf.helpers",
-            "webuploader",
-            "sf.b2c.mall.widget.file.uploader",
-            "sf.b2c.mall.widget.loading",
-            "sf.b2c.mall.api.user.updateReceiverInfo",
-            "sf.b2c.mall.api.user.getIDCardUrlList",
-            "sf.b2c.mall.order.fn",
-            "sf.b2c.mall.api.sc.getUserRoutes",
-            "sf.b2c.mall.api.user.getRecvInfo",
-            "sf.b2c.mall.widget.message",
-            "moment",
-            "sf.b2c.mall.api.order.confirmReceive"
-          ],
-          insertRequire: ['sf.b2c.mall.page.orderdetail']
+          include:        ["sf.b2c.mall.page.orderdetail"],
+          insertRequire:  ['sf.b2c.mall.page.orderdetail']
         }
       },
+
       center: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.center.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.center.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'placeholders': '../bower_components/Placeholders/build/placeholders',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            'placeholders',
-            "sf.util",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.center.change.userinfo",
-            "sf.b2c.mall.center.receiveperson",
-            "sf.b2c.mall.center.receiveaddr",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.b2c.mall.api.user.updateUserInfo",
-            "sf.b2c.mall.widget.message",
-            "sf.b2c.mall.api.user.getIDCardUrlList",
-            "sf.b2c.mall.api.user.webLogin",
-            "sf.b2c.mall.component.receivepersoneditor",
-            "sf.b2c.mall.adapter.receiveperson.list",
-            "sf.b2c.mall.api.user.delRecvInfo",
-            "sf.b2c.mall.api.user.getRecAddressList",
-            "sf.b2c.mall.adapter.address.list",
-            "sf.b2c.mall.component.addreditor",
-            "sf.b2c.mall.api.user.delRecAddress",
-            'sf.b2c.mall.page.center'
-          ],
-          insertRequire: ['sf.b2c.mall.page.center']
+          include:        ['sf.b2c.mall.page.center'],
+          insertRequire:  ['sf.b2c.mall.page.center']
         }
       },
+
       gotopay: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.gotopay",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.step",
-            "sf.b2c.mall.api.order.getOrder",
-            "sf.b2c.mall.api.order.requestPayV2",
-            "sf.b2c.mall.order.fn",
-            "sf.b2c.mall.widget.message",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util"
-          ],
-          insertRequire: ['sf.b2c.mall.page.gotopay']
+          include:        ["sf.b2c.mall.page.gotopay"],
+          insertRequire:  ['sf.b2c.mall.page.gotopay']
         }
       },
+
       gotopay2: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.gotopay2.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay2.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.gotopay2",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.order.step",
-            "sf.b2c.mall.api.order.getOrder",
-            "sf.b2c.mall.api.order.requestPayV2",
-            "sf.b2c.mall.order.fn",
-            "sf.b2c.mall.widget.message",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util"
-          ],
-          insertRequire: ['sf.b2c.mall.page.gotopay2']
+          include:        ["sf.b2c.mall.page.gotopay2"],
+          insertRequire:  ['sf.b2c.mall.page.gotopay2']
         }
       },
+
       passwordchange: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.passwordchange.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:          './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.passwordchange.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.passwordchange",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.center.change.password",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util",
-            "sf.b2c.mall.api.user.changePassword"
-          ],
-          insertRequire: ['sf.b2c.mall.page.passwordchange']
+          include:        ["sf.b2c.mall.page.passwordchange"],
+          insertRequire:  ['sf.b2c.mall.page.passwordchange']
         }
       },
+
       // @deprecated
       // proxy:{
       //   options: {
@@ -1118,45 +839,38 @@ module.exports = function (grunt) {
       //     insertRequire: ['sf.b2c.mall.page.proxy']
       //   }
       // },
+
       federallogin: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.federal.login.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.federal.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths:{
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.api.user.federatedLogin",
-            "sf.b2c.mall.page.federal.login"
-          ],
-          insertRequire: ['sf.b2c.mall.page.federal.login']
+          include:        ["sf.b2c.mall.page.federal.login"],
+          insertRequire:  ['sf.b2c.mall.page.federal.login']
         }
       },
+
       common: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.common.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'moment':'../bower_components/momentjs/min/moment.min',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.page.common",
-            "sf.b2c.mall.component.header",
-            "sf.b2c.mall.component.footer",
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout",
-            "sf.b2c.mall.widget.modal",
-            "sf.b2c.mall.business.config",
-            "sf.b2c.mall.widget.not.support",
-            "sf.util"
-          ],
-          insertRequire: ['sf.b2c.mall.page.common']
+          include:        ["sf.b2c.mall.page.common"],
+          insertRequire:  ['sf.b2c.mall.page.common']
         }
       },
     }
@@ -1181,6 +895,11 @@ module.exports = function (grunt) {
     ]);
   });
 
+  grunt.registerTask('create', function () {
+    var done = this.async();
+    generator.autogen(grunt, done);
+  });
+
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run([target ? ('serve:' + target) : 'serve']);
@@ -1195,138 +914,73 @@ module.exports = function (grunt) {
       ]);
     }
 
-    if (target === 'browser') {
-      grunt.task.run([
-        // 'jshint',
-        'connect:test',
-        'watch'
-      ]);
-    }else{
-      grunt.task.run([
-        'connect:test',
-        'mocha'
-      ]);
-    }
-
     grunt.task.run([
       'connect:test',
       'mocha'
     ]);
   });
 
-  grunt.registerTask('create', function () {
-    var done = this.async();
-    generator.autogen(grunt, done);
+
+  grunt.registerTask('build', function (target) {
+    config.target = target;
+
+    if (config.target) {
+      grunt.task.run([
+        'clean:dist',
+        'wiredep',
+        'useminPrepare',
+        'concurrent:dist',
+        'autoprefixer',
+        'concat',
+        'requirejs',
+        'cssmin',
+        'uglify',
+        'copy:dist',
+        'copy:html',
+        'copy:image',
+        'copy:templates',
+        'usemin',
+        'htmlmin',
+        'clean:extra',
+        'clean:publish',
+        'compress:test'
+      ]);
+    }else{
+      grunt.fail.fatal('缺少环境参数!');
+    }
   });
 
-  grunt.registerTask('modules', function () {
-    var folders = ['adapter', 'center', 'component', 'config', 'order', 'product', 'util', 'widget']
-    var list = {}
-    var define = function (name, deps) {
-      list[name]=deps
+  grunt.registerTask('release', function (version) {
+    config.version = version;
+
+    if (config.version) {
+      config.target = 'prd';
+
+      grunt.task.run([
+        'clean:dist',
+        'wiredep',
+        'useminPrepare',
+        'concurrent:dist',
+        'autoprefixer',
+        'concat',
+        'requirejs',
+        'cssmin',
+        'uglify',
+        'copy:dist',
+        'copy:html',
+        'copy:image',
+        'copy:templates',
+        'usemin',
+        'htmlmin',
+        'clean:extra',
+        'clean:publish',
+        'compress:oss',
+        'compress:statics'
+      ]);
+    }else{
+      grunt.fail.fatal('缺少版本号!');
     }
-
-    for(var i in folders){
-      grunt.file.recurse('app/scripts/'+folders[i], function (abspath, rootdir, subdir, filename) {
-        var arr = filename.split('.');
-        if (arr[arr.length-1] == 'js') {
-
-          var content = grunt.file.read('app/scripts/'+folders[i]+'/'+filename, {encoding: 'utf8'});
-          eval(content)
-        };
-      })
-    }
-
-    var pages = {};
-    var define = function (name, deps) {
-      pages[name]=deps
-    }
-    grunt.file.recurse('app/scripts/page', function (abspath, rootdir, subdir, filename) {
-      var content = grunt.file.read('app/scripts/page/'+filename, {encoding: 'utf8'});
-      eval(content);
-    });
-
-    var modules = {}
-    for(var i in pages){
-      var deps = pages[i];
-      for(var j in deps){
-        if (list[deps[j]]) {
-          deps = _.union(deps, list[deps[j]]);
-          deps = _.uniq(deps);
-        }
-      }
-      modules[i] = deps;
-    }
-
-    grunt.file.write('page.modules.json', JSON.stringify(modules));
-  });
-
-  grunt.registerTask('createJSON', function () {
-    var map = {
-      'base'                        :'scripts/base/sf.web.base.ver.1.0.build.1421502116857.js',
-      'headerandfooter'             :'scripts/sf.b2c.mall.page.headerandfooter.' + config.version +'.'+ config.build +'.min.js',
-      'main'                        :'scripts/sf.b2c.mall.page.main.'            + config.version +'.'+ config.build +'.min.js',
-      'detail'                      :'scripts/sf.b2c.mall.page.detail.'          + config.version +'.'+ config.build +'.min.js',
-      'login'                       :'scripts/sf.b2c.mall.page.login.'           + config.version +'.'+ config.build +'.min.js',
-      'ilogin'                      :'scripts/sf.b2c.mall.page.i.login.'         + config.version +'.'+ config.build +'.min.js',
-      'register'                    :'scripts/sf.b2c.mall.page.register.'        + config.version +'.'+ config.build +'.min.js',
-      'iregister'                   :'scripts/sf.b2c.mall.page.i.register.'      + config.version +'.'+ config.build +'.min.js',
-      'process'                     :'scripts/sf.b2c.mall.page.process.'         + config.version +'.'+ config.build +'.min.js',
-      'activated'                   :'scripts/sf.b2c.mall.page.activated.'       + config.version +'.'+ config.build +'.min.js',
-      'nullactivated'               :'scripts/sf.b2c.mall.page.nullactivated.'   + config.version +'.'+ config.build +'.min.js',
-      'retrieve'                    :'scripts/sf.b2c.mall.page.retrieve.'        + config.version +'.'+ config.build +'.min.js',
-      'order'                       :'scripts/sf.b2c.mall.page.order.'           + config.version +'.'+ config.build +'.min.js',
-      'order2'                      :'scripts/sf.b2c.mall.page.order2.'          + config.version +'.'+ config.build +'.min.js',
-      'orderlist'                   :'scripts/sf.b2c.mall.page.order.list.'      + config.version +'.'+ config.build +'.min.js',
-      'orderdetail'                 :'scripts/sf.b2c.mall.page.order.detail.'    + config.version +'.'+ config.build +'.min.js',
-      'center'                      :'scripts/sf.b2c.mall.page.center.'          + config.version +'.'+ config.build +'.min.js',
-      'gotopay'                     :'scripts/sf.b2c.mall.page.gotopay.'         + config.version +'.'+ config.build +'.min.js',
-      'gotopay2'                    :'scripts/sf.b2c.mall.page.gotopay2.'        + config.version +'.'+ config.build +'.min.js',
-      'passwordchange'              :'scripts/sf.b2c.mall.page.passwordchange.'  + config.version +'.'+ config.build +'.min.js',
-      'federallogin'                :'scripts/sf.b2c.mall.page.federal.login.'   + config.version +'.'+ config.build +'.min.js',
-      'common'                      :'scripts/sf.b2c.mall.page.common.'          + config.version +'.'+ config.build +'.min.js'
-    }
-
-    grunt.file.write(config.dist+'/scripts/sf.b2c.mall.file.json', JSON.stringify(map), {encoding: 'utf8'});
-
-  });
-
-  grunt.registerTask('build', function(target){
-    grunt.file.recurse('app/scripts/base', function callback(abspath, rootdir, subdir, filename) {
-      if (filename.indexOf('sf.web.base')> -1) {
-        config.target = target;
-        config.base = {
-          dest: 'scripts/base/'+filename,
-          src: 'scripts/base/'+filename
-        }
-
-        grunt.task.run([
-          'clean:dist',
-          'useminPrepare',
-          'concurrent:dist',
-          'autoprefixer',
-          'concat',
-          'cssmin',
-          'uglify',
-          'copy:dist',
-          'requirejs',
-          'rename',
-          'usemin',
-          'htmlmin',
-          'strip:main',
-          'clean:extra',
-          'createJSON'
-        ]);
-      };
-    })
-  });
-
-  grunt.registerTask('release', function () {
-    config.release = true;
-    grunt.task.run(['clean:publish']);
-    grunt.task.run(['build:prd']);
-    grunt.task.run(['copy:publish']);
-  });
+  })
 
   grunt.registerTask('default', [
     'newer:jshint',
