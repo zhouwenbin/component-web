@@ -355,7 +355,7 @@ module.exports = function (grunt) {
             'json/{,*/}*.json',
             // 'templates/{,*/}*.mustache',
             // '*.html',
-            'styles/fonts/{,*/}*.*'
+            'font/{,*/}*.*'
           ]
         }]
       },
@@ -480,25 +480,20 @@ module.exports = function (grunt) {
     },
 
     requirejs: {
-      headerandfooter: {
+      campaign: {
         options: {
           preserveLicenseComments: false,
-          baseUrl: './app/',
-
-          out: './<%= config.dist %>/scripts/sf.b2c.mall.page.headerandfooter.<%= config.version %>.<%= config.build %>.min.js',
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.campaign.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: [
-            "sf.b2c.mall.business.config",
-            'sf.b2c.mall.component.header',
-            'sf.b2c.mall.component.footer',
-            'sf.b2c.mall.widget.modal',
-            'sf.b2c.mall.widget.not.support',
-            "sf.b2c.mall.api.user.getUserInfo",
-            "sf.b2c.mall.api.user.logout"
-          ]
+          include:        ["sf.b2c.mall.campaign.page.common"],
+          insertRequire:  ['sf.b2c.mall.campaign.page.common']
         }
       },
 
