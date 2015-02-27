@@ -330,12 +330,12 @@ define(
                     var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
                     var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
                     var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
-                    
+
                     store.set('provinceId',provinceId);
                     store.set('cityId',cityId);
                     store.set('regionId',regionId);
                   }
-                  
+
                 }
               }).fail(function(){
 
@@ -392,7 +392,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
+              password: md5(password + SFConfig.setting.md5_key),
               vfCode: vfCode
             });
             that.sendRequest();
@@ -403,7 +403,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
+              password: md5(password + SFConfig.setting.md5_key)
             });
             that.sendRequest();
 
