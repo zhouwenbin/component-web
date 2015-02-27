@@ -24,7 +24,7 @@
           <div  class="product-r3 clearfix">
             {{#sf-is-product fastSaleContentType}}
             <div class="product-r3c1 fl">
-              <strong>￥{{sellingPrice}}</strong>
+              <strong><span>￥</span>{{sellingPrice}}</strong>
               <del>￥{{originPrice}}</del>
             </div>
             <div class="product-r3c2 fr">
@@ -33,7 +33,7 @@
             {{/sf-is-product}}
             {{^sf-is-product fastSaleContentType}}
             <div class="product-r3c1 fl">
-              <strong>￥{{homepageTopicInfo.price}}</strong>
+              <strong><span>￥</span>{{homepageTopicInfo.price}}</strong>
               <del>￥12</del>
             </div>
             <div class="product-r3c2 fr">
