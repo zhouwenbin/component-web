@@ -90,7 +90,7 @@ define('sf.b2c.mall.component.header', ['jquery',
      * @param  {Map} data 渲染页面的数据
      */
     render: function(data) {
-      var html = can.view('templates/component/sf.b2c.mall.header.mustache?v=20150227', data);
+      var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
       this.element.html(html);
     },
 
