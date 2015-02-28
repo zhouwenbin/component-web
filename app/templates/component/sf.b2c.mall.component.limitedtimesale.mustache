@@ -39,7 +39,7 @@
                 <div class="product-r3 clearfix">
                   {{#sf-is-product contentType}}
                     <div class="product-r3c1 fl">
-                      <strong>￥{{sellingPrice}}</strong>
+                      <strong><span>￥</span>{{sellingPrice}}</strong>
                       <del>￥{{originPrice}}</del>
                     </div>
                     <div class="product-r3c2 fr">
@@ -49,7 +49,7 @@
 
                   {{^sf-is-product contentType}}
                   <div class="product-r3c1 fl">
-                    <strong>￥{{price}}</strong>元起
+                    <strong><span>￥</span>{{price}}</strong>元起
                   </div>
                   <div class="product-r3c2 fr">
                     <strong>{{discount}}</strong>折起
