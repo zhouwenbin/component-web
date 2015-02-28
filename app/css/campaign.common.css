@@ -122,7 +122,7 @@ body{
   color: #fff;
 }
 .banner a{
-  background: url(../img/banner.jpg) no-repeat center;
+  background: url(http://img.sfht.com/sfht/campaign/img/banner.jpg) no-repeat center;
   height: 500px;
   display: block;
 }
@@ -221,7 +221,7 @@ body{
 .icon-sold{
   width: 180px;
   height: 180px;
-  background: url(../img/icon-sold.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/campaign/img/icon-sold.png) no-repeat;
 }
 .btn1-1{
   line-height: 18px;
