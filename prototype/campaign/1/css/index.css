@@ -1,0 +1,178 @@
+﻿.banner{
+	height: 500px;
+	background:url(../img/banner.jpg) no-repeat center;
+	border-bottom: 14px solid #16191B;
+}
+/*母婴潮流*/
+.m1 .mh{
+	background:#c5007d url(../img/m1-mh.jpg) no-repeat center;
+	color: #fff;
+	height: 140px;
+	margin-bottom: 20px;
+}
+
+.m1 .hc1{
+	background:url(../img/m1-hc1.png) no-repeat 14px 48px;
+	padding-top: 43px;
+	padding-left: 52px;
+	margin-right: 24px;
+}
+
+.m1 h2{
+	font-size: 46px;
+}
+.m1 .p1{
+	font-size: 15px;
+}
+.m1 .p2{
+	padding-top: 43px;
+	font-size: 16px;
+	line-height: 24px;
+	width: 477px;
+	height: 115px;
+	overflow: hidden;
+}
+.m1 .mb{
+	background: #1f2123;
+}
+
+.m1 .mr1{
+	background: #a20e84 url(../img/m1-mr1.png) no-repeat 265px 132px;
+	margin-bottom: 14px;
+	padding: 33px 23px 45px;
+	position: relative;
+}
+.m1 .mr1 .product{
+	width: 357px;
+}
+.m1 .buddle{
+	position: absolute;	
+	color: #a20e84;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	padding-top: 31px;
+}
+.m1 .buddle1{
+	background:url(../img/buddle1.png) no-repeat;
+	width: 105px;
+	height: 77px;
+	left: 148px;
+	top: 221px;
+	padding-right: 22px;
+}
+.m1 .buddle2{
+	background:url(../img/buddle2.png) no-repeat;
+	width: 110px;
+	padding-right: 22px;
+	height: 77px;
+	position: absolute;
+	left: 131px;
+	top: 412px;
+}
+.m1 .buddle3{
+	background:url(../img/buddle3.png) no-repeat;
+	width: 107px;
+	padding-left: 22px;
+	height: 76px;
+	position: absolute;
+	left: 466px;
+	top: 55px;
+}
+.m1 .mr1 img{
+	max-width: 339px;
+}
+.m1 .u1{
+	color: #fff;
+	font-weight: bold;
+}
+.m1 .ur1{
+	font-size: 58px;
+}
+.m1 .ur2{
+	font-size: 38px;
+	border-bottom: 1px solid #fff;
+	padding-bottom: 5px;
+	margin-bottom: 3px;
+}
+.m1 .ur3{
+	font-size: 28px;
+}
+.m1 .mr2 ul{
+	margin-left: -14px;
+	*padding-bottom: 15px;
+}
+.m1 .mr2 li{
+	width: 318px;
+	margin-left: 16px;
+	margin-bottom: 15px;
+	float: left;
+}
+.m1 .mr2 .product{
+	padding-top: 0;
+}
+.m1 .mr2 .product-r1{
+	margin-left:0;
+	margin-right: 0;
+	height: 211px; 
+}
+.m1 .mr2 img{
+	max-width: 316px;
+}
+
+
+/*居家时尚*/
+.m2 .mh{
+	background: #cd4c13 url(../img/m2-mh.jpg) no-repeat center;
+}
+.m2 .hc1{
+	background:url(../img/m2-hc1.png) no-repeat 5px 55px;
+}
+.m2 .mr1{
+	background: #ad3f10 url(../img/m2-mr1.png) no-repeat 218px 192px;
+}
+.m2 .buddle{
+	color:#af6126;
+}
+.m2 .buddle1{
+	left: 121px;
+	top: 251px;
+}
+.m2 .buddle2{
+	
+	left: 148px;
+	top: 427px;
+}
+.m2 .buddle3{
+	left: 381px;
+	top: 71px;
+}
+/*护肤专家*/
+.m3{
+	margin-bottom: 68px;
+}
+.m3 .mh{
+	background: #31B4CB url(../img/m3-mh.jpg) no-repeat center;
+}
+.m3 .hc1{
+	background:url(../img/m3-hc1.png) no-repeat 17px 49px;
+}
+.m3 .mr1{
+	background: #23A0B6 url(../img/m2-mr1.png) no-repeat 218px 192px;
+}
+.m3 .buddle{
+	color:#23A0B6;
+}
+.m3 .buddle1{
+	left: 121px;
+	top: 251px;
+}
+.m3 .buddle2{
+	
+	left: 148px;
+	top: 427px;
+}
+.m3 .buddle3{
+	left: 381px;
+	top: 71px;
+}

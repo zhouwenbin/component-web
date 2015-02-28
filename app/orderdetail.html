@@ -4,11 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width">
   <title>顺丰海淘</title>
-  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.detail -->
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.detail.css -->
   <link href="css/common.css" rel="stylesheet" type="text/css" />
   <link href="css/orderdetail.css" rel="stylesheet" type="text/css" />
   <!-- endbuild -->
-  <link href="css/browser.css" rel="stylesheet" type="text/css" />
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
+<link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
 </head>
 <body>
 
@@ -39,22 +41,22 @@
     </div>
     <!--注册成功-->
     <div class="register-b1" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
-       <img src="img/front.jpg" alt="">
+       <img src="http://img.sfht.com/sfht/img/front.jpg" alt="">
        <p style="margin-top: 20px; color:#a3a2a3">正面样本</p>
-       <img src="img/behind.jpg" alt="">
+       <img src="http://img.sfht.com/sfht/img/behind.jpg" alt="">
        <p style="margin-top: 20px; color:#a3a2a3">反面样本</p>
     </div>
     <!--注册成功-->
   </div>
  <!--身份证参考样本-->
 
- <!-- build:js(.) require -->
+ <!-- build:js(.) scripts/require.min.js -->
  <script src="bower_components/requirejs/require.js"></script>
  <!-- endbuild -->
- <!-- build:js(.) base-->
+ <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
  <script src="scripts/base/sf.web.base.ver.1.0.build.1421502116857.js"></script>
  <!-- endbuild -->
- <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.order.detail -->
+ <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.order.detail.js -->
  <script src="scripts/sf.b2c.mall.require.config.js"></script>
  <script type="text/javascript">
   require(['sf.b2c.mall.page.orderdetail']);

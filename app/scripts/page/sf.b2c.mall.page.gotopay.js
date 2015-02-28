@@ -13,7 +13,8 @@ define(
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.order.getOrderConfirmInfo'
+    'sf.b2c.mall.api.order.getOrderConfirmInfo',
+    'sf.b2c.mall.business.config'
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
@@ -78,11 +79,11 @@ define(
       },
 
       showPayMap:{
-        'alipay_intl':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>',
+        'alipay_intl':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
 
-        'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"></div>'
+        'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="../img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
+            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="../img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
+            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="../img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
 
       },
       '.order-r1c1 click':function(element,event){

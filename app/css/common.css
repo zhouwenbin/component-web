@@ -44,9 +44,9 @@ img{vertical-align: middle;}
 .icon{
 	display: inline-block;
 	vertical-align: middle;
-	background: url(../img/icon.png?v=2015021201) no-repeat;
-	background-image: -webkit-image-set(url(../img/icon.png?v=2015021201) 1x,
-               url(../img/icon@x2.png?v=2015021201) 2x);
+	background: url(http://img.sfht.com/sfht/img/icon.png?v=2015021201) no-repeat;
+	background-image: -webkit-image-set(url(http://img.sfht.com/sfht/img/icon.png?v=2015021201) 1x,
+               url(http://img.sfht.com/sfht/img/icon@x2.png?v=2015021201) 2x);
 }
 .icon1{
 	width: 51px;
@@ -469,7 +469,7 @@ button.btn{
 .btn-next{
 	width: 41px;
 	height: 94px;
-	background: url(../img/icon.png) no-repeat;
+	background: url(http://img.sfht.com/sfht/img/icon.png) no-repeat;
 	text-indent: -999em;
 	background-color: #666;
 	background-color: rgba(0,0,0,0.5);
@@ -516,7 +516,7 @@ button.btn{
 	width: 16px;
 	height: 0;
 	padding-top: 16px;
-	background: url(../img/icon.png) no-repeat -101px 0;
+	background: url(http://img.sfht.com/sfht/img/icon.png) no-repeat -101px 0;
 	overflow: hidden;
 	position: relative;
 }
@@ -615,7 +615,7 @@ button.btn{
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
-	background: #fff url(../img/btn-select.png) repeat-x;
+	background: #fff url(http://img.sfht.com/sfht/img/btn-select.png) repeat-x;
 	cursor: pointer;
 	*display: inline;
 	*zoom:1;
@@ -663,7 +663,7 @@ button.btn{
 	margin-top: -5px;
 }
 .btn-select-1{
-	background: url(../img/btn-select1.png) repeat-x;
+	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
 	z-index: 1;
 }
 .btn-select-1 .btn-select-num{
@@ -773,7 +773,7 @@ body.sub{
 
 /*导航*/
 .nav{
-	background: url(../img/nav.png) repeat-x;
+	background: url(http://img.sfht.com/sfht/img/nav.png) repeat-x;
 	height: 60px;
 	line-height: 60px;
 	position: fixed;
@@ -1055,9 +1055,9 @@ body.sub{
 	background: #fff;
 	position: relative;
 	left: -50%;
-	
+
 	z-index: 1;
-	
+
 }
 /*表格*/
 .table{
@@ -1070,7 +1070,7 @@ body.sub{
 	height: 58px;
 	line-height: 58px;
 	border-bottom: 1px solid #e6e5e5;
-	background: #f4f4f4 url(../img/table-h.png) repeat-x;
+	background: #f4f4f4 url(http://img.sfht.com/sfht/img/table-h.png) repeat-x;
 	border-radius: 4px 4px 0 0;
 	font-weight: bold;
 }
@@ -1185,7 +1185,7 @@ body.sub{
   filter: alpha(opacity=30);
 }
 .icon-loading{
-  background:url(../images/icon-loading.gif) no-repeat center;
+  background:url(http://img.sfht.com/sfht/img/icon-loading.gif) no-repeat center;
   width: 32px;
   height: 32px;
   position: absolute;
@@ -1207,14 +1207,14 @@ body.sub{
     position:absolute;
     width: 128px;
     height: 0px;
-    background:url(../img/icon-loading1.png) no-repeat bottom;
+    background:url(http://img.sfht.com/sfht/img/icon-loading1.png) no-repeat bottom;
     bottom: 0;
  }
  .icon-loading2{
     position: absolute;
     width: 128px;
     height: 156px;
-    background:url(../img/icon-loading2.png) no-repeat bottom;
+    background:url(http://img.sfht.com/sfht/img/icon-loading2.png) no-repeat bottom;
  }
  .error-tips{display: inline-block;color: #FF0000;padding-left: 10px;}
 
@@ -1320,7 +1320,7 @@ a[title="站长统计"]{
 .notice{
 	font-size: 14px;
 	color: #4d3703;
-	background: url(../img/notice.jpg) repeat-x;
+	background: url(http://img.sfht.com/sfht/img/notice.jpg) repeat-x;
 	height: 42px;
 	line-height: 42px;
 }
