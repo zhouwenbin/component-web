@@ -330,12 +330,12 @@ define(
                     var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
                     var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
                     var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
-                    
+
                     store.set('provinceId',provinceId);
                     store.set('cityId',cityId);
                     store.set('regionId',regionId);
                   }
-                  
+
                 }
               }).fail(function(){
 
@@ -390,9 +390,9 @@ define(
             var vfCode = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer:this.data.attr('verifiedCode')});
 
             this.component.login.setData({
-              accountId: $.trim(this.data.attr('username')),
-              type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
+              accountId: $.trim(username),
+              type: this.checkTypeOfAccount(username),
+              password: md5(password + SFConfig.setting.md5_key),
               vfCode: vfCode
             });
             that.sendRequest();
@@ -401,9 +401,9 @@ define(
         }else{
           if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password)) {
             this.component.login.setData({
-              accountId: $.trim(this.data.attr('username')),
-              type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
+              accountId: $.trim(username),
+              type: this.checkTypeOfAccount(username),
+              password: md5(password + SFConfig.setting.md5_key)
             });
             that.sendRequest();
 

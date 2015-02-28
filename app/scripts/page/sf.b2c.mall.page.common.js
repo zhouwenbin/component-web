@@ -6,7 +6,8 @@ define('sf.b2c.mall.page.common',
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
-    'sf.b2c.mall.component.footer'
+    'sf.b2c.mall.component.footer',
+    'sf.b2c.mall.business.config'
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer) {

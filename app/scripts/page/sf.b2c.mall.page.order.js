@@ -12,7 +12,8 @@ define(
     'sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.iteminfo',
-    'sf.b2c.mall.order.vendor.info'
+    'sf.b2c.mall.order.vendor.info',
+    'sf.b2c.mall.business.config'
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo, SFVendorInfo) {

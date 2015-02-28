@@ -79,7 +79,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
             '<div class="product-r3 clearfix">' +
               '{{#sf-is-product fastSaleContentType}}' +
               '<div class="product-r3c1 fl" >' +
-                '<strong>￥{{sellingPrice}}</strong>' +
+                '<strong><span>￥</span>{{sellingPrice}}</strong>' +
                 '<del>￥{{originPrice}}</del>' +
               '</div>' +
               '<div class="product-r3c2 fr">' +
@@ -88,7 +88,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
               '{{/sf-is-product}}'+
               '{{^sf-is-product fastSaleContentType}}' +
               '<div class="product-r3c1 fl">' +
-                '<strong>￥{{price}}</strong>元起' +
+                '<strong><span>￥</span>{{price}}</strong>元起' +
               '</div>' +
               '<div class="product-r3c2 fr">' +
                 '<strong>{{discount}}</strong>折起' +
@@ -107,7 +107,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
          */
         priceTemplate: function() {
           return '<div class="product-r3c1 fl">' +
-              '<strong>￥{{sellingPrice}}</strong>' +
+              '<strong><span>￥</span>{{sellingPrice}}</strong>' +
               '<del>￥{{originPrice}}</del>' +
               '</div>' +
               '<div class="product-r3c2 fr">' +
