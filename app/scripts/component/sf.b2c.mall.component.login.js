@@ -390,8 +390,8 @@ define(
             var vfCode = $.param({id: DEFAULT_CAPTCHA_ID, hash: DEFAULT_CAPTCHA_HASH, sessionID: this.data.sessionId, answer:this.data.attr('verifiedCode')});
 
             this.component.login.setData({
-              accountId: $.trim(this.data.attr('username')),
-              type: this.checkTypeOfAccount(this.data.attr('username')),
+              accountId: $.trim(username),
+              type: this.checkTypeOfAccount(username),
               password: md5(password + SFConfig.setting.md5_key),
               vfCode: vfCode
             });
@@ -401,8 +401,8 @@ define(
         }else{
           if(this.checkUserName.call(this,username) && this.checkPwd.call(this,password)) {
             this.component.login.setData({
-              accountId: $.trim(this.data.attr('username')),
-              type: this.checkTypeOfAccount(this.data.attr('username')),
+              accountId: $.trim(username),
+              type: this.checkTypeOfAccount(username),
               password: md5(password + SFConfig.setting.md5_key)
             });
             that.sendRequest();
