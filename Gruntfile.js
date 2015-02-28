@@ -431,7 +431,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%=config.dist%>',
-            src: ['scripts/**', 'styles/**', 'img/**'],
+            src: ['scripts/**', 'styles/**', 'img/**', 'font/**'],
             dest: '<%=config.version%>'
           }
         ]
@@ -457,7 +457,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%=config.dist%>',
-            src: ['templates/**', '*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**'],
+            src: ['templates/**', '*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**', 'font/**'],
             dest: '<%=config.version%>'
           }
         ]
