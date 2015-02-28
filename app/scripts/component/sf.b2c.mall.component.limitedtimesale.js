@@ -149,7 +149,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
             var info = priceMap[$(priceNode).attr('data-itemid')];
             $(priceNode).html(template(info));
             if (info && info.soldOut) {
-              $(priceNode).parent().find('.product-r1').append('<span class="icon icon24">售完</span>')
+              $(priceNode).parent().find('.product-r1').append('<div class="mask"></div><span class="icon icon24">售完</span>')
             };
           }
         })
