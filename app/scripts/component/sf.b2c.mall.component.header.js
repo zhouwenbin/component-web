@@ -43,7 +43,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       this.component.modal = new SFModal('body');
       // this.component.scanner = new SFLoginScanner();
       this.component.notSupport = new SFNotSupport('body');
-      
+
       this.watchLoginState.call(this);
 
       this.afterLoginDest = null;
@@ -157,11 +157,11 @@ define('sf.b2c.mall.component.header', ['jquery',
             setTimeout(function(){
               window.location.href = SFConfig.setting.link.index;
             },2000);
-            
+
               store.remove('provinceId');
               store.remove('cityId');
               store.remove('regionId');
-              
+
           })
           .fail(function() {})
       }
@@ -202,7 +202,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.component.modal.show({
-        title: '登录顺丰海淘',
+        title: '顺丰海淘',
         html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
       // this.watchLoginState.call(this);
@@ -220,7 +220,7 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
 
       this.component.modal.show({
-        title: '登录顺丰海淘',
+        title: '顺丰海淘',
         html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.login + '"></iframe>'
       });
       this.component.modal.setTitle('顺丰海淘');
