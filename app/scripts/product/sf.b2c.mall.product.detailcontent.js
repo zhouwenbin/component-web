@@ -551,7 +551,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
           '<!--售完-->' +
           '</div>' +
-          '<div class="mr1">单价：<strong><b>¥</b> {{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
+          '<div class="mr1">单价：<strong><b>¥</b>{{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
           '{{#if priceInfo.showDiscount}}' +
           '<div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{sf.price priceInfo.lessspend}}元</div>' +
           '{{/if}}';
