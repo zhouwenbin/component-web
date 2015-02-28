@@ -15,12 +15,15 @@
 	width: 372px;
 	font-size: 14px;
 }
+.step li:first-child .line{
+  display: none;
+}
 .step .line{
 	width: 331px;
 	height: 4px;
 	background: #ccc;
 	position: absolute;
-	left: 209px;
+	right: 209px;
 	top: 7px;
 }
 .step .icon31{
@@ -32,6 +35,9 @@
 }
 .step .active .icon{
 	background-position: -105px -112px;
+}
+.step .active .line{
+  background: #67b222;
 }
 .step .icon28{
 	position: absolute;
@@ -200,7 +206,7 @@
 	display: none;
 }
 .order-r2 .btn-select{
-	background: url(../img/btn-select1.png) repeat-x;
+	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
 }
 .order-r2 .btn-select-num{
 	height: 39px;

@@ -34,7 +34,7 @@ define('sf.b2c.mall.component.freshfood', [
          */
         priceTemplate: function() {
           return '<div class="product-r3c1 fl">' +
-              '<strong>￥{{sellingPrice}}</strong>' +
+              '<strong><span>￥</span>{{sellingPrice}}</strong>' +
               '<del>￥{{originPrice}}</del>' +
               '</div>' +
               '<div class="product-r3c2 fr">' +

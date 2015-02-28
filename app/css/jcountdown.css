@@ -54,10 +54,10 @@ Copyright (c) 2012
 	height:13px;
 }
 .jCountdown.flip.black .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_flip_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_black.png);
 }
 .jCountdown.flip.white .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_flip_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_white.png);
 }
 .jCountdown.flip .group.day>.label{
 	background-position:-60px -970px;
@@ -76,10 +76,10 @@ Copyright (c) 2012
 	height:15px;
 }
 .jCountdown.slide.black .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_slide_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_black.png);
 }
 .jCountdown.slide.white .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_slide_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_white.png);
 }
 .jCountdown.slide .group.day>.label{
 	background-position:-60px -150px;
@@ -98,10 +98,10 @@ Copyright (c) 2012
 	height:12px;
 }
 .jCountdown.crystal.black .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_crystal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_black.png);
 }
 .jCountdown.crystal.white .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_crystal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_white.png);
 }
 .jCountdown.crystal .group.day>.label{
 	background-position:-60px -153px;
@@ -120,10 +120,10 @@ Copyright (c) 2012
 	height:15px;
 }
 .jCountdown.metal.black .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_metal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_black.png);
 }
 .jCountdown.metal.white .group>.label{
-	background-image:url(../img/jcountdown/jcountdown_metal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_white.png);
 }
 .jCountdown.metal .group.day>.label{
 	background-position:-60px -153px;
@@ -159,10 +159,10 @@ Copyright (c) 2012
 	margin:0px;
 }
 .jCountdown.flip.black .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_flip_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_black.png);
 }
 .jCountdown.flip.white .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_flip_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_white.png);
 }
 
 .jCountdown.slide .group>.container{
@@ -180,10 +180,10 @@ Copyright (c) 2012
 	background-position:-161px 0px;
 }
 .jCountdown.slide.black .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_slide_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_black.png);
 }
 .jCountdown.slide.white .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_slide_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_white.png);
 }
 
 .jCountdown.crystal .group>.container{
@@ -197,10 +197,10 @@ Copyright (c) 2012
 	margin:0px;
 }
 .jCountdown.crystal.black .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_crystal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_black.png);
 }
 .jCountdown.crystal.white .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_crystal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_white.png);
 }
 
 .jCountdown.metal .group>.container{
@@ -220,10 +220,10 @@ Copyright (c) 2012
 	background-position:-186px 0px;
 }
 .jCountdown.metal.black .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_metal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_black.png);
 }
 .jCountdown.metal.white .group>.container{
-	background-image:url(../img/jcountdown/jcountdown_metal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_white.png);
 }
 
 /* cover */
@@ -250,10 +250,10 @@ Copyright (c) 2012
 	background-position:-160px -70px;
 }
 .jCountdown.slide.black .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_slide_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_black.png);
 }
 .jCountdown.slide.white .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_slide_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_white.png);
 }
 
 .jCountdown.crystal .group>.container>.cover{
@@ -264,10 +264,10 @@ Copyright (c) 2012
 	background-position:-60px -70px;
 }
 .jCountdown.crystal.black .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_crystal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_black.png);
 }
 .jCountdown.crystal.white .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_crystal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_white.png);
 }
 
 .jCountdown.metal .group>.container>.cover{
@@ -286,10 +286,10 @@ Copyright (c) 2012
 	background-position:-184px -70px;
 }
 .jCountdown.metal.black .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_metal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_black.png);
 }
 .jCountdown.metal.white .group>.container>.cover{
-	background-image:url(../img/jcountdown/jcountdown_metal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_white.png);
 }
 
 /* text */
@@ -303,10 +303,10 @@ Copyright (c) 2012
 	height:64px;
 }
 .jCountdown.flip.black .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_flip_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_black.png);
 }
 .jCountdown.flip.white .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_flip_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_flip_white.png);
 }
 
 .jCountdown.slide .group>.container>.text{
@@ -314,10 +314,10 @@ Copyright (c) 2012
 	height:64px;
 }
 .jCountdown.slide.black .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_slide_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_black.png);
 }
 .jCountdown.slide.white .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_slide_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_slide_white.png);
 }
 
 .jCountdown.crystal .group>.container>.text{
@@ -325,10 +325,10 @@ Copyright (c) 2012
 	height:60px;
 }
 .jCountdown.crystal.black .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_crystal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_black.png);
 }
 .jCountdown.crystal.white .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_crystal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_crystal_white.png);
 }
 
 .jCountdown.metal .group>.container>.text{
@@ -338,10 +338,10 @@ Copyright (c) 2012
 	height:60px;
 }
 .jCountdown.metal.black .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_metal_black.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_black.png);
 }
 .jCountdown.metal.white .group>.container>.text{
-	background-image:url(../img/jcountdown/jcountdown_metal_white.png);
+	background-image:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown_metal_white.png);
 }
 
 /* reflection */
@@ -356,41 +356,41 @@ Copyright (c) 2012
 }
 .jCountdown.reflection.blur1{
 	-webkit-filter:blur(1px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur1); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur1); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur2{
 	-webkit-filter:blur(2px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur2); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur2); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur3{
 	-webkit-filter:blur(3px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur3); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur3); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur4{
 	-webkit-filter:blur(4px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur4); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur4); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur5{
 	-webkit-filter:blur(5px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur5); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur5); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur6{
 	-webkit-filter:blur(6px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur6); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur6); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur7{
 	-webkit-filter:blur(7px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur7); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur7); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur8{
 	-webkit-filter:blur(8px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur8); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur8); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur9{
 	-webkit-filter:blur(9px); 			/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur9); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur9); 	/* Firefox Opera */
 }
 .jCountdown.reflection.blur10{
 	-webkit-filter:blur(10px); 		/* Webkit */
-	filter:url(../img/jcountdown/jcountdown.svg#blur10); 	/* Firefox Opera */
+	filter:url(http://img.sfht.com/sfht/img/jcountdown/jcountdown.svg#blur10); 	/* Firefox Opera */
 }
