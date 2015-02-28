@@ -7,7 +7,8 @@ define(
     'jquery',
     'can',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.component.i.login'
+    'sf.b2c.mall.component.i.login',
+    'sf.b2c.mall.business.config'
   ],
 
   function ($, can, SFFrameworkComm, SFLogin) {
