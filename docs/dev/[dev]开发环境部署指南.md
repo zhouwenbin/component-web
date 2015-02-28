@@ -24,16 +24,16 @@
     scp dist.zip jiyanliang@10.144.128.222:/home/jiyanliang
 
     ssh jiyanliang@10.144.128.222
-    sudo cp dist.zip /home/admin/static
+    sudo cp dist.zip /home/admin/statics
     ```
 
-5、文件解压。切换到admin用户下，进入static目录后，确认有dist文件，使用admin用户执行解压
+5、文件解压。切换到admin用户下，进入statics目录后，确认有dist文件，使用admin用户执行解压
 
     ```
     sudo su admin
     cd
     cd static
-    unzip -o -d /home/admin/static dist.zip
+    unzip -o -d /home/admin/statics dist.zip
     ```
 
 --------------
