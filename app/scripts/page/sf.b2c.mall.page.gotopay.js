@@ -13,7 +13,8 @@ define(
     'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.order.getOrderConfirmInfo'
+    'sf.b2c.mall.api.order.getOrderConfirmInfo',
+    'sf.b2c.mall.business.config'
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage,GetOrderConfirmInfo) {

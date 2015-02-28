@@ -7,7 +7,8 @@ define(
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.center.register',
   'vendor.jquery.jcountdown',
-  'sf.b2c.mall.api.user.getBirthInfo'
+  'sf.b2c.mall.api.user.getBirthInfo',
+  'sf.b2c.mall.business.config'
 ],function(can,$, SFFrameworkComm, SFRegister, jcountdown,SFGetBirthInfo){
   SFFrameworkComm.register(1);
 

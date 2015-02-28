@@ -6,7 +6,8 @@ define(
     'can',
     'store',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.api.user.federatedLogin'
+    'sf.b2c.mall.api.user.federatedLogin',
+    'sf.b2c.mall.business.config'
   ],
 
   function ($, can, store, SFFrameworkComm, SFApiUserFederatedLogin) {

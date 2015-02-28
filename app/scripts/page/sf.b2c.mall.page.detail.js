@@ -9,7 +9,8 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.product.breadscrumb',
-    'sf.b2c.mall.product.detailcontent'
+    'sf.b2c.mall.product.detailcontent',
+    'sf.b2c.mall.business.config'
   ],
 
   function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent) {
