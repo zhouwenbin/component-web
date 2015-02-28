@@ -3,7 +3,8 @@ define(
   [
     'jquery',
     'can',
-    'store'
+    'store',
+    'sf.b2c.mall.business.config'
   ],
 
   function ($, can, store) {

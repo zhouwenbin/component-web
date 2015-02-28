@@ -10,7 +10,8 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
-    'sf.b2c.mall.component.retrieve'
+    'sf.b2c.mall.component.retrieve',
+    'sf.b2c.mall.business.config'
   ],
 
   function ($, can, _, SFFrameworkComm, SFHeader, SFFooter, SFRetrieve) {

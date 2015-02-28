@@ -7,7 +7,8 @@ define(
     'can',
     'underscore',
     'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.api.user.checkLink'
+    'sf.b2c.mall.api.user.checkLink',
+    'sf.b2c.mall.business.config'
   ],
   function ($, can, _, SFFrameworkComm, SFApiUserChecklink) {
     SFFrameworkComm.register(1);
