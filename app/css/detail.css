@@ -374,8 +374,8 @@
 /*海淘小贴士*/
 .tip{
 	padding-top: 57px;
-	height: 396px;
 	background: #F8F8F8;
+	padding-bottom: 20px;
 }
 .tip h2{
 	font-size: 18px;
@@ -389,12 +389,12 @@
 .tip p{
 	color: #686675;
 	line-height: 21px;
-	height: 112px;
+	height: 82px;
 	font-size: 14px;
 }
 .tip-c1{
-	width: 443px;
+	width: 548px;
 }
 .tip-c2{
-	width: 438px;
+	width: 548px;
 }
