@@ -4,12 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>下单指南-帮助中心-顺丰海淘</title>
-<!-- build:css({app, .tmp}) styles/sf.b2c.mall.common -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.common.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/helpcenter.css" rel="stylesheet" type="text/css" />
 <link href="css/register.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
 </head>
 <body>
   <!--头部-->
@@ -52,17 +54,17 @@
           <!--面包屑-->
           <h3>Step<strong>1</strong>找商品</h3>
           <p class="p1">点击您感兴趣的商品，在商品详情页，点击“立即购买”按钮。</p>
-          <img src="img/helpcenter3.jpg" alt="立即购买" />
+          <img src="http://img.sfht.com/sfht/img/helpcenter3.jpg" alt="立即购买" />
           <h3>Step<strong>2</strong>填写订单</h3>
           <p class="p1">填写订单的收货人信息，输入收货人身份证信息。</p>
           <p class="p2">*根据国家相关政策规定，购买海淘商品需要上传实名认证信息，<a href="">具体政策请点此了解</a></p>
-          <img src="img/helpcenter4.jpg" alt="填写订单" />
+          <img src="http://img.sfht.com/sfht/img/helpcenter4.jpg" alt="填写订单" />
           <h3>Step<strong>3</strong>支付订单</h3>
           <p class="p1">提交订单，使用支付宝支付平台完成订单支付。</p>
-          <img src="img/helpcenter5.jpg" alt="支付订单" />
+          <img src="http://img.sfht.com/sfht/img/helpcenter5.jpg" alt="支付订单" />
           <h3>Step<strong>4</strong>完成支付</h3>
           <p class="p1">完成支付后，请耐心等待收货。</p>
-          <img src="img/helpcenter6.jpg" alt="完成支付" />
+          <img src="http://img.sfht.com/sfht/img/helpcenter6.jpg" alt="完成支付" />
 
         </div>
       </div>
@@ -78,13 +80,13 @@
     <div class="sf-b2c-mall-footer"></div>
   </div>
   <!--尾部-->
-  <!-- build:js(.) require -->
+  <!-- build:js(.) scripts/require.min.js -->
   <script src="bower_components/requirejs/require.js"></script>
   <!-- endbuild -->
-  <!-- build:js(.) base-->
-  <script src="scripts/base/sf.web.base.ver.1.0.build.1421502116857.js"></script>
+  <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+  <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
   <!-- endbuild -->
-  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.common -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.common.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
   <script type="text/javascript">
   require(['sf.b2c.mall.page.common']);

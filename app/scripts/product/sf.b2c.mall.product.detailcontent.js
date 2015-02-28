@@ -75,16 +75,16 @@ define('sf.b2c.mall.product.detailcontent', [
         this.render();
 
         var areaId = $('#logisticsArea').attr('data-areaid');
-        
+
         if(areaId != 0){
 
           this.component.showArea = new SFShowArea();
           this.component.showArea.show('create', null, $("#logisticsArea"));
-          
+
           var time = setInterval(function(){
             var provinceId = store.get('provinceId');
             var cityId = store.get('cityId');
-            var regionId = store.get('regionId');            
+            var regionId = store.get('regionId');
               if(typeof provinceId != 'undefined'){
                 if (SFComm.prototype.checkUserLogin.call(that)) {
                   that.component.showArea.adapter.addr.attr({
@@ -342,7 +342,7 @@ define('sf.b2c.mall.product.detailcontent', [
             //渲染购买信息
             that.renderBuyInfo(that.options.detailContentInfo);
 
-            
+
 
             //渲染模板
             var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
@@ -400,7 +400,7 @@ define('sf.b2c.mall.product.detailcontent', [
             cityId:cityId,
             districtId:districtId
           });
-        
+
           this.component.checkLogistics.sendRequest()
             .done(function(data){
               if(data.value == false){
@@ -458,7 +458,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
           window.location.href = gotoUrl;
         }
-        
+
 
       },
       '#s2 change': function(element, event) {
@@ -551,7 +551,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
           '<!--售完-->' +
           '</div>' +
-          '<div class="mr1">单价：<strong>¥ {{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
+          '<div class="mr1">单价：<strong><b>¥</b> {{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
           '{{#if priceInfo.showDiscount}}' +
           '<div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{sf.price priceInfo.lessspend}}元</div>' +
           '{{/if}}';
@@ -842,7 +842,7 @@ define('sf.b2c.mall.product.detailcontent', [
         if (productShape != 'FRESHFOOD') {
           this.renderBandInfo();
         };
-        
+
         this.renderPicInfo();
 
         //小编推荐

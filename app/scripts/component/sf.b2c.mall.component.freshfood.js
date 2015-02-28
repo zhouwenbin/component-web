@@ -34,7 +34,7 @@ define('sf.b2c.mall.component.freshfood', [
          */
         priceTemplate: function() {
           return '<div class="product-r3c1 fl">' +
-              '<strong>￥{{sellingPrice}}</strong>' +
+              '<strong><span>￥</span>{{sellingPrice}}</strong>' +
               '<del>￥{{originPrice}}</del>' +
               '</div>' +
               '<div class="product-r3c2 fr">' +
@@ -82,7 +82,7 @@ define('sf.b2c.mall.component.freshfood', [
                       priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
                       $(priceNode).html(template(priceItem));
                       if (priceItem.soldOut) {
-                        $(priceNode).parent().find("div.product-r1").append('<span class="icon icon24">售完</span>');
+                        $(priceNode).parent().find("div.product-r1").append('<div class="mask"></div><span class="icon icon24">售完</span>');
                       }
                     }
                   });

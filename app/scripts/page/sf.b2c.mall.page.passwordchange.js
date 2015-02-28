@@ -8,8 +8,8 @@ define(
       'jquery',
       'sf.b2c.mall.component.header',
       'sf.b2c.mall.component.footer',
-      'sf.b2c.mall.center.change.password'
-
+      'sf.b2c.mall.center.change.password',
+      'sf.b2c.mall.business.config'
     ],
     function(can, $, Header, Footer, ChangePassword) {
 

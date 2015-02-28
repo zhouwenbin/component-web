@@ -34,13 +34,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
       render: function(data) {
         var that = this;
 
+        var routeParams = can.route.attr();
+        if (!routeParams.page) {
+          routeParams = _.extend(routeParams, {page: 1});
+        }
+
         var params = {
           "query": JSON.stringify({
             "status": null,
             "receiverName": that.options.searchValue,
             "orderId": that.options.searchValue,
-            "pageNum": 1,
-            "pageSize": 100
+            "pageNum": routeParams.page,
+            "pageSize": 10
           })
         }
 
@@ -82,14 +87,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
             }
 
             //分页 保留 已经调通 误删 后面设计会给样式
-            // that.options.page = new PaginationAdapter();
-            // that.options.page.format(data.page);
-            // new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
+            that.options.page = new PaginationAdapter();
+            that.options.page.format(data.page);
+            new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
 
           })
           .fail(function(error) {
             console.error(error);
           })
+      },
+
+      '{can.route} change': function(el, attr, how, newVal, oldVal) {
+        var params = can.route.attr();
+        this.render(params);
       },
 
       uploadIDCardTemplateMap: {
@@ -151,7 +161,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<p class="table-none">未找到相关订单记录哟！<a href="http://www.sfht.com/orderlist.html">查看全部订单</a></p>' +
           '</div>'
       },
-      
+
       /**
        * [description 查看物流触发鼠标悬停事件]
        * @param  {[type]} element 触发事件的元素

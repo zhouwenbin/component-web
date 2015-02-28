@@ -4,13 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<!-- build:css({app, .tmp}) styles/sf.b2c.mall.detail -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.detail.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/detail.css" rel="stylesheet" type="text/css" />
 <link href="css/register.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
 
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
 
 </head>
 <body>
@@ -147,15 +149,15 @@
           <div class="tip-r1 clearfix">
             <div class="tip-c1 fl">
               <h3>01.顺丰海淘的商品都是正品吗？</h3>
-              <p>答:顺丰海淘所有商品来自国外电商网站或产商，下单后顺丰海淘所有商品全部支持专柜验货，确保正品</p>
+              <p>答:顺丰海淘所有商品均为正规渠道进货，产地直采，保证100%原装正品。</p>
               <h3>02.订购商品大致需要经过哪些流程？</h3>
-              <p>答:在您提交支付后，可在 个人中心>我的订单> 查询订单信息。一般订单处理流程有： 支付成功>海外商品直采>等待商户发货>报关登记>海关核查>国内发货。</p>
+              <p>答:在您提交支付后，可在首页>我的订单里查询订单信息。一般订单处理流程有:提交订单>付款成功>商品出库> 物流配送>确认签收。</p>
             </div>
             <div class="tip-c2 fr">
               <h3>03.为什么要上传身份信息？</h3>
-              <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能被扣管处理，大大延误收费周期，故请提供与收货人相同的身份信息。</p>
+              <p>答:根据法律法规规定，海外商品需登记报关。海关需要核对收货人姓名与身份证是否匹配，如不匹配可能影响正常流程，延长收货时间。故请提供与收货人相同的身份信息。</p>
               <h3>04.看到心仪的宝贝，我该如何下单购买？</h3>
-              <p>答：使用支付宝支付即可将您心仪宝贝纳为己有，且费用透明，包含税费。海外商品由于国外政策限制，暂无法提供发票。</p>
+              <p>答：您可使用支付宝、微信支付、和财付通完成购买。商品性价比更高且包邮含税。海外商品由于国外政策限制，暂无法提供发票。</p>
             </div>
           </div>
         </div>
@@ -169,14 +171,14 @@
   <!--尾部-->
 </body>
 
-<!-- build:js(.) require -->
+<!-- build:js(.) scripts/require.min.js -->
 <script src="bower_components/requirejs/require.js"></script>
 <!-- endbuild -->
-<!-- build:js(.) base-->
-<script src="scripts/base/sf.web.base.ver.1.0.build.1421502116857.js"></script>
+<!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+<script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
 <!-- endbuild -->
 
-<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.detail -->
+<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.detail.js -->
 <script src="scripts/sf.b2c.mall.require.config.js"></script>
 <script type="text/javascript">
 require(['sf.b2c.mall.page.detail']);

@@ -18,7 +18,7 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
     helpers: {
       equal: function(index, current) {
         if (index() === current) {
-          return 'on';
+          return 'active';
         }
       }
     },

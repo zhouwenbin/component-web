@@ -4,12 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.list -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.list.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/orderlist.css" rel="stylesheet" type="text/css" />
 <link href="css/register.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
 </head>
 <body>
 <div id="orderList">
@@ -28,7 +30,7 @@
           <!--订单列表-->
 
           <!-- 分页 -->
-          <!-- <div class="sf-b2c-mall-order-orderlist-pagination"></div> -->
+          <div class="sf-b2c-mall-order-orderlist-pagination"></div>
           <!-- 分页 -->
       </div>
 
@@ -40,13 +42,13 @@
   <!--尾部-->
 </div>
 
-  <!-- build:js(.) require -->
+  <!-- build:js(.) scripts/require.min.js -->
   <script src="bower_components/requirejs/require.js"></script>
   <!-- endbuild -->
-  <!-- build:js(.) base-->
-  <script src="scripts/base/sf.web.base.ver.1.0.build.1421502116857.js"></script>
+  <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+  <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
   <!-- endbuild -->
-  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.order.list -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.order.list.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
   <script type="text/javascript">
     require(['sf.b2c.mall.page.orderlist']);

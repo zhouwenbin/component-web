@@ -11,17 +11,19 @@
     zip -r dist.zip ./*
     ```
 
-3、文件上传。文件上传到lichunmin用户
+3、文件上传。文件上传到jiyanliang用户(密码：jiyanliang2)
 
     ```
-    scp dist.zip lichunmin@115.28.145.123:/home/lichunmin/jiyanliang
+    scp dist.zip jiyanliang@115.28.235.112:/home/jiyanliang
     ```
 
-4、文件拷贝。使用lichunmin用户登录开发环境115.28.145.123，执行如下命令
+4、文件拷贝。使用jiyanliang用户登录开发环境115.28.235.112，执行如下命令
 
     ```
-    ssh lichunmin@115.28.145.123
-    cd jiyanliang
+    ssh jiyanliang@115.28.235.112
+    scp dist.zip jiyanliang@10.144.128.222:/home/jiyanliang
+
+    ssh jiyanliang@10.144.128.222
     sudo cp dist.zip /home/admin/statics
     ```
 
@@ -30,7 +32,8 @@
     ```
     sudo su admin
     cd
-    cd statics
+    cd static
     unzip -o -d /home/admin/statics dist.zip
     ```
 
+--------------

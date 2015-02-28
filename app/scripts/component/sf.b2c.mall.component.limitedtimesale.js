@@ -149,7 +149,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
             var info = priceMap[$(priceNode).attr('data-itemid')];
             $(priceNode).html(template(info));
             if (info && info.soldOut) {
-              $(priceNode).parent().find('.product-r1').append('<span class="icon icon24">售完</span>')
+              $(priceNode).parent().find('.product-r1').append('<div class="mask"></div><span class="icon icon24">售完</span>')
             };
           }
         })
@@ -192,7 +192,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
 
       priceTemplate: function() {
         return '<div class="product-r3c1 fl">' +
-          '<strong>￥{{sellingPrice}}</strong>' +
+          '<strong><span>￥</span>{{sellingPrice}}</strong>' +
           '<del>￥{{originPrice}}</del>' +
           '</div>' +
           '<div class="product-r3c2 fr">' +

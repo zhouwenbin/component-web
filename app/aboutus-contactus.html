@@ -4,12 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>关于我们</title>
-<!-- build:css({app, .tmp}) styles/sf.b2c.mall.common -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.common.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/helpcenter.css" rel="stylesheet" type="text/css" />
 <link href="css/register.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
+
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
+
 </head>
 <body>
   <!--头部-->
@@ -40,7 +44,7 @@
           <p>邮箱服务：sfht_service@sf-express.com<p/>
 
           <p class="p1">服务时间：周一至周日 8:00-22:00（节假日除外）<p/>
-          
+
           <p class="p1">成为供应商：sfht_supplier@sf-express.com<br />
           发送电子邮件至以上邮箱，请注明联系方式、公司名称并附上公司(品牌)的详细介绍，我们会尽快与您联系！</p>
 
@@ -60,13 +64,13 @@
     <div class="sf-b2c-mall-footer"></div>
   </div>
   <!--尾部-->
-  <!-- build:js(.) require -->
+  <!-- build:js(.) scripts/require.min.js -->
   <script src="bower_components/requirejs/require.js"></script>
   <!-- endbuild -->
-  <!-- build:js(.) base-->
-  <script src="scripts/base/sf.web.base.ver.1.0.build.1421502116857.js"></script>
+  <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+  <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
   <!-- endbuild -->
-  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.common -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.common.js -->
   <script src="scripts/sf.b2c.mall.require.config.js"></script>
   <script type="text/javascript">
   require(['sf.b2c.mall.page.common']);

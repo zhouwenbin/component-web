@@ -1,0 +1,234 @@
+@font-face {
+font-family: 'times';
+src: url('../font/times-webfont.eot'); /* IE9 Compat Modes */
+src: url('../font/times-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+     url('../font/times-webfont.woff') format('woff'), /* Modern Browsers */
+     url('../font/times-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+     url('../font/times-webfont.svg#times-webfont') format('svg'); /* Legacy iOS */
+}
+
+body{
+  background: #f3f4f4;
+}
+
+/*product*/
+.product{
+  background: #eeede9;
+  position: relative;
+}
+.product-r1{
+  height:327px;
+  text-align: center;
+  margin-bottom: 14px;
+  background: #fff;
+  position: relative;
+}
+.product-r1 a{
+  display: inline-block;
+  vertical-align: middle;
+}
+.product-r1 span{
+  width:0;
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+  overflow: hidden;
+}
+.product h3{
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  margin-bottom: 4px;
+}
+.product p{
+  color: #a1a09d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.produce-c1{
+  overflow: hidden;
+}
+.product-r2c1{
+  color: #dc3834;
+  font-size: 15px;
+  margin-right: 10px;
+}
+.product-r2c1 b{
+  font-size: 18px;
+}
+.product-r2c1 strong{
+  font-size: 30px;
+  font-family: times;
+  letter-spacing: -1px;
+}
+.product-r2c2{
+  color: #adadad;
+}
+.product-btn{
+
+}
+.product .mask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0.55;
+  filter:alpha(opacity=55);
+}
+.product .mask-live{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0.55;
+  filter:alpha(opacity=55);
+}
+.product .icon-sold{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -90px;
+  margin-top: -90px;
+}
+.product:hover{
+  /*background: #44433e;*/
+  background: #dc3834
+}
+.product:hover h3 a{
+  color: #fff;
+}
+.product:hover p{
+  color: #fff;
+}
+.product:hover strong{
+  color: #fff;
+}
+.product:hover b{
+  color: #fff;
+}
+.product:hover .btn1{
+  background: #fff;
+  color: #dc3834;
+}
+.product:hover .product-r2c2{
+  color: #fff;
+}
+.banner a{
+  background: url(http://img.sfht.com/sfht/campaign/img/banner.jpg) no-repeat center;
+  height: 500px;
+  display: block;
+}
+.banner2 a, .banner2 div{
+  display: block;
+  background-repeat:no-repeat;
+  background-position:center;
+  height: 138px;
+  margin-bottom: 45px;
+}
+.m1{
+  box-shadow: 0px -5px 2px #f7f7f7;
+  width: 1183px;
+  margin:0 auto;
+  position: relative;
+}
+.m1 .mh{
+  background-repeat: no-repeat;
+  background-position:center;
+  height: 440px;
+  padding-left: 402px;
+  margin-bottom: 6px;
+}
+.m1 h2{
+  font-size: 18px;
+  padding-top: 247px;
+  margin-bottom: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 15em;
+}
+.m1 .mr1{
+  margin-bottom: 13px;
+}
+.m1 .mr1 .mc1{
+  color: #dd3e3f;
+  font-size: 24px;
+}
+.m1 .mr1 .mc1 strong{
+  font-size: 38px;
+  font-family: times;
+  margin-right: 30px;
+
+}
+.m1 .mr1 .mc2{
+  font-size: 14px;
+  color: #adadad;
+}
+
+.m1 ul{
+  margin-left: -23px;
+}
+.m1 li{
+  float: left;
+  margin-left: 23px;
+  width: 368px;
+  padding:5px;
+  margin-bottom: 26px;
+}
+.m1 .mh .icon-sold{
+  position: absolute;
+  right: 510px;
+}
+.product-selling-price{
+  font-family: Times LT Std Semibold;
+}
+
+.btn1{
+  display: inline-block;
+  line-height: 18px;
+  width: 2em;
+  background: #dc3834;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding:12px 15px;
+}
+.btn1:hover{
+  color: #fff;
+}
+.btn2{
+  display: inline-block;
+  height: 43px;
+  line-height: 20px;
+  width: 63px;
+  background: #44433e;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 0px;
+}
+.btn2:hover{
+  color: #fff;
+}
+.icon-sold{
+  width: 180px;
+  height: 180px;
+  background: url(http://img.sfht.com/sfht/campaign/img/icon-sold.png) no-repeat;
+}
+.btn1-1{
+  line-height: 18px;
+  padding-top: 13px;
+  height: 50px;
+}
+
+a[title="站长统计"]{
+  display: none;
+}
