@@ -404,6 +404,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       statusDescription: {
+        'ORDER_EDIT':'您的收货信息已成功修改，正在等待顺丰审核',
         'SUBMITED': '您的订单已提交，请尽快完成支付',
         'AUTO_CANCEL': '超时未支付，订单自动取消',
         'USER_CANCEL': '用户取消订单成功',
