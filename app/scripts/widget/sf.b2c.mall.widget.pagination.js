@@ -20,6 +20,18 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
         if (index() === current) {
           return 'active';
         }
+      },
+
+      nextequal: function(current, all) {
+        if (current() === all()) {
+          return 'disable';
+        }
+      },
+
+      preequal: function(current) {
+        if (current() < 2) {
+          return 'disable';
+        }
       }
     },
 
@@ -57,7 +69,9 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
       } else if (document.body) {
         document.body.scrollTop = 0;
       }
-      var page = this.options.page.current - 1;
+
+      var routeParams = can.route.attr();
+      var page = parseInt(routeParams.page, 10) - 1;
       this.jump(page);
     },
 
@@ -68,7 +82,9 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
       } else if (document.body) {
         document.body.scrollTop = 0;
       }
-      var page = this.options.page.current + 1;
+
+      var routeParams = can.route.attr();
+      var page = parseInt(routeParams.page, 10) + 1;
       this.jump(page);
     },
 
