@@ -82,7 +82,7 @@ define('sf.b2c.mall.component.freshfood', [
                       priceItem.discount = (priceItem.sellingPrice * 10 / priceItem.originPrice).toFixed(1);
                       $(priceNode).html(template(priceItem));
                       if (priceItem.soldOut) {
-                        $(priceNode).parent().find("div.product-r1").append('<span class="icon icon24">售完</span>');
+                        $(priceNode).parent().find("div.product-r1").append('<div class="mask"></div><span class="icon icon24">售完</span>');
                       }
                     }
                   });
