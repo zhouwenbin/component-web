@@ -384,7 +384,7 @@ define(
                         store.set('cityId',cityId);
                         store.set('regionId',regionId);
                       }
-                      
+
                     }
                   }).fail(function(){
 
@@ -408,6 +408,7 @@ define(
 
       '#input-mail focus': function ($element, event) {
         this.element.find('#input-mail-error').hide();
+        this.element.find('#mail-register-error').hide();
       },
 
       '#input-mail blur': function ($element, event) {
