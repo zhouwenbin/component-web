@@ -1294,6 +1294,10 @@ body.sub{
 .page a.active{
 	border: 1px solid #D5D5D5;
 }
+.page a.disable{
+	opacity: 0.3;
+	cursor: not-allowed;
+}
 .page .icon{
 	margin-top:7px;
 }
