@@ -206,7 +206,7 @@ define('sf.b2c.mall.order.iteminfo', [
         return false;
       }
       var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.options.saleid);
-      if (!verifYVendorResult.result) {
+      if (verifYVendorResult && !verifYVendorResult.result) {
         new SFMessage(null, {
           'tip': verifYVendorResult.message,
           'type': 'error'
