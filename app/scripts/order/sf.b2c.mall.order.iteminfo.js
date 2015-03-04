@@ -179,20 +179,26 @@ define('sf.b2c.mall.order.iteminfo', [
       }
 
       //进行校验，不通过则把提交订单点亮
-      if (typeof selectPer == 'undefined' || selectPer === false) {
-
+      if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
-          'tip': '请选择收货人！',
+          'tip': '请选择收货地址！',
+          'type': 'error'
+        });
+
+        element.removeClass("disable");
+        return false;
+      } else if (/[嘿客,门店]/.test(selectAddr.detail)) {
+        new SFMessage(null, {
+          'tip': "根据中国海关针对个人物品进境购物限制要求,<br />请使用家庭地址做为个人收货地址",
           'type': 'error'
         });
 
         element.removeClass("disable");
         return false;
       }
-      if (typeof selectAddr == 'undefined' || selectAddr == false) {
-
+      if (typeof selectPer == 'undefined' || selectPer === false) {
         new SFMessage(null, {
-          'tip': '请选择收货地址！',
+          'tip': '请选择收货人！',
           'type': 'error'
         });
 
