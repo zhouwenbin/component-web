@@ -382,9 +382,10 @@ define(
 
       '#input-mail focus': function ($element, event) {
         this.element.find('#input-mail-error').hide();
+        this.element.find('#mail-register-error:visible').hide();
       },
 
-      '#input-mail blur': function ($element, event) {
+    '#input-mail blur': function ($element, event) {
         var email = $element.val();
         this.checkEmail.call(this, email);
       },
