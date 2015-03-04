@@ -72,8 +72,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         this.options.userRoutes = new Array()
         this.options.mailNo = "";
 
-        can.when(getOrder.sendRequest(), getRecvInfo.sendRequest(), getUserRoutes.sendRequest())
-          .done(function(data, idcard, routesList) {
+        can.when(getOrder.sendRequest(), getRecvInfo.sendRequest())
+          .done(function(data, idcard) {
 
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
@@ -171,28 +171,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             })
 
-            //合并路由
-            if (routesList && routesList.value) {
-              _.each(_.filter(routesList.value, function(route) {
-                return typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF';
-              }), function(route, index) {
-                that.options.userRoutes.push({
-                  "gmtHappened": moment(route.eventTime).format('YYYY/MM/DD HH:mm:ss'),
-                  "description": (typeof route.position != 'undefined' ? route.position : "") + " " + route.remark,
-                  "operator": "系统"
-                });
-                if (index == 0) {
-                  that.options.mailNo = route.mailNo;
-                  if(typeof that.options.mailNo != "undefined" && that.options.mailNo !== ""){
-                    _.last(that.options.userRoutes).description += " ， 承运单号：" + that.options.mailNo;
-                  }else{
-                    _.last(that.options.userRoutes).description;
-                  }
-                  
-                }
-              })
-            }
-
             //增加剩下的
             _.each(that.options.traceList, function(trace) {
               if (trace.status == 'COMPLETED' || trace.status == 'AUTO_COMPLETED') {
@@ -242,6 +220,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
             that.element.html(html);
 
+            // var templates = can.view.mustache(that.showUserRoutesTemplates());
+            // $('#showUserRoutes').append(templates(that.options));
             if (that.options.IDCard.needUpload) {
               that.component.loading = new loading('.sf-b2c-mall-loading');
               that.setPhotoP();
@@ -263,8 +243,43 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 }))
               }
             }
+            
+          })
+          .then(function(){
+            // var def = can.Deferred();
+            // def.reject('-120');
+            // return def;
+             return getUserRoutes.sendRequest();       
+          })
+          .done(function(routesList){
+            if (routesList && routesList.value) {
+              _.each(_.filter(routesList.value, function(route) {
+                return typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF';
+              }), function(route, index) {
+                that.options.userRoutes.push({
+                  "gmtHappened": moment(route.eventTime).format('YYYY/MM/DD HH:mm:ss'),
+                  "description": (typeof route.position != 'undefined' ? route.position : "") + " " + route.remark,
+                  "operator": "系统"
+                });
+                if (index == 0) {
+                  that.options.mailNo = route.mailNo;
+                  if(typeof that.options.mailNo != "undefined" && that.options.mailNo !== ""){
+                    _.last(that.options.userRoutes).description += " ， 承运单号：" + that.options.mailNo;
+                  }else{
+                    _.last(that.options.userRoutes).description;
+                  }
+                  
+                }
+              })
+            }
+
+            var templates = can.view.mustache(that.showUserRoutesTemplates());
+            $('#showUserRoutes').append(templates(that.options));
+
           })
           .fail(function(error) {
+            var templates = can.view.mustache(that.showUserRoutesTemplates());
+            $('#showUserRoutes').append(templates(that.options));
             console.error(error);
           })
       },
@@ -280,7 +295,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         1: "<span class='label label-error'>尊敬的客户，您上传的身份证照片正在审核中，请耐心等待。</span>",
         3: "<span class='label label-error'>尊敬的客户，您上传的身份证照片审核不通过，请重新上传！为了您更快的收到商品，请尽快上传正确的身份证照片。</span>"
       },
-
+      showUserRoutesTemplates:function(){
+        return '{{#each userRoutes}}'+
+              '<li class="clearfix">'+
+              '<div class="table-c1 fl">{{gmtHappened}}</div>'+
+              '<div class="table-c2 fl">{{description}}</div>'+
+              '<div class="table-c3 fl">{{operator}}</div>'+
+              '</li>{{/each}}';
+      },
       getUserPhotoUrl: function(param) {
         var data = Utils.sign({
           level: 'USERLOGIN',
