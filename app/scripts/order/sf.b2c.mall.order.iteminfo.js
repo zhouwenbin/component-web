@@ -17,7 +17,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.widget.showArea'
 
 ], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
-  
+
   var AREAID;
 
   return can.Control.extend({
@@ -29,7 +29,7 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
-      
+
       this.component = {};
       var itemObj = {};
       $('#errorTips').hide();
@@ -50,9 +50,9 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
-          
+
           AREAID = iteminfo.areaId;
-          //AREAID = 1;      
+          //AREAID = 1;
 
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
@@ -85,7 +85,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
         })
         .then(function(){
-          if(AREAID != 0 ){             
+          if(AREAID != 0 ){
               var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
               if(selectAddr != false){
                 var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
@@ -97,12 +97,12 @@ define('sf.b2c.mall.order.iteminfo', [
                   cityId:cityId,
                   districtId:regionId
                 });
-              }              
+              }
             }
-            
+
             return that.component.checkLogistics.sendRequest();
           })
-        .done(function (data) { 
+        .done(function (data) {
           if(data){
             if(data.value == false){
               $('#errorTips').removeClass('visuallyhidden');
@@ -111,10 +111,10 @@ define('sf.b2c.mall.order.iteminfo', [
               $('#errorTips').addClass('visuallyhidden');
               $('#submitOrder').removeClass('disable');
             }
-          }                
+          }
         })
         .fail(function () {
-          
+
         })
     },
 
@@ -144,7 +144,7 @@ define('sf.b2c.mall.order.iteminfo', [
     '#submitOrder click': function(element, event) {
       var that = this;
 
-      //防止重复提交  
+      //防止重复提交
       if (element.hasClass("disable")){
         return false;
       }
@@ -171,13 +171,13 @@ define('sf.b2c.mall.order.iteminfo', [
                 $('#submitOrder').addClass('disable');
                 return false;
               }
-            }         
+            }
           })
           .fail(function(){
 
           })
       }
-      
+
       //进行校验，不通过则把提交订单点亮
       if (typeof selectPer == 'undefined' || selectPer === false) {
 
@@ -189,11 +189,20 @@ define('sf.b2c.mall.order.iteminfo', [
         element.removeClass("disable");
         return false;
       }
-
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
 
         new SFMessage(null, {
           'tip': '请选择收货地址！',
+          'type': 'error'
+        });
+
+        element.removeClass("disable");
+        return false;
+      }
+      var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.options.saleid);
+      if (!verifYVendorResult.result) {
+        new SFMessage(null, {
+          'tip': verifYVendorResult.message,
           'type': 'error'
         });
 
@@ -238,7 +247,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.options.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
           }
-          
+
         })
         .fail(function(error) {
           element.removeClass("disable");

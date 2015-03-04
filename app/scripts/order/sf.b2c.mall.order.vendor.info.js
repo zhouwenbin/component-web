@@ -52,9 +52,30 @@ define(
           }
         }
       },
-
+      verifYVendorMap: {
+        'heike_online': function () {
+          var params = can.deparam(window.location.search.substr(1));
+          if (params.orgCode) {
+            if (!$.trim(this.data.sellerid)) {
+              return { result: false, message: "请填写您的正确工号,否则将影响业绩结算"};
+            } else if (!$.trim(this.data.sellername)) {
+              return { result: false, message: "请填写店员姓名，否则将影响业绩结算"};
+            } else {
+              return {result: true, message: null}
+            }
+          }else{
+            return {result: true, message: null}
+          }
+        }
+      },
       getVendorInfo:function (tag) {
         var fn = this.vendorInfoMap[tag];
+        if (_.isFunction(fn)) {
+          return fn.call(this)
+        }
+      },
+      verifYVendor: function(tag) {
+        var fn = this.verifYVendorMap[tag];
         if (_.isFunction(fn)) {
           return fn.call(this)
         }
