@@ -84,9 +84,7 @@
 	display: none;
 	line-height: 1.5;
 }
-.order-r1c1{
-	width: 900px;
-}
+
 .order-r1c1c1{
 	overflow: hidden;
 }
@@ -115,6 +113,7 @@
 .order-edit,
 .order-del{
 	margin-right: 87px;
+	margin-left: 70px;
 	color: #949494;
 	text-decoration: underline;
 
@@ -156,6 +155,29 @@
 }
 .order-b.active .icon30{
 	background-position: -128px -74px;
+}
+.order-r1c1 {
+	padding-top: 36px;
+}
+.order-r1c2{
+	padding-top: 36px;
+}
+.order-r1c2 .btn{
+	height: 28px;
+	line-height: 28px;
+	padding: 0 16px;
+}
+.order-r1c2 .text-error{
+	padding: 0 16px;
+}
+.order-r1c3{
+	overflow: hidden;
+}
+.order-r1c3 li{
+	line-height: 32px;
+}
+.order-r1c3 span{
+	margin-right: 20px;
 }
 .order-r2{
 	padding-left: 58px;
@@ -200,6 +222,8 @@
 }
 .order-r2r3 .btn{
 	padding: 0 71px;
+	height: 34px;
+	line-height: 34px;
 }
 .order-r2 .icon26{
 	margin-left: 15px;
@@ -257,18 +281,7 @@
 .order-b-1 .icon29{
 	cursor: inherit;
 }
-.order-r1c1c1{
-	width: 11em;
-}
-.order-r1c1c2{
-	width: 26em;
-}
-.order-r1c1c3{
-	width: 7em;
-}
-.order-r1c1c4{
-	width: 3em;
-}
+
 .order-name{
 	display: inline-block;
 	width: 3em;
@@ -277,4 +290,8 @@
 .order-r3 p{
 	margin:-20px 0 20px;
 	color: #999;
+}
+.order .tooptip-success{
+	position: absolute;
+	margin-top: -51px;
 }
