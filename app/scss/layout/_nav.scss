@@ -1,0 +1,76 @@
+/*导航*/
+.nav{
+	background: url(../img/nav.png) repeat-x;
+	height: 60px;
+	line-height: 60px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1;
+}
+.nav .li1{
+	float: left;
+	font-size: 16px;
+
+}
+.nav-c1{
+	border-left: 1px solid #2A2D36;
+}
+.nav-c1 .icon49{
+	position: absolute;
+	right: 30px;
+	top: 10px;
+}
+
+.nav-c1 .li1{
+	border-right: 1px solid #2A2D36;
+	position: relative;
+
+}
+.nav-c1 .li1 a{
+	padding: 0 40px;
+}
+.nav-c2{
+	border-right: 1px solid #2A2D36;
+}
+.nav-c2 .li1{
+	border-left: 1px solid #2A2D36;
+}
+.nav-c2 .li1:first-child{
+	border-left: none;
+}
+.nav li a{
+	color: #C5C7C9;
+	display: block;
+	padding: 0 27px;
+}
+.nav li a:hover{
+	color: #fff;
+	background: #4C515B;
+}
+.nav .li1 ul{
+	position: absolute;
+	display: none;
+	background: #333a40;
+}
+.nav .li1:hover ul{
+	display: block;
+}
+.nav-c2 .icon{
+	margin-left: 9px;
+	vertical-align: -10px;
+	*vertical-align: -5px;
+}
+.nav-c2 .li2 a{
+	padding-left: 29px;
+	padding-right: 0;
+	width: 153px;
+	background: #434852;
+	font-size:14px;
+	height: 50px;
+	line-height: 50px;
+}
+.nav-info{
+	color: #C5C7C9;
+	margin-right: 27px;
+}

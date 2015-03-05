@@ -1,0 +1,26 @@
+/*label*/
+ .label-error,
+ .label-success,
+ .label-waining,
+ .label-disabled {
+ 	height: 21px;
+	line-height: 21px;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 0 15px;
+	display: inline-block;
+	vertical-align: middle;
+ }
+ .label-error{
+ 	background: #eb6877;
+ }
+ .label-success{
+ 	background: #67b222;
+ }
+ .label-waining{
+ 	background: #a1d0ed;
+ }
+ .label-disabled{
+ 	background: #ccc;
+ }

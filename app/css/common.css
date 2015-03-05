@@ -44,9 +44,9 @@ img{vertical-align: middle;}
 .icon{
 	display: inline-block;
 	vertical-align: middle;
-	background: url(http://img.sfht.com/sfht/img/icon.png?v=2015021201) no-repeat;
-	background-image: -webkit-image-set(url(http://img.sfht.com/sfht/img/icon.png?v=2015021201) 1x,
-               url(http://img.sfht.com/sfht/img/icon@x2.png?v=2015021201) 2x);
+	background: url(../img/icon.png) no-repeat;
+	background-image: -webkit-image-set(url(../img/icon.png) 1x,
+               url(../img/icon@x2.png) 2x);
 }
 .icon1{
 	width: 51px;
@@ -440,6 +440,16 @@ img{vertical-align: middle;}
 	background-position: -508px -476px;
 	text-indent: -999em;
 }
+.icon51{
+	width: 56px;
+	padding-right: 38px;
+	height: 43px;
+	line-height: 43px;
+	background-position: -147px -150px;
+	font-size: 28px;
+	font-family: arial;
+	text-align: right;
+}
 /*btn*/
 .btn{
 	display: inline-block;
@@ -749,7 +759,7 @@ button.btn{
 	color: #67b222;
 }
 .text-error{
-	color: #eb6877;
+	color: #dc3334;
 }
 .text-waining{
 	color: #a1d0ed;
@@ -1144,10 +1154,19 @@ body.sub{
 	margin-bottom: 33px;
 }
 .table-f{
-	padding:0 45px 28px 0;
+	padding:0 45px 28px 26px;
+	
+}
+.table-fc1{
+	line-height: 30px;
+}
+.table-fc1 strong{
+	color: #dc3334;
+}
+.table-fc2{
 	text-align: right;
 }
-.table-f strong{
+.table-fc2 strong{
 	font-size: 20px;
 	color: #dd3e3f;
 }

@@ -15,15 +15,12 @@
 	width: 372px;
 	font-size: 14px;
 }
-.step li:first-child .line{
-  display: none;
-}
 .step .line{
 	width: 331px;
 	height: 4px;
 	background: #ccc;
 	position: absolute;
-	right: 209px;
+	left: 209px;
 	top: 7px;
 }
 .step .icon31{
@@ -35,9 +32,6 @@
 }
 .step .active .icon{
 	background-position: -105px -112px;
-}
-.step .active .line{
-  background: #67b222;
 }
 .step .icon28{
 	position: absolute;
@@ -84,7 +78,9 @@
 	display: none;
 	line-height: 1.5;
 }
-
+.order-r1c1{
+	width: 900px;
+}
 .order-r1c1c1{
 	overflow: hidden;
 }
@@ -113,7 +109,6 @@
 .order-edit,
 .order-del{
 	margin-right: 87px;
-	margin-left: 70px;
 	color: #949494;
 	text-decoration: underline;
 
@@ -155,29 +150,6 @@
 }
 .order-b.active .icon30{
 	background-position: -128px -74px;
-}
-.order-r1c1 {
-	padding-top: 36px;
-}
-.order-r1c2{
-	padding-top: 36px;
-}
-.order-r1c2 .btn{
-	height: 28px;
-	line-height: 28px;
-	padding: 0 16px;
-}
-.order-r1c2 .text-error{
-	padding: 0 16px;
-}
-.order-r1c3{
-	overflow: hidden;
-}
-.order-r1c3 li{
-	line-height: 32px;
-}
-.order-r1c3 span{
-	margin-right: 20px;
 }
 .order-r2{
 	padding-left: 58px;
@@ -222,15 +194,13 @@
 }
 .order-r2r3 .btn{
 	padding: 0 71px;
-	height: 34px;
-	line-height: 34px;
 }
 .order-r2 .icon26{
 	margin-left: 15px;
 	display: none;
 }
 .order-r2 .btn-select{
-	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
+	background: url(../img/btn-select1.png) repeat-x;
 }
 .order-r2 .btn-select-num{
 	height: 39px;
@@ -281,7 +251,18 @@
 .order-b-1 .icon29{
 	cursor: inherit;
 }
-
+.order-r1c1c1{
+	width: 11em;
+}
+.order-r1c1c2{
+	width: 26em;
+}
+.order-r1c1c3{
+	width: 7em;
+}
+.order-r1c1c4{
+	width: 3em;
+}
 .order-name{
 	display: inline-block;
 	width: 3em;
@@ -290,28 +271,4 @@
 .order-r3 p{
 	margin:-20px 0 20px;
 	color: #999;
-}
-.order .tooptip-success{
-	position: absolute;
-	margin-top: -51px;
-}
-
-.coupon{
-	background: url(../img/coupon.png) no-repeat;
-	height: 105px;
-	width: 399px;
-	margin: 0 auto;
-	font-size: 14px;
-	padding: 20px 100px;
-	text-align: center;
-}
-.coupon strong{
-	color: #dc3334;
-	font-weight: normal;
-}
-.coupon-r1{
-	margin-bottom: 14px;
-}
-.coupon-r2{
-	margin-bottom: 12px;
 }
