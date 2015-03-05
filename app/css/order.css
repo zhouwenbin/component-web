@@ -112,8 +112,7 @@
 }
 .order-edit,
 .order-del{
-	margin-right: 87px;
-	margin-left: 70px;
+	margin-left: 42px;
 	color: #949494;
 	text-decoration: underline;
 
@@ -314,4 +313,8 @@
 }
 .coupon-r2{
 	margin-bottom: 12px;
+}
+.text-error{
+	padding-left: 143px;
+	padding-top: 13px;
 }
