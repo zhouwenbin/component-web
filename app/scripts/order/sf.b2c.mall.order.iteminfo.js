@@ -284,6 +284,30 @@ define('sf.b2c.mall.order.iteminfo', [
             'type': 'error'
           });
         });
+    },
+
+    //优惠券功能交互
+    '.mycoupon-h li click': function(targetElement){
+      var index = $('.mycoupon-h li').index(targetElement);
+      $('.mycoupon-h li').removeClass('active');
+      $(targetElement).addClass('active');
+      $('.coupon2-b').removeClass('active');
+      $('.coupon2-b').eq(index).addClass('active');
+      return false;
+    },
+    '.coupon2-btn click': function(targetElement){
+      $('.js-coupon').toggleClass("hide");
+      if($('.js-coupon').hasClass('hide')){
+        $(targetElement).text('+');
+      }else{
+        $(targetElement).text('-');
+      }
+      return false;
+    },
+    '.coupon2 .radio click': function(targetElement){
+      $('.coupon2 .radio').removeClass('active');
+      $(targetElement).addClass('active');
+      return false;
     }
   });
 })
