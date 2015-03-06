@@ -15,7 +15,6 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.b2cmall.checkLogistics',
   'sf.b2c.mall.widget.showArea'
-
 ], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
 
   var AREAID;
@@ -305,9 +304,17 @@ define('sf.b2c.mall.order.iteminfo', [
       return false;
     },
     '.coupon2 .radio click': function(targetElement){
-      $('.coupon2 .radio').removeClass('active');
-      $(targetElement).addClass('active');
+      if ($(targetElement).hasClass("active")) {
+        $(targetElement).removeClass('active');
+      } else {
+        $('.coupon2 .radio.active').removeClass('active');
+        $(targetElement).addClass('active');
+      }
+
       return false;
+    },
+    '#inputCouponCode click': function(targetElement) {
+      $(".coupon2-r2.hide").show();
     }
   });
 })
