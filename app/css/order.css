@@ -294,27 +294,13 @@
 	position: absolute;
 	margin-top: -51px;
 }
+.order select{
+	height: 39px;
+	line-height: 39px;
+}
 
-.coupon{
-	background: url(../img/coupon.png) no-repeat;
-	height: 105px;
-	width: 399px;
-	margin: 0 auto;
-	font-size: 14px;
-	padding: 20px 100px;
-	text-align: center;
-}
-.coupon strong{
-	color: #dc3334;
-	font-weight: normal;
-}
-.coupon-r1{
-	margin-bottom: 14px;
-}
-.coupon-r2{
-	margin-bottom: 12px;
-}
-.text-error{
+
+.order .text-error{
 	padding-left: 143px;
 	padding-top: 13px;
 }

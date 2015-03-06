@@ -83,7 +83,7 @@ define(
                   '<div class="order verification-failure">'+
                     '<h1>{{errorText}}</h1>'+
                     '<div class="verification-failure-r1">您可以：<a href="index.html#!&=login" class="btn btn-send">立即登录</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
-                    '<span class="icon icon28"></span>'+
+                    ''+
                   '</div>'+
                 '</div>'+
               '</div>'
@@ -96,7 +96,7 @@ define(
                         '<h1>{{errorText}}</h1>'+
                         '<div class="verification-failure-r1">您可以：<a href="#" class="btn btn-send" id="resend">重新发送</a><a href="index.html" class="btn btn-add">返回首页</a></div>'+
                         '{{#msg}}<div class="verification-failure-r2"><span class="icon {{msgType}}">{{msg}}</span></div>{{/msg}}'+
-                        '<span class="icon icon28"></span>'+
+                        ''+
                       '</div>'+
                     '</div>'+
                   '</div>'

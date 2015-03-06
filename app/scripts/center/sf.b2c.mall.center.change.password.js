@@ -152,7 +152,7 @@ define(
               this.component.changePwd.setData(params);
               this.component.changePwd.sendRequest()
                 .done(function (data) {
-                    var html ='<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a><span class="icon icon28"></span></div>'
+                    var html ='<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a></div>'
                     $('.change-password-wrap').html(html);
                 })
                 .fail(function (error) {
