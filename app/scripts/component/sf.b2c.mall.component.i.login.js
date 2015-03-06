@@ -267,7 +267,8 @@ define(
       '.input-username blur': function (element, event) {
         event && event.preventDefault();
 
-        var username =this.data.attr('username');
+        // var username =this.data.attr('username');
+        var username = $(element).val();
 
         this.checkUserName.call(this,username);
         this.isNeedVerCode();
@@ -325,11 +326,11 @@ define(
                     var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
                     var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
                     var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
-                    
+
                     store.set('provinceId',provinceId);
                     store.set('cityId',cityId);
                     store.set('regionId',regionId);
-                  }      
+                  }
 
                   // deparam过程 -- 从url中获取需要请求的sku参数
                   var params = can.deparam(window.location.search.substr(1));
@@ -337,12 +338,12 @@ define(
                   window.location.href = params.from || 'index.html';
                   // }, 2000);
 
-                  
+
                 }
               }).fail(function(){
 
               })
-              
+
             }
           })
           .fail(function (error) {
