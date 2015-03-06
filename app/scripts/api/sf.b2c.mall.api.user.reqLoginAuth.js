@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.user.reqLoginAuth
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.user.reqLoginAuth',
 [
   'jquery',
   'can',
@@ -22,18 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.reqLoginAuth',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'partnerId': 'string',
+        'redirectUrl': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4100600': '请求参数有误'
       }
     }
   });

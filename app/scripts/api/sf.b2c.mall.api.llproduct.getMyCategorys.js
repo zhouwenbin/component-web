@@ -31,6 +31,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '7000001': '用户不存在或者认证失败'
       }
     }
   });

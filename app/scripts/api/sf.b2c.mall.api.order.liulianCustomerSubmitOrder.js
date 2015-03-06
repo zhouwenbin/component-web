@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.order.liulianCustomerSubmitOrder
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.order.liulianCustomerSubmitOrder',
 [
   'jquery',
   'can',
@@ -22,18 +22,26 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
+      METHOD_NAME: 'order.liulianCustomerSubmitOrder',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'addressId': 'json',
+        'items': 'json',
+        'sysType': 'string',
       },
       OPTIONAL: {
+        'userMsg': 'string',
+        'sysInfo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
         '4000100': 'order unkown error',
-        '4100600': '请求参数有误'
+        '4000200': '订单地址不存在',
+        '4000400': '订单商品信息改变',
+        '4000500': '订单商品库存不足',
+        '4000600': '订单商品超过限额',
+        '4000700': '订单商品金额改变'
       }
     }
   });

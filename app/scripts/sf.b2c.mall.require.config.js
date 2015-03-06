@@ -120,6 +120,7 @@ requirejs.config({
     'sf.b2c.mall.center.change.password': 'scripts/center/sf.b2c.mall.center.change.password',
     'sf.b2c.mall.center.receiveperson': 'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
+    'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',

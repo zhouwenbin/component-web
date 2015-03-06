@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.order.liulianCustomerGetCustomOrderList
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.order.liulianCustomerGetCustomOrderList',
 [
   'jquery',
   'can',
@@ -22,18 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
+      METHOD_NAME: 'order.liulianCustomerGetCustomOrderList',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'sysType': 'string',
+        'customerOrderStatus': 'string',
+        'pageNum': 'int',
+        'pageSize': 'int'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4100600': '请求参数有误'
+        '4000100': 'order unkown error'
       }
     }
   });

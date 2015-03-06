@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.order.getRecommendLineList
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.order.getRecommendLineList',
 [
   'jquery',
   'can',
@@ -22,18 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
+      METHOD_NAME: 'order.getRecommendLineList',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'wareHouserId': 'long',
+        'orderId': 'long'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4100600': '请求参数有误'
+        '4000100': 'order unkown error'
       }
     }
   });

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.order.liulianCustomerCancelOrder
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.order.liulianCustomerCancelOrder',
 [
   'jquery',
   'can',
@@ -22,10 +22,11 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
+      METHOD_NAME: 'order.liulianCustomerCancelOrder',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'orderId': 'string',
+        'reason': 'string'
       },
       OPTIONAL: {
       },
@@ -33,7 +34,7 @@ function($, can, _, Comm, SecurityType) {
       },
       ERROR_CODE: {
         '4000100': 'order unkown error',
-        '4100600': '请求参数有误'
+        '4000800': '订单状态不能取消'
       }
     }
   });

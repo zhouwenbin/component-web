@@ -77,6 +77,29 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
+            that.options.discount = data.discount || 0;
+            that.options.isCostCoupon = false;
+            that.options.isPresentCoupon = false;
+
+            //处理卡券信息
+            if (data.orderCouponItem && data.orderCouponItem.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderCouponItem[i]; i++) {
+                switch (tmpOrderCouponItem.orderAction)
+                {
+                  case "COST": {
+                    that.options.isCostCoupon = true;
+                    that.options.costCoupon = tmpOrderCouponItem;
+                    break;
+                  }
+                  case "PRESENT": {
+                    that.options.isPresentCoupon = true;
+                    that.options.presentCoupon = tmpOrderCouponItem;
+                    break;
+                  }
+                }
+              }
+            }
+
 
             //data.orderItem.orderStatus = "SHIPPED";
             //data.orderItem.rcvrState = 0
@@ -243,13 +266,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 }))
               }
             }
-            
+
           })
           .then(function(){
             // var def = can.Deferred();
             // def.reject('-120');
             // return def;
-             return getUserRoutes.sendRequest();       
+             return getUserRoutes.sendRequest();
           })
           .done(function(routesList){
             if (routesList && routesList.value) {
@@ -268,7 +291,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                   }else{
                     _.last(that.options.userRoutes).description;
                   }
-                  
+
                 }
               })
             }
