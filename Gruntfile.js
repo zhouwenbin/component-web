@@ -444,7 +444,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%=config.dist%>',
-            src: ['templates/**', '*.html', 'json/**'],
+            src: ['templates/**', '*.html', 'json/**', '*.ico'],
             dest: 'statics.web.<%=config.version%>'
           }
         ]
