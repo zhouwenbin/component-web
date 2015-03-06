@@ -449,6 +449,7 @@ img{vertical-align: middle;}
 	font-size: 28px;
 	font-family: arial;
 	text-align: right;
+	color: #dc3334;
 }
 /*btn*/
 .btn{
@@ -753,6 +754,8 @@ button.btn{
 	font-size: 14px;
 	color: #999;
 }
+
+.btn
 
 /*text*/
 .text-success{
@@ -1152,6 +1155,9 @@ body.sub{
 .table-fr2{
 	color: #949494;
 	margin-bottom: 33px;
+}
+.table-fr3{
+	margin-top: 30px;
 }
 .table-f{
 	padding:0 45px 28px 26px;
