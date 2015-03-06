@@ -1357,3 +1357,130 @@ a[title="站长统计"]{
 .hide{
 	display: none;
 }
+
+.loading{
+	width: 67px;
+	height: 81px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 999;
+	margin-left: -33px;
+	margin-top: -40px;
+	background: url(../img/loading.png) no-repeat;
+	background: url(../img/loading.gif) no-repeat\9;
+	background: url(../img/loading.gif) no-repeat\0;
+	-webkit-animation:loading 1s steps(1) infinite;
+	-moz-animation:loading 1s steps(1) infinite;
+	-ms-animation:loading 1s steps(1) infinite;
+	animation:loading 1s steps(1) infinite;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+   .loading{
+   	background: url(../img/loading.png) no-repeat;
+   }
+}
+@-webkit-keyframes loading{
+	12.5%{
+		background-position: -67px 0;
+	}
+	25%{
+		background-position: -134px 0;
+	}
+	37.5%{
+		background-position: -201px 0;
+	}
+	50%{
+		background-position: -268px 0;
+	}
+	67.5%{
+		background-position: -335px 0;
+	}
+	75%{
+		background-position: -402px 0;
+	}
+	87.5%{
+		background-position: -469px 0;
+	}
+	100%{
+		background-position: 0 0;
+	}
+}
+@-moz-keyframes loading{
+	12.5%{
+		background-position: -67px 0;
+	}
+	25%{
+		background-position: -134px 0;
+	}
+	37.5%{
+		background-position: -201px 0;
+	}
+	50%{
+		background-position: -268px 0;
+	}
+	67.5%{
+		background-position: -335px 0;
+	}
+	75%{
+		background-position: -402px 0;
+	}
+	87.5%{
+		background-position: -469px 0;
+	}
+	100%{
+		background-position: 0 0;
+	}
+}
+@-ms-keyframes loading{
+	12.5%{
+		background-position: -67px 0;
+	}
+	25%{
+		background-position: -134px 0;
+	}
+	37.5%{
+		background-position: -201px 0;
+	}
+	50%{
+		background-position: -268px 0;
+	}
+	67.5%{
+		background-position: -335px 0;
+	}
+	75%{
+		background-position: -402px 0;
+	}
+	87.5%{
+		background-position: -469px 0;
+	}
+	100%{
+		background-position: 0 0;
+	}
+}
+@keyframes loading{
+	12.5%{
+		background-position: -67px 0;
+	}
+	25%{
+		background-position: -134px 0;
+	}
+	37.5%{
+		background-position: -201px 0;
+	}
+	50%{
+		background-position: -268px 0;
+	}
+	67.5%{
+		background-position: -335px 0;
+	}
+	75%{
+		background-position: -402px 0;
+	}
+	87.5%{
+		background-position: -469px 0;
+	}
+	100%{
+		background-position: 0 0;
+	}
+}
