@@ -32,7 +32,7 @@
     ```
     sudo su admin
     cd
-    cd static
+    cd statics
     unzip -o -d /home/admin/statics dist.zip
     ```
 
