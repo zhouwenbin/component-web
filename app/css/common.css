@@ -1353,3 +1353,7 @@ a[title="站长统计"]{
 	height: 42px;
 	line-height: 42px;
 }
+
+.hide{
+	display: none;
+}
