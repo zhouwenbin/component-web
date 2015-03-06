@@ -135,6 +135,16 @@ define('sf.b2c.mall.component.header', ['jquery',
       }
     },
 
+    '#user-coupon click': function($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.coupon;
+      } else {
+        this.showLogin('coupon');
+      }
+    },
+
     /**
      * 登录状态下的退出
      * @param  {[type]} element

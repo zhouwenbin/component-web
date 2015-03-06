@@ -38,7 +38,8 @@ define([], function () {
     'register': 'http://'+main+'/register.html',
     'retrieve': 'http://'+main+'/retrieve.html',
     'ilogin': 'http://'+main+'/i.login.html',
-    'iregister': 'http://'+main+'/i.register.html'
+    'iregister': 'http://'+main+'/i.register.html',
+    'coupon': 'http://www.sfht.com/coupon.html'
   }
 
   return {

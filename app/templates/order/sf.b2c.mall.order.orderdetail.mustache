@@ -67,7 +67,7 @@
             </div>
           </div>
           <ul class="table-b" id="showUserRoutes">
-            
+
           </ul>
         </div>
         <h2>收货信息</h2>
@@ -175,6 +175,26 @@
             </div>
             <div class="table-fr2">开业全场免邮，飞机太多了，任性！</div>
             {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
+          </div>
+
+
+          <div class="table-f clearfix">
+            <ul class="table-fc1 fl">
+                <li>已参加活动：开业全场免邮，飞机太多了，任性！</li>
+                <li>已使用优惠券：满100减10 元        白色情人节感恩优惠券</li>
+                <li><strong>活动赠送优惠券：新年满10元减5元优惠券</strong></li>
+            </ul>
+            <div class="table-fc2 fr">
+                <ul class="table-fr1">
+                  <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
+                  <li>-优惠金额：￥0</li>
+                  {{#if showTax}}
+                    <li>+税额：￥0</li>
+                  {{/if}}
+                  <li>+运费：￥0</li>
+                </ul>
+              {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
+            </div>
           </div>
         </div>
       </div>

@@ -164,6 +164,7 @@ requirejs.config({
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
     'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
     'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
+    'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
