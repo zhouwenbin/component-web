@@ -139,7 +139,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         $('#editAdrArea').hide();
         $('#addAdrArea').hide();
 
-        var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
+        var editAdrArea = element.closest('ul').siblings("#editAdrArea");
         editAdrArea.show();
         this.component.addressEditor.show("editor", addr, $(editAdrArea));
         return false;
