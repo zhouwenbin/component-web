@@ -7,6 +7,7 @@ define('sf.b2c.mall.order.iteminfo', [
 //  'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
+  'sf.b2c.mall.api.order.queryOrderCoupon',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
   'sf.helpers',
@@ -15,12 +16,12 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.b2cmall.checkLogistics',
   'sf.b2c.mall.widget.showArea'
-], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
+], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
 
   var AREAID;
 
   return can.Control.extend({
-
+    itemObj: {},
     /**
      * 初始化
      * @param  {DOM} element 容器element
@@ -30,7 +31,6 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
 
       this.component = {};
-      var itemObj = {};
       $('#errorTips').hide();
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
@@ -43,12 +43,30 @@ define('sf.b2c.mall.order.iteminfo', [
       var prceInfo = new SFGetProductHotData({
         'itemId': this.options.itemid
       });
-      this.component.checkLogistics = new CheckLogistics();
+      var queryOrderCoupon = new SFQueryOrderCoupon({
+        'items': JSON.stringify([that.options.itemid]),
+        'system': "B2C"
+      });
 
+      this.component.checkLogistics = new CheckLogistics();
       this.component.showArea = new SFShowArea();
 
-      can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
-        .done(function(iteminfo, priceinfo) {
+      can.when(getItemSummary.sendRequest(), prceInfo.sendRequest(), queryOrderCoupon.sendRequest())
+        .done(function(iteminfo, priceinfo, orderCoupon) {
+          var itemObj = {};
+
+          itemObj.orderCoupon = orderCoupon;
+          itemObj.orderCoupon.isHaveAvaliable = orderCoupon.avaliableAmount != 0;
+          itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
+          itemObj.orderCoupon.useQuantity = 0;
+          itemObj.orderCoupon.discountPrice = 0;
+          itemObj.orderCoupon.avaliableCoupons = [{
+            couponCode: 1,
+            couponName: "感恩节优惠券",
+            price: 1000,
+            couponDescription: "满100减10",
+            endDate: "2014-1-1"
+          }];
 
           AREAID = iteminfo.areaId;
           //AREAID = 1;
@@ -79,9 +97,12 @@ define('sf.b2c.mall.order.iteminfo', [
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', itemObj);
+          that.itemObj = new can.Map(itemObj);
+          that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
+            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
+          });
+          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
-
         })
         .then(function(){
           if(AREAID != 0 ){
@@ -113,7 +134,6 @@ define('sf.b2c.mall.order.iteminfo', [
           }
         })
         .fail(function () {
-
         })
     },
 
@@ -306,9 +326,13 @@ define('sf.b2c.mall.order.iteminfo', [
     '.coupon2 .radio click': function(targetElement){
       if ($(targetElement).hasClass("active")) {
         $(targetElement).removeClass('active');
+        this.itemObj.attr("orderCoupon.useQuantity", 0);
+        this.itemObj.attr("orderCoupon.discountPrice", 0);
       } else {
         $('.coupon2 .radio.active').removeClass('active');
         $(targetElement).addClass('active');
+        this.itemObj.attr("orderCoupon.useQuantity", 1);
+        this.itemObj.attr("orderCoupon.discountPrice", targetElement.data("price"));
       }
 
       return false;

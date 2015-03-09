@@ -53,35 +53,41 @@
             <h3><a href="#" class="coupon2-btn">-</a>使用优惠券抵消部分订单总额</h3>
             <div class="js-coupon">
               <ul class="mycoupon-h clearfix">
-                <li class="active"><a href="">可用优惠券(5)</a></li>
-                <li><a href="">不可用优惠券(2)</a></li>
+                <li class="active"><a href="">可用优惠券({{orderCoupon.avaliableAmount}})</a></li>
+                <li><a href="">不可用优惠券({{orderCoupon.disableAmount}})</a></li>
               </ul>
               <div class="coupon2-b active">
                 <div class="coupon2-b1">
-                    <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
-                    <!--
+                  {{^orderCoupon.isHaveAvaliable}}
                     <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
-                    -->
+                  {{/orderCoupon.isHaveAvaliable}}
+                  {{#orderCoupon.isHaveAvaliable}}
+                    <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
                     <h4>代金券</h4>
                     <ul>
-                        <li><a href="#" class="icon radio active"></a><strong>满100减10元</strong><span>白色情人节感恩优惠券</span>有效期至2015-04-10</li>
-                        <li><a href="#" class="icon radio"></a><strong>满100减10元</strong><span>白色情人节感恩优惠券</span>有效期至2015-04-10</li>
+                    {{#each orderCoupon.avaliableCoupons}}
+                        <li data-code="{{couponCode}}"><a href="#" class="icon radio" data-price="{{price}}"></a><strong>{{couponDescription}}</strong><span>{{couponName}}</span>有效期至{{endDate}}</li>
+                    {{/each}}
                     </ul>
+                  {{/orderCoupon.isHaveAvaliable}}
                 </div>
                 <div class="coupon2-b1">
                     <div class="coupon2-r1">有优惠券兑换码？<label for="conpon" class="coupon2-link" id="inputCouponCode">[点击输入兑换码]</label></div>
                     <div class="coupon2-r2 hide"><input id="conpon" type="text" class="input" placeholder="输入您的兑换码"><a href="#" class="btn btn-send">使用</a></div>
                 </div>
-                <div class="coupon2-r3">共使用了<strong>1</strong>张优惠券，可以优惠<strong>10.00元</strong></div>
+                <div class="coupon2-r3">共使用了<strong>{{orderCoupon.useQuantity}}</strong>张优惠券，可以优惠<strong>{{sf.price orderCoupon.discountPrice}}元</strong></div>
               </div>
               <div class="coupon2-b">
                 <div class="coupon2-b1 coupon2-b1-1">
                     <p class="coupon2-p2">此处仅展示不符合本次订单商品使用的优惠券。<a class="coupon2-link" href="">[优惠券使用规则]</a></p>
+                    {{#orderCoupon.isHaveDisable}}
                     <h4>代金券</h4>
                     <ul>
-                        <li><span>满100减10元</span><span>白色情人节感恩优惠券</span><span>有效期至2015-04-10</span><strong>本优惠券仅可使用食品品类</strong></li>
-                        <li><span>满100减10元</span><span>白色情人节感恩优惠券</span><span>有效期至2015-04-10</span><strong>本优惠券仅可使用食品品类</strong></li>
+                      {{#each orderCoupon.avaliableCoupons}}
+                        <li><span>{{couponDescription}}</span><span>{{couponName}}</span><span>有效期至{{endDate}}</span><strong>{{desc}}</strong></li>
+                      {{/each}}
                     </ul>
+                    {{/orderCoupon.isHaveDisable}}
                 </div>
               </div>
             </div>
@@ -90,7 +96,7 @@
             <div class="table-fc2 fr">
                 <ul class="table-fr1">
                     <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
-                    <li>-优惠金额：￥0</li>
+                    <li>-优惠金额：￥{{sf.price orderCoupon.discountPrice}}</li>
                     {{#if showTax}}
                       <li>+税额：￥0</li>
                     {{/if}}

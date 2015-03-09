@@ -28,6 +28,7 @@ requirejs.config({
     'sf.b2c.mall.api.order.requestPayV2': 'scripts/api/sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.submitOrderForAllSys': 'scripts/api/sf.b2c.mall.api.order.submitOrderForAllSys',
     'sf.b2c.mall.api.order.getOrderConfirmInfo': 'scripts/api/sf.b2c.mall.api.order.getOrderConfirmInfo',
+    'sf.b2c.mall.api.order.queryOrderCoupon': 'scripts/api/sf.b2c.mall.api.order.queryOrderCoupon',
 
 
     'sf.b2c.mall.api.products.getSKUBaseList': 'scripts/api/sf.b2c.mall.api.product.getSKUBaseList',
