@@ -155,6 +155,16 @@ define('sf.b2c.mall.order.iteminfo', [
       return mapKey[saleid] || defaultKey;
     },
 
+    getCouponCodes: function() {
+      var selectedCoupon = $(".js-coupon .radio.active");
+      var codes = [];
+      for(var i = 0, tmpSelectedCoupon; tmpSelectedCoupon = selectedCoupon[i]; i++) {
+        tmpSelectedCoupon = $(tmpSelectedCoupon);
+        codes.push($(tmpSelectedCoupon).data("code"));
+      }
+      return JSON.stringify(codes);
+    },
+
     getSysInfo: function () {
       var mapKey = {
         'heike_online': this.options.vendorinfo.get
@@ -270,9 +280,9 @@ define('sf.b2c.mall.order.iteminfo', [
               "price": that.options.sellingPrice
             }]),
             "sysType": that.getSysType(that.options.saleid),
-            "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid)
+            "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid),
+            "couponCodes": that.getCouponCodes()
           }
-
         })
         .fail(function(error) {
           element.removeClass("disable");
