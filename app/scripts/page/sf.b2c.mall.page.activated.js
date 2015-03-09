@@ -131,7 +131,7 @@ define(
               '</ol>'+
 
               '<a href="#" class="btn btn-send">确认</a>'+
-              '<span class="icon icon28"></span>'+
+              ''+
             '</div>'+
           '</div>'+
         '</div>'
