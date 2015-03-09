@@ -1,16 +1,16 @@
 <ul class="mycoupon-h clearfix">
-    <li class="active"><a href="">未使用 ({{notUsedCount}})</a></li>
+    <li class="active"><a href="">未使用 ({{unUsedCount}})</a></li>
     <li><a href="">已使用 ({{usedCount}})</a></li>
     <li><a href="">已过期 ({{expiredCount}})</a></li>
     <li><a href="">已作废 ({{invalidCount}})</a></li>
 </ul>
 <!--未使用-->
 <ul class="mycoupon-b active clearfix">
-    {{#each notUsedList}}
+    {{#each unUsedList}}
     <li>
         <h3>{{title}}</h3>
         <div class="mycoupon-r1">
-            <div class="mycoupon-r1r1"><span>￥</span><strong>{{price}}</strong>{{desc}}</div>
+            <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
             <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
         </div>
     </li>
@@ -22,7 +22,7 @@
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{price}}</strong>{{desc}}</div>
+              <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
               <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
           </div>
       </li>
@@ -34,7 +34,7 @@
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{price}}</strong>{{desc}}</div>
+              <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
               <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
           </div>
       </li>
@@ -46,7 +46,7 @@
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{price}}</strong>{{desc}}</div>
+              <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
               <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
           </div>
       </li>
