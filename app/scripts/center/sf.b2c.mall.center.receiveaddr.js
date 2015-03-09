@@ -5,6 +5,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'jquery',
     'store',
     'sf.b2c.mall.api.user.getRecAddressList',
+    'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.component.addreditor',
     'sf.b2c.mall.api.user.webLogin',
@@ -13,7 +14,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.delRecAddress',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, $,store, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
+  function(can, $,store, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
 
     SFFrameworkComm.register(1);
 
@@ -27,7 +28,6 @@ define('sf.b2c.mall.center.receiveaddr', [
       init: function(element, options) {
         this.adapter4List = {};
         this.component = {};
-        this.component.getRecAddressList = new SFGetRecAddressList();
         this.paint();
       },
 
@@ -51,19 +51,19 @@ define('sf.b2c.mall.center.receiveaddr', [
       paint: function() {
         var that = this;
 
-        this.component.getRecAddressList.sendRequest()
-          .fail(function(error) {
-          })
-          .done(function(reAddrs) {
+        var getRecAddressList = new SFGetRecAddressList();
+        var getIDCardUrlList = new SFGetIDCardUrlList();
+
+        can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())
+          .done(function(recAddrs, recPersons) {
+
+            that.result = that.queryAddress(recAddrs, recPersons);
 
             //获得地址列表
             that.adapter4List.addrs = new AddressAdapter({
-              addressList: reAddrs.items,
+              addressList: that.result,
               hasData: false
             });
-
-            //进行倒排序
-            //that.adapter4List.addrs.addressList.reverse();
 
             if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
               that.adapter4List.addrs.attr("hasData", true);
@@ -76,13 +76,54 @@ define('sf.b2c.mall.center.receiveaddr', [
               onSuccess: _.bind(that.paint, that),
               from:'center'
             });
-          })
+
+          });        
       },
 
       getCityList: function() {
         return can.ajax('json/sf.b2c.mall.regions.json');
       },
 
+      /** 获得收获人和收获地址 */
+      queryAddress: function(recAddrs, recPersons) {
+        var result = new Array();
+
+        //取得默认的收货人和收货地址
+        var defaultRecAddrID = null;
+        var defaultRecID = null;
+        _.each(recAddrs.items, function(recAddrItem) {
+          _.each(recPersons.items, function(presonItem) {
+            if (recAddrItem.isDefault != 0 && presonItem.isDefault != 0 && recAddrItem.recId != 0 && presonItem.recId != 0) {
+              recAddrItem.recName = presonItem.recName;
+              recAddrItem.credtNum = presonItem.credtNum;
+              result.push(recAddrItem);
+
+              defaultRecAddrID = recAddrItem.addrId;
+              defaultRecID = recAddrItem.recId;
+            }
+          })
+        })
+
+        //取得关联的收货人和收货地址（为啥要遍历两次：因为要确保默认收货人和收货地址放在第一条）
+        var tempObje = {};
+        _.each(recAddrs.items, function(recAddrItemTemp) {
+          _.each(recPersons.items, function(presonItemTemp) {
+            if (recAddrItemTemp.recId == presonItemTemp.recId && (recAddrItemTemp.isDefault == 0 || presonItemTemp.isDefault == 0) && recAddrItemTemp.recId != 0 && presonItemTemp.recId != 0) {
+
+              if (recAddrItemTemp.addrId != defaultRecAddrID) {
+                tempObje = recAddrItemTemp;
+                tempObje.recName = presonItemTemp.recName;
+                tempObje.credtNum = presonItemTemp.credtNum;
+
+                result.push(tempObje);
+              }
+
+            }
+          })
+        })
+
+        return result;
+      },
       /**
        * [description 点击编辑]
        * @param  {[type]} element
