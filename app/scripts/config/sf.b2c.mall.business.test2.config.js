@@ -38,7 +38,8 @@ define([], function () {
     'retrieve': 'http://test2.www.sfht.net/retrieve.html',
     'ilogin': 'http://test2.www.sfht.net/i.login.html',
     'iregister': 'http://test2.www.sfht.net/i.register.html',
-    'coupon': 'http://www.sfht.com/coupon.html'
+    'coupon': 'http://test2.sfht.com/coupon.html',
+    'paysuccess': 'http://test2.sfht.com/paysuccess.html'
   }
 
   return {
