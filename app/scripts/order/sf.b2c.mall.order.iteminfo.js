@@ -67,6 +67,14 @@ define('sf.b2c.mall.order.iteminfo', [
             couponDescription: "满100减10",
             endDate: "2014-1-1"
           }];
+          itemObj.orderCoupon.disableCoupons = [{
+            couponCode: 1,
+            couponName: "感恩节优惠券",
+            price: 1000,
+            couponDescription: "满100减10",
+            endDate: "2014-1-1",
+            desc: "就是不让用"
+          }];
 
           AREAID = iteminfo.areaId;
           //AREAID = 1;

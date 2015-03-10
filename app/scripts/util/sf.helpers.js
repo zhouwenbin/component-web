@@ -16,12 +16,16 @@ define('sf.helpers', ['jquery',
     };
   });
 
-  can.Mustache.registerHelper('sf.time', function(time) {
+  can.Mustache.registerHelper('sf.time', function(time, format) {
     if (_.isFunction(time)) {
       time = time();
     }
 
-    return moment(time).format('YYYY-MM-DD HH:mm:ss');
+    if (_.isObject(arguments[1])) {
+      format = 'YYYY-MM-DD HH:mm:ss';
+    }
+
+    return moment(time).format(format);
   });
 
   /**

@@ -83,7 +83,7 @@
             {{#orderCoupon.isHaveDisable}}
             <h4>代金券</h4>
             <ul>
-              {{#each orderCoupon.avaliableCoupons}}
+              {{#each orderCoupon.disableCoupons}}
                 <li><span>{{couponDescription}}</span><span>{{couponName}}</span><span>有效期至{{endDate}}</span><strong>{{desc}}</strong></li>
               {{/each}}
             </ul>

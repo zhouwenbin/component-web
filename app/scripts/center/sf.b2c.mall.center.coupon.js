@@ -8,9 +8,10 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.util',
+    'sf.helpers',
     'sf.b2c.mall.api.coupon.getUserCouponList'
   ],
-  function(can,$,SFComm, SFFn, SFGetUserCouponList){
+  function(can,$,SFComm, SFFn, helpers, SFGetUserCouponList){
     SFComm.register(1);
 
     return can.Control.extend({
@@ -19,27 +20,6 @@ define(
       },
       render: function (data) {
         var that = this;
-        that.options.unUsedCount = 0;
-        that.options.usedCount = 0;
-        that.options.expiredCount = 0;
-        that.options.invalidCount = 0;
-        that.options.unUsedList = [
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"},
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"},
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"}];
-        that.options.usedList = [
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"},
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"}
-        ];
-        that.options.expiredList = [
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"},
-          {reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"}];
-        that.options.invalidList = [{reduceCost: 5, title: "新年满减优惠券", leastCost: "10", startDate: "2015-3-3", endDate: "2015-3-18", useNotice: "特惠商品不可用"}];
-
-
-        var html = can.view('templates/center/sf.b2c.mall.center.coupon.mustache', that.options);
-        this.element.html(html);
-
 
         var params = {
           "query": JSON.stringify({
@@ -49,8 +29,41 @@ define(
         getUserCouponList
           .sendRequest()
           .done(function(data) {
+            that.options.unUsedCount = 0;
+            that.options.usedCount = 0;
+            that.options.expiredCount = 0;
+            that.options.cancelCount = 0;
+            that.options.unUsedList = [];
+            that.options.usedList = [];
+            that.options.expiredList = [];
+            that.options.cancelList = [];
+
+            for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
+              switch (tmpCoupon.status) {
+                case "UNUSED": {
+                  that.options.unUsedCount++;
+                  that.options.unUsedList.push(tmpCoupon);
+                  break;
+                }
+                case "USED": {
+                  that.options.usedCount++;
+                  that.options.usedList.push(tmpCoupon);
+                  break;
+                }
+                case "CANCELED": {
+                  that.options.cancelCount++;
+                  that.options.cancelList.push(tmpCoupon);
+                  break;
+                }
+                case "EXPIRED": {
+                  that.options.expiredCount++;
+                  that.options.expiredList.push(tmpCoupon);
+                  break;
+                }
+              }
+            }
             var html = can.view('templates/center/sf.b2c.mall.center.coupon.mustache', that.options);
-            this.element.html(html);
+            that.element.html(html);
           })
           .fail(function(error) {
             console.error(error);

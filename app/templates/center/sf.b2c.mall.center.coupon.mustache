@@ -2,53 +2,74 @@
     <li class="active"><a href="">未使用 ({{unUsedCount}})</a></li>
     <li><a href="">已使用 ({{usedCount}})</a></li>
     <li><a href="">已过期 ({{expiredCount}})</a></li>
-    <li><a href="">已作废 ({{invalidCount}})</a></li>
+    <li><a href="">已作废 ({{cancelCount}})</a></li>
 </ul>
+
 <!--未使用-->
+{{^unUsedCount}}
+    <p class="mycoupon-b active">您还没有可用的优惠券哦~</p>
+{{/unUsedCount}}
+{{#unUsedCount}}
 <ul class="mycoupon-b active clearfix">
     {{#each unUsedList}}
     <li>
         <h3>{{title}}</h3>
         <div class="mycoupon-r1">
             <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
-            <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
+            <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
         </div>
     </li>
     {{/each}}
 </ul>
+{{/unUsedCount}}
 <!--已使用-->
+{{^usedCount}}
+    <p class="mycoupon-b">您还没有可用的优惠券哦~</p>
+{{/usedCount}}
+{{#usedCount}}
 <ul class="mycoupon-b clearfix">
   {{#each usedList}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
               <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
-              <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
+              <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
           </div>
       </li>
   {{/each}}
 </ul>
+{{/usedCount}}
 <!--已过期-->
+{{^expiredCount}}
+    <p class="mycoupon-b">您还没有可用的优惠券哦~</p>
+{{/expiredCount}}
+{{#expiredCount}}
 <ul class="mycoupon-b clearfix">
   {{#each expiredList}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
               <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
-              <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
+              <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
           </div>
       </li>
   {{/each}}
 </ul>
+{{/expiredCount}}
 <!--已作废-->
+{{^cancelCount}}
+    <p class="mycoupon-b">您还没有可用的优惠券哦~</p>
+{{/cancelCount}}
+{{#cancelCount}}
 <ul class="mycoupon-b clearfix">
-  {{#each invalidList}}
+  {{#each cancelList}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
               <div class="mycoupon-r1r1"><span>￥</span><strong>{{reduceCost}}</strong>满{{leastCost}}元立减</div>
-              <p>有效期：{{startDate}}至{{endDate}}<br />{{useNotice}}</p>
+              <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
           </div>
       </li>
   {{/each}}
 </ul>
+{{/cancelCount}}
