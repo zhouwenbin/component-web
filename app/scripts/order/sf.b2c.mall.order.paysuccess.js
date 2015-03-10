@@ -3,11 +3,12 @@
 define('sf.b2c.mall.order.paysuccess', [
     'can',
     'jquery',
+    'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm',
     'sf.util',
-    'sf.b2c.mall.api.coupon.getUserCouponList'
+    'sf.b2c.mall.api.order.getOrder'
   ],
-  function(can,$,SFComm, SFFn, SFGetUserCouponList) {
+  function(can, $, SFConfig, SFComm, SFFn, SFGetOrder) {
 
     return can.Control.extend({
 
@@ -22,8 +23,44 @@ define('sf.b2c.mall.order.paysuccess', [
 
       render: function(data) {
         var that = this;
-        var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
-        this.element.html(html);
+
+        var params = can.deparam(window.location.search.substr(1));
+
+        var getOrder = new SFGetOrder({
+          "orderId": params.orderid
+        });
+
+        can.when(getOrder.sendRequest())
+          .done(function(data, idcard) {
+            that.options.orderId = data.orderId;
+            that.options.isCostCoupon = false;
+            that.options.isPresentCoupon = false;
+            that.options.orderDetailUrl = SFConfig.setting.link.orderdetail;
+            //处理卡券信息
+            if (data.orderCouponItem && data.orderCouponItem.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderCouponItem[i]; i++) {
+                switch (tmpOrderCouponItem.orderAction)
+                {
+                  case "COST": {
+                    that.options.isCostCoupon = true;
+                    that.options.costCoupon = tmpOrderCouponItem;
+                    break;
+                  }
+                  case "PRESENT": {
+                    that.options.isPresentCoupon = true;
+                    that.options.presentCoupon = tmpOrderCouponItem;
+                    break;
+                  }
+                }
+              }
+            }
+
+            var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
+            that.element.html(html);
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
       }
     });
   })
