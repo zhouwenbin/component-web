@@ -38,27 +38,29 @@ define(
             that.options.expiredList = [];
             that.options.cancelList = [];
 
-            for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
-              switch (tmpCoupon.status) {
-                case "UNUSED": {
-                  that.options.unUsedCount++;
-                  that.options.unUsedList.push(tmpCoupon);
-                  break;
-                }
-                case "USED": {
-                  that.options.usedCount++;
-                  that.options.usedList.push(tmpCoupon);
-                  break;
-                }
-                case "CANCELED": {
-                  that.options.cancelCount++;
-                  that.options.cancelList.push(tmpCoupon);
-                  break;
-                }
-                case "EXPIRED": {
-                  that.options.expiredCount++;
-                  that.options.expiredList.push(tmpCoupon);
-                  break;
+            if (data.items) {
+              for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
+                switch (tmpCoupon.status) {
+                  case "UNUSED": {
+                    that.options.unUsedCount++;
+                    that.options.unUsedList.push(tmpCoupon);
+                    break;
+                  }
+                  case "USED": {
+                    that.options.usedCount++;
+                    that.options.usedList.push(tmpCoupon);
+                    break;
+                  }
+                  case "CANCELED": {
+                    that.options.cancelCount++;
+                    that.options.cancelList.push(tmpCoupon);
+                    break;
+                  }
+                  case "EXPIRED": {
+                    that.options.expiredCount++;
+                    that.options.expiredList.push(tmpCoupon);
+                    break;
+                  }
                 }
               }
             }

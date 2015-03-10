@@ -32,7 +32,6 @@ define('sf.b2c.mall.order.paysuccess', [
 
         can.when(getOrder.sendRequest())
           .done(function(data, idcard) {
-            that.options.orderId = data.orderId;
             that.options.isCostCoupon = false;
             that.options.isPresentCoupon = false;
             that.options.links = SFConfig.setting.link;
