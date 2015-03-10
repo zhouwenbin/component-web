@@ -82,8 +82,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.isPresentCoupon = false;
 
             //处理卡券信息
-            if (data.orderCouponItem && data.orderCouponItem.length > 0) {
-              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderCouponItem[i]; i++) {
+            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
                 switch (tmpOrderCouponItem.orderAction)
                 {
                   case "COST": {
@@ -218,7 +218,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             });
 
             that.options.allTotalPrice = that.options.productList[0].totalPrice;
-            //that.options.allTotalPrice = that.options.productList[0].totalPrice;
 
             var cancelArr = new Array();
             cancelArr.push('AUTO_CANCEL');
@@ -238,7 +237,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.showShouldPayPrice = (cancelArr.indexOf(data.orderItem.orderStatus) === -1);
             //是否是宁波保税，是得话才展示税额
             that.options.showTax = that.options.productList[0].bonded;
-            that.options.shouldPayPrice = that.options.allTotalPrice;
+            //that.options.shouldPayPrice = that.options.allTotalPrice;
+            that.options.shouldPayPrice = data.orderItem.totalPrice - data.orderItem.discount;
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
             that.element.html(html);

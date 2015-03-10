@@ -35,10 +35,10 @@ define('sf.b2c.mall.order.paysuccess', [
             that.options.orderId = data.orderId;
             that.options.isCostCoupon = false;
             that.options.isPresentCoupon = false;
-            that.options.orderDetailUrl = SFConfig.setting.link.orderdetail;
+            that.options.links = SFConfig.setting.link;
             //处理卡券信息
-            if (data.orderCouponItem && data.orderCouponItem.length > 0) {
-              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderCouponItem[i]; i++) {
+            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
                 switch (tmpOrderCouponItem.orderAction)
                 {
                   case "COST": {

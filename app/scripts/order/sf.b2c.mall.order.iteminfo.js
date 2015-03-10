@@ -60,21 +60,6 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
           itemObj.orderCoupon.useQuantity = 0;
           itemObj.orderCoupon.discountPrice = 0;
-          itemObj.orderCoupon.avaliableCoupons = [{
-            couponCode: 1,
-            couponName: "感恩节优惠券",
-            price: 1000,
-            couponDescription: "满100减10",
-            endDate: "2014-1-1"
-          }];
-          itemObj.orderCoupon.disableCoupons = [{
-            couponCode: 1,
-            couponName: "感恩节优惠券",
-            price: 1000,
-            couponDescription: "满100减10",
-            endDate: "2014-1-1",
-            desc: "就是不让用"
-          }];
 
           AREAID = iteminfo.areaId;
           //AREAID = 1;
@@ -107,7 +92,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           that.itemObj = new can.Map(itemObj);
           that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
-            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
+            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal*100 - newVal*100);
           });
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
