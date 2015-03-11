@@ -74,6 +74,9 @@
 .order-b>ul>li{
 	display: none;
 }
+.user-basic-info .order-b>ul>li{
+	display: block;
+}
 .order-b.active li{
 	display: block;
 }
