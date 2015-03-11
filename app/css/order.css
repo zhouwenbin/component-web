@@ -257,6 +257,9 @@
 	margin-bottom: 34px;
 	margin-top: -36px;
 }
+.order-r3 h3 a{
+	text-decoration: underline;
+}
 .order-r3 .btn{
 	padding: 0;
 	width: 218px;
