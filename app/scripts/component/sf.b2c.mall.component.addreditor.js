@@ -127,8 +127,8 @@ define('sf.b2c.mall.component.addreditor', [
               cellphone: data.cellphone,
               zipCode: data.zipCode,
               recId: data.recId,
-              receiverName:data.receiverName,
-              receiverId:data.receiverId
+              receiverName:data.recName,
+              receiverId:data.credtNum2
             },
             place: {
               countries: [{
@@ -293,18 +293,7 @@ define('sf.b2c.mall.component.addreditor', [
             'tip': '修改收货地址成功！',
             'type': 'success'
           });
-
-          var isDefault = $(element).closest('#editAdrArea').siblings('.order-r1').children('.order-r1c2').find('.order-edit').attr('data-isdefault');
-          if(isDefault == 1){
-            var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
-            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
-            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
-
-            store.set('provinceId',provinceId);
-            store.set('cityId',cityId);
-            store.set('regionId',regionId);
-          }
-               
+              
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
           

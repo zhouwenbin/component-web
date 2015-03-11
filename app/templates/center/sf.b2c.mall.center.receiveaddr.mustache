@@ -13,8 +13,11 @@
     <li class="clearfix active" name="addrEach" data-addressid="{{addrId}}" data-isDefault="{{isDefault}}">
       <div class="order-r1 clearfix">
         <div class="order-r1c2 fr">
-          <span class="text-error">默认地址</span>
-          <a href="#" class="btn btn-add">设为默认</a>
+          {{#defaultAddr isDefault}}
+            <span class="text-error">默认地址</span>
+          {{else}}
+            <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+          {{/defaultAddr}}         
           <a class="order-edit" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
           <a class="order-del" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
         </div>

@@ -1,10 +1,8 @@
 <h2>选择收货地址</h2>
 {{^if hasData}}
 <div class="order-b active">
-<div class="order-r2" id="addAdrArea">
-
-  </div>
-    <a href="#" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
+  <div class="order-r2" id="addAdrArea"></div>
+  <a href="#" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
 </div>
 {{/if}}
 
@@ -15,28 +13,31 @@
     <li class="clearfix {{active}}" name="addrEach" data-addressid="{{addrId}}" data-index="{{@index}}">
       <div class="order-r1 clearfix">
         <div class="order-r1c1 fl">
-          <span class="icon icon29 fl"></span>
-          <span class="order-r1c1c1 fl">{{nationName}}&nbsp{{provinceName}}&nbsp{{cityName}}&nbsp{{regionName}}</span>
-          <span class="order-r1c1c2 fl">{{detail}}</span>
-          <span class="order-r1c1c3 fl">{{cellphone}}</span>
-          <span class="order-r1c1c4 fl">{{zipCode}}</span>
-
-        </div>
+          <span class="icon icon29"></span>
+        </div>      
         <div class="order-r1c2 fr">
-          <a class="order-edit" href="" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
+          {{#defaultAddr isDefault}}
+            <span class="text-error">默认地址</span>
+          {{else}}
+            <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+          {{/defaultAddr}}
+          <a class="order-edit" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
+          <a class="order-del" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>         
         </div>
+        <ul class="order-r1c3">
+          <li><span>{{nationName}}</span><span>{{provinceName}}</span><span>{{cityName}}</span><span>{{regionName}}</span><span>{{detail}}</span></li>
+          <li><span>{{recName}}</span><span>|</span><span>{{credtNum}}</span></li>
+          <li><span>联系方式：{{cellphone}}</span><span>|</span><span>{{zipCode}}</span></li>
+        </ul>
       </div>
-      <div class="order-r2" id="editAdrArea">
-      </div>
+      <div class="order-r2" id="editAdrArea"></div>
     </li>
     {{/each}}
   </ul>
 
-  <div class="order-r2" id="addAdrArea">
+  <div class="order-r2" id="addAdrArea"></div>
 
-  </div>
-
-  <a href="#" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
+  <a href="###" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
   <a class="icon icon30"></a>
 </div>
 {{/if}}
