@@ -77,7 +77,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
-            that.options.discount = data.discount || 0;
+            that.options.discount = data.orderItem.discount || 0;
             that.options.isCostCoupon = false;
             that.options.isPresentCoupon = false;
 
