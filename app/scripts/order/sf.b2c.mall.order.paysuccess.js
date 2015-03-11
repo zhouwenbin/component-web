@@ -4,11 +4,10 @@ define('sf.b2c.mall.order.paysuccess', [
     'can',
     'jquery',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.framework.comm',
-    'sf.util',
+    'sf.helpers',
     'sf.b2c.mall.api.order.getOrder'
   ],
-  function(can, $, SFConfig, SFComm, SFFn, SFGetOrder) {
+  function(can, $, SFConfig, helpers, SFGetOrder) {
 
     return can.Control.extend({
 

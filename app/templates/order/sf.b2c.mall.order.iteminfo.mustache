@@ -66,7 +66,7 @@
             <h4>代金券</h4>
             <ul>
             {{#each orderCoupon.avaliableCoupons}}
-                <li><a href="#" class="icon radio" data-code="{{couponCode}}" data-price="{{price}}"></a><strong>{{couponDescription}}</strong><span>{{couponName}}</span>有效期至{{endDate}}</li>
+                <li><a href="#" class="icon radio" data-code="{{couponCode}}" data-price="{{sf.price price}}"></a><strong>{{couponDescription}}</strong><span>{{couponName}}</span>有效期至{{endDate}}</li>
             {{/each}}
             </ul>
           {{/orderCoupon.isHaveAvaliable}}
@@ -75,7 +75,7 @@
             <div class="coupon2-r1">有优惠券兑换码？<label for="conpon" class="coupon2-link" id="inputCouponCode">[点击输入兑换码]</label></div>
             <div class="coupon2-r2 hide"><input id="conpon" type="text" class="input" placeholder="输入您的兑换码"><a href="#" class="btn btn-send">使用</a></div>
         </div>
-        <div class="coupon2-r3">共使用了<strong>{{orderCoupon.useQuantity}}</strong>张优惠券，可以优惠<strong>{{orderCoupon.discountPrice}}元</strong></div>
+        <div class="coupon2-r3">共使用了<strong>{{orderCoupon.useQuantity}}</strong>张优惠券，可以优惠<strong>{{sf.price orderCoupon.discountPrice}}元</strong></div>
       </div>
       <div class="coupon2-b">
         <div class="coupon2-b1 coupon2-b1-1">
@@ -96,7 +96,7 @@
     <div class="table-fc2 fr">
         <ul class="table-fr1">
             <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
-            <li>-优惠金额：￥{{orderCoupon.discountPrice}}</li>
+            <li>-优惠金额：￥{{sf.price orderCoupon.discountPrice}}</li>
             {{#if showTax}}
               <li>+税额：￥0</li>
             {{/if}}

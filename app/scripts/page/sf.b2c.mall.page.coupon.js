@@ -9,8 +9,7 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.center.coupon',
-    'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.framework.comm'
   ],
   function(can, $, Header, Footer, Coupon, SFFrameworkComm) {
     SFFrameworkComm.register(1);

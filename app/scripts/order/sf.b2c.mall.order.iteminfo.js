@@ -92,7 +92,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           that.itemObj = new can.Map(itemObj);
           that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
-            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal*100 - newVal*100);
+            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
           });
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
@@ -253,7 +253,7 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function(addrDefault, personDefault) {
 
           params = {
-            "addressId": JSON.stringify({
+            "address": JSON.stringify({
               "addrId": selectAddr.addrId,
               "nationName": selectAddr.nationName,
               "provinceName": selectAddr.provinceName,

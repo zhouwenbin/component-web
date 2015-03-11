@@ -6,13 +6,10 @@ define(
   [
     'can',
     'jquery',
-    'sf.b2c.mall.framework.comm',
-    'sf.util',
     'sf.helpers',
     'sf.b2c.mall.api.coupon.getUserCouponList'
   ],
-  function(can,$,SFComm, SFFn, helpers, SFGetUserCouponList){
-    SFComm.register(1);
+  function(can, $, helpers, SFGetUserCouponList){
 
     return can.Control.extend({
       init: function () {

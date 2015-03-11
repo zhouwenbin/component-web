@@ -10,8 +10,7 @@ define(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
     'sf.b2c.mall.order.paysuccess',
-    'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.framework.comm'
   ],
   function(can, $, Header, Footer, OrderSetp, PaySuccess, SFFrameworkComm) {
     SFFrameworkComm.register(1);
