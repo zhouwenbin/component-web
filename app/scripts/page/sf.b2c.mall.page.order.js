@@ -9,14 +9,13 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
-    'sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.iteminfo',
     'sf.b2c.mall.order.vendor.info',
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SelectReceivePerson, SelectReceiveAddr, ItemInfo, SFVendorInfo) {
+  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SelectReceiveAddr, ItemInfo, SFVendorInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -35,9 +34,7 @@ define(
         //step
         new OrderSetp('.sf-b2c-mall-order-step', {
           "firststep": "active"
-        });
-
-        this.component.selectReceivePerson = new SelectReceivePerson('.sf-b2c-mall-order-selectReceivePerson');
+        });      
 
         this.component.selectReceiveAddr = new SelectReceiveAddr('.sf-b2c-mall-order-selectReceiveAddress');
 
@@ -45,7 +42,6 @@ define(
 
         new ItemInfo('.sf-b2c-mall-order-itemInfo', {
           vendorinfo: this.component.sfvendorinfo,
-          selectReceivePerson: this.component.selectReceivePerson,
           selectReceiveAddr: this.component.selectReceiveAddr
         });
       },

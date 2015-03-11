@@ -12,9 +12,11 @@ define('sf.b2c.mall.center.receiveaddr', [
     'md5',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.user.delRecAddress',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.user.setDefaultAddr',
+    'sf.b2c.mall.api.user.setDefaultRecv'
   ],
-  function(can, $,store, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage) {
+  function(can, $,store, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage,SFSetDefaultAddr, SFSetDefaultRecv) {
 
     SFFrameworkComm.register(1);
 
@@ -40,6 +42,13 @@ define('sf.b2c.mall.center.receiveaddr', [
           }else{
             return options.inverse(options.contexts || this);
           }
+        },
+        'defaultAddr':function(isDefault,options){
+          if (isDefault() == 1) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          };
         }
       },
 
@@ -96,6 +105,7 @@ define('sf.b2c.mall.center.receiveaddr', [
             if (recAddrItem.isDefault != 0 && presonItem.isDefault != 0 && recAddrItem.recId != 0 && presonItem.recId != 0) {
               recAddrItem.recName = presonItem.recName;
               recAddrItem.credtNum = presonItem.credtNum;
+              recAddrItem.credtNum2 = presonItem.credtNum2;
               result.push(recAddrItem);
 
               defaultRecAddrID = recAddrItem.addrId;
@@ -114,7 +124,7 @@ define('sf.b2c.mall.center.receiveaddr', [
                 tempObje = recAddrItemTemp;
                 tempObje.recName = presonItemTemp.recName;
                 tempObje.credtNum = presonItemTemp.credtNum;
-
+                tempObje.credtNum2 = presonItemTemp.credtNum2
                 result.push(tempObje);
               }
 
@@ -143,6 +153,39 @@ define('sf.b2c.mall.center.receiveaddr', [
         editAdrArea.show();
         this.component.addressEditor.show("editor", addr, $(editAdrArea));
         return false;
+      },
+      //设为默认地址
+      ".btn-setDefault click":function(element,event){
+        var that = this;
+        var index = element.data('index');
+        var addr = this.adapter4List.addrs.get(index);
+        this.adapter4List.addrs.input.attr('addrId', addr.addrId);
+
+        var setDefaultRecv = new SFSetDefaultRecv({
+          "recId": addr.recId
+        });
+
+        var setDefaultAddr = new SFSetDefaultAddr({
+          "addrId": addr.addrId
+        });
+        can.when(setDefaultRecv.sendRequest(),setDefaultAddr.sendRequest())
+          .done(function(data){
+            new SFMessage(null,{
+              'tip': '设为默认地址成功！',
+              'type': 'success'
+            });
+            that.paint();
+            var provinceId = that.adapter.regions.getIdByName(addr.provinceName);
+            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
+            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
+
+            store.set('provinceId',provinceId);
+            store.set('cityId',cityId);
+            store.set('regionId',regionId);
+          })
+          .fail(function(){
+
+          })
       },
 
       ".order-del click": function(element, event){
@@ -187,7 +230,7 @@ define('sf.b2c.mall.center.receiveaddr', [
        * @param  {[type]} event
        * @return {[type]}
        */
-      ".btn-add click": function(element, event) {
+      "#btn-add-addr click": function(element, event) {
 
         //隐藏其它编辑和新增状态
         $('#editAdrArea').hide();
