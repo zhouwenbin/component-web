@@ -3,22 +3,17 @@
 define('sf.b2c.mall.order.iteminfo', [
   'can',
   'store',
+  'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.b2cmall.getProductHotData',
-//  'sf.b2c.mall.api.b2cmall.getItemInfo',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.order.queryOrderCoupon',
   'sf.b2c.mall.api.user.getRecAddressList',
-  'sf.b2c.mall.api.user.getIDCardUrlList',
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
-  'sf.b2c.mall.widget.message',
-  'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.widget.showArea'
-], function(can,store, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, SFGetIDCardUrlList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage,CheckLogistics,SFShowArea) {
-
-  var AREAID;
+  'sf.b2c.mall.widget.message'
+], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
 
   return can.Control.extend({
     itemObj: {},
@@ -29,9 +24,9 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
+      this.adapter = {};
+      this.request();
 
-      this.component = {};
-      $('#errorTips').hide();
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
       that.options.saleid = params.saleid;
@@ -48,9 +43,6 @@ define('sf.b2c.mall.order.iteminfo', [
         'system': "B2C"
       });
 
-      this.component.checkLogistics = new CheckLogistics();
-      this.component.showArea = new SFShowArea();
-
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest(), queryOrderCoupon.sendRequest())
         .done(function(iteminfo, priceinfo, orderCoupon) {
           var itemObj = {};
@@ -61,7 +53,6 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.orderCoupon.useQuantity = 0;
           itemObj.orderCoupon.discountPrice = 0;
 
-          AREAID = iteminfo.areaId;
           //AREAID = 1;
 
           itemObj.singlePrice = priceinfo.sellingPrice;
@@ -97,39 +88,22 @@ define('sf.b2c.mall.order.iteminfo', [
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
         })
-        .then(function(){
-          if(AREAID != 0 ){
-              var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-              if(selectAddr != false){
-                var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
-                var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
-                var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
-                that.component.checkLogistics.setData({
-                  areaId:AREAID,
-                  provinceId:provinceId,
-                  cityId:cityId,
-                  districtId:regionId
-                });
-              }
-            }
-
-            return that.component.checkLogistics.sendRequest();
-          })
-        .done(function (data) {
-          if(data){
-            if(data.value == false){
-              $('#errorTips').removeClass('visuallyhidden');
-              $('#submitOrder').addClass('disable');
-            }else{
-              $('#errorTips').addClass('visuallyhidden');
-              $('#submitOrder').removeClass('disable');
-            }
-          }
-        })
-        .fail(function () {
+        .fail(function (error) {
+          console.error(error);
         })
     },
+    request: function() {
+      var that = this;
+      return can.ajax('json/sf.b2c.mall.regions.json')
+        .done(_.bind(function(cities) {
+          this.adapter.regions = new RegionsAdapter({
+            cityList: cities
+          });
+        }, this))
+        .fail(function() {
 
+        });
+    },
     errorMap: {
       //"4000100": "order unkown error",
       "4000200": "订单地址不存在",
@@ -173,43 +147,8 @@ define('sf.b2c.mall.order.iteminfo', [
       $('#errorTips').addClass('visuallyhidden');
       element.addClass("disable");
 
-      var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-      if(AREAID != 0 && selectAddr != false){
-        var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
-        var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
-        var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
-        that.component.checkLogistics.setData({
-          areaId:AREAID,
-          provinceId:provinceId,
-          cityId:cityId,
-          districtId:regionId
-        });
-        can.when(that.component.checkLogistics.sendRequest())
-          .done(function(data){
-            if(data){
-              if(data.value == false){
-                $('#errorTips').removeClass('visuallyhidden');
-                $('#submitOrder').addClass('disable');
-                return false;
-              }
-            }
-          })
-          .fail(function(){
 
-          })
-      }
-
-      //进行校验，不通过则把提交订单点亮
-      if (typeof selectPer == 'undefined' || selectPer === false) {
-        new SFMessage(null, {
-          'tip': '请选择收货人！',
-          'type': 'error'
-        });
-
-        element.removeClass("disable");
-        return false;
-      }
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
           'tip': '请选择收货地址！',
@@ -240,7 +179,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       //实例化接口
       var setDefaultRecv = new SFSetDefaultRecv({
-        "recId": selectPer.recId
+        "recId": selectAddr.recId
       });
 
       var setDefaultAddr = new SFSetDefaultAddr({
@@ -260,11 +199,11 @@ define('sf.b2c.mall.order.iteminfo', [
               "cityName": selectAddr.cityName,
               "regionName": selectAddr.regionName,
               "detail": selectAddr.detail,
-              "recName": selectPer.recName,
+              "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
               "zipCode": selectAddr.zipCode,
-              "recId": selectPer.recId
+              "recId": selectAddr.recId
             }),
             "userMsg": "",
             "items": JSON.stringify([{
@@ -285,9 +224,9 @@ define('sf.b2c.mall.order.iteminfo', [
           return submitOrderForAllSys.sendRequest();
         })
         .done(function(message) {
-          var provinceId = that.component.showArea.adapter.regions.getIdByName(selectAddr.provinceName);
-          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
-          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
+          var provinceId = that.adapter.regions.getIdByName(selectAddr.provinceName);
+          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
+          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
 
           store.set('provinceId',provinceId);
           store.set('cityId',cityId);
@@ -296,7 +235,7 @@ define('sf.b2c.mall.order.iteminfo', [
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
-              "recid": selectPer.recId
+              "recid": selectAddr.recId
             });
         })
         .fail(function(error) {

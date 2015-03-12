@@ -9,12 +9,11 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.center.change.userinfo',
-    'sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, Header, Footer, ChangeUserInfo, SFReceiveperson, SFReceiveaddr,SFFrameworkComm) {
+  function(can, $, Header, Footer, ChangeUserInfo, SFReceiveaddr,SFFrameworkComm) {
     SFFrameworkComm.register(1);
 
     var center = can.Control.extend({
@@ -35,7 +34,7 @@ define(
         new Footer('.sf-b2c-mall-footer');
         new ChangeUserInfo('.user-basic-info');
 
-        new SFReceiveperson('.sf-b2c-mall-center-personmanager');
+        //new SFReceiveperson('.sf-b2c-mall-center-personmanager');
 
         new SFReceiveaddr('.sf-b2c-mall-center-addressmanager');
       },

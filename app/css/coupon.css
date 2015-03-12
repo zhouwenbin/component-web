@@ -82,6 +82,7 @@ p.mycoupon-b{
 }
 
 .coupon{
+	display: block;
 	background: url(../img/coupon.png) no-repeat;
 	height: 105px;
 	width: 399px;

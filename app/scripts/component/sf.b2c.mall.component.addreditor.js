@@ -5,47 +5,21 @@ define('sf.b2c.mall.component.addreditor', [
   'store',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
+  'sf.b2c.mall.api.user.createReceiverInfo',
   'sf.b2c.mall.api.user.updateRecAddress',
+  'sf.b2c.mall.api.user.updateReceiverInfo',
   'placeholders',
   'sf.b2c.mall.widget.message',
-  'sf.b2c.mall.api.b2cmall.getItemSummary',
-  'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.adapter.address.list'
 
-], function(can,store,RegionsAdapter, SFCreateRecAddress, SFUpdateRecAddress, placeholders, SFMessage,SFGetItemSummary,CheckLogistics,SFGetRecAddressList,AddressAdapter) {
-  var AREAID;
+], function(can,store,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
   return can.Control.extend({
 
     init: function() {
-      this.adapter4List = {};
       this.adapter = {};
-      this.component = {};
       this.request();
       this.onSuccess = this.options.onSuccess;
-      this.from = this.options.from;
-      this.component.checkLogistics = new CheckLogistics();
-      this.component.getRecAddressList = new SFGetRecAddressList();
-      var that = this;
-      this.component.getRecAddressList.sendRequest()
-        .done(function(resAddr){
-          if(resAddr.items.length > 0){
-            that.adapter4List.addrs = new AddressAdapter({
-              addressList: resAddr.items,
-              hasData: false
-            });
-          }          
-        })
-
-      var params = can.deparam(window.location.search.substr(1));
-      var getItemSummary = new SFGetItemSummary({
-        "itemId":params.itemid
-      });
-      getItemSummary.sendRequest()
-        .done(function(data){
-          AREAID = data.areaId;
-        });
-      
+      this.from = this.options.from;     
     },
 
     request: function() {
@@ -56,11 +30,6 @@ define('sf.b2c.mall.component.addreditor', [
             cityList: cities
           });
         }, this))
-        //   function(cities) {
-        //   that.adapter.regions = new RegionsAdapter({
-        //     cityList: cities
-        //   });
-        // })
         .fail(function() {
 
         });
@@ -74,10 +43,6 @@ define('sf.b2c.mall.component.addreditor', [
       this.setup(element)
       var html = can.view('templates/component/sf.b2c.mall.component.addreditor.mustache', data);
       element.html(html);
-      // this.switchView('list', {
-      //   recId: data.addr.input.recId
-      // });
-
       this.supplement(tag);
     },
 
@@ -115,7 +80,9 @@ define('sf.b2c.mall.component.addreditor', [
               detail: null,
               recId: null,
               cellphone: null,
-              zipCode: null
+              zipCode: null,
+              receiverName:null,
+              receiverId:null
             },
             place: {
               countries: [{
@@ -139,7 +106,9 @@ define('sf.b2c.mall.component.addreditor', [
               consignee:null,
               detail: null,
               zipCode: null,
-              cellphone: null
+              cellphone: null,
+              receiver:null,
+              receiverCertId:null
             }
           };
         },
@@ -158,7 +127,9 @@ define('sf.b2c.mall.component.addreditor', [
               detail: data.detail,
               cellphone: data.cellphone,
               zipCode: data.zipCode,
-              recId: data.recId
+              recId: data.recId,
+              receiverName:data.recName,
+              receiverId:data.credtNum2
             },
             place: {
               countries: [{
@@ -181,7 +152,9 @@ define('sf.b2c.mall.component.addreditor', [
             error: {
               detail: null,
               zipCode: null,
-              cellphone: null
+              cellphone: null,
+              receiver:null,
+              receiverCertId:null
             }
           };
         }
@@ -212,6 +185,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.input.attr('cityName', '0');
         this.adapter.addr.place.attr('cities', '0');
       }else{
+        $('#consigneeError').hide();
         var cities = this.adapter.regions.findGroup(window.parseInt(pid));
         this.adapter.addr.place.attr('cities', cities);
         this.adapter.addr.input.attr('cityName', cities[0].id);
@@ -259,56 +233,41 @@ define('sf.b2c.mall.component.addreditor', [
 
     add: function(addr) {
       var that = this;
-      delete addr.recId;
+
+      var person = {
+        recName: addr.receiverName,
+        type: "ID",
+        credtNum: addr.receiverId
+      };
       
       var cinfo = can.deparam(window.location.search.substr(1));
       if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
         addr.partnerId = 'heike';
       }
 
-      var createRecAddress = new SFCreateRecAddress(addr);
-      createRecAddress
+      var recId = null;
+      var createReceiverInfo = new SFCreateReceiverInfo(person);
+      createReceiverInfo
         .sendRequest()
         .done(function(data) {
+          recId = data.value;
+        })
+        .fail(function(error) {
 
+        })
+        .then(function(){
+          addr.recId = recId;
+          var createRecAddress = new SFCreateRecAddress(addr);
+          return createRecAddress.sendRequest()
+        })
+        .done(function(data) {
           var message = new SFMessage(null, {
             'tip': '新增收货地址成功！',
             'type': 'success'
           });
 
           that.hide();
-          that.onSuccess(data);
-          if(AREAID != 0){
-            var firstAddr = that.adapter4List.addrs.get(0);
-            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-            that.component.checkLogistics.setData({
-              areaId:AREAID,
-              provinceId:provinceId,
-              cityId:cityId,
-              districtId:regionId
-            });
-            that.component.checkLogistics.sendRequest()
-              .done(function(data){
-                if(data){
-                  if(data.value == false){
-                    $('#errorTips').removeClass('visuallyhidden');
-                    $('#submitOrder').addClass('disable');
-                    return false;
-                  }else{
-                    $('#errorTips').addClass('visuallyhidden');
-                    $('#submitOrder').removeClass('disable');
-                    return true;
-                  }
-                }
-              })
-              .fail(function(data){
-
-              }) 
-            }
-          
+          that.onSuccess(data);        
           return true;
         })
         .fail(function(error) {
@@ -325,61 +284,24 @@ define('sf.b2c.mall.component.addreditor', [
 
     update: function(addr,element) {
       var that = this;
-           
+      var person = {
+        recId:addr.recId,
+        recName: addr.receiverName,
+        type: "ID",
+        credtNum: addr.receiverId
+      };
+      var updateReceiverInfo = new SFUpdateReceiverInfo(person);    
       var updateRecAddress = new SFUpdateRecAddress(addr);
-      updateRecAddress
-        .sendRequest()
-        .done(function(data) {
+      can.when(updateReceiverInfo.sendRequest(),updateRecAddress.sendRequest())
+        .done(function(data,data1) {
 
           var message = new SFMessage(null, {
             'tip': '修改收货地址成功！',
             'type': 'success'
           });
-
-          var isDefault = $(element).parents('.order-r2r3').parents('#editAdrArea').siblings('.order-r1').children('.order-r1c2').find('.order-edit').attr('data-isdefault');
-          if(isDefault == 1){
-            var provinceId =that.adapter.regions.getIdByName(addr.provinceName);
-            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
-            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
-
-            store.set('provinceId',provinceId);
-            store.set('cityId',cityId);
-            store.set('regionId',regionId);
-          }
-               
+              
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-
-          if (AREAID != 0) {
-            var firstAddr = that.adapter4List.addrs.get(0);
-            var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-            var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-            var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
-
-            that.component.checkLogistics.setData({
-              areaId:AREAID,
-              provinceId:provinceId,
-              cityId:cityId,
-              districtId:regionId
-            });
-            that.component.checkLogistics.sendRequest()
-            .done(function(data){
-              if(data){
-                if(data.value == false){
-                  $('#errorTips').removeClass('visuallyhidden');
-                  $('#submitOrder').addClass('disable');
-                  return false;
-                }else{
-                  $('#errorTips').addClass('visuallyhidden');
-                  $('#submitOrder').removeClass('disable');
-                  return true;
-                }
-              }
-            })
-            .fail(function(data){
-
-            }) 
-          };
           
         })
         .fail(function(error) {});
@@ -421,11 +343,15 @@ define('sf.b2c.mall.component.addreditor', [
       addr.cityName = this.adapter.regions.findOneName(window.parseInt(addr.cityName));
       addr.regionName = this.adapter.regions.findOneName(window.parseInt(addr.regionName));
 
+      //保存时清掉所有错误提示
       $('#consigneeError').hide();
       $('#detailerror').hide();
       $('#cellphoneerror').hide();
       $('#zipcodeerror').hide();
+      $('#receiverNameError').hide();
+      $('#receiverCertIdError').hide();
 
+      //验证是否选择省市区
       if(typeof addr.provinceName == 'undefined' || typeof addr.cityName == 'undefined' || typeof addr.regionName == 'undefined'){
         this.adapter.addr.attr("error", {
           "consignee": '请选择收货地区'
@@ -433,7 +359,8 @@ define('sf.b2c.mall.component.addreditor', [
         $('#consigneeError').show();
         return false;
       }
-      //验证详细地址
+
+      //验证详细地址是否填写
       if (!addr.detail) {
         this.adapter.addr.attr("error", {
           "detail": '请填写详细地址信息！'
@@ -442,7 +369,7 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      // 5~120字符之间
+      // 详细收货地址5~120字符之间
       if (addr.detail.length > 60 || addr.detail.length < 5) {
         this.adapter.addr.attr("error", {
           "detail": '请输入正确地址信息!'
@@ -451,6 +378,25 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
+      //检测收货人姓名是否填写
+      if(!addr.receiverName){
+        this.adapter.addr.attr("error", {
+          "receiver": '请输入收货人姓名!'
+        })
+        $('#receiverNameError').show();
+        return false;
+      }
+      //检测收货人姓名是否是中文
+      var testRecName = /^[\u4e00-\u9fa5]{0,10}$/.test($.trim(addr.receiverName));
+      if (testRecName) {} else {
+        this.adapter.addr.attr("error", {
+          "receiver": '请输入正确收货人姓名!'
+        })
+        $('#receiverNameError').show();
+        return false;
+      }
+
+      //检测收货人手机号码是否填写
       if (!addr.cellphone) {
         this.adapter.addr.attr("error", {
           "cellphone": '请填写收货人手机号码！'
@@ -459,7 +405,7 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      //电话号码正则验证（以1开始，11位验证）)
+      //电话号码正则验证（以1开始，11位验证）
       if (!/^1\d{10}$/.test(addr.cellphone)) {
         this.adapter.addr.attr("error", {
           "cellphone": '收货人手机号码填写有误！'
@@ -467,8 +413,73 @@ define('sf.b2c.mall.component.addreditor', [
         $('#cellphoneerror').show();
         return false;
       }
+      //身份证号码是否填写，长度是否是18
+      if (!addr.receiverId) {
+        this.adapter.addr.attr("error", {
+          "receiverCertId": '请填写收货人身份证号码！'
+        })
+        $('#receiverCertIdError').show();
+        return false;
+      }
+      if (addr.receiverId.length < 18 || addr.receiverId.length > 18) {
+        this.adapter.addr.attr("error", {
+          "receiverCertId": '收货人身份证号码填写有误！'
+        })
+        $('#receiverCertIdError').show();
+        return false;
+      }
 
-      //验证邮编，如果用户没输，跳过；反之进行验证
+      var info = {};
+      var cardNo = addr.receiverId;
+      if (cardNo.length == 18) {
+        var year = cardNo.substring(6, 10);
+        var month = cardNo.substring(10, 12);
+        var day = cardNo.substring(12, 14);
+        var p = cardNo.substring(14, 17)
+        var birthday = new Date(year, parseFloat(month) - 1,
+          parseFloat(day));
+        // 这里用getFullYear()获取年份，避免千年虫问题
+        if (birthday.getFullYear() != parseFloat(year) || birthday.getMonth() != parseFloat(month) - 1 || birthday.getDate() != parseFloat(day)) {
+          info.isTrue = false;
+        }
+        var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]; // 加权因子
+        var Y = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]; // 身份证验证位值.10代表X
+        // 验证校验位
+        var sum = 0; // 声明加权求和变量
+        var _cardNo = cardNo.split("");
+        if (_cardNo[17].toLowerCase() == 'x') {
+          _cardNo[17] = 10; // 将最后位为x的验证码替换为10方便后续操作
+        }
+        for (var i = 0; i < 17; i++) {
+          sum += Wi[i] * _cardNo[i]; // 加权求和
+        }
+        var i = sum % 11; // 得到验证码所位置
+        if (_cardNo[17] != Y[i]) {
+          info.isTrue = false;
+        } else {
+          info.isTrue = true;
+        }
+        info.year = birthday.getFullYear();
+        info.month = birthday.getMonth() + 1;
+        info.day = birthday.getDate();
+        if (p % 2 == 0) {
+          info.isFemale = true;
+          info.isMale = false;
+        } else {
+          info.isFemale = false;
+          info.isMale = true
+        }
+
+      }
+      if (!info.isTrue) {
+        this.adapter.addr.attr("error", {
+          "receiverCertId": '收货人身份证号码填写有误！'
+        })
+        $('#receiverCertIdError').show();
+        return false;
+      }
+
+      //验证邮编
       if (!addr.zipCode) {
         this.adapter.addr.attr("error", {
           "zipCode": '请填写邮编！'

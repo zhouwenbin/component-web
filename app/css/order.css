@@ -74,14 +74,15 @@
 .order-b>ul>li{
 	display: none;
 }
-.order-b li.active,
+.user-basic-info .order-b>ul>li{
+	display: block;
+}
 .order-b.active li{
 	display: block;
 }
 
 .order-r1{
 	padding: 27px 0;
-	display: none;
 	line-height: 1.5;
 }
 
@@ -255,6 +256,9 @@
 	font-size: 14px;
 	margin-bottom: 34px;
 	margin-top: -36px;
+}
+.order-r3 h3 a{
+	text-decoration: underline;
 }
 .order-r3 .btn{
 	padding: 0;
