@@ -122,20 +122,9 @@ define('sf.b2c.mall.order.iteminfo', [
       }
       $('#errorTips').addClass('visuallyhidden');
       element.addClass("disable");
-
-      var selectPer = that.options.selectReceivePerson.getSelectedIDCard();
+      
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-
-      //进行校验，不通过则把提交订单点亮
-      if (typeof selectPer == 'undefined' || selectPer === false) {
-        new SFMessage(null, {
-          'tip': '请选择收货人！',
-          'type': 'error'
-        });
-
-        element.removeClass("disable");
-        return false;
-      }
+      
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
           'tip': '请选择收货地址！',
@@ -166,7 +155,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       //实例化接口
       var setDefaultRecv = new SFSetDefaultRecv({
-        "recId": selectPer.recId
+        "recId": selectAddr.recId
       });
 
       var setDefaultAddr = new SFSetDefaultAddr({
@@ -186,11 +175,11 @@ define('sf.b2c.mall.order.iteminfo', [
               "cityName": selectAddr.cityName,
               "regionName": selectAddr.regionName,
               "detail": selectAddr.detail,
-              "recName": selectPer.recName,
+              "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
               "zipCode": selectAddr.zipCode,
-              "recId": selectPer.recId
+              "recId": selectAddr.recId
             }),
             "userMsg": "",
             "items": JSON.stringify([{
@@ -222,7 +211,7 @@ define('sf.b2c.mall.order.iteminfo', [
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
-              "recid": selectPer.recId
+              "recid": selectAddr.recId
             });
         })
         .fail(function(error) {
