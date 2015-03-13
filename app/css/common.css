@@ -456,6 +456,11 @@ img{vertical-align: middle;}
 	position: absolute;
 	top: 0;
 }
+.icon52{
+	width: 59px;
+	height: 47px;
+	background-position: -569px 0;
+}
 /*btn*/
 .btn{
 	display: inline-block;
