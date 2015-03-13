@@ -5,19 +5,17 @@ define(
   [
     'can',
     'jquery',
+    'sf.helpers',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.step',
-    'sf.b2c.mall.api.order.getOrder',
-    'sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.order.getOrderConfirmInfo',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.api.order.getOrderConfirmInfo'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, OrderSetp, SFGetOrder, SFRequestPayV2, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
+  function(can, $, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -58,7 +56,7 @@ define(
         getOrder.sendRequest()
             .done(function(data){
               that.options.orderId = data.orderId;
-              that.options.orderMoney = data.orderItem.totalPrice/100;
+              that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
               that.options.orderPayWay = '在线支付';
 
               that.options.receiveName = data.orderItem.orderAddressItem.receiveName;

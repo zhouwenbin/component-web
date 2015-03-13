@@ -33,7 +33,8 @@ function($, can, _, Comm, SecurityType) {
       },
       ERROR_CODE: {
         '4000100': 'order unkown error',
-        '4000800': '订单状态不能取消'
+        '4100600': '请求参数有误',
+        '4100800': '订单取消用户和订单用户不匹配'
       }
     }
   });

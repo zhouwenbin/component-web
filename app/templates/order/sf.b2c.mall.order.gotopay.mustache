@@ -2,7 +2,7 @@
   <div class="pay">
     <div class="pay-r2 clearfix">
       <h1 class="fl">{{tips.tipInfo}}</h1>
-      <div class="fr pay-r2c2">应付金额：<strong>￥<span class="pay-price">{{orderMoney}}</span></strong>元</div>
+      <div class="fr pay-r2c2">应付金额：<strong>￥<span class="pay-price">{{sf.price orderMoney}}</span></strong>元</div>
     </div>
       <p>请您在订单提交后2小时内完成支付，否则订单会自动取消哦！</p>
     <h2>支付方式</h2>
@@ -22,7 +22,7 @@
       <div class="info-c1 fl">订单及支付</div>
       <ul class="info-c2">
         <li>订单号：{{orderId}}</li>
-        <li>订单金额：￥{{orderMoney}}元</li>
+        <li>订单金额：￥{{sf.price orderMoney}}元</li>
         <li>付款方式：{{orderPayWay}}</li>
       </ul>
     </div>

@@ -4,6 +4,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'can',
     'jquery',
     'store',
+    'sf.b2c.mall.adapter.regions',
     'sf.b2c.mall.api.user.getRecAddressList',
     'sf.b2c.mall.api.user.getIDCardUrlList',
     'sf.b2c.mall.adapter.address.list',
@@ -16,7 +17,7 @@ define('sf.b2c.mall.center.receiveaddr', [
     'sf.b2c.mall.api.user.setDefaultAddr',
     'sf.b2c.mall.api.user.setDefaultRecv'
   ],
-  function(can, $,store, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage,SFSetDefaultAddr, SFSetDefaultRecv) {
+  function(can, $,store, RegionsAdapter,SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage,SFSetDefaultAddr, SFSetDefaultRecv) {
 
     SFFrameworkComm.register(1);
 
@@ -28,9 +29,11 @@ define('sf.b2c.mall.center.receiveaddr', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
+        this.adapter = {};
         this.adapter4List = {};
         this.component = {};
         this.paint();
+        this.request();
       },
 
       helpers:{
@@ -88,10 +91,21 @@ define('sf.b2c.mall.center.receiveaddr', [
 
           });        
       },
+      request: function() {
+        var that = this;
+        return can.ajax('json/sf.b2c.mall.regions.json')
+          .done(_.bind(function(cities) {
+            this.adapter.regions = new RegionsAdapter({
+              cityList: cities
+            });
+          }, this))
+          .fail(function() {
 
-      getCityList: function() {
-        return can.ajax('json/sf.b2c.mall.regions.json');
+          });
       },
+      // getCityList: function() {
+      //   return can.ajax('json/sf.b2c.mall.regions.json');
+      // },
 
       /** 获得收获人和收获地址 */
       queryAddress: function(recAddrs, recPersons) {

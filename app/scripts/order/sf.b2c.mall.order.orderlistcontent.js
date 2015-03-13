@@ -71,6 +71,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   order.showRouter = that.routeMap[order.orderStatus];
                   order.orderStatus = that.statsMap[order.orderStatus];
                   order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
+                  order.paymentAmount = order.totalPrice - order.discount;
                 }
               })
 

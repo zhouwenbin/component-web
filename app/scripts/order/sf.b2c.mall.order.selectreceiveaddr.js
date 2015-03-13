@@ -87,7 +87,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
-            list = fn(reAddrs.items, data && data.value)
+            list = fn(that.result, data && data.value)
           }
 
           //获得地址列表
@@ -189,10 +189,11 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     },
     showAllAdr:function(){
       var len = $("li[name='addrEach']").length;
-      if (len > 5) {
-        $("li[name='addrEach']:lt(5)").css('display','block');
+      if (len > 3) {
+        $("li[name='addrEach']:lt(3)").css('display','block');
       }else{
         $("li[name='addrEach']").css('display','block');
+        $('.icon30').hide();
       }
     },
     /** 获得收获人和收获地址 */
