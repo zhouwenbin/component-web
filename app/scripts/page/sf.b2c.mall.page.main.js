@@ -14,10 +14,11 @@ define(
     'sf.b2c.mall.component.rapidseabuy',
     'sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.widget.slide',
+    'imglazyload',
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, _, SFFrameworkComm, Header, Footer, FreshFood, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide) {
+  function(can, $, _, SFFrameworkComm, Header, Footer, FreshFood, LimitedTimeSale, RapidSeaBuy, SFApiGetBanner, SFSlide, SFImglazyload, SFConfig) {
     SFFrameworkComm.register(1);
 
     var home = can.Control.extend({
@@ -27,6 +28,8 @@ define(
 
         this.render();
         this.supplement();
+
+        $(".img-lazyload").imglazyload();
       },
 
       onLogin: function () {

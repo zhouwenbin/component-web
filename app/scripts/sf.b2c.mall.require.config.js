@@ -102,6 +102,7 @@ requirejs.config({
     'zoom': 'scripts/vendor/vendro.jquery.zoom',
     'sf.helpers': 'scripts/util/sf.helpers',
     'sf.util': 'scripts/util/sf.util.fn',
+    'imglazyload': 'scripts/vendor/vendor.jquery.imglazyload',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
