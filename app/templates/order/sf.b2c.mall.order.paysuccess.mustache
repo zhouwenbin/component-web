@@ -3,7 +3,7 @@
     <h2>订单支付成功</h2>
     <h3>感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></h3>
     {{#isPresentCoupon}}
-    <a class="coupon" href="{{links.coupon}}" style="display: block;">
+    <a class="coupon" href="{{links.coupon}}">
         <div class="coupon-r1"><strong>恭喜你！</strong>{{presentCoupon.couponName}}，本订单已赠送优惠券：</div>
         <div class="coupon-r2">
             <strong class="icon icon51">{{sf.price presentCoupon.price}}</strong>
