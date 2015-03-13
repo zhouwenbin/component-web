@@ -14,10 +14,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.widget.showArea',
+    'imglazyload',
     'sf.b2c.mall.api.b2cmall.checkLogistics'
-
   ],
-  function(can, zoom,store,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,CheckLogistics) {
+  function(can, zoom,store,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,SFImglazyload,CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -123,6 +123,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         if (that.options.serverRendered) {
           this.supplement();
+          $(".img-lazyload").imglazyload();
         } else {
           can.ajax({
               url: 'json/sf-b2c.mall.detail.getItemInfo.json'
@@ -876,6 +877,8 @@ define('sf.b2c.mall.product.detailcontent', [
       renderDetail: function() {
         var template = can.view.mustache(this.detailTemplate());
         $('#detailcontent').html(template(this.options.detailContentInfo));
+
+        $(".img-lazyload").imglazyload();
       },
 
       recommend2Template: function() {
