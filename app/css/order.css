@@ -74,14 +74,15 @@
 .order-b>ul>li{
 	display: none;
 }
-.order-b li.active,
+.user-basic-info .order-b>ul>li{
+	display: block;
+}
 .order-b.active li{
 	display: block;
 }
 
 .order-r1{
 	padding: 27px 0;
-	display: none;
 	line-height: 1.5;
 }
 
@@ -256,6 +257,9 @@
 	margin-bottom: 34px;
 	margin-top: -36px;
 }
+.order-r3 h3 a{
+	text-decoration: underline;
+}
 .order-r3 .btn{
 	padding: 0;
 	width: 218px;
@@ -303,4 +307,5 @@
 .order .text-error{
 	padding-left: 143px;
 	padding-top: 13px;
+	font-size: 12px;
 }

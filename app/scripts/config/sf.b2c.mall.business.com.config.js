@@ -38,7 +38,9 @@ define([], function () {
     'register': 'http://'+main+'/register.html',
     'retrieve': 'http://'+main+'/retrieve.html',
     'ilogin': 'http://'+main+'/i.login.html',
-    'iregister': 'http://'+main+'/i.register.html'
+    'iregister': 'http://'+main+'/i.register.html',
+    'coupon': 'http://'+main+'/coupon.html',
+    'paysuccess': 'http://'+main+'/paysuccess.html'
   }
 
   return {

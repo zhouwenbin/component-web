@@ -2,16 +2,22 @@
 
 define('sf.b2c.mall.order.selectreceiveaddr', [
   'can',
+  'jquery',
+  'store',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.getRecAddressList',
+  'sf.b2c.mall.api.user.getIDCardUrlList',
   'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.component.addreditor',
   'sf.b2c.mall.api.user.webLogin',
   'md5',
   'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.widget.showArea',
-  'sf.b2c.mall.api.b2cmall.getItemSummary'
-], function(can, RegionsAdapter, SFGetRecAddressList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFShowArea,SFGetItemSummary) {
+  'sf.b2c.mall.api.b2cmall.getItemSummary',
+  'sf.b2c.mall.api.user.delRecAddress',
+  'sf.b2c.mall.api.user.setDefaultAddr',
+  'sf.b2c.mall.api.user.setDefaultRecv',
+  'sf.b2c.mall.widget.message'
+], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
   var AREAID;
   return can.Control.extend({
 
@@ -21,13 +27,13 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      this.adapter = {}
+      this.adapter = {};
       this.adapter4List = {};
       this.component = {};
       this.paint();
+      
 
       this.component.checkLogistics = new CheckLogistics();
-      this.component.showArea = new SFShowArea();
 
       var params = can.deparam(window.location.search.substr(1));
 
@@ -42,9 +48,17 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
         })
     },
-
+    helpers:{
+      'defaultAddr':function(isDefault,options){
+        if (isDefault() == 1) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        };
+      }
+    },
     render: function(data) {
-      var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data);
+      var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data,this.helpers);
       this.element.html(html);
     },
 
@@ -52,11 +66,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var that = this;
 
       var getRecAddressList = new SFGetRecAddressList();
+      var getIDCardUrlList = new SFGetIDCardUrlList();
 
-      getRecAddressList
-        .sendRequest()
-        .done(function(reAddrs) {
+      can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())
+        .done(function(recAddrs, recPersons) {
 
+          that.result = that.queryAddress(recAddrs, recPersons);
           var params = can.deparam(window.location.search.substr(1));
           var map = {
             'heike_online': function (list, id) {
@@ -72,12 +87,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
-            list = fn(reAddrs.items, data && data.value)
+            list = fn(that.result, data && data.value)
           }
 
           //获得地址列表
           that.adapter4List.addrs = new AddressAdapter({
-            addressList: list || reAddrs.items || [],
+            addressList: list || that.result || [],
             hasData: false
           });
 
@@ -100,46 +115,57 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             onSuccess: _.bind(that.paint, that),
             from: 'order'
           });
-
+          that.showAllAdr();
           that.request(); 
+          if (typeof data != 'undefined') {
+            $("body,html").animate({scrollTop:200});
+            var changedAddr = $("li[name='addrEach']");
+            var len = $("li[name='addrEach']").length;
+            $("li[name='addrEach']").removeClass('active');
+            for (var i = 0; i < len; i++) {
+              if ($(changedAddr).eq(i).data('addressid') == data.value) {
+                $(changedAddr).eq(i).addClass('active');
+                return false;
+              };
+            };
+          };
         })
         .fail(function(error) {
           console.error(error);
         })
     },
 
-    check: function () {
+    check: function (selectValue) {
       var that = this;
       if(AREAID != 0){
-          var firstAddr = that.adapter4List.addrs.get(0);
-          var provinceId =that.adapter.regions.getIdByName(firstAddr.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, firstAddr.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, firstAddr.regionName);
+        var provinceId =that.adapter.regions.getIdByName(selectValue.provinceName);
+        var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectValue.cityName);
+        var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, selectValue.regionName);
 
-          that.component.checkLogistics.setData({
-            areaId:AREAID,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:regionId
-          });
-          that.component.checkLogistics.sendRequest()
-            .done(function(data){
-              if(data){
-                if(data.value == false){
-                  $('#errorTips').removeClass('visuallyhidden');
-                  $('#submitOrder').addClass('disable');
-                  return false;
-                }else{
-                  $('#errorTips').addClass('visuallyhidden');
-                  $('#submitOrder').removeClass('disable');
-                  return true;
-                }
+        that.component.checkLogistics.setData({
+          areaId:AREAID,
+          provinceId:provinceId,
+          cityId:cityId,
+          districtId:regionId
+        });
+        that.component.checkLogistics.sendRequest()
+          .done(function(data){
+            if(data){
+              if(data.value == false){
+                $('#errorTips').removeClass('visuallyhidden');
+                $('#submitOrder').addClass('disable');
+                return false;
+              }else{
+                $('#errorTips').addClass('visuallyhidden');
+                $('#submitOrder').removeClass('disable');
+                return true;
               }
-            })
-            .fail(function(data){
+            }
+          })
+          .fail(function(data){
 
-            })
-        }
+          })
+      }
     },
 
     request: function() {
@@ -149,8 +175,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           this.adapter.regions = new RegionsAdapter({
             cityList: cities
           });
-
-          this.check();
+          var firstAddr = that.adapter4List.addrs.get(0);
+          this.check(firstAddr);
         }, this))
         //   function(cities) {
         //   that.adapter.regions = new RegionsAdapter({
@@ -161,7 +187,56 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
         });
     },
+    showAllAdr:function(){
+      var len = $("li[name='addrEach']").length;
+      if (len > 3) {
+        $("li[name='addrEach']:lt(3)").css('display','block');
+      }else{
+        $("li[name='addrEach']").css('display','block');
+        $('.icon30').hide();
+      }
+    },
+    /** 获得收获人和收获地址 */
+    queryAddress: function(recAddrs, recPersons) {
+      var result = new Array();
 
+      //取得默认的收货人和收货地址
+      var defaultRecAddrID = null;
+      var defaultRecID = null;
+      _.each(recAddrs.items, function(recAddrItem) {
+        _.each(recPersons.items, function(presonItem) {
+          if (recAddrItem.isDefault != 0 && presonItem.isDefault != 0 && recAddrItem.recId != 0 && presonItem.recId != 0) {
+            recAddrItem.recName = presonItem.recName;
+            recAddrItem.credtNum = presonItem.credtNum;
+            recAddrItem.credtNum2 = presonItem.credtNum2;
+            result.push(recAddrItem);
+
+            defaultRecAddrID = recAddrItem.addrId;
+            defaultRecID = recAddrItem.recId;
+          }
+        })
+      })
+
+      //取得关联的收货人和收货地址（为啥要遍历两次：因为要确保默认收货人和收货地址放在第一条）
+      var tempObje = {};
+      _.each(recAddrs.items, function(recAddrItemTemp) {
+        _.each(recPersons.items, function(presonItemTemp) {
+          if (recAddrItemTemp.recId == presonItemTemp.recId && (recAddrItemTemp.isDefault == 0 || presonItemTemp.isDefault == 0) && recAddrItemTemp.recId != 0 && presonItemTemp.recId != 0) {
+
+            if (recAddrItemTemp.addrId != defaultRecAddrID) {
+              tempObje = recAddrItemTemp;
+              tempObje.recName = presonItemTemp.recName;
+              tempObje.credtNum = presonItemTemp.credtNum;
+              tempObje.credtNum2 = presonItemTemp.credtNum2
+              result.push(tempObje);
+            }
+
+          }
+        })
+      })
+
+      return result;
+    },
     getCityList: function() {
       return can.ajax('json/sf.b2c.mall.regions.json');
     },
@@ -178,6 +253,39 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       return this.adapter4List.addrs.get(index);
     },
 
+    //设为默认地址
+    ".btn-setDefault click":function(element,event){
+      var that = this;
+      var index = element.data('index');
+      var addr = this.adapter4List.addrs.get(index);
+      this.adapter4List.addrs.input.attr('addrId', addr.addrId);
+
+      var setDefaultRecv = new SFSetDefaultRecv({
+        "recId": addr.recId
+      });
+
+      var setDefaultAddr = new SFSetDefaultAddr({
+        "addrId": addr.addrId
+      });
+      can.when(setDefaultRecv.sendRequest(),setDefaultAddr.sendRequest())
+        .done(function(data){
+          new SFMessage(null,{
+            'tip': '设为默认地址成功！',
+            'type': 'success'
+          });
+          that.paint();
+          var provinceId = that.adapter.regions.getIdByName(addr.provinceName);
+          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
+          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
+
+          store.set('provinceId',provinceId);
+          store.set('cityId',cityId);
+          store.set('regionId',regionId);
+        })
+        .fail(function(){
+
+        })
+      },
 
     /**
      * [description 新增保存]
@@ -186,7 +294,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#addSave click": function(element, event) {
-
 
       return false;
     },
@@ -227,13 +334,45 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       return false;
     },
 
+    ".order-del click": function(element, event){
+      var index = element.data('index');
+      var addr = this.adapter4List.addrs.get(index);
+      
+      var that = this;
+      var message = new SFMessage(null, {
+        'tip': '确认要删除该收货地址信息吗？',
+        'type': 'confirm',
+        'okFunction': _.bind(that.delAddress, that, element, addr)
+      });
+
+      return false;
+    },
+    delAddress: function(element, addr){
+      var that = this;
+
+      var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
+      delRecAddress
+        .sendRequest()
+        .done(function(result){
+          var defaultId = element.attr('data-isdefault');
+          if (defaultId == 1) {
+            store.remove('provinceId');
+            store.remove('cityId');
+            store.remove('regionId');
+          };
+          that.paint();
+        })
+        .fail(function(error){
+          //console.error(error);
+        })
+    },
     /**
      * [description 点击新增]
      * @param  {[type]} element
      * @param  {[type]} event
      * @return {[type]}
      */
-    ".btn-add click": function(element, event) {
+    "#btn-add-addr click": function(element, event) {
       //隐藏其它编辑和新增状态
       $("#addrList").find(".order-r2").hide();
       $("#addAdrArea").show();
@@ -256,38 +395,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
         $('#errorTips').addClass('visuallyhidden');
         this.clearActive();
         $(obj).parents("li[name='addrEach']").addClass("active");
-        var that = this;
-        if(AREAID != 0){
-          var dataValue = this.getSelectedAddr();
-          var provinceId = that.component.showArea.adapter.regions.getIdByName(dataValue.provinceName);
-          var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, dataValue.cityName);
-          var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, dataValue.regionName);
-          that.component.checkLogistics.setData({
-            areaId:AREAID,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:regionId
-          });
-          can.when(that.component.checkLogistics.sendRequest())
-            .done(function(data){
-              if(data){
-                if(data.value == false){
-                  $('#errorTips').removeClass('visuallyhidden');
-                  $('#submitOrder').addClass('disable');
-                  return false;
-                }else{
-                  $('#errorTips').addClass('visuallyhidden');
-                  $('#submitOrder').removeClass('disable');
-                  return true;
-                }
-              }
-            })
-            .fail(function(){
-
-            })
-        }
-
-        return false;
+        var dataValue = this.getSelectedAddr();
+        this.check(dataValue);
       }
     },
 

@@ -244,7 +244,7 @@
 }
 .register-b3{
 	padding-top: 75px;
-	padding-bottom: 80px;
+	padding-bottom: 32px;
 }
 .register-b4{
 	padding-top: 53px;
@@ -255,4 +255,11 @@
 }
 .register-b-main{
 	height: 290px;
+}
+.register-wechat{
+	margin-top: 20px;
+	text-align: center;
+}
+.register-wechat .icon{
+	margin-bottom: 6px;
 }
