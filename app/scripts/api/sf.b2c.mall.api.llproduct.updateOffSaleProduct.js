@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '7001900': '编辑商品错误，商品状态非下架'
       }
     }
   });

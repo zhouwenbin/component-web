@@ -34,6 +34,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '7000000': '参数错误'
       }
     }
   });
