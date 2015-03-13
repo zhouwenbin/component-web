@@ -259,7 +259,13 @@
 .register-wechat{
 	margin-top: 20px;
 	text-align: center;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 .register-wechat .icon{
-	margin-bottom: 6px;
+	margin-right: 10px;
 }
