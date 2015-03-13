@@ -82,24 +82,22 @@ p.mycoupon-b{
 }
 
 .coupon{
-	display: block;
+	display: inline-block;
+	width: 216px;
+	padding-left: 64px;
+	height: 119px;
 	background: url(../img/coupon.png) no-repeat;
-	height: 105px;
-	width: 399px;
-	margin: 0 auto;
-	font-size: 14px;
-	padding: 20px 100px;
+	color: #fff;
 	text-align: center;
-}
-.coupon strong{
-	color: #dc3334;
-	font-weight: normal;
+
 }
 .coupon-r1{
-	margin-bottom: 14px;
+	font-size: 36px;
+	padding-top: 5px;
 }
-.coupon-r2{
-	margin-bottom: 12px;
+.coupon-r1 span{
+	font-size: 72px;
+	font-family: Arial;
 }
 
 .coupon2{

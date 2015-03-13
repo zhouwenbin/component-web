@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.confirmReceive
+  * @class sf.b2c.mall.api.user.quickLogin
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.confirmReceive',
+'sf.b2c.mall.api.user.quickLogin',
 [
   'jquery',
   'can',
@@ -22,18 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.confirmReceive',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.quickLogin',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'subOrderId': 'string'
+        'cftoken': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4000900': '子订单状态不符合确认操作'
+        '1000010': '未找到用户'
       }
     }
   });

@@ -33,7 +33,6 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000070': '参数错误'
       }
     }
   });

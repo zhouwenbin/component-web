@@ -1,7 +1,7 @@
 1、执行打包。进入haitao-b2c-web目录执行如下命令
 
     ```
-    grunt build:dev
+    grunt build:prd
     ```
 
 2、文件压缩。进入dist目录，执行zip压缩
