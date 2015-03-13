@@ -136,6 +136,17 @@
 .table-none a{
 	color: #939393;
 	font-size: 14px;
-	margin-left: 34px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 	text-decoration: underline;
+	display: inline-block;
+}
+.table-none .icon{
+	margin-right: 30px;
+	vertical-align: bottom;
+}
+.table-none p{
+	display: inline-block;
+	text-align: left;
+	vertical-align: bottom;
 }
