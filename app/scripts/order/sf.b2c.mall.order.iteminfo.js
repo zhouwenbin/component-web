@@ -42,7 +42,7 @@ define('sf.b2c.mall.order.iteminfo', [
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
           var itemObj = {};
-          var isShowCouponArea = false;
+          itemObj.isShowCouponArea = false;
           //AREAID = 1;
 
           itemObj.singlePrice = priceinfo.sellingPrice;
@@ -82,7 +82,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           can.when(queryOrderCoupon.sendRequest())
             .then(function(orderCoupon) {
-              var isShowCouponArea = true;
+              itemObj.isShowCouponArea = true;
               itemObj.orderCoupon = orderCoupon;
               itemObj.orderCoupon.isHaveAvaliable = orderCoupon.avaliableAmount != 0;
               itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
@@ -96,7 +96,6 @@ define('sf.b2c.mall.order.iteminfo', [
             });
 
           var renderItemInfo = function() {
-
             that.itemObj = new can.Map(itemObj);
             that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
               that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
