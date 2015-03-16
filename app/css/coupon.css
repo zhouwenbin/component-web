@@ -119,6 +119,9 @@ p.mycoupon-b{
 	text-align: center;
 
 }
+.coupon:hover{
+	color: #fff;
+}
 .coupon-r1{
 	font-size: 36px;
 	padding-top: 5px;

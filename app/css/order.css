@@ -284,7 +284,8 @@
 }
 .order-r3c2 .text-error{
 	padding: 0;
-	margin-bottom: 29px;
+	width: 280px;
+	margin:0 auto 29px;
 }
 .order-r3c1{
 	overflow: hidden;
