@@ -1314,15 +1314,19 @@ body.sub{
 	vertical-align: middle;
 	color: #949494;
 }
+.page a:after{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
 .page a.active{
 	border: 1px solid #D5D5D5;
 }
 .page a.disable{
 	opacity: 0.3;
 	cursor: not-allowed;
-}
-.page .icon{
-	margin-top:7px;
 }
 .page .icon16-7{
 	margin-left: -5px;
