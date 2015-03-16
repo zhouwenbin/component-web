@@ -14,10 +14,11 @@ define(
     'sf.b2c.mall.api.user.needVfCode',
     'sf.util',
     'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.user.reqLoginAuth',
     'sf.b2c.mall.api.user.getRecAddressList'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,GetRecAddressList){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,SFReqLoginAuth,GetRecAddressList){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -417,7 +418,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
+              password: md5(password + SFConfig.setting.md5_key),
               vfCode: vfCode
             });
             that.sendRequest();
@@ -428,7 +429,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
+              password: md5(password + SFConfig.setting.md5_key)
             });
             that.sendRequest();
 
