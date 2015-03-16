@@ -25,7 +25,9 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'coupon.receiveCpCode',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'promotionId': 'long',
+        'receiveChannel': 'string',
+        'receiceWay': 'string',
+        'cardId': 'long',
       },
       OPTIONAL: {
         'needSms': 'int',
@@ -34,12 +36,12 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '1000010': '未找到用户',
         '11000020': '卡券id不存在',
         '11000030': '卡券已作废',
         '11000040': '目前不再卡券发放有效期内',
         '11000050': '卡券已领完',
-        '11000100': '用户已领过该券',
-        '11000110': '用户不存在'
+        '11000100': '用户已领过该券'
       }
     }
   });
