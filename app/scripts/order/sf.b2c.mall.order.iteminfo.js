@@ -77,7 +77,7 @@ define('sf.b2c.mall.order.iteminfo', [
               "num": that.options.amount,
               "price": itemObj.singlePrice
             }]),
-            'system': "B2C"
+            'system': that.getSysType(that.options.saleid)
           });
 
           can.when(queryOrderCoupon.sendRequest())
@@ -301,5 +301,5 @@ define('sf.b2c.mall.order.iteminfo', [
     '#inputCouponCode click': function(targetElement) {
       $(".coupon2-r2.hide").show();
     }
-  });15000950908
+  });
 })
