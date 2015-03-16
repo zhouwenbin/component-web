@@ -81,28 +81,25 @@ define('sf.b2c.mall.order.iteminfo', [
           });
 
           can.when(queryOrderCoupon.sendRequest())
-            .then(function(orderCoupon) {
+            .done(function(orderCoupon) {
               itemObj.isShowCouponArea = true;
               itemObj.orderCoupon = orderCoupon;
               itemObj.orderCoupon.isHaveAvaliable = orderCoupon.avaliableAmount != 0;
               itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
               itemObj.orderCoupon.useQuantity = 0;
               itemObj.orderCoupon.discountPrice = 0;
-              renderItemInfo();
             })
             .fail(function (error) {
-              renderItemInfo();
               console.error(error);
+            })
+            .always(function() {
+              that.itemObj = new can.Map(itemObj);
+              that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
+                that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
+              });
+              var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
+              that.element.html(html);
             });
-
-          var renderItemInfo = function() {
-            that.itemObj = new can.Map(itemObj);
-            that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
-              that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
-            });
-            var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
-            that.element.html(html);
-          }
         })
         .fail(function (error) {
           console.error(error);
@@ -127,7 +124,13 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000500": "订单商品库存不足",
       "4000600": "订单商品超过限额",
       "4000700": "订单商品金额改变",
-      "4002700": "订单商品已下架"
+      "4002700": "订单商品已下架",
+      "4100901": "优惠券使用失败",
+      "4100902": "优惠券不在可使用的范围内",
+      "4100903": "优惠券不能在该渠道下使用",
+      "4100904": "优惠券不能在该终端下使用",
+      "4100905": "使用的优惠券不满足满减条件",
+      "4100906": "使用的优惠券金额超过商品总金额的30%"
     },
 
     getSysType: function (saleid) {
