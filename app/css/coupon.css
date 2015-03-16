@@ -1,6 +1,11 @@
 ﻿.mycoupon h2{
 	padding-left: 0;
 }
+.mycoupon-h{
+	display: inline-block;
+	border-left: 1px solid #eee;
+  	border-right: 1px solid #eee;
+}
 .mycoupon-h li{
 	float: left;
 	width: 164px;
@@ -26,6 +31,8 @@
 	padding-left: 40px;
 	padding-top: 30px;
 	display: none;
+	border: 1px solid #eee;
+	margin-top: -1px;
 }
 
 p.mycoupon-b{
@@ -37,7 +44,6 @@ p.mycoupon-b{
 }
 .mycoupon-b li{
 	padding: 22px;
-	border: 1px solid #ebebeb;
 	float: left;
 	margin-right: 30px;
 	margin-bottom: 20px;
