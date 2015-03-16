@@ -245,10 +245,13 @@
 	text-align: center;
 }
 .order-r3 h2{
-	margin-top: 64px;
+	margin-top: 83px;
 	margin-bottom: 49px;
 	font-size: 18px;
 	padding-left: 0;
+}
+.order-r3 .icon37{
+	margin-right: 10px;
 }
 .order-r3 h3{
 	font-size: 14px;
