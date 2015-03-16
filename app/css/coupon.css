@@ -27,6 +27,7 @@
 	padding-top: 30px;
 	display: none;
 }
+
 p.mycoupon-b{
 	text-align: center;
 	padding: 170px 0;
@@ -79,6 +80,24 @@ p.mycoupon-b{
 	padding-top: 130px;
 	padding-bottom: 30px;
 	background: #fff;
+}
+.mycoupon-b2 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-2.png);
+	
+}
+
+.mycoupon-b3 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-3.png);
+}
+.mycoupon-b4 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-4.png);
+}
+.mycoupon-line3 .mycoupon-r1r1{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.mycoupon-line3 p{
+	line-height: 22px;
 }
 
 .coupon{
