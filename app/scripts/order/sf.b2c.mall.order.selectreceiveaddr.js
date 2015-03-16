@@ -175,7 +175,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           this.adapter.regions = new RegionsAdapter({
             cityList: cities
           });
-          var firstAddr = that.adapter4List.addrs.get(0);
+          var firstAddr = that.getSelectedAddr();
           this.check(firstAddr);
         }, this))
         //   function(cities) {

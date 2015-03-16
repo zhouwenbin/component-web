@@ -1,18 +1,18 @@
 ﻿/*404*/
 .pagenofind,
 .pagenofind-goods{
-  padding-top: 911px;
-  height: 289px;
-  background: url(http://img.sfht.com/sfht/img/404.jpg) no-repeat center;
+  background: #fff url(../img/404.png) no-repeat 150px 150px;
   text-align: center;
-  margin-top: -60px;
+  margin-top: 44px;
+  margin-bottom: 74px;
+  padding-top: 405px;
+  padding-bottom: 213px;
 }
 .pagenofind a,
 .pagenofind-goods a{
-  font-size: 30px;
-  color: #fff;
-  margin: 0 37px;
-  text-decoration: underline;
+  font-size: 14px;
+  color: #666666;
+  margin: 0 50px;
 }
 .pagenofind-goods{
   background: url(http://img.sfht.com/sfht/img/404-goods.jpg) no-repeat center;

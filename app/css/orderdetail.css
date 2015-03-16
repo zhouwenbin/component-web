@@ -104,7 +104,8 @@
 .info{
 	border:1px solid #dfe2e4;
 	border-radius: 4px;
-	background: #fff
+	background: #fff;
+	font-size: 14px;
 }
 
 .info-r1{
