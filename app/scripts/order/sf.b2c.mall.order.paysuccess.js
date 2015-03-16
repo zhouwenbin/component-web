@@ -29,11 +29,12 @@ define('sf.b2c.mall.order.paysuccess', [
           "orderId": params.orderid
         });
 
+        that.options.isCostCoupon = false;
+        that.options.isPresentCoupon = false;
+        that.options.links = SFConfig.setting.link;
+
         can.when(getOrder.sendRequest())
           .done(function(data, idcard) {
-            that.options.isCostCoupon = false;
-            that.options.isPresentCoupon = false;
-            that.options.links = SFConfig.setting.link;
             //处理卡券信息
             if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
               for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
@@ -57,6 +58,8 @@ define('sf.b2c.mall.order.paysuccess', [
             that.element.html(html);
           })
           .fail(function(error) {
+            var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
+            that.element.html(html);
             console.error(error);
           })
       }

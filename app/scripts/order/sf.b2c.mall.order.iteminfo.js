@@ -38,21 +38,11 @@ define('sf.b2c.mall.order.iteminfo', [
       var prceInfo = new SFGetProductHotData({
         'itemId': this.options.itemid
       });
-      var queryOrderCoupon = new SFQueryOrderCoupon({
-        'items': JSON.stringify([that.options.itemid]),
-        'system': "B2C"
-      });
 
-      can.when(getItemSummary.sendRequest(), prceInfo.sendRequest(), queryOrderCoupon.sendRequest())
-        .done(function(iteminfo, priceinfo, orderCoupon) {
+      can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
+        .done(function(iteminfo, priceinfo) {
           var itemObj = {};
-
-          itemObj.orderCoupon = orderCoupon;
-          itemObj.orderCoupon.isHaveAvaliable = orderCoupon.avaliableAmount != 0;
-          itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
-          itemObj.orderCoupon.useQuantity = 0;
-          itemObj.orderCoupon.discountPrice = 0;
-
+          var isShowCouponArea = false;
           //AREAID = 1;
 
           itemObj.singlePrice = priceinfo.sellingPrice;
@@ -66,7 +56,7 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.showTax = iteminfo.bonded;
           itemObj.itemName = iteminfo.title;
 
-		      if(typeof iteminfo.image !== 'undefined'){
+          if(typeof iteminfo.image !== 'undefined'){
             itemObj.picUrl = iteminfo.image.thumbImgUrl;
           }
 
@@ -81,12 +71,39 @@ define('sf.b2c.mall.order.iteminfo', [
           that.options.allTotalPrice = itemObj.allTotalPrice;
           that.options.sellingPrice = priceinfo.sellingPrice;
 
-          that.itemObj = new can.Map(itemObj);
-          that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
-            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
+          var queryOrderCoupon = new SFQueryOrderCoupon({
+            "items": JSON.stringify([{
+              "itemId": that.options.itemid,
+              "num": that.options.amount,
+              "price": itemObj.singlePrice
+            }]),
+            'system': "B2C"
           });
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
-          that.element.html(html);
+
+          can.when(queryOrderCoupon.sendRequest())
+            .then(function(orderCoupon) {
+              var isShowCouponArea = true;
+              itemObj.orderCoupon = orderCoupon;
+              itemObj.orderCoupon.isHaveAvaliable = orderCoupon.avaliableAmount != 0;
+              itemObj.orderCoupon.isHaveDisable = orderCoupon.disableAmount != 0;
+              itemObj.orderCoupon.useQuantity = 0;
+              itemObj.orderCoupon.discountPrice = 0;
+              renderItemInfo();
+            })
+            .fail(function (error) {
+              renderItemInfo();
+              console.error(error);
+            });
+
+          var renderItemInfo = function() {
+
+            that.itemObj = new can.Map(itemObj);
+            that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
+              that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
+            });
+            var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
+            that.element.html(html);
+          }
         })
         .fail(function (error) {
           console.error(error);
@@ -282,5 +299,5 @@ define('sf.b2c.mall.order.iteminfo', [
     '#inputCouponCode click': function(targetElement) {
       $(".coupon2-r2.hide").show();
     }
-  });
+  });15000950908
 })
