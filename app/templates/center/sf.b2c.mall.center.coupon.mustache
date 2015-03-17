@@ -1,17 +1,17 @@
 <ul class="mycoupon-h clearfix">
-    <li class="active"><a href="">未使用 ({{unUsedCount}})</a></li>
-    <li><a href="">已使用 ({{usedCount}})</a></li>
-    <li><a href="">已过期 ({{expiredCount}})</a></li>
-    <li><a href="">已作废 ({{cancelCount}})</a></li>
+    <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 ({{unUsed.count}})</a></li>
+    <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 ({{used.count}})</a></li>
+    <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 ({{expired.count}})</a></li>
+    <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 ({{cancel.count}})</a></li>
 </ul>
 
 <!--未使用-->
-{{^unUsedCount}}
-    <p class="mycoupon-b active"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
-{{/unUsedCount}}
-{{#unUsedCount}}
-<ul class="mycoupon-b active clearfix mycoupon-b1">
-    {{#each unUsedList}}
+{{^unUsed.count}}
+    <p class="mycoupon-b{{#unUsed.isShow}} active{{/unUsed.isShow}}"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
+{{/unUsed.count}}
+{{#unUsed.count}}
+<ul class="mycoupon-b clearfix mycoupon-b1{{#unUsed.isShow}} active{{/unUsed.isShow}}">
+    {{#each unUsed.items}}
     <li>
         <h3>{{title}}</h3>
         <div class="mycoupon-r1">
@@ -21,14 +21,14 @@
     </li>
     {{/each}}
 </ul>
-{{/unUsedCount}}
+{{/unUsed.count}}
 <!--已使用-->
-{{^usedCount}}
-    <p class="mycoupon-b">您还没有已用的优惠券哦~</p>
-{{/usedCount}}
-{{#usedCount}}
-<ul class="mycoupon-b clearfix mycoupon-b2 mycoupon-line3">
-  {{#each usedList}}
+{{^used.count}}
+    <p class="mycoupon-b{{#used.isShow}} active{{/used.isShow}}"><span class="icon icon51"></span>您还没有已用的优惠券哦~</p>
+{{/used.count}}
+{{#used.count}}
+<ul class="mycoupon-b clearfix mycoupon-b2 mycoupon-line3{{#used.isShow}} active{{/used.isShow}}">
+  {{#each used.items}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
@@ -38,14 +38,14 @@
       </li>
   {{/each}}
 </ul>
-{{/usedCount}}
+{{/used.count}}
 <!--已过期-->
-{{^expiredCount}}
-    <p class="mycoupon-b"><span class="icon icon51"></span>您还没有过期的优惠券哦~</p>
-{{/expiredCount}}
-{{#expiredCount}}
-<ul class="mycoupon-b clearfix mycoupon-b3">
-  {{#each expiredList}}
+{{^expired.count}}
+    <p class="mycoupon-b{{#expired.isShow}} active{{/expired.isShow}}"><span class="icon icon51"></span>您还没有过期的优惠券哦~</p>
+{{/expired.count}}
+{{#expired.count}}
+<ul class="mycoupon-b clearfix mycoupon-b3{{#expired.isShow}} active{{/expired.isShow}}">
+  {{#each expired.items}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
@@ -55,14 +55,14 @@
       </li>
   {{/each}}
 </ul>
-{{/expiredCount}}
+{{/expired.count}}
 <!--已作废-->
-{{^cancelCount}}
-    <p class="mycoupon-b"><span class="icon icon51"></span>您还没有作废的优惠券哦~</p>
-{{/cancelCount}}
-{{#cancelCount}}
-<ul class="mycoupon-b clearfix mycoupon-b4">
-  {{#each cancelList}}
+{{^cancel.count}}
+    <p class="mycoupon-b{{#cancel.isShow}} active{{/cancel.isShow}}"><span class="icon icon51"></span>您还没有作废的优惠券哦~</p>
+{{/cancel.count}}
+{{#cancel.count}}
+<ul class="mycoupon-b clearfix mycoupon-b4{{#cancel.isShow}} active{{/cancel.isShow}}">
+  {{#each cancel.items}}
       <li>
           <h3>{{title}}</h3>
           <div class="mycoupon-r1">
@@ -72,4 +72,4 @@
       </li>
   {{/each}}
 </ul>
-{{/cancelCount}}
+{{/cancel.count}}
