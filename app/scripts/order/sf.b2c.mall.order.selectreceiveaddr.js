@@ -32,7 +32,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.adapter4List = {};
       this.component = {};
       this.paint();
-      
+
 
       this.component.checkLogistics = new CheckLogistics();
 
@@ -85,6 +85,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             }
           }
 
+          // @note 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
           var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
@@ -117,7 +118,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             from: 'order'
           });
           that.showAllAdr();
-          that.request(); 
+          that.request();
           if (typeof data != 'undefined') {
             $("body,html").animate({scrollTop:200});
             var changedAddr = $("li[name='addrEach']");
@@ -338,7 +339,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     ".order-del click": function(element, event){
       var index = element.data('index');
       var addr = this.adapter4List.addrs.get(index);
-      
+
       var that = this;
       var message = new SFMessage(null, {
         'tip': '确认要删除该收货地址信息吗？',
@@ -390,7 +391,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#addrList click": function(element, event) {
-      var event = event || window.event; 
+      var event = event || window.event;
       var obj=event.srcElement ? event.srcElement : event.target;
       if (obj.tagName == 'SPAN') {
         $('#errorTips').addClass('visuallyhidden');
