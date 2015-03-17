@@ -11,6 +11,8 @@ define(
   ],
   function(can, $, helpers, SFGetUserCouponList){
 
+
+    var optionsMap;
     return can.Control.extend({
       init: function () {
         this.render();
@@ -26,42 +28,61 @@ define(
         getUserCouponList
           .sendRequest()
           .done(function(data) {
-            that.options.unUsedCount = 0;
-            that.options.usedCount = 0;
-            that.options.expiredCount = 0;
-            that.options.cancelCount = 0;
-            that.options.unUsedList = [];
-            that.options.usedList = [];
-            that.options.expiredList = [];
-            that.options.cancelList = [];
+            var options = {
+              unUsed : {
+                isShow: true,
+                count: 0,
+                items: []
+              },
+              used : {
+                isShow: false,
+                count: 0,
+                items: []
+              },
+              expired : {
+                isShow: false,
+                count: 0,
+                items: []
+              },
+              cancel : {
+                isShow: false,
+                count: 0,
+                items: []
+              }
+            };
 
-            if (data.items) {
-              for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
-                switch (tmpCoupon.status) {
-                  case "UNUSED": {
-                    that.options.unUsedCount++;
-                    that.options.unUsedList.push(tmpCoupon);
-                    break;
-                  }
-                  case "USED": {
-                    that.options.usedCount++;
-                    that.options.usedList.push(tmpCoupon);
-                    break;
-                  }
-                  case "CANCELED": {
-                    that.options.cancelCount++;
-                    that.options.cancelList.push(tmpCoupon);
-                    break;
-                  }
-                  case "EXPIRED": {
-                    that.options.expiredCount++;
-                    that.options.expiredList.push(tmpCoupon);
-                    break;
-                  }
-                }
+            var couponStatusMap = {
+              "UNUSED" : function() {
+                options.unUsed.count++;
+                options.unUsed.items.push(tmpCoupon);
+              },
+              "USED" : function() {
+                options.used.count++;
+                options.used.items.push(tmpCoupon);
+              },
+              "CANCELED" : function() {
+                options.cancel.count++;
+                options.cancel.items.push(tmpCoupon);
+              },
+              "EXPIRED" : function() {
+                options.expired.count++;
+                options.expired.items.push(tmpCoupon);
               }
             }
-            var html = can.view('templates/center/sf.b2c.mall.center.coupon.mustache', that.options);
+            var pushCoupon = function(tag) {
+              var fn = couponStatusMap[tag];
+              if (_.isFunction(fn)) {
+                return fn.call(this)
+              }
+            }
+            if (data.items) {
+              for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
+                pushCoupon(tmpCoupon.status);
+              }
+            }
+
+            optionsMap = new can.Map(options);
+            var html = can.view('templates/center/sf.b2c.mall.center.coupon.mustache', optionsMap);
             that.element.html(html);
           })
           .fail(function(error) {
