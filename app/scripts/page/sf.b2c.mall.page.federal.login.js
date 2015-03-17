@@ -36,7 +36,8 @@ define(
               store.set('csrfToken', data.csrfToken);
 
               // @note 这里需要添加&_tc=Date.now()
-              window.location.href = data.redirectUrl;
+              window.location.href = data.redirectUrl + '&_tc=' + Date.now();
+              
             }
           })
           .fail(function (errorCode) {
