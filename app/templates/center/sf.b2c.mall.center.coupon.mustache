@@ -2,7 +2,7 @@
     <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 ({{unUsed.count}})</a></li>
     <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 ({{used.count}})</a></li>
     <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 ({{expired.count}})</a></li>
-    <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="javascript:void(0);">已作废 ({{cancel.count}})</a></li>
+    <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 ({{cancel.count}})</a></li>
 </ul>
 
 <!--未使用-->
@@ -24,7 +24,7 @@
 {{/unUsed.count}}
 <!--已使用-->
 {{^used.count}}
-    <p class="mycoupon-b{{#used.isShow}} active{{/used.isShow}}">您还没有已用的优惠券哦~</p>
+    <p class="mycoupon-b{{#used.isShow}} active{{/used.isShow}}"><span class="icon icon51"></span>您还没有已用的优惠券哦~</p>
 {{/used.count}}
 {{#used.count}}
 <ul class="mycoupon-b clearfix mycoupon-b2 mycoupon-line3{{#used.isShow}} active{{/used.isShow}}">
