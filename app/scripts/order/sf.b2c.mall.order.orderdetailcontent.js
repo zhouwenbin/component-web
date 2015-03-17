@@ -36,7 +36,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
        * @param  {DOM} element 容器element
        * @param  {Object} options 传递的参数
        */
-      init: function(element, options) {
+      init: function(element, options) {debugger;
         this.component = {};
         this.render();
 
@@ -194,13 +194,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             })
 
-            //增加剩下的
-            _.each(that.options.traceList, function(trace) {
-              if (trace.status == 'COMPLETED' || trace.status == 'AUTO_COMPLETED') {
-                that.options.userRoutes.push(trace);
-              }
-            })
-
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             //that.options.receiveInfo.certNo = idcard.credtNum;
             that.options.productList = data.orderItem.orderGoodsItemList;
@@ -295,6 +288,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 }
               })
             }
+
+            //增加剩下的
+            _.each(that.options.traceList, function(trace) {
+              if (trace.status == 'COMPLETED' || trace.status == 'AUTO_COMPLETED') {
+                that.options.userRoutes.push(trace);
+              }
+            })
 
             var templates = can.view.mustache(that.showUserRoutesTemplates());
             $('#showUserRoutes').append(templates(that.options));
