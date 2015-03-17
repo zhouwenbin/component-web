@@ -60,7 +60,7 @@
       <div class="coupon2-b active">
         <div class="coupon2-b1">
           {{^orderCoupon.isHaveAvaliable}}
-            <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
+            <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
           {{/orderCoupon.isHaveAvaliable}}
           {{#orderCoupon.isHaveAvaliable}}
             <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
@@ -74,7 +74,7 @@
         </div>
         <div class="coupon2-b1">
             <div class="coupon2-r1">有优惠券兑换码？<label for="conpon" class="coupon2-link" id="inputCouponCode">[点击输入兑换码]</label></div>
-            <div class="coupon2-r2 hide"><input id="conpon" type="text" class="input" placeholder="输入您的兑换码"><a href="#" class="btn btn-send">使用</a></div>
+            <div class="coupon2-r2 hide"><input id="conpon" type="text" class="input" placeholder="输入您的兑换码"><a href="javascript:void(0);" id="useCouponCodeBtn" class="btn btn-send">使用</a></div>
         </div>
         <div class="coupon2-r3">共使用了<strong>{{orderCoupon.useQuantity}}</strong>张优惠券，可以优惠<strong>{{sf.price orderCoupon.discountPrice}}元</strong></div>
       </div>

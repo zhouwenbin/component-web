@@ -53,14 +53,13 @@ define('sf.b2c.mall.order.paysuccess', [
                 }
               }
             }
-
-            var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
-            that.element.html(html);
           })
           .fail(function(error) {
+            console.error(error);
+          })
+          .always(function(){
             var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
             that.element.html(html);
-            console.error(error);
           })
       }
     });

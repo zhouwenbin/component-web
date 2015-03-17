@@ -17,8 +17,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.widget.message',
     'moment',
-    'sf.b2c.mall.api.order.confirmReceive',
-    ''
+    'sf.b2c.mall.api.order.confirmReceive'
   ],
   function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment, SFConfirmReceive) {
 
