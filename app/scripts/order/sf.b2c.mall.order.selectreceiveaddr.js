@@ -86,7 +86,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           }
 
           // @note 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
-          var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
+          var fn = map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
             list = fn(that.result, data && data.value)
