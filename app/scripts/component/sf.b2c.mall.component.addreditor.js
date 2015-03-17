@@ -240,9 +240,11 @@ define('sf.b2c.mall.component.addreditor', [
         credtNum: addr.receiverId
       };
       
+      //@noto 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
       var cinfo = can.deparam(window.location.search.substr(1));
-      if (cinfo.saleid == 'heike_online' && !_.isEmpty(cinfo.orgCode)) {
+      if (cinfo.saleid == 'heike_online') {
         addr.partnerId = 'heike';
+        person.partnerId = 'heike';
       }
 
       var recId = null;
