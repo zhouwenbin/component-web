@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width">
+  <title>我的卡券</title>
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.coupon.css -->
+  <link href="css/common.css" rel="stylesheet" type="text/css" />
+  <link href="css/order.css" rel="stylesheet" type="text/css" />
+  <link href="css/coupon.css" rel="stylesheet" type="text/css" />
+  <!-- endbuild -->
+
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
+  <link href="css/browser.css" rel="stylesheet" type="text/css" />
+  <!-- endbuild -->
+
+</head>
+<body>
+<!--头部-->
+<div class="sf-b2c-mall-header"></div>
+<!--头部-->
+
+<div class="pb">
+  <div class="pm">
+    <!--订单-->
+    <div class="order mycoupon">
+      <h2>我的优惠券</h2>
+      <p class="mycoupon-p1">不知道如何使用？<a href="">[优惠券使用规则]</a></p>
+      <div class="sf-b2c-mall-center-coupon"></div>
+    </div>
+    <!--订单-->
+  </div>
+</div>
+<!--尾部-->
+<div class="sf-b2c-mall-footer"></div>
+<!--尾部-->
+<!-- build:js(.) scripts/require.min.js -->
+<script src="bower_components/requirejs/require.js"></script>
+<!-- endbuild -->
+<!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+<script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
+<!-- endbuild -->
+<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.coupon.js -->
+<script src="scripts/sf.b2c.mall.require.config.js"></script>
+<script type="text/javascript">
+  require(['sf.b2c.mall.page.coupon']);
+</script>
+<!-- endbuild -->
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

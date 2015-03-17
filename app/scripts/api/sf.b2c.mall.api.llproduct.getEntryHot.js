@@ -33,6 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '7001200': '分页错误'
       }
     }
   });

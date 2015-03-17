@@ -1,6 +1,11 @@
 ﻿.mycoupon h2{
 	padding-left: 0;
 }
+.mycoupon-h{
+	display: inline-block;
+	border-left: 1px solid #eee;
+  	border-right: 1px solid #eee;
+}
 .mycoupon-h li{
 	float: left;
 	width: 164px;
@@ -26,7 +31,10 @@
 	padding-left: 40px;
 	padding-top: 30px;
 	display: none;
+	border: 1px solid #eee;
+	margin-top: -1px;
 }
+
 p.mycoupon-b{
 	text-align: center;
 	padding: 170px 0;
@@ -36,7 +44,6 @@ p.mycoupon-b{
 }
 .mycoupon-b li{
 	padding: 22px;
-	border: 1px solid #ebebeb;
 	float: left;
 	margin-right: 30px;
 	margin-bottom: 20px;
@@ -44,6 +51,9 @@ p.mycoupon-b{
 .mycoupon-b h3{
 	margin-bottom: 10px;
 	color: #666666;
+}
+.mycoupon-b .icon51{
+	margin-right: 20px;
 }
 .mycoupon-r1{
 	background: url(../img/coupon-r1.png) no-repeat;
@@ -80,26 +90,45 @@ p.mycoupon-b{
 	padding-bottom: 30px;
 	background: #fff;
 }
+.mycoupon-b2 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-2.png);
+	
+}
+
+.mycoupon-b3 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-3.png);
+}
+.mycoupon-b4 .mycoupon-r1{
+	background-image: url(../img/coupon-r1-4.png);
+}
+.mycoupon-line3 .mycoupon-r1r1{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.mycoupon-line3 p{
+	line-height: 22px;
+}
 
 .coupon{
-	display: block;
+	display: inline-block;
+	width: 216px;
+	padding-left: 64px;
+	height: 119px;
 	background: url(../img/coupon.png) no-repeat;
-	height: 105px;
-	width: 399px;
-	margin: 0 auto;
-	font-size: 14px;
-	padding: 20px 100px;
+	color: #fff;
 	text-align: center;
+
 }
-.coupon strong{
-	color: #dc3334;
-	font-weight: normal;
+.coupon:hover{
+	color: #fff;
 }
 .coupon-r1{
-	margin-bottom: 14px;
+	font-size: 36px;
+	padding-top: 5px;
 }
-.coupon-r2{
-	margin-bottom: 12px;
+.coupon-r1 span{
+	font-size: 72px;
+	font-family: Arial;
 }
 
 .coupon2{

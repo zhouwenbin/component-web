@@ -28,6 +28,7 @@ requirejs.config({
     'sf.b2c.mall.api.order.requestPayV2': 'scripts/api/sf.b2c.mall.api.order.requestPayV2',
     'sf.b2c.mall.api.order.submitOrderForAllSys': 'scripts/api/sf.b2c.mall.api.order.submitOrderForAllSys',
     'sf.b2c.mall.api.order.getOrderConfirmInfo': 'scripts/api/sf.b2c.mall.api.order.getOrderConfirmInfo',
+    'sf.b2c.mall.api.order.queryOrderCoupon': 'scripts/api/sf.b2c.mall.api.order.queryOrderCoupon',
 
 
     'sf.b2c.mall.api.products.getSKUBaseList': 'scripts/api/sf.b2c.mall.api.product.getSKUBaseList',
@@ -75,6 +76,8 @@ requirejs.config({
     'sf.b2c.mall.api.user.getBirthInfo': 'scripts/api/sf.b2c.mall.api.user.delRecvInfo',
     'sf.b2c.mall.api.user.setDefaultRecv': 'scripts/api/sf.b2c.mall.api.user.setDefaultRecv',
     'sf.b2c.mall.api.user.getRecvInfo': 'scripts/api/sf.b2c.mall.api.user.getRecvInfo',
+    'sf.b2c.mall.api.user.partnerLogin': 'scripts/api/sf.b2c.mall.api.user.partnerLogin',
+    'sf.b2c.mall.api.user.reqLoginAuth': 'scripts/api/sf.b2c.mall.api.user.reqLoginAuth',
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'scripts/api/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
@@ -87,6 +90,8 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'scripts/api/sf.b2c.mall.api.b2cmall.getItemSummary',
     'sf.b2c.mall.api.b2cmall.checkLogistics': 'scripts/api/sf.b2c.mall.api.b2cmall.checkLogistics',
 
+    'sf.b2c.mall.api.coupon.getCpCode': 'scripts/api/sf.b2c.mall.api.coupon.getCpCode',
+    'sf.b2c.mall.api.coupon.getUserCouponList': 'scripts/api/sf.b2c.mall.api.coupon.getUserCouponList',
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
@@ -99,6 +104,7 @@ requirejs.config({
     'zoom': 'scripts/vendor/vendro.jquery.zoom',
     'sf.helpers': 'scripts/util/sf.helpers',
     'sf.util': 'scripts/util/sf.util.fn',
+    'imglazyload': 'scripts/vendor/vendor.jquery.imglazyload',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -120,6 +126,7 @@ requirejs.config({
     'sf.b2c.mall.center.change.password': 'scripts/center/sf.b2c.mall.center.change.password',
     'sf.b2c.mall.center.receiveperson': 'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
+    'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -164,6 +171,8 @@ requirejs.config({
     'sf.b2c.mall.page.proxy': 'scripts/page/sf.b2c.mall.page.proxy',
     'sf.b2c.mall.page.common': 'scripts/page/sf.b2c.mall.page.common',
     'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
+    'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
+    'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
@@ -176,6 +185,7 @@ requirejs.config({
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
     'sf.b2c.mall.order.orderdetailcontent': 'scripts/order/sf.b2c.mall.order.orderdetailcontent',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
+    'sf.b2c.mall.order.paysuccess': 'scripts/order/sf.b2c.mall.order.paysuccess',
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
 
     'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info'

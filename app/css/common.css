@@ -439,22 +439,15 @@ img{vertical-align: middle;}
 	text-indent: -999em;
 }
 .icon51{
-	height: 43px;
-	line-height: 43px;
-	background-position: -147px -150px;
-	font-size: 28px;
-	font-family: arial;
-	text-align: right;
-	color: #dc3334;
-	padding-left: 20px;
-	position: relative;
+	width: 112px;
+	height: 133px;
+	background-position: -585px -59px;
 }
-.icon51 i{
-	width: 35px;
-	height: 100%;
-	background-position: -98px -188px;
-	position: absolute;
-	top: 0;
+
+.icon52{
+	width: 32px;
+	height: 26px;
+	background-position: -569px 0;
 }
 /*btn*/
 .btn{
@@ -1321,15 +1314,19 @@ body.sub{
 	vertical-align: middle;
 	color: #949494;
 }
+.page a:after{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
 .page a.active{
 	border: 1px solid #D5D5D5;
 }
 .page a.disable{
 	opacity: 0.3;
 	cursor: not-allowed;
-}
-.page .icon{
-	margin-top:7px;
 }
 .page .icon16-7{
 	margin-left: -5px;

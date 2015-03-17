@@ -5,17 +5,19 @@ define(
     'underscore',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'imglazyload',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer'
   ],
 
-  function(can, _, SFFrameworkComm, SFGetProductHotDataList, SFHeader, SFFooter) {
+  function(can, _, SFFrameworkComm, SFGetProductHotDataList, SFImglazyload, SFHeader, SFFooter) {
 
     SFFrameworkComm.register(1);
 
     return can.Control.extend({
 
       init: function() {
+        $(".img-lazyload").imglazyload();
         this.component = {};
         this.paint();
       },

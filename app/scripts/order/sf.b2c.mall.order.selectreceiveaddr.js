@@ -88,7 +88,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
-            list = fn(reAddrs.items, data && data.value)
+            list = fn(that.result, data && data.value)
           }
 
           //获得地址列表
@@ -176,7 +176,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           this.adapter.regions = new RegionsAdapter({
             cityList: cities
           });
-          var firstAddr = that.adapter4List.addrs.get(0);
+          var firstAddr = that.getSelectedAddr();
           this.check(firstAddr);
         }, this))
         //   function(cities) {

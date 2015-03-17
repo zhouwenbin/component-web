@@ -32,7 +32,8 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error'
+        '4000100': 'order unkown error',
+        '4100600': '请求参数有误'
       }
     }
   });

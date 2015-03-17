@@ -67,7 +67,7 @@
             </div>
           </div>
           <ul class="table-b" id="showUserRoutes">
-            
+
           </ul>
         </div>
         <h2>收货信息</h2>
@@ -164,17 +164,29 @@
             </li>
             {{/each}}
           </ul>
-          <div class="table-f">
-            <div class="table-fr1">
-                <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
-                {{! <li>-优惠金额：￥0</li> }}
-                {{#if showTax}}
-                  <li>+税额：￥0</li>
-                {{/if}}
-                <li>+运费：￥0</li>
+          <div class="table-f clearfix">
+            <ul class="table-fc1 fl">
+              <li>已参加活动：开业全场免邮，飞机太多了，任性！</li>
+              {{#if isCostCoupon}}
+                <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
+              {{/if}}
+              {{#if isPresentCoupon}}
+                <li><strong>活动赠送优惠券：{{presentCoupon.couponDescription}}        {{presentCoupon.couponName}}</strong></li>
+              {{/if}}
+            </ul>
+            <div class="table-fc2 fr">
+                <ul class="table-fr1">
+                  <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
+                  {{#if isCostCoupon}}
+                  <li>-优惠金额：￥{{sf.price discount}}</li>
+                  {{/if}}
+                  {{#if showTax}}
+                    <li>+税额：￥0</li>
+                  {{/if}}
+                  <li>+运费：￥0</li>
+                </ul>
+              {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
             </div>
-            <div class="table-fr2">开业全场免邮，飞机太多了，任性！</div>
-            {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
           </div>
         </div>
       </div>

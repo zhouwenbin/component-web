@@ -14,10 +14,11 @@ define(
     'sf.b2c.mall.api.user.needVfCode',
     'sf.util',
     'sf.b2c.mall.widget.showArea',
+    'sf.b2c.mall.api.user.reqLoginAuth',
     'sf.b2c.mall.api.user.getRecAddressList'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,GetRecAddressList){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,SFReqLoginAuth,GetRecAddressList){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -48,7 +49,7 @@ define(
        * @override
        * @description 初始化方法
        */
-      init: function () {
+      init: function () {debugger;
         this.component = {};
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
@@ -239,6 +240,28 @@ define(
         }
       },
 
+      '#wechatlogin click': function(element, event){
+        debugger;
+        var reqLoginAuth = new SFReqLoginAuth({
+          "partnerId": "wechat_svm",
+          "redirectUrl": "http://www.sfht.com/weixincenter.html"
+        });
+
+        reqLoginAuth
+          .sendRequest()
+          .done(function(data) {
+            var params = can.deparam(window.location.search.substr(1));
+            var gotoUrl = params.from || "index.html";
+
+            store.set('weixinto', gotoUrl);
+            window.location.href = data.loginAuthLink;
+            return false;
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+      },
+
       /**
        * @description 获得焦点之后对账号输入内容做检查
        * @param  {dom} element jquery dom对象
@@ -395,7 +418,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key),
+              password: md5(password + SFConfig.setting.md5_key),
               vfCode: vfCode
             });
             that.sendRequest();
@@ -406,7 +429,7 @@ define(
             this.component.login.setData({
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
-              password: md5(this.data.attr('password') + SFConfig.setting.md5_key)
+              password: md5(password + SFConfig.setting.md5_key)
             });
             that.sendRequest();
 

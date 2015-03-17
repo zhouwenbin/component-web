@@ -1,0 +1,21 @@
+<div class="order-r3">
+  <!--优惠券，可隐藏-->
+  {{#isPresentCoupon}}
+    <div class="order-r3c2 fr">
+      <div class="text-error">恭喜你！{{presentCoupon.couponName}}，本订单已赠送优惠券。</div>
+      <a class="coupon" href="{{links.coupon}}">
+        <div class="coupon-r1">
+          <span>{{sf.price presentCoupon.price}}</span>元
+        </div>
+        <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
+      </a>
+    </div>
+  {{/isPresentCoupon}}
+  <!--优惠券，可隐藏-->
+  <div class="order-r3c1">
+      <span class="icon icon33"></span>
+      <h2>订单支付成功</h2>
+      <h3>感谢您使用顺丰海淘，我们将尽快为您发货！</h3>
+      <a href="{{links.orderlist}}" title="查看订单">查看订单 ></a>
+  </div>
+</div>
