@@ -227,6 +227,11 @@
 .product2{
 	margin-top: -38px;
 }
+.product .label{
+	position: absolute;
+	left: 16px;
+	top: -14px;
+}
 /*品牌特卖*/
 .index-h2{
 	font-size: 24px;
