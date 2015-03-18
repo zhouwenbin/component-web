@@ -471,20 +471,6 @@ img{vertical-align: middle;}
 	height: 12px;
 	background-position: -130px -126px;
 }
-
-/*label*/
-.label-new{
-	display: inline-block;
-	width: 2em;
-	padding: 10px;
-	
-	color: #fff;
-	font-size: 12px;
-}
-.label-new{
-	background: #ff7475;
-}
-
 /*btn*/
 .btn{
 	display: inline-block;
