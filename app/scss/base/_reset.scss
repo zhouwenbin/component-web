@@ -21,3 +21,33 @@ body{background:#fff;}
 a{outline: none;}
 a,a:hover{color:#333;}
 img{vertical-align: middle;}
+.fl{float:left;}
+.fr{float:right;}
+.clearfix:before,
+.clearfix:after{content:'';display:table;}
+.clearfix:after{
+	clear: both;
+}
+.clearfix{zoom:1;}
+.visuallyhidden {
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+body{
+  background: #EEEEEE;
+  padding-top: 60px;
+  min-width: 1280px;
+}
+body.sub{
+  min-width: inherit;
+}
+a[title="站长统计"]{
+  display: none;
+}
