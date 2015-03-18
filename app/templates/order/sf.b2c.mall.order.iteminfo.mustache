@@ -60,10 +60,10 @@
       <div class="coupon2-b active">
         <div class="coupon2-b1">
           {{^orderCoupon.isHaveAvaliable}}
-            <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
+            <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
           {{/orderCoupon.isHaveAvaliable}}
           {{#orderCoupon.isHaveAvaliable}}
-            <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
+            <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
             <h4>代金券</h4>
             <ul>
             {{#each orderCoupon.avaliableCoupons}}
@@ -80,7 +80,7 @@
       </div>
       <div class="coupon2-b">
         <div class="coupon2-b1 coupon2-b1-1">
-            <p class="coupon2-p2">此处仅展示不符合本次订单商品使用的优惠券。<a class="coupon2-link" href="">[优惠券使用规则]</a></p>
+            <p class="coupon2-p2">此处仅展示不符合本次订单商品使用的优惠券。<a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
             {{#orderCoupon.isHaveDisable}}
             <h4>代金券</h4>
             <ul>
