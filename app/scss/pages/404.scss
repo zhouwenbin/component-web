@@ -1,1 +1,17 @@
 ﻿@import '../components/pagenofind';
+@import '../components/recommend';
+@import '../components/topic';
+.recommend {
+	margin-bottom:0;
+	padding-bottom:0;
+}
+.topic{
+	padding-left:43px;
+	padding-bottom:34px;
+}
+.topic li{
+	padding:6px;
+}
+.topic img{
+	width:352px;
+}

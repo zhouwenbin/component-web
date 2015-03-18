@@ -27,6 +27,7 @@
 	width: 246px;
 	margin-left:15px;
 	border:1px solid #efefef;
+	margin-bottom:16px;
 }
 .recommend li:after{
 	content:'';
@@ -34,6 +35,9 @@
 	height:100%;
 	display:inline-block;
 	vertical-align:middle;
+}
+.recommend li:hover{
+	border-color:#ccc;
 }
 .recommend img{	
 	max-width: 120px;
