@@ -1,0 +1,21 @@
+@import '../components/slider';
+@import '../components/product';
+@import '../components/product2';
+.slider{
+	margin-bottom:20px;
+}
+.banner{
+	margin-bottom:20px;
+}
+.product{
+	margin-bottom:0;
+}
+.topic{
+	background: #fff;
+	padding-left:10px;
+	margin-bottom:20px;
+}
+.topic li{
+	padding:10px;
+	float:left;
+}

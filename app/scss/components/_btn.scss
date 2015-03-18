@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /*btn*/
+=======
+>>>>>>> dev
 .btn{
 	display: inline-block;
 	vertical-align: middle;
@@ -9,10 +12,16 @@ button.btn{
 	border:0 !important;
 }
 .btn-top{
+<<<<<<< HEAD
 	padding: 8px 10px;
 	background: #b2b2b2;
 	background: rgba(0,0,0,0.3);
 	border-radius: 5px;
+=======
+	padding: 18px 21px;
+	background: #fff;
+	border: 1px solid #eee;
+>>>>>>> dev
 	position: fixed;
 	bottom: 100px;
 	right: 50px;
@@ -25,6 +34,7 @@ button.btn{
 
 .btn-prev,
 .btn-next{
+<<<<<<< HEAD
 	width: 41px;
 	height: 94px;
 	background: url(../img/icon.png) no-repeat;
@@ -33,11 +43,28 @@ button.btn{
 	background-color: rgba(0,0,0,0.5);
 
 }
+=======
+	width: 29px;
+	height: 55px;
+	background: url(../img/icon.png) no-repeat;
+	text-indent: -999em;
+	opacity: 0.4;
+
+}
+.btn-prev:hover,
+.btn-next:hover{
+	opacity: 1;
+}
+>>>>>>> dev
 .btn-prev{
 	background-position: 0 -162px;
 }
 .btn-next{
+<<<<<<< HEAD
 	background-position: 0 -258px;
+=======
+	background-position: 0 -225px;
+>>>>>>> dev
 }
 .btn-buy,
 .btn-more{
@@ -74,7 +101,11 @@ button.btn{
 	width: 16px;
 	height: 0;
 	padding-top: 16px;
+<<<<<<< HEAD
 	background: url(../img/icon.png) no-repeat -101px 0;
+=======
+	background: url(http://img.sfht.com/sfht/img/icon.png) no-repeat -101px 0;
+>>>>>>> dev
 	overflow: hidden;
 	position: relative;
 }
@@ -173,7 +204,11 @@ button.btn{
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
+<<<<<<< HEAD
 	background: #fff url(../img/btn-select.png) repeat-x;
+=======
+	background: #fff url(http://img.sfht.com/sfht/img/btn-select.png) repeat-x;
+>>>>>>> dev
 	cursor: pointer;
 	*display: inline;
 	*zoom:1;
@@ -221,7 +256,11 @@ button.btn{
 	margin-top: -5px;
 }
 .btn-select-1{
+<<<<<<< HEAD
 	background: url(../img/btn-select1.png) repeat-x;
+=======
+	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
+>>>>>>> dev
 	z-index: 1;
 }
 .btn-select-1 .btn-select-num{

@@ -1,0 +1,21 @@
+.coupon{
+	display: inline-block;
+	width: 216px;
+	padding-left: 64px;
+	height: 119px;
+	background: url(../img/coupon.png) no-repeat;
+	color: #fff;
+	text-align: center;
+
+}
+.coupon:hover{
+	color: #fff;
+}
+.coupon-r1{
+	font-size: 36px;
+	padding-top: 5px;
+}
+.coupon-r1 span{
+	font-size: 72px;
+	font-family: Arial;
+}

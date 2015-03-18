@@ -3,8 +3,6 @@
 	display: inline-block;
 	vertical-align: middle;
 	background: url(../img/icon.png) no-repeat;
-	background-image: -webkit-image-set(url(../img/icon.png) 1x,
-               url(../img/icon@x2.png) 2x);
 }
 .icon1{
 	width: 51px;
@@ -88,21 +86,21 @@
 	background-position: -62px -146px;
 }
 .icon9{
-	width: 213px;
-	height: 60px;
+	width: 218px;
+	height: 55px;
 	background-position: -160px 0;
 }
 .icon10{
-	width: 217px;
+	width: 194px;
 	height: 0;
-	padding-top: 61px;
+	padding-top: 72px;
 	overflow: hidden;
-	background-position: -160px -72px;
+	background-position: -160px -69px;
 }
 .icon11{
-	width: 272px;
-	height: 94px;
-	background-position: -386px -546px;
+	width: 15px;
+	height: 13px;
+	background-position: -130px -145px;
 }
 .icon12{
 	width: 83px;
@@ -175,27 +173,11 @@
 	border-width: 5px 5px;
 	border-color: transparent #949494 transparent transparent;
 }
-.icon17{
-	width: 112px;
-	height: 0px;
-	padding-top: 10px;
-	overflow: hidden;
-	background-position: -383px -472px;
+.icon16-8{
+	border-width: 5px 5px;
+	border-color: transparent transparent #e03d40 transparent;
 }
-.icon18{
-	width: 89px;
-	height: 0px;
-	padding-top: 10px;
-	overflow: hidden;
-	background-position: -382px -498px;
-}
-.icon19{
-	width: 57px;
-	height: 0px;
-	padding-top: 12px;
-	overflow: hidden;
-	background-position: -382px -522px;
-}
+
 .icon20{
 	width: 102px;
 	height: 101px;
@@ -397,4 +379,47 @@
 	height: 28px;
 	background-position: -508px -476px;
 	text-indent: -999em;
+}
+.icon51{
+	width: 112px;
+	height: 133px;
+	background-position: -585px -59px;
+}
+
+.icon52{
+	width: 32px;
+	height: 26px;
+	background-position: -569px 0;
+}
+.icon53{
+	width: 15px;
+	height: 13px;
+	background-position: -130px -126px;
+}
+.icon54{
+	width: 24px;
+	height: 18px;
+	background-position: -63px -167px;
+	text-indent: -999em;
+}
+.icon55{
+	width: 24px;
+	height: 18px;
+	background-position: -63px -189px;
+	text-indent: -999em;
+}
+.icon56{
+	width: 23px;
+	height: 24px;
+	background-position: -105px -186px;
+}
+.icon57{
+	width: 20px;
+	height: 12px;
+	background-position: -130px -18px;
+}
+.icon58{
+	width: 13px;
+	height: 12px;
+	background-position: -130px -126px;
 }

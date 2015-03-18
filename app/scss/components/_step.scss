@@ -1,0 +1,45 @@
+/*步骤*/
+.step{
+	position: relative;
+	padding: 30px 0;
+	background: #fff;
+	margin-top: 56px;
+}
+.step li{
+	position: relative;
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+	text-align: center;
+	width: 372px;
+	font-size: 14px;
+}
+.step li:first-child .line{
+  display: none;
+}
+.step .line{
+	width: 331px;
+	height: 4px;
+	background: #ccc;
+	position: absolute;
+	right: 209px;
+	top: 7px;
+}
+.step .icon31{
+	display: block;
+	margin: 0 auto 21px;
+}
+.step .active{
+	color: #67b222;
+}
+.step .active .icon{
+	background-position: -105px -112px;
+}
+.step .active .line{
+  background: #67b222;
+}
+.step .icon28{
+	position: absolute;
+	right: 56px;
+	top:-44px;
+}
