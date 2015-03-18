@@ -12,8 +12,9 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
-  'sf.b2c.mall.widget.message'
-], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage) {
+  'sf.b2c.mall.widget.message',
+  'sf.b2c.mall.business.config'
+], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
     itemObj: {},
@@ -42,6 +43,7 @@ define('sf.b2c.mall.order.iteminfo', [
       can.when(getItemSummary.sendRequest(), prceInfo.sendRequest())
         .done(function(iteminfo, priceinfo) {
           var itemObj = {};
+          itemObj.links = SFConfig.setting.link;
           itemObj.isShowCouponArea = false;
           //AREAID = 1;
 
@@ -300,6 +302,12 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     '#inputCouponCode click': function(targetElement) {
       $(".coupon2-r2.hide").show();
+    },
+    '#useCouponCodeBtn click': function(targetElement) {
+      new SFMessage(null, {
+        'tip': '请输入有效的兑换码！',
+        'type': 'error'
+      });
     }
   });
 })
