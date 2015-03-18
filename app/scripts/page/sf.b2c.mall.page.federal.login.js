@@ -34,10 +34,7 @@ define(
           .done(function (data) {
             if (data && data.csrfToken) {
               store.set('csrfToken', data.csrfToken);
-
-              // @note 这里需要添加&_tc=Date.now()
-              window.location.href = data.redirectUrl + '&_tc=' + Date.now();
-              
+              window.location.href = data.redirectUrl;
             }
           })
           .fail(function (errorCode) {
