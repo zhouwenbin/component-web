@@ -1,4 +1,3 @@
-/*表格*/
 .table{
 	font-size: 14px;
 	border:1px solid #dfe2e4;
@@ -9,7 +8,7 @@
 	height: 58px;
 	line-height: 58px;
 	border-bottom: 1px solid #e6e5e5;
-	background: #f4f4f4 url(../img/table-h.png) repeat-x;
+	background: #f4f4f4 url(http://img.sfht.com/sfht/img/table-h.png) repeat-x;
 	border-radius: 4px 4px 0 0;
 	font-weight: bold;
 }
@@ -82,11 +81,23 @@
 	color: #949494;
 	margin-bottom: 33px;
 }
+.table-fr3{
+	margin-top: 30px;
+}
 .table-f{
-	padding:0 45px 28px 0;
+	padding:0 45px 28px 26px;
+	
+}
+.table-fc1{
+	line-height: 30px;
+}
+.table-fc1 strong{
+	color: #dc3334;
+}
+.table-fc2{
 	text-align: right;
 }
-.table-f strong{
+.table-fc2 strong{
 	font-size: 20px;
 	color: #dd3e3f;
 }

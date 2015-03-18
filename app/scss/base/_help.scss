@@ -3,7 +3,7 @@
 .clearfix:before,
 .clearfix:after{content:'';display:table;}
 .clearfix:after{
-	clear: both;
+  clear: both;
 }
 .clearfix{zoom:1;}
 .visuallyhidden {
@@ -16,4 +16,10 @@
   padding: 0;
   position: absolute;
   width: 1px;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: block;
 }

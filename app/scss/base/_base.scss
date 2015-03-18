@@ -1,11 +1,13 @@
 body{
-  background: #EEEEEE;
-  padding-top: 60px;
-  min-width: 1280px;
+	background: #f5f5f5;
+	min-width: 1280px;
 }
 body.sub{
-  min-width: inherit;
+	min-width: inherit;
 }
+a{outline: none;}
+a,a:hover{color:#333;}
+img{vertical-align: middle;}
 a[title="站长统计"]{
-  display: none;
+	display: none;
 }
