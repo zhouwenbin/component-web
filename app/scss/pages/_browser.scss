@@ -1,0 +1,131 @@
+@charset "utf-8";
+/*弹窗*/
+ .u-dialog{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    top: 0;
+ }
+.u-dialog-main{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 598px;
+    height: 286px;
+    margin-left: -299px;
+    margin-top: -143px;
+    background: #fff;
+    box-shadow: 0 0 10px #000;
+}
+.u-dialog-h{
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0 19px;
+}
+.u-dialog h2{
+    font-size: 14px;
+    font-weight: normal;
+}
+.u-dialog-b{
+    padding: 10px 19px;
+    border-bottom: 1px solid #E5E5E5;
+    height: 128px;
+    overflow-y: auto;
+    margin-bottom: 17px;
+}
+.u-dialog li{
+    line-height: 20px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    *zoom:1;
+}
+.u-dialog p{
+	padding-top: 10px;
+}
+.u-dialog-c1{
+    width: 127px;
+    float: left;
+}
+.u-dialog-c2{
+    overflow: hidden;
+    *zoom:1;
+}
+.u-dialog-f{
+    padding: 0 19px;
+}
+.u-dialog .icon48{
+	position: absolute;
+	right: 15px;
+	top: 19px;
+	border: none;
+}
+.u-btn-success{
+    width: 89px;
+    height: 40px;
+    background: #DE3435;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+}
+.u-dialog-browser .u-dialog-main{
+	width: 800px;
+	height: 476px;
+	margin-left: -400px;
+	margin-top: -238px;
+}
+.u-dialog-browser-b{
+	text-align: center;
+	background: url(../images/dialog/u-dialog-browser.png) no-repeat 171px 56px;
+}
+.u-dialog-browser h2{
+	font-size: 30px;
+	color: #000;
+	padding-top: 56px;
+	margin-bottom: 38px;
+}
+.u-dialog-browser-r1{
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.88;
+	margin-bottom: 33px;
+}
+.u-dialog-browser-r2{
+	margin-bottom: 32px;
+}
+.u-dialog-browser-r2 b{
+	color: #DD3F40;
+	margin-left: 5px;
+	font-size: 14px;
+}
+.u-dialog-browser ul{
+	margin: 0 136px;
+	font-size: 0;
+	overflow: hidden;
+}
+.u-dialog-browser li{
+	float: left;
+	width: 33%;
+}
+.u-dialog-browser li a{
+	color: #000;
+	font-size: 12px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.u-dialog-browser p{
+	padding-top: 0;
+}
+.u-dialog-browser .icon46{
+	position: absolute;
+	top: -40px;
+	left: -40px;
+}
+.u-dialog-browser .icon43,
+.u-dialog-browser .icon44,
+.u-dialog-browser .icon45{
+	display: block;
+	margin: 0 auto;
+}
+.u-dialog-browser .icon47{
+	margin-right: 35px;
+}

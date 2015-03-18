@@ -1,10 +1,9 @@
-/*头部*/
 .header{
-	height: 139px;
+	padding-bottom: 12px;
 	background: #fff;
 }
 .header-c1{
-	padding-top: 36px;
+	padding-top: 12px;
 }
 .header-c1 .icon10{
 	margin-right: 25px;
@@ -14,11 +13,12 @@
 }
 
 .header-c2{
-	padding-top: 43px;
+	padding-top: 23px;
+	padding-right: 45px;
 }
 .header-c2 li{
 	float: left;
-	width: 188px;
+	margin-left: 12px;
 }
 .header-c2 h2,
 .header-c2 p{
@@ -28,7 +28,24 @@
 	font-size: 14px;
 	padding-top: 10px;
 	padding-bottom: 7px;
+	color:#666;
+	font-weight: normal;
 }
 .header-c2 p{
 	color:#666666;
+}
+.header1{
+	height: 29px;
+	line-height: 29px;
+	background: #f5f5f5;
+	border-bottom: 1px solid #eee;
+}
+.header1-c1 .icon{
+	margin-right: 10px;
+}
+.header1-c1 a{
+	margin-right: 20px;
+}
+.header1-c2 a{
+	margin-left: 20px;
 }

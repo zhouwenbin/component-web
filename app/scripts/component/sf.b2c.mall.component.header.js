@@ -220,10 +220,13 @@ define('sf.b2c.mall.component.header', ['jquery',
     },
 
     showLogin: function(dest) {
+
+      //给微信登录使用(！！！位置不能移)
+      store.set("weixinto", dest);
+
       if (SFFn.isMobile.any()) {
         return window.location.href = SFConfig.setting.link.ilogin;
       }
-
 
       if (dest) {
         this.afterLoginDest = dest
