@@ -95,19 +95,14 @@ define(
       },
 
       '#wechatlogin click': function(element, event){
-        debugger;
         var reqLoginAuth = new SFReqLoginAuth({
-          "partnerId": "wechat_svm",
+          "partnerId": "wechat_open",
           "redirectUrl": "http://www.sfht.com/weixincenter.html"
         });
 
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            var params = can.deparam(window.location.search.substr(1));
-            var gotoUrl = params.from || "index.html";
-
-            store.set('weixinto', gotoUrl);
             window.location.href = data.loginAuthLink;
             return false;
           })

@@ -14,10 +14,11 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.api.b2cmall.checkLogistics',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.user.delRecAddress',
+  'sf.b2c.mall.api.user.delRecvInfo',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message'
-], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
+], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFdelRecvInfo,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
   var AREAID;
   return can.Control.extend({
 
@@ -31,7 +32,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       this.adapter4List = {};
       this.component = {};
       this.paint();
-      
+
 
       this.component.checkLogistics = new CheckLogistics();
 
@@ -84,7 +85,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             }
           }
 
-          var fn = !_.isEmpty(params.orgCode) && map[params.saleid];
+          // @note 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
+          var fn = map[params.saleid];
           var list = null
           if (_.isFunction(fn)) {
             list = fn(that.result, data && data.value)
@@ -116,7 +118,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             from: 'order'
           });
           that.showAllAdr();
-          that.request(); 
+          that.request();
           if (typeof data != 'undefined') {
             $("body,html").animate({scrollTop:200});
             var changedAddr = $("li[name='addrEach']");
@@ -337,7 +339,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     ".order-del click": function(element, event){
       var index = element.data('index');
       var addr = this.adapter4List.addrs.get(index);
-      
+
       var that = this;
       var message = new SFMessage(null, {
         'tip': '确认要删除该收货地址信息吗？',
@@ -351,8 +353,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var that = this;
 
       var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
-      delRecAddress
-        .sendRequest()
+      var delRecvInfo = new SFDelRecAddress({"recId":addr.recId});
+      can.when(delRecAddress.sendRequest(),delRecvInfo.sendRequest())
         .done(function(result){
           var defaultId = element.attr('data-isdefault');
           if (defaultId == 1) {
@@ -389,7 +391,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#addrList click": function(element, event) {
-      var event = event || window.event; 
+      var event = event || window.event;
       var obj=event.srcElement ? event.srcElement : event.target;
       if (obj.tagName == 'SPAN') {
         $('#errorTips').addClass('visuallyhidden');

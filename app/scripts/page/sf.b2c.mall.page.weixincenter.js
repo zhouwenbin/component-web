@@ -5,7 +5,7 @@
 define(
   [
     'can',
-    'zepto',
+    'jquery',
     'store',
     'sf.b2c.mall.api.user.partnerLogin',
     'sf.b2c.mall.framework.comm',
@@ -28,7 +28,7 @@ define(
         var to = store.get('weixinto');
 
         var partnerLogin = new SFPartnerLogin({
-          "partnerId": "wechat_svm",
+          "partnerId": "wechat_open",
           "authResp": "code=" + code
         });
 

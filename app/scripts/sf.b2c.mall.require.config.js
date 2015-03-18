@@ -173,6 +173,7 @@ requirejs.config({
     'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
     'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
     'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
+    'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
@@ -187,7 +188,6 @@ requirejs.config({
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
     'sf.b2c.mall.order.paysuccess': 'scripts/order/sf.b2c.mall.order.paysuccess',
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
-
     'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info'
   }
 });
