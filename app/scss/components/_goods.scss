@@ -1,76 +1,73 @@
 .goods{
-	padding-bottom: 52px;
 	border-bottom: 1px solid #DEDDDE;
 	margin-bottom: 47px;
+	background: #fff;
+	margin-bottom: 20px;
+	padding: 30px 20px;
 }
 .goods-c1{
-	width: 500px;
+	width: 420px;
+	margin-right:30px;
 }
 .goods-c1r1{
-	margin-bottom: 15px;
-	height: 500px;
+	height: 420px;
 }
 .goods-c1r1 li{
 	position: absolute;
-	border: 1px solid #ccc;
+	border: 1px solid #eee;
 	text-align: center;
-	height: 498px;
-	width: 498px;
-	opacity: 0;
+	height: 418px;
+	width: 418px;
 	font-size: 0;
-	filter:alpha(opacity=0);
-	-webkit-transition:all 0.5s;
-	-moz-transition:all 0.5s;
-	-mstransition:all 0.5s;
-	transition:all 0.5s;
 }
 .goods-c1r1 li:hover{
-	border-color: #999;
+	border-color: #eee;
 }
 .goods-c1r1 .active{
 	opacity: 1;
 	filter:alpha(opacity=100);
 }
 .goods-c1r1 img{
-	max-width: 498px;
-	max-height: 498px;
+	max-width: 418px;
+	max-height: 418px;
 	vertical-align: middle;
 }
-.goods-c1r2 a{
+.goods-c3{
+	width:76px;
+	margin-right:10px;
+}
+.goods-c3 a{
 	outline: none;
 }
-.goods-c1r2 img{
-	max-width: 112px;
-	max-height: 112px;
+.goods-c3 img{
+	max-width: 74px;
+	max-height: 74px;
 	vertical-align: middle;
 }
 .goods-c1r1 span,
-.goods-c1r2 span{
+.goods-c3 span{
 	height: 100%;
 	width: 0;
 	vertical-align: middle;
 	display: inline-block;
 }
-.goods-c1r2 ul{
-	margin-left: -14px;
-}
-.goods-c1r2 .active{
+.goods-c3 .active{
 	border-color: #23262C;
 }
-.goods-c1r2 li{
-	border: 1px solid #ccc;
+.goods-c3 li{
+	border: 1px solid #eee;
 	float: left;
-	width: 112px;
-	height: 112px;
-	margin-left: 14px;
+	width: 74px;
+	height: 74px;
 	text-align: center;
 	font-size: 0;
+	margin-bottom:10px;
 }
-.goods-c1r2 li:hover{
-	border-color: #999;
+.goods-c3 li:hover{
+	border-color: #dc3334;
 }
 .goods-c2{
-	margin-left: 563px;
+	overflow:hidden;
 	font-size: 14px;
 	color: #272541;
 	position: relative;
@@ -83,122 +80,73 @@
 	overflow: hidden;
 }
 .goods p{
-	padding-bottom: 26px;
-	border-bottom: 1px dashed #858390;
-	margin-bottom: 23px;
 	color: #686675;
+	margin-bottom:10px;
 }
-.goods .mr1{
-	margin-bottom: 17px;
+.goods-c2r1{
+	margin-bottom:12px;
 }
-.goods .mr1 strong{
-	color:#df2323;
-	font-size: 24px;
-	margin-right: 14px;
+.goods-c2r1 img{
+	margin-right:8px;
 }
-.goods .mr1 b{
-	font-size: 18px;
+.goods-price{
+	background:#fff6f6;
+	border-top:1px dotted #fddcdc;
+	border-bottom:1px dotted #fddcdc;
+	padding:18px 14px;
+	margin-bottom:14px;
 }
-.goods .mr1 span{
-	color:#686675;
-	font-size: 12px;
-	margin-right: 11px;
+.goods-price-r1{
+	margin-bottom:10px;
+	font-size:14px;
+	color:#666;
 }
-
-.goods .mr1 del{
-	color:#686675;
+.goods-price-r1 span{
+	color:#dc3334;
+	font-size:24px;
+	font-family:Arial;
+	margin-left:5px;
 }
-
-.goods .mr2 span{
-	margin-right: 13px;
+.goods-price-r1 strong{
+	color:#dc3334;
+	font-size:36px;
+	font-family:Arial;
 }
-.goods .mr3{
-	border-top: 1px dashed #858390;
-	padding-top: 26px;
-	margin-bottom: 26px;
-	position: relative;
-	margin-top: 30px;
+.goods-price-r2{
+	color:#999;
 }
-.goods .mr4{
-	margin-bottom: 22px;
+.goods-c2 li{
+	margin-bottom:18px;
 }
-
-.goods .mr5{
-	margin-bottom: 16px;
+.goods-c2 label{
+	font-size:14px;
+	color:#999;
+	margin-right:24px;
 }
-.goods .mr6{
-	margin-bottom: 18px;
+.goods-c2 .btn-goods{
+	margin-right:6px;
 }
-.goods .mr7{
-	margin-bottom: 17px;
+.goods-num{
+	padding-top:14px;
+	border-top:1px dotted #fddcdc;
+	margin-bottom:16px;
 }
-.goods .mr8{
-	margin-bottom: 18px;
+.goods-num .icon62{
+	margin-left:15px;
+	margin-right:5px;
 }
-.goods .mr8 .btn{
-	margin-right: 25px;
+.goods-c2r2{
+	padding-left:52px;
 }
-.goods .mr9{
-	margin-bottom: 24px;
+.goods-c2r2 .icon{
+	margin-left:10px;
 }
-
-.goods .u1{
-	position: absolute;
-	top: -23px;
-	right: 0;
-	text-align: right;
+.goods-c2r2 .btn{
+	width:134px;
+	height:44px;
+	line-height:44px;
+	font-size:16px;
 }
-.goods .u1-r1{
-	margin-top: 36px;
-}
-.goods .icon4{
-	margin-right: 8px;
-}
-.goods .icon24{
-	position: absolute;
-	top: -19px;
-	right: 3px;
-}
-.goods .icon50{
-	position: absolute;
-	top: 27px;
-	right: 3px;
-}
-.goods .u2{
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: #dc3334;
-	font-weight: bold;
-}
-.goods .u2 strong{
-	font-size: 20px;
-	margin:0 10px;
-}
-.goods .icon25{
-	vertical-align: 0;
-}
-.goods .u3{
-	position: absolute;
-	top: -44px;
-	right: 0;
-	text-align: right;
-}
-.goods .icon5{
-	margin-right: 7px;
-}
-.goods .s1{
-	margin-right: 15px;
-}
-.goods .icon26{
-	visibility: hidden;
-}
-.goods .btn{
-	margin: 3px;
-}
-.goods-rel{
-	position: relative;
-}
-.goods select{
-	margin-right: 5px;
+.goods-c2r2c2{
+	padding-top:30px;
 }
