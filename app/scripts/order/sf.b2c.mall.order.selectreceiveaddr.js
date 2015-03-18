@@ -14,10 +14,11 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.api.b2cmall.checkLogistics',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.user.delRecAddress',
+  'sf.b2c.mall.api.user.delRecvInfo',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message'
-], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
+], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFdelRecvInfo,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
   var AREAID;
   return can.Control.extend({
 
@@ -352,8 +353,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var that = this;
 
       var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
-      delRecAddress
-        .sendRequest()
+      var delRecvInfo = new SFDelRecAddress({"recId":addr.recId});
+      can.when(delRecAddress.sendRequest(),delRecvInfo.sendRequest())
         .done(function(result){
           var defaultId = element.attr('data-isdefault');
           if (defaultId == 1) {
