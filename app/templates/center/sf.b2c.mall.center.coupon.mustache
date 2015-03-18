@@ -7,19 +7,19 @@
 
 <!--未使用-->
 {{^unUsed.count}}
-    <p class="mycoupon-b{{#unUsed.isShow}} active{{/unUsed.isShow}}"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
+  <p class="mycoupon-b{{#unUsed.isShow}} active{{/unUsed.isShow}}"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
 {{/unUsed.count}}
 {{#unUsed.count}}
 <ul class="mycoupon-b clearfix mycoupon-b1{{#unUsed.isShow}} active{{/unUsed.isShow}}">
-    {{#each unUsed.items}}
-    <li>
-        <h3>{{title}}</h3>
-        <div class="mycoupon-r1">
-            <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-            <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
-        </div>
-    </li>
-    {{/each}}
+  {{#each unUsed.items}}
+  <li>
+    <h3>{{title}}</h3>
+    <div class="mycoupon-r1">
+      <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
+      <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
+    </div>
+  </li>
+  {{/each}}
 </ul>
 {{/unUsed.count}}
 <!--已使用-->
