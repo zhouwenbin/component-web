@@ -174,6 +174,8 @@ requirejs.config({
     'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
     'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
     'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
+    //404页面
+    'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
