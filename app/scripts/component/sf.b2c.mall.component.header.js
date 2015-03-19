@@ -5,7 +5,9 @@
  * @param  {[type]} can
  * @return {[type]}
  */
-define('sf.b2c.mall.component.header', ['jquery',
+define('sf.b2c.mall.component.header', [
+  'text',
+  'jquery',
   'jquery.cookie',
   'can',
   'underscore',
@@ -17,8 +19,11 @@ define('sf.b2c.mall.component.header', ['jquery',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
-  'sf.util'
-], function($, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn) {
+  'sf.util',
+  'text!template_header_user_navigator',
+  'text!template_header_info_common',
+  'text!template_header_channel_navigator'
+], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn, template_header_user_navigator, template_header_info_common, template_header_channel_navigator) {
 
   var APPID = 1;
 
@@ -90,8 +95,35 @@ define('sf.b2c.mall.component.header', ['jquery',
      * @param  {Map} data 渲染页面的数据
      */
     render: function(data) {
-      var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
-      this.element.html(html);
+      this.renderMap['template_header_user_navigator'].call(this, data);
+
+
+
+      // var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
+      // this.element.html(html);
+    },
+
+    renderMap: {
+      'template_header_user_navigator': function (data) {
+        var renderFn = can.mustache(template_header_user_navigator);
+        var html = renderFn(data);
+
+        $el = this.element.find('.header-user-navigator');
+
+        // 如果用户登录一定进行强刷，如果服务端没有渲染都刷
+        if ((data.isUserLogin) || ($el && !$el.hasClass('serverRendered'))) {
+          $el.html(html);
+        }
+
+      },
+
+      'template_header_info_common': function () {
+
+      },
+
+      'template_header_channel_navigator': function () {
+
+      },
     },
 
     /**

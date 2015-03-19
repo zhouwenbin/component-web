@@ -7,6 +7,7 @@
     "Placeholders": "https://github.com/jamesallardice/Placeholders.js.git",
     "moment": "~2.8.4",
     "momentjs": "~2.8.4",
-    "fastclick": "~1.0.3"
+    "fastclick": "~1.0.3",
+    "text": "~2.0.14"
   }
 }

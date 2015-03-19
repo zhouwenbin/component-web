@@ -8,6 +8,8 @@ requirejs.config({
     'underscore.string': 'http://www.google.com/bower_components/underscore.string/dist/underscore.string.min',
     'store': 'http://www.google.com/bower_components/store/dist/store',
 
+    'text': 'bower_components/text/text',
+
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
     'sf.b2c.mall.framework.adapter': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.adapter',
     'sf.b2c.mall.framework.comm': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.comm',
@@ -188,6 +190,10 @@ requirejs.config({
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
     'sf.b2c.mall.order.paysuccess': 'scripts/order/sf.b2c.mall.order.paysuccess',
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
-    'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info'
+    'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info',
+
+    'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
+    'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
+    'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
   }
 });
