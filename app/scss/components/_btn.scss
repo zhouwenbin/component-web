@@ -65,12 +65,18 @@ button.btn{
 }
 .btn-buy.disable,
 .btn-more.disable{
-	background: #ccc;
+	background: #999;
 	border: 1px solid #ccc;
 	box-shadow:none;
 	cursor: not-allowed;
 }
-
+.btn-buy.border{
+	border:2px solid #dc3334;
+	background:#fff6f6;
+	height:40px;
+	line-height:40px;
+	color:#dc3334;
+}
 .btn-close{
 	width: 16px;
 	height: 0;
