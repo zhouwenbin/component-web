@@ -13,6 +13,9 @@
 	text-align: center;
 	display: none;
 }
+.dialog-center.show{
+	display:block;
+}
 .dialog-center .btn-close{
 	position: absolute;
 	right: 26px;
@@ -28,4 +31,32 @@
 	height: 50px;
 	line-height: 50px;
 	padding: 0 56px;
+}
+.dialog-stockout{
+	padding:57px 20px;
+	text-align:left;
+	height:auto;
+}
+.dialog-stockout p{
+	margin-bottom:27px;
+	padding-top:0;
+}
+.dialog-stockout .input{
+	margin-left:34px;
+	width:293px;
+}
+.dialog-stockout-r2 .btn{
+	padding:0 55px;
+}
+.dialog-stockout-r2{
+	margin-left:89px;
+	margin-top:30px;
+}
+.dialog-subscription{
+	padding-top:88px;
+}
+.dialog-subscription h2{
+	font-size:18px;
+	color:#64aa30;
+	margin-top:25px;
 }

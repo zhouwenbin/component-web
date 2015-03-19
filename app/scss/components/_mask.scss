@@ -8,4 +8,8 @@
 	opacity: 0.5;
 	filter:alpha(opacity=50);
 	z-index: 3;
+	display:none;
+}
+.mask.show{
+	display:block;
 }
