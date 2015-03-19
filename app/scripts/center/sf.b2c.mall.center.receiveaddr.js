@@ -13,12 +13,11 @@ define('sf.b2c.mall.center.receiveaddr', [
     'md5',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.user.delRecAddress',
-    'sf.b2c.mall.api.user.delRecvInfo',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.user.setDefaultAddr',
     'sf.b2c.mall.api.user.setDefaultRecv'
   ],
-  function(can, $,store, RegionsAdapter,SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFdelRecvInfo,SFMessage,SFSetDefaultAddr, SFSetDefaultRecv) {
+  function(can, $,store, RegionsAdapter,SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5, SFFrameworkComm, SFDelRecAddress,SFMessage,SFSetDefaultAddr, SFSetDefaultRecv) {
 
     SFFrameworkComm.register(1);
 
@@ -221,8 +220,8 @@ define('sf.b2c.mall.center.receiveaddr', [
         var that = this;
 
         var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
-        var delRecvInfo = new SFDelRecAddress({"recId":addr.recId});
-        can.when(delRecAddress.sendRequest(),delRecvInfo.sendRequest())
+        delRecAddress
+          .sendRequest()
           .done(function(result){
             var defaultId = element.attr('data-isdefault');
             if (defaultId == 1) {
