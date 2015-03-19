@@ -10,11 +10,13 @@ define(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent',
+    'sf.util',
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent) {
+  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent, SFFn) {
     SFFrameworkComm.register(1);
+    SFFn.monitor();
 
     var home = can.Control.extend({
 
