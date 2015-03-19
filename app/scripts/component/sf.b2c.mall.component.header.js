@@ -35,6 +35,26 @@ define('sf.b2c.mall.component.header', [
       },
       nologin: {
         myOrder: SFConfig.setting.link.login
+      },
+      channels: [
+        { name: '首页', link: 'http://www.sfht.com/index.html', extra: "" },
+        { name: '母婴专区', link: 'http://www.sfht.com/index.html', extra: "" },
+        { name: '个护美装', link: 'http://www.sfht.com/index.html', extra: "" },
+        { name: '食品保健', link: 'http://www.sfht.com/index.html', extra: "" },
+        { name: '生活服饰', link: 'http://www.sfht.com/index.html', extra: '<span class="icon icon54">NEW</span>' },
+        { name: '黑5狂欢', link: 'http://www.sfht.com/index.html', extra: '<span class="icon icon55">HOT</span>' },
+        { name: '正品保障', link: 'http://www.sfht.com/index.html', extra: "" }
+      ],
+      slogan: 'http://www.sfht.com/img/slogan.png'
+    },
+
+    helpers: {
+      'sf-isactive': function(name, channel, options) {
+        if (name() == channel()) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
       }
     },
 
@@ -64,7 +84,10 @@ define('sf.b2c.mall.component.header', [
         this.data = new can.Map(_.extend(this.defaults.login, {
           isUserLogin: true,
           index: SFConfig.setting.link.index,
-          nickname: arr[0]
+          nickname: arr[0],
+          channels: this.defaults.channels,
+          current: this.options.channel || '',
+          slogan: this.defaults.slogan
           // domain: SFConfig.setting.api.mainurl
         }));
 
@@ -72,12 +95,19 @@ define('sf.b2c.mall.component.header', [
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
           index: SFConfig.setting.link.index,
-          nickname:null
+          nickname:null,
+          channels: this.defaults.channels,
+          current: this.options.channel || '',
+          slogan: this.defaults.slogan
             // domain: SFConfig.setting.api.mainurl
         }));
       }
 
-      this.render(this.data);
+      if (!this.element.hasClass('serverRendered')) {
+        this.render(this.data);
+      }
+
+      this.supplement(this.data);
 
       if (this.options.isForceLogin) {
         var that = this;
@@ -95,9 +125,8 @@ define('sf.b2c.mall.component.header', [
      * @param  {Map} data 渲染页面的数据
      */
     render: function(data) {
-      this.renderMap['template_header_user_navigator'].call(this, data);
-
-
+      this.renderMap['template_header_info_common'].call(this, data);
+      this.renderMap['template_header_channel_navigator'].call(this, data);
 
       // var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
       // this.element.html(html);
@@ -108,22 +137,55 @@ define('sf.b2c.mall.component.header', [
         var renderFn = can.mustache(template_header_user_navigator);
         var html = renderFn(data);
 
-        $el = this.element.find('.header-user-navigator');
+        var $el = this.element.find('.header-user-navigator');
 
         // 如果用户登录一定进行强刷，如果服务端没有渲染都刷
-        if ((data.isUserLogin) || ($el && !$el.hasClass('serverRendered'))) {
+        if ($el && $el.length > 0 && (data.isUserLogin || !this.element.hasClass('serverRendered'))) {
           $el.html(html);
         }
-
       },
 
-      'template_header_info_common': function () {
+      'template_header_info_common': function (data) {
+        var $el = this.element.find('.header-info-common');
 
+        var templateid = 'template_header_info_common';
+
+        if ($el && $el.length > 0) {
+          templateid = $el.attr('data-templateid');
+        }
+
+        var map = {
+          'template_header_info_common': template_header_info_common
+        }
+
+        var renderFn = can.mustache(map[templateid]);
+        var html = renderFn(data);
+
+        this.element.find('.header-info-common').html(html);
       },
 
-      'template_header_channel_navigator': function () {
+      'template_header_channel_navigator': function (data) {
+        var renderFn = can.mustache(template_header_channel_navigator);
+        var html = renderFn(data, this.helpers);
 
+        this.element.find('.header-channel-navigator').html(html);
       },
+    },
+
+    supplement: function (data) {
+      var that = this;
+
+      this.renderMap['template_header_user_navigator'].call(this, data);
+
+      can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
+        .done(function (config) {
+          _.each(config, function(value, key, list){
+            that.data.attr(key, value);
+          });
+        })
+        .fail(function (errorCode) {
+
+        });
     },
 
     /**

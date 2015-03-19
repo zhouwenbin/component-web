@@ -27,7 +27,7 @@ define(
 
       render: function() {
 
-        var header = new Header('.sf-b2c-mall-header');
+        var header = new Header('.sf-b2c-mall-header', {channel: '首页'});
         new Footer('.sf-b2c-mall-footer');
 
         //详情页

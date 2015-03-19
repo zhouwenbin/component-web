@@ -2,13 +2,9 @@
   <div class="nav-inner">
     <div class="pm">
       <ul class="fl nav-c1">
-        <li class="active"><a href="">首页</a></li>
-        <li><a href="">母婴专区</a></li>
-        <li><a href="">个护美装</a></li>
-        <li><a href="">食品保健</a></li>
-        <li><a href="">生活服饰</a><span class="icon icon54">NEW</span></li>
-        <li><a href="">黑5狂欢</a><span class="icon icon55">HOT</span></li>
-        <li><a href="">正品保障</a></li>
+        {{#channels}}
+          <li {{#sf-isactive name current}}class="active"{{/sf-isactive}}><a href="{{link}}">{{name}}</a>{{&extra}}</li>
+        {{/channels}}
       </ul>
       <div class="fr nav-c2">
         <a href="">个人中心</a>|<a href="">我的优惠券</a>|<a href="" id="js-focus">微信关注</a>|<a href="">在线客服</a>|<a href="">意见反馈</a>
