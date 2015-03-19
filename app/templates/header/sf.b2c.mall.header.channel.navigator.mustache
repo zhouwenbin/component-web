@@ -1,0 +1,18 @@
+<div class="nav">
+  <div class="nav-inner">
+    <div class="pm">
+      <ul class="fl nav-c1">
+        {{#channels}}
+          <li {{#sf-isactive name current}}class="active"{{/sf-isactive}}><a href="{{link}}">{{name}}</a>{{&extra}}</li>
+        {{/channels}}
+      </ul>
+      <div class="fr nav-c2">
+        <a href="">个人中心</a>|<a href="">我的优惠券</a>|<a href="" id="js-focus">微信关注</a>|<a href="">在线客服</a>|<a href="">意见反馈</a>
+        <div class="nav-qrcode">
+          <span class="icon icon16 icon16-8"></span>
+          <img src="../img/qrcode.png" alt="二维码" width="66" height="66">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,11 +10,13 @@ define(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent',
+    'sf.util',
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent) {
+  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent, SFFn) {
     SFFrameworkComm.register(1);
+    SFFn.monitor();
 
     var home = can.Control.extend({
 
@@ -27,7 +29,7 @@ define(
 
       render: function() {
 
-        var header = new Header('.sf-b2c-mall-header');
+        var header = new Header('.sf-b2c-mall-header', {channel: '首页'});
         new Footer('.sf-b2c-mall-footer');
 
         //详情页

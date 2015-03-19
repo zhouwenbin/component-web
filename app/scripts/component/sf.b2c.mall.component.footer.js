@@ -1,6 +1,6 @@
 'use strict';
 
-define('sf.b2c.mall.component.footer', ['can'], function(can) {
+define('sf.b2c.mall.component.footer', ['text', 'can', 'text!template_footer'], function(text, can, template_footer) {
   return can.Control.extend({
 
     /**
@@ -9,7 +9,10 @@ define('sf.b2c.mall.component.footer', ['can'], function(can) {
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      var html = can.view('templates/component/sf.b2c.mall.footer.mustache')({});
+      var renderFn = can.mustache(template_footer);
+      var html = renderFn({});
+
+      // var html = can.view('templates/component/sf.b2c.mall.footer.mustache')({});
       this.element.html(html);
     }
   });

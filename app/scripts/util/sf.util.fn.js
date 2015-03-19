@@ -12,6 +12,18 @@ define('sf.util', ['jquery',
   can.route.ready();
 
   return {
+
+    monitor: function () {
+
+      return null;
+
+      // @note 请求存在跨域问题，需要外部支持
+      window.onerror = function(msg, url, line){
+        var link = 'http://stat.t.sfht.com/jserror.txt?'+$.param({msg: msg, url: url, line: line});
+        can.ajax(link);
+      }
+    },
+
     checkEmail: function(data) {
       return /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(data)
     },
