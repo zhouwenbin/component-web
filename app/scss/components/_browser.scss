@@ -1,35 +1,41 @@
-.icon{
+%icon{
 	background-image:url(../img/browser.png);
 }
 .icon43{
 	width: 58px;
 	height: 58px;
 	background-position: -7px 0;
+	@extend %icon;
 }
 .icon44{
 	width: 65px;
 	height: 65px;
 	background-position: -7px -72px;
+	@extend %icon;
 }
 .icon45{
 	width: 61px;
 	height: 58px;
 	background-position: -7px -151px;
+	@extend %icon;
 }
 .icon46{
 	width: 116px;
 	height: 116px;
 	background-position: -7px -219px;
+	@extend %icon;
 }
 .icon47{
 	width: 106px;
 	height: 118px;
 	background-position: -7px -347px;
+	@extend %icon;
 }
 .icon48{
 	width: 12px;
 	height: 12px;
 	background-position: -119px 0;
+	@extend %icon;
 }
 .u-dialog{
     position: fixed;
