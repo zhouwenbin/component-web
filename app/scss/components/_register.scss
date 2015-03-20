@@ -170,13 +170,17 @@
 	line-height: 30px;
 	padding: 0 30px;
 }
-.register-f .header-c2{
+.register-f ul{
 	padding-top: 18px;
 	padding-bottom: 20px;
 	padding-left: 61px
 }
+.register-f ul{
+	display:inline-block;
+}
 .register-f li{
 	width: 146px;
+	float:left;
 }
 .register-f .icon1,
 .register-f .icon2,
