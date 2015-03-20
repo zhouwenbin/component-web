@@ -186,12 +186,18 @@
 	padding-top:30px;
 }
 .goods .bds_weixin{
-	@extend .icon;
-	@extend .icon59;
+	background: url(../img/icon.png) no-repeat;
+	width: 23px;
+    height: 18px;
+    background-position: -610px 0;
+    text-indent: -999px;
 	margin:0 0 0 6px;
 }
 .goods .bds_tsina{
-	@extend .icon;
-	@extend .icon61;
+	background: url(../img/icon.png) no-repeat;
+	width: 21px;
+    height: 16px;
+    background-position: -670px 0;
+    text-indent: -999px;
 	margin:0 0 0 6px;
 }
