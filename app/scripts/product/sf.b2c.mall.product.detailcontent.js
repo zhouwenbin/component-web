@@ -15,9 +15,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.widget.showArea',
     'imglazyload',
+    'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, CheckLogistics) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -189,6 +190,10 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
+
+        //加上百度分享
+
+        // window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
       },
 
       /**
@@ -383,36 +388,63 @@ define('sf.b2c.mall.product.detailcontent', [
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
 
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
       },
 
       '#getNotify click': function(element, event) {
         event && event.preventDefault();
-        debugger;
 
         var that = this;
 
         var message = new SFMessage(null, {
-          'tip': '<a href="#" class="btn btn-close">关闭</a>' +
-                '<h1>亲，商品暂时卖完了，到货后我们会短信通知您。谢谢！</h1>' +
-                '<div class="dialog-stockout-r1">' +
-                '<label>手机号：<input type="text" id="getNotifyMobile" class="input"></label>' +
-                '</div>',
+          'tip': '<p>亲，商品暂时卖完了，到货后我们会短信通知您。谢谢！</p>' +
+            '<div class="dialog-stockout-r1">' +
+            '<label>手机号：<input type="text" class="input" id="getNotifyMobile"></label>' +
+            '</div>',
+          'customizeClass': 'dialog-stockout',
           'okFunction': _.bind(that.getMobileData, that, element),
           'type': 'input'
         });
 
       },
 
-      getMobileData: function(element){
-        alert(element.parents().find('#getNotifyMobile').val());
+      getMobileData: function(element) {
+        var mobile = element.parents().find('#getNotifyMobile').val();
+        if (!mobile) {
+          alert("请输入手机号码！");
+          return false;
+        } else if (!/^1[0-9]{10}$/.test(mobile)) {
+          alert("手机号码不合法！");
+          return false;
+        } else {
+          var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+          var arrivalNotice = new SFArrivalNotice({"itemId": itemid, "mobileNumber": mobile});
+          arrivalNotice.sendRequest()
+          .done(function(data){
+            alert("恭喜你，订阅成功！");
+          })
+          .fail(function(error){
+            console.error(error);
+          })
+          return true;
+        }
+      },
 
-        var message = new SFMessage(null, {
-          'tip': '手机号码不合法！',
-          'type': 'error'
-        });
-
-        return false;
+      checkMobile: function(mobile) {
+        if (!mobile) {
+          this.data.attr({
+            'msgType': 'icon26',
+            'msg': ERROR_NO_INPUT_MOBILE
+          });
+          return false;
+        } else if (!/^1[0-9]{10}$/.test(mobile)) {
+          this.data.attr({
+            'msgType': 'icon26',
+            'msg': ERROR_INPUT_MOBILE
+          })
+          return false;
+        } else {
+          return true;
+        }
       },
 
       '#gotobuy click': function(element, event) {
@@ -421,7 +453,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var areaId = $('#logisticsArea').attr('data-areaid');
         var that = this;
-        if (areaId != 0) {
+        if (typeof areaId != "undefined" && areaId != 0) {
           var provinceId = this.component.showArea.adapter.addr.input.attr('provinceName');
           var cityId = this.component.showArea.adapter.addr.input.attr('cityName');
           var districtId = this.component.showArea.adapter.addr.input.attr('regionName');
@@ -549,9 +581,15 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
 
           '</div>' +
+
+
           '<div class="fr goods-c2r2c2">' +
-          '<div class="bdsharebuttonbox">分享给朋友：<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a></div>' +
+          '分享给朋友：<div class="bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1426841830399">' +
+          '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
+          '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
           '</div>' +
+          '</div>' +
+
           '</div>';
       },
 
@@ -573,7 +611,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{#each specs}}' +
           '<span data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}" >{{specValue}}<span class="icon icon23"></span></span>' +
           '{{/each}}' +
-          '</li>'+
+          '</li>' +
           '{{/each}}'
       },
 
@@ -906,7 +944,8 @@ define('sf.b2c.mall.product.detailcontent', [
        * [renderPicInfo 渲染图片信息]
        * @return {[type]}
        */
-      renderPicInfo: function() {debugger;
+      renderPicInfo: function() {
+        debugger;
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));
