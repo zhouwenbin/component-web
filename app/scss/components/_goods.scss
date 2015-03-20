@@ -185,19 +185,25 @@
 .goods-c2r2c2{
 	padding-top:30px;
 }
-.goods .bds_weixin{
+.goods .goods-c2r2c2 .bds_weixin{
 	background: url(../img/icon.png) no-repeat;
 	width: 23px;
     height: 18px;
     background-position: -610px 0;
     text-indent: -999px;
 	margin:0 0 0 6px;
+	padding-left:0;
 }
-.goods .bds_tsina{
+.goods .goods-c2r2c2 .bds_tsina{
 	background: url(../img/icon.png) no-repeat;
 	width: 21px;
     height: 16px;
     background-position: -670px 0;
     text-indent: -999px;
 	margin:0 0 0 6px;
+	padding-left:0;
+}
+.goods .goods-c2r2c2 .bdsharebuttonbox{
+	display:inline-block;
+	vertical-align:middle;
 }
