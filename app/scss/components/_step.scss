@@ -1,45 +1,48 @@
 /*步骤*/
-.step{
-	position: relative;
-	padding: 30px 0;
-	background: #fff;
-	margin-top: 56px;
-}
 .step li{
+	float:left;
+	font-size:14px;
+	color:#999;
+	width:270px;
+	height:34px;
+	line-height:34px;
+	background:#eee;
+	text-align:center;
 	position: relative;
-	display: inline-block;
-	*display: inline;
-	*zoom:1;
-	text-align: center;
-	width: 372px;
-	font-size: 14px;
 }
-.step li:first-child .line{
-  display: none;
+.step .li1,
+.step2 .li2,
+.step3 .li2,
+.step3 .li3{
+	background:#dc3334;
+	color:#fff;
 }
-.step .line{
-	width: 331px;
-	height: 4px;
-	background: #ccc;
-	position: absolute;
-	right: 209px;
-	top: 7px;
+
+.step em{
+	font-size:24px;
+	font-family:Arial;
+	margin-right:10px;
+	font-style: italic;
+	vertical-align:middle;
 }
-.step .icon31{
-	display: block;
-	margin: 0 auto 21px;
+.step .step-arrow{
+	width:0;
+	height:0;
+	border-style: solid;
+	border-width:17px 15px;
+	border-color:transparent transparent transparent #eee;
+	position:absolute;
+	right:-30px;
+	top:0;
+	z-index:2;
 }
-.step .active{
-	color: #67b222;
+.step .step-arrow-2{
+	border-color:transparent transparent transparent #fff;
+	right:-40px;
+	z-index:1;
 }
-.step .active .icon{
-	background-position: -105px -112px;
-}
-.step .active .line{
-  background: #67b222;
-}
-.step .icon28{
-	position: absolute;
-	right: 56px;
-	top:-44px;
+.step .li1 .step-arrow-1,
+.step2 .step-arrow-1,
+.step3 .step-arrow-1{
+	border-color:transparent transparent transparent #dc3334;
 }
