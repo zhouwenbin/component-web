@@ -185,3 +185,13 @@
 .goods-c2r2c2{
 	padding-top:30px;
 }
+.goods .bds_weixin{
+	@extend .icon;
+	@extend .icon59;
+	margin:0 0 0 6px;
+}
+.goods .bds_tsina{
+	@extend .icon;
+	@extend .icon61;
+	margin:0 0 0 6px;
+}
