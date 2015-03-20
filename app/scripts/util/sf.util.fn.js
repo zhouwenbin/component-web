@@ -17,7 +17,9 @@ define('sf.util', ['jquery',
 
       // @note 请求存在跨域问题，需要外部支持
       window.onerror = function(msg, url, line){
-        var link = 'http://stat.t.sfht.com/jserror.gif?'+$.param({msg: msg, url: url, line: line});
+        var params = $.param({msg: msg, url: url, line: line});
+        var code = window.btoa(params);
+        var link = 'http://stat.t.sfht.com/jserror.gif?'+code;
 
         var img = new Image();
         img.width = 1;
