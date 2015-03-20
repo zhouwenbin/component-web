@@ -17,7 +17,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'imglazyload',
     'sf.b2c.mall.api.b2cmall.checkLogistics'
   ],
-  function(can, zoom,store,cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage,SFShowArea,SFImglazyload,CheckLogistics) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, CheckLogistics) {
     return can.Control.extend({
 
       helpers: {
@@ -76,40 +76,40 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var areaId = $('#logisticsArea').attr('data-areaid');
 
-        if(areaId != 0){
+        if (areaId != 0) {
 
           this.component.showArea = new SFShowArea();
           this.component.showArea.show('create', null, $("#logisticsArea"));
 
-          var time = setInterval(function(){
+          var time = setInterval(function() {
             var provinceId = store.get('provinceId');
             var cityId = store.get('cityId');
             var regionId = store.get('regionId');
-              if(typeof provinceId != 'undefined'){
-                if (SFComm.prototype.checkUserLogin.call(that)) {
-                  that.component.showArea.adapter.addr.attr({
-                    input:{
-                      provinceName:provinceId
-                    }
-                  });
-                  that.component.showArea.changeCity();
-                  that.component.showArea.changeRegion();
-                  that.component.showArea.adapter.addr.attr({
-                    input:{
-                      cityName:cityId
-                    }
-                  });
-                  that.component.showArea.changeRegion();
-                  that.component.showArea.adapter.addr.attr({
-                    input:{
-                      regionName:regionId
-                    }
-                  });
+            if (typeof provinceId != 'undefined') {
+              if (SFComm.prototype.checkUserLogin.call(that)) {
+                that.component.showArea.adapter.addr.attr({
+                  input: {
+                    provinceName: provinceId
+                  }
+                });
+                that.component.showArea.changeCity();
+                that.component.showArea.changeRegion();
+                that.component.showArea.adapter.addr.attr({
+                  input: {
+                    cityName: cityId
+                  }
+                });
+                that.component.showArea.changeRegion();
+                that.component.showArea.adapter.addr.attr({
+                  input: {
+                    regionName: regionId
+                  }
+                });
 
-                  clearInterval(time);
-                }
+                clearInterval(time);
               }
-          },1000);
+            }
+          }, 1000);
 
         }
 
@@ -229,19 +229,19 @@ define('sf.b2c.mall.product.detailcontent', [
 
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
-          '<h2>推荐商品</h2>' +
+          '<h2>相关商品</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
-          '<li>' +
+          '<li><div class="recommend-c2">' +
           '<a class="fl" href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" /></a>' +
-          '<div class="recommend-c1">' +
+          '</div><div class="recommend-c1">' +
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
-          '<div class="recommend-r1">¥{{sf.price sellingPrice}}<del>¥{{sf.price originPrice}}</del></div>' +
+          '<div class="recommend-r1">¥{{sf.price sellingPrice}}</div>' +
           '</div>' +
           '</li>' +
           '{{/each}}' +
           '</ul>' +
-          '{{/if}}'
+          '{{/if}}';
       },
 
       /**
@@ -336,7 +336,7 @@ define('sf.b2c.mall.product.detailcontent', [
             var productShape = $('#buyInfo').attr('data-productshape');
             if (productShape == 'FRESHFOOD') {
               that.options.detailContentInfo.priceInfo.attr("showTax", false);
-            }else{
+            } else {
               that.options.detailContentInfo.priceInfo.attr("showTax", true);
             }
 
@@ -382,36 +382,67 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
+
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
       },
 
-      '#gotobuy click': function(element,event) {
+      '#getNotify click': function(element, event) {
+        event && event.preventDefault();
+        debugger;
+
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'tip': '<a href="#" class="btn btn-close">关闭</a>' +
+                '<h1>亲，商品暂时卖完了，到货后我们会短信通知您。谢谢！</h1>' +
+                '<div class="dialog-stockout-r1">' +
+                '<label>手机号：<input type="text" id="getNotifyMobile" class="input"></label>' +
+                '</div>',
+          'okFunction': _.bind(that.getMobileData, that, element),
+          'type': 'input'
+        });
+
+      },
+
+      getMobileData: function(element){
+        alert(element.parents().find('#getNotifyMobile').val());
+
+        var message = new SFMessage(null, {
+          'tip': '手机号码不合法！',
+          'type': 'error'
+        });
+
+        return false;
+      },
+
+      '#gotobuy click': function(element, event) {
         event && event.preventDefault();
         $('#areaErrorTips').hide();
 
         var areaId = $('#logisticsArea').attr('data-areaid');
         var that = this;
-        if(areaId != 0 ){
-          var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
-          var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
-          var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+        if (areaId != 0) {
+          var provinceId = this.component.showArea.adapter.addr.input.attr('provinceName');
+          var cityId = this.component.showArea.adapter.addr.input.attr('cityName');
+          var districtId = this.component.showArea.adapter.addr.input.attr('regionName');
 
           this.component.checkLogistics.setData({
-            areaId:areaId,
-            provinceId:provinceId,
-            cityId:cityId,
-            districtId:districtId
+            areaId: areaId,
+            provinceId: provinceId,
+            cityId: cityId,
+            districtId: districtId
           });
 
           this.component.checkLogistics.sendRequest()
-            .done(function(data){
-              if(data.value == false){
+            .done(function(data) {
+              if (data.value == false) {
                 //that.component.showArea.adapter.addr.attr('errorTips','无法配送到此区域');
                 $('#areaErrorTips').text('无法配送到此区域').show();
                 return false;
               }
 
               var amount = that.options.detailContentInfo.input.buyNum;
-              if (amount < 1 || isNaN(amount)){
+              if (amount < 1 || isNaN(amount)) {
                 that.options.detailContentInfo.input.attr("buyNum", 1);
                 var message = new SFMessage(null, {
                   'tip': '请输入正确的购买数量！',
@@ -432,12 +463,12 @@ define('sf.b2c.mall.product.detailcontent', [
               }
 
               window.location.href = gotoUrl;
-            }).fail(function(){
+            }).fail(function() {
 
             })
-        }else{
+        } else {
           var amount = that.options.detailContentInfo.input.buyNum;
-          if (amount < 1 || isNaN(amount)){
+          if (amount < 1 || isNaN(amount)) {
             that.options.detailContentInfo.input.attr("buyNum", 1);
             var message = new SFMessage(null, {
               'tip': '请输入正确的购买数量！',
@@ -471,121 +502,78 @@ define('sf.b2c.mall.product.detailcontent', [
       '#s4 change': function(element, event) {
         this.checkAreaLogistics();
       },
-      checkAreaLogistics:function(){
+      checkAreaLogistics: function() {
         $('#areaErrorTips').hide();
         var areaId = $('#logisticsArea').attr('data-areaid');
-        var provinceId =this.component.showArea.adapter.addr.input.attr('provinceName');
-        var cityId =this.component.showArea.adapter.addr.input.attr('cityName');
-        var districtId =this.component.showArea.adapter.addr.input.attr('regionName');
+        var provinceId = this.component.showArea.adapter.addr.input.attr('provinceName');
+        var cityId = this.component.showArea.adapter.addr.input.attr('cityName');
+        var districtId = this.component.showArea.adapter.addr.input.attr('regionName');
 
         this.component.checkLogistics.setData({
-          areaId:areaId,
-          provinceId:provinceId,
-          cityId:cityId,
-          districtId:districtId
+          areaId: areaId,
+          provinceId: provinceId,
+          cityId: cityId,
+          districtId: districtId
         });
 
         var that = this;
         this.component.checkLogistics.sendRequest()
-            .done(function(data) {
-              if (data.value == false) {
-                //that.component.showArea.adapter.addr.attr('errorTips', '无法配送到此区域');
-                $('#areaErrorTips').text('无法配送到此区域').show();
-                return false;
-              }
-            }).fail(function(){
+          .done(function(data) {
+            if (data.value == false) {
+              //that.component.showArea.adapter.addr.attr('errorTips', '无法配送到此区域');
+              $('#areaErrorTips').text('无法配送到此区域').show();
+              return false;
+            }
+          }).fail(function() {
 
-            })
+          })
       },
 
       buyInfoTemplate: function() {
-        return '<div class="mr8">购买数量：' +
+        return '<div class="goods-num"><label>数量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
-          '<input type="text" class="input_txt" value="{{input.buyNum}}" /></span>' +
+          '<input type="text" value="{{input.buyNum}}"></span>' +
+          '{{#if input.showRestrictionTips}}<span class="icon icon62"></span><span class="text-important" id="showrestrictiontipsspan">每人限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
-          '<div class="mr9">' +
-          '{{#sf-showCurrentStock priceInfo.currentStock}}<span class="icon icon26" style="visibility:visible">商品库存{{priceInfo.currentStock}}件</span>{{/sf-showCurrentStock}}' +
-          '{{#if input.showRestrictionTips}}<span class="icon icon26" style="visibility:visible" id="showrestrictiontipsspan">商品限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
-          '</div>' +
+          '<div class="goods-c2r2 clearfix">' +
+          '<div class="fl">' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy disable">立即购买</a></div>' +
+          '<a href="#" class="btn btn-buy disable">立即购买</a>' +
+          '<a href="#" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
-          '<div class="mr10"><a href="#" class="btn btn-buy" id="gotobuy">立即购买</a></div>' +
-          '{{/if}}';
+          '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{/if}}' +
+
+          '</div>' +
+          '<div class="fr goods-c2r2c2">' +
+          '<div class="bdsharebuttonbox">分享给朋友：<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a></div>' +
+          '</div>' +
+          '</div>';
       },
 
       itemPriceTemplate: function() {
-        return '<div class="goods-rel">' +
-          '<!--限时特卖-->' +
-          '<div class="u1">' +
+        return '<div class="goods-price-c1 fl">' +
+          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
+          '</div>' +
           '{{#sf-is-limitedTimeBuy priceInfo.productShape}}' +
-          '<span class="icon icon6 icon6-2">限时特卖<i></i></span>' +
-          '<div class="u1-r1"><span class="icon {{priceInfo.timeIcon}}"></span>{{priceInfo.time}}</div>' +
-          '{{/sf-is-limitedTimeBuy}}' +
+          '<div class="goods-price-c2">' +
+          '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
           '</div>' +
-
-          '<!--生鲜-->' +
-          '<div class="u1">' +
-          '{{#sf-is-freshfood priceInfo.productShape}}' +
-          '<span class="icon icon50"></span>' +
-          '{{/sf-is-freshfood}}' +
-          '</div>' +
-
-          '<!--急速海淘-->' +
-          '{{#sf-is-rapidSeaBuy priceInfo.productShape}}' +
-          '<!--7天到-->' +
-          '<div class="u2">' +
-          '<span class="icon icon25"></span><strong>{{priceInfo.sendTime}}</strong>天到' +
-          '</div>' +
-          '<!--7天到-->' +
-
-          '{{/sf-is-rapidSeaBuy}}' +
-
-          '<!--限时特卖-->' +
-          '<!--售完-->' +
-          '{{#if priceInfo.soldOut}}' +
-          '<span class="icon icon24">售完</span>' +
-          '{{/if}}' +
-          '<!--售完-->' +
-          '</div>' +
-          '<div class="mr1">单价：<strong><b>¥</b>{{sf.price priceInfo.sellingPrice}}</strong>{{#if priceInfo.showTax}}<span>（含税）</span>{{/if}}{{#if priceInfo.showDiscount}}<del>¥ {{sf.price priceInfo.originPrice}}</del>{{/if}}</div>' +
-          '{{#if priceInfo.showDiscount}}' +
-          '<div class="mr2"><span>{{priceInfo.discount}}折</span>已降{{sf.price priceInfo.lessspend}}元</div>' +
-          '{{/if}}';
+          '{{/sf-is-limitedTimeBuy}}';
       },
 
       specTemplate: function() {
         return '{{#each itemInfo.specGroups}}' +
-          '<div class="mr6" data-specidorder="{{specIdOrder}}">{{specName}}：' +
+          '<li data-specidorder="{{specIdOrder}}"><label>{{specName}}</label>' +
           '{{#each specs}}' +
-
-          '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}">{{specValue}}<span class="icon icon23"></span></label>' +
-
-
-          // '{{#if selected}}' +
-          //   '<label data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods active">{{specValue}}<span class="icon icon23"></span></label>' +
-          // '{{else}}' +
-
-          //   '{{#if canSelected}}' +
-          //     '<label data-specid="{{specId}}" id="2" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods">{{specValue}}<span class="icon icon23"></span></label>' +
-          //   '{{else}}' +
-
-          //     '{{#if canShowDottedLine}}' +
-          //       '<label data-specid="{{specId}}" id="3" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods dashed">{{specValue}}<span class="icon icon23"></span></label>' +
-          //     '{{else}}' +
-          //       '<label data-specid="{{specId}}" id="4" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-          //     '{{/if}}' +
-
-          //   // '<label data-specid="{{specId}}" class="btn btn-goods disable">{{specValue}}<span class="icon icon23"></span></label>' +
-          //   '{{/if}}' +
-          // '{{/if}}' +
-
+          '<span data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}" >{{specValue}}<span class="icon icon23"></span></span>' +
           '{{/each}}' +
-          '</div>' +
+          '</li>'+
           '{{/each}}'
       },
 
@@ -707,7 +695,7 @@ define('sf.b2c.mall.product.detailcontent', [
         }
 
         var amount = element[0].value;
-        if (amount < 1 || isNaN(amount)){
+        if (amount < 1 || isNaN(amount)) {
           element.val(1);
         }
         if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy) {
@@ -860,11 +848,11 @@ define('sf.b2c.mall.product.detailcontent', [
         var template = can.view.mustache(this.recommend2Template());
         $('#recommend2').html(template(this.options.detailContentInfo))
         if (this.options.detailContentInfo &&
-            this.options.detailContentInfo.itemInfo &&
-            this.options.detailContentInfo.itemInfo.basicInfo &&
-            this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
+          this.options.detailContentInfo.itemInfo &&
+          this.options.detailContentInfo.itemInfo.basicInfo &&
+          this.options.detailContentInfo.itemInfo.basicInfo.recommend) {
           $('#recommend2').addClass('recommend2').show();
-        }else{
+        } else {
           $('#recommend2').removeClass('recommend2').hide();
         }
       },
@@ -918,7 +906,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * [renderPicInfo 渲染图片信息]
        * @return {[type]}
        */
-      renderPicInfo: function() {
+      renderPicInfo: function() {debugger;
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));
@@ -952,18 +940,23 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       picInfoTemplate: function() {
-        return '<div class="goods-c1r1" id="bigPicArea">' +
-          '<ul>' +
-          '<li class="active"><img src="{{itemInfo.currentImage}}" alt=""><span></span></li>' +
-          '</ul>' +
-          '</div>' +
-          '<div class="goods-c1r2">' +
+        return '<div class="goods-c3 fl" id="itemImages">' +
           '<ul class="clearfix">' +
           '{{#each itemInfo.basicInfo.images}}' +
           '<li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>' +
           '{{/each}}' +
           '</ul>' +
-          '</div>'
+          '</div>' +
+          '<div class="goods-c1 fl">' +
+          '<div class="goods-c1r1" id="bigPicArea">' +
+          '<ul>' +
+          '<li class="active">' +
+          '<img src="{{itemInfo.currentImage}}" alt="">' +
+          '<span></span>' +
+          '</li>' +
+          '</ul>' +
+          '</div>' +
+          '</div>';
       },
 
       breadScrumbTemplate: function() {
