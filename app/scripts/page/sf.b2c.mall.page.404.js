@@ -8,16 +8,19 @@ define(
     'jquery',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
-    'sf.b2c.mall.api.product.findRecommendProducts'
+    'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, Header, Footer, SFFindRecommendProducts) {
+  function(can, $, Header, Footer, SFFindRecommendProducts,SFFrameworkComm) {
 
+    SFFrameworkComm.register(1);
     var findNoPage = can.Control.extend({
 
       /**
        * [init 初始化]
        */
       init: function() {
+        this.detailUrl = 'http://www.sfht.com/detail';
         this.render();
       },
 
@@ -31,7 +34,7 @@ define(
         new Footer('.sf-b2c-mall-footer');
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': -1,
+          'itemId': 1,
           'size': 4
         });
 
@@ -67,11 +70,13 @@ define(
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
           '<li>' +
-          '<a class="fl" href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" /></a>' +
+          '<div class="recommend-c2">'+
+          '<a href="{{linkUrl}}"><img src="{{imageName}}" alt="" /></a>'+
+          '</div>'+
           '<div class="recommend-c1">' +
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
-          '<div class="recommend-r1">¥{{sf.price sellingPrice}}<del>¥{{sf.price originPrice}}</del></div>' +
-          '</div>' +
+          '<div class="recommend-r1">¥{{sellingPrice}}</div>' +
+          '</div>'+
           '</li>' +
           '{{/each}}' +
           '</ul>' +
