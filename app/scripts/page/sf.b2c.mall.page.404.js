@@ -8,9 +8,10 @@ define(
     'jquery',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.framework.comm',
-    'sf.util'
+    'sf.util',
+    'sf.b2c.mall.business.config'
   ],
-  function(can, $,SFFindRecommendProducts,SFFrameworkComm,SFFn) {
+  function(can, $,SFFindRecommendProducts,SFFrameworkComm,SFFn,SFBusiness) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -35,7 +36,7 @@ define(
 
         var findRecommendProducts = new SFFindRecommendProducts({
           'itemId': -1,
-          'size': 4
+          'size': 8
         });
 
         findRecommendProducts
