@@ -42,7 +42,7 @@ define('sf.b2c.mall.widget.showArea', [
 
 
     checkAreaTemplate:function(){
-      return '<label for="area">送至：</label>' +
+      return '<label for="area">送至</label>' +
           '<select id="s2"  can-value="addr.input.provinceName">'+
           '{{#each addr.place.provinces}}'+
           '<option value="{{id}}">{{name}}</option>'+
