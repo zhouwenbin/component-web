@@ -328,11 +328,30 @@
   </div>
 
   <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/index.js"></script>
   <script src='lib/zoom/jquery.zoom.js'></script>
   <script>
     $(function(){
       $(".goods-c1r1 li").zoom();
+    })
+  </script>
+  <script type="text/javascript">
+    $('.btn-send').click(function(){
+      $('.dialog').animate({
+        "left":"45%"
+      },100)
+      .animate({
+        "left":"55%"
+      },100)
+      .animate({
+        "left":"45%"
+      },100)
+      .animate({
+        "left":"55%"
+      },100)
+      .animate({
+        "left":"50%"
+      },100);
+      
     })
   </script>
 </body>
