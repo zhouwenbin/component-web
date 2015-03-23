@@ -6,13 +6,11 @@ define(
   [
     'can',
     'jquery',
-    'sf.b2c.mall.component.header',
-    'sf.b2c.mall.component.footer',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.framework.comm',
     'sf.util'
   ],
-  function(can, $, Header, Footer, SFFindRecommendProducts,SFFrameworkComm,SFFn) {
+  function(can, $,SFFindRecommendProducts,SFFrameworkComm,SFFn) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -32,8 +30,8 @@ define(
       render: function() {
       	var that = this;
 
-        new Header('.sf-b2c-mall-header');
-        new Footer('.sf-b2c-mall-footer');
+        // new Header('.sf-b2c-mall-header');
+        // new Footer('.sf-b2c-mall-footer');
 
         var findRecommendProducts = new SFFindRecommendProducts({
           'itemId': -1,
