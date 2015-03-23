@@ -22,8 +22,17 @@ define('sf.b2c.mall.component.header', [
   'sf.util',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
-  'text!template_header_channel_navigator'
-], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn, template_header_user_navigator, template_header_info_common, template_header_channel_navigator) {
+  'text!template_header_channel_navigator',
+  'text!template_header_info_step_fillinfo',
+  'text!template_header_info_step_pay',
+  'text!template_header_info_step_success'
+], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn,
+  template_header_user_navigator,
+  template_header_info_common,
+  template_header_channel_navigator,
+  template_header_info_step_fillinfo,
+  template_header_info_step_pay,
+  template_header_info_step_success) {
 
   var APPID = 1;
 
@@ -155,7 +164,10 @@ define('sf.b2c.mall.component.header', [
         }
 
         var map = {
-          'template_header_info_common': template_header_info_common
+          'template_header_info_common': template_header_info_common,
+          'template_header_info_step_fillinfo': template_header_info_step_fillinfo,
+          'template_header_info_step_pay': template_header_info_step_pay,
+          'template_header_info_step_success': template_header_info_step_success
         }
 
         var renderFn = can.mustache(map[templateid]);

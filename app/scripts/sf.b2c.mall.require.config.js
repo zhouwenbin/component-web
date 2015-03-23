@@ -197,6 +197,9 @@ requirejs.config({
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
+    'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',
+    'template_header_info_step_pay': 'templates/header/sf.b2c.mall.header.info.step.pay.mustache',
+    'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache'
   }
