@@ -255,7 +255,14 @@ define('sf.b2c.mall.component.addreditor', [
           recId = data.value;
         })
         .fail(function(error) {
-
+          if (error === 1000310) {
+            new SFMessage(null, {
+              "title": '顺丰海淘',
+              'tip': '您已添加20条收货地址信息，请返回修改！',
+              'type': 'error'
+            });
+          }
+          return false;
         })
         .then(function(){
           addr.recId = recId;
