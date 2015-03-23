@@ -29,14 +29,6 @@
 	margin-left:15px;
 	border:1px solid #efefef;
 	margin-bottom:16px;
-	font-size:0;
-}
-.recommend li:after{
-	content:'';
-	width:0;
-	height:100%;
-	display:inline-block;
-	vertical-align:middle;
 }
 .recommend li:hover{
 	border-color:#ccc;
