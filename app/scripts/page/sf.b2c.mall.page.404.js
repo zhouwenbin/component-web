@@ -9,11 +9,13 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.framework.comm'
+    'sf.b2c.mall.framework.comm',
+    'sf.util'
   ],
-  function(can, $, Header, Footer, SFFindRecommendProducts,SFFrameworkComm) {
+  function(can, $, Header, Footer, SFFindRecommendProducts,SFFrameworkComm,SFFn) {
 
     SFFrameworkComm.register(1);
+    SFFn.monitor();
     var findNoPage = can.Control.extend({
 
       /**
@@ -34,7 +36,7 @@ define(
         new Footer('.sf-b2c-mall-footer');
 
         var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': 1,
+          'itemId': -1,
           'size': 4
         });
 
