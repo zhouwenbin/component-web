@@ -487,7 +487,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.campaign.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -505,7 +505,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.main.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -538,7 +538,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -556,7 +556,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -574,7 +574,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -592,7 +592,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -610,7 +610,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -628,7 +628,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.process.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -646,7 +646,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -664,7 +664,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.nullactivated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -682,7 +682,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.retrieve.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -700,7 +700,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -718,7 +718,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order2.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -736,7 +736,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.list.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -754,7 +754,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -772,7 +772,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.center.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -790,7 +790,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -808,7 +808,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay2.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -826,7 +826,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.passwordchange.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -844,7 +844,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.coupon.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -862,7 +862,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.paysuccess.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -880,7 +880,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.weixincenter.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -898,7 +898,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.404.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -933,7 +933,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.federal.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths:{
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
@@ -951,7 +951,7 @@ module.exports = function (grunt) {
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/build/placeholders',
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
