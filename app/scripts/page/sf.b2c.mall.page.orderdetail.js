@@ -22,7 +22,7 @@ define(
       },
 
       render: function() {
-        new Header('.sf-b2c-mall-header', {isForceLogin: true});
+        var header = new Header('.sf-b2c-mall-header', {channel: '首页', isForceLogin: true});
         new Footer('.sf-b2c-mall-footer');
         new SFOrderDetailContent('.sf-b2c-mall-orderdetail');
       },
