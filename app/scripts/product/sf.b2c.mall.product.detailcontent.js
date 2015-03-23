@@ -395,38 +395,60 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var that = this;
 
-        var message = new SFMessage(null, {
-          'tip': '<p>亲，商品暂时卖完了，到货后我们会短信通知您。谢谢！</p>' +
-            '<div class="dialog-stockout-r1">' +
-            '<label>手机号：<input type="text" class="input" id="getNotifyMobile"></label>' +
-            '</div>',
-          'customizeClass': 'dialog-stockout',
-          'okFunction': _.bind(that.getMobileData, that, element),
-          'type': 'input'
-        });
+        $("#getNotifyStep1").show();
 
+        $("#getNotifyMobileSubmit")[0].onclick = _.bind(that.getMobileData, that, element);
+
+        $(".btn-close")[0].onclick = function() {
+          $("#getNotifyStep1").hide();
+        }
+
+        $(".btn-close")[1].onclick = function() {
+          $("#getNotifyStep2").hide();
+        }
       },
 
       getMobileData: function(element) {
         var mobile = element.parents().find('#getNotifyMobile').val();
-        if (!mobile) {
-          alert("请输入手机号码！");
-          return false;
-        } else if (!/^1[0-9]{10}$/.test(mobile)) {
-          alert("手机号码不合法！");
+
+        if (!mobile || !/^1[0-9]{10}$/.test(mobile)) {
+          this.dialogerror();
+          $("#getNotifyMobile").focus();
           return false;
         } else {
           var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
-          var arrivalNotice = new SFArrivalNotice({"itemId": itemid, "mobileNumber": mobile});
+          var arrivalNotice = new SFArrivalNotice({
+            "itemId": itemid,
+            "mobileNumber": mobile
+          });
           arrivalNotice.sendRequest()
-          .done(function(data){
-            alert("恭喜你，订阅成功！");
-          })
-          .fail(function(error){
-            console.error(error);
-          })
+            .done(function(data) {
+              $("#getNotifyStep1").hide();
+              $("#getNotifyStep2").show();
+            })
+            .fail(function(error) {
+              console.error(error);
+            })
           return true;
         }
+      },
+
+      dialogerror: function() {
+        $('.dialog').animate({
+            "left": "48%"
+          }, 100)
+          .animate({
+            "left": "52%"
+          }, 100)
+          .animate({
+            "left": "48%"
+          }, 100)
+          .animate({
+            "left": "52%"
+          }, 100)
+          .animate({
+            "left": "50%"
+          }, 100);
       },
 
       checkMobile: function(mobile) {
@@ -945,7 +967,6 @@ define('sf.b2c.mall.product.detailcontent', [
        * @return {[type]}
        */
       renderPicInfo: function() {
-        debugger;
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
         $('#allSkuImages').html(template(this.options.detailContentInfo));

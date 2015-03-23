@@ -711,24 +711,6 @@ module.exports = function (grunt) {
         }
       },
 
-      order2: {
-        options: {
-          preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order2.js',
-          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-          paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
-          },
-          include:        ["sf.b2c.mall.page.order2"],
-          insertRequire:  ['sf.b2c.mall.page.order2']
-        }
-      },
-
       orderlist: {
         options: {
           preserveLicenseComments: false,
@@ -798,24 +780,6 @@ module.exports = function (grunt) {
           },
           include:        ["sf.b2c.mall.page.gotopay"],
           insertRequire:  ['sf.b2c.mall.page.gotopay']
-        }
-      },
-
-      gotopay2: {
-        options: {
-          preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay2.js',
-          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-          paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
-          },
-          include:        ["sf.b2c.mall.page.gotopay2"],
-          insertRequire:  ['sf.b2c.mall.page.gotopay2']
         }
       },
 

@@ -155,9 +155,7 @@ requirejs.config({
     'sf.b2c.mall.page.main': 'scripts/page/sf.b2c.mall.page.main',
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
     'sf.b2c.mall.page.order': 'scripts/page/sf.b2c.mall.page.order',
-    'sf.b2c.mall.page.order2': 'scripts/page/sf.b2c.mall.page.order2',
     'sf.b2c.mall.page.gotopay': 'scripts/page/sf.b2c.mall.page.gotopay',
-    'sf.b2c.mall.page.gotopay2': 'scripts/page/sf.b2c.mall.page.gotopay2',
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.page.orderdetail': 'scripts/page/sf.b2c.mall.page.orderdetail',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
@@ -187,7 +185,6 @@ requirejs.config({
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
-    'sf.b2c.mall.order.iteminfo2': 'scripts/order/sf.b2c.mall.order.iteminfo2',
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
     'sf.b2c.mall.order.orderdetailcontent': 'scripts/order/sf.b2c.mall.order.orderdetailcontent',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
@@ -197,6 +194,9 @@ requirejs.config({
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
+    'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',
+    'template_header_info_step_pay': 'templates/header/sf.b2c.mall.header.info.step.pay.mustache',
+    'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache'
   }
