@@ -27,11 +27,11 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
         'address': 'json',
         'items': 'json',
-        'couponCodes': 'string',
         'sysType': 'string',
       },
       OPTIONAL: {
         'userMsg': 'string',
+        'couponCodes': 'string',
         'sysInfo': 'string'
       },
       VERIFY:{

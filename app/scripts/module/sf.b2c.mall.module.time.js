@@ -86,7 +86,7 @@ define(
           var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
           var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
           var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-          timeNode.innerHTML = '<span class="icon icon56"></span>仅剩:' + day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+          timeNode.innerHTML = '<span class="icon icon56"></span>仅剩:<span class="text-error">' + day1 + "天" + hour + "小时" + minute + "分" + second + "秒</span>";
         } else if (leftTime > 259200000) {
           timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
         } else {
