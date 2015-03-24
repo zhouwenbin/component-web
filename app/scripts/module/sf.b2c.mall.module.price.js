@@ -86,7 +86,7 @@ define(
           element.find('.cms-fill-discount').text(parseInt(value.sellingPrice, 10) * 10 / parseInt(value.originPrice, 10));
         }
 
-        // 做受控处理
+        // 做售空处理
         if (value.soldOut) {
           element.find('.btn1').removeClass('btn1').addClass('btn1').text('已经抢光')
           element.find('.product-r1').append('<div class="mask-live"></div>');

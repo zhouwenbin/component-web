@@ -21,6 +21,7 @@ define(
 
         var that = this;
 
+        // 调用后台接口 仅为获得服务器时间
         var itemIds = [];
         itemIds.push(1);
 
@@ -32,10 +33,11 @@ define(
           .sendRequest()
           .done(function(data) {
 
+            // 获得服务器时间
             var currentServerTime = getProductHotDataList.getServerTime();
 
+            // 渲染倒计时
             that.rendTimeDistanceInfo(currentServerTime, element);
-
           })
           .fail(function(errorCode) {
             console.error(errorCode);
@@ -48,7 +50,7 @@ define(
        * @param  {[type]} priceMap 价格数据中包含活动结束时间
        * @return {[type]}
        */
-        rendTimeDistanceInfo: function(currentServerTime, priceMap) {
+      rendTimeDistanceInfo: function(currentServerTime, priceMap) {
 
         var that = this;
 
@@ -77,13 +79,16 @@ define(
 
         var leftTime = endDate - new Date().getTime() - distance;
 
-        if (leftTime > 0) {
+        // 3天内显示倒计时，3天外显示即将开始 其他显示活动结束
+        if (leftTime > 0 && leftTime < 259200000) {
           var leftsecond = parseInt(leftTime / 1000);
           var day1 = Math.floor(leftsecond / (60 * 60 * 24));
           var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
           var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
           var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
           timeNode.innerHTML = '<span class="icon icon56"></span>仅剩:' + day1 + "天" + hour + "小时" + minute + "分" + second + "秒";
+        } else if (leftTime > 259200000) {
+          timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
         } else {
           timeNode.innerHTML = '<span class="icon icon56"></span>活动已结束';
         }
