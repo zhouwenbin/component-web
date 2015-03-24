@@ -41,7 +41,7 @@ define(
           '<h2>意见反馈</h2>' +
           '<textarea can-value="feedback" placeholder="输入您对顺丰海淘的建议或意见，帮助我们做的更好"></textarea><span class="text-error">{{error.feedback}}</span>' +
           '<div class="feedback-r1">' +
-          '<label class="justify">手机号码</label>:<input type="text" can-value="mobile"/><span class="text-error">{{error.mobile}}</span><br>' +
+          '<label class="justify">手机号码</label>:<input type="text" can-value="mobile"/><span class="text-error">{{error.mobile}}</span><br><br>' +
           '<label class="justify">邮 箱</label>:<input type="text" can-value="email"/><span class="text-error">{{error.email}}</span></label>' +
           '</div>' +
           '<div class="feedback-r2">' +
