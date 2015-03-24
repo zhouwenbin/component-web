@@ -47,14 +47,14 @@ define(
       /**
        * [rendTimeDistanceInfo 二次渲染倒计时信息]
        * @param  {[type]} currentServerTime 服务器时间
-       * @param  {[type]} priceMap 价格数据中包含活动结束时间
+       * @param  {[type]} element mo
        * @return {[type]}
        */
-      rendTimeDistanceInfo: function(currentServerTime, priceMap) {
+      rendTimeDistanceInfo: function(currentServerTime, element) {
 
         var that = this;
 
-        var timeNodeList = $('.cms-src-timeinfo');
+        var timeNodeList = element.find('.cms-src-timeinfo');
 
         var currentClientTime = new Date().getTime();
         var distance = currentServerTime - currentClientTime;
@@ -64,7 +64,7 @@ define(
 
             var endTime = $(timeNode).attr('data-cms-endtime');
 
-            var time = that.setCountDown($(".cms-fill-timeinfo")[0], distance, endTime);
+            var time = that.setCountDown(element.find(".cms-fill-timeinfo")[0], distance, endTime);
           })
         }, '1000');
       },
