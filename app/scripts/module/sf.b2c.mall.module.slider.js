@@ -13,6 +13,8 @@ define(
 
       init: function() {
         this.render();
+
+
       },
       // renderMap: {
       //   'slide': function () {
@@ -42,7 +44,7 @@ define(
       // },
 
       render: function() {
-        new SFSlide('.slider_1_1');
+        new SFSlide('.cms-module-slider');
       }
     })
 
