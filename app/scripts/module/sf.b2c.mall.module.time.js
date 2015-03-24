@@ -1,17 +1,13 @@
 define(
-  'sf.b2c.mall.module.slider',
+  'sf.b2c.mall.module.time',
   [
     'can',
     'jquery',
     'sf.b2c.mall.widget.slide',
-    'sf.b2c.mall.business.config',
-    'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, SFSlide, SFConfig, SFFrameworkComm) {
+  function(can, $, SFSlide) {
 
-    SFFrameworkComm.register(1);
-
-    var main = can.Control.extend({
+    var time = can.Control.extend({
       renderMap: {
         'slide': function () {
           var $el = this.element.find('.sf-b2c-mall-main-slider.serverRendered');
@@ -44,5 +40,5 @@ define(
       }
     })
 
-    new main('body');
+    new time('body');
   })
