@@ -192,6 +192,9 @@ requirejs.config({
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
     'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info',
 
+    'sf.b2c.mall.module.slider': 'scripts/module/sf.b2c.mall.module.slider',
+    'sf.b2c.mall.module.price': 'scripts/module/sf.b2c.mall.module.price',
+
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
     'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',
