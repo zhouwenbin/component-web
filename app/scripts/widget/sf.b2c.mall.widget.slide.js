@@ -78,11 +78,9 @@ define(
       },
 
       template: function () {
-        return  '<ul class="slider-num">'+
-                    '{{#imgs}}' +
-                      '<li><a href="###"></a></li>' +
-                    '{{/imgs}}' +
-                '</ul>'
+        return  '{{#imgs}}' +
+                  '<li><a href="###"></a></li>' +
+                '{{/imgs}}'
       },
 
       render: function () {
