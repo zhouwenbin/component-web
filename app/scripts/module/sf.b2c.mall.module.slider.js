@@ -12,6 +12,12 @@ define(
     SFFrameworkComm.register(1);
 
     var main = can.Control.extend({
+
+      init:function(){
+        this.render();
+
+      },
+
       renderMap: {
         'slide': function () {
           var $el = this.element.find('.slider_1_1');
@@ -42,6 +48,7 @@ define(
       render: function() {
         this.renderMap.slide.call(this);
       }
+      
     })
 
     new main('body');
