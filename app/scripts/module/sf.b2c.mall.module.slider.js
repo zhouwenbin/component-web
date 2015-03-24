@@ -2,8 +2,7 @@
  * Created by 魏志强 on 2014/12/26.
  */
 define(
-  'sf.b2c.mall.page.404',
-  [
+  'sf.b2c.mall.module.slider', [
     'can',
     'jquery',
     'sf.b2c.mall.widget.slide',
@@ -12,7 +11,7 @@ define(
 
     var main = can.Control.extend({
 
-      init:function(){
+      init: function() {
         this.render();
       },
       // renderMap: {
