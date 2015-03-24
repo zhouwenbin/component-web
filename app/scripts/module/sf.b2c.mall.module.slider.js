@@ -14,7 +14,7 @@ define(
     var main = can.Control.extend({
       renderMap: {
         'slide': function () {
-          var $el = this.element.find('.sf-b2c-mall-main-slider.serverRendered');
+          var $el = this.element.find('.slider.serverRendered');
 
           var that = this;
           if ($el.length === 0) {
@@ -28,13 +28,13 @@ define(
                     url: value.link
                   });
                 });
-                that.component.slide = new SFSlide('.sf-b2c-mall-main-slider', {imgs: arr});
+                that.component.slide = new SFSlide('.slider', {imgs: arr});
               })
               .fail(function () {
 
               })
           }else{
-            that.component.slide = new SFSlide('.sf-b2c-mall-main-slider');
+            that.component.slide = new SFSlide('.slider');
           }
         }
       },
