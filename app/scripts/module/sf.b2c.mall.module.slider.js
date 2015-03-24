@@ -1,6 +1,5 @@
 define(
-  'sf.b2c.mall.module.slider',
-  [
+  'sf.b2c.mall.module.slider', [
     'can',
     'jquery',
     'sf.b2c.mall.widget.slide',
@@ -12,29 +11,40 @@ define(
     SFFrameworkComm.register(1);
 
     var main = can.Control.extend({
+
+      init: function() {
+        this.render();
+
+      },
+
       renderMap: {
-        'slide': function () {
-          var $el = this.element.find('.slider.serverRendered');
+        'slide': function() {
+
+          var $el = this.element.find('.slider_1_1');
 
           var that = this;
           if ($el.length === 0) {
             var request = new SFApiGetBanner();
             can.when(request.sendRequest())
-              .done(function (data) {
+              .done(function(data) {
                 var arr = [];
-                _.each(data.value, function(value, key, list){
+                _.each(data.value, function(value, key, list) {
                   arr.push({
                     imgUrl: value.imgUrl,
                     url: value.link
                   });
                 });
-                that.component.slide = new SFSlide('.slider', {imgs: arr});
-              })
-              .fail(function () {
+
+                that.component.slide = new SFSlide('.slider_1_1', {
+                  imgs: arr
+                });
 
               })
-          }else{
-            that.component.slide = new SFSlide('.slider');
+              .fail(function() {
+
+              })
+          } else {
+            that.component.slide = new SFSlide('.slider_1_1');
           }
         }
       },
@@ -42,6 +52,7 @@ define(
       render: function() {
         this.renderMap.slide.call(this);
       }
+
     })
 
     new main('body');
