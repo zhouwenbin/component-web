@@ -928,6 +928,7 @@ module.exports = function (grunt) {
 
       slider: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl:        './app/',
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.slider.js',
@@ -946,6 +947,7 @@ module.exports = function (grunt) {
 
       price: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl:        './app/',
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.price.js',
@@ -959,6 +961,25 @@ module.exports = function (grunt) {
           },
           include:        ["sf.b2c.mall.module.price"],
           insertRequire:  ['sf.b2c.mall.module.price']
+        }
+      },
+
+      time: {
+        options: {
+          optimize: 'none',
+          preserveLicenseComments: false,
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.time.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["sf.b2c.mall.module.time"],
+          insertRequire:  ['sf.b2c.mall.module.time']
         }
       },
     }
