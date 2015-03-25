@@ -621,13 +621,13 @@ define('sf.b2c.mall.product.detailcontent', [
 
       itemPriceTemplate: function() {
         return '<div class="goods-price-c1 fl">' +
-          {{#if priceInfo.sellingPrice == priceInfo.originPrice}}
+          '{{#if priceInfo.sellingPrice == priceInfo.originPrice}}'+
             '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
             '国内参考价：￥155</div>' +
-          {{else}}
+          '{{else}}'+
             '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
             '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
-          {{/if}}
+          '{{/if}}'+
           '</div>' +
           '{{#sf-is-limitedTimeBuy priceInfo.productShape priceInfo.time}}' +
           '<div class="goods-price-c2">' +
