@@ -30,8 +30,8 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
-        'sf-is-limitedTimeBuy': function(productShape, options) {
-          if (productShape() == 'XSTM') {
+        'sf-is-limitedTimeBuy': function(productShape, time, options) {
+          if (productShape() == 'XSTM' && typeof time() != 'undefined' ) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -406,6 +406,10 @@ define('sf.b2c.mall.product.detailcontent', [
         $(".btn-close")[1].onclick = function() {
           $("#getNotifyStep2").hide();
         }
+
+        $("#closeGetNotifyStep2")[0].onclick = function() {
+          $("#getNotifyStep2").hide();
+        }
       },
 
       getMobileData: function(element) {
@@ -587,7 +591,7 @@ define('sf.b2c.mall.product.detailcontent', [
         return '<div class="goods-num"><label>数量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
-          '<input type="text" value="{{input.buyNum}}"></span>' +
+          '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
           '{{#if input.showRestrictionTips}}<span class="icon icon62"></span><span class="text-important" id="showrestrictiontipsspan">每人限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
           '<div class="goods-c2r2 clearfix">' +
@@ -617,10 +621,15 @@ define('sf.b2c.mall.product.detailcontent', [
 
       itemPriceTemplate: function() {
         return '<div class="goods-price-c1 fl">' +
-          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-          '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
+          '{{#if priceInfo.sellingPrice == priceInfo.originPrice}}'+
+            '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+            '国内参考价：￥155</div>' +
+          '{{else}}'+
+            '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+            '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
+          '{{/if}}'+
           '</div>' +
-          '{{#sf-is-limitedTimeBuy priceInfo.productShape}}' +
+          '{{#sf-is-limitedTimeBuy priceInfo.productShape priceInfo.time}}' +
           '<div class="goods-price-c2">' +
           '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
           '</div>' +
