@@ -587,7 +587,7 @@ define('sf.b2c.mall.product.detailcontent', [
         return '<div class="goods-num"><label>数量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
-          '<input type="text" value="{{input.buyNum}}"></span>' +
+          '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
           '{{#if input.showRestrictionTips}}<span class="icon icon62"></span><span class="text-important" id="showrestrictiontipsspan">每人限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
           '<div class="goods-c2r2 clearfix">' +
