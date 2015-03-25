@@ -7,9 +7,10 @@ define(
     'jquery',
     'can',
     'underscore'
+    'jquery.cookie'
   ],
 
-  function ($, can, _) {
+  function ($, can, _,$cookie) {
 
     return can.Control.extend({
 
@@ -19,13 +20,19 @@ define(
         // saleid: heike_online
         // orgCode: heikexxx
         // app: pc
+        //@TODO 从cookie中获取嘿客穿越过来标示1_uinfo
+        var heike_sign = $.cookie('1_uinfo');
+        var arr = [];
+        if (heike_sign) {
+          arr = heike_sign.split(',');
+        }
         var params = can.deparam(window.location.search.substr(1));
-        this.render(params.saleid, params);
+        this.render(arr[2], params);
       },
 
       renderMap: {
         //@note 如果url中orgCode有值，传入输入框中；反之需要自己输入orgCode
-        'heike_online': function (data) {
+        'heike': function (data) {
           this.data = new can.Map({
             sellerid: null,
             orgCode: data.orgCode || null,
@@ -44,12 +51,12 @@ define(
       },
 
       vendorInfoMap: {
-        'heike_online': function () {
+        'heike': function () {
           return JSON.stringify({orgCode: $.trim(this.data.orgCode), sellerId: $.trim(this.data.sellerid), sellerName: $.trim(this.data.sellername)});
         }
       },
       verifYVendorMap: {
-        'heike_online': function () {
+        'heike': function () {
           //@note 三个参数都为必填项
           if (!$.trim(this.data.orgCode)) {
             return { result: false, message: "请填写您的门店代码"};

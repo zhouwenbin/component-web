@@ -31,13 +31,13 @@ define('sf.b2c.mall.order.iteminfo', [
       //@TODO 从cookie中获取嘿客穿越过来标示
       var heike_sign = $.cookie('1_uinfo');
       var arr = [];
-      if (userinfo) {
-        arr = userinfo.split(',');
+      if (heike_sign) {
+        arr = heike_sign.split(',');
       }
-      
+
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
-      that.options.saleid = params.saleid;
+      that.options.saleid = arr[2];
       that.options.amount = params.amount;
 
       var getItemSummary = new SFGetItemSummary({
@@ -145,7 +145,7 @@ define('sf.b2c.mall.order.iteminfo', [
     getSysType: function (saleid) {
       var defaultKey = 'b2c';
       var mapKey = {
-        'heike_online': 'HEIKE_ONLINE'
+        'heike': 'HEIKE_ONLINE'
       }
       return mapKey[saleid] || defaultKey;
     },
@@ -162,7 +162,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
     getSysInfo: function () {
       var mapKey = {
-        'heike_online': this.options.vendorinfo.get
+        'heike': this.options.vendorinfo.get
       }
     },
     '#submitOrder click': function(element, event) {
