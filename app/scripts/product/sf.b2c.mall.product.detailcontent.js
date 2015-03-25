@@ -56,7 +56,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         //@todo 如果原价等于折扣价格，折扣价格不显示
-        'sf-is-originPrice':function(sellingPrice,originPrice) {
+        'sf-is-originPrice':function(sellingPrice,originPrice,options) {
           if (sellingPrice() == originPrice()) {
             return options.fn(options.contexts || this);
           } else {
