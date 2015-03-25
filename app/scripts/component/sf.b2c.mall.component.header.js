@@ -327,8 +327,13 @@ define('sf.b2c.mall.component.header', [
 
     showLogin: function(dest) {
 
-      //给微信登录使用(！！！位置不能移)
+      // 给微信登录使用(！！！位置不能移)
       store.set("weixinto", dest);
+
+      // 如果没有指定去哪个页面，则使用当前页面 （因为微信要转跳后关闭后去到指定页面，所以这里必须要设定）
+      if (typeof dest == "undefined") {
+        store.set("weixinto", window.location.href);
+      }
 
       if (SFFn.isMobile.any()) {
         return window.location.href = SFConfig.setting.link.ilogin;
