@@ -17,6 +17,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.business.config'
 ], function(can, store,$cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
+  var arr = [];
   return can.Control.extend({
     itemObj: new can.Map({}),
     /**
@@ -30,7 +31,6 @@ define('sf.b2c.mall.order.iteminfo', [
       this.request();
       //@TODO 从cookie中获取嘿客穿越过来标示
       var heike_sign = $.cookie('1_uinfo');
-      var arr = [];
       if (heike_sign) {
         arr = heike_sign.split(',');
       }
@@ -48,6 +48,11 @@ define('sf.b2c.mall.order.iteminfo', [
         .always(function() {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
+          // that.options.productChannels = 'heike';
+          // arr[2] ='undefined';
+          if (that.options.productChannels == 'heike' && arr[2] =='undefined') {
+            $('#submitOrder').addClass('disable');
+          };
         })
         .fail(function (error) {
           console.error(error);
@@ -67,7 +72,9 @@ define('sf.b2c.mall.order.iteminfo', [
             picUrl: iteminfo.image ? iteminfo.image.thumbImgUrl : "",
 
           });
-
+          //@note 如果channels(渠道编号) = 'heike',
+          //cookie中1_uinfo中没有heike，则该用户不能购买
+          that.options.productChannels = iteminfo.channels[0];        
           if(typeof iteminfo.specs != "undefined"){
             var result = new Array();
             _.each(iteminfo.specs,function(item){
