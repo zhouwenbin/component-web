@@ -53,7 +53,7 @@ define('sf.b2c.mall.order.iteminfo', [
           itemObj.links = SFConfig.setting.link;
           itemObj.isShowCouponArea = false;
           //AREAID = 1;
-
+          console.log(iteminfo.channels);
           itemObj.singlePrice = priceinfo.sellingPrice;
           itemObj.amount = that.options.amount;
 
