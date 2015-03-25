@@ -406,6 +406,10 @@ define('sf.b2c.mall.product.detailcontent', [
         $(".btn-close")[1].onclick = function() {
           $("#getNotifyStep2").hide();
         }
+
+        $("#closeGetNotifyStep2")[0].onclick = function() {
+          $("#getNotifyStep2").hide();
+        }
       },
 
       getMobileData: function(element) {
