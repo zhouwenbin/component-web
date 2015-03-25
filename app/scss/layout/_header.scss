@@ -18,14 +18,15 @@
 }
 .header-c2 li{
 	float: left;
-	margin-left: 12px;
+	margin-left: 24px;
+	font-size: 12px;
 }
 .header-c2 h2,
 .header-c2 p{
 	margin-left: 61px;
 }
 .header-c2 h2{
-	font-size: 14px;
+	
 	padding-top: 10px;
 	padding-bottom: 7px;
 	color:#666;
@@ -33,6 +34,20 @@
 }
 .header-c2 p{
 	color:#666666;
+}
+.header-c2 .li1 span{
+	font-size:18px;
+}
+.header-c2 .li2 span{
+	font-size:16px;
+	letter-spacing: 1em;
+}
+.header-c2 .li3{
+	margin-left:12px;
+}
+.header-c2 .li3,
+.header-c2 .li4{
+	font-size:14px;
 }
 .header1{
 	height: 29px;

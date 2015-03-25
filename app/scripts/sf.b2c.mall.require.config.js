@@ -41,6 +41,7 @@ requirejs.config({
     'sf.b2c.mall.api.products.getCategories': 'scripts/api/sf.b2c.mall.api.products.getCategories',
     'sf.b2c.mall.api.products.search': 'scripts/api/sf.b2c.mall.api.products.search',
     'sf.b2c.mall.api.product.findRecommendProducts': 'scripts/api/sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.product.commitFeedback': 'scripts/api/sf.b2c.mall.api.product.commitFeedback',
 
     'sf.b2c.mall.api.user.appLogin': 'scripts/api/sf.b2c.mall.api.user.appLogin',
     'sf.b2c.mall.api.user.changePassword': 'scripts/api/sf.b2c.mall.api.user.changePassword',
@@ -177,6 +178,7 @@ requirejs.config({
     'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
+    'sf.b2c.mall.page.feedback': 'scripts/page/sf.b2c.mall.page.feedback',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
@@ -194,6 +196,7 @@ requirejs.config({
 
     'sf.b2c.mall.module.slider': 'scripts/module/sf.b2c.mall.module.slider',
     'sf.b2c.mall.module.price': 'scripts/module/sf.b2c.mall.module.price',
+    'sf.b2c.mall.module.time': 'scripts/module/sf.b2c.mall.module.time',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
