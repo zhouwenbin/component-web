@@ -3,6 +3,7 @@
 define('sf.b2c.mall.order.iteminfo', [
   'can',
   'store',
+  'jquery.cookie',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.b2cmall.getProductHotData',
   'sf.b2c.mall.api.b2cmall.getItemSummary',
@@ -14,7 +15,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store,$cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
     itemObj: {},
@@ -27,10 +28,16 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
       this.adapter = {};
       this.request();
+      //@TODO 从cookie中获取嘿客穿越过来标示
+      var heike_sign = $.cookie('1_uinfo');
+      var arr = [];
+      if (heike_sign) {
+        arr = heike_sign.split(',');
+      }
 
       var params = can.deparam(window.location.search.substr(1));
       that.options.itemid = params.itemid;
-      that.options.saleid = params.saleid;
+      that.options.saleid = arr[2];
       that.options.amount = params.amount;
 
       var getItemSummary = new SFGetItemSummary({
@@ -138,7 +145,7 @@ define('sf.b2c.mall.order.iteminfo', [
     getSysType: function (saleid) {
       var defaultKey = 'b2c';
       var mapKey = {
-        'heike_online': 'HEIKE_ONLINE'
+        'heike': 'HEIKE_ONLINE'
       }
       return mapKey[saleid] || defaultKey;
     },
@@ -155,7 +162,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
     getSysInfo: function () {
       var mapKey = {
-        'heike_online': this.options.vendorinfo.get
+        'heike': this.options.vendorinfo.get
       }
     },
     '#submitOrder click': function(element, event) {

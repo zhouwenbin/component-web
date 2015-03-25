@@ -99,7 +99,7 @@ requirejs.config({
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
-    'placeholders': 'bower_components/Placeholders/build/placeholders',
+    'placeholders': 'bower_components/Placeholders/dist/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
     'moment': 'bower_components/momentjs/min/moment.min',
@@ -197,6 +197,8 @@ requirejs.config({
     'sf.b2c.mall.module.slider': 'scripts/module/sf.b2c.mall.module.slider',
     'sf.b2c.mall.module.price': 'scripts/module/sf.b2c.mall.module.price',
     'sf.b2c.mall.module.time': 'scripts/module/sf.b2c.mall.module.time',
+    'sf.b2c.mall.module.header': 'scripts/module/sf.b2c.mall.module.header',
+    'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
