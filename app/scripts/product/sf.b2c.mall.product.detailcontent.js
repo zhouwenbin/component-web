@@ -53,7 +53,17 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+
+        //@todo 如果原价等于折扣价格，折扣价格不显示
+        'sf-is-originPrice':function(sellingPrice,originPrice) {
+          if (sellingPrice() == originPrice()) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
+
       },
 
       /**
@@ -621,13 +631,14 @@ define('sf.b2c.mall.product.detailcontent', [
 
       itemPriceTemplate: function() {
         return '<div class="goods-price-c1 fl">' +
-          '{{#if priceInfo.sellingPrice == priceInfo.originPrice}}'+
+          '{{#sf-is-originPrice  priceInfo.sellingPrice priceInfo.originPrice}}'+
             '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
             '国内参考价：￥155</div>' +
           '{{else}}'+
             '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
             '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
-          '{{/if}}'+
+          '{{/}}'+
+
           '</div>' +
           '{{#sf-is-limitedTimeBuy priceInfo.productShape priceInfo.time}}' +
           '<div class="goods-price-c2">' +
