@@ -6,7 +6,7 @@ define(
   [
     'jquery',
     'can',
-    'underscore'
+    'underscore',
     'jquery.cookie'
   ],
 
