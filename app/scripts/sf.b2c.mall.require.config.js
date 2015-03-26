@@ -109,6 +109,7 @@ requirejs.config({
     'sf.helpers': 'scripts/util/sf.helpers',
     'sf.util': 'scripts/util/sf.util.fn',
     'imglazyload': 'scripts/vendor/vendor.jquery.imglazyload',
+    'qrcode': 'scripts/vendor/vendor.jquery.qrcode',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
