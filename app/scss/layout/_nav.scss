@@ -35,7 +35,9 @@
 	margin: 0 10px;
 	color: #666;
 }
-
+.nav-fixed{
+	height:0;
+}
 .nav-fixed .nav-inner{
 	height: 52px;
 	line-height: 52px;
@@ -43,7 +45,7 @@
 	position: fixed;
 	width: 100%;
 	left: 0;
-	top: -52px;
+	top: -56px;
 	z-index: 1;
 	background: #fff;
 }
