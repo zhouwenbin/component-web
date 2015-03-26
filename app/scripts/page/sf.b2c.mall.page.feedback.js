@@ -108,7 +108,7 @@ define(
         commitFeedback
           .sendRequest()
           .done(function(data) {
-            window.location.href = "www.sfht.com/index.html";
+            window.location.href = "http://www.sfht.com/index.html";
           })
           .fail(function(error) {
             console.error(error);

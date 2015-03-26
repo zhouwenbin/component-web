@@ -3,6 +3,7 @@
 define('sf.b2c.mall.component.addreditor', [
   'can',
   'store',
+  'jquery.cookie',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
   'sf.b2c.mall.api.user.createReceiverInfo',
@@ -12,7 +13,7 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.adapter.address.list'
 
-], function(can,store,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
+], function(can,store,$cookie,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
   return can.Control.extend({
 
     init: function() {
@@ -240,9 +241,14 @@ define('sf.b2c.mall.component.addreditor', [
         credtNum: addr.receiverId
       };
       
-      //@noto 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
-      var cinfo = can.deparam(window.location.search.substr(1));
-      if (cinfo.saleid == 'heike_online') {
+      //@TODO 从cookie中获取嘿客穿越过来标示1_uinfo
+      var heike_sign = $.cookie('1_uinfo');
+      var arr = [];
+      if (heike_sign) {
+        arr = heike_sign.split(',');
+      }
+      //var cinfo = can.deparam(window.location.search.substr(1));
+      if (arr[2] == 'heike') {
         addr.partnerId = 'heike';
         person.partnerId = 'heike';
       }

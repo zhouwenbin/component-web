@@ -1,0 +1,39 @@
+%faq-icon{
+	background:url(../img/faq.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+	margin-right:14px;
+}
+.faq-icon1{
+	@extend %faq-icon;
+	width:24px;
+	height:25px;
+
+}
+.faq-icon2{
+	@extend %faq-icon;
+	width:24px;
+	height:25px;
+	background-position:-24px 0;
+	margin-left:-40px;
+}
+.faq{
+	border:1px solid #eee;
+	padding:26px 40px;
+	margin-bottom:20px;
+}
+.faq h3{
+	font-size:28px;
+	margin-bottom:24px;
+}
+.faq h4{
+	font-size:18px;
+	margin-bottom:21px;
+}
+.faq p{
+	padding-left:40px;
+	margin-bottom:40px;
+	font-size:14px;
+	color:#666;
+	line-height:24px;
+}

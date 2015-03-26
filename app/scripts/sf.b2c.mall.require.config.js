@@ -99,7 +99,7 @@ requirejs.config({
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
-    'placeholders': 'bower_components/Placeholders/build/placeholders',
+    'placeholders': 'bower_components/Placeholders/dist/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
     'moment': 'bower_components/momentjs/min/moment.min',

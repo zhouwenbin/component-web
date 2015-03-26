@@ -1,38 +1,71 @@
 /*footer1*/
 .footer1{
-	padding-top: 68px;
-	padding-bottom: 68px;
+	padding-top: 34px;
+	padding-bottom: 24px;
 	background: #fff;
-	border-bottom: 1px solid #e7e7e7;
+	border-top: 1px solid #eee;
 }
 .footer1 ul{
-	margin-left:-228px;
+	margin-left:-123px;
+	padding-left:70px;
 }
 .footer1 li{
 	float: left;
 	position: relative;
-	width: 117px;
-	margin-left: 228px;
+	width: 110px;
+	margin-left: 123px;
 	font-size: 16px;
 	text-align: center;
-}
-.footer1 .icon8{
-	position: absolute;
-	left: 219px;
-	top: 35px;
 }
 .footer1 h2{
 	margin-top: 20px;
 	color: #949494;
 }
+%footer1-icon{
+	background:url(../img/footer1-icon.png) no-repeat;
+	vertical-align:middle;
+	height:83px;
+}
+.footer1-icon1{
+	@extend %footer1-icon;
+}
+.footer1-icon2{
+	@extend %footer1-icon;
+	background-position:-232px 0;
+}
+.footer1-icon3{
+	@extend %footer1-icon;
+	background-position:-465px 0;
+}
+.footer1-icon4{
+	@extend %footer1-icon;
+	background-position:-697px 0;
+}
+.footer1-icon5{
+	@extend %footer1-icon;
+	background-position:-929px 0;
+}
+.footer1-line{
+	background:url(../img/footer1-line.png) no-repeat;
+	width:65px;
+	height:3px;
+	position:absolute;
+	top:50px;
+	left:135px;
+}
 
 /*footer2*/
 .footer2{
 	background: #fff;
-	padding-top: 71px;
-	padding-bottom: 174px;
-	border-bottom: 1px solid #e7e7e7;
+	
+	
 	font-size: 14px;
+}
+.footer2 .pm{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #e7e7e7;
+	border-top: 1px solid #e7e7e7;
 }
 .footer2,
 .footer2 a{

@@ -3,6 +3,7 @@
 define('sf.b2c.mall.order.selectreceiveaddr', [
   'can',
   'jquery',
+  'jquery.cookie',
   'store',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.getRecAddressList',
@@ -17,7 +18,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message'
-], function(can,$,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
+], function(can,$,$cookie,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
   var AREAID;
   return can.Control.extend({
 
@@ -72,9 +73,15 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
         .done(function(recAddrs, recPersons) {
 
           that.result = that.queryAddress(recAddrs, recPersons);
+          //@TODO 从cookie中获取嘿客穿越过来标示
+          var heike_sign = $.cookie('1_uinfo');
+          var arr = [];
+          if (heike_sign) {
+            arr = heike_sign.split(',');
+          }
           var params = can.deparam(window.location.search.substr(1));
           var map = {
-            'heike_online': function (list, id) {
+            'heike': function (list, id) {
               var value = _.findWhere(list, {addrId: id});
               if (value) {
                 return [value];
@@ -84,8 +91,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             }
           }
 
-          // @note 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
-          var fn = map[params.saleid];
+          // @note 业务代码发生变化，不再关注orgCode，只需要看arr[2]=heike
+          var fn = map[arr[2]];
           var list = null
           if (_.isFunction(fn)) {
             list = fn(that.result, data && data.value)
