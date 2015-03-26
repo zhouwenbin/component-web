@@ -112,6 +112,13 @@ define('sf.b2c.mall.component.header', [
         }));
       }
 
+      var that = this;
+      this.data.bind("isUserLogin", function(ev, newVal, oldVal) {
+        if (newVal != oldVal) {
+          that.renderMap['template_header_user_navigator'].call(that, that.data, true);
+        };
+      });
+
       if (!this.element.hasClass('serverRendered')) {
         this.render(this.data);
       }
@@ -142,14 +149,14 @@ define('sf.b2c.mall.component.header', [
     },
 
     renderMap: {
-      'template_header_user_navigator': function (data) {
+      'template_header_user_navigator': function (data, isForce) {
         var renderFn = can.mustache(template_header_user_navigator);
         var html = renderFn(data);
 
         var $el = this.element.find('.header-user-navigator');
 
         // 如果用户登录一定进行强刷，如果服务端没有渲染都刷
-        if ($el && $el.length > 0 && (data.isUserLogin || !this.element.hasClass('serverRendered'))) {
+        if (isForce || ($el && $el.length > 0 && (data.isUserLogin || !this.element.hasClass('serverRendered')))) {
           $el.html(html);
         }
       },
@@ -188,6 +195,30 @@ define('sf.b2c.mall.component.header', [
       var that = this;
 
       this.renderMap['template_header_user_navigator'].call(this, data);
+
+      $(window).scroll(function(){
+          setTimeout(function() {
+            if($(window).scrollTop() > 166){
+                $(".nav").addClass('nav-fixed');
+                $(".nav-inner").css({
+                  opacity:0
+                })
+                .animate({
+                  top:'0px',
+                  opacity:1
+                },500);
+            }else{
+                $(".nav").removeClass('nav-fixed');
+                $(".nav-inner").css({
+                  top:'-56px'
+                });
+            }
+          }, 500);
+      })
+      $('#js-focus').click(function(){
+        $('.nav-qrcode').toggleClass('show');
+        return false;
+      })
 
       can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
         .done(function (config) {
@@ -232,6 +263,16 @@ define('sf.b2c.mall.component.header', [
     },
 
     '#user-center click': function($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.center;
+      } else {
+        this.showLogin('center');
+      }
+    },
+
+    '#user-name click': function () {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
@@ -378,10 +419,16 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname',arr[0]);
 
+          // that.renderMap['template_header_user_navigator'].call(that, that.data);
+
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname',null);
+
+          // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
+
+
         // that.watchLoginState.call(that);
       }, 500);
       // }
