@@ -29,7 +29,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
       this.adapter = {};
       this.request();
-      //@TODO 从cookie中获取嘿客穿越过来标示
+      //@note 从cookie中获取嘿客穿越过来标示
       var heike_sign = $.cookie('1_uinfo');
       if (heike_sign) {
         arr = heike_sign.split(',');

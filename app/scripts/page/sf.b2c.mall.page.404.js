@@ -67,7 +67,7 @@ define(
       // 404页面推荐商品模板
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
-          '<h2>推荐商品</h2>' +
+          '<h2>为您推荐</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
           '<li>' +
