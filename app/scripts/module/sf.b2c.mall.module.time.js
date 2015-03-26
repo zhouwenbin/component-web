@@ -92,7 +92,7 @@ define(
         } else if (leftTime > 259200000) {
           timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
         } else {
-          timeNode.innerHTML = '<span class="icon icon56"></span>活动已结束';
+          timeNode.innerHTML = '<span class="icon icon56"></span>抢购结束';
         }
 
         return leftTime;
