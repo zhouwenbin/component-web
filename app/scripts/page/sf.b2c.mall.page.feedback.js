@@ -54,12 +54,12 @@ define(
       //     obj.value = obj.value.substr(0, len);
       //   }
       // },
-      '#mytext blur': function() {
-        var $feedback = $('#mytext');
-        if ($feedback.length > 800) {
-          $feedback.val() = 
-        }
-      },
+      // '#mytext blur': function() {
+      //   var $feedback = $('#mytext');
+      //   if ($feedback.length > 800) {
+      //     $feedback.val() = 
+      //   }
+      // },
 
       '#submitFeedBack click': function() {
 
