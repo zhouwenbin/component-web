@@ -65,8 +65,9 @@ define(
           _.each(timeNodeList, function(timeNode) {
 
             var endTime = $(timeNode).attr('data-cms-endtime');
+            var startTime = $(timeNode).attr('data-cms-starttime');
 
-            var time = that.setCountDown(element.find(".cms-fill-timeinfo")[0], distance, endTime);
+            var time = that.setCountDown($(timeNode).find(".cms-fill-timeinfo")[0], distance, startTime, endTime);
           })
         }, '1000');
       },
@@ -77,21 +78,29 @@ define(
        * @param  {[type]} destTime
        * @return {[type]}
        */
-      setCountDown: function(timeNode, distance, endDate) {
+      setCountDown: function(timeNode, distance, startTime, endDate) {
 
         var leftTime = endDate - new Date().getTime() - distance;
+        var startLeftTime = startTime - new Date().getTime() - distance;
 
         // 3天内显示倒计时，3天外显示即将开始 其他显示活动结束
-        if (leftTime > 0 && leftTime < 259200000) {
+        if (startLeftTime > 259200000) {
+          timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
+        } else if (startLeftTime > 0 && startLeftTime < 259200000) {
+          var leftsecond = parseInt(leftTime / 1000);
+          var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+          var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+          var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+          var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+          timeNode.innerHTML = '<span class="icon icon56"></span><span class="text-error">' + day1 + "天" + hour + "小时" + minute + "分" + second + "秒</span>后开始";
+        } else if (leftTime > 0 && startLeftTime < 0) {
           var leftsecond = parseInt(leftTime / 1000);
           var day1 = Math.floor(leftsecond / (60 * 60 * 24));
           var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
           var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
           var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
           timeNode.innerHTML = '<span class="icon icon56"></span>仅剩:<span class="text-error">' + day1 + "天" + hour + "小时" + minute + "分" + second + "秒</span>";
-        } else if (leftTime > 259200000) {
-          timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
-        } else {
+        } else if (leftTime < 0) {
           timeNode.innerHTML = '<span class="icon icon56"></span>抢购结束';
         }
 
