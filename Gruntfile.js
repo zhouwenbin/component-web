@@ -367,7 +367,9 @@ module.exports = function (grunt) {
         cwd: '<%= config.app %>',
         dest: '<%= config.dist %>',
         src: [
-          '*.html'
+          '*.html',
+          'header/*.html',
+          'footer/*.html'
         ],
         options:{
           process: function (content, srcpath) {
@@ -457,7 +459,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%=config.dist%>',
-            src: ['templates/**', '*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**', 'font/**'],
+            src: ['templates/**', '*.html', 'header/*.html', 'footer/*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**', 'font/**'],
             dest: '<%=config.version%>'
           }
         ]

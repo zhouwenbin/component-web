@@ -3,11 +3,12 @@
 define('sf.b2c.mall.order.paysuccess', [
     'can',
     'jquery',
+    'qrcode',
     'sf.b2c.mall.business.config',
     'sf.helpers',
     'sf.b2c.mall.api.order.getOrder'
   ],
-  function(can, $, SFConfig, helpers, SFGetOrder) {
+  function(can, $, qrcode, SFConfig, helpers, SFGetOrder) {
 
     return can.Control.extend({
 
@@ -60,7 +61,27 @@ define('sf.b2c.mall.order.paysuccess', [
           .always(function(){
             var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
             that.element.html(html);
+
+            that.renderLunkyMoney("123123123");
           })
+      },
+
+      renderLunkyMoney: function(lunkyMoneyCode) {
+        var params = {
+          appid: "wx90f1dcb866f3df60",
+          redirect_uri: "http://m.sfht.com",
+          response_type: "code",
+          scope: "snsapi_base",
+          state: lunkyMoneyCode
+        };
+
+        var qrParam = {
+          width: 200,
+          height: 200,
+          text: "https://open.weixin.qq.com/connect/oauth2/authorize?" + $.param(params) + "#wechat_redirect"
+        };
+
+        $('#shareQrCode').qrcode(qrParam);
       }
     });
   })
