@@ -47,19 +47,13 @@ define(
           '</div>' +
           '</div>'
       },
-      //输入框只能输入800字符，防止粘贴
-      // limitChars: function(id, len) {
-      //   var obj = document.getElementById(id);
-      //   if (obj.value.length > len) {
-      //     obj.value = obj.value.substr(0, len);
-      //   }
-      // },
-      // '#mytext blur': function() {
-      //   var $feedback = $('#mytext');
-      //   if ($feedback.length > 800) {
-      //     $feedback.val() = 
-      //   }
-      // },
+      //@note 输入框只能输入800字符
+      '#mytext blur': function() {
+        var $feedback = $('#mytext');
+        if ($feedback.val().length > 800) {
+          $feedback.val($feedback[0].value.substr(0, 800));
+        }
+      },
 
       '#submitFeedBack click': function() {
 
