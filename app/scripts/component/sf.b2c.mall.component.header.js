@@ -197,21 +197,23 @@ define('sf.b2c.mall.component.header', [
       this.renderMap['template_header_user_navigator'].call(this, data);
 
       $(window).scroll(function(){
-          if($(window).scrollTop() > 166){
-              $(".nav").addClass('nav-fixed');
-              $(".nav-inner").css({
-                opacity:0
-              })
-              .animate({
-                top:'0px',
-                opacity:1
-              },500);
-          }else{
-              $(".nav").removeClass('nav-fixed');
-              $(".nav-inner").css({
-                top:'-56px'
-              });
-          }
+          setTimeout(function() {
+            if($(window).scrollTop() > 166){
+                $(".nav").addClass('nav-fixed');
+                $(".nav-inner").css({
+                  opacity:0
+                })
+                .animate({
+                  top:'0px',
+                  opacity:1
+                },500);
+            }else{
+                $(".nav").removeClass('nav-fixed');
+                $(".nav-inner").css({
+                  top:'-56px'
+                });
+            }
+          }, 500);
       })
       $('#js-focus').click(function(){
         $('.nav-qrcode').toggleClass('show');
