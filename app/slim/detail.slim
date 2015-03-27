@@ -22,29 +22,7 @@
       == Slim::Template.new('module/recommend2.slim').render
       <!--小编推荐-->
       <!--详情-->
-      <div class="detail">
-        <div class="detail-h">
-          <h2>图文详情</h2>
-          <ul class="clearfix">
-            <li>【产品名称】New Balance 女士防风立领软壳夹克</li>
-            <li>【面料成分】92%涤纶，8%弹性纤维</li>
-            <li>【产品特点】1.   92%涤纶＋8%弹性纤维<br />2.   防风且防水</li>
-            <li>【产品款式】春／秋 夹克</li>
-            <li>【洗涤方式】可机洗</li>
-          </ul>
-          </div>
-          <div class="detail-b">
-            == Slim::Template.new('module/flow.slim').render
-            == Slim::Template.new('module/detail.slim').render
-            <!--比较-->
-            == Slim::Template.new('module/comparison.slim').render
-            <!--比较-->
-            <!--faq-->
-            == Slim::Template.new('module/faq.slim').render
-            <!--faq-->
-            == Slim::Template.new('module/notify.slim').render
-          </div>
-        </div>
+      == Slim::Template.new('module/detail.slim').render
       <!--详情-->
       <!--推荐商品-->
       == Slim::Template.new('module/recommend.slim').render

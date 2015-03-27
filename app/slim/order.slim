@@ -9,343 +9,382 @@
 <link href="../css/coupon.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  == Slim::Template.new('module/header.slim').render
-  <div class="pb">
-    <div class="pm">
-      <!--订单-->
-      <div class="order">
-        <h2>选择收货地址</h2>
-        <div class="order-b">
+== Slim::Template.new('module/header.slim').render
+<div class="pb">
+  <div class="pm"> 
+    <!--订单-->
+    <div class="order">
+      <h2>选择收货地址</h2>
+      <div class="order-b">
+        <ul>
+          <li class="clearfix active">
+            <div class="order-r1 clearfix">
+              <div class="order-r1c1 fl"> <span class="icon icon29"></span> </div>
+              <div class="order-r1c2 fr"> <span class="text-error">默认地址</span> <a class="order-edit" href="">修改</a> <a class="order-del" href="">删除</a> </div>
+              <ul class="order-r1c3">
+                <li><span>上海</span><span>上海市</span><span>虹梅路2007号上海远中产业园1号楼8楼山东分局克服是是对方就流口水</span></li>
+                <li><span>黄小牙</span><span>|</span><span>350***********6233</span></li>
+                <li><span>联系方式：13699839901</span><span>|</span><span>200002</span></li>
+              </ul>
+            </div>
+            <div class="order-r2">
+              <h3>修改收货地址</h3>
+              <ul>
+                <li class="li">
+                  <label for="area">选择地区：</label>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="li">
+                  <label for="address">收货地址</label>
+                  <input id="address" type="text" placeholder="请填写详细地址" />
+                </li>
+                <li class="li">
+                  <label for="address">收货人：</label>
+                  <input id="address" type="text" placeholder="请填写收货人真实姓名" />
+                  <div class="text-error">收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+                </li>
+                <li class="li">
+                  <label for="phone">收货人手机号：</label>
+                  <input id="phone" type="text" placeholder="13699839901" />
+                </li>
+                <li class="li">
+                  <label for="phone">收货人身份证：</label>
+                  <input id="phone" type="text" value="请填写收货人身份证号码" />
+                </li>
+                <li class="li">
+                  <label for="email">填写邮编：</label>
+                  <input id="email" type="text" placeholder="请填写邮政编码" />
+                </li>
+              </ul>
+              <div class="order-r2r3"> <a href="#" class="btn btn-send">保存</a> <a href="#" class="btn btn-cancel">关闭</a> </div>
+            </div>
+          </li>
+          <li class="clearfix">
+            <div class="order-r1 clearfix">
+              <div class="order-r1c1 fl"> <span class="icon icon29"></span> </div>
+              <div class="order-r1c2 fr"> <a href="#" class="btn btn-add">设为默认</a> <a class="order-edit" href="">修改</a> </div>
+              <ul class="order-r1c3">
+                <li><span>上海</span><span>上海市</span><span>虹梅路2007号上海远中产业园1号楼8楼山东分局克服是是对方就流口水</span></li>
+                <li><span>黄小牙</span>|<span>350***********6233</span></li>
+                <li><span>联系方式：13699839901</span>|<span>200002</span></li>
+              </ul>
+            </div>
+            <div class="order-r2">
+              <h3>修改收货地址</h3>
+              <ul>
+                <li class="li">
+                  <label for="area">选择地区：</label>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                    <ul>
+                      <li>
+                        <label>6.5
+                          <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>7
+                          <input type="radio" name="size" value="7" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>7.5</li>
+                      <li>
+                        <label>8
+                          <input type="radio" name="size" value="8" class="visuallyhidden">
+                        </label>
+                      </li>
+                      <li>
+                        <label>9
+                          <input type="radio" name="size" value="9" class="visuallyhidden">
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="li">
+                  <label for="address">地址详情</label>
+                  <input id="address" type="text" placeholder="填写详细地址" />
+                </li>
+                <li class="li">
+                  <label for="phone">联系电话：</label>
+                  <input id="phone" type="text" value="13699839901" />
+                </li>
+                <li class="li">
+                  <label for="email">邮箱</label>
+                  <input id="email" type="text" placeholder="填写邮箱" />
+                </li>
+              </ul>
+              <div class="order-r2r3"> <a href="#" class="btn btn-send">保存</a> <a href="#" class="btn btn-cancel">关闭</a> </div>
+            </div>
+          </li>
+        </ul>
+        <div class="order-r2">
+          <h3>添加收货地址</h3>
           <ul>
-            <li class="clearfix active">
-              <div class="order-r1 clearfix">
-                <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
-                </div>
-
-                <div class="order-r1c2 fr">
-                  <span class="text-error">默认地址</span>
-                  <a class="order-edit" href="">修改</a>
-                  <a class="order-del" href="">删除</a>
-                </div>
-                 <ul class="order-r1c3">
-                  <li><span>上海</span><span>上海市</span><span>虹梅路2007号上海远中产业园1号楼8楼山东分局克服是是对方就流口水</span></li>
-                  <li><span>黄小牙</span><span>|</span><span>350***********6233</span></li>
-                  <li><span>联系方式：13699839901</span><span>|</span><span>200002</span></li>
+            <li class="li">
+              <label for="area">选择地区：</label>
+              <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                <ul>
+                  <li>
+                    <label>6.5
+                      <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>
+                    <label>7
+                      <input type="radio" name="size" value="7" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>7.5</li>
+                  <li>
+                    <label>8
+                      <input type="radio" name="size" value="8" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>
+                    <label>9
+                      <input type="radio" name="size" value="9" class="visuallyhidden">
+                    </label>
+                  </li>
                 </ul>
               </div>
-              <div class="order-r2">
-                <h3>修改收货地址</h3>
+              <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
                 <ul>
-                  <li class="li">
-                    <label for="area">选择地区：</label>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
+                  <li>
+                    <label>6.5
+                      <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                    </label>
                   </li>
-                  <li class="li">
-                    <label for="address">收货地址</label>
-                    <input id="address" type="text" placeholder="请填写详细地址" />
+                  <li>
+                    <label>7
+                      <input type="radio" name="size" value="7" class="visuallyhidden">
+                    </label>
                   </li>
-                  <li class="li">
-                    <label for="address">收货人：</label>
-                    <input id="address" type="text" placeholder="请填写收货人真实姓名" />
-                    <div class="text-error">收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+                  <li>7.5</li>
+                  <li>
+                    <label>8
+                      <input type="radio" name="size" value="8" class="visuallyhidden">
+                    </label>
                   </li>
-                  <li class="li">
-                    <label for="phone">收货人手机号：</label>
-                    <input id="phone" type="text" placeholder="13699839901" />
-                  </li>
-                  <li class="li">
-                    <label for="phone">收货人身份证：</label>
-                    <input id="phone" type="text" value="请填写收货人身份证号码" />
-                  </li>
-                  <li class="li">
-                    <label for="email">填写邮编：</label>
-                    <input id="email" type="text" placeholder="请填写邮政编码" />
+                  <li>
+                    <label>9
+                      <input type="radio" name="size" value="9" class="visuallyhidden">
+                    </label>
                   </li>
                 </ul>
-                <div class="order-r2r3">
-                  <a href="#" class="btn btn-send">保存</a>
-                  <a href="#" class="btn btn-cancel">关闭</a>
-                </div>
+              </div>
+              <div class="btn btn-select" role="btn"> <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
+                <ul>
+                  <li>
+                    <label>6.5
+                      <input type="radio" name="size" value="6.5" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>
+                    <label>7
+                      <input type="radio" name="size" value="7" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>7.5</li>
+                  <li>
+                    <label>8
+                      <input type="radio" name="size" value="8" class="visuallyhidden">
+                    </label>
+                  </li>
+                  <li>
+                    <label>9
+                      <input type="radio" name="size" value="9" class="visuallyhidden">
+                    </label>
+                  </li>
+                </ul>
               </div>
             </li>
-            <li class="clearfix">
-              <div class="order-r1 clearfix">
-                <div class="order-r1c1 fl">
-                  <span class="icon icon29"></span>
-                </div>
-
-                <div class="order-r1c2 fr">
-                  <a href="#" class="btn btn-add">设为默认</a>
-                  <a class="order-edit" href="">修改</a>
-                </div>
-                 <ul class="order-r1c3">
-                  <li><span>上海</span><span>上海市</span><span>虹梅路2007号上海远中产业园1号楼8楼山东分局克服是是对方就流口水</span></li>
-                  <li><span>黄小牙</span>|<span>350***********6233</span></li>
-                  <li><span>联系方式：13699839901</span>|<span>200002</span></li>
-                </ul>
-              </div>
-              <div class="order-r2">
-                <h3>修改收货地址</h3>
-                <ul>
-                  <li class="li">
-                    <label for="area">选择地区：</label>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
-                    <div class="btn btn-select" role="btn">
-                      <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                      <ul>
-                        <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                        <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                        <li>7.5</li>
-                        <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                        <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="li">
-                    <label for="address">地址详情</label>
-                    <input id="address" type="text" placeholder="填写详细地址" />
-                  </li>
-                  <li class="li">
-                    <label for="phone">联系电话：</label>
-                    <input id="phone" type="text" value="13699839901" />
-                  </li>
-                  <li class="li">
-                    <label for="email">邮箱</label>
-                    <input id="email" type="text" placeholder="填写邮箱" />
-                  </li>
-                </ul>
-                <div class="order-r2r3">
-                  <a href="#" class="btn btn-send">保存</a>
-                  <a href="#" class="btn btn-cancel">关闭</a>
-                </div>
-              </div>
+            <li class="li">
+              <label for="address">地址详情</label>
+              <input id="address" type="text" placeholder="填写详细地址" />
+            </li>
+            <li class="li">
+              <label for="phone">联系电话：</label>
+              <input id="phone" type="text" value="13699839901" />
+            </li>
+            <li class="li">
+              <label for="email">邮箱</label>
+              <input id="email" type="text" placeholder="填写邮箱" />
             </li>
           </ul>
-          <div class="order-r2">
-            <h3>添加收货地址</h3>
-            <ul>
-              <li class="li">
-                <label for="area">选择地区：</label>
-                <div class="btn btn-select" role="btn">
-                  <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                  <ul>
-                    <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                    <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                    <li>7.5</li>
-                    <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                    <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                  </ul>
-                </div>
-                <div class="btn btn-select" role="btn">
-                  <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                  <ul>
-                    <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                    <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                    <li>7.5</li>
-                    <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                    <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                  </ul>
-                </div>
-                <div class="btn btn-select" role="btn">
-                  <span class="btn-select-num">请选择</span><span class="icon icon16-1"></span>
-                  <ul>
-                    <li><label>6.5<input type="radio" name="size" value="6.5" class="visuallyhidden"></label></li>
-                    <li><label>7<input type="radio" name="size" value="7" class="visuallyhidden"></label></li>
-                    <li>7.5</li>
-                    <li><label>8<input type="radio" name="size" value="8" class="visuallyhidden"></label></li>
-                    <li><label>9<input type="radio" name="size" value="9" class="visuallyhidden"></label></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="li">
-                <label for="address">地址详情</label>
-                <input id="address" type="text" placeholder="填写详细地址" />
-              </li>
-              <li class="li">
-                <label for="phone">联系电话：</label>
-                <input id="phone" type="text" value="13699839901" />
-              </li>
-              <li class="li">
-                <label for="email">邮箱</label>
-                <input id="email" type="text" placeholder="填写邮箱" />
-              </li>
-            </ul>
-            <div class="order-r2r3">
-              <span class="tooptip-success"><span class="icon icon37"></span>保存成功</span>
-              <a href="#" class="btn btn-send">保存</a>
-              <a href="#" class="btn btn-cancel">关闭</a>
-
-            </div>
-          </div>
-          <a href="#" class="btn btn-add">+ 添加收货人信息</a><a class="icon icon30"></a>
+          <div class="order-r2r3"> <span class="tooptip-success"><span class="icon icon37"></span>保存成功</span> <a href="#" class="btn btn-send">保存</a> <a href="#" class="btn btn-cancel">关闭</a> </div>
         </div>
-
-        <h2>商品信息</h2>
-
-        <div class="table">
-          <div class="table-h clearfix">
+        <a href="#" class="btn btn-add">+ 添加收货人信息</a><a class="icon icon30"></a> </div>
+      <h2>商品信息</h2>
+      <div class="table">
+        <div class="table-h clearfix">
+          <div class="table-c1 fl"> 商品 </div>
+          <div class="table-c2 fl"> 数量 </div>
+          <div class="table-c3 fl"> 单价 </div>
+          <div class="table-c4 fl"> 优惠金额 </div>
+          <div class="table-c5 fr"> 小计 </div>
+        </div>
+        <ul class="table-b">
+          <li class="clearfix">
             <div class="table-c1 fl">
-              商品
+              <div class="table-img fl"> <a href=""><img src="../img/product.jpg" alt="" width="68" height="42" /></a><span></span> </div>
+              <div class="table-text">
+                <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
+                <p>黑色</p>
+                <strong>该商品的配送不支持该区域</strong> </div>
             </div>
-            <div class="table-c2 fl">
-              数量
-            </div>
-            <div class="table-c3 fl">
-              单价
-            </div>
-            <div class="table-c4 fl">
-              优惠金额
-            </div>
-            <div class="table-c5 fr">
-              小计
-            </div>
-          </div>
-          <ul class="table-b">
-            <li class="clearfix">
-              <div class="table-c1 fl">
-                <div class="table-img fl">
-                  <a href=""><img src="../img/product.jpg" alt="" width="68" height="42" /></a><span></span>
-                </div>
-                <div class="table-text">
-                  <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
-                  <p>黑色</p>
-                  <strong>该商品的配送不支持该区域</strong>
-                </div>
-
-              </div>
-              <div class="table-c2 fl">
-                1
-              </div>
-              <div class="table-c3 fl">
-                <span>￥</span>1800
-              </div>
-              <div class="table-c4 fl">
-                <span>￥</span>0
-              </div>
-              <div class="table-c5 fr">
-                <span>￥</span>1800
-              </div>
-            </li>
-          </ul>
-          <div class="coupon2">
-            <p class="coupon2-p1">开业全场免邮，有钱，任性！</p>
-            <h3><a href="#" class="coupon2-btn">-</a>使用优惠券抵消部分订单总额</h3>
-            <div class="js-coupon">
-              <ul class="mycoupon-h clearfix">
-                <li class="active"><a href="">可用优惠券(5)</a></li>
-                <li><a href="">不可用优惠券(2)</a></li>
-              </ul>
-              <div class="coupon2-b active">
-                <div class="coupon2-b1">
-                  <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
-                  <!--
-                  <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" href="">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" href="">[优惠券使用规则]</a></p>
-                  <!---->
-                  <h4>代金券</h4>
-                  <ul>
-                    <li><a href="#" class="icon radio active"></a><strong>满100减10元</strong><span>白色情人节感恩优惠券</span>有效期至2015-04-10</li>
-                    <li><a href="#" class="icon radio"></a><strong>满100减10元</strong><span>白色情人节感恩优惠券</span>有效期至2015-04-10</li>
-                  </ul>
-                </div>
-                <div class="coupon2-b1">
-                  <div class="coupon2-r1">有优惠券兑换码？<label for="conpon" class="coupon2-link">[点击输入兑换码]</label></div>
-                  <div class="coupon2-r2"><input id="conpon" type="text" class="input" placeholder="输入您的兑换码"><a href="#" class="btn btn-send">使用</a></div>
-                </div>
-
-
-
-                <div class="coupon2-r3">共使用了<strong>1</strong>张优惠券，可以优惠<strong>10.00元</strong></div>
-              </div>
-              <div class="coupon2-b">
-                <div class="coupon2-b1 coupon2-b1-1">
-                  <p class="coupon2-p2">此处仅展示不符合本次订单商品使用的优惠券。<a class="coupon2-link" href="">[优惠券使用规则]</a></p>
-                  <h4>代金券</h4>
-                  <ul>
-                    <li><span>满100减10元</span><span>白色情人节感恩优惠券</span><span>有效期至2015-04-10</span><strong>本优惠券仅可使用食品品类</strong></li>
-                    <li><span>满100减10元</span><span>白色情人节感恩优惠券</span><span>有效期至2015-04-10</span><strong>本优惠券仅可使用食品品类</strong></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="table-f clearfix">
-            <div class="table-fc2 fr">
-              <ul class="table-fr1">
-                  <li>商品总金额：<span>￥</span>1800</li>
-                  <li>-优惠金额：<span>￥</span>0</li>
-                  <li>+税额：<span>￥</span>0</li>
-                  <li>+运费：<span>￥</span>0</li>
-              </ul>
-              <div class="table-fr3">实际应付款：<strong><span>￥</span>1800</strong></div>
-            </div>
-
+            <div class="table-c2 fl"> 1 </div>
+            <div class="table-c3 fl"> <span>￥</span>1800 </div>
+            <div class="table-c4 fl"> <span>￥</span>0 </div>
+            <div class="table-c5 fr"> <span>￥</span>1800 </div>
+          </li>
+        </ul>
+        == Slim::Template.new('module/coupon2.slim').render
+        <div class="table-f clearfix">
+          <div class="table-fc2 fr">
+            <ul class="table-fr1">
+              <li>商品总金额：<span>￥</span>1800</li>
+              <li>-优惠金额：<span>￥</span>0</li>
+              <li>+税额：<span>￥</span>0</li>
+              <li>+运费：<span>￥</span>0</li>
+            </ul>
+            <div class="table-fr3">实际应付款：<strong><span>￥</span>1800</strong></div>
           </div>
         </div>
-
-        <div class="order-f">
-          <a href="#" class="btn btn-send">提交订单</a>
-        </div>
-
       </div>
-      <!--订单-->
+      <div class="order-f"> <a href="#" class="btn btn-send">提交订单</a> </div>
     </div>
+    <!--订单--> 
   </div>
-  <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
-  <!--尾部-->
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/index.js"></script>
+</div>
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
 </body>
-
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 </html>
