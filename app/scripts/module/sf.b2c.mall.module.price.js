@@ -87,7 +87,7 @@ define(
           element.find('.cms-fill-originprice').text(value.originPrice / 100);
           element.find('.cms-fill-discount').text((parseInt(value.sellingPrice, 10) * 10 / parseInt(value.originPrice, 10)).toFixed(1));
         }
-:q
+
         // 做售空处理
         if (value.soldOut) {
           element.find('.cms-fill-gotobuy').text('已经抢光');
