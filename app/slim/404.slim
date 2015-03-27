@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>404</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/404.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	== Slim::Template.new('module/header.slim').render
+  <div class="pm">
+    <div class="pagenofind">
+      <a href="">< 返回上一级页面 </a><a href="http://www.sfht.com/index.html">返回首页 ></a>
+    </div>
+      <!--推荐商品-->
+      == Slim::Template.new('module/recommend.slim').render
+      <!--专题-->
+      == Slim::Template.new('module/topic.slim').render
+  </div>
+
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+  <!--尾部-->
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

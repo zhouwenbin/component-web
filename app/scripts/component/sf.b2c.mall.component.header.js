@@ -16,6 +16,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
+  'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -26,7 +27,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -196,39 +197,52 @@ define('sf.b2c.mall.component.header', [
 
       this.renderMap['template_header_user_navigator'].call(this, data);
 
-      $(window).scroll(function(){
-          setTimeout(function() {
-            if($(window).scrollTop() > 166){
-                $(".nav").addClass('nav-fixed');
-                $(".nav-inner").css({
-                  opacity:0
-                })
-                .animate({
-                  top:'0px',
-                  opacity:1
-                },500);
-            }else{
-                $(".nav").removeClass('nav-fixed');
-                $(".nav-inner").css({
-                  top:'-56px'
-                });
-            }
-          }, 500);
-      })
-      $('#js-focus').click(function(){
-        $('.nav-qrcode').toggleClass('show');
-        return false;
-      })
+      var pathname = window.location.pathname;
 
-      can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
-        .done(function (config) {
-          _.each(config, function(value, key, list){
-            that.data.attr(key, value);
-          });
+      // @note 只有在首页需要显示浮动导航栏
+      if (pathname == '/' || pathname == '/index.html') {
+        $(window).scroll(function(){
+            setTimeout(function() {
+              if($(window).scrollTop() > 166){
+                  $(".nav").addClass('nav-fixed');
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'0px',
+                    opacity:1
+                  },300);
+              }else{
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'-56px',
+                    opacity:1
+                  },300);
+                  $(".nav").removeClass('nav-fixed');
+              }
+
+            }, 200);
         })
-        .fail(function (errorCode) {
+        $('#js-focus')
+          .hover(function(){
+            $('.nav-qrcode').addClass('show');
+            return false;
+          })
+          .bind('mouseleave', function(){
+            $('.nav-qrcode').removeClass('show');
+            return false;
+          })
+      };
 
-        });
+      // @note 通过服务端进行渲染，暂时这里不做动作
+      // SFGetHeaderConfig
+      //   .sendRequest()
+      //   .done(function(config){
+      //     _.each(config, function(value, key, list){
+      //       that.data.attr(key, value);
+      //     });
+
+      //     // 暂时不做修改
+      //   })
+      //   .fail(function (errorCode) {
+
+      //   })
     },
 
     /**
@@ -401,9 +415,9 @@ define('sf.b2c.mall.component.header', [
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
-          if (!that.component.modal.isClosed()) {
+          // if (!that.component.modal.isClosed()) {
             that.component.modal.hide();
-          }
+          // }
 
           if (that.afterLoginDest) {
             var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;

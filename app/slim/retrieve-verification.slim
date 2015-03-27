@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/order.css" rel="stylesheet" type="text/css" />
+<link href="../css/verification.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  == Slim::Template.new('module/header.slim').render
+  <div class="pb">
+    <div class="pm">
+      <!--订单-->
+      <div class="order verification retrieve">
+        <h1>身份验证成功，请重置密码</h1>
+        <ol>
+          <li><label for="password">新密码：</label><input type="password" class="input"></li>
+          <li><label for="repassword">确认密码：</label><input type="repassword" class="input"></li></li>
+        </ol>
+        <a href="#" class="btn btn-send">确认</a>
+
+      </div>
+      <!--订单-->
+    </div>
+  </div>
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+  <!--尾部-->
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

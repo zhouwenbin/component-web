@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=1280">
+  <title>顺丰海淘</title>
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.index.css -->
+  <link href="css/common.css" rel="stylesheet" type="text/css" />
+  <link href="css/index.css" rel="stylesheet" type="text/css" />
+  <link href="css/register.css" rel="stylesheet" type="text/css" />
+  <!-- endbuild -->
+
+  <!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
+  <link href="css/browser.css" rel="stylesheet" type="text/css" />
+  <!-- endbuild -->
+</head>
+<body class="with-header">
+  <div id="content">
+    <!--# include file="/header/header.index.html" -->
+
+    <div class="pb">
+      <div class="sf-b2c-mall-main-slider"></div>
+      <div class="pm">
+        <!--限时特卖-->
+        <div class="sf-b2c-mall-limitedtimesale serverRendered">
+          <div class="product product1" id="LimitedTimeSale">
+            <div id="LimitedTimeSale" class="mh clearfix">
+              <h2 class="fl">限时特卖</h2>
+              <ul class="fl product-tab">
+                <li id="current" class="active"><a href="#">当前</a><span></span></li>
+                <li id="future"><a href="#">即将开始</a><span></span></li>
+              </ul>
+            </div>
+            <div class="mb">
+              <ul class="clearfix product-list" data-itemids="[1]">
+               <li>
+                <div class="product-r1">
+                  <a href="http://topic.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://topic.sfht.com/1.html" target="_blank">专题</a>
+                </h3>
+                <p>测试1</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="TOPIC" data-topicid="1" data-displayendtime="1419417909000" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                </div>
+                <div class="product-r3 clearfix" data-contenttype="TOPIC" data-topicid="1">
+                  <div class="product-r3c1 fl">
+                    <strong>￥1800起</strong>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong>7.8</strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href="http://topic.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://topic.sfht.com/1.html" target="_blank">专题</a>
+                </h3>
+                <p>测试1</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="TOPIC" data-topicid="1" data-displayendtime="1419417909000" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                </div>
+                <div class="product-r3 clearfix" data-contenttype="TOPIC" data-topicid="1">
+                  <div class="product-r3c1 fl">
+                    <strong>￥1800起</strong>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong>7.8</strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href="http://item.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://item.sfht.com/1.html" target="_blank">测试1</a>
+                </h3>
+                <p>测试1</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                  <div class="product-r2c2 fr">
+                      <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                  </div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href="http://item.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://item.sfht.com/1.html" target="_blank">测试1</a>
+                </h3>
+                <p>测试1</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                  <div class="product-r2c2 fr">
+                      <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                  </div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href="http://item.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://item.sfht.com/1.html" target="_blank">标题</a>
+                </h3>
+                <p>子标题</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                  <div class="product-r2c2 fr">
+                      <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                  </div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href="http://item.sfht.com/1.html" target="_blank">
+                    <img src="http://7mnpdt.com1.z0.glb.clouddn.com/product.jpg" alt="">
+                  </a>
+                  <span></span>
+                </div>
+                <h3>
+                  <a href="http://item.sfht.com/1.html" target="_blank">标题</a>
+                </h3>
+                <p>子标题</p>
+                <div class="product-r2 clearfix">
+                  <div id="timeAndNation4ProductClient" data-contenttype="PRODUCT" data-itemid="1" class="product-r2c1 fl"><span class="icon icon4"></span></div>
+                  <div class="product-r2c2 fr">
+                      <img src="http://7mnpdt.com1.z0.glb.clouddn.com/icon-usa.png" alt="">
+                  </div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="sf-b2c-mall-limitedtimesale4Client"></div> -->
+      <!--限时特卖-->
+      <!--极速海淘-->
+      <div class="sf-b2c-mall-rapidseabuy serverRendered">
+        <div class="product product2" id="RapidSeaBuy">
+          <div class="mh">
+            <h2>极速海淘</h2>
+          </div>
+          <div class="mb">
+            <ul class="clearfix product-list" data-itemids="[1]">
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product-r1">
+                  <a href=""><img src="img/product.jpg" alt="" ></a><span></span>
+                </div>
+                <h3><a href="">Kate Spade女款手提包手拎包</a></h3>
+                <p>美式休闲打牌，零利疯抢！</p>
+                <div class="product-r2 clearfix">
+                  <div class="product-r2c1 fl"><span class="icon icon6"><b>123</b>天到<i></i></span></div>
+                  <div class="product-r2c2 fr"><img src="img/icon-usa.png" alt="" /></div>
+                </div>
+                <div id="price4ProductClient" class="product-r3 clearfix" data-contenttype="PRODUCT" data-itemid="1">
+                  <div class="product-r3c1 fl">
+                    <strong></strong>
+                    <del></del>
+                  </div>
+                  <div class="product-r3c2 fr">
+                    <strong></strong>折
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mf">
+            <a href="#" class="btn btn-more">查看更多</a>
+          </div>
+        </div>
+      </div>
+      <!--极速海淘-->
+    </div>
+  </div>
+  <!--尾部-->
+  <!--# include file="/footer/footer.index.html" -->
+
+  <!--尾部-->
+</div>
+
+<!-- build:js(.) scripts/require.min.js -->
+<script src="bower_components/requirejs/require.js"></script>
+<!-- endbuild -->
+<!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+<script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
+<!-- endbuild -->
+<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.main.js -->
+<script src="scripts/sf.b2c.mall.require.config.js"></script>
+<script type="text/javascript">
+require(['sf.b2c.mall.page.main']);
+</script>
+<!-- endbuild -->
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</body>
+</html>

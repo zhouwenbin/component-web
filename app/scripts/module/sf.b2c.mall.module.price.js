@@ -85,7 +85,7 @@ define(
           element.find('.cms-fill-originpriceparent')[0].style.display = "none";
         } else {
           element.find('.cms-fill-originprice').text(value.originPrice / 100);
-          element.find('.cms-fill-discount').text(parseInt(value.sellingPrice, 10) * 10 / parseInt(value.originPrice, 10));
+          element.find('.cms-fill-discount').text((parseInt(value.sellingPrice, 10) * 10 / parseInt(value.originPrice, 10)).toFixed(1));
         }
 
         // 做售空处理

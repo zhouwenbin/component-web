@@ -258,4 +258,46 @@ $(function(){
         $(".mask").show();
         return false;
     })
+    //导航
+    $(window).scroll(function(){
+      if($(window).scrollTop() > 166){
+          $(".nav-fixed .nav-inner").stop(true,false).animate({
+            top:'0px',
+            opacity:1
+          },300);
+      }else{
+          $(".nav-fixed .nav-inner").stop(true,false).animate({
+            top:'-56px',
+            opacity:0
+          },300);
+      }
+  })
+  $('#js-focus').click(function(){
+    $('.nav-qrcode').toggleClass('show');
+    return false;
+  })
+  //订单
+  $(function(){
+      $('.mycoupon-h li').click(function(){
+        var index = $('.mycoupon-h li').index(this);
+        $('.mycoupon-h li').removeClass('active');
+        $(this).addClass('active');
+        $('.coupon2-b').removeClass('active');
+        $('.coupon2-b').eq(index).addClass('active');
+        return false;
+      })
+      $('.coupon2-btn').click(function(){
+        $('.js-coupon').toggleClass("hide");
+        if($('.js-coupon').hasClass('hide')){
+          $(this).text('+');
+        }else{
+          $(this).text('-');
+        }
+        return false;
+      })
+      $('.coupon2 .radio').click(function(){
+        $('.coupon2 .radio').removeClass('active');
+        $(this).addClass('active');
+      })
+    })
 })
