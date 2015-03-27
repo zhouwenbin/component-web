@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/order.css" rel="stylesheet" type="text/css" />
+<link href="../css/retrieve.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  == Slim::Template.new('module/header.slim').render
+  <div class="pb">
+    <div class="pm">
+      <!--订单-->
+      <div class="order retrieve">
+        <div class="retrieve-h">
+          <label for="type">选择密码找回方式：</label>
+          <a href="#" class="icon radio radio1 active"></a>手机短信
+          <a href="#" class="icon radio radio2"></a>电子邮箱
+        </div>
+        <div class="retrieve-b active">
+          <ol>
+            <li class="li2">
+              <label for="phone">手机号：</label>
+              <input id="phone" type="text" class="input" value="159008303345" />
+            </li>
+            <li class="li3">
+              <label for="sms">短信验证码：</label>
+              <input id="sms" type="text" class="input" value="" />
+              <a href="#" class="btn btn-send disable">60s后重新发送</a>
+              <!--<a href="#" class="btn btn-send">发送验证码</a>-->
+            </li>
+          </ol>
+          <div class="retrieve-r1">
+            <a href="#" class="btn btn-send">下一步</a>
+          </div>
+        </div>
+        <div class="retrieve-b">
+          <ol>
+            <li class="li2">
+              <label for="email">邮箱：</label>
+              <input id="email" type="text" class="input" value="159008303345" />
+            </li>
+            <li class="li3">
+              <label for="emailcode">验证码：</label>
+              <input id="emailcode" type="text" class="input" value="" />
+              <img src="../img/code2.jpg" alt="验证码" />
+            </li>
+          </ol>
+          <div class="retrieve-r1">
+            <a href="#" class="btn btn-send">下一步</a>
+            <span class="icon icon26-2">验证邮件已发送，请注意查收。</span>
+          </div>
+        </div>
+
+      </div>
+      <!--订单-->
+    </div>
+  </div>
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+  <!--尾部-->
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

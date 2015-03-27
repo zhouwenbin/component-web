@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>登陆顺丰海淘</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/order.css" rel="stylesheet" type="text/css" />
+<link href="../css/orderdetail.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  == Slim::Template.new('module/header.slim').render
+  <div class="pb">
+    <div class="pm">
+      <!--步骤-->
+      <div class="step">
+        <ul>
+          <li class="active"><span class="icon icon31"></span>01 填写并核对订单信息<div class="line"></div></li>
+          <li><span class="icon icon31"></span>02 成功提交订单<div class="line"></div></li>
+          <li><span class="icon icon31"></span>03 订单支付成功</li>
+        </ul>
+
+      </div>
+      <!--步骤-->
+      <div class="orderdetail">
+        <div class="pay">
+          <div class="pay-r2 clearfix">
+            <h1 class="fl">您已成功提交订单，请您尽快完成付款！</h1>
+            <div class="fr pay-r2c2">应付金额：<strong>￥<span class="pay-price">286</span></strong>元</div>
+          </div>
+          <p>请您在订单提交后2小时内完成支付，否则订单会自动取消哦！</p>
+          <h2>支付方式</h2>
+          <div class="order-b order-b-1 clearfix">
+              <div class="order-r1c1 fl">
+                <span class="icon radio active"></span>
+                <img src="../img/pay1.jpg" alt="支付宝">
+                <h3>中国最大的第三方支付平台</h3>
+              </div>
+              <div class="order-r1c1 fl">
+                <span class="icon radio"></span>
+                <img src="../img/pay2.jpg" alt="微信支付">
+                <h3>微信扫一扫就能付款，更快捷</h3>
+              </div>
+              <div class="order-r1c1 fl">
+                <span class="icon radio"></span>
+                <img src="../img/pay3.jpg" alt="财付通">
+                <h3>超过3亿用户的选择，汇率更优！</h3>
+              </div>
+
+          </div>
+          <div class="pay-r1">
+            <a href="#" class="btn btn-send">去支付</a>
+          </div>
+        </div>
+
+
+        <!--订单信息-->
+        <h2>订单信息</h2>
+          <div class="info">
+            <div class="info-r1">
+              <div class="info-c1 fl">订单及支付</div>
+              <ul class="info-c2">
+                <li>订单号：23729573975230580</li>
+                <li>订单金额：￥286元</li>
+                <li>付款方式：在线支付</li>
+              </ul>
+            </div>
+            <div class="info-r2">
+              <div class="info-c1 fl">收货人信息</div>
+              <ul class="info-c2">
+                <li>收货人：黄小牙</li>
+                <li>地址：虹梅路2007号上海园中产业园1号楼8楼</li>
+                <li>联系电话：15900830081</li>
+                <li>身份证号码：350**********1120</li>
+              </ul>
+            </div>
+          </div>
+          <!--订单信息-->
+      </div>
+
+    </div>
+  </div>
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+  <!--尾部-->
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
