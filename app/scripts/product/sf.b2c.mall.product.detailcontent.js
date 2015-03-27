@@ -409,11 +409,11 @@ define('sf.b2c.mall.product.detailcontent', [
 
         $("#getNotifyMobileSubmit")[0].onclick = _.bind(that.getMobileData, that, element);
 
-        $(".btn-close")[0].onclick = function() {
+        $(".closeGetNotifyStep1icon")[0].onclick = function() {
           $("#getNotifyStep1").hide();
         }
 
-        $(".btn-close")[1].onclick = function() {
+        $(".closeGetNotifyStep2icon")[0].onclick = function() {
           $("#getNotifyStep2").hide();
         }
 
