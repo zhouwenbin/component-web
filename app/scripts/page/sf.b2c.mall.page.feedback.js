@@ -44,7 +44,7 @@ define(
           '<h2>意见反馈</h2>' +
           '<textarea can-value="feedback" placeholder="输入您对顺丰海淘的建议或意见，帮助我们做的更好" id="mytext" maxlength="800"></textarea><span class="text-error">{{error.feedback}}</span>' +
           '<div class="feedback-r1">' +
-          '<label class="justify">联系方式</label>：<input type="text" can-value="email"/><span class="text-error">{{error.email}}</span><br><br>' +
+          '<label class="justify">联系方式</label>：<input id="input-link" type="text" can-value="email"/><span class="text-error">{{error.email}}</span><br><br>' +
           '</div>' +
           '<div class="feedback-r2">' +
           '<a href="#" class="btn btn-send" id="submitFeedBack">提交</a>' +
@@ -56,6 +56,13 @@ define(
         var $feedback = $('#mytext');
         if ($feedback.val().length > 800) {
           $feedback.val($feedback[0].value.substr(0, 800));
+        }
+      },
+
+      '#input-link blur': function() {
+        var $link = $('#input-link');
+        if ($link.val().length > 50) {
+          $link.val($link[0].value.substr(0, 50));
         }
       },
 
