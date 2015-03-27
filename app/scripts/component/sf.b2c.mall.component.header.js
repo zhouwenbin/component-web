@@ -199,21 +199,18 @@ define('sf.b2c.mall.component.header', [
       $(window).scroll(function(){
           setTimeout(function() {
             if($(window).scrollTop() > 166){
-                $(".nav").addClass('nav-fixed');
-                $(".nav-inner").css({
-                  opacity:0
-                })
-                .animate({
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
                   top:'0px',
                   opacity:1
-                },500);
+                },300);
             }else{
-                $(".nav").removeClass('nav-fixed');
-                $(".nav-inner").css({
-                  top:'-56px'
-                });
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
+                  top:'-56px',
+                  opacity:0
+                },300);
             }
-          }, 500);
+
+          }, 300);
       })
       $('#js-focus').click(function(){
         $('.nav-qrcode').toggleClass('show');
@@ -401,9 +398,9 @@ define('sf.b2c.mall.component.header', [
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
-          if (!that.component.modal.isClosed()) {
+          // if (!that.component.modal.isClosed()) {
             that.component.modal.hide();
-          }
+          // }
 
           if (that.afterLoginDest) {
             var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
