@@ -21,6 +21,9 @@ define(
       },
 
       render: function() {
+        new Header('.sf-b2c-mall-header', {});
+        new Footer('.sf-b2c-mall-footer');
+
         this.data = new can.Map({
           "email": null,
           "feedback": null,

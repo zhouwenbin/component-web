@@ -203,6 +203,7 @@ define('sf.b2c.mall.component.header', [
         $(window).scroll(function(){
             setTimeout(function() {
               if($(window).scrollTop() > 166){
+                  $(".nav").addClass('nav-fixed');
                   $(".nav-fixed .nav-inner").stop(true,false).animate({
                     top:'0px',
                     opacity:1
@@ -210,16 +211,22 @@ define('sf.b2c.mall.component.header', [
               }else{
                   $(".nav-fixed .nav-inner").stop(true,false).animate({
                     top:'-56px',
-                    opacity:0
+                    opacity:1
                   },300);
+                  $(".nav").removeClass('nav-fixed');
               }
 
-            }, 300);
+            }, 200);
         })
-        $('#js-focus').click(function(){
-          $('.nav-qrcode').toggleClass('show');
-          return false;
-        })
+        $('#js-focus')
+          .hover(function(){
+            $('.nav-qrcode').addClass('show');
+            return false;
+          })
+          .bind('mouseleave', function(){
+            $('.nav-qrcode').removeClass('show');
+            return false;
+          })
       };
 
       can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
