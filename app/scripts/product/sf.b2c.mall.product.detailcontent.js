@@ -413,7 +413,7 @@ define('sf.b2c.mall.product.detailcontent', [
           $("#getNotifyStep1").hide();
         }
 
-        $(".closeGetNotifyStep2icon")[1].onclick = function() {
+        $(".closeGetNotifyStep2icon")[0].onclick = function() {
           $("#getNotifyStep2").hide();
         }
 
