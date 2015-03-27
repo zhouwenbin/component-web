@@ -16,6 +16,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
+  'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -26,7 +27,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -229,15 +230,19 @@ define('sf.b2c.mall.component.header', [
           })
       };
 
-      can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
-        .done(function (config) {
-          _.each(config, function(value, key, list){
-            that.data.attr(key, value);
-          });
-        })
-        .fail(function (errorCode) {
+      // @note 通过服务端进行渲染，暂时这里不做动作
+      // SFGetHeaderConfig
+      //   .sendRequest()
+      //   .done(function(config){
+      //     _.each(config, function(value, key, list){
+      //       that.data.attr(key, value);
+      //     });
 
-        });
+      //     // 暂时不做修改
+      //   })
+      //   .fail(function (errorCode) {
+
+      //   })
     },
 
     /**
