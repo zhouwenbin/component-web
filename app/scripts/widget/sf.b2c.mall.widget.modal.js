@@ -22,7 +22,10 @@ define(
       },
 
       hide: function () {
-        this.element.find('#'+this.modalid).remove();
+        var $el = this.element.find('#'+this.modalid);
+        if ($el) {
+          $el.remove();
+        }
         this.closed = true;
       },
 
