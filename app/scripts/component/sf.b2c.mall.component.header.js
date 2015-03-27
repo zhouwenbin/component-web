@@ -196,26 +196,31 @@ define('sf.b2c.mall.component.header', [
 
       this.renderMap['template_header_user_navigator'].call(this, data);
 
-      $(window).scroll(function(){
-          setTimeout(function() {
-            if($(window).scrollTop() > 166){
-                $(".nav-fixed .nav-inner").stop(true,false).animate({
-                  top:'0px',
-                  opacity:1
-                },300);
-            }else{
-                $(".nav-fixed .nav-inner").stop(true,false).animate({
-                  top:'-56px',
-                  opacity:0
-                },300);
-            }
+      var pathname = window.location.pathname;
 
-          }, 300);
-      })
-      $('#js-focus').click(function(){
-        $('.nav-qrcode').toggleClass('show');
-        return false;
-      })
+      // @note 只有在首页需要显示浮动导航栏
+      if (pathname == '/' || pathname == '/index.html') {
+        $(window).scroll(function(){
+            setTimeout(function() {
+              if($(window).scrollTop() > 166){
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'0px',
+                    opacity:1
+                  },300);
+              }else{
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'-56px',
+                    opacity:0
+                  },300);
+              }
+
+            }, 300);
+        })
+        $('#js-focus').click(function(){
+          $('.nav-qrcode').toggleClass('show');
+          return false;
+        })
+      };
 
       can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
         .done(function (config) {
