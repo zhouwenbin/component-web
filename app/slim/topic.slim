@@ -1,441 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=1280">
-<title>顺丰海淘</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/topic.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=1280">
+  <title>顺丰海淘</title>
+  <link href="../css/common.css" rel="stylesheet" type="text/css" />
+  <link href="../css/topic.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--头部-->
-  <div class="ph">
-    <div class="header1">
-      <div class="pm">
-        <div class="header1-c1 fl">
-          <a href=""><span class="icon icon11"></span>海淘首页</a><a href="">登录</a><a href="">免费注册</a>
-        </div>
-        <div class="header1-c2 fr">
-          <a href="">个人中心</a><a href="">帮助中心</a><a href="">我的优惠券</a><a href="">帮助中心</a><a href="">在线客服</a>
-        </div>
-      </div>
-    </div>
-    <div class="header">
-      <div class="pm clearfix">
-        <div class="header-c1 fl">
-          <a href="#" class="icon icon10">顺丰海淘</a>
-          <img src="../img/slogan.png" alt="顺心全球购 丰富好生活" />
-        </div>
-        <ul class="header-c2 fr">
-          <li>
-            <span class="icon icon1 fl"></span>
-            <h2>正品<br />保障</h2>
-          </li>
-          <li>
-            <span class="icon icon2 fl"></span>
-            <h2>含  税<br />一口价</h2>
-          </li>
-          <li>
-            <span class="icon icon3 fl"></span>
-            <h2>顶尖<br />物流</h2>
-          </li>
-        </ul>
-      </div>  
-    </div>
-    <!--导航-->
-    <div class="nav">
-      <div class="nav-inner">
-        <div class="pm">
-          <ul class="fl nav-c1">
-            <li class="active"><a href="">首页</a></li>
-            <li><a href="">母婴专区</a></li>
-            <li><a href="">个护美装</a></li>
-            <li><a href="">食品保健</a></li>
-            <li><a href="">生活服饰</a><span class="icon icon54">NEW</span></li>
-            <li><a href="">黑5狂欢</a><span class="icon icon55">HOT</span></li>
-            <li><a href="">正品保障</a></li>
-          </ul>
-          <div class="fr nav-c2">
-            <a href="">个人中心</a>|<a href="">我的优惠券</a>|<a href="" id="js-focus">微信关注</a>|<a href="">在线客服</a>|<a href="">意见反馈</a>
-            <div class="nav-qrcode">
-              <span class="icon icon16 icon16-8"></span>
-              <img src="../img/qrcode.png" alt="二维码" width="66" height="66" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-  </div>
+  == Slim::Template.new('module/header.slim').render
   <!--头部-->
   <div class="pb">
-    <div class="slider">
-      <ul class="slider-img">
-        <li class="active"><a href="" style="background-image: url(../img/banner1.jpg);"></a></li>
-        <li><a href="" style="background-image: url(../img/banner2.jpg);"></a></li>
-      </ul>
-      <div class="pm">
-        <a href="###" class="btn btn-prev">向前</a>
-        <a href="###" class="btn btn-next">向后</a>
-      </div>
-      <ul class="slider-num"></ul>
-    </div>
+    == Slim::Template.new('module/slider.slim').render
     <div class="pm">
       <img src="../img/ad.png" class="banner" alt="">
-      <div class="product product2">
-        <div class="mb">
-          <ul class="clearfix product-list">
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/topic.jpg" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p class="product-detail">荷兰奶粉第一品牌，进口市场占有率高达73%。只采用最优质无污染的天然牧场奶源。口味清淡、粉质精细，更有活动超值狂欢价，单罐仅需110元，好味道更有好价格！</p>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/topic.jpg" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p class="product-detail">荷兰奶粉第一品牌，进口市场占有率高达73%。只采用最优质无污染的天然牧场奶源。口味清淡、粉质精细，更有活动超值狂欢价，单罐仅需110元，好味道更有好价格！</p>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      == Slim::Template.new('module/product2.slim').render
       <img src="../img/ad.png" class="banner" alt="">
       <!--热卖商品-->
-      <div class="product">
-        <div class="mb">
-          <ul class="clearfix product-list">
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                <div class="label label-new">新品上市</div>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      <!--热卖商品-->
-      <img src="../img/ad.png" class="banner" alt="">
-      <!--热卖商品-->
-      <div class="product">
-        <div class="mb">
-          <ul class="clearfix product-list">
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                <div class="label label-new">新品上市</div>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="product-r1">
-                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-              </div>
-              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  ￥<strong>129</strong>5折
-                  <del>￥189</del>
-                </div>
-                <div class="product-r2c2 fr">
-                  <a href="#" class="btn btn-buy">立即购买</a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      <!--热卖商品-->
-      <ul class="topic clearfix">
-        <li>
-          <a href=""><img src="../img/topic2.jpg" alt="" /></a>
-        </li>
-        <li>
-          <a href=""><img src="../img/topic2.jpg" alt="" /></a>
-        </li>
-        <li>
-          <a href=""><img src="../img/topic2.jpg" alt="" /></a>
-        </li>
-      </ul>
+      == Slim::Template.new('module/product.slim').render
     </div>
+    <!--热卖商品-->
+    <img src="../img/ad.png" class="banner" alt="">
+    <!--热卖商品-->
+    == Slim::Template.new('module/product.slim').render
+    <!--热卖商品-->
+    == Slim::Template.new('module/topic.slim').render
   </div>
-  <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
-  <!--尾部-->
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/index.js"></script>
-  <script>
-  $(window).scroll(function(){
-      if($(window).scrollTop() > 166){
-          $(".nav").addClass('nav-fixed');
-          $(".nav-inner").animate({
-            top:'0px'
-          },300);
-      }else{
-          $(".nav").removeClass('nav-fixed');
-          $(".nav-inner").css({
-            top:'-56px'
-          });
-      }
-  })
-  $('#js-focus').click(function(){
-    $('.nav-qrcode').toggleClass('show');
-    return false;
-  })
-  </script>
+</div>
+<!--尾部-->
+== Slim::Template.new('module/footer.slim').render
+<!--尾部-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/index.js"></script>
+<script>
+$(window).scroll(function(){
+  if($(window).scrollTop() > 166){
+    $(".nav").addClass('nav-fixed');
+    $(".nav-inner").animate({
+      top:'0px'
+    },300);
+  }else{
+    $(".nav").removeClass('nav-fixed');
+    $(".nav-inner").css({
+      top:'-56px'
+    });
+  }
+})
+$('#js-focus').click(function(){
+  $('.nav-qrcode').toggleClass('show');
+  return false;
+})
+</script>
 </body>
 
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
