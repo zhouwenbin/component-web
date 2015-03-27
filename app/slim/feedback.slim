@@ -10,16 +10,7 @@
 <body>
   == Slim::Template.new('module/header.slim').render
   <div class="pm">
-    <div class="feedback">
-      <h2>意见反馈</h2>
-      <textarea placeholder="输入您对顺丰海淘的建议或意见，帮助我们做的更好"></textarea>
-      <div class="feedback-r1">
-        <label>验证码:<input type="text" /><img src="" alt="验证码" /></label>
-      </div>
-      <div class="feedback-r2">
-        <a href="#" class="btn btn-send">提交</a>
-      </div>
-    </div>
+    == Slim::Template.new('module/feedback.slim').render
   </div>
   <!--尾部-->
   == Slim::Template.new('module/footer.slim').render
