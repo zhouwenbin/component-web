@@ -1,22 +1,43 @@
-<div class="order-r3">
-  <!--优惠券，可隐藏-->
-  {{#isPresentCoupon}}
-    <div class="order-r3c2 fr">
-      <div class="text-error">恭喜你！{{presentCoupon.couponName}}，本订单已赠送优惠券。</div>
-      <a class="coupon" href="{{links.coupon}}">
-        <div class="coupon-r1">
-          <span>{{sf.price presentCoupon.price}}</span>元
+<div class="order-success">
+  <h2><span class="order-success-icon"></span>订单支付成功</h2>
+  <p class="order-success-p1">感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></p>
+  <div class="order-success-r1 clearfix pm">
+
+    {{#isLuckyMoneyAndCoupon}}
+      <div class="order-success-r1c1 fl">
+        <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
+        <a class="coupon" href="{{links.coupon}}">
+          <div class="coupon-r1">
+            <span>{{sf.price presentCoupon.price}}</span>元
+          </div>
+          <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
+        </a>
+      </div>
+      <div class="order-success-r1c2">
+        <div class="order-success-qrcode">
+          <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发200元红包</p>
+            <div id="shareQrCode"></div>
+          <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
         </div>
-        <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
-      </a>
-    </div>
-  {{/isPresentCoupon}}
-  <!--优惠券，可隐藏-->
-  <div class="order-r3c1">
-      <span class="icon icon33"></span>
-      <h2>订单支付成功</h2>
-      <h3>感谢您使用顺丰海淘，我们将尽快为您发货！</h3>
-      <a href="{{links.orderlist}}" title="查看订单">查看订单 ></a>
+      </div>
+    {{/isLuckyMoneyAndCoupon}}
+    {{^isLuckyMoneyAndCoupon}}
+      {{#isPresentCoupon}}
+        <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
+        <a class="coupon" href="{{links.coupon}}">
+          <div class="coupon-r1">
+            <span>{{sf.price presentCoupon.price}}</span>元
+          </div>
+          <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
+        </a>
+      {{/isPresentCoupon}}
+      {{#isLuckyMoney}}
+        <div class="order-success-qrcode">
+            <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发200元红包</p>
+            <div id="shareQrCode"></div>
+            <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
+        </div>
+      {{/isLuckyMoney}}
+    {{/isLuckyMoneyAndCoupon}}
   </div>
-  <div id="shareQrCode" style="display: none;"></div>
 </div>
