@@ -30,8 +30,8 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
-        'sf-is-limitedTimeBuy': function(productShape, time, options) {
-          if (productShape() == 'XSTM' && typeof time() != 'undefined' ) {
+        'sf-is-limitedTimeBuy': function(time, options) {
+          if (typeof time() != 'undefined' ) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -641,7 +641,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
             '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
           '</div>' +
-          '{{#sf-is-limitedTimeBuy priceInfo.productShape priceInfo.time}}' +
+          '{{#sf-is-limitedTimeBuy priceInfo.time}}' +
           '<div class="goods-price-c2">' +
           '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
           '</div>' +
