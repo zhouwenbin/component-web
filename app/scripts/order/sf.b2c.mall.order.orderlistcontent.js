@@ -234,6 +234,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<ul>' +
           '{{#each userRoutes}}' +
           '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
+
           '{{/each}}' +
           '</ul>' +
           '<a id="find-more-info" href="#">查看全部</a>' +
