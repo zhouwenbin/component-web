@@ -25,21 +25,11 @@
         </div>
         <div class="table table-1">
           <div class="table-h clearfix">
-            <div class="table-c1 fl">
-              订单信息
-            </div>
-            <div class="table-c2 fl">
-              收货人
-            </div>
-            <div class="table-c3 fl">
-              订单金额
-            </div>
-            <div class="table-c4 fl">
-              订单状态
-            </div>
-            <div class="table-c5 fl">
-              操作
-            </div>
+            <div class="table-c1 fl">订单信息</div>
+            <div class="table-c2 fl">收货人</div>
+            <div class="table-c3 fl">订单金额</div>
+            <div class="table-c4 fl">订单状态</div>
+            <div class="table-c5 fl">操作</div>
           </div>
           <ul class="table-b">
             <li class="clearfix">
@@ -56,19 +46,14 @@
                 <div class="table-r2">订单号：35703505832085<span>下单日期：2014/12/12 13:34:25</span></div>
               </div>
 
-              <div class="table-c2 fl">
-                黄小牙
-              </div>
-              <div class="table-c3 fl">
-                ￥1280
-              </div>
-              <div class="table-c4 fl">
-                待付款
-              </div>
+              <div class="table-c2 fl">黄小牙</div>
+              <div class="table-c3 fl">￥1280</div>
+              <div class="table-c4 fl">待付款</div>
               <div class="table-c5 fl">
                 <a href="#" class="btn btn-send">立即支付</a>
                 <a href="#" class="btn btn-add">查看订单</a>
                 <a href="#" class="link">取消订单</a>
+                <a href="#" class="btn btn-add">分享红包</a>
               </div>
             </li>
             <li class="clearfix">
@@ -85,14 +70,9 @@
                 <div class="table-r2">订单号：35703505832085<span>下单日期：2014/12/12 13:34:25</span></div>
               </div>
 
-              <div class="table-c2 fl">
-                黄小牙
-              </div>
-              <div class="table-c3 fl">
-                ￥1280
-              </div>
-              <div class="table-c4 fl">
-                已发货
+              <div class="table-c2 fl">黄小牙</div>
+              <div class="table-c3 fl">￥1280</div>
+              <div class="table-c4 fl">已发货
                 <div class="table-1-logistics">
                   <div class="tooltip-pos">
                     <a href="">查看物流</a>
@@ -144,15 +124,9 @@
                 <div class="table-r2">订单号：35703505832085<span>下单日期：2014/12/12 13:34:25</span></div>
               </div>
 
-              <div class="table-c2 fl">
-                黄小牙
-              </div>
-              <div class="table-c3 fl">
-                ￥1280
-              </div>
-              <div class="table-c4 fl">
-                交易成功
-              </div>
+              <div class="table-c2 fl">黄小牙</div>
+              <div class="table-c3 fl">￥1280</div>
+              <div class="table-c4 fl">交易成功</div>
               <div class="table-c5 fl">
                 <a href="#" class="btn btn-add">查看订单</a>
                 <div class="tooltip-pos">
@@ -183,29 +157,15 @@
                 <div class="table-r2">订单号：35703505832085<span>下单日期：2014/12/12 13:34:25</span></div>
               </div>
 
-              <div class="table-c2 fl">
-                黄小牙
-              </div>
-              <div class="table-c3 fl">
-                ￥1280
-              </div>
-              <div class="table-c4 fl">
-                交易关闭
-              </div>
+              <div class="table-c2 fl">黄小牙</div>
+              <div class="table-c3 fl">￥1280</div>
+              <div class="table-c4 fl">交易关闭</div>
               <div class="table-c5 fl">
                 <a href="#" class="btn btn-add">查看订单</a>
               </div>
             </li>
           </ul>
-          <div class="page">
-            <a href=""><span class="icon icon16-7"></span></a>
-            <a class="active" href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href=""><span class="icon icon16-6"></span></a>
-          </div>
+          == Slim::Template.new('module/page.slim').render
       </div>
       <!--订单列表-->
 
