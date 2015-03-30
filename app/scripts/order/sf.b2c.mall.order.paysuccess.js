@@ -32,6 +32,8 @@ define('sf.b2c.mall.order.paysuccess', [
 
         that.options.isCostCoupon = false;
         that.options.isPresentCoupon = false;
+        that.options.isLuckyMoney = true;
+        that.options.isLuckyMoneyAndCoupon = false;
         that.options.links = SFConfig.setting.link;
 
         can.when(getOrder.sendRequest())
@@ -59,26 +61,21 @@ define('sf.b2c.mall.order.paysuccess', [
             console.error(error);
           })
           .always(function(){
+            that.options.isLuckyMoneyAndCoupon = that.options.isLuckyMoney && that.options.isPresentCoupon;
             var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
             that.element.html(html);
 
-            that.renderLunkyMoney("123123123");
+            if (that.options.isLuckyMoney) {
+              that.renderLuckyMoney("123123123");
+            }
           })
       },
 
-      renderLunkyMoney: function(lunkyMoneyCode) {
-        var params = {
-          appid: "wx90f1dcb866f3df60",
-          redirect_uri: "http://m.sfht.com",
-          response_type: "code",
-          scope: "snsapi_base",
-          state: lunkyMoneyCode
-        };
-
+      renderLuckyMoney: function(lunkyMoneyCode) {
         var qrParam = {
-          width: 200,
-          height: 200,
-          text: "https://open.weixin.qq.com/connect/oauth2/authorize?" + $.param(params) + "#wechat_redirect"
+          width: 140,
+          height: 140,
+          text: "http://m.sfht.com/luckymoneyshare.html?id=" + lunkyMoneyCode
         };
 
         $('#shareQrCode').qrcode(qrParam);
