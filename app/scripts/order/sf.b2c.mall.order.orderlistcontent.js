@@ -72,6 +72,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   order.orderStatus = that.statsMap[order.orderStatus];
                   order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
                   order.paymentAmount = order.totalPrice - order.discount;
+                  //卡券处理
+
+                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                    _.each(order.orderCouponItemList, function(coupon){
+                      if (coupon.couponType == "SHAREBAG") {
+                        order.isShareBag = true;
+                        order.shareBag = coupon;
+                      }
+                    });
+                  } else {
+                    order.isShareBag = false;
+                    /*
+                    order.isShareBag = true;
+                    order.shareBag = {
+                      activityId: 33
+                    };
+                    */
+                  }
                 }
               })
 
