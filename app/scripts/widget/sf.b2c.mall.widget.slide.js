@@ -93,16 +93,15 @@ define(
         clearInterval(this.options.silderTimer);
       },
 
-      template: function() {
-        return '{{#imgs}}' +
-          '<li><a href="###"></a></li>' +
-          '{{/imgs}}'
-      },
+      // template: function() {
+      //   return '{{#imgs}}' +
+      //     '<li><a href="###"></a></li>' +
+      //     '{{/imgs}}'
+      // },
 
       render: function() {
-        var template = can.view.mustache(this.template())
-        $('.slider-num').html(template(this.options));
-
+        // var template = can.view.mustache(this.template())
+        // $('.slider-num').html(template(this.options));
 
         this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
         this.element.hover(_.bind(this.hoverOver, this), _.bind(this.hoverOut, this));
