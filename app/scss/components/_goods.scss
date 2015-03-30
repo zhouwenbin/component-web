@@ -189,7 +189,7 @@
 	padding-top:30px;
 }
 .goods .goods-c2r2c2 .bds_weixin{
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 	width: 23px;
     height: 18px;
     background-position: -610px 0;
@@ -198,7 +198,7 @@
 	padding-left:0;
 }
 .goods .goods-c2r2c2 .bds_tsina{
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 	width: 21px;
     height: 16px;
     background-position: -670px 0;
