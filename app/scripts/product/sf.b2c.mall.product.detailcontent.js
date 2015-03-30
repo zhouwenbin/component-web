@@ -55,9 +55,18 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
-        //@todo 如果原价等于折扣价格，折扣价格不显示
-        'sf-is-originPrice':function(sellingPrice,originPrice,options) {
-          if (sellingPrice() == originPrice()) {
+        //如果售卖价格大于原价，则不显示原价
+        'sf-not-showOriginPrice': function(sellingPrice, originPrice, options) {
+          if (sellingPrice() >= originPrice()) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
+        //如果售卖价格大于原价，则不显示原价
+        'sf-is-showOriginPrice': function(sellingPrice, originPrice, options) {
+          if (sellingPrice() < originPrice()) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -631,16 +640,18 @@ define('sf.b2c.mall.product.detailcontent', [
 
       itemPriceTemplate: function() {
         return '<div class="goods-price-c1 fl">' +
-          // '{{#sf-is-originPrice  priceInfo.sellingPrice priceInfo.originPrice}}'+
-          //   '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-          //   '国内参考价：￥155</div>' +
-          // '{{else}}'+
-          //   '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-          //   '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
-          // '{{/}}'+
-          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-            '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥155</div>' +
+
+          '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
+            '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+            '国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+          '{{/sf-not-showOriginPrice}}'+
+
+          '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
+            '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+            '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+          '{{/sf-is-showOriginPrice}}'+
           '</div>' +
+
           '{{#sf-is-limitedTimeBuy priceInfo.time}}' +
           '<div class="goods-price-c2">' +
           '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +

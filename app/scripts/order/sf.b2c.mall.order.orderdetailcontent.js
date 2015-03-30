@@ -619,7 +619,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .done(function(data) {
 
             var message = new SFMessage(null, {
-              'okFunction': function(){that.render();}
+              'okFunction': function(){that.render();},
               'tip': '确认签收成功！',
               'type': 'success'
             });
