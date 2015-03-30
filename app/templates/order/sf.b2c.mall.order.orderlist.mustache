@@ -56,7 +56,9 @@
                 {{/if}}
               </div>
               <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}">
-                {{{optionHMTL}}}  {{{needUploadIDCardHTML}}}
+                {{{optionHMTL}}}
+                {{#isShareBag}}<a href="javascript:void(0);" data-url="http://m.sfht.com/luckymoneyshare.html?id={{shareBag.activityId}}" class="btn btn-add">分享红包</a>{{/isShareBag}}
+                {{{needUploadIDCardHTML}}}
               </div>
             </li>
             {{/each}}
