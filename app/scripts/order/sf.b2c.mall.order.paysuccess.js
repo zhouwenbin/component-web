@@ -86,7 +86,7 @@ define('sf.b2c.mall.order.paysuccess', [
             that.element.html(html);
 
             if (that.options.isShareBag) {
-              that.renderLuckyMoney(that.options.shareBag.activityId);
+              that.renderLuckyMoney(that.options.shareBag.code);
             }
           })
       },
