@@ -25,7 +25,7 @@ define(
 
         // 调用后台接口 仅为获得服务器时间
         var itemIds = [];
-        itemIds.push(1);
+        itemIds.push(-1);
 
         var getProductHotDataList = new SFGetProductHotDataList({
           itemIds: JSON.stringify(itemIds)
