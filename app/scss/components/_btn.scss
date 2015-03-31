@@ -25,7 +25,7 @@ button.btn{
 .btn-next{
 	width: 29px;
 	height: 55px;
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 	text-indent: -999em;
 	opacity: 0.4;
 

@@ -60,9 +60,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           "orderId": params.orderid
         });
 
-        var getRecvInfo = new SFGetRecvInfo({
-          "recId": params.recid
-        });
+        var getRecvInfo = new SFGetRecvInfo({"recId": params.recid});
 
         var getUserRoutes = new SFGetUserRoutes({
           'bizId': params.orderid
@@ -114,7 +112,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.showStep = true;
-            if (data.orderItem.orderStatus == 'AUTO_CANCEL' || data.orderItem.orderStatus == 'USER_CANCEL' || data.orderItem.orderStatus == 'OPERATION_CANCEL') {
+            if (data.orderItem.orderStatus == 'AUTO_CANCEL' || data.orderItem.orderStatus == 'USER_CANCEL' || data.orderItem.orderStatus == 'OPERATION_CANCEL'){
               that.options.showStep = false;
             }
 
@@ -186,7 +184,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             })
 
-            //加入订单状态
+            //加入路由
             _.each(that.options.traceList, function(trace) {
               if (trace.status != 'COMPLETED' && trace.status != 'AUTO_COMPLETED') {
                 that.options.userRoutes.push(trace);
@@ -199,10 +197,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             _.each(that.options.productList, function(item) {
               item.totalPrice = item.price * item.quantity;
-              if (typeof that.options.productList[0].spec !== "undefined") {
+              if(typeof that.options.productList[0].spec !== "undefined"){
                 item.spec = that.options.productList[0].spec.split(',').join("&nbsp;/&nbsp;");
               }
-              if (item.imageUrl == "" || item.imageUrl == null) {
+              if (item.imageUrl == "" || item.imageUrl == null){
                 item.imageUrl = "http://www.sfht.com/img/no.png";
               } else {
                 item.imageUrl = JSON.parse(item.imageUrl)[0];
@@ -216,12 +214,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             cancelArr.push('USER_CANCEL');
             cancelArr.push('OPERATION_CANCEL');
             //判断浏览器是否支持indexOf方法，如果不支持执行下面方法
-            if (!Array.prototype.indexOf) {
+            if(!Array.prototype.indexOf){
               Array.prototype.indexOf = function(obj, start) {
                 for (var i = (start || 0), j = this.length; i < j; i++) {
-                  if (this[i] === obj) {
-                    return i;
-                  }
+                  if (this[i] === obj) { return i; }
                 }
                 return -1;
               }
@@ -304,6 +300,21 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             $('#showUserRoutes').append(templates(that.options));
             console.error(error);
           })
+          .then(function() {
+            return getUserRoutes.sendRequest();
+          })
+          .done(function(routes) {
+            _.each(routes.value, function(route) {
+              if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF'){
+                that.options.userRoutes.push({
+                  "gmtHappened": route.eventTime,
+                  "description": (typeof reoute.position != 'undefined' ? reoute.position : "") + " " + reoute.remark,
+                  "operator": "系统"
+                });
+              }
+            })
+          })
+          .fail()
       },
 
       cardStatusMap: {
@@ -462,7 +473,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
         'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
         'COMPLETED': '您已确认收货，订单已完成',
-        'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
+        'AUTO_COMPLETED':'系统确认订单已签收超过7天，订单自动完成'
       },
 
 
@@ -536,7 +547,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           '网上订单已被打印，目前订单正在等待顺丰仓库人员进行出库处理。',
         'SHIPPED': '尊敬的客户，您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送。',
         'COMPLETED': '尊敬的客户，您的订单已经完成，感谢您在顺丰海淘购物。',
-        'AUTO_COMPLETED': '尊敬的用户，您的订单已经签收超过7天，已自动完成。期待您再次使用顺丰海淘'
+        'AUTO_COMPLETED':'尊敬的用户，您的订单已经签收超过7天，已自动完成。期待您再次使用顺丰海淘'
       },
 
       "#orderdetail-view click": function(element, event) {
@@ -608,6 +619,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .done(function(data) {
 
             var message = new SFMessage(null, {
+              'okFunction': function(){that.render();},
               'tip': '确认签收成功！',
               'type': 'success'
             });

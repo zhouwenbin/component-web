@@ -46,7 +46,7 @@
 	width:40px;
 	height:31px;
 	display: inline-block;
-	background:url(../img/order-success-icon.png) no-repeat;
+	background:url(#{$bg-url}order-success-icon.png) no-repeat;
 	margin-right:18px;
 	vertical-align:middle;
 }

@@ -3,25 +3,38 @@
   <p class="order-success-p1">感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></p>
   <div class="order-success-r1 clearfix pm">
 
-    {{#isLuckyMoneyAndCoupon}}
-      <div class="order-success-r1c1 fl">
-        <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
-        <a class="coupon" href="{{links.coupon}}">
-          <div class="coupon-r1">
-            <span>{{sf.price presentCoupon.price}}</span>元
-          </div>
-          <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
-        </a>
-      </div>
+    {{#isShareBagAndCoupon}}
+      {{#isPresentCoupon}}
+        <div class="order-success-r1c1 fl">
+          <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
+          <a class="coupon" href="{{links.coupon}}">
+            <div class="coupon-r1">
+              <span>{{sf.price presentCoupon.price}}</span>元
+            </div>
+            <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
+          </a>
+        </div>
+      {{/isPresentCoupon}}
+      {{#isGiftBag}}
+        <div class="order-success-r1c1 fl">
+          <p class="order-success-p2">恭喜你！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
+          <a class="coupon gift"  href="{{links.coupon}}">
+            <div class="coupon-r1">
+              <span>{{sf.price giftBag.price}}</span>元
+            </div>
+            <div class="coupon-r2">{{giftBag.couponDescription}}</div>
+          </a>
+        </div>
+      {{/isGiftBag}}
       <div class="order-success-r1c2">
         <div class="order-success-qrcode">
-          <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发200元红包</p>
+          <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发{{sf.price shareBag.price}}元红包</p>
             <div id="shareQrCode"></div>
           <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
         </div>
       </div>
-    {{/isLuckyMoneyAndCoupon}}
-    {{^isLuckyMoneyAndCoupon}}
+    {{/isShareBagAndCoupon}}
+    {{^isShareBagAndCoupon}}
       {{#isPresentCoupon}}
         <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
         <a class="coupon" href="{{links.coupon}}">
@@ -31,13 +44,22 @@
           <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
         </a>
       {{/isPresentCoupon}}
-      {{#isLuckyMoney}}
+      {{#isGiftBag}}
+        <p class="order-success-p2">恭喜你！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
+        <a class="coupon" href="{{links.coupon}}">
+          <div class="coupon-r1">
+            <span>{{sf.price giftBag.price}}</span>元
+          </div>
+          <div class="coupon-r2">{{giftBag.couponDescription}}</div>
+        </a>
+      {{/isGiftBag}}
+      {{#isShareBag}}
         <div class="order-success-qrcode">
-            <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发200元红包</p>
+            <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发{{sf.price shareBag.price}}元红包</p>
             <div id="shareQrCode"></div>
             <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
         </div>
-      {{/isLuckyMoney}}
-    {{/isLuckyMoneyAndCoupon}}
+      {{/isShareBag}}
+    {{/isShareBagAndCoupon}}
   </div>
 </div>

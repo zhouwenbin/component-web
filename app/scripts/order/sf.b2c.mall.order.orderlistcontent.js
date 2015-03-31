@@ -72,6 +72,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   order.orderStatus = that.statsMap[order.orderStatus];
                   order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
                   order.paymentAmount = order.totalPrice - order.discount;
+                  //卡券处理
+
+                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                    _.each(order.orderCouponItemList, function(coupon){
+                      if (coupon.couponType == "SHAREBAG") {
+                        order.isShareBag = true;
+                        order.shareBag = coupon;
+                      }
+                    });
+                  } else {
+                    order.isShareBag = false;
+                    /*
+                    order.isShareBag = true;
+                    order.shareBag = {
+                      activityId: 33
+                    };
+                    */
+                  }
                 }
               })
 
@@ -234,6 +252,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<ul>' +
           '{{#each userRoutes}}' +
           '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
+
           '{{/each}}' +
           '</ul>' +
           '<a id="find-more-info" href="#">查看全部</a>' +

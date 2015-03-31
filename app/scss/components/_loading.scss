@@ -15,7 +15,7 @@
   filter: alpha(opacity=30);
 }
 .icon-loading{
-  background:url(http://img.sfht.com/sfht/img/icon-loading.gif) no-repeat center;
+  background:url(#{$bg-url}icon-loading.gif) no-repeat center;
   width: 32px;
   height: 32px;
   position: absolute;
@@ -37,14 +37,14 @@
     position:absolute;
     width: 128px;
     height: 0px;
-    background:url(http://img.sfht.com/sfht/img/icon-loading1.png) no-repeat bottom;
+    background:url(#{$bg-url}icon-loading1.png) no-repeat bottom;
     bottom: 0;
  }
  .icon-loading2{
     position: absolute;
     width: 128px;
     height: 156px;
-    background:url(http://img.sfht.com/sfht/img/icon-loading2.png) no-repeat bottom;
+    background:url(#{$bg-url}icon-loading2.png) no-repeat bottom;
  }
 
  .loading{
@@ -56,9 +56,9 @@
   z-index: 999;
   margin-left: -33px;
   margin-top: -40px;
-  background: url(../img/loading.png) no-repeat;
-  background: url(../img/loading.gif) no-repeat\9;
-  background: url(../img/loading.gif) no-repeat\0;
+  background: url(#{$bg-url}loading.png) no-repeat;
+  background: url(#{$bg-url}loading.gif) no-repeat\9;
+  background: url(#{$bg-url}loading.gif) no-repeat\0;
   -webkit-animation:loading 1s steps(1) infinite;
   -moz-animation:loading 1s steps(1) infinite;
   -ms-animation:loading 1s steps(1) infinite;
@@ -66,7 +66,7 @@
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
    .loading{
-    background: url(../img/loading.png) no-repeat;
+    background: url(#{$bg-url}loading.png) no-repeat;
    }
 }
 @-webkit-keyframes loading{

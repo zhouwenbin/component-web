@@ -20,7 +20,7 @@ define('sf.b2c.mall.component.addreditor', [
       this.adapter = {};
       this.request();
       this.onSuccess = this.options.onSuccess;
-      this.from = this.options.from;     
+      this.from = this.options.from;
     },
 
     request: function() {
@@ -191,7 +191,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('cities', cities);
         this.adapter.addr.input.attr('cityName', cities[0].id);
       }
-      
+
     },
 
     changeRegion: function() {
@@ -204,7 +204,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('regions', regions);
         this.adapter.addr.input.attr('regionName', regions[0].id);
       }
-      
+
     },
 
     '#s2 change': function(element, event) {
@@ -240,7 +240,7 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      
+
       //@TODO 从cookie中获取嘿客穿越过来标示1_uinfo
       var heike_sign = $.cookie('1_uinfo');
       var arr = [];
@@ -282,7 +282,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess(data);        
+          that.onSuccess(data);
           return true;
         })
         .fail(function(error) {
@@ -305,7 +305,7 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      var updateReceiverInfo = new SFUpdateReceiverInfo(person);    
+      var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       var updateRecAddress = new SFUpdateRecAddress(addr);
       can.when(updateReceiverInfo.sendRequest(),updateRecAddress.sendRequest())
         .done(function(data,data1) {
@@ -314,10 +314,10 @@ define('sf.b2c.mall.component.addreditor', [
             'tip': '修改收货地址成功！',
             'type': 'success'
           });
-              
+
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-          
+
         })
         .fail(function(error) {});
     },

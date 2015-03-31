@@ -32,15 +32,15 @@ define('sf.b2c.mall.order.paysuccess', [
 
         that.options.isCostCoupon = false;
         that.options.isPresentCoupon = false;
-        that.options.isLuckyMoney = true;
-        that.options.isLuckyMoneyAndCoupon = false;
+        that.options.isGiftBag = false;
+        that.options.isShareBag = false;
+        that.options.isShareBagAndCoupon = false;
         that.options.links = SFConfig.setting.link;
 
-        can.when(getOrder.sendRequest())
+        getOrder.sendRequest()
           .done(function(data, idcard) {
-            //处理卡券信息
-            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
-              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
+            var couponTypeMap = {
+              "CASH" : function() {
                 switch (tmpOrderCouponItem.orderAction)
                 {
                   case "COST": {
@@ -54,6 +54,26 @@ define('sf.b2c.mall.order.paysuccess', [
                     break;
                   }
                 }
+              },
+              "GIFTBAG" : function() {
+                that.options.isGiftBag = true;
+                that.options.giftBag = tmpOrderCouponItem;
+              },
+              "SHAREBAG" : function() {
+                that.options.isShareBag = true;
+                that.options.shareBag = tmpOrderCouponItem;
+              }
+            }
+            var couponTypeHandle = function(tag) {
+              var fn = couponTypeMap[tag];
+              if (_.isFunction(fn)) {
+                return fn.call(this)
+              }
+            }
+            //处理卡券信息
+            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
+                couponTypeHandle(tmpOrderCouponItem.couponType);
               }
             }
           })
@@ -61,12 +81,12 @@ define('sf.b2c.mall.order.paysuccess', [
             console.error(error);
           })
           .always(function(){
-            that.options.isLuckyMoneyAndCoupon = that.options.isLuckyMoney && that.options.isPresentCoupon;
+            that.options.isShareBagAndCoupon = that.options.isShareBag && (that.options.isPresentCoupon || that.options.isGiftBag);
             var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
             that.element.html(html);
 
-            if (that.options.isLuckyMoney) {
-              that.renderLuckyMoney("123123123");
+            if (that.options.isShareBag) {
+              that.renderLuckyMoney(that.options.shareBag.activityId);
             }
           })
       },
