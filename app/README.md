@@ -1,6 +1,6 @@
 #目录结构
 
-可使用[Prepros](https://prepros.io/)自动化编译。
+可使用[Prepros](https://prepros.io/)自动化编译，修改图片线上地址在`utils/_variables.scss`配置。
 
 ##sass
 ###base 基础样式
