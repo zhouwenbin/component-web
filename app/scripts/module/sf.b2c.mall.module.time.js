@@ -2,13 +2,13 @@ define(
   'sf.b2c.mall.module.time', [
     'can',
     'jquery',
-    'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.widget.slide',
     'imglazyload',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, SFGetProductHotDataList, SFSlide, SFImglazyload, SFConfig, SFFrameworkComm) {
+  function(can, $, SFGetProductHotData, SFSlide, SFImglazyload, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -24,19 +24,16 @@ define(
         var that = this;
 
         // 调用后台接口 仅为获得服务器时间
-        var itemIds = [];
-        itemIds.push(-1);
-
-        var getProductHotDataList = new SFGetProductHotDataList({
-          itemIds: JSON.stringify(itemIds)
+        var getProductHotData = new SFGetProductHotData({
+          'itemId': -1
         });
 
-        getProductHotDataList
+        getProductHotData
           .sendRequest()
           .done(function(data) {
 
             // 获得服务器时间
-            var currentServerTime = getProductHotDataList.getServerTime();
+            var currentServerTime = getProductHotData.getServerTime();
 
             // 渲染倒计时
             that.rendTimeDistanceInfo(currentServerTime, element);
