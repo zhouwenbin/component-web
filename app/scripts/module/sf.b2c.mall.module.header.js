@@ -18,7 +18,7 @@ define(
 
       init: function(element, options) {
         var component = new SFHeader('.sf-b2c-mall-header');
-        $(this).render();
+        this.render();
       },
 
       render: function(element) {
