@@ -627,14 +627,6 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '</div>' +
 
-
-          '<div class="fr goods-c2r2c2">' +
-          '分享给朋友：<div class="bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1426841830399">' +
-          '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
-          '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
-          '</div>' +
-          '</div>' +
-
           '</div>';
       },
 
