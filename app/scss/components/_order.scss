@@ -183,7 +183,7 @@
 	display: none;
 }
 .order-r2 .btn-select{
-	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
+	background: url(#{$bg-url}btn-select1.png) repeat-x;
 }
 .order-r2 .btn-select-num{
 	height: 39px;
@@ -278,7 +278,4 @@
 	line-height: 39px;
 }
 
-.order-success{
-	padding-left: 118px;
-	padding-right: 118px;
-}
+@import '../components/order-success';

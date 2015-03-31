@@ -1,0 +1,19 @@
+$(function(){
+  $('.btn-send').click(function(){
+	  $('.dialog').animate({
+	    "left":"48%"
+	  },100)
+	  .animate({
+	    "left":"52%"
+	  },100)
+	  .animate({
+	    "left":"48%"
+	  },100)
+	  .animate({
+	    "left":"52%"
+	  },100)
+	  .animate({
+	    "left":"50%"
+	  },100);
+	})
+})

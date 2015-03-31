@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>登陆顺丰海淘</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../css/register.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  == Slim::Template.new('module/header.slim').render
+  <div class="pb">
+    == Slim::Template.new('module/slider.slim').render
+    <div class="pm">
+      <!--品牌特卖-->
+      == Slim::Template.new('module/brand.slim').render
+      <!--品牌特卖-->
+      <img src="../img/ad.png" alt="" />
+      <!--限时特卖-->
+      == Slim::Template.new('module/flashsale.slim').render
+      <!--限时特卖-->
+      <!--热卖商品-->
+      == Slim::Template.new('module/product.slim').render
+      <!--热卖商品-->
+      
+    </div>
+  </div>
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+
+  <!--登陆-->
+  == Slim::Template.new('module/login.slim').render
+  <!--登陆-->
+
+  </div>
+
+  <!--登陆-->
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

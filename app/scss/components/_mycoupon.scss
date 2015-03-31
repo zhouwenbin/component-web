@@ -1,5 +1,16 @@
+.mycoupon{
+	  background: #fff;
+  border-radius: 4px;
+  padding: 45px 37px 80px;
+  margin-top: 56px;
+  margin-bottom: 137px;
+  position: relative;
+}
 .mycoupon h2{
 	padding-left: 0;
+	font-size: 16px;
+    margin-bottom: 15px;
+    margin-top: 35px;
 }
 .mycoupon-h{
 	display: inline-block;
@@ -56,7 +67,7 @@ p.mycoupon-b{
 	margin-right: 20px;
 }
 .mycoupon-r1{
-	background: url(../img/coupon-r1.png) no-repeat;
+	background: url(#{$bg-url}coupon-r1.png) no-repeat;
 	width: 212px;
 	padding: 10px 30px;
 	color: #fff;
@@ -91,15 +102,15 @@ p.mycoupon-b{
 	background: #fff;
 }
 .mycoupon-b2 .mycoupon-r1{
-	background-image: url(../img/coupon-r1-2.png);
+	background-image: url(#{$bg-url}coupon-r1-2.png);
 	
 }
 
 .mycoupon-b3 .mycoupon-r1{
-	background-image: url(../img/coupon-r1-3.png);
+	background-image: url(#{$bg-url}coupon-r1-3.png);
 }
 .mycoupon-b4 .mycoupon-r1{
-	background-image: url(../img/coupon-r1-4.png);
+	background-image: url(#{$bg-url}coupon-r1-4.png);
 }
 .mycoupon-line3 .mycoupon-r1r1{
 	padding-bottom: 5px;

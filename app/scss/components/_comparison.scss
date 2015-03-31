@@ -1,0 +1,64 @@
+.comparison{
+	background:#f5f5f5;
+	padding:28px 40px;
+	text-align:left;
+	margin-top:32px;
+	margin-bottom:19px;
+}
+.comparison li{
+	font-size:14px;
+	line-height:40px;
+}
+.comparison h3{
+	padding-bottom:6px;
+	font-size:24px;
+}
+.comparison-c1{
+	padding-right:44px;
+	width:420px;
+	border-right:1px dotted #dcdcdc;
+}
+.comparison-c1 h3{
+	border-bottom:3px solid #dc3434;
+	
+	color:#dc3434;
+}
+.comparison-c2{
+	overflow:hidden;
+	padding-left:44px;
+}
+.comparison-c2 h3{
+	border-bottom:3px solid #333;
+}
+%comparison-icon{
+	background:url(#{$bg-url}comparison.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+}
+.comparison-icon1{
+	width:42px;
+	height:42px;
+	margin-right:7px;
+	@extend %comparison-icon;
+}
+.comparison-icon2{
+	width:41px;
+	height:41px;
+	margin-right:7px;
+	background-position:-45px 0;
+	@extend %comparison-icon;
+}
+.comparison-icon3{
+	width:6px;
+	height:6px;
+	background-position:-89px 0;
+	margin-right:10px;
+	@extend %comparison-icon;
+}
+.comparison-icon4{
+	width:6px;
+	height:6px;
+	background-position:-97px 0;
+	margin-right:10px;
+	@extend %comparison-icon;
+}

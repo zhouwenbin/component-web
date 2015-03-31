@@ -41,6 +41,7 @@ requirejs.config({
     'sf.b2c.mall.api.products.getCategories': 'scripts/api/sf.b2c.mall.api.products.getCategories',
     'sf.b2c.mall.api.products.search': 'scripts/api/sf.b2c.mall.api.products.search',
     'sf.b2c.mall.api.product.findRecommendProducts': 'scripts/api/sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.product.commitFeedback': 'scripts/api/sf.b2c.mall.api.product.commitFeedback',
 
     'sf.b2c.mall.api.user.appLogin': 'scripts/api/sf.b2c.mall.api.user.appLogin',
     'sf.b2c.mall.api.user.changePassword': 'scripts/api/sf.b2c.mall.api.user.changePassword',
@@ -91,13 +92,15 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'scripts/api/sf.b2c.mall.api.b2cmall.getItemSummary',
     'sf.b2c.mall.api.b2cmall.checkLogistics': 'scripts/api/sf.b2c.mall.api.b2cmall.checkLogistics',
+    'sf.b2c.mall.api.b2cmall.getHeaderConfig': 'scripts/api/sf.b2c.mall.api.b2cmall.getHeaderConfig',
 
+    'sf.b2c.mall.api.product.arrivalNotice': 'scripts/api/sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.coupon.getCpCode': 'scripts/api/sf.b2c.mall.api.coupon.getCpCode',
     'sf.b2c.mall.api.coupon.getUserCouponList': 'scripts/api/sf.b2c.mall.api.coupon.getUserCouponList',
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
-    'placeholders': 'bower_components/Placeholders/build/placeholders',
+    'placeholders': 'bower_components/Placeholders/dist/placeholders',
     'vendor.jquery.imagezoom': 'scripts/vendor/vendor.jquery.imagezoom.min',
     'vendor.jquery.jcountdown': 'scripts/vendor/vendor.jquery.jcountdown.min',
     'moment': 'bower_components/momentjs/min/moment.min',
@@ -107,6 +110,7 @@ requirejs.config({
     'sf.helpers': 'scripts/util/sf.helpers',
     'sf.util': 'scripts/util/sf.util.fn',
     'imglazyload': 'scripts/vendor/vendor.jquery.imglazyload',
+    'qrcode': 'scripts/vendor/vendor.jquery.qrcode',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -154,9 +158,7 @@ requirejs.config({
     'sf.b2c.mall.page.main': 'scripts/page/sf.b2c.mall.page.main',
     'sf.b2c.mall.page.preheat.register': 'scripts/page/sf.b2c.mall.page.preheat.register',
     'sf.b2c.mall.page.order': 'scripts/page/sf.b2c.mall.page.order',
-    'sf.b2c.mall.page.order2': 'scripts/page/sf.b2c.mall.page.order2',
     'sf.b2c.mall.page.gotopay': 'scripts/page/sf.b2c.mall.page.gotopay',
-    'sf.b2c.mall.page.gotopay2': 'scripts/page/sf.b2c.mall.page.gotopay2',
     'sf.b2c.mall.page.orderlist': 'scripts/page/sf.b2c.mall.page.orderlist',
     'sf.b2c.mall.page.orderdetail': 'scripts/page/sf.b2c.mall.page.orderdetail',
     'sf.b2c.mall.page.login': 'scripts/page/sf.b2c.mall.page.login',
@@ -178,6 +180,7 @@ requirejs.config({
     'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
+    'sf.b2c.mall.page.feedback': 'scripts/page/sf.b2c.mall.page.feedback',
 
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
@@ -186,7 +189,6 @@ requirejs.config({
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
     'sf.b2c.mall.order.iteminfo': 'scripts/order/sf.b2c.mall.order.iteminfo',
-    'sf.b2c.mall.order.iteminfo2': 'scripts/order/sf.b2c.mall.order.iteminfo2',
     'sf.b2c.mall.order.orderlistcontent': 'scripts/order/sf.b2c.mall.order.orderlistcontent',
     'sf.b2c.mall.order.orderdetailcontent': 'scripts/order/sf.b2c.mall.order.orderdetailcontent',
     'sf.b2c.mall.order.fn': 'scripts/order/sf.b2c.mall.order.fn',
@@ -194,8 +196,17 @@ requirejs.config({
     'sf.b2c.mall.widget.showArea':'scripts/widget/sf.b2c.mall.widget.showArea',
     'sf.b2c.mall.order.vendor.info': 'scripts/order/sf.b2c.mall.order.vendor.info',
 
+    'sf.b2c.mall.module.slider': 'scripts/module/sf.b2c.mall.module.slider',
+    'sf.b2c.mall.module.price': 'scripts/module/sf.b2c.mall.module.price',
+    'sf.b2c.mall.module.time': 'scripts/module/sf.b2c.mall.module.time',
+    'sf.b2c.mall.module.header': 'scripts/module/sf.b2c.mall.module.header',
+    'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
+
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
+    'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',
+    'template_header_info_step_pay': 'templates/header/sf.b2c.mall.header.info.step.pay.mustache',
+    'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache'
   }

@@ -27,11 +27,11 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
         'address': 'json',
         'items': 'json',
-        'couponCodes': 'string',
         'sysType': 'string',
       },
       OPTIONAL: {
         'userMsg': 'string',
+        'couponCodes': 'string',
         'sysInfo': 'string'
       },
       VERIFY:{
@@ -49,7 +49,7 @@ function($, can, _, Comm, SecurityType) {
         '4002600': '购买的商品不在配送范围内',
         '4002700': '购买的商品不是上架状态',
         '4100901': '优惠券使用失败！',
-        '4100902': '优惠券不在可使用的范围内！',
+        '4100902': '优惠券不在可使用的时间范围内！',
         '4100903': '优惠券不能在该渠道下使用！',
         '4100904': '优惠券不能在该终端下使用！',
         '4100905': '使用的优惠券不满足满减条件！',

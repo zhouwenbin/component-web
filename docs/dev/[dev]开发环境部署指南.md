@@ -37,3 +37,20 @@
     ```
 
 --------------
+
+
+详情页模板修改方法路径：
+
+1、进入到项目目录，并上传文件到跳板机：
+cd /Users/jiyanliang/haitao-b2c-front/b2cmall-web/src/main/resources/templates/detail
+scp detail.vm jiyanliang@115.28.235.112:/home/jiyanliang
+
+2、拷贝跳板机文件到200服务器：
+ssh jiyanliang@115.28.235.112
+scp detail.vm guankaiqiang@10.165.21.200:/home/guankaiqiang
+
+3、拷贝200服务器guankanqiang用户到admin用户指定目录（密码：gkq1234）：
+ssh guankaiqiang@10.165.21.200
+sudo cp detail.vm /home/admin/b2cmall-front/webapps/b2cmall/WEB-INF/classes/templates/detail
+
+

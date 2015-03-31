@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="orderList">
-  <div class="sf-b2c-mall-header"></div>
+  <!--# include file="/header/header.index.html" -->
 
   <div class="pb">
     <div class="pm">
@@ -38,8 +38,17 @@
   </div>
 
   <!--尾部-->
-  <div class="sf-b2c-mall-footer"></div>
+  <!--# include file="/footer/footer.index.html" -->
   <!--尾部-->
+</div>
+
+<div class="dialog dialog-center dialog-qrcode" role="dialog-qrcode">
+  <h2>分享红包</h2>
+  <a href="javascript:void(0);" class="btn btn-close">关闭</a>
+  <div class="dialog-b">
+    <div id="shareBagQrcode"></div>
+    <p>扫一扫分享散红包到微信</p>
+  </div>
 </div>
 
   <!-- build:js(.) scripts/require.min.js -->

@@ -3,6 +3,7 @@
 define('sf.b2c.mall.component.addreditor', [
   'can',
   'store',
+  'jquery.cookie',
   'sf.b2c.mall.adapter.regions',
   'sf.b2c.mall.api.user.createRecAddress',
   'sf.b2c.mall.api.user.createReceiverInfo',
@@ -12,14 +13,14 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.adapter.address.list'
 
-], function(can,store,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
+], function(can,store,$cookie,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
   return can.Control.extend({
 
     init: function() {
       this.adapter = {};
       this.request();
       this.onSuccess = this.options.onSuccess;
-      this.from = this.options.from;     
+      this.from = this.options.from;
     },
 
     request: function() {
@@ -190,7 +191,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('cities', cities);
         this.adapter.addr.input.attr('cityName', cities[0].id);
       }
-      
+
     },
 
     changeRegion: function() {
@@ -203,7 +204,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('regions', regions);
         this.adapter.addr.input.attr('regionName', regions[0].id);
       }
-      
+
     },
 
     '#s2 change': function(element, event) {
@@ -239,10 +240,15 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      
-      //@noto 业务代码发生变化，不再关注orgCode，只需要看saleid=heike_online
-      var cinfo = can.deparam(window.location.search.substr(1));
-      if (cinfo.saleid == 'heike_online') {
+
+      //@TODO 从cookie中获取嘿客穿越过来标示1_uinfo
+      var heike_sign = $.cookie('1_uinfo');
+      var arr = [];
+      if (heike_sign) {
+        arr = heike_sign.split(',');
+      }
+      //var cinfo = can.deparam(window.location.search.substr(1));
+      if (arr[2] == 'heike') {
         addr.partnerId = 'heike';
         person.partnerId = 'heike';
       }
@@ -255,7 +261,14 @@ define('sf.b2c.mall.component.addreditor', [
           recId = data.value;
         })
         .fail(function(error) {
-
+          if (error === 1000310) {
+            new SFMessage(null, {
+              "title": '顺丰海淘',
+              'tip': '您已添加20条收货地址信息，请返回修改！',
+              'type': 'error'
+            });
+          }
+          return false;
         })
         .then(function(){
           addr.recId = recId;
@@ -269,7 +282,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess(data);        
+          that.onSuccess(data);
           return true;
         })
         .fail(function(error) {
@@ -292,7 +305,7 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      var updateReceiverInfo = new SFUpdateReceiverInfo(person);    
+      var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       var updateRecAddress = new SFUpdateRecAddress(addr);
       can.when(updateReceiverInfo.sendRequest(),updateRecAddress.sendRequest())
         .done(function(data,data1) {
@@ -301,10 +314,10 @@ define('sf.b2c.mall.component.addreditor', [
             'tip': '修改收货地址成功！',
             'type': 'success'
           });
-              
+
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-          
+
         })
         .fail(function(error) {});
     },

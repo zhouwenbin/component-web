@@ -1,6 +1,5 @@
 .product{
 	overflow: hidden;
-	margin-bottom: 40px;
 }
 .product .mh{
 	line-height: 24px;
@@ -61,6 +60,10 @@
 	position: relative;
 	font-size: 0;
 }
+.product-r1 img{
+	max-width:240px;
+	max-height:240px;
+}
 .product-r1 a{
 	display: inline-block;
 	vertical-align: middle;
@@ -103,6 +106,7 @@
 .product-r2c1{
 	font-size: 14px;
 	color: #dc3334;
+	height:45px;
 }
 .product-r2c1 strong{
 	font-size: 24px;

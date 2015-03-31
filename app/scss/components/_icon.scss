@@ -2,20 +2,20 @@
 .icon{
 	display: inline-block;
 	vertical-align: middle;
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 }
 .icon1{
-	width: 51px;
-	height: 51px;
+	width: 53px;
+	height: 52px;
 }
 .icon2{
-	width: 51px;
-	height: 51px;
+	width: 53px;
+	height: 52px;
 	background-position: 0 -53px;
 }
 .icon3{
-	width: 52px;
-	height: 51px;
+	width: 53px;
+	height: 52px;
 	background-position: 0 -106px;
 }
 .icon4{
@@ -177,7 +177,27 @@
 	border-width: 5px 5px;
 	border-color: transparent transparent #e03d40 transparent;
 }
-
+.icon17{
+	width: 112px;
+	height: 0px;
+	padding-top: 10px;
+	overflow: hidden;
+	background-position: -379px -472px;
+}
+.icon18{
+	width: 89px;
+	height: 0px;
+	padding-top: 10px;
+	overflow: hidden;
+	background-position: -380px -498px;
+}
+.icon19{
+	width: 57px;
+	height: 0px;
+	padding-top: 12px;
+	overflow: hidden;
+	background-position: -380px -522px;
+}
 .icon20{
 	width: 102px;
 	height: 101px;
@@ -354,8 +374,8 @@
 }
 .icon51{
 	width: 112px;
-	height: 133px;
-	background-position: -585px -59px;
+	height: 137px;
+	background-position: -585px -61px;
 }
 
 .icon52{
@@ -399,19 +419,19 @@
 	width: 23px;
 	height: 18px;
 	background-position: -610px 0;
-	text-indent:-999px;
+	text-indent:-999em;
 }
 .icon60{
 	width: 18px;
 	height: 18px;
 	background-position: -644px 0;
-	text-indent:-999px;
+	text-indent:-999em;
 }
 .icon61{
 	width: 21px;
 	height: 16px;
 	background-position: -670px 0;
-	text-indent:-999px;
+	text-indent:-999em;
 }
 .icon62{
 	width: 16px;
@@ -423,4 +443,9 @@
 	height: 9px;
 	background-position: -132px -182px;
 	text-indent:-999em;
+}
+.icon64{
+	width: 53px;
+	height: 52px;
+	background-position: -158px -148px;
 }

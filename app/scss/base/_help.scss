@@ -23,3 +23,41 @@
 .show{
   display: block;
 }
+/*文字截断*/
+
+.ellipsis{
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+/*两端对齐*/
+.justify{
+  text-align: justify;
+  text-align-last: justify;
+  display: inline-block;
+  vertical-align: middle;
+  width: 4em;
+}
+.justify:after{
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 0;
+
+}
+/*图片垂直居中*/
+.vertical-middle{
+  font-size: 0;
+}
+.vertical-middle:after{
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+.vertical-middle img{
+  vertical-align: middle;
+}

@@ -16,6 +16,7 @@ define(
         this.data = {};
         this.data.type = this.options.type;
         this.data.tip = this.options.tip;
+        this.data.customizeClass = this.options.customizeClass;
         this.data.okFunction = typeof this.options.okFunction != 'undefined' ? this.options.okFunction : null;
         this.data.closeFunction = typeof this.options.closeFunction != 'undefined' ? this.options.closeFunction : null;
         this.data.buttons = this.buttonsMap[this.data.type];
@@ -32,7 +33,19 @@ define(
       buttonsMap: {
         'confirm': '<a href="javascript:void(0)" class="btn btn-send" id="ok">确定</a><a href="javascript:void(0)" class="btn btn-cancel" id="cancel">取消</a>',
         'error': '<a href="javascript:void(0)" class="btn btn-send" id="ok">确定</a>',
-        'success': '<a href="javascript:void(0)" class="btn btn-send" id="ok">确定</a>'
+        'success': '<a href="javascript:void(0)" class="btn btn-send" id="ok">确定</a>',
+        'input': '<a href="javascript:void(0)" class="btn btn-send" id="input">提交</a>'
+      },
+
+      '#input click': function() {
+        if (typeof this.data.okFunction != 'undefined' && this.data.okFunction != null){
+          var result = this.data.okFunction.apply(this);
+          if (result !== true) {
+            return false;
+          }
+        }
+        this.close();
+        return false;
       },
 
       '#close click': function() {

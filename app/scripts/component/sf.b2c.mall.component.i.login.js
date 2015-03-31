@@ -13,12 +13,12 @@ define(
     'sf.b2c.mall.api.user.webLogin',
     'sf.b2c.mall.api.user.needVfCode',
     'sf.util',
-    'sf.b2c.mall.widget.showArea',
     'sf.b2c.mall.api.user.reqLoginAuth',
-    'sf.b2c.mall.api.user.getRecAddressList'
+    'sf.b2c.mall.api.user.getRecAddressList',
+    'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFShowArea,SFReqLoginAuth,GetRecAddressList){
+  function($, can, md5, store, SFConfig, SFLogin,SFNeedVfCode, SFFn,SFReqLoginAuth,GetRecAddressList,RegionsAdapter){
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -50,12 +50,13 @@ define(
        * @description 初始化方法
        */
       init: function () {
+        this.adapter = {};
         this.component = {};
+        this.request();
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
 
         this.component.getRecAddressList = new GetRecAddressList();
-        this.component.showArea = new SFShowArea();
 
         var params = can.deparam(window.location.search.substr(1));
 
@@ -76,6 +77,18 @@ define(
         this.getVerifiedCode();
       },
 
+      request: function() {
+        var that = this;
+        return can.ajax('json/sf.b2c.mall.regions.json')
+          .done(_.bind(function(cities) {
+            this.adapter.regions = new RegionsAdapter({
+              cityList: cities
+            });
+          }, this))
+          .fail(function() {
+
+          });
+      },
       isPlaceholderSupport: function() {
         return 'placeholder' in document.createElement('input');
       },
@@ -342,9 +355,9 @@ define(
                   });
 
                   if(typeof defaultAdde.provinceName != 'undefined'){
-                    var provinceId = that.component.showArea.adapter.regions.getIdByName(defaultAdde.provinceName);
-                    var cityId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
-                    var regionId = that.component.showArea.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
+                    var provinceId = that.adapter.regions.getIdByName(defaultAdde.provinceName);
+                    var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, defaultAdde.cityName);
+                    var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, defaultAdde.regionName);
 
                     store.set('provinceId',provinceId);
                     store.set('cityId',cityId);
@@ -357,10 +370,13 @@ define(
                   window.location.href = params.from || 'index.html';
                   // }, 2000);
 
-
+                }else{
+                  // deparam过程 -- 从url中获取需要请求的sku参数
+                  var params = can.deparam(window.location.search.substr(1));
+                  // setTimeout(function () {
+                  window.location.href = params.from || 'index.html';
                 }
               }).fail(function(){
-
               })
 
             }

@@ -1,4 +1,5 @@
-﻿.feedback{
+﻿@import '../utils/variables';
+.feedback{
 	padding:53px 158px;
 	background:#fff;
 	margin:46px 0;
@@ -29,4 +30,7 @@
 }
 .feedback-r1{
 	margin-bottom:20px;
+}
+.feedback .justify{
+	width:4em;
 }

@@ -16,14 +16,24 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
+  'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
-  'text!template_header_channel_navigator'
-], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFModal, SFConfig, SFNotSupport, SFFn, template_header_user_navigator, template_header_info_common, template_header_channel_navigator) {
+  'text!template_header_channel_navigator',
+  'text!template_header_info_step_fillinfo',
+  'text!template_header_info_step_pay',
+  'text!template_header_info_step_success'
+], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+  template_header_user_navigator,
+  template_header_info_common,
+  template_header_channel_navigator,
+  template_header_info_step_fillinfo,
+  template_header_info_step_pay,
+  template_header_info_step_success) {
 
   var APPID = 1;
 
@@ -103,6 +113,13 @@ define('sf.b2c.mall.component.header', [
         }));
       }
 
+      var that = this;
+      this.data.bind("isUserLogin", function(ev, newVal, oldVal) {
+        if (newVal != oldVal) {
+          that.renderMap['template_header_user_navigator'].call(that, that.data, true);
+        };
+      });
+
       if (!this.element.hasClass('serverRendered')) {
         this.render(this.data);
       }
@@ -133,14 +150,14 @@ define('sf.b2c.mall.component.header', [
     },
 
     renderMap: {
-      'template_header_user_navigator': function (data) {
+      'template_header_user_navigator': function (data, isForce) {
         var renderFn = can.mustache(template_header_user_navigator);
         var html = renderFn(data);
 
         var $el = this.element.find('.header-user-navigator');
 
         // 如果用户登录一定进行强刷，如果服务端没有渲染都刷
-        if ($el && $el.length > 0 && (data.isUserLogin || !this.element.hasClass('serverRendered'))) {
+        if (isForce || ($el && $el.length > 0 && (data.isUserLogin || !this.element.hasClass('serverRendered')))) {
           $el.html(html);
         }
       },
@@ -155,7 +172,10 @@ define('sf.b2c.mall.component.header', [
         }
 
         var map = {
-          'template_header_info_common': template_header_info_common
+          'template_header_info_common': template_header_info_common,
+          'template_header_info_step_fillinfo': template_header_info_step_fillinfo,
+          'template_header_info_step_pay': template_header_info_step_pay,
+          'template_header_info_step_success': template_header_info_step_success
         }
 
         var renderFn = can.mustache(map[templateid]);
@@ -177,15 +197,52 @@ define('sf.b2c.mall.component.header', [
 
       this.renderMap['template_header_user_navigator'].call(this, data);
 
-      can.when(can.ajax('json/sf.b2c.mall.header.config.json'))
-        .done(function (config) {
-          _.each(config, function(value, key, list){
-            that.data.attr(key, value);
-          });
-        })
-        .fail(function (errorCode) {
+      var pathname = window.location.pathname;
 
-        });
+      // @note 只有在首页需要显示浮动导航栏
+      if (pathname == '/' || pathname == '/index.html') {
+        $(window).scroll(function(){
+            setTimeout(function() {
+              if($(window).scrollTop() > 166){
+                  $(".nav").addClass('nav-fixed');
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'0px',
+                    opacity:1
+                  },300);
+              }else{
+                  $(".nav-fixed .nav-inner").stop(true,false).animate({
+                    top:'-56px',
+                    opacity:1
+                  },300);
+                  $(".nav").removeClass('nav-fixed');
+              }
+
+            }, 200);
+        })
+        $('#js-focus')
+          .hover(function(){
+            $('.nav-qrcode').addClass('show');
+            return false;
+          })
+          .bind('mouseleave', function(){
+            $('.nav-qrcode').removeClass('show');
+            return false;
+          })
+      };
+
+      // @note 通过服务端进行渲染，暂时这里不做动作
+      // SFGetHeaderConfig
+      //   .sendRequest()
+      //   .done(function(config){
+      //     _.each(config, function(value, key, list){
+      //       that.data.attr(key, value);
+      //     });
+
+      //     // 暂时不做修改
+      //   })
+      //   .fail(function (errorCode) {
+
+      //   })
     },
 
     /**
@@ -220,6 +277,16 @@ define('sf.b2c.mall.component.header', [
     },
 
     '#user-center click': function($element, event) {
+      event && event.preventDefault();
+
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = SFConfig.setting.link.center;
+      } else {
+        this.showLogin('center');
+      }
+    },
+
+    '#user-name click': function () {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
@@ -315,8 +382,13 @@ define('sf.b2c.mall.component.header', [
 
     showLogin: function(dest) {
 
-      //给微信登录使用(！！！位置不能移)
+      // 给微信登录使用(！！！位置不能移)
       store.set("weixinto", dest);
+
+      // 如果没有指定去哪个页面，则使用当前页面 （因为微信要转跳后关闭后去到指定页面，所以这里必须要设定）
+      if (typeof dest == "undefined") {
+        store.set("weixinto", window.location.href);
+      }
 
       if (SFFn.isMobile.any()) {
         return window.location.href = SFConfig.setting.link.ilogin;
@@ -343,9 +415,9 @@ define('sf.b2c.mall.component.header', [
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
-          if (!that.component.modal.isClosed()) {
+          // if (!that.component.modal.isClosed()) {
             that.component.modal.hide();
-          }
+          // }
 
           if (that.afterLoginDest) {
             var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
@@ -361,10 +433,16 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname',arr[0]);
 
+          // that.renderMap['template_header_user_navigator'].call(that, that.data);
+
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname',null);
+
+          // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
+
+
         // that.watchLoginState.call(that);
       }, 500);
       // }
