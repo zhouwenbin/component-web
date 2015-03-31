@@ -1,66 +1,64 @@
 <div class="table table-1">
-          <div class="table-h clearfix">
-            <div class="table-c1 fl">
-              订单信息
-            </div>
-            <div class="table-c2 fl">
-              收货人
-            </div>
-            <div class="table-c3 fl">
-              订单金额
-            </div>
-            <div class="table-c4 fl">
-              订单状态
-            </div>
-            <div class="table-c5 fl">
-              操作
+  <div class="table-h clearfix">
+    <div class="table-c1 fl">
+      订单信息
+    </div>
+    <div class="table-c2 fl">
+      收货人
+    </div>
+    <div class="table-c3 fl">
+      订单金额
+    </div>
+    <div class="table-c4 fl">
+      订单状态
+    </div>
+    <div class="table-c5 fl">
+      操作
+    </div>
+  </div>
+  <ul class="table-b">
+    {{#each orderlist}}
+    <li class="clearfix">
+      <div class="table-c1 fl">
+        <div class="table-r1 clearfix">
+          <div class="table-img fl">
+            <img src="{{sf.img imageUrl}}" alt="" /><span></span>
+          </div>
+          <div class="table-text">
+            <h3>{{goodsName}}</h3>
+            <p>{{{spec}}}</p>
+          </div>
+        </div>
+        <div class="table-r2">订单号：{{orderId}}<span>下单日期：{{sf.time gmtCreate}}</span></div>
+      </div>
+
+      <div class="table-c2 fl">
+        {{orderAddressItem.receiveName}}
+      </div>
+      <div class="table-c3 fl">
+        ￥{{sf.price paymentAmount}}
+      </div>
+      <div class="table-c4 fl">
+        {{orderStatus}}
+        {{#if showRouter}}
+        <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+          <div class="tooltip-pos">
+            <a class="find-route-list" href="javascript:void(0);">查看物流</a>
+            <div class="tooltip-outer">
+              <div class="tooltip" id="traceList">
+                努力加载中
+              </div>
             </div>
           </div>
-          <ul class="table-b">
-            {{#each orderlist}}
-            <li class="clearfix">
-              <div class="table-c1 fl">
-                <div class="table-r1 clearfix">
-                  <div class="table-img fl">
-                    <img src="{{sf.img imageUrl}}" alt="" /><span></span>
-                  </div>
-                  <div class="table-text">
-                    <h3>{{goodsName}}</h3>
-                    <p>{{{spec}}}</p>
-                  </div>
-                </div>
-                <div class="table-r2">订单号：{{orderId}}<span>下单日期：{{sf.time gmtCreate}}</span></div>
-              </div>
-
-              <div class="table-c2 fl">
-                {{orderAddressItem.receiveName}}
-              </div>
-              <div class="table-c3 fl">
-                ￥{{sf.price paymentAmount}}
-              </div>
-              <div class="table-c4 fl">
-                {{orderStatus}}
-                {{#if showRouter}}
-                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
-                  <div class="tooltip-pos">
-                    <a class="find-route-list" href="javascript:void(0);">查看物流</a>
-                    <div class="tooltip-outer">
-                      <div class="tooltip" id="traceList">
-                        努力加载中
-                      </div>
-                    </div>
-                  </div>
-
-
-                </div>
-                {{/if}}
-              </div>
-              <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}">
-                {{{optionHMTL}}}
-                {{#isShareBag}}<a href="javascript:void(0);" data-url="http://m.sfht.com/luckymoneyshare.html?id={{shareBag.activityId}}" class="btn btn-add">分享红包</a>{{/isShareBag}}
-                {{{needUploadIDCardHTML}}}
-              </div>
-            </li>
-            {{/each}}
-          </ul>
         </div>
+        {{/if}}
+      </div>
+      <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}">
+        {{{optionHMTL}}}
+        {{#isShareBag}}<a role="shareBagLink" href="javascript:void(0);" data-url="http://m.sfht.com/luckymoneyshare.html?id={{shareBag.code}}" class="btn btn-add">分享红包</a>{{/isShareBag}}
+        {{{needUploadIDCardHTML}}}
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
