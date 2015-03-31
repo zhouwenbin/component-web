@@ -635,7 +635,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
             '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-            '国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+            '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}'+
 
           '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
