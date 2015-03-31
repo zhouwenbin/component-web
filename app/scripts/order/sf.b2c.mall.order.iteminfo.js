@@ -59,9 +59,11 @@ define('sf.b2c.mall.order.iteminfo', [
             showTax: iteminfo.bonded,    //是否是宁波保税，是得话才展示税额
             itemName: iteminfo.title,
             picUrl: iteminfo.image ? iteminfo.image.thumbImgUrl : "",
-
+            skuId: iteminfo.skuId
           });
-
+          //@note 如果channels(渠道编号) = 'heike',
+          //cookie中1_uinfo中没有heike，则该用户不能购买
+          that.options.productChannels = iteminfo.channels[0];
           if(typeof iteminfo.specs != "undefined"){
             var result = new Array();
             _.each(iteminfo.specs,function(item){
@@ -88,7 +90,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "amount": options.amount,
             "totalPrice": productHotData.sellingPrice * options.amount,
             "allTotalPrice": productHotData.sellingPrice * options.amount,
-            "shouldPay": productHotData.sellingPrice * options.amount,
+            "shouldPay": productHotData.sellingPrice * options.amount
           });
           options.allTotalPrice = that.itemObj.allTotalPrice;
           options.sellingPrice = productHotData.sellingPrice;
@@ -108,7 +110,8 @@ define('sf.b2c.mall.order.iteminfo', [
         "items": JSON.stringify([{
           "itemId": options.itemid,
           "num": options.amount,
-          "price": this.itemObj.singlePrice
+          "price": this.itemObj.singlePrice,
+          skuId: this.itemObj.skuId
         }]),
         'system': that.getSysType(that.options.saleid)
       });

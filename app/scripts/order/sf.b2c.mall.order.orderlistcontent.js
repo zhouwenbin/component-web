@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.orderlistcontent', [
     'can',
+    'qrcode',
     'sf.b2c.mall.api.order.getOrderList',
     'sf.b2c.mall.adapter.pagination',
     'sf.b2c.mall.widget.pagination',
@@ -14,7 +15,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
@@ -469,6 +470,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
         });
 
         return false;
+      },
+      "[role=shareBagLink] click": function(element, event) {
+        $("[role=dialog-qrcode]").before("<div class='mask show' />");
+        var url = $(element).data("url");
+        this.renderLuckyMoney(url);
+        $("[role=dialog-qrcode]").addClass("show");
+        $(".btn-close").off("click").on("click", function() {
+          $("[role=dialog-qrcode]").removeClass("show");
+        })
+      },
+      renderLuckyMoney: function(url) {
+        var qrParam = {
+          width: 140,
+          height: 140,
+          text: url
+        };
+
+        $('#shareBagQrcode').html("").qrcode(qrParam);
       },
 
       cancelOrder: function(element) {
