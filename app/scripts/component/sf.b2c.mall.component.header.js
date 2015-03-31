@@ -286,7 +286,7 @@ define('sf.b2c.mall.component.header', [
       }
     },
 
-    '#user-name click': function () {
+    '#user-name click': function ($element, event) {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
