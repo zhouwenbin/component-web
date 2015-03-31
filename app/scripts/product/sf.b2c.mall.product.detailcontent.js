@@ -528,6 +528,15 @@ define('sf.b2c.mall.product.detailcontent', [
                 return false;
               }
 
+              var currentStock = that.options.detailContentInfo.priceInfo.currentStock;
+              if (currentStock > 0 && amount > currentStock) {
+                var message = new SFMessage(null, {
+                  'tip': '商品库存仅剩' + currentStock + '件！',
+                  'type': 'error'
+                });
+                return false;
+              }
+
               var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
                 "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
                 "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
