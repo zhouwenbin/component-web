@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.coupon.getShareBagInfo
+  * @class sf.b2c.mall.api.coupon.receiveExCode
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.coupon.getShareBagInfo',
+'sf.b2c.mall.api.coupon.receiveExCode',
 [
   'jquery',
   'can',
@@ -22,17 +22,19 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'coupon.getShareBagInfo',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'coupon.receiveExCode',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'shareBagId': 'long'
+        'exCode': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '11000130': '卡包不存在'
+        '11000160': '优惠码不存在',
+        '11000170': '优惠码已使用',
+        '11000200': '优惠码已过期'
       }
     }
   });
