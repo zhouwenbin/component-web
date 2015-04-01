@@ -9,17 +9,20 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.order.queryOrderCoupon',
+  'sf.b2c.mall.api.coupon.receiveExCode',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(can, store,$cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store,$cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   var arr = [];
   return can.Control.extend({
-    itemObj: new can.Map({}),
+    itemObj: new can.Map({
+      isShowCouponArea: false
+    }),
     /**
      * 初始化
      * @param  {DOM} element 容器element
@@ -39,6 +42,9 @@ define('sf.b2c.mall.order.iteminfo', [
       that.options.itemid = params.itemid;
       that.options.saleid = arr[2];
       that.options.amount = params.amount;
+      that.itemObj.itemid = params.itemid;
+      that.itemObj.saleid = arr[2];
+      that.itemObj.amount = params.amount;
       that.itemObj.links = SFConfig.setting.link;
 
       can.when(that.initItemSummary(options), that.initProductHotData(options))
@@ -50,6 +56,7 @@ define('sf.b2c.mall.order.iteminfo', [
           that.element.html(html);
           // that.options.productChannels = 'heike';
           // arr[2] ='undefined';
+          //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
           if (that.options.productChannels == 'heike' && arr[2] =='undefined') {
             $('#submitOrder').addClass('disable');
           };
@@ -118,9 +125,9 @@ define('sf.b2c.mall.order.iteminfo', [
     initCoupons: function(options) {
       var that = this;
       var queryOrderCoupon = new SFQueryOrderCoupon({
-        "items": JSON.stringify([{
-          "itemId": options.itemid,
-          "num": options.amount,
+          "items": JSON.stringify([{
+          "itemId": this.itemObj.itemid,
+          "num": this.itemObj.amount,
           "price": this.itemObj.singlePrice,
           skuId: this.itemObj.skuId
         }]),
@@ -133,7 +140,8 @@ define('sf.b2c.mall.order.iteminfo', [
             isHaveAvaliable: orderCoupon.avaliableAmount != 0,
             isHaveDisable: orderCoupon.disableAmount != 0,
             useQuantity: 0,
-            discountPrice: 0
+            discountPrice: 0,
+            couponExCode: ""
           });
           that.itemObj.attr("orderCoupon", orderCoupon);
           that.itemObj.orderCoupon.selectCoupons = [];
@@ -210,10 +218,19 @@ define('sf.b2c.mall.order.iteminfo', [
       element.addClass("disable");
 
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-
+      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(selectAddr.detail));
+      var isReceiverName =  /先生|女士|小姐/.test($.trim(selectAddr.recName));
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
           'tip': '请选择收货地址！',
+          'type': 'error'
+        });
+
+        element.removeClass("disable");
+        return false;
+      }else if (!isDetail || isReceiverName) {
+        new SFMessage(null, {
+          'tip': '请您输入真实姓名。感谢您的配合!',
           'type': 'error'
         });
 
@@ -345,10 +362,39 @@ define('sf.b2c.mall.order.iteminfo', [
       $(".coupon2-r2.hide").show();
     },
     '#useCouponCodeBtn click': function(targetElement) {
-      new SFMessage(null, {
-        'tip': '请输入有效的兑换码！',
-        'type': 'error'
+      if (targetElement.hasClass("disable")) return;
+      targetElement.addClass("disable");
+      var that = this;
+      var exCode = that.itemObj.orderCoupon.couponExCode;
+      var receiveExCode = new SFReceiveExCode({
+        exCode: exCode
       });
+      receiveExCode.sendRequest()
+        .done(function(userCouponInfo) {
+          can.when(that.initCoupons())
+            .then(function() {
+              $(".coupon2-b1 [data-code=" + exCode + "]").trigger("click");
+              new SFMessage(null, {
+                'tip': '兑换成功！',
+                'type': 'success'
+              });
+            });
+        })
+        .fail(function(error){
+          var errorMap = {
+            11000160: "请输入有效的兑换码",
+            11000170: "兑换码已使用",
+            11000200: "兑换码已过期"
+          }
+          new SFMessage(null, {
+            'tip': errorMap[error] ? errorMap[error] : '请输入有效的兑换码！',
+            'type': 'error'
+          });
+        })
+        .always(function() {
+          targetElement.removeClass("disable");
+        });
+
     }
   });
 })
