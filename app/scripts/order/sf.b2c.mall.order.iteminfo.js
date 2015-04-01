@@ -8,6 +8,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.order.queryOrderCoupon',
+  'sf.b2c.mall.api.coupon.receiveExCode',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
@@ -17,7 +18,9 @@ define('sf.b2c.mall.order.iteminfo', [
 ], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
-    itemObj: new can.Map({}),
+    itemObj: new can.Map({
+      isShowCouponArea: false
+    }),
     /**
      * 初始化
      * @param  {DOM} element 容器element
@@ -32,6 +35,9 @@ define('sf.b2c.mall.order.iteminfo', [
       that.options.itemid = params.itemid;
       that.options.saleid = params.saleid;
       that.options.amount = params.amount;
+      that.itemObj.itemid = params.itemid;
+      that.itemObj.saleid = arr[2];
+      that.itemObj.amount = params.amount;
       that.itemObj.links = SFConfig.setting.link;
 
       can.when(that.initItemSummary(options), that.initProductHotData(options))
@@ -107,9 +113,9 @@ define('sf.b2c.mall.order.iteminfo', [
     initCoupons: function(options) {
       var that = this;
       var queryOrderCoupon = new SFQueryOrderCoupon({
-        "items": JSON.stringify([{
-          "itemId": options.itemid,
-          "num": options.amount,
+          "items": JSON.stringify([{
+          "itemId": this.itemObj.itemid,
+          "num": this.itemObj.amount,
           "price": this.itemObj.singlePrice,
           skuId: this.itemObj.skuId
         }]),
@@ -122,7 +128,8 @@ define('sf.b2c.mall.order.iteminfo', [
             isHaveAvaliable: orderCoupon.avaliableAmount != 0,
             isHaveDisable: orderCoupon.disableAmount != 0,
             useQuantity: 0,
-            discountPrice: 0
+            discountPrice: 0,
+            couponExCode: ""
           });
           that.itemObj.attr("orderCoupon", orderCoupon);
           that.itemObj.orderCoupon.selectCoupons = [];
@@ -334,10 +341,39 @@ define('sf.b2c.mall.order.iteminfo', [
       $(".coupon2-r2.hide").show();
     },
     '#useCouponCodeBtn click': function(targetElement) {
-      new SFMessage(null, {
-        'tip': '请输入有效的兑换码！',
-        'type': 'error'
+      if (targetElement.hasClass("disable")) return;
+      targetElement.addClass("disable");
+      var that = this;
+      var exCode = that.itemObj.orderCoupon.couponExCode;
+      var receiveExCode = new SFReceiveExCode({
+        exCode: exCode
       });
+      receiveExCode.sendRequest()
+        .done(function(userCouponInfo) {
+          can.when(that.initCoupons())
+            .then(function() {
+              $(".coupon2-b1 [data-code=" + exCode + "]").trigger("click");
+              new SFMessage(null, {
+                'tip': '兑换成功！',
+                'type': 'success'
+              });
+            });
+        })
+        .fail(function(error){
+          var errorMap = {
+            11000160: "请输入有效的兑换码",
+            11000170: "兑换码已使用",
+            11000200: "兑换码已过期"
+          }
+          new SFMessage(null, {
+            'tip': errorMap[error] ? errorMap[error] : '请输入有效的兑换码！',
+            'type': 'error'
+          });
+        })
+        .always(function() {
+          targetElement.removeClass("disable");
+        });
+
     }
   });
 })
