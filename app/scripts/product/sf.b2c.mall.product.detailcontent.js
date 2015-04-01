@@ -31,7 +31,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'sf-is-limitedTimeBuy': function(time, options) {
-          if (typeof time() != 'undefined' ) {
+          if (typeof time() != 'undefined') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -528,6 +528,15 @@ define('sf.b2c.mall.product.detailcontent', [
                 return false;
               }
 
+              var currentStock = that.options.detailContentInfo.priceInfo.currentStock;
+              if (currentStock > 0 && amount > currentStock) {
+                var message = new SFMessage(null, {
+                  'tip': '商品库存仅剩' + currentStock + '件！',
+                  'type': 'error'
+                });
+                return false;
+              }
+
               var gotoUrl = 'http://www.sfht.com/order.html' + '?' + $.param({
                 "itemid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid'),
                 "saleid": $('.sf-b2c-mall-detail-content').eq(0).attr('data-saleid'),
@@ -549,6 +558,15 @@ define('sf.b2c.mall.product.detailcontent', [
             that.options.detailContentInfo.input.attr("buyNum", 1);
             var message = new SFMessage(null, {
               'tip': '请输入正确的购买数量！',
+              'type': 'error'
+            });
+            return false;
+          }
+
+          var currentStock = that.options.detailContentInfo.priceInfo.currentStock;
+          if (currentStock > 0 && amount > currentStock) {
+            var message = new SFMessage(null, {
+              'tip': '商品库存仅剩' + currentStock + '件！',
               'type': 'error'
             });
             return false;
@@ -627,29 +645,21 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '</div>' +
 
-
-          '<div class="fr goods-c2r2c2">' +
-          '分享给朋友：<div class="bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1426841830399">' +
-          '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
-          '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
-          '</div>' +
-          '</div>' +
-
           '</div>';
       },
 
       itemPriceTemplate: function() {
         return '<div class="goods-price-c1 fl">' +
 
-          '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
-            '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-            '国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
-          '{{/sf-not-showOriginPrice}}'+
+          '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
+          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+          '{{/sf-not-showOriginPrice}}' +
 
-          '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}'+
-            '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
-            '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
-          '{{/sf-is-showOriginPrice}}'+
+          '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
+          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r2">顺淘原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+          '{{/sf-is-showOriginPrice}}' +
           '</div>' +
 
           '{{#sf-is-limitedTimeBuy priceInfo.time}}' +
