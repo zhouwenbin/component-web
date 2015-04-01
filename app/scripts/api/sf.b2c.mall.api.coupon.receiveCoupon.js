@@ -26,7 +26,7 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'type': 'string',
-        'cpId': 'long',
+        'bagId': 'long',
         'receiveChannel': 'string',
         'receiveWay': 'string',
       },
@@ -37,6 +37,12 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '11000020': '卡券id不存在',
+        '11000030': '卡券已作废',
+        '11000050': '卡券已领完',
+        '11000100': '用户已领过该券',
+        '11000130': '卡包不存在',
+        '11000140': '卡包已作废'
       }
     }
   });
