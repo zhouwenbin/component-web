@@ -211,10 +211,19 @@ define('sf.b2c.mall.order.iteminfo', [
       element.addClass("disable");
 
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
-
+      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(selectAddr.detail));
+      var isReceiverName =  /先生|女士|小姐/.test($.trim(selectAddr.recName));
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
           'tip': '请选择收货地址！',
+          'type': 'error'
+        });
+
+        element.removeClass("disable");
+        return false;
+      }else if (!isDetail || isReceiverName) {
+        new SFMessage(null, {
+          'tip': '请您输入真实姓名。感谢您的配合!',
           'type': 'error'
         });
 
