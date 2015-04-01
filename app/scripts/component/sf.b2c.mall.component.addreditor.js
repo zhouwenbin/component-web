@@ -384,8 +384,8 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      // 详细收货地址5~120字符之间(中文)
-      var isDetail = /^[\u4e00-\u9fa5\d|\w#。，-]+$/.test($.trim(addr.detail));
+      // 详细收货地址5~120字符之间(中文，数字，英文字符和# - ，。)
+      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(addr.detail));
       if (addr.detail.length > 60 || addr.detail.length < 5 || !isDetail) {
         this.adapter.addr.attr("error", {
           "detail": '请输入正确地址信息!'
