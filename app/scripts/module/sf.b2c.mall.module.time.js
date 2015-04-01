@@ -4,18 +4,16 @@ define(
     'jquery',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.widget.slide',
-    'imglazyload',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, SFGetProductHotData, SFSlide, SFImglazyload, SFConfig, SFFrameworkComm) {
+  function(can, $, SFGetProductHotData, SFSlide, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
     var time = can.Control.extend({
 
       init: function(element, options) {
-        $(".img-lazyload").imglazyload();
         this.render(element);
       },
 
