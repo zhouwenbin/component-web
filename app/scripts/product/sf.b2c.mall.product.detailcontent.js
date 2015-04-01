@@ -1018,7 +1018,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderBreadScrumbInfo: function() {
         var template = can.view.mustache(this.breadScrumbTemplate());
-        $('.sf-b2c-mall-product-breadcrumb').html(template(this.options.detailContentInfo));
+        $('.sf-b2c-mall-product-breadcrumb-title').html(template(this.options.detailContentInfo));
       },
 
       /**
@@ -1064,9 +1064,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       breadScrumbTemplate: function() {
-        return '<div class="crumbs">' +
-          '<a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>{{itemInfo.basicInfo.title}}' +
-          '</div>'
+        return '{{itemInfo.basicInfo.title}}'
       },
 
       /**
