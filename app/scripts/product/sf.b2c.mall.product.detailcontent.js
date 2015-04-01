@@ -253,6 +253,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       recommendProductsTemplate: function() {
         return '{{#if hasData}}' +
+          '<div class="recommend">' +
           '<h2>相关商品</h2>' +
           '<ul class="clearfix" id = "recommendProdList">' +
           '{{#each value}}' +
@@ -265,6 +266,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</li>' +
           '{{/each}}' +
           '</ul>' +
+          '</div>' +
           '{{/if}}';
       },
 
