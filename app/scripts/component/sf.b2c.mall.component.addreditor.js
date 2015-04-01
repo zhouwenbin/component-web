@@ -384,8 +384,9 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      // 详细收货地址5~120字符之间
-      if (addr.detail.length > 60 || addr.detail.length < 5) {
+      // 详细收货地址5~120字符之间(中文，数字，英文字符和# - ，。)
+      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(addr.detail));
+      if (addr.detail.length > 60 || addr.detail.length < 5 || !isDetail) {
         this.adapter.addr.attr("error", {
           "detail": '请输入正确地址信息!'
         })
@@ -401,11 +402,12 @@ define('sf.b2c.mall.component.addreditor', [
         $('#receiverNameError').show();
         return false;
       }
-      //检测收货人姓名是否是中文
+      //@noto 收货人姓名必须是中文和英文，且不能存在先生，小姐，女士等字符
       var testRecName = /^[\u4e00-\u9fa5]{0,10}$/.test($.trim(addr.receiverName));
-      if (testRecName) {} else {
+      var isReceiverName =  /先生|女士|小姐/.test($.trim(addr.receiverName));
+      if (testRecName && !isReceiverName) {} else {
         this.adapter.addr.attr("error", {
-          "receiver": '请输入正确收货人姓名!'
+          "receiver": '由于海关发货需要实名制的信息，请您输入真实姓名。感谢您的配合!'
         })
         $('#receiverNameError').show();
         return false;

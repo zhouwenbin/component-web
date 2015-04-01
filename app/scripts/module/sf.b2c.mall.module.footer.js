@@ -24,7 +24,7 @@ define(
       render: function(element) {
         //----------回到顶部-------------//
         $(window).scroll(function(){
-          if($(window).scrollTop() > 600){
+          if($(window).scrollTop() > window.innerHeight){
             $(".btn-top").fadeIn(500);
           }else{
             $(".btn-top").fadeOut(500);

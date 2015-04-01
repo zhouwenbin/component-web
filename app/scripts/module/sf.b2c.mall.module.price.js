@@ -4,18 +4,16 @@ define(
     'underscore',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
     'sf.b2c.mall.business.config',
-    'imglazyload',
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, SFGetProductHotDataList, SFConfig, SFImglazyload, SFFrameworkComm) {
+  function(can, _, SFGetProductHotDataList, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
     var price = can.Control.extend({
 
       init: function(element, options) {
-        $(".img-lazyload").imglazyload();
         this.render(element);
       },
 
@@ -90,7 +88,7 @@ define(
 
         // 做售空处理
         if (value.soldOut) {
-          element.find('.cms-fill-gotobuy').addClass('disabled').text('已经抢光');
+          element.find('.cms-fill-gotobuy').addClass('disable').text('已经抢光');
           element.find('.product-r1').append('<div class="mask show"></div>');
           element.find('.product-r1').append('<span class="icon icon24"></span>');
         }
