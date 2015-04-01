@@ -90,7 +90,7 @@ define(
 
         // 做售空处理
         if (value.soldOut) {
-          element.find('.cms-fill-gotobuy').addClass('disabled').text('已经抢光');
+          element.find('.cms-fill-gotobuy').addClass('disable').text('已经抢光');
           element.find('.product-r1').append('<div class="mask show"></div>');
           element.find('.product-r1').append('<span class="icon icon24"></span>');
         }
