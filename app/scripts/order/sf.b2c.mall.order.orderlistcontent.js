@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.orderlistcontent', [
     'can',
+    'qrcode',
     'sf.b2c.mall.api.order.getOrderList',
     'sf.b2c.mall.adapter.pagination',
     'sf.b2c.mall.widget.pagination',
@@ -14,7 +15,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
@@ -36,7 +37,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var routeParams = can.route.attr();
         if (!routeParams.page) {
-          routeParams = _.extend(routeParams, {page: 1});
+          routeParams = _.extend(routeParams, {
+            page: 1
+          });
         }
 
         var params = {
@@ -59,12 +62,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
               _.each(that.options.orderlist, function(order) {
                 if (typeof order.orderGoodsItemList[0] !== 'undefined') {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl){
+                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
                     order.imageUrl = "http://www.sfht.com/img/no.png";
                   } else {
                     order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
                   }
-                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined' ) {
+                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
                     order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
                   }
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
@@ -72,6 +75,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   order.orderStatus = that.statsMap[order.orderStatus];
                   order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
                   order.paymentAmount = order.totalPrice - order.discount;
+                  //卡券处理
+
+                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                    _.each(order.orderCouponItemList, function(coupon) {
+                      if (coupon.couponType == "SHAREBAG") {
+                        order.isShareBag = true;
+                        order.shareBag = coupon;
+                      }
+                    });
+                  } else {
+                    order.isShareBag = false;
+                    /*
+                    order.isShareBag = true;
+                    order.shareBag = {
+                      activityId: 33
+                    };
+                    */
+                  }
                 }
               })
 
@@ -184,27 +205,27 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getUserRoutes
           .sendRequest()
           .done(function(data) {
-              if (data.value) {
+            if (data.value) {
 
-                that.options.userRoutes = data.value;
+              that.options.userRoutes = data.value;
 
-                var result = {};
-                result.userRoutes = [];
+              var result = {};
+              result.userRoutes = [];
 
-                _.each(that.options.userRoutes, function (item) {
-                  if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF') {
-                    result.userRoutes.push(item);
-                  }
-                });
-
-                var len = result.userRoutes.length;
-                if(len <= 5){
-                  result.userRoutes = result.userRoutes.reverse();
-                }else{
-                  result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
+              _.each(that.options.userRoutes, function(item) {
+                if (typeof item.carrierCode != 'undefined' && item.carrierCode == 'SF') {
+                  result.userRoutes.push(item);
                 }
-                var template = can.view.mustache(that.getTraceListTemplate());
-                $(element).siblings('.tooltip-outer').children('#traceList').html(template(result));
+              });
+
+              var len = result.userRoutes.length;
+              if (len <= 5) {
+                result.userRoutes = result.userRoutes.reverse();
+              } else {
+                result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
+              }
+              var template = can.view.mustache(that.getTraceListTemplate());
+              $(element).siblings('.tooltip-outer').children('#traceList').html(template(result));
             }
           })
           .fail(function(error) {
@@ -234,6 +255,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<ul>' +
           '{{#each userRoutes}}' +
           '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
+
           '{{/each}}' +
           '</ul>' +
           '<a id="find-more-info" href="#">查看全部</a>' +
@@ -351,26 +373,25 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
-        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid +"&otherlink=1", "_blank");
+        window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid + "&otherlink=1", "_blank");
 
 
 
-
-//        var callback = {
-//          error: function() {
-//            var message = new SFMessage(null, {
-//              'tip': '支付失败！',
-//              'type': 'error',
-//              'okFunction': function() {
-//                that.render();
-//              }
-//            });
-//          }
-//        }
-//
-//        SFOrderFn.payV2({
-//          orderid: orderId
-//        }, callback);
+        //        var callback = {
+        //          error: function() {
+        //            var message = new SFMessage(null, {
+        //              'tip': '支付失败！',
+        //              'type': 'error',
+        //              'okFunction': function() {
+        //                that.render();
+        //              }
+        //            });
+        //          }
+        //        }
+        //
+        //        SFOrderFn.payV2({
+        //          orderid: orderId
+        //        }, callback);
 
         // var requestPayV2 = new SFRequestPayV2({
         //   "orderId": orderId,
@@ -421,9 +442,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
 
         var params = can.deparam(window.location.search.substr(1));
-        if (params.app == 'pad') {
+        //@note 从cookie中获取嘿客穿越过来标示
+        var heike_sign = $.cookie('1_uinfo');
+        if (heike_sign) {
+          arr = heike_sign.split(',');
+        }
+        if (arr[2] == 'heike') {
           window.location.href = "/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid;
-        }else{
+        } else {
           window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
         }
       },
@@ -451,6 +477,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
         });
 
         return false;
+      },
+      "[role=shareBagLink] click": function(element, event) {
+        $("[role=dialog-qrcode]").before("<div class='mask show' />");
+        var url = $(element).data("url");
+        this.renderLuckyMoney(url);
+        $("[role=dialog-qrcode]").addClass("show");
+        $(".btn-close").off("click").on("click", function() {
+          $("[role=dialog-qrcode]").removeClass("show");
+        })
+      },
+      renderLuckyMoney: function(url) {
+        var qrParam = {
+          width: 140,
+          height: 140,
+          text: url
+        };
+
+        $('#shareBagQrcode').html("").qrcode(qrParam);
       },
 
       cancelOrder: function(element) {

@@ -20,7 +20,7 @@ define('sf.b2c.mall.component.addreditor', [
       this.adapter = {};
       this.request();
       this.onSuccess = this.options.onSuccess;
-      this.from = this.options.from;     
+      this.from = this.options.from;
     },
 
     request: function() {
@@ -191,7 +191,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('cities', cities);
         this.adapter.addr.input.attr('cityName', cities[0].id);
       }
-      
+
     },
 
     changeRegion: function() {
@@ -204,7 +204,7 @@ define('sf.b2c.mall.component.addreditor', [
         this.adapter.addr.place.attr('regions', regions);
         this.adapter.addr.input.attr('regionName', regions[0].id);
       }
-      
+
     },
 
     '#s2 change': function(element, event) {
@@ -240,7 +240,7 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      
+
       //@TODO 从cookie中获取嘿客穿越过来标示1_uinfo
       var heike_sign = $.cookie('1_uinfo');
       var arr = [];
@@ -282,7 +282,7 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess(data);        
+          that.onSuccess(data);
           return true;
         })
         .fail(function(error) {
@@ -305,7 +305,7 @@ define('sf.b2c.mall.component.addreditor', [
         type: "ID",
         credtNum: addr.receiverId
       };
-      var updateReceiverInfo = new SFUpdateReceiverInfo(person);    
+      var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       var updateRecAddress = new SFUpdateRecAddress(addr);
       can.when(updateReceiverInfo.sendRequest(),updateRecAddress.sendRequest())
         .done(function(data,data1) {
@@ -314,10 +314,10 @@ define('sf.b2c.mall.component.addreditor', [
             'tip': '修改收货地址成功！',
             'type': 'success'
           });
-              
+
           that.hide();
           that.onSuccess({value: window.parseInt(addr.addrId)});
-          
+
         })
         .fail(function(error) {});
     },
@@ -384,8 +384,9 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      // 详细收货地址5~120字符之间
-      if (addr.detail.length > 60 || addr.detail.length < 5) {
+      // 详细收货地址5~120字符之间(中文，数字，英文字符和# - ，。)
+      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(addr.detail));
+      if (addr.detail.length > 60 || addr.detail.length < 5 || !isDetail) {
         this.adapter.addr.attr("error", {
           "detail": '请输入正确地址信息!'
         })
@@ -401,11 +402,12 @@ define('sf.b2c.mall.component.addreditor', [
         $('#receiverNameError').show();
         return false;
       }
-      //检测收货人姓名是否是中文
+      //@noto 收货人姓名必须是中文和英文，且不能存在先生，小姐，女士等字符
       var testRecName = /^[\u4e00-\u9fa5]{0,10}$/.test($.trim(addr.receiverName));
-      if (testRecName) {} else {
+      var isReceiverName =  /先生|女士|小姐/.test($.trim(addr.receiverName));
+      if (testRecName && !isReceiverName) {} else {
         this.adapter.addr.attr("error", {
-          "receiver": '请输入正确收货人姓名!'
+          "receiver": '由于海关发货需要实名制的信息，请您输入真实姓名。感谢您的配合!'
         })
         $('#receiverNameError').show();
         return false;

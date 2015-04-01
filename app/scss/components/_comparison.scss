@@ -31,7 +31,7 @@
 	border-bottom:3px solid #333;
 }
 %comparison-icon{
-	background:url(../img/comparison.png) no-repeat;
+	background:url(#{$bg-url}comparison.png) no-repeat;
 	display: inline-block;
 	vertical-align:middle;
 }

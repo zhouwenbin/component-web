@@ -2,7 +2,7 @@
 .icon{
 	display: inline-block;
 	vertical-align: middle;
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 }
 .icon1{
 	width: 53px;

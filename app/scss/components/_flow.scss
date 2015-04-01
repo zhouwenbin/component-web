@@ -38,7 +38,7 @@
 	z-index:1;
 }
 %flow-icon{
-	background:url(../img/flow.png) no-repeat;
+	background:url(#{$bg-url}flow.png) no-repeat;
 	display: inline-block;
 	vertical-align:middle;
 }
@@ -80,7 +80,7 @@
 .flow-r1{
 	height:104px;
 	text-align:center;
-	background:url(../img/flow-r1.png) no-repeat center top;
+	background:url(#{$bg-url}flow-r1.png) no-repeat center top;
 }
 .flow-r1:after{
 	content:'';

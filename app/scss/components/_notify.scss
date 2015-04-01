@@ -1,5 +1,5 @@
 .notify{
-	background:#faf6f3 url(../img/notify.png) no-repeat;
+	background:#faf6f3 url(#{$bg-url}notify.png) no-repeat;
 	padding:26px 40px;
 }
 .notify h3{
@@ -24,7 +24,7 @@
 	list-style:inherit;
 }
 .notify-icon{
-	background:url(../img/notify-icon.png) no-repeat;
+	background:url(#{$bg-url}notify-icon.png) no-repeat;
 	width:20px;
 	height:20px;
 	display: inline-block;

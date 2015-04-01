@@ -23,7 +23,7 @@
 	font-weight:normal;
 }
 %footer1-icon{
-	background:url(../img/footer1-icon.png) no-repeat;
+	background:url(#{$bg-url}footer1-icon.png) no-repeat;
 	vertical-align:middle;
 	height:83px;
 }
@@ -47,7 +47,7 @@
 	background-position:-929px 0;
 }
 .footer1-line{
-	background:url(../img/footer1-line.png) no-repeat;
+	background:url(#{$bg-url}footer1-line.png) no-repeat;
 	width:65px;
 	height:3px;
 	position:absolute;

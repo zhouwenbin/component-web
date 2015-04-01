@@ -9,7 +9,7 @@ button.btn{
 }
 .btn-top{
 	padding: 18px 21px;
-	background: #fff;
+	background: rgba(255,255,255,0.5);
 	border: 1px solid #eee;
 	position: fixed;
 	bottom: 100px;
@@ -25,7 +25,7 @@ button.btn{
 .btn-next{
 	width: 29px;
 	height: 55px;
-	background: url(../img/icon.png) no-repeat;
+	background: url(#{$bg-url}icon.png) no-repeat;
 	text-indent: -999em;
 	opacity: 0.4;
 
@@ -77,6 +77,10 @@ button.btn{
 	line-height:40px;
 	color:#dc3334;
 }
+.btn-buy.soon{
+	background:#ff9000;
+	border:1px solid #ff9000;
+}
 .btn-close{
 	width: 16px;
 	height: 0;
@@ -99,7 +103,9 @@ button.btn{
 
 .btn-goods,
 .btn-brand{
-	padding:3px 6px;
+	padding:0 6px;
+	height:28px;
+	line-height:28px;
 	border: 1px solid #BDBDBD;
 	color: #272541;
 	background: #fff;
@@ -122,12 +128,13 @@ button.btn{
 }
 .btn-goods .icon{
 	position: absolute;
-	left: 0;
+	right: 0;
 	bottom: 0;
 	display: none;
 }
 .btn-goods.active{
 	border-color: #dc3334;
+	box-shadow:0 0 0 1px #dc3334;
 }
 .btn-goods.active .icon{
 	display: block;
@@ -144,18 +151,19 @@ button.btn{
 	background: #686675;
 }
 .btn-num{
-	width: 79px;
-	height: 19px;
-	line-height: 19px;
+	height: 32px;
+	line-height: 32px;
 	border:1px solid #C6C6C6;
 	overflow: hidden;
 	background: #fff;
 	text-align: center;
 }
 .btn-num a{
-	width: 14px;
+	width: 32px;
 	display: inline-block;
 	vertical-align: middle;
+	font-size:20px;
+	color:#999;
 }
 .btn-num a.disable{
 	color: #ccc;
@@ -171,8 +179,8 @@ button.btn{
 }
 .btn-num input{
 	width: 49px;
-	height: 19px;
-	line-height: 19px;
+	height: 32px;
+	line-height: 32px;
 	border: none;
 	text-align: center;
 }
