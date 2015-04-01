@@ -9,7 +9,7 @@ button.btn{
 }
 .btn-top{
 	padding: 18px 21px;
-	background: #fff;
+	background: rgba(255,255,255,0.5);
 	border: 1px solid #eee;
 	position: fixed;
 	bottom: 100px;
@@ -76,6 +76,10 @@ button.btn{
 	height:40px;
 	line-height:40px;
 	color:#dc3334;
+}
+.btn-buy.soon{
+	background:#ff9000;
+	border:1px solid #ff9000;
 }
 .btn-close{
 	width: 16px;

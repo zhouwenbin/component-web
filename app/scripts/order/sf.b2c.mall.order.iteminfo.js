@@ -56,6 +56,7 @@ define('sf.b2c.mall.order.iteminfo', [
           that.element.html(html);
           // that.options.productChannels = 'heike';
           // arr[2] ='undefined';
+          //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
           if (that.options.productChannels == 'heike' && arr[2] =='undefined') {
             $('#submitOrder').addClass('disable');
           };

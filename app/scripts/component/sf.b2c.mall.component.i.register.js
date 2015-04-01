@@ -398,8 +398,9 @@ define(
         this.data.attr('verifiedCodeUrl', verifiedCodeUrl);
       },
 
-      '#verified-code-btn click': function () {
-        this.getVerifiedCode()
+      '#verified-code-btn click': function ($element, event) {
+        event && event.preventDefault();
+        this.getVerifiedCode();
       },
 
       '#input-mail-code focus': function ($element, event) {

@@ -394,7 +394,8 @@ define(
         this.data.attr('verifiedCodeUrl', verifiedCodeUrl);
       },
 
-      '#verified-code-btn click': function () {
+      '#verified-code-btn click': function ($element, event) {
+        event && event.preventDefault();
         this.getVerifiedCode()
       },
 

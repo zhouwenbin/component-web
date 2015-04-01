@@ -205,6 +205,7 @@ requirejs.config({
     'sf.b2c.mall.module.time': 'scripts/module/sf.b2c.mall.module.time',
     'sf.b2c.mall.module.header': 'scripts/module/sf.b2c.mall.module.header',
     'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
+    'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
