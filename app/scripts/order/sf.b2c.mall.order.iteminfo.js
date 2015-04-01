@@ -16,7 +16,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(can, store,$cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store, $cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   var arr = [];
   return can.Control.extend({
@@ -48,7 +48,7 @@ define('sf.b2c.mall.order.iteminfo', [
       that.itemObj.links = SFConfig.setting.link;
 
       can.when(that.initItemSummary(options), that.initProductHotData(options))
-        .then(function(){
+        .then(function() {
           return that.initCoupons(options);
         })
         .always(function() {
@@ -57,11 +57,11 @@ define('sf.b2c.mall.order.iteminfo', [
           // that.options.productChannels = 'heike';
           // arr[2] ='undefined';
           //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
-          if (that.options.productChannels == 'heike' && arr[2] =='undefined') {
+          if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
             $('#submitOrder').addClass('disable');
           };
         })
-        .fail(function (error) {
+        .fail(function(error) {
           console.error(error);
         })
     },
@@ -74,7 +74,7 @@ define('sf.b2c.mall.order.iteminfo', [
       return getItemSummary.sendRequest()
         .done(function(iteminfo) {
           that.itemObj.attr({
-            showTax: iteminfo.bonded,    //是否是宁波保税，是得话才展示税额
+            showTax: iteminfo.bonded, //是否是宁波保税，是得话才展示税额
             itemName: iteminfo.title,
             picUrl: iteminfo.image ? iteminfo.image.thumbImgUrl : "",
             skuId: iteminfo.skuId
@@ -82,15 +82,15 @@ define('sf.b2c.mall.order.iteminfo', [
           //@note 如果channels(渠道编号) = 'heike',
           //cookie中1_uinfo中没有heike，则该用户不能购买
           that.options.productChannels = iteminfo.channels[0];
-          if(typeof iteminfo.specs != "undefined"){
+          if (typeof iteminfo.specs != "undefined") {
             var result = new Array();
-            _.each(iteminfo.specs,function(item){
-              result.push(item.specName + ":" +item.spec.specValue);
+            _.each(iteminfo.specs, function(item) {
+              result.push(item.specName + ":" + item.spec.specValue);
             });
             that.itemObj.attr("spec", result.join('&nbsp;/&nbsp;'));
           }
         })
-        .fail(function (error) {
+        .fail(function(error) {
           console.error(error);
         })
     },
@@ -113,7 +113,7 @@ define('sf.b2c.mall.order.iteminfo', [
           options.allTotalPrice = that.itemObj.allTotalPrice;
           options.sellingPrice = productHotData.sellingPrice;
         })
-        .fail(function (error) {
+        .fail(function(error) {
           console.error(error);
         })
     },
@@ -125,7 +125,7 @@ define('sf.b2c.mall.order.iteminfo', [
     initCoupons: function(options) {
       var that = this;
       var queryOrderCoupon = new SFQueryOrderCoupon({
-          "items": JSON.stringify([{
+        "items": JSON.stringify([{
           "itemId": this.itemObj.itemid,
           "num": this.itemObj.amount,
           "price": this.itemObj.singlePrice,
@@ -150,7 +150,7 @@ define('sf.b2c.mall.order.iteminfo', [
             that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
           });
         })
-        .fail(function (error) {
+        .fail(function(error) {
           console.error(error);
         });
       return queryOrderCouponDefer;
@@ -184,7 +184,7 @@ define('sf.b2c.mall.order.iteminfo', [
       "4100906": "使用的优惠券金额超过商品总金额的30%"
     },
 
-    getSysType: function (saleid) {
+    getSysType: function(saleid) {
       var defaultKey = 'b2c';
       var mapKey = {
         'heike': 'HEIKE_ONLINE'
@@ -195,14 +195,14 @@ define('sf.b2c.mall.order.iteminfo', [
     getCouponCodes: function() {
       var selectedCoupon = $(".js-coupon .radio.active");
       var codes = [];
-      for(var i = 0, tmpSelectedCoupon; tmpSelectedCoupon = selectedCoupon[i]; i++) {
+      for (var i = 0, tmpSelectedCoupon; tmpSelectedCoupon = selectedCoupon[i]; i++) {
         tmpSelectedCoupon = $(tmpSelectedCoupon);
         codes.push($(tmpSelectedCoupon).data("code"));
       }
       return JSON.stringify(codes);
     },
 
-    getSysInfo: function () {
+    getSysInfo: function() {
       var mapKey = {
         'heike': this.options.vendorinfo.get
       }
@@ -211,7 +211,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
 
       //防止重复提交
-      if (element.hasClass("disable")){
+      if (element.hasClass("disable")) {
         return false;
       }
       $('#errorTips').addClass('visuallyhidden');
@@ -219,7 +219,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
       var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(selectAddr.detail));
-      var isReceiverName =  /先生|女士|小姐/.test($.trim(selectAddr.recName));
+      var isReceiverName = /先生|女士|小姐/.test($.trim(selectAddr.recName));
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
           'tip': '请选择收货地址！',
@@ -228,9 +228,17 @@ define('sf.b2c.mall.order.iteminfo', [
 
         element.removeClass("disable");
         return false;
-      }else if (!isDetail || isReceiverName) {
+      } else if (isReceiverName) {
         new SFMessage(null, {
           'tip': '请您输入真实姓名。感谢您的配合!',
+          'type': 'error'
+        });
+
+        element.removeClass("disable");
+        return false;
+      } else if (!isDetail) {
+        new SFMessage(null, {
+          'tip': '请您输入正确的收货地址!',
           'type': 'error'
         });
 
@@ -307,9 +315,9 @@ define('sf.b2c.mall.order.iteminfo', [
           var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
           var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
 
-          store.set('provinceId',provinceId);
-          store.set('cityId',cityId);
-          store.set('regionId',regionId);
+          store.set('provinceId', provinceId);
+          store.set('cityId', cityId);
+          store.set('regionId', regionId);
 
           window.location.href = 'gotopay.html?' +
             $.param({
@@ -327,7 +335,7 @@ define('sf.b2c.mall.order.iteminfo', [
     },
 
     //优惠券功能交互
-    '.mycoupon-h li click': function(targetElement){
+    '.mycoupon-h li click': function(targetElement) {
       var index = $('.mycoupon-h li').index(targetElement);
       $('.mycoupon-h li').removeClass('active');
       $(targetElement).addClass('active');
@@ -335,16 +343,16 @@ define('sf.b2c.mall.order.iteminfo', [
       $('.coupon2-b').eq(index).addClass('active');
       return false;
     },
-    '.coupon2-btn click': function(targetElement){
+    '.coupon2-btn click': function(targetElement) {
       $('.js-coupon').toggleClass("hide");
-      if($('.js-coupon').hasClass('hide')){
+      if ($('.js-coupon').hasClass('hide')) {
         $(targetElement).text('+');
-      }else{
+      } else {
         $(targetElement).text('-');
       }
       return false;
     },
-    '.coupon2 .radio click': function(targetElement){
+    '.coupon2 .radio click': function(targetElement) {
       if ($(targetElement).hasClass("active")) {
         $(targetElement).removeClass('active');
         this.itemObj.attr("orderCoupon.useQuantity", 0);
@@ -380,7 +388,7 @@ define('sf.b2c.mall.order.iteminfo', [
               });
             });
         })
-        .fail(function(error){
+        .fail(function(error) {
           var errorMap = {
             11000160: "请输入有效的兑换码",
             11000170: "兑换码已使用",
