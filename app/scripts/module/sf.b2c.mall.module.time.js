@@ -4,18 +4,16 @@ define(
     'jquery',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.widget.slide',
-    'imglazyload',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
-  function(can, $, SFGetProductHotData, SFSlide, SFImglazyload, SFConfig, SFFrameworkComm) {
+  function(can, $, SFGetProductHotData, SFSlide, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
     var time = can.Control.extend({
 
       init: function(element, options) {
-        $(".img-lazyload").imglazyload();
         this.render(element);
       },
 
@@ -64,7 +62,7 @@ define(
             var endTime = $(timeNode).attr('data-cms-endtime');
             var startTime = $(timeNode).attr('data-cms-starttime');
 
-            var time = that.setCountDown($(timeNode).find(".cms-fill-timeinfo")[0], distance, startTime, endTime);
+            var time = that.setCountDown($(timeNode).find(".cms-fill-gotobuy"), $(timeNode).find(".cms-fill-timeinfo")[0], distance, startTime, endTime);
           })
         }, '1000');
       },
@@ -75,15 +73,17 @@ define(
        * @param  {[type]} destTime
        * @return {[type]}
        */
-      setCountDown: function(timeNode, distance, startTime, endDate) {
+      setCountDown: function(buyButton, timeNode, distance, startTime, endDate) {
 
         var leftTime = endDate - new Date().getTime() - distance;
         var startLeftTime = startTime - new Date().getTime() - distance;
 
         // 3天内显示倒计时，3天外显示即将开始 其他显示活动结束
         if (startLeftTime > 259200000) {
+          buyButton.addClass('disable').text('尚未开始');
           timeNode.innerHTML = '<span class="icon icon56"></span>活动即将开始';
         } else if (startLeftTime > 0 && startLeftTime < 259200000) {
+          buyButton.addClass('disable').text('尚未开始');
           var leftsecond = parseInt(startLeftTime / 1000);
           var day1 = Math.floor(leftsecond / (60 * 60 * 24));
           var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);

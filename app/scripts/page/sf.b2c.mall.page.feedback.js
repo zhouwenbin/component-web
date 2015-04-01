@@ -127,7 +127,7 @@ define(
           .sendRequest()
           .done(function(data) {
             new SFMessage(null, {
-              'tip': '感谢您的反馈！',
+              'tip': '提交成功，感谢您的反馈！',
               'type': 'success',
               'okFunction': _.bind(function(){
                 window.location.href = "http://www.sfht.com/index.html";
