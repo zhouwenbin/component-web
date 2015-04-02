@@ -71,16 +71,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         can.when(getOrder.sendRequest(), getRecvInfo.sendRequest())
           .done(function(data, idcard) {
-
-            that.options.orderId = data.orderId;
-            that.options.recId = data.orderItem.rcvrId;
-            that.options.discount = data.orderItem.discount || 0;
-            that.options.isCostCoupon = false;
-            that.options.isPresentCoupon = false;
-
-            //处理卡券信息
-            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
-              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
+            var couponTypeMap = {
+              "CASH" : function() {
                 switch (tmpOrderCouponItem.orderAction)
                 {
                   case "COST": {
@@ -94,6 +86,34 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                     break;
                   }
                 }
+              },
+              "GIFTBAG" : function() {
+                that.options.isGiftBag = true;
+                that.options.giftBag = tmpOrderCouponItem;
+              },
+              "SHAREBAG" : function() {
+                that.options.isShareBag = true;
+                that.options.shareBag = tmpOrderCouponItem;
+              }
+            }
+            var couponTypeHandle = function(tag) {
+              var fn = couponTypeMap[tag];
+              if (_.isFunction(fn)) {
+                return fn.call(this)
+              }
+            }
+            that.options.orderId = data.orderId;
+            that.options.recId = data.orderItem.rcvrId;
+            that.options.discount = data.orderItem.discount || 0;
+            that.options.isCostCoupon = false;
+            that.options.isPresentCoupon = false;
+            that.options.isGiftBag = false;
+            that.options.isShareBag = false;
+
+            //处理卡券信息
+            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
+              for(var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
+                couponTypeHandle(tmpOrderCouponItem.couponType);
               }
             }
 
