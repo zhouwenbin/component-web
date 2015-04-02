@@ -1,8 +1,9 @@
 <div class="order-success">
   <h2><span class="order-success-icon"></span>订单支付成功</h2>
   <p class="order-success-p1">感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></p>
-  <div class="order-success-r1 clearfix pm">
 
+  {{#isShowGift}}
+  <div class="order-success-r1 clearfix">
     {{#isShareBagAndCoupon}}
       {{#isPresentCoupon}}
         <div class="order-success-r1c1 fl">
@@ -62,4 +63,5 @@
       {{/isShareBag}}
     {{/isShareBagAndCoupon}}
   </div>
+  {{/isShowGift}}
 </div>

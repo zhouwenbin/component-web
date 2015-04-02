@@ -35,6 +35,7 @@ define('sf.b2c.mall.order.paysuccess', [
         that.options.isGiftBag = false;
         that.options.isShareBag = false;
         that.options.isShareBagAndCoupon = false;
+        that.options.isShowGift = false;
         that.options.links = SFConfig.setting.link;
 
         getOrder.sendRequest()
@@ -82,6 +83,7 @@ define('sf.b2c.mall.order.paysuccess', [
           })
           .always(function(){
             that.options.isShareBagAndCoupon = that.options.isShareBag && (that.options.isPresentCoupon || that.options.isGiftBag);
+            that.options.isShowGift = that.options.isShareBag || that.options.isPresentCoupon || that.options.isGiftBag;
             var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', that.options);
             that.element.html(html);
 
