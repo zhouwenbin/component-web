@@ -15,7 +15,9 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(can, store, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store, RegionsAdapter, SFGetProductHotData,
+        SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode,
+        SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
     itemObj: new can.Map({
@@ -36,7 +38,7 @@ define('sf.b2c.mall.order.iteminfo', [
       that.options.saleid = params.saleid;
       that.options.amount = params.amount;
       that.itemObj.itemid = params.itemid;
-      that.itemObj.saleid = arr[2];
+      that.itemObj.saleid = params.saleid;
       that.itemObj.amount = params.amount;
       that.itemObj.links = SFConfig.setting.link;
 
