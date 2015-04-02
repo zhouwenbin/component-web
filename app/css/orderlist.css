@@ -150,3 +150,13 @@
 	text-align: left;
 	vertical-align: bottom;
 }
+.dialog-qrcode{
+	width:323px;
+	margin-left:-161px;
+}
+.dialog-qrcode .dialog-b{
+	padding-top:40px;
+}
+.dialog-qrcode p{
+	padding-top:20px;
+}
