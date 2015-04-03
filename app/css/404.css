@@ -1,7 +1,7 @@
 ﻿/*404*/
 .pagenofind,
 .pagenofind-goods{
-  background: #fff url(../img/404.png) no-repeat 150px 150px;
+  background: #fff url(http://img.sfht.com/sfht/1.1.3/img/404.png) no-repeat 150px 150px;
   text-align: center;
   margin-top: 44px;
   margin-bottom: 74px;
@@ -15,5 +15,5 @@
   margin: 0 50px;
 }
 .pagenofind-goods{
-  background: url(http://img.sfht.com/sfht/img/404-goods.jpg) no-repeat center;
+  background: url(http://img.sfht.com/sfht/1.1.3/img/404-goods.jpg) no-repeat center;
 }
