@@ -204,3 +204,12 @@ p.mycoupon-b{
 .coupon2-link{
 	color: #0060cd;
 }
+.gift{
+	background: url(http://img.sfht.com/sfht/1.1.3/gift.png) no-repeat;
+	width:211px;
+	padding-left:47px;
+	height:157px;
+}
+.gift .coupon-r1{
+	padding-top:37px;
+}
