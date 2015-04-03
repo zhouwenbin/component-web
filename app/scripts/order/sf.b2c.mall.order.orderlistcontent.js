@@ -103,7 +103,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               } else {
                 noDataTemplate = can.view.mustache(that.queryNoDataTemplate());
               }
-              that.element.html(noDataTemplate());
+              that.element.html(noDataTemplate);
             }
 
             //分页 保留 已经调通 误删 后面设计会给样式
@@ -475,9 +475,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         $("[role=dialog-qrcode]").before("<div class='mask show' />");
         var url = $(element).data("url");
         this.renderLuckyMoney(url);
-        $("[role=dialog-qrcode]").addClass("show");
+        $("[role=dialog-qrcode]").show();
         $(".btn-close").off("click").on("click", function() {
-          $("[role=dialog-qrcode]").removeClass("show");
+          $("[role=dialog-qrcode]").hide();
         })
       },
       renderLuckyMoney: function(url) {
