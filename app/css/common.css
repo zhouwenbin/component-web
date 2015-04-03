@@ -1270,7 +1270,7 @@ body.sub{
  /*dialog*/
  .dialog-center{
 	width: 482px;
-	height: 211px;
+	height: auto;
 	left: 50%;
 	top: 50%;
 	margin-left: -307px;
@@ -1297,6 +1297,16 @@ body.sub{
 	height: 50px;
 	line-height: 50px;
 	padding: 0 56px;
+}
+.dialog h2{
+	height:54px;
+	line-height:54px;
+	background:#eee;
+	color:#999;
+	padding-left:40px;
+	text-align:left;
+	font-size:16px;
+	border-radius:4px 4px 0 0;
 }
 .dialog-qrcode{
 	width:323px;
