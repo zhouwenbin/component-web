@@ -1268,9 +1268,9 @@ body.sub{
  	background: #ccc;
  }
  /*dialog*/
- .dialog-center{
+/*dialog*/
+.dialog-center{
 	width: 482px;
-	height: 211px;
 	left: 50%;
 	top: 50%;
 	margin-left: -307px;
@@ -1281,22 +1281,84 @@ body.sub{
 	z-index: 3;
 	text-align: center;
 	display: none;
+	padding-bottom:16px;
+}
+.dialog-center.show{
+	display:block;
 }
 .dialog-center .btn-close{
 	position: absolute;
-	right: 26px;
-	top: 26px;
+	right: 17px;
+	top: 17px;
 }
 .dialog-center p{
 	padding-top: 53px;
 	margin-bottom: 37px;
 	font-size: 14px;
 }
-.dialog-r1 .btn{
-	margin: 0 9px;
-	height: 50px;
-	line-height: 50px;
-	padding: 0 56px;
+.dialog-f{
+	padding-top:12px;
+	border-top:1px solid #eee;
+	padding-right:40px;
+	text-align:right;
+}
+.dialog-f .btn{
+	margin-left: 20px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 26px;
+	font-size:14px;
+}
+.dialog-stockout .dialog-b{
+	padding:49px 60px 20px;
+	text-align:left;
+	height:auto;
+	width:auto;
+}
+.dialog-stockout p{
+	margin-bottom:27px;
+	padding-top:0;
+}
+.dialog-stockout .input{
+	width:276px;
+	padding:10px;
+	height:auto;
+}
+.dialog-stockout-r2 .btn{
+	padding:0 55px;
+}
+.dialog-stockout-r2{
+	padding-left:49px;
+	padding-top:30px;
+}
+.dialog-subscription .dialog-b{
+	padding-top:48px;
+	padding-bottom:20px;
+}
+.dialog-subscription h3{
+	font-size:18px;
+	color:#64aa30;
+	margin-top:25px;
+}
+.dialog h2{
+	height:54px;
+	line-height:54px;
+	background:#eee;
+	color:#999;
+	padding-left:40px;
+	text-align:left;
+	font-size:16px;
+	border-radius:4px 4px 0 0;
+}
+.dialog-qrcode{
+	width:323px;
+	margin-left:-161px;
+}
+.dialog-qrcode .dialog-b{
+	padding-top:40px;
+}
+.dialog-qrcode p{
+	padding-top:20px;
 }
 /*page*/
 .page{
