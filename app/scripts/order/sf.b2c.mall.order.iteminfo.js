@@ -49,27 +49,27 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.when(that.initItemSummary(options), that.initProductHotData(options))
         .then(function() {
-          return that.initCoupons(options);
-        })
-        .always(function() {
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
-          that.element.html(html);
-          // that.options.productChannels = 'heike';
-          // arr[2] ='undefined';
-          //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
-          if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
-            $('#submitOrder').addClass('disable');
-          };
+          return that.initCoupons(options)
+            .always(function() {
+              var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
+              that.element.html(html);
+              // that.options.productChannels = 'heike';
+              // arr[2] ='undefined';
+              //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
+              if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
+                $('#submitOrder').addClass('disable');
+              };
+            });
         })
         .fail(function(error) {
           console.error(error);
-        })
+        });
     },
 
     initItemSummary: function(options) {
       var that = this;
       var getItemSummary = new SFGetItemSummary({
-        "itemId": options.itemid
+        "itemId": that.itemObj.itemid
       });
       return getItemSummary.sendRequest()
         .done(function(iteminfo) {
@@ -98,20 +98,19 @@ define('sf.b2c.mall.order.iteminfo', [
     initProductHotData: function(options) {
       var that = this;
       var getProductHotData = new SFGetProductHotData({
-        'itemId': this.options.itemid
+        'itemId': that.itemObj.itemid
       });
 
       return getProductHotData.sendRequest()
         .done(function(productHotData) {
           that.itemObj.attr({
             "singlePrice": productHotData.sellingPrice,
-            "amount": options.amount,
-            "totalPrice": productHotData.sellingPrice * options.amount,
-            "allTotalPrice": productHotData.sellingPrice * options.amount,
-            "shouldPay": productHotData.sellingPrice * options.amount
+            "amount": that.itemObj.amount,
+            "totalPrice": productHotData.sellingPrice * that.itemObj.amount,
+            "allTotalPrice": productHotData.sellingPrice * that.itemObj.amount,
+            "shouldPay": productHotData.sellingPrice * that.itemObj.amount,
+            "sellingPrice": productHotData.sellingPrice
           });
-          options.allTotalPrice = that.itemObj.allTotalPrice;
-          options.sellingPrice = productHotData.sellingPrice;
         })
         .fail(function(error) {
           console.error(error);
@@ -295,9 +294,9 @@ define('sf.b2c.mall.order.iteminfo', [
             }),
             "userMsg": "",
             "items": JSON.stringify([{
-              "itemId": that.options.itemid,
-              "num": that.options.amount,
-              "price": that.options.sellingPrice
+              "itemId": that.itemObj.itemid,
+              "num": that.itemObj.amount,
+              "price": that.itemObj.sellingPrice
             }]),
             "sysType": that.getSysType(that.options.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid),
