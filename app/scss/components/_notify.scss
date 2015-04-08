@@ -1,15 +1,16 @@
 .notify{
-	background:#faf6f3 url(#{$bg-url}notify.png) no-repeat;
-	padding:26px 40px;
+	padding:50px 30px;
 }
 .notify h3{
 	color:#b5856d;
 	font-size:18px;
 	margin-bottom:20px;
+	font-weight:normal;
 }
 .notify h4{
 	margin-bottom:10px;
 	font-size:16px;
+	font-weight:normal;
 }
 .notify p,
 .notify li{

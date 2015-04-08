@@ -96,7 +96,6 @@
 	border-top:1px dotted #fddcdc;
 	border-bottom:1px dotted #fddcdc;
 	padding:18px 14px;
-	margin-bottom:14px;
 }
 .goods-price-r1{
 	margin-bottom:10px;
@@ -211,4 +210,49 @@
 .goods .goods-share .bdsharebuttonbox{
 	display:inline-block;
 	vertical-align:middle;
+}
+.goods-activity{
+	border:1px dotted #fddcdc;
+	padding: 0 13px;
+	height:30px;
+	line-height:30px;
+	margin-bottom:10px;
+	color:#666;
+	margin-top:-1px;
+}
+.goods-activity .label{
+	margin:0 11px;
+	vertical-align:middle;
+}
+.goods-activity b{
+	color:#999;
+	font-weight:normal;
+}
+.goods-activity .icon67{
+	margin-left:6px;
+}
+.goods-activity-c1 a{
+	color:#666;
+}
+.goods-activity-detail{
+	line-height:24px;
+	border:1px solid #ffc3c3;
+	background:#fff;
+	position: absolute;
+	z-index:1;
+	left:0;
+	border-top:none;
+	margin-right:20px;
+	padding:5px 13px;
+	display:none;
+}
+.goods-activity.active{
+	border-style:solid;
+	border-bottom-color:#fff;
+}
+.goods-activity.active .goods-activity-detail{
+	display:block;
+}
+.goods-activity.active .icon67{
+	background-position:-132px -204px;
 }
