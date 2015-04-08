@@ -106,16 +106,16 @@
 .product-r2c1{
 	font-size: 14px;
 	color: #dc3334;
-	height:45px;
+	height:41px;
+	padding-top:4px;
 }
 .product-r2c1 strong{
 	font-size: 24px;
-	margin-right: 15px;
+	margin-right: 7px;
 }
 .product-r2c1 del{
 	color: #666;
-	display: block;
-	margin-top: 3px;
+	margin-right:13px;
 }
 .product .btn{
 	width: 82px;
@@ -139,4 +139,22 @@
 	position: absolute;
 	left: 16px;
 	top: -14px;
+}
+.product-new,
+.product-hot{
+	width:49px;
+	height:49px;
+	color:#fff;
+	font-size:14px;
+	line-height:49px;
+	text-align:center;
+	right:12px;
+	top:2px;
+	position: absolute;
+}
+.product-new{	
+	background:url(../img/product-new.png) no-repeat;
+}
+.product-hot{	
+	background:url(../img/product-hot.png) no-repeat;
 }
