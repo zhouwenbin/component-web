@@ -201,23 +201,36 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       if (pathname == '/' || pathname == '/index.html') {
-        $(window).scroll(function(){
-            setTimeout(function() {
-              if($(window).scrollTop() > 166){
-                  $(".nav").addClass('nav-fixed');
-                  $(".nav-fixed .nav-inner").stop(true,false).animate({
-                    top:'0px',
-                    opacity:1
-                  },300);
-              }else{
-                  $(".nav-fixed .nav-inner").stop(true,false).animate({
-                    top:'-56px',
-                    opacity:1
-                  },300);
-                  $(".nav").removeClass('nav-fixed');
-              }
+        // $(window).scroll(function(){
+        //     setTimeout(function() {
+        //       if($(window).scrollTop() > 166){
+        //           $(".nav").addClass('nav-fixed');
+        //           $(".nav-fixed .nav-inner").stop(true,false).animate({
+        //             top:'0px',
+        //             opacity:1
+        //           },300);
+        //       }else{
+        //           $(".nav-fixed .nav-inner").stop(true,false).animate({
+        //             top:'-56px',
+        //             opacity:1
+        //           },300);
+        //           $(".nav").removeClass('nav-fixed');
+        //       }
 
-            }, 200);
+        //     }, 200);
+        // })
+        $(window).scroll(function(){
+            if($(window).scrollTop() > 166){
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
+                  top:'0px',
+                  opacity:1
+                },300);
+            }else{
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
+                  top:'-56px',
+                  opacity:0
+                },0);
+            }
         })
         $('#js-focus')
           .hover(function(){
