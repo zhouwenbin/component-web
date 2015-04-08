@@ -23,11 +23,12 @@ button.btn{
 
 .btn-prev,
 .btn-next{
-	width: 29px;
-	height: 55px;
+	width: 41px;
+	height: 94px;
 	background: url(#{$bg-url}icon.png) no-repeat;
 	text-indent: -999em;
-	opacity: 0.4;
+	background-color: #666;
+	background-color: rgba(0,0,0,0.5);
 
 }
 .btn-prev:hover,
@@ -38,7 +39,7 @@ button.btn{
 	background-position: 0 -162px;
 }
 .btn-next{
-	background-position: 0 -225px;
+	background-position: 0 -258px;
 }
 .btn-buy,
 .btn-more{
@@ -80,6 +81,9 @@ button.btn{
 .btn-buy.soon{
 	background:#ff9000;
 	border:1px solid #ff9000;
+}
+.btn-buy.soon:hover{
+	background:#ff9812;
 }
 
 .btn-close{

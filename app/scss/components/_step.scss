@@ -9,6 +9,7 @@
 	background:#eee;
 	text-align:center;
 	position: relative;
+	margin-right:7px;
 }
 .step .li1,
 .step2 .li2,
@@ -25,6 +26,9 @@
 	font-style: italic;
 	vertical-align:middle;
 }
+.step{
+	margin-top:25px;
+}
 .step .step-arrow{
 	width:0;
 	height:0;
@@ -38,7 +42,7 @@
 }
 .step .step-arrow-2{
 	border-color:transparent transparent transparent #fff;
-	right:-40px;
+	right:-37px;
 	z-index:1;
 }
 .step .li1 .step-arrow-1,

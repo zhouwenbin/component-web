@@ -6,10 +6,9 @@
 	border: 10px solid #fff;
 	background: #fff;
 	margin-bottom: 10px;
+	border:1px solid #e5e5e5;
 }
-.flashsale li:hover{
-	border-color: #eee;
-}
+
 .flashsale-c2{
 	overflow: hidden;
 	padding: 30px;
@@ -17,7 +16,7 @@
 .flashsale-c2r1{
 	font-size: 14px;
 	color: #999;
-	margin-bottom: 25px;
+	margin-bottom: 14px;
 }
 .flashsale-c2r1 .text-error{
 	font-size: 16px;
@@ -27,9 +26,13 @@
 	color: #dc3334;
 	font-size: 18px;
 }
-
+.flashsale-c2r2c2{
+	padding-top: 5px;
+}
 .flashsale-c2r2 strong{
 	font-size: 48px;
+	font-weight: normal;
+	margin-right: 6px;
 }
 .flashsale-c2r2 span{
 	font-size: 24px;
@@ -43,6 +46,10 @@
 	margin-bottom: 10px;
 	
 }
+.flashsale h3 a:hover{
+	text-decoration: underline;
+}
+
 .flashsale p{
 	font-size: 14px;
 	line-height: 24px;
