@@ -1,7 +1,9 @@
 /*品牌特卖*/
 
-.brand{
+.brand ul{
 	margin-bottom: 10px;
+	background: #fff;
+	
 }
 .brand li{
 	float: left;
@@ -11,9 +13,9 @@
 	margin-left: -1px;
 }
 .brand li:hover{
-	
 	border-bottom:4px solid #dd3e3f;
 }
 .brand li:hover img{
 	height:337px;
+	width:100%;
 }

@@ -22,6 +22,9 @@
 	margin-bottom: 17px;
 	width: 33.3%;
 	float: left;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
 }
 
 .detail-b{

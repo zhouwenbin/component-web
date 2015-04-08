@@ -9,20 +9,22 @@
 }
 
 .product-list{
-	margin-left: -19px;
+	margin-left: -18px;
 }
 .product-list li{
 	float:left;
 	width: 271px;
 	margin-left: 19px;
-	border:4px solid #fff;
+	border:3px solid #fff;
+	outline:1px solid #e5e5e5;
 	padding-top: 10px;
 	background: #fff;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
-
+	
 }
 .product-list li:hover{
+	outline-color:#dd3e3f;
 	border-color: #dd3e3f;
 }
 
@@ -118,10 +120,11 @@
 	margin-right:13px;
 }
 .product .btn{
-	width: 82px;
+	padding:0 10px;
 	height: 36px;
 	line-height: 36px;
 	display: none;
+	width:auto;
 }
 .product li:hover .btn{
 	display: inline-block;
