@@ -9,12 +9,12 @@ button.btn{
 }
 .btn-top{
 	padding: 18px 21px;
-	background: rgba(255,255,255,0.5);
-	border: 1px solid #eee;
+	background: rgba(0,0,0,0.3);
 	position: fixed;
 	bottom: 100px;
 	right: 50px;
 	display: none;
+	border-radius:5px;
 }
 .btn-top:hover{
 	background: #7f7f7f;
@@ -81,6 +81,7 @@ button.btn{
 	background:#ff9000;
 	border:1px solid #ff9000;
 }
+
 .btn-close{
 	width: 16px;
 	height: 0;

@@ -12,6 +12,11 @@
 }
 .product2 .mb .btn{
 	display:inline-block;
+	font-size:18px;
+	height:48px;
+	line-height:48px;
+	font-weight:normal;
+	border:none;
 }
 .product2 .mb .product-detail{
 	font-size:14px;
@@ -29,4 +34,24 @@
 .product2 .product-r1 img{
 	max-width:580px;
 	max-height:340px;
+}
+.product2 .disable{
+	line-height:1.2;
+}
+.product2 .disable span{
+	display:block;
+	font-size:12px;
+}
+.product2-limit{
+	background:#dc3334;
+	background: rgba(220,51,52,0.4);
+	color:#fff;
+	text-align:right;
+	height:24px;
+	line-height:24px;
+	font-size:14px;
+	padding-right:14px;
+	margin-top:-24px;
+	z-index:1;
+	position: relative;
 }

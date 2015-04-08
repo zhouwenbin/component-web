@@ -1,9 +1,8 @@
 /*footer1*/
 .footer1{
-	padding-top: 34px;
-	padding-bottom: 24px;
+	padding-top: 69px;
+	padding-bottom: 100px;
 	background: #fff;
-	border-top: 1px solid #eee;
 }
 .footer1 ul{
 	margin-left:-123px;
@@ -57,16 +56,12 @@
 
 /*footer2*/
 .footer2{
-	background: #fff;
-	
-	
+	background: #333840;
 	font-size: 14px;
 }
 .footer2 .pm{
-	padding-top: 40px;
+	padding-top: 45px;
 	padding-bottom: 40px;
-	border-bottom: 1px solid #e7e7e7;
-	border-top: 1px solid #e7e7e7;
 }
 .footer2,
 .footer2 a{
@@ -74,9 +69,7 @@
 }
 .footer2 dl{
 	float: left;
-	width: 124px;
-	border-left: 1px solid #e7e7e7;
-	padding-left: 38px;
+	width: 170px;
 }
 .footer2 dt{
 	font-size: 18px;
@@ -90,7 +83,7 @@
 	color: #333;
 }
 .footer2-c1{
-	margin-right: 34px;
+	margin-right: 117px;
 }
 
 .footer2 .phone{
@@ -98,7 +91,8 @@
 	margin-bottom: 12px;
 }
 .footer2 .time{
-	font-size: 16px;
+	font-size: 18px;
+	line-height:24px;
 	margin-bottom: 26px;
 }
 .footer2-email{
@@ -116,24 +110,32 @@
 }
 .footer2-c3{
 	padding-left: 38px;
-	border-left: 1px solid #e7e7e7;
 }
 .footer2-c4{
 	margin-right: 16px;
 	text-align: center;
+	position: relative;
 }
 .footer2-c4 p{
 	margin-top: 10px;
 }
-.footer2 .icon53{
-	margin-left: 38px;
+.footer2-c4 img{
+	display: none;
+	position: absolute;
+	top:36px;
+	left:0;
+}
+.footer2-c4:hover img{
+	display:block;
+}
+.footer2 .icon66{
+	margin-right: 10px;
 }
 /*footer3*/
 .footer3{
-	height: 50px;
-	padding: 20px 0 10px 0;
-	line-height: 20px;
-	background: #fff;
+	height: 68px;
+	line-height: 68px;
+	background: #23262c;
 	color: #4b4f5e;
 	text-align: center;
 	font-size: 12px;

@@ -1,7 +1,8 @@
  .label-error,
  .label-success,
  .label-waining,
- .label-disabled {
+ .label-disabled,
+ .label-important{
  	height: 21px;
 	line-height: 21px;
 	color: #fff;
@@ -23,15 +24,7 @@
  .label-disabled{
  	background: #ccc;
  }
+ .label-important{
+ 	background:#ff9494;
+ }
  
- .label-new{
-	display: inline-block;
-	width: 2em;
-	padding: 10px;
-	
-	color: #fff;
-	font-size: 12px;
-}
-.label-new{
-	background: #ff7475;
-}

@@ -1,7 +1,9 @@
 ﻿@import '../utils/variables';
+@import '../utils/placeholders';
 @import '../components/pagenofind';
 @import '../components/recommend';
 @import '../components/topic';
+@import '../components/gameover';
 .recommend {
 	margin-bottom:0;
 	padding-bottom:0;

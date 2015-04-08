@@ -1,0 +1,16 @@
+%header-icon{
+	background:url(#{$bg-url}header.png) no-repeat;
+	vertical-align:middle;
+	display:inline-block;
+}
+%comparison-icon{
+	background:url(#{$bg-url}comparison.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+}
+%faq-icon{
+	background:url(#{$bg-url}faq.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+	margin-right:14px;
+}

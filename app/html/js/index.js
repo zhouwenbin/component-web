@@ -18,11 +18,11 @@ $(function(){
     //左右按钮hover
     $(".slider").hover(function(){
         sliderPrev.show().stop(true,false).animate({
-            left : "0px",
+            left : "30px",
             opacity : 1
         },500);
         sliderNext.show().stop(true,false).animate({
-            right : "0px",
+            right : "30px",
             opacity : 1
         },500);
         clearInterval(silderTimer);
@@ -269,7 +269,7 @@ $(function(){
           $(".nav-fixed .nav-inner").stop(true,false).animate({
             top:'-56px',
             opacity:0
-          },300);
+          },0);
       }
   })
   $('#js-focus').click(function(){
