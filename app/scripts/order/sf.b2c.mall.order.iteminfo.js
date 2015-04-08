@@ -21,7 +21,8 @@ define('sf.b2c.mall.order.iteminfo', [
   var arr = [];
   return can.Control.extend({
     itemObj: new can.Map({
-      isShowCouponArea: false
+      isShowCouponArea: false,
+      links: SFConfig.setting.link
     }),
     /**
      * 初始化
@@ -45,7 +46,6 @@ define('sf.b2c.mall.order.iteminfo', [
       that.itemObj.itemid = params.itemid;
       that.itemObj.saleid = arr[2];
       that.itemObj.amount = params.amount;
-      that.itemObj.links = SFConfig.setting.link;
 
       can.when(that.initItemSummary(options), that.initProductHotData(options))
         .then(function() {
