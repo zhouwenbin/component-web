@@ -52,11 +52,11 @@ define(
 
       hoverOver: function(element, event) {
         this.element.find('.btn-prev').show().stop(true, false).animate({
-          left: 0,
+          left: '30px',
           opacity: 1
         }, 500);
         this.element.find('.btn-next').show().stop(true, false).animate({
-          right: 0,
+          right: '30px',
           opacity: 1
         }, 500);
         clearInterval(this.options.silderTimer);
@@ -65,13 +65,13 @@ define(
       hoverOut: function(element, event) {
         var that = this;
         this.element.find('.btn-prev').stop(true, false).animate({
-          left: '-50px',
+          left: '0px',
           opacity: 0
         }, 500, function() {
           that.element.find('.slider .btn-prev').hide()
         });
         this.element.find('.btn-next').stop(true, false).animate({
-          right: '-50px',
+          right: '0px',
           opacity: 0
         }, 500, function() {
           that.element.find('.slider .btn-prev').hide()

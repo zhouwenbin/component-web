@@ -1,6 +1,6 @@
 .nav{
 	height: 43px;
-	margin-bottom:32px;
+	margin-bottom:20px;
 }
 .nav-inner{
 	height: 43px;
@@ -18,8 +18,7 @@
 	background: url(#{$bg-url}header-active.png) repeat-x;
 }
 .nav a{
-	color: #fff;
-	
+	color: #c5c5c5;	
 }
 .nav .icon{
 	position: absolute;
@@ -27,6 +26,10 @@
 }
 .nav-c1 a{
 	font-weight: bold;
+}
+.nav .active a,
+.nav li:hover a{
+	color:#fff;
 }
 .nav-c2{
 	display: none;
@@ -46,20 +49,4 @@
 	left: 0;
 	top: -56px;
 	z-index: 1;
-}
-
-.nav-qrcode{
-	position: absolute;
-	padding: 12px;
-	background: #fff;
-	margin-left: 129px;
-	margin-top: 2px;
-	display: none;
-}
-.nav-qrcode.show{
-	display:block;
-}
-.nav-qrcode .icon{
-	margin-top: -24px;
-	margin-left: 42px;
 }

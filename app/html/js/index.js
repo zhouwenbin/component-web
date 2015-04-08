@@ -28,13 +28,13 @@ $(function(){
         clearInterval(silderTimer);
     },function(){
         sliderPrev.stop(true,false).animate({
-            left : "-50px",
+            left : "0px",
             opacity : 0
         },500,function(){
             sliderPrev.hide()
         });
         sliderNext.stop(true,false).animate({
-            right : "-50px",
+            right : "0px",
             opacity : 0
         },500,function(){
            sliderNext.hide()

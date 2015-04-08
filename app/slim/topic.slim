@@ -1,33 +1,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=1280">
-  <title>顺丰海淘</title>
-  <link href="../css/common.css" rel="stylesheet" type="text/css" />
-  <link href="../css/topic.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>顺丰海淘</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/topic.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <!--头部-->
-  == Slim::Template.new('module/header.slim').render
-  <!--头部-->
-  <div class="pb">
-    == Slim::Template.new('module/slider.slim').render
-    <div class="pm">
-      <img src="../img/ad.png" class="banner" alt="">
-      == Slim::Template.new('module/product2.slim').render
-      <img src="../img/ad.png" class="banner" alt="">
-      <!--热卖商品-->
-      == Slim::Template.new('module/product.slim').render
-      <!--热卖商品-->
-      <img src="../img/ad.png" class="banner" alt="">
-      <!--热卖商品-->
-      == Slim::Template.new('module/product.slim').render
-      <!--热卖商品-->
-      == Slim::Template.new('module/topic.slim').render
-    </div>
-      
-  </div>
+<!--头部-->
+== Slim::Template.new('module/header.slim').render
+<!--头部-->
+<div class="pb">
+
+<div class="pm">
+== Slim::Template.new('module/slider.slim').render
+<img src="../img/ad.png" class="banner" alt="">
+== Slim::Template.new('module/product2.slim').render
+<img src="../img/ad.png" class="banner" alt="">
+<!--热卖商品-->
+== Slim::Template.new('module/product.slim').render
+<!--热卖商品-->
+<img src="../img/ad.png" class="banner" alt="">
+<!--热卖商品-->
+== Slim::Template.new('module/product.slim').render
+<!--热卖商品-->
+== Slim::Template.new('module/topic.slim').render
+</div>
+
+</div>
 </div>
 <!--尾部-->
 == Slim::Template.new('module/footer.slim').render

@@ -84,17 +84,17 @@
 .goods p{
 	color: #686675;
 	margin-bottom:10px;
+	line-height:1.5;
 }
 .goods-c2r1{
-	margin-bottom:12px;
+	margin-bottom:20px;
 }
 .goods-c2r1 img{
 	margin-right:8px;
 }
 .goods-price{
 	background:#fff6f6;
-	border-top:1px dotted #fddcdc;
-	border-bottom:1px dotted #fddcdc;
+	border:1px solid #fddcdc;
 	padding:18px 14px;
 }
 .goods-price-r1{
@@ -160,7 +160,7 @@
 	margin-right:6px;
 }
 .goods-c2 select{
-	margin-right:3px;
+	margin-right:5px;
 }
 .goods-num{
 	padding-top:14px;
@@ -171,9 +171,7 @@
 	margin-left:15px;
 	margin-right:5px;
 }
-.goods-c2r2{
-	padding-left:52px;
-}
+
 .goods-c2r2 .icon{
 	margin-left:10px;
 }
@@ -212,11 +210,11 @@
 	vertical-align:middle;
 }
 .goods-activity{
-	border:1px dotted #fddcdc;
+	border:1px solid #fddcdc;
 	padding: 0 13px;
 	height:30px;
 	line-height:30px;
-	margin-bottom:10px;
+	margin-bottom:20px;
 	color:#666;
 	margin-top:-1px;
 }
