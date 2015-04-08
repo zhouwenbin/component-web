@@ -1,54 +1,79 @@
 .header{
-	padding-bottom: 12px;
+	padding: 13px 0;
 	background: #fff;
 }
 .header-c1{
-	padding-top: 12px;
+	padding-top: 22px;
 }
 .header-c1 .icon10{
-	margin-right: 25px;
+	margin-right: 35px;
 }
 .header-c1 .icon11{
 	margin-top: 2px;
 }
 
 .header-c2{
-	padding-top: 23px;
-	padding-right: 45px;
+	height:79px;
+	line-height:79px;
 }
 .header-c2 li{
 	float: left;
-	margin-left: 24px;
-	font-size: 12px;
+	font-size: 14px;
 }
 .header-c2 h2,
 .header-c2 p{
-	margin-left: 61px;
+	margin-left: 21px;
 }
 .header-c2 h2{
-	
-	padding-top: 10px;
-	padding-bottom: 7px;
 	color:#666;
 	font-weight: normal;
 }
 .header-c2 p{
 	color:#666666;
 }
-.header-c2 .li1 span{
-	font-size:18px;
-}
-.header-c2 .li2 span{
-	font-size:16px;
-	letter-spacing: 1em;
-}
-.header-c2 .li3{
-	margin-left:12px;
-}
-.header-c2 .li3,
+
 .header-c2 .li4{
-	font-size:14px;
+	border-left:1px solid #e5e5e5;
+	padding-left: 18px;
+	margin-left: 18px;
 }
+
+.header-icon1{
+	@extend %header-icon;
+	width:16px;
+	height:14px;
+	background-position:0 -9px;
+	margin-right:5px;
+}
+.header-icon2{
+	@extend %header-icon;
+	width:16px;
+	height:15px;
+	margin-right:5px;
+	background-position:-150px -11px;
+}
+.header-icon3{
+	@extend %header-icon;
+	width:17px;
+	height:17px;
+	margin-right:5px;
+	background-position:-290px -9px;
+}
+.header-icon4{
+	@extend %header-icon;
+	width:36px;
+	height:36px;
+	margin-right:12px;
+	background-position:right top;
+}
+.header-line{
+	background: url(#{$bg-url}header-line.png) no-repeat;
+	vertical-align: middle;
+	width: 19px;
+	height: 38px;
+	display: inline-block;
+}
+
 .header1{
 	height: 29px;
 	line-height: 29px;
