@@ -338,14 +338,16 @@ define(
       sendRequest:function(){
         var that =this;
         // @todo 发起登录请求
-
+        alert(1);
         document.domain = window.location.host;
         this.component.login.sendRequest()
           .done(function (data) {
             if (data.userId) {
+              alert(2);
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
               .done(function(data){
+                alert(3);
                 if(data.items.length > 0){
                   var defaultAdde = {};
                   _.each(data.items,function(item){

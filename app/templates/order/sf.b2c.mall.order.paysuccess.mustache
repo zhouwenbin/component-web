@@ -28,7 +28,7 @@
       {{/isGiftBag}}
       <div class="order-success-r1c2">
         <div class="order-success-qrcode">
-          <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发{{sf.price shareBag.price}}元红包</p>
+          <p class="order-success-qrcode-r1">恭喜您获得{{sf.price shareBag.price}}元红包，您可给小伙伴散红包啦！</p>
             <div id="shareQrCode"></div>
           <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
         </div>
@@ -36,7 +36,7 @@
     {{/isShareBagAndCoupon}}
     {{^isShareBagAndCoupon}}
       {{#isPresentCoupon}}
-        <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
+        <p class="order-success-p2">恭喜您！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
         <a class="coupon" href="{{links.coupon}}">
           <div class="coupon-r1">
             <span>{{sf.price presentCoupon.price}}</span>元
@@ -45,7 +45,7 @@
         </a>
       {{/isPresentCoupon}}
       {{#isGiftBag}}
-        <p class="order-success-p2">恭喜你！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
+        <p class="order-success-p2">恭喜您！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
         <a class="coupon gift" href="{{links.coupon}}">
           <div class="coupon-r1">
             <span>{{sf.price giftBag.price}}</span>元
@@ -55,7 +55,7 @@
       {{/isGiftBag}}
       {{#isShareBag}}
         <div class="order-success-qrcode">
-            <p class="order-success-qrcode-r1">支付成功散红包，向小伙伴发{{sf.price shareBag.price}}元红包</p>
+            <p class="order-success-qrcode-r1">恭喜您获得{{sf.price shareBag.price}}元红包，您可给小伙伴散红包啦！</p>
             <div id="shareQrCode"></div>
             <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
         </div>
