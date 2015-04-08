@@ -79,6 +79,17 @@
   <!-- mediav -->
   <!-- 订单回传代码 -->
   <script type="text/javascript">
+  var cookies = document.cookie.split(';');
+
+  for (var i in SFHT.F.cookies) {
+    var value = SFHT.F.cookies[i];
+    var arr = value.split('=');
+
+    info[arr[0]] = arr[1];
+  }
+
+  if (info['_src']!='mediav') return;
+
   var _mvq = window._mvq || [];
   window._mvq = _mvq;
   _mvq.push(['$setAccount', 'm-123868-0']);
