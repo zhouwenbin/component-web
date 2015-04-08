@@ -269,7 +269,7 @@ $(function(){
           $(".nav-fixed .nav-inner").stop(true,false).animate({
             top:'-56px',
             opacity:0
-          },300);
+          },0);
       }
   })
   $('#js-focus').click(function(){
