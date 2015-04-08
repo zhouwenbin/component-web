@@ -10,8 +10,9 @@
 <body>
   == Slim::Template.new('module/header.slim').render
   <div class="pb">
-    == Slim::Template.new('module/slider.slim').render
+    
     <div class="pm">
+      == Slim::Template.new('module/slider.slim').render
       <!--品牌特卖-->
       == Slim::Template.new('module/brand.slim').render
       <!--品牌特卖-->
