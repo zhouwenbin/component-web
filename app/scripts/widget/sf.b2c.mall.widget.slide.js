@@ -52,11 +52,11 @@ define(
 
       hoverOver: function(element, event) {
         this.element.find('.btn-prev').show().stop(true, false).animate({
-          left: 0,
+          left: '50px',
           opacity: 1
         }, 500);
         this.element.find('.btn-next').show().stop(true, false).animate({
-          right: 0,
+          right: '50px',
           opacity: 1
         }, 500);
         clearInterval(this.options.silderTimer);
