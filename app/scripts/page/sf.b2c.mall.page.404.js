@@ -55,6 +55,7 @@ define(
             _.each(data.value, function(item) {
               item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
               item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+              item.sellingPrice = item.sellingPrice/100;
               //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
             })
 

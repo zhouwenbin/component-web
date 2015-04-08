@@ -9,6 +9,12 @@ define('sf.b2c.mall.component.footer', ['text', 'can', 'text!template_footer'], 
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
+      if(!this.element.hasClass('serverRendered')){
+        this.render();
+      }
+    },
+
+    render: function () {
       var renderFn = can.mustache(template_footer);
       var html = renderFn({});
 
@@ -16,4 +22,4 @@ define('sf.b2c.mall.component.footer', ['text', 'can', 'text!template_footer'], 
       this.element.html(html);
     }
   });
-})
+});
