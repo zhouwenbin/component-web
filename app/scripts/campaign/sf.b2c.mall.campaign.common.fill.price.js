@@ -1,6 +1,7 @@
 define(
   'sf.b2c.mall.campaign.common.fill.price',
   [
+    'JSON',
     'can',
     'underscore',
     'sf.b2c.mall.framework.comm',
@@ -10,7 +11,7 @@ define(
     'sf.b2c.mall.component.footer'
   ],
 
-  function(can, _, SFFrameworkComm, SFGetProductHotDataList, SFImglazyload, SFHeader, SFFooter) {
+  function(JSON, can, _, SFFrameworkComm, SFGetProductHotDataList, SFImglazyload, SFHeader, SFFooter) {
 
     SFFrameworkComm.register(1);
 
