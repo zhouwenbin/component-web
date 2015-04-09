@@ -8,7 +8,9 @@
 	margin-bottom: 10px;
 	border:1px solid #e5e5e5;
 }
-
+.flashsale-c1 img:hover{
+	opacity:0.85;
+}
 .flashsale-c2{
 	overflow: hidden;
 	padding: 30px;
@@ -41,10 +43,8 @@
 	font-size: 18px;
 	line-height: 24px;
 	max-height: 48px;
-	overflow: hidden;
-	
+	overflow: hidden;	
 	margin-bottom: 10px;
-	
 }
 .flashsale h3 a:hover{
 	text-decoration: underline;
