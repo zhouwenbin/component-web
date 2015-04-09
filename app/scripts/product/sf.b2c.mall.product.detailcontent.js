@@ -627,7 +627,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       buyInfoTemplate: function() {
-        return '<div class="goods-num"><label>数量</label>' +
+        return '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
           '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
