@@ -1,6 +1,5 @@
 'use strict';
 define('sf.b2c.mall.component.rapidseabuy', [
-      'JSON',
       'can',
       'underscore',
       'jquery',
@@ -8,7 +7,7 @@ define('sf.b2c.mall.component.rapidseabuy', [
       'sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
       'sf.b2c.mall.api.b2cmall.getProductHotDataList'
     ],
-    function(JSON, can,_,$,SFAdapterRapidSeaBuy,SFGetFastSaleInfoList,SFGetProductHotDataList) {
+    function(can,_,$,SFAdapterRapidSeaBuy,SFGetFastSaleInfoList,SFGetProductHotDataList) {
       return can.Control.extend({
 
         helpers:{

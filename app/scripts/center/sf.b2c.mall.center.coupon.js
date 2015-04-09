@@ -4,13 +4,12 @@
 define(
   'sf.b2c.mall.center.coupon',
   [
-    'JSON',
     'can',
     'jquery',
     'sf.helpers',
     'sf.b2c.mall.api.coupon.getUserCouponList'
   ],
-  function(JSON, can, $, helpers, SFGetUserCouponList){
+  function(can, $, helpers, SFGetUserCouponList){
 
 
     var optionsMap;

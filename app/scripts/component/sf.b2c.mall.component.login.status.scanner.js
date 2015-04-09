@@ -1,14 +1,13 @@
 define(
   'sf.b2c.mall.component.login.status.scanner',
   [
-    'JSON',
     'jquery',
     'can',
     'underscore',
     'store'
   ],
 
-  function (JSON, $, can, _, store) {
+  function ($, can, _, store) {
 
     return can.Control.extend({
 

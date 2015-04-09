@@ -3,7 +3,6 @@
 define(
   'sf.b2c.mall.page.gotopay',
   [
-    'JSON',
     'can',
     'jquery',
     'sf.helpers',
@@ -16,7 +15,7 @@ define(
     'sf.b2c.mall.api.order.getOrderConfirmInfo'
   ],
 
-  function(JSON, can, $, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
+  function(can, $, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
