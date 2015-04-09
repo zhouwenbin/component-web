@@ -28,6 +28,18 @@ define('sf.helpers', ['jquery',
     return moment(time).format(format);
   });
 
+  can.Mustache.registerHelper('sf.split', function(str) {
+    if (_.isFunction(str)) {
+      str = str();
+    }
+
+    if (str.length > 3){
+      return str;
+    }
+
+    return str.split("").join(" ");
+  });
+
   /**
    * @description sf.price
    * @param  {int} price Price
