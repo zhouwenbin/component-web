@@ -1,13 +1,14 @@
 define(
   'sf.b2c.mall.page.proxy',
   [
+    'JSON',
     'jquery',
     'can',
     'store',
     'sf.b2c.mall.business.config'
   ],
 
-  function ($, can, store) {
+  function (JSON, $, can, store) {
     var scanner = can.Control.extend({
 
       init: function (element, options) {

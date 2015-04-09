@@ -4,13 +4,14 @@ define(
   'sf.b2c.mall.order.vendor.info',
 
   [
+    'JSON',
     'jquery',
     'can',
     'underscore',
     'jquery.cookie'
   ],
 
-  function ($, can, _,$cookie) {
+  function (JSON, $, can, _,$cookie) {
 
     return can.Control.extend({
 

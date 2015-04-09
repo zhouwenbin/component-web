@@ -1,11 +1,12 @@
 'use strict';
 define('sf.b2c.mall.component.freshfood', [
+      'JSON',
       'can',
       'underscore',
       'jquery',
       'sf.b2c.mall.api.b2cmall.getProductHotDataList'
     ],
-    function(can,_,$,SFGetProductHotDataList) {
+    function(JSON, can,_,$,SFGetProductHotDataList) {
       return can.Control.extend({
         /**
          * [init description]
