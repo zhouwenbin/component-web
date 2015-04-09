@@ -673,7 +673,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       specTemplate: function() {
         return '{{#each itemInfo.specGroups}}' +
-          '<li data-specidorder="{{specIdOrder}}"><label>{{specName}}</label>' +
+          '<li data-specidorder="{{specIdOrder}}"><label>{{sf.split specName}}</label>' +
           '{{#each specs}}' +
           '<span data-specid="{{specId}}" id="1" data-specIndex="{{specIndex}}" data-compose="{{compose}}" class="btn btn-goods {{selected}} {{canShowDottedLine}} {{disabled}}" >{{specValue}}<span class="icon icon23"></span></span>' +
           '{{/each}}' +
