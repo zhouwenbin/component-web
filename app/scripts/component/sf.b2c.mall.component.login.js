@@ -19,7 +19,7 @@ define(
     'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
+  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist,SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -161,7 +161,7 @@ define(
         var isTelNum = /^1\d{10}$/.test(username);
         var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(username);
         //@note 手机号码输完11位时，验证该账号是否有密码
-        if (isTelNum && isTelNum.length == 11) {
+        if (isTelNum) {
           var checkUserExist = new SFCheckUserExist({
             'accountId':username,
             'type':'MOBILE'

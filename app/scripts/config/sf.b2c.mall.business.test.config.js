@@ -39,6 +39,7 @@ define([], function () {
     'ilogin': 'http://test1.www.sfht.net/i.login.html',
     'iregister': 'http://test1.www.sfht.net/i.register.html',
     'coupon': 'http://test1.sfht.com/coupon.html',
+    'bindaccount':'http://test1.sfht.com/bindaccount.html',//@note 绑定账号
     'paysuccess': 'http://test1.sfht.com/paysuccess.html'
   }
 
