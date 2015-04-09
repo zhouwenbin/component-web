@@ -18,7 +18,6 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.business.config'
 ], function(can, store, $cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
-  var arr = [];
   return can.Control.extend({
     itemObj: new can.Map({
       isShowCouponArea: false,
@@ -31,6 +30,8 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
+
+      var arr = [];
       this.adapter = {};
       this.request();
       //@note 从cookie中获取嘿客穿越过来标示
