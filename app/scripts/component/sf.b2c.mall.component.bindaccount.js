@@ -24,13 +24,9 @@ define(
 
 		render:function(){
 
+		},
+
+		bindAccountTemplate:function(){
+			return '';
 		}
-
-
-
-
-
-
-
-
 	})
