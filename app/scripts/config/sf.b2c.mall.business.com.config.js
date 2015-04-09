@@ -40,6 +40,7 @@ define([], function () {
     'ilogin': 'http://'+main+'/i.login.html',
     'iregister': 'http://'+main+'/i.register.html',
     'coupon': 'http://'+main+'/coupon.html',
+    'bindaccount':'http://'+main+'/bindaccount.html',//@note 绑定账号
     'paysuccess': 'http://'+main+'/paysuccess.html'
   }
 
