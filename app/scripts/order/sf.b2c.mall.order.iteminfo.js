@@ -1,7 +1,6 @@
 'use strict';
 
 define('sf.b2c.mall.order.iteminfo', [
-  'JSON',
   'can',
   'store',
   'jquery.cookie',
@@ -17,7 +16,7 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(JSON, can, store, $cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store, $cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
     itemObj: new can.Map({

@@ -1,7 +1,6 @@
 'use strict';
 
 define('sf.b2c.mall.component.limitedtimesale', [
-    'JSON',
     'can',
     'sf.b2c.mall.api.b2cmall.getTimeLimitedSaleInfoList',
     'sf.b2c.mall.adapter.limitedtimesale',
@@ -10,7 +9,7 @@ define('sf.b2c.mall.component.limitedtimesale', [
     'moment',
     'sf.util'
   ],
-  function(JSON, can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment, SFFn) {
+  function(can, SFGetTimeLimitedSaleInfoList, SFLimitedTimeSaleAdapter, SFGetProductHotDataList, momentLocale, moment, SFFn) {
 
     return can.Control.extend({
 

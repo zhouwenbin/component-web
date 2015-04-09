@@ -1,6 +1,5 @@
 define(
   'sf.b2c.mall.module.price', [
-    'JSON',
     'can',
     'underscore',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
@@ -8,7 +7,7 @@ define(
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(JSON, can, _, SFGetProductHotDataList, SFConfig, SFFrameworkComm) {
+  function(can, _, SFGetProductHotDataList, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
