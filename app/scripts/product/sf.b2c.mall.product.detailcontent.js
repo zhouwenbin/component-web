@@ -980,7 +980,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       detailattributesTemplate: function() {
         return '{{#each itemInfo.basicInfo.attributes}}' +
-          '<li>【{{key}}】 {{value}}</li>' +
+          '<li title={{value}}>【{{key}}】 {{value}}</li>' +
           '{{/each}}';
       },
 
