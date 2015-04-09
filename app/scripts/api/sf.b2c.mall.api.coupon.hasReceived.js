@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkUserExist
+  * @class sf.b2c.mall.api.coupon.hasReceived
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkUserExist',
+'sf.b2c.mall.api.coupon.hasReceived',
 [
   'jquery',
   'can',
@@ -22,18 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkUserExist',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'coupon.hasReceived',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'accountId': 'string',
-        'type': 'string'
+        'shareId': 'long'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000340': '用户账户还没有密码'
       }
     }
   });

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.webLogin
+  * @class sf.b2c.mall.api.user.partnerBind
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.webLogin',
+'sf.b2c.mall.api.user.partnerBind',
 [
   'jquery',
   'can',
@@ -22,26 +22,19 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.webLogin',
+      METHOD_NAME: 'user.partnerBind',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'accountId': 'string',
+        'tempToken': 'string',
         'type': 'string',
-        'password': 'string',
+        'accountId': 'string'
       },
       OPTIONAL: {
-        'vfCode': 'string',
-        'rembFlag': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户',
-        '1000030': '用户名or密码错误',
-        '1000100': '验证码错误',
-        '1000110': '账户尚未激活',
-        '1000300': '用户名或密码错误已达3次，需要输入验证码',
-        '1000340': '用户账户还没有密码'
+        '1000350': '验证临时token失败,请重新登录'
       }
     }
   });
