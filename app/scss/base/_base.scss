@@ -4,6 +4,7 @@ body{
 }
 body.sub{
 	min-width: inherit;
+	overflow-y:hidden;
 }
 a{outline: none;}
 a,a:hover{color:#333;}
