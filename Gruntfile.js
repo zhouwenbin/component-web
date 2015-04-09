@@ -493,6 +493,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.campaign.page.common"],
@@ -511,6 +512,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.main"],
@@ -544,6 +546,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.detail"],
@@ -562,6 +565,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.login"],
@@ -580,6 +584,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.i.login"],
@@ -598,6 +603,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.register"],
@@ -616,6 +622,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ['sf.b2c.mall.page.i.register'],
@@ -634,6 +641,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.process"],
@@ -652,6 +660,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ['sf.b2c.mall.page.activated'],
@@ -670,6 +679,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.nullactivated"],
@@ -688,6 +698,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.retrieve"],
@@ -706,6 +717,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.order"],
@@ -724,6 +736,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.orderlist"],
@@ -742,6 +755,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.orderdetail"],
@@ -760,6 +774,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ['sf.b2c.mall.page.center'],
@@ -778,6 +793,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.gotopay"],
@@ -796,6 +812,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.passwordchange"],
@@ -814,6 +831,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.coupon"],
@@ -832,6 +850,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.paysuccess"],
@@ -850,6 +869,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.weixincenter"],
@@ -868,6 +888,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.404"],
@@ -903,6 +924,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.federal.login"],
@@ -921,6 +943,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.page.common"],
@@ -939,6 +962,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.module.slider"],
@@ -957,6 +981,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.module.price"],
@@ -975,6 +1000,7 @@ module.exports = function (grunt) {
             'moment':                       '../bower_components/momentjs/min/moment.min',
             'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
             'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
           include:        ["sf.b2c.mall.module.time"],

@@ -1,6 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.order.orderdetailcontent', [
+    'JSON',
     'can',
     'sf.b2c.mall.api.order.getOrder',
     'sf.helpers',
@@ -19,7 +20,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'moment',
     'sf.b2c.mall.api.order.confirmReceive'
   ],
-  function(can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment, SFConfirmReceive) {
+  function(JSON, can, SFGetOrder, helpers, Webuploader, FileUploader, loading, FrameworkComm, Utils, SFConfig, SFUpdateReceiverInfo, SFGetIDCardUrlList, SFOrderFn, SFGetUserRoutes, SFGetRecvInfo, SFMessage, moment, SFConfirmReceive) {
 
     return can.Control.extend({
 

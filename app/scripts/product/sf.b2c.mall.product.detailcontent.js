@@ -1,6 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.product.detailcontent', [
+    'JSON',
     'can',
     'zoom',
     'store',
@@ -18,7 +19,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics) {
+  function(JSON, can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics) {
     return can.Control.extend({
 
       helpers: {

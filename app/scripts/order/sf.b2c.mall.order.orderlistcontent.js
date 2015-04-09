@@ -1,6 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.order.orderlistcontent', [
+    'JSON',
     'can',
     'qrcode',
     'sf.b2c.mall.api.order.getOrderList',
@@ -15,7 +16,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(JSON, can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
