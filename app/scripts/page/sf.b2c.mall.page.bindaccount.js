@@ -12,7 +12,7 @@ define(
   ],
 
   function ($, can, SFFrameworkComm, SFBindAccount) {
-    SFFrameworkComm.register(1)
+    SFFrameworkComm.register(1);
 
     var bindaccount = can.Control.extend({
 
