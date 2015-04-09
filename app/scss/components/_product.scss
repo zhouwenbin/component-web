@@ -156,8 +156,8 @@
 	position: absolute;
 }
 .product-new{	
-	background:url(../img/product-new.png) no-repeat;
+	background:url(#{$bg-url}product-new.png) no-repeat;
 }
 .product-hot{	
-	background:url(../img/product-hot.png) no-repeat;
+	background:url(#{$bg-url}product-hot.png) no-repeat;
 }

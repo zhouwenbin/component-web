@@ -26,6 +26,7 @@
 	_faq.scss                  问答
 	_flashsale.scss            限时特卖
 	_flow.scss                 购买流程
+	_gameover.scss             活动结束
 	_gift.scss                 礼包
 	_goods.scss                商品图及介绍
 	_icon.scss                 图标
@@ -158,6 +159,7 @@
 	dialog-stockout.slim       缺货弹窗
 	dialog-subscription.slim   订阅弹窗
 	feedback.slim              用户反馈	
+	gameover.slim              活动结束	
 	index.slim                 首页
 	loading.slim               加载
 	login.slim                 登陆
