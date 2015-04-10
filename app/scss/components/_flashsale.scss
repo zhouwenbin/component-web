@@ -30,7 +30,7 @@
 }
 .flashsale-c2{
 	overflow: hidden;
-	padding: 30px;
+	padding: 12px 30px;
 }
 .flashsale-c2r1{
 	font-size: 14px;
@@ -59,7 +59,7 @@
 .flashsale h3{
 	font-size: 18px;
 	line-height: 24px;
-	height: 48px;
+	max-height: 48px;
 	overflow: hidden;	
 	margin-bottom: 10px;
 }
@@ -70,7 +70,7 @@
 .flashsale p{
 	font-size: 14px;
 	line-height: 24px;
-	height: 72px;
+	max-height: 72px;
 	overflow: hidden;
 	color: #666;
 	margin-bottom: 20px;
@@ -93,5 +93,5 @@
 	margin-right:5px;
 }
 .flashsale-c2-inner{
-	height:208px;
+	height:250px;
 }
