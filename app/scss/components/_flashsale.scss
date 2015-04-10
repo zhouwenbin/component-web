@@ -8,6 +8,23 @@
 	margin-bottom: 12px;
 	border:1px solid #e5e5e5;
 }
+.flashsale-c1{
+	width:670px;
+	height:340px;
+	text-align:center;
+}
+.flashsale-c1:after{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.flashsale-c1 img{
+	max-width:670px;
+	max-height:340px;
+	vertical-align:middle;
+}
 .flashsale-c1 img:hover{
 	opacity:0.85;
 }

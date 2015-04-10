@@ -6,4 +6,19 @@
 .topic li{
 	padding:10px;
 	float:left;
+	width:366px;
+	height:150px;
+	text-align:center;
+}
+.topic li:after{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.topic img{
+	max-width:366px;
+	max-height:150px;
+	vertical-align:middle;
 }
