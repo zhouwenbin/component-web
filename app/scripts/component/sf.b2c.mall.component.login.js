@@ -118,6 +118,23 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
+            window.location.href = data.loginAuthLink;        
+            return false;
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+      },
+      //@note 支付宝登录
+      '#alipaylogin click':function(element, event){
+        var reqLoginAuth = new SFReqLoginAuth({
+          "partnerId": "alipay_qklg",
+          "redirectUrl": "http://www.sfht.com/weixincenter.html"
+        });
+
+        reqLoginAuth
+          .sendRequest()
+          .done(function(data) {
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -125,7 +142,6 @@ define(
             console.error(error);
           })
       },
-
       /**
        * @description 验证码更换
        * @param  {String}

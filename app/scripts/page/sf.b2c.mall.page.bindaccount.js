@@ -1,7 +1,7 @@
 'use strict';
 
 define(
-  'sf.sf.b2c.mall.page.bindaccount',
+  'sf.b2c.mall.page.bindaccount',
 
   [
     'jquery',

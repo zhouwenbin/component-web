@@ -13,6 +13,7 @@ define('sf.b2c.mall.component.header', [
   'underscore',
   'md5',
   'store',
+  'sf.b2c.mall.api.user.partnerLogin', //传参判断第三方账号是否绑定手机号码
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
@@ -27,7 +28,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -46,15 +47,35 @@ define('sf.b2c.mall.component.header', [
       nologin: {
         myOrder: SFConfig.setting.link.login
       },
-      channels: [
-        { name: '首页', link: 'http://www.sfht.com/index.html', extra: "" },
-        { name: '母婴专区', link: 'http://www.sfht.com/index.html', extra: "" },
-        { name: '个护美装', link: 'http://www.sfht.com/index.html', extra: "" },
-        { name: '食品保健', link: 'http://www.sfht.com/index.html', extra: "" },
-        { name: '生活服饰', link: 'http://www.sfht.com/index.html', extra: '<span class="icon icon54">NEW</span>' },
-        { name: '黑5狂欢', link: 'http://www.sfht.com/index.html', extra: '<span class="icon icon55">HOT</span>' },
-        { name: '正品保障', link: 'http://www.sfht.com/index.html', extra: "" }
-      ],
+      channels: [{
+        name: '首页',
+        link: 'http://www.sfht.com/index.html',
+        extra: ""
+      }, {
+        name: '母婴专区',
+        link: 'http://www.sfht.com/index.html',
+        extra: ""
+      }, {
+        name: '个护美装',
+        link: 'http://www.sfht.com/index.html',
+        extra: ""
+      }, {
+        name: '食品保健',
+        link: 'http://www.sfht.com/index.html',
+        extra: ""
+      }, {
+        name: '生活服饰',
+        link: 'http://www.sfht.com/index.html',
+        extra: '<span class="icon icon54">NEW</span>'
+      }, {
+        name: '黑5狂欢',
+        link: 'http://www.sfht.com/index.html',
+        extra: '<span class="icon icon55">HOT</span>'
+      }, {
+        name: '正品保障',
+        link: 'http://www.sfht.com/index.html',
+        extra: ""
+      }],
       slogan: 'http://www.sfht.com/img/slogan.png'
     },
 
@@ -98,14 +119,14 @@ define('sf.b2c.mall.component.header', [
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
-          // domain: SFConfig.setting.api.mainurl
+            // domain: SFConfig.setting.api.mainurl
         }));
 
       } else {
         this.data = new can.Map(_.extend(this.defaults.nologin, {
           isUserLogin: false,
           index: SFConfig.setting.link.index,
-          nickname:null,
+          nickname: null,
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
@@ -150,7 +171,7 @@ define('sf.b2c.mall.component.header', [
     },
 
     renderMap: {
-      'template_header_user_navigator': function (data, isForce) {
+      'template_header_user_navigator': function(data, isForce) {
         var renderFn = can.mustache(template_header_user_navigator);
         var html = renderFn(data);
 
@@ -162,7 +183,7 @@ define('sf.b2c.mall.component.header', [
         }
       },
 
-      'template_header_info_common': function (data) {
+      'template_header_info_common': function(data) {
         var $el = this.element.find('.header-info-common');
 
         var templateid = 'template_header_info_common';
@@ -184,7 +205,7 @@ define('sf.b2c.mall.component.header', [
         this.element.find('.header-info-common').html(html);
       },
 
-      'template_header_channel_navigator': function (data) {
+      'template_header_channel_navigator': function(data) {
         var renderFn = can.mustache(template_header_channel_navigator);
         var html = renderFn(data, this.helpers);
 
@@ -192,7 +213,7 @@ define('sf.b2c.mall.component.header', [
       },
     },
 
-    supplement: function (data) {
+    supplement: function(data) {
       var that = this;
 
       this.renderMap['template_header_user_navigator'].call(this, data);
@@ -201,33 +222,61 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       if (pathname == '/' || pathname == '/index.html') {
-        $(window).scroll(function(){
-            setTimeout(function() {
-              if($(window).scrollTop() > 166){
-                  $(".nav").addClass('nav-fixed');
-                  $(".nav-fixed .nav-inner").stop(true,false).animate({
-                    top:'0px',
-                    opacity:1
-                  },300);
-              }else{
-                  $(".nav-fixed .nav-inner").stop(true,false).animate({
-                    top:'-56px',
-                    opacity:1
-                  },300);
-                  $(".nav").removeClass('nav-fixed');
-              }
+        $(window).scroll(function() {
+          setTimeout(function() {
+            if ($(window).scrollTop() > 166) {
+              $(".nav").addClass('nav-fixed');
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '0px',
+                opacity: 1
+              }, 300);
+            } else {
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '-56px',
+                opacity: 1
+              }, 300);
+              $(".nav").removeClass('nav-fixed');
+            }
 
-            }, 200);
+          }, 200);
         })
         $('#js-focus')
-          .hover(function(){
+          .hover(function() {
             $('.nav-qrcode').addClass('show');
             return false;
           })
-          .bind('mouseleave', function(){
+          .bind('mouseleave', function() {
             $('.nav-qrcode').removeClass('show');
             return false;
           })
+      };
+      //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
+      //@note 
+      if (!SFComm.prototype.checkUserLogin.call(that)) {
+        var authResp = can.deparam(window.location.search.substr(1));
+        // var arr = [];
+        // for (var resp in authResp) {
+        //   arr.push(resp + '=' + decodeURIComponent(authResp[resp]));
+        // }
+        var partnerLogin = new SFPartnerLogin({
+          'partnerId': 'alipay_qklg',
+          // 'authResp': arr.join('&')
+          'authResp': decodeURIComponent($.param(authResp))
+        });
+        partnerLogin.sendRequest()
+          .done(function(data) {
+            if (data.tempToken) {
+              store.set('tempToken', data.tempToken);
+              that.component.modal.show({
+                title: '顺丰海淘',
+                html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.bindaccount + '"></iframe>'
+              });
+            } else {
+              store.set('csrfToken', data.csrfToken);
+            }
+          }).fail(function(errorCode) {
+          })
+
       };
 
       // @note 通过服务端进行渲染，暂时这里不做动作
@@ -261,7 +310,7 @@ define('sf.b2c.mall.component.header', [
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = SFConfig.setting.link.orderlist + window.location.search + window.location.hash;
-      }else{
+      } else {
         this.showLogin('orderlist');
       }
     },
@@ -286,7 +335,7 @@ define('sf.b2c.mall.component.header', [
       }
     },
 
-    '#user-name click': function ($element, event) {
+    '#user-name click': function($element, event) {
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
@@ -325,13 +374,13 @@ define('sf.b2c.mall.component.header', [
           .done(function(data) {
             that.data.attr('user', null);
             store.remove('csrfToken');
-            setTimeout(function(){
+            setTimeout(function() {
               window.location.href = SFConfig.setting.link.index;
-            },2000);
+            }, 2000);
 
-              store.remove('provinceId');
-              store.remove('cityId');
-              store.remove('regionId');
+            store.remove('provinceId');
+            store.remove('cityId');
+            store.remove('regionId');
 
           })
           .fail(function() {})
@@ -416,7 +465,7 @@ define('sf.b2c.mall.component.header', [
         //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
           // if (!that.component.modal.isClosed()) {
-            that.component.modal.hide();
+          that.component.modal.hide();
           // }
 
           if (that.afterLoginDest) {
@@ -431,13 +480,13 @@ define('sf.b2c.mall.component.header', [
           }
           //window.location.reload();
           that.data.attr('isUserLogin', true);
-          that.data.attr('nickname',arr[0]);
+          that.data.attr('nickname', arr[0]);
 
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
           that.data.attr('isUserLogin', false);
-          that.data.attr('nickname',null);
+          that.data.attr('nickname', null);
 
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
