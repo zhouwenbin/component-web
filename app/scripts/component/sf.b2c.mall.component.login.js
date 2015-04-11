@@ -33,7 +33,7 @@ define(
     var ERROR_INPUT_PWD = '密码有误，请重新输入';
     var ERROR_NO_INPUT_VERCODE = '请输入验证码';
     var ERROR_INPUT_VERCODE = '您的验证码输入有误，请重新输入';
-    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="">设置密码</a>';
+    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="#">设置密码</a>';
 
     return can.Control.extend({
 
@@ -173,6 +173,7 @@ define(
        * @return {String}
        */
       checkUserName: function(username) {
+        var that = this;
         var username = $.trim(username);
         var isTelNum = /^1\d{10}$/.test(username);
         var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(username);
@@ -185,7 +186,8 @@ define(
           checkUserExist.sendRequest()
             .fail(function(errorCode){
               if (errorCode == 1000340) {
-                this.element.find('#username-error-tips').text(ERROR_NO_PASSWORD).show();
+                that.element.find('#username-error-tips').html(ERROR_NO_PASSWORD).show();
+                return false;
               };
             })
         };
