@@ -15,6 +15,11 @@ define(
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_INPUT_USERNAME = '手机号输入有误，请重新输入';
 
+    var DEFAULT_BIND_ERROR_MAP = {
+      '1000020':   '邮箱地址已存在，<a href="login.html">立即登录</a>',
+      '1000350':   '验证临时token失败,请重新登录',
+      '1000360':   '第三方账户已绑定海淘账户'
+    };
 
     return can.Control.extend({
       helpers: {
@@ -87,8 +92,16 @@ define(
           .done(function(data){
             store.set('csrfToken',data.csrfToken);
             store.remove('tempToken');
-          }).fail(function(error){
-
+          }).fail(function(errorCode){
+            if (_.isNumber(errorCode)) {
+                var defaultText = '绑定失败';
+                var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
+                if (errorCode === 1000020) {
+                  $('#username-error-tips').html(errorText).show();
+                }else{
+                  $('#username-error-tips').html(errorText).show();
+                }
+              }
           })
 
       }
