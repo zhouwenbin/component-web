@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.mobileRegister
+  * @class sf.b2c.mall.api.order.orderRender
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.mobileRegister',
+'sf.b2c.mall.api.order.orderRender',
 [
   'jquery',
   'can',
@@ -22,24 +22,21 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.mobileRegister',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'order.orderRender',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'mobile': 'string',
-        'smsCode': 'string',
-        'password': 'string',
+        'address': 'json',
+        'items': 'json',
+        'sysType': 'string',
       },
       OPTIONAL: {
-        'nick': 'string'
+        'userMsg': 'string',
+        'sysInfo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000020': '账户已注册',
-        '1000230': '手机号错误，请输入正确的手机号',
-        '1000240': '手机验证码错误',
-        '1000250': '手机验证码已过期',
-        '1000340': '用户账户还没有密码'
+        '4000100': 'order unkown error'
       }
     }
   });
