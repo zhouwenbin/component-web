@@ -130,7 +130,7 @@ define(
       '#alipaylogin click':function(element, event){
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": "http://www.sfht.com/weixincenter.html"
+          "redirectUrl": "http://www.sfht.com/index.html"
         });
 
         reqLoginAuth
