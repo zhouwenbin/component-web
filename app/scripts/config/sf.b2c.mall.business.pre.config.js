@@ -40,6 +40,7 @@ define([], function () {
     'iregister': 'http://pre.sfht.com/i.register.html',
     'coupon': 'http://pre.sfht.com/coupon.html',
     'bindaccount':'http://pre.sfht.com/bindaccount.html',//@note 绑定账号
+    'setpassword':'http://pre.sfht.com/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://pre.sfht.com/paysuccess.html'
   }
 

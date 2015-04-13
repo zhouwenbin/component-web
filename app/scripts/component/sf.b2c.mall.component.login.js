@@ -33,7 +33,7 @@ define(
     var ERROR_INPUT_PWD = '密码有误，请重新输入';
     var ERROR_NO_INPUT_VERCODE = '请输入验证码';
     var ERROR_INPUT_VERCODE = '您的验证码输入有误，请重新输入';
-    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="#">设置密码</a>';
+    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="setpassword.html">设置密码</a>';
 
     return can.Control.extend({
 
@@ -118,7 +118,8 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            window.location.href = data.loginAuthLink;        
+            store.set('alipay-or-weixin','wechat_open');
+            window.location.href = data.loginAuthLink;  
             return false;
           })
           .fail(function(error) {
@@ -135,7 +136,8 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            window.location.href = data.loginAuthLink;
+            store.set('alipay-or-weixin','alipay_qklg');
+            window.location.href = data.loginAuthLink;           
             return false;
           })
           .fail(function(error) {

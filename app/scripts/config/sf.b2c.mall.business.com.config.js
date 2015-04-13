@@ -41,6 +41,7 @@ define([], function () {
     'iregister': 'http://'+main+'/i.register.html',
     'coupon': 'http://'+main+'/coupon.html',
     'bindaccount':'http://'+main+'/bindaccount.html',//@note 绑定账号
+    'setpassword':'http://'+main+'/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://'+main+'/paysuccess.html'
   }
 

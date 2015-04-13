@@ -259,7 +259,7 @@ define('sf.b2c.mall.component.header', [
         //   arr.push(resp + '=' + decodeURIComponent(authResp[resp]));
         // }
         var partnerLogin = new SFPartnerLogin({
-          'partnerId': 'alipay_qklg',
+          'partnerId': store.get('alipay-or-weixin'),
           // 'authResp': arr.join('&')
           'authResp': decodeURIComponent($.param(authResp))
         });
