@@ -16,7 +16,7 @@ define(
     var ERROR_INPUT_USERNAME = '手机号输入有误，请重新输入';
 
     var DEFAULT_BIND_ERROR_MAP = {
-      '1000020':   '邮箱地址已存在，<a href="login.html">立即登录</a>',
+      '1000020':   '手机账号已存在，<a href="login.html">立即登录</a>',
       '1000350':   '验证临时token失败,请重新登录',
       '1000360':   '第三方账户已绑定海淘账户'
     };
@@ -72,7 +72,8 @@ define(
           '</div>' +
           '</div>';
       },
-      '#bindaccount click': function() {
+      '#bindaccount click': function(element,event) {
+        event && event.preventDefault();
         var telNum = this.data.attr('username');
         var isTelNum = /^1\d{10}$/.test(telNum);
         if (!telNum) {
