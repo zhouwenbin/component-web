@@ -69,7 +69,7 @@
 }
 .footer2 dl{
 	float: left;
-	width: 170px;
+	margin-left:98px;
 }
 .footer2 dt{
 	font-size: 18px;
@@ -85,29 +85,13 @@
 .footer2-c1{
 	margin-right: 117px;
 }
-
-.footer2 .phone{
-	font-size: 24px;
-	margin-bottom: 12px;
+.footer2-c2{
+	margin-left:-98px;
 }
-.footer2 .time{
-	font-size: 14px;
-	line-height:24px;
-	margin-bottom: 26px;
-}
-.footer2-email{
-	font-size: 14px;
-	margin-bottom: 18px;
-}
-.footer2-email .icon{
+.footer2-c2 .icon{
 	margin-right: 10px;
 }
-.footer2-service{
-	font-size: 14px;
-}
-.footer2-service .icon{
-	margin-right: 12px;
-}
+
 .footer2-c3{
 	padding-left: 38px;
 }
