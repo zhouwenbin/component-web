@@ -110,7 +110,7 @@ define(
           var that = this;
           var downSmsCode = new SFDownSmsCode({
             mobile: mobile,
-            askType: 'REGISTER'
+            askType: 'SETPSWD'
           });
           downSmsCode.sendRequest()
             .done(function(data) {
