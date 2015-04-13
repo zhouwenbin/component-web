@@ -5,23 +5,30 @@ define(
   'sf.b2c.mall.component.setpassword', [
     'jquery',
     'can',
+    'md5',
     'store',
     'sf.b2c.mall.business.config',
     'sf.util',
     'sf.b2c.mall.api.user.setPswdAndLogin',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, SFConfig, SFFn, SFSetPswdAndLogin,SFDownSmsCode) {
+  function($, can, md5, store, SFBizConf, SFFn, SFSetPswdAndLogin, SFDownSmsCode) {
 
     var DEFAULT_DOWN_SMS_ERROR_MAP = {
-      '1000010' : '未找到手机用户',
-      '1000020' : '手机号已存在，<a href="i.login.html">立即登录</a>',
-      '1000070' : '参数错误',
-      '1000230' : '手机号错误，请输入正确的手机号',
-      '1000270' : '短信请求太过频繁,请稍后重试',
-      '1000290' : '短信请求太多'
+      '1000010': '未找到手机用户',
+      '1000020': '手机号已存在，<a href="i.login.html">立即登录</a>',
+      '1000070': '参数错误',
+      '1000230': '手机号错误，请输入正确的手机号',
+      '1000270': '短信请求太过频繁,请稍后重试',
+      '1000290': '短信请求太多'
     }
-    
+
+    var DEFAULT_MOBILE_ACTIVATE_ERROR_MAP = {
+      '1000020': '手机号已存在，<a href="i.login.html">立即登录</a>',
+      '1000230': '手机号错误，请输入正确的手机号',
+      '1000240': '手机验证码错误',
+      '1000250': '验证码输入有误，请重新输入'
+    }
     var ERROR_NO_INPUT_MOBILE = '请输入您的手机号码';
     var ERROR_INPUT_MOBILE = '您的手机号码格式有误';
     var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
@@ -39,7 +46,7 @@ define(
       },
 
       render: function(data) {
-        var html = can.view('templates/component/sf.b2c.mall.component.setpassword.mustache',data);
+        var html = can.view('templates/component/sf.b2c.mall.component.setpassword.mustache', data);
         this.element.append(html);
       },
 
@@ -67,14 +74,14 @@ define(
         }
       },
 
-      checkPassword: function (password, tag) {
+      checkPassword: function(password, tag) {
         if (!password) {
           this.element.find(tag).text(ERROR_NO_PASSWORD).show();
           return false;
-        }else if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
+        } else if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
           this.element.find(tag).text(ERROR_PASSWORD).show();
           return false;
-        }else{
+        } else {
           return true;
         }
       },
@@ -110,7 +117,7 @@ define(
           var that = this;
           var downSmsCode = new SFDownSmsCode({
             mobile: mobile,
-            askType: 'SETPSWD'
+            askType: 'RESETPSWD'
           });
           downSmsCode.sendRequest()
             .done(function(data) {
@@ -161,7 +168,7 @@ define(
         this.element.find('#password-error').hide();
       },
 
-      '#mobile-register-btn click': function ($element, event) {
+      '#mobile-register-btn click': function($element, event) {
         event && event.preventDefault();
 
         // 发起请求注册
@@ -172,26 +179,29 @@ define(
         var password = this.element.find('#input-password').val();
 
         if (this.checkMobile.call(this, mobile) && this.checkCode(code) && this.checkPassword(password, '#password-error')) {
+
           var setPswdAndLogin = new SFSetPswdAndLogin({
-            mobile: mobile,
+            type:'MOBILE',
+            accountId: mobile,
             smsCode: code,
-            password: md5(password+SFBizConf.setting.md5_key)
+            password: md5(password + SFBizConf.setting.md5_key)
           });
 
           setPswdAndLogin.sendRequest()
-            .done(function (data) {
+            .done(function(data) {
+              console.log(1);
               if (data.csrfToken) {
-                  store.set('csrfToken', data.csrfToken);
+                store.set('csrfToken', data.csrfToken);
                 //can.route.attr({'tag':'success', 'csrfToken': data.csrfToken});
               }
             })
-            .fail(function (errorCode) {
+            .fail(function(errorCode) {
               if (_.isNumber(errorCode)) {
                 var defaultText = '注册失败';
                 var errorText = DEFAULT_MOBILE_ACTIVATE_ERROR_MAP[errorCode.toString()] || defaultText;
                 if (errorCode == 1000020) {
                   that.element.find('#input-mobile-error').html(errorText).show();
-                }else{
+                } else {
                   that.element.find('#mobile-register-error').html(errorText).show();
                 }
               }

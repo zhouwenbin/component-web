@@ -32,7 +32,8 @@ function($, can, _, Comm, SecurityType) {
       OPTIONAL: {
         'userMsg': 'string',
         'couponCodes': 'string',
-        'sysInfo': 'string'
+        'sysInfo': 'string',
+        'submitKey': 'string'
       },
       VERIFY:{
       },
@@ -52,7 +53,8 @@ function($, can, _, Comm, SecurityType) {
         '4100903': '优惠券不能在该渠道下使用！',
         '4100904': '优惠券不能在该终端下使用！',
         '4100905': '使用的优惠券不满足满减条件！',
-        '4100906': '使用的优惠券金额超过商品总金额的30%！'
+        '4100906': '使用的优惠券金额超过商品总金额的30%！',
+        '4100907': '通知商户状态变更失败!'
       }
     }
   });
