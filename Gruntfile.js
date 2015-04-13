@@ -24,8 +24,8 @@ module.exports = function (grunt) {
     dist: 'dist',
     tmp: '.tmp',
     publish: 'publish',
-    oss: 'haitao-b2c-web-oss',
-    statics: 'haitao-b2c-web-statics',
+    oss: 'web-oss',
+    statics: 'web-static',
     timestamp: Date.now()
   };
 
@@ -460,7 +460,7 @@ module.exports = function (grunt) {
       },
       statics: {
         options: {
-          archive: '<%=config.statics%>/target/statics.zip',
+          archive: '<%=config.statics%>/target/static.zip',
           store: true
           // archive: '<%=config.statics%>/statics.release.<%=config.version%>.zip'
         },
