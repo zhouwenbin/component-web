@@ -445,7 +445,7 @@ module.exports = function (grunt) {
     compress: {
       oss: {
         options: {
-          archive: '<%=config.oss%>/target/oss.zip',
+          archive: '<%=config.oss%>/target/<%=config.oss%>.zip',
           store: true
         // archive: '<%=config.oss%>/oss.release.<%=config.version%>.zip'
         },
@@ -460,7 +460,7 @@ module.exports = function (grunt) {
       },
       statics: {
         options: {
-          archive: '<%=config.statics%>/target/static.zip',
+          archive: '<%=config.statics%>/target/<%=config.statics%>.zip',
           store: true
           // archive: '<%=config.statics%>/statics.release.<%=config.version%>.zip'
         },
