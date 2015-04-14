@@ -27,16 +27,19 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
         'tempToken': 'string',
         'type': 'string',
-        'accountId': 'string'
+        'accountId': 'string',
       },
       OPTIONAL: {
+        'smsCode': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
         '1000020': '账户已注册',
+        '1000070': '参数错误',
         '1000350': '验证临时token失败,请重新登录',
-        '1000360': '第三方账户已绑定海淘账户'
+        '1000360': '第三方账户已绑定海淘账户',
+        '1000380': '已经绑定了同类的第三方账户'
       }
     }
   });
