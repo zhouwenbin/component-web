@@ -4,24 +4,26 @@ define('sf.b2c.mall.order.iteminfo', [
   'can',
   'store',
   'jquery.cookie',
+  'sf.helpers',
   'sf.b2c.mall.adapter.regions',
-  'sf.b2c.mall.api.b2cmall.getProductHotData',
-  'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.order.submitOrderForAllSys',
   'sf.b2c.mall.api.order.queryOrderCoupon',
+  'sf.b2c.mall.api.order.orderRender',
   'sf.b2c.mall.api.coupon.receiveExCode',
   'sf.b2c.mall.api.user.getRecAddressList',
-  'sf.helpers',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config'
-], function(can, store, $cookie, RegionsAdapter, SFGetProductHotData, SFGetItemSummary, SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFReceiveExCode, SFGetRecAddressList, helpers, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+], function(can, store, $cookie, helpers, RegionsAdapter,
+  SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFOrderRender,
+  SFReceiveExCode, SFGetRecAddressList, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
 
   return can.Control.extend({
     itemObj: new can.Map({
       isShowCouponArea: false,
-      links: SFConfig.setting.link
+      links: SFConfig.setting.link,
+      amount: 0
     }),
     /**
      * 初始化
@@ -41,98 +43,139 @@ define('sf.b2c.mall.order.iteminfo', [
       }
 
       var params = can.deparam(window.location.search.substr(1));
-      that.options.itemid = params.itemid;
-      that.options.saleid = arr[2];
-      that.options.amount = params.amount;
-      that.itemObj.itemid = params.itemid;
-      that.itemObj.saleid = arr[2];
-      that.itemObj.amount = params.amount;
+      that.itemObj.attr({
+        itemid: params.itemid,
+        saleid: arr[2],
+        amount: params.amount
+      });
 
-      can.when(that.initItemSummary(options), that.initProductHotData(options))
-        .then(function() {
-          return that.initCoupons(options)
-            .always(function() {
-              var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
-              that.element.html(html);
-              // that.options.productChannels = 'heike';
-              // arr[2] ='undefined';
-              //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
-              if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
-                $('#submitOrder').addClass('disable');
-              };
-            });
-        })
-        .fail(function(error) {
-          console.error(error);
+      can.when(that.initOrderRender())
+        .done(function() {
+          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
+          that.element.html(html);
+          // that.options.productChannels = 'heike';
+          // arr[2] ='undefined';
+          //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
+          if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
+            $('#submitOrder').addClass('disable');
+          };
         });
     },
-
-    initItemSummary: function(options) {
-      var that = this;
-      var getItemSummary = new SFGetItemSummary({
-        "itemId": that.itemObj.itemid
-      });
-      return getItemSummary.sendRequest()
-        .done(function(iteminfo) {
-          that.itemObj.attr({
-            showTax: iteminfo.bonded, //是否是宁波保税，是得话才展示税额
-            itemName: iteminfo.title,
-            picUrl: iteminfo.image ? iteminfo.image.thumbImgUrl : "",
-            skuId: iteminfo.skuId
-          });
-          //@note 如果channels(渠道编号) = 'heike',
-          //cookie中1_uinfo中没有heike，则该用户不能购买
-          that.options.productChannels = iteminfo.channels[0];
-          if (typeof iteminfo.specs != "undefined") {
-            var result = new Array();
-            _.each(iteminfo.specs, function(item) {
-              result.push(item.specName + ":" + item.spec.specValue);
-            });
-            that.itemObj.attr("spec", result.join('&nbsp;/&nbsp;'));
-          }
-        })
-        .fail(function(error) {
-          console.error(error);
-        })
-    },
-
-    initProductHotData: function(options) {
-      var that = this;
-      var getProductHotData = new SFGetProductHotData({
-        'itemId': that.itemObj.itemid
-      });
-
-      return getProductHotData.sendRequest()
-        .done(function(productHotData) {
-          that.itemObj.attr({
-            "singlePrice": productHotData.sellingPrice,
-            "amount": that.itemObj.amount,
-            "totalPrice": productHotData.sellingPrice * that.itemObj.amount,
-            "allTotalPrice": productHotData.sellingPrice * that.itemObj.amount,
-            "shouldPay": productHotData.sellingPrice * that.itemObj.amount,
-            "sellingPrice": productHotData.sellingPrice
-          });
-        })
-        .fail(function(error) {
-          console.error(error);
-        })
-    },
-
-
-    /*
-     * author:zhangke
+    /**
+     * 初始化 OrderRender
      */
+    initOrderRender: function() {
+      var that = this;
+      var selectAddr = that.options.addr;
+      var orderRender = new SFOrderRender({
+        address: JSON.stringify({
+          "addrId": selectAddr.addrId,
+          "nationName": selectAddr.nationName,
+          "provinceName": selectAddr.provinceName,
+          "cityName": selectAddr.cityName,
+          "regionName": selectAddr.regionName,
+          "detail": selectAddr.detail,
+          "recName": selectAddr.recName,
+          "mobile": selectAddr.cellphone,
+          "telephone": selectAddr.cellphone,
+          "zipCode": selectAddr.zipCode,
+          "recId": selectAddr.recId,
+          certType: "ID",
+          certNo: selectAddr.credtNum2
+        }),
+        items: JSON.stringify([{
+          "itemId": that.itemObj.itemid,
+          "num": that.itemObj.amount
+        }]),
+        sysType: that.getSysType(that.itemObj.saleid),
+        sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
+      });
+      return orderRender.sendRequest()
+        .done(function(orderRenderItem){
+          that.processFoundation(orderRenderItem);
+          that.processProducts(orderRenderItem.orderGoodsItemList);
+          that.processCoupons(orderRenderItem.orderCouponItem);
+        })
+        .fail();
+    },
+
+    processFoundation: function(orderRenderItem) {
+      this.itemObj.attr({
+        submitKey: orderRenderItem.submitKey,
+        flag: orderRenderItem.flag,
+        errorDes: orderRenderItem.errorDes,
+        orderFeeItem: can.extend(orderRenderItem.orderFeeItem, {
+          shouldPay: orderRenderItem.orderFeeItem.actualTotalFee
+        })
+      });
+    },
+
+    /**
+     * 加工商品信息
+     * @param 商品列表
+     */
+    processProducts: function(orderGoodsItemList) {
+      //@note 如果channels(渠道编号) = 'heike',
+      //cookie中1_uinfo中没有heike，则该用户不能购买
+      this.options.productChannels = orderGoodsItemList[0].channels[0];
+      //是否是宁波保税，是得话才展示税额
+      this.itemObj.attr("showTax", orderGoodsItemList[0].bonded);
+
+      _.each(orderGoodsItemList, function(goodItem){
+        if (goodItem.specItemList) {
+          var result = new Array();
+          _.each(goodItem.specItemList, function(item) {
+            result.push(item.specName + ":" + item.spec.specValue);
+          });
+          goodItem.spec = result.join('&nbsp;/&nbsp;');
+          goodItem.totalPrice = goodItem.price * goodItem.quantity;
+        }
+      });
+      this.itemObj.attr("orderGoodsItemList", orderGoodsItemList);
+    },
+    /**
+     * 加工优惠券信息
+     * @param 优惠券
+     */
+    processCoupons: function(orderCoupon) {
+      this.itemObj.attr("isShowCouponArea", true);
+      can.extend(orderCoupon, {
+        isHaveAvaliable: orderCoupon.avaliableAmount != 0,
+        isHaveDisable: orderCoupon.disableAmount != 0,
+        useQuantity: 0,
+        discountPrice: 0,
+        couponExCode: ""
+      });
+      this.itemObj.attr("orderCoupon", orderCoupon);
+      this.itemObj.orderCoupon.selectCoupons = [];
+
+
+      this.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
+        this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
+        this.attr("orderFeeItem.discount", this.attr("orderFeeItem.discount") - oldVal + newVal);
+      });
+
+    },
+
     initCoupons: function(options) {
       var that = this;
-      var queryOrderCoupon = new SFQueryOrderCoupon({
-        "items": JSON.stringify([{
-          "itemId": this.itemObj.itemid,
-          "num": this.itemObj.amount,
-          "price": this.itemObj.singlePrice,
-          skuId: this.itemObj.skuId
-        }]),
-        'system': that.getSysType(that.options.saleid)
+
+      var params = {
+        "items": "",
+        'system': that.getSysType(that.itemObj.saleid)
+      }
+      var goodItems = [];
+      _.each(that.itemObj.orderGoodsItemList, function(goodItem){
+        goodItems.push({
+          "itemId": goodItem.itemId,
+          "amount": goodItem.quantity,
+          "price": goodItem.price,
+          skuId: goodItem.skuId
+        });
       });
+      params.items = JSON.stringify(goodItems);
+
+      var queryOrderCoupon = new SFQueryOrderCoupon(params);
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("isShowCouponArea", true);
@@ -146,9 +189,11 @@ define('sf.b2c.mall.order.iteminfo', [
           that.itemObj.attr("orderCoupon", orderCoupon);
           that.itemObj.orderCoupon.selectCoupons = [];
 
+          /*
           that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
             that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
           });
+          */
         })
         .fail(function(error) {
           console.error(error);
@@ -218,7 +263,7 @@ define('sf.b2c.mall.order.iteminfo', [
       $('#errorTips').addClass('visuallyhidden');
       element.addClass("disable");
 
-      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
+      var selectAddr = that.options.addr;
       var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(selectAddr.detail));
       var isReceiverName = /先生|女士|小姐/.test($.trim(selectAddr.recName));
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
@@ -254,7 +299,7 @@ define('sf.b2c.mall.order.iteminfo', [
         element.removeClass("disable");
         return false;
       }
-      var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.options.saleid);
+      var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.itemObj.saleid);
       if (verifYVendorResult && !verifYVendorResult.result) {
         new SFMessage(null, {
           'tip': verifYVendorResult.message,
@@ -278,7 +323,6 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.when(setDefaultAddr.sendRequest(), setDefaultRecv.sendRequest())
         .done(function(addrDefault, personDefault) {
-
           params = {
             "address": JSON.stringify({
               "addrId": selectAddr.addrId,
@@ -294,15 +338,22 @@ define('sf.b2c.mall.order.iteminfo', [
               "recId": selectAddr.recId
             }),
             "userMsg": "",
-            "items": JSON.stringify([{
-              "itemId": that.itemObj.itemid,
-              "num": that.itemObj.amount,
-              "price": that.itemObj.sellingPrice
-            }]),
-            "sysType": that.getSysType(that.options.saleid),
-            "sysInfo": that.options.vendorinfo.getVendorInfo(that.options.saleid),
-            "couponCodes": that.getCouponCodes()
-          }
+            "items": "",
+            "sysType": that.getSysType(that.itemObj.saleid),
+            "sysInfo": that.options.vendorinfo.getVendorInfo(that.itemObj.saleid),
+            "couponCodes": that.getCouponCodes(),
+            submitKey: that.itemObj.submitKey
+          };
+
+          var goodItems = [];
+          _.each(that.itemObj.orderGoodsItemList, function(goodItem){
+            goodItems.push({
+              "itemId": goodItem.itemId,
+              "num": goodItem.quantity,
+              "price": goodItem.price
+            });
+          });
+          params.items = JSON.stringify(goodItems);
         })
         .fail(function(error) {
           element.removeClass("disable");
@@ -394,7 +445,7 @@ define('sf.b2c.mall.order.iteminfo', [
             11000160: "请输入有效的兑换码",
             11000170: "兑换码已使用",
             11000200: "兑换码已过期"
-          }
+          };
           new SFMessage(null, {
             'tip': errorMap[error] ? errorMap[error] : '请输入有效的兑换码！',
             'type': 'error'

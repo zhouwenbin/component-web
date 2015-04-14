@@ -8,23 +8,25 @@
     <div class="table-c5 fr">小计</div>
   </div>
   <ul class="table-b">
+    {{#each orderGoodsItemList}}
     <li class="clearfix">
       <div class="table-c1 fl">
         <div class="table-img fl">
-          <img src="{{sf.img picUrl}}" alt="" width="68" height="42" /><span></span>
+          <img src="{{sf.img productImage.thumbImgUrl}}" alt="" width="68" height="42" /><span></span>
         </div>
         <div class="table-text">
-          <h3><a href="javascript:void(0);">{{itemName}}</a></h3>
+          <h3><a href="javascript:void(0);">{{goodsName}}</a></h3>
           <p>{{{spec}}}</p>
-          <strong id="errorTips" class="visuallyhidden">该商品的配送范围不支持当前地址，请重新选择收货地址</strong>
+            <strong id="errorTips" class="{{#flag}}visuallyhidden{{/flag}}">{{description}}</strong>
           <!--img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /-->
         </div>
       </div>
-      <div class="table-c2 fl">{{amount}}</div>
-      <div class="table-c3 fl">￥{{sf.price singlePrice}}</div>
+      <div class="table-c2 fl">{{quantity}}</div>
+      <div class="table-c3 fl">￥{{sf.price price}}</div>
       <div class="table-c4 fl">￥0</div>
       <div class="table-c5 fr">￥{{sf.price totalPrice}}</div>
     </li>
+    {{/each}}
   </ul>
 
   <div class="coupon2">
@@ -79,20 +81,21 @@
   <div class="table-f clearfix">
     <div class="table-fc2 fr">
         <ul class="table-fr1">
-          <li>商品总金额：￥{{sf.price allTotalPrice}}</li>
+          <li>商品总金额：￥{{sf.price orderFeeItem.goodsTotalFee}}</li>
           {{#isShowCouponArea}}
-            <li>-优惠金额：￥{{sf.price orderCoupon.discountPrice}}</li>
+            <li>-优惠金额：￥{{sf.price orderFeeItem.discount}}</li>
           {{/isShowCouponArea}}
           {{#if showTax}}
             <li>+税额：￥0</li>
           {{/if}}
-          <li>+运费：￥0</li>
+          <li>+运费：￥{{sf.price orderFeeItem.logisticsFee}}</li>
         </ul>
-        <div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPay}}</strong></div>
+        <div class="table-fr3">实际应付款：<strong>￥{{sf.price orderFeeItem.shouldPay}}</strong></div>
     </div>
   </div>
 </div>
 
 <div class="order-f">
-  <a href="javascript:void(0)" class="btn btn-send" id="submitOrder">提交订单</a>
+  <a href="javascript:void(0)" class="btn btn-send{{#flag}}disable{{/flag}}" id="submitOrder">提交订单</a>
+    <error>{{#flag}}{{errorDes}}{{/flag}}</error>
 </div>

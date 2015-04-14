@@ -2,7 +2,7 @@
 {{^if hasData}}
 <div class="order-b active">
   <div class="order-r2" id="addAdrArea"></div>
-  <a href="#" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
+  <a href="javascript:void(0);" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
 </div>
 {{/if}}
 
@@ -14,15 +14,15 @@
       <div class="order-r1 clearfix">
         <div class="order-r1c1 fl">
           <span class="icon icon29"></span>
-        </div>      
+        </div>
         <div class="order-r1c2 fr">
           {{#defaultAddr isDefault}}
             <span class="text-error">默认地址</span>
           {{else}}
-            <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+            <a href="javascript:void(0);" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
           {{/defaultAddr}}
-          <a class="order-edit" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
-          <a class="order-del" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>         
+          <a class="order-edit" href="javascript:void(0);" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
+          <a class="order-del" href="javascript:void(0);" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
         </div>
         <ul class="order-r1c3">
           <li><span>{{nationName}}</span><span>{{provinceName}}</span><span>{{cityName}}</span><span>{{regionName}}</span><span>{{detail}}</span></li>
@@ -37,7 +37,7 @@
 
   <div class="order-r2" id="addAdrArea"></div>
 
-  <a href="###" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
-  <a class="icon icon30"></a>
+  <a href="javascript:void(0);" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
+  <a href="javascript:void(0);" class="icon icon30"></a>
 </div>
 {{/if}}
