@@ -167,7 +167,7 @@
           </ul>
           <div class="table-f clearfix">
             <ul class="table-fc1 fl">
-              <li>已参加活动：开业全场免邮，飞机太多了，任性！</li>
+              {{! <li>已参加活动：开业全场免邮，飞机太多了，任性！</li> }}
               {{#if isCostCoupon}}
                 <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
               {{/if}}
@@ -187,7 +187,7 @@
                   {{#if showTax}}
                     <li>+税额：￥0</li>
                   {{/if}}
-                  <li>+运费：￥0</li>
+                  <li>免运费</li>
                 </ul>
               {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
             </div>
