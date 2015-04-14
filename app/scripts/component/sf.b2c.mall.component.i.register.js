@@ -15,10 +15,11 @@ define(
     'sf.b2c.mall.api.user.mobileRegister',
     'sf.b2c.mall.api.user.sendActivateMail',
     'sf.b2c.mall.business.config',
-    'sf.util'
+    'sf.util',
+    'sf.b2c.mall.api.user.checkUserExist' //@noto 检查第三方账号绑定的手机号是否有登录密码
   ],
 
-  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn) {
+  function ($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn,SFCheckUserExist) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -60,6 +61,7 @@ define(
     var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
+    var ERROR_NO_SET_PWD = '账户未设置密码，点此<a href="setpassword.html">设置密码</a>';
 
     var MAIL_MAP = {
       '163': 'http://mail.163.com',
@@ -196,6 +198,22 @@ define(
       },
 
       checkMobile: function (mobile) {
+        var that = this;
+        var isTelNum = /^1\d{10}$/.test(mobile);
+        //@note 手机号码输完11位时，验证该账号是否有密码
+        if (isTelNum) {
+          var checkUserExist = new SFCheckUserExist({
+            'accountId':mobile,
+            'type':'MOBILE'
+          });
+          checkUserExist.sendRequest()
+            .fail(function(errorCode){
+              if (errorCode == 1000340) {
+                that.element.find('#input-mobile-error').html(ERROR_NO_SET_PWD).show();
+                return false;
+              };
+            })
+        };
         if (!mobile) {
           this.element.find('#input-mobile-error').text(ERROR_NO_INPUT_MOBILE).show();
           return false;

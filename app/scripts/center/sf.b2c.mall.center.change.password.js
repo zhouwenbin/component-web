@@ -9,9 +9,12 @@ define(
       'md5',
       'sf.b2c.mall.framework.comm',
       'sf.b2c.mall.api.user.changePassword',
+      'sf.b2c.mall.api.user.getUserInfo',
+      'sf.b2c.mall.api.user.downSmsCode',
+      'sf.b2c.mall.api.user.resetPassword',
       'sf.util'
     ],
-    function(can,$,md5,SFComm,SFChangePwd, SFFn){
+    function(can,$,md5,SFComm,SFChangePwd, SFGetUserInfo, SFApiUserDownSmsCode, SFResetPassword, SFFn){
 
       SFComm.register(1);
 
@@ -23,14 +26,30 @@ define(
       var ERROR_INPUT_CONFIRMPWD = '您两次输入的密码不一致，请重新输入';
       var ERROR_SAME_PWD = '新密码与原密码一致，请重新设置密码';
 
+      var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
+      var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
+
+      var DEFAULT_DOWN_SMS_ERROR_MAP = {
+        '1000010' : '未找到手机用户',
+        '1000020' : '手机号已存在，<a href="login.html">立即登录</a>',
+        '1000070' : '参数错误',
+        '1000230' : '手机号错误，请输入正确的手机号',
+        '1000270' : '短信请求太过频繁,请稍后重试',
+        '1000290' : '短信请求太多'
+      }
+
       return can.Control.extend({
 
         init: function () {
           this.component = {};
+          this.component.sms = new SFApiUserDownSmsCode();
           this.component.changePwd = new SFChangePwd();
+          this.component.resetpw = new SFResetPassword();
 
           this.data = new can.Map({
             oldPwd: null,
+            phoneNumber: null,
+            mobileCode: null,
             newPwd: null,
             confirmPwd: null
           });
@@ -38,8 +57,23 @@ define(
         },
         render: function (data) {
 
-          var html = can.view('templates/center/sf.b2c.mall.center.secret.mustache', data);
-          this.element.html(html);
+          var that = this;
+
+          var getUserInfo = new SFGetUserInfo();
+          getUserInfo.sendRequest()
+          .done(function(userinfo){
+            if (userinfo.hasPswd) {
+              var html = can.view('templates/center/sf.b2c.mall.center.bindsecret.mustache', data);
+              that.element.html(html);
+            } else {
+              // var html = can.view('templates/center/sf.b2c.mall.center.bindsecret.mustache', data);
+              // that.element.html(html);
+              var html = can.view('templates/center/sf.b2c.mall.center.secret.mustache', data);
+              that.element.html(html);
+            }
+          })
+          .fail()
+
         },
         //检验输入密码是否正确(密码要求的格式)
         isPwd: function (password) {
@@ -124,6 +158,114 @@ define(
           if(newPwd !==confirmPwd){
             this.element.find('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
             return false;
+          }
+        },
+
+        checkCode: function (code) {
+          if (!code) {
+            this.element.find('#mobile-code-error').text(ERROR_NO_MOBILE_CHECKCODE).show();
+            return false;
+          }else if (!/^[0-9]{6}$/.test(code)) {
+            this.element.find('#mobile-code-error').text(ERROR_MOBILE_CHECKCODE).show();
+            return false;
+          }else{
+            return true;
+          }
+        },
+
+        '#input-mobile-code focus': function ($element, event) {
+          this.element.find('#mobile-code-error').hide();
+        },
+
+        '#input-mobile-code blur': function ($element, event) {
+          var code = this.element.find('#input-mobile-code').val();
+          this.checkCode.call(this, code);
+        },
+
+        countdown: function (time) {
+          var that = this;
+          setTimeout(function() {
+            if (time > 0) {
+              time--;
+              that.element.find('#mobile-code-btn').text(time+'秒后可重新发送').addClass('disable');
+              that.countdown.call(that, time);
+            }else{
+              that.element.find('#mobile-code-btn').text('发送短信验证码').removeClass('disable');
+            }
+          }, 1000);
+        },
+
+        '#mobile-code-btn click': function($element, event) {
+          event && event.preventDefault();
+
+          var mobile = this.element.find('#input-mobile').val();
+
+          // 发起请求发送号码
+          var that = this;
+          this.component.sms.setData({
+            mobile: mobile,
+            askType: 'RESETPSWD'
+          });
+          this.component.sms.sendRequest()
+            .done(function(data) {
+              // @todo 开始倒计时
+              that.countdown.call(that, 60);
+              that.element.find('#mobile-code-error').hide();
+            })
+            .fail(function(errorCode) {
+              if (_.isNumber(errorCode)) {
+                var defaultText = '短信请求发送失败';
+                var errorText = DEFAULT_DOWN_SMS_ERROR_MAP[errorCode.toString()] || defaultText;
+                if (errorCode === 1000020) {
+                  that.element.find('#input-mobile-error').html(errorText).show();
+                } else {
+                  that.element.find('#mobile-code-error').html(errorText).show();
+                }
+              }
+            })
+
+        },
+
+        '#btn-confirm-bind click': function (element, event) {
+          event && event.preventDefault();
+
+          $('#mobile-code-error').hide();
+          $('#newPwd-error-tips').hide();
+          $('#confirmPwd-error-tips').hide();
+          var that = this;
+          if (SFComm.prototype.checkUserLogin.call(that)) {
+
+            var inputData = {
+              phoneNumber: this.data.attr('phoneNumber'),
+              mobileCode: this.data.attr('mobileCode'),
+              newPassword: this.data.attr('newPwd'),
+              repeatPassword: this.data.attr('confirmPwd')
+            };
+            if(inputData.newPassword !==inputData.repeatPassword){
+              return $('#confirmPwd-error-tips').text(ERROR_INPUT_CONFIRMPWD).show();
+            }
+
+            if (this.checkCode(inputData.mobileCode) && this.checkNewPwd.call(this, inputData.newPassword) && this.checkConfirmPwd.call(this, inputData.newPassword)) {
+
+              var params = {
+                accountId: inputData.phoneNumber,
+                type: 'MOBILE',
+                smsCode: inputData.mobileCode,
+                newPassword: md5(inputData.newPassword + 'www.sfht.com')
+              };
+
+              this.component.resetpw.setData(params);
+              this.component.resetpw.sendRequest()
+                .done(function (data) {
+                    var html ='<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a></div>'
+                    $('.change-password-wrap').html(html);
+                })
+                .fail(function (error) {
+                  console.error(error);
+                })
+            }
+          }else{
+            window.location.href = 'index.html';
           }
         },
 

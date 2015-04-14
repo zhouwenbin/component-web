@@ -83,6 +83,10 @@ requirejs.config({
     'sf.b2c.mall.api.user.getRecvInfo': 'scripts/api/sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.api.user.partnerLogin': 'scripts/api/sf.b2c.mall.api.user.partnerLogin',
     'sf.b2c.mall.api.user.reqLoginAuth': 'scripts/api/sf.b2c.mall.api.user.reqLoginAuth',
+    //账号绑定
+    'sf.b2c.mall.api.user.partnerBind': 'scripts/api/sf.b2c.mall.api.user.partnerBind',
+    //设置密码并登陆
+    'sf.b2c.mall.api.user.setPswdAndLogin': 'scripts/api/sf.b2c.mall.api.user.setPswdAndLogin',
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'scripts/api/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
@@ -132,6 +136,12 @@ requirejs.config({
     'sf.b2c.mall.component.retrieve': 'scripts/component/sf.b2c.mall.component.retrieve',
     'sf.b2c.mall.component.receivepersoneditor': 'scripts/component/sf.b2c.mall.component.receivepersoneditor',
     'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner',
+    //绑定账号
+    'sf.b2c.mall.component.i.bindaccount': 'scripts/component/sf.b2c.mall.component.i.bindaccount',
+    'sf.b2c.mall.component.bindaccount': 'scripts/component/sf.b2c.mall.component.bindaccount',
+    //设置密码并登陆
+    'sf.b2c.mall.component.setpassword': 'scripts/component/sf.b2c.mall.component.setpassword',
+    'sf.b2c.mall.component.i.setpassword': 'scripts/component/sf.b2c.mall.component.i.setpassword',
 
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
@@ -187,7 +197,12 @@ requirejs.config({
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
     'sf.b2c.mall.page.feedback': 'scripts/page/sf.b2c.mall.page.feedback',
-
+    //绑定账号
+    'sf.b2c.mall.page.bindaccount': 'scripts/page/sf.b2c.mall.page.bindaccount',
+    'sf.b2c.mall.page.i.bindaccount': 'scripts/page/sf.b2c.mall.page.i.bindaccount',
+    //设置密码并登陆
+    'sf.b2c.mall.page.setpassword': 'scripts/page/sf.b2c.mall.page.setpassword',
+    'sf.b2c.mall.page.i.setpassword': 'scripts/page/sf.b2c.mall.page.i.setpassword',
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
 

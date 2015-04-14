@@ -39,6 +39,10 @@ define([], function () {
     'ilogin': 'http://test2.www.sfht.net/i.login.html',
     'iregister': 'http://test2.www.sfht.net/i.register.html',
     'coupon': 'http://test2.sfht.com/coupon.html',
+    'bindaccount':'http://test2.sfht.com/bindaccount.html',//@note 绑定账号
+    'setpassword':'http://test2.sfht.com/setpassword.html',//@note 设置密码并登录
+    'ibindaccount':'http://test2.sfht.com/i.bindaccount.html',//@note 绑定账号
+    'isetpassword':'http://test2.sfht.com/i.setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://test2.sfht.com/paysuccess.html'
   }
 
