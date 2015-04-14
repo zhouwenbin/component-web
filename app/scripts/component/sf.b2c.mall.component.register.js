@@ -61,7 +61,7 @@ define(
     var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
     var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
     var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
-    var ERROR_NO_SET_PWD = '账户未设置密码，点此<a id="btn-setpassword" href="javascript:void(0);">设置密码</a>';
+    var ERROR_NO_SET_PWD = '账户未设置密码，点此<a href="setpassword.html?tel={{tel}}">设置密码</a>';
 
     var MAIL_MAP = {
       '163': 'http://mail.163.com',
@@ -169,11 +169,6 @@ define(
           }
         }, 1000);
       },
-      '#btn-setpassword click':function(element,event){
-        event && event.preventDefault();
-        var num = $('#input-mobile').val();
-        window.location.href = SFBizConf.setting.link.setpassword+'?tel='+num;
-      },
       getEmailLink: function (email) {
         // @todo 处理email链接
         if (email) {
@@ -209,7 +204,8 @@ define(
           checkUserExist.sendRequest()
             .fail(function(errorCode){
               if (errorCode == 1000340) {
-                that.element.find('#input-mobile-error').html(ERROR_NO_SET_PWD).show();
+                var fn = can.view.mustache(ERROR_NO_SET_PWD);
+                that.element.find('#input-mobile-error').html(fn({tel:username})).show();
                 return false;
               };
             })

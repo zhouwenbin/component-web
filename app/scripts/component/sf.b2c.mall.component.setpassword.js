@@ -51,7 +51,6 @@ define(
         var params = can.deparam(window.location.search.substr(1));
         if (params.tel) {
           $('#input-mobile').val(params.tel);
-          $('#input-mobile').attr('readonly', '111');
         };
       },
 
