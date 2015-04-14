@@ -66,7 +66,7 @@ define(
       },
 
       bindAccountTemplate: function() {
-        return '<div class="register {{^ismobile platform}}register-top{{/ismobile}}">' +
+        return '<div class="register register-top">' +
           '<div class="register-b register-b3 active">' +
           '<h3>最后一步，很简单的</h3>' +
           '<form action="">' +
