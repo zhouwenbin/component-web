@@ -8,12 +8,29 @@
 	margin-bottom: 12px;
 	border:1px solid #e5e5e5;
 }
+.flashsale-c1{
+	width:670px;
+	height:340px;
+	text-align:center;
+}
+.flashsale-c1:after{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.flashsale-c1 img{
+	max-width:670px;
+	max-height:340px;
+	vertical-align:middle;
+}
 .flashsale-c1 img:hover{
 	opacity:0.85;
 }
 .flashsale-c2{
 	overflow: hidden;
-	padding: 30px;
+	padding: 12px 30px;
 }
 .flashsale-c2r1{
 	font-size: 14px;
@@ -42,7 +59,7 @@
 .flashsale h3{
 	font-size: 18px;
 	line-height: 24px;
-	height: 48px;
+	max-height: 48px;
 	overflow: hidden;	
 	margin-bottom: 10px;
 }
@@ -53,7 +70,7 @@
 .flashsale p{
 	font-size: 14px;
 	line-height: 24px;
-	height: 72px;
+	max-height: 72px;
 	overflow: hidden;
 	color: #666;
 	margin-bottom: 20px;
@@ -76,5 +93,5 @@
 	margin-right:5px;
 }
 .flashsale-c2-inner{
-	height:208px;
+	height:250px;
 }

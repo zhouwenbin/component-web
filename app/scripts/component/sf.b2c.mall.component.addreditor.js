@@ -384,11 +384,21 @@ define('sf.b2c.mall.component.addreditor', [
         return false;
       }
 
-      // 详细收货地址5~120字符之间(中文，数字，英文字符和# - ，。)
-      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(addr.detail));
-      if (addr.detail.length > 60 || addr.detail.length < 5 || !isDetail) {
+      // 详细收货地址5~120字符之间，不能有特殊字符<>'"
+      // step1 校验特殊字符
+      var isDetailInvalid = /[<>'"]/.test($.trim(addr.detail));
+      if (isDetailInvalid) {
         this.adapter.addr.attr("error", {
-          "detail": '请输入正确地址信息!'
+          "detail": "亲，您的收货地址输入有误，不能含有< > \' \" 等特殊字符！"
+        })
+        $('#detailerror').show();
+        return false;
+      }
+
+      // step2 校验长度
+      if (addr.detail.length > 60 || addr.detail.length < 5) {
+        this.adapter.addr.attr("error", {
+          "detail": '亲，您的收货地址输入有误，长度需介于5到60之间！'
         })
         $('#detailerror').show();
         return false;
