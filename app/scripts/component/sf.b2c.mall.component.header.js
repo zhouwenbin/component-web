@@ -422,7 +422,7 @@ define('sf.b2c.mall.component.header', [
 
       this.component.modal.show({
         title: '顺丰海淘',
-        html: '<iframe width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
+        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
       // this.watchLoginState.call(this);
       // this.setIframe.call(this);
