@@ -48,6 +48,11 @@ define(
       render: function(data) {
         var html = can.view('templates/component/sf.b2c.mall.component.setpassword.mustache', data);
         this.element.append(html);
+        var params = can.deparam(window.location.search.substr(1));
+        if (params.tel) {
+          $('#input-mobile').val(params.tel);
+          $('#input-mobile').attr('readonly', '111');
+        };
       },
 
       checkMobile: function(mobile) {
@@ -181,7 +186,7 @@ define(
         if (this.checkMobile.call(this, mobile) && this.checkCode(code) && this.checkPassword(password, '#password-error')) {
 
           var setPswdAndLogin = new SFSetPswdAndLogin({
-            type:'MOBILE',
+            type: 'MOBILE',
             accountId: mobile,
             smsCode: code,
             password: md5(password + SFBizConf.setting.md5_key)

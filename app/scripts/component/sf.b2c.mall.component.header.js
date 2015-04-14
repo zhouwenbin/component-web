@@ -260,7 +260,6 @@ define('sf.b2c.mall.component.header', [
         // }
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
-          // 'authResp': arr.join('&')
           'authResp': decodeURIComponent($.param(authResp))
         });
         partnerLogin.sendRequest()

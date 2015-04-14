@@ -33,7 +33,7 @@ define(
     var ERROR_INPUT_PWD = '密码有误，请重新输入';
     var ERROR_NO_INPUT_VERCODE = '请输入验证码';
     var ERROR_INPUT_VERCODE = '您的验证码输入有误，请重新输入';
-    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="setpassword.html">设置密码</a>';
+    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a id="btn-setpassword" href="javascript:void(0);">设置密码</a>';
 
     return can.Control.extend({
 
@@ -108,7 +108,11 @@ define(
 
         this.funPlaceholder(document.getElementById('user-name'));
       },
-
+      '#btn-setpassword click':function(element,event){
+        event && event.preventDefault();
+        var num = $('#user-name').val();
+        window.location.href = SFConfig.setting.link.setpassword+'?tel='+num;
+      },
       '#wechatlogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
