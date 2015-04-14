@@ -42,8 +42,8 @@ define([], function () {
     'coupon': 'http://'+main+'/coupon.html',
     'bindaccount':'http://'+main+'/bindaccount.html',//@note 绑定账号
     'setpassword':'http://'+main+'/setpassword.html',//@note 设置密码并登录
-    'bindaccount':'http://'+main+'/i.bindaccount.html',//@note 绑定账号
-    'setpassword':'http://'+main+'/i.setpassword.html',//@note 设置密码并登录
+    'ibindaccount':'http://'+main+'/i.bindaccount.html',//@note 绑定账号
+    'isetpassword':'http://'+main+'/i.setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://'+main+'/paysuccess.html'
   }
 
