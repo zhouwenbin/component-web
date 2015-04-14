@@ -12,7 +12,7 @@ define(
     'sf.b2c.mall.api.user.checkUserExist',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, SFConfig, SFFn, SFPartnerBind,SFCheckUserExist,SFApiUserDownSmsCode) {
+  function($, can, store, SFConfig, SFFn, SFPartnerBind, SFCheckUserExist, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_INPUT_USERNAME = '手机号输入有误，请重新输入';
@@ -30,8 +30,10 @@ define(
 
     var DEFAULT_BIND_ERROR_MAP = {
       '1000020': '手机账号已存在，<a href="login.html">立即登录</a>',
+      '1000070': '参数错误',
       '1000350': '验证临时token失败,请重新登录',
-      '1000360': '第三方账户已绑定海淘账户'
+      '1000360': '第三方账户已绑定海淘账户',
+      '1000380': '已经绑定了同类的第三方账户'
     };
 
     return can.Control.extend({
@@ -66,7 +68,7 @@ define(
       },
 
       bindAccountTemplate: function() {
-        return '<div class="register {{^ismobile platform}}register-top{{/ismobile}}">' +
+        return '<div class="register register-top">' +
           '<div class="register-b register-b3 active">' +
           '<h3>最后一步，很简单的</h3>' +
           '<form action="">' +
@@ -179,20 +181,20 @@ define(
         var mobile = $('#user-name').val();
         if (mobile.length == 11) {
           var checkUserExist = new SFCheckUserExist({
-            accountId:mobile,
-            type:'MOBILE'
+            accountId: mobile,
+            type: 'MOBILE'
           });
           checkUserExist.sendRequest()
-            .done(function(data){
+            .done(function(data) {
               if (data.value == true) {
-                that.data.attr('isBindMobile',true);
-              }else{
-                that.data.attr('isBindMobile',false);
-              }            
+                that.data.attr('isBindMobile', true);
+              } else {
+                that.data.attr('isBindMobile', false);
+              }
             })
-            .fail(function(errorCode){
+            .fail(function(errorCode) {
               if (errorCode == 1000340) {
-                that.data.attr('isBindMobile',true);
+                that.data.attr('isBindMobile', true);
               };
             })
         }
@@ -208,7 +210,7 @@ define(
 
       //绑定账号
       partnerBind: function() {
-       this.component.partnerBind.sendRequest()
+        this.component.partnerBind.sendRequest()
           .done(function(data) {
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
@@ -230,22 +232,22 @@ define(
         var mobile = $('#user-name').val();
         var code = $('#input-mobile-code').val();
 
-        if(this.data.attr('isBindMobile')){
+        if (this.data.attr('isBindMobile')) {
           if (this.checkMobile(mobile) && this.checkCode(code)) {
             this.component.partnerBind.setData({
-              'tempToken':store.get('tempToken'),
-              'type':'MOBILE',
-              'accountId':mobile,
-              'smsCode':code
+              'tempToken': store.get('tempToken'),
+              'type': 'MOBILE',
+              'accountId': mobile,
+              'smsCode': code
             });
             this.partnerBind();
           }
-        }else{
+        } else {
           if (this.checkMobile(mobile)) {
             this.component.partnerBind.setData({
-              'tempToken':store.get('tempToken'),
-              'type':'MOBILE',
-              'accountId':mobile
+              'tempToken': store.get('tempToken'),
+              'type': 'MOBILE',
+              'accountId': mobile
             });
             this.partnerBind();
           };
