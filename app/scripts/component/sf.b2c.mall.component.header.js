@@ -268,8 +268,8 @@ define('sf.b2c.mall.component.header', [
             if (data.tempToken) {
               store.set('tempToken', data.tempToken);
               that.component.modal.show({
-                title: '顺丰海淘',
-                html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.bindaccount + '"></iframe>'
+                title: '绑定账号',
+                html: '<iframe height="260px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.bindaccount + '"></iframe>'
               });
             } else {
               store.set('csrfToken', data.csrfToken);

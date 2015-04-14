@@ -10,15 +10,15 @@ define(
     'sf.util',
     'sf.b2c.mall.api.user.partnerBind'
   ],
-  function($, can, store,SFConfig, SFFn, SFPartnerBind) {
+  function($, can, store, SFConfig, SFFn, SFPartnerBind) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_INPUT_USERNAME = '手机号输入有误，请重新输入';
 
     var DEFAULT_BIND_ERROR_MAP = {
-      '1000020':   '手机账号已存在，<a href="login.html">立即登录</a>',
-      '1000350':   '验证临时token失败,请重新登录',
-      '1000360':   '第三方账户已绑定海淘账户'
+      '1000020': '手机账号已存在，<a href="login.html">立即登录</a>',
+      '1000350': '验证临时token失败,请重新登录',
+      '1000360': '第三方账户已绑定海淘账户'
     };
 
     return can.Control.extend({
@@ -54,15 +54,25 @@ define(
           '{{!   <div class="register-h">' +
           '<h2>绑定手机账号</h2>' +
           '<a href="#" class="btn btn-close">关闭</a>' +
-          '<span class="icon icon34"></span>' +
-          '<span class="icon icon35"></span>' +
           '</div> }}' +
-          '<div class="register-b register-b3 register-main active">' +
+          '<div class="register-b register-b3 active">' +
+          '<h3>最后一步，很简单的</h3>' +
           '<form action="">' +
           '<ol>' +
           '<li>' +
           '<input id="user-name" type="text" class="input-username" placeholder="手机号" can-value="username" />' +
           '<span id="username-error-tips" class="icon icon26"></span>' +
+          '</li>' +
+          '<li>' +
+          '<div class="clearfix">' +
+          '<div class="fl">' +
+          '<input type="text" class="input1" placeholder="点击按钮获取验证码" id="input-mobile-code" />' +
+          '</div>' +
+          '<a href="#" class="btn btn-send fr" id="mobile-code-btn">发送短信验证码</a>' +
+
+          '</div>' +
+          '<span class="icon icon26" id="mobile-code-error">手机验证码错误</span>' +
+
           '</li>' +
           '</ol>' +
           '<div class="register-br1">' +
@@ -72,7 +82,7 @@ define(
           '</div>' +
           '</div>';
       },
-      '#bindaccount click': function(element,event) {
+      '#bindaccount click': function(element, event) {
         event && event.preventDefault();
         var telNum = this.data.attr('username');
         var isTelNum = /^1\d{10}$/.test(telNum);
@@ -90,19 +100,19 @@ define(
           'accountId': telNum
         });
         partnerBind.sendRequest()
-          .done(function(data){
-            store.set('csrfToken',data.csrfToken);
+          .done(function(data) {
+            store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
-          }).fail(function(errorCode){
+          }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
-                var defaultText = '绑定失败';
-                var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
-                if (errorCode === 1000020) {
-                  $('#username-error-tips').html(errorText).show();
-                }else{
-                  $('#username-error-tips').html(errorText).show();
-                }
+              var defaultText = '绑定失败';
+              var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
+              if (errorCode === 1000020) {
+                $('#username-error-tips').html(errorText).show();
+              } else {
+                $('#username-error-tips').html(errorText).show();
               }
+            }
           })
 
       }
