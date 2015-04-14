@@ -62,7 +62,7 @@ define(
           var getUserInfo = new SFGetUserInfo();
           getUserInfo.sendRequest()
           .done(function(userinfo){
-            if (userinfo.hasPswd) {
+            if (!userinfo.hasPswd) {
               var html = can.view('templates/center/sf.b2c.mall.center.bindsecret.mustache', data);
               that.element.html(html);
             } else {
