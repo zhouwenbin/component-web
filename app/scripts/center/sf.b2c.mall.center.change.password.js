@@ -63,6 +63,7 @@ define(
           getUserInfo.sendRequest()
           .done(function(userinfo){
             if (!userinfo.hasPswd) {
+              data.attr("phoneNumber", userinfo.mobile);
               var html = can.view('templates/center/sf.b2c.mall.center.bindsecret.mustache', data);
               that.element.html(html);
             } else {
