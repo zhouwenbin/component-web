@@ -66,12 +66,7 @@ define(
       },
 
       bindAccountTemplate: function() {
-        return '{{! <div class="mask"></div> }}' +
-          '<div class="register {{^ismobile platform}}register-top{{/ismobile}}">' +
-          '{{!   <div class="register-h">' +
-          '<h2>绑定手机账号</h2>' +
-          '<a href="#" class="btn btn-close">关闭</a>' +
-          '</div> }}' +
+        return '<div class="register {{^ismobile platform}}register-top{{/ismobile}}">' +
           '<div class="register-b register-b3 active">' +
           '<h3>最后一步，很简单的</h3>' +
           '<form action="">' +
