@@ -109,7 +109,7 @@
             <div class="info-c1 fl">支付及配送方式</div>
             <ul class="info-c2">
               <li>支付方式：在线支付</li>
-              <li>运费：￥0</li>
+              <li>运费：免运费</li>
               <li>配送方式：顺丰配送</li>
               {{#mailNo}}<li>承运单号：{{mailNo}}</li>{{/mailNo}}
               {{! <li>送货日期：未配送</li>
@@ -167,7 +167,7 @@
           </ul>
           <div class="table-f clearfix">
             <ul class="table-fc1 fl">
-              <li>已参加活动：开业全场免邮，飞机太多了，任性！</li>
+              {{! <li>已参加活动：开业全场免邮，飞机太多了，任性！</li> }}
               {{#if isCostCoupon}}
                 <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
               {{/if}}
@@ -187,7 +187,7 @@
                   {{#if showTax}}
                     <li>+税额：￥0</li>
                   {{/if}}
-                  <li>+运费：￥0</li>
+                  <li>免运费</li>
                 </ul>
               {{#if showShouldPayPrice}}<div class="table-fr3">实际应付款：<strong>￥{{sf.price shouldPayPrice}}</strong></div>{{/if}}
             </div>
