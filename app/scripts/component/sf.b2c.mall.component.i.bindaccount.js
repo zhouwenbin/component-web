@@ -2,7 +2,7 @@
 'use strict'
 
 define(
-  'sf.b2c.mall.component.bindaccount', [
+  'sf.b2c.mall.component.i.bindaccount', [
     'jquery',
     'can',
     'store',

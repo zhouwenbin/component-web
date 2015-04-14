@@ -19,7 +19,7 @@ define(
     'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist,SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
+  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';

@@ -1100,6 +1100,23 @@ module.exports = function (grunt) {
           insertRequire:  ['sf.b2c.mall.page.bindaccount']
         }
       },
+      ibindaccount: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.bindaccount.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["sf.b2c.mall.page.i.bindaccount"],
+          insertRequire:  ['sf.b2c.mall.page.i.bindaccount']
+        }
+      },
       setpassword: {
         options: {
           preserveLicenseComments: false,
@@ -1116,7 +1133,25 @@ module.exports = function (grunt) {
           include:        ["sf.b2c.mall.page.setpassword"],
           insertRequire:  ['sf.b2c.mall.page.setpassword']
         }
+      },
+      isetpassword: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:        './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.setpassword.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["sf.b2c.mall.page.i.setpassword"],
+          insertRequire:  ['sf.b2c.mall.page.i.setpassword']
+        }
       }
+
     }
   });
 
