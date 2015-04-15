@@ -33,7 +33,7 @@ define(
     var ERROR_INPUT_PWD = '密码有误，请重新输入';
     var ERROR_NO_INPUT_VERCODE = '请输入验证码';
     var ERROR_INPUT_VERCODE = '您的验证码输入有误，请重新输入';
-    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="setpassword.html">设置密码</a>';
+    var ERROR_NO_PASSWORD = '账户未设置密码，点此<a href="setpassword.html?tel={{tel}}">设置密码</a>';
 
     return can.Control.extend({
 
@@ -114,6 +114,11 @@ define(
        * @param  {String}
        * @return {String}
        */
+      '#btn-setpassword click': function(element, event) {
+        event && event.preventDefault();
+        var num = $('#user-name').val();
+        window.location.href = SFConfig.setting.link.setpassword + '?tel=' + num;
+      },
       getVerifiedCode: function() {
         var sessionId = md5(Date().valueOf() + window.parseInt(Math.random() * 10000));
         this.data.attr('sessionId', sessionId);
@@ -147,13 +152,14 @@ define(
         //@note 手机号码输完11位时，验证该账号是否有密码
         if (isTelNum) {
           var checkUserExist = new SFCheckUserExist({
-            'accountId':username,
-            'type':'MOBILE'
+            'accountId': username,
+            'type': 'MOBILE'
           });
           checkUserExist.sendRequest()
-            .fail(function(errorCode){
+            .fail(function(errorCode) {
               if (errorCode == 1000340) {
-                that.element.find('#username-error-tips').html(ERROR_NO_PASSWORD).show();
+                var fn = can.view.mustache(ERROR_NO_PASSWORD);
+                that.element.find('#username-error-tips').html(fn({tel:username})).show();
                 return false;
               };
             })
@@ -285,8 +291,8 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            store.set('alipay-or-weixin','wechat_open');
-            window.location.href = data.loginAuthLink;  
+            store.set('alipay-or-weixin', 'wechat_open');
+            window.location.href = data.loginAuthLink;
             return false;
           })
           .fail(function(error) {
@@ -294,7 +300,7 @@ define(
           })
       },
       //@note 支付宝登录
-      '#alipaylogin click':function(element, event){
+      '#alipaylogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
           "redirectUrl": "http://www.sfht.com/index.html"
@@ -303,8 +309,8 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            store.set('alipay-or-weixin','alipay_qklg');
-            window.location.href = data.loginAuthLink;           
+            store.set('alipay-or-weixin', 'alipay_qklg');
+            window.location.href = data.loginAuthLink;
             return false;
           })
           .fail(function(error) {
