@@ -224,18 +224,16 @@ define('sf.b2c.mall.component.header', [
       if (pathname == '/' || pathname == '/index.html') {
         $(window).scroll(function() {
           setTimeout(function() {
-            if ($(window).scrollTop() > 166) {
-              $(".nav").addClass('nav-fixed');
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '0px',
-                opacity: 1
-              }, 300);
-            } else {
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '-56px',
-                opacity: 1
-              }, 300);
-              $(".nav").removeClass('nav-fixed');
+            if($(window).scrollTop() > 166){
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
+                  top:'0px',
+                  opacity:1
+                },300);
+            }else{
+                $(".nav-fixed .nav-inner").stop(true,false).animate({
+                  top:'-56px',
+                  opacity:0
+                },0);
             }
 
           }, 200);
@@ -251,7 +249,7 @@ define('sf.b2c.mall.component.header', [
           })
       };
       //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
-      //@note 
+      //@note
       if (!SFComm.prototype.checkUserLogin.call(that)) {
         var authResp = can.deparam(window.location.search.substr(1));
         // var arr = [];
