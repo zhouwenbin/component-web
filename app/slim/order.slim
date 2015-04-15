@@ -355,7 +355,11 @@
               <div class="table-text">
                 <h3><a href="">kate spade new york 长款牛皮钱包 </a></h3>
                 <p>黑色</p>
-                <strong>该商品的配送不支持该区域</strong> </div>
+                <p><img src="../img/icon-usa.png" alt="" width="23" height="17"><strong>已卖完</strong></p>
+                <!--错误提示
+                <strong>该商品的配送不支持该区域</strong> 
+                <-->
+                </div>
             </div>
             <div class="table-c2 fl"> 1 </div>
             <div class="table-c3 fl"> <span>￥</span>1800 </div>
@@ -371,13 +375,38 @@
               <li><!--超过购买数量不显示--><span class="text-important">满300-10元优惠活动</span><!--超过购买数量不显示-->-优惠金额：<span>￥</span>0</li>
               <li>+税额：<span>￥</span>0</li>
               <li>+运费：<span>￥</span>0</li>
+              <li><span class="text-important">- 促销活动立减：￥50</span></li>
+              <li><span class="text-important">-优惠券：￥10</span></li>
             </ul>
             <div class="table-fr3">实际应付款：<strong><span>￥</span>1800</strong></div>
           </div>
           <div class="table-fc3"><!--超过购买数量不显示--><span class="icon icon62"></span><!--超过购买数量不显示-->当前活动已结束，商品恢复原价</div>
         </div>
       </div>
-      <div class="order-f"> <a href="#" class="btn btn-send">提交订单</a> </div>
+      <div class="order-f"> 
+        <a href="#" class="btn btn-send">提交订单</a> 
+        <!--按钮不可点
+        <a href="#" class="btn btn-send disable">提交订单</a> 
+        <-->
+        <!--商品下架
+        <div class="text-error">商品已被抢光啦，下次下手要快哦!</div>
+        <-->
+        <!--不在配送范围
+        <div class="text-error">亲,部分商品无法配送到您选择的地址，请分开提交。</div>
+        <-->
+        <!--商品库存不足
+        <div class="text-error">亲，商品库存不足，请调整购买数量 。<a href="">修改订单</a></div>
+        <-->
+        <!--活动结束
+        <div class="text-error">亲，活动已结束，您将使用原价购买商品。</div>
+        <-->
+        <!--商品超过订单限购
+        <div class="text-error">亲，您的购买数量已超过商品限购数，请调整数量后再购买。<a href="">修改订单</a></div>
+        <-->
+        <!--商品超过用户限购
+        <div class="text-error">亲，您的购买数量已超过用户限购数，请修改后再提交订单。<a href="">修改订单</a></div>
+        <-->
+      </div>
     </div>
     <!--订单--> 
   </div>

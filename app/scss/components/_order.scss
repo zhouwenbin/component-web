@@ -90,6 +90,12 @@
 .order-f .btn{
 	padding: 0 60px;
 }
+.order-f .text-error{
+	margin-top:10px;
+}
+.order-f .text-error a{
+	color:#3b86c4;
+}
 
 .order .btn-add{
 	margin: 11px 0;
@@ -235,7 +241,7 @@
 	padding: 47px 0 73px;
 	width: 404px;
 }
-.order .text-error{
+.order-b .text-error{
 	padding-left: 143px;
 	padding-top: 13px;
 	font-size: 12px;
