@@ -137,12 +137,10 @@ requirejs.config({
     'sf.b2c.mall.component.receivepersoneditor': 'scripts/component/sf.b2c.mall.component.receivepersoneditor',
     'sf.b2c.mall.component.login.status.scanner': 'scripts/component/sf.b2c.mall.component.login.status.scanner',
     //绑定账号
-    'sf.b2c.mall.component.i.bindaccount': 'scripts/component/sf.b2c.mall.component.i.bindaccount',
     'sf.b2c.mall.component.bindaccount': 'scripts/component/sf.b2c.mall.component.bindaccount',
     //设置密码并登陆
     'sf.b2c.mall.component.setpassword': 'scripts/component/sf.b2c.mall.component.setpassword',
-    'sf.b2c.mall.component.i.setpassword': 'scripts/component/sf.b2c.mall.component.i.setpassword',
-
+    
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
     'sf.b2c.mall.center.change.password': 'scripts/center/sf.b2c.mall.center.change.password',
@@ -199,10 +197,8 @@ requirejs.config({
     'sf.b2c.mall.page.feedback': 'scripts/page/sf.b2c.mall.page.feedback',
     //绑定账号
     'sf.b2c.mall.page.bindaccount': 'scripts/page/sf.b2c.mall.page.bindaccount',
-    'sf.b2c.mall.page.i.bindaccount': 'scripts/page/sf.b2c.mall.page.i.bindaccount',
     //设置密码并登陆
     'sf.b2c.mall.page.setpassword': 'scripts/page/sf.b2c.mall.page.setpassword',
-    'sf.b2c.mall.page.i.setpassword': 'scripts/page/sf.b2c.mall.page.i.setpassword',
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
 

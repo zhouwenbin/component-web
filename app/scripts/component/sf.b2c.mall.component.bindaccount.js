@@ -202,7 +202,7 @@ define(
               if (errorCode == 1000340) {
                 that.data.attr('isBindMobile', true);
               }else if(errorCode == 1000380){
-                $('#mobile-code-error').html('该手机号已绑定了一个'+errorValueMap[store.get('alipay-or-weixin')] +'账户，请先解绑后再试。').show();
+                $('#username-error-tips').html('手机号已绑定'+errorValueMap[store.get('alipay-or-weixin')] +'账号，请先解绑。').show();
               }
             })
         }
