@@ -179,10 +179,16 @@ define(
       '#user-name keyup': function() {
         var that = this;
         var mobile = $('#user-name').val();
+        var errorValueMap = {
+          "wechat_open":"微信",
+          "alipay_qklg":"支付宝"
+        };
+        
         if (mobile.length == 11) {
           var checkUserExist = new SFCheckUserExist({
             accountId: mobile,
-            type: 'MOBILE'
+            type: 'MOBILE',
+            tempToken:store.get('tempToken')
           });
           checkUserExist.sendRequest()
             .done(function(data) {
@@ -195,7 +201,9 @@ define(
             .fail(function(errorCode) {
               if (errorCode == 1000340) {
                 that.data.attr('isBindMobile', true);
-              };
+              }else if(errorCode == 1000380){
+                $('#mobile-code-error').html('该手机号已绑定了一个'+errorValueMap[store.get('alipay-or-weixin')] +'账户，请先解绑后再试。').show();
+              }
             })
         }
       },
