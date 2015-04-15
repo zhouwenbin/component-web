@@ -77,12 +77,15 @@
 	color: #fff;
 }
 .register-b{
-	padding:40px 130px 22px;
+	padding:40px 130px 40px;
 	margin: 0 16px;
 	border-bottom: 1px solid  #EEE;
 	display: none;
 	background: #fff;
 	position: relative;
+}
+.register-b h3{
+	margin-bottom:10px;
 }
 .register-b.active{
 	display: block;
@@ -170,33 +173,6 @@
 	line-height: 30px;
 	padding: 0 30px;
 }
-.register-f ul{
-	padding-top: 18px;
-	padding-bottom: 20px;
-	padding-left: 61px
-}
-.register-f ul{
-	display:inline-block;
-}
-.register-f li{
-	width: 146px;
-	float:left;
-}
-.register-f .icon1,
-.register-f .icon2,
-.register-f .icon3{
-	width: 26px;
-	height: 26px;
-}
-.register-f .icon1{
-	background-position: 0 -357px;
-}
-.register-f .icon2{
-	background-position: 0 -383px;
-}
-.register-f .icon3{
-	background-position: 0 -409px;
-}
 
 .register-f h3, .register-f p{
 	margin-left: 32px;
@@ -246,7 +222,7 @@
 	text-align: center;
 }
 .register-b3{
-	padding-top: 75px;
+	padding-top: 32px;
 	padding-bottom: 32px;
 }
 .register-b4{
@@ -259,16 +235,30 @@
 .register-b-main{
 	height: 290px;
 }
-.register-wechat{
-	margin-top: 20px;
-	text-align: center;
-	display: block;
-	height: 40px;
-	line-height: 40px;
-	font-weight: bold;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.register-other{
+	text-align:center;
 }
-.register-wechat .icon{
-	margin-right: 10px;
+.register-other h3{
+	color:#999;
+	margin-bottom:26px;
+	margin-top:25px;
+	font-weight:normal;
+	position: relative;
+}
+.register-other h3:before,
+.register-other h3:after{
+	content:'';
+	position: absolute;
+	width:52px;
+	top:5px;
+	border-bottom:1px solid #ededed;
+}
+.register-other h3:before{
+	left:0;
+}
+.register-other h3:after{
+	right:0;
+}
+.register-other .icon{
+	margin: 0 13px;
 }
