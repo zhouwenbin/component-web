@@ -136,7 +136,7 @@ define(
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin','alipay_qklg');
-            window.open(data.loginAuthLink);           
+            window.open(data.loginAuthLink, 'newwindow');           
             return false;
           })
           .fail(function(error) {
