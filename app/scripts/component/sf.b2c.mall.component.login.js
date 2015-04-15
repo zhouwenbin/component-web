@@ -118,7 +118,7 @@ define(
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin','wechat_open');
-            window.location.href = data.loginAuthLink;  
+            window.location.href = data.loginAuthLink;
             return false;
           })
           .fail(function(error) {
@@ -136,7 +136,7 @@ define(
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin','alipay_qklg');
-            window.open(data.loginAuthLink, 'newwindow');           
+            window.parent.location.href = data.loginAuthLink;
             return false;
           })
           .fail(function(error) {
