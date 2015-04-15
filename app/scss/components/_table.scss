@@ -76,13 +76,17 @@
 	border-bottom: 1px solid #ebebeb;
 	margin-bottom: 25px;
 }
-
+.table-b .disable{
+	color:#999;
+}
+.table-b .disable h3 a{
+	text-decoration: line-through;
+	color:#999;
+}
 .table-fr1 li{
 	margin-bottom: 10px;
 }
-.table-fr1 .text-important{
-	margin-right:10px;
-}
+
 .table-fr2{
 	color: #949494;
 	margin-bottom: 33px;
