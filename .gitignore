@@ -6,3 +6,5 @@ bower_components
 app/__MACOSX
 .idea
 /.idea
+web-oss
+web-static
