@@ -297,8 +297,15 @@ define('sf.b2c.mall.component.header', [
      */
     setNavActive: function() {
       var url = window.location.href;
+
+      //URL补齐
+      if (url == "http://www.sfht.com/") {
+        url = url + "index.html";
+      }
+
       var navHref = $(".nav-inner").find("a");
       _.each(navHref, function(item){
+
         if (item.href == url) {
           $(item).parent().addClass("active");
         }
