@@ -290,7 +290,6 @@ define('sf.b2c.mall.order.iteminfo', [
               "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
-              "zipCode": selectAddr.zipCode,
               "recId": selectAddr.recId
             }),
             "userMsg": "",
