@@ -275,6 +275,8 @@ define('sf.b2c.mall.component.header', [
 
       };
 
+      that.setNavActive();
+
       // @note 通过服务端进行渲染，暂时这里不做动作
       // SFGetHeaderConfig
       //   .sendRequest()
@@ -288,6 +290,19 @@ define('sf.b2c.mall.component.header', [
       //   .fail(function (errorCode) {
 
       //   })
+    },
+
+    /**
+     * [setNavActive 导航设定为active]
+     */
+    setNavActive: function() {
+      var url = window.location.href;
+      var navHref = $(".nav-inner").find("a");
+      _.each(navHref, function(item){
+        if (item.href == url) {
+          $(item).parent().addClass("active");
+        }
+      })
     },
 
     /**
