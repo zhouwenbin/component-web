@@ -320,6 +320,23 @@ require(['sf.b2c.mall.page.main']);
 <!-- endbuild -->
 
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+  <!-- blade 监控代码 -->
+  <script type="text/javascript" class="microad_blade_track">
+  var microad_blade_cn = microad_blade_cn || { 'params' : new Array(), 'complete_map' : new Object() };
+  (function() {
+  var param = {'co_account_id' : '11575', 'group_id' : '', 'country_id' : '3', 'ver' : '2.1.0'};
+  microad_blade_cn.params.push(param);
 
+  var src = (location.protocol == 'https:')
+  ? 'https://d-cache.microad-cn.com/js/blade_track_cn.js' : 'http://d-cache.microad-cn.com/js/blade_track_cn.js';
+
+  var bs = document.createElement('script');
+  bs.type = 'text/javascript'; bs.async = true;
+  bs.charset = 'utf-8'; bs.src = src;
+
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(bs, s);
+  })();
+  </script>
 </body>
 </html>
