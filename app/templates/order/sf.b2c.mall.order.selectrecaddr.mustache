@@ -19,7 +19,9 @@
           {{#defaultAddr isDefault}}
             <span class="text-error">默认地址</span>
           {{else}}
-            <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+            {{#if canShowSetDefaultAddr}}
+              <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+            {{/if}}
           {{/defaultAddr}}
           <a class="order-edit" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
           <a class="order-del" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
