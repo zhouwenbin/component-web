@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.coupon.hasReceived
+  * @class sf.b2c.mall.api.coupon.rcvCouponByMobile
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.coupon.hasReceived',
+'sf.b2c.mall.api.coupon.rcvCouponByMobile',
 [
   'jquery',
   'can',
@@ -22,17 +22,26 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'coupon.hasReceived',
+      METHOD_NAME: 'coupon.rcvCouponByMobile',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'shareId': 'long',
+        'type': 'string',
+        'bagId': 'long',
+        'mobile': 'string',
+        'receiveChannel': 'string',
+        'receiveWay': 'string'
       },
       OPTIONAL: {
-        'tempToken': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
+        '11000020': '卡券id不存在',
+        '11000030': '卡券已作废',
+        '11000050': '卡券已领完',
+        '11000100': '用户已领过该券',
+        '11000130': '卡包不存在',
+        '11000140': '卡包已作废'
       }
     }
   });
