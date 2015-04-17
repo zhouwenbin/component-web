@@ -23,11 +23,12 @@ function($, can, _, Comm, SecurityType) {
   return Comm.extend({
     api: {
       METHOD_NAME: 'coupon.hasReceived',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'shareId': 'long'
+        'shareId': 'long',
       },
       OPTIONAL: {
+        'tempToken': 'string'
       },
       VERIFY:{
       },

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkUserExist
+  * @class sf.b2c.mall.api.coupon.rcvCouponByMobile
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkUserExist',
+'sf.b2c.mall.api.coupon.rcvCouponByMobile',
 [
   'jquery',
   'can',
@@ -22,20 +22,26 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkUserExist',
+      METHOD_NAME: 'coupon.rcvCouponByMobile',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'accountId': 'string',
         'type': 'string',
+        'bagId': 'long',
+        'mobile': 'string',
+        'receiveChannel': 'string',
+        'receiveWay': 'string'
       },
       OPTIONAL: {
-        'tempToken': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000340': '用户账户还没有密码',
-        '1000380': '已经绑定了同类的第三方账户'
+        '11000020': '卡券id不存在',
+        '11000030': '卡券已作废',
+        '11000050': '卡券已领完',
+        '11000100': '用户已领过该券',
+        '11000130': '卡包不存在',
+        '11000140': '卡包已作废'
       }
     }
   });

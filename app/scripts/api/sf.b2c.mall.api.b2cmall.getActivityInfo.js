@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkUserExist
+  * @class sf.b2c.mall.api.b2cmall.getActivityInfo
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkUserExist',
+'sf.b2c.mall.api.b2cmall.getActivityInfo',
 [
   'jquery',
   'can',
@@ -22,20 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkUserExist',
+      METHOD_NAME: 'b2cmall.getActivityInfo',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'accountId': 'string',
-        'type': 'string',
+        'itemId': 'long'
       },
       OPTIONAL: {
-        'tempToken': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000340': '用户账户还没有密码',
-        '1000380': '已经绑定了同类的第三方账户'
       }
     }
   });

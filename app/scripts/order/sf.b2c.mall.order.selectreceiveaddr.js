@@ -104,6 +104,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             hasData: false
           });
 
+          //设置默认地址是否显示
+          that.adapter4List.addrs.attr("canShowSetDefaultAddr", typeof arr[2] == 'undefined');
+
           //进行倒排序
           //that.adapter4List.addrs.addressList.reverse();
 
@@ -113,7 +116,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           }
 
           //进行渲染
-          that.render(that.adapter4List.addrs);
+          that.render(that.adapter4List.addrs, arr[2]);
 
           // if (that.component.addressEditor) {
           //   that.component.addressEditor.destroy();

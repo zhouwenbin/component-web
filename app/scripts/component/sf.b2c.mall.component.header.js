@@ -249,13 +249,8 @@ define('sf.b2c.mall.component.header', [
           })
       };
       //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
-      //@note
-      if (!SFComm.prototype.checkUserLogin.call(that)) {
-        var authResp = can.deparam(window.location.search.substr(1));
-        // var arr = [];
-        // for (var resp in authResp) {
-        //   arr.push(resp + '=' + decodeURIComponent(authResp[resp]));
-        // }
+      var authResp = can.deparam(window.location.search.substr(1));
+      if (!SFComm.prototype.checkUserLogin.call(that) && authResp != 'undefined') {       
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
           'authResp': decodeURIComponent($.param(authResp))
@@ -275,6 +270,8 @@ define('sf.b2c.mall.component.header', [
 
       };
 
+      that.setNavActive();
+
       // @note 通过服务端进行渲染，暂时这里不做动作
       // SFGetHeaderConfig
       //   .sendRequest()
@@ -288,6 +285,26 @@ define('sf.b2c.mall.component.header', [
       //   .fail(function (errorCode) {
 
       //   })
+    },
+
+    /**
+     * [setNavActive 导航设定为active]
+     */
+    setNavActive: function() {
+      var url = window.location.href;
+
+      //URL补齐
+      if (url == "http://www.sfht.com/") {
+        url = url + "index.html";
+      }
+
+      var navHref = $(".nav-inner").find("a");
+      _.each(navHref, function(item){
+
+        if (item.href == url) {
+          $(item).parent().addClass("active");
+        }
+      })
     },
 
     /**
@@ -419,7 +436,7 @@ define('sf.b2c.mall.component.header', [
 
       this.component.modal.show({
         title: '顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
+        html: '<iframe height="450px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
       // this.watchLoginState.call(this);
       // this.setIframe.call(this);
@@ -445,7 +462,7 @@ define('sf.b2c.mall.component.header', [
 
       this.component.modal.show({
         title: '顺丰海淘',
-        html: '<iframe height="535px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.login + '"></iframe>'
+        html: '<iframe height="450px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.login + '"></iframe>'
       });
       this.component.modal.setTitle('顺丰海淘');
     },

@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>购物流程-帮助中心-顺丰海淘</title>
 <!-- build:css({app, .tmp}) styles/sf.b2c.mall.common.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
@@ -115,6 +116,25 @@
     mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(mvl, s);
+  })();
+  </script>
+
+    <!-- blade 监控代码 -->
+  <script type="text/javascript" class="microad_blade_track">
+  var microad_blade_cn = microad_blade_cn || { 'params' : new Array(), 'complete_map' : new Object() };
+  (function() {
+  var param = {'co_account_id' : '11575', 'group_id' : '', 'country_id' : '3', 'ver' : '2.1.0'};
+  microad_blade_cn.params.push(param);
+
+  var src = (location.protocol == 'https:')
+  ? 'https://d-cache.microad-cn.com/js/blade_track_cn.js' : 'http://d-cache.microad-cn.com/js/blade_track_cn.js';
+
+  var bs = document.createElement('script');
+  bs.type = 'text/javascript'; bs.async = true;
+  bs.charset = 'utf-8'; bs.src = src;
+
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(bs, s);
   })();
   </script>
 </body>

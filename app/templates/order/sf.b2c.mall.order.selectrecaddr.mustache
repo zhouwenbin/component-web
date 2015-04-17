@@ -19,15 +19,17 @@
           {{#defaultAddr isDefault}}
             <span class="text-error">默认地址</span>
           {{else}}
-            <a href="javascript:void(0);" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+            {{#if canShowSetDefaultAddr}}
+              <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+            {{/if}}
           {{/defaultAddr}}
-          <a class="order-edit" href="javascript:void(0);" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
-          <a class="order-del" href="javascript:void(0);" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
+          <a class="order-edit" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
+          <a class="order-del" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
         </div>
         <ul class="order-r1c3">
           <li><span>{{nationName}}</span><span>{{provinceName}}</span><span>{{cityName}}</span><span>{{regionName}}</span><span>{{detail}}</span></li>
           <li><span>{{recName}}</span><span>|</span><span>{{credtNum}}</span></li>
-          <li><span>联系方式：{{cellphone}}</span><span>|</span><span>{{zipCode}}</span></li>
+          <li><span>联系方式：{{cellphone}}</span></li>
         </ul>
       </div>
       <div class="order-r2" id="editAdrArea"></div>

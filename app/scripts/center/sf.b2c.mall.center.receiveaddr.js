@@ -69,6 +69,13 @@ define('sf.b2c.mall.center.receiveaddr', [
         can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())
           .done(function(recAddrs, recPersons) {
 
+            //@TODO 从cookie中获取嘿客穿越过来标示
+            var heike_sign = $.cookie('1_uinfo');
+            var arr = [];
+            if (heike_sign) {
+              arr = heike_sign.split(',');
+            }
+
             that.result = that.queryAddress(recAddrs, recPersons);
 
             //获得地址列表
@@ -76,6 +83,9 @@ define('sf.b2c.mall.center.receiveaddr', [
               addressList: that.result,
               hasData: false
             });
+
+            //设置默认地址是否显示
+            that.adapter4List.addrs.attr("canShowSetDefaultAddr", typeof arr[2] == 'undefined');
 
             if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
               that.adapter4List.addrs.attr("hasData", true);
@@ -89,7 +99,7 @@ define('sf.b2c.mall.center.receiveaddr', [
               from:'center'
             });
 
-          });        
+          });
       },
       request: function() {
         var that = this;
@@ -205,7 +215,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       ".order-del click": function(element, event){
         var index = element.data('index');
         var addr = this.adapter4List.addrs.get(index);
-        
+
         var that = this;
         var message = new SFMessage(null, {
           'tip': '确认要删除该收货地址信息吗？',

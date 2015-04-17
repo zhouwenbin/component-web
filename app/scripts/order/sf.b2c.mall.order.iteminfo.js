@@ -263,8 +263,10 @@ define('sf.b2c.mall.order.iteminfo', [
       $('#errorTips').addClass('visuallyhidden');
       element.addClass("disable");
 
-      var selectAddr = that.options.addr;
-      var isDetail = /^[\u4e00-\u9fa5\d\w#。，-]+$/.test($.trim(selectAddr.detail));
+
+      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
+      var isDetailInvalid = /[<>'"]/.test($.trim(selectAddr.detail));
+
       var isReceiverName = /先生|女士|小姐/.test($.trim(selectAddr.recName));
       if (typeof selectAddr == 'undefined' || selectAddr == false) {
         new SFMessage(null, {
@@ -282,9 +284,9 @@ define('sf.b2c.mall.order.iteminfo', [
 
         element.removeClass("disable");
         return false;
-      } else if (!isDetail) {
+      } else if (isDetailInvalid) {
         new SFMessage(null, {
-          'tip': '请您输入正确的收货地址!',
+          'tip': '亲，您的收货地址输入有误，不能含有< > \' \" 等特殊字符！',
           'type': 'error'
         });
 
@@ -334,7 +336,6 @@ define('sf.b2c.mall.order.iteminfo', [
               "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
-              "zipCode": selectAddr.zipCode,
               "recId": selectAddr.recId
             }),
             "userMsg": "",
@@ -371,11 +372,16 @@ define('sf.b2c.mall.order.iteminfo', [
           store.set('cityId', cityId);
           store.set('regionId', regionId);
 
+          // 对mediav的转化做监控
+          that.monitor['mediav']();
+
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
               "recid": selectAddr.recId
             });
+
+
         })
         .fail(function(error) {
           element.removeClass("disable");
@@ -384,6 +390,23 @@ define('sf.b2c.mall.order.iteminfo', [
             'type': 'error'
           });
         });
+    },
+
+    monitor: {
+      'mediav': function () {
+        var __src = $.cookie('__src');
+        if (__src == 'mediav') {
+          var _mvq = window._mvq || [];
+          window._mvq = _mvq;
+          _mvq.push(['$setAccount', 'm-123868-0']);
+
+          _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
+          _mvq.push(['$logConversion']);
+          _mvq.push(['$addOrder',/*订单号*/ '', /*订单金额*/ '']);
+          _mvq.push(['$addItem', /*订单号*/ '', /*商品id*/ '', /*商品名称*/ '', /*商品价格*/ '', /*商品数量*/ '', /*商品页url*/ '', /*商品页图片url*/ '']);
+          _mvq.push(['$logData']);
+        }
+      }
     },
 
     //优惠券功能交互

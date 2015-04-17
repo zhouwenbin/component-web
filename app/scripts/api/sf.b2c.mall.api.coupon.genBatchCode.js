@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkUserExist
+  * @class sf.b2c.mall.api.coupon.genBatchCode
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkUserExist',
+'sf.b2c.mall.api.coupon.genBatchCode',
 [
   'jquery',
   'can',
@@ -22,20 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkUserExist',
+      METHOD_NAME: 'coupon.genBatchCode',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'accountId': 'string',
-        'type': 'string',
+        'cardId': 'long',
       },
       OPTIONAL: {
-        'tempToken': 'string'
+        'genNum': 'int',
+        'receiveChannel': 'string',
+        'receiveTernimal': 'string',
+        'receiveWay': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000340': '用户账户还没有密码',
-        '1000380': '已经绑定了同类的第三方账户'
       }
     }
   });

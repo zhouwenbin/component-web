@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkUserExist
+  * @class sf.b2c.mall.api.user.uploadPushToken
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkUserExist',
+'sf.b2c.mall.api.user.uploadPushToken',
 [
   'jquery',
   'can',
@@ -22,20 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkUserExist',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'user.uploadPushToken',
+      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
       REQUIRED: {
-        'accountId': 'string',
-        'type': 'string',
+        'pushToken': 'string',
+        'pushType': 'string',
       },
       OPTIONAL: {
-        'tempToken': 'string'
+        'state': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000340': '用户账户还没有密码',
-        '1000380': '已经绑定了同类的第三方账户'
       }
     }
   });
