@@ -290,7 +290,6 @@ define('sf.b2c.mall.order.iteminfo', [
               "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
-              "zipCode": selectAddr.zipCode,
               "recId": selectAddr.recId
             }),
             "userMsg": "",
@@ -320,11 +319,16 @@ define('sf.b2c.mall.order.iteminfo', [
           store.set('cityId', cityId);
           store.set('regionId', regionId);
 
+          // 对mediav的转化做监控
+          that.monitor['mediav']();
+
           window.location.href = 'gotopay.html?' +
             $.param({
               "orderid": message.value,
               "recid": selectAddr.recId
             });
+
+
         })
         .fail(function(error) {
           element.removeClass("disable");
@@ -333,6 +337,23 @@ define('sf.b2c.mall.order.iteminfo', [
             'type': 'error'
           });
         });
+    },
+
+    monitor: {
+      'mediav': function () {
+        var __src = $.cookie('__src');
+        if (__src == 'mediav') {
+          var _mvq = window._mvq || [];
+          window._mvq = _mvq;
+          _mvq.push(['$setAccount', 'm-123868-0']);
+
+          _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
+          _mvq.push(['$logConversion']);
+          _mvq.push(['$addOrder',/*订单号*/ '', /*订单金额*/ '']);
+          _mvq.push(['$addItem', /*订单号*/ '', /*商品id*/ '', /*商品名称*/ '', /*商品价格*/ '', /*商品数量*/ '', /*商品页url*/ '', /*商品页图片url*/ '']);
+          _mvq.push(['$logData']);
+        }
+      }
     },
 
     //优惠券功能交互

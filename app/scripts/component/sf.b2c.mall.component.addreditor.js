@@ -81,7 +81,6 @@ define('sf.b2c.mall.component.addreditor', [
               detail: null,
               recId: null,
               cellphone: null,
-              zipCode: null,
               receiverName:null,
               receiverId:null
             },
@@ -106,7 +105,6 @@ define('sf.b2c.mall.component.addreditor', [
             error: {
               consignee:null,
               detail: null,
-              zipCode: null,
               cellphone: null,
               receiver:null,
               receiverCertId:null
@@ -127,7 +125,6 @@ define('sf.b2c.mall.component.addreditor', [
               regionName: regionId,
               detail: data.detail,
               cellphone: data.cellphone,
-              zipCode: data.zipCode,
               recId: data.recId,
               receiverName:data.recName,
               receiverId:data.credtNum2
@@ -152,7 +149,6 @@ define('sf.b2c.mall.component.addreditor', [
             },
             error: {
               detail: null,
-              zipCode: null,
               cellphone: null,
               receiver:null,
               receiverCertId:null
@@ -338,10 +334,6 @@ define('sf.b2c.mall.component.addreditor', [
       event && event.preventDefault();
       $('#cellphoneerror').hide();
     },
-    '#zipcode focus': function(element, event) {
-      event && event.preventDefault();
-      $('#zipcodeerror').hide();
-    },
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
 
@@ -362,7 +354,6 @@ define('sf.b2c.mall.component.addreditor', [
       $('#consigneeError').hide();
       $('#detailerror').hide();
       $('#cellphoneerror').hide();
-      $('#zipcodeerror').hide();
       $('#receiverNameError').hide();
       $('#receiverCertIdError').hide();
 
@@ -505,26 +496,6 @@ define('sf.b2c.mall.component.addreditor', [
         $('#receiverCertIdError').show();
         return false;
       }
-
-      //验证邮编
-      if (!addr.zipCode) {
-        this.adapter.addr.attr("error", {
-          "zipCode": '请填写邮编！'
-        });
-        $('#zipcodeerror').show();
-        return false;
-      }
-
-      var zipCodeRegex = /[0-9]\d{5}(?!\d)$/.test($.trim(addr.zipCode));
-      if (!zipCodeRegex || addr.zipCode.length > 6) {
-        this.adapter.addr.attr("error", {
-          "zipCode": '邮编填写有误！'
-        })
-
-        $('#zipcodeerror').show();
-        return false;
-      }
-
 
       if (addr.addrId) {
         this.update(addr,element);
