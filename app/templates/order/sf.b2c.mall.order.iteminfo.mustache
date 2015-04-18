@@ -9,7 +9,7 @@
   </div>
   <ul class="table-b">
     {{#each orderGoodsItemList}}
-    <li class="clearfix">
+    <li class="clearfix{{#flag}} disable{{/flag}}">
       <div class="table-c1 fl">
         <div class="table-img fl">
           <img src="{{sf.img productImage.thumbImgUrl}}" alt="" width="68" height="42" /><span></span>
@@ -88,7 +88,10 @@
           {{#if showTax}}
             <li>+税额：￥0</li>
           {{/if}}
-          <li>+运费：￥{{sf.price orderFeeItem.logisticsFee}}</li>
+          <li><span class="text-important">- 促销活动立减：￥{{sf.price orderFeeItem.discount}}</span></li>
+          {{#isShowCouponArea}}
+            <li><span class="text-important">-优惠券：￥{{sf.price orderCoupon.discountPrice}}</span></li>
+          {{/isShowCouponArea}}
         </ul>
         <div class="table-fr3">实际应付款：<strong>￥{{sf.price orderFeeItem.shouldPay}}</strong></div>
     </div>
@@ -96,6 +99,6 @@
 </div>
 
 <div class="order-f">
-  <a href="javascript:void(0)" class="btn btn-send{{#flag}}disable{{/flag}}" id="submitOrder">提交订单</a>
-    <error>{{#flag}}{{errorDes}}{{/flag}}</error>
+  <a href="javascript:void(0)" class="btn btn-send{{#flag}} disable{{/flag}}" id="submitOrder">提交订单</a>
+  <div class="text-error">{{#flag}}{{errorDes}}{{/flag}}</div>
 </div>
