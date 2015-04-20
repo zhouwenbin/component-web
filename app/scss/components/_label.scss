@@ -1,8 +1,4 @@
- .label-error,
- .label-success,
- .label-waining,
- .label-disabled,
- .label-important{
+ .label{
  	height: 21px;
 	line-height: 21px;
 	color: #fff;
@@ -12,19 +8,27 @@
 	display: inline-block;
 	vertical-align: middle;
  }
+ .label:hover{
+ 	color: #fff;
+ }
  .label-error{
+ 	@extend %label;
  	background: #eb6877;
  }
  .label-success{
+ 	@extend %label;
  	background: #67b222;
  }
  .label-waining{
+ 	@extend %label;
  	background: #a1d0ed;
  }
  .label-disabled{
+ 	@extend %label;
  	background: #ccc;
  }
  .label-important{
+ 	@extend %label;
  	background:#ff9494;
  }
  
