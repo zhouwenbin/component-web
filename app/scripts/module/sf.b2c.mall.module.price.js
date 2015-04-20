@@ -92,6 +92,19 @@ define(
           element.find('.product-r1').append('<div class="mask show"></div>');
           element.find('.product-r1').append('<span class="icon icon24"></span>');
         }
+
+
+        // 促销活动
+        if (value.activityTypeDescList && value.activityTypeDescList.length > 0) {
+          if (value.activityTypeDescList.length = 1) {
+            element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 10));
+          } else if (value.activityTypeDescList.length = 1) {
+            element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 4)
+              + "  " + value.activityTypeDescList[1].substr(0, 4));
+          }
+
+          element.find('.cms-fill-discountparent')[0].style.display = "none";
+        }
       },
 
       getItemList: function() {

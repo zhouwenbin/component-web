@@ -100,6 +100,7 @@ requirejs.config({
     'sf.b2c.mall.api.b2cmall.getItemSummary': 'scripts/api/sf.b2c.mall.api.b2cmall.getItemSummary',
     'sf.b2c.mall.api.b2cmall.checkLogistics': 'scripts/api/sf.b2c.mall.api.b2cmall.checkLogistics',
     'sf.b2c.mall.api.b2cmall.getHeaderConfig': 'scripts/api/sf.b2c.mall.api.b2cmall.getHeaderConfig',
+    'sf.b2c.mall.api.b2cmall.getActivityInfo': 'scripts/api/sf.b2c.mall.api.b2cmall.getActivityInfo',
 
     'sf.b2c.mall.api.coupon.receiveCoupon': 'scripts/api/sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.api.coupon.receiveShareCoupon': 'scripts/api/sf.b2c.mall.api.coupon.receiveShareCoupon',
@@ -141,7 +142,7 @@ requirejs.config({
     'sf.b2c.mall.component.bindaccount': 'scripts/component/sf.b2c.mall.component.bindaccount',
     //设置密码并登陆
     'sf.b2c.mall.component.setpassword': 'scripts/component/sf.b2c.mall.component.setpassword',
-    
+
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
     'sf.b2c.mall.center.change.password': 'scripts/center/sf.b2c.mall.center.change.password',

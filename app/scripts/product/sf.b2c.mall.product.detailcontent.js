@@ -16,9 +16,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.widget.showArea',
     'imglazyload',
     'sf.b2c.mall.api.product.arrivalNotice',
-    'sf.b2c.mall.api.b2cmall.checkLogistics'
+    'sf.b2c.mall.api.b2cmall.checkLogistics',
+    'sf.b2c.mall.api.b2cmall.getActivityInfo'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo) {
     return can.Control.extend({
 
       helpers: {
@@ -207,6 +208,9 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染价格信息
         this.renderPriceInfo();
 
+        //渲染活动信息
+        this.renderActivityInfo();
+
         //渲染推荐商品信息
         this.renderRecommendProducts();
 
@@ -374,7 +378,42 @@ define('sf.b2c.mall.product.detailcontent', [
             //渲染模板
             var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
             $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+          });
+      },
 
+      renderActivityInfo: function() {
+        var that = this;
+        var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+
+        var getActivityInfo = new SFGetActivityInfo({
+          'itemId': itemid
+        });
+
+        getActivityInfo
+          .sendRequest()
+          .fail(function(error) {
+            //console.error(error);
+          })
+          .done(function(data) {
+            _.each(data.value, function(element, index, list) {
+              element.rulesHtml = "";
+              for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
+                if (index != 0) {
+                  element.rulesHtml += "<br />";
+                }
+                element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
+              }
+            });
+
+            that.options.detailContentInfo.attr("activityInfos", data);
+
+
+            //活动信息模板
+            var activityTemplate = can.view.mustache(that.activityTemplate());
+            $('.goods-activityinfos').html(activityTemplate(that.options.detailContentInfo, that.helpers));
+            $('.goods-activityinfos').on("click", ".goods-activity-c1 a", function() {
+              $(this).parents(".goods-activity").toggleClass("active");
+            })
           });
       },
 
@@ -669,6 +708,15 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
           '</div>' +
           '{{/sf-is-limitedTimeBuy}}';
+      },
+
+      activityTemplate: function() {
+        return '{{#each activityInfos.value}}<div class="goods-activity">' +
+          '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
+          '<div class="goods-activity-c2"><b>促销信息：</b><span class="label label-important"><a href="{{pcActivityLink}}">{{activityTitle}}</a></span>{{activityTypeDesc}}</div>' +
+          '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
+          '</div>{{/each}}';
+
       },
 
       specTemplate: function() {
