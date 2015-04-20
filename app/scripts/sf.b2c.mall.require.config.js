@@ -142,6 +142,8 @@ requirejs.config({
     'sf.b2c.mall.component.bindaccount': 'scripts/component/sf.b2c.mall.component.bindaccount',
     //设置密码并登陆
     'sf.b2c.mall.component.setpassword': 'scripts/component/sf.b2c.mall.component.setpassword',
+    //推荐商品
+    'sf.b2c.mall.component.recommendProducts': 'scripts/component/sf.b2c.mall.component.recommendProducts',
 
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
@@ -197,6 +199,8 @@ requirejs.config({
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
     'sf.b2c.mall.page.feedback': 'scripts/page/sf.b2c.mall.page.feedback',
+    //促销活动结束页面
+    'sf.b2c.mall.page.activityend': 'scripts/page/sf.b2c.mall.page.activityend',
     //绑定账号
     'sf.b2c.mall.page.bindaccount': 'scripts/page/sf.b2c.mall.page.bindaccount',
     //设置密码并登陆

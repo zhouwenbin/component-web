@@ -1,8 +1,7 @@
-/**
- * Created by 魏志强 on 2014/12/26.
- */
+'use strict';
+
 define(
-  'sf.b2c.mall.page.404',
+  'sf.b2c.mall.page.activityend',
   [
     'can',
     'jquery',
@@ -28,10 +27,10 @@ define(
        * [render 渲染]
        */
       render: function() {
-      	var that = this;
+        var that = this;
 
         new SFRecommendProducts('.recommend');
-  		}
+      }
 
     });
 
