@@ -152,7 +152,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       this.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
         this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
-        this.attr("orderFeeItem.discount", this.attr("orderFeeItem.discount") - oldVal + newVal);
+        //this.attr("orderFeeItem.discount", this.attr("orderFeeItem.discount") - oldVal + newVal);
       });
 
     },
@@ -264,7 +264,7 @@ define('sf.b2c.mall.order.iteminfo', [
       element.addClass("disable");
 
 
-      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
+      var selectAddr = that.options.addr;
       var isDetailInvalid = /[<>'"]/.test($.trim(selectAddr.detail));
 
       var isReceiverName = /先生|女士|小姐/.test($.trim(selectAddr.recName));
