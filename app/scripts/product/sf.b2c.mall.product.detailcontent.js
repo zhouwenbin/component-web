@@ -713,7 +713,7 @@ define('sf.b2c.mall.product.detailcontent', [
       activityTemplate: function() {
         return '{{#each activityInfos.value}}<div class="goods-activity">' +
           '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
-          '<div class="goods-activity-c2"><b>促销信息：</b><span class="label label-important"><a href="{{pcActivityLink}}">{{activityTitle}}</a></span>{{activityTypeDesc}}</div>' +
+          '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTitle}}</a>{{activityTypeDesc}}</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
           '</div>{{/each}}';
 
