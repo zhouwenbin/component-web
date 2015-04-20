@@ -4,7 +4,11 @@
 .nataral{
 	background: #fff;
 }
-.nataral h1{
+.nataral-header{
+	background:#fff;
+}
+.nataral-header h1{
+	
 	font-size:26px;
 	font-weight: normal;
 	padding-bottom: 15px;
@@ -13,7 +17,7 @@
 	padding-top: 30px;
 }
 .nataral .crumbs{
-	margin-top: 15px;
+	padding-top: 15px;
 }
 .nataral h1 span{
 	font-size: 14px;
