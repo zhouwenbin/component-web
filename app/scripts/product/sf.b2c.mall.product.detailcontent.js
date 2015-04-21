@@ -205,11 +205,11 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染规格信息
         this.renderSpecInfo();
 
-        //渲染价格信息
-        this.renderPriceInfo();
-
         //渲染活动信息
         this.renderActivityInfo();
+
+        //渲染价格信息
+        this.renderPriceInfo();
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
@@ -381,6 +381,9 @@ define('sf.b2c.mall.product.detailcontent', [
           });
       },
 
+      /**
+       * [renderActivityInfo 渲染活动信息]
+       */
       renderActivityInfo: function() {
         var that = this;
         var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
@@ -679,13 +682,21 @@ define('sf.b2c.mall.product.detailcontent', [
           '<a href="#" class="btn btn-buy disable">立即购买</a>' +
           '<a href="#" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
-
           '{{^if priceInfo.soldOut}}' +
-          '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-          '{{/if}}' +
+            '{{^priceInfo.isPromotion}}' +
+            '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+            '{{/priceInfo.isPromotion}}' +
+            '{{^priceInfo.isPromotion}}' +
+              '{{#if priceInfo.activitySoldOut}}' +
+              '<a href="#" class="btn btn-buy disable">卖完了</a>' +
+              '<a href="#" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+              '{{/if}}' +
+              '{{^if priceInfo.activitySoldOut}}' +
+              '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+              '{{/if}}' +
+            '{{/priceInfo.isPromotion}}' +
 
           '</div>' +
-
           '</div>';
       },
 
@@ -713,7 +724,7 @@ define('sf.b2c.mall.product.detailcontent', [
       activityTemplate: function() {
         return '{{#each activityInfos.value}}<div class="goods-activity">' +
           '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
-          '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTitle}}</a>{{activityTypeDesc}}</div>' +
+          '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
           '</div>{{/each}}';
 
@@ -959,6 +970,7 @@ define('sf.b2c.mall.product.detailcontent', [
             that.options.detailContentInfo.itemInfo.attr("basicInfo", new can.Map(skuInfoData));
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
+            that.renderActivityInfo();
             that.renderPriceInfo();
 
             that.renderSkuInfo();
