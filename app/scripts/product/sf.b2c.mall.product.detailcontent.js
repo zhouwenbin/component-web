@@ -728,7 +728,15 @@ define('sf.b2c.mall.product.detailcontent', [
         return '{{#each value}}' +
           '<div class="goods-activity">' +
           '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
-          '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}</div>' +
+          '<div class="goods-activity-c2">' +
+            '<b>促销信息：</b>' +
+            '{{#pcActivityLink}}' +
+            '<a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+            '{{/pcActivityLink}}' +
+            '{{^pcActivityLink}}' +
+            '<a href="javascript:void(0);" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}' +
+            '{{/pcActivityLink}}' + 
+            '</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
           '</div>' +
           '{{/each}}';
