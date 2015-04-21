@@ -686,7 +686,7 @@ define('sf.b2c.mall.product.detailcontent', [
             '{{^priceInfo.isPromotion}}' +
             '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
             '{{/priceInfo.isPromotion}}' +
-            '{{^priceInfo.isPromotion}}' +
+            '{{#priceInfo.isPromotion}}' +
               '{{#if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
               '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
