@@ -136,7 +136,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             for (var i = 0; i < len; i++) {
               if ($(changedAddr).eq(i).data('addressid') == data.value) {
                 $(changedAddr).eq(i).addClass('active');
-                return false;
+                break;
               };
             };
           }
