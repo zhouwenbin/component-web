@@ -402,11 +402,13 @@ define('sf.b2c.mall.product.detailcontent', [
             if (data && data.value && data.value.length > 0) {
               _.each(data.value, function(element, index, list) {
                 element.rulesHtml = "";
-                for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
-                  if (index != 0) {
-                    element.rulesHtml += "<br />";
+                if (element.promotionRules) {
+                  for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
+                    if (index != 0) {
+                      element.rulesHtml += "<br />";
+                    }
+                    element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                   }
-                  element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                 }
               });
             }
@@ -723,11 +725,13 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       activityTemplate: function() {
-        return '{{#each value}}<div class="goods-activity">' +
-          '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
+        return '{{#each value}}' +
+          '<div class="goods-activity">' +
+          '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
           '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
-          '</div>{{/each}}';
+          '</div>' +
+          '{{/each}}';
 
       },
 
