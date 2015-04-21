@@ -398,8 +398,6 @@ define('sf.b2c.mall.product.detailcontent', [
             //console.error(error);
           })
           .done(function(data) {
-            //活动信息模板
-            var activityTemplate = can.view.mustache(that.activityTemplate());
 
             if (data && data.value && data.value.length > 0) {
               _.each(data.value, function(element, index, list) {
@@ -411,11 +409,11 @@ define('sf.b2c.mall.product.detailcontent', [
                   element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                 }
               });
-              $('.goods-activityinfos').html(activityTemplate(data.value, that.helpers));
-            } else {
-              $('.goods-activityinfos').html(activityTemplate([], that.helpers));
             }
 
+            //活动信息模板
+            var activityTemplate = can.view.mustache(that.activityTemplate());
+            $('.goods-activityinfos').html(activityTemplate(data, that.helpers));
             $('.goods-activityinfos').off("click", ".goods-activity-c1 a").on("click", ".goods-activity-c1 a", function() {
               $(this).parents(".goods-activity").toggleClass("active");
             })
@@ -725,7 +723,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       activityTemplate: function() {
-        return '{{#each activityInfos}}<div class="goods-activity">' +
+        return '{{#each value}}<div class="goods-activity">' +
           '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
           '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
