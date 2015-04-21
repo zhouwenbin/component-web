@@ -398,19 +398,20 @@ define('sf.b2c.mall.product.detailcontent', [
             //console.error(error);
           })
           .done(function(data) {
-            _.each(data.value, function(element, index, list) {
-              element.rulesHtml = "";
-              for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
-                if (index != 0) {
-                  element.rulesHtml += "<br />";
+            if (data && data.value && data.value.length > 0) {
+              _.each(data.value, function(element, index, list) {
+                element.rulesHtml = "";
+                for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
+                  if (index != 0) {
+                    element.rulesHtml += "<br />";
+                  }
+                  element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                 }
-                element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
-              }
-            });
-
-            that.options.detailContentInfo.activityInfos = data;
-
-
+              });
+              that.options.detailContentInfo.attr("activityInfos", data.value);
+            } else {
+              that.options.detailContentInfo.attr("activityInfos", []);
+            }
             //活动信息模板
             var activityTemplate = can.view.mustache(that.activityTemplate());
             $('.goods-activityinfos').html(activityTemplate(that.options.detailContentInfo, that.helpers));
@@ -723,7 +724,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       activityTemplate: function() {
-        return '{{#each activityInfos.value}}<div class="goods-activity">' +
+        return '{{#each activityInfos}}<div class="goods-activity">' +
           '<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>' +
           '<div class="goods-activity-c2"><b>促销信息：</b><a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
