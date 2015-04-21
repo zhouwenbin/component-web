@@ -671,7 +671,7 @@ define('sf.b2c.mall.product.detailcontent', [
       buyInfoTemplate: function() {
         return '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
-          '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
+          '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
           '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
           '{{#if input.showRestrictionTips}}<span class="icon icon62"></span><span class="text-important" id="showrestrictiontipsspan">每人限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
@@ -679,22 +679,23 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="fl">' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<a href="#" class="btn btn-buy disable">立即购买</a>' +
-          '<a href="#" class="btn btn-buy border" id="getNotify">到货通知</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
           '{{^if priceInfo.soldOut}}' +
             '{{^priceInfo.isPromotion}}' +
-            '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+            '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
             '{{/priceInfo.isPromotion}}' +
             '{{^priceInfo.isPromotion}}' +
               '{{#if priceInfo.activitySoldOut}}' +
-              '<a href="#" class="btn btn-buy disable">卖完了</a>' +
-              '<a href="#" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+              '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
+              '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
               '{{/if}}' +
               '{{^if priceInfo.activitySoldOut}}' +
-              '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+              '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
               '{{/if}}' +
             '{{/priceInfo.isPromotion}}' +
+          '{{/if}}' +
 
           '</div>' +
           '</div>';
