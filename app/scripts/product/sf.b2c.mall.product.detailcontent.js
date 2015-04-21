@@ -408,13 +408,13 @@ define('sf.b2c.mall.product.detailcontent', [
               }
             });
 
-            that.options.detailContentInfo.attr("activityInfos", data);
+            that.options.detailContentInfo.activityInfos = data;
 
 
             //活动信息模板
             var activityTemplate = can.view.mustache(that.activityTemplate());
             $('.goods-activityinfos').html(activityTemplate(that.options.detailContentInfo, that.helpers));
-            $('.goods-activityinfos').on("click", ".goods-activity-c1 a", function() {
+            $('.goods-activityinfos').off("click", ".goods-activity-c1 a").on("click", ".goods-activity-c1 a", function() {
               $(this).parents(".goods-activity").toggleClass("active");
             })
           });
