@@ -398,6 +398,9 @@ define('sf.b2c.mall.product.detailcontent', [
             //console.error(error);
           })
           .done(function(data) {
+            //活动信息模板
+            var activityTemplate = can.view.mustache(that.activityTemplate());
+
             if (data && data.value && data.value.length > 0) {
               _.each(data.value, function(element, index, list) {
                 element.rulesHtml = "";
@@ -408,13 +411,11 @@ define('sf.b2c.mall.product.detailcontent', [
                   element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                 }
               });
-              that.options.detailContentInfo.attr("activityInfos", data.value);
+              $('.goods-activityinfos').html(activityTemplate(data.value, that.helpers));
             } else {
-              that.options.detailContentInfo.attr("activityInfos", []);
+              $('.goods-activityinfos').html(activityTemplate([], that.helpers));
             }
-            //活动信息模板
-            var activityTemplate = can.view.mustache(that.activityTemplate());
-            $('.goods-activityinfos').html(activityTemplate(that.options.detailContentInfo, that.helpers));
+
             $('.goods-activityinfos').off("click", ".goods-activity-c1 a").on("click", ".goods-activity-c1 a", function() {
               $(this).parents(".goods-activity").toggleClass("active");
             })
