@@ -421,9 +421,13 @@ define('sf.b2c.mall.product.detailcontent', [
                   }
                 }
 
+                //处理活动链接
+                element.pcActivityLink = element.pcActivityLink || "javascript:void(0);";
+
                 //处理限时促销
                 if (element.activityType == "FLASH") {
                   that.options.detailContentInfo.priceInfo.attr("activityTitle", element.activityTitle);
+                  that.options.detailContentInfo.priceInfo.attr("pcActivityLink", element.pcActivityLink);
                 }
 
               });
@@ -436,8 +440,14 @@ define('sf.b2c.mall.product.detailcontent', [
               .html(activityTemplate(data, that.helpers))
               .off("click", ".goods-activity-c1 a")
               .on("click", ".goods-activity-c1 a", function() {
-              $(this).parents(".goods-activity").toggleClass("active");
-            })
+                $(this).parents(".goods-activity").toggleClass("active").siblings(".active").removeClass("active");
+              });
+
+            $("body").on("click", function(event) {
+              if (!$(event.target).hasClass("goods-activityinfos") && $(event.target).parents(".goods-activityinfos").length == 0) {
+                $(".goods-activity.active").removeClass("active");
+              }
+            });
           });
       },
 
@@ -731,7 +741,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/sf-not-showOriginPrice}}' +
 
           '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<i>（活动：{{priceInfo.activityTitle}}）</i>{{/priceInfo.isPromotion}}</div>' +
+          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}</div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-is-showOriginPrice}}' +
           '</div>' +
@@ -748,14 +758,8 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-activity">' +
           '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
           '<div class="goods-activity-c2">' +
-            '<b>促销信息：</b>' +
-            '{{#pcActivityLink}}' +
             '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
-            '{{/pcActivityLink}}' +
-            '{{^pcActivityLink}}' +
-            '<a href="javascript:void(0);" class="label label-soon">{{activityTypeDesc}}</a>{{activityTitle}}' +
-            '{{/pcActivityLink}}' +
-            '</div>' +
+          '</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
           '</div>' +
           '{{/activityType}}{{/each}}';
@@ -807,21 +811,17 @@ define('sf.b2c.mall.product.detailcontent', [
         var priceInfo = this.options.detailContentInfo.priceInfo;
         var input = this.options.detailContentInfo.input;
 
-        if (priceInfo.soldOut) {
-          return false;
+        if (!priceInfo.soldOut) {
+          var amount = parseInt(input.attr("buyNum"));
+          if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy - 1) {
+            input.attr("showRestrictionTips", true);
+            $('#showrestrictiontipsspan').show();
+            input.attr("addDisable", "disable");
+          } else {
+            input.attr("reduceDisable", "");
+            input.attr('buyNum', amount + 1);
+          }
         }
-
-        var amount = parseInt(input.attr("buyNum"));
-        if (priceInfo.limitBuy > 0 && amount > priceInfo.limitBuy - 1) {
-          input.attr("showRestrictionTips", true);
-          $('#showrestrictiontipsspan').show();
-          input.attr("addDisable", "disable");
-          return false;
-        }
-
-        input.attr("reduceDisable", "");
-        input.attr('buyNum', amount + 1);
-        return false;
       },
 
       /**
@@ -845,7 +845,6 @@ define('sf.b2c.mall.product.detailcontent', [
         }
 
         input.attr("addDisable", "");
-        return false;
       },
 
       /**
