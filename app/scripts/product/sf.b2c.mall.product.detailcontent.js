@@ -217,9 +217,6 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染价格信息
         this.renderPriceInfo();
 
-        //渲染活动信息
-        this.renderActivityInfo();
-
         //渲染推荐商品信息
         this.renderRecommendProducts();
 
@@ -339,7 +336,7 @@ define('sf.b2c.mall.product.detailcontent', [
           })
           .done(function(data) {
             //获得服务器时间
-            var currentServerTime = getProductHotData.getServerTime()
+            var currentServerTime = getProductHotData.getServerTime();
 
 
             //设置价格相关信息
@@ -381,6 +378,8 @@ define('sf.b2c.mall.product.detailcontent', [
 
             //渲染购买信息
             that.renderBuyInfo(that.options.detailContentInfo);
+            //渲染活动信息
+            that.renderActivityInfo();
 
 
 
@@ -727,7 +726,7 @@ define('sf.b2c.mall.product.detailcontent', [
         return '<div class="goods-price-c1 fl">' +
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<i>（活动：{{priceInfo.activityTitle}}）</i>{{/priceInfo.isPromotion}}</div>' +
+          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}' +
 
@@ -1004,7 +1003,6 @@ define('sf.b2c.mall.product.detailcontent', [
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
             that.renderPriceInfo();
-            that.renderActivityInfo();
 
             that.renderSkuInfo();
 
