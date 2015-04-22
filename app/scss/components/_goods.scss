@@ -113,6 +113,9 @@
 	font-size:36px;
 	font-family:Arial;
 }
+.goods-price-r1 i{
+	color: #999;
+}
 .goods-price-r2{
 	color:#999;
 }
@@ -219,6 +222,7 @@
 	line-height:30px;
 	color:#666;
 	margin-top:-1px;
+	position:relative;
 }
 .goods-activity .label{
 	margin:0 11px;
@@ -236,15 +240,16 @@
 }
 .goods-activity-detail{
 	line-height:24px;
-	border:1px solid #ffc3c3;
+	outline:1px solid #ffc3c3;
 	background:#fff;
 	position: absolute;
 	left:0;
 	border-top:none;
-	margin-right:20px;
 	padding:5px 13px;
 	display:none;
-	width:550px;
+	width: 100%;
+	box-sizing:border-box;
+	z-index: 1;
 }
 .goods-activity.active{
 	border-style:solid;
