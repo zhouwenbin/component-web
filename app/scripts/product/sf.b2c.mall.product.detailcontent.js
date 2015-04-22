@@ -72,6 +72,15 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+
+        //促销展示
+        'sf-showActivity': function(activityType, options) {
+          if (activityType != 'FLASH') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
 
       },
@@ -205,11 +214,11 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染规格信息
         this.renderSpecInfo();
 
-        //渲染活动信息
-        this.renderActivityInfo();
-
         //渲染价格信息
         this.renderPriceInfo();
+
+        //渲染活动信息
+        this.renderActivityInfo();
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
@@ -399,8 +408,10 @@ define('sf.b2c.mall.product.detailcontent', [
           })
           .done(function(data) {
 
+
             if (data && data.value && data.value.length > 0) {
               _.each(data.value, function(element, index, list) {
+                //处理活动规则，翻译成html
                 element.rulesHtml = "";
                 if (element.promotionRules) {
                   for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
@@ -410,13 +421,22 @@ define('sf.b2c.mall.product.detailcontent', [
                     element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                   }
                 }
+
+                //处理限时促销
+                if (element.activityType == "FLASH") {
+                  that.options.detailContentInfo.priceInfo.attr("activityTitle", element.activityTitle);
+                }
+
               });
             }
 
+
             //活动信息模板
             var activityTemplate = can.view.mustache(that.activityTemplate());
-            $('.goods-activityinfos').html(activityTemplate(data, that.helpers));
-            $('.goods-activityinfos').off("click", ".goods-activity-c1 a").on("click", ".goods-activity-c1 a", function() {
+            $('.goods-activityinfos')
+              .html(activityTemplate(data, that.helpers))
+              .off("click", ".goods-activity-c1 a")
+              .on("click", ".goods-activity-c1 a", function() {
               $(this).parents(".goods-activity").toggleClass("active");
             })
           });
@@ -707,39 +727,39 @@ define('sf.b2c.mall.product.detailcontent', [
         return '<div class="goods-price-c1 fl">' +
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<i>（活动：{{priceInfo.activityTitle}}）</i>{{/priceInfo.isPromotion}}</div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}' +
 
           '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<i>（活动：{{priceInfo.activityTitle}}）</i>{{/priceInfo.isPromotion}}</div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-is-showOriginPrice}}' +
           '</div>' +
 
           '{{#sf-is-limitedTimeBuy priceInfo.time}}' +
           '<div class="goods-price-c2">' +
-          '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
+          '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{{priceInfo.time}}}</span>' +
           '</div>' +
           '{{/sf-is-limitedTimeBuy}}';
       },
 
       activityTemplate: function() {
-        return '{{#each value}}' +
+        return '{{#each value}}{{#sf-showActivity activityType}}' +
           '<div class="goods-activity">' +
           '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
           '<div class="goods-activity-c2">' +
             '<b>促销信息：</b>' +
             '{{#pcActivityLink}}' +
-            '<a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+            '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
             '{{/pcActivityLink}}' +
             '{{^pcActivityLink}}' +
-            '<a href="javascript:void(0);" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}' +
-            '{{/pcActivityLink}}' + 
+            '<a href="javascript:void(0);" class="label label-soon">{{activityTypeDesc}}</a>{{activityTitle}}' +
+            '{{/pcActivityLink}}' +
             '</div>' +
           '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
           '</div>' +
-          '{{/each}}';
+          '{{/activityType}}{{/each}}';
 
       },
 
@@ -983,8 +1003,8 @@ define('sf.b2c.mall.product.detailcontent', [
             that.options.detailContentInfo.itemInfo.attr("basicInfo", new can.Map(skuInfoData));
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
-            that.renderActivityInfo();
             that.renderPriceInfo();
+            that.renderActivityInfo();
 
             that.renderSkuInfo();
 
@@ -1153,7 +1173,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        item.attr('time', day1 + "天" + hour + "小时" + minute + "分" + second + "秒");
+        item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
         item.attr('timeIcon', "icon4");
       }
 
