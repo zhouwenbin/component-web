@@ -16,8 +16,10 @@ define("sf.b2c.mall.page.naturalcoupon", [
 
       init: function(element, options) {
 
+        var header = new SFHeader('.sf-b2c-mall-header', {"afterLoginDest": location.href});
+
         if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-          new SFHeader().showLogin(location.href);
+          header.showLogin(location.href);
           return false;
         }
 
