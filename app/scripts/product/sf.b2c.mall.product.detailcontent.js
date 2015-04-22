@@ -16,9 +16,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.widget.showArea',
     'imglazyload',
     'sf.b2c.mall.api.product.arrivalNotice',
-    'sf.b2c.mall.api.b2cmall.checkLogistics'
+    'sf.b2c.mall.api.b2cmall.checkLogistics',
+    'sf.b2c.mall.api.b2cmall.getActivityInfo'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo) {
     return can.Control.extend({
 
       helpers: {
@@ -204,6 +205,9 @@ define('sf.b2c.mall.product.detailcontent', [
         //渲染规格信息
         this.renderSpecInfo();
 
+        //渲染活动信息
+        this.renderActivityInfo();
+
         //渲染价格信息
         this.renderPriceInfo();
 
@@ -374,7 +378,47 @@ define('sf.b2c.mall.product.detailcontent', [
             //渲染模板
             var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
             $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+          });
+      },
 
+      /**
+       * [renderActivityInfo 渲染活动信息]
+       */
+      renderActivityInfo: function() {
+        var that = this;
+        var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+
+        var getActivityInfo = new SFGetActivityInfo({
+          'itemId': itemid
+        });
+
+        getActivityInfo
+          .sendRequest()
+          .fail(function(error) {
+            //console.error(error);
+          })
+          .done(function(data) {
+
+            if (data && data.value && data.value.length > 0) {
+              _.each(data.value, function(element, index, list) {
+                element.rulesHtml = "";
+                if (element.promotionRules) {
+                  for (var index = 0, tempRule; tempRule = element.promotionRules[index]; index++) {
+                    if (index != 0) {
+                      element.rulesHtml += "<br />";
+                    }
+                    element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
+                  }
+                }
+              });
+            }
+
+            //活动信息模板
+            var activityTemplate = can.view.mustache(that.activityTemplate());
+            $('.goods-activityinfos').html(activityTemplate(data, that.helpers));
+            $('.goods-activityinfos').off("click", ".goods-activity-c1 a").on("click", ".goods-activity-c1 a", function() {
+              $(this).parents(".goods-activity").toggleClass("active");
+            })
           });
       },
 
@@ -629,7 +673,7 @@ define('sf.b2c.mall.product.detailcontent', [
       buyInfoTemplate: function() {
         return '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
-          '<a class="btn-num-reduce {{input.reduceDisable}}" href="#">-</a><a class="btn-num-add {{input.addDisable}}" href="#">+</a>' +
+          '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
           '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
           '{{#if input.showRestrictionTips}}<span class="icon icon62"></span><span class="text-important" id="showrestrictiontipsspan">每人限购{{priceInfo.limitBuy}}件</span>{{/if}}' +
           '</div>' +
@@ -637,16 +681,25 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="fl">' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<a href="#" class="btn btn-buy disable">立即购买</a>' +
-          '<a href="#" class="btn btn-buy border" id="getNotify">到货通知</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
-
           '{{^if priceInfo.soldOut}}' +
-          '<a href="#" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+            '{{^priceInfo.isPromotion}}' +
+            '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+            '{{/priceInfo.isPromotion}}' +
+            '{{#priceInfo.isPromotion}}' +
+              '{{#if priceInfo.activitySoldOut}}' +
+              '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
+              '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+              '{{/if}}' +
+              '{{^if priceInfo.activitySoldOut}}' +
+              '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+              '{{/if}}' +
+            '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
 
           '</div>' +
-
           '</div>';
       },
 
@@ -669,6 +722,25 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon56"></span><b>剩余</b><span class="text-important">{{priceInfo.time}}</span>' +
           '</div>' +
           '{{/sf-is-limitedTimeBuy}}';
+      },
+
+      activityTemplate: function() {
+        return '{{#each value}}' +
+          '<div class="goods-activity">' +
+          '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
+          '<div class="goods-activity-c2">' +
+            '<b>促销信息：</b>' +
+            '{{#pcActivityLink}}' +
+            '<a href="{{pcActivityLink}}" class="label label-important">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+            '{{/pcActivityLink}}' +
+            '{{^pcActivityLink}}' +
+            '<a href="javascript:void(0);" class="label label-important">{{activityTypeDesc}}</a>{{activityTitle}}' +
+            '{{/pcActivityLink}}' + 
+            '</div>' +
+          '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
+          '</div>' +
+          '{{/each}}';
+
       },
 
       specTemplate: function() {
@@ -911,6 +983,7 @@ define('sf.b2c.mall.product.detailcontent', [
             that.options.detailContentInfo.itemInfo.attr("basicInfo", new can.Map(skuInfoData));
             that.adapter.reSetSelectedAndCanSelectedSpec(that.options.detailContentInfo, gotoItemSpec);
 
+            that.renderActivityInfo();
             that.renderPriceInfo();
 
             that.renderSkuInfo();

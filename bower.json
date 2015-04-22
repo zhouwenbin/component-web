@@ -10,5 +10,8 @@
     "fastclick": "~1.0.3",
     "text": "~2.0.14",
     "JSON-js": "https://github.com/douglascrockford/JSON-js.git"
+  },
+  "resolutions": {
+    "jquery": "~1.11.1"
   }
 }

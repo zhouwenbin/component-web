@@ -6,12 +6,12 @@ define(
   [
     'can',
     'jquery',
-    'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.component.recommendProducts',
     'sf.b2c.mall.framework.comm',
     'sf.util',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $,SFFindRecommendProducts,SFFrameworkComm,SFFn,SFBusiness) {
+  function(can, $, SFRecommendProducts, SFFrameworkComm, SFFn, SFBusiness) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -21,7 +21,6 @@ define(
        * [init 初始化]
        */
       init: function() {
-        this.detailUrl = 'http://www.sfht.com/detail';
         this.render();
       },
 
@@ -31,60 +30,9 @@ define(
       render: function() {
       	var that = this;
 
-        // new Header('.sf-b2c-mall-header');
-        // new Footer('.sf-b2c-mall-footer');
+        new SFRecommendProducts('.recommend');
+  		}
 
-        var findRecommendProducts = new SFFindRecommendProducts({
-          'itemId': -1,
-          'size': 8
-        });
-
-        findRecommendProducts
-          .sendRequest()
-          .fail(function(error) {
-            //console.error(error);
-          })
-          .done(function(data) {
-
-            data.hasData = true;
-
-            if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
-              data.hasData = false;
-            }
-
-            _.each(data.value, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
-              item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
-              item.sellingPrice = item.sellingPrice/100;
-              //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
-            })
-
-            var template = can.view.mustache(that.recommendProductsTemplate());
-            $('.recommend').html(template(data));
-
-
-      		})
-  		},
-      // 404页面推荐商品模板
-      recommendProductsTemplate: function() {
-        return '{{#if hasData}}' +
-          '<h2>为您推荐</h2>' +
-          '<ul class="clearfix" id = "recommendProdList">' +
-          '{{#each value}}' +
-          '<li>' +
-          '<div class="recommend-c2">'+
-          '<a href="{{linkUrl}}"><img src="{{imageName}}" alt="" /></a>'+
-          '</div>'+
-          '<div class="recommend-c1">' +
-          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
-          '<div class="recommend-r1">¥{{sellingPrice}}</div>' +
-          '</div>'+
-          '</li>' +
-          '{{/each}}' +
-          '</ul>' +
-          '{{/if}}'
-      }
-      
     });
 
     new findNoPage('#page-404');

@@ -5,22 +5,30 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'jquery',
   'jquery.cookie',
   'store',
+  'md5',
   'sf.b2c.mall.adapter.regions',
+  'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
-  'sf.b2c.mall.adapter.address.list',
-  'sf.b2c.mall.component.addreditor',
   'sf.b2c.mall.api.user.webLogin',
-  'md5',
-  'sf.b2c.mall.api.b2cmall.checkLogistics',
-  'sf.b2c.mall.api.b2cmall.getItemSummary',
   'sf.b2c.mall.api.user.delRecAddress',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
-  'sf.b2c.mall.widget.message'
-], function(can,$,$cookie,store, RegionsAdapter, SFGetRecAddressList,SFGetIDCardUrlList, AddressAdapter, SFAddressEditor, SFUserWebLogin, md5,CheckLogistics,SFGetItemSummary,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,SFMessage) {
+  'sf.b2c.mall.api.b2cmall.checkLogistics',
+  'sf.b2c.mall.api.b2cmall.getItemSummary',
+  'sf.b2c.mall.widget.message',
+  'sf.b2c.mall.component.addreditor',
+  'sf.b2c.mall.order.iteminfo'
+], function(can, $, $cookie, store, md5,
+    RegionsAdapter, AddressAdapter,
+    SFGetRecAddressList,SFGetIDCardUrlList, SFUserWebLogin,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,
+    CheckLogistics,SFGetItemSummary,
+    SFMessage, SFAddressEditor, SFItemInfo) {
   var AREAID;
   return can.Control.extend({
+    adapter: {},
+    adapter4List: {},
+    component: {},
 
     /**
      * 初始化
@@ -28,16 +36,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      this.adapter = {};
-      this.adapter4List = {};
-      this.component = {};
       this.paint();
-
-
       this.component.checkLogistics = new CheckLogistics();
 
       var params = can.deparam(window.location.search.substr(1));
-
       var getItemSummary = new SFGetItemSummary({
         "itemId":params.itemid
       });
@@ -45,9 +47,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
         .done(function(data){
           AREAID = data.areaId;
         })
-        .fail(function(){
-
-        })
+        .fail();
     },
     helpers:{
       'defaultAddr':function(isDefault,options){
@@ -59,7 +59,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       }
     },
     render: function(data) {
-      var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data,this.helpers);
+      var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data, this.helpers);
       this.element.html(html);
     },
 
@@ -89,11 +89,11 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
                 return []
               }
             }
-          }
+          };
 
           // @note 业务代码发生变化，不再关注orgCode，只需要看arr[2]=heike
           var fn = map[arr[2]];
-          var list = null
+          var list = null;
           if (_.isFunction(fn)) {
             list = fn(that.result, data && data.value)
           }
@@ -136,16 +136,27 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
             for (var i = 0; i < len; i++) {
               if ($(changedAddr).eq(i).data('addressid') == data.value) {
                 $(changedAddr).eq(i).addClass('active');
-                return false;
               };
             };
-          };
+          }
+
+          that.initItemInfo();
         })
         .fail(function(error) {
           console.error(error);
         })
     },
 
+    initItemInfo: function() {
+      this.component.itemInfo = new SFItemInfo('.sf-b2c-mall-order-itemInfo', {
+        vendorinfo: this.options.vendorinfo,
+        addr: this.getSelectedAddr()
+      });
+    },
+    /**
+     * 判断地址是否有效
+     * @param selectValue
+     */
     check: function (selectValue) {
       var that = this;
       if(AREAID != 0){
@@ -358,7 +369,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
       return false;
     },
-    delAddress: function(element, addr){
+    delAddress: function(element, addr) {
       var that = this;
 
       var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
@@ -389,7 +400,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       $("#addAdrArea").show();
       $(element).hide();
       this.component.addressEditor.show('create', null, $("#addAdrArea"));
-      // console.log(this.component.addressEditor.adapter);
       return false;
     },
 
@@ -403,11 +413,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var event = event || window.event;
       var obj=event.srcElement ? event.srcElement : event.target;
       if (obj.tagName == 'SPAN') {
-        $('#errorTips').addClass('visuallyhidden');
+        //$('#errorTips').addClass('visuallyhidden');
         this.clearActive();
         $(obj).parents("li[name='addrEach']").addClass("active");
         var dataValue = this.getSelectedAddr();
         this.check(dataValue);
+        this.initItemInfo();
       }
     },
 
