@@ -150,7 +150,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     initItemInfo: function() {
       this.component.itemInfo = new SFItemInfo('.sf-b2c-mall-order-itemInfo', {
         vendorinfo: this.options.vendorinfo,
-        addr: this.getSelectedAddr()
+        selectReceiveAddr: this
       });
     },
     /**
