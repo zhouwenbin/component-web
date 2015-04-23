@@ -150,7 +150,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     initItemInfo: function() {
       //刷新订单信息时，先销毁之前的itemInfo （不销毁事件会重复绑定）
       if (this.component.itemInfo) {
-        this.component.itemInfo.remove();
+        this.component.itemInfo.destroy();
       }
       this.component.itemInfo = new SFItemInfo('.sf-b2c-mall-order-itemInfo', {
         vendorinfo: this.options.vendorinfo,
@@ -410,7 +410,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     /**
      * [description 点击选中事件]
      * @param  {[type]} element
-     * @param  {[type]} e
+     * @param  {[type]} event
      * @return {[type]}
      */
     "#addrList click": function(element, event) {
