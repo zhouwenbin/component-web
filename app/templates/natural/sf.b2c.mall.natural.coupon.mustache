@@ -3,7 +3,6 @@
       <div class="mycoupon">
         <h2>原汁原味开业优惠礼包</h2>
         <div class="mycoupon-b mycoupon-b1 active">
-          {{#if showcoupon}}
             <ul class="clearfix">
               <li>
                 <div class="mycoupon-r1">
@@ -36,10 +35,13 @@
                 </div>
               </li>
             </ul>
+
+          {{^if hasGetLift}}
+            <button class="btn-soon" id="getcoupon">领取</button>
           {{/if}}
 
-          {{#if showbutton}}
-            <button class="btn-soon" id="getcoupon">领取</button>
+          {{#if hasGetLift}}
+            <button class="btn-soon btn-disable">已领取</button>
           {{/if}}
         </div>
 
