@@ -37,7 +37,7 @@ define("sf.b2c.mall.page.naturalcoupon", [
           var bagid = params.bagid;
 
           var receiveCoupon = new SFReceiveCoupon({
-            "type": "CARD", //"GIFTBAG",
+            "type": "GIFTBAG",
             "bagId": bagid,
             "receiveChannel": 'B2C',
             "receiveWay": 'ZTLQ'
@@ -83,7 +83,7 @@ define("sf.b2c.mall.page.naturalcoupon", [
         var bagid = params.bagid;
 
         var receiveCoupon = new SFReceiveCoupon({
-          "type": "CARD", //"GIFTBAG",
+          "type": "GIFTBAG",
           "bagId": bagid,
           "receiveChannel": 'B2C',
           "receiveWay": 'ZTLQ'
