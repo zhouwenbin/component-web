@@ -96,11 +96,17 @@ define(
 
         // 促销活动
         if (value.activityTypeDescList && value.activityTypeDescList.length > 0) {
-          if (value.activityTypeDescList.length = 1) {
+          if (value.activityTypeDescList.length == 1) {
             element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 10));
-          } else if (value.activityTypeDescList.length = 1) {
+          } else if (value.activityTypeDescList.length == 2) {
             element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 4)
               + "  " + value.activityTypeDescList[1].substr(0, 4));
+          } else if (value.activityTypeDescList.length > 2){
+            var typeDess = "";
+            _.each(value.activityTypeDescLis, function(value, key, list) {
+              typeDess += value.substr(0, 4) + " ";
+            });
+            element.find('.cms-fill-activitytype').text(typeDess)
           }
 
           element.find('.cms-fill-discountparent')[0].style.display = "none";
