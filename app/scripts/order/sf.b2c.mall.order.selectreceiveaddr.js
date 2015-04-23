@@ -148,9 +148,13 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     },
 
     initItemInfo: function() {
+      //刷新订单信息时，先销毁之前的itemInfo （不销毁事件会重复绑定）
+      if (this.component.itemInfo) {
+        this.component.itemInfo.destroy();
+      }
       this.component.itemInfo = new SFItemInfo('.sf-b2c-mall-order-itemInfo', {
         vendorinfo: this.options.vendorinfo,
-        addr: this.getSelectedAddr()
+        selectReceiveAddr: this
       });
     },
     /**

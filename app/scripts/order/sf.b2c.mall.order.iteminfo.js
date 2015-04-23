@@ -66,7 +66,7 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     initOrderRender: function() {
       var that = this;
-      var selectAddr = that.options.addr;
+      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
       var orderRender = new SFOrderRender({
         address: JSON.stringify({
           "addrId": selectAddr.addrId,
@@ -221,9 +221,18 @@ define('sf.b2c.mall.order.iteminfo', [
       //"4000100": "order unkown error",
       "4000200": "订单地址不存在",
       "4000400": "订单商品信息改变",
+      "4000401": "购买数量超过活动每人限购数量",
+      "4000402": "折扣金额大于订单总金额",
+      "4000403": "购买数量超过活动剩余库存",
+      "4000404": "活动已经结束",
+      "4000405": "折扣金额过大，超过订单总金额的30%",
       "4000500": "订单商品库存不足",
       "4000600": "订单商品超过限额",
       "4000700": "订单商品金额改变",
+      "4002300": "购买的多个商品货源地不一致",
+      "4002400": "购买的多个商品的商品形态不一致",
+      "4002500": "购买的商品支付卡类型为空",
+      "4002600": "购买的商品不在配送范围内",
       "4002700": "订单商品已下架",
       "4100901": "优惠券使用失败",
       "4100902": "优惠券不在可使用的时间范围内",
@@ -268,7 +277,7 @@ define('sf.b2c.mall.order.iteminfo', [
       element.addClass("disable");
 
 
-      var selectAddr = that.options.addr;
+      var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
       var isDetailInvalid = /[<>'"]/.test($.trim(selectAddr.detail));
 
       var isReceiverName = /先生|女士|小姐/.test($.trim(selectAddr.recName));
