@@ -15,7 +15,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
-  function( can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
@@ -444,10 +444,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var params = can.deparam(window.location.search.substr(1));
         //@note 从cookie中获取嘿客穿越过来标示
         var heike_sign = $.cookie('1_uinfo');
+        var arr = [];
         if (heike_sign) {
           arr = heike_sign.split(',');
         }
-        if (arr[2] == 'heike') {
+        if (arr[2] != 'undefined' && arr[2] == 'heike') {
           window.location.href = "/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid;
         } else {
           window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");

@@ -410,7 +410,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     /**
      * [description 点击选中事件]
      * @param  {[type]} element
-     * @param  {[type]} e
+     * @param  {[type]} event
      * @return {[type]}
      */
     "#addrList click": function(element, event) {
