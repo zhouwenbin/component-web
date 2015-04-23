@@ -1,9 +1,9 @@
-﻿@import '../utils/variables';
-@import '../utils/placeholders';
-@import '../components/product';
-@import '../components/nataral-list';
-@import '../components/nataral-video';
-@import '../components/mycoupon';
+﻿@import 'utils/variables';
+@import 'utils/placeholders';
+@import 'components/product';
+@import 'components/nataral-list';
+@import 'components/nataral-video';
+@import 'components/mycoupon';
 .nataral{
 	background: #fff;
 }
@@ -14,7 +14,7 @@
 	font-size:26px;
 	font-weight: normal;
 	padding-bottom: 15px;
-	border-bottom: 1px solid #f3f3f3;	
+	
 	padding-top: 30px;
 }
 .nataral-header h1 span{
@@ -22,6 +22,7 @@
 	margin: 0 5px;
 }
 .nataral .crumbs{
+	border-top: 1px solid #f3f3f3;	
 	padding-top: 15px;
 }
 
