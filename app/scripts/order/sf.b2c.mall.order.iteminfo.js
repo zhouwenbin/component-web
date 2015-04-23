@@ -99,6 +99,10 @@ define('sf.b2c.mall.order.iteminfo', [
         .fail();
     },
 
+    /*
+     * 加工基础信息
+     * @param 数据
+     */
     processFoundation: function(orderRenderItem) {
       this.itemObj.attr({
         submitKey: orderRenderItem.submitKey,
