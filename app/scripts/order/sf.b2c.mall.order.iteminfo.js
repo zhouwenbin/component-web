@@ -171,7 +171,7 @@ define('sf.b2c.mall.order.iteminfo', [
       _.each(that.itemObj.orderGoodsItemList, function(goodItem){
         goodItems.push({
           "itemId": goodItem.itemId,
-          "amount": goodItem.quantity,
+          "num": goodItem.quantity,
           "price": goodItem.price,
           skuId: goodItem.skuId
         });
