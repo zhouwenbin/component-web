@@ -113,8 +113,12 @@
 	font-size:36px;
 	font-family:Arial;
 }
-.goods-price-r1 i{
-	color: #999;
+.goods-price-r1 a{
+	color: #F78E57;
+	margin-left:10px;
+}
+.goods-price-r1 a:hover{
+	text-decoration: underline;
 }
 .goods-price-r2{
 	color:#999;
@@ -225,7 +229,7 @@
 	position:relative;
 }
 .goods-activity .label{
-	margin:0 11px;
+	margin-right:11px;
 	vertical-align:middle;
 }
 .goods-activity b{
