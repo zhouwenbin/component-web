@@ -1,9 +1,9 @@
-@import '../utils/variables';
-@import '../utils/placeholders';
-@import '../components/slider';
-@import '../components/product';
-@import '../components/product2';
-@import '../components/topic';
+@import 'utils/variables';
+@import 'utils/placeholders';
+@import 'components/slider';
+@import 'components/product';
+@import 'components/product2';
+@import 'components/topic';
 .slider{
 	margin-bottom:20px;
 }
