@@ -32,8 +32,7 @@ function($, can, _, Comm, SecurityType) {
       OPTIONAL: {
         'userMsg': 'string',
         'couponCodes': 'string',
-        'sysInfo': 'string',
-        'submitKey': 'string'
+        'sysInfo': 'string'
       },
       VERIFY:{
       },

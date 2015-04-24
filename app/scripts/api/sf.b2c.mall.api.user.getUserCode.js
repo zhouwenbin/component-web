@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.requestPayV2
+  * @class sf.b2c.mall.api.user.getUserCode
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.requestPayV2',
+'sf.b2c.mall.api.user.getUserCode',
 [
   'jquery',
   'can',
@@ -22,22 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.requestPayV2',
+      METHOD_NAME: 'user.getUserCode',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'orderId': 'string',
-        'payType': 'string',
+        'codeType': 'string'
       },
       OPTIONAL: {
-        'extInfo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4001500': '请求支付系统失败',
-        '4001700': '满足查询条件的订单不存在',
-        '4002200': '子订单获取物流线路信息为空'
       }
     }
   });

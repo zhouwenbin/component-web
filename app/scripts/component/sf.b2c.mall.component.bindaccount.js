@@ -6,15 +6,18 @@ define(
     'jquery',
     'can',
     'store',
+    'md5',
     'sf.b2c.mall.business.config',
     'sf.util',
     'sf.b2c.mall.api.user.partnerBind',
+    'sf.b2c.mall.api.user.partnerBindByUPswd',
     'sf.b2c.mall.api.user.checkUserExist',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, SFConfig, SFFn, SFPartnerBind, SFCheckUserExist, SFApiUserDownSmsCode) {
+  function($, can, store, md5, SFBizConf, SFFn, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
+    var ERROR_NO_INPUT_USERPWD = '请输入您的密码';
     var ERROR_INPUT_USERNAME = '手机号输入有误，请重新输入';
     var ERROR_NO_MOBILE_CHECKCODE = '请输入验证码';
     var ERROR_MOBILE_CHECKCODE = '短信验证码输入有误，请重新输入';
@@ -51,6 +54,7 @@ define(
         this.component = {};
         this.component.sms = new SFApiUserDownSmsCode();
         this.component.partnerBind = new SFPartnerBind();
+        this.component.partnerBindByUPswd = new SFPartnerBindByUPswd();
         var params = can.deparam(window.location.search.substr(1));
         this.data = new can.Map({
           username: null,
@@ -75,7 +79,7 @@ define(
           '<ol>' +
           '<li>' +
           '<input id="user-name" type="text" class="input-username" placeholder="手机号" can-value="username" />' +
-          '<span id="username-error-tips" class="icon icon26"></span>' +
+          '<span id="username-error-tips" style="display:none" class="icon icon26"></span>' +
           '</li>' +
           '{{#isBindMobile}}' +
           '<li>' +
@@ -85,9 +89,15 @@ define(
           '</div>' +
           '<a href="#" class="btn btn-send fr" id="mobile-code-btn">发送短信验证码</a>' +
           '</div>' +
-          '<span class="icon icon26" id="mobile-code-error">手机验证码错误</span>' +
+          '<span class="icon icon26" id="mobile-code-error" style="display:none" >手机验证码错误</span>' +
           '</li>' +
           '{{/isBindMobile}}' +
+          '{{#showPassword}}' +
+          '<li>' +
+          '<input type="password" class="password" id="user-pwd" placeholder="请输入密码" />' +
+          '<span id="userpwd-error-tips" style="display:none" class="icon icon26"></span>' +
+          '</li>' +
+          '{{/showPassword}}' +
           '</ol>' +
           '<div class="register-br1">' +
           '<button id="bindaccount" type="submit" class="btn btn-register btn-send">确定</button>' +
@@ -103,6 +113,15 @@ define(
           return false;
         } else if (!/^1[0-9]{10}$/.test(mobile)) {
           $('#username-error-tips').text(ERROR_INPUT_USERNAME).show();
+          return false;
+        } else {
+          return true;
+        }
+      },
+
+      checkPwd: function(pwd) {
+        if (!pwd) {
+          $('#userpwd-error-tips').text(ERROR_NO_INPUT_USERPWD).show();
           return false;
         } else {
           return true;
@@ -175,38 +194,54 @@ define(
       '#user-name focus': function($element, event) {
         $('#username-error-tips').hide();
       },
+
+      '#user-pwd blur': function($element, event) {
+        var pwd = $element.val();
+        this.checkPwd(pwd);
+      },
+
+      '#user-pwd focus': function($element, event) {
+        $('#userpwd-error-tips').hide();
+      },
+
       //note 输完11位手机号码后验证是否存在，存在显示手机验证码
       '#user-name keyup': function() {
         var that = this;
         var mobile = $('#user-name').val();
         var errorValueMap = {
-          "wechat_open":"微信",
-          "alipay_qklg":"支付宝"
+          "wechat_open": "微信",
+          "alipay_qklg": "支付宝"
         };
-        
+
         if (mobile.length == 11) {
           var checkUserExist = new SFCheckUserExist({
             accountId: mobile,
             type: 'MOBILE',
-            tempToken:store.get('tempToken')
+            tempToken: store.get('tempToken')
           });
-          checkUserExist.sendRequest()
+          checkUserExist
+            .sendRequest()
             .done(function(data) {
               if (data.value == true) {
-                that.data.attr('isBindMobile', true);
+                that.data.attr('isBindMobile', false);
+                that.data.attr('showPassword', true);
               } else {
                 that.data.attr('isBindMobile', false);
+                that.data.attr('showPassword', false);
               }
             })
             .fail(function(errorCode) {
               if (errorCode == 1000340) {
+                // 如果没有设置过密码，则弹出验证码框后调用绑定接口
                 that.data.attr('isBindMobile', true);
-              }else if(errorCode == 1000380){
-                $('#username-error-tips').html('手机号已绑定'+errorValueMap[store.get('alipay-or-weixin')] +'账号，换个手机号试试。').show();
+                that.data.attr('showPassword', false);
+              } else if (errorCode == 1000380) {
+                $('#username-error-tips').html('手机号已绑定' + errorValueMap[store.get('alipay-or-weixin')] + '账号，换个手机号试试。').show();
               }
             })
         }
       },
+
       '#input-mobile-code focus': function($element, event) {
         $('#mobile-code-error').hide();
       },
@@ -234,14 +269,48 @@ define(
             }
           })
       },
+
+      //绑定账号
+      partnerBindByUPswd: function() {
+        this.component.partnerBindByUPswd.sendRequest()
+          .done(function(data) {
+            store.set('csrfToken', data.csrfToken);
+            store.remove('tempToken');
+          }).fail(function(errorCode) {
+            if (_.isNumber(errorCode)) {
+              var defaultText = '绑定失败';
+              var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
+              if (errorCode === 1000020) {
+                $('#username-error-tips').html(errorText).show();
+              } else {
+                $('#username-error-tips').html(errorText).show();
+              }
+            }
+          })
+      },
+
       '#bindaccount click': function(element, event) {
         event && event.preventDefault();
 
+        // 总体校验
         var mobile = $('#user-name').val();
-        var code = $('#input-mobile-code').val();
 
+        if (!this.checkMobile(mobile)) {
+          return false;
+        }
+
+        // 执行分支
         if (this.data.attr('isBindMobile')) {
-          if (this.checkMobile(mobile) && this.checkCode(code)) {
+
+          // 验证码校验
+          var code = $('#input-mobile-code').val();
+
+          if (!this.checkCode(code)) {
+            return false;
+          }
+
+          // 验证码绑定
+          if (this.checkCode(code)) {
             this.component.partnerBind.setData({
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
@@ -251,16 +320,39 @@ define(
             this.partnerBind();
           }
         } else {
-          if (this.checkMobile(mobile)) {
+
+          // 密码绑定
+          if (this.data.attr('showPassword')) {
+
+            // 校验密码
+            var pwd = $('#user-pwd').val();
+
+            if (!this.checkPwd(pwd)) {
+              return false;
+            }
+
+            // 填充数据
+            this.component.partnerBindByUPswd.setData({
+              'tempToken': store.get('tempToken'),
+              'type': 'MOBILE',
+              'accountId': mobile,
+              'passWord': md5(pwd + SFBizConf.setting.md5_key)
+            });
+
+            // 执行请求
+            this.partnerBindByUPswd();
+
+          } else {
+            // 填充数据 直接绑定
             this.component.partnerBind.setData({
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
               'accountId': mobile
             });
             this.partnerBind();
-          };
-        }
+          }
 
+        }
       }
     });
   })
