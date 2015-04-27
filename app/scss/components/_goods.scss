@@ -244,15 +244,14 @@
 }
 .goods-activity-detail{
 	line-height:24px;
-	outline:1px solid #ffc3c3;
+	border:1px solid #ffc3c3;
 	background:#fff;
 	position: absolute;
 	left:0;
 	border-top:none;
-	padding:5px 13px;
 	display:none;
 	width: 100%;
-	box-sizing:border-box;
+	margin-left: -1px;
 	z-index: 1;
 }
 .goods-activity.active{
@@ -264,4 +263,18 @@
 }
 .goods-activity.active .icon67{
 	background-position:-132px -204px;
+}
+.goods-activity-link{
+	color:#3b86c4;
+	margin-left:10px;
+}
+.goods-activity ul{
+	margin-top:0;
+}
+.goods-activity li{
+	height:30px;
+	line-height: 30px;
+	margin-bottom: 0;
+	border-top: 1px dotted #fedcdc;
+	padding-left: 95px;
 }

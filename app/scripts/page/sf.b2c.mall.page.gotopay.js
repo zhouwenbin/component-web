@@ -1,8 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.gotopay',
-  [
+  'sf.b2c.mall.page.gotopay', [
     'can',
     'jquery',
     'sf.helpers',
@@ -15,7 +14,7 @@ define(
     'sf.b2c.mall.api.order.getOrderConfirmInfo'
   ],
 
-  function(can, $, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage,GetOrderConfirmInfo) {
+  function(can, $, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage, GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -27,20 +26,23 @@ define(
       },
 
       render: function() {
-        var header = new Header('.sf-b2c-mall-header', {channel: '首页', isForceLogin: true});
+        var header = new Header('.sf-b2c-mall-header', {
+          channel: '首页',
+          isForceLogin: true
+        });
         new Footer('.sf-b2c-mall-footer');
 
         var that = this;
         this.options.tips = new can.Map({})
         var params = can.deparam(window.location.search.substr(1));
 
-        if(params.otherlink){
-          this.options.tips.attr('tipInfo','请您尽快完成付款，以便订单尽快处理！');
-        }else{
+        if (params.otherlink) {
+          this.options.tips.attr('tipInfo', '请您尽快完成付款，以便订单尽快处理！');
+        } else {
           this.step = new OrderSetp('.sf-b2c-mall-order-step', {
             "secondstep": "active"
           });
-          this.options.tips.attr('tipInfo','您已成功提交订单，请您尽快完成付款！');
+          this.options.tips.attr('tipInfo', '您已成功提交订单，请您尽快完成付款！');
         }
 
         that.options.orderid = params.orderid;
@@ -52,46 +54,46 @@ define(
         });
 
         getOrder.sendRequest()
-            .done(function(data){
-              that.options.orderId = data.orderId;
-              that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
-              that.options.orderPayWay = '在线支付';
+          .done(function(data) {
+            that.options.orderId = data.orderId;
+            that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
+            that.options.orderPayWay = '在线支付';
 
-              that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
-              that.options.country = data.orderItem.orderAddressItem.country;
-              that.options.province = data.orderItem.orderAddressItem.province;
-              that.options.city = data.orderItem.orderAddressItem.city;
-              that.options.region = data.orderItem.orderAddressItem.region;
-              that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
-              that.options.mobile = data.orderItem.orderAddressItem.mobile;
-              that.options.certNo = data.orderItem.orderAddressItem.certNo;
-              that.options.currentPayWay =that.showPayMap[JSON.parse(data.optionalPayTypeList)[0]];
+            that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
+            that.options.country = data.orderItem.orderAddressItem.country;
+            that.options.province = data.orderItem.orderAddressItem.province;
+            that.options.city = data.orderItem.orderAddressItem.city;
+            that.options.region = data.orderItem.orderAddressItem.region;
+            that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
+            that.options.mobile = data.orderItem.orderAddressItem.mobile;
+            that.options.certNo = data.orderItem.orderAddressItem.certNo;
+            that.options.currentPayWay = that.showPayMap[JSON.parse(data.optionalPayTypeList)[0]];
 
-              var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache',that.options);
-              $('#gotopayDIV').html(html);
-            }).fail(function(){
+            var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', that.options);
+            $('#gotopayDIV').html(html);
+          }).fail(function() {
 
-            });
+          });
       },
 
-      showPayMap:{
-        'alipay_intl':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
-
-        'alipay':'<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
-            '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
+      showPayMap: {
+        'alipay_intl': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
+        'alipay': '<div class="order-r1c1 fl"><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay4.jpg" alt="连连支付"><h3>连连支付</h3></div>' +
+          '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
+          '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
+          '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
 
       },
-      '.order-r1c1 click':function(element,event){
+      '.order-r1c1 click': function(element, event) {
         $(element).children('span').addClass('active');
         $(element).siblings().children('span').removeClass('active');
       },
 
       //alipay,sfp,tenpay_forex,tenpay_forex_wxsm,alipay_intl
-      getPayType:function(){
+      getPayType: function() {
         var result = "";
-        _.each($('span[name="radio-pay"]'),function(ele){
-          if($(ele).hasClass('active')){
+        _.each($('span[name="radio-pay"]'), function(ele) {
+          if ($(ele).hasClass('active')) {
             result = $(ele).attr('payType');
           }
         });
