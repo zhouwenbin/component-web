@@ -31,7 +31,17 @@
   overflow: hidden;
   text-overflow:ellipsis;
 }
-
+.ellipsis2,.ellipsis3{
+  overflow : hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.ellipsis2{
+  -webkit-line-clamp: 2;
+}
+.ellipsis3{
+  -webkit-line-clamp: 3;
+}
 /*两端对齐*/
 .justify{
   text-align: justify;

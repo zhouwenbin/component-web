@@ -67,6 +67,11 @@
   line-height: 20px;
   color: #999;
   padding-left: 73px;
+  overflow: hidden;
+}
+.nataral-list li p{
+  max-height: 60px;
+  overflow: hidden;
 }
 
 .nataral-list-r1{
