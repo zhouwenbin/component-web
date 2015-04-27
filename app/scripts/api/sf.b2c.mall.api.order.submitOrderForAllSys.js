@@ -32,13 +32,19 @@ function($, can, _, Comm, SecurityType) {
       OPTIONAL: {
         'userMsg': 'string',
         'couponCodes': 'string',
-        'sysInfo': 'string'
+        'sysInfo': 'string',
+        'submitKey': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
         '4000100': 'order unkown error',
         '4000200': '订单地址不存在',
+        '4000401': '购买数量超过活动每人限购数量',
+        '4000402': '折扣金额大于订单总金额',
+        '4000403': '购买数量超过活动剩余库存',
+        '4000404': '活动已经结束',
+        '4000405': '折扣金额过大，超过订单总金额的30%！',
         '4000500': '订单商品库存不足',
         '4000600': '订单商品超过限额',
         '4000700': '订单商品金额改变',

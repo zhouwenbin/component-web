@@ -4,11 +4,12 @@ define("sf.b2c.mall.page.naturalcoupon", [
     'can',
     'jquery',
     'sf.b2c.mall.framework.comm',
+    'sf.b2c.mall.api.coupon.hasReceivedCp',
     'sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, SFFrameworkComm, SFReceiveCoupon, SFHeader, SFBizConf) {
+  function(can, $, SFFrameworkComm, SFHasReceivedCp, SFReceiveCoupon, SFHeader, SFBizConf) {
 
     SFFrameworkComm.register(1);
 
@@ -36,29 +37,22 @@ define("sf.b2c.mall.page.naturalcoupon", [
           var params = can.deparam(window.location.search.substr(1));
           var bagid = params.bagid;
 
-          var receiveCoupon = new SFReceiveCoupon({
-            "type": "GIFTBAG",
-            "bagId": bagid,
-            "receiveChannel": 'B2C',
-            "receiveWay": 'ZTLQ'
+          var hasReceivedCp = new SFHasReceivedCp({
+            "bagType": "GIFTBAG",
+            "bagId": bagid
           });
 
-          receiveCoupon
+          hasReceivedCp
             .sendRequest()
             .done(function(data) {
               // 是否显示领取按钮，未领过还要显示领取按钮
-              that.options.data.attr("hasGetLift", true);
+              if (data.value) {
+                that.options.data.attr("hasGetLift", true);
+              }
               that.renderHtml(element, that.options.data);
             })
             .fail(function(error) {
-              // 已经领过了
-              if (error === 11000100) {
-                // 是否显示领取按钮 已经领过了就不显示了
-                that.options.data.attr("hasGetLift", true);
-                that.renderHtml(element, that.options.data);
-              } else {
-                console.error(error);
-              }
+              console.error(error);
             })
         }
 

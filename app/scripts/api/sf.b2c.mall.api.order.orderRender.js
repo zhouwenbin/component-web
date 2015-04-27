@@ -25,11 +25,11 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'order.orderRender',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'address': 'json',
         'items': 'json',
         'sysType': 'string',
       },
       OPTIONAL: {
+        'address': 'json',
         'userMsg': 'string',
         'sysInfo': 'string'
       },

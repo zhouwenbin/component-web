@@ -26,10 +26,9 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'orderId': 'string',
-        'payType': 'string',
+        'payType': 'string'
       },
       OPTIONAL: {
-        'extInfo': 'string'
       },
       VERIFY:{
       },
