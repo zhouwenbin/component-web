@@ -236,7 +236,7 @@ define(
                 that.data.attr('isBindMobile', true);
                 that.data.attr('showPassword', false);
               } else if (errorCode == 1000380) {
-                $('#username-error-tips').html('手机号已绑定' + errorValueMap[store.get('alipay-or-weixin')] + '账号，换个手机号试试。').show();
+                $('#username-error-tips').html('已经绑定了同类的第三方账户。').show();
               }
             })
         }
