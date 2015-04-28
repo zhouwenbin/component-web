@@ -94,7 +94,7 @@ define(
           '{{/isBindMobile}}' +
           '{{#showPassword}}' +
           '<li>' +
-          '<input type="password" class="password" id="user-pwd" placeholder="请输入密码" />' +
+          '<input type="password" class="password" id="user-pwd" placeholder="请输入顺丰海淘登录密码" />' +
           '<span id="userpwd-error-tips" style="display:none" class="icon icon26"></span>' +
           '</li>' +
           '{{/showPassword}}' +
