@@ -206,6 +206,8 @@ define(
 
       //note 输完11位手机号码后验证是否存在，存在显示手机验证码
       '#user-name keyup': function() {
+        $('#username-error-tips').hide();
+
         var that = this;
         var mobile = $('#user-name').val();
         var errorValueMap = {
@@ -239,6 +241,9 @@ define(
                 $('#username-error-tips').html('已经绑定了同类的第三方账户。').show();
               }
             })
+        } else {
+          that.data.attr('isBindMobile', false);
+          that.data.attr('showPassword', false);
         }
       },
 
