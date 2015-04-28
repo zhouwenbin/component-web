@@ -389,6 +389,8 @@ define(
                   'csrfToken': data.csrfToken
                 });
               }
+
+              SFFn.dotCode();
             })
             .fail(function(errorCode) {
               if (_.isNumber(errorCode)) {
