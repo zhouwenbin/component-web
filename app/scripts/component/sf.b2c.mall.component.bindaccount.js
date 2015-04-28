@@ -94,7 +94,7 @@ define(
           '{{/isBindMobile}}' +
           '{{#showPassword}}' +
           '<li>' +
-          '<input type="password" class="password" id="user-pwd" placeholder="请输入密码" />' +
+          '<input type="password" class="password" id="user-pwd" placeholder="请输入顺丰海淘登录密码" />' +
           '<span id="userpwd-error-tips" style="display:none" class="icon icon26"></span>' +
           '</li>' +
           '{{/showPassword}}' +
@@ -206,6 +206,8 @@ define(
 
       //note 输完11位手机号码后验证是否存在，存在显示手机验证码
       '#user-name keyup': function() {
+        $('#username-error-tips').hide();
+
         var that = this;
         var mobile = $('#user-name').val();
         var errorValueMap = {
@@ -239,6 +241,9 @@ define(
                 $('#username-error-tips').html('已经绑定了同类的第三方账户。').show();
               }
             })
+        } else {
+          that.data.attr('isBindMobile', false);
+          that.data.attr('showPassword', false);
         }
       },
 

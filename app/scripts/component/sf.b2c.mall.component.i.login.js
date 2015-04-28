@@ -291,6 +291,7 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
+            SFFn.dotCode();
             store.set('alipay-or-weixin', 'wechat_open');
             window.location.href = data.loginAuthLink;
             return false;
@@ -309,6 +310,7 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
+            SFFn.dotCode();
             store.set('alipay-or-weixin', 'alipay_qklg');
             window.location.href = data.loginAuthLink;
             return false;
@@ -389,6 +391,8 @@ define(
         this.component.login.sendRequest()
           .done(function(data) {
             if (data.userId) {
+
+              SFFn.dotCode();
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
                 .done(function(data) {

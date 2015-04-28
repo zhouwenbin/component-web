@@ -325,36 +325,27 @@ button.btn{
 %btn{
   display:inline-block;
   vertical-align: middle;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   border-radius: 2px;
-  padding: 0px 12px;
-  height: 30px;
-  line-height: 30px;
+  width: 134px;
+  height: 44px;
+  line-height: 44px;
 
-}
-.btn:active{
-   -webkit-filter:brightness(0.9);
-}
-.btn-disable:active,
-.btn.disable:active{
-  -webkit-filter: none;
 }
 
 
-.btn-normal,
-.btn.normal{
+
+.btn-normal{
 	@extend %btn;
   background: #fff;
   border:1px solid #c6c6c6;
 }
-.btn.active{
-	@extend %btn;
-  border-color: #dc3334;
-  color:#dc3334 !important;
+.btn-normal:active{
+	background:#f9f9f9;
 }
-.btn-dashed,
-.btn.dashed{
+
+.btn-dashed{
 	@extend %btn;
   background: #fff;
   border:1px dotted #cfcfcf;
@@ -365,28 +356,43 @@ button.btn{
   background:#dc3334;
   border: 1px solid #dc3334;
 }
-
-.btn-warnning,
-.btn.warnning{
+.btn-danger:hover{
+	background:#e84145;
+}
+.btn-danger:active{
+	background:#ce393d;
+}
+.btn-warnning{
 	@extend %btn;
   background: #1376ce;
   color: #fff !important;
   border: 1px solid #1376ce;
 }
 
-.btn-success,
-.btn.success{
+.btn-success{
 	@extend %btn;
   background: #67b222;
   color: #fff !important;
   border: 1px solid #67b222;
 }
-.btn-soon,
-.btn.soon{
+.btn-success:hover{
+	background:#6ec125;
+}
+.btn-success:active{
+	background:#5fa620;
+}
+
+.btn-soon{
 	@extend %btn;
-  background: #ff9000;
+  background: #ff8140;
   color: #fff !important;
   border: 1px solid #ff9000;
+}
+.btn-soon:hover{
+	background:#ff9a40;
+}
+.btn-soon:active{
+	background:#f7661d;
 }
 .btn-disable{
 	@extend %btn;
@@ -394,15 +400,27 @@ button.btn{
   background: #e8e8e8;
   border: 1px solid #e8e8e8;
 }
-.btn.disable{
-	@extend %btn;
-  color: #e8e8e8 !important;
-  border: 1px solid #e8e8e8;
+.btn-disable:hover{
+  background: #e8e8e8;
 }
+
 .btn-radius{
   border-radius: 22px;
 }
+
+.btn-small{
+	width:90px;
+	height:36px;
+	line-height:36px;
+	font-size:12px;
+}
 .btn-big{
-  display: block;
-  width: 100%;
+  width: 200px;
+  height: 48px;
+  line-height: 48px;
+}
+.btn-large{
+  width: 300px;
+  height: 50px;
+  line-height: 50px;
 }
