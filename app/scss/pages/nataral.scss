@@ -43,6 +43,7 @@ body{
 }
 .nataral-index-h a{
 	color:#1376ce;
+	text-decoration: underline;
 }
 .nataral-index img{
 	max-width:260px;
@@ -90,6 +91,9 @@ body{
 	padding: 0 50px;
 	display: block;
 	margin: 0 auto;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
 }
 .mycoupon-b ul{
 	margin-bottom: 45px;
