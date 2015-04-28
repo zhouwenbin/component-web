@@ -285,7 +285,7 @@ define(
       '#wechatlogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
-          "redirectUrl": window.location.href//"http://www.sfht.com/index.html"
+          "redirectUrl": window.location.href
         });
 
         reqLoginAuth
@@ -304,7 +304,7 @@ define(
       '#alipaylogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": window.location.href//"http://www.sfht.com/index.html"
+          "redirectUrl": window.location.href
         });
 
         reqLoginAuth
