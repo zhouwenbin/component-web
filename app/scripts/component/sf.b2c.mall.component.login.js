@@ -109,6 +109,8 @@ define(
         this.funPlaceholder(document.getElementById('user-name'));
       },
       '#wechatlogin click': function(element, event) {
+        var that = this;
+
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
           "redirectUrl": "http://www.sfht.com/index.html"
@@ -117,8 +119,9 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            store.set('alipay-or-weixin','wechat_open');
+            store.set('alipay-or-weixin', 'wechat_open');
             window.location.href = data.loginAuthLink;
+            SFFn.dotCode();
             return false;
           })
           .fail(function(error) {
@@ -126,7 +129,8 @@ define(
           })
       },
       //@note 支付宝登录
-      '#alipaylogin click':function(element, event){
+      '#alipaylogin click': function(element, event) {
+        var that = this;
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
           "redirectUrl": "http://www.sfht.com/index.html"
@@ -135,14 +139,16 @@ define(
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
-            store.set('alipay-or-weixin','alipay_qklg');
+            store.set('alipay-or-weixin', 'alipay_qklg');
             window.parent.location.href = data.loginAuthLink;
+            SFFn.dotCode();
             return false;
           })
           .fail(function(error) {
             console.error(error);
           })
       },
+
       /**
        * @description 验证码更换
        * @param  {String}
@@ -181,14 +187,16 @@ define(
         //@note 手机号码输完11位时，验证该账号是否有密码
         if (isTelNum) {
           var checkUserExist = new SFCheckUserExist({
-            'accountId':username,
-            'type':'MOBILE'
+            'accountId': username,
+            'type': 'MOBILE'
           });
           checkUserExist.sendRequest()
-            .fail(function(errorCode){
+            .fail(function(errorCode) {
               if (errorCode == 1000340) {
                 var fn = can.view.mustache(ERROR_NO_PASSWORD);
-                that.element.find('#username-error-tips').html(fn({tel:username})).show();
+                that.element.find('#username-error-tips').html(fn({
+                  tel: username
+                })).show();
                 return false;
               };
             })
@@ -414,6 +422,7 @@ define(
 
                 })
 
+              SFFn.dotCode();
             }
           })
           .fail(function(error) {
