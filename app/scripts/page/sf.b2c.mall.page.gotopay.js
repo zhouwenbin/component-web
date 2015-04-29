@@ -77,7 +77,7 @@ define(
       },
 
       showPayMap: {
-        'alipay_intl': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.24/img/pay4.jpg" alt="连连支付"><h3>连连支付</h3></div>' +
+        'lianlianpay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.24/img/pay4.jpg" alt="连连支付"><h3>连连支付</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
         'alipay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.24/img/pay4.jpg" alt="连连支付"><h3>连连支付</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio "></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
