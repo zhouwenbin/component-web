@@ -91,7 +91,7 @@ define('sf.b2c.mall.order.iteminfo', [
         sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
       });
       return orderRender.sendRequest()
-        .done(function(orderRenderItem){
+        .done(function(orderRenderItem) {
           that.processFoundation(orderRenderItem);
           that.processProducts(orderRenderItem.orderGoodsItemList);
           that.processCoupons(orderRenderItem.orderCouponItem);
@@ -125,7 +125,7 @@ define('sf.b2c.mall.order.iteminfo', [
       //是否是宁波保税，是得话才展示税额
       this.itemObj.attr("showTax", orderGoodsItemList[0].bonded);
 
-      _.each(orderGoodsItemList, function(goodItem){
+      _.each(orderGoodsItemList, function(goodItem) {
         if (goodItem.specItemList) {
           var result = new Array();
           _.each(goodItem.specItemList, function(item) {
@@ -168,7 +168,7 @@ define('sf.b2c.mall.order.iteminfo', [
         'system': that.getSysType(that.itemObj.saleid)
       }
       var goodItems = [];
-      _.each(that.itemObj.orderGoodsItemList, function(goodItem){
+      _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
         goodItems.push({
           "itemId": goodItem.itemId,
           "num": goodItem.quantity,
@@ -359,7 +359,7 @@ define('sf.b2c.mall.order.iteminfo', [
           };
 
           var goodItems = [];
-          _.each(that.itemObj.orderGoodsItemList, function(goodItem){
+          _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
             goodItems.push({
               "itemId": goodItem.itemId,
               "num": goodItem.quantity,
@@ -405,7 +405,7 @@ define('sf.b2c.mall.order.iteminfo', [
     },
 
     monitor: {
-      'mediav': function () {
+      'mediav': function() {
         var __src = $.cookie('__src');
         if (__src == 'mediav') {
           var _mvq = window._mvq || [];
@@ -414,7 +414,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
           _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
           _mvq.push(['$logConversion']);
-          _mvq.push(['$addOrder',/*订单号*/ '', /*订单金额*/ '']);
+          _mvq.push(['$addOrder', /*订单号*/ '', /*订单金额*/ '']);
           _mvq.push(['$addItem', /*订单号*/ '', /*商品id*/ '', /*商品名称*/ '', /*商品价格*/ '', /*商品数量*/ '', /*商品页url*/ '', /*商品页图片url*/ '']);
           _mvq.push(['$logData']);
         }
@@ -479,7 +479,9 @@ define('sf.b2c.mall.order.iteminfo', [
           var errorMap = {
             11000160: "请输入有效的兑换码",
             11000170: "兑换码已使用",
-            11000200: "兑换码已过期"
+            11000200: "兑换码已过期",
+            11000209: "请输入正确的兑换码",
+            11000220: "本账户超过兑换次数限制"
           };
           new SFMessage(null, {
             'tip': errorMap[error] ? errorMap[error] : '请输入有效的兑换码！',
