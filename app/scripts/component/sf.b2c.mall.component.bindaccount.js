@@ -78,7 +78,7 @@ define(
           '<form action="">' +
           '<ol>' +
           '<li>' +
-          '<input id="user-name" type="text" class="input-username" placeholder="手机号" can-value="username" />' +
+          '<input id="user-name" type="text" class="input-username" placeholder="请输入中国大陆手机号" can-value="username" />' +
           '<span id="username-error-tips" style="display:none" class="icon icon26"></span>' +
           '</li>' +
           '{{#isBindMobile}}' +
@@ -264,7 +264,7 @@ define(
             store.remove('tempToken');
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
-              var defaultText = '绑定失败';
+              var defaultText = '绑定失败（输入有误）';
               var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
               if (errorCode === 1000020) {
                 $('#username-error-tips').html(errorText).show();
@@ -283,7 +283,7 @@ define(
             store.remove('tempToken');
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
-              var defaultText = '绑定失败';
+              var defaultText = '绑定失败（输入有误）';
               var errorText = DEFAULT_BIND_ERROR_MAP[errorCode.toString()] || defaultText;
               if (errorCode === 1000020) {
                 $('#username-error-tips').html(errorText).show();
