@@ -8,12 +8,12 @@ define(
     'sf.b2c.mall.api.order.requestPayV2'
   ],
 
-  function ($, can, _, SFApiRequestPayV2) {
+  function($, can, _, SFApiRequestPayV2) {
 
     var requestPayV2 = new SFApiRequestPayV2();
 
     return {
-      payV2: function (data, callback) {
+      payV2: function(data, callback) {
         requestPayV2.setData({
           "orderId": data.orderid,
           "payType": data.payType
@@ -22,7 +22,23 @@ define(
         requestPayV2
           .sendRequest()
           .done(function(data) {
-            window.location.href = data.url + '?' + data.postBody;
+            //note 兼容连连支付ie8浏览器
+            if (/https:\/\/yintong.com.cn/.test(data.url) && navigator.userAgent.indexOf("MSIE 8.0")>0) {
+              setTimeout(function() {
+                var a = document.createElement("a");
+                if (!a.click) {
+                  window.location = data.url + '?' + data.postBody;
+                  return;
+                }
+
+                a.setAttribute("href", data.url + '?' + data.postBody);
+                a.style.display = "none";
+                document.body.appendChild(a);
+                a.click();
+              }, 100);
+            } else {
+              window.location.href = data.url + '?' + data.postBody;
+            }
             if (callback && _.isFunction(callback.success)) {
               callback.success();
             }
