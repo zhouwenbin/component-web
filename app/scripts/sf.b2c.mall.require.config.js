@@ -125,6 +125,7 @@ requirejs.config({
     'sf.util': 'scripts/util/sf.util.fn',
     'imglazyload': 'scripts/vendor/vendor.jquery.imglazyload',
     'qrcode': 'scripts/vendor/vendor.jquery.qrcode',
+    'fullPage':'scripts/vendor/jquery.fullPage.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
@@ -212,6 +213,7 @@ requirejs.config({
 
     //台湾原滋原味
     'sf.b2c.mall.page.naturalcoupon': 'scripts/page/sf.b2c.mall.page.naturalcoupon',
+    'sf.b2c.mall.page.naturalshow': 'scripts/page/sf.b2c.mall.page.naturalshow',
 
     'sf.b2c.mall.order.step': 'scripts/order/sf.b2c.mall.order.step',
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
