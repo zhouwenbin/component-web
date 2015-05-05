@@ -28,7 +28,7 @@ define(
       render: function() {
         $('.nataral-show').fullpage({
           menu: true,
-          navigation: false
+          navigation: true
         });
       }
 
