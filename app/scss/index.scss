@@ -6,6 +6,7 @@
 @import 'components/flashsale';
 @import 'components/banner';
 .banner-scroll{
+	display: block;
 	height:539px;
 	background: url(#{$bg-url}banner-scroll.jpg) no-repeat center top;
 }
