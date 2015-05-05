@@ -250,7 +250,7 @@ define('sf.b2c.mall.component.header', [
       };
       //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
       var authResp = can.deparam(window.location.search.substr(1));
-      if (!SFComm.prototype.checkUserLogin.call(that) && authResp != 'undefined') {       
+      if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp)) {       
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
           'authResp': decodeURIComponent($.param(authResp))
