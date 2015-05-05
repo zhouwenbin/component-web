@@ -58,7 +58,7 @@ define(
             that.options.discount = JSON.parse(data.discount.value);
             that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
             if (that.options.discount.lianlianpay) {
-              that.options.tips.attr('totalMoney',(that.options.orderMoney-500)/100)
+              that.options.tips.attr('totalMoney',(that.options.orderMoney-that.options.discount.lianlianpay)/100)
             }else{
               that.options.tips.attr('totalMoney',that.options.orderMoney/100);
             }
@@ -93,8 +93,9 @@ define(
       '.order-r1c1 click': function(element, event) {
         $(element).children('span').addClass('active');
         $(element).siblings().children('span').removeClass('active');
-        if (this.getPayType() == 'lianlianpay') {
-          this.options.tips.attr('totalMoney',(this.options.orderMoney - this.options.discount.lianlianpay)/100);
+
+        if(this.options.discount[this.getPayType()]){
+          this.options.tips.attr('totalMoney',(this.options.orderMoney - this.options.discount[this.getPayType()])/100);
         }else{
           this.options.tips.attr('totalMoney',this.options.orderMoney/100);
         }
