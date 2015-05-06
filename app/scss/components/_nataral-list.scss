@@ -1,30 +1,30 @@
 .nataral-list{
-	background: #f9f9f9;
+  background: #f9f9f9;
 }
 .nataral-list h2{
-	font-size: 18px;
+  font-size: 18px;
 }
 .nataral-list h2 em{
-	font-size: 20px;
-	font-family: Century;
-	font-style: italic;
+  font-size: 20px;
+  font-family: Century;
+  font-style: italic;
 }
 .nataral-list h2 .icon{
-	margin-right: 6px;
-	vertical-align: -3px;
+  margin-right: 6px;
+  vertical-align: -3px;
 }
 .nataral-list .vertical-middle{
-	width: 240px;
-	height: 240px;
-	margin-right: 24px;
+  width: 240px;
+  height: 240px;
+  margin-right: 24px;
 }
 .nataral-list img{
-	max-width: 240px;
-	max-height: 240px;
+  max-width: 240px;
+  max-height: 240px;
 }
 .nataral-list>.pm>ul{
-	overflow:hidden;
-	margin-left: -19px;
+  overflow:hidden;
+  margin-left: -19px;
 }
 .nataral-list>.pm>ul>li{
   border:none;
@@ -49,7 +49,7 @@
   font-size: 16px;
   padding-top: 24px;
 }
-.nataral-inner h2:hover{
+.nataral-list h2:hover{
   text-decoration: underline;
 }
 .nataral-list .justify{
@@ -64,7 +64,7 @@
   float: left;
 }
 .nataral-list li ul{
-	height: 145px;
+  height: 145px;
 }
 .nataral-list li li{
   font-size: 14px;
