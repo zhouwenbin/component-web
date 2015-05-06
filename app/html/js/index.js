@@ -277,27 +277,29 @@ $(function(){
     return false;
   })
   //订单
-  $(function(){
-      $('.mycoupon-h li').click(function(){
-        var index = $('.mycoupon-h li').index(this);
-        $('.mycoupon-h li').removeClass('active');
-        $(this).addClass('active');
-        $('.coupon2-b').removeClass('active');
-        $('.coupon2-b').eq(index).addClass('active');
-        return false;
-      })
-      $('.coupon2-btn').click(function(){
-        $('.js-coupon').toggleClass("hide");
-        if($('.js-coupon').hasClass('hide')){
-          $(this).text('+');
-        }else{
-          $(this).text('-');
-        }
-        return false;
-      })
-      $('.coupon2 .radio').click(function(){
-        $('.coupon2 .radio').removeClass('active');
-        $(this).addClass('active');
-      })
-    })
+  $('.mycoupon-h li').click(function(){
+    var index = $('.mycoupon-h li').index(this);
+    $('.mycoupon-h li').removeClass('active');
+    $(this).addClass('active');
+    $('.coupon2-b').removeClass('active');
+    $('.coupon2-b').eq(index).addClass('active');
+    return false;
+  })
+  $('.coupon2-btn').click(function(){
+    $('.js-coupon').toggleClass("hide");
+    if($('.js-coupon').hasClass('hide')){
+      $(this).text('+');
+    }else{
+      $(this).text('-');
+    }
+    return false;
+  })
+  $('.coupon2 .radio').click(function(){
+    $('.coupon2 .radio').removeClass('active');
+    $(this).addClass('active');
+  })
+
+  $('.banner-scroll').delay(5000).animate({
+    'height':0
+  },500);
 })
