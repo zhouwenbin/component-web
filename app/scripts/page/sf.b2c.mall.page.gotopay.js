@@ -55,8 +55,14 @@ define(
 
         getOrder.sendRequest()
           .done(function(data) {
-            that.options.orderId = data.orderId;
+            that.options.discount = JSON.parse(data.discount.value);
             that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
+            if (that.options.discount.lianlianpay) {
+              that.options.tips.attr('totalMoney',(that.options.orderMoney-that.options.discount.lianlianpay)/100)
+            }else{
+              that.options.tips.attr('totalMoney',that.options.orderMoney/100);
+            }
+            that.options.orderId = data.orderId;
             that.options.orderPayWay = '在线支付';
 
             that.options.receiveName = data.orderItem.orderAddressItem.receiveName;
@@ -68,7 +74,6 @@ define(
             that.options.mobile = data.orderItem.orderAddressItem.mobile;
             that.options.certNo = data.orderItem.orderAddressItem.certNo;
             that.options.currentPayWay = that.showPayMap[JSON.parse(data.optionalPayTypeList)[0]];
-
             var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', that.options);
             $('#gotopayDIV').html(html);
           }).fail(function() {
@@ -79,7 +84,7 @@ define(
       showPayMap: {
         'alipay_intl': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.24/img/pay4.jpg" alt="连连支付"></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
-        'alipay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.24/img/pay4.jpg" alt="连连支付"></div>' +
+        'alipay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="../img/pay4.jpg" alt="连连支付"><h3>无需注册登录，银行卡直接付款</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio "></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
@@ -88,6 +93,12 @@ define(
       '.order-r1c1 click': function(element, event) {
         $(element).children('span').addClass('active');
         $(element).siblings().children('span').removeClass('active');
+
+        if(this.options.discount[this.getPayType()]){
+          this.options.tips.attr('totalMoney',(this.options.orderMoney - this.options.discount[this.getPayType()])/100);
+        }else{
+          this.options.tips.attr('totalMoney',this.options.orderMoney/100);
+        }
       },
 
       //alipay,sfp,tenpay_forex,tenpay_forex_wxsm,alipay_intl
