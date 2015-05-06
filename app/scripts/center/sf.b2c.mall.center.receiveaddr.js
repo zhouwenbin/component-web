@@ -195,6 +195,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         can.when(setDefaultRecv.sendRequest(),setDefaultAddr.sendRequest())
           .done(function(data){
             new SFMessage(null,{
+              'title': '注册成功',
               'tip': '设为默认地址成功！',
               'type': 'success'
             });
