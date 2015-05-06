@@ -156,6 +156,50 @@ define('sf.b2c.mall.component.header', [
         }
         // }, 800);
       }
+
+      this.showAD();
+    },
+
+    showAD: function() {
+
+      if (this.needShowAd()) {
+        $('.banner-scroll').animate({
+          'height': 539
+        }, 500);
+
+        $('.banner-scroll').delay(5000).animate({
+          'height': 0
+        }, 500);
+
+        store.set("lastadshowtime", new Date().getTime());
+      }
+    },
+
+    needShowAd: function() {
+      // 如果已经登录了 则不显示
+      if (store.get('csrfToken')) {
+        return false;
+      }
+
+      // 如果显示没超过一天 则不要显示广告
+      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
+        return false;
+      }
+
+      var url = window.location.href;
+
+      //URL补齐
+      if (url == "http://www.sfht.com/") {
+        url = url + "index.html";
+      }
+
+      // 如果不是详情页 首页和活动页 则不显示广告
+      var isShowURL = /index|activity|detail/.test(url);
+      if (!isShowURL) {
+        return false;
+      }
+
+      return true;
     },
 
     /**
@@ -224,16 +268,16 @@ define('sf.b2c.mall.component.header', [
       if (pathname == '/' || pathname == '/index.html') {
         $(window).scroll(function() {
           setTimeout(function() {
-            if($(window).scrollTop() > 166){
-                $(".nav-fixed .nav-inner").stop(true,false).animate({
-                  top:'0px',
-                  opacity:1
-                },300);
-            }else{
-                $(".nav-fixed .nav-inner").stop(true,false).animate({
-                  top:'-56px',
-                  opacity:0
-                },0);
+            if ($(window).scrollTop() > 166) {
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '0px',
+                opacity: 1
+              }, 300);
+            } else {
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '-56px',
+                opacity: 0
+              }, 0);
             }
 
           }, 200);
@@ -250,7 +294,7 @@ define('sf.b2c.mall.component.header', [
       };
       //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
       var authResp = can.deparam(window.location.search.substr(1));
-      if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp)) {       
+      if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp)) {
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
           'authResp': decodeURIComponent($.param(authResp))
@@ -299,7 +343,7 @@ define('sf.b2c.mall.component.header', [
       }
 
       var navHref = $(".nav-inner").find("a");
-      _.each(navHref, function(item){
+      _.each(navHref, function(item) {
 
         if (item.href == url) {
           $(item).parent().addClass("active");

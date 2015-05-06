@@ -191,12 +191,6 @@ define('sf.b2c.mall.order.iteminfo', [
           });
           that.itemObj.attr("orderCoupon", orderCoupon);
           that.itemObj.orderCoupon.selectCoupons = [];
-
-          /*
-          that.itemObj.bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
-            that.itemObj.attr("shouldPay", that.itemObj.shouldPay + oldVal - newVal);
-          });
-          */
         })
         .fail(function(error) {
           console.error(error);
