@@ -35,7 +35,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
        * @param  {DOM} element 容器element
        * @param  {Object} options 传递的参数
        */
-      init: function(element, options) {debugger;
+      init: function(element, options) {
         this.component = {};
         this.render();
 

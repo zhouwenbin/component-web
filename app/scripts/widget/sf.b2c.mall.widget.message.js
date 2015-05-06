@@ -16,16 +16,17 @@ define(
         this.data = {};
         this.data.type = this.options.type;
         this.data.tip = this.options.tip;
+        this.data.title = this.options.title;
         this.data.customizeClass = this.options.customizeClass;
         this.data.okFunction = typeof this.options.okFunction != 'undefined' ? this.options.okFunction : null;
         this.data.closeFunction = typeof this.options.closeFunction != 'undefined' ? this.options.closeFunction : null;
         this.data.buttons = this.buttonsMap[this.data.type];
 
-        this.render();
+        this.render(element);
       },
 
-      render: function() {
-        this.setup($('body'));
+      render: function(element) {
+        this.setup(element.find('body'));
         this.options.html = can.view('templates/widget/sf.b2c.mall.widget.message.mustache', this.data);
         $('body').append(this.options.html);
       },

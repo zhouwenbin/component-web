@@ -34,6 +34,8 @@ requirejs.config({
     'sf.b2c.mall.api.order.queryOrderCoupon': 'scripts/api/sf.b2c.mall.api.order.queryOrderCoupon',
     'sf.b2c.mall.api.order.orderRender': 'scripts/api/sf.b2c.mall.api.order.orderRender',
 
+    'sf.b2c.mall.api.promotion.queryProInfo': 'scripts/api/sf.b2c.mall.api.promotion.queryProInfo',
+    'sf.b2c.mall.api.promotion.receivePro': 'scripts/api/sf.b2c.mall.api.promotion.receivePro',
 
     'sf.b2c.mall.api.products.getSKUBaseList': 'scripts/api/sf.b2c.mall.api.product.getSKUBaseList',
     'sf.b2c.mall.api.products.getSKUInfo': 'scripts/api/sf.b2c.mall.api.product.getSKUInfo',
