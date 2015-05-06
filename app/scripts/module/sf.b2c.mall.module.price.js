@@ -94,7 +94,8 @@ define(
         }
 
 
-        // 促销活动
+        // 促销活动 暂时不显示
+        /*
         if (value.activityTypeDescList && value.activityTypeDescList.length > 0) {
           if (value.activityTypeDescList.length == 1) {
             element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 10));
@@ -111,6 +112,7 @@ define(
 
           element.find('.cms-fill-discountparent')[0].style.display = "none";
         }
+        */
       },
 
       getItemList: function() {
