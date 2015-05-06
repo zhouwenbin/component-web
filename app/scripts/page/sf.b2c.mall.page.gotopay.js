@@ -54,10 +54,10 @@ define(
         });
 
         getOrder.sendRequest()
-          .done(function(data) {
-            that.options.discount = JSON.parse(data.discount.value);
+          .done(function(data) {                     
             that.options.orderMoney = data.orderItem.totalPrice - data.orderItem.discount;
-            if (that.options.discount.lianlianpay) {
+            if (data.discount) {
+              that.options.discount = JSON.parse(data.discount.value);
               that.options.tips.attr('totalMoney',(that.options.orderMoney-that.options.discount.lianlianpay)/100)
             }else{
               that.options.tips.attr('totalMoney',that.options.orderMoney/100);
@@ -93,8 +93,7 @@ define(
       '.order-r1c1 click': function(element, event) {
         $(element).children('span').addClass('active');
         $(element).siblings().children('span').removeClass('active');
-
-        if(this.options.discount[this.getPayType()]){
+        if(typeof this.options.discount != 'undefined'){
           this.options.tips.attr('totalMoney',(this.options.orderMoney - this.options.discount[this.getPayType()])/100);
         }else{
           this.options.tips.attr('totalMoney',this.options.orderMoney/100);
