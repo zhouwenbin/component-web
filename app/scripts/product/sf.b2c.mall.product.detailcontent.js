@@ -882,7 +882,6 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       dealBuyNumByInput: function(element) {
         var priceInfo = this.options.detailContentInfo.priceInfo;
-        console.log(priceInfo);
         var input = this.options.detailContentInfo.input;
 
         if (priceInfo.soldOut) {
