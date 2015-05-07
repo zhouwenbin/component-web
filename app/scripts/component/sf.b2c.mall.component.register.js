@@ -438,8 +438,8 @@ define(
             })
             .done(function(proInfo) {
               var tip = "注册成功。"
-              if (proInfo.couponInfo) {
-                tip = "注册成功，恭喜您获得" + proInfo.couponInfo.cardInfo.desc + "优惠券。"
+              if (proInfo.couponInfos) {
+                tip = "注册成功，恭喜您获得优惠券。"
               }
 
               store.set("registersuccess", tip);
