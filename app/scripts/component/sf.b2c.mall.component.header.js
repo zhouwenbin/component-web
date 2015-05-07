@@ -157,19 +157,30 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      this.showAD();
+      // this.showAD();
     },
 
     showAD: function() {
 
       if (this.needShowAd()) {
-        $('.banner-scroll').animate({
-          'height': 539
-        }, 500);
 
-        $('.banner-scroll').delay(5000).animate({
-          'height': 0
-        }, 500);
+        $('.banner-scroll')
+          .height(0)
+          .animate({
+            "height": 539
+          }, 1000)
+          .delay(5000)
+          .animate({
+            'height': 0
+          }, 1000, function() {
+            $(this).css({
+              "background-image": "url(../img/banner-scroll2.jpg)"
+            })
+          })
+          .delay(100)
+          .animate({
+            "height": 90
+          }, 300)
 
         store.set("lastadshowtime", new Date().getTime());
       }
