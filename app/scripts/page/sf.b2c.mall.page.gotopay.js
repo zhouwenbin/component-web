@@ -86,9 +86,9 @@ define(
       },
 
       showPayMap: {
-        'alipay_intl': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>首次使用快捷支付，立减5元</h3></div>' +
+        'alipay_intl': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>无需注册登录，银行卡直接付款</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
-        'alipay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>首次使用快捷支付，立减5元</h3></div>' +
+        'alipay': '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>无需注册登录，银行卡直接付款</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio "></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
           '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
