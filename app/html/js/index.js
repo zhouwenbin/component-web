@@ -299,7 +299,9 @@ $(function(){
     $(this).addClass('active');
   })
   //----------头部广告-------------//
-  $('.banner-scroll').animate({
+  $('.banner-scroll')
+  .delay(5000)
+  .animate({
     'height':0
   },1000,function(){
     $(this).css({
