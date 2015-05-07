@@ -54,3 +54,31 @@
 	left: -50%;
 	z-index: 1;
 }
+.tooltip-cart{
+	position: relative;
+	display: inline-block;
+	background:#fff;
+	border:1px solid #dd3e3f;
+	height:28px;
+	line-height:28px;
+	padding-left: 34px;
+	padding-right: 15px;
+	border-radius: 2px;
+	margin-right: 14px;
+}
+.tooltip-cart .icon77{
+	margin-left: -30px;
+	margin-top: 4px;
+}
+.tooltip-cart .icon78{
+	margin-left: 10px;
+}
+.tooltip-cart .icon16-5{
+	position: absolute;
+	right: -10px;
+	top: 8px;
+}
+.tooltip-cart .icon16-5-1{
+	border-color: transparent transparent transparent #fff;
+	right: -9px;
+}
