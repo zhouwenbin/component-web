@@ -1,35 +1,13 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+@import 'components/mycoupon';
 body{
 	background: #f9f9f9;
 }
 .index-h2{
 	margin-top: 34px;
 }
-.active-coupon{
-	padding: 85px 75px;
-	background: #fff;
-}
-.active-coupon li{
-	width:272px;
-	height: 149px;
-	padding-top: 40px;
-	box-sizing:border-box;
-	background: url(#{$bg-url}active-coupon.png) no-repeat;
-	font-size: 28px;
-	color: #fff;
-	float:left;
-	margin: 0 35px;
-	border:1px solid #f2f2f2;
-	text-align: center;
-}
-.active-coupon .s1{
-	font-size: 40px;
-}
-.active-coupon .s2{
-	font-size: 65px;
-	font-family: arial;
-}
+
 .active-step{
 	border:1px solid #f2f2f2;
 	background: #fff;
@@ -43,6 +21,8 @@ body{
 .active-step li{
 	margin-bottom: 64px;
 	padding-left: 60px;
+	font-size:20px;
+	position: relative;
 }
 
 .active-step li span{
@@ -55,11 +35,18 @@ body{
 	font-family: arial;
 	margin-right: 24px;
 	vertical-align: middle;
-	background: #ffcc00;
+	background: #fd9a4a;
 	border-radius: 50%;
 	text-align: center;
 }
-
+.active-step li i{
+	width:4px;
+	height: 57px;
+	position: absolute;
+	background: #fd9a4a;
+	left:75px;
+	top:39px;
+}
 .active-step-r1{
 	padding-left: 60px;
 }
@@ -68,8 +55,14 @@ body{
 }
 .active-info{
 	border:1px solid #f2f2f2;
-	background: #fff;
+	border-bottom: none;
+	
+	padding-bottom: 8px;
+	background: url(#{$bg-url}active-info.png) no-repeat left bottom;
+}
+.active-info-b{
 	padding: 32px 60px;
+	background: #fff;
 }
 .active-info h2{
 	font-size: 18px;
@@ -84,4 +77,10 @@ body{
 }
 .active-info .icon{
 	margin-right: 9px;
+}
+.mycoupon-r1r1{
+	font-size: 16px;
+}
+.banner{
+	margin-top: 40px;
 }

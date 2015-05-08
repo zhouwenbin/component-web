@@ -258,7 +258,7 @@ $(function(){
         $(".mask").show();
         return false;
     })
-    //导航
+    //----------导航-------------//
     $(window).scroll(function(){
       if($(window).scrollTop() > 166){
           $(".nav-fixed .nav-inner").stop(true,false).animate({
@@ -276,7 +276,7 @@ $(function(){
     $('.nav-qrcode').toggleClass('show');
     return false;
   })
-  //订单
+  //----------订单-------------//
   $('.mycoupon-h li').click(function(){
     var index = $('.mycoupon-h li').index(this);
     $('.mycoupon-h li').removeClass('active');
@@ -298,8 +298,18 @@ $(function(){
     $('.coupon2 .radio').removeClass('active');
     $(this).addClass('active');
   })
-
-  $('.banner-scroll').delay(5000).animate({
+  //----------头部广告-------------//
+  $('.banner-scroll')
+  .delay(5000)
+  .animate({
     'height':0
-  },500);
+  },1000,function(){
+    $(this).css({
+        "background-image":"url(../img/banner-scroll2.jpg)"
+      })
+  })
+  .delay(100)
+  .animate({
+    "height":90
+  },300)
 })
