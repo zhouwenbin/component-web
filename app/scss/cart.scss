@@ -48,7 +48,7 @@
 	border-top: 1px solid #e5e5e5;
 }
 .cart td{
-	padding: 15px 25px;
+	padding: 20px 25px;
 	background: #fff;
 }
 .cart img{
@@ -65,9 +65,24 @@
 .cart h2{
 	line-height: 19px;
 	margin-bottom: 8px;
+	font-weight: normal;
 }
 .cart-standard{
 	color: #aaa;
+}
+.cart .td1{
+	position: relative;
+}
+.cart .td1 .icon{
+	position: absolute;
+	left:86px;
+	top:0;
+}
+.cart .td2 .text-error{
+	margin-bottom:5px;
+}
+.cart .td2 .text-error a{
+	margin-left:5px;
 }
 .cart .td3 del{
 	color: #aaa;
