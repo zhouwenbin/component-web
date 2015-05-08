@@ -285,7 +285,7 @@ define(
       '#wechatlogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=wechat_open"
         });
 
         reqLoginAuth
@@ -304,7 +304,7 @@ define(
       '#alipaylogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=alipay_qklg"
         });
 
         reqLoginAuth
@@ -352,7 +352,9 @@ define(
         var username = $(element).val();
 
         this.checkUserName.call(this, username);
-        this.isNeedVerCode();
+        if (username && username.length == 11) {
+          this.isNeedVerCode();
+        };
       },
 
       /**
