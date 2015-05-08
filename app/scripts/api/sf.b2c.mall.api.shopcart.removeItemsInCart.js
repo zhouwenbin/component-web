@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.promotion.receivePro
+  * @class sf.b2c.mall.api.shopcart.removeItemsInCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.promotion.receivePro',
+'sf.b2c.mall.api.shopcart.removeItemsInCart',
 [
   'jquery',
   'can',
@@ -22,18 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'promotion.receivePro',
+      METHOD_NAME: 'shopcart.removeItemsInCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'channel': 'string',
-        'event': 'string'
+        'itemIds': 'string',
+        'goods': 'json'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '12000020': '用户已不是新用户，不能获取新手优惠'
+        '15000300': '购物车删除商品失败'
       }
     }
   });
