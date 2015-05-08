@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>顺丰海淘</title>
+
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.registeractive.css -->
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/register-active.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
+<!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
+<link href="css/browser.css" rel="stylesheet" type="text/css" />
+<!-- endbuild -->
+
+</head>
+<body>
+
+  <!--# include file="/header/header.registeractive.index.html" -->
+
+  <div class="haitao-b2c-mall-register-active"></div>
+
+  <!--# include file="/footer/footer.index.html" -->
+
+  <!-- build:js(.) scripts/require.min.js -->
+  <script src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild -->
+  <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+  <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
+  <!-- endbuild -->
+  <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.registeractive.js -->
+  <script src="scripts/sf.b2c.mall.require.config.js"></script>
+  <script type="text/javascript">
+  require(['sf.b2c.mall.page.registeractive']);
+  </script>
+  <!-- endbuild -->
+
+
+
+</body>
