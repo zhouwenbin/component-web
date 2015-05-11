@@ -35,8 +35,8 @@ define(
         new Footer('.sf-b2c-mall-footer');
 
         // 搜索区域
-        var template = can.view.mustache(this.searchTemplate());
-        $('.sf-b2c-mall-order-orderlist-searcharea').html(template());
+        // var template = can.view.mustache(this.searchTemplate());
+        // $('.sf-b2c-mall-order-orderlist-searcharea').html(template());
 
         // 列表区域
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
@@ -48,18 +48,9 @@ define(
        * [searchTemplate 搜索区域模板]
        * @return {[string 模板字符串]}
        */
-      searchTemplate: function() {
-        return '<div class="orderlist-h clearfix">' +
-          '<div class="orderlist-hc1 fl">' +
-          '<h2>温馨提示：</h2>' +
-          '<p>顺丰海淘未付款订单超过2小时将被自动取消，提交订单请尽快完成支付。</p>' +
-          '</div>' +
-          '<div class="orderlist-hc2 fr">' +
-          '<input type="text" class="input" placeholder="输入订单号/收货人" id="searchValue"/>' +
-          '<a href="#" class="btn btn-buy" id="search">搜索</a>' +
-          '</div>' +
-          '</div>'
-      },
+      // searchTemplate: function() {
+      //   return '<div class="myorder-search"><input placeholder="输入订单号搜索" id="searchValue"/><button id="search">搜索</button></div>'       
+      // },
 
       "{document} keydown": function(element, event) {
         var e = event || window.event,

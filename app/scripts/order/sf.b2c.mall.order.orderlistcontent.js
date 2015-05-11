@@ -57,7 +57,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .sendRequest()
           .done(function(data) {
             if (data.orders) {
+              //所有订单
               that.options.orderlist = data.orders;
+              
+              that.options.notCompletedOrderList = [];
+              that.options.completedOrderList = [];
 
               _.each(that.options.orderlist, function(order) {
                 if (typeof order.orderGoodsItemList[0] !== 'undefined') {

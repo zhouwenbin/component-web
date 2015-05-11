@@ -1,4 +1,87 @@
-<div class="table table-1">
+<ul class="myorder-tab">
+  <li class="active" id="allorderTab"><a href="">所有订单</a></li>
+  <li id="notPayOrderListTab"><a href="">待付款<strong>1</strong></a></li>
+  <li id="notSendOrderListTab"><a href="">待发货<strong>0</strong></a></li>
+  <li id="notGetOrderListTab"><a href="">待收货<strong>1</strong></a></li>
+</ul>
+
+<div class="myorder-search">
+  <input placeholder="输入订单号搜索" id="searchValue" /><button id="search">搜索</button>
+</div>
+<table>
+  <thead>
+      <tr>
+          <th class="th1">包裹<span>|</span></th>
+          <th class="th2">商品</th>
+          <th class="th3">售价（元）</th>
+          <th class="th4">数量<span>|</span></th>
+          <th class="th5">实付款（元）<span>|</span></th>
+          <th class="th6">订单状态<span>|</span></th>
+          <th class="th7">操作</th>
+      </tr>
+  </thead>
+  <!--所有订单-->
+  <tbody id="allorder">
+    {{if orderListIsNotEmpty}}
+    {{#each orderlist}}
+    <tr>
+        <th colspan="7">
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+        </th>
+    </tr>
+    {{/each}}
+    {{else}}
+
+    {{/if}}
+  </tbody>
+
+  <!--代付款订单-->
+  <tbody id="notPayOrderList">
+    {{if notPayOrderListIsNotEmpty}}
+    {{#each notPayOrderList}}
+    <tr>
+        <th colspan="7">
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+        </th>
+    </tr>
+    {{/each}}
+
+    {{else}}
+    {{/if}}
+  </tbody>
+
+  <!--待发货订单-->
+  <tbody id="notSendOrderList">
+    {{if notSendOrderListIsNotEmpty}}
+    {{#each notSendOrderList}}
+    <tr>
+        <th colspan="7">
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+        </th>
+    </tr>
+    {{/each}}
+
+    {{else}}
+    {{/if}}
+  </tbody>
+
+  <!--待收货订单-->
+
+  <tbody id="notGetOrderList">
+    {{if notGetOrderListIsNotEmpty}}
+    {{#each notGetOrderList}}
+    <tr>
+        <th colspan="7">
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+        </th>
+    </tr>
+    {{/each}}
+
+    {{else}}
+    {{/if}}
+  </tbody>
+</table>
+<!--<div class="table table-1">
   <div class="table-h clearfix">
     <div class="table-c1 fl">
       订单信息
@@ -61,4 +144,4 @@
     </li>
     {{/each}}
   </ul>
-</div>
+</div>-->
