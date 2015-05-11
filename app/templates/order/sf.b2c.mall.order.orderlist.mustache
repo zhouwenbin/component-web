@@ -1,8 +1,8 @@
 <ul class="myorder-tab">
   <li class="active" id="allorderTab"><a href="">所有订单</a></li>
-  <li id="notPayOrderListTab"><a href="">待付款<strong>1</strong></a></li>
-  <li id="notSendOrderListTab"><a href="">待发货<strong>0</strong></a></li>
-  <li id="notGetOrderListTab"><a href="">待收货<strong>1</strong></a></li>
+  <li id="notPayOrderListTab"><a href="">待付款<strong>{{notPayOrderListLength}}</strong></a></li>
+  <li id="notSendOrderListTab"><a href="">待发货<strong>{{notSendOrderListLength}}</strong></a></li>
+  <li id="notGetOrderListTab"><a href="">待收货<strong>{{notGetOrderListfLength}}</strong></a></li>
 </ul>
 
 <div class="myorder-search">
@@ -26,8 +26,12 @@
     {{#each orderlist}}
     <tr>
         <th colspan="7">
-            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+            <h2>
+              订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
+              {{if isOrderDeleted}}<a id="deleteOrder" href="javascript:" class="icon icon81">删除</a>{{/if}}
+            </h2>
         </th>
+        
     </tr>
     {{/each}}
     {{else}}
