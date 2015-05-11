@@ -93,7 +93,8 @@ define("sf.b2c.mall.page.naturalcoupon", [
 
             var message = new SFMessage(null, {
               'tip': '优惠券礼包已成功加入您的账户！',
-              'type': 'success'
+              'type': 'success',
+              'okFunction': _.bind(that.hasReceived, that)
             });
           })
           .fail(function(error) {
@@ -106,6 +107,10 @@ define("sf.b2c.mall.page.naturalcoupon", [
               console.error(error);
             }
           })
+      },
+
+      hasReceived: function(){
+        window.location.href = "http://www.sfht.com/y.html";
       }
     });
 

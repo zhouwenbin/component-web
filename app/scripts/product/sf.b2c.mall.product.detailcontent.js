@@ -420,8 +420,10 @@ define('sf.b2c.mall.product.detailcontent', [
                     element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
                   }
                 }
+                element.rulesNum = element.promotionRules.length;
 
                 //处理活动链接
+                element.isActivityLink = !!element.pcActivityLink;
                 element.pcActivityLink = element.pcActivityLink || "javascript:void(0);";
 
                 //处理限时促销
@@ -440,7 +442,22 @@ define('sf.b2c.mall.product.detailcontent', [
               .html(activityTemplate(data, that.helpers))
               .off("click", ".goods-activity-c1 a")
               .on("click", ".goods-activity-c1 a", function() {
-                $(this).parents(".goods-activity").toggleClass("active").siblings(".active").removeClass("active");
+                var goodsActivityDom = $(this).parents(".goods-activity");
+                if (goodsActivityDom.hasClass("active")) {
+                  goodsActivityDom.removeClass("active");
+                  goodsActivityDom.find("[role='activityTitle']").show();
+                  goodsActivityDom.find("[role='activityNum']").hide();
+                } else {
+                  goodsActivityDom.addClass("active");
+                  goodsActivityDom.find("[role='activityTitle']").hide();
+                  goodsActivityDom.find("[role='activityNum']").show();
+                  var activitySiblings = goodsActivityDom.siblings(".active");
+                  if (activitySiblings.length > 0) {
+                    activitySiblings.removeClass("active");
+                    activitySiblings.find("[role='activityTitle']").show();
+                    activitySiblings.find("[role='activityNum']").hide();
+                  }
+                }
               });
 
             $("body").on("click", function(event) {
@@ -756,11 +773,21 @@ define('sf.b2c.mall.product.detailcontent', [
       activityTemplate: function() {
         return '{{#each value}}{{#sf-showActivity activityType}}' +
           '<div class="goods-activity">' +
-          '{{#rulesHtml}}<div class="goods-activity-c1 fr"><a href="javascript:void(0);">活动详情<span class="icon icon67"></span></a></div>{{/rulesHtml}}' +
+          '{{#rulesHtml}}<div class="goods-activity-c1 fr">' +
+          ' <a href="javascript:void(0);" role="activityTitle">更多优惠<span class="icon icon67"></span></a>' +
+          ' <a href="javascript:void(0);" role="activityNum" class="hide">收起<span class="icon icon67"></span></a>' +
+          '</div>{{/rulesHtml}}' +
           '<div class="goods-activity-c2">' +
-            '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a><a  href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+            '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a>' +
+            '<span role="activityTitle"><a href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+            '{{#isActivityLink}}<a href="{{pcActivityLink}}" class="goods-activity-link">去看看</a>{{/isActivityLink}}</span>' +
+            '<span role="activityNum" class="hide">共{{rulesNum}}条 优惠信息</span>' +
           '</div>' +
-          '<div class="goods-activity-detail">{{{rulesHtml}}}</div>' +
+          '<div class="goods-activity-detail">' +
+          '{{#each promotionRules}}' +
+            '<li>{{ruleDesc}}{{#isActivityLink}}<a class="goods-activity-link" href="{{pcActivityLink}}">去看看</a></li>{{/isActivityLink}}' +
+          '{{/promotionRules}}' +
+          '</div>' +
           '</div>' +
           '{{/activityType}}{{/each}}';
 

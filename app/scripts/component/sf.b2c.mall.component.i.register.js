@@ -390,6 +390,7 @@ define(
                 });
               }
 
+              store.set("alipaylogin", "false");
               SFFn.dotCode();
             })
             .fail(function(errorCode) {

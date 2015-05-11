@@ -285,7 +285,7 @@ define(
       '#wechatlogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=wechat_open"
         });
 
         reqLoginAuth
@@ -293,6 +293,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'wechat_open');
+            store.set("alipaylogin", "false");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -304,7 +305,7 @@ define(
       '#alipaylogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=alipay_qklg"
         });
 
         reqLoginAuth
@@ -312,6 +313,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'alipay_qklg');
+            store.set("alipaylogin", "true");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -352,7 +354,9 @@ define(
         var username = $(element).val();
 
         this.checkUserName.call(this, username);
-        this.isNeedVerCode();
+        if (username && username.length == 11) {
+          this.isNeedVerCode();
+        };
       },
 
       /**
@@ -393,6 +397,7 @@ define(
             if (data.userId) {
 
               SFFn.dotCode();
+              store.set("alipaylogin", "false");
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
                 .done(function(data) {
