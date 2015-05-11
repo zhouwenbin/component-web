@@ -108,6 +108,7 @@ define(
 
         this.funPlaceholder(document.getElementById('user-name'));
       },
+
       '#wechatlogin click': function(element, event) {
         var that = this;
 
@@ -120,6 +121,7 @@ define(
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin', 'wechat_open');
+            store.set("alipaylogin", "false");
             window.location.href = data.loginAuthLink;
             SFFn.dotCode();
             return false;
@@ -128,6 +130,7 @@ define(
             console.error(error);
           })
       },
+
       //@note 支付宝登录
       '#alipaylogin click': function(element, event) {
         var that = this;
@@ -140,6 +143,8 @@ define(
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin', 'alipay_qklg');
+            //用于阿里支付登录后，只展示阿里支付
+            store.set("alipaylogin", "true");
             window.parent.location.href = data.loginAuthLink;
             SFFn.dotCode();
             return false;
@@ -353,7 +358,7 @@ define(
         if (username && username.length == 11) {
           this.isNeedVerCode();
         };
-        
+
       },
 
       /**
@@ -394,6 +399,7 @@ define(
           .done(function(data) {
             if (data.userId) {
               that.data.attr('autologin');
+              store.set("alipaylogin", "false");
 
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));

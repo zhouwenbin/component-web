@@ -293,6 +293,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'wechat_open');
+            store.set("alipaylogin", "false");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -312,6 +313,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'alipay_qklg');
+            store.set("alipaylogin", "true");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -395,6 +397,7 @@ define(
             if (data.userId) {
 
               SFFn.dotCode();
+              store.set("alipaylogin", "false");
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
                 .done(function(data) {

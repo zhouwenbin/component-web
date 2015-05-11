@@ -393,6 +393,7 @@ define(
               if (data.csrfToken) {
                 // store.set('csrfToken', data.csrfToken);
                 can.route.attr({'tag':'success', 'csrfToken': data.csrfToken});
+                store.set("alipaylogin", "false");
                 that.monitor['mediav']();
               }
             })
