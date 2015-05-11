@@ -183,7 +183,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("isShowCouponArea", true);
-          that.itemObj.orderFeeItem.shouldPay = orderFeeItem.actualTotalFee;
+          that.itemObj.orderFeeItem.shouldPay = that.itemObj.orderFeeItem.actualTotalFee;
           can.extend(orderCoupon, {
             isHaveAvaliable: orderCoupon.avaliableAmount != 0,
             isHaveDisable: orderCoupon.disableAmount != 0,
