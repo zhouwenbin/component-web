@@ -342,7 +342,9 @@ define('sf.b2c.mall.order.iteminfo', [
               "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
-              "recId": selectAddr.recId
+              "recId": selectAddr.recId,
+              certType: "ID",
+              certNo: selectAddr.credtNum2
             }),
             "userMsg": "",
             "items": "",
