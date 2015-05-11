@@ -88,9 +88,9 @@ define(
 
       getPayWay: function(paytype){
         if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
-          return this.showOnlyAliPayMap(paytype);
+          return this.showOnlyAliPayMap[paytype];
         } else {
-          return this.showPayMap(paytype);
+          return this.showPayMap[paytype];
         }
       },
 
