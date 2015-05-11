@@ -62,6 +62,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               _.each(that.options.orderlist, function(order) {
                 if (typeof order.orderGoodsItemList[0] !== 'undefined') {
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
+                  order.itemId =  order.orderGoodsItemList[0].itemId;
                   if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
                     order.imageUrl = "http://www.sfht.com/img/no.png";
                   } else {
