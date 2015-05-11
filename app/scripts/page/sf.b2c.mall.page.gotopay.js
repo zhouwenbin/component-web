@@ -4,7 +4,7 @@ define(
   'sf.b2c.mall.page.gotopay', [
     'can',
     'jquery',
-    'store'
+    'store',
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
