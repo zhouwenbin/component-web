@@ -3,11 +3,12 @@ define(
     'can',
     'underscore',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'sf.b2c.mall.api.shopcart.addItemToCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, SFGetProductHotDataList, SFConfig, SFFrameworkComm) {
+  function(can, _, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -65,6 +66,47 @@ define(
           }
 
         });
+      },
+
+      /**
+       * [加入购物车]
+       */
+      addCart: function (itemId, num) {
+        var addItemToCart = new SFAddItemToCart({
+          itemId: itemId,
+          num: num || 1
+        });
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              // 更新mini购物车
+              window.trigger('updateCart');
+            }
+          })
+          .fail(function (data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+
+      /**
+       * [添加购物车动作触发]
+       * @param  {element} el
+       */
+      '.addtocart click': function (el) {
+        var itemId = el.attr('data-itemid');
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 用户如果如果登录
+          this.addCart(itemId);
+        }else{
+          window.trigger('showLogin', [window.location.href+'']);
+        }
       },
 
       /**

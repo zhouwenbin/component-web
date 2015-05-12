@@ -18,6 +18,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
+  'sf.b2c.mall.api.minicart.getTotalCount', // 获得mini cart的数量接口
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -28,7 +29,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -152,13 +153,30 @@ define('sf.b2c.mall.component.header', [
           window.location.href = SFConfig.setting.link.index;
         }
       }
+
+      // 将更新购物车事件注册到window上
+      // 其他地方添加需要更新mini购物车的时候，需要trigger 'updateCart'事件
+      can.on.call(window, 'updateCart', _.bind(this.updateCart, this));
+
+      can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
     },
 
     /**
      * 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function () {
-
+      // 如果用户已经登陆了，可以进行购物车更新
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        var getTotalCount = new SFGetTotalCount();
+        getTotalCount.sendRequest()
+          .done(function (data) {
+            // @todo 将返回数字显示在头部导航栏
+            // 需要跳动的效果
+          })
+          .fail(function (data) {
+            // 更新mini cart失败，不做任何显示
+          });
+      }
     },
 
     showAD: function() {
@@ -494,6 +512,9 @@ define('sf.b2c.mall.component.header', [
       this.component.modal.setTitle('顺丰海淘');
     },
 
+    /**
+     * 检查用户登录状态
+     */
     watchLoginState: function() {
       var that = this;
       setInterval(function() {
