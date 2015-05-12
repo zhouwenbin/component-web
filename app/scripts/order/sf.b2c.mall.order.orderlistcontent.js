@@ -39,7 +39,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           return orderPackageItemList.length;
         },
         //渲染包裹中除了第一个商品以外的其他商品
-        others: function(orderGoodsItemList， options) {
+        others: function(orderGoodsItemList, options) {
 
         }
       },
@@ -76,11 +76,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
             if (data.orders) {
               //所有订单
               that.options.orderlist = data.orders;
-              //代付款
+              //代付款订单
               that.options.notPayOrderList = [];
-              //待发货
+              //待发货订单
               that.options.notSendOrderList = [];
-              //待收货           
+              //待收货订单           
               that.options.notGetOrderList = [];
 
               _.each(that.options.orderlist, function(order) {
@@ -102,43 +102,52 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 } else {
                   that.options.isOrderDeleted = false;
                 }
-
+                that.options.orderId = order.orderId;
                 //订单数据从orderPackageItemList下orderGoodsItemList中获取
                 if (typeof order.orderPackageItemList[0] !== 'undefined') {
                   //获取包裹信息并循环遍历
                   that.options.orderPackageItemList = order.orderPackageItemList;
-                  var firstPackageItem = []
-                  _.each(that.options.orderPackageItemList, function(packageItem) {
-                    firstPackageItem.push(packageItem.orderGoodsItemList);
-                    
-                  });
-                  order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  order.itemId = order.orderGoodsItemList[0].itemId;
-                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
-                    order.imageUrl = "http://www.sfht.com/img/no.png";
-                  } else {
-                    order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  }
-                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
-                    order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
-                  }
-                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                  order.showRouter = that.routeMap[order.orderStatus];
-                  order.orderStatus = that.statsMap[order.orderStatus];
-                  //order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
-                  order.paymentAmount = order.totalPrice - order.discount;
-                  //卡券处理
+                  //取每一个包裹的第一条商品数据
+                  var firstPackageItem,lastPackageItem = [];
 
-                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
-                    _.each(order.orderCouponItemList, function(coupon) {
-                      if (coupon.couponType == "SHAREBAG") {
-                        order.isShareBag = true;
-                        order.shareBag = coupon;
-                      }
-                    });
-                  } else {
-                    order.isShareBag = false;
-                  }
+                  _.each(that.options.orderPackageItemList, function(packageItem,i) {
+                    that.options.shippingWarehouse = packageItem.shippingWarehouse;
+                    if (i == 0) {
+                      firstPackageItem.push(packageItem.orderGoodsItemList[0])
+                    }else{
+                      lastPackageItem.push(packageItem.orderGoodsItemList[i]);
+                    }                
+                  });
+
+
+
+                  // order.goodsName = order.orderGoodsItemList[0].goodsName;
+                  // order.itemId = order.orderGoodsItemList[0].itemId;
+                  // if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
+                  //   order.imageUrl = "http://www.sfht.com/img/no.png";
+                  // } else {
+                  //   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
+                  // }
+                  // if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
+                  //   order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
+                  // }
+                  // order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                  // order.showRouter = that.routeMap[order.orderStatus];
+                  // order.orderStatus = that.statsMap[order.orderStatus];
+                  // //order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
+                  // order.paymentAmount = order.totalPrice - order.discount;
+                  // //卡券处理
+
+                  // if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                  //   _.each(order.orderCouponItemList, function(coupon) {
+                  //     if (coupon.couponType == "SHAREBAG") {
+                  //       order.isShareBag = true;
+                  //       order.shareBag = coupon;
+                  //     }
+                  //   });
+                  // } else {
+                  //   order.isShareBag = false;
+                  // }
                 }
               })
 
@@ -151,7 +160,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.notSendOrderListIsNotEmpty = (that.options.notSendOrderList.length > 0);
               that.options.notGetOrderListIsNotEmpty = (that.options.notGetOrderList.length > 0);
 
-              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options,that.helpers);
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
             } else {
 
