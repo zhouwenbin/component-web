@@ -19,22 +19,39 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
     return can.Control.extend({
 
-      /**
-       * 初始化
-       * @param  {DOM} element 容器element
-       * @param  {Object} options 传递的参数
-       */
+      helpers: {
+        //确定第一个td需要rowspan的行数（根据第一个包裹内商品数量）
+        countTypeOfGoodsInPackage: function(orderGoodsItemList, options) {
+          return orderGoodsItemList.length;
+        },
+        //包裹内商品数量
+        countGoodsInPackage: function(orderGoodsItemList, options) {
+          return
+        },
+        //第一个包裹中商品list中的第一条数据
+        first: function(orderGoodsItemList, options) {
+          if (orderGoodsItemList.length > 0) {
+            return orderGoodsItemList[0];
+          };
+        },
+        //后几个td的rowspan的行数（根据包裹数量）
+        countTypeOfGoodsInOrder: function(orderPackageItemList, options) {
+          return orderPackageItemList.length;
+        },
+        //渲染包裹中除了第一个商品以外的其他商品
+        others: function(orderGoodsItemList, options) {
+
+        }
+      },
+
       init: function(element, options) {
         this.render();
       },
 
-      /**
-       * [render 渲染]
-       * @param  {[type]} data 数据
-       */
       render: function(data) {
         var that = this;
 
+        //note ?
         var routeParams = can.route.attr();
         if (!routeParams.page) {
           routeParams = _.extend(routeParams, {
@@ -59,64 +76,81 @@ define('sf.b2c.mall.order.orderlistcontent', [
             if (data.orders) {
               //所有订单
               that.options.orderlist = data.orders;
-              //代付款
+              //代付款订单
               that.options.notPayOrderList = [];
-              //待发货
+              //待发货订单
               that.options.notSendOrderList = [];
-              //待收货           
+              //待收货订单           
               that.options.notGetOrderList = [];
 
               _.each(that.options.orderlist, function(order) {
+                //如果订单状态是已提交，就将订单放入待付款集合中
                 if (order.orderStatus == 'SUBMITED') {
                   that.options.notPayOrderList.push(order);
                 };
+                //如果订单状态是待发货，就将订单放入待发货集合中
                 if (order.orderStatus == 'WAIT_SHIPPING') {
                   that.options.notSendOrderList.push(order);
                 };
+                //如果订单状态是发货中，已发货，就将订单放入待收货集合中
                 if (order.orderStatus == 'SHIPPING' || order.orderStatus == 'SHIPPED') {
                   that.options.notGetOrderList.push(order);
                 };
-                //如果订单状态是自动取消、运营取消和用户取消，则该订单可以删除
+                //如果订单状态是自动取消、运营取消和用户取消，则显示订单可删除按钮
                 if (order.orderStatus == 'AUTO_CANCEL' || order.orderStatus == 'USER_CANCEL' || order.orderStatus == 'OPERATION_CANCEL') {
                   that.options.isOrderDeleted = true;
-                }else{
+                } else {
                   that.options.isOrderDeleted = false;
                 }
+                that.options.orderId = order.orderId;
                 //订单数据从orderPackageItemList下orderGoodsItemList中获取
                 if (typeof order.orderPackageItemList[0] !== 'undefined') {
-                  _.each(order.orderPackageItemList,function(packageItem){
-                    
-                  });
-                  order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  order.itemId =  order.orderGoodsItemList[0].itemId;
-                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
-                    order.imageUrl = "http://www.sfht.com/img/no.png";
-                  } else {
-                    order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  }
-                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
-                    order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
-                  }
-                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                  order.showRouter = that.routeMap[order.orderStatus];
-                  order.orderStatus = that.statsMap[order.orderStatus];
-                  //order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
-                  order.paymentAmount = order.totalPrice - order.discount;
-                  //卡券处理
+                  //获取包裹信息并循环遍历
+                  that.options.orderPackageItemList = order.orderPackageItemList;
+                  //取每一个包裹的第一条商品数据
+                  var firstPackageItem,lastPackageItem = [];
 
-                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
-                    _.each(order.orderCouponItemList, function(coupon) {
-                      if (coupon.couponType == "SHAREBAG") {
-                        order.isShareBag = true;
-                        order.shareBag = coupon;
-                      }
-                    });
-                  } else {
-                    order.isShareBag = false;
-                  }
+                  _.each(that.options.orderPackageItemList, function(packageItem,i) {
+                    that.options.shippingWarehouse = packageItem.shippingWarehouse;
+                    if (i == 0) {
+                      firstPackageItem.push(packageItem.orderGoodsItemList[0])
+                    }else{
+                      lastPackageItem.push(packageItem.orderGoodsItemList[i]);
+                    }                
+                  });
+
+
+
+                  // order.goodsName = order.orderGoodsItemList[0].goodsName;
+                  // order.itemId = order.orderGoodsItemList[0].itemId;
+                  // if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
+                  //   order.imageUrl = "http://www.sfht.com/img/no.png";
+                  // } else {
+                  //   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
+                  // }
+                  // if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
+                  //   order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
+                  // }
+                  // order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                  // order.showRouter = that.routeMap[order.orderStatus];
+                  // order.orderStatus = that.statsMap[order.orderStatus];
+                  // //order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
+                  // order.paymentAmount = order.totalPrice - order.discount;
+                  // //卡券处理
+
+                  // if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                  //   _.each(order.orderCouponItemList, function(coupon) {
+                  //     if (coupon.couponType == "SHAREBAG") {
+                  //       order.isShareBag = true;
+                  //       order.shareBag = coupon;
+                  //     }
+                  //   });
+                  // } else {
+                  //   order.isShareBag = false;
+                  // }
                 }
               })
-              
+
               //显示nav上代付款，待发货，待收货数量
               that.options.notPayOrderListLength = that.options.notPayOrderList.length;
               that.options.notSendOrderListLength = that.options.notSendOrderList.length;
@@ -126,7 +160,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.notSendOrderListIsNotEmpty = (that.options.notSendOrderList.length > 0);
               that.options.notGetOrderListIsNotEmpty = (that.options.notGetOrderList.length > 0);
 
-              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
             } else {
 
@@ -167,24 +201,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
         this.render(params);
       },
 
-      '#allorderTab click':function(element,event){
+      '#allorderTab click': function(element, event) {
         event && event.preventDefault();
-        this.switchTab(element,'1');
+        this.switchTab(element, '1');
       },
 
-      '#notPayOrderListTab click':function(element,event){
+      '#notPayOrderListTab click': function(element, event) {
         event && event.preventDefault();
-        this.switchTab(element,'2');
+        this.switchTab(element, '2');
       },
 
-      '#notSendOrderListTab click':function(element,event){
+      '#notSendOrderListTab click': function(element, event) {
         event && event.preventDefault();
-        this.switchTab(element,'3');
+        this.switchTab(element, '3');
       },
 
-      '#notGetOrderListTab click':function(element,event){
+      '#notGetOrderListTab click': function(element, event) {
         event && event.preventDefault();
-        this.switchTab(element,'4');
+        this.switchTab(element, '4');
       },
 
       //状态切换

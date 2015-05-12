@@ -12,7 +12,7 @@ define(
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent) {
+  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent,SFBusiness) {
 
     SFFrameworkComm.register(1);
 
@@ -92,5 +92,5 @@ define(
       }
     });
 
-    new orderList('#orderList');
+    new orderList('.sf-b2c-mall-order-orderlist');
   });
