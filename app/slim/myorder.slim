@@ -30,8 +30,10 @@
                     <li><a href="">待收货<strong>1</strong></a></li>
                 </ul>
                 <div class="myorder-search">
-                    <input placeholder="输入订单号搜索">
+                    <input placeholder="输入订单号或收货人搜索">
                     <button>搜索</button>
+                    <span class="icon icon88"></span>
+                    <span class="text-error">未搜索到相应订单</span>
                 </div>
                 <table>
                     <thead>
@@ -41,7 +43,19 @@
                             <th class="th3">售价（元）</th>
                             <th class="th4">数量<span>|</span></th>
                             <th class="th5">实付款（元）<span>|</span></th>
-                            <th class="th6">订单状态<span>|</span></th>
+                            <th class="th6">
+                                <select name="" id="">
+                                    <option value="">订单状态</option>
+                                    <option value="">所有订单</option>
+                                    <option value="">待付款</option>
+                                    <option value="">待审核</option>
+                                    <option value="">正在出库</option>
+                                    <option value="">已发货</option>
+                                    <option value="">已完成</option>
+                                    <option value="">已取消</option>
+                                </select>
+                                <span>|</span>
+                            </th>
                             <th class="th7">操作</th>
                         </tr>
                     </thead>

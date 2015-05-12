@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/myorder.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pb">
+  <div class="pm"> 
+    <!--我的订单-->
+    <div class="personal">
+    	<div class="personal-c1 fl">
+    		<h1>个人中心</h1>
+            <ul>
+                <li class="active"><a href="">我的订单</a></li>
+                <li><a href="">账户管理</a></li>
+                <li><a href="">收货地址</a></li>
+            </ul>
+    	</div>
+    	<div class="personal-c2">
+            <div class="myorder">
+                <ul class="myorder-tab">
+                    <li class="active"><a href="">所有订单</a></li>
+                    <li><a href="">待付款<strong>1</strong></a></li>
+                    <li><a href="">待发货<strong>0</strong></a></li>
+                    <li><a href="">待收货<strong>1</strong></a></li>
+                </ul>
+
+            </div>  
+            <div class="myorder-none">
+                <span class="icon icon89"></span>
+                <p>亲，您当前还没有任何订单。<br /><a href="" class="text-link">去逛逛</a></p>
+                
+            </div>
+            
+            <div class="product">
+                <h2>大家都在买</h2>
+                <div class="mb">
+                  <ul class="clearfix product-list">
+                    <li>
+                      <div class="product-r1">
+                        <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
+                      </div>
+                      <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+                      <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
+                      <div class="product-r2 clearfix">
+                        <div class="product-r2c1 fl">
+                          <span>￥</span><strong>129</strong><del>￥189</del>5折
+                          
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="product-r1">
+                        <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
+                      </div>
+                      <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+                      <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
+                      <div class="product-r2 clearfix">
+                        <div class="product-r2c1 fl">
+                          <span>￥</span><strong>129</strong><del>￥189</del>5折
+                          
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="product-r1">
+                        <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
+                      </div>
+                      <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+                      <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
+                      <div class="product-r2 clearfix">
+                        <div class="product-r2c1 fl">
+                          <span>￥</span><strong>129</strong><del>￥189</del>5折
+                          
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--我的订单--> 
+  </div>
+</div>
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
+<script src="js/cart.js"></script>
+</body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

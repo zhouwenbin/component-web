@@ -1,5 +1,6 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+@import 'components/product';
 .personal{
 	background: #fff;
 	border:1px solid #ccc;
@@ -19,13 +20,15 @@
 	font-weight: normal;
 }
 .personal-c1 li{
-	height: 58px;
-	line-height: 58px;
+	
 	border-bottom: 1px solid #e5e5e5;
 	font-size: 14px;
 }
 .personal-c1 li a{
 	color:#777;
+	display: block;
+	height: 58px;
+	line-height: 58px;
 }
 .personal-c1 li.active{
 	position: relative;
@@ -274,4 +277,61 @@
 }
 .myorder .tooltip a{
 	color: #999;
+}
+.myorder .icon88{
+	margin-left: 20px;
+	margin-right: 5px;
+}
+.myorder-none{
+	text-align: center;
+	margin-bottom: 48px;
+}
+.myorder-none a{
+	margin-top: 10px;
+	display: block;
+}
+.myorder-none p{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+	text-align: left;
+	color: #666;
+}
+.product h2{
+	color: #666;
+	font-size: 14px;
+	font-weight: normal;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 26px;
+}
+.account-manage{
+	height: 353px;
+	display: none;
+	padding-left: 100px;
+	margin-top: 55px;
+}
+.account-manage.active{
+	display: block;
+}
+.account-manage1 .btn{
+	margin-left: 52px;
+}
+.account-manage2 .btn{
+	margin-left: 79px;
+}
+.account-manage input,
+.account-manage select{
+	margin-left: 20px;
+}
+.account-manage input{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 247px;
+}
+.account-manage li{
+	margin-bottom: 13px;
+}
+.account-manage label{
+	font-size: 14px;
 }
