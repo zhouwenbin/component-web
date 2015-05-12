@@ -1,8 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.orderlist',
-  [
+  'sf.b2c.mall.page.orderlist', [
     'can',
     'jquery',
     'sf.b2c.mall.framework.comm',
@@ -12,7 +11,7 @@ define(
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent,SFBusiness) {
+  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent, SFBusiness) {
 
     SFFrameworkComm.register(1);
 
@@ -31,26 +30,12 @@ define(
        * [render 执行渲染]
        */
       render: function() {
-        new Header('.sf-b2c-mall-header', {isForceLogin: true});
-        new Footer('.sf-b2c-mall-footer');
-
-        // 搜索区域
-        // var template = can.view.mustache(this.searchTemplate());
-        // $('.sf-b2c-mall-order-orderlist-searcharea').html(template());
 
         // 列表区域
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
           "searchValue": null
         });
       },
-
-      /**
-       * [searchTemplate 搜索区域模板]
-       * @return {[string 模板字符串]}
-       */
-      // searchTemplate: function() {
-      //   return '<div class="myorder-search"><input placeholder="输入订单号搜索" id="searchValue"/><button id="search">搜索</button></div>'       
-      // },
 
       "{document} keydown": function(element, event) {
         var e = event || window.event,
