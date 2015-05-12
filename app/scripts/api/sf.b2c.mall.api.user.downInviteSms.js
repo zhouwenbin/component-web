@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.promotion.receivePro
+  * @class sf.b2c.mall.api.user.downInviteSms
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.promotion.receivePro',
+'sf.b2c.mall.api.user.downInviteSms',
 [
   'jquery',
   'can',
@@ -22,18 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'promotion.receivePro',
+      METHOD_NAME: 'user.downInviteSms',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'channel': 'string',
-        'event': 'string'
+        'invtMobile': 'string',
+        'vfcode': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '12000020': '用户已不是新用户，不能获取新手优惠'
+        '1000020': '账户已注册',
+        '1000100': '验证码错误',
+        '1000230': '手机号错误，请输入正确的手机号'
       }
     }
   });

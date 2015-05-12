@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.promotion.receivePro
+  * @class sf.b2c.mall.api.shopcart.addItemToCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.promotion.receivePro',
+'sf.b2c.mall.api.shopcart.addItemToCart',
 [
   'jquery',
   'can',
@@ -22,18 +22,19 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'promotion.receivePro',
+      METHOD_NAME: 'shopcart.addItemToCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'channel': 'string',
-        'event': 'string'
+        'itemId': 'string',
+        'num': 'long'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '12000020': '用户已不是新用户，不能获取新手优惠'
+        '15000200': '购物车添加商品失败',
+        '15000201': '该商品不支持加入购物车'
       }
     }
   });
