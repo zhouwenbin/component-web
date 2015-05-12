@@ -109,7 +109,8 @@ define('sf.b2c.mall.order.iteminfo', [
         flag: orderRenderItem.flag,
         errorDes: orderRenderItem.errorDes,
         orderFeeItem: can.extend(orderRenderItem.orderFeeItem, {
-          shouldPay: orderRenderItem.orderFeeItem.actualTotalFee
+          shouldPay: orderRenderItem.orderFeeItem.actualTotalFee,
+          actualTotalFee: orderRenderItem.orderFeeItem.actualTotalFee
         })
       });
     },
@@ -182,6 +183,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("isShowCouponArea", true);
+        that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
           can.extend(orderCoupon, {
             isHaveAvaliable: orderCoupon.avaliableAmount != 0,
             isHaveDisable: orderCoupon.disableAmount != 0,
@@ -342,7 +344,9 @@ define('sf.b2c.mall.order.iteminfo', [
               "recName": selectAddr.recName,
               "mobile": selectAddr.cellphone,
               "telephone": selectAddr.cellphone,
-              "recId": selectAddr.recId
+              "recId": selectAddr.recId,
+              certType: "ID",
+              certNo: selectAddr.credtNum2
             }),
             "userMsg": "",
             "items": "",

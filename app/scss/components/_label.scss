@@ -26,7 +26,7 @@
  }
  .label-disabled{
  	@extend %label;
- 	background: #ccc;
+ 	background: #aaa;
  }
  .label-important{
  	@extend %label;
@@ -36,6 +36,7 @@
  	@extend %label;
  	background:#f78e57;
  }
+
  .label i{
  	  border-width: 3px 3px;
 	  border-style: solid;
