@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.orderlistcontent', [
     'can',
+    'jquery',
     'qrcode',
     'sf.b2c.mall.api.order.getOrderList',
     'sf.b2c.mall.adapter.pagination',
@@ -15,7 +16,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
 
     return can.Control.extend({
 
@@ -26,12 +27,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         //包裹内商品数量
         countGoodsInPackage: function(orderGoodsItemList, options) {
-          return
+          return orderGoodsItemList.length; //待修改
         },
-        //第一个包裹中商品list中的第一条数据
+        //每一个包裹中商品list中的第一条数据
         first: function(orderGoodsItemList, options) {
           if (orderGoodsItemList.length > 0) {
-            return orderGoodsItemList[0];
+            return options.fn(orderGoodsItemList[0]);
           };
         },
         //后几个td的rowspan的行数（根据包裹数量）
@@ -40,7 +41,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         //渲染包裹中除了第一个商品以外的其他商品
         others: function(orderGoodsItemList, options) {
-
+          if (orderGoodsItemList.length > 1) {
+            return options.fn(options.contexts || this);
+          };
         }
       },
 
@@ -75,7 +78,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
             if (data.orders) {
               //所有订单
-              that.options.orderlist = data.orders;
+              that.options.orders = data.orders;
               //代付款订单
               that.options.notPayOrderList = [];
               //待发货订单
@@ -83,7 +86,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               //待收货订单           
               that.options.notGetOrderList = [];
 
-              _.each(that.options.orderlist, function(order) {
+              _.each(that.options.orders, function(order) {
                 //如果订单状态是已提交，就将订单放入待付款集合中
                 if (order.orderStatus == 'SUBMITED') {
                   that.options.notPayOrderList.push(order);
@@ -102,60 +105,31 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 } else {
                   that.options.isOrderDeleted = false;
                 }
-                that.options.orderId = order.orderId;
-                //订单数据从orderPackageItemList下orderGoodsItemList中获取
-                if (typeof order.orderPackageItemList[0] !== 'undefined') {
-                  //获取包裹信息并循环遍历
-                  that.options.orderPackageItemList = order.orderPackageItemList;
-                  //取每一个包裹的第一条商品数据
-                  var firstPackageItem,lastPackageItem = [];
+                that.options.paymentAmount = order.totalPrice - order.discount;
+                that.options.showRouter = that.routeMap[order.orderStatus];
+                that.options.orderStatus = that.statsMap[order.orderStatus];
+                that.options.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
 
-                  _.each(that.options.orderPackageItemList, function(packageItem,i) {
-                    that.options.shippingWarehouse = packageItem.shippingWarehouse;
-                    if (i == 0) {
-                      firstPackageItem.push(packageItem.orderGoodsItemList[0])
-                    }else{
-                      lastPackageItem.push(packageItem.orderGoodsItemList[i]);
-                    }                
+                //卡券处理
+                if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                  _.each(order.orderCouponItemList, function(coupon) {
+                    if (coupon.couponType == "SHAREBAG") {
+                      order.isShareBag = true;
+                      order.shareBag = coupon;
+                    }
                   });
-
-
-
-                  // order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  // order.itemId = order.orderGoodsItemList[0].itemId;
-                  // if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
-                  //   order.imageUrl = "http://www.sfht.com/img/no.png";
-                  // } else {
-                  //   order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  // }
-                  // if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
-                  //   order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
-                  // }
-                  // order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                  // order.showRouter = that.routeMap[order.orderStatus];
-                  // order.orderStatus = that.statsMap[order.orderStatus];
-                  // //order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
-                  // order.paymentAmount = order.totalPrice - order.discount;
-                  // //卡券处理
-
-                  // if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
-                  //   _.each(order.orderCouponItemList, function(coupon) {
-                  //     if (coupon.couponType == "SHAREBAG") {
-                  //       order.isShareBag = true;
-                  //       order.shareBag = coupon;
-                  //     }
-                  //   });
-                  // } else {
-                  //   order.isShareBag = false;
-                  // }
+                } else {
+                  order.isShareBag = false;
                 }
+
+
               })
 
               //显示nav上代付款，待发货，待收货数量
               that.options.notPayOrderListLength = that.options.notPayOrderList.length;
               that.options.notSendOrderListLength = that.options.notSendOrderList.length;
               that.options.notGetOrderListfLength = that.options.notGetOrderList.length;
-              that.options.orderListIsNotEmpty = (that.options.orderlist.length > 0);
+              that.options.orderListIsNotEmpty = (that.options.orders.length > 0);
               that.options.notPayOrderListIsNotEmpty = (that.options.notPayOrderList.length > 0);
               that.options.notSendOrderListIsNotEmpty = (that.options.notSendOrderList.length > 0);
               that.options.notGetOrderListIsNotEmpty = (that.options.notGetOrderList.length > 0);
@@ -175,14 +149,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
-
-              // var noDataTemplate = {};
-              // if (that.options.searchValue == null) {
-              //   noDataTemplate = can.view.mustache(that.noDataTemplate());
-              // } else {
-              //   noDataTemplate = can.view.mustache(that.queryNoDataTemplate());
-              // }
-              // that.element.html(noDataTemplate());
             }
 
             //分页 保留 已经调通 误删 后面设计会给样式
@@ -262,65 +228,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         map[tab].apply(this);
       },
-      // uploadIDCardTemplateMap: {
-      //   0: '<div class="tooltip-pos">' +
-      //     '<span class="icon icon26">上传身份证照片</span>' +
-      //     '<div class="tooltip-outer">' +
-      //     '<div class="tooltip">' +
-      //     '<h4>请在“查看订单”中上传身份照片</h4>' +
-      //     '<h5>为什么要传身份证？</h5>' +
-      //     '<p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>' +
-      //     '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
-      //     '</div>' +
-      //     '</div>' +
-      //     '</div>'
-      // },
-
-      // noDataTemplate: function() {
-      //   return '<div class="table table-1">' +
-      //     '<div class="table-h clearfix">' +
-      //     '<div class="table-c1 fl">' +
-      //     '订单信息' +
-      //     '</div>' +
-      //     '<div class="table-c2 fl">' +
-      //     '收货人' +
-      //     '</div>' +
-      //     '<div class="table-c3 fl">' +
-      //     '订单金额' +
-      //     '</div>' +
-      //     '<div class="table-c4 fl">' +
-      //     '订单状态' +
-      //     '</div>' +
-      //     '<div class="table-c5 fl">' +
-      //     '操作' +
-      //     '</div>' +
-      //     '</div>' +
-      //     '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="http://www.sfht.com/index.html">去首页</a></p>' +
-      //     '</div>'
-      // },
-
-      // queryNoDataTemplate: function() {
-      //   return '<div class="table table-1">' +
-      //     '<div class="table-h clearfix">' +
-      //     '<div class="table-c1 fl">' +
-      //     '订单信息' +
-      //     '</div>' +
-      //     '<div class="table-c2 fl">' +
-      //     '收货人' +
-      //     '</div>' +
-      //     '<div class="table-c3 fl">' +
-      //     '订单金额' +
-      //     '</div>' +
-      //     '<div class="table-c4 fl">' +
-      //     '订单状态' +
-      //     '</div>' +
-      //     '<div class="table-c5 fl">' +
-      //     '操作' +
-      //     '</div>' +
-      //     '</div>' +
-      //     '<p class="table-none">未找到相关订单记录哟！<a href="http://www.sfht.com/orderlist.html">查看全部订单</a></p>' +
-      //     '</div>'
-      // },
 
       /**
        * [description 查看物流触发鼠标悬停事件]
@@ -459,10 +366,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * [optionHTML 操作对应的html]
        */
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
-        "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="link cancelOrder">取消订单</a>',
-        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
+        "NEEDPAY": '<a href="#" class="btn btn-danger btn-small gotoPay">立即付款</a>',
+        "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
+        "CANCEL": '<a href="#" class="btn btn-normal btn-small cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>'
       },
 
       '.received click': function(element, event) {
