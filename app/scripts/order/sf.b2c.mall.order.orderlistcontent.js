@@ -65,6 +65,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.notSendOrderList = [];
               //待收货           
               that.options.notGetOrderList = [];
+
               _.each(that.options.orderlist, function(order) {
                 if (order.orderStatus == 'SUBMITED') {
                   that.options.notPayOrderList.push(order);
@@ -81,8 +82,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 }else{
                   that.options.isOrderDeleted = false;
                 }
-
-                if (typeof order.orderGoodsItemList[0] !== 'undefined') {
+                //订单数据从orderPackageItemList下orderGoodsItemList中获取
+                if (typeof order.orderPackageItemList[0] !== 'undefined') {
+                  _.each(order.orderPackageItemList,function(packageItem){
+                    
+                  });
                   order.goodsName = order.orderGoodsItemList[0].goodsName;
                   order.itemId =  order.orderGoodsItemList[0].itemId;
                   if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
@@ -162,6 +166,27 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var params = can.route.attr();
         this.render(params);
       },
+
+      '#allorderTab click':function(element,event){
+        event && event.preventDefault();
+        this.switchTab(element,'1');
+      },
+
+      '#notPayOrderListTab click':function(element,event){
+        event && event.preventDefault();
+        this.switchTab(element,'2');
+      },
+
+      '#notSendOrderListTab click':function(element,event){
+        event && event.preventDefault();
+        this.switchTab(element,'3');
+      },
+
+      '#notGetOrderListTab click':function(element,event){
+        event && event.preventDefault();
+        this.switchTab(element,'4');
+      },
+
       //状态切换
       switchTab: function(element, tab) {
         if (element.hasClass('active')) {
@@ -173,15 +198,32 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var that = this;
 
         var map = {
-          'completedTab': function() {
-            $('#notCompletedTab').hide();
-            $('#completedTab').show();
+          '1': function() {
+            $('#allorder').show();
+            $('#notPayOrderList').hide();
+            $('#notSendOrderList').hide();
+            $('#notGetOrderList').hide();
           },
 
-          'notCompletedTab': function() {
-            $('#completedTab').hide();
-            $('#notCompletedTab').show();
-          }
+          '2': function() {
+            $('#allorder').hide();
+            $('#notPayOrderList').show();
+            $('#notSendOrderList').hide();
+            $('#notGetOrderList').hide();
+          },
+          '3': function() {
+            $('#allorder').hide();
+            $('#notPayOrderList').hide();
+            $('#notSendOrderList').show();
+            $('#notGetOrderList').hide();
+          },
+          '4': function() {
+            $('#allorder').hide();
+            $('#notPayOrderList').hide();
+            $('#notSendOrderList').hide();
+            $('#notGetOrderList').show();
+          },
+
         }
 
         map[tab].apply(this);
