@@ -126,7 +126,6 @@
 	border-bottom: none;
 }
 .cart .label-disabled{
-	display: block;
 	background: #aaa;
 	width: 80px;
 	box-sizing:border-box;
@@ -271,6 +270,9 @@
 .order-confirm .cart-table{
 	border-bottom-style: solid;
 	border-radius: 4px;
+}
+.order-confirm .label-disabled{
+	display: block;
 }
 .cart-coupon{
 	padding: 30px 40px;
