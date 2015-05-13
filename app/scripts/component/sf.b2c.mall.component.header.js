@@ -18,6 +18,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
+  'sf.b2c.mall.api.minicart.getTotalCount', // 获得mini cart的数量接口
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -28,7 +29,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -119,7 +120,6 @@ define('sf.b2c.mall.component.header', [
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
-            // domain: SFConfig.setting.api.mainurl
         }));
 
       } else {
@@ -130,7 +130,6 @@ define('sf.b2c.mall.component.header', [
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
-            // domain: SFConfig.setting.api.mainurl
         }));
       }
 
@@ -147,17 +146,49 @@ define('sf.b2c.mall.component.header', [
 
       this.supplement(this.data);
 
+      // @author Michael.Lee
+      // 用户如果登陆通过接口获取购物车数量
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        this.updateCart();
+      }
+
+      // @todo 保留代码，没有在实际场景中使用，有跨域并要求强制登陆的时候进行处理
       if (this.options.isForceLogin) {
         var that = this;
         // 暂时没有跨域存在在需要控制跳转的页面
-        // setTimeout(function() {
         if (!SFComm.prototype.checkUserLogin.call(that)) {
           window.location.href = SFConfig.setting.link.index;
         }
-        // }, 800);
       }
 
-      // this.showAD();
+      // @author Michael.Lee
+      // 将更新购物车事件注册到window上
+      // 其他地方添加需要更新mini购物车的时候调用window.trigger('updateCart')
+      can.on.call(window, 'updateCart', _.bind(this.updateCart, this));
+
+      // @author Michael.Lee
+      // 将弹出登录框事件注册到window上
+      // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
+      can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 更新导航栏购物车，调用接口刷新购物车数量
+     */
+    updateCart: function () {
+      // 如果用户已经登陆了，可以进行购物车更新
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        var getTotalCount = new SFGetTotalCount();
+        getTotalCount.sendRequest()
+          .done(function (data) {
+            // @todo 将返回数字显示在头部导航栏
+            // 需要跳动的效果
+          })
+          .fail(function (data) {
+            // 更新mini cart失败，不做任何显示
+          });
+      }
     },
 
     showAD: function() {
@@ -220,9 +251,6 @@ define('sf.b2c.mall.component.header', [
     render: function(data) {
       this.renderMap['template_header_info_common'].call(this, data);
       this.renderMap['template_header_channel_navigator'].call(this, data);
-
-      // var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
-      // this.element.html(html);
     },
 
     renderMap: {
@@ -327,20 +355,6 @@ define('sf.b2c.mall.component.header', [
       };
 
       that.setNavActive();
-
-      // @note 通过服务端进行渲染，暂时这里不做动作
-      // SFGetHeaderConfig
-      //   .sendRequest()
-      //   .done(function(config){
-      //     _.each(config, function(value, key, list){
-      //       that.data.attr(key, value);
-      //     });
-
-      //     // 暂时不做修改
-      //   })
-      //   .fail(function (errorCode) {
-
-      //   })
     },
 
     /**
@@ -458,17 +472,6 @@ define('sf.b2c.mall.component.header', [
 
     '#my-account click': function(element, event) {
       event && event.preventDefault();
-      // event.stopPropagation();
-
-      // if(SFFn.isMobile.any()){
-      //   return element.hover();
-      // }
-
-      // if (SFComm.prototype.checkUserLogin.call(this)) {
-
-      // } else {
-      //   this.showLogin('center');
-      // }
     },
 
     '#user-login click': function(element, event) {
@@ -494,8 +497,6 @@ define('sf.b2c.mall.component.header', [
         title: '顺丰海淘',
         html: '<iframe height="450px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
-      // this.watchLoginState.call(this);
-      // this.setIframe.call(this);
     },
 
     showLogin: function(dest) {
@@ -523,19 +524,18 @@ define('sf.b2c.mall.component.header', [
       this.component.modal.setTitle('顺丰海淘');
     },
 
+    /**
+     * 检查用户登录状态
+     */
     watchLoginState: function() {
       var that = this;
-      // if (!this.component.modal.isClosed()) {
       setInterval(function() {
         if (that.component.modal.isClosed()) {
           that.afterLoginDest = null
         }
 
-        //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
-          // if (!that.component.modal.isClosed()) {
           that.component.modal.hide();
-          // }
 
           if (that.afterLoginDest) {
             var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
@@ -547,23 +547,14 @@ define('sf.b2c.mall.component.header', [
           if (userinfo) {
             arr = userinfo.split(',');
           }
-          //window.location.reload();
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname', arr[0]);
-
-          // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname', null);
-
-          // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
-
-
-        // that.watchLoginState.call(that);
       }, 500);
-      // }
     }
   });
 });
