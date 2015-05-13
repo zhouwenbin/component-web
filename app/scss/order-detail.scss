@@ -21,7 +21,7 @@
 }
 .order-detail-c1 .text-error{
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: bold;
 	font-family: arial;
 }
 .order-detail-c1 li{
@@ -231,4 +231,42 @@
 }
 .order-detail-table td{
 	border-bottom: 1px solid #f2f2f2;
+}
+
+.order-detail-cancel h1{
+	font-size: 18px;
+	font-weight: normal;
+	margin-bottom: 25px
+}
+.order-detail-cancel .icon99{
+	margin-right: 10px;
+}
+.order-detail-cancel h2{
+	font-size: 14px;
+	font-weight: normal;
+}
+.order-detail-cancel .order-detail-state-c1{
+	width: auto;
+}
+.order-detail-cancel .order-detail-state{
+	background-image: none;
+	padding-right: 69px;
+}
+.order-detail-cancel-rebuy{
+	text-align: right;
+	margin-top: 25px;
+}
+.order-detail .tooltip-cart{
+	border-radius: 4px;
+	padding-left: 26px;
+}
+.order-detail-cancel .label-error {
+  margin-bottom: 14px;
+  background: #ff9999;
+  padding: 0 8px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  font-size: 14px;
+  height: 26px;
+  line-height: 26px;
 }
