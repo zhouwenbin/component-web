@@ -17,9 +17,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'imglazyload',
     'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics',
-    'sf.b2c.mall.api.b2cmall.getActivityInfo'
+    'sf.b2c.mall.api.b2cmall.getActivityInfo',
+    'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
     return can.Control.extend({
 
       helpers: {
@@ -886,6 +887,51 @@ define('sf.b2c.mall.product.detailcontent', [
         this.dealBuyNumByInput(element);
 
         return false;
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description [购物车]加入购物车
+       */
+      addCart: function (itemId, num) {
+        var addItemToCart = new SFAddItemToCart({
+          itemId: itemId,
+          num: num || 1
+        });
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              // 更新mini购物车
+              window.trigger('updateCart');
+            }
+          })
+          .fail(function (data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description [购物车]添加购物车动作触发
+       * @param  {element} el
+       */
+      '.addtocart click': function (el) {
+        var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+        var num = this.options.detailContentInfo.input.buyNum;
+
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 用户如果如果登录
+          this.addCart(itemId, num);
+        }else{
+          window.trigger('showLogin', [window.location.href]);
+        }
       },
 
       /**
