@@ -97,11 +97,12 @@ define(
       },
 
       /**
+       * @author Michael.Lee
        * @description 添加购物车动作触发
        * @param  {element} el
        */
       '.addtocart click': function (el) {
-        var itemId = el.attr('data-itemid');
+        var itemId = el.closet('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
           // 用户如果如果登录
           this.addCart(itemId);

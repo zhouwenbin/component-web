@@ -174,16 +174,39 @@ define('sf.b2c.mall.component.header', [
 
     /**
      * @author Michael.Lee
+     * @description 用户点击购物车之后的动作变化
+     * @param  {element}  $el   点击对象的jquery对象
+     * @param  {event}    event 绑定在点击对象的event对象
+     * @return
+     */
+    '.mini-cart-container click': function ($el, event) {
+      event && event.preventDefault();
+
+      var href = $el.attr('href');
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = href;
+      }else{
+        window.trigger('showLogin', [href]);
+      }
+    },
+
+    /**
+     * @author Michael.Lee
      * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function () {
+      var that = this;
+
       // 如果用户已经登陆了，可以进行购物车更新
       if (SFComm.prototype.checkUserLogin.call(this)) {
+        this.element.find('.mini-cart').show();
+
         var getTotalCount = new SFGetTotalCount();
         getTotalCount.sendRequest()
           .done(function (data) {
-            // @todo 将返回数字显示在头部导航栏
+            // @description 将返回数字显示在头部导航栏
             // 需要跳动的效果
+            that.element.find('.mini-cart-num').text(data);
           })
           .fail(function (data) {
             // 更新mini cart失败，不做任何显示
