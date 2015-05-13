@@ -19,6 +19,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.api.minicart.getTotalCount', // 获得mini cart的数量接口
+  'sf.b2c.mall.api.shopcart.addItemToCart', // 添加购物车接口
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -29,7 +30,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFModal, SFConfig, SFNotSupport, SFFn,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -150,6 +151,7 @@ define('sf.b2c.mall.component.header', [
       // 用户如果登陆通过接口获取购物车数量
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.updateCart();
+        this.checkTempActionAddCart();
       }
 
       // @todo 保留代码，没有在实际场景中使用，有跨域并要求强制登陆的时候进行处理
@@ -192,12 +194,57 @@ define('sf.b2c.mall.component.header', [
 
     /**
      * @author Michael.Lee
+     * @description 检查有没有临时的添加购物车的任务需要执行
+     * @return
+     */
+    checkTempActionAddCart: function () {
+      var params = store.set('temp-action-addCart');
+      var itemId = params.itemId;
+      var num = params.num || 1;
+
+      if (itemId && num) {
+        store.remove('temp-action-addCart');
+        this.addCart(itemId, num);
+      }
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 加入购物车
+     */
+    addCart: function (itemId, num) {
+      var addItemToCart = new SFAddItemToCart({
+        itemId: itemId,
+        num: num || 1
+      });
+
+      // 添加购物车发送请求
+      addItemToCart.sendRequest()
+        .done(function (data) {
+          if (data.value) {
+            // 更新mini购物车
+            window.trigger('updateCart');
+          }
+        })
+        .fail(function (data) {
+          // @todo 添加失败提示
+          var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+          if (error) {
+            // @todo 需要确认是不是需要提交
+          }
+        })
+    },
+
+    /**
+     * @author Michael.Lee
      * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function () {
       var that = this;
 
       // 如果用户已经登陆了，可以进行购物车更新
+      // @todo 如果是白名单的用户可以看到购物车
       if (SFComm.prototype.checkUserLogin.call(this)) {
         this.element.find('.mini-cart').show();
 

@@ -2,13 +2,14 @@ define(
   'sf.b2c.mall.module.price', [
     'can',
     'underscore',
+    'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
     'sf.b2c.mall.api.shopcart.addItemToCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
+  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -107,6 +108,7 @@ define(
           // 用户如果如果登录
           this.addCart(itemId);
         }else{
+          store.set('temp-action-addCart', {itemId: itemId});
           window.trigger('showLogin', [window.location.href]);
         }
       },
