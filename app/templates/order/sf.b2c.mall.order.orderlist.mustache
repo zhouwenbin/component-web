@@ -9,7 +9,7 @@
   <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
 </div>
 
-<table>
+<table class="allOrderItemList">
   <thead>
       <tr>
           <th class="th1">包裹<span>|</span></th>
@@ -26,21 +26,28 @@
     {{#if orderListIsNotEmpty}}
     {{#each orders}}
       <tr>
-        <th colspan="7"><h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2></th>
+        <th colspan="7">
+          <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+          {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
+        </th>
       </tr>
       {{#each orderPackageItemList}}
         <tr>
             <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
+              {{#if isNullPackageNo}}
               <span class="label label-error">
-                <span class="icon icon79"></span>包裹{{@index}}<i></i>
+                <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
               </span>
+              {{/if}}
               <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+              {{#if isNullPackageNo}}
               <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+              {{/if}}
             </td>
 
             {{#first orderGoodsItemList}}
               <td class="td2">
-                <img src="{{thumbImgUrl}}" alt="" />
+                <img src="{{productImage.thumbImgUrl}}" alt="" />
                 <h3>{{goodsName}}</h3>
               </td>
               <td class="td3">
@@ -51,10 +58,26 @@
             {{/first}}
 
             <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
-            <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">{{orderStatus}}</td>
             <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+              <div>{{orderStatus}}</div>
+              {{#if showRouter}}
+              <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                <div class="tooltip-pos">
+                  <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                  <div class="tooltip-outer">
+                    <div class="tooltip" id="traceList">
+                      努力加载中
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{/if}}
+            </td>
+            <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+              {{#if isNotShowEndTime}}
               <span>剩余付款时间</span>
-              <div class="text-error">{{shippingTime}}</div>
+              <div id="showOrderEndTime" class="text-error"></div>
+              {{/if}}
               {{{optionHMTL}}}
             </td>
         </tr>
@@ -62,11 +85,11 @@
           {{#each orderGoods}}
             <tr>
               <td class="td2">
-                <img src="{{thumbImgUrl}}" alt="" />
+                <img src="{{productImage.thumbImgUrl}}" alt="" />
                 <h3>{{goodsName}}</h3></td>
               <td class="td3">
-                <del>{{sf-price originPrice}}</del>
-                <div>{{sf-price price}}</div>
+                <del>{{sf.price originPrice}}</del>
+                <div>{{sf.price price}}</div>
               </td>
               <td class="td4">{{quantity}}</td>
             </tr>
@@ -80,7 +103,7 @@
   </tbody>
 
   <!--代付款订单-->
-  <tbody id="notPayOrderList">
+  <tbody class="hide" id="notPayOrderList">
     {{#if notPayOrderListIsNotEmpty}}
     {{#each notPayOrderList}}
     <tr>
@@ -95,7 +118,7 @@
   </tbody>
 
   <!--待发货订单-->
-  <tbody id="notSendOrderList">
+  <tbody class="hide" id="notSendOrderList">
     {{#if notSendOrderListIsNotEmpty}}
     {{#each notSendOrderList}}
     <tr>
@@ -111,7 +134,7 @@
 
   <!--待收货订单-->
 
-  <tbody id="notGetOrderList">
+  <tbody class="hide" id="notGetOrderList">
     {{#if notGetOrderListIsNotEmpty}}
     {{#each notGetOrderList}}
     <tr>
