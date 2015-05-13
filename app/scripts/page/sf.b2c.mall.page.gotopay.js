@@ -104,8 +104,8 @@ define(
       },
 
       showOnlyAliPayMap: {
-        'alipay_intl': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
-        'alipay': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio "></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>'
+        'alipay_intl': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
+        'alipay': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>'
       },
 
       '.order-r1c1 click': function(element, event) {
