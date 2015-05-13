@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.promotion.receivePro
+  * @class sf.b2c.mall.api.shopcart.updateItemNumInCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.promotion.receivePro',
+'sf.b2c.mall.api.shopcart.updateItemNumInCart',
 [
   'jquery',
   'can',
@@ -22,18 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'promotion.receivePro',
+      METHOD_NAME: 'shopcart.updateItemNumInCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'channel': 'string',
-        'event': 'string'
+        'itemId': 'string',
+        'num': 'int'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '12000020': '用户已不是新用户，不能获取新手优惠'
+        '15000100': '请求参数有误'
       }
     }
   });

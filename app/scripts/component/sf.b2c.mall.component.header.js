@@ -22,6 +22,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util',
+  'sf.b2c.mall.component.header.520',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
   'text!template_header_channel_navigator',
@@ -29,6 +30,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
 ], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+  SFHeader520,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -157,6 +159,8 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
+
+      this.renderMap['template_header_520'].call(this, that.data);
       // this.showAD();
     },
 
@@ -266,6 +270,10 @@ define('sf.b2c.mall.component.header', [
 
         this.element.find('.header-channel-navigator').html(html);
       },
+
+      'template_header_520': function(data) {
+        new SFHeader520('.sf-b2c-mall-header');
+      }
     },
 
     supplement: function(data) {
