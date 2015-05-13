@@ -5,16 +5,21 @@
 @import 'components/nataral-video';
 @import 'components/mycoupon';
 
+.header-c1 .icon10{
+	margin-right: 10px;
+}
+
 .nataral{
 	background: #fff;
 }
+
 .nataral-header{
 	background:#fff;
 }
-.nataral-header h1{	
+.nataral-header h1{
 	font-size:26px;
 	font-weight: normal;
-	padding-bottom: 15px;	
+	padding-bottom: 15px;
 	padding-top: 30px;
 }
 .nataral-header h1 span{
@@ -25,7 +30,7 @@
 	margin-right:10px;
 }
 .nataral .crumbs{
-	border-top: 1px solid #f3f3f3;	
+	border-top: 1px solid #f3f3f3;
 	padding-top: 15px;
 	color:#ccc;
 }
@@ -52,7 +57,7 @@
 .nataral-index .product-list ul{
 	margin-left:-20px;
 }
-.nataral-index .product-list li{	
+.nataral-index .product-list li{
 	border:none;
 	border:1px solid #f2f2f2 \9;
 	box-shadow:0 1px 2px rgba(0,0,0,0.07);
