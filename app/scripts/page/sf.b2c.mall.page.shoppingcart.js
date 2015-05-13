@@ -29,10 +29,10 @@ define(
       render: function() {
       	var that = this;
 
-        new SFShoppingCart('body');
+        new SFShoppingCart('.shopingcartpage');
   		}
 
     });
 
-    new shoppingCart('body');
+    new shoppingCart('.shopingcartpage');
   })

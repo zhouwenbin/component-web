@@ -5,44 +5,154 @@
   <li id="notGetOrderListTab"><a href="">待收货<strong>{{notGetOrderListfLength}}</strong></a></li>
 </ul>
 
-<div class="myorder-search">
-  <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+<!--所有订单-->
+<div class="justwrapdiv">
+  {{#if orderListIsNotEmpty}}
+  <div class="myorder-search">
+    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+    <div class="searchNoResult visuallyhidden" style="display:inline-block;">
+      <span class="icon icon88"></span>
+      <span class="text-error">未搜索到相应订单</span>
+    </div>
+  </div>
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead> 
+    <tbody>
+      
+      {{#each orders}}
+        <tr>
+          <th colspan="7">
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
+            {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
+            </h2>
+          </th>
+        </tr>
+        {{#each orderPackageItemList}}
+          <tr>
+              <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
+                {{#packageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
+                </span>
+                {{/packageNo}}
+                <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+                {{#packageNo}}
+                <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+                {{/packageNo}}
+              </td>
+
+              {{#first orderGoodsItemList}}
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3>
+                </td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              {{/first}}
+
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                <div>{{orderStatus}}</div>
+                {{#if showRouter}}
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                  <div class="tooltip-pos">
+                    <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                    <div class="tooltip-outer">
+                      <div class="tooltip" id="traceList">
+                        努力加载中
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+              </td>
+              <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                {{#if isNotShowEndTime}}
+                <span>剩余付款时间</span>
+                <div class="showOrderEndTime text-error"></div>
+                {{/if}}
+                {{{optionHMTL}}}
+              </td>
+          </tr>
+          {{#others orderGoodsItemList}}
+            {{#each orderGoods}}
+              <tr>
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3></td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              </tr>
+            {{/each}}<!--end orderGoodsItemList-->
+          {{/others}}
+        {{/each}}<!--end orderPackageItemList-->
+      {{/each}}<!--end orders-->   
+    </tbody>
+  </table>
+  <!-- 分页 -->
+  <div class="sf-b2c-mall-order-orderlist-pagination"></div>
+  <!-- 分页 -->
+  {{else}}
+    <div class="noOrderShow">
+      
+    </div>  
+  {{/if}}
 </div>
 
-<table class="allOrderItemList">
-  <thead>
+<!--代付款订单-->
+<div class="justwrapdiv hide">
+  {{#if notPayOrderListIsNotEmpty}}
+  <div class="myorder-search">
+    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+  </div>
+
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead> 
+    <tbody>  
+    {{#each notPayOrderList}}
       <tr>
-          <th class="th1">包裹<span>|</span></th>
-          <th class="th2">商品</th>
-          <th class="th3">售价（元）</th>
-          <th class="th4">数量<span>|</span></th>
-          <th class="th5">实付款（元）<span>|</span></th>
-          <th class="th6">订单状态<span>|</span></th>
-          <th class="th7">操作</th>
-      </tr>
-  </thead>
-  <!--所有订单-->
-  <tbody id="allorder">
-    {{#if orderListIsNotEmpty}}
-    {{#each orders}}
-      <tr>
-        <th colspan="7">
-          <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-          {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
-        </th>
+          <th colspan="7">
+              <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
+          </th>
       </tr>
       {{#each orderPackageItemList}}
         <tr>
             <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
-              {{#if isNullPackageNo}}
-              <span class="label label-error">
-                <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
-              </span>
-              {{/if}}
+              {{#packageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
+                </span>
+              {{/packageNo}}
               <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
-              {{#if isNullPackageNo}}
+              {{#packageNo}}
               <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
-              {{/if}}
+              {{/packageNo}}
             </td>
 
             {{#first orderGoodsItemList}}
@@ -75,8 +185,8 @@
             </td>
             <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
               {{#if isNotShowEndTime}}
-              <span>剩余付款时间</span>
-              <div id="showOrderEndTime" class="text-error"></div>
+                <span>剩余付款时间</span>
+                <div class="showOrderEndTime text-error"></div>
               {{/if}}
               {{{optionHMTL}}}
             </td>
@@ -96,55 +206,217 @@
           {{/each}}<!--end orderGoodsItemList-->
         {{/others}}
       {{/each}}<!--end orderPackageItemList-->
-    {{/each}}<!--end orders-->
-    {{else}}
-
-    {{/if}}
+    {{/each}}    
   </tbody>
+  </table>
+  {{else}}
+    <div class="noOrderShow">
+      
+    </div>
+  {{/if}}
+</div>
 
-  <!--代付款订单-->
-  <tbody class="hide" id="notPayOrderList">
-    {{#if notPayOrderListIsNotEmpty}}
-    {{#each notPayOrderList}}
-    <tr>
-        <th colspan="7">
+
+<!--待发货订单-->
+<div class="justwrapdiv hide">
+  {{#if notSendOrderListIsNotEmpty}}
+  <div class="myorder-search">
+    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+  </div>
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead> 
+    <tbody>
+      
+      {{#each notSendOrderList}}
+        <tr>
+          <th colspan="7">
             <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
+            {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
+          </th>
+        </tr>
+        {{#each orderPackageItemList}}
+          <tr>
+              <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
+                {{#if isNullPackageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
+                </span>
+                {{/if}}
+                <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+                {{#if isNullPackageNo}}
+                <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+                {{/if}}
+              </td>
 
-    {{else}}
-    {{/if}}
-  </tbody>
+              {{#first orderGoodsItemList}}
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3>
+                </td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              {{/first}}
 
-  <!--待发货订单-->
-  <tbody class="hide" id="notSendOrderList">
-    {{#if notSendOrderListIsNotEmpty}}
-    {{#each notSendOrderList}}
-    <tr>
-        <th colspan="7">
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                <div>{{orderStatus}}</div>
+                {{#if showRouter}}
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                  <div class="tooltip-pos">
+                    <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                    <div class="tooltip-outer">
+                      <div class="tooltip" id="traceList">
+                        努力加载中
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+              </td>
+              <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                {{#if isNotShowEndTime}}
+                <span>剩余付款时间</span>
+                <div id="showOrderEndTime" class="text-error"></div>
+                {{/if}}
+                {{{optionHMTL}}}
+              </td>
+          </tr>
+          {{#others orderGoodsItemList}}
+            {{#each orderGoods}}
+              <tr>
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3></td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              </tr>
+            {{/each}}<!--end orderGoodsItemList-->
+          {{/others}}
+        {{/each}}<!--end orderPackageItemList-->
+      {{/each}}<!--end orders-->   
+    </tbody>
+  </table>
+  {{else}}
+    <div class="noOrderShow">
+      
+    </div>    
+  {{/if}}
+</div>
+
+<!--待收货订单-->
+<div class="justwrapdiv hide">
+  {{#if notGetOrderListIsNotEmpty}}
+  <div class="myorder-search">
+    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+  </div>
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead> 
+    <tbody>
+      
+      {{#each notGetOrderList}}
+        <tr>
+          <th colspan="7">
             <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
+            {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
+          </th>
+        </tr>
+        {{#each orderPackageItemList}}
+          <tr>
+              <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
+                {{#if isNullPackageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
+                </span>
+                {{/if}}
+                <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+                {{#if isNullPackageNo}}
+                <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+                {{/if}}
+              </td>
 
-    {{else}}
-    {{/if}}
-  </tbody>
+              {{#first orderGoodsItemList}}
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3>
+                </td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              {{/first}}
 
-  <!--待收货订单-->
-
-  <tbody class="hide" id="notGetOrderList">
-    {{#if notGetOrderListIsNotEmpty}}
-    {{#each notGetOrderList}}
-    <tr>
-        <th colspan="7">
-            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
-
-    {{else}}
-    {{/if}}
-  </tbody>
-</table>
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+              <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                <div>{{orderStatus}}</div>
+                {{#if showRouter}}
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                  <div class="tooltip-pos">
+                    <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                    <div class="tooltip-outer">
+                      <div class="tooltip" id="traceList">
+                        努力加载中
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+              </td>
+              <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                {{#if isNotShowEndTime}}
+                <span>剩余付款时间</span>
+                <div id="showOrderEndTime" class="text-error"></div>
+                {{/if}}
+                {{{optionHMTL}}}
+              </td>
+          </tr>
+          {{#others orderGoodsItemList}}
+            {{#each orderGoods}}
+              <tr>
+                <td class="td2">
+                  <img src="{{productImage.thumbImgUrl}}" alt="" />
+                  <h3>{{goodsName}}</h3></td>
+                <td class="td3">
+                  <del>{{sf.price originPrice}}</del>
+                  <div>{{sf.price price}}</div>
+                </td>
+                <td class="td4">{{quantity}}</td>
+              </tr>
+            {{/each}}<!--end orderGoodsItemList-->
+          {{/others}}
+        {{/each}}<!--end orderPackageItemList-->
+      {{/each}}<!--end orders-->   
+    </tbody>
+  </table>
+  {{else}}
+    <div class="noOrderShow">
+      
+    </div>    
+  {{/if}}
+</div>
