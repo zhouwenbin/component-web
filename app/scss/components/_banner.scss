@@ -3,6 +3,125 @@
 }
 .banner-scroll{
 	display: block;
-	height:539px;
-	background: url(#{$bg-url}banner-scroll.jpg) no-repeat center top;
+	height:820px;
+	background: url(#{$bg-url}520bigbannerbackground.jpg) no-repeat center top;
+
+  & .line{
+    border-color: rgb(255 231 235);
+    width: 450px;
+    margin: 15px 48px;
+  }
+
+  & .pm{
+    width: 1326px;
+  }
+
+  & .step1{
+    padding:35px 0 0 40px;
+  }
+
+  & .step2{
+    padding:85px 0 0 40px;
+
+    & img{
+      vertical-align: top;
+    }
+  }
+
+  & .step1tip{
+    font-size:16px;
+    margin-left:6px;
+  }
+
+  & .step2tip{
+    font-size:16px;
+    margin-left:6px;
+    margin-bottom: 15px;
+    display:inline-block;
+    width: 400px;
+    line-height:20px;
+  }
+
+  & .step1info{
+    padding:0px 0 0 55px;
+    width: 350px;
+  }
+
+  & .fl:before{
+    left: 0;
+  }
+
+  & li{
+    margin-bottom: 9px;
+  }
+
+  & input{
+    padding-left: 5px;
+    vertical-align: middle;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    color: #999;
+    height: 40px;
+  }
+
+  & .input-username{
+    width: 350px;
+  }
+
+  & .input1 {
+    width: 215px;
+  }
+
+  & .password {
+    width: 350px;
+  }
+
+  & .invitemobile {
+    width: 300px;
+  }
+
+  & .invitemessages{
+    list-style:none;
+  }
+
+  & .invitemessages li{
+    font-size: 14px;
+    float:left;
+    list-style:none;
+    margin-right: 20px;
+  }
+
+  & .messagedetail{
+    font-size: 14px;
+    margin: 15px 0 20px 0;
+    line-height: 20px;
+  }
+
+  & .invitemobilecode{
+    width: 200px;
+  }
+
+  & .showmobilecode{
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+  & .nextmobilecode{
+    font-size: 14px;
+  }
+
+  & .step1success{
+    padding:35px 0 0 40px;
+    text-align: center;
+    width: 450px
+  }
+
+  & .step1successtip{
+    font-size: 30px;
+  }
+
+  & .step1successinfo{
+    font-size: 16px;
+    margin-top: 10px;
+  }
 }
