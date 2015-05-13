@@ -199,12 +199,15 @@ define('sf.b2c.mall.component.header', [
      */
     checkTempActionAddCart: function () {
       var params = store.set('temp-action-addCart');
-      var itemId = params.itemId;
-      var num = params.num || 1;
 
-      if (itemId && num) {
-        store.remove('temp-action-addCart');
-        this.addCart(itemId, num);
+      if (params) {
+        var itemId = params.itemId;
+        var num = params.num || 1;
+
+        if (itemId && num) {
+          store.remove('temp-action-addCart');
+          this.addCart(itemId, num);
+        }
       }
     },
 
