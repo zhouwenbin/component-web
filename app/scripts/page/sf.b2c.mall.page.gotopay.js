@@ -78,7 +78,7 @@ define(
             that.options.detailAddress = data.orderItem.orderAddressItem.detailAddress;
             that.options.mobile = data.orderItem.orderAddressItem.mobile;
             that.options.certNo = data.orderItem.orderAddressItem.certNo;
-            that.options.currentPayWay = that.getPayWay[JSON.parse(data.optionalPayTypeList)[0]];
+            that.options.currentPayWay = that.getPayWay(JSON.parse(data.optionalPayTypeList)[0]);
             var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', that.options);
             $('#gotopayDIV').html(html);
           }).fail(function() {
@@ -88,9 +88,9 @@ define(
 
       getPayWay: function(paytype){
         if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
-          return this.showOnlyAliPayMap(paytype);
+          return this.showOnlyAliPayMap[paytype];
         } else {
-          return this.showPayMap(paytype);
+          return this.showPayMap[paytype];
         }
       },
 
