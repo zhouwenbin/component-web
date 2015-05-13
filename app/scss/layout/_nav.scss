@@ -22,7 +22,8 @@
 	display:block;
 
 }
-.nav .icon{
+.nav .icon54,
+.nav .icon55{
 	position: absolute;
 	right:0px;
 	top:5px;
@@ -33,13 +34,28 @@
 	color:#fff;
 }
 .nav-c2{
-	display: none;
+	background: #181b20;
+	padding-left: 17px;
+	padding-right: 30px;
 }
 .nav-c2 a{
-	margin: 0 10px;
-	color: #666;
-	display:inline-block;
-	height:100%;
+	color: #fff;
+	display: block;
+}
+.nav-c2 .label{
+	padding: 0 6px;
+	background: #dc3334;
+	margin-left: 10px;
+}
+.nav-c2 .label i{
+	border-color: transparent #dc3334 transparent transparent;
+	left: -6px;
+	right: auto;
+}
+.nav-text{
+	margin-left: 15px;
+	border-left: 1px solid #5a5c60;
+	padding: 4px 0 4px 15px;
 }
 .nav-fixed{
 	height:0;
