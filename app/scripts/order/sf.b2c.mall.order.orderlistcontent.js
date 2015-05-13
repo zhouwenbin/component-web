@@ -14,9 +14,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.product.findRecommendProducts'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts) {
 
     return can.Control.extend({
 
@@ -50,7 +51,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
       init: function(element, options) {
         var that = this;
         this.render();
-        setInterval(function(){that.setCountDown()},1000);
       },
 
       render: function(data) {
@@ -89,11 +89,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.notGetOrderList = [];
 
               _.each(that.options.orders, function(order) {
+
                 //如果订单状态是已提交，就将订单放入待付款集合中
                 if (order.orderStatus == 'SUBMITED') {
                   that.options.notPayOrderList.push(order);
-                  that.options.isNotShowEndTime = true;
-                };
+                  order.isNotShowEndTime = true;
+                  order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
+                  setInterval(function() {
+                    that.setCountDown(order.leftTime)
+                  }, 1000);
+                } else {
+                  order.isNotShowEndTime = false;
+                }
                 //如果订单状态是待发货，就将订单放入待发货集合中
                 if (order.orderStatus == 'WAIT_SHIPPING') {
                   that.options.notSendOrderList.push(order);
@@ -104,20 +111,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 };
                 //如果订单状态是自动取消、运营取消和用户取消，则显示订单可删除按钮
                 if (order.orderStatus == 'AUTO_CANCEL' || order.orderStatus == 'USER_CANCEL' || order.orderStatus == 'OPERATION_CANCEL') {
-                  that.options.isShowDeleteIcon = true;
+                  order.isShowDeleteIcon = true;
                 } else {
-                  that.options.isShowDeleteIcon = false;
+                  order.isShowDeleteIcon = false;
                 }
                 //如果包裹号为空，则不展示包裹号和发货地
-                if (order.orderPackageItemList[0].packageNo !== '') {
-                  that.options.isNullPackageNo = false;
-                } else {
-                  that.options.isNullPackageNo = true;
-                }
-                that.options.paymentAmount = order.totalPrice - order.discount;
-                that.options.showRouter = that.routeMap[order.orderStatus];
-                that.options.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                that.options.leftTime = that.options.orders[0].gmtCreate + 7200000 - getOrderList.getServerTime();
+                // if (order.orderPackageItemList[0].packageNo !== '') {
+                //   order.isNullPackageNo = true;
+                // } else {
+                //   order.isNullPackageNo = false;
+                // }
+                order.paymentAmount = order.totalPrice - order.discount;
+                order.showRouter = that.routeMap[order.orderStatus];
+                order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
@@ -153,27 +159,38 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.notGetOrderListIsNotEmpty = (that.options.notGetOrderList.length > 0);
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
-              that.element.html(html);      
-            } else {
+              that.element.html(html);
+              //商品推荐
+              // var findRecommendProducts = new SFFindRecommendProducts({
+              //   'itemId': -1,
+              //   'size': 3
+              // });
 
-              //没有订单时的展示状态
-              that.options.notPayOrderListLength = 0;
-              that.options.notSendOrderListLength = 0;
-              that.options.notGetOrderListfLength = 0;
-              that.options.orderListIsNotEmpty = false;
-              that.options.notPayOrderListIsNotEmpty = false;
-              that.options.notSendOrderListIsNotEmpty = false;
-              that.options.notGetOrderListIsNotEmpty = false;
+              // findRecommendProducts.sendRequest()
+              //   .fail(function(error) {})
+              //   .done(function(data) {
+              //     data.hasData = true;
+              //     if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
+              //       data.hasData = false;
+              //     }
+              //     _.each(data.value, function(item) {
+              //       item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
+              //       item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+              //     })
+
+              //     var template = can.view.mustache(that.noResultShowPageTemplate());
+              //     $('.noOrderShow').html(template(data));
+              //   });
+              //分页 保留 已经调通 误删 后面设计会给样式
+              that.options.page = new PaginationAdapter();
+              that.options.page.format(data.page);
+              new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
+
+            } else {
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
               that.element.html(html);
             }
-
-            //分页 保留 已经调通 误删 后面设计会给样式
-            that.options.page = new PaginationAdapter();
-            that.options.page.format(data.page);
-            new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
-
           })
           .fail(function(error) {
             console.error(error);
@@ -185,22 +202,46 @@ define('sf.b2c.mall.order.orderlistcontent', [
         this.render(params);
       },
       //倒计时
-      setCountDown: function() {
-        var leftTime = this.options.leftTime;
+      setCountDown: function(leftTime) {
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $('#showOrderEndTime').html(hour + "小时" + minute + "分" + second + "秒");
+        $('.showOrderEndTime').html(hour + "小时" + minute + "分" + second + "秒");
       },
 
       '.myorder-tab li click': function(element, event) {
         event && event.preventDefault();
         var index = $('.myorder-tab li').index($(element));
         $(element).addClass('active').siblings().removeClass('active');
-        $('.allOrderItemList > tbody').eq(index).show().siblings('tbody').hide();
+        $('.justwrapdiv').eq(index).show().siblings('.justwrapdiv').hide();
       },
+
+      //无订单页面展示状态
+      noResultShowPageTemplate: function() {
+        return '<div class="myorder-none">' +
+          '<span class="icon icon89"></span>' +
+          '<p>亲，您当前还没有任何订单。<br /><a href="www.sfht.com" class="text-link">去逛逛</a></p>' +
+          '< /div>' +
+          '{{#if hasData}}' +
+          '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
+          '{{#each value}}' +
+          '<li>' +
+          '<div class="product-r1">' +
+          '<a href="{{linkUrl}}><img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '</div>' +
+          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
+          '<div class="product-r2 clearfix">' +
+          '<div class="product-r2c1 fl">' +
+          '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
+          '</div>' +
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>' +
+          '</div>' +
+          '</li>' +
+          '</ul></div></div>'
+      },
+
       /**
        * [description 查看物流触发鼠标悬停事件]
        * @param  {[type]} element 触发事件的元素
@@ -238,7 +279,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               var len = result.userRoutes.length;
               if (len <= 5) {
                 result.userRoutes = result.userRoutes.reverse();
-              } else {                                                                                                                                                                                                                                                                                                                                                                                                                                                
+              } else {
                 result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
               }
               var template = can.view.mustache(that.getTraceListTemplate());

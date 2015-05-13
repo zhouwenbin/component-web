@@ -229,7 +229,7 @@ requirejs.config({
 
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
-    'sf.b2c.mall.component.shoppingcart': 'scripts/page/sf.b2c.mall.component.shoppingcart',
+    'sf.b2c.mall.component.shoppingcart': 'scripts/component/sf.b2c.mall.component.shoppingcart',
 
 
     'sf.b2c.mall.order.step': 'scripts/order/sf.b2c.mall.order.step',
