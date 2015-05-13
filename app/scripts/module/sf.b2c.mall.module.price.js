@@ -69,7 +69,8 @@ define(
       },
 
       /**
-       * [加入购物车]
+       * @author Michael.Lee
+       * @description 加入购物车
        */
       addCart: function (itemId, num) {
         var addItemToCart = new SFAddItemToCart({
@@ -96,7 +97,7 @@ define(
       },
 
       /**
-       * [添加购物车动作触发]
+       * @description 添加购物车动作触发
        * @param  {element} el
        */
       '.addtocart click': function (el) {
@@ -105,7 +106,7 @@ define(
           // 用户如果如果登录
           this.addCart(itemId);
         }else{
-          window.trigger('showLogin', [window.location.href+'']);
+          window.trigger('showLogin', [window.location.href]);
         }
       },
 

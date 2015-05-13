@@ -146,6 +146,13 @@ define('sf.b2c.mall.component.header', [
 
       this.supplement(this.data);
 
+      // @author Michael.Lee
+      // 用户如果登陆通过接口获取购物车数量
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        this.updateCart();
+      }
+
+      // @todo 保留代码，没有在实际场景中使用，有跨域并要求强制登陆的时候进行处理
       if (this.options.isForceLogin) {
         var that = this;
         // 暂时没有跨域存在在需要控制跳转的页面
@@ -154,15 +161,20 @@ define('sf.b2c.mall.component.header', [
         }
       }
 
+      // @author Michael.Lee
       // 将更新购物车事件注册到window上
-      // 其他地方添加需要更新mini购物车的时候，需要trigger 'updateCart'事件
+      // 其他地方添加需要更新mini购物车的时候调用window.trigger('updateCart')
       can.on.call(window, 'updateCart', _.bind(this.updateCart, this));
 
+      // @author Michael.Lee
+      // 将弹出登录框事件注册到window上
+      // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
     },
 
     /**
-     * 更新导航栏购物车，调用接口刷新购物车数量
+     * @author Michael.Lee
+     * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function () {
       // 如果用户已经登陆了，可以进行购物车更新
