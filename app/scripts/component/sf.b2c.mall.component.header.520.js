@@ -28,8 +28,8 @@ define('sf.b2c.mall.component.header.520', [
   template_header_520) {
 
   var DEFAULT_FILLINFO_TAG = 'fillinfo';
-  var DEFAULT_CAPTCHA_LINK1 = 'http://checkcode1.sfht.com/get.do/';
-  var DEFAULT_CAPTCHA_LINK = 'http://121.42.42.43:9090/captcha.web/bin/get.do';
+  var DEFAULT_CAPTCHA_LINK = 'http://checkcode1.sfht.com/get.do/';
+  var DEFAULT_CAPTCHA_LINK1 = 'http://121.42.42.43:9090/captcha.web/bin/get.do';
   var DEFAULT_CAPTCHA_ID = 'haitaob2c';
   var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
