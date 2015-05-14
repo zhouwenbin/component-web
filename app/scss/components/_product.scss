@@ -1,6 +1,4 @@
-.product{
-	overflow: hidden;
-}
+
 .product .mh{
 	line-height: 24px;
 	margin-bottom: 37px;
@@ -160,4 +158,11 @@
 }
 .product-hot{	
 	background:url(#{$bg-url}product-hot.png) no-repeat;
+}
+.product .icon90:first-child{
+	z-index: -1;
+	position: relative;
+	left: 0;
+	top:0;
+	margin-right: -35px;
 }

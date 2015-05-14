@@ -311,5 +311,31 @@ $(function(){
   .delay(100)
   .animate({
     "height":90
-  },300)
+  },300);
+  //----------加入购物车-------------//
+  $('.product .icon90').on("click",function(){
+    var target=$('.nav .icon100').eq(1).offset(),
+        targetX=target.left,
+        targetY=target.top,
+        current=$(this).offset(),
+        currentX=current.left,
+        currentY=current.top;
+    $(this).siblings()
+    .css({
+        zIndex:1
+    })
+    .animate({
+      left:targetX-currentX,
+      top:targetY-currentY,
+      opacity:0
+    },500,"swing",function(){
+        $(this).css({
+            left:0,
+            top:0,
+            opacity:1,
+            zIndex:-1
+        })
+    });
+    return false;
+  });
 })
