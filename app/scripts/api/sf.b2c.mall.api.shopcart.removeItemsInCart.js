@@ -25,8 +25,7 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'shopcart.removeItemsInCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemIds': 'string',
-        'goods': 'json'
+        'itemIds': 'string'
       },
       OPTIONAL: {
       },

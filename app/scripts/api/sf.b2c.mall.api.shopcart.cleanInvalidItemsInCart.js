@@ -25,14 +25,13 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'shopcart.cleanInvalidItemsInCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'goods': 'json'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': 'shop chart unkown error'
+        '15000100': '请求参数有误'
       }
     }
   });

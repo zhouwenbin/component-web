@@ -25,8 +25,7 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'shopcart.addItemToCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemId': 'string',
-        'num': 'long'
+        'items': 'json'
       },
       OPTIONAL: {
       },

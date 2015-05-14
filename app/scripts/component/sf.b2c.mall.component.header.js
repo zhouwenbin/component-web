@@ -198,7 +198,7 @@ define('sf.b2c.mall.component.header', [
      * @return
      */
     checkTempActionAddCart: function () {
-      var params = store.set('temp-action-addCart');
+      var params = store.get('temp-action-addCart');
 
       if (params) {
         var itemId = params.itemId;

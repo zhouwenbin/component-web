@@ -32,7 +32,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': 'shop chart unkown error'
+        '15000100': '请求参数有误'
       }
     }
   });
