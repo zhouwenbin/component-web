@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.downInviteSms
+  * @class sf.b2c.mall.api.order.deleteOrder
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.downInviteSms',
+'sf.b2c.mall.api.order.deleteOrder',
 [
   'jquery',
   'can',
@@ -22,21 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.downInviteSms',
+      METHOD_NAME: 'order.deleteOrder',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'invtMobile': 'string',
-        'vfcode': 'string',
-        'smsCon': 'string'
+        'orderId': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000020': '账户已注册',
-        '1000100': '验证码错误',
-        '1000230': '手机号错误，请输入正确的手机号'
+        '4000100': 'order unkown error'
       }
     }
   });
