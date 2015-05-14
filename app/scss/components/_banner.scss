@@ -17,6 +17,13 @@
     width: 1326px;
   }
 
+  & .close{
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size: 32px;
+  }
+
   & .banner-scroll-inner{
     width: 550px;
   }

@@ -165,7 +165,9 @@ define('sf.b2c.mall.component.header.520', [
               var fn = can.view.mustache(ERROR_NO_SET_PWD);
 
               new SFMessage(null, {
-                'tip': fn({tel:username}),
+                'tip': fn({
+                  tel: username
+                }),
                 'type': 'error'
               });
 
@@ -375,7 +377,7 @@ define('sf.b2c.mall.component.header.520', [
         var receivePro = new SFReceivePro({
           "channel": "B2C",
           "event": "REGISTER_USER_SUCCESS",
-          "password": md5(password+SFConfig.setting.md5_key)
+          "password": md5(password + SFConfig.setting.md5_key)
         });
 
         this.component.mobileRegister.sendRequest()
@@ -388,7 +390,7 @@ define('sf.b2c.mall.component.header.520', [
               });
 
               receivePro.sendRequest();
-          }
+            }
 
             store.set("alipaylogin", "false");
             SFFn.dotCode();
@@ -417,9 +419,9 @@ define('sf.b2c.mall.component.header.520', [
       var sessionId = md5(Date().valueOf() + window.parseInt(Math.random() * 10000));
       this.data.attr('sessionId', sessionId);
       var verifiedCodeUrl = DEFAULT_CAPTCHA_LINK + '?' + $.param({
-          type: "default",
-          sessionID: sessionId
-        });
+        type: "default",
+        sessionID: sessionId
+      });
 
       this.data.attr('verifiedCodeUrl', verifiedCodeUrl);
     },
@@ -429,8 +431,8 @@ define('sf.b2c.mall.component.header.520', [
       this.getVerifiedCode();
     },
 
-    '#inviteTaBtn click': function($element, event){
-      if(!SFComm.prototype.checkUserLogin.call(that)) {
+    '#inviteTaBtn click': function($element, event) {
+      if (!SFComm.prototype.checkUserLogin.call(that)) {
         new SFMessage(null, {
           'tip': "请先注册顺丰海淘会员",
           'type': 'error'
@@ -473,6 +475,19 @@ define('sf.b2c.mall.component.header.520', [
             });
           });
       }
+    },
+
+    '.close click': function(element, event) {
+      $('.banner-scroll').height(0)
+        .animate({
+          'height': 0
+        }, 1000, function() {
+          $(this).css({
+            "background-image": "url(../img/banner-scroll2.jpg)"
+          })
+        }).delay(100).animate({
+          "height": 90
+        }, 300);
     },
 
     '.radio click': function($element, event) {
