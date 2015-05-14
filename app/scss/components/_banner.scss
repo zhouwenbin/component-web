@@ -89,7 +89,7 @@
   }
 
   & .input1 {
-    width: 215px;
+    width: 210px;
   }
 
   & .password {
@@ -164,5 +164,16 @@
     & span{
       margin-right: 10px;
     }
+  }
+
+  & .soldout{
+    position:absolute;
+    top:300px;
+    width:465px;
+    margin:0 30px;
+    text-align:center;
+    font-size:16px;
+    line-height:25px;
+    display:none;
   }
 }
