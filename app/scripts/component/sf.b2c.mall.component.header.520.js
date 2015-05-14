@@ -451,13 +451,25 @@ define('sf.b2c.mall.component.header.520', [
         this.component.mobileRegister.sendRequest()
           .done(function(data) {
             if (data.csrfToken) {
-              // store.set('csrfToken', data.csrfToken);
-              can.route.attr({
-                'tag': 'success',
-                'csrfToken': data.csrfToken
-              });
 
-              receivePro.sendRequest();
+              store.set('csrfToken', data.csrfToken);
+
+              receivePro
+                .sendRequest()
+                .done(function(proInfo) {
+                  if (proInfo.couponInfos) {
+                    $(".step1").hide();
+                    $(".step1success").show();
+                  } else {
+                    $(".notsoldout").hide();
+                    $(".soldout").show();
+                  }
+                })
+                .fail(function(errorCode) {
+                  $(".step1").hide();
+                  $(".step1successinfo").hide();
+                  $(".step1success").show();
+                });
             }
 
             store.set("alipaylogin", "false");

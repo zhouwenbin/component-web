@@ -28,7 +28,7 @@
 	font-size: 14px;
 }
 .mycoupon-h li.active{
-	background: #fff;	
+	background: #fff;
 	border-top-color: #dc3334;
 }
 .mycoupon-h li.active a{
@@ -104,7 +104,7 @@ p.mycoupon-b{
 }
 .mycoupon-b2 .mycoupon-r1{
 	background-image: url(#{$bg-url}coupon-r1-2.png);
-	
+
 }
 
 .mycoupon-b3 .mycoupon-r1{
@@ -119,4 +119,13 @@ p.mycoupon-b{
 }
 .mycoupon-line3 p{
 	line-height: 22px;
+}
+
+.mycoupon-b .gotohref{
+	width: 100%;
+	margin-top:10px;
+}
+
+.mycouponunused{
+	height: 200px;
 }
