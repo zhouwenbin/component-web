@@ -164,59 +164,6 @@ define('sf.b2c.mall.component.header', [
       // this.showAD();
     },
 
-    showAD: function() {
-
-      if (this.needShowAd()) {
-
-        $('.banner-scroll')
-          .height(0)
-          .animate({
-            "height": 539
-          }, 1000)
-          .delay(5000)
-          .animate({
-            'height': 0
-          }, 1000, function() {
-            $(this).css({
-              "background-image": "url(../img/banner-scroll2.jpg)"
-            })
-          })
-          .delay(100)
-          .animate({
-            "height": 90
-          }, 300)
-
-        store.set("lastadshowtime", new Date().getTime());
-      }
-    },
-
-    needShowAd: function() {
-      // 如果已经登录了 则不显示
-      if (store.get('csrfToken')) {
-        return false;
-      }
-
-      // 如果显示没超过一天 则不要显示广告
-      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
-        return false;
-      }
-
-      var url = window.location.href;
-
-      //URL补齐
-      if (url == "http://www.sfht.com/") {
-        url = url + "index.html";
-      }
-
-      // 如果不是详情页 首页和活动页 则不显示广告
-      var isShowURL = /index|activity|detail/.test(url);
-      if (!isShowURL) {
-        return false;
-      }
-
-      return true;
-    },
-
     /**
      * @description 对页面进行渲染
      * @param  {Map} data 渲染页面的数据

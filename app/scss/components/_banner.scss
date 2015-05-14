@@ -1,9 +1,17 @@
 .banner{
 	margin-bottom:20px;
 }
+
+.banner-scroll2{
+  height: 0px;
+  overflow: hidden;
+  /*background: url(#{$bg-url}banner-scroll2.jpg) no-repeat center top;*/
+}
+
 .banner-scroll{
 	display: block;
-	height:820px;
+	height:0px;
+  overflow: hidden;
 	background: url(#{$bg-url}520bigbannerbackground.jpg) no-repeat center top;
 
   & .line{
