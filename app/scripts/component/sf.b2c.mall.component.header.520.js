@@ -28,8 +28,7 @@ define('sf.b2c.mall.component.header.520', [
   template_header_520) {
 
   var DEFAULT_FILLINFO_TAG = 'fillinfo';
-  var DEFAULT_CAPTCHA_LINK = 'http://checkcode1.sfht.com/get.do/';
-  var DEFAULT_CAPTCHA_LINK1 = 'http://121.42.42.43:9090/captcha.web/bin/get.do';
+  var DEFAULT_CAPTCHA_LINK = 'http://checkcode1.sfht.com/get.do';
   var DEFAULT_CAPTCHA_ID = 'haitaob2c';
   var DEFAULT_CAPTCHA_HASH = '5f602a27181573d36e6c9d773ce70977';
 
@@ -515,7 +514,10 @@ define('sf.b2c.mall.component.header.520', [
     },
 
     '#inviteTaBtn click': function($element, event) {
-      if (!SFComm.prototype.checkUserLogin.call(that)) {
+      if ($("#inviteTaBtn").hasClass("disable")) {
+        return;
+      }
+      if (!SFComm.prototype.checkUserLogin.call(this)) {
         new SFMessage(null, {
           'tip': "请先注册顺丰海淘会员",
           'type': 'error',
@@ -526,13 +528,14 @@ define('sf.b2c.mall.component.header.520', [
 
       var inviteMobile = $("#inviteMobile").val();
       var code = $("#inviteMobileCode").val();
-      var message = $(".messagedetail:visible").test();
+      var message = $(".messagedetail:visible").text();
       if (this.checkVerifiedCode.call(this, code) && this.checkInviteMobile(inviteMobile)) {
         var downInviteSms = new SFDownInviteSms({
           invtMobile: inviteMobile,
           vfcode: code,
-          message: message
+          smsCon: message
         });
+        $("#inviteTaBtn").addClass("disable");
         can.when(downInviteSms.sendRequest())
           .done(function(result) {
             if (result) {
@@ -556,10 +559,13 @@ define('sf.b2c.mall.component.header.520', [
               "1000230": "手机号错误，请输入正确的手机号"
             }
             new SFMessage(null, {
-              'tip': errMap[errorCode],
+              'tip': errMap[errorCode] || "邀请失败！",
               'type': 'error',
               'closeTime': MESSAGE_CLOSE_TIME
-            });
+            })
+              .always(function() {
+                $("#inviteTaBtn").removeClass("disable");
+              });
           });
       }
     },
@@ -567,10 +573,10 @@ define('sf.b2c.mall.component.header.520', [
     '.close click': function(element, event) {
       $('.banner-scroll')
         .animate({
-          'height': 0,
+          'height': 0
         }, 1000, function() {
           $(".close").hide();
-        })
+        });
 
       $('.banner-scroll2').delay(100).animate({
         "height": 90
