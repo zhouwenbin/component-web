@@ -87,9 +87,9 @@ define(
               var fn;
 
               if (couponType == "IMPORT_MOVIETICKET") {
-                var fn = thirdpartyMap[couponType];
+                fn = thirdpartyMap[couponType];
               } else {
-                var fn = couponStatusMap[status];
+                fn = couponStatusMap[status];
               }
 
               if (_.isFunction(fn)) {
