@@ -15,9 +15,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.product.findRecommendProducts'
+    'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.order.deleteOrder'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder) {
+
+    can.route.ready();
 
     return can.Control.extend({
 
@@ -45,28 +48,40 @@ define('sf.b2c.mall.order.orderlistcontent', [
           if (orderGoodsItemList.length > 1) {
             return options.fn(options.contexts || this);
           };
+        },
+        //如果订单是已提交，展示倒计时
+        isNotShowEndTime: function(orderStatus, options) {
+          if (orderStatus === '已提交') {
+            return options.fn(options.contexts || this);
+          };
+        },
+        //如果订单是取消状态，展示删除订单按钮
+        isShowDeleteIcon: function(orderStatus, options) {
+          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消') {
+            return options.fn(options.contexts || this);
+          };
         }
       },
 
       init: function(element, options) {
         var that = this;
-        this.render();
-      },
 
-      render: function(data) {
-        var that = this;
+        this.options.tab = new can.Map({
+          'allorderTab': true,
+          'notPayOrderListTab': false,
+          'notSendOrderListTab': false,
+          'notGetOrderListTab': false
+        });
 
-        //note ?
         var routeParams = can.route.attr();
         if (!routeParams.page) {
           routeParams = _.extend(routeParams, {
             page: 1
           });
         }
-
         var params = {
           "query": JSON.stringify({
-            "status": null,
+            "status": routeParams.status,
             "receiverName": that.options.searchValue,
             "orderId": that.options.searchValue,
             "pageNum": routeParams.page,
@@ -74,53 +89,30 @@ define('sf.b2c.mall.order.orderlistcontent', [
           })
         }
 
+        this.render(params);
+      },
+
+      render: function(params) {
+        var that = this;
+
         var getOrderList = new SFGetOrderList(params);
-        getOrderList
-          .sendRequest()
+        getOrderList.sendRequest()
           .done(function(data) {
             if (data.orders) {
-              //所有订单
-              that.options.orders = data.orders;
-              //代付款订单
-              that.options.notPayOrderList = [];
-              //待发货订单
-              that.options.notSendOrderList = [];
-              //待收货订单           
-              that.options.notGetOrderList = [];
 
+              that.options.orders = data.orders;
+              that.options.orderListIsNotEmpty = true;
               _.each(that.options.orders, function(order) {
 
-                //如果订单状态是已提交，就将订单放入待付款集合中
-                if (order.orderStatus == 'SUBMITED') {
-                  that.options.notPayOrderList.push(order);
-                  order.isNotShowEndTime = true;
-                  order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
-                  setInterval(function() {
-                    that.setCountDown(order.leftTime)
-                  }, 1000);
-                } else {
-                  order.isNotShowEndTime = false;
-                }
-                //如果订单状态是待发货，就将订单放入待发货集合中
-                if (order.orderStatus == 'WAIT_SHIPPING') {
-                  that.options.notSendOrderList.push(order);
-                };
-                //如果订单状态是发货中，已发货，就将订单放入待收货集合中
-                if (order.orderStatus == 'SHIPPING' || order.orderStatus == 'SHIPPED') {
-                  that.options.notGetOrderList.push(order);
-                };
-                //如果订单状态是自动取消、运营取消和用户取消，则显示订单可删除按钮
-                if (order.orderStatus == 'AUTO_CANCEL' || order.orderStatus == 'USER_CANCEL' || order.orderStatus == 'OPERATION_CANCEL') {
-                  order.isShowDeleteIcon = true;
-                } else {
-                  order.isShowDeleteIcon = false;
-                }
-                //如果包裹号为空，则不展示包裹号和发货地
-                // if (order.orderPackageItemList[0].packageNo !== '') {
-                //   order.isNullPackageNo = true;
-                // } else {
-                //   order.isNullPackageNo = false;
-                // }
+                that.options.notPayOrderListLength = that.options.orders.length;
+                that.options.notSendOrderListLength = that.options.orders.length;
+                that.options.notGetOrderListfLength = that.options.orders.length;
+
+                order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
+                setInterval(function() {
+                  that.setCountDown(order.leftTime)
+                }, 1000);
+
                 order.paymentAmount = order.totalPrice - order.discount;
                 order.showRouter = that.routeMap[order.orderStatus];
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
@@ -149,18 +141,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               })
 
-              //显示nav上代付款，待发货，待收货数量
-              that.options.notPayOrderListLength = that.options.notPayOrderList.length;
-              that.options.notSendOrderListLength = that.options.notSendOrderList.length;
-              that.options.notGetOrderListfLength = that.options.notGetOrderList.length;
-              that.options.orderListIsNotEmpty = (that.options.orders.length > 0);
-              that.options.notPayOrderListIsNotEmpty = (that.options.notPayOrderList.length > 0);
-              that.options.notSendOrderListIsNotEmpty = (that.options.notSendOrderList.length > 0);
-              that.options.notGetOrderListIsNotEmpty = (that.options.notGetOrderList.length > 0);
-
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
-              //商品推荐
+              //分页 保留 已经调通 误删 后面设计会给样式
+              that.options.page = new PaginationAdapter();
+              that.options.page.format(data.page);
+              new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
+
+            } else {
+              // 商品推荐
               // var findRecommendProducts = new SFFindRecommendProducts({
               //   'itemId': -1,
               //   'size': 3
@@ -181,15 +170,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
               //     var template = can.view.mustache(that.noResultShowPageTemplate());
               //     $('.noOrderShow').html(template(data));
               //   });
-              //分页 保留 已经调通 误删 后面设计会给样式
-              that.options.page = new PaginationAdapter();
-              that.options.page.format(data.page);
-              new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
-
-            } else {
-
-              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
-              that.element.html(html);
             }
           })
           .fail(function(error) {
@@ -198,7 +178,17 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
-        var params = can.route.attr();
+        var routeParams = can.route.attr();
+
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "receiverName": this.options.searchValue,
+            "orderId": this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        }
         this.render(params);
       },
       //倒计时
@@ -213,11 +203,28 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       '.myorder-tab li click': function(element, event) {
         event && event.preventDefault();
-        var index = $('.myorder-tab li').index($(element));
-        $(element).addClass('active').siblings().removeClass('active');
-        $('.justwrapdiv').eq(index).show().siblings('.justwrapdiv').hide();
+        var that = this;
+        // @todo 知道当前需要访问那个tag，并且根据tag，设置params，传给render
+        var tag = $(element).attr('tag');
+        this.switchTag(tag);
+        can.route.attr({
+          status: this.statusMap[tag],
+          page: 1
+        });
       },
-
+      statusMap: {
+        'allorderTab': null,
+        'notPayOrderListTab': 'SUBMITED',
+        'notSendOrderListTab': 'WAIT_SHIPPING',
+        'notGetOrderListTab': 'SHIPPING'
+      },
+      switchTag: function(tag) {
+        var that = this;
+        _.each(this.options.tab.attr(), function(value, key) {
+          that.options.tab.attr(key, false);
+        });
+        this.options.tab.attr(tag, true);
+      },
       //无订单页面展示状态
       noResultShowPageTemplate: function() {
         return '<div class="myorder-none">' +
@@ -384,7 +391,43 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>'
       },
+      //删除订单
+      '.dedeleteOrders click': function(element, event) {
+        var that = this;
 
+        var message = new SFMessage(null, {
+          'tip': '确认要删除该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.deleted, that, element)
+        });
+        return false;
+      },
+      deleted: function() {
+        var that = this;
+        var orderid = element.parent('th').attr('data-orderid');
+        var deleteOrder = new SFDeleteOrder({
+          "orderId": orderid
+        });
+        deleteOrder
+          .sendRequest()
+          .done(function(data) {
+
+            var message = new SFMessage(null, {
+              'tip': '删除成功！',
+              'type': 'success'
+            });
+
+            that.render();
+          })
+          .fail(function(error) {
+
+            var message = new SFMessage(null, {
+              'tip': '删除失败！',
+              'type': 'error'
+            });
+
+          })
+      },
       '.received click': function(element, event) {
         var that = this;
 
