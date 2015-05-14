@@ -355,7 +355,7 @@ define(
         var username = this.data.attr('username');
 
         this.checkUserName.call(this, username);
-        if (username && username.length == 11) {
+        if (username && (username.length == 11 || /@/.test(username) != -1)) {
           this.isNeedVerCode();
         };
 
