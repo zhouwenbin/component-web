@@ -30,9 +30,9 @@
     
     {{#each orders}}
       <tr>
-        <th colspan="7">
+        <th colspan="7" data-orderid='{{orderId}}'>
           <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
-          {{#isShowDeleteIcon orderStatus}}<a href="javascript:" class="icon icon81">删除</a>{{/isShowDeleteIcon}}
+          {{#isShowDeleteIcon orderStatus}}<a href="javascript:" class="deleteOrders icon icon81">删除</a>{{/isShowDeleteIcon}}
           </h2>
         </th>
       </tr>

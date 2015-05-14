@@ -15,9 +15,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.product.findRecommendProducts'
+    'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.order.deleteOrder'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder) {
+
+    can.route.ready();
 
     return can.Control.extend({
 
@@ -63,13 +66,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
       init: function(element, options) {
         var that = this;
 
-        var routeParams = can.route.attr();
-        if (!routeParams.page) {
-          routeParams = _.extend(routeParams, {
-            page: 1
-          });
-        }
-
         this.options.tab = new can.Map({
           'allorderTab': true,
           'notPayOrderListTab': false,
@@ -77,9 +73,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           'notGetOrderListTab': false
         });
 
+        var routeParams = can.route.attr();
+        if (!routeParams.page) {
+          routeParams = _.extend(routeParams, {
+            page: 1
+          });
+        }
         var params = {
           "query": JSON.stringify({
-            "status": null,
+            "status": routeParams.status,
             "receiverName": that.options.searchValue,
             "orderId": that.options.searchValue,
             "pageNum": routeParams.page,
@@ -90,12 +92,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         this.render(params);
       },
 
-      render: function(params, data) {
+      render: function(params) {
         var that = this;
 
         var getOrderList = new SFGetOrderList(params);
-        getOrderList
-          .sendRequest()
+        getOrderList.sendRequest()
           .done(function(data) {
             if (data.orders) {
 
@@ -149,26 +150,26 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
             } else {
               // 商品推荐
-              var findRecommendProducts = new SFFindRecommendProducts({
-                'itemId': -1,
-                'size': 3
-              });
+              // var findRecommendProducts = new SFFindRecommendProducts({
+              //   'itemId': -1,
+              //   'size': 3
+              // });
 
-              findRecommendProducts.sendRequest()
-                .fail(function(error) {})
-                .done(function(data) {
-                  data.hasData = true;
-                  if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
-                    data.hasData = false;
-                  }
-                  _.each(data.value, function(item) {
-                    item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
-                    item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
-                  })
+              // findRecommendProducts.sendRequest()
+              //   .fail(function(error) {})
+              //   .done(function(data) {
+              //     data.hasData = true;
+              //     if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
+              //       data.hasData = false;
+              //     }
+              //     _.each(data.value, function(item) {
+              //       item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
+              //       item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+              //     })
 
-                  var template = can.view.mustache(that.noResultShowPageTemplate());
-                  $('.noOrderShow').html(template(data));
-                });
+              //     var template = can.view.mustache(that.noResultShowPageTemplate());
+              //     $('.noOrderShow').html(template(data));
+              //   });
             }
           })
           .fail(function(error) {
@@ -177,7 +178,17 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
-        var params = can.route.attr();
+        var routeParams = can.route.attr();
+
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "receiverName": this.options.searchValue,
+            "orderId": this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        }
         this.render(params);
       },
       //倒计时
@@ -196,36 +207,22 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // @todo 知道当前需要访问那个tag，并且根据tag，设置params，传给render
         var tag = $(element).attr('tag');
         this.switchTag(tag);
-        var statusMap = {
-          'allorderTab': null,
-          'notPayOrderListTab': 'SUBMITED',
-          'notSendOrderListTab': 'WAIT_SHIPPING',
-          'notGetOrderListTab': 'SHIPPING'
-        };
-        var routeParams = can.route.attr();
-        if (!routeParams.page) {
-          routeParams = _.extend(routeParams, {
-            page: 1
-          });
-        }
-        var params = {
-          "query": JSON.stringify({
-            "status": statusMap[tag],
-            "receiverName": that.options.searchValue,
-            "orderId": that.options.searchValue,
-            "pageNum": routeParams.page,
-            "pageSize": 10
-          })
-        }
-
-        this.render(params);
+        can.route.attr({
+          status: this.statusMap[tag],
+          page: 1
+        });
+      },
+      statusMap: {
+        'allorderTab': null,
+        'notPayOrderListTab': 'SUBMITED',
+        'notSendOrderListTab': 'WAIT_SHIPPING',
+        'notGetOrderListTab': 'SHIPPING'
       },
       switchTag: function(tag) {
         var that = this;
         _.each(this.options.tab.attr(), function(value, key) {
           that.options.tab.attr(key, false);
         });
-
         this.options.tab.attr(tag, true);
       },
       //无订单页面展示状态
@@ -394,7 +391,43 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>'
       },
+      //删除订单
+      '.dedeleteOrders click': function(element, event) {
+        var that = this;
 
+        var message = new SFMessage(null, {
+          'tip': '确认要删除该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.deleted, that, element)
+        });
+        return false;
+      },
+      deleted: function() {
+        var that = this;
+        var orderid = element.parent('th').attr('data-orderid');
+        var deleteOrder = new SFDeleteOrder({
+          "orderId": orderid
+        });
+        deleteOrder
+          .sendRequest()
+          .done(function(data) {
+
+            var message = new SFMessage(null, {
+              'tip': '删除成功！',
+              'type': 'success'
+            });
+
+            that.render();
+          })
+          .fail(function(error) {
+
+            var message = new SFMessage(null, {
+              'tip': '删除失败！',
+              'type': 'error'
+            });
+
+          })
+      },
       '.received click': function(element, event) {
         var that = this;
 
