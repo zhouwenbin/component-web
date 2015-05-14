@@ -70,6 +70,8 @@ define('sf.b2c.mall.component.header.520', [
   var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
   var ERROR_NO_SET_PWD = '手机号已存在';
 
+  var MESSAGE_CLOSE_TIME = 1000;
+
   var MAIL_MAP = {
     '163': 'http://mail.163.com',
     'qq': 'http://mail.qq.com',
@@ -154,6 +156,9 @@ define('sf.b2c.mall.component.header.520', [
     },
 
     showAD: function() {
+      if (!this.isInShowPage()) {
+        return false;
+      }
 
       if (this.needShowAd()) {
         $('.banner-scroll').delay(100).animate({
@@ -170,16 +175,7 @@ define('sf.b2c.mall.component.header.520', [
       }
     },
 
-    needShowAd: function() {
-      // 如果已经登录了 则不显示
-      if (store.get('csrfToken')) {
-        return false;
-      }
-
-      // 如果显示没超过一天 则不要显示广告
-      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
-        return false;
-      }
+    isInShowPage: function() {
 
       var url = window.location.href;
 
@@ -191,6 +187,20 @@ define('sf.b2c.mall.component.header.520', [
       // 如果不是详情页 首页和活动页 则不显示广告
       var isShowURL = /index|activity|detail/.test(url);
       if (!isShowURL) {
+        return false;
+      }
+
+      return true;
+    },
+
+    needShowAd: function() {
+      // 如果已经登录了 则不显示
+      if (store.get('csrfToken')) {
+        return false;
+      }
+
+      // 如果显示没超过一天 则不要显示广告
+      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
         return false;
       }
 
@@ -215,7 +225,8 @@ define('sf.b2c.mall.component.header.520', [
                 'tip': fn({
                   tel: username
                 }),
-                'type': 'error'
+                'type': 'error',
+                'closeTime': MESSAGE_CLOSE_TIME
               });
 
               //that.element.find('#input-mobile-error').html(fn({tel:username})).show();
@@ -226,13 +237,15 @@ define('sf.b2c.mall.component.header.520', [
       if (!mobile) {
         new SFMessage(null, {
           'tip': ERROR_NO_INPUT_MOBILE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else if (!/^1[0-9]{10}$/.test(mobile)) {
         new SFMessage(null, {
           'tip': ERROR_INPUT_MOBILE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else {
@@ -247,13 +260,15 @@ define('sf.b2c.mall.component.header.520', [
       if (!mobile) {
         new SFMessage(null, {
           'tip': ERROR_NO_INPUT_MOBILE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else if (!/^1[0-9]{10}$/.test(mobile)) {
         new SFMessage(null, {
           'tip': ERROR_INPUT_MOBILE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else {
@@ -265,13 +280,15 @@ define('sf.b2c.mall.component.header.520', [
       if (!code) {
         new SFMessage(null, {
           'tip': ERROR_NO_MOBILE_CHECKCODE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else if (!/^[0-9]{6}$/.test(code)) {
         new SFMessage(null, {
           'tip': ERROR_MOBILE_CHECKCODE,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else {
@@ -283,13 +300,15 @@ define('sf.b2c.mall.component.header.520', [
       if (!password) {
         new SFMessage(null, {
           'tip': ERROR_NO_PASSWORD,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else if (!/^[0-9a-zA-Z~!@#\$%\^&\*\(\)_+=-\|~`,./<>\[\]\{\}]{6,18}$/.test(password)) {
         new SFMessage(null, {
           'tip': ERROR_PASSWORD,
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else {
@@ -301,13 +320,15 @@ define('sf.b2c.mall.component.header.520', [
       if (!code) {
         new SFMessage(null, {
           'tip': "请输入验证码",
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else if (!/^[a-zA-Z0-9]{4}$/.test(code)) {
         new SFMessage(null, {
           'tip': "验证码错误",
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       } else {
@@ -362,12 +383,14 @@ define('sf.b2c.mall.component.header.520', [
               if (errorCode === 1000020) {
                 new SFMessage(null, {
                   'tip': errorText,
-                  'type': 'error'
+                  'type': 'error',
+                  'closeTime': MESSAGE_CLOSE_TIME
                 });
               } else {
                 new SFMessage(null, {
                   'tip': errorText,
-                  'type': 'error'
+                  'type': 'error',
+                  'closeTime': MESSAGE_CLOSE_TIME
                 });
               }
             }
@@ -449,12 +472,14 @@ define('sf.b2c.mall.component.header.520', [
               if (errorCode == 1000020) {
                 new SFMessage(null, {
                   'tip': errorText,
-                  'type': 'error'
+                  'type': 'error',
+                  'closeTime': MESSAGE_CLOSE_TIME
                 });
               } else {
                 new SFMessage(null, {
                   'tip': errorText,
-                  'type': 'error'
+                  'type': 'error',
+                  'closeTime': MESSAGE_CLOSE_TIME
                 });
               }
             }
@@ -482,7 +507,8 @@ define('sf.b2c.mall.component.header.520', [
       if (!SFComm.prototype.checkUserLogin.call(that)) {
         new SFMessage(null, {
           'tip': "请先注册顺丰海淘会员",
-          'type': 'error'
+          'type': 'error',
+          'closeTime': MESSAGE_CLOSE_TIME
         });
         return false;
       }
@@ -501,12 +527,14 @@ define('sf.b2c.mall.component.header.520', [
             if (result) {
               new SFMessage(null, {
                 'tip': "邀请成功",
-                'type': 'error'
+                'type': 'error',
+                'closeTime': MESSAGE_CLOSE_TIME
               });
             } else {
               new SFMessage(null, {
                 'tip': "邀请失败",
-                'type': 'error'
+                'type': 'error',
+                'closeTime': MESSAGE_CLOSE_TIME
               });
             }
           })
@@ -518,7 +546,8 @@ define('sf.b2c.mall.component.header.520', [
             }
             new SFMessage(null, {
               'tip': errMap[errorCode],
-              'type': 'error'
+              'type': 'error',
+              'closeTime': MESSAGE_CLOSE_TIME
             });
           });
       }
