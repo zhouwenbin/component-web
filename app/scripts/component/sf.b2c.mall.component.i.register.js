@@ -16,10 +16,12 @@ define(
     'sf.b2c.mall.api.user.sendActivateMail',
     'sf.b2c.mall.business.config',
     'sf.util',
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.promotion.receivePro',
     'sf.b2c.mall.api.user.checkUserExist' //@noto 检查第三方账号绑定的手机号是否有登录密码
   ],
 
-  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFCheckUserExist) {
+  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage, SFReceivePro, SFCheckUserExist) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -209,7 +211,9 @@ define(
             .fail(function(errorCode) {
               if (errorCode == 1000340) {
                 var fn = can.view.mustache(ERROR_NO_SET_PWD);
-                that.element.find('#input-mobile-error').html(fn({tel:username})).show();
+                that.element.find('#input-mobile-error').html(fn({
+                  tel: username
+                })).show();
                 return false;
               };
             })
@@ -380,18 +384,29 @@ define(
             password: md5(password + SFBizConf.setting.md5_key)
           });
 
+          var receivePro = new SFReceivePro({
+            "channel": "B2C",
+            "event": "REGISTER_USER_SUCCESS"
+          });
+
           this.component.mobileRegister.sendRequest()
             .done(function(data) {
               if (data.csrfToken) {
-                // store.set('csrfToken', data.csrfToken);
-                can.route.attr({
-                  'tag': 'success',
-                  'csrfToken': data.csrfToken
-                });
-              }
 
-              store.set("alipaylogin", "false");
-              SFFn.dotCode();
+                store.set("alipaylogin", "false");
+                SFFn.dotCode();
+
+                // 注册送优惠券 begin
+                store.set("registersuccess", "注册成功，恭喜您获得优惠券。");
+                // 注册送优惠券 end
+
+                store.set('csrfToken', data.csrfToken);
+                // can.route.attr({
+                //   'tag': 'success',
+                //   'csrfToken': data.csrfToken
+                // });
+
+              }
             })
             .fail(function(errorCode) {
               if (_.isNumber(errorCode)) {

@@ -12,9 +12,10 @@ define(
     'sf.b2c.mall.api.user.partnerBind',
     'sf.b2c.mall.api.user.partnerBindByUPswd',
     'sf.b2c.mall.api.user.checkUserExist',
+    'sf.b2c.mall.api.promotion.receivePro',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, md5, SFBizConf, SFFn, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFApiUserDownSmsCode) {
+  function($, can, store, md5, SFBizConf, SFFn, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFReceivePro, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_NO_INPUT_USERPWD = '请输入您的密码';
@@ -257,11 +258,20 @@ define(
       },
 
       //绑定账号
-      partnerBind: function() {
+      partnerBind: function(newUser) {
         this.component.partnerBind.sendRequest()
           .done(function(data) {
+
+            // 注册送优惠券 begin
+            if (newUser) {
+              store.set("registersuccess", "恭喜您获得优惠券！")
+            }
+
+            // 注册送优惠券 end
+
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
@@ -354,7 +364,7 @@ define(
               'type': 'MOBILE',
               'accountId': mobile
             });
-            this.partnerBind();
+            this.partnerBind(true);
           }
 
         }
