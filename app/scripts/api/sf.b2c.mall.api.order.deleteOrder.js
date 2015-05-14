@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.minicart.getTotalCount
+  * @class sf.b2c.mall.api.order.deleteOrder
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.minicart.getTotalCount',
+'sf.b2c.mall.api.order.deleteOrder',
 [
   'jquery',
   'can',
@@ -22,16 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'minicart.getTotalCount',
+      METHOD_NAME: 'order.deleteOrder',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
+        'orderId': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误'
+        '4000100': 'order unkown error'
       }
     }
   });
