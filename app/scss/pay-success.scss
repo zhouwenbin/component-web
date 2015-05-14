@@ -1,0 +1,101 @@
+﻿@import 'utils/variables';
+@import 'utils/placeholders';
+.header {
+  border-bottom: 3px solid #353a42;
+}
+.nav{
+	display: none;
+}
+.pay-success{
+	padding-left: 77px;
+	padding-right: 26px;
+	padding-bottom: 60px;
+	margin-top: 20px;
+	position: relative;
+	background: #f5f5f5 url(#{$bg-url}order-detail-state.png) no-repeat 890px bottom;
+}
+.pay-success h1{
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 24px;
+}
+.pay-success .icon36{
+	float: left;
+	margin-left: -77px;
+}
+.pay-success li{
+	line-height: 19px;
+}
+.pay-success li span{
+	color: #999;
+}
+.pay-success strong{
+	font-family: arial;
+	font-weight: bold;
+	font-size: 16px;
+}
+.pay-success b{
+	font-size: 16px;
+	margin-right: 5px;
+}
+.pay-success-c1{
+	padding-top: 28px;
+}
+.pay-success-c2{
+	text-align: right;
+}
+.pay-success-c2 img{
+	width: 125px;
+	height: 125px;
+	margin-bottom: 18px;
+}
+
+.pay-success2{
+	background: #fff;
+	border:1px solid #ccc;
+	border-radius: 4px;
+}
+.pay-success2-h{
+	padding: 25px 20px;
+	border-bottom: 1px solid #ccc;
+}
+.pay-success2-h h2{
+	color: #999;
+	font-weight: normal;
+	margin-bottom: 23px;
+}
+.pay-success2-h a{
+	margin: 0 15px;
+}
+.pay-success2-b h2{
+	margin-bottom: 32px;
+	font-weight: normal;
+}
+.pay-success2-b{
+	padding: 37px 20px 70px;
+}
+.pay-success2-b li{
+	display: inline-block;
+	margin-right: 2px;
+}
+.coupon{
+	display: inline-block;
+	background: url(#{$bg-url}coupon2.png) no-repeat;
+	width: 164px;
+	height: 54px;
+	padding-top: 4px;
+	color: #fff;
+	text-align: center;
+}
+.coupon b{
+	font-size: 14px;
+}
+.coupon strong{
+	font-size: 30px;
+	font-family: arial;
+	margin-right: 5px;
+}
+.coupon p{
+	opacity: 0.5;
+	margin-top: 2px;
+}

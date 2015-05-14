@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/gotopay.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pb">
+  <div class="pm"> 
+    
+    <!--去支付-->
+    <div class="order-success">
+      <span class="icon icon36"></span>
+      <h1>订单提交成功，现在只差最后一步啦！</h1>
+      <div class="order-success-r1">订单金额：¥900</div>
+      <p>请您在提交订单后<span class="text-important">1小时00分钟</span>内完成支付，否则订单会自动取消！</p>
+      <div class="order-success-pos">
+        <a href="" class="order-success-link">订单详情</a>
+        <div class="order-success-detail">
+          <ul>
+            <li><span>订单编号：</span>x201504022GIRDER471878</li>
+            <li><span>下单时间：</span>2015-04－28</li>
+          </ul>
+          <ul>
+            <li><span>订单内容：</span>韩国Nature Republic自然乐园芦荟胶300ml/瓶x2 <br />
+  Mediheal可莱丝HDP收缩毛孔去粉刺竹炭面膜 10片/盒</li>
+          </ul>
+          <ul>
+            <li><span>送货地址：</span>张弦悦 13306132577 上海徐汇区红梅路20071号楼8楼</li>
+          </ul>
+            
+          </ul>
+        </div>
+      </div>
+      </div>
+        
+    <div class="gotopay">
+      <div class="gotopay-r1">应付金额:<b class="text-important">¥</b><strong class="text-important">896.90</strong></div>
+      <h2>支付方式:</h2>
+      <ul>
+        <li class="active">
+          <img src="../img/gotopay1.png" alt="" />
+          <h3>首次使用快捷支付，立减5元</h3>
+          <span class="icon icon85"></span>
+        </li>
+        <li>
+          <img src="../img/gotopay2.png" alt="" />
+          <h3>首次使用快捷支付，立减5元</h3>
+          <span class="icon icon85"></span>
+        </li>
+        <li>
+          <img src="../img/gotopay3.png" alt="" />
+          <h3>首次使用快捷支付，立减5元</h3>
+          <span class="icon icon85"></span>
+        </li>
+        <li>
+          <img src="../img/gotopay4.png" alt="" />
+          <h3>首次使用快捷支付，立减5元</h3>
+          <span class="icon icon85"></span>
+        </li>
+      </ul>
+      <div class="gotopay-r2">使用<span class="text-important">快捷支付</span>进行支付<button class="btn btn-danger btn-big">确认支付</button></div>
+    </div> 
+  </div>
+</div>
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
+<script src="js/cart.js"></script>
+</body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

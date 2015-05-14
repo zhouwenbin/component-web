@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/pay-success.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pb">
+  <div class="pm">     
+    <!--支付成功-->
+    <div class="pay-success clearfix">
+      <div class="pay-success-c1 fl">
+        <span class="icon icon36"></span>
+        <h1>订单提交成功，现在只差最后一步啦！</h1>
+        <ul>
+          <li><span>订单编号：</span>201504022GIRDER471878</li>
+          <li><span>下单时间：</span>2015-04－28</li>
+          <li><span>支付方式：</span>支付宝</li>
+          <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">896.90</strong></li>
+          
+        </ul>
+      </div>
+        
+      <div class="pay-success-c2 fr"><img src="../img/weixin-qrcode.png" alt=""><div class="text-error">关注顺丰海淘，实时跟踪物流信息</div></div>
+    </div>
+    <div class="pay-success2">
+      <div class="pay-success2-h">
+        <h2>您的购物车还有未结算的商品</h2>
+        <div class="pay-success2-r1">
+          <button class="btn btn-danger btn-small">返回购物车</button>
+          <a href="">查看订单详情</a>|
+          <a href="">继续购物</a>
+        </div>
+      </div>
+      <div class="pay-success2-b">
+        <h2>您已获得48元活动优惠券</h2>
+        <ul>
+          <li>
+            <div class="coupon">
+              <div class="coupon-r1">
+                <b>¥</b><strong>30</strong>满299使用
+              </div>
+              <p>有效期至：2015/04/21</p>
+            </div>
+          </li>
+          <li>
+            <div class="coupon">
+              <div class="coupon-r1">
+                <b>¥</b><strong>30</strong>满299使用
+              </div>
+              <p>有效期至：2015/04/21</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+        
+    </div> 
+  </div>
+
+</div>
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
+<script src="js/cart.js"></script>
+</body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
