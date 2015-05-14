@@ -736,17 +736,17 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{^if priceInfo.soldOut}}' +
             '{{^priceInfo.isPromotion}}' +
             '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-            '<button class="btn btn-soon">加入购物车</button>' +
+            '<button class="btn btn-soon addtocart">加入购物车</button>' +
             '{{/priceInfo.isPromotion}}' +
             '{{#priceInfo.isPromotion}}' +
               '{{#if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
               '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
-              '<button class="btn btn-soon">加入购物车</button>' +
+              '<button class="btn btn-soon addtocart">加入购物车</button>' +
               '{{/if}}' +
               '{{^if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-              '<button class="btn btn-soon">加入购物车</button>' +
+              '<button class="btn btn-soon addtocart">加入购物车</button>' +
               '{{/if}}' +
             '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
@@ -896,13 +896,14 @@ define('sf.b2c.mall.product.detailcontent', [
 
       /**
        * @author Michael.Lee
-       * @description [购物车]加入购物车
+       * @description 加入购物车
        */
       addCart: function (itemId, num) {
-        var addItemToCart = new SFAddItemToCart({
+        var itemsStr = JSON.stringify([{
           itemId: itemId,
           num: num || 1
-        });
+        }]);
+        var addItemToCart = new SFAddItemToCart({items: itemsStr});
 
         // 添加购物车发送请求
         addItemToCart.sendRequest()
@@ -924,17 +925,40 @@ define('sf.b2c.mall.product.detailcontent', [
 
       /**
        * @author Michael.Lee
-       * @description [购物车]添加购物车动作触发
+       * @description 添加购物车动作触发
        * @param  {element} el
        */
-      '.addtocart click': function (el) {
-        var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
-        var num = this.options.detailContentInfo.input.buyNum;
+      '.addtocart click': function (el, event) {
+        event && event.preventDefault();
 
-        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+        var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+        var amount = this.options.detailContentInfo.input.buyNum;
+
+        // 错误处理分支，用户输入了错误的购买数量
+        if (amount < 1 || isNaN(amount)) {
+          this.options.detailContentInfo.input.attr("buyNum", 1);
+          var message = new SFMessage(null, {
+            'tip': '请输入正确的购买数量！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        // 错误处理分支，库存数量不够
+        var currentStock = this.options.detailContentInfo.priceInfo.currentStock;
+        if (currentStock > 0 && amount > currentStock) {
+          var message = new SFMessage(null, {
+            'tip': '商品库存仅剩' + currentStock + '件！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        if (SFComm.prototype.checkUserLogin.call(this)) {
           // 用户如果如果登录
-          this.addCart(itemId, num);
+          this.addCart(itemId, amount);
         }else{
+          store.set('temp-action-addCart', {itemId: itemId, num: amount});
           can.trigger(window, 'showLogin', [window.location.href]);
         }
       },
