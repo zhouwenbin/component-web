@@ -34,9 +34,9 @@ define(
         var getCart = new SFGetCart();
         getCart.sendRequest()
           .done(function(data) {
-
-            var html = can.view('', that.options);
+            var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options);
             this.element.append(html);
+
           }).fail(function() {
 
           })
@@ -95,8 +95,6 @@ define(
        */
       '#gotopay click': function(element, event) {
         event && event.preventDefault();
-
-
 
       }
 

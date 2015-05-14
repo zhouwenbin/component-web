@@ -1,15 +1,20 @@
 <ul class="myorder-tab">
-  <li class="active" id="allorderTab"><a href="">所有订单</a></li>
-  <li id="notPayOrderListTab"><a href="">待付款<strong>{{notPayOrderListLength}}</strong></a></li>
-  <li id="notSendOrderListTab"><a href="">待发货<strong>{{notSendOrderListLength}}</strong></a></li>
-  <li id="notGetOrderListTab"><a href="">待收货<strong>{{notGetOrderListfLength}}</strong></a></li>
+  <li class="{{#if tab.allorderTab}}active{{/if}}" tag="allorderTab"><a href="">所有订单</a></li>
+  <li class="{{#if tab.notPayOrderListTab}}active{{/if}}" tag="notPayOrderListTab"><a href="">待付款<strong>{{notPayOrderListLength}}</strong></a></li>
+  <li class="{{#if tab.notSendOrderListTab}}active{{/if}}" tag="notSendOrderListTab"><a href="">待发货<strong>{{notSendOrderListLength}}</strong></a></li>
+  <li class="{{#if tab.notGetOrderListTab}}active{{/if}}" tag="notGetOrderListTab"><a href="">待收货<strong>{{notGetOrderListfLength}}</strong></a></li>
 </ul>
 
+<!--所有订单-->
+{{#if orderListIsNotEmpty}}
 <div class="myorder-search">
   <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+  <div class="searchNoResult visuallyhidden" style="display:inline-block;">
+    <span class="icon icon88"></span>
+    <span class="text-error">未搜索到相应订单</span>
+  </div>
 </div>
-
-<table class="allOrderItemList">
+<table>
   <thead>
       <tr>
           <th class="th1">包裹<span>|</span></th>
@@ -20,29 +25,29 @@
           <th class="th6">订单状态<span>|</span></th>
           <th class="th7">操作</th>
       </tr>
-  </thead>
-  <!--所有订单-->
-  <tbody id="allorder">
-    {{#if orderListIsNotEmpty}}
+  </thead> 
+  <tbody>
+    
     {{#each orders}}
       <tr>
-        <th colspan="7">
-          <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-          {{#if isShowDeleteIcon}}<a href="javascript:" class="icon icon81">删除</a>{{/if}}
+        <th colspan="7" data-orderid='{{orderId}}'>
+          <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
+          {{#isShowDeleteIcon orderStatus}}<a href="javascript:" class="deleteOrders icon icon81">删除</a>{{/isShowDeleteIcon}}
+          </h2>
         </th>
       </tr>
       {{#each orderPackageItemList}}
         <tr>
             <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
-              {{#if isNullPackageNo}}
+              {{#packageNo}}
               <span class="label label-error">
                 <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
               </span>
-              {{/if}}
+              {{/packageNo}}
               <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
-              {{#if isNullPackageNo}}
+              {{#packageNo}}
               <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
-              {{/if}}
+              {{/packageNo}}
             </td>
 
             {{#first orderGoodsItemList}}
@@ -58,6 +63,8 @@
             {{/first}}
 
             <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+
+            {{!全部订单}}
             <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
               <div>{{orderStatus}}</div>
               {{#if showRouter}}
@@ -74,12 +81,14 @@
               {{/if}}
             </td>
             <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-              {{#if isNotShowEndTime}}
+              {{#isNotShowEndTime orderStatus}}
               <span>剩余付款时间</span>
-              <div id="showOrderEndTime" class="text-error"></div>
-              {{/if}}
+              <div class="showOrderEndTime text-error"></div>
+              {{/isNotShowEndTime}}
               {{{optionHMTL}}}
             </td>
+
+            
         </tr>
         {{#others orderGoodsItemList}}
           {{#each orderGoods}}
@@ -96,55 +105,15 @@
           {{/each}}<!--end orderGoodsItemList-->
         {{/others}}
       {{/each}}<!--end orderPackageItemList-->
-    {{/each}}<!--end orders-->
-    {{else}}
-
-    {{/if}}
+    {{/each}}<!--end orders-->   
   </tbody>
+</table>  `
+<!-- 分页 -->
+<div class="sf-b2c-mall-order-orderlist-pagination"></div>
+<!-- 分页 -->
+{{else}}
+  <div class="noOrderShow">
+    
+  </div>  
+{{/if}}
 
-  <!--代付款订单-->
-  <tbody class="hide" id="notPayOrderList">
-    {{#if notPayOrderListIsNotEmpty}}
-    {{#each notPayOrderList}}
-    <tr>
-        <th colspan="7">
-            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
-
-    {{else}}
-    {{/if}}
-  </tbody>
-
-  <!--待发货订单-->
-  <tbody class="hide" id="notSendOrderList">
-    {{#if notSendOrderListIsNotEmpty}}
-    {{#each notSendOrderList}}
-    <tr>
-        <th colspan="7">
-            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
-
-    {{else}}
-    {{/if}}
-  </tbody>
-
-  <!--待收货订单-->
-
-  <tbody class="hide" id="notGetOrderList">
-    {{#if notGetOrderListIsNotEmpty}}
-    {{#each notGetOrderList}}
-    <tr>
-        <th colspan="7">
-            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span></h2>
-        </th>
-    </tr>
-    {{/each}}
-
-    {{else}}
-    {{/if}}
-  </tbody>
-</table>
