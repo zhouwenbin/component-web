@@ -89,7 +89,7 @@ define(
           .done(function (data) {
             if (data.value) {
               // 更新mini购物车
-              window.trigger('updateCart');
+              can.trigger(window, 'updateCart');
             }
           })
           .fail(function (data) {
@@ -116,7 +116,7 @@ define(
           this.addCart(itemId);
         }else{
           store.set('temp-action-addCart', {itemId: itemId});
-          window.trigger('showLogin', [window.location.href]);
+          can.trigger(window, 'showLogin', [window.location.href]);
         }
       },
 

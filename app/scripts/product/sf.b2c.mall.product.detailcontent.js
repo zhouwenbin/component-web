@@ -909,7 +909,7 @@ define('sf.b2c.mall.product.detailcontent', [
           .done(function (data) {
             if (data.value) {
               // 更新mini购物车
-              window.trigger('updateCart');
+              can.trigger(window, 'updateCart');
             }
           })
           .fail(function (data) {
@@ -935,7 +935,7 @@ define('sf.b2c.mall.product.detailcontent', [
           // 用户如果如果登录
           this.addCart(itemId, num);
         }else{
-          window.trigger('showLogin', [window.location.href]);
+          can.trigger(window, 'showLogin', [window.location.href]);
         }
       },
 
