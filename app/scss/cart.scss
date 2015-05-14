@@ -288,13 +288,35 @@
 .cart-coupon-r1 a{
 	display: inline-block;
 	width: 18px;
-	height: 20px;
-	line-height: 20px;
+	height: 18px;
+	line-height: 18px;
 	text-align: center;
 	background: #de312d;
 	color: #fff;
 	border-radius: 2px;
 	margin-right: 20px;
+	text-indent: -999em;
+	position: relative;
+}
+.cart-coupon-r1 a:before,
+.cart-coupon-r1 a:after{
+	content: '';
+	width: 10px;
+	height: 2px;
+	background: #fff;
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -5px;
+	margin-top: -1px;
+	transition:all 0.5s;
+}
+.cart-coupon-r1 a.active:before{
+	transform:rotate(270deg);
+}
+.cart-coupon-r1 a.active:after{
+	transform:rotate(360deg);
 }
 .cart-coupon-r2{
 	padding-bottom: 17px;

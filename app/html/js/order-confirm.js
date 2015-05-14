@@ -14,9 +14,10 @@ $(function(){
     $(this).addClass('active');
   	$('.address li').show();
   })
-
-  $('.coupon-use').click(function(){
-
+  //使用优惠券
+  $('#coupon-use').click(function(){
+    $(this).toggleClass('active');
+    $('#coupon-use-detail').toggle(300);
   })
   //优惠券切换
   $('.coupons-tab li').click(function(){
