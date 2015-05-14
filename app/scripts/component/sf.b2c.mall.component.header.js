@@ -256,7 +256,7 @@ define('sf.b2c.mall.component.header', [
           .done(function (data) {
             // @description 将返回数字显示在头部导航栏
             // 需要跳动的效果
-            that.element.find('.mini-cart-num').text(data);
+            that.element.find('.mini-cart-num').text(data.value);
           })
           .fail(function (data) {
             // 更新mini cart失败，不做任何显示
