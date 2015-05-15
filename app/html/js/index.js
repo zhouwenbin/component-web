@@ -314,8 +314,12 @@ $(function(){
   },300);
   //----------加入购物车-------------//
   $('.product').on("click", '.icon90', function(){
-    var target=$('.nav .icon100').eq(1).offset(),
-        targetX=target.left,
+    if($(window).scrollTop() > 166){
+        var target=$('.nav .icon100').eq(1).offset()
+    }else{
+        var target=$('.nav .icon100').eq(0).offset()
+    }
+    var targetX=target.left,
         targetY=target.top,
         current=$(this).offset(),
         currentX=current.left,
