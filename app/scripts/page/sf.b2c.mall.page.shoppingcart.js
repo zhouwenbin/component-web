@@ -1,8 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.page.shoppingcart',
-  [
+  'sf.b2c.mall.page.shoppingcart', [
     'can',
     'jquery',
     'sf.b2c.mall.framework.comm',
@@ -10,7 +9,7 @@ define(
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.shoppingcart'
   ],
-  function(can, $, SFFrameworkComm, SFFn, SFBusiness,SFShoppingCart) {
+  function(can, $, SFFrameworkComm, SFFn, SFBusiness, SFShoppingCart) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -21,16 +20,26 @@ define(
        */
       init: function() {
         this.render();
+        this.supplement();
       },
 
       /**
        * [render 渲染]
        */
       render: function() {
-      	var that = this;
-
         new SFShoppingCart('.shopingcartpage');
-  		}
+      },
+      supplement: function() {
+        $(window).scroll(function() {
+          var car_height = $('.cart').height();
+          var window_height = $(window).height();
+          if ($(window).scrollTop() > 190 + car_height - window_height) {
+            $('.cart-footer').removeClass('cart-footer-fixed');
+          } else {
+            $('.cart-footer').addClass('cart-footer-fixed');
+          }
+        });
+      }
 
     });
 

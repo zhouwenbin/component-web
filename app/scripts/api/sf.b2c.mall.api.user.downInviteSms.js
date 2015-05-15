@@ -26,7 +26,8 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'invtMobile': 'string',
-        'vfcode': 'string'
+        'vfcode': 'string',
+        'smsCon': 'string'
       },
       OPTIONAL: {
       },
