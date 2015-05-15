@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 {{#each goodItemList}}
-                    <tr data-itemIds="{{itemId}}" {{^isValid}}class="cart-disable"{{/isValid}}>
+                    <tr data-isSelected="{{isSelected}}" data-itemIds="{{itemId}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
                             <input {{data 'goodItemList'}} class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}> 
                             <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
@@ -49,18 +49,18 @@
         	
     	<div class="cart-footer cart-footer-fixed clearfix">
     		<div class="cart-footer-c1 fl">
-    			<label><input class="selectAll" type="checkbox" checked="checked" />全选</label>|
+    			<label><input data-ischecked="1" class="selectAll" type="checkbox" checked="true" />全选</label>|
     			<a id="deletedSelectGoods" href="">删除选中商品</a>
     			<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>
     		</div>
     		<div class="cart-footer-c2 fr">
     			<ul>
-    				<li class="li1"><span class="s1">商品总计 :</span>¥{{goodsTotalFee}}</li>
+    				<li class="li1"><span class="s1">商品总计 :</span>¥{{sf.price order.actualTotalFee}}</li>
     				<li class="li1">
-    					<div class="tooltip-cart"><span class="icon icon77 fl"></span><span class="text-error">已满足满200减100活动：省100</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-    					<span class="s1">活动优惠 :</span>- ¥ {{discountFee}}
+    					{{#scopeIsAll promotionInfo}}<div class="tooltip-cart"><span class="icon icon77 fl"></span><span class="text-error">已满足满200减100活动：省100</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/scopeIsAll}}
+    					<span class="s1">活动优惠 :</span>- ¥ {{order.discountFee}}
     				</li>
-    				<li><span class="s1">总价（含税费） :</span><strong class="text-error">¥1100</strong></li>
+    				<li><span class="s1">总价（含税费） :</span><strong class="text-error">¥{{sf.price order.goodsTotalFee}}</strong></li>
     			</ul>
     			<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥1000</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
     			

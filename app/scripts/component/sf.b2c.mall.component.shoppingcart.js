@@ -54,10 +54,15 @@ define(
             that.options.canOrder = that.btnStateMap[data.canOrder];
             that.options.scopeGroups = data.scopeGroups;
             that.options.goodItemList = [];
+            that.options.order = new can.Map({});
+            that.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
+            that.options.order.attr('discountFee', data.cartFeeItem.discountFee);
+            that.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
             _.each(that.options.scopeGroups, function(cartItem, i) {
               //是否显示活动信息
               cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
               that.options.goodItemList.push(cartItem.goodItemList[0]);
+              console.log(cartItem.promotionInfo);
             });
             var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
             that.element.html(html);
@@ -76,25 +81,42 @@ define(
        */
       refreshCartList: function(isSelected, itemId) {
         var that = this;
-        var refreshCart = new SFRefreshCart({
+        var goodsStr = JSON.stringify([{
           isSelected: isSelected,
           itemId: itemId
+        }]);
+        var refreshCart = new SFRefreshCart({
+          goods: goodsStr
         });
         refreshCart.sendRequest()
           .done(function(data) {
-            that.render();
+
+            that.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
+            that.options.order.attr('discountFee', data.cartFeeItem.discountFee);
+            that.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
           }).fail(function() {
 
           })
 
       },
-      '.selectAll change': function(element, event) {
 
-      },
       /**
        * 全选
        */
-      selectAll: function() {
+      '.selectAll change': function(element, options) {
+        var isChecked = $(element).attr('data-ischecked');
+
+        if (isChecked == "1") {
+          $(element).attr('data-ischecked', 0);
+          $(".sfcheckbox:checkbox").each(function() {
+            $(this).attr("checked", false);
+          })
+        } else {
+          $(element).attr('data-ischecked', 1);
+          $(".sfcheckbox:checkbox").each(function() {
+            $(this).attr("checked", true);
+          })
+        }
 
       },
 
@@ -104,7 +126,7 @@ define(
       '.sfcheckbox change': function(element, options) {
         var isSelected = $(element).data('goodItemList').isSelected;
         var itemId = $(element).data('goodItemList').itemId;
-        this.refreshCartList(isSelected,itemId);
+        this.refreshCartList(isSelected, itemId);
       },
       //删除单个商品
       '.deleteSingleOrder click': function(element, event) {
@@ -138,7 +160,7 @@ define(
       deleteCartOrder: function(itemIds) {
         var that = this;
         var deleteorder = new SFRemoveItemsInCart({
-          itemIds: itemIds
+          itemIds: JSON.stringify(itemIds)
         });
         deleteorder.sendRequest()
           .done(function(data) {
@@ -163,7 +185,7 @@ define(
           $(element).siblings('.btn-num-reduce').removeClass('disable');
           $(element).removeClass('disable');
           $(element).siblings('input').val(num + 1);
-          this.updateItemNumInCart(itemId,num);
+          this.updateItemNumInCart(itemId, num);
         }
       },
 
@@ -183,7 +205,7 @@ define(
           $(element).siblings('.btn-num-add').removeClass('disable');
           $(element).removeClass('disable');
           $(element).siblings('input').val(num - 1);
-          this.updateItemNumInCart(itemId,num);
+          this.updateItemNumInCart(itemId, num);
         }
 
       },
@@ -206,14 +228,14 @@ define(
         };
 
       },
-      updateItemNumInCart:function(itemId,num){
+      updateItemNumInCart: function(itemId, num) {
         var that = this;
         var updateItemNumInCart = new SFUpdateItemNumInCart({
-          itemId:itemId,
-          num:num
+          itemId: itemId,
+          num: num
         });
         updateItemNumInCart.sendRequest()
-          .done(function(data){
+          .done(function(data) {
 
           })
       },
