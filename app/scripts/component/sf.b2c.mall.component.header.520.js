@@ -514,6 +514,7 @@ define('sf.b2c.mall.component.header.520', [
     },
 
     '#inviteTaBtn click': function($element, event) {
+      var that = this;
       if ($("#inviteTaBtn").hasClass("disable")) {
         return;
       }
@@ -563,9 +564,10 @@ define('sf.b2c.mall.component.header.520', [
               'type': 'error',
               'closeTime': MESSAGE_CLOSE_TIME
             })
-              .always(function() {
-                $("#inviteTaBtn").removeClass("disable");
-              });
+          })
+          .always(function() {
+            $("#inviteTaBtn").removeClass("disable");
+            that.getVerifiedCode();
           });
       }
     },
