@@ -74,7 +74,7 @@ define(
             }
 
             var thirdpartyMap = {
-              "IMPORT_MOVIETICKET": function() {
+              "EXT_MOVIETICKET": function() {
                 if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != ""){
                   tmpCoupon.showButton = true;
                 }
@@ -86,7 +86,7 @@ define(
             var pushCoupon = function(couponType, status) {
               var fn;
 
-              if (couponType == "IMPORT_MOVIETICKET") {
+              if (couponType == "EXT_MOVIETICKET") {
                 fn = thirdpartyMap[couponType];
               } else {
                 fn = couponStatusMap[status];
