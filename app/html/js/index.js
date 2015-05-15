@@ -311,5 +311,32 @@ $(function(){
   .delay(100)
   .animate({
     "height":90
-  },300)
+  },300);
+  //----------加入购物车-------------//
+  $('.product').on("click", '.icon90', function(){
+    if($(window).scrollTop() > 166){
+        var target=$('.nav .icon100').eq(1).offset()
+    }else{
+        var target=$('.nav .icon100').eq(0).offset()
+    }
+    var targetX=target.left,
+        targetY=target.top,
+        current=$(this).offset(),
+        currentX=current.left,
+        currentY=current.top,
+        cart_num=$('.cart-num').eq(0).text();
+    $(this).clone().appendTo($(this).parent());
+    $(this).css({
+      left:targetX-currentX,
+      top:targetY-currentY,
+      visibility:'hidden'
+    });
+    cart_num++;
+    $('.cart-num').text(cart_num);
+    $('.nav .label-error').addClass('active');
+    setTimeout(function(){
+        $('.nav .label-error').removeClass('active')
+    },500)
+    return false;
+  });
 })
