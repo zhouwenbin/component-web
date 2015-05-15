@@ -313,29 +313,28 @@ $(function(){
     "height":90
   },300);
   //----------加入购物车-------------//
-  $('.product .icon90').on("click",function(){
+  $('.product').on("click", '.icon90', function(){
     var target=$('.nav .icon100').eq(1).offset(),
         targetX=target.left,
         targetY=target.top,
         current=$(this).offset(),
         currentX=current.left,
-        currentY=current.top;
-    $(this).siblings()
-    .css({
-        zIndex:1
-    })
-    .animate({
+        currentY=current.top,
+        cart_num=$('.cart-num').eq(0).text();
+    $(this).clone().appendTo($(this).parent());
+    $(this).css({
       left:targetX-currentX,
       top:targetY-currentY,
       opacity:0
-    },500,"swing",function(){
-        $(this).css({
-            left:0,
-            top:0,
-            opacity:1,
-            zIndex:-1
-        })
     });
+    cart_num++;
+    $('.cart-num').text(cart_num);
+    $('.cart-num').animate({
+        "font-size":20
+    },250)
+    .animate({
+        "font-size":12
+    },250)
     return false;
   });
 })
