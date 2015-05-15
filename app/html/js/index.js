@@ -329,16 +329,14 @@ $(function(){
     $(this).css({
       left:targetX-currentX,
       top:targetY-currentY,
-      opacity:0
+      visibility:'hidden'
     });
     cart_num++;
     $('.cart-num').text(cart_num);
-    $('.cart-num').animate({
-        "font-size":20
-    },250)
-    .animate({
-        "font-size":12
-    },250)
+    $('.nav .label-error').addClass('active');
+    setTimeout(function(){
+        $('.nav .label-error').removeClass('active')
+    },500)
     return false;
   });
 })

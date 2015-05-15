@@ -48,11 +48,20 @@
 	text-align: center;
 	background: #dc3334;
 	margin-left: 10px;
+	transition:all 0.5s;
 }
 .nav-c2 .label i{
 	border-color: transparent #dc3334 transparent transparent;
 	left: -6px;
 	right: auto;
+}
+.nav-c2 .label.active{
+	animation:cart-num 0.5s linear;
+}
+@keyframes cart-num{
+	50%{
+		transform:scale(1.2);
+	}
 }
 .nav-text{
 	margin-left: 15px;
