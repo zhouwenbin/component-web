@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.header', [
 
       // @author Michael.Lee
       // 将更新购物车事件注册到window上
-      // 其他地方添加需要更新mini购物车的时候调用window.trigger('updateCart')
+      // 其他地方添加需要更新mini购物车的时候调用can.trigger('updateCart')
       can.on.call(window, 'updateCart', _.bind(this.updateCart, this));
 
       // @author Michael.Lee
@@ -188,7 +188,7 @@ define('sf.b2c.mall.component.header', [
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = href;
       }else{
-        window.trigger('showLogin', [href]);
+        can.trigger(window, 'showLogin', [href]);
       }
     },
 
@@ -226,7 +226,7 @@ define('sf.b2c.mall.component.header', [
         .done(function (data) {
           if (data.value) {
             // 更新mini购物车
-            window.trigger('updateCart');
+            can.trigger(window, 'updateCart');
           }
         })
         .fail(function (data) {
@@ -256,7 +256,7 @@ define('sf.b2c.mall.component.header', [
           .done(function (data) {
             // @description 将返回数字显示在头部导航栏
             // 需要跳动的效果
-            that.element.find('.mini-cart-num').text(data);
+            that.element.find('.mini-cart-num').text(data.value);
           })
           .fail(function (data) {
             // 更新mini cart失败，不做任何显示

@@ -1,0 +1,29 @@
+.myorder-tab{
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 27px;
+}
+.myorder-tab li{
+	display: inline-block;
+	height: 68px;
+	line-height: 68px;
+	padding: 0 45px;
+	box-sizing:border-box;
+	font-size: 14px;
+}
+.myorder-tab li a{
+	color: #777;
+}
+.myorder-tab li  strong{
+	color: #de3d3f;
+	margin-left: 5px;
+	font-weight: bold;
+}
+.myorder-tab li.active{
+	border-bottom: 4px solid #db3f40;
+	position: relative;
+	top: 1px;
+	
+}
+.myorder-tab li.active a{
+	color: #de3d3f;
+}
