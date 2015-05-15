@@ -155,6 +155,11 @@ define('sf.b2c.mall.component.header.520', [
     },
 
     showAD: function() {
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        $(".step1cannotregister").show();
+        $(".step1input").hide();
+      }
+
       if (!this.isInShowPage()) {
         return false;
       }
