@@ -1,3 +1,49 @@
+<div class="pm">
+    <!--支付成功-->
+    <div class="pay-success clearfix">
+        <div class="pay-success-c1 fl"><span class="icon icon36"></span>
+            <h1>订单支付成功</h1>
+            <ul>
+                <li><span>订单编号：</span>201504022GIRDER471878</li>
+                <li><span>下单时间：</span>2015-04－28</li>
+                <li><span>支付方式：</span>支付宝</li>
+                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">896.90</strong></li>
+            </ul>
+        </div>
+        <div class="pay-success-c2 fr"><img src="../img/weixin-qrcode.png" alt="">
+            <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+        </div>
+    </div>
+    <div class="pay-success2">
+        <div class="pay-success2-h">
+            {{#if cartItemNum}}<h2>您的购物车还有未结算的商品</h2>{{/if}}
+            <div class="pay-success2-r1">
+                {{#if cartItemNum}}<button class="btn btn-danger btn-small">返回购物车</button>{{/if}}
+                <a href="{{links.orderlist}}" title="查看订单">查看订单详情</a>|<a href="http://www.sfht.com/index.html" title="继续购物">继续购物</a>
+            </div>
+        </div>
+        <div class="pay-success2-b">
+            <h2>您已获得48元活动优惠券</h2>
+            <ul>
+                <li>
+                    <div class="coupon">
+                        <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                        <p>有效期至：2015/04/21</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="coupon">
+                        <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                        <p>有效期至：2015/04/21</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
 <h2><span class="order-success-icon"></span>订单支付成功</h2>
 <p class="order-success-p1">感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></p>
 <div class="order-success-r1 clearfix pm">
