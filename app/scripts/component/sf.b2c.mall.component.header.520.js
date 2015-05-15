@@ -532,8 +532,8 @@ define('sf.b2c.mall.component.header.520', [
       if (this.checkVerifiedCode.call(this, code) && this.checkInviteMobile(inviteMobile)) {
         var downInviteSms = new SFDownInviteSms({
           invtMobile: inviteMobile,
-          vfcode: code,
-          smsCon: message
+          vfcode: "type=default&sessionID=" + this.data.attr('sessionId') + "&code=" + $("#inviteMobileCode").val(),
+          smsCon: message + "该邀请来自您的好友" + $("#input-mobile").val() + "。5.18-5.20注册顺丰海淘会员，即送20元蜘蛛网代金券和官网优惠券。http://m.sfht.com【顺丰海淘】"
         });
         $("#inviteTaBtn").addClass("disable");
         can.when(downInviteSms.sendRequest())
