@@ -513,7 +513,7 @@ define('sf.b2c.mall.component.header.520', [
       this.data.attr('verifiedCodeUrl', verifiedCodeUrl);
     },
 
-    '#verified-code-btn click': function($element, event) {
+    '.verified-code-btn click': function($element, event) {
       event && event.preventDefault();
       this.getVerifiedCode();
     },
