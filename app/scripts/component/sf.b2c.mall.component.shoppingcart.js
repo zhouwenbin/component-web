@@ -23,7 +23,10 @@ define(
 
       helpers: {
         firstimages: function(images, options) {
-          return images[0];
+          if (typeof images !== 'undefined') {
+            return images[0];
+          };
+
         },
         isShowBtn: function(canOrder, options) {
           if (canOrder === 0) {
@@ -34,42 +37,49 @@ define(
           if (isSelected === 1) {
             return options.fn(options.context || this);
           };
+        },
+        isShowDisable: function(canAddNum, options) {
+          if (canAddNum === 0) {
+            return options.fn(options.context || this);
+          };
         }
       },
       /**
        * [init 初始化]
        */
       init: function() {
-        this.render();
+        var that = this;
+        var getCart = new SFGetCart();
+        getCart.sendRequest()
+          .done(function(data) {
+            that.render(data);
+          }).fail(function() {
+
+          })
+
       },
 
       /**
        * [render 渲染]
        */
-      render: function(element, options) {
+      render: function(data) {
         var that = this;
-        var getCart = new SFGetCart();
-        getCart.sendRequest()
-          .done(function(data) {
-            that.options.canOrder = that.btnStateMap[data.canOrder];
-            that.options.scopeGroups = data.scopeGroups;
-            that.options.goodItemList = [];
-            that.options.order = new can.Map({});
-            that.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
-            that.options.order.attr('discountFee', data.cartFeeItem.discountFee);
-            that.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
-            _.each(that.options.scopeGroups, function(cartItem, i) {
-              //是否显示活动信息
-              cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
-              that.options.goodItemList.push(cartItem.goodItemList[0]);
-              console.log(cartItem.promotionInfo);
-            });
-            var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
-            that.element.html(html);
+        this.options.canOrder = this.btnStateMap[data.canOrder];
+        this.options.scopeGroups = data.scopeGroups;
+        this.options.goodItemList = [];
 
-          }).fail(function() {
-
-          })
+        this.options.order = new can.Map({});
+        this.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
+        this.options.order.attr('discountFee', data.cartFeeItem.discountFee);
+        this.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
+        this.options.isShowOverLimitPrice = (this.options.order.attr('actualTotalFee') > 100000);
+        _.each(this.options.scopeGroups, function(cartItem, i) {
+          //是否显示活动信息
+          cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
+          that.options.goodItemList.push(cartItem.goodItemList[0]);
+        });
+        var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
+        that.element.html(html);
       },
       //按钮状态
       btnStateMap: {
@@ -90,16 +100,38 @@ define(
         });
         refreshCart.sendRequest()
           .done(function(data) {
-
-            that.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
-            that.options.order.attr('discountFee', data.cartFeeItem.discountFee);
-            that.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
+            that.render(data);
           }).fail(function() {
 
           })
 
       },
+      updateItemNumInCart: function(itemId, num) {
+        var that = this;
+        var updateItemNumInCart = new SFUpdateItemNumInCart({
+          itemId: itemId,
+          num: num
+        });
+        updateItemNumInCart.sendRequest()
+          .done(function(data) {
+            that.render(data);
+          })
+      },
+      /**
+       * 删除单个商品或选中商品
+       */
+      deleteCartOrder: function(itemIds) {
+        var that = this;
+        var deleteorder = new SFRemoveItemsInCart({
+          itemIds: JSON.stringify(itemIds)
+        });
+        deleteorder.sendRequest()
+          .done(function(data) {
+            that.render(data);
+          }).fail(function() {
 
+          })
+      },
       /**
        * 全选
        */
@@ -124,9 +156,14 @@ define(
        * 单选
        */
       '.sfcheckbox change': function(element, options) {
-        var isSelected = $(element).data('goodItemList').isSelected;
-        var itemId = $(element).data('goodItemList').itemId;
-        this.refreshCartList(isSelected, itemId);
+        var isSelected = $(element).attr('data-isSelected');
+        if (isSelected == "1") {
+          $(element).attr('data-isSelected', 0);
+        } else {
+          $(element).attr('data-isSelected', 1);
+        }
+        var itemId = $(element).closest('tr').attr('data-itemIds');
+        this.refreshCartList($(element).attr('data-isSelected'), itemId);
       },
       //删除单个商品
       '.deleteSingleOrder click': function(element, event) {
@@ -144,8 +181,16 @@ define(
       '#deletedSelectGoods click': function(element, event) {
         event && event.preventDefault();
         var that = this;
+        var itemIds = [];
+        _.each($('tr[data-isSelected="1"]'), function(item) {
+          itemIds.push($(item).attr('data-itemIds'));
+        })
 
-
+        var message = new SFMessage(null, {
+          'tip': '确认要删除选中商品？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
+        });
       },
       //清除购物车内无效商品
       '#cleanInvalidItemsInCart click': function(element, event) {
@@ -154,21 +199,7 @@ define(
         itemIds.push($('.cart-disable').attr('data-itemIds'));
         this.deleteCartOrder(itemIds);
       },
-      /**
-       * 删除单个商品或选中商品
-       */
-      deleteCartOrder: function(itemIds) {
-        var that = this;
-        var deleteorder = new SFRemoveItemsInCart({
-          itemIds: JSON.stringify(itemIds)
-        });
-        deleteorder.sendRequest()
-          .done(function(data) {
-            that.render();
-          }).fail(function() {
 
-          })
-      },
 
       /**
        * 增加商品数量
@@ -180,12 +211,10 @@ define(
         var itemId = $(element).data('limitQuantity').itemId;
         if (limitQuantity > 0 && num > limitQuantity - 1) {
           $(element).closest('div').siblings('p').removeClass('visuallyhidden');
-          $(element).addClass('disable');
         } else {
           $(element).siblings('.btn-num-reduce').removeClass('disable');
-          $(element).removeClass('disable');
           $(element).siblings('input').val(num + 1);
-          this.updateItemNumInCart(itemId, num);
+          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
         }
       },
 
@@ -205,7 +234,7 @@ define(
           $(element).siblings('.btn-num-add').removeClass('disable');
           $(element).removeClass('disable');
           $(element).siblings('input').val(num - 1);
-          this.updateItemNumInCart(itemId, num);
+          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
         }
 
       },
@@ -228,17 +257,7 @@ define(
         };
 
       },
-      updateItemNumInCart: function(itemId, num) {
-        var that = this;
-        var updateItemNumInCart = new SFUpdateItemNumInCart({
-          itemId: itemId,
-          num: num
-        });
-        updateItemNumInCart.sendRequest()
-          .done(function(data) {
 
-          })
-      },
       /**
        * 去结算
        */
