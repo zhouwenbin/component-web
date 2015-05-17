@@ -53,7 +53,7 @@ define('sf.b2c.mall.component.header.727', [
     },
 
     ".banner-scroll click": function() {
-      window.location.href = "http://www.sfht.com/activity/553.html";
+      window.location.href = "http://www.sfht.com/activity/251.html?_src=media_vdsp";
     },
 
     isInShowPage: function() {
@@ -72,7 +72,7 @@ define('sf.b2c.mall.component.header.727', [
       }
 
       // 小鲜肉活动，如果是438页面则不显示
-      if (window.location.href.indexOf('553.html') > -1) {
+      if (window.location.href.indexOf('251.html') > -1) {
         return false;
       }
 
