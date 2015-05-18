@@ -42,7 +42,7 @@ define('sf.b2c.mall.component.header.520', [
 
   var DEFAULT_DOWN_SMS_ERROR_MAP = {
     '1000010': '未找到手机用户',
-    '1000020': '手机号已存在',
+    '1000020': '手机号已注册，请登录',
     '1000070': '参数错误',
     '1000230': '手机号错误，请输入正确的手机号',
     '1000270': '短信请求太过频繁,请稍后重试',
@@ -50,7 +50,7 @@ define('sf.b2c.mall.component.header.520', [
   }
 
   var DEFAULT_MOBILE_ACTIVATE_ERROR_MAP = {
-    '1000020': '手机号已存在',
+    '1000020': '手机号已注册，请登录',
     '1000230': '手机号错误，请输入正确的手机号',
     '1000240': '手机验证码错误',
     '1000250': '验证码输入有误，请重新输入'
@@ -67,7 +67,7 @@ define('sf.b2c.mall.component.header.520', [
   var ERROR_NO_EMAIL_CODE = '请输入右侧图片中信息';
   var ERROR_EMAIL_CODE = '验证码输入有误，请重新输入';
   var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
-  var ERROR_NO_SET_PWD = '手机号已存在';
+  var ERROR_NO_SET_PWD = '手机号已注册，请登录';
 
   var MESSAGE_CLOSE_TIME = 1000;
 
