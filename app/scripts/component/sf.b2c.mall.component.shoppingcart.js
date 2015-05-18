@@ -67,7 +67,6 @@ define(
         this.options.canOrder = this.btnStateMap[data.canOrder];
         this.options.scopeGroups = data.scopeGroups;
         this.options.goodItemList = [];
-
         this.options.order = new can.Map({});
         this.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
         this.options.order.attr('discountFee', data.cartFeeItem.discountFee);
@@ -76,6 +75,13 @@ define(
         _.each(this.options.scopeGroups, function(cartItem, i) {
           //是否显示活动信息
           cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
+          //展示商品规格
+          var result = new Array();
+          _.each(cartItem.goodItemList[0].specs, function(item) {
+            result.push(item.specName + ":" + item.value);
+          });
+          
+          cartItem.specs = result.join('&nbsp;/&nbsp;');
           that.options.goodItemList.push(cartItem.goodItemList[0]);
         });
         var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
@@ -196,7 +202,9 @@ define(
       '#cleanInvalidItemsInCart click': function(element, event) {
         event && event.preventDefault();
         var itemIds = [];
-        itemIds.push($('.cart-disable').attr('data-itemIds'));
+        _.each($('.cart-disable'), function(item) {
+          itemIds.push(item.attr('data-itemIds'));
+        });
         this.deleteCartOrder(itemIds);
       },
 
@@ -210,7 +218,7 @@ define(
         var limitQuantity = $(element).data('limitQuantity').limitQuantity;
         var itemId = $(element).data('limitQuantity').itemId;
         if (limitQuantity > 0 && num > limitQuantity - 1) {
-          $(element).closest('div').siblings('p').removeClass('visuallyhidden');
+
         } else {
           $(element).siblings('.btn-num-reduce').removeClass('disable');
           $(element).siblings('input').val(num + 1);
@@ -241,6 +249,8 @@ define(
       '.num-input blur': function(element, event) {
         event && event.preventDefault();
         this.inputBuyNum(element);
+        var itemId = $(element).closest('tr').attr('data-itemIds');
+        this.updateItemNumInCart(itemId, parseInt($(element).val()));
         return false;
       },
       '.num-input keyup': function(element, event) {
@@ -251,7 +261,6 @@ define(
       //手工输入商品数量
       inputBuyNum: function(element, options) {
         var amount = $(element).val();
-        //var limitQuantity = $(element).closest('div').siblings('')
         if (amount < 0 || isNaN(amount)) {
           $(element).val(1);
         };

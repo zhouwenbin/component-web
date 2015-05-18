@@ -10,7 +10,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
-  'sf.b2c.mall.api.user.webLogin',
   'sf.b2c.mall.api.user.delRecAddress',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
@@ -21,7 +20,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.order.iteminfo'
 ], function(can, $, $cookie, store, md5,
     RegionsAdapter, AddressAdapter,
-    SFGetRecAddressList,SFGetIDCardUrlList, SFUserWebLogin,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,
+    SFGetRecAddressList,SFGetIDCardUrlList,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,
     CheckLogistics,SFGetItemSummary,
     SFMessage, SFAddressEditor, SFItemInfo) {
   var AREAID;

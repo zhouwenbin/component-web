@@ -24,7 +24,7 @@
                         </td>
                         <td class="td2">
                             <h2><a href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
-                            <div class="cart-standard">{{spec}}</div>
+                            <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
                             <del>{{sf.price price}}</del>
@@ -32,8 +32,8 @@
                             {{#isHasActivity}}<div class="icon icon73">限时促销</div>{{/isHasActivity}}
                         </td>
                         <td class="td4">
-                            <div><span class="btn btn-num"><a {{data 'limitQuantity'}} class="btn-num-reduce {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">-</a><a class="btn-num-add" href="#" {{data 'limitQuantity'}}>+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
-                            <p class="text-error visuallyhidden">限购{{limitQuantity}}件</p>
+                            <div><span class="btn btn-num"><a {{data 'limitQuantity'}} class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#" {{data 'limitQuantity'}}>+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                            <p class="text-error visuallyhidden">{{limitDescList}}</p>
                         </td>
                         <td class="td5">
                             <strong class="text-error">{{sf.price perTotalPrice}}</strong>
