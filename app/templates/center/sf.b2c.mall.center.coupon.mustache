@@ -19,9 +19,9 @@
       <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
       <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
     </div>
-    {{#showButton}}
+    {{#customUrl}}
     <a class="btn btn-normal btn-big gotohref" href="{{customUrl}}" target="_blank">去看看</a>
-    {{/showButton}}
+    {{/customUrl}}
   </li>
   {{/each}}
 </ul>

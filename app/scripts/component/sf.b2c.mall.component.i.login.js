@@ -432,7 +432,6 @@ define(
                     window.location.href = params.from || 'index.html';
                   }
                 }).fail(function() {})
-
             }
           })
           .fail(function(error) {

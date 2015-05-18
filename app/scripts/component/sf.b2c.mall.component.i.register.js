@@ -384,11 +384,6 @@ define(
             password: md5(password + SFBizConf.setting.md5_key)
           });
 
-          var receivePro = new SFReceivePro({
-            "channel": "B2C",
-            "event": "REGISTER_USER_SUCCESS"
-          });
-
           this.component.mobileRegister.sendRequest()
             .done(function(data) {
               if (data.csrfToken) {
@@ -396,16 +391,15 @@ define(
                 store.set("alipaylogin", "false");
                 SFFn.dotCode();
 
-                // 注册送优惠券 begin
-                store.set("registersuccess", "注册成功，恭喜您获得优惠券。");
-                // 注册送优惠券 end
-
                 store.set('csrfToken', data.csrfToken);
                 // can.route.attr({
                 //   'tag': 'success',
                 //   'csrfToken': data.csrfToken
                 // });
 
+                // 注册送优惠券 begin
+                that.sendCoupon();
+                // 注册送优惠券 end
               }
             })
             .fail(function(errorCode) {
@@ -420,6 +414,31 @@ define(
               }
             })
         }
+      },
+
+      sendCoupon: function() {
+
+        var receivePro = new SFReceivePro({
+          "channel": "B2C",
+          "event": "REGISTER_USER_SUCCESS"
+        });
+
+        receivePro
+          .sendRequest()
+          .done(function(proInfo) {
+
+            if (proInfo.couponInfos) {
+              new SFMessage(null, {
+                'tip': "恭喜您获得优惠券",
+                'type': 'success'
+              });
+            }
+
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+
       },
 
       '#input-mail focus': function($element, event) {

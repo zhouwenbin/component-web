@@ -399,14 +399,14 @@ define(
             .done(function(data) {
               if (data.csrfToken) {
 
-                // 注册送优惠券 begin
-                store.set("registersuccess", "注册成功，恭喜您获得优惠券。");
-                // 注册送优惠券 end
-
                 // 支付宝第三方登录只能看到支付宝支付方式
                 store.set("alipaylogin", "false");
 
                 store.set('csrfToken', data.csrfToken);
+
+                // 注册送优惠券 begin
+                that.sendCoupon();
+                // 注册送优惠券 end
 
                 // can.route.attr({
                 //   'tag': 'success',
@@ -429,6 +429,34 @@ define(
             })
 
         }
+      },
+
+      sendCoupon: function() {
+
+        document.domain = "sfht.com";
+
+        var receivePro = new SFReceivePro({
+          "channel": "B2C",
+          "event": "REGISTER_USER_SUCCESS"
+        });
+
+        receivePro
+          .sendRequest()
+          .done(function(proInfo) {
+
+            if (proInfo.couponInfos) {
+              window.parent.popMessage();
+            }
+
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+          .fail(function(error) {
+            console.error(error);
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+
       },
 
       '#input-mail focus': function($element, event) {

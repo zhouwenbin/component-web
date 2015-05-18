@@ -13,6 +13,7 @@ define('sf.b2c.mall.component.header', [
   'underscore',
   'md5',
   'store',
+  'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.user.partnerLogin', //传参判断第三方账号是否绑定手机号码
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
@@ -29,7 +30,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
   SFHeader520,
   template_header_user_navigator,
   template_header_info_common,
@@ -482,10 +483,11 @@ define('sf.b2c.mall.component.header', [
 
     watchLoginState: function() {
       var that = this;
-      // if (!this.component.modal.isClosed()) {
-      setInterval(function() {
+      document.domain = "sfht.com";
+      // can.on.call(window, 'login', function () {
+      window.userLoginSccuessCallback = function() {
         if (that.component.modal.isClosed()) {
-          that.afterLoginDest = null
+          that.afterLoginDest = null;
         }
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
@@ -516,11 +518,16 @@ define('sf.b2c.mall.component.header', [
 
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
+      };
 
-
-        // that.watchLoginState.call(that);
-      }, 500);
-      // }
+      window.popMessage = function() {
+        setTimeout(function() {
+          new SFMessage(null, {
+            'tip': "恭喜您获得优惠券",
+            'type': 'success'
+          });
+        }, 1000);
+      }
     }
   });
 });
