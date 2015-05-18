@@ -8,10 +8,106 @@
 <link href="../css/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <a class="banner-scroll"></a>
+  <div class="banner-scroll">
+    <div class="pm">
+      <div class="banner-scroll-inner">
+        <div class="step1" style="display:none">
+        <img src="../img/step1.png"><span class="step1tip">注册成功顺丰海淘会员得格瓦拉代金券+顺丰海淘代金券</span>
+        <div class="step1info">
+          <ol>
+            <li>
+              <input id="user-name" type="text" class="input-username" placeholder="手机号" can-value="username">
+            </li>
+
+            <li>
+              <div class="clearfix">
+                <div class="fl">
+                  <input type="text" class="input1" placeholder="点击按钮获取验证码" id="input-mobile-code">
+                </div>
+                <a href="#" class="btn btn-send fr" id="mobile-code-btn">发送短信验证码</a>
+              </div>
+           </li>
+
+           <li>
+             <input type="password" class="password" id="input-password" placeholder="设置6-18位字母、数字或标点符号的密码">
+           </li>
+
+          </ol>
+
+          <div class="register-br1">
+           <button type="submit" class="btn btn-send btn-register" id="mobile-register-btn">提交注册</button>
+         </div>
+
+        </div>
+
+      </div>
+
+      <div class="step1success">
+        <div class="step1successtip"><span class="icon icon36"></span><span class="">注册成功</span></div>
+        <div class="step1successinfo">请至<span>我的优惠券</span>查看格瓦拉代金券与顺丰海淘优惠券</div>
+      </div>
+
+      <p class="line"></p>
+
+      <div class="step2">
+        <img src="../img/step2.png">
+        <span class="step2tip">邀请你心中的那个TA一起注册得格瓦代金券+顺丰海淘代金券甜蜜520一起看电影，买洋货！</span>
+
+        <div class="step1info">
+          <ol>
+            <li>
+              <input id="invitemobile" type="text" class="invitemobile" placeholder="请输入TA的手机号" can-value="username">
+            </li>
+          </ol>
+
+          <ol class="invitemessages">
+            <li>
+              <span name="invitemessage1" class="icon radio active"></span>
+              <span>邀请模板1</span>
+            </li>
+            <li>
+              <span name="invitemessage2" class="icon radio"></span>
+              <span class="invitemessage"></span><span>邀请模板2</span>
+            </li>
+            <li>
+              <span name="invitemessage3" class="icon radio"></span>
+              <span class="invitemessage"></span><span>邀请模板3</span>
+            </li>
+          </ol>
+
+          <div class="messagedetail">邀请模版1邀请模版1邀请模版1邀请模版1邀请邀请模版
+1模版1邀请模版1邀请模版1</div>
+
+          <div class="step2success">
+            <div class="step2successtip"><span class="icon icon36"></span><span>邀请已发出</span></div>
+          </div>
+
+          <div class="register-br1">
+             <input id="invitemobilecode" type="text" class="invitemobilecode" placeholder="请输入TA的手机号">
+             <span class="showmobilecode">293195</span>
+             <a href="" class="nextmobilecode">换一个</a>
+          </div>
+
+          <div class="register-br1">
+            <button type="submit" class="btn btn-send btn-register" id="mobile-register-btn">邀请TA</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
   == Slim::Template.new('module/header.slim').render
   <div class="pb">
-    
+
     <div class="pm">
       == Slim::Template.new('module/slider.slim').render
       <!--品牌特卖-->
@@ -24,7 +120,7 @@
       <!--热卖商品-->
       == Slim::Template.new('module/product.slim').render
       <!--热卖商品-->
-      
+
     </div>
   </div>
   <!--尾部-->

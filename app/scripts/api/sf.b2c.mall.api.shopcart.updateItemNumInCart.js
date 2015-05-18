@@ -26,15 +26,15 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'itemId': 'string',
-        'num': 'long',
-        'goods': 'json'
+        'num': 'int'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': 'shop chart unkown error'
+        '15000100': '请求参数有误',
+        '15000900': '商品不在购物车内'
       }
     }
   });

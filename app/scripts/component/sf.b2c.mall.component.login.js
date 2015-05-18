@@ -430,6 +430,10 @@ define(
                 }).fail(function() {
 
                 })
+                .always(function() {
+                  document.domain = "sfht.com";
+                  window.parent.userLoginSccuessCallback();
+                })
 
               SFFn.dotCode();
             }

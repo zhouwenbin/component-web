@@ -25,16 +25,16 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'shopcart.addItemToCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemId': 'string',
-        'num': 'long'
+        'items': 'json'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000200': '购物车添加商品失败',
-        '15000201': '该商品不支持加入购物车'
+        '15000100': '请求参数有误',
+        '15000201': '该商品不支持加入购物车',
+        '15000800': '您的购物车已满'
       }
     }
   });

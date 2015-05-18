@@ -13,6 +13,7 @@ define('sf.b2c.mall.component.header', [
   'underscore',
   'md5',
   'store',
+  'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.user.partnerLogin', //传参判断第三方账号是否绑定手机号码
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
@@ -22,13 +23,15 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util',
+  'sf.b2c.mall.component.header.520',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
   'text!template_header_channel_navigator',
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+  SFHeader520,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -157,60 +160,9 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
+
+      this.renderMap['template_header_520'].call(this, that.data);
       // this.showAD();
-    },
-
-    showAD: function() {
-
-      if (this.needShowAd()) {
-
-        $('.banner-scroll')
-          .height(0)
-          .animate({
-            "height": 539
-          }, 1000)
-          .delay(5000)
-          .animate({
-            'height': 0
-          }, 1000, function() {
-            $(this).css({
-              "background-image": "url(../img/banner-scroll2.jpg)"
-            })
-          })
-          .delay(100)
-          .animate({
-            "height": 90
-          }, 300)
-
-        store.set("lastadshowtime", new Date().getTime());
-      }
-    },
-
-    needShowAd: function() {
-      // 如果已经登录了 则不显示
-      if (store.get('csrfToken')) {
-        return false;
-      }
-
-      // 如果显示没超过一天 则不要显示广告
-      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
-        return false;
-      }
-
-      var url = window.location.href;
-
-      //URL补齐
-      if (url == "http://www.sfht.com/") {
-        url = url + "index.html";
-      }
-
-      // 如果不是详情页 首页和活动页 则不显示广告
-      var isShowURL = /index|activity|detail/.test(url);
-      if (!isShowURL) {
-        return false;
-      }
-
-      return true;
     },
 
     /**
@@ -266,6 +218,10 @@ define('sf.b2c.mall.component.header', [
 
         this.element.find('.header-channel-navigator').html(html);
       },
+
+      'template_header_520': function(data) {
+        new SFHeader520('.sf-b2c-mall-header');
+      }
     },
 
     supplement: function(data) {
@@ -277,6 +233,7 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       if (pathname == '/' || pathname == '/index.html') {
+        /*  520活动暂时关闭浮动导航栏
         $(window).scroll(function() {
           setTimeout(function() {
             if ($(window).scrollTop() > 166) {
@@ -293,6 +250,7 @@ define('sf.b2c.mall.component.header', [
 
           }, 200);
         })
+        */
         $('#js-focus')
           .hover(function() {
             $('.nav-qrcode').addClass('show');
@@ -525,10 +483,11 @@ define('sf.b2c.mall.component.header', [
 
     watchLoginState: function() {
       var that = this;
-      // if (!this.component.modal.isClosed()) {
-      setInterval(function() {
+      document.domain = "sfht.com";
+      // can.on.call(window, 'login', function () {
+      window.userLoginSccuessCallback = function() {
         if (that.component.modal.isClosed()) {
-          that.afterLoginDest = null
+          that.afterLoginDest = null;
         }
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
@@ -559,11 +518,16 @@ define('sf.b2c.mall.component.header', [
 
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
+      };
 
-
-        // that.watchLoginState.call(that);
-      }, 500);
-      // }
+      window.popMessage = function() {
+        setTimeout(function() {
+          new SFMessage(null, {
+            'tip': "礼包领取成功，请至我的优惠券查看！",
+            'type': 'success'
+          });
+        }, 1000);
+      }
     }
   });
 });

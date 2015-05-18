@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.removeItemsInCart
+  * @class sf.b2c.mall.api.order.deleteOrder
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.removeItemsInCart',
+'sf.b2c.mall.api.order.deleteOrder',
 [
   'jquery',
   'can',
@@ -22,17 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.removeItemsInCart',
+      METHOD_NAME: 'order.deleteOrder',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemIds': 'string'
+        'orderId': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000300': '购物车删除商品失败'
+        '4000100': 'order unkown error'
       }
     }
   });
