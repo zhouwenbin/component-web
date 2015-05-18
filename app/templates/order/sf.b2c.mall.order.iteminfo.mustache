@@ -12,12 +12,13 @@
           </tr>
       </thead>
       <tbody>
-        {{#each orderGoodsItemList}}
+        {{#each orderPackageItemList}}
           <tr>
             <th colspan="5">
-                <span class="icon icon82"></span><span class="order-confirm-from">香港仓库发</span><span class="order-confirm-time">预计6－12天到货</span>
+                <span class="icon icon82"></span><span class="order-confirm-from">{{shippingWarehouse}}</span><span class="order-confirm-time">预计6－12天到货</span>
             </th>
           </tr>
+          {{#each orderGoodsItemList}}
           <tr>
             <td class="td1">
                 <a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>
@@ -33,6 +34,7 @@
                 <strong class="text-error">{{sf.price totalPrice}}</strong>
             </td>            
           </tr>
+          {{/each}}
         {{/each}}
       </tbody>
     </table>
