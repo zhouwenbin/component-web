@@ -2,8 +2,8 @@
   <div class="order-detail-c1 fl">
     <ul>
         <li><span>订单号：</span>{{orderId}}</li>
-        <li><span>下单时间：</span>2015-03-01</li>
-        <li><span>支付方式：</span>{{payWay}}</li>
+        <li><span>下单时间：</span>{{sf.time gmtPaid}}</li>
+        <li><span>支付方式：</span>{{payType}}</li>
     </ul>
     <ul>
         <li><span>活动优惠：</span>-￥10</li>
@@ -25,11 +25,13 @@
     <button class="btn btn-danger btn-small">{{{nextStep}}}</button>
   </div>
   <div class="order-detail-c2">
+    {{#each orderPackageItemList}}
     <ul class="order-detail-tab">
-      <li class="active"><a href="">包裹1</a></li>
-      <li><a href="">包裹2</a></li>
-      <li><a href="">包裹3</a></li>
+      <li class="active"><a href="">包裹{{@index}}</a></li>
+      <li><a href="">包裹{{@index}}</a></li>
+      <li><a href="">包裹{{@index}}</a></li>
     </ul>
+    {{each}}
     {{#if showStep}}
     <div class="order-detail-step">
       <ul>
@@ -69,16 +71,16 @@
           </tr>
       </thead>
       <tbody>
-        {{#each packageItemList}}
+        {{#each orderGoodsItemList}}
           <tr>
               <td>
-                  <img src="../img/product.jpg" alt="">
-                  <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                  <img src="{{sf.img imageUrl}}" alt="">
+                  <h2>{{goodsName}}</h2>
               </td>
-              <td>88.00</td>
-              <td>1</td>
-              <td>10.00</td>
-              <td>78.00</td>
+              <td>{{sf.price price}}</td>
+              <td>{{quantity}}</td>
+              <td>{{discount}}</td>
+              <td>{{78.00}}</td>
           </tr>
         {{/each}}
       </tbody>
