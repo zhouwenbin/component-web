@@ -69,7 +69,7 @@ define('sf.b2c.mall.component.header.520', [
   var DEFAULT_RESEND_SUCCESS = '验证邮件已重新发送，请注意查收';
   var ERROR_NO_SET_PWD = '手机号已注册，请登录';
 
-  var MESSAGE_CLOSE_TIME = 1000;
+  var MESSAGE_CLOSE_TIME = 2000;
 
   var MAIL_MAP = {
     '163': 'http://mail.163.com',
