@@ -181,7 +181,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("isShowCouponArea", true);
-        that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
+          that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
           can.extend(orderCoupon, {
             useQuantity: 0,
             discountPrice: 0,
@@ -399,6 +399,20 @@ define('sf.b2c.mall.order.iteminfo', [
     },
 
     //优惠券功能交互
+    '#coupon-use click': function(element, event) {
+      $(element).toggleClass('active');
+      $('#coupon-use-detail').toggle(300);
+    },
+    '#coupon-more click': function(element, event) {
+      $(element).toggleClass('active');
+      if ($(element).hasClass('active')) {
+        $('#coupon-more-text').text('展开更多');
+        $('#coupons').show();
+      } else {
+        $('#coupon-more-text').text('收起');
+        $('#coupons').hide();
+      }
+    },
     '.mycoupon-h li click': function(targetElement) {
       var index = $('.mycoupon-h li').index(targetElement);
       $('.mycoupon-h li').removeClass('active');
