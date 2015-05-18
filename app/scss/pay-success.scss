@@ -78,6 +78,21 @@
 	display: inline-block;
 	margin-right: 2px;
 }
+.pay-success2-bc2{
+	width: 518px;
+	padding-left: 70px;
+	border-left: 1px solid #e5e5e5;
+}
+.qrcode img{
+	width: 125px;
+	height: 125px;
+	margin-right: 25px;
+}
+.qrcode h2{
+	padding-top: 13px;
+	margin-bottom: 13px;
+	font-size: 14px;
+}
 .coupon{
 	display: inline-block;
 	background: url(#{$bg-url}coupon2.png) no-repeat;
@@ -98,4 +113,21 @@
 .coupon p{
 	opacity: 0.5;
 	margin-top: 2px;
+}
+.gift{
+	background: url(#{$bg-url}gift2.png) no-repeat;
+	color: #fff;
+	width: 155px;
+	height: 62px;
+	padding-left: 58px;
+	box-sizing:border-box;
+	padding-top: 3px;
+}
+.gift strong{
+	font-family: arial;
+	font-size: 33px;
+}
+.gift-r2{
+	font-size: 14px;
+	margin-top: 13px;
 }

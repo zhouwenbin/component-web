@@ -335,7 +335,7 @@ $(function(){
     $('.cart-num').text(cart_num);
     $('.nav .label-error').addClass('active');
     setTimeout(function(){
-        $('.nav .label-error').removeClass('active')
+        $('.nav .label-error').removeClass('active');
     },500)
     return false;
   });
