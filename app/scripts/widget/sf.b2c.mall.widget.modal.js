@@ -33,7 +33,8 @@ define(
         this.closed = true;
 
         // 注册送优惠券end
-        if (store.get("registersuccess")) {
+        var tips = store.get("registersuccess");
+        if (typeof tips != 'undefined' && tips != "" && tips != null) {
           this.sendCoupon();
         }
         // 注册送优惠券end
@@ -48,8 +49,9 @@ define(
         receivePro
           .sendRequest()
           .done(function(proInfo) {
+            var tips = store.get("registersuccess");
 
-            if (proInfo.couponInfos) {
+            if (proInfo.couponInfos && typeof tips != 'undefined' && tips != "" && tips != null) {
               new SFMessage($(window.parent.document), {
                 'tip': store.get("registersuccess"),
                 'type': 'success'
