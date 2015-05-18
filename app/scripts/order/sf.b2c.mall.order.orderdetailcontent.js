@@ -139,40 +139,47 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             //              {"gmtHappened":"2015/01/01 21:08:57","operator":"LOGISTICS","status":"SHIPPED"},
             //              {"gmtHappened":"2015/01/02 11:09:10","operator":"SYSTEM","status":"COMPLETED"}
             //            ];
-
+            //订单状态流程图
             var map = {
-              'SUBMITED': function(trace) {
-                that.options.submitedTime = trace.gmtHappened;
-                that.options.submitedActive = "active";
-              },
+              'SUBMITED': '', //待支付
+              'AUDITING': 'order-detail-step2', //待审核
+              'SHIPPING': 'order-detail-step3', //待出库
+              'SHIPPED': 'order-detail-step4', //出库中
+              'COMPLETED': 'order-detail-step5' //已完成
+            };
+            // var map = {
+            //   'SUBMITED': function(trace) {
+            //     that.options.submitedTime = trace.gmtHappened;
+            //     that.options.submitedActive = "active";
+            //   },
 
-              'AUDITING': function(trace) {
-                that.options.auditingTime = trace.gmtHappened;
-                that.options.auditingActive = "active";
-              },
-              'BUYING': function(trace) {},
-              'WAIT_SHIPPING': function(trace) {},
+            //   'AUDITING': function(trace) {
+            //     that.options.auditingTime = trace.gmtHappened;
+            //     that.options.auditingActive = "active";
+            //   },
+            //   'BUYING': function(trace) {},
+            //   'WAIT_SHIPPING': function(trace) {},
 
-              'SHIPPING': function(trace) {
-                that.options.wait_shippingTime = trace.gmtHappened;
-                that.options.wait_shippingActive = "active";
-              },
+            //   'SHIPPING': function(trace) {
+            //     that.options.wait_shippingTime = trace.gmtHappened;
+            //     that.options.wait_shippingActive = "active";
+            //   },
 
-              'SHIPPED': function(trace) {
-                that.options.shippingTime = trace.gmtHappened;
-                that.options.shippingActive = "active";
-              },
+            //   'SHIPPED': function(trace) {
+            //     that.options.shippingTime = trace.gmtHappened;
+            //     that.options.shippingActive = "active";
+            //   },
 
-              'COMPLETED': function(trace) {
-                that.options.completedTime = trace.gmtHappened;
-                that.options.completedActive = "active";
-              },
+            //   'COMPLETED': function(trace) {
+            //     that.options.completedTime = trace.gmtHappened;
+            //     that.options.completedActive = "active";
+            //   },
 
-              'AUTO_COMPLETED': function(trace) {
-                that.options.completedTime = trace.gmtHappened;
-                that.options.completedActive = "active";
-              }
-            }
+            //   'AUTO_COMPLETED': function(trace) {
+            //     that.options.completedTime = trace.gmtHappened;
+            //     that.options.completedActive = "active";
+            //   }
+            // }
             _.each(that.options.traceList, function(trace) {
               trace.operator = that.operatorMap[trace.operator] || '系统';
               if (productShape == 'SF-SHLK' && (trace.status == 'SHIPPED' || trace.status == 'SHIPPING')) {
