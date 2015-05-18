@@ -18,17 +18,29 @@ define('sf.b2c.mall.order.paysuccess', [
        * @type {Object}
        */
       helpers: {
+        /**
+         * @description 显示支付方式
+         * @param  {string} payType 支付方式字段
+         * @return {string}         支付方式
+         */
         'sf-payment': function (payType) {
           var map = {
             'alipay': '支付宝',
             'tenpay_forex': '财付通',
             'tenpay_forex_wxsm': '微信支付',
-            'lianlianpay': '联联支付'
+            'lianlianpay': '快捷支付'
           }
 
           return map[payType];
         },
 
+        /**
+         * @description 判断是不是对应的卡券方式
+         * @param  {string} couponType 卡券类型字段
+         * @param  {string} definition 卡券类型定义
+         * @param  {object} options
+         * @return {object}
+         */
         'sf-coupon-type': function (couponType, definition, options) {
           if (couponType == definition) {
             return options.fn(options.contexts || this);
@@ -37,6 +49,11 @@ define('sf.b2c.mall.order.paysuccess', [
           }
         },
 
+        /**
+         * @description 获取卡券类型的名称
+         * @param  {string} couponType 卡券类型字段
+         * @return {string}            卡券类型名称
+         */
         'sf-coupon-type-name': function (couponType) {
           var map = {
             'CASH': '现金券',
