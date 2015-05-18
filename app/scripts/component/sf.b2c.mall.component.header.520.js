@@ -190,7 +190,7 @@ define('sf.b2c.mall.component.header.520', [
       }
 
       // 如果不是详情页 首页和活动页 则不显示广告
-      var isShowURL = /index|activity|detail/.test(url);
+      var isShowURL = /index|activity|detail|y.html/.test(url);
       if (!isShowURL) {
         return false;
       }
