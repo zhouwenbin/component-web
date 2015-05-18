@@ -54,14 +54,16 @@ define(
                 'tip': store.get("registersuccess"),
                 'type': 'success'
               });
+
+              store.remove("registersuccess");
             }
 
           })
           .fail(function(error) {
             console.error(error);
+            store.remove("registersuccess");
           })
 
-        store.remove("registersuccess");
       },
 
       isClosed: function() {

@@ -161,6 +161,7 @@ define('sf.b2c.mall.component.header.520', [
       }
 
       if (!this.isInShowPage()) {
+        $(".banner-scroll").hide();
         return false;
       }
 
