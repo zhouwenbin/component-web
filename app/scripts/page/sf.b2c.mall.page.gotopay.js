@@ -18,24 +18,77 @@ define(
   function(can, $, store, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage, GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
+    var PAY_ASAP = '请您尽快完成付款，以便订单尽快处理！';
+    var SUBMIT_SUCCESS = '您已成功提交订单，请您尽快完成付款！';
+
     var order = can.Control.extend({
 
       init: function(element, options) {
-        this.step = null;
-
         this.render();
       },
 
+      getAlertWord: function (otherlink) {
+        return otherlink ? PAY_ASAP : SUBMIT_SUCCESS;
+      },
+
+      request: function (orderid) {
+        var getOrder = new GetOrderConfirmInfo({
+          "orderId": orderid
+        });
+
+        return getOrder.sendRequest();
+      },
+
+      paint: function (data) {
+        console.log(data);
+
+        data.optionalPayTypeList = eval(data.optionalPayTypeList);
+
+        this.options.data.attr(data);
+
+        var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data);
+
+        this.element.find('.sf-gotopay-container').html(html);
+      },
+
       render: function() {
+
+        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+        // @todo 这里的header和footer还需要渲染吗?
+        //
         var header = new Header('.sf-b2c-mall-header', {
           channel: '首页',
           isForceLogin: true
         });
-        new Footer('.sf-b2c-mall-footer');
+
+        var footer = new Footer('.sf-b2c-mall-footer');
+        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+        var params = can.deparam(window.location.search.substr(1));
+
+        this.options.data = new can.Map({
+          tips: {
+            tipInfo: this.getAlertWord(params.otherlink)
+          },
+          orderid: params.orderid,
+          recid: params.recid,
+          alltotalamount: params.amount
+        });
+
+        this
+          .request(this.options.data.orderid)
+          .done(_.bind(this.paint, this));
+
+        return;
+
+
+
+
+
 
         var that = this;
         this.options.tips = new can.Map({})
-        var params = can.deparam(window.location.search.substr(1));
+
 
         if (params.otherlink) {
           this.options.tips.attr('tipInfo', '请您尽快完成付款，以便订单尽快处理！');
@@ -150,8 +203,12 @@ define(
         return false;
       },
 
-      '#gotopayBtn click': function() {
 
+      /**
+       * @description 点击去支付按钮动作
+       * @return
+       */
+      '#gotopayBtn click': function() {
         var that = this;
 
         var callback = {
@@ -162,15 +219,14 @@ define(
               'type': 'error'
             });
 
-            that.step.setActive("thirdstep");
             var template = can.view.mustache(that.payerrorTemplate());
             $('#gotopayDIV').html(template());
           }
         }
 
         SFOrderFn.payV2({
-          orderid: that.options.orderid,
-          payType: that.getPayType()
+          orderid: this.options.orderid,
+          payType: this.getPayType()
         }, callback);
       }
     });
