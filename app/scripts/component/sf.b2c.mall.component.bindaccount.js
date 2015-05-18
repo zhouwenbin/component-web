@@ -289,6 +289,8 @@ define(
       },
 
       sendCoupon: function() {
+        document.domain= "sfht.com";
+
         var receivePro = new SFReceivePro({
           "channel": "B2C",
           "event": "REGISTER_USER_SUCCESS"
