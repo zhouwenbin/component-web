@@ -525,7 +525,7 @@ define('sf.b2c.mall.component.header.520', [
       }
       if (!SFComm.prototype.checkUserLogin.call(this)) {
         new SFMessage(null, {
-          'tip': "请先注册顺丰海淘会员",
+          'tip': "请先注册或登录顺丰海淘帐号",
           'type': 'error',
           'closeTime': MESSAGE_CLOSE_TIME
         });
@@ -560,7 +560,7 @@ define('sf.b2c.mall.component.header.520', [
           })
           .fail(function(errorCode) {
             var errMap = {
-              "1000020": "账户已注册",
+              "1000020": "手机号已注册，请登录",
               "1000100": "验证码错误",
               "1000230": "手机号错误，请输入正确的手机号"
             }
