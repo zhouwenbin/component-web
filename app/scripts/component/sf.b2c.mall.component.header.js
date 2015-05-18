@@ -523,7 +523,7 @@ define('sf.b2c.mall.component.header', [
       window.popMessage = function() {
         setTimeout(function() {
           new SFMessage(null, {
-            'tip': "恭喜您获得优惠券",
+            'tip': "礼包领取成功，请至我的优惠券查看！",
             'type': 'success'
           });
         }, 1000);

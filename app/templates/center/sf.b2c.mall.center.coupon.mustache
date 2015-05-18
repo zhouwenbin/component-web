@@ -1,6 +1,6 @@
 <ul class="mycoupon-h clearfix">
     <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 ({{unUsed.count}})</a></li>
-    <li {{#thirdparty.isShow}}class="active"{{/thirdparty.isShow}}><a href="javascript:void(0);">第三方 ({{thirdparty.count}})</a></li>
+    <li {{#thirdparty.isShow}}class="active"{{/thirdparty.isShow}}><a href="javascript:void(0);">电影券 ({{thirdparty.count}})</a></li>
     <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 ({{used.count}})</a></li>
     <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 ({{expired.count}})</a></li>
     <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 ({{cancel.count}})</a></li>
@@ -28,7 +28,7 @@
 {{/unUsed.count}}
 <!--第三方-->
 {{^thirdparty.count}}
-  <p class="mycoupon-b{{#thirdparty.isShow}} active{{/thirdparty.isShow}}"><span class="icon icon51"></span>您还没有第三方优惠券哦~</p>
+  <p class="mycoupon-b{{#thirdparty.isShow}} active{{/thirdparty.isShow}}"><span class="icon icon51"></span>您还没有电影优惠券哦~</p>
 {{/thirdparty.count}}
 {{#thirdparty.count}}
 <ul class="mycoupon-b clearfix mycoupon-b1{{#thirdparty.isShow}} active{{/thirdparty.isShow}}">
