@@ -561,7 +561,7 @@ define('sf.b2c.mall.component.header.520', [
           })
           .fail(function(errorCode) {
             var errMap = {
-              "1000020": "手机号已注册，请登录",
+              "1000020": "该用户已注册",
               "1000100": "验证码错误",
               "1000230": "手机号错误，请输入正确的手机号"
             }
