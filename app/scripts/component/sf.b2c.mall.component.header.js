@@ -220,7 +220,7 @@ define('sf.b2c.mall.component.header', [
       },
 
       'template_header_520': function(data) {
-        new SFHeader520('.sf-b2c-mall-header');
+        new SFHeader520('.sf-b2c-mall-header', {"originheader": this});
       }
     },
 

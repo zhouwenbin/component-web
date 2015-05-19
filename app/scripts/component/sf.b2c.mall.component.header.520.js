@@ -70,6 +70,7 @@ define('sf.b2c.mall.component.header.520', [
   var ERROR_NO_SET_PWD = '手机号已注册，请登录';
 
   var MESSAGE_CLOSE_TIME = 2000;
+  var APPID = 1;
 
   var MAIL_MAP = {
     '163': 'http://mail.163.com',
@@ -459,6 +460,15 @@ define('sf.b2c.mall.component.header.520', [
             if (data.csrfToken) {
 
               store.set('csrfToken', data.csrfToken);
+
+              var userinfo = $.cookie(APPID + '_uinfo');
+              var arr = [];
+              if (userinfo) {
+                arr = userinfo.split(',');
+              }
+
+              that.options.originheader.data.attr('isUserLogin', true);
+              that.options.originheader.data.attr('nickname', arr[0]);
 
               receivePro
                 .sendRequest()
