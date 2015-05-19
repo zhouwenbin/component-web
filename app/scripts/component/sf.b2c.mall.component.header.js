@@ -486,6 +486,7 @@ define('sf.b2c.mall.component.header', [
       document.domain = "sfht.com";
       // can.on.call(window, 'login', function () {
       window.userLoginSccuessCallback = function() {
+
         if (that.component.modal.isClosed()) {
           that.afterLoginDest = null;
         }
@@ -506,10 +507,11 @@ define('sf.b2c.mall.component.header', [
           if (userinfo) {
             arr = userinfo.split(',');
           }
-          //window.location.reload();
+
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname', arr[0]);
 
+          window.location.reload();
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
