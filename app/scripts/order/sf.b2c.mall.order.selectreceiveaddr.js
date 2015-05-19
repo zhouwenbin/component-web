@@ -220,10 +220,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     showAllAdr: function() {
       var len = $("li[name='addrEach']").length;
       if (len > 3) {
-        $("li[name='addrEach']:lt(3)").css('display', 'block');
+        $("li[name='addrEach']:gt(2)").css('display', 'none');
       } else {
-        $("li[name='addrEach']").css('display', 'block');
-        $('.icon30').hide();
+        $('#address-all').hide();
       }
     },
     /** 获得收获人和收获地址 */
@@ -323,13 +322,19 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {[type]} event
      * @return {[type]}
      */
-    ".icon30 click": function(element, event) {
-      element.parents(".order-b").toggleClass("active");
-      element.parent("div").find(".order-r2").hide();
-      $('#btn-add-addr').show();
-      return false;
-    },
+    '#address-all click': function(element, event) {
+      event && event.preventDefault();
+      if ($(element).hasClass('active')) {
+        $(element).removeClass('active');
+        //$(element).text('收起全部收货地址');
+        $("li[name='addrEach']:gt(2)").css('display', 'none');
+      } else {
+        $(element).addClass('active');
+        //$(element).text('展开全部收货地址')
+        $('#addrList li').show();
+      }
 
+    },
     /**
      * [description 点击编辑]
      * @param  {[type]} element
@@ -405,17 +410,13 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @param  {[type]} event
      * @return {[type]}
      */
-    "#addrList click": function(element, event) {
-      var event = event || window.event;
-      var obj = event.srcElement ? event.srcElement : event.target;
-      if (obj.tagName == 'SPAN') {
-        //$('#errorTips').addClass('visuallyhidden');
-        this.clearActive();
-        $(obj).parents("li[name='addrEach']").addClass("active");
-        var dataValue = this.getSelectedAddr();
-        this.check(dataValue);
-        this.initItemInfo();
-      }
+    "li[name='addrEach'] click": function(element, event) {
+      event && event.preventDefault();
+      this.clearActive();
+      $(element).addClass('active');
+      var dataValue = this.getSelectedAddr();
+      this.check(dataValue);
+      this.initItemInfo();
     },
 
     /**
@@ -425,8 +426,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     clearActive: function() {
       //其他所有节点都是非active状态
       $("li[name='addrEach']").removeClass("active");
-      //隐藏其它编辑和新增状态
-      $("#addrList").find(".order-r2").hide();
     }
   });
 })

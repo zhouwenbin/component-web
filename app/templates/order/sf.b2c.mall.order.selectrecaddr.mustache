@@ -3,7 +3,7 @@
 <div class="address">
     <ul id="addrList" class="clearfix">
         {{#each addressList}}
-        <li name="addrEach" class="{{#if isDefault}}default{{/if}} {{active}}">
+        <li data-addressid="{{addrId}}" data-index="{{@index}}" name="addrEach" class="{{#if isDefault}}default{{/if}} {{active}}">
             <div class="address-r1">{{recName}}</div>
             <div class="address-r2">{{cellphone}}</div>
             <div class="address-r3">{{nationName}} {{provinceName}} {{cityName}} {{regionName}} <br />{{detail}}</div>
