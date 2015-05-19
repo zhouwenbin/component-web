@@ -245,6 +245,7 @@ requirejs.config({
     'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_header_520': 'templates/header/sf.b2c.mall.header.520.mustache',
-    'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache'
+    'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
+    'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache'
   }
 });

@@ -5,10 +5,11 @@ define(
 
   [
     'jquery',
-    'can'
+    'can',
+    'text!template_widget_message'
   ],
 
-  function($, can) {
+  function($, can, template_widget_message) {
     return can.Control.extend({
 
       init: function(element, options) {
@@ -42,7 +43,8 @@ define(
 
       render: function() {
         this.setup($('body'));
-        this.options.html = can.view('templates/widget/sf.b2c.mall.widget.message.mustache', this.data);
+        var renderFn = can.mustache(template_widget_message);
+        this.options.html  = renderFn(this.data);
         $('body').append(this.options.html);
       },
 
