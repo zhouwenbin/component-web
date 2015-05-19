@@ -270,6 +270,9 @@ define(
             // 注册送优惠券 begin
             if (newUser) {
               that.sendCoupon();
+            } else {
+              document.domain= "sfht.com";
+              window.parent.userLoginSccuessCallback();
             }
             // 注册送优惠券 end
 
@@ -321,6 +324,10 @@ define(
           .done(function(data) {
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
