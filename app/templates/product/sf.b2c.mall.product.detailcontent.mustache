@@ -45,6 +45,12 @@
     </div>
     {{/each}}
 
+    {{#notice}}
+    <div class="text-important" style="line-height:19px;padding: 10px 0;">
+      <span class="icon icon62"></span>{{notice}}
+    </div>
+    {{/notice}}
+
     <div class="mr8">购买数量：
       <span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" class="input_txt" value="{{input.buyNum}}" /></span>{{#if input.showRestrictionTips}}每人限购{{priceInfo.accountRestriction}}件{{/if}}
     </div>
