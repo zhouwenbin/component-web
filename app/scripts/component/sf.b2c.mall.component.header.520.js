@@ -70,6 +70,7 @@ define('sf.b2c.mall.component.header.520', [
   var ERROR_NO_SET_PWD = '手机号已注册，请登录';
 
   var MESSAGE_CLOSE_TIME = 2000;
+  var APPID = 1;
 
   var MAIL_MAP = {
     '163': 'http://mail.163.com',
@@ -113,28 +114,6 @@ define('sf.b2c.mall.component.header.520', [
       var tag = can.route.attr('tag') || DEFAULT_FILLINFO_TAG;
 
       this.render(tag, this.data);
-      this.ininJinDun();
-    },
-    /**
-     * 调用金盾风控代码
-     */
-    ininJinDun: function() {
-      window._fmOpt = {
-        partner: 'sfht',
-        appName: 'sfht_web',
-        token: $.cookie("__da")
-      };
-      var cimg = new Image(1, 1);
-      cimg.onload = function() {
-        _fmOpt.imgLoaded = true;
-      };
-      cimg.src = "https://fp.fraudmetrix.cn/fp/clear.png?partnerCode=sfht&appName=sfht_web&tokenId=" + _fmOpt.token;
-      var fm = document.createElement('script');
-      fm.type = 'text/javascript';
-      fm.async = true;
-      fm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.fraudmetrix.cn/fm.js?ver=0.1&t=' + (new Date().getTime() / 3600000).toFixed(0);
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(fm, s);
     },
 
     '{can.route} change': function() {
@@ -481,6 +460,15 @@ define('sf.b2c.mall.component.header.520', [
             if (data.csrfToken) {
 
               store.set('csrfToken', data.csrfToken);
+
+              var userinfo = $.cookie(APPID + '_uinfo');
+              var arr = [];
+              if (userinfo) {
+                arr = userinfo.split(',');
+              }
+
+              that.options.originheader.data.attr('isUserLogin', true);
+              that.options.originheader.data.attr('nickname', arr[0]);
 
               receivePro
                 .sendRequest()
