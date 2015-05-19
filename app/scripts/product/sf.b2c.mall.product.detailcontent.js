@@ -182,12 +182,7 @@ define('sf.b2c.mall.product.detailcontent', [
             })
             .done(function(recommendProducts) {
               that.adapter.formatRecommendProducts(that.options.detailContentInfo, recommendProducts);
-
-              // 2015.5.19 仓库调整需要对有些商品显示提示
               that.options.detailContentInfo = that.adapter.format(that.options.detailContentInfo);
-              if (_.contains(FILTER_ARRAY, $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')) && Date.now() < new Date(LIMITIED_DATE)) {
-                that.options.detailContentInfo.attr({notice: NOTICE_WORD});
-              }
 
               var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
               that.element.html(html);
@@ -505,6 +500,11 @@ define('sf.b2c.mall.product.detailcontent', [
 
         detailContentInfo.priceInfo.attr("productShape", $('#buyInfo').eq(0).attr('data-productshape'));
 
+        // 2015.5.19 仓库调整需要对有些商品显示提示
+        if (_.contains(FILTER_ARRAY, $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')) && Date.now() < new Date(LIMITIED_DATE)) {
+          detailContentInfo.attr({notice: NOTICE_WORD});
+        }
+
         var template = can.view.mustache(this.buyInfoTemplate());
         $('#buyInfo').html(template(detailContentInfo, this.helpers));
 
@@ -726,7 +726,12 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       buyInfoTemplate: function() {
-        return '<div class="goods-num"><label>数 量</label>' +
+        return '{{#notice}}' +
+            '<div class="text-important" style="line-height:19px;padding: 10px 0;">'+
+              '<span class="icon icon62"></span>{{notice}}'+
+            '</div>'+
+          '{{/notice}}'+
+          '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
           '<input type="text" class="input_txt" value="{{input.buyNum}}"></span>' +
