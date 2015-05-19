@@ -61,6 +61,8 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     render: function(data) {
       var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data, this.helpers);
       this.element.html(html);
+      var addLi = '<li class="add"><a href="javascript:" id="btn-add-addr"><span class="icon icon87"></span><br />添加收货地址</a></li>';
+      $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
     },
 
     paint: function(data) {
@@ -108,9 +110,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
           //设置默认地址是否显示
           that.adapter4List.addrs.attr("canShowSetDefaultAddr", typeof arr[2] == 'undefined');
-
-          //进行倒排序
-          //that.adapter4List.addrs.addressList.reverse();
 
           if (that.adapter4List.addrs.addressList != null && that.adapter4List.addrs.addressList.length > 0) {
             that.adapter4List.addrs.addressList[0].attr("active", "active");
@@ -217,6 +216,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
         });
     },
+
     showAllAdr: function() {
       var len = $("li[name='addrEach']").length;
       if (len > 3) {
@@ -318,17 +318,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     },
 
     /**
-     * [description 新增保存]
-     * @param  {[type]} element
-     * @param  {[type]} event
-     * @return {[type]}
-     */
-    "#addSave click": function(element, event) {
-
-      return false;
-    },
-
-    /**
      * [description 点击 展开/关闭 的图标事件]
      * @param  {[type]} element
      * @param  {[type]} event
@@ -406,10 +395,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      */
     "#btn-add-addr click": function(element, event) {
       //隐藏其它编辑和新增状态
-      $("#addrList").find(".order-r2").hide();
-      $("#addAdrArea").show();
-      $(element).hide();
-      this.component.addressEditor.show('create', null, $("#addAdrArea"));
+      this.component.addressEditor.show('create', null, $("#editAdrArea"));
       return false;
     },
 
