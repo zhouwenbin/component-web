@@ -33,7 +33,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         this.adapter4List = {};
         this.component = {};
         this.paint();
-        this.request();
+        this.request();     
       },
 
       helpers:{
@@ -58,6 +58,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       render: function(data) {
         var html = can.view('templates/center/sf.b2c.mall.center.receiveaddr.mustache', data, this.helpers);
         this.element.html(html);
+
       },
 
       paint: function() {
@@ -99,6 +100,7 @@ define('sf.b2c.mall.center.receiveaddr', [
               from:'center'
             });
 
+            that.component.addressEditor.show('create', null, $("#addAdrArea"));
           });
       },
       request: function() {
@@ -170,11 +172,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         var addr = this.adapter4List.addrs.get(index);
         this.adapter4List.addrs.input.attr('addrId', addr.addrId);
 
-        $('#editAdrArea').hide();
-        $('#addAdrArea').hide();
-
-        var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
-        editAdrArea.show();
+        var editAdrArea = $(element).closest('.address').siblings('#addAdrArea');
         this.component.addressEditor.show("editor", addr, $(editAdrArea));
         return false;
       },

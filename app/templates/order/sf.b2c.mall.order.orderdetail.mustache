@@ -1,15 +1,19 @@
+
 <div class="order-detail clearfix">
   <div class="order-detail-c1 fl">
     <ul>
         <li><span>订单号：</span>{{orderId}}</li>
-        <li><span>下单时间：</span>2015-03-01</li>
-        <li><span>支付方式：</span>{{payWay}}</li>
+        <li><span>下单时间：</span>{{sf.time gmtPaid}}</li>
+        <li><span>支付方式：</span>{{payType}}</li>
     </ul>
     <ul>
         <li><span>活动优惠：</span>-￥10</li>
         <li><span>优惠券抵扣：</span>-￥10</li>
         <li><span>运费：</span>免运费</li>
         {{#if showShouldPayPrice}}<li><span>实付款：</span><strong class="text-error">￥{{sf.price shouldPayPrice}}</strong></li>{{/if}}
+        {{#if isCostCoupon}}
+          <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
+        {{/if}}
         {{#if isPresentCoupon}}
           <li>活动赠送优惠券：{{presentCoupon.couponDescription}}{{presentCoupon.couponName}}</li>
         {{/if}}
@@ -24,65 +28,16 @@
     </ul>
     <button class="btn btn-danger btn-small">{{{nextStep}}}</button>
   </div>
+
   <div class="order-detail-c2">
     <ul class="order-detail-tab">
-      <li class="active"><a href="">包裹1</a></li>
-      <li><a href="">包裹2</a></li>
-      <li><a href="">包裹3</a></li>
+      {{#each orderPackageItemList}}
+      <li data-index="@index"><a href="">包裹{{indexOfPackage orderPackageItemList}}</a></li>
+      {{/each}}
     </ul>
-    {{#if showStep}}
-    <div class="order-detail-step">
-      <ul>
-          <li><span class="icon icon91 "></span>提交订单</li>
-          <li><span class="icon icon92"></span>付款成功</li>
-          <li><span class="icon icon93"></span>通过审核</li>
-          <li><span class="icon icon94"></span>海淘发货</li>
-          <li><span class="icon icon95"></span>确认收货</li>
-      </ul>
+    <div id="packageItemInfo">
+      
     </div>
-    {{/if}}
-    <div class="order-detail-state clearfix">
-      <div class="order-detail-state-c1 fl">
-          <div class="order-detail-state-r1">
-              <span class="icon icon96"></span>
-              <strong>当前状态：{{status}}</strong>
-              <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">香港仓发货，预计6-10天到货</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-          </div>
-          <ul id="showUserRoutes">
-              
-          </ul>
-      </div>
-      <div class="order-detail-state-c2 fr">
-          <img src="../img/weixin-qrcode.png" alt="" />
-          <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
-      </div>                
-    </div>
-    {{! 訂單商品詳情 }}
-    <table class="order-detail-table">
-      <thead>
-          <tr>
-              <th class="th1">商品信息</th>
-              <th class="th2">售价</th>
-              <th class="th3">数量</th>
-              <th class="th4">优惠</th>
-              <th class="th5">实付金额</th>
-          </tr>
-      </thead>
-      <tbody>
-        {{#each packageItemList}}
-          <tr>
-              <td>
-                  <img src="../img/product.jpg" alt="">
-                  <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
-              </td>
-              <td>88.00</td>
-              <td>1</td>
-              <td>10.00</td>
-              <td>78.00</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
   </div>
   {{! end order-detail-c2 }}
 </div>
