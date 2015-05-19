@@ -7,9 +7,15 @@
             <div class="address-r1">{{recName}}</div>
             <div class="address-r2">{{cellphone}}</div>
             <div class="address-r3">{{nationName}} {{provinceName}} {{cityName}} {{regionName}} <br />{{detail}}</div>
-            <div class="address-r4"><a class="text-link" data-index="{{@index}}" href="javascript:void(0);">编辑</a><a class="text-link address-default" data-index="{{@index}}" href="javascript:">设为默认地址</a></div>
-            <span class="icon icon86"></span>
+            <div class="address-r4">
+                <a class="text-link order-edit" data-index="{{@index}}" href="javascript:void(0);">编辑</a>
+                {{^if isDefault}}
+                <a class="text-link address-default btn-setDefault" data-index="{{@index}}" href="javascript:">设为默认地址</a>
+                {{/if}}
+            </div>
+            
             {{#if isDefault}}
+            <span data-index="{{@index}}" class="icon icon86"></span>                     
             <span class="label label-disabled">默认地址</span>
             {{/if}}
         </li>
@@ -20,6 +26,7 @@
             </a>               
         </li>                
     </ul>
+    <div class="address-add" id="editAdrArea"></div>
     <div class="clearfix address-manage">
         <div class="fl"><a class="text-link" id="address-all" href="javascript:">展开全部收货地址<span class="icon icon16-1"></span></a></div>
         <div class="fr"><a class="text-link" href="">管理收货地址</a></div>    
