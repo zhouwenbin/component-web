@@ -13,6 +13,7 @@ $(function(){
   $('#address-all').click(function(){
     $(this).addClass('active');
   	$('.address li').show();
+    $('.address-add').hide();
   })
   //使用优惠券
   $('#coupon-use').click(function(){
@@ -36,5 +37,11 @@ $(function(){
       $('#coupons').hide();
     }
       
+  })
+  //添加收货地址
+  $('.address li.add').click(function(){
+    $('.address-add').toggle();
+    $('.address li:gt(3)').hide();
+    $('#address-all').removeClass('active');
   })
 })
