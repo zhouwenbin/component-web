@@ -1,0 +1,41 @@
+.address-add{
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 20px;
+}
+.address-add h2{
+	font-size: 14px;
+	font-weight: normal;
+	margin: 33px 0;
+}
+.address-add li{
+	margin-bottom: 10px;
+}
+.address-add li label{
+	font-size: 13px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 100px;
+}
+.address-add li .text-error{
+	margin-left: 100px;
+	margin-top: 10px;
+}
+.address-add li .icon{
+	margin-right: 15px;
+}
+.address-add select{
+	width: 138px;
+	margin-right: 10px;
+	height: 38px;
+	line-height: 38px;
+}
+.address-add .input{
+	width: 573px;
+}
+.address-add-r1{
+	margin-left: 100px;
+}
+.address-add-r1 input{
+	margin-left: 18px;
+	margin-right: 13px;
+}

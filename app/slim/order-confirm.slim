@@ -83,6 +83,48 @@
                 <div class="fr"><a class="text-link" href="">管理收货地址</a></div>    
             </div>
         </div>
+        <!--新增收货地址-->
+        <div class="address-add">
+            <h2>新增收货地址</h2>
+            <ul>
+                <li>
+                    <label for="country">选择地区：</label>
+                    <select name="" id="country">
+                        <option value="中国大陆">中国大陆</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="address">收货地址：</label>
+                    <input type="text" class="input" placeholder="填写详细地址">
+                </li>
+                <li>
+                    <label for="address">收货人：</label>
+                    <input type="text" class="input" placeholder="填写收货人真实姓名">
+                    <div class="text-error"><span class="icon icon62"></span>收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+                </li>
+                <li>
+                    <label for="address">收货人手机号：</label>
+                    <input type="text" class="input" placeholder="请填写联系电话">
+                </li>
+                <li>
+                    <label for="address">收货人身份证：</label>
+                    <input type="text" class="input" placeholder="由于国家海关规定，海涛需提交实名信息">
+                </li>
+            </ul>
+            <div class="address-add-r1">
+                <button class="btn btn-danger">保存</button>
+                <label><input type="checkbox" />设置成默认地址</label>
+            </div>
+        </div>
         <h1>确认商品信息</h1>
         <!--购物车-->
         <div class="cart">
