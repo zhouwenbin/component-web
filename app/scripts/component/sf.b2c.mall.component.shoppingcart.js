@@ -112,6 +112,7 @@ define(
           })
 
       },
+      // 更新购物车商品数量
       updateItemNumInCart: function(itemId, num) {
         var that = this;
         var updateItemNumInCart = new SFUpdateItemNumInCart({
@@ -142,17 +143,14 @@ define(
        * 全选
        */
       '.selectAll change': function(element, options) {
-        var isChecked = $(element).attr('data-ischecked');
-
-        if (isChecked == "1") {
-          $(element).attr('data-ischecked', 0);
-          $(".sfcheckbox:checkbox").each(function() {
-            $(this).attr("checked", false);
-          })
-        } else {
-          $(element).attr('data-ischecked', 1);
+       
+        if ($(element)[0].checked) {
           $(".sfcheckbox:checkbox").each(function() {
             $(this).attr("checked", true);
+          })
+        } else {
+          $(".sfcheckbox:checkbox").each(function() {
+            $(this).attr("checked", false);
           })
         }
 
@@ -272,7 +270,7 @@ define(
        */
       '#gotopay click': function(element, event) {
         event && event.preventDefault();
-
+        window.location.href = 'order.html';
       }
 
     });
