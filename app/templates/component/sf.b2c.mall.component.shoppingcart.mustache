@@ -19,7 +19,10 @@
                 {{#each goodItemList}}
                     <tr data-isSelected="{{isSelected}}"  data-itemIds="{{itemId}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
-                            <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}> 
+                            {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                            {{#isValid}}
+                                <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
+                            {{/isValid}}
                             <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                         </td>
                         <td class="td2">
@@ -32,8 +35,11 @@
                             {{#isHasActivity}}<div class="icon icon73">限时促销</div>{{/isHasActivity}}
                         </td>
                         <td class="td4">
-                            <div><span class="btn btn-num"><a {{data 'limitQuantity'}} class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#" {{data 'limitQuantity'}}>+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
-                            <p class="text-error visuallyhidden">{{limitDescList}}</p>
+                            {{^isValid}}{{quantity}}{{/isValid}}
+                            {{#isValid}}
+                                <div><span class="btn btn-num"><a {{data 'limitQuantity'}} class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#" {{data 'limitQuantity'}}>+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                                <p class="text-error visuallyhidden">{{limitDescList}}</p>
+                            {{/isValid}}
                         </td>
                         <td class="td5">
                             <strong class="text-error">{{sf.price perTotalPrice}}</strong>
@@ -57,7 +63,28 @@
     			<ul>
     				<li class="li1"><span class="s1">商品总计 :</span>¥{{sf.price order.actualTotalFee}}</li>
     				<li class="li1">
-    					{{#scopeIsAll promotionInfo}}<div class="tooltip-cart"><span class="icon icon77 fl"></span><span class="text-error">已满足满200减100活动：省100</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/scopeIsAll}}
+    					{{#scopeIsAll promotionInfo}}
+                        <div class="tooltip-cart">
+                            <span class="icon icon77 fl"></span>
+                            <span class="text-error">参加三个满减活动：省100</span>
+                            
+                            <div class="tooltip-pos">
+                                <span class="icon icon78"></span>
+                                <div class="tooltip-outer">
+                                    <div class="tooltip tooltip-active">
+                                        <ul>
+                                            <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">100</span>活动</li>
+                                            <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">50</span>活动</li>
+                                            <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">10</span>活动</li>
+                                        </ul>
+                                        <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="icon icon16-5"></span>
+                            <span class="icon icon16-5 icon16-5-1"></span>
+                        </div>
+                        {{/scopeIsAll}}
     					<span class="s1">活动优惠 :</span>- ¥ {{order.discountFee}}
     				</li>
     				<li><span class="s1">总价（含税费） :</span><strong class="text-error">¥{{sf.price order.goodsTotalFee}}</strong></li>
