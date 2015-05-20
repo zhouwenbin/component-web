@@ -332,6 +332,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     '#address-all click': function(element, event) {
       event && event.preventDefault();
       if ($(element).hasClass('active')) {
+        $('li.add').insertAfter("li[name='addrEach']:last()")
         $(element).removeClass('active');
         //$(element).text('收起全部收货地址');
         $("li[name='addrEach']:gt(2)").css('display', 'none');
