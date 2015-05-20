@@ -6,12 +6,11 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.order.selectreceiveaddr',
-    'sf.b2c.mall.order.vendor.info',
-    'sf.b2c.mall.order.iteminfo'
+    'sf.b2c.mall.order.vendor.info'
 
   ],
 
-  function(can, $, SFFrameworkComm, SelectReceiveAddr, SFVendorInfo,SFIteminfo) {
+  function(can, $, SFFrameworkComm, SelectReceiveAddr, SFVendorInfo) {
     SFFrameworkComm.register(1);
 
     var order = can.Control.extend({
@@ -27,7 +26,7 @@ define(
         new SelectReceiveAddr('.sf-b2c-mall-order-selectReceiveAddress', {
           vendorinfo: this.component.sfvendorinfo
         });
-        //new SFIteminfo('.sf-b2c-mall-order-itemInfo');
+
       },
 
       supplement: function() {
