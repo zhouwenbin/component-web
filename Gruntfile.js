@@ -752,7 +752,7 @@ module.exports = function (grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.list.js',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.orderlist.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
