@@ -220,7 +220,9 @@ define('sf.b2c.mall.component.header', [
       },
 
       'template_header_520': function(data) {
-        new SFHeader520('.sf-b2c-mall-header', {"originheader": this});
+        new SFHeader520('.sf-b2c-mall-header', {
+          "originheader": this
+        });
       }
     },
 
@@ -279,6 +281,7 @@ define('sf.b2c.mall.component.header', [
               });
             } else {
               store.set('csrfToken', data.csrfToken);
+              window.userLoginSccuessCallback();
             }
           }).fail(function(errorCode) {})
 
@@ -511,7 +514,10 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname', arr[0]);
 
-          window.location.reload();
+          var respUrl = can.deparam(window.location.search.substr(1));
+          if (!that.afterLoginDest && typeof respUrl.partnerId == 'undefined') {
+            window.location.reload();
+          }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
