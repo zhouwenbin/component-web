@@ -23,7 +23,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
     // var FILTER_ARRAY = ['1962','1961','1954','1955','1956','1957','1958','1946','1947','1948','1949','1950','1951','1903','1904','1905','1906','1907','1908','96','97','98','99','100','1952','1953','1635','1636','1637','1638','1639','1626','1627','1628','1629','1630',,'936','937','938','939','940','1789','1790','1791','1792','1793','1795','1794','1820','1821','1822','1823','1824','1825','1826','1827','101','102','103','104','105','106','107','108','1445','1448','1446','1447','1781','1782','1783','1784','1785','1786','1787','1788','1772','907','1780','1779','1773','1774','1775','1776','1777','1778','1168','1169','1170','1171','1172','1173'];
-    var FILTER_ARRAY = ['1','88','96','1351','2','19','89','97','1352','3','90','98','1353','4','91','99','1354','5','92','100','1355','1249','1343','1449','1587','1903','1250','1344','1450','1588','1904','1251','1345','1451','1589','1905','1168','1455','1169','1456','1170','1457','1131','1171','1458','1132','1172','1459','1173','1460','1820','1821','1822','1823','1871','1906','1252','1346','1452','1590','1907','1253','1347','1453','1591','1908'];
+    var FILTER_ARRAY = ['1', '88', '96', '1351', '2', '19', '89', '97', '1352', '3', '90', '98', '1353', '4', '91', '99', '1354', '5', '92', '100', '1355', '1249', '1343', '1449', '1587', '1903', '1250', '1344', '1450', '1588', '1904', '1251', '1345', '1451', '1589', '1905', '1168', '1455', '1169', '1456', '1170', '1457', '1131', '1171', '1458', '1132', '1172', '1459', '1173', '1460', '1820', '1821', '1822', '1823', '1871', '1906', '1252', '1346', '1452', '1590', '1907', '1253', '1347', '1453', '1591', '1908', '1626', '1627', '1628', '1629', '1630', '1631', '1632', '1633', '1634', '1635', '1636', '1637', '1638', '1639', '1773', '1774', '1775', '1776', '1777', '1778', '1779', '1780', '1824', '1825', '1826', '1827', '1946', '1947', '1948', '1949', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '1960', '1961', '1962', '1993', '1994', '1995', '1996', '1997', '2021', '2022', '2023', '2024', '2025', '2026'];
 
     var LIMITIED_DATE = '2015/5/26';
 
@@ -423,7 +423,7 @@ define('sf.b2c.mall.product.detailcontent', [
                     if (index != 0) {
                       element.rulesHtml += "<br />";
                     }
-                    element.rulesHtml += (index+1) + "." + tempRule.ruleDesc;
+                    element.rulesHtml += (index + 1) + "." + tempRule.ruleDesc;
                   }
                 }
                 element.rulesNum = element.promotionRules.length;
@@ -504,7 +504,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
         // 2015.5.19 仓库调整需要对有些商品显示提示
         if (_.contains(FILTER_ARRAY, $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid')) && Date.now() < new Date(LIMITIED_DATE)) {
-          detailContentInfo.attr({notice: NOTICE_WORD});
+          detailContentInfo.attr({
+            notice: NOTICE_WORD
+          });
         }
 
         var template = can.view.mustache(this.buyInfoTemplate());
@@ -729,10 +731,10 @@ define('sf.b2c.mall.product.detailcontent', [
 
       buyInfoTemplate: function() {
         return '{{#notice}}' +
-            '<div class="text-important" style="line-height:19px;padding: 10px 0;">'+
-              '<span class="icon icon62"></span>{{notice}}'+
-            '</div>'+
-          '{{/notice}}'+
+          '<div class="text-important" style="line-height:19px;padding: 10px 0;">' +
+          '<span class="icon icon62"></span>{{notice}}' +
+          '</div>' +
+          '{{/notice}}' +
           '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
@@ -747,18 +749,18 @@ define('sf.b2c.mall.product.detailcontent', [
           '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
           '{{^if priceInfo.soldOut}}' +
-            '{{^priceInfo.isPromotion}}' +
-            '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-            '{{/priceInfo.isPromotion}}' +
-            '{{#priceInfo.isPromotion}}' +
-              '{{#if priceInfo.activitySoldOut}}' +
-              '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
-              '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
-              '{{/if}}' +
-              '{{^if priceInfo.activitySoldOut}}' +
-              '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-              '{{/if}}' +
-            '{{/priceInfo.isPromotion}}' +
+          '{{^priceInfo.isPromotion}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{/priceInfo.isPromotion}}' +
+          '{{#priceInfo.isPromotion}}' +
+          '{{#if priceInfo.activitySoldOut}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+          '{{/if}}' +
+          '{{^if priceInfo.activitySoldOut}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{/if}}' +
+          '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
 
           '</div>' +
@@ -794,14 +796,14 @@ define('sf.b2c.mall.product.detailcontent', [
           ' <a href="javascript:void(0);" role="activityNum" class="hide">收起<span class="icon icon67"></span></a>' +
           '</div>{{/rulesHtml}}' +
           '<div class="goods-activity-c2">' +
-            '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a>' +
-            '<span role="activityTitle"><a href="{{pcActivityLink}}">{{activityTitle}}</a>' +
-            '{{#isActivityLink}}<a href="{{pcActivityLink}}" class="goods-activity-link">去看看</a>{{/isActivityLink}}</span>' +
-            '<span role="activityNum" class="hide">共{{rulesNum}}条 优惠信息</span>' +
+          '<a href="{{pcActivityLink}}" class="label label-soon">{{activityTypeDesc}}</a>' +
+          '<span role="activityTitle"><a href="{{pcActivityLink}}">{{activityTitle}}</a>' +
+          '{{#isActivityLink}}<a href="{{pcActivityLink}}" class="goods-activity-link">去看看</a>{{/isActivityLink}}</span>' +
+          '<span role="activityNum" class="hide">共{{rulesNum}}条 优惠信息</span>' +
           '</div>' +
           '<div class="goods-activity-detail">' +
           '{{#each promotionRules}}' +
-            '<li>{{ruleDesc}}{{#isActivityLink}}<a class="goods-activity-link" href="{{pcActivityLink}}">去看看</a></li>{{/isActivityLink}}' +
+          '<li>{{ruleDesc}}{{#isActivityLink}}<a class="goods-activity-link" href="{{pcActivityLink}}">去看看</a></li>{{/isActivityLink}}' +
           '{{/promotionRules}}' +
           '</div>' +
           '</div>' +
