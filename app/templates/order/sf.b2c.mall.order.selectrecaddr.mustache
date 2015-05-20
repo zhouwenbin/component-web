@@ -3,7 +3,7 @@
 <div class="address">
     <ul id="addrList" class="clearfix">
         {{#each addressList}}
-        <li data-addressid="{{addrId}}" data-index="{{@index}}" name="addrEach" class="{{#if isDefault}}default{{/if}} {{active}}">
+        <li data-addressid="{{addrId}}" data-index="{{@index}}" name="addrEach" class="{{active}} {{#if isDefault}}default{{/if}}">
             <div class="address-r1">{{recName}}</div>
             <div class="address-r2">{{cellphone}}</div>
             <div class="address-r3">{{nationName}} {{provinceName}} {{cityName}} {{regionName}} <br />{{detail}}</div>
@@ -13,9 +13,8 @@
                 <a class="text-link address-default btn-setDefault" data-index="{{@index}}" href="javascript:">设为默认地址</a>
                 {{/if}}
             </div>
-            
-            {{#if isDefault}}
-            <span data-index="{{@index}}" class="icon icon86"></span>                     
+            <span data-index="{{@index}}" class="icon icon86"></span>
+            {{#if isDefault}}                           
             <span class="label label-disabled">默认地址</span>
             {{/if}}
         </li>

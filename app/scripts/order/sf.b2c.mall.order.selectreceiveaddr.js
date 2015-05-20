@@ -62,7 +62,14 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data, this.helpers);
       this.element.html(html);
       var addLi = '<li class="add"><a href="javascript:" id="btn-add-addr"><span class="icon icon87"></span><br />添加收货地址</a></li>';
-      $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
+      var len = $("li[name='addrEach']").length;
+      if (len > 3) {
+        $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
+      } else {
+        $(addLi).insertAfter($("li[name='addrEach']:last()"))
+      }
+
+
     },
 
     paint: function(data) {
@@ -349,7 +356,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
       var editAdrArea = $("#editAdrArea");
       this.component.addressEditor.show("editor", addr, $(editAdrArea));
-
+      editAdrArea.show();
 
       this.clearActive();
       element.parents("li").find(".order-r2").toggle();
@@ -399,8 +406,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * @return {[type]}
      */
     "#btn-add-addr click": function(element, event) {
-      //隐藏其它编辑和新增状态
+      event && event.preventDefault();
       this.component.addressEditor.show('create', null, $("#editAdrArea"));
+      $("#editAdrArea").show();
       return false;
     },
 

@@ -99,20 +99,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getOrderList.sendRequest()
           .done(function(data) {
             if (data.orders) {
+              //获取不同状态订单的数量
+              that.options.waitCompletedNum = data.waitCompletedNum;
+              that.options.waitPayNum = data.waitPayNum;
+              that.options.waitShippingNum = data.waitShippingNum;
 
               that.options.orders = data.orders;
               that.options.orderListIsNotEmpty = true;
-              _.each(that.options.orders, function(order) {
 
-                that.options.notPayOrderListLength = that.options.orders.length;
-                that.options.notSendOrderListLength = that.options.orders.length;
-                that.options.notGetOrderListfLength = that.options.orders.length;
+              
+              _.each(that.options.orders, function(order, i) {
 
                 order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
-                setInterval(function() {
-                  that.setCountDown(order.leftTime)
-                }, 1000);
-
+                
                 order.paymentAmount = order.totalPrice - order.discount;
                 order.showRouter = that.routeMap[order.orderStatus];
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
@@ -143,6 +142,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
+              var endTimeArea = $('.showOrderEndTime');
+              _.each(that.options.orders, function(item,i){
+                setInterval(function() {
+                  that.setCountDown(endTimeArea.eq(i), item.leftTime);
+                }, 1000);
+              })
               //分页 保留 已经调通 误删 后面设计会给样式
               that.options.page = new PaginationAdapter();
               that.options.page.format(data.page);
@@ -192,13 +197,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
         this.render(params);
       },
       //倒计时
-      setCountDown: function(leftTime) {
+      setCountDown: function(element, leftTime) {
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $('.showOrderEndTime').html(hour + "小时" + minute + "分" + second + "秒");
+        $(element).html(hour + "小时" + minute + "分" + second + "秒");
       },
 
       '.myorder-tab li click': function(element, event) {
