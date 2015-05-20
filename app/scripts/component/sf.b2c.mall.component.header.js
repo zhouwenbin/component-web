@@ -160,8 +160,8 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-
-      this.renderMap['template_header_520'].call(this, that.data);
+      // 隐藏 520活动
+      // this.renderMap['template_header_520'].call(this, that.data);
       // this.showAD();
     },
 
@@ -281,7 +281,17 @@ define('sf.b2c.mall.component.header', [
               });
             } else {
               store.set('csrfToken', data.csrfToken);
-              window.userLoginSccuessCallback();
+
+              // 登陆后设置下昵称，不要调用userLoginSccuessCallback
+              var userinfo = $.cookie(APPID + '_uinfo');
+              var arr = [];
+              if (userinfo) {
+                arr = userinfo.split(',');
+              }
+
+              that.data.attr('isUserLogin', true);
+              that.data.attr('nickname', arr[0]);
+
             }
           }).fail(function(errorCode) {})
 
@@ -514,8 +524,8 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname', arr[0]);
 
-          var respUrl = can.deparam(window.location.search.substr(1));
-          if (!that.afterLoginDest && typeof respUrl.partnerId == 'undefined') {
+          // 登录后刷新页面，520项目的注册信息要隐藏
+          if (!that.afterLoginDest) {
             window.location.reload();
           }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
