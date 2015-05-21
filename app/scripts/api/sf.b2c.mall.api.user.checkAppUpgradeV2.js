@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.uploadPushToken
+  * @class sf.b2c.mall.api.user.checkAppUpgradeV2
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.uploadPushToken',
+'sf.b2c.mall.api.user.checkAppUpgradeV2',
 [
   'jquery',
   'can',
@@ -22,14 +22,13 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.uploadPushToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'user.checkAppUpgradeV2',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'pushToken': 'string',
-        'pushType': 'string',
+        'appVersion': 'string',
+        'moduleVersion': 'string'
       },
       OPTIONAL: {
-        'state': 'int'
       },
       VERIFY:{
       },
