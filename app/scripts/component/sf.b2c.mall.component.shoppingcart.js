@@ -13,9 +13,10 @@ define(
     'sf.b2c.mall.api.shopcart.refreshCart',
     'sf.b2c.mall.api.shopcart.removeItemsInCart',
     'sf.b2c.mall.api.shopcart.updateItemNumInCart',
+    'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message'
   ],
-  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFMessage) {
+  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -66,24 +67,45 @@ define(
         var that = this;
         this.options.canOrder = this.btnStateMap[data.canOrder];
         this.options.scopeGroups = data.scopeGroups;
-        this.options.goodItemList = [];
-        this.options.order = new can.Map({});
-        this.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
-        this.options.order.attr('discountFee', data.cartFeeItem.discountFee);
-        this.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
-        this.options.isShowOverLimitPrice = (this.options.order.attr('actualTotalFee') > 100000);
-        _.each(this.options.scopeGroups, function(cartItem, i) {
-          //是否显示活动信息
-          cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
-          //展示商品规格
-          var result = new Array();
-          _.each(cartItem.goodItemList[0].specs, function(item) {
-            result.push(item.specName + ":" + item.value);
+        if (data.scopeGroups.length > 0) {
+          this.options.hasGoods = true;
+          this.options.goodItemList = [];
+          this.options.order = new can.Map({});
+          this.options.order.attr('actualTotalFee', data.cartFeeItem.actualTotalFee);
+          this.options.order.attr('discountFee', data.cartFeeItem.discountFee);
+          this.options.order.attr('goodsTotalFee', data.cartFeeItem.goodsTotalFee);
+          this.options.isShowOverLimitPrice = (this.options.order.attr('actualTotalFee') > 100000);
+          _.each(this.options.scopeGroups, function(cartItem, i) {
+            //是否显示活动信息
+            cartItem.isHasActivity = (typeof cartItem.promotionInfo !== 'undefined');
+            //展示商品规格
+            var result = new Array();
+            // _.each(cartItem.goodItemList[0].specs, function(item) {
+            //   result.push(item.specName + ":" + item.value);
+            // });
+
+            //cartItem.specs = result.join('&nbsp;/&nbsp;');
+            that.options.goodItemList.push(cartItem.goodItemList[0]);
           });
-          
-          cartItem.specs = result.join('&nbsp;/&nbsp;');
-          that.options.goodItemList.push(cartItem.goodItemList[0]);
-        });
+        } else {
+          this.options.hasGoods = false;
+          var findRecommendProducts = new SFFindRecommendProducts({
+            'itemId': -1,
+            'size': 4
+          });
+          findRecommendProducts.sendRequest()
+            .fail(function(error) {
+              //console.error(error);
+            })
+            .done(function(data) {
+              that.options.recommendGoods  =  data.value;
+              _.each(that.options.recommendGoods, function(item) {
+                item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+                item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+                item.sellingPrice = item.sellingPrice / 100;
+              });
+            })
+        }
         var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
         that.element.html(html);
       },
@@ -112,6 +134,7 @@ define(
           })
 
       },
+      // 更新购物车商品数量
       updateItemNumInCart: function(itemId, num) {
         var that = this;
         var updateItemNumInCart = new SFUpdateItemNumInCart({
@@ -142,20 +165,18 @@ define(
        * 全选
        */
       '.selectAll change': function(element, options) {
-        var isChecked = $(element).attr('data-ischecked');
 
-        if (isChecked == "1") {
-          $(element).attr('data-ischecked', 0);
-          $(".sfcheckbox:checkbox").each(function() {
-            $(this).attr("checked", false);
-          })
-        } else {
-          $(element).attr('data-ischecked', 1);
+        if ($(element)[0].checked) {
           $(".sfcheckbox:checkbox").each(function() {
             $(this).attr("checked", true);
           })
+        } else {
+          $(".sfcheckbox:checkbox").each(function() {
+            $(this).attr("checked", false);
+          })
         }
 
+        
       },
 
       /**
@@ -203,27 +224,20 @@ define(
         event && event.preventDefault();
         var itemIds = [];
         _.each($('.cart-disable'), function(item) {
-          itemIds.push(item.attr('data-itemIds'));
+          itemIds.push($(item).attr('data-itemIds'));
         });
         this.deleteCartOrder(itemIds);
       },
-
-
       /**
        * 增加商品数量
        */
       '.btn-num-add click': function(element, event) {
         event && event.preventDefault();
         var num = parseInt($(element).siblings('input').val());
-        var limitQuantity = $(element).data('limitQuantity').limitQuantity;
-        var itemId = $(element).data('limitQuantity').itemId;
-        if (limitQuantity > 0 && num > limitQuantity - 1) {
+        var itemId = $(element).closest('tr').attr('data-itemIds');
 
-        } else {
-          $(element).siblings('.btn-num-reduce').removeClass('disable');
-          $(element).siblings('input').val(num + 1);
-          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
-        }
+        $(element).siblings('input').val(num + 1);
+        this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
       },
 
       /**
@@ -234,7 +248,7 @@ define(
         var num = parseInt($(element).siblings('input').val());
         var limitQuantity = $(element).data('limitQuantity').limitQuantity;
         $(element).closest('div').siblings('p').addClass('visuallyhidden');
-        var itemId = $(element).data('limitQuantity').itemId;
+        var itemId = $(element).closest('tr').attr('data-itemIds');
         if (num <= 1) {
           $(element).siblings('input').val(1);
           $(element).addClass('disable');
@@ -272,7 +286,7 @@ define(
        */
       '#gotopay click': function(element, event) {
         event && event.preventDefault();
-
+        window.location.href = 'order.html';
       }
 
     });

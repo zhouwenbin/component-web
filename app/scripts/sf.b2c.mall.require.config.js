@@ -233,6 +233,7 @@ requirejs.config({
     'sf.b2c.mall.component.shoppingcart': 'scripts/component/sf.b2c.mall.component.shoppingcart',
     //收货地址管理
     'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
+    'sf.b2c.mall.page.accountmanage': 'scripts/page/sf.b2c.mall.page.accountmanage',
 
 
 

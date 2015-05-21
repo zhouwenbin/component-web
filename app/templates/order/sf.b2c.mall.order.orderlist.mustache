@@ -1,8 +1,8 @@
 <ul class="myorder-tab">
   <li class="{{#if tab.allorderTab}}active{{/if}}" tag="allorderTab"><a href="">所有订单</a></li>
-  <li class="{{#if tab.notPayOrderListTab}}active{{/if}}" tag="notPayOrderListTab"><a href="">待付款<strong>{{notPayOrderListLength}}</strong></a></li>
-  <li class="{{#if tab.notSendOrderListTab}}active{{/if}}" tag="notSendOrderListTab"><a href="">待发货<strong>{{notSendOrderListLength}}</strong></a></li>
-  <li class="{{#if tab.notGetOrderListTab}}active{{/if}}" tag="notGetOrderListTab"><a href="">待收货<strong>{{notGetOrderListfLength}}</strong></a></li>
+  <li class="{{#if tab.notPayOrderListTab}}active{{/if}}" tag="notPayOrderListTab"><a href="">待付款<strong>{{waitCompletedNum}}</strong></a></li>
+  <li class="{{#if tab.notSendOrderListTab}}active{{/if}}" tag="notSendOrderListTab"><a href="">待发货<strong>{{waitPayNum}}</strong></a></li>
+  <li class="{{#if tab.notGetOrderListTab}}active{{/if}}" tag="notGetOrderListTab"><a href="">待收货<strong>{{waitShippingNum}}</strong></a></li>
 </ul>
 
 <!--所有订单-->
@@ -25,9 +25,9 @@
           <th class="th6">订单状态<span>|</span></th>
           <th class="th7">操作</th>
       </tr>
-  </thead> 
+  </thead>
   <tbody>
-    
+
     {{#each orders}}
       <tr>
         <th colspan="7" data-orderid='{{orderId}}'>
@@ -36,37 +36,64 @@
           </h2>
         </th>
       </tr>
+
       {{#each orderPackageItemList}}
         <tr>
-            <td rowspan="{{countTypeOfGoodsInPackage orderGoodsItemList}}">
-              {{#packageNo}}
-              <span class="label label-error">
-                <span class="icon icon79"></span>包裹{{packageNo}}<i></i>
-              </span>
-              {{/packageNo}}
-              <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
-              {{#packageNo}}
-              <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
-              {{/packageNo}}
-            </td>
+          <td>
+            {{! 专门显示包裹信息 }}
+            {{#packageNo}}
+            <span class="label label-error">
+              <span class="icon icon79"></span>包裹{{getPackageNum @index}}<i></i>
+            </span>
+            {{/packageNo}}
+            <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+            {{#packageNo}}
+            <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+            {{/packageNo}}
+          </td>
 
-            {{#first orderGoodsItemList}}
-              <td class="td2">
-                <img src="{{productImage.thumbImgUrl}}" alt="" />
-                <h3>{{goodsName}}</h3>
-              </td>
-              <td class="td3">
-                <del>{{sf.price originPrice}}</del>
-                <div>{{sf.price price}}</div>
-              </td>
-              <td class="td4">{{quantity}}</td>
-            {{/first}}
+          <td colspan="3">
+            {{! 嵌套一个专门table用于显示商品 售价 和数量 }}
+            <table>
+              {{#each orderGoodsItemList}}
+                    {{! 第一行不能显示border-top，不然会有两层线条 }}
+                    {{#first orderGoodsItemList @index}}
+                    <tr>
+                      <td class="td2" style="border:none;width:291px">
+                        <img src="{{productImage.thumbImgUrl}}" alt="" />
+                        <h3>{{goodsName}}</h3></td>
+                      <td style="border:none;">
+                        <del>{{sf.price originPrice}}</del>
+                        <div>{{sf.price price}}</div>
+                      </td>
+                      <td style="border:none;">{{quantity}}</td>
+                    </tr>
+                    {{/first}}
+                    {{^first orderGoodsItemList @index}}
+                    <tr>
+                      <td class="td2" style="border-bottom:none;border-left:none;border-right:none;width:291px">
+                        <img src="{{productImage.thumbImgUrl}}" alt="" />
+                        <h3>{{goodsName}}</h3></td>
+                      <td style="border-bottom:none;border-left:none;border-right:none;">
+                        <del>{{sf.price originPrice}}</del>
+                        <div>{{sf.price price}}</div>
+                      </td>
+                      <td style="border-bottom:none;border-left:none;border-right:none;">{{quantity}}</td>
+                    </tr>
+                    {{/first}}
+              {{/each}}
+            </table>
 
-            <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+          </td>
 
-            {{!全部订单}}
+          {{#firstPackage orderPackageItemList @index}}
             <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-              <div>{{orderStatus}}</div>
+              ￥{{sf.price paymentAmount}}
+            </td>
+          {{/first}}
+
+          <td>
+            <div>{{orderStatus}}</div>
               {{#if showRouter}}
               <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
                 <div class="tooltip-pos">
@@ -79,41 +106,31 @@
                 </div>
               </div>
               {{/if}}
-            </td>
-            <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-              {{#isNotShowEndTime orderStatus}}
-              <span>剩余付款时间</span>
-              <div class="showOrderEndTime text-error"></div>
-              {{/isNotShowEndTime}}
-              {{{optionHMTL}}}
-            </td>
+          </td>
 
-            
+          {{#firstPackage orderPackageItemList @index}}
+            <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                {{#isNotShowEndTime orderStatus}}
+                <span>剩余付款时间</span>
+                <div class="showOrderEndTime text-error"></div>
+                {{/isNotShowEndTime}}
+                {{{optionHMTL}}}
+            </td>
+          {{/first}}
+
+
         </tr>
-        {{#others orderGoodsItemList}}
-          {{#each orderGoods}}
-            <tr>
-              <td class="td2">
-                <img src="{{productImage.thumbImgUrl}}" alt="" />
-                <h3>{{goodsName}}</h3></td>
-              <td class="td3">
-                <del>{{sf.price originPrice}}</del>
-                <div>{{sf.price price}}</div>
-              </td>
-              <td class="td4">{{quantity}}</td>
-            </tr>
-          {{/each}}<!--end orderGoodsItemList-->
-        {{/others}}
+
       {{/each}}<!--end orderPackageItemList-->
-    {{/each}}<!--end orders-->   
+    {{/each}}<!--end orders-->
   </tbody>
-</table>  `
+</table>
 <!-- 分页 -->
 <div class="sf-b2c-mall-order-orderlist-pagination"></div>
 <!-- 分页 -->
 {{else}}
   <div class="noOrderShow">
-    
-  </div>  
+
+  </div>
 {{/if}}
 
