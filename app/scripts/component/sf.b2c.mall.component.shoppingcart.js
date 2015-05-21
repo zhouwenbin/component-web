@@ -213,15 +213,10 @@ define(
       '.btn-num-add click': function(element, event) {
         event && event.preventDefault();
         var num = parseInt($(element).siblings('input').val());
-        var limitQuantity = $(element).data('limitQuantity').limitQuantity;
-        var itemId = $(element).data('limitQuantity').itemId;
-        if (limitQuantity > 0 && num > limitQuantity - 1) {
-
-        } else {
-          $(element).siblings('.btn-num-reduce').removeClass('disable');
-          $(element).siblings('input').val(num + 1);
-          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
-        }
+        var itemId = $(element).closest('tr').attr('data-itemIds');
+        
+        $(element).siblings('input').val(num + 1);
+        this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
       },
 
       /**
@@ -232,7 +227,7 @@ define(
         var num = parseInt($(element).siblings('input').val());
         var limitQuantity = $(element).data('limitQuantity').limitQuantity;
         $(element).closest('div').siblings('p').addClass('visuallyhidden');
-        var itemId = $(element).data('limitQuantity').itemId;
+        var itemId = $(element).closest('tr').attr('data-itemIds');
         if (num <= 1) {
           $(element).siblings('input').val(1);
           $(element).addClass('disable');

@@ -7,8 +7,8 @@
         <li><span>支付方式：</span>{{payType}}</li>
     </ul>
     <ul>
-        <li><span>活动优惠：</span>-￥10</li>
-        <li><span>优惠券抵扣：</span>-￥10</li>
+        <li><span>活动优惠：</span>-￥{{10}}</li>
+        <li><span>优惠券抵扣：</span>-￥{{10}}</li>
         <li><span>运费：</span>免运费</li>
         {{#if showShouldPayPrice}}<li><span>实付款：</span><strong class="text-error">￥{{sf.price shouldPayPrice}}</strong></li>{{/if}}
         {{#if isCostCoupon}}
