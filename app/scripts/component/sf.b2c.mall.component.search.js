@@ -25,8 +25,29 @@ define('sf.b2c.mall.component.search', [
 
   return can.Control.extend({
     helpers: {
-      isBybrand: function(name, options) {
-        if (name == 'byBrand') {
+      "sf-isByBrand": function(name, options) {
+        if (name() == 'byBrand') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      "sf-isByCategory": function(name, options) {
+        if (name() == 'byCategory') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      "sf-isByGoodsOrigin": function(name, options) {
+        if (name() == 'byGoodsOrigin') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      'sf-isShowMoreBrand': function(buckets, options) {
+        if (buckets().length > 9) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -36,7 +57,9 @@ define('sf.b2c.mall.component.search', [
 
     renderData: new can.Map({
       searchData: {
-        q: ""
+        q: "",
+        size: 8,
+        from: 0
       },
       itemSearch: {}
     }),
@@ -55,28 +78,22 @@ define('sf.b2c.mall.component.search', [
       this.renderData.attr("searchData.q", keyword);
 
       //获取处理过滤条件
-      var filterStr = params.filter;
-      this.filterDataHandler(filterStr);
-
+      var brandIds = params.brandIds;
+      if (brandIds) {
+        this.renderData.attr("searchData.brandIds", brandIds.split("||"));
+      }
+      var categoryIds = params.categoryIds;
+      if (categoryIds) {
+        this.renderData.attr("searchData.categoryIds", categoryIds.split("||"));
+      }
+      var originIds = params.originIds;
+      if (originIds) {
+        this.renderData.attr("searchData.originIds", originIds.split("||"));
+      }
 
       this.render(this.renderData);
     },
 
-    /**
-     * @description 处理过滤条件
-     * @param filterStr 过滤字符串
-     */
-    filterDataHandler: function(filterStr) {
-      if (!filterStr) {
-        return;
-      }
-      var filterArr = filterStr.split("@");
-      _.each(filterArr, function(element, index, list) {
-        var key = filterArr.split("_")[0];
-        var value = filterArr.split("_")[1];
-        renderData.searchData[key] = value.split("||");
-      })
-    },
 
     /**
      * @description 渲染页面
@@ -85,12 +102,14 @@ define('sf.b2c.mall.component.search', [
      */
     render: function(data) {
       var that = this;
+
       can.when(this.initSearchItem(this.searchData))
         .done(function() {
+          $(".loading").hide();
 
           //渲染页面
           var renderFn = can.mustache(template_component_search);
-          var html = renderFn(data, this.helpers);
+          var html = renderFn(data, that.helpers);
           that.element.html(html);
         });
 
@@ -107,8 +126,14 @@ define('sf.b2c.mall.component.search', [
         .done(function(itemSearchData) {
           that.renderData.attr("itemSearch", itemSearchData);
         });
-    }
+    },
 
+    /**
+     * 筛选条件更多按钮展开事件
+     */
+    "#classify-more click": function(targetElement) {
+      targetElement.parents('li').toggleClass('active');
+    }
   });
 
 });
