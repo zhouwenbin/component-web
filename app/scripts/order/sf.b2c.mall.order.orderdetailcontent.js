@@ -95,24 +95,42 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.isShareBag = false;
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
-            //that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
-
-
-
+            that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
             that.element.html(html);
 
-            that.renderPackageItemInfo(0,data.orderItem);
+            that.renderPackageItemInfo(0, data.orderItem);
+            $('#showUserRoutes li:gt(2)').hide();
 
           })
       },
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
-        console.log(packageInfo);
-        packageInfo.userRoutes = packageInfo.actionTraceItemList;
+        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse();//获取包裹路由并倒序
+        packageInfo.orderStatus = this.statsMap[packageInfo.status];
+        packageInfo.showStep = true;
+        if (packageInfo.orderStatus == 'AUTO_CANCEL' || packageInfo.orderStatus == 'USER_CANCEL' || packageInfo.orderStatus == 'OPERATION_CANCEL') {
+          packageInfo.showStep = false;
+        }
+        var map = {
+          'SUBMITED': '', //待支付
+          'AUDITING': 'order-detail-step2', //待审核
+          'SHIPPING': 'order-detail-step3', //待出库
+          'SHIPPED': 'order-detail-step4', //出库中
+          'COMPLETED': 'order-detail-step5', //已完成
+          'CLOSED': 'order-detail-step5'
+        };
+        packageInfo.showWhereStep = map[packageInfo.status];
         var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
-        $('#packageItemInfo').append(html);
+        $('#packageItemInfo').html(html);
+      },
+      /**
+       * @description 查看更多物流信息
+       * @return
+       */
+      '.look-more click': function(element, event) {
+        event && event.preventDefault();
       },
       payWayMap: {
         'alipay': '支付宝',
@@ -172,7 +190,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
         'COMPLETED': '已完成',
-        'AUTO_COMPLETED': '自动完成'
+        'AUTO_COMPLETED': '自动完成',
+        'CLOSED': '订单关闭'
+
       },
 
       stepMap: {
@@ -213,7 +233,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var params = can.route.attr();
         this.renderPackageItemInfo(params.tag, this.options);
       },
-      '.order-detail-tab click': function(element, event) {
+      '.order-detail-tab li click': function(element, event) {
         event && event.preventDefault();
         $(element).addClass('active').siblings().removeClass('active');
         var tag = $(element).attr('data-index');

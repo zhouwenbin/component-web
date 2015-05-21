@@ -13,17 +13,17 @@
   <div class="order-detail-state-c1 fl">
       <div class="order-detail-state-r1">
           <span class="icon icon96"></span>
-          <strong>当前状态：{{orderStatus}}</strong>
-          <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}发货，预计{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+          <strong>当前状态：{{orderStatus}}</strong>         
       </div>
       <ul id="showUserRoutes">
-      {{#each userRoutes}}
-        <li class="clearfix">
-          <span>{{gmtHappened}}</span>
-          <span>{{status}}</span>
-        </li>
+        {{#each userRoutes}}
+          <li class="clearfix">
+            <span>{{gmtHappened}}</span>
+            <span>{{status}}</span>
+          </li>
         {{/each}}
       </ul>
+      <a href="" class="btn btn-normal btn-small look-more">展开全部</a>
   </div>
   <div class="order-detail-state-c2 fr">
       <img src="../img/weixin-qrcode.png" alt="" />
