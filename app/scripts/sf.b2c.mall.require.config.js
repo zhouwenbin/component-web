@@ -86,6 +86,7 @@ requirejs.config({
     'sf.b2c.mall.api.user.getRecvInfo': 'scripts/api/sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.api.user.partnerLogin': 'scripts/api/sf.b2c.mall.api.user.partnerLogin',
     'sf.b2c.mall.api.user.reqLoginAuth': 'scripts/api/sf.b2c.mall.api.user.reqLoginAuth',
+    'sf.b2c.mall.api.order.deleteOrder':'scripts/api/sf.b2c.mall.api.order.deleteOrder',
     //账号绑定
     'sf.b2c.mall.api.user.partnerBind': 'scripts/api/sf.b2c.mall.api.user.partnerBind',
     //设置密码并登陆
@@ -114,6 +115,15 @@ requirejs.config({
     'sf.b2c.mall.api.coupon.getShareBagCpList': 'scripts/api/sf.b2c.mall.api.coupon.getShareBagCpList',
     'sf.b2c.mall.api.coupon.getShareBagInfo': 'scripts/api/sf.b2c.mall.api.coupon.getShareBagInfo',
     'sf.b2c.mall.api.coupon.hasReceivedCp': 'scripts/api/sf.b2c.mall.api.coupon.hasReceivedCp',
+
+    //购物车
+    'sf.b2c.mall.api.shopcart.getCart': 'scripts/api/sf.b2c.mall.api.shopcart.getCart',
+    'sf.b2c.mall.api.shopcart.addItemToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart':'scripts/api/sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart',
+    'sf.b2c.mall.api.shopcart.refreshCart':'scripts/api/sf.b2c.mall.api.shopcart.refreshCart',
+    'sf.b2c.mall.api.shopcart.removeItemsInCart':'scripts/api/sf.b2c.mall.api.shopcart.removeItemsInCart',
+    'sf.b2c.mall.api.shopcart.updateItemNumInCart':'scripts/api/sf.b2c.mall.api.shopcart.updateItemNumInCart',
+    'sf.b2c.mall.api.minicart.getTotalCount':'scripts/api/sf.b2c.mall.api.minicart.getTotalCount',
 
     'sf.b2c.mall.api.search.searchItem': 'scripts/api/sf.b2c.mall.api.search.searchItem',
     'sf.b2c.mall.api.search.suggestKeyword': 'scripts/api/sf.b2c.mall.api.search.suggestKeyword',

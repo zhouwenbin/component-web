@@ -919,11 +919,19 @@ module.exports = function (grunt) {
         }
       },
 
+<<<<<<< HEAD
       search: {
         options: {
           preserveLicenseComments: false,
           baseUrl:          './app/',
           out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.search.js',
+=======
+      shoppingcart: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:          './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.shoppingcart.js',
+>>>>>>> e4d646fa38e7c58fdc487d1bb98b3bcc6cdaa94c
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
@@ -933,10 +941,37 @@ module.exports = function (grunt) {
             'JSON':                         '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
+<<<<<<< HEAD
           include:        ["JSON", "sf.b2c.mall.page.search"],
           insertRequire:  ['sf.b2c.mall.page.search']
         }
       },
+=======
+          include:        ["JSON", "sf.b2c.mall.page.shoppingcart"],
+          insertRequire:  ['sf.b2c.mall.page.shoppingcart']
+        }
+      },
+      
+      addressmanage: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:          './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.addressmanage.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["JSON", "sf.b2c.mall.page.addressmanage"],
+          insertRequire:  ['sf.b2c.mall.page.addressmanage']
+        }
+      },
+
+>>>>>>> e4d646fa38e7c58fdc487d1bb98b3bcc6cdaa94c
 
       activityend: {
         options: {
@@ -1300,7 +1335,7 @@ module.exports = function (grunt) {
         'copy:image',
         'copy:templates',
         'usemin',
-        'htmlmin',
+        // 'htmlmin',
         'clean:extra',
         'clean:publish',
         'compress:test'

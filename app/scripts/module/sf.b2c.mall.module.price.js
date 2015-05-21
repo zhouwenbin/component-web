@@ -2,12 +2,14 @@ define(
   'sf.b2c.mall.module.price', [
     'can',
     'underscore',
+    'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+    'sf.b2c.mall.api.shopcart.addItemToCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, SFGetProductHotDataList, SFConfig, SFFrameworkComm) {
+  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -48,6 +50,8 @@ define(
        */
       renderPrice: function(data, element) {
 
+        // @todo 获得总开关的阀值
+
         var that = this;
 
         _.each(data.value, function(value, key, list) {
@@ -59,12 +63,61 @@ define(
           if ($el.length && $el.length > 1) {
             _.each($el, function(item) {
               that.fillPrice($(item), value);
+              that.paintCart($(item), value);
             })
           } else {
             that.fillPrice($el, value);
+            that.paintCart($el, value);
           }
 
         });
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 加入购物车
+       */
+      addCart: function (itemId, num) {
+        var itemsStr = JSON.stringify([{
+          itemId: itemId,
+          num: num || 1
+        }]);
+        var addItemToCart = new SFAddItemToCart({items: itemsStr});
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+            }
+          })
+          .fail(function (data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 添加购物车动作触发
+       * @param  {element} el
+       */
+      '.addtocart click': function (el, event) {
+        event && event.preventDefault();
+
+        var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 用户如果如果登录
+          this.addCart(itemId);
+        }else{
+          store.set('temp-action-addCart', {itemId: itemId});
+          can.trigger(window, 'showLogin', [window.location.href]);
+        }
       },
 
       /**
@@ -113,6 +166,20 @@ define(
           element.find('.cms-fill-discountparent')[0].style.display = "none";
         }
         */
+      },
+
+      /**
+       * @author Michael.Lee
+       * @param  {element} element 添加购物车的容器
+       * @param  {json} value   数据
+       * @return
+       */
+      paintCart: function (element, value) {
+        // @todo 从value中获得值确认购物车是不是显示
+
+        if (true) {
+          element.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
+        }
       },
 
       getItemList: function() {

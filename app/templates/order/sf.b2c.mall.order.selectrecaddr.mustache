@@ -1,45 +1,36 @@
-<h2>选择收货地址</h2>
-{{^if hasData}}
-<div class="order-b active">
-  <div class="order-r2" id="addAdrArea"></div>
-  <a href="javascript:void(0);" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
-</div>
-{{/if}}
 
-{{#if hasData}}
-<div class="order-b" id="addrList">
-  <ul>
-    {{#each addressList}}
-    <li class="clearfix {{active}}" name="addrEach" data-addressid="{{addrId}}" data-index="{{@index}}">
-      <div class="order-r1 clearfix">
-        <div class="order-r1c1 fl">
-          <span class="icon icon29"></span>
-        </div>
-        <div class="order-r1c2 fr">
-          {{#defaultAddr isDefault}}
-            <span class="text-error">默认地址</span>
-          {{else}}
-            {{#if canShowSetDefaultAddr}}
-              <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+<h1>选择收货地址</h1>
+<div class="address">
+    <ul class="clearfix">
+        {{#each addressList}}
+        <li class="active default">
+            <div class="address-r1">{{recName}}</div>
+            <div class="address-r2">{{cellphone}}</div>
+            <div class="address-r3">{{nationName}} {{provinceName}} {{cityName}} {{regionName}} <br />{{detail}}</div>
+            <div class="address-r4">
+                <a class="text-link order-edit" data-index="{{@index}}" href="javascript:void(0);">编辑</a>
+                {{^if isDefault}}
+                <a class="text-link address-default btn-setDefault" data-index="{{@index}}" href="javascript:">设为默认地址</a>
+                {{/if}}
+            </div>
+            
+            {{#if isDefault}}
+            <span data-index="{{@index}}" class="icon icon86"></span>                     
+            <span class="label label-disabled">默认地址</span>
             {{/if}}
-          {{/defaultAddr}}
-          <a class="order-edit" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
-          <a class="order-del" href="###" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
-        </div>
-        <ul class="order-r1c3">
-          <li><span>{{nationName}}</span><span>{{provinceName}}</span><span>{{cityName}}</span><span>{{regionName}}</span><span>{{detail}}</span></li>
-          <li><span>{{recName}}</span><span>|</span><span>{{credtNum}}</span></li>
-          <li><span>联系方式：{{cellphone}}</span></li>
-        </ul>
-      </div>
-      <div class="order-r2" id="editAdrArea"></div>
-    </li>
-    {{/each}}
-  </ul>
-
-  <div class="order-r2" id="addAdrArea"></div>
-
-  <a href="javascript:void(0);" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
-  <a href="javascript:void(0);" class="icon icon30"></a>
+        </li>
+        {{/each}}             
+        <li class="add">
+            <a href="javascript:" id="btn-add-addr">
+                <span class="icon icon87"></span><br />添加收货地址
+            </a>               
+        </li>                
+    </ul>
+    <div class="address-add" id="editAdrArea"></div>
+    <div class="clearfix address-manage">
+        <div class="fl"><a class="text-link" id="address-all" href="javascript:">展开全部收货地址<span class="icon icon16-1"></span></a></div>
+        <div class="fr"><a class="text-link" href="">管理收货地址</a></div>    
+    </div>
 </div>
-{{/if}}
+
+

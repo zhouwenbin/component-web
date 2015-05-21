@@ -17,8 +17,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'imglazyload',
     'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics',
-    'sf.b2c.mall.api.b2cmall.getActivityInfo'
+    'sf.b2c.mall.api.b2cmall.getActivityInfo',
+    'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
+<<<<<<< HEAD
   function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo) {
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
@@ -27,6 +29,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
     var LIMITIED_DATE = '2015/5/26';
 
+=======
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
+>>>>>>> e4d646fa38e7c58fdc487d1bb98b3bcc6cdaa94c
     return can.Control.extend({
 
       helpers: {
@@ -745,18 +750,23 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{#if priceInfo.soldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
+          '<button class="btn btn-soon disable" disabled="disabled">加入购物车</button>' +
           '{{/if}}' +
+
           '{{^if priceInfo.soldOut}}' +
             '{{^priceInfo.isPromotion}}' +
             '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+            '<button class="btn btn-soon addtocart">加入购物车</button>' +
             '{{/priceInfo.isPromotion}}' +
             '{{#priceInfo.isPromotion}}' +
               '{{#if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
               '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+              '<button class="btn btn-soon addtocart">加入购物车</button>' +
               '{{/if}}' +
               '{{^if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+              '<button class="btn btn-soon addtocart">加入购物车</button>' +
               '{{/if}}' +
             '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
@@ -902,6 +912,75 @@ define('sf.b2c.mall.product.detailcontent', [
         this.dealBuyNumByInput(element);
 
         return false;
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 加入购物车
+       */
+      addCart: function (itemId, num) {
+        var itemsStr = JSON.stringify([{
+          itemId: itemId,
+          num: num || 1
+        }]);
+        var addItemToCart = new SFAddItemToCart({items: itemsStr});
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+            }
+          })
+          .fail(function (data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 添加购物车动作触发
+       * @param  {element} el
+       */
+      '.addtocart click': function (el, event) {
+        event && event.preventDefault();
+
+        var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+        var amount = this.options.detailContentInfo.input.buyNum;
+
+        // 错误处理分支，用户输入了错误的购买数量
+        if (amount < 1 || isNaN(amount)) {
+          this.options.detailContentInfo.input.attr("buyNum", 1);
+          var message = new SFMessage(null, {
+            'tip': '请输入正确的购买数量！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        // 错误处理分支，库存数量不够
+        var currentStock = this.options.detailContentInfo.priceInfo.currentStock;
+        if (currentStock > 0 && amount > currentStock) {
+          var message = new SFMessage(null, {
+            'tip': '商品库存仅剩' + currentStock + '件！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        if (SFComm.prototype.checkUserLogin.call(this)) {
+          // 用户如果如果登录
+          this.addCart(itemId, amount);
+        }else{
+          store.set('temp-action-addCart', {itemId: itemId, num: amount});
+          can.trigger(window, 'showLogin', [window.location.href]);
+        }
       },
 
       /**

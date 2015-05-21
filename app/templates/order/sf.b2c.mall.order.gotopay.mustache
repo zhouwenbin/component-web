@@ -1,3 +1,79 @@
+
+<div class="pb">
+    <div class="pm">
+        <!--去支付-->
+        <div class="order-success"><span class="icon icon36"></span>
+            <h1>订单提交成功，现在只差最后一步啦！</h1>
+            <div class="order-success-r1">订单金额：¥{{sf.price price}}</div>
+            <p>请您在提交订单后<span class="text-important">1小时00分钟</span>内完成支付，否则订单会自动取消！</p>
+            <div class="order-success-pos"><a href="javascript:" id="order-detail" class="text-link">订单详情<span class="icon icon16-1"></span></a></div>
+        </div>
+        <div class="order-success-detail">
+            <ul>
+                <li><span>订单编号：</span>{{orderId}}</li>
+                <li><span>下单时间：</span>201xw5-04－28</li>
+                <li>
+                    <span>订单内容：</span>
+                    {{#orderGoodsItemList}}
+                        {{goodsName}}x{{quantity}}
+                        <br>
+                    {{/orderGoodsItemList}}
+                <li><span>送货地址：</span>{{orderAddressItem.receiveName}} {{orderAddressItem.mobile}} {{orderAddressItem.detailAddress}}</li>
+            </ul>
+        </div>
+        <div class="gotopay">
+            <div class="gotopay-r1">应付金额:<b class="text-important">¥</b><strong class="text-important">{{sf-totalprice selectPayType price discount}}</strong></div>
+            <h2>支付方式:</h2>
+            <ul>
+
+                {{#sf-paytype-list optionalPayTypeList 'alipay'}}
+                    <li data-payType="alipay">
+                        <img src="../img/gotopay2.png" alt="支付宝" />
+                        <h3>中国最大的第三方支付平台</h3>
+                        <span class="icon icon85"></span>
+                    </li>
+                {{/sf-paytype-list}}
+
+                {{#sf-paytype-list optionalPayTypeList 'alipay_intl'}}
+                    <li data-payType="alipay_intl">
+                        <img src="../img/gotopay2.png" alt="支付宝" />
+                        <h3>中国最大的第三方支付平台</h3>
+                        <span class="icon icon85"></span>
+                    </li>
+                {{/sf-paytype-list}}
+
+                {{#sf-paytype-list optionalPayTypeList 'lianlianpay'}}
+                    <li data-payType="lianlianpay">
+                        <img src="../img/gotopay1.png" alt="快捷支付" />
+                        <h3>无需注册登录，银行卡直接付款</h3>
+                        <span class="icon icon85"></span>
+                    </li>
+                {{/sf-paytype-list}}
+
+                {{#sf-paytype-list optionalPayTypeList 'tenpay_forex_wxsm'}}
+                    <li data-payType="tenpay_forex_wxsm">
+                        <img src="../img/gotopay3.png" alt="微信支付" />
+                        <h3>微信扫一扫就能付款，更快捷</h3>
+                        <span class="icon icon85"></span>
+                    </li>
+                {{/sf-paytype-list}}
+
+                {{#sf-paytype-list optionalPayTypeList 'tenpay_forex'}}
+                    <li data-payType="tenpay_forex">
+                        <img src="../img/gotopay4.png" alt="财付通" />
+                        <h3>超过3亿用户的选择，汇率更优！</h3>
+                        <span class="icon icon85"></span>
+                    </li>
+                {{/sf-paytype-list}}
+            </ul>
+            <div class="gotopay-r2">使用<span class="text-important" id="payment">{{sf-getPayTypeName selectPayType}}</span>进行支付
+                <button class="btn btn-danger btn-big" id="gotopayBtn">确认支付</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div class="orderdetail">
   <div class="pay">
     <div class="pay-r2 clearfix">
@@ -15,7 +91,6 @@
   </div>
 
 
-  <!--订单信息-->
   <h2>订单信息</h2>
   <div class="info">
     <div class="info-r1">
@@ -36,5 +111,5 @@
       </ul>
     </div>
   </div>
-  <!--订单信息-->
 </div>
+-->

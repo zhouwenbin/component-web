@@ -122,9 +122,9 @@ define('sf.b2c.mall.order.iteminfo', [
     processProducts: function(orderGoodsItemList) {
       //@note 如果channels(渠道编号) = 'heike',
       //cookie中1_uinfo中没有heike，则该用户不能购买
-      this.options.productChannels = orderGoodsItemList[0].channels[0];
+      //this.options.productChannels = orderGoodsItemList[0].channels[0];
       //是否是宁波保税，是得话才展示税额
-      this.itemObj.attr("showTax", orderGoodsItemList[0].bonded);
+      //this.itemObj.attr("showTax", orderGoodsItemList[0].bonded);
 
       _.each(orderGoodsItemList, function(goodItem) {
         if (goodItem.specItemList) {
@@ -145,8 +145,6 @@ define('sf.b2c.mall.order.iteminfo', [
     processCoupons: function(orderCoupon) {
       this.itemObj.attr("isShowCouponArea", true);
       can.extend(orderCoupon, {
-        isHaveAvaliable: orderCoupon.avaliableAmount != 0,
-        isHaveDisable: orderCoupon.disableAmount != 0,
         useQuantity: 0,
         discountPrice: 0,
         couponExCode: ""
@@ -183,10 +181,8 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("isShowCouponArea", true);
-        that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
+          that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
           can.extend(orderCoupon, {
-            isHaveAvaliable: orderCoupon.avaliableAmount != 0,
-            isHaveDisable: orderCoupon.disableAmount != 0,
             useQuantity: 0,
             discountPrice: 0,
             couponExCode: ""
@@ -402,24 +398,21 @@ define('sf.b2c.mall.order.iteminfo', [
         });
     },
 
-    monitor: {
-      'mediav': function() {
-        var __src = $.cookie('__src');
-        if (__src == 'mediav') {
-          var _mvq = window._mvq || [];
-          window._mvq = _mvq;
-          _mvq.push(['$setAccount', 'm-123868-0']);
-
-          _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
-          _mvq.push(['$logConversion']);
-          _mvq.push(['$addOrder', /*订单号*/ '', /*订单金额*/ '']);
-          _mvq.push(['$addItem', /*订单号*/ '', /*商品id*/ '', /*商品名称*/ '', /*商品价格*/ '', /*商品数量*/ '', /*商品页url*/ '', /*商品页图片url*/ '']);
-          _mvq.push(['$logData']);
-        }
+    //优惠券功能交互
+    '#coupon-use click': function(element, event) {
+      $(element).toggleClass('active');
+      $('#coupon-use-detail').toggle(300);
+    },
+    '#coupon-more click': function(element, event) {
+      $(element).toggleClass('active');
+      if ($(element).hasClass('active')) {
+        $('#coupon-more-text').text('展开更多');
+        $('#coupons').show();
+      } else {
+        $('#coupon-more-text').text('收起');
+        $('#coupons').hide();
       }
     },
-
-    //优惠券功能交互
     '.mycoupon-h li click': function(targetElement) {
       var index = $('.mycoupon-h li').index(targetElement);
       $('.mycoupon-h li').removeClass('active');
@@ -490,6 +483,23 @@ define('sf.b2c.mall.order.iteminfo', [
           targetElement.removeClass("disable");
         });
 
+    },
+
+    monitor: {
+      'mediav': function() {
+        var __src = $.cookie('__src');
+        if (__src == 'mediav') {
+          var _mvq = window._mvq || [];
+          window._mvq = _mvq;
+          _mvq.push(['$setAccount', 'm-123868-0']);
+
+          _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
+          _mvq.push(['$logConversion']);
+          _mvq.push(['$addOrder', /*订单号*/ '', /*订单金额*/ '']);
+          _mvq.push(['$addItem', /*订单号*/ '', /*商品id*/ '', /*商品名称*/ '', /*商品价格*/ '', /*商品数量*/ '', /*商品页url*/ '', /*商品页图片url*/ '']);
+          _mvq.push(['$logData']);
+        }
+      }
     }
   });
 })

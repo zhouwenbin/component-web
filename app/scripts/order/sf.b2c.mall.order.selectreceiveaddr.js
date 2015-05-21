@@ -10,7 +10,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.adapter.address.list',
   'sf.b2c.mall.api.user.getRecAddressList',
   'sf.b2c.mall.api.user.getIDCardUrlList',
-  'sf.b2c.mall.api.user.webLogin',
   'sf.b2c.mall.api.user.delRecAddress',
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
@@ -20,10 +19,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
   'sf.b2c.mall.component.addreditor',
   'sf.b2c.mall.order.iteminfo'
 ], function(can, $, $cookie, store, md5,
-    RegionsAdapter, AddressAdapter,
-    SFGetRecAddressList,SFGetIDCardUrlList, SFUserWebLogin,SFDelRecAddress,SFSetDefaultAddr, SFSetDefaultRecv,
-    CheckLogistics,SFGetItemSummary,
-    SFMessage, SFAddressEditor, SFItemInfo) {
+  RegionsAdapter, AddressAdapter,
+  SFGetRecAddressList, SFGetIDCardUrlList, SFDelRecAddress, SFSetDefaultAddr, SFSetDefaultRecv,
+  CheckLogistics, SFGetItemSummary,
+  SFMessage, SFAddressEditor, SFItemInfo) {
   var AREAID;
   return can.Control.extend({
     adapter: {},
@@ -41,22 +40,23 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
       var params = can.deparam(window.location.search.substr(1));
       var getItemSummary = new SFGetItemSummary({
-        "itemId":params.itemid
+        "itemId": params.itemid
       });
       getItemSummary.sendRequest()
-        .done(function(data){
+        .done(function(data) {
           AREAID = data.areaId;
         })
         .fail();
     },
-    helpers:{
-      'defaultAddr':function(isDefault,options){
+    helpers: {
+      'defaultAddr': function(isDefault, options) {
         if (isDefault() == 1) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         };
-      }
+      },
+
     },
     render: function(data) {
       var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data, this.helpers);
@@ -81,11 +81,13 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           }
           var params = can.deparam(window.location.search.substr(1));
           var map = {
-            'heike': function (list, id) {
-              var value = _.findWhere(list, {addrId: id});
+            'heike': function(list, id) {
+              var value = _.findWhere(list, {
+                addrId: id
+              });
               if (value) {
                 return [value];
-              }else{
+              } else {
                 return []
               }
             }
@@ -129,7 +131,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           that.showAllAdr();
           that.request();
           if (typeof data != 'undefined') {
-            $("body,html").animate({scrollTop:200});
+            $("body,html").animate({
+              scrollTop: 200
+            });
             var changedAddr = $("li[name='addrEach']");
             var len = $("li[name='addrEach']").length;
             $("li[name='addrEach']").removeClass('active');
@@ -161,34 +165,34 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      * 判断地址是否有效
      * @param selectValue
      */
-    check: function (selectValue) {
+    check: function(selectValue) {
       var that = this;
-      if(AREAID != 0){
-        var provinceId =that.adapter.regions.getIdByName(selectValue.provinceName);
+      if (AREAID != 0) {
+        var provinceId = that.adapter.regions.getIdByName(selectValue.provinceName);
         var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectValue.cityName);
         var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, selectValue.regionName);
 
         that.component.checkLogistics.setData({
-          areaId:AREAID,
-          provinceId:provinceId,
-          cityId:cityId,
-          districtId:regionId
+          areaId: AREAID,
+          provinceId: provinceId,
+          cityId: cityId,
+          districtId: regionId
         });
         that.component.checkLogistics.sendRequest()
-          .done(function(data){
-            if(data){
-              if(data.value == false){
+          .done(function(data) {
+            if (data) {
+              if (data.value == false) {
                 $('#errorTips').removeClass('visuallyhidden');
                 $('#submitOrder').addClass('disable');
                 return false;
-              }else{
+              } else {
                 $('#errorTips').addClass('visuallyhidden');
                 $('#submitOrder').removeClass('disable');
                 return true;
               }
             }
           })
-          .fail(function(data){
+          .fail(function(data) {
 
           })
       }
@@ -213,12 +217,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
 
         });
     },
-    showAllAdr:function(){
+    showAllAdr: function() {
       var len = $("li[name='addrEach']").length;
       if (len > 3) {
-        $("li[name='addrEach']:lt(3)").css('display','block');
-      }else{
-        $("li[name='addrEach']").css('display','block');
+        $("li[name='addrEach']:lt(3)").css('display', 'block');
+      } else {
+        $("li[name='addrEach']").css('display', 'block');
         $('.icon30').hide();
       }
     },
@@ -273,14 +277,14 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      */
     getSelectedAddr: function() {
       var index = $("#addrList").find("li.active").eq(0).attr('data-index');
-      if (typeof index == 'undefined'){
-          return false;
-        }
+      if (typeof index == 'undefined') {
+        return false;
+      }
       return this.adapter4List.addrs.get(index);
     },
 
     //设为默认地址
-    ".btn-setDefault click":function(element,event){
+    ".btn-setDefault click": function(element, event) {
       var that = this;
       var index = element.data('index');
       var addr = this.adapter4List.addrs.get(index);
@@ -293,9 +297,9 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var setDefaultAddr = new SFSetDefaultAddr({
         "addrId": addr.addrId
       });
-      can.when(setDefaultRecv.sendRequest(),setDefaultAddr.sendRequest())
-        .done(function(data){
-          new SFMessage(null,{
+      can.when(setDefaultRecv.sendRequest(), setDefaultAddr.sendRequest())
+        .done(function(data) {
+          new SFMessage(null, {
             'tip': '设为默认地址成功！',
             'type': 'success'
           });
@@ -304,14 +308,14 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addr.cityName);
           var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addr.regionName);
 
-          store.set('provinceId',provinceId);
-          store.set('cityId',cityId);
-          store.set('regionId',regionId);
+          store.set('provinceId', provinceId);
+          store.set('cityId', cityId);
+          store.set('regionId', regionId);
         })
-        .fail(function(){
+        .fail(function() {
 
         })
-      },
+    },
 
     /**
      * [description 新增保存]
@@ -349,7 +353,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var addr = this.adapter4List.addrs.get(index);
       this.adapter4List.addrs.input.attr('addrId', addr.addrId);
 
-      var editAdrArea = element.parents("li[name='addrEach']").find("#editAdrArea");
+      var editAdrArea = $("#editAdrArea");
       this.component.addressEditor.show("editor", addr, $(editAdrArea));
 
 
@@ -360,7 +364,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       return false;
     },
 
-    ".order-del click": function(element, event){
+    ".order-del click": function(element, event) {
       var index = element.data('index');
       var addr = this.adapter4List.addrs.get(index);
 
@@ -376,10 +380,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     delAddress: function(element, addr) {
       var that = this;
 
-      var delRecAddress = new SFDelRecAddress({"addrId":addr.addrId});
+      var delRecAddress = new SFDelRecAddress({
+        "addrId": addr.addrId
+      });
       delRecAddress
         .sendRequest()
-        .done(function(result){
+        .done(function(result) {
           var defaultId = element.attr('data-isdefault');
           if (defaultId == 1) {
             store.remove('provinceId');
@@ -388,7 +394,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           };
           that.paint();
         })
-        .fail(function(error){
+        .fail(function(error) {
           //console.error(error);
         })
     },
@@ -415,7 +421,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
      */
     "#addrList click": function(element, event) {
       var event = event || window.event;
-      var obj=event.srcElement ? event.srcElement : event.target;
+      var obj = event.srcElement ? event.srcElement : event.target;
       if (obj.tagName == 'SPAN') {
         //$('#errorTips').addClass('visuallyhidden');
         this.clearActive();

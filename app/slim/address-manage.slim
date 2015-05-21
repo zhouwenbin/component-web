@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=1280">
+	<title>确定订单</title>
+	<link href="../css/common.css" rel="stylesheet" type="text/css" />
+	<link href="../css/myorder.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	== Slim::Template.new('module/header2.slim').render
+	<div class="pb">
+		<div class="pm"> 
+			<!--我的订单-->
+			<div class="personal">
+				<div class="personal-c1 fl">
+					<h1>个人中心</h1>
+					<ul>
+						<li><a href="">我的订单</a></li>
+						<li><a href="">账户管理</a></li>
+						<li class="active"><a href="">收货地址</a></li>
+					</ul>
+				</div>
+				<div class="personal-c2">
+					<!--新增收货地址-->
+					<div class="address-add">
+						<h2>新增收货地址</h2>
+						<ul>
+							<li>
+								<label for="country">选择地区：</label>
+								<select name="" id="country">
+									<option value="中国大陆">中国大陆</option>
+								</select>
+								<select name="" id="">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="" id="">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="" id="">
+									<option value="请选择">请选择</option>
+								</select>
+							</li>
+							<li>
+								<label for="address">收货地址：</label>
+								<input type="text" class="input" placeholder="填写详细地址">
+							</li>
+							<li>
+								<label for="address">收货人：</label>
+								<input type="text" class="input" placeholder="填写收货人真实姓名">
+								<div class="text-error"><span class="icon icon62"></span>收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+							</li>
+							<li>
+								<label for="address">收货人手机号：</label>
+								<input type="text" class="input" placeholder="请填写联系电话">
+							</li>
+							<li>
+								<label for="address">收货人身份证：</label>
+								<input type="text" class="input" placeholder="由于国家海关规定，海涛需提交实名信息">
+							</li>
+						</ul>
+						<div class="address-add-r1">
+							<button class="btn btn-danger">保存</button>
+							<label><input type="checkbox" />设置成默认地址</label>
+						</div>
+					</div>
+					<!--我的收货地址-->
+					<div class="address">
+						<h2>我的收货地址</h2>
+						<div class="address-table">
+							<table>
+								<thead>
+									<tr>
+										<th class="col1">收货人</th>
+										<th class="col2">收货地址</th>
+										<th class="col3">收货地址</th>
+										<th class="col4">手机号</th>
+										<th class="col5">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="col1">张弦悦</td>
+										<td class="col2">中国大陆 上海市 徐汇区</td>
+										<td class="col3">虹梅路2007号一号楼8楼</td>
+										<td class="col4">13306132577</td>
+										<td class="col5">
+											<a href="" class="text-link">编辑</a>
+											<a href="" class="text-link">删除</a>
+											<span class="label label-disabled">默认地址<i></i></span>
+										</td>
+									</tr>
+									<tr>
+										<td class="col1">张弦悦</td>
+										<td class="col2">中国大陆 上海市 徐汇区</td>
+										<td class="col3">虹梅路2007号一号楼8楼</td>
+										<td class="col4">13306132577</td>
+										<td class="col5">
+											<a href="" class="text-link">编辑</a>
+											<a href="" class="text-link">删除</a>
+											<a href="" class="label label-error">设为默认</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="col1">张弦悦</td>
+										<td class="col2">中国大陆 上海市 徐汇区</td>
+										<td class="col3">虹梅路2007号一号楼8楼</td>
+										<td class="col4">13306132577</td>
+										<td class="col5">
+											<a href="" class="text-link">编辑</a>
+											<a href="" class="text-link">删除</a>
+											<a href="" class="label label-error">设为默认</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+							
+					</div>
+				</div>
+			</div>
+			<!--我的订单--> 
+		</div>
+	</div>
+	<!--尾部--> 
+	== Slim::Template.new('module/footer.slim').render 
+	<!--尾部--> 
+	<script src="js/jquery-1.11.1.min.js"></script> 
+	<script src="js/index.js"></script>
+	<script src="js/cart.js"></script>
+</body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

@@ -1,63 +1,76 @@
-<h2><span class="order-success-icon"></span>订单支付成功</h2>
-<p class="order-success-p1">感谢您使用顺丰海淘，我们将尽快为您发货！<a href="{{links.orderlist}}" title="查看订单">查看订单 ></a></p>
-<div class="order-success-r1 clearfix pm">
-
-  {{#isShareBagAndCoupon}}
-    {{#isPresentCoupon}}
-      <div class="order-success-r1c1 fl">
-        <p class="order-success-p2">恭喜你！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
-        <a class="coupon" href="{{links.coupon}}">
-          <div class="coupon-r1">
-            <span>{{sf.price presentCoupon.price}}</span>元
-          </div>
-          <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
-        </a>
-      </div>
-    {{/isPresentCoupon}}
-    {{#isGiftBag}}
-      <div class="order-success-r1c1 fl">
-        <p class="order-success-p2">恭喜你！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
-        <a class="coupon gift"  href="{{links.coupon}}">
-          <div class="coupon-r1">
-            <span>{{sf.price giftBag.price}}</span>元
-          </div>
-          <div class="coupon-r2">{{giftBag.couponDescription}}</div>
-        </a>
-      </div>
-    {{/isGiftBag}}
-    <div class="order-success-r1c2">
-      <div class="order-success-qrcode">
-        <p class="order-success-qrcode-r1">恭喜您获得{{sf.price shareBag.price}}元红包，您可给小伙伴散红包啦！</p>
-          <div id="shareQrCode"></div>
-        <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
-      </div>
+<div class="pm">
+    <!--支付成功-->
+    <div class="pay-success clearfix">
+        <div class="pay-success-c1 fl"><span class="icon icon36"></span>
+            <h1>订单支付成功</h1>
+            <ul>
+                <li><span>订单编号：</span>{{orderItem.orderId}}</li>
+                <li><span>下单时间：</span>{{sf.time orderItem.gmtCreate}}</li>
+                <li><span>支付方式：</span>{{sf-payment orderItem.payType}}</li>
+                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">{{sf.price orderItem.totalPrice}}</strong></li>
+            </ul>
+        </div>
+        <div class="pay-success-c2 fr"><img src="../img/weixin-qrcode.png" alt="">
+            <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+        </div>
     </div>
-  {{/isShareBagAndCoupon}}
-  {{^isShareBagAndCoupon}}
-    {{#isPresentCoupon}}
-      <p class="order-success-p2">恭喜您！{{presentCoupon.couponName}}，已自动存入“我的优惠券”</p>
-      <a class="coupon" href="{{links.coupon}}">
-        <div class="coupon-r1">
-          <span>{{sf.price presentCoupon.price}}</span>元
+    <div class="pay-success2">
+        <div class="pay-success2-h">
+            {{#if cartnum}}<h2>您的购物车还有未结算的商品</h2>{{/if}}
+            <div class="pay-success2-r1">
+                {{#if cartnum}}<a class="btn btn-danger btn-small" href="/shoppingcart.html">返回购物车</a>{{/if}}
+                <a href="/orderdetail.html?orderid={{orderItem.orderId}}" title="查看订单">查看订单详情</a>|<a href="/index.html" title="继续购物">继续购物</a>
+            </div>
         </div>
-        <div class="coupon-r2">{{presentCoupon.couponDescription}}</div>
-      </a>
-    {{/isPresentCoupon}}
-    {{#isGiftBag}}
-      <p class="order-success-p2">恭喜您！{{giftBag.couponName}}，已自动存入“我的优惠券”</p>
-      <a class="coupon gift" href="{{links.coupon}}">
-        <div class="coupon-r1">
-          <span>{{sf.price giftBag.price}}</span>元
+
+        <div class="pay-success2-b clearfix">
+            <div class="pay-success2-bc1 fl">
+
+                <h2>恭喜你！获得
+                  {{#orderItem.orderCouponItemList}}{{couponName}}{{sf-coupon-type-name couponType}} {{/orderItem.orderCouponItemList}}
+                </h2>
+
+                <ul>
+                  {{#orderItem.orderCouponItemList}}
+
+                    {{! 现金券}}
+                    {{#sf-coupon-type couponType 'CASH'}}
+                      <li>
+                          <div class="gift">
+                              <div class="gift-r1">{{couponName}}</div>
+                              <div class="gift-r2"><strong>{{sf.price price}}</strong>元</div>
+                          </div>
+                      </li>
+                    {{/sf-coupon-type}}
+
+                    {{! 大礼包}}
+                    {{#sf-coupon-type couponType 'GIFTBAG'}}
+                    <li>
+                        <div class="coupon">
+                            <div class="coupon-r1"><b>¥</b><strong>{{sf.price presentCoupon.price}}</strong>{{presentCoupon.couponName}}</div>
+                            <p>有效期至：{{! @todo 有效期}}</p>
+                        </div>
+                    </li>
+                    {{/sf-coupon-type}}
+
+                  {{/orderItem.orderCouponItemList}}
+                </ul>
+            </div>
+            {{#orderItem.orderCouponItemList}}
+
+              {{! 红包}}
+              {{#sf-coupon-type couponType 'SHAREBAG'}}
+              <div class="pay-success2-bc2 fr">
+                  <div class="qrcode">
+                      {{! @todo 生成二维码}}
+                      <div class="shareQrCode" data-code="{{code}}"></div>
+                      <h2>支付成功散钱包，给你的伙伴发{{sf.price price}}元红包</h2>
+                      <p>=(^.^)= 扫一扫分享散红包到微信</p>
+                  </div>
+              </div>
+              {{/sf-coupon-type}}
+
+            {{/orderItem.orderCouponItemList}}
         </div>
-        <div class="coupon-r2">{{giftBag.couponDescription}}</div>
-      </a>
-    {{/isGiftBag}}
-    {{#isShareBag}}
-      <div class="order-success-qrcode">
-          <p class="order-success-qrcode-r1">恭喜您获得{{sf.price shareBag.price}}元红包，您可给小伙伴散红包啦！</p>
-          <div id="shareQrCode"></div>
-          <p class="order-success-qrcode-r2">扫一扫分享散红包到微信</p>
-      </div>
-    {{/isShareBag}}
-  {{/isShareBagAndCoupon}}
+    </div>
 </div>

@@ -1,5 +1,7 @@
 /**
  * Created by 张可 on 2015/3/9.
+ *
+ *
  */
 define(
   'sf.b2c.mall.page.paysuccess',
@@ -18,25 +20,29 @@ define(
     var paySuccess = can.Control.extend({
 
       /**
-       * [init 初始化]
+       * @description 页面初始化
        */
       init: function() {
         this.render();
       },
 
       /**
-       * [render 渲染]
+       * @description 页面渲染
        */
       render: function() {
-        new Header('.sf-b2c-mall-header', {isForceLogin: true});
-        new Footer('.sf-b2c-mall-footer');
-        //step
-        new OrderSetp('.sf-b2c-mall-order-step', {
-          "thirdstep": "active"
-        });
-        new PaySuccess(".sf-b2c-mall-order-paysuccess");
+        var header = new Header('.sf-b2c-mall-header', {isForceLogin: true});
+        var footer = new Footer('.sf-b2c-mall-footer');
+
+        // @deprecated 不再渲染order-step
+        // @author Michael.Lee
+        // step
+        // new OrderSetp('.sf-b2c-mall-order-step', {
+        //   "thirdstep": "active"
+        // });
+
+        var paySuccess = new PaySuccess(".sf-b2c-mall-order-paysuccess");
       }
     });
 
-    new paySuccess('.paySuccess');
+    var pagePaySuccess = new paySuccess('.paySuccess');
   })
