@@ -87,21 +87,30 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.options.orderId = data.orderId;
             that.options.recId = data.orderItem.rcvrId;
-            that.options.payType = that.payWayMap[data.orderItem.payType];
+            that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
             that.options.isCostCoupon = false;
             that.options.isPresentCoupon = false;
             that.options.isGiftBag = false;
             that.options.isShareBag = false;
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
+            that.options.receiveInfo = data.orderItem.orderAddressItem;
+            //that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
+
+
+
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
             that.element.html(html);
+
+            that.renderPackageItemInfo(0,data.orderItem);
 
           })
       },
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
+        console.log(packageInfo);
+        packageInfo.userRoutes = packageInfo.actionTraceItemList;
         var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
         $('#packageItemInfo').append(html);
       },
