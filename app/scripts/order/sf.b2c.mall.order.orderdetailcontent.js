@@ -95,6 +95,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.isShareBag = false;
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
 
+            var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
+            that.element.html(html);
+
           })
       },
       renderPackageItemInfo: function(tag, data) {
@@ -107,14 +110,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'tenpay_forex': '财付通',
         'tenpay_forex_wxsm': '微信支付',
         'lianlianpay': '快捷支付'
-      },
-      showUserRoutesTemplates: function() {
-        return '{{#each userRoutes}}' +
-          '<li class="clearfix">' +
-          '<span>{{gmtHappened}}</span>' +
-          '<span>{{description}}</span>' +
-          '<span>{{operator}}</span>' +
-          '</li>{{/each}}';
       },
 
       statusDescription: {
@@ -133,8 +128,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'COMPLETED': '您已确认收货，订单已完成',
         'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
       },
-
-
 
       getOptionHTML: function(operationsArr) {
         var that = this;

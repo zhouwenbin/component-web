@@ -17,10 +17,12 @@
           <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}发货，预计{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
       </div>
       <ul id="showUserRoutes">
+      {{#each userRoutes}}
         <li class="clearfix">
           <span>{{gmtHappened}}</span>
           <span>{{status}}</span>
         </li>
+        {{/each}}
       </ul>
   </div>
   <div class="order-detail-state-c2 fr">

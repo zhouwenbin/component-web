@@ -44,11 +44,16 @@
     {{#isShowCouponArea}}
       <div class="cart-coupon-r1"><a href="javascript:" id="coupon-use">-</a>使用优惠券</div>
       <div id="coupon-use-detail">
-        <div class="coupon">
-          <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-          <div class="coupon-r2">有效期至：2015/04/21</div>
-          <span class="icon icon85"></span>
-        </div>
+        {{^orderCoupon.isHaveAvaliable}}
+          <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
+        {{/orderCoupon.isHaveAvaliable}}
+        {{#orderCoupon.isHaveAvaliable}}
+          <div class="coupon" data-code="{{orderCoupon.couponCode}}" id="useCoupon">
+            <div class="coupon-r1"><b>¥</b><strong>{{sf.price orderCoupon.price}}</strong>{{orderCoupon.couponName}}</div>
+            <div class="coupon-r2">有效期至：{{orderCoupon.endDate}}</div>
+            <span class="icon icon85"></span>
+          </div>
+        {{/orderCoupon.isHaveAvaliable}}
         <div class="cart-coupon-r2">
           <a href="javascript:" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
         </div>
