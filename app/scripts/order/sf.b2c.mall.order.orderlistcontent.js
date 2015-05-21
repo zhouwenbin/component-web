@@ -33,10 +33,22 @@ define('sf.b2c.mall.order.orderlistcontent', [
         countGoodsInPackage: function(orderGoodsItemList, options) {
           return orderGoodsItemList.length; //待修改
         },
+        // 计算包裹号
+        getPackageNum: function(index, options){
+          return index + 1;
+        },
+
+        tdborder: function(index, options){
+          if (index == 0){
+            return "border-top: none";
+          }
+        },
         //每一个包裹中商品list中的第一条数据
-        first: function(orderGoodsItemList, options) {
-          if (orderGoodsItemList.length > 0) {
+        first: function(orderGoodsItemList, index, options) {
+          if (index == 0) {
             return options.fn(orderGoodsItemList[0]);
+          } else {
+            return options.inverse(orderGoodsItemList[index]);
           };
         },
         //后几个td的rowspan的行数（根据包裹数量）
@@ -107,11 +119,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.options.orders = data.orders;
               that.options.orderListIsNotEmpty = true;
 
-              
+
               _.each(that.options.orders, function(order, i) {
 
                 order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
-                
+
                 order.paymentAmount = order.totalPrice - order.discount;
                 order.showRouter = that.routeMap[order.orderStatus];
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
