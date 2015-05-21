@@ -3,12 +3,14 @@ define(
   [
     'can',
     'jquery',
-    'sf.b2c.mall.component.recommendProducts',
     'sf.b2c.mall.framework.comm',
     'sf.util',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.business.config',
+    'sf.b2c.mall.component.recommendProducts',
+    'sf.b2c.mall.component.search'
   ],
-  function(can, $, SFRecommendProducts, SFFrameworkComm, SFFn, SFBusiness) {
+  function(can, $, SFFrameworkComm, SFFn, SFBusiness,
+           SFRecommendProducts, SFSearch) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -26,11 +28,11 @@ define(
        */
       render: function() {
         var that = this;
-
-        new SFRecommendProducts('.recommend');
+        new SFSearch('#sf-b2c-mall-search');
+        //new SFRecommendProducts('.recommend');
       }
 
     });
 
-    new searchPage('#page-404');
+    new searchPage('#sf-b2c-mall-search');
   })
