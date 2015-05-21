@@ -65,7 +65,7 @@
           {{! 可用优惠券 }}
           <ul class="coupons-list active">
             {{#each orderCoupon.avaliableCoupons}}
-              <li>
+              <li data-code="{{couponCode}}" data-price="{{price}}">
                 <div class="coupon">
                     <div class="coupon-r1"><b>¥</b><strong>{{sf.price price}}</strong>{{couponName}}</div>
                     <div class="coupon-r2">有效期至：{{endDate}}</div>
@@ -76,7 +76,7 @@
           {{! 不可用优惠券 }}
           <ul class="coupons-list">
             {{#each orderCoupon.disableCoupons}}
-              <li>
+              <li data-code="{{couponCode}}" data-price="{{price}}">
                 <div class="coupon coupon-disable">
                     <div class="coupon-r1"><b>¥</b><strong>{{sf.price price}}</strong>{{couponName}}</div>
                     <div class="coupon-r2">有效期至：{{endDate}}</div>

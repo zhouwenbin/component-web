@@ -155,22 +155,22 @@ define('sf.b2c.mall.order.iteminfo', [
         discountPrice: 0,
         couponExCode: "",
         isHaveAvaliable: false,
-        price:0,
-        couponName:null,
-        endDate:null,
-        couponCode:null
+        price: 0,
+        couponName: null,
+        endDate: null,
+        couponCode: null
       });
 
       this.itemObj.attr("orderCoupon", orderCoupon);
       if (orderCoupon.avaliableAmount > 0) {
         this.itemObj.orderCoupon.attr("isHaveAvaliable", true);
         this.itemObj.orderCoupon.attr("discountPrice", orderCoupon.avaliableCoupons[0].price);
-      };   
+        this.itemObj.orderCoupon.attr("price", orderCoupon.avaliableCoupons[0].price);
+        this.itemObj.orderCoupon.attr("couponName", orderCoupon.avaliableCoupons[0].couponName);
+        this.itemObj.orderCoupon.attr("endDate", orderCoupon.avaliableCoupons[0].endDate);
+        this.itemObj.orderCoupon.attr("couponCode", orderCoupon.avaliableCoupons[0].couponCode);
+      };
       this.itemObj.orderCoupon.selectCoupons = [];
-      this.itemObj.orderCoupon.attr("price", orderCoupon.avaliableCoupons[0].price);
-      this.itemObj.orderCoupon.attr("couponName", orderCoupon.avaliableCoupons[0].couponName);
-      this.itemObj.orderCoupon.attr("endDate", orderCoupon.avaliableCoupons[0].endDate);
-      this.itemObj.orderCoupon.attr("couponCode", orderCoupon.avaliableCoupons[0].couponCode);
       this.itemObj.unbind("orderCoupon.discountPrice").bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
         this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
       });
@@ -260,16 +260,27 @@ define('sf.b2c.mall.order.iteminfo', [
       return mapKey[saleid] || defaultKey;
     },
     //可用优惠券和不可用优惠券切换
-    '.coupons-tab li click':function(element,event){
+    '.coupons-tab li click': function(element, event) {
       event && event.preventDefault();
       var index = $('.coupons-tab li').index($(element));
       $(element).addClass('active').siblings().removeClass('active');
       $('.coupons-list').eq(index).addClass('active').siblings().removeClass('active');
     },
+    '#useCoupon click': function(element, event) {
+      var span = $(element).find('span.icon85');
+      if (span.length > 0) {
+        $(element).find('span.icon85').remove();
+        this.itemObj.orderCoupon.attr("couponCode", null);
+        this.itemObj.orderCoupon.attr("discountPrice", 0);
+      }else{
+        this.itemObj.orderCoupon.attr("discountPrice", $(element).attr('data-price'));
+        this.itemObj.orderCoupon.attr("couponCode", $(element).attr('data-code'));
+      }
+    },
     getCouponCodes: function() {
       var selectedCoupon = $("#useCoupon");
       var codes = [];
-      codes.push($(selectedCoupon).data("code"));      
+      codes.push($(selectedCoupon).data("code"));
       return JSON.stringify(codes);
     },
 
