@@ -83,6 +83,48 @@
                 <div class="fr"><a class="text-link" href="">管理收货地址</a></div>    
             </div>
         </div>
+        <!--新增收货地址-->
+        <div class="address-add">
+            <h2>新增收货地址</h2>
+            <ul>
+                <li>
+                    <label for="country">选择地区：</label>
+                    <select name="" id="country">
+                        <option value="中国大陆">中国大陆</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="请选择">请选择</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="address">收货地址：</label>
+                    <input type="text" class="input" placeholder="填写详细地址">
+                </li>
+                <li>
+                    <label for="address">收货人：</label>
+                    <input type="text" class="input" placeholder="填写收货人真实姓名">
+                    <div class="text-error"><span class="icon icon62"></span>收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+                </li>
+                <li>
+                    <label for="address">收货人手机号：</label>
+                    <input type="text" class="input" placeholder="请填写联系电话">
+                </li>
+                <li>
+                    <label for="address">收货人身份证：</label>
+                    <input type="text" class="input" placeholder="由于国家海关规定，海涛需提交实名信息">
+                </li>
+            </ul>
+            <div class="address-add-r1">
+                <button class="btn btn-danger">保存</button>
+                <label><input type="checkbox" />设置成默认地址</label>
+            </div>
+        </div>
         <h1>确认商品信息</h1>
         <!--购物车-->
         <div class="cart">
@@ -220,59 +262,108 @@
             
             </div>
             <div class="cart-coupon">
-                <div class="cart-coupon-r1"><span>一</span>使用优惠券</div>
-                <ul>
-                    <li class="icon icon84 active">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
+                <div class="cart-coupon-r1"><a href="javascript:" id="coupon-use">-</a>使用优惠券</div>
+                <div id="coupon-use-detail">
+                    <div class="coupon">
+                        <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                        <div class="coupon-r2">有效期至：2015/04/21</div>
                         <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                    <li class="icon icon84">
-                        <div class="cart-coupon-li1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="cart-coupon-li2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </li>
-                </ul>
-                <!--无优惠券
-                <p>此订单暂无可用的优惠券。您可以<a href="" class="text-link">查看优惠券</a>了解使用限制。</p>
-                <-->
-                <div class="cart-coupon-r2">
-                    <a href="javascript:" class="text-link" id="cart-coupon-all">展开更多<span class="icon icon16-1"></span></a>
+                    </div>
+                    <!--无优惠券
+                    <p>此订单暂无可用的优惠券。您可以<a href="" class="text-link">查看优惠券</a>了解使用限制。</p>
+                    <-->
+                    <div class="cart-coupon-r2">
+                        <a href="javascript:" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
+                    </div>
+                    <div class="coupons" id="coupons">
+                        <ul class="coupons-tab">
+                            <li class="active"><a href="javascript:">可用优惠券</a></li>
+                            <li><a href="javascript:">不可用优惠券</a></li>
+                        </ul>
+                        <ul class="coupons-list active">
+                            <li>
+                                <div class="coupon">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="coupons-list">
+                            <li>
+                                <div class="coupon coupon-disable">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                                <div class="text-error">该优惠券不能用于该商品上!</div>
+                            </li>
+                            <li>
+                                <div class="coupon coupon-disable">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                                <div class="text-error">该优惠券不能用于该商品上!</div>
+                            </li>
+                            <li>
+                                <div class="coupon coupon-disable">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                                <div class="text-error">再买50元可用!</div>
+                            </li>
+                            <li>
+                                <div class="coupon coupon-disable">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                                <div class="text-error">该优惠券不能用于该商品上!</div>
+                            </li>
+                            <li>
+                                <div class="coupon coupon-disable">
+                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                                    <div class="coupon-r2">有效期至：2015/04/21</div>
+                                </div>
+                                <div class="text-error">该优惠券不能用于该商品上!</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cart-coupon-r3">or<a href="" class="text-link">兑换优惠券？</a></div>
+                    <div class="cart-coupon-r4">请输入您手中的兑换码：
+                        <input class="input" type="text" />
+                        <a class="btn btn-normal" href="">确定</a>
+                        <!--输入后显示
+                        <div class="coupon">
+                            <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
+                            <div class="coupon-r2">有效期至：2015/04/21</div>
+                            <span class="icon icon85"></span>
+                        </div>
+                        <-->
+                    </div>
                 </div>
                     
-                <div class="cart-coupon-r3">or<a href="" class="text-link">兑换优惠券？</a></div>
-                <div class="cart-coupon-r4">请输入您手中的兑换码：<input class="input" type="text" /><input class="input" type="text" />
-                </div>
             </div>
             <div class="cart-footer clearfix">
                 <div class="cart-footer-c2 fr">
