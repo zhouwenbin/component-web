@@ -1,0 +1,29 @@
+{{^itemSearch.totalHits}}
+    没有记录
+{{/itemSearch.totalHits}}
+
+{{#itemSearch.totalHits}}
+    <p>共{{itemSearch.totalHits}}条“{{searchData.q}}”记录</p>
+    <table>
+        <tr>
+            <th>品牌</th>
+            {{#each itemSearch.aggregations}}
+                {{#isBybrand name}}
+                  {{#each buckets}}
+                      <td>{{key}}</td>
+                  {{/each}}
+                {{/isBybrand}}
+            {{/each}}
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>分类</th>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>货源地</th>
+        </tr>
+    </table>
+{{/itemSearch.totalHits}}
