@@ -36,6 +36,25 @@
           </tr>
           {{/each}}
         {{/each}}
+
+        {{#each invariableGoodsItemList}}
+        <tr class="cart-disable">
+            <td class="td1">
+                <a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>
+                <div class="order-confirm-info">
+                    <h2><a href="">{{goodsName}}</a></h2>
+                    <div class="cart-standard">{{{spec}}}</div>
+                </div>
+                <div class="label label-disabled">{{description}}</div>
+            </td>
+            <td class="td2"></td>
+            <td class="td3">{{sf.price originPrice}}</td>
+            <td class="td4">{{quantity}}</td>
+            <td class="td5">
+                <strong class="text-error">{{sf.price totalPrice}}</strong>
+            </td> 
+        </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
@@ -48,7 +67,7 @@
           <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
         {{/orderCoupon.isHaveAvaliable}}
         {{#orderCoupon.isHaveAvaliable}}
-          <div class="coupon" data-code="{{orderCoupon.couponCode}}" id="useCoupon">
+          <div class="coupon" data-price="{{orderCoupon.price}}" data-code="{{orderCoupon.couponCode}}" id="useCoupon">
             <div class="coupon-r1"><b>¥</b><strong>{{sf.price orderCoupon.price}}</strong>{{orderCoupon.couponName}}</div>
             <div class="coupon-r2">有效期至：{{orderCoupon.endDate}}</div>
             <span class="icon icon85"></span>

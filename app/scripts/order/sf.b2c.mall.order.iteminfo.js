@@ -108,6 +108,7 @@ define('sf.b2c.mall.order.iteminfo', [
         submitKey: orderRenderItem.submitKey,
         flag: orderRenderItem.flag,
         errorDes: orderRenderItem.errorDes,
+        invariableGoodsItemList:orderRenderItem.invariableGoodsItemList,
         orderFeeItem: can.extend(orderRenderItem.orderFeeItem, {
           shouldPay: orderRenderItem.orderFeeItem.actualTotalFee,
           actualTotalFee: orderRenderItem.orderFeeItem.actualTotalFee
@@ -272,7 +273,8 @@ define('sf.b2c.mall.order.iteminfo', [
         $(element).find('span.icon85').remove();
         this.itemObj.orderCoupon.attr("couponCode", null);
         this.itemObj.orderCoupon.attr("discountPrice", 0);
-      }else{
+      } else {
+        $(element).append('<span class="icon icon85"></span>')
         this.itemObj.orderCoupon.attr("discountPrice", $(element).attr('data-price'));
         this.itemObj.orderCoupon.attr("couponCode", $(element).attr('data-code'));
       }
@@ -280,8 +282,13 @@ define('sf.b2c.mall.order.iteminfo', [
     getCouponCodes: function() {
       var selectedCoupon = $("#useCoupon");
       var codes = [];
-      codes.push($(selectedCoupon).data("code"));
-      return JSON.stringify(codes);
+      if (typeof $(selectedCoupon).data("code") !== 'undefined') {
+        codes.push($(selectedCoupon).data("code"));
+        return JSON.stringify(codes);
+      }else{
+        return null;
+      }
+
     },
 
     getSysInfo: function() {
