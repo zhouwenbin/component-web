@@ -37,12 +37,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getPackageNum: function(index, options){
           return index + 1;
         },
-
-        tdborder: function(index, options){
-          if (index == 0){
-            return "border-top: none";
-          }
-        },
         //每一个包裹中商品list中的第一条数据
         first: function(orderGoodsItemList, index, options) {
           if (index == 0) {
