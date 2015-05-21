@@ -25,11 +25,7 @@ var SOURCE = [
     name: 'haitao',
     src: 'http://10.32.156.141/info.api?json',
     filename: 'haitao.json',
-<<<<<<< HEAD
-    filterGroup: ['order', 'user', 'logistics', 'product', 'shopcart', 'b2cmall', 'sc', 'supplychain', 'coupon', 'promotion', 'search']
-=======
-    filterGroup: ['order', 'user', 'logistics', 'product', 'shopcart', 'b2cmall', 'sc', 'supplychain', 'coupon', 'promotion','minicart']
->>>>>>> e4d646fa38e7c58fdc487d1bb98b3bcc6cdaa94c
+    filterGroup: ['order', 'user', 'logistics', 'product', 'shopcart', 'b2cmall', 'sc', 'supplychain', 'coupon', 'promotion', 'search','minicart']
   }
 ];
 
