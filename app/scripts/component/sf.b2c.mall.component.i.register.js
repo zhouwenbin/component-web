@@ -392,13 +392,13 @@ define(
                 SFFn.dotCode();
 
                 store.set('csrfToken', data.csrfToken);
-                // can.route.attr({
-                //   'tag': 'success',
-                //   'csrfToken': data.csrfToken
-                // });
+                can.route.attr({
+                  'tag': 'success',
+                  'csrfToken': data.csrfToken
+                });
 
                 // 注册送优惠券 begin
-                that.sendCoupon();
+                // that.sendCoupon();
                 // 注册送优惠券 end
               }
             })

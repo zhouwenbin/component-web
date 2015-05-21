@@ -381,6 +381,8 @@ define(
       '#mobile-register-btn click': function($element, event) {
         event && event.preventDefault();
 
+        document.domain = "sfht.com";
+
         // 发起请求注册
 
         var that = this;
@@ -403,9 +405,9 @@ define(
                 store.set("alipaylogin", "false");
 
                 store.set('csrfToken', data.csrfToken);
-
+                window.parent.userLoginSccuessCallback();
                 // 注册送优惠券 begin
-                that.sendCoupon();
+                // that.sendCoupon();
                 // 注册送优惠券 end
 
                 // can.route.attr({
