@@ -24,4 +24,9 @@ $(function(){
   	var label=$(this).parents('.classify-text').find('label').text();
   	$('#classify-select').append('<li><a class="btn-search" href="javascript:">'+label+'<strong>'+text+'</strong><span class="btn-search-close"></span></a></li>')
   })
+  //价格排序
+
+  $('#sort-price').click(function(){
+  	$(this).toggleClass('active');
+  })
 })
