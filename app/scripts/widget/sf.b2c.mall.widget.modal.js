@@ -33,10 +33,10 @@ define(
         this.closed = true;
 
         // 注册送优惠券end
-        var tips = store.get("registersuccess");
-        if (typeof tips != 'undefined' && tips != "" && tips != null) {
-          this.sendCoupon();
-        }
+        // var tips = store.get("registersuccess");
+        // if (typeof tips != 'undefined' && tips != "" && tips != null) {
+        //   this.sendCoupon();
+        // }
         // 注册送优惠券end
       },
 

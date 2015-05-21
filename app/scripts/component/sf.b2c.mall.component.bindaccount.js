@@ -268,14 +268,15 @@ define(
             store.remove('tempToken');
 
             // 注册送优惠券 begin
-            if (newUser) {
-              that.sendCoupon();
-            } else {
-              document.domain= "sfht.com";
-              window.parent.userLoginSccuessCallback();
-            }
+            // if (newUser) {
+            //   that.sendCoupon();
+            // } else {
+            //   document.domain= "sfht.com";
+            //   window.parent.userLoginSccuessCallback();
+            // }
             // 注册送优惠券 end
-
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
 
 
           }).fail(function(errorCode) {
