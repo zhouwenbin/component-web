@@ -86,9 +86,11 @@
 
           </td>
 
-          <td>
-            ￥{{sf.price paymentAmount}}
-          </td>
+          {{#firstPackage orderPackageItemList @index}}
+            <td rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+              ￥{{sf.price paymentAmount}}
+            </td>
+          {{/first}}
 
           <td>
             <div>{{orderStatus}}</div>
@@ -106,13 +108,17 @@
               {{/if}}
           </td>
 
-          <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;">
-              {{#isNotShowEndTime orderStatus}}
-              <span>剩余付款时间</span>
-              <div class="showOrderEndTime text-error"></div>
-              {{/isNotShowEndTime}}
-              {{{optionHMTL}}}
-          </td>
+          {{#firstPackage orderPackageItemList @index}}
+            <td data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                {{#isNotShowEndTime orderStatus}}
+                <span>剩余付款时间</span>
+                <div class="showOrderEndTime text-error"></div>
+                {{/isNotShowEndTime}}
+                {{{optionHMTL}}}
+            </td>
+          {{/first}}
+
+
         </tr>
 
       {{/each}}<!--end orderPackageItemList-->
