@@ -91,7 +91,7 @@ define(
               result.push(item.specName + ":" + item.value);
             });
             goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined') {
+            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.length > 0) {
               goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
             };
@@ -225,7 +225,7 @@ define(
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        itemIds.push($(item).data('goods').itemId);
+        itemIds.push($(element).closest('tr').data('goods').itemId);
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
             'tip': '确认要删除该商品？',
