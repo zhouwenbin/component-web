@@ -49,8 +49,10 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
       var len = $("li[name='addrEach']").length;
       if (len > 3) {
         $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
-      } else {
+      } else if (len > 0 && len <= 3) {
         $(addLi).insertAfter($("li[name='addrEach']:last()"))
+      } else {
+        $(addLi).appendTo($('#addrList'));
       }
 
 
