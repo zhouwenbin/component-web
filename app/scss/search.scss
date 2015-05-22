@@ -1,6 +1,8 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
 @import 'components/product';
+@import 'components/myorder-tab';
+@import 'components/buyer-reading';
 .classify{
 	background: #fff;
 	border-bottom: 1px solid #d4d4d4;
@@ -132,4 +134,31 @@
 }
 .search-page .btn{
 	margin: 0 5px;
+}
+.search-none{
+	text-align: center;
+	margin-bottom: 130px;
+	margin-top: 75px;
+}
+.search-none h1{
+	font-size: 24px;
+	font-weight: normal;
+	margin-bottom: 27px;
+	margin-top: 37px;
+}
+.search-none i{
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #dc3334;
+	margin: 0 10px;
+}
+.myorder-tab li{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 15px;
+}
+.myorder-tab li.active{
+	border-width: 2px;
 }
