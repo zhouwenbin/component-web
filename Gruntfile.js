@@ -1327,7 +1327,7 @@ module.exports = function(grunt) {
         'concat',
         'requirejs',
         'cssmin',
-        // 'uglify',
+        'uglify',
         'copy:dist',
         'copy:html',
         'copy:image',
