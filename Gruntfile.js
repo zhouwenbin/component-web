@@ -8,7 +8,7 @@
 // If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -128,7 +128,7 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp',
-      publish:{
+      publish: {
         files: [{
           dot: true,
           src: [
@@ -247,33 +247,33 @@ module.exports = function (grunt) {
           '<%= config.dist %>/styles'
         ],
         blockReplacements: {
-          js: function (block) {
+          js: function(block) {
             if (config.version) {
               if (block.dest[0] != '/') {
-                return '<script src="'+ OSS_HOST + '/' + config.version + '/' + block.dest +'"></script>';
-              }else{
-                return '<script src="'+ OSS_HOST + '/' + config.version +  block.dest +'"></script>';
+                return '<script src="' + OSS_HOST + '/' + config.version + '/' + block.dest + '"></script>';
+              } else {
+                return '<script src="' + OSS_HOST + '/' + config.version + block.dest + '"></script>';
               }
-            }else{
+            } else {
               if (block.dest[0] != '/') {
-                return '<script src="' + '/' + block.dest +'"></script>';
-              }else{
-                return '<script src="' + block.dest +'"></script>';
+                return '<script src="' + '/' + block.dest + '"></script>';
+              } else {
+                return '<script src="' + block.dest + '"></script>';
               }
             }
           },
-          css: function (block) {
+          css: function(block) {
             if (config.version) {
-              if (block.dest[0] !='/') {
-                return '<link rel="stylesheet" href="'+ OSS_HOST + '/' + config.version + '/' + block.dest +'">';
-              }else{
-                return '<link rel="stylesheet" href="'+ OSS_HOST + '/' + config.version  + block.dest +'">';
-              }
-            }else{
               if (block.dest[0] != '/') {
-                return '<link rel="stylesheet" href="'+ '/' + block.dest +'">';
-              }else{
-                return '<link rel="stylesheet" href="'+ block.dest +'">';
+                return '<link rel="stylesheet" href="' + OSS_HOST + '/' + config.version + '/' + block.dest + '">';
+              } else {
+                return '<link rel="stylesheet" href="' + OSS_HOST + '/' + config.version + block.dest + '">';
+              }
+            } else {
+              if (block.dest[0] != '/') {
+                return '<link rel="stylesheet" href="' + '/' + block.dest + '">';
+              } else {
+                return '<link rel="stylesheet" href="' + block.dest + '">';
               }
             }
           }
@@ -389,8 +389,8 @@ module.exports = function (grunt) {
           'header/*.html',
           'footer/*.html'
         ],
-        options:{
-          process: function (content, srcpath) {
+        options: {
+          process: function(content, srcpath) {
             // if (config.version) {
             //   content = content.replace(/\{version\}/g, config.timestamp);
             //   content = content.replace(/img\/qrcode.png/g, OSS_HOST+ '/'+ config.version +'/img/qrcode.png');
@@ -421,8 +421,8 @@ module.exports = function (grunt) {
         src: [
           'templates/{,*/}*.mustache'
         ],
-        options:{
-          process: function (content, srcpath) {
+        options: {
+          process: function(content, srcpath) {
             // if (config.version) {
             //   return content.replace(/img\/recommend.jpg/g, OSS_HOST+ '/'+ config.version +'/img/recommend.jpg')
             // }else{
@@ -447,45 +447,39 @@ module.exports = function (grunt) {
         options: {
           archive: '<%=config.oss%>/target/<%=config.oss%>.zip',
           store: true
-        // archive: '<%=config.oss%>/oss.release.<%=config.version%>.zip'
+            // archive: '<%=config.oss%>/oss.release.<%=config.version%>.zip'
         },
-        files: [
-          {
-            expand: true,
-            cwd: '<%=config.dist%>',
-            src: ['scripts/**', 'styles/**', 'img/**', 'font/**'],
-            dest: '<%=config.version%>'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: '<%=config.dist%>',
+          src: ['scripts/**', 'styles/**', 'img/**', 'font/**'],
+          dest: '<%=config.version%>'
+        }]
       },
       statics: {
         options: {
           archive: '<%=config.statics%>/target/<%=config.statics%>.zip',
           store: true
-          // archive: '<%=config.statics%>/statics.release.<%=config.version%>.zip'
+            // archive: '<%=config.statics%>/statics.release.<%=config.version%>.zip'
         },
-        files: [
-          {
-            expand: true,
-            cwd: '<%=config.dist%>',
-            src: ['templates/**', '*.html', 'json/**', 'header/*.html', 'footer/*.html', '*.ico'],
-            dest: 'ROOT'
+        files: [{
+          expand: true,
+          cwd: '<%=config.dist%>',
+          src: ['templates/**', '*.html', 'json/**', 'header/*.html', 'footer/*.html', '*.ico'],
+          dest: 'ROOT'
             // dest: 'statics.web.<%=config.version%>'
-          }
-        ]
+        }]
       },
       test: {
         options: {
           archive: '<%=config.publish%>/statics.<%=config.target%>.<%=config.timestamp%>.tar'
         },
-        files: [
-          {
-            expand: true,
-            cwd: '<%=config.dist%>',
-            src: ['templates/**', '*.html', 'header/*.html', 'footer/*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**', 'font/**'],
-            dest: '<%=config.version%>'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: '<%=config.dist%>',
+          src: ['templates/**', '*.html', 'header/*.html', 'footer/*.html', 'img/**', 'json/**', 'scripts/**', 'styles/**', 'font/**'],
+          dest: '<%=config.version%>'
+        }]
       }
     },
 
@@ -508,38 +502,38 @@ module.exports = function (grunt) {
       campaign: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.campaign.page.common.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.campaign.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.campaign.page.common"],
-          insertRequire:  ['sf.b2c.mall.campaign.page.common']
+          include: ["JSON", "sf.b2c.mall.campaign.page.common"],
+          insertRequire: ['sf.b2c.mall.campaign.page.common']
         }
       },
 
       main: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.main.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.main.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.main"],
-          insertRequire:  ['sf.b2c.mall.page.main']
+          include: ["JSON", "sf.b2c.mall.page.main"],
+          insertRequire: ['sf.b2c.mall.page.main']
         }
       },
 
@@ -561,437 +555,437 @@ module.exports = function (grunt) {
       detail: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.detail.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.detail"],
-          insertRequire:  ['sf.b2c.mall.page.detail']
+          include: ["JSON", "sf.b2c.mall.page.detail"],
+          insertRequire: ['sf.b2c.mall.page.detail']
         }
       },
 
       login: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.login.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.login"],
-          insertRequire:  ['sf.b2c.mall.page.login']
+          include: ["JSON", "sf.b2c.mall.page.login"],
+          insertRequire: ['sf.b2c.mall.page.login']
         }
       },
 
       ilogin: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.login.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.i.login"],
-          insertRequire:  ['sf.b2c.mall.page.i.login']
+          include: ["JSON", "sf.b2c.mall.page.i.login"],
+          insertRequire: ['sf.b2c.mall.page.i.login']
         }
       },
 
       register: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.register.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.register"],
-          insertRequire:  ['sf.b2c.mall.page.register']
+          include: ["JSON", "sf.b2c.mall.page.register"],
+          insertRequire: ['sf.b2c.mall.page.register']
         }
       },
 
       iregister: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.register.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.i.register.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", 'sf.b2c.mall.page.i.register'],
-          insertRequire:  ['sf.b2c.mall.page.i.register']
+          include: ["JSON", 'sf.b2c.mall.page.i.register'],
+          insertRequire: ['sf.b2c.mall.page.i.register']
         }
       },
 
       process: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.process.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.process.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.process"],
-          insertRequire:  ['sf.b2c.mall.page.process']
+          include: ["JSON", "sf.b2c.mall.page.process"],
+          insertRequire: ['sf.b2c.mall.page.process']
         }
       },
 
       activated: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activated.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", 'sf.b2c.mall.page.activated'],
-          insertRequire:  ['sf.b2c.mall.page.activated']
+          include: ["JSON", 'sf.b2c.mall.page.activated'],
+          insertRequire: ['sf.b2c.mall.page.activated']
         }
       },
 
       nullactivated: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.nullactivated.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.nullactivated.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.nullactivated"],
-          insertRequire:  ['sf.b2c.mall.page.nullactivated']
+          include: ["JSON", "sf.b2c.mall.page.nullactivated"],
+          insertRequire: ['sf.b2c.mall.page.nullactivated']
         }
       },
 
       retrieve: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.retrieve.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.retrieve.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.retrieve"],
-          insertRequire:  ['sf.b2c.mall.page.retrieve']
+          include: ["JSON", "sf.b2c.mall.page.retrieve"],
+          insertRequire: ['sf.b2c.mall.page.retrieve']
         }
       },
 
       order: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.order"],
-          insertRequire:  ['sf.b2c.mall.page.order']
+          include: ["JSON", "sf.b2c.mall.page.order"],
+          insertRequire: ['sf.b2c.mall.page.order']
         }
       },
 
       orderlist: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.orderlist.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.orderlist.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.orderlist"],
-          insertRequire:  ['sf.b2c.mall.page.orderlist']
+          include: ["JSON", "sf.b2c.mall.page.orderlist"],
+          insertRequire: ['sf.b2c.mall.page.orderlist']
         }
       },
 
       orderdetail: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.detail.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.detail.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.orderdetail"],
-          insertRequire:  ['sf.b2c.mall.page.orderdetail']
+          include: ["JSON", "sf.b2c.mall.page.orderdetail"],
+          insertRequire: ['sf.b2c.mall.page.orderdetail']
         }
       },
 
       center: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.center.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.center.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", 'sf.b2c.mall.page.center'],
-          insertRequire:  ['sf.b2c.mall.page.center']
+          include: ["JSON", 'sf.b2c.mall.page.center'],
+          insertRequire: ['sf.b2c.mall.page.center']
         }
       },
 
       gotopay: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.gotopay.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.gotopay"],
-          insertRequire:  ['sf.b2c.mall.page.gotopay']
+          include: ["JSON", "sf.b2c.mall.page.gotopay"],
+          insertRequire: ['sf.b2c.mall.page.gotopay']
         }
       },
 
       passwordchange: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.passwordchange.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.passwordchange.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.passwordchange"],
-          insertRequire:  ['sf.b2c.mall.page.passwordchange']
+          include: ["JSON", "sf.b2c.mall.page.passwordchange"],
+          insertRequire: ['sf.b2c.mall.page.passwordchange']
         }
       },
 
       coupon: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.coupon.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.coupon.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.coupon"],
-          insertRequire:  ['sf.b2c.mall.page.coupon']
+          include: ["JSON", "sf.b2c.mall.page.coupon"],
+          insertRequire: ['sf.b2c.mall.page.coupon']
         }
       },
 
       paysuccess: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.paysuccess.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.paysuccess.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.paysuccess"],
-          insertRequire:  ['sf.b2c.mall.page.paysuccess']
+          include: ["JSON", "sf.b2c.mall.page.paysuccess"],
+          insertRequire: ['sf.b2c.mall.page.paysuccess']
         }
       },
 
       weixincenter: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.weixincenter.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.weixincenter.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.weixincenter"],
-          insertRequire:  ['sf.b2c.mall.page.weixincenter']
+          include: ["JSON", "sf.b2c.mall.page.weixincenter"],
+          insertRequire: ['sf.b2c.mall.page.weixincenter']
         }
       },
 
       404: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.404.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.404.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.404"],
-          insertRequire:  ['sf.b2c.mall.page.404']
+          include: ["JSON", "sf.b2c.mall.page.404"],
+          insertRequire: ['sf.b2c.mall.page.404']
         }
       },
 
       shoppingcart: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.shoppingcart.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.shoppingcart.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.shoppingcart"],
-          insertRequire:  ['sf.b2c.mall.page.shoppingcart']
+          include: ["JSON", "sf.b2c.mall.page.shoppingcart"],
+          insertRequire: ['sf.b2c.mall.page.shoppingcart']
         }
       },
-      
+
       addressmanage: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.addressmanage.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.addressmanage.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.addressmanage"],
-          insertRequire:  ['sf.b2c.mall.page.addressmanage']
+          include: ["JSON", "sf.b2c.mall.page.addressmanage"],
+          insertRequire: ['sf.b2c.mall.page.addressmanage']
         }
       },
-      
+
       accountmanage: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.accountmanage.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.accountmanage.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.accountmanage"],
-          insertRequire:  ['sf.b2c.mall.page.accountmanage']
+          include: ["JSON", "sf.b2c.mall.page.accountmanage"],
+          insertRequire: ['sf.b2c.mall.page.accountmanage']
         }
       },
 
       activityend: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activityend.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.activityend.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.activityend"],
-          insertRequire:  ['sf.b2c.mall.page.activityend']
+          include: ["JSON", "sf.b2c.mall.page.activityend"],
+          insertRequire: ['sf.b2c.mall.page.activityend']
         }
       },
 
@@ -1015,259 +1009,260 @@ module.exports = function (grunt) {
       federallogin: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.federal.login.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.federal.login.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-          paths:{
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.federal.login"],
-          insertRequire:  ['sf.b2c.mall.page.federal.login']
+          include: ["JSON", "sf.b2c.mall.page.federal.login"],
+          insertRequire: ['sf.b2c.mall.page.federal.login']
         }
       },
 
       common: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.common.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.common.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.common"],
-          insertRequire:  ['sf.b2c.mall.page.common']
+          include: ["JSON", "sf.b2c.mall.page.common"],
+          insertRequire: ['sf.b2c.mall.page.common']
         }
       },
 
       slider: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.slider.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.slider.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.slider"],
-          insertRequire:  ['sf.b2c.mall.module.slider']
+          include: ["JSON", "sf.b2c.mall.module.slider"],
+          insertRequire: ['sf.b2c.mall.module.slider']
         }
       },
 
       price: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.price.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.price.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.price"],
-          insertRequire:  ['sf.b2c.mall.module.price']
+          include: ["JSON", "sf.b2c.mall.module.price"],
+          insertRequire: ['sf.b2c.mall.module.price']
         }
       },
 
       time: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.time.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.time.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.time"],
-          insertRequire:  ['sf.b2c.mall.module.time']
+          include: ["JSON", "sf.b2c.mall.module.time"],
+          insertRequire: ['sf.b2c.mall.module.time']
         }
       },
 
       header: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.header.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.header.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.header"],
-          insertRequire:  ['sf.b2c.mall.module.header']
+          include: ["JSON", "sf.b2c.mall.module.header"],
+          insertRequire: ['sf.b2c.mall.module.header']
         }
       },
 
       footer: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.footer.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.footer.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.footer"],
-          insertRequire:  ['sf.b2c.mall.module.footer']
+          include: ["JSON", "sf.b2c.mall.module.footer"],
+          insertRequire: ['sf.b2c.mall.module.footer']
         }
       },
 
       lazyload: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.lazyload.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.lazyload.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.module.lazyload"],
-          insertRequire:  ['sf.b2c.mall.module.lazyload']
+          include: ["JSON", "sf.b2c.mall.module.lazyload"],
+          insertRequire: ['sf.b2c.mall.module.lazyload']
         }
       },
 
       feedback: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.feedback.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.feedback.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'JSON':                         '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["JSON", "sf.b2c.mall.page.feedback"],
-          insertRequire:  ['sf.b2c.mall.page.feedback']
+          include: ["JSON", "sf.b2c.mall.page.feedback"],
+          insertRequire: ['sf.b2c.mall.page.feedback']
         }
       },
       bindaccount: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.bindaccount.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.bindaccount.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["sf.b2c.mall.page.bindaccount"],
-          insertRequire:  ['sf.b2c.mall.page.bindaccount']
+          include: ["sf.b2c.mall.page.bindaccount"],
+          insertRequire: ['sf.b2c.mall.page.bindaccount']
         }
       },
       setpassword: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.setpassword.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.setpassword.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["sf.b2c.mall.page.setpassword"],
-          insertRequire:  ['sf.b2c.mall.page.setpassword']
+          include: ["sf.b2c.mall.page.setpassword"],
+          insertRequire: ['sf.b2c.mall.page.setpassword']
         }
       },
 
       naturalcoupon: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.naturalcoupon.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.naturalcoupon.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["sf.b2c.mall.page.naturalcoupon"],
-          insertRequire:  ['sf.b2c.mall.page.naturalcoupon']
+          include: ["sf.b2c.mall.page.naturalcoupon"],
+          insertRequire: ['sf.b2c.mall.page.naturalcoupon']
         }
       },
 
       naturalshow: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.naturalshow.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.naturalshow.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["sf.b2c.mall.page.naturalshow"],
-          insertRequire:  ['sf.b2c.mall.page.naturalshow']
+          include: ["sf.b2c.mall.page.naturalshow"],
+          insertRequire: ['sf.b2c.mall.page.naturalshow']
         }
       },
 
       registeractive: {
         options: {
           preserveLicenseComments: false,
-          baseUrl:        './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.registeractive.js',
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.registeractive.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
-            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
-            'moment':                       '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
-            'text':                         '../bower_components/text/text',
-            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include:        ["sf.b2c.mall.page.registeractive"],
-          insertRequire:  ['sf.b2c.mall.page.registeractive']
+          include: ["sf.b2c.mall.page.registeractive"],
+          insertRequire: ['sf.b2c.mall.page.registeractive']
         }
       }
 
@@ -1275,7 +1270,7 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
+  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function(target) {
     if (grunt.option('allow-remote')) {
       grunt.config.set('connect.options.hostname', '0.0.0.0');
     }
@@ -1293,17 +1288,17 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('create', function () {
+  grunt.registerTask('create', function() {
     var done = this.async();
     generator.autogen(grunt, done);
   });
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('server', function(target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run([target ? ('serve:' + target) : 'serve']);
   });
 
-  grunt.registerTask('test', function (target) {
+  grunt.registerTask('test', function(target) {
     if (target !== 'watch') {
       grunt.task.run([
         'clean:server',
@@ -1319,7 +1314,7 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('build', function (target) {
+  grunt.registerTask('build', function(target) {
     config.target = target;
 
     if (config.target) {
@@ -1332,7 +1327,7 @@ module.exports = function (grunt) {
         'concat',
         'requirejs',
         'cssmin',
-        'uglify',
+        // 'uglify',
         'copy:dist',
         'copy:html',
         'copy:image',
@@ -1343,12 +1338,12 @@ module.exports = function (grunt) {
         'clean:publish',
         'compress:test'
       ]);
-    }else{
+    } else {
       grunt.fail.fatal('缺少环境参数!');
     }
   });
 
-  grunt.registerTask('release', function (version) {
+  grunt.registerTask('release', function(version) {
     config.version = version;
 
     if (config.version) {
@@ -1377,7 +1372,7 @@ module.exports = function (grunt) {
         'compress:oss',
         'compress:statics'
       ]);
-    }else{
+    } else {
       grunt.fail.fatal('缺少版本号!');
     }
   })
