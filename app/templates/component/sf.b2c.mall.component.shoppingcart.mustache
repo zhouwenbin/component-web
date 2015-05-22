@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                 {{#each goodItemList}}
-                    <tr {{data 'goods'}} {{^isValid}}class="cart-disable"{{/isValid}}>
+                    <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
                             {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
                             {{#isValid}}

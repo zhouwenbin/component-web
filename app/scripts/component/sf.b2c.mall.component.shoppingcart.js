@@ -225,36 +225,44 @@ define(
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        itemIds.push($(element).attr('data-itemIds'));
-        var message = new SFMessage(null, {
-          'tip': '确认要删除该商品？',
-          'type': 'confirm',
-          'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
-        });
+        itemIds.push($(item).data('goods').itemId);
+        if (itemIds.length > 0) {
+          var message = new SFMessage(null, {
+            'tip': '确认要删除该商品？',
+            'type': 'confirm',
+            'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
+          });
+        };
+
       },
       //删除选中商品
       '#deletedSelectGoods click': function(element, event) {
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        _.each($('tr[data-isSelected="1"]'), function(item) {
-          itemIds.push($(item).attr('data-itemIds'));
-        })
-
-        var message = new SFMessage(null, {
-          'tip': '确认要删除选中商品？',
-          'type': 'confirm',
-          'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
+        _.each($("tr[data-isSelected='1']"), function(item) {
+          itemIds.push($(item).data('goods').itemId);
         });
+        if (itemIds.length > 0) {
+          var message = new SFMessage(null, {
+            'tip': '确认要删除选中商品？',
+            'type': 'confirm',
+            'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
+          });
+        }
+
       },
       //清除购物车内无效商品
       '#cleanInvalidItemsInCart click': function(element, event) {
         event && event.preventDefault();
         var itemIds = [];
         _.each($('.cart-disable'), function(item) {
-          itemIds.push($(item).attr('data-itemIds'));
+          itemIds.push($(item).data('goods').itemId);
         });
-        this.deleteCartOrder(itemIds);
+        if (itemIds.length > 0) {
+          this.deleteCartOrder(itemIds);
+        };
+
       },
       /**
        * 增加商品数量
@@ -323,6 +331,9 @@ define(
        */
       '#gotopay click': function(element, event) {
         event && event.preventDefault();
+        if ($(element).hasClass('btn-disable')) {
+          return false;
+        };
         window.location.href = 'order.html';
       }
 
