@@ -6,7 +6,7 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.order.selectreceiveaddr',
-    'sf.b2c.mall.order.vendor.info'
+    'sf.b2c.mall.order.vendor.info',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer'
   ],
