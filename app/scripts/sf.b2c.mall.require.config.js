@@ -115,6 +115,10 @@ requirejs.config({
     'sf.b2c.mall.api.coupon.getShareBagInfo': 'scripts/api/sf.b2c.mall.api.coupon.getShareBagInfo',
     'sf.b2c.mall.api.coupon.hasReceivedCp': 'scripts/api/sf.b2c.mall.api.coupon.hasReceivedCp',
 
+    'sf.b2c.mall.api.search.searchItem': 'scripts/api/sf.b2c.mall.api.search.searchItem',
+    'sf.b2c.mall.api.search.suggestKeyword': 'scripts/api/sf.b2c.mall.api.search.suggestKeyword',
+
+
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
     'placeholders': 'bower_components/Placeholders/dist/placeholders',
@@ -151,6 +155,8 @@ requirejs.config({
     'sf.b2c.mall.component.setpassword': 'scripts/component/sf.b2c.mall.component.setpassword',
     //推荐商品
     'sf.b2c.mall.component.recommendProducts': 'scripts/component/sf.b2c.mall.component.recommendProducts',
+    //搜索
+    'sf.b2c.mall.component.search': 'scripts/component/sf.b2c.mall.component.search',
 
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
@@ -220,6 +226,9 @@ requirejs.config({
     'sf.b2c.mall.page.naturalcoupon': 'scripts/page/sf.b2c.mall.page.naturalcoupon',
     'sf.b2c.mall.page.naturalshow': 'scripts/page/sf.b2c.mall.page.naturalshow',
 
+    //搜索页面
+    'sf.b2c.mall.page.search': 'scripts/page/sf.b2c.mall.page.search',
+
     'sf.b2c.mall.order.step': 'scripts/order/sf.b2c.mall.order.step',
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
@@ -246,6 +255,7 @@ requirejs.config({
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_header_520': 'templates/header/sf.b2c.mall.header.520.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
-    'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache'
+    'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
+    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache'
   }
 });
