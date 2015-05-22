@@ -181,14 +181,15 @@ define('sf.b2c.mall.component.header', [
      * @param  {event}    event 绑定在点击对象的event对象
      * @return
      */
-    '.mini-cart-container click': function ($el, event) {
+    '.mini-cart-container click': function($el, event) {
       event && event.preventDefault();
 
       var href = $el.attr('href');
       if (SFComm.prototype.checkUserLogin.call(this)) {
         window.location.href = href;
-      }else{
-        can.trigger(window, 'showLogin', [href]);
+      } else {
+        // can.trigger(window, 'showLogin', [href]);
+        this.showLogin(href);
       }
     },
 
@@ -197,7 +198,7 @@ define('sf.b2c.mall.component.header', [
      * @description 检查有没有临时的添加购物车的任务需要执行
      * @return
      */
-    checkTempActionAddCart: function () {
+    checkTempActionAddCart: function() {
       var params = store.get('temp-action-addCart');
 
       if (params) {
@@ -215,7 +216,7 @@ define('sf.b2c.mall.component.header', [
      * @author Michael.Lee
      * @description 加入购物车
      */
-    addCart: function (itemId, num) {
+    addCart: function(itemId, num) {
       var addItemToCart = new SFAddItemToCart({
         itemId: itemId,
         num: num || 1
@@ -223,13 +224,13 @@ define('sf.b2c.mall.component.header', [
 
       // 添加购物车发送请求
       addItemToCart.sendRequest()
-        .done(function (data) {
+        .done(function(data) {
           if (data.value) {
             // 更新mini购物车
             can.trigger(window, 'updateCart');
           }
         })
-        .fail(function (data) {
+        .fail(function(data) {
           // @todo 添加失败提示
           var error = SFAddItemToCart.api.ERROR_CODE[data.code];
 
@@ -243,7 +244,7 @@ define('sf.b2c.mall.component.header', [
      * @author Michael.Lee
      * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
-    updateCart: function () {
+    updateCart: function() {
       var that = this;
 
       // 如果用户已经登陆了，可以进行购物车更新
@@ -253,12 +254,12 @@ define('sf.b2c.mall.component.header', [
 
         var getTotalCount = new SFGetTotalCount();
         getTotalCount.sendRequest()
-          .done(function (data) {
+          .done(function(data) {
             // @description 将返回数字显示在头部导航栏
             // 需要跳动的效果
             that.element.find('.mini-cart-num').text(data.value);
           })
-          .fail(function (data) {
+          .fail(function(data) {
             // 更新mini cart失败，不做任何显示
           });
       }
