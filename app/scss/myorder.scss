@@ -89,8 +89,8 @@
 .myorder table table tr:last-child td{
 	border-bottom: none;
 }
-.myorder td[colspan="4"]{
-	border-bottom: 1px solid #e5e5e5 !important;
+.myorder table table tr:first-child td{
+	border-top: none;
 }
 
 .myorder thead tr{
@@ -148,6 +148,9 @@
 	border-right: none;
 	border-left: none;
 }
+.myorder .td7{
+	padding: 18px 0;
+}
 .myorder h2{
 	height: 30px;
 	line-height: 30px;
@@ -177,9 +180,7 @@
 	color: #777;
 	text-align: center;
 }
-.myorder td[colspan]{
-	border:none;
-}
+
 .myorder img{
 	width: 78px;
 	height: 78px;

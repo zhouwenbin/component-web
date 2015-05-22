@@ -31,7 +31,8 @@
 	vertical-align: middle;
 }
 .classify-list>li{
-	padding: 19px 0;
+	height: 39px;
+	line-height: 39px;
 	border-top: 1px dashed #d4d4d4;
 }
 .classify-logo ul{
@@ -89,7 +90,12 @@
 	margin-right: 10px;
 }
 .classify-select{
-	display: none;
+	position: relative;
+}
+.classify-select .text-disabled{
+	position: absolute;
+	right: 0;
+	top:19px;
 }
 .sort{
 	text-align: right;
