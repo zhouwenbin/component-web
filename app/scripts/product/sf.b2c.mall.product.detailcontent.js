@@ -730,7 +730,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{#if priceInfo.soldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
-          '<button class="btn btn-soon disable" disabled="disabled">加入购物车</button>' +
+          '<button class="btn disable" disabled="disabled">加入购物车</button>' +
           '{{/if}}' +
 
           '{{^if priceInfo.soldOut}}' +
@@ -742,7 +742,7 @@ define('sf.b2c.mall.product.detailcontent', [
               '{{#if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
               '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
-              '<button class="btn btn-soon addtocart">加入购物车</button>' +
+              '<button class="btn disable addtocart" disabled="disabled">加入购物车</button>' +
               '{{/if}}' +
               '{{^if priceInfo.activitySoldOut}}' +
               '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
