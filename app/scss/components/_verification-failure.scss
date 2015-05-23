@@ -1,5 +1,10 @@
 .verification-failure{
-	padding-left: 366px;
+	background:#fff;
+	border-radius:4px;
+	padding:45px 37px 80px 366px;
+	margin-top:56px;
+	margin-bottom:137px;
+	position:relative;
 	font-size: 14px;
 }
 .verification-failure h1{
@@ -8,6 +13,7 @@
 }
 .verification-failure-r2{
 	padding-left: 79px;
+	margin-top:10px;
 }
 .verification-failure .btn{
 	height: 34px;
