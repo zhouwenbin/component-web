@@ -50,7 +50,7 @@
               {{/packageNo}}
               <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
               {{#packageNo}}
-              <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}仓库发货</p>
+              <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}</p>
               {{/packageNo}}
           </td>
           <td colspan="3">
@@ -60,7 +60,7 @@
                 {{#each orderGoodsItemList}}
                   <tr>
                       <td class="td2">
-                          <img src="{{productImage.thumbImgUrl}}" alt="" />
+                          <img src="{{showImg imageUrl}}" alt="" />
                           <h3>{{goodsName}}</h3>
                       </td>
                       <td class="td3">
