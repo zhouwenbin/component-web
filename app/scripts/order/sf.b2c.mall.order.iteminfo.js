@@ -287,8 +287,8 @@ define('sf.b2c.mall.order.iteminfo', [
     getCouponCodes: function() {
       var selectedCoupon = $("#useCoupon");
       var codes = [];
-      if (typeof $(selectedCoupon).data("code") !== 'undefined') {
-        codes.push($(selectedCoupon).data("code"));
+      if ($(selectedCoupon).attr('data-code') && typeof $(selectedCoupon).attr('data-code') !== 'undefined') {
+        codes.push($(selectedCoupon).attr('data-code'));
         return JSON.stringify(codes);
       } else {
         return null;
