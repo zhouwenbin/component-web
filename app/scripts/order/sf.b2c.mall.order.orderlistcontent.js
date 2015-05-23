@@ -207,6 +207,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .fail(function(error) {
             console.error(error);
           })
+          .always(function(){
+            that.hasRendered = false;
+          })
       },
 
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
@@ -221,7 +224,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
             "pageSize": 10
           })
         }
-        this.render(params);
+
+        // 加上标示 防止触发三次
+        if (!this.hasRendered) {
+          this.render(params);
+          this.hasRendered = true;
+        }
       },
       //倒计时
       setCountDown: function(element, leftTime) {
