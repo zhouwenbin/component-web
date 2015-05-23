@@ -31,7 +31,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         //包裹内商品数量
         countGoodsInPackage: function(orderGoodsItemList, options) {
-          return orderGoodsItemList.length; //待修改
+          var result = 0;
+          _.each(orderGoodsItemList, function(item){
+            result = result + item.quantity;
+          })
+          return result;
         },
         // 计算包裹号
         getPackageNum: function(index, options){
@@ -74,7 +78,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消') {
             return options.fn(options.contexts || this);
           };
+        },
+        showImg: function(imageUrl, options){
+          if (imageUrl == "" || null == imageUrl) {
+            return "http://www.sfht.com/img/no.png";
+          } else {
+            return JSON.parse(imageUrl)[0] + "@144h_144w_50Q_1x.jpg";
+          }
         }
+
       },
 
       init: function(element, options) {
@@ -107,6 +119,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       render: function(params) {
+
         var that = this;
 
         var getOrderList = new SFGetOrderList(params);
