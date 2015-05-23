@@ -91,9 +91,10 @@ define(
               result.push(item.specName + ":" + item.value);
             });
             goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.length > 0) {
+            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
               goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
             };
 
           });

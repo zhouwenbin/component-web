@@ -132,7 +132,7 @@
             <li><span class="s1">总价（含税费） :</span><strong class="text-error">¥{{sf.price orderFeeItem.shouldPay}}</strong></li>
         </ul>
 
-        <button id="submitOrder" class="btn btn-danger {{^flag}} disable{{/flag}}">提交订单</button>
+        <button id="submitOrder" class="btn btn-danger {{^flag}} btn-disable{{/flag}}">提交订单</button>
         <div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div>
 
     </div>
