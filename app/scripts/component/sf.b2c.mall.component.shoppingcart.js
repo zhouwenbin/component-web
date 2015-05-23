@@ -96,7 +96,7 @@ define(
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
               goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
             };
-
+            goodsItem.isShowOriginPrice = (goodsItem.price !== goodsItem.activityPrice);
           });
         } else {
           this.options.hasGoods = false;
@@ -270,6 +270,9 @@ define(
        */
       '.btn-num-add click': function(element, event) {
         event && event.preventDefault();
+        if ($(element).hasClass('disable')) {
+          return false;
+        };
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
@@ -287,6 +290,9 @@ define(
        */
       '.btn-num-reduce click': function(element, event) {
         event && event.preventDefault();
+        if ($(element).hasClass('disable')) {
+          return false;
+        };
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;

@@ -109,7 +109,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
         });
         packageInfo.showStep = true;
-        if (packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
+        if (packageInfo.status == 'CLOSED') {
           packageInfo.showStep = false;
         }
 
@@ -177,7 +177,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       optionHTML: {
         "NEEDPAY": '<button class="btn btn-danger btn-small" id="pay">立即支付</button>',
-        "RECEIVED": '<button class="btn btn-danger btn-small received">确认签收</button>'
+        "RECEIPTED": '<button class="btn btn-danger btn-small received">确认签收</button>'
       },
 
       statsMap: {

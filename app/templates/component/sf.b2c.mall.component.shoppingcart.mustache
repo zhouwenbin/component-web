@@ -33,7 +33,7 @@
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
-                            <del>{{sf.price price}}</del>
+                            {{#isShowOriginPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
                             <strong>{{sf.price activityPrice}}</strong>
                             {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
                         </td>
