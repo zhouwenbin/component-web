@@ -16,21 +16,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
     return can.Control.extend({
       helpers: {
-        indexOfPackage: function(orderPackageItemList, options) {
-          for (var i = 0; i < orderPackageItemList.length; i++) {
-            return i + 1;
-          };
+        indexOfPackage: function(index, options) {
+          return index + 1;
         }
       },
       init: function(element, options) {
         this.render();
-        //this.renderPackageItemInfo(0,this.options);
-        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
-        // $('#closeExample')[0].onclick = function() {
-        //   $(".orderdetail-upload").hide();
-        //   $(".mask2").hide();
-        //   return false;
-        // }
       },
 
       render: function(data) {
@@ -93,6 +84,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.isPresentCoupon = false;
             that.options.isGiftBag = false;
             that.options.isShareBag = false;
+
+            that.options.activityReducePrice = data.activityReducePrice;
+            that.options.couponReducePrice = data.couponReducePrice;
+            that.options.totalPrice = data.totalPrice;
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
@@ -107,19 +102,27 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
-        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse();//获取包裹路由并倒序
+        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
+        _.each(packageInfo.orderGoodsItemList, function(goodItem) {
+          goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
+          goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
+        });
         packageInfo.showStep = true;
-        if (packageInfo.orderStatus == 'AUTO_CANCEL' || packageInfo.orderStatus == 'USER_CANCEL' || packageInfo.orderStatus == 'OPERATION_CANCEL') {
+        if (packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
+
         var map = {
           'SUBMITED': '', //待支付
           'AUDITING': 'order-detail-step2', //待审核
           'SHIPPING': 'order-detail-step3', //待出库
+          'WAIT_SHIPPING': 'order-detail-step3',
           'SHIPPED': 'order-detail-step4', //出库中
           'COMPLETED': 'order-detail-step5', //已完成
-          'CLOSED': 'order-detail-step5'
+          'CLOSED': 'order-detail-step5',
+          'CONSIGNED': 'order-detail-step4',
+          'RECEIPTED': 'order-detail-step5'
         };
         packageInfo.showWhereStep = map[packageInfo.status];
         var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
@@ -173,8 +176,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-danger btn-small" id="pay">立即支付</a>',
-        "RECEIVED": '<a href="#" class="btn btn-danger btn-small received">确认签收</a>'
+        "NEEDPAY": '<button class="btn btn-danger btn-small" id="pay">立即支付</button>',
+        "RECEIVED": '<button class="btn btn-danger btn-small received">确认签收</button>'
       },
 
       statsMap: {
@@ -191,7 +194,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPED': '已发货',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
-        'CLOSED': '订单关闭'
+        'CLOSED': '订单关闭',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收'
 
       },
 

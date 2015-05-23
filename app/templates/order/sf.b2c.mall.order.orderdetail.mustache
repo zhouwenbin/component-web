@@ -7,10 +7,10 @@
         <li><span>支付方式：</span>{{payType}}</li>
     </ul>
     <ul>
-        <li><span>活动优惠：</span>-￥{{10}}</li>
-        <li><span>优惠券抵扣：</span>-￥{{10}}</li>
+        <li><span>活动优惠：</span>-￥{{sf.price activityReducePrice}}</li>
+        <li><span>优惠券抵扣：</span>-￥{{sf.price couponReducePrice}}</li>
         <li><span>运费：</span>免运费</li>
-        {{#if showShouldPayPrice}}<li><span>实付款：</span><strong class="text-error">￥{{sf.price shouldPayPrice}}</strong></li>{{/if}}
+        <li><span>实付款：</span><strong class="text-error">￥{{sf.price totalPrice}}</strong></li>
         {{#if isCostCoupon}}
           <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
         {{/if}}
@@ -26,13 +26,13 @@
         <li><span>手机号：</span>{{receiveInfo.mobile}}</li>
         <li><span>收货地址：</span>{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
     </ul>
-    <button class="btn btn-danger btn-small">{{{nextStep}}}</button>
+    {{{nextStep}}}
   </div>
 
   <div class="order-detail-c2">
     <ul class="order-detail-tab">
       {{#each orderPackageItemList}}
-      <li data-index="{{@index}}" class="{{active}}"><a href="">包裹{{indexOfPackage orderPackageItemList}}</a></li>
+      <li data-index="{{@index}}" class="{{active}}"><a href="">包裹{{indexOfPackage @index}}</a></li>
       {{/each}}
     </ul>
     <div id="packageItemInfo">

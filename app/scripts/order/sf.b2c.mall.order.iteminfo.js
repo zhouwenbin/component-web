@@ -135,7 +135,7 @@ define('sf.b2c.mall.order.iteminfo', [
               result.push(item.specName + ":" + item.spec.specValue);
             });
             goodItem.spec = result.join('&nbsp;/&nbsp;');
-            goodItem.totalPrice = goodItem.price * goodItem.quantity;
+            goodItem.totalPrice = goodItem.originPrice * goodItem.quantity;
           }
         });
 
@@ -144,10 +144,11 @@ define('sf.b2c.mall.order.iteminfo', [
       this.itemObj.attr("orderPackageItemList", orderRenderItem.orderPackageItemList);
       //便利invariableGoodsItemList列表
       _.each(orderRenderItem.invariableGoodsItemList, function(goodItem) {
-        goodItem.totalPrice = goodItem.price * goodItem.quantity;
+        goodItem.totalPrice = goodItem.originPrice * goodItem.quantity;
       });
 
       this.itemObj.attr("invariableGoodsItemList", orderRenderItem.invariableGoodsItemList);
+      this.itemObj.attr("bestCoupon", orderRenderItem.invariableGoodsItemList[0]);
     },
     /**
      * 加工优惠券信息
@@ -158,26 +159,18 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.extend(orderCoupon, {
         useQuantity: 0,
-        discountPrice: 0,
         couponExCode: "",
         isHaveAvaliable: false,
-        price: 0,
-        couponName: null,
-        endDate: null,
-        couponCode: null
+        bestCoupon:null
       });
 
       this.itemObj.attr("orderCoupon", orderCoupon);
       if (orderCoupon.avaliableAmount > 0) {
         this.itemObj.orderCoupon.attr("isHaveAvaliable", true);
-        this.itemObj.orderCoupon.attr("discountPrice", orderCoupon.avaliableCoupons[0].price);
-        this.itemObj.orderCoupon.attr("price", orderCoupon.avaliableCoupons[0].price);
-        this.itemObj.orderCoupon.attr("couponName", orderCoupon.avaliableCoupons[0].couponName);
-        this.itemObj.orderCoupon.attr("endDate", orderCoupon.avaliableCoupons[0].endDate);
-        this.itemObj.orderCoupon.attr("couponCode", orderCoupon.avaliableCoupons[0].couponCode);
+        this.itemObj.orderCoupon.attr("bestCoupon", orderCoupon.avaliableCoupons[0]);
       };
       this.itemObj.orderCoupon.selectCoupons = [];
-      this.itemObj.unbind("orderCoupon.discountPrice").bind("orderCoupon.discountPrice", function(ev, newVal, oldVal) {
+      this.itemObj.unbind("orderCoupon.price").bind("orderCoupon.price", function(ev, newVal, oldVal) {
         this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
       });
 
@@ -208,7 +201,7 @@ define('sf.b2c.mall.order.iteminfo', [
           that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
           can.extend(orderCoupon, {
             useQuantity: 0,
-            discountPrice: 0,
+            price: 0,
             couponExCode: ""
           });
           that.itemObj.attr("orderCoupon", orderCoupon);
@@ -277,10 +270,10 @@ define('sf.b2c.mall.order.iteminfo', [
       if (span.length > 0) {
         $(element).find('span.icon85').remove();
         this.itemObj.orderCoupon.attr("couponCode", null);
-        this.itemObj.orderCoupon.attr("discountPrice", 0);
+        this.itemObj.orderCoupon.attr("price", 0);
       } else {
         $(element).append('<span class="icon icon85"></span>')
-        this.itemObj.orderCoupon.attr("discountPrice", $(element).attr('data-price'));
+        this.itemObj.orderCoupon.attr("price", $(element).attr('data-price'));
         this.itemObj.orderCoupon.attr("couponCode", $(element).attr('data-code'));
       }
     },
@@ -474,19 +467,25 @@ define('sf.b2c.mall.order.iteminfo', [
       }
       return false;
     },
-    '.coupon2 .radio click': function(targetElement) {
-      if ($(targetElement).hasClass("active")) {
-        $(targetElement).removeClass('active');
-        this.itemObj.attr("orderCoupon.useQuantity", 0);
-        this.itemObj.attr("orderCoupon.discountPrice", 0);
+    //可用优惠券列表状态切换
+    '#avaliableCoupons li click': function(element, event) {
+      var activeTag = $(element).find('span.icon85');
+      var activeHtml = '<span class="icon icon85"></span>';
+      if (activeTag.length > 0) {
+        $(element).find('span.icon85').remove();
+        $(element).siblings().find('span.icon85').remove();
+        this.itemObj.orderCoupon.attr("price", this.itemObj.orderCoupon);
+        this.itemObj.orderCoupon.attr("couponCode", $(element).data('coupon').couponCode);
+        this.itemObj.orderCoupon.attr("couponName", $(element).data('coupon').couponName);
+        this.itemObj.orderCoupon.attr("endDate", $(element).data('coupon').endDate);
       } else {
-        $('.coupon2 .radio.active').removeClass('active');
-        $(targetElement).addClass('active');
-        this.itemObj.attr("orderCoupon.useQuantity", 1);
-        this.itemObj.attr("orderCoupon.discountPrice", targetElement.data("price"));
+        $(element).children('.coupon').append(activeHtml);       
+        this.itemObj.orderCoupon.attr("price", $(element).data('coupon').price);
+        this.itemObj.orderCoupon.attr("couponCode", $(element).data('coupon').couponCode);
+        this.itemObj.orderCoupon.attr("couponName", $(element).data('coupon').couponName);
+        this.itemObj.orderCoupon.attr("endDate", $(element).data('coupon').endDate);
+        $(element).siblings().find('span.icon85').remove();
       }
-
-      return false;
     },
     '#inputCouponCode click': function(targetElement) {
       $(".coupon2-r2.hide").show();

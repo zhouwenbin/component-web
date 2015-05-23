@@ -45,13 +45,13 @@
     {{#each orderGoodsItemList}}
       <tr>
           <td>
-              <img src="{{sf.img imageUrl}}" alt="">
-              <h2>{{goodsName}}</h2>
+              <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageUrl}}" alt=""></a>
+              <h2><a href="http://www.sfht.com/detail/{{itemId}}.html">{{goodsName}}</a></h2>
           </td>
           <td>{{sf.price price}}</td>
           <td>{{quantity}}</td>
-          <td>{{discount}}</td>
-          <td>{{sf.price price}}</td>
+          <td>{{sf.price discount}}</td>
+          <td>{{sf.price totalPrice}}</td>
       </tr>
     {{/each}}
   </tbody>
