@@ -6,127 +6,121 @@
 </ul>
 
 <!--所有订单-->
-{{#if orderListIsNotEmpty}}
-<div class="myorder-search">
-  <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
-  <div class="searchNoResult visuallyhidden" style="display:inline-block;">
-    <span class="icon icon88"></span>
-    <span class="text-error">未搜索到相应订单</span>
+<div class="orderShow">
+  <div class="myorder-search">
+    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
   </div>
-</div>
-<table>
-  <thead>
-      <tr>
-          <th class="th1">包裹<span>|</span></th>
-          <th class="th2">商品</th>
-          <th class="th3">售价（元）</th>
-          <th class="th4">数量<span>|</span></th>
-          <th class="th5">实付款（元）<span>|</span></th>
-          <th class="th6">订单状态<span>|</span></th>
-          <th class="th7">操作</th>
-      </tr>
-  </thead>
-  <tbody>
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    {{! 遍历订单信息 }}
-    {{#each orders}}
-      <tr>
-        <th colspan="7" data-orderid='{{orderId}}'>
-          <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
-          {{#isShowDeleteIcon orderStatus}}<a href="javascript:" class="deleteOrders icon icon81">删除</a>{{/isShowDeleteIcon}}
-          </h2>
-        </th>
-      </tr>
+      {{! 遍历订单信息 }}
+      {{#each orders}}
+        <tr>
+          <th colspan="7" data-orderid='{{orderId}}'>
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
+            {{#isShowDeleteIcon orderStatus}}<a href="javascript:;" class="deleteOrders icon icon81">删除</a>{{/isShowDeleteIcon}}
+            </h2>
+          </th>
+        </tr>
 
-      {{! 遍历包裹信息 }}
-      {{#each orderPackageItemList}}
-      <tr>
-          <td class="td1">
-              {{! 显示包裹信息，包裹号自动+1 }}
-              {{#packageNo}}
-              <span class="label label-error">
-                <span class="icon icon79"></span>包裹{{getPackageNum @index}}<i></i>
-              </span>
-              {{/packageNo}}
-              <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
-              {{#packageNo}}
-              <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}</p>
-              {{/packageNo}}
-          </td>
-          <td colspan="3">
-              <table>
-                <tbody>
-                {{! 遍历商品信息 }}
-                {{#each orderGoodsItemList}}
-                  <tr>
-                      <td class="td2">
-                          <img src="{{showImg imageUrl}}" alt="" />
-                          <h3>{{goodsName}}</h3>
-                      </td>
-                      <td class="td3">
-                          <del>{{sf.price originPrice}}</del>
-                          <div>{{sf.price price}}</div>
-                      </td>
-                      <td class="td4">{{quantity}}</td>
-                  </tr>
-                {{/each}}
-                </tbody>
-              </table>
-          </td>
+        {{! 遍历包裹信息 }}
+        {{#each orderPackageItemList}}
+        <tr>
+            <td class="td1">
+                {{! 显示包裹信息，包裹号自动+1 }}
+                {{#packageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{getPackageNum @index}}<i></i>
+                </span>
+                {{/packageNo}}
+                <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+                {{#packageNo}}
+                <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}</p>
+                {{/packageNo}}
+            </td>
+            <td colspan="3">
+                <table>
+                  <tbody>
+                  {{! 遍历商品信息 }}
+                  {{#each orderGoodsItemList}}
+                    <tr>
+                        <td class="td2">
+                            <img src="{{showImg imageUrl}}" alt="" />
+                            <h3>{{goodsName}}</h3>
+                        </td>
+                        <td class="td3">
+                            <del>{{sf.price originPrice}}</del>
+                            <div>{{sf.price price}}</div>
+                        </td>
+                        <td class="td4">{{quantity}}</td>
+                    </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+            </td>
 
-          {{! 显示总价格，要合并行。合并原则：只展示第一条数据的价格，第二条数据不显示td，从而达到合并目的 }}
-          {{#firstPackage orderPackageItemList @index}}
-          <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
-          {{/first}}
+            {{! 显示总价格，要合并行。合并原则：只展示第一条数据的价格，第二条数据不显示td，从而达到合并目的 }}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+            {{/first}}
 
-          {{! 如果不显示路由则合并订单状态 }}
-          {{^if showRouter}}
-          {{#firstPackage orderPackageItemList @index}}
-          <td class="td6" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-            <div>{{orderStatus}}</div>
-          </td>
-          {{/first}}
-          {{/if}}
+            {{! 如果不显示路由则合并订单状态 }}
+            {{^if showRouter}}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td6" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+              <div>{{orderStatus}}</div>
+            </td>
+            {{/first}}
+            {{/if}}
 
-          {{! 如果不显示路由则不核定订单状态 }}
-          {{#if showRouter}}
-          <td class="td6">
-            <div>{{orderStatus}}</div>
-            <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
-              <div class="tooltip-pos">
-                <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
-                <div class="tooltip-outer">
-                  <div class="tooltip" id="traceList">
-                    努力加载中
+            {{! 如果不显示路由则不核定订单状态 }}
+            {{#if showRouter}}
+            <td class="td6">
+              <div>{{orderStatus}}</div>
+              <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                <div class="tooltip-pos">
+                  <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                  <div class="tooltip-outer">
+                    <div class="tooltip" id="traceList">
+                      努力加载中
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </td>
-          {{/if}}
+            </td>
+            {{/if}}
 
-          {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
-          {{#firstPackage orderPackageItemList @index}}
-          <td class="td7" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-                {{#isNotShowEndTime orderStatus}}
-                <span>剩余付款时间</span>
-                <div class="showOrderEndTime text-error"></div>
-                {{/isNotShowEndTime}}
-                {{{optionHMTL}}}
-          </td>
-          {{/first}}
+            {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td7" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                  {{#isNotShowEndTime orderStatus}}
+                  <span>剩余付款时间</span>
+                  <div class="showOrderEndTime text-error"></div>
+                  {{/isNotShowEndTime}}
+                  {{{optionHMTL}}}
+            </td>
+            {{/first}}
 
-      </tr>
-      {{/each}}<!--end orderPackageItemList-->
-    {{/each}}<!--end orders-->
-  </tbody>
-</table>
-<!-- 分页 -->
-<div class="sf-b2c-mall-order-orderlist-pagination"></div>
-<!-- 分页 -->
-{{else}}
-  <div class="noOrderShow">
+        </tr>
+        {{/each}}<!--end orderPackageItemList-->
+      {{/each}}<!--end orders-->
+    </tbody>
+  </table>
+  <!-- 分页 -->
+  <div class="sf-b2c-mall-order-orderlist-pagination"></div>
+  <!-- 分页 -->
+</div>
 
-  </div>
-{{/if}}
+<div class="noOrderShow" style="display:none"></div>
 
