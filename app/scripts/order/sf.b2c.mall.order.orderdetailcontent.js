@@ -76,8 +76,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             }
 
-            that.options.orderId = data.orderId;
-            that.options.recId = data.orderItem.rcvrId;
+            that.options.orderInfo = data;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
             that.options.isCostCoupon = false;
@@ -85,9 +84,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.isGiftBag = false;
             that.options.isShareBag = false;
 
-            that.options.activityReducePrice = data.activityReducePrice;
-            that.options.couponReducePrice = data.couponReducePrice;
-            that.options.totalPrice = data.totalPrice;
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             that.options.orderPackageItemList = data.orderItem.orderPackageItemList;

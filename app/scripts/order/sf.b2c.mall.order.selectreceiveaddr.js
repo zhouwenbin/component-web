@@ -45,17 +45,6 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     render: function(data) {
       var html = can.view('templates/order/sf.b2c.mall.order.selectrecaddr.mustache', data, this.helpers);
       this.element.html(html);
-      var addLi = '<li class="add"><a href="javascript:" id="btn-add-addr"><span class="icon icon87"></span><br />添加收货地址</a></li>';
-      var len = $("li[name='addrEach']").length;
-      if (len > 3) {
-        $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
-      } else if (len > 0 && len <= 3) {
-        $(addLi).insertAfter($("li[name='addrEach']:last()"))
-      } else {
-        $(addLi).appendTo($('#addrList'));
-      }
-
-
     },
 
     paint: function(data) {
@@ -112,14 +101,23 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
           //进行渲染
           that.render(that.adapter4List.addrs, arr[2]);
 
-          // if (that.component.addressEditor) {
-          //   that.component.addressEditor.destroy();
-          // }
-
           that.component.addressEditor = new SFAddressEditor('#addAdrArea', {
             onSuccess: _.bind(that.paint, that),
             from: 'order'
           });
+          var addLi = '<li class="add"><a href="javascript:" id="btn-add-addr"><span class="icon icon87"></span><br />添加收货地址</a></li>';
+          var len = $("li[name='addrEach']").length;
+          //如果收货地址小于3个，则把新增收货地址块放在第四位
+          if (len > 3) {
+            $(addLi).insertBefore($("li[name='addrEach']:eq(3)"));
+          } else if (len > 0 && len <= 3) {
+            $(addLi).insertAfter($("li[name='addrEach']:last()"))
+          } else {
+            that.component.addressEditor.show('create', null, $("#editAdrArea"));
+            $("#editAdrArea").show();
+          }
+
+
           that.showAllAdr();
           that.request();
           if (typeof data != 'undefined') {
