@@ -76,30 +76,32 @@
             {{/first}}
 
             {{! 如果不显示路由则合并订单状态 }}
-            {{^if showRouter}}
+            {{#needSeperateOperationRow orderStatus}}
             {{#firstPackage orderPackageItemList @index}}
             <td class="td6" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
               <div>{{orderStatus}}</div>
             </td>
             {{/first}}
-            {{/if}}
+            {{/needSeperateOperationRow}}
 
             {{! 如果不显示路由则不核定订单状态 }}
-            {{#if showRouter}}
+            {{^needSeperateOperationRow orderStatus}}
             <td class="td6">
               <div>{{orderStatus}}</div>
-              <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
-                <div class="tooltip-pos">
-                  <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
-                  <div class="tooltip-outer">
-                    <div class="tooltip" id="traceList">
-                      努力加载中
+              {{#if showRouter}}
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                  <div class="tooltip-pos">
+                    <a class="myorder-link find-route-list" href="javascript:void(0);">查看物流</a>
+                    <div class="tooltip-outer">
+                      <div class="tooltip" id="traceList">
+                        努力加载中
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              {{/if}}
             </td>
-            {{/if}}
+            {{/needSeperateOperationRow}}
 
             {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
             {{#firstPackage orderPackageItemList @index}}
