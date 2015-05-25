@@ -53,12 +53,37 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function() {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
           that.element.html(html);
+
+          var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
+          $('.goodsItemArea').append(invariableGoodshtml(that.itemObj));
+
           //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
           // if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
           //   $('#submitOrder').addClass('btn-disable');
           // };
         });
     },
+    invariableGoodsTemplate: function() {
+      return '{{#each invariableGoodsItemList}}' +
+        '<tr class="cart-disable">' +
+        '<td class="td1">' +
+        '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
+        '<div class="order-confirm-info">' +
+        '<h2><a href="">{{goodsName}}</a></h2>' +
+        '<div class="cart-standard">{{{spec}}}</div>' +
+        '</div>' +
+        '<div class="label label-disabled">{{description}}</div>' +
+        '</td>' +
+        '<td class="td2"></td>' +
+        '<td class="td3">{{sf.price originPrice}}</td>' +
+        '<td class="td4">{{quantity}}</td>' +
+        '<td class="td5">' +
+        '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
+        '</td>' +
+        '</tr>' +
+        '{{/each}}'
+    },
+
     /**
      * 初始化 OrderRender
      */
@@ -468,7 +493,7 @@ define('sf.b2c.mall.order.iteminfo', [
       }
     },
     //兑换优惠券
-    '#useCouponCodeBtn click': function(element,event) {
+    '#useCouponCodeBtn click': function(element, event) {
       event && event.preventDefault();
       var that = this;
       var exCode = that.itemObj.orderCoupon.couponExCode;

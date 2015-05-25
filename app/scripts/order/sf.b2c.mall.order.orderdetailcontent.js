@@ -110,7 +110,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
         });
         packageInfo.showStep = true;
-        if (packageInfo.status == 'CLOSED' && packageInfo.status == 'AUTO_CANCEL' && packageInfo.status == 'USER_CANCEL' && packageInfo.status == 'OPERATION_CANCEL') {
+        if (packageInfo.status == 'CLOSED' ||  packageInfo.status == 'AUTO_CANCEL' ||  packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
 
