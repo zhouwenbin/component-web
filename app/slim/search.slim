@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>顺丰海淘</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/search.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--头部-->
+== Slim::Template.new('module/header.slim').render
+<!--头部-->
+<div class="pb">
+<div id="classify" class="classify">
+	<div class="pm">
+		<h2><strong>“奶嘴”</strong>有<span class="text-important">33</span>条相关产品</h2>
+		<ul class="classify-list">
+			<li class="classify-select">
+				<label>已选条件：</label>
+				<ul id="classify-select">
+					
+				</ul>
+				<a href="" class="text-disabled">全部重置</a>
+			</li>
+			<li class="clearfix classify-logo">
+				<div class="classify-c1 fl">
+					<label>品牌：</label>
+					<ul id="classify-logo">
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王1"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王2"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王3"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王4"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王5"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王6"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王7"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王8"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王9"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王0"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王1"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王2"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王3"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王4"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王5"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王6"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王7"></a></li>
+						<li><a href="javascript:"><img src="../img/logo.png" alt="花王8"></a></li>
+					</ul>
+				</div>
+				<div class="classify-c2 fr">
+					<a href="javascript:"><span id="classify-more" class="classify-more"></span><span class="icon icon105"></span></a>
+				</div>	
+			</li>
+			
+			<li class="classify-text">
+				<label>分类：</label>
+				<ul>
+					<li><a href="javascript:">母婴专区</a></li>
+					<li><a href="javascript:">个人美妆</a></li>
+					<li><a href="javascript:">食品保障</a></li>
+					<li><a href="javascript:">生活服务</a></li>
+				</ul>
+			</li>
+			<li class="classify-text">
+				<label>货源地：</label>
+				<ul>
+					<li><a href="javascript:">德国</a></li>
+					<li><a href="javascript:">美国</a></li>
+					<li><a href="javascript:">台湾</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="pm">
+	<div class="sort">排序:
+		<ul>
+			<li><a href="javascript:">综合</a></li>
+			<li><a href="javascript:">人气</a></li>
+			<li class="active"><a href="javascript:" id="sort-price">价格<span class="icon icon107"></span></a></li>
+		</ul>
+	</div>
+	<!--热卖商品-->
+	== Slim::Template.new('module/product.slim').render
+	<div class="search-page">
+		<a class="btn btn-normal">上一页</a><a class="btn btn-normal">下一页</a>
+	</div>
+
+</div>
+
+</div>
+</div>
+<!--尾部-->
+== Slim::Template.new('module/footer.slim').render
+<!--尾部-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

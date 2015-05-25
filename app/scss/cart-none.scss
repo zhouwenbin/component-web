@@ -2,6 +2,7 @@
 @import 'utils/placeholders';
 @import 'components/product';
 @import 'components/myorder-tab';
+@import 'components/buyer-reading';
 .cart-none{
 	margin-top: 87px;
 	margin-bottom: 100px;
@@ -22,22 +23,4 @@
 }
 .cart-none .icon16-5{
 	margin-left: 5px;
-}
-.buyer-reading{
-	margin-top: 30px;
-}
-.buyer-reading h2{
-	font-size: 16px;
-	padding-bottom: 9px;
-	margin-bottom: 17px;
-	border-bottom: 1px solid #e5e5e5;
-	font-weight: normal;
-}
-.buyer-reading p,
-.buyer-reading li{
-	line-height: 24px;
-	color: #555;
-}
-.buyer-reading li{
-	list-style: inside;
 }

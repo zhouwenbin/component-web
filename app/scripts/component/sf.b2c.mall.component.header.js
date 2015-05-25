@@ -19,8 +19,6 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
-  'sf.b2c.mall.api.minicart.getTotalCount', // 获得mini cart的数量接口
-  'sf.b2c.mall.api.shopcart.addItemToCart', // 添加购物车接口
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -33,6 +31,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
 ], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -123,6 +122,7 @@ define('sf.b2c.mall.component.header', [
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
+            // domain: SFConfig.setting.api.mainurl
         }));
 
       } else {
@@ -133,6 +133,7 @@ define('sf.b2c.mall.component.header', [
           channels: this.defaults.channels,
           current: this.options.channel || '',
           slogan: this.defaults.slogan
+            // domain: SFConfig.setting.api.mainurl
         }));
       }
 
@@ -149,20 +150,14 @@ define('sf.b2c.mall.component.header', [
 
       this.supplement(this.data);
 
-      // @author Michael.Lee
-      // 用户如果登陆通过接口获取购物车数量
-      if (SFComm.prototype.checkUserLogin.call(this)) {
-        this.updateCart();
-        this.checkTempActionAddCart();
-      }
-
-      // @todo 保留代码，没有在实际场景中使用，有跨域并要求强制登陆的时候进行处理
       if (this.options.isForceLogin) {
         var that = this;
         // 暂时没有跨域存在在需要控制跳转的页面
+        // setTimeout(function() {
         if (!SFComm.prototype.checkUserLogin.call(that)) {
           window.location.href = SFConfig.setting.link.index;
         }
+        // }, 800);
       }
 
       // @author Michael.Lee
@@ -275,6 +270,9 @@ define('sf.b2c.mall.component.header', [
     render: function(data) {
       this.renderMap['template_header_info_common'].call(this, data);
       this.renderMap['template_header_channel_navigator'].call(this, data);
+
+      // var html = can.view('templates/component/sf.b2c.mall.header_01.mustache', data);
+      // this.element.html(html);
     },
 
     renderMap: {
@@ -398,6 +396,20 @@ define('sf.b2c.mall.component.header', [
       };
 
       that.setNavActive();
+
+      // @note 通过服务端进行渲染，暂时这里不做动作
+      // SFGetHeaderConfig
+      //   .sendRequest()
+      //   .done(function(config){
+      //     _.each(config, function(value, key, list){
+      //       that.data.attr(key, value);
+      //     });
+
+      //     // 暂时不做修改
+      //   })
+      //   .fail(function (errorCode) {
+
+      //   })
     },
 
     /**
@@ -515,6 +527,17 @@ define('sf.b2c.mall.component.header', [
 
     '#my-account click': function(element, event) {
       event && event.preventDefault();
+      // event.stopPropagation();
+
+      // if(SFFn.isMobile.any()){
+      //   return element.hover();
+      // }
+
+      // if (SFComm.prototype.checkUserLogin.call(this)) {
+
+      // } else {
+      //   this.showLogin('center');
+      // }
     },
 
     '#user-login click': function(element, event) {
@@ -540,6 +563,8 @@ define('sf.b2c.mall.component.header', [
         title: '顺丰海淘',
         html: '<iframe height="450px" width="100%" frameborder="no" seamless="" src="' + SFConfig.setting.link.register + '"></iframe>'
       });
+      // this.watchLoginState.call(this);
+      // this.setIframe.call(this);
     },
 
     showLogin: function(dest) {
@@ -567,12 +592,8 @@ define('sf.b2c.mall.component.header', [
       this.component.modal.setTitle('顺丰海淘');
     },
 
-    /**
-     * 检查用户登录状态
-     */
     watchLoginState: function() {
       var that = this;
-
       document.domain = "sfht.com";
       // can.on.call(window, 'login', function () {
       window.userLoginSccuessCallback = function() {
@@ -581,8 +602,11 @@ define('sf.b2c.mall.component.header', [
           that.afterLoginDest = null;
         }
 
+        //console.log(SFComm.prototype.checkUserLogin.call(that))
         if (SFComm.prototype.checkUserLogin.call(that)) {
+          // if (!that.component.modal.isClosed()) {
           that.component.modal.hide();
+          // }
 
           if (that.afterLoginDest) {
             var link = SFConfig.setting.link[that.afterLoginDest] || that.afterLoginDest;
@@ -607,8 +631,9 @@ define('sf.b2c.mall.component.header', [
         } else {
           that.data.attr('isUserLogin', false);
           that.data.attr('nickname', null);
-        }
 
+          // that.renderMap['template_header_user_navigator'].call(that, that.data);
+        }
       };
 
       window.popMessage = function() {
