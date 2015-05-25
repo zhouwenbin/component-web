@@ -77,7 +77,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             return options.fn(options.contexts || this);
           };
         },
-        needSeperateOperationColoumRow: function(orderStatus, options){
+        needCombineOperationRow: function(orderStatus, options){
           if (orderStatus === '已提交' || orderStatus == '待审核') {
             return options.fn(options.contexts || this);
           } else {
@@ -471,6 +471,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'LOGISTICS_EXCEPTION': false,
         'SHIPPED': true,
         'COMPLETED': true,
+        'CONSIGNED': true,
+        'RECEIPTED': true,
         'AUTO_COMPLETED': true
       },
 
@@ -489,7 +491,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': ['ROUTE', 'INFO'],
         'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO'],
         'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
         'COMPLETED': ['INFO', 'ROUTE'],
+        'RECEIPTED': ['INFO', 'ROUTE'],
+        'CLOSED': ['INFO'],
         'AUTO_COMPLETED': ['INFO', 'ROUTE']
       },
 
@@ -668,9 +673,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
             new SFMessage(null, {
               'tip': '订单取消成功！',
-              'type': 'success'
+              'type': 'success',
+              'okFunction': function () {
+                // 显示提示之后重新刷新页面
+                window.location.reload();
+              }
             });
-            that.render();
+
+            // 不再重新render而是页面重现刷，因为订单的状态发生了变化
+            // that.render();
           })
           .fail(function(error) {
             new SFMessage(null, {
@@ -706,6 +717,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
         'CLOSED': '订单关闭'
