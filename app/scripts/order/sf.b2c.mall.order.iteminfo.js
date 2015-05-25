@@ -452,7 +452,9 @@ define('sf.b2c.mall.order.iteminfo', [
             'tip': that.errorMap[error] || '下单失败',
             'type': 'error'
           });
-          window.location.href.reload();
+          that.initOrderRender();
+          //window.location.href.reload();
+
         });
     },
 
@@ -511,7 +513,7 @@ define('sf.b2c.mall.order.iteminfo', [
                 'type': 'success'
               });
             });
-          window.location.href.reload();
+            that.initOrderRender();
         })
         .fail(function(error) {
           var errorMap = {
