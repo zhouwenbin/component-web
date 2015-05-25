@@ -92,6 +92,7 @@ requirejs.config({
     //设置密码并登陆
     'sf.b2c.mall.api.user.setPswdAndLogin': 'scripts/api/sf.b2c.mall.api.user.setPswdAndLogin',
     'sf.b2c.mall.api.user.partnerBindByUPswd': 'scripts/api/sf.b2c.mall.api.user.partnerBindByUPswd',
+    'sf.b2c.mall.api.user.downInviteSms': 'scripts/api/sf.b2c.mall.api.user.downInviteSms',
 
     'sf.b2c.mall.api.b2cmall.getBanner': 'scripts/api/sf.b2c.mall.api.b2cmall.getBanner',
     'sf.b2c.mall.api.b2cmall.getFastSaleInfoList': 'scripts/api/sf.b2c.mall.api.b2cmall.getFastSaleInfoList',
@@ -140,6 +141,7 @@ requirejs.config({
     'fullPage':'scripts/vendor/jquery.fullPage.min',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
+    'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.login': 'scripts/component/sf.b2c.mall.component.login',
     'sf.b2c.mall.component.i.login': 'scripts/component/sf.b2c.mall.component.i.login',
@@ -262,6 +264,8 @@ requirejs.config({
     'template_header_info_step_pay': 'templates/header/sf.b2c.mall.header.info.step.pay.mustache',
     'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
-    'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache'
+    'template_header_520': 'templates/header/sf.b2c.mall.header.520.mustache',
+    'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
+    'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache'
   }
 });
