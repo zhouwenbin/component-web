@@ -70,7 +70,10 @@
     					{{#if isShowReduceInfos}}
                         <div class="tooltip-cart">
                             <span class="icon icon77 fl"></span>
-                            <span class="text-error">参加{{countNumActivity reduceInfos}}个满减活动：省{{sf.price order.discountFee}}</span>                       
+                            {{#if order.discountFee}}
+                            <span class="text-error">参加{{countNumActivity reduceInfos}}个满减活动：省{{sf.price order.discountFee}}</span>
+                            {{/if}}
+
                             <div class="tooltip-pos">
                                 <span class="icon icon78"></span>
                                 <div class="tooltip-outer">

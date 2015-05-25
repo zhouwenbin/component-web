@@ -542,7 +542,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 'type': 'success'
               });
 
-              that.render();
+              window.location.reload();
+              // that.render();
             } else {
               var message = new SFMessage(null, {
                 'tip': '删除失败！',

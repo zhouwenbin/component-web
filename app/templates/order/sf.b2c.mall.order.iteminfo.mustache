@@ -23,7 +23,7 @@
             <td class="td1">
                 <a href="javascript:void(0)"><img src="{{sf.img productImage.thumbImgUrl}}"></a>
                 <div class="order-confirm-info">
-                    <h2><a href="">{{goodsName}}</a></h2>
+                    <h2><a href="javascript:void(0)">{{goodsName}}</a></h2>
                     <div class="cart-standard">{{{spec}}}</div>
                 </div>
             </td>
@@ -42,7 +42,7 @@
   </div>
   {{! end cart-table }}
   <div class="cart-coupon">
-    <div class="cart-coupon-r1"><a href="javascript:" id="coupon-use">-</a>使用优惠券</div>
+    <div class="cart-coupon-r1"><a href="javascript:void(0)" id="coupon-use">-</a>使用优惠券</div>
     <div id="coupon-use-detail">
       {{^orderCoupon.isHaveAvaliable}}
         <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
@@ -55,12 +55,12 @@
         </div>
       {{/orderCoupon.isHaveAvaliable}}
       <div class="cart-coupon-r2">
-        <a href="javascript:" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
+        <a href="javascript:void(0)" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
       </div>
       <div class="coupons" id="coupons">
         <ul class="coupons-tab">
-          <li class="active"><a href="javascript:">可用优惠券</a></li>
-          <li><a href="javascript:">不可用优惠券</a></li>
+          <li class="active"><a href="javascript:void(0)">可用优惠券</a></li>
+          <li><a href="javascript:void(0)">不可用优惠券</a></li>
         </ul>
         {{! 可用优惠券 }}
         <ul id="avaliableCoupons" class="coupons-list active">
@@ -87,10 +87,10 @@
         </ul>
       </div>
       {{! end 优惠券列表 }}
-      <div class="cart-coupon-r3">or<a href="" class="text-link">兑换优惠券？</a></div>
+      <div class="cart-coupon-r3">or<a href="javascript:void(0)" class="text-link">兑换优惠券？</a></div>
       <div class="cart-coupon-r4">请输入您手中的兑换码：
         <input class="input" type="text" can-value="orderCoupon.couponExCode" value="{{orderCoupon.couponExCode}}" id="conpon" />
-        <a id="useCouponCodeBtn" class="btn btn-normal" href="">确定</a>
+        <a id="useCouponCodeBtn" class="btn btn-normal" href="#">确定</a>
       </div>
     </div>
   </div>
