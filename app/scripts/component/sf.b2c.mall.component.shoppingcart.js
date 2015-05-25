@@ -66,7 +66,7 @@ define(
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
-          } 
+          }
         }
       },
       /**
@@ -124,7 +124,16 @@ define(
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
               goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
             };
-            //goodsItem.isShowOriginPrice = (goodsItem.price !== goodsItem.activityPrice);
+            var promotionInfoArray = new Array();
+            //便利满件折促销信息
+            _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+              _.each(promotionItem.promotionRuleList, function(item) {
+                promotionInfoArray.push('再买' + item.limit + '件,打' + item.preferential / 10 + '折');
+              });
+            });
+
+            
+
           });
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
