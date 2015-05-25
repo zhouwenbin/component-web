@@ -44,6 +44,19 @@ define(
           if (canAddNum === 0) {
             return options.fn(options.context || this);
           };
+        },
+
+        'sf-is-select-all': function (goods, options) {
+          var isSelectedAll = true;
+          _.each(goods, function(value, key, list){
+            isSelectedAll = isSelectedAll && value.isSelected
+          });
+
+          if (isSelectedAll) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
       },
       /**
@@ -81,7 +94,7 @@ define(
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           //获取商品数据
           _.each(this.options.scopeGroups, function(cartItem) {
-            //是否显示满件        
+            //是否显示满件
             that.options.goodItemList.push(cartItem.goodItemList[0]);
           });
 

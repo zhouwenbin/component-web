@@ -1,6 +1,6 @@
 
 <div class="pb">
-  <div class="pm"> 
+  <div class="pm">
     <!--购物车-->
     {{#if hasGoods}}
     <div class="cart">
@@ -8,7 +8,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="th1"><input class="selectAll" type="checkbox" checked="checked">全选</th>
+                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
                         <th class="th2">商品信息</th>
                         <th class="th3">单价（元）</th>
                         <th class="th4">数量</th>
@@ -40,7 +40,7 @@
                         <td class="td4">
                             {{^isValid}}{{quantity}}{{/isValid}}
                             {{#isValid}}
-                                <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>    
+                                <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
                                 {{#each limitDescList}}<p class="text-error">{{desc}}</p>{{/each}}
                             {{/isValid}}
                         </td>
@@ -51,14 +51,14 @@
                             <a data-itemIds="{{itemId}}" class="deleteSingleOrder con icon72" href="">删除</a>
                         </td>
                     </tr>
-                {{/each}}                   
+                {{/each}}
                 </tbody>
             </table>
         </div>
-        	
+
     	<div class="cart-footer clearfix">
     		<div class="cart-footer-c1 fl">
-    			<label><input class="selectAll" type="checkbox" checked="true" />全选</label>|
+    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>|
     			<a id="deletedSelectGoods" href="">删除选中商品</a>
     			<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>
     		</div>
@@ -69,7 +69,7 @@
     					{{#scopeIsAll promotionInfo}}
                         <div class="tooltip-cart">
                             <span class="icon icon77 fl"></span>
-                            <span class="text-error">参加三个满减活动：省100</span>                       
+                            <span class="text-error">参加三个满减活动：省100</span>
                             <div class="tooltip-pos">
                                 <span class="icon icon78"></span>
                                 <div class="tooltip-outer">
@@ -92,9 +92,9 @@
                 {{#if isShowOverLimitPrice}}
     			<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
     			{{/if}}
-    			
+
     			<button id="gotopay" class="btn {{canOrder}}">去结算</button>
-    			
+
 
     		</div>
     		<span class="icon icon75"></span>
@@ -118,15 +118,15 @@
               <div class="product-r1">
                 <a href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" ></a><span></span>
               </div>
-              <h3><a href="{{linkUrl}}">{{productName}}</a></h3>            
+              <h3><a href="{{linkUrl}}">{{productName}}</a></h3>
               <div class="product-r2 clearfix">
                 <div class="product-r2c1 fl">
-                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong>                
+                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong>
                 </div>
                 <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90 addCart">购买</a></div>
               </div>
             </li>
-            {{/each}}        
+            {{/each}}
           </ul>
         </div>
     </div>
