@@ -336,7 +336,8 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       if (pathname == '/' || pathname == '/index.html') {
-        /*  520活动暂时关闭浮动导航栏
+          // @note 520活动暂时关闭浮动导航栏
+          // @note 520活动结束，打开浮动导航
         $(window).scroll(function() {
           setTimeout(function() {
             if ($(window).scrollTop() > 166) {
@@ -353,7 +354,7 @@ define('sf.b2c.mall.component.header', [
 
           }, 200);
         })
-        */
+
         $('#js-focus')
           .hover(function() {
             $('.nav-qrcode').addClass('show');
