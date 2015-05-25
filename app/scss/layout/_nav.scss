@@ -4,21 +4,21 @@
 .nav-inner{
 	height: 43px;
 	line-height: 43px;
-	background: url(#{$bg-url}nav.png) repeat-x;
+	background: #32363e;
 }
 .nav li{
 	float: left;
-	font-size: 16px;
+	font-size: 15px;
 	width: 114px;
 	text-align: center;
 	position:relative;
 }
 .nav .active,
 .nav li:hover{
-	background: url(#{$bg-url}header-active.png) repeat-x;
+	background: #dc3334;
 }
 .nav a{
-	color: #c5c5c5;	
+	color: #fff;	
 	display:block;
 
 }

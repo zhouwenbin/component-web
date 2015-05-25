@@ -175,6 +175,8 @@ define(
       '#mobile-register-btn click': function($element, event) {
         event && event.preventDefault();
 
+        document.domain = "sfht.com";
+
         // 发起请求注册
 
         var that = this;
@@ -196,6 +198,13 @@ define(
               console.log(1);
               if (data.csrfToken) {
                 store.set('csrfToken', data.csrfToken);
+
+                if (window.userLoginSccuessCallback){
+                  window.userLoginSccuessCallback();
+                } else if (window.parent.userLoginSccuessCallback){
+                  window.parent.userLoginSccuessCallback();
+                }
+
                 //can.route.attr({'tag':'success', 'csrfToken': data.csrfToken});
               }
             })

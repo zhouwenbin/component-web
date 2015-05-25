@@ -9,12 +9,14 @@ define(
     'md5',
     'sf.b2c.mall.business.config',
     'sf.util',
+    'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.user.partnerBind',
     'sf.b2c.mall.api.user.partnerBindByUPswd',
     'sf.b2c.mall.api.user.checkUserExist',
+    'sf.b2c.mall.api.promotion.receivePro',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, md5, SFBizConf, SFFn, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFApiUserDownSmsCode) {
+  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFReceivePro, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_NO_INPUT_USERPWD = '请输入您的密码';
@@ -257,11 +259,26 @@ define(
       },
 
       //绑定账号
-      partnerBind: function() {
+      partnerBind: function(newUser) {
+        var that = this;
+
         this.component.partnerBind.sendRequest()
           .done(function(data) {
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
+            // 注册送优惠券 begin
+            // if (newUser) {
+            //   that.sendCoupon();
+            // } else {
+            //   document.domain= "sfht.com";
+            //   window.parent.userLoginSccuessCallback();
+            // }
+            // 注册送优惠券 end
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
@@ -275,12 +292,43 @@ define(
           })
       },
 
+      sendCoupon: function() {
+        document.domain= "sfht.com";
+
+        var receivePro = new SFReceivePro({
+          "channel": "B2C",
+          "event": "REGISTER_USER_SUCCESS"
+        });
+
+        receivePro
+          .sendRequest()
+          .done(function(proInfo) {
+
+            if (proInfo.couponInfos) {
+              window.parent.popMessage();
+            }
+
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+          .fail(function(error) {
+            console.error(error);
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+
+      },
+
       //绑定账号
       partnerBindByUPswd: function() {
         this.component.partnerBindByUPswd.sendRequest()
           .done(function(data) {
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
@@ -354,7 +402,7 @@ define(
               'type': 'MOBILE',
               'accountId': mobile
             });
-            this.partnerBind();
+            this.partnerBind(true);
           }
 
         }

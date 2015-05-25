@@ -1,5 +1,6 @@
 <ul class="mycoupon-h clearfix">
     <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 ({{unUsed.count}})</a></li>
+    <li {{#thirdparty.isShow}}class="active"{{/thirdparty.isShow}}><a href="javascript:void(0);">电影券 ({{thirdparty.count}})</a></li>
     <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 ({{used.count}})</a></li>
     <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 ({{expired.count}})</a></li>
     <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 ({{cancel.count}})</a></li>
@@ -12,16 +13,36 @@
 {{#unUsed.count}}
 <ul class="mycoupon-b clearfix mycoupon-b1{{#unUsed.isShow}} active{{/unUsed.isShow}}">
   {{#each unUsed.items}}
-  <li>
+  <li class="mycouponunused">
     <h3>{{title}}</h3>
     <div class="mycoupon-r1">
       <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
       <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
     </div>
+    {{#customUrl}}
+    <a class="btn btn-normal btn-big gotohref" href="{{customUrl}}" target="_blank">去看看</a>
+    {{/customUrl}}
   </li>
   {{/each}}
 </ul>
 {{/unUsed.count}}
+<!--第三方-->
+{{^thirdparty.count}}
+  <p class="mycoupon-b{{#thirdparty.isShow}} active{{/thirdparty.isShow}}"><span class="icon icon51"></span>您还没有电影优惠券哦~</p>
+{{/thirdparty.count}}
+{{#thirdparty.count}}
+<ul class="mycoupon-b clearfix mycoupon-b1{{#thirdparty.isShow}} active{{/thirdparty.isShow}}">
+  {{#each thirdparty.items}}
+  <li>
+    <h3>{{title}}</h3>
+    <div class="mycoupon-r1">
+      <div class="mycoupon-r1r1" style="margin-top:35px">兑换码:{{extCode}}</div>
+      <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+{{/thirdparty.count}}
 <!--已使用-->
 {{^used.count}}
     <p class="mycoupon-b{{#used.isShow}} active{{/used.isShow}}"><span class="icon icon51"></span>您还没有已用的优惠券哦~</p>

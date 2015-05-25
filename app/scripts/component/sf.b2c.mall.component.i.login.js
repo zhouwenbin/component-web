@@ -354,7 +354,7 @@ define(
         var username = $(element).val();
 
         this.checkUserName.call(this, username);
-        if (username && username.length == 11) {
+        if (username && (username.length == 11 || /@/.test(username) != -1)) {
           this.isNeedVerCode();
         };
       },
@@ -432,7 +432,6 @@ define(
                     window.location.href = params.from || 'index.html';
                   }
                 }).fail(function() {})
-
             }
           })
           .fail(function(error) {

@@ -9,3 +9,4 @@ app/__MACOSX
 web-oss
 web-static
 **/.DS_Store
+app/prepros.cfg
