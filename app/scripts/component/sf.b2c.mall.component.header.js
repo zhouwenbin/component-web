@@ -161,6 +161,8 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
+      this.updateCart();
+
       // @author Michael.Lee
       // 将更新购物车事件注册到window上
       // 其他地方添加需要更新mini购物车的时候调用can.trigger('updateCart')
