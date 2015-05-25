@@ -518,7 +518,7 @@ define('sf.b2c.mall.component.header', [
             store.remove('csrfToken');
             setTimeout(function() {
               window.location.href = SFConfig.setting.link.index;
-            }, 2000);
+            }, 1000);
 
             store.remove('provinceId');
             store.remove('cityId');
