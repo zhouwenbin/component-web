@@ -7,7 +7,7 @@
                 <li><span>订单编号：</span>{{orderItem.orderId}}</li>
                 <li><span>下单时间：</span>{{sf.time orderItem.gmtCreate}}</li>
                 <li><span>支付方式：</span>{{sf-payment orderItem.payType}}</li>
-                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">{{sf.price orderItem.totalPrice}}</strong></li>
+                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">{{sf.price totalPrice}}</strong></li>
             </ul>
         </div>
         <div class="pay-success-c2 fr"><img src="../img/weixin-qrcode.png" alt="">
@@ -23,6 +23,7 @@
             </div>
         </div>
 
+        {{#if orderItem.orderCouponItemList}}
         <div class="pay-success2-b clearfix">
             <div class="pay-success2-bc1 fl">
 
@@ -72,5 +73,6 @@
 
             {{/orderItem.orderCouponItemList}}
         </div>
+        {{/if}}
     </div>
 </div>
