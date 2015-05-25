@@ -5,7 +5,7 @@
         <div class="order-success"><span class="icon icon36"></span>
             <h1>订单提交成功，现在只差最后一步啦！</h1>
             <div class="order-success-r1">订单金额：¥{{sf.price price}}</div>
-            <p>请您在提交订单后<span class="text-important">1小时00分钟</span>内完成支付，否则订单会自动取消！</p>
+            <p>请您在提交订单后<span class="text-important">2小时00分钟</span>内完成支付，否则订单会自动取消！</p>
             <div class="order-success-pos"><a href="javascript:" id="order-detail" class="text-link">订单详情<span class="icon icon16-1"></span></a></div>
         </div>
         <div class="order-success-detail">
@@ -24,7 +24,7 @@
         <div class="gotopay">
             <div class="gotopay-r1">应付金额:<b class="text-important">¥</b><strong class="text-important">{{sf-totalprice selectPayType price discount}}</strong></div>
             <h2>支付方式:</h2>
-            <ul>
+            <ul class="payTypeListArea">
 
                 {{#sf-paytype-list optionalPayTypeList 'alipay'}}
                     <li data-payType="alipay">

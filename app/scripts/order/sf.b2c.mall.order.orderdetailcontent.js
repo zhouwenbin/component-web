@@ -97,13 +97,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.element.html(html);
 
             that.renderPackageItemInfo(0, data.orderItem);
-            $('#showUserRoutes li:gt(2)').hide();
-
           })
       },
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
+        $('#showUserRoutes li:gt(2)').hide();
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
           goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];

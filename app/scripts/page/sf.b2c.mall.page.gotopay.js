@@ -133,7 +133,7 @@ define(
         }
       },
 
-      'li click': function ($el, event) {
+      '.payTypeListArea li click': function ($el, event) {
         this.element.find('li').removeClass('active');
         $el.addClass('active');
 
