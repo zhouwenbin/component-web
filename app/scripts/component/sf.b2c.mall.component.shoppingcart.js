@@ -14,9 +14,10 @@ define(
     'sf.b2c.mall.api.shopcart.removeItemsInCart',
     'sf.b2c.mall.api.shopcart.updateItemNumInCart',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
-  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage) {
+  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -67,7 +68,6 @@ define(
         var that = this;
         this.options.canOrder = this.btnStateMap[data.canOrder];
         this.options.scopeGroups = data.scopeGroups;
-        console.log(data.scopeGroups);
         if (data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
           this.options.goodItemList = [];
@@ -91,12 +91,16 @@ define(
               result.push(item.specName + ":" + item.value);
             });
             goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined') {
+            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
               goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
             };
-
+            goodsItem.isShowOriginPrice = (goodsItem.price !== goodsItem.activityPrice);
           });
+
+          var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
+          that.element.html(html);
         } else {
           this.options.hasGoods = false;
           var findRecommendProducts = new SFFindRecommendProducts({
@@ -114,10 +118,12 @@ define(
                 item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
                 item.sellingPrice = item.sellingPrice / 100;
               });
+
+              var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
+              that.element.html(html);
             })
         }
-        var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
-        that.element.html(html);
+
       },
       //按钮状态
       btnStateMap: {
@@ -225,7 +231,7 @@ define(
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        itemIds.push($(item).data('goods').itemId);
+        itemIds.push($(element).closest('tr').data('goods').itemId);
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
             'tip': '确认要删除该商品？',
@@ -269,6 +275,9 @@ define(
        */
       '.btn-num-add click': function(element, event) {
         event && event.preventDefault();
+        if ($(element).hasClass('disable')) {
+          return false;
+        };
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
@@ -286,6 +295,9 @@ define(
        */
       '.btn-num-reduce click': function(element, event) {
         event && event.preventDefault();
+        if ($(element).hasClass('disable')) {
+          return false;
+        };
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
@@ -325,7 +337,40 @@ define(
         }
 
       },
+      //购物车内无商品是，推荐商品加入购物车
+      addCart: function(itemId, num) {
+        var that = this;
+        var itemsStr = JSON.stringify([{
+          itemId: itemId,
+          num: num || 1
+        }]);
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
 
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+              window.location.reload();
+            }
+          })
+          .fail(function(data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+      '.addCart click': function(element, event) {
+        event && event.preventDefault();
+        var itemId = $(element).closest('li').data('goods').itemId;
+        this.addCart(itemId);
+      },
       /**
        * 去结算
        */

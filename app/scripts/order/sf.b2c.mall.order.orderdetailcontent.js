@@ -16,21 +16,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
     return can.Control.extend({
       helpers: {
-        indexOfPackage: function(orderPackageItemList, options) {
-          for (var i = 0; i < orderPackageItemList.length; i++) {
-            return i + 1;
+        indexOfPackage: function(index, options) {
+          return index + 1;
+        },
+        isActive: function(index, options) {
+          if (index === 0) {
+            return 'active';
           };
         }
       },
       init: function(element, options) {
         this.render();
-        //this.renderPackageItemInfo(0,this.options);
-        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
-        // $('#closeExample')[0].onclick = function() {
-        //   $(".orderdetail-upload").hide();
-        //   $(".mask2").hide();
-        //   return false;
-        // }
       },
 
       render: function(data) {
@@ -85,19 +81,19 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             }
 
-            that.options.orderId = data.orderId;
-            that.options.recId = data.orderItem.rcvrId;
+            that.options.orderInfo = data;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
             that.options.isCostCoupon = false;
             that.options.isPresentCoupon = false;
             that.options.isGiftBag = false;
             that.options.isShareBag = false;
+
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
 
-            var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options);
+            var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
             that.element.html(html);
 
             that.renderPackageItemInfo(0, data.orderItem);
@@ -107,19 +103,27 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
-        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse();//获取包裹路由并倒序
+        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
+        _.each(packageInfo.orderGoodsItemList, function(goodItem) {
+          goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
+          goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
+        });
         packageInfo.showStep = true;
-        if (packageInfo.orderStatus == 'AUTO_CANCEL' || packageInfo.orderStatus == 'USER_CANCEL' || packageInfo.orderStatus == 'OPERATION_CANCEL') {
+        if (packageInfo.status == 'CLOSED' && packageInfo.status == 'AUTO_CANCEL' && packageInfo.status == 'USER_CANCEL' && packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
+
         var map = {
           'SUBMITED': '', //待支付
           'AUDITING': 'order-detail-step2', //待审核
           'SHIPPING': 'order-detail-step3', //待出库
+          'WAIT_SHIPPING': 'order-detail-step3',
           'SHIPPED': 'order-detail-step4', //出库中
           'COMPLETED': 'order-detail-step5', //已完成
-          'CLOSED': 'order-detail-step5'
+          'CLOSED': 'order-detail-step5',
+          'CONSIGNED': 'order-detail-step4',
+          'RECEIPTED': 'order-detail-step5'
         };
         packageInfo.showWhereStep = map[packageInfo.status];
         var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
@@ -139,22 +143,22 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'lianlianpay': '快捷支付'
       },
 
-      statusDescription: {
-        'ORDER_EDIT': '您的收货信息已成功修改，正在等待顺丰审核',
-        'SUBMITED': '您的订单已提交，请尽快完成支付',
-        'AUTO_CANCEL': '超时未支付，订单自动取消',
-        'USER_CANCEL': '用户取消订单成功',
-        'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
-        'OPERATION_CANCEL': '订单取消成功',
-        'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
-        'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
-        'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
-        'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-        'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
-        'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
-        'COMPLETED': '您已确认收货，订单已完成',
-        'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
-      },
+      // statusDescription: {
+      //   'ORDER_EDIT': '您的收货信息已成功修改，正在等待顺丰审核',
+      //   'SUBMITED': '您的订单已提交，请尽快完成支付',
+      //   'AUTO_CANCEL': '超时未支付，订单自动取消',
+      //   'USER_CANCEL': '用户取消订单成功',
+      //   'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
+      //   'OPERATION_CANCEL': '订单取消成功',
+      //   'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
+      //   'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
+      //   'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
+      //   'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+      //   'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
+      //   'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
+      //   'COMPLETED': '您已确认收货，订单已完成',
+      //   'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
+      // },
 
       getOptionHTML: function(operationsArr) {
         var that = this;
@@ -173,8 +177,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-danger btn-small" id="pay">立即支付</a>',
-        "RECEIVED": '<a href="#" class="btn btn-danger btn-small received">确认签收</a>'
+        "NEEDPAY": '<button class="btn btn-danger btn-small" id="pay">立即支付</button>',
+        "RECEIPTED": '<button class="btn btn-danger btn-small received">确认签收</button>'
       },
 
       statsMap: {
@@ -191,7 +195,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPED': '已发货',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
-        'CLOSED': '订单关闭'
+        'CLOSED': '订单关闭',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收'
 
       },
 

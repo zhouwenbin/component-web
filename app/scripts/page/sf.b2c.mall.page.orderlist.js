@@ -30,7 +30,11 @@ define(
        * [render 执行渲染]
        */
       render: function() {
-
+        var header = new Header('.sf-b2c-mall-header', {
+          channel: '首页',
+          isForceLogin: true
+        });
+        new Footer('.sf-b2c-mall-footer');
         // 列表区域
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
           "searchValue": null
