@@ -102,7 +102,7 @@ define(
             'limitAmount': data.limitAmount
           });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
-          this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined');
+          this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0);
           if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
             this.options.reduceInfos = data.cartFeeItem.reduceInfos;
           };
