@@ -123,19 +123,21 @@ define(
               goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
               goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
-            };
-            var promotionInfoArray = new Array();
-            //便利满件折促销信息
-            _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
-              _.each(promotionItem.promotionRuleList, function(item) {
-                promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
-              });
-            });
 
-            var quantity = goodsItem.quantity;
-            if (promotionInfoArray.length > quantity) {
-              goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
-            };
+              var promotionInfoArray = new Array();
+              //便利满件折促销信息
+              _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                _.each(promotionItem.promotionRuleList, function(item) {
+                  promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                });
+              });
+
+              var quantity = goodsItem.quantity;
+              if (promotionInfoArray.length > quantity) {
+                goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+              }
+            }
+
 
 
           });

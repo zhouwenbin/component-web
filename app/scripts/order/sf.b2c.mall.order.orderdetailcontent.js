@@ -23,6 +23,19 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           if (index === 0) {
             return 'active';
           };
+        },
+        showImage: function(group){
+          var array = eval(group);
+          if (array && _.isArray(array)) {
+            var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
+            if (/^http/.test(url)) {
+              return url;
+            }else{
+              return 'http://img0.sfht.com' + url;
+            }
+          }else{
+            return array; 
+          }
         }
       },
       init: function(element, options) {
@@ -105,7 +118,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
-          goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
+          // goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
         });
 
@@ -127,7 +140,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         };
 
         packageInfo.showWhereStep = map[packageInfo.status];
-        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
+        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, this.helpers);
         $('#packageItemInfo').html(html);
         var len = $('#showUserRoutes li').length;
         if (len > 3) {

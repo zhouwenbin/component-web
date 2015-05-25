@@ -186,7 +186,7 @@ define('sf.b2c.mall.order.iteminfo', [
       };
 
       this.itemObj.orderCoupon.selectCoupons = [];
-      var shouldPay = this.itemObj.attr('orderFeeItem.goodsTotalFee') - this.itemObj.attr('couponPrice');
+      var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
       this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       // this.itemObj.unbind("couponPrice").bind("couponPrice", function(ev, newVal, oldVal) {
       //   this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
@@ -288,12 +288,12 @@ define('sf.b2c.mall.order.iteminfo', [
       if (span.length > 0) {
         $(element).find('span.icon85').remove();
         this.itemObj.attr("couponPrice", 0);
-        var shouldPay = this.itemObj.attr('orderFeeItem.goodsTotalFee') - this.itemObj.attr('couponPrice');
+        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       } else {
         $(element).append('<span class="icon icon85"></span>')
         this.itemObj.attr("couponPrice", $(element).attr('data-price'));
-        var shouldPay = this.itemObj.attr('orderFeeItem.goodsTotalFee') - this.itemObj.attr('couponPrice');
+        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       }
     },
@@ -482,14 +482,14 @@ define('sf.b2c.mall.order.iteminfo', [
         $(element).siblings().find('span.icon85').remove();
         this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[0]);
         this.itemObj.attr('couponPrice', this.itemObj.orderCoupon.attr('bestCoupon.price'));
-        var shouldPay = this.itemObj.attr('orderFeeItem.goodsTotalFee') - this.itemObj.orderCoupon.attr('bestCoupon.price');
+        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.orderCoupon.attr('bestCoupon.price');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       } else {
         $(element).children('.coupon').append(activeHtml);
         $(element).siblings().find('span.icon85').remove();
         this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[index]);
         this.itemObj.attr('couponPrice', $(element).data('coupon').price);
-        var shouldPay = this.itemObj.attr('orderFeeItem.goodsTotalFee') - this.itemObj.attr('couponPrice');
+        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       }
     },
@@ -511,7 +511,7 @@ define('sf.b2c.mall.order.iteminfo', [
                 'type': 'success'
               });
             });
-            window.location.href.reload();
+          window.location.href.reload();
         })
         .fail(function(error) {
           var errorMap = {
