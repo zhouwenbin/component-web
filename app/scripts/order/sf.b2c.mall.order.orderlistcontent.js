@@ -77,6 +77,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
             return options.fn(options.contexts || this);
           };
         },
+        needSeperateOperationColoumRow: function(orderStatus, options){
+          if (orderStatus === '已提交' || orderStatus == '待审核') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          };
+        },
         showImg: function(imageUrl, options) {
           if (imageUrl == "" || null == imageUrl) {
             return "http://www.sfht.com/img/no.png";

@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        {{#if orderItem.orderCouponItemList}}
+        {{#sf-is-not-empty orderItem.orderCouponItemList}}
         <div class="pay-success2-b clearfix">
             <div class="pay-success2-bc1 fl">
 
@@ -73,6 +73,6 @@
 
             {{/orderItem.orderCouponItemList}}
         </div>
-        {{/if}}
+        {{/sf-is-not-empty}}
     </div>
 </div>

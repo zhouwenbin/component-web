@@ -41,7 +41,8 @@ define([], function () {
     'coupon': 'http://dev.sfht.com/coupon.html',
     'bindaccount':'http://dev.sfht.com/bindaccount.html',//@note 绑定账号
     'setpassword':'http://dev.sfht.com/setpassword.html',//@note 设置密码并登录
-    'paysuccess': 'http://dev.sfht.com/paysuccess.html'
+    'paysuccess': 'http://dev.sfht.com/paysuccess.html',
+    'usercenter': 'http://dev.sfht.com/accountmanage.html',
   }
 
   return {
