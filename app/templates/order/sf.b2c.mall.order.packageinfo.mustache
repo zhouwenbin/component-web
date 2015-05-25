@@ -45,7 +45,9 @@
     {{#each orderGoodsItemList}}
       <tr>
           <td>
-              <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageUrl}}" alt=""></a>
+              <a href="http://www.sfht.com/detail/{{itemId}}.html">
+                <img src="{{showImage imageUrl}}" alt="">
+              </a>
               <h2><a href="http://www.sfht.com/detail/{{itemId}}.html">{{goodsName}}</a></h2>
           </td>
           <td>{{sf.price price}}</td>
