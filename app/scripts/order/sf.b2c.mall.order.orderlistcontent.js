@@ -195,6 +195,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
                     data.hasData = false;
                   }
+
                   _.each(data.value, function(item) {
                     item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
                     item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
@@ -279,7 +280,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       noResultShowPageTemplate: function() {
         return '<div class="myorder-none">' +
           '<span class="icon icon89"></span>' +
-          '<p>亲，您当前还没有任何订单。<br /><a href="www.sfht.com" class="text-link">去逛逛</a></p>' +
+          '<p>亲，您当前还没有任何订单。<br /><a href="http://www.sfht.com" class="text-link">去逛逛</a></p>' +
           '</div>' +
 
           '<ul>' +
@@ -289,7 +290,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li>' +
 
           '<div class="product-r1">' +
-          '<a href="{{linkUrl}}>"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
 
           '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
