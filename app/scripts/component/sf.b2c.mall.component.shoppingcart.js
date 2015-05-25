@@ -44,6 +44,16 @@ define(
           if (canAddNum === 0) {
             return options.fn(options.context || this);
           };
+        },
+        isShowOriginPrice: function(price, activityPrice, options) {
+          if (price !== activityPrice && price > activityPrice) {
+            return options.fn(options.context || this);
+          };
+        },
+        countNumActivity: function(reduceInfos, options) {
+          if (reduceInfos.length > 0) {
+            return reduceInfos.length;
+          };
         }
       },
       /**
@@ -79,6 +89,11 @@ define(
             'limitAmount': data.limitAmount
           });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
+          this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined');
+          if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
+            this.options.reduceInfos = data.cartFeeItem.reduceInfos;
+          };
+
           //获取商品数据
           _.each(this.options.scopeGroups, function(cartItem) {
             //是否显示满件        
@@ -96,7 +111,7 @@ define(
               goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
               goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
             };
-            goodsItem.isShowOriginPrice = (goodsItem.price !== goodsItem.activityPrice);
+            //goodsItem.isShowOriginPrice = (goodsItem.price !== goodsItem.activityPrice);
           });
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);

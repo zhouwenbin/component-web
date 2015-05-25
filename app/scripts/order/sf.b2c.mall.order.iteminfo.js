@@ -75,7 +75,7 @@ define('sf.b2c.mall.order.iteminfo', [
         '<div class="label label-disabled">{{description}}</div>' +
         '</td>' +
         '<td class="td2"></td>' +
-        '<td class="td3">{{sf.price originPrice}}</td>' +
+        '<td class="td3">{{sf.price price}}</td>' +
         '<td class="td4">{{quantity}}</td>' +
         '<td class="td5">' +
         '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
@@ -152,7 +152,7 @@ define('sf.b2c.mall.order.iteminfo', [
               result.push(item.specName + ":" + item.spec.specValue);
             });
             goodItem.spec = result.join('&nbsp;/&nbsp;');
-            goodItem.totalPrice = goodItem.originPrice * goodItem.quantity;
+            goodItem.totalPrice = goodItem.price * goodItem.quantity;
           }
         });
         that.itemObj.attr("orderGoodsItemList", packageItem.orderGoodsItemList);
@@ -161,7 +161,7 @@ define('sf.b2c.mall.order.iteminfo', [
       this.itemObj.attr("orderPackageItemList", orderRenderItem.orderPackageItemList);
       //便利无效商品列表
       _.each(orderRenderItem.invariableGoodsItemList, function(goodItem) {
-        goodItem.totalPrice = goodItem.originPrice * goodItem.quantity;
+        goodItem.totalPrice = goodItem.price * goodItem.quantity;
       });
       this.itemObj.attr("invariableGoodsItemList", orderRenderItem.invariableGoodsItemList);
     },
@@ -452,6 +452,7 @@ define('sf.b2c.mall.order.iteminfo', [
             'tip': that.errorMap[error] || '下单失败',
             'type': 'error'
           });
+          window.location.href.reload();
         });
     },
 
@@ -510,6 +511,7 @@ define('sf.b2c.mall.order.iteminfo', [
                 'type': 'success'
               });
             });
+            window.location.href.reload();
         })
         .fail(function(error) {
           var errorMap = {
