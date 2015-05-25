@@ -62,6 +62,20 @@ define('sf.b2c.mall.order.paysuccess', [
           }
 
           return map[couponType];
+        },
+
+        /**
+         * @description 判断group是不是空队列
+         * @param  {array}  group   队列
+         * @param  {object} options
+         * @return {object}
+         */
+        'sf-is-not-empty': function (group, options) {
+          if (_.isEmpty(group)) {
+            return options.inverse(options.contexts || this);
+          } else {
+            return options.fn(options.contexts || this);
+          }
         }
       },
 

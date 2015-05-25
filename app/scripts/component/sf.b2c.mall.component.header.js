@@ -470,7 +470,7 @@ define('sf.b2c.mall.component.header', [
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.center;
+        window.location.href = SFConfig.setting.link.orderlist;
       } else {
         this.showLogin('center');
       }
@@ -480,7 +480,7 @@ define('sf.b2c.mall.component.header', [
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.center;
+        window.location.href = SFConfig.setting.link.usercenter;
       } else {
         this.showLogin('center');
       }

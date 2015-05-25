@@ -183,7 +183,7 @@ define(
           error: function(errorText) {
 
             var message = new SFMessage(null, {
-              'tip': '订单支付失败！',
+              'tip': errorText || '订单支付失败！',
               'type': 'error'
             });
 

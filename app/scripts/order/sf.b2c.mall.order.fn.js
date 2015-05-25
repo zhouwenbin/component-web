@@ -46,7 +46,7 @@ define(
           .fail(function(error) {
             //var errorText = that.payErrorMap[error.toString()] || '支付失败';
             if (callback && _.isFunction(callback.error)) {
-              callback.error();
+              callback.error(requestPayV2.api.ERROR_CODE[error]);
             }
           });
       }
