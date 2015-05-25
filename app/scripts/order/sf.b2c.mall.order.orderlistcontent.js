@@ -201,7 +201,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
                     item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
                   })
 
-                  var template = can.view.mustache(that.noResultShowPageTemplate());
+                  // 带有搜索和不带搜索的结果页不一样
+                  var template = null;
+                  if (that.options.searchValue) {
+                    template = can.view.mustache(that.noSearchResultShowPageTemplate());
+                  } else {
+                    template = can.view.mustache(that.noResultShowPageTemplate());
+                  }
+
                   $(".noOrderShow").html(template(data)).show();
 
                 })
@@ -276,11 +283,48 @@ define('sf.b2c.mall.order.orderlistcontent', [
         });
         this.options.tab.attr(tag, true);
       },
+
       //无订单页面展示状态
       noResultShowPageTemplate: function() {
         return '<div class="myorder-none">' +
           '<span class="icon icon89"></span>' +
           '<p>亲，您当前还没有任何订单。<br /><a href="http://www.sfht.com" class="text-link">去逛逛</a></p>' +
+          '</div>' +
+
+          '<ul>' +
+          '{{#if hasData}}' +
+          '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
+          '{{#each value}}' +
+          '<li>' +
+
+          '<div class="product-r1">' +
+          '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '</div>' +
+
+          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
+
+          '<div class="product-r2 clearfix">' +
+
+          '<div class="product-r2c1 fl">' +
+          '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
+          '</div>' +
+
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>' +
+
+          '</div>' +
+          '</li>' +
+          '{{/each}}' +
+          '{{/if}}' +
+          '</ul>'
+      },
+
+      noSearchResultShowPageTemplate: function() {
+        return '<div class="myorder-search">' +
+          '<input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>' +
+          '</div>' +
+          '<div class="myorder-none">' +
+          '<span class="icon icon89"></span>' +
+          '<p>无相应订单，您可以重新搜索。<br />或者<a href="http://www.sfht.com/orderlist.html" class="text-link">查看所有订单</a></p>' +
           '</div>' +
 
           '<ul>' +
