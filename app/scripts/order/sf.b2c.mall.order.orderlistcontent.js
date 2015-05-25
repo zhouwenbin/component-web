@@ -130,7 +130,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var getOrderList = new SFGetOrderList(params);
         getOrderList.sendRequest()
           .done(function(data) {
-            if (data.orders) {
+            if (data.orders && data.orders.length > 0) {
               //获取不同状态订单的数量
               that.options.waitCompletedNum = data.waitCompletedNum;
               that.options.waitPayNum = data.waitPayNum;
@@ -215,8 +215,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
                     template = can.view.mustache(that.noResultShowPageTemplate());
                   }
 
-                  $(".noOrderShow").html(template(data)).show();
+                  if ($('.myorder-tab').length > 0) {
+                    $(".noOrderShow").html(template(data)).show();
+                  }else{
+                    var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
+                    that.element.html(html);
 
+                    that.element.find('.orderShow').hide();
+                    that.element.find(".noOrderShow").html(template(data)).show();
+                  }
                 })
                 .fail(function(error) {});
             }
