@@ -102,14 +102,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
-        $('#showUserRoutes li:gt(2)').hide();
+
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
           goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
         });
         packageInfo.showStep = true;
-        if (packageInfo.status == 'CLOSED' ||  packageInfo.status == 'AUTO_CANCEL' ||  packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
+        if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
 
@@ -127,6 +127,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         packageInfo.showWhereStep = map[packageInfo.status];
         var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
         $('#packageItemInfo').html(html);
+        var len = $('#showUserRoutes li').length;
+        if (len > 3) {
+          $('#showUserRoutes li:gt(2)').hide();
+        } else {
+          $('.look-more').hide();
+        }
+
       },
       /**
        * @description 查看更多物流信息
@@ -134,6 +141,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
        */
       '.look-more click': function(element, event) {
         event && event.preventDefault();
+        var tag = $(element).attr('data-tag');
+        if (tag == 1) {
+          $(element).text('收起');
+          $('#showUserRoutes li').show();
+          $(element).attr('data-tag', 2);
+        } else {
+          $(element).text('查看更多');
+          $('#showUserRoutes li:gt(2)').hide();
+          $(element).attr('data-tag', 1);
+        }
       },
       payWayMap: {
         'alipay': '支付宝',
