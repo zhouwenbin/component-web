@@ -500,7 +500,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
         'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
         'COMPLETED': ['INFO', 'ROUTE'],
-        'RECEIPTED': ['INFO', 'ROUTE'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED'],
         'CLOSED': ['INFO'],
         'AUTO_COMPLETED': ['INFO', 'ROUTE']
       },
