@@ -471,6 +471,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'LOGISTICS_EXCEPTION': false,
         'SHIPPED': true,
         'COMPLETED': true,
+        'CONSIGNED': true,
+        'RECEIPTED': true,
         'AUTO_COMPLETED': true
       },
 
@@ -489,7 +491,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': ['ROUTE', 'INFO'],
         'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO'],
         'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
         'COMPLETED': ['INFO', 'ROUTE'],
+        'RECEIPTED': ['INFO', 'ROUTE'],
+        'CLOSED': ['INFO'],
         'AUTO_COMPLETED': ['INFO', 'ROUTE']
       },
 
@@ -706,6 +711,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
         'CLOSED': '订单关闭'
