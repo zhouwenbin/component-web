@@ -32,7 +32,7 @@
   <div class="order-detail-c2">
     <ul class="order-detail-tab">
       {{#each orderPackageItemList}}
-      <li data-index="{{@index}}" class="{{active}}"><a href="">包裹{{indexOfPackage @index}}</a></li>
+      <li data-index="{{@index}}" class="{{isActive @index}}"><a href="">包裹{{indexOfPackage @index}}</a></li>
       {{/each}}
     </ul>
     <div id="packageItemInfo">
