@@ -668,9 +668,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
             new SFMessage(null, {
               'tip': '订单取消成功！',
-              'type': 'success'
+              'type': 'success',
+              'okFunction': function () {
+                // 显示提示之后重新刷新页面
+                window.location.reload();
+              }
             });
-            that.render();
+
+            // 不再重新render而是页面重现刷，因为订单的状态发生了变化
+            // that.render();
           })
           .fail(function(error) {
             new SFMessage(null, {
