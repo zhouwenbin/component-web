@@ -19,6 +19,8 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
+  'sf.b2c.mall.api.minicart.getTotalCount',
+  'sf.b2c.mall.api.shopcart.addItemToCart',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -31,7 +33,6 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
 ], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
-
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -571,6 +572,7 @@ define('sf.b2c.mall.component.header', [
 
       // 如果没有指定去哪个页面，则使用当前页面 （因为微信要转跳后关闭后去到指定页面，所以这里必须要设定）
       if (typeof dest == "undefined") {
+        dest = window.location.href;
         store.set("weixinto", encodeURIComponent(window.location.href));
       } else {
         // 给微信登录使用(！！！位置不能移)
