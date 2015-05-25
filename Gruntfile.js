@@ -744,6 +744,7 @@ module.exports = function(grunt) {
 
       orderlist: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.orderlist.js',

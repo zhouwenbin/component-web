@@ -575,7 +575,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       received: function(element) {
         var that = this;
-        var subOrderId = element.parent('td').attr('data-suborderid');
+        // 由于翔子代码太烂，suborderid字段用orderid传
+        // var subOrderId = element.parent('td').attr('data-suborderid');
+        var subOrderId = element.parent('td').attr('data-orderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
         });
