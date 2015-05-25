@@ -20,9 +20,11 @@ define('sf.b2c.mall.component.search', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.search.searchItem',
   'sf.b2c.mall.api.b2cmall.getProductHotDataList',
+  'sf.b2c.mall.component.recommendProducts',
   'text!template_component_search'
 ], function(text, $, cookie, can, _, md5, store, SFComm, SFConfig, SFFn, SFMessage, helpers,
             SFSearchItem, SFGetProductHotDataList,
+            SFRecommendProducts,
             template_component_search) {
 
   return can.Control.extend({
@@ -80,13 +82,20 @@ define('sf.b2c.mall.component.search', [
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+      'sf-isSoldOut': function(soldOut, options) {
+        if (soldOut() == 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
       }
     },
 
     //用于调用搜索接口的对象
     searchParams: {
       q: "",
-      size: 8,
+      size: 20,
       from: 0
     },
 
@@ -95,7 +104,7 @@ define('sf.b2c.mall.component.search', [
       //url中的参数
       searchData: {
         keyword: "",
-        page: 1
+        page: null
       },
       nextPage: null,
       prevPage: 0,
@@ -222,10 +231,22 @@ define('sf.b2c.mall.component.search', [
           //渲染页面
           that.renderHtml(data);
         })
+        .fail(function() {
+          that.searchFail();
+        })
         .then(function() {
-          var itemIds = _.pluck(that.renderData.itemSearch.results, 'itemId');
-          return that.initGetProductHotDataList(itemIds);
+          if (that.renderData.itemSearch.totalHits) {
+            //获取价格
+            var itemIds = _.pluck(that.renderData.itemSearch.results, 'itemId');
+            return that.initGetProductHotDataList(itemIds);
+          } else {
+            that.searchFail();
+          }
         });
+    },
+
+    searchFail: function() {
+      new SFRecommendProducts('.recommend')
     },
     /**
      * @description 渲染html
@@ -317,13 +338,14 @@ define('sf.b2c.mall.component.search', [
       return getProductHotDataList.sendRequest()
         .done(function(hotDataList) {
 
-          //合并价格
+          //合并价格 并入库存
           _.each(hotDataList.value, function(value, key, list) {
             _.each(that.renderData.itemSearch.results, function(ivalue, ikey, ilist) {
               if (ivalue.itemId == value.itemId) {
                 ivalue.attr("sellingPrice", value.sellingPrice);
                 ivalue.attr("referencePrice", value.referencePrice);
                 ivalue.attr("actualPrice", value.originPrice);
+                ivalue.attr("soldOut", value.soldOut);
               }
             });
           })

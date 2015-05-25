@@ -7,71 +7,8 @@
                 <a class="text-important" href="http://www.sfht.com">返回首页</a>
             </div>
             <!--大家都在买-->
-            <div class="product">
-                <ul class="myorder-tab">
-                    <li class="active"><a href="">猜你喜欢</a></li>
-                </ul>
-                <div class="mb">
-                    <ul class="clearfix product-list">
-                        <li>
-                            <div class="product-r1">
-                                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                            </div>
-                            <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-                            <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-                            <div class="product-r2 clearfix">
-                                <div class="product-r2c1 fl">
-                                    <span>￥</span><strong>129</strong><del>￥189</del>5折
 
-                                </div>
-                                <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product-r1">
-                                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                            </div>
-                            <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-                            <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-                            <div class="product-r2 clearfix">
-                                <div class="product-r2c1 fl">
-                                    <span>￥</span><strong>129</strong><del>￥189</del>5折
-
-                                </div>
-                                <div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product-r1">
-                                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                            </div>
-                            <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-                            <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-                            <div class="product-r2 clearfix">
-                                <div class="product-r2c1 fl">
-                                    <span>￥</span><strong>129</strong><del>￥189</del>5折
-
-                                </div>
-                                <div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product-r1">
-                                <a href=""><img src="../img/product.jpg" srcset="../img/product.jpg 1x,../img/product.webp 1x" alt="" ></a><span></span>
-                            </div>
-                            <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-                            <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-                            <div class="product-r2 clearfix">
-                                <div class="product-r2c1 fl">
-                                    <span>￥</span><strong>129</strong><del>￥189</del>5折
-
-                                </div>
-                                <div class="product-r2c2 fr"><a href="" class="icon icon90 disable">购买</a></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <div class="recommend"></div>
 
             <!--购物须知-->
             <div class="buyer-reading">
@@ -115,7 +52,7 @@
                         <label>品牌：</label>
                         <ul id="classify-logo">
                           {{#each brands.buckets}}
-                              <li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}">{{/pic}}{{^pic}}{{key}}{{/pic}}</a></li>
+                              <li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}">{{/pic}}{{^pic}}<span style="line-height: 20px;">{{key}}</span>{{/pic}}</a></li>
                           {{/each}}
                         </ul>
                       </div>
@@ -168,26 +105,37 @@
                     <ul class="clearfix product-list">
                       {{#each itemSearch.results}}
                           <li>
+                            <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
                               <div class="product-r1">
-                                  <a href=""><img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" ></a><span></span>
+                                <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
+                                <span></span>
+                                {{#sf-isSoldOut soldOut}}
+                                  <div class="mask show"></div>
+                                  <span class="icon icon24"></span>
+                                {{/sf-isSoldOut}}
                               </div>
-                              <h3><a href="">{{title}}</a></h3>
+                              <h3>{{title}}</h3>
                               <p><img src="{{nationPic}}" alt="货源地" width="22" height="14" />{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
                               <div class="product-r2 clearfix">
-                                  <div class="product-r2c1 fl">
-                                      <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
-                                  </div>
+                                <div class="product-r2c1 fl">
+                                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
+                                </div>
                               </div>
+                            </a>
                           </li>
                       {{/each}}
                     </ul>
                 </div>
             </div>
-
-            <div class="search-page">
-              {{#prevPage}}<a class="btn btn-normal" id="pageUpBtn">上一页</a>{{/prevPage}}{{#nextPage}}<a class="btn btn-normal" id="pageDownBtn">下一页</a>{{/nextPage}}
-            </div>
         </div>
     </div>
+
+  <div class="pb">
+      <div class="pm">
+          <div class="search-page">
+            {{#prevPage}}<a class="btn btn-normal" href="javascript:" id="pageUpBtn">上一页</a>{{/prevPage}}{{#nextPage}}<a class="btn btn-normal" href="javascript:" id="pageDownBtn">下一页</a>{{/nextPage}}
+          </div>
+      </div>
+  </div>
 {{/itemSearch.totalHits}}
 
