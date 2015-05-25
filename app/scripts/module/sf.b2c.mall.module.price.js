@@ -63,11 +63,19 @@ define(
           if ($el.length && $el.length > 1) {
             _.each($el, function(item) {
               that.fillPrice($(item), value);
-              that.paintCart($(item), value);
+
+              // 判断如果商品已经售完，不再显示添加购物车按钮
+              if (!value.soldOut) {
+                that.paintCart($(item), value);
+              }
             })
           } else {
             that.fillPrice($el, value);
-            that.paintCart($el, value);
+
+            // 判断如果商品已经售完，不再显示添加购物车按钮
+            if (!value.soldOut) {
+              that.paintCart($el, value);
+            }
           }
 
         });
