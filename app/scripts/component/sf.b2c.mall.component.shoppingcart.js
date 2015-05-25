@@ -128,11 +128,15 @@ define(
             //便利满件折促销信息
             _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
               _.each(promotionItem.promotionRuleList, function(item) {
-                promotionInfoArray.push('再买' + item.limit + '件,打' + item.preferential / 10 + '折');
+                promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
               });
             });
 
-            
+            var quantity = goodsItem.quantity;
+            if (promotionInfoArray.length > quantity) {
+              goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+            };
+
 
           });
 
