@@ -13,8 +13,11 @@
   <div class="order-detail-state-c1 fl">
       <div class="order-detail-state-r1">
           <span class="icon icon96"></span>
-          <strong>当前状态：{{orderStatus}}</strong>         
+          <strong>当前状态：{{orderStatus}}</strong>
+          {{#if isShowLinkServer}}
+      <p>顺丰海淘正在努力打包中… 若顺丰海淘较长时间未发货，您可以<a href="" class="btn btn-soon btn-small">联系客服发货</a></p>{{/if}}         
       </div>
+
       <ul id="showUserRoutes">
         {{#each userRoutes}}
           <li class="clearfix">
@@ -23,6 +26,7 @@
           </li>
         {{/each}}
       </ul>
+      
       <a href="" class="btn btn-normal btn-small look-more" data-tag="1">展开全部</a>
   </div>
   <div class="order-detail-state-c2 fr">

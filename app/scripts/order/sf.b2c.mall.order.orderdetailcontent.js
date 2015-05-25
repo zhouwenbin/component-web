@@ -24,17 +24,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return 'active';
           };
         },
-        showImage: function(group){
+        showImage: function(group) {
           var array = eval(group);
           if (array && _.isArray(array)) {
             var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
             if (/^http/.test(url)) {
               return url;
-            }else{
+            } else {
               return 'http://img0.sfht.com' + url;
             }
-          }else{
-            return array; 
+          } else {
+            return array;
           }
         }
       },
@@ -123,10 +123,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         });
 
         packageInfo.showStep = true;
+        packageInfo.isShowLinkServer = false;
         if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
-
+    
+        if (packageInfo.status == 'AUDITING' || packageInfo.status == 'WAIT_SHIPPING' || packageInfo.status == 'SHIPPING' || packageInfo.status == 'SHIPPED') {
+          packageInfo.isShowLinkServer = true;
+        }
         var map = {
           'SUBMITED': '', //待支付
           'AUDITING': 'order-detail-step2', //待审核
@@ -216,7 +220,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SUBMITED': '已提交',
         'AUTO_CANCEL': '自动取消',
         'USER_CANCEL': '用户取消',
-        'AUDITING': '待审核',
+        'AUDITING': '待审核', 
         'OPERATION_CANCEL': '运营取消',
         'BUYING': '采购中',
         'BUYING_EXCEPTION': '采购异常',
