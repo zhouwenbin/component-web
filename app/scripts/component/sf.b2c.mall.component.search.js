@@ -84,7 +84,14 @@ define('sf.b2c.mall.component.search', [
         }
       },
       'sf-isSoldOut': function(soldOut, options) {
-        if (soldOut() == 0) {
+        if (soldOut() == undefined || soldOut() == true) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      'sf-isHasResults': function(totalHits, results, options) {
+        if (results() && totalHits() > 0) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -136,6 +143,7 @@ define('sf.b2c.mall.component.search', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
+
       var that = this;
 
       this.addRenderDataBind();
@@ -143,7 +151,10 @@ define('sf.b2c.mall.component.search', [
 
       //获取存储页数
       var page = params.page;
-      this.renderData.attr("searchData.page", page || 1);
+      if (!/^\+?[1-9]\d*$/.test(page)) {
+        page = 1;
+      }
+      this.renderData.attr("searchData.page", page);
 
       //获取存储搜索关键字
       var keyword = params.keyword;
@@ -235,7 +246,7 @@ define('sf.b2c.mall.component.search', [
           that.searchFail();
         })
         .then(function() {
-          if (that.renderData.itemSearch.totalHits) {
+          if (that.renderData.itemSearch.results.length != 0 && that.renderData.itemSearch.totalHits) {
             //获取价格
             var itemIds = _.pluck(that.renderData.itemSearch.results, 'itemId');
             return that.initGetProductHotDataList(itemIds);

@@ -1,141 +1,141 @@
-{{^itemSearch.totalHits}}
-    <div class="pb">
+{{^sf-isHasResults itemSearch.totalHits itemSearch.results}}
+<div class="pb">
+    <div class="pm">
+        <div class="search-none">
+            <i></i><i></i><i></i>
+            <h1>对不起....我们没有找到和：“{{searchData.keyword}}”相关的商品</h1>
+            <a class="text-important" href="http://www.sfht.com">返回首页</a>
+        </div>
+        <!--大家都在买-->
+
+        <div class="recommend"></div>
+
+        <!--购物须知-->
+        <div class="buyer-reading">
+            <h2>购物须知</h2>
+            <p>根据海关跨境电商管理规定，个人递进境物品需界定为个人自用。个人自用物品需要满足如下条件：</p>
+            <ul>
+                <li>个人自用的海外邮寄物品总值1000元人民币以内（若不可分割的产品可以超过1000元人民币：例如一台笔记本电脑）。</li>
+                <li>在本网站上购买的商品根据[保税仓直发］和［海外直邮］商品类型进行拆分包裹。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{{/sf-isHasResults}}
+
+
+{{#sf-isHasResults itemSearch.totalHits itemSearch.results}}
+<div class="pb">
+    <div class="classify">
         <div class="pm">
-            <div class="search-none">
-                <i></i><i></i><i></i>
-                <h1>对不起....我们没有找到和：“{{searchData.keyword}}”相关的商品</h1>
-                <a class="text-important" href="http://www.sfht.com">返回首页</a>
-            </div>
-            <!--大家都在买-->
+            <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
+            <ul class="classify-list">
+                {{#sf-hasSelect filters}}
+                  <li class="classify-select">
+                    <label>已选条件：</label>
+                    <ul id="classify-select">
+                      {{#each filterBrands}}
+                          <li><a class="btn-search" href="javascript:">品牌：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
+                      {{/each}}
+                      {{#each filterCategories}}
+                          <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
+                      {{/each}}
+                      {{#each filterOrigins}}
+                          <li><a class="btn-search" href="javascript:">货源地：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
+                      {{/each}}
+                    </ul>
+                    {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}
+                  </li>
+                {{/sf-hasSelect}}
+                <li class="clearfix classify-logo" data-role="selectBrand">
+                  <div class="classify-c1 fl">
+                    <label>品牌：</label>
+                    <ul id="classify-logo">
+                      {{#each brands.buckets}}
+                          <li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}">{{/pic}}{{^pic}}<span style="line-height: 20px;">{{key}}</span>{{/pic}}</a></li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                  {{#sf-isShowMoreBrand brands.buckets}}
+                    <div class="classify-c2 fr">
+                      <a href="javascript:" id="classify-more"><span class="classify-more"></span><span class="icon icon105"></span></a>
+                    </div>
+                  {{/sf-isShowMoreBrand}}
+                </li>
 
-            <div class="recommend"></div>
-
-            <!--购物须知-->
-            <div class="buyer-reading">
-                <h2>购物须知</h2>
-                <p>根据海关跨境电商管理规定，个人递进境物品需界定为个人自用。个人自用物品需要满足如下条件：</p>
-                <ul>
-                    <li>个人自用的海外邮寄物品总值1000元人民币以内（若不可分割的产品可以超过1000元人民币：例如一台笔记本电脑）。</li>
-                    <li>在本网站上购买的商品根据[保税仓直发］和［海外直邮］商品类型进行拆分包裹。</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-{{/itemSearch.totalHits}}
-
-
-{{#itemSearch.totalHits}}
-    <div class="pb">
-        <div class="classify">
-            <div class="pm">
-                <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
-                <ul class="classify-list">
-                    {{#sf-hasSelect filters}}
-                      <li class="classify-select">
-                        <label>已选条件：</label>
-                        <ul id="classify-select">
-                          {{#each filterBrands}}
-                              <li><a class="btn-search" href="javascript:">品牌：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
-                          {{/each}}
-                          {{#each filterCategories}}
-                              <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
-                          {{/each}}
-                          {{#each filterOrigins}}
-                              <li><a class="btn-search" href="javascript:">货源地：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
-                          {{/each}}
-                        </ul>
-                        {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}
-                      </li>
-                    {{/sf-hasSelect}}
-                    <li class="clearfix classify-logo" data-role="selectBrand">
-                      <div class="classify-c1 fl">
-                        <label>品牌：</label>
-                        <ul id="classify-logo">
-                          {{#each brands.buckets}}
-                              <li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}">{{/pic}}{{^pic}}<span style="line-height: 20px;">{{key}}</span>{{/pic}}</a></li>
-                          {{/each}}
-                        </ul>
-                      </div>
-                      {{#sf-isShowMoreBrand brands.buckets}}
-                        <div class="classify-c2 fr">
-                          <a href="javascript:"><span id="classify-more" class="classify-more"></span><span class="icon icon105"></span></a>
-                        </div>
-                      {{/sf-isShowMoreBrand}}
-                    </li>
-
-                    <li class="classify-text" data-role="selectCategory">
-                        <label>分类：</label>
-                        <ul>
-                          {{#each categories.buckets}}
-                            <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-                          {{/each}}
-                        </ul>
-                    </li>
-                    <li class="classify-text" data-role="selectOrigin">
-                        <label>货源地：</label>
-                        <ul>
-                          {{#each origins.buckets}}
-                            <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-                          {{/each}}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="pb">
-      <div class="pm">
-        <div class="sort">排序:
-            <ul id="sortBox">
-                <li class="{{#sf-isSortByDEFAULT searchData.sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li>
-                <li class="{{#sf-isSortBySALE searchData.sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li>
-                <li class="{{#sf-isSortByPRICE searchData.sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC searchData.sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC searchData.sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
-                  <a href="javascript:" id="sort-price" class="{{#sf-isSortByPRICEDESC searchData.sort}}active{{/sf-isSortByPRICEDESC}}">价格<span class="icon icon107"></span></a>
+                <li class="classify-text" data-role="selectCategory">
+                    <label>分类：</label>
+                    <ul>
+                      {{#each categories.buckets}}
+                        <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                      {{/each}}
+                    </ul>
+                </li>
+                <li class="classify-text" data-role="selectOrigin">
+                    <label>货源地：</label>
+                    <ul>
+                      {{#each origins.buckets}}
+                        <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                      {{/each}}
+                    </ul>
                 </li>
             </ul>
         </div>
-      </div>
     </div>
+</div>
 
-    <div class="pb">
-        <div class="pm">
-            <div class="product">
-                <div class="mb">
-                    <ul class="clearfix product-list">
-                      {{#each itemSearch.results}}
-                          <li>
-                            <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
-                              <div class="product-r1">
-                                <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
-                                <span></span>
-                                {{#sf-isSoldOut soldOut}}
-                                  <div class="mask show"></div>
-                                  <span class="icon icon24"></span>
-                                {{/sf-isSoldOut}}
-                              </div>
-                              <h3>{{title}}</h3>
-                              <p><img src="{{nationPic}}" alt="货源地" width="22" height="14" />{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
-                              <div class="product-r2 clearfix">
-                                <div class="product-r2c1 fl">
-                                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
-                                </div>
-                              </div>
-                            </a>
-                          </li>
-                      {{/each}}
-                    </ul>
-                </div>
+<div class="pb">
+  <div class="pm">
+    <div class="sort">排序:
+        <ul id="sortBox">
+            <li class="{{#sf-isSortByDEFAULT searchData.sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li>
+            <li class="{{#sf-isSortBySALE searchData.sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li>
+            <li class="{{#sf-isSortByPRICE searchData.sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC searchData.sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC searchData.sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
+              <a href="javascript:" id="sort-price" class="{{#sf-isSortByPRICEDESC searchData.sort}}active{{/sf-isSortByPRICEDESC}}">价格<span class="icon icon107"></span></a>
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pb">
+    <div class="pm">
+        <div class="product">
+            <div class="mb">
+                <ul class="clearfix product-list">
+                  {{#each itemSearch.results}}
+                      <li>
+                        <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+                          <div class="product-r1">
+                            <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
+                            <span></span>
+                            {{#sf-isSoldOut soldOut}}
+                              <div class="mask show"></div>
+                              <span class="icon icon24"></span>
+                            {{/sf-isSoldOut}}
+                          </div>
+                          <h3>{{title}}</h3>
+                          <p><img src="{{nationPic}}" alt="货源地" width="22" height="14" />{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
+                          <div class="product-r2 clearfix">
+                            <div class="product-r2c1 fl">
+                              <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                  {{/each}}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-  <div class="pb">
-      <div class="pm">
-          <div class="search-page">
-            {{#prevPage}}<a class="btn btn-normal" href="javascript:" id="pageUpBtn">上一页</a>{{/prevPage}}{{#nextPage}}<a class="btn btn-normal" href="javascript:" id="pageDownBtn">下一页</a>{{/nextPage}}
-          </div>
-      </div>
-  </div>
-{{/itemSearch.totalHits}}
+<div class="pb">
+    <div class="pm">
+        <div class="search-page">
+          {{#prevPage}}<a class="btn btn-normal" href="javascript:" id="pageUpBtn">上一页</a>{{/prevPage}}{{#nextPage}}<a class="btn btn-normal" href="javascript:" id="pageDownBtn">下一页</a>{{/nextPage}}
+        </div>
+    </div>
+</div>
+{{/sf-isHasResults}}
 
