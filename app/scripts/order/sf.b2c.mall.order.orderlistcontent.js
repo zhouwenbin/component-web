@@ -77,7 +77,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             return options.fn(options.contexts || this);
           };
         },
-        needSeperateOperationColoumRow: function(orderStatus, options){
+        needCombineOperationRow: function(orderStatus, options){
           if (orderStatus === '已提交' || orderStatus == '待审核') {
             return options.fn(options.contexts || this);
           } else {
