@@ -236,6 +236,7 @@ define('sf.b2c.mall.component.addreditor', [
     },
 
     add: function(addr) {
+      var def = can.Deferred();
       var that = this;
 
       var person = {
@@ -271,7 +272,7 @@ define('sf.b2c.mall.component.addreditor', [
               'type': 'error'
             });
           }
-          return false;
+          def.reject(error);
         })
         .then(function() {
           addr.recId = recId;
@@ -286,7 +287,10 @@ define('sf.b2c.mall.component.addreditor', [
 
           that.hide();
           that.onSuccess(data);
-          return true;
+
+          // 存储默认地址
+          that.storeDefaultAddr(addr);
+          def.resolve(data);
         })
         .fail(function(error) {
           if (error === 1000310) {
@@ -296,11 +300,12 @@ define('sf.b2c.mall.component.addreditor', [
               'type': 'error'
             });
           }
-          return false;
+          def.reject(error);
         });
     },
 
     update: function(addr, element) {
+      var def = can.Deferred();
       var that = this;
       var person = {
         recId: addr.recId,
@@ -323,8 +328,11 @@ define('sf.b2c.mall.component.addreditor', [
             value: window.parseInt(addr.addrId)
           });
 
+          def.resolve(data);
         })
-        .fail(function(error) {});
+        .fail(function(error) {
+          def.reject(error);
+        });
     },
 
     '#paddressSaveCancel click': function(element, event) {
@@ -507,28 +515,48 @@ define('sf.b2c.mall.component.addreditor', [
       }
       var isNotChecked = $('.setDefaultAdr')[0];
       if (addr.addrId) {
+
+        // 如果是编辑，则调用设置默认地址接口。新增则不用
         if (isNotChecked.checked) {
           this.setDefaultAddrFun(addr);
-          this.update(addr, element);
-          element.parents('div#editAdrArea').toggle();
-        } else {
-          this.update(addr, element);
-          element.parents('div#editAdrArea').toggle();
         }
 
+        // 执行更新
+        this.update(addr, element)
+          .done(function(){
+            element.parents('div#editAdrArea').toggle();
+          })
+          .fail(function(error){
+            console.error(error);
+          });
+
       } else {
-        var result = this.add(addr);
-        if (result) {
-          if (isNotChecked.checked) {
-            this.setDefaultAddrFun(result);
-            element.parents('div#addAdrArea').toggle();
-            $('#btn-add-addr').show();
-          } else {
-            element.parents('div#addAdrArea').toggle();
-            $('#btn-add-addr').show();
-          }
+        // 如果选择了设为默认地址，则isDefault = 1
+        if (isNotChecked.checked) {
+          addr.isDefault = 1;
         }
+
+        // 执行新增，store存储放在add方法里面了
+        this.add(addr)
+          .done(function(data){
+            element.parents('div#addAdrArea').toggle();
+            $('#btn-add-addr').show();
+          })
+          .fail(function(error){
+            console.error(error);
+          })
       }
+    },
+
+    // 存储默认收货地址，供详情页生鲜使用
+    storeDefaultAddr: function(addrData) {
+      var provinceId = that.adapter.regions.getIdByName(addrData.provinceName);
+      var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addrData.cityName);
+      var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addrData.regionName);
+
+      store.set('provinceId', provinceId);
+      store.set('cityId', cityId);
+      store.set('regionId', regionId);
     },
 
     //设为默认收货地址
@@ -544,17 +572,7 @@ define('sf.b2c.mall.component.addreditor', [
       });
       can.when(setDefaultRecv.sendRequest(), setDefaultAddr.sendRequest())
         .done(function(data) {
-          new SFMessage(null, {
-            'tip': '设为默认地址成功！',
-            'type': 'success'
-          });
-          var provinceId = that.adapter.regions.getIdByName(addrData.provinceName);
-          var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addrData.cityName);
-          var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addrData.regionName);
-
-          store.set('provinceId', provinceId);
-          store.set('cityId', cityId);
-          store.set('regionId', regionId);
+          that.storeDefaultAddr(addrData);
         })
         .fail(function() {
 
