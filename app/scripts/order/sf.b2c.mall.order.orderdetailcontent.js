@@ -251,7 +251,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SHIPPED': '已发货',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
-        'CLOSED': '订单关闭',
+        'CLOSED': '已关闭',
         'CONSIGNED': '已出库',
         'RECEIPTED': '已签收'
 
@@ -346,7 +346,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               'type': 'success'
             });
 
-            that.render();
+            window.location.reload();
           })
           .fail(function(error) {
 

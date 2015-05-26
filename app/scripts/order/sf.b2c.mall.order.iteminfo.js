@@ -175,6 +175,7 @@ define('sf.b2c.mall.order.iteminfo', [
         useQuantity: 0, //?这个参数干嘛用的
         couponExCode: "",
         isHaveAvaliable: false,
+        isShowMore: false,
         bestCoupon: null
       });
 
@@ -183,6 +184,9 @@ define('sf.b2c.mall.order.iteminfo', [
         this.itemObj.orderCoupon.attr("isHaveAvaliable", true);
         this.itemObj.orderCoupon.attr("bestCoupon", orderCoupon.avaliableCoupons[0]);
         this.itemObj.attr("couponPrice", orderCoupon.avaliableCoupons[0].price);
+      };
+      if (orderCoupon.avaliableAmount > 0 || orderCoupon.disableAmount > 0) {
+        this.itemObj.orderCoupon.attr("isShowMore", true);
       };
 
       this.itemObj.orderCoupon.selectCoupons = [];
@@ -249,7 +253,7 @@ define('sf.b2c.mall.order.iteminfo', [
       "4000401": "部分商品超出可购买数量，请重新提交订单",
       "4000402": "折扣金额大于订单总金额",
       "4000403": "部分商品超出可购买数量，请重新提交订单",
-      "4000404": "部分商品超出可购买数量，请重新提交订单",
+      "4000404": "订单金额发生变化，请重新提交订单",
       "4000405": "折扣金额过大，超过订单总金额的30%",
       "4000500": "部分商品超出可购买数量，请重新提交订单",
       "4000600": "部分商品超出可购买数量，请重新提交订单",
@@ -511,7 +515,7 @@ define('sf.b2c.mall.order.iteminfo', [
                 'type': 'success'
               });
             });
-            that.initOrderRender();
+          that.initOrderRender();
         })
         .fail(function(error) {
           var errorMap = {

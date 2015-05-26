@@ -54,6 +54,7 @@
           <span class="icon icon85"></span>
         </div>
       {{/orderCoupon.isHaveAvaliable}}
+      {{#orderCoupon.isShowMore}}
       <div class="cart-coupon-r2">
         <a href="javascript:void(0)" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
       </div>
@@ -86,6 +87,7 @@
           {{/each}}
         </ul>
       </div>
+      {{/orderCoupon.isShowMore}}
       {{! end 优惠券列表 }}
       <div class="cart-coupon-r3">or<a href="javascript:void(0)" class="text-link">兑换优惠券？</a></div>
       <div class="cart-coupon-r4">请输入您手中的兑换码：

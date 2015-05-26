@@ -61,7 +61,7 @@
     		<div class="cart-footer-c1 fl">
     			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>|
     			<a id="deletedSelectGoods" href="">删除选中商品</a>
-    			<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>
+    			{{#order.invalidItems}}<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>{{/order.invalidItems}}
     		</div>
     		<div class="cart-footer-c2 fr">
     			<ul>
