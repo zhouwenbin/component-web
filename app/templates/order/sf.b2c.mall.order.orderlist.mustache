@@ -8,7 +8,7 @@
 <!--所有订单-->
 <div class="orderShow">
   <div class="myorder-search">
-    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+    <input placeholder="输入订单号或者收货人搜索" id="searchValue"><button id="search">搜索</button>
   </div>
   <table>
     <thead>
@@ -60,7 +60,7 @@
                             <h3><a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a></h3>
                         </td>
                         <td class="td3">
-                            <del>{{sf.price originPrice}}</del>
+                            {{#isShowOriginPrice originPrice price}}<del>{{sf.price originPrice}}</del>{{/isShowOriginPrice}}
                             <div>{{sf.price price}}</div>
                         </td>
                         <td class="td4">{{quantity}}</td>
@@ -73,7 +73,7 @@
             {{! 显示总价格，要合并行。合并原则：只展示第一条数据的价格，第二条数据不显示td，从而达到合并目的 }}
             {{#firstPackage orderPackageItemList @index}}
             <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
-            {{/first}}
+            {{/firstPackage}}
 
             {{! 如果不显示路由则合并订单状态 }}
             {{#needCombineOperationRow orderStatus}}
@@ -81,7 +81,7 @@
             <td class="td6" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
               <div>{{orderStatus}}</div>
             </td>
-            {{/first}}
+            {{/firstPackage}}
             {{/needCombineOperationRow}}
 
             {{! 如果不显示路由则不核定订单状态 }}
@@ -89,7 +89,7 @@
             <td class="td6">
               <div>{{orderStatus}}</div>
               {{#if showRouter}}
-                <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
+                <div class="table-1-logistics" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
                   <div class="tooltip-pos">
                     <a class="myorder-link find-route-list" href="/orderdetail.html?orderid={{orderId}}">查看物流</a>
                     <div class="tooltip-outer">
@@ -112,7 +112,7 @@
                   {{/isNotShowEndTime}}
                   {{{optionHMTL}}}
             </td>
-            {{/first}}
+            {{/firstPackage}}
 
         </tr>
         {{/each}}<!--end orderPackageItemList-->

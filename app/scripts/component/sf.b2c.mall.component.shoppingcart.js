@@ -21,6 +21,7 @@ define(
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
+    var handler = null;
     return can.Control.extend({
 
       helpers: {
@@ -137,9 +138,6 @@ define(
                 goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
               }
             }
-
-
-
           });
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
@@ -318,6 +316,7 @@ define(
        */
       '.btn-num-add click': function(element, event) {
         event && event.preventDefault();
+        var that = this;
         if ($(element).hasClass('disable')) {
           return false;
         };
@@ -328,8 +327,15 @@ define(
           $(element).siblings('input').val(limitQuantity);
           return false;
         } else {
-          $(element).siblings('input').val(num + 1);
-          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+          handler = setTimeout(function() {
+            if (handler) {
+              handler = null;
+              clearTimeout(handler);
+              $(element).siblings('input').val(num + 1);
+              that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+            };
+          }, 500);
+
         }
       },
 
@@ -369,7 +375,7 @@ define(
         var amount = $(element).val();
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
-        if (amount < 0 || isNaN(amount)) {
+        if (amount < 0 || isNaN(amount) || amount == '') {
           $(element).val(1);
           return false;
         } else if (amount >= limitQuantity) {
