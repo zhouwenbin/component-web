@@ -82,6 +82,21 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
+        //是否显示购物车
+        'sf-needshowcart': function(options) {
+          var uinfo = $.cookie('1_uinfo');
+          var arr = [];
+          if (uinfo) {
+            arr = uinfo.split(',');
+          }
+
+          if (typeof arr[4] == 'undefined' || arr[4] == '0') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
         //促销展示
         'sf-showActivity': function(activityType, options) {
           if (activityType != 'FLASH') {
@@ -752,21 +767,27 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{/if}}' +
           '{{^if priceInfo.soldOut}}' +
-            '{{^priceInfo.isPromotion}}' +
-            '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-            '<button class="btn btn-soon addtocart">加入购物车</button>' +
-            '{{/priceInfo.isPromotion}}' +
-            '{{#priceInfo.isPromotion}}' +
-              '{{#if priceInfo.activitySoldOut}}' +
-              '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
-              '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
-              '<button class="btn disable addtocart" disabled="disabled">加入购物车</button>' +
-              '{{/if}}' +
-              '{{^if priceInfo.activitySoldOut}}' +
-              '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
-              '<button class="btn btn-soon addtocart">加入购物车</button>' +
-              '{{/if}}' +
-            '{{/priceInfo.isPromotion}}' +
+          '{{^priceInfo.isPromotion}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{#sf-needshowcart}}' +
+          '<button class="btn btn-soon addtocart">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
+          '{{/priceInfo.isPromotion}}' +
+          '{{#priceInfo.isPromotion}}' +
+          '{{#if priceInfo.activitySoldOut}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
+          '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+          '{{#sf-needshowcart}}' +
+          '<button class="btn disable addtocart" disabled="disabled">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
+          '{{/if}}' +
+          '{{^if priceInfo.activitySoldOut}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{#sf-needshowcart}}' +
+          '<button class="btn btn-soon addtocart">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
+          '{{/if}}' +
+          '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
 
           '</div>' +
@@ -916,22 +937,24 @@ define('sf.b2c.mall.product.detailcontent', [
        * @author Michael.Lee
        * @description 加入购物车
        */
-      addCart: function (itemId, num) {
+      addCart: function(itemId, num) {
         var itemsStr = JSON.stringify([{
           itemId: itemId,
           num: num || 1
         }]);
-        var addItemToCart = new SFAddItemToCart({items: itemsStr});
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
 
         // 添加购物车发送请求
         addItemToCart.sendRequest()
-          .done(function (data) {
+          .done(function(data) {
             if (data.value) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
             }
           })
-          .fail(function (data) {
+          .fail(function(data) {
             // @todo 添加失败提示
             var error = SFAddItemToCart.api.ERROR_CODE[data.code];
 
@@ -946,7 +969,7 @@ define('sf.b2c.mall.product.detailcontent', [
        * @description 添加购物车动作触发
        * @param  {element} el
        */
-      '.addtocart click': function (el, event) {
+      '.addtocart click': function(el, event) {
         event && event.preventDefault();
 
         var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
@@ -975,8 +998,11 @@ define('sf.b2c.mall.product.detailcontent', [
         if (SFComm.prototype.checkUserLogin.call(this)) {
           // 用户如果如果登录
           this.addCart(itemId, amount);
-        }else{
-          store.set('temp-action-addCart', {itemId: itemId, num: amount});
+        } else {
+          store.set('temp-action-addCart', {
+            itemId: itemId,
+            num: amount
+          });
           can.trigger(window, 'showLogin', [window.location.href]);
         }
       },

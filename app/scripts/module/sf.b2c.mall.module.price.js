@@ -183,9 +183,15 @@ define(
        * @return
        */
       paintCart: function (element, value) {
-        // @todo 从value中获得值确认购物车是不是显示
+        // 从cookie中获得值确认购物车是不是显示
+        var uinfo = $.cookie('1_uinfo');
+        var arr = [];
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
 
-        if (true) {
+        // 第四位标示是否能够展示购物车
+        if (typeof arr[4] == 'undefined' || arr[4] == '0') {
           element.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
         }
       },

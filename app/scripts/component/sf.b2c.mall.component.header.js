@@ -249,6 +249,17 @@ define('sf.b2c.mall.component.header', [
      * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function() {
+      var uinfo = $.cookie('1_uinfo');
+      var arr = [];
+      if (uinfo) {
+        arr = uinfo.split(',');
+      }
+      if (typeof arr[4] != 'undefined' && arr[4] != '0') {
+        $(".mini-cart-container").hide();
+      } else {
+        $(".mini-cart-container").show();
+      }
+
       var that = this;
 
       // 如果用户已经登陆了，可以进行购物车更新
