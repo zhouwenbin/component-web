@@ -145,11 +145,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var getOrderList = new SFGetOrderList(params);
         getOrderList.sendRequest()
           .done(function(data) {
+
+            //获取不同状态订单的数量
+            that.options.waitCompletedNum = data.waitCompletedNum;
+            that.options.waitPayNum = data.waitPayNum;
+            that.options.waitShippingNum = data.waitShippingNum;
+
             if (data.orders && data.orders.length > 0) {
-              //获取不同状态订单的数量
-              that.options.waitCompletedNum = data.waitCompletedNum;
-              that.options.waitPayNum = data.waitPayNum;
-              that.options.waitShippingNum = data.waitShippingNum;
 
               that.options.orders = data.orders;
 
