@@ -87,7 +87,7 @@
             {{! 如果不显示路由则不核定订单状态 }}
             {{^needCombineOperationRow orderStatus}}
             <td class="td6">
-              <div>{{orderStatus}}</div>
+              <div>{{status}}</div>
               {{#if showRouter}}
                 <div class="table-1-logistics" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
                   <div class="tooltip-pos">

@@ -166,6 +166,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 var lastPackageItemList = [];
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
                   _.each(order.orderPackageItemList, function(orderPackageItem, i) {
+                    orderPackageItem.status = that.statsMap[orderPackageItem.status];
                     if (i !== 0) {
                       lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
                     };
