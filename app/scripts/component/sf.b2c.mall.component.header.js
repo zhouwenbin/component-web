@@ -606,7 +606,7 @@ define('sf.b2c.mall.component.header', [
         return window.location.href = SFConfig.setting.link.ilogin;
       }
 
-      if (dest) {
+      if (dest && _.isString(dest)) {
         this.afterLoginDest = dest
       }
 
