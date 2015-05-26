@@ -89,9 +89,9 @@
             <td class="td6">
               <div>{{status}}</div>
               {{#if showRouter}}
-                <div class="table-1-logistics" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
+                <div class="table-1-logistics" data-pkgid="{{getPackageNum @index}}" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
                   <div class="tooltip-pos">
-                    <a class="myorder-link find-route-list" href="/orderdetail.html?orderid={{orderId}}">查看物流</a>
+                    <a class="myorder-link find-route-list" href="/orderdetail.html?orderid={{orderId}}&pkgid={{getPackageNum @index}}">查看物流</a>
                     <div class="tooltip-outer">
                       <div class="tooltip" id="traceList">
                         努力加载中

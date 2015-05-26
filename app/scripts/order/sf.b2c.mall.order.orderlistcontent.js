@@ -655,10 +655,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var $el = element.closest('.table-1-logistics');
         var orderid = $el.attr('data-orderid');
+        var pkgid = $el.attr('data-pkgid');
         var suborderid = $el.attr('data-suborderid');
         var recid = element.closest('.table-c4').siblings('#operationarea').attr('data-recid');
 
-        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+        window.open("/orderdetail.html?orderid=" + orderid + "&pkgid=" + pkgid+ "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {
         var that = this;
