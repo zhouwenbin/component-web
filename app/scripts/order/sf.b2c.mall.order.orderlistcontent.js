@@ -383,7 +383,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.attr('data-is-show', 'true');
 
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).closest('.table-1-logistics').attr('data-orderid')
+          'bizId': $(element).closest('.table-1-logistics').data('packageNo')
         });
         getUserRoutes
           .sendRequest()
