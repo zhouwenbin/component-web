@@ -99,6 +99,7 @@ define('sf.b2c.mall.component.header', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
+      this.controlCart();
       this.component = {};
       this.component.modal = new SFModal('body');
       // this.component.scanner = new SFLoginScanner();
@@ -172,6 +173,20 @@ define('sf.b2c.mall.component.header', [
       // 将弹出登录框事件注册到window上
       // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
+    },
+
+    controlCart: function() {
+      var uinfo = $.cookie('1_uinfo');
+      var arr = [];
+      if (uinfo) {
+        arr = uinfo.split(',');
+      }
+
+      if (typeof arr[4] != 'undefined' && arr[4] != '0') {
+        $(".mini-cart-container").hide();
+      } else {
+        $(".mini-cart-container").show();
+      }
     },
 
     /**
@@ -249,16 +264,6 @@ define('sf.b2c.mall.component.header', [
      * @description 更新导航栏购物车，调用接口刷新购物车数量
      */
     updateCart: function() {
-      var uinfo = $.cookie('1_uinfo');
-      var arr = [];
-      if (uinfo) {
-        arr = uinfo.split(',');
-      }
-      if (typeof arr[4] != 'undefined' && arr[4] != '0') {
-        $(".mini-cart-container").hide();
-      } else {
-        $(".mini-cart-container").show();
-      }
 
       var that = this;
 
