@@ -129,8 +129,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
-            "receiverName": that.options.searchValue,
-            "orderId": that.options.searchValue,
             "pageNum": routeParams.page,
             "pageSize": 10,
             "searchValue": that.options.searchValue
@@ -594,7 +592,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       received: function(element) {
         var that = this;
-        // 由于翔子代码太烂，suborderid字段用orderid传
+        // suborderid字段用orderid传
         // var subOrderId = element.parent('td').attr('data-suborderid');
         var subOrderId = element.parent('td').attr('data-orderid');
         var confirmReceive = new SFConfirmReceive({
@@ -609,7 +607,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               'type': 'success'
             });
 
-            that.render();
+            window.location.reload();
           })
           .fail(function(error) {
 
@@ -784,8 +782,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //再次购买加入购物车
       '.btn-buyagain click': function(element, event) {
         event && event.preventDefault();
-        var itemIdList = new Array();
-        var itemId = $(element).closest('li').data('goods').itemId;
+        var itemIdList = new Array();    
+
+        var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
+        var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
         this.addCart(itemId);
       },
       //搜索无结果加入购物车

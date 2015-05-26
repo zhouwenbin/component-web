@@ -10,7 +10,7 @@ define(
 		'sf.b2c.mall.component.header',
 		'sf.b2c.mall.component.footer'
 	],
-	function(can, $, SFReceiveaddr, SFFrameworkComm, Header, Footer) {
+	function(can, $, SFReceiveaddr, SFFrameworkComm,SFBusiness, Header, Footer) {
 
 		SFFrameworkComm.register(1);
 
@@ -28,7 +28,7 @@ define(
 				});
 				new Footer('.sf-b2c-mall-footer');
 				new SFReceiveaddr('.sf-b2c-mall-address-manage');
-			},
+			}
 
 		});
 

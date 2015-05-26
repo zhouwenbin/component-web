@@ -100,7 +100,8 @@ define(
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
             'discountFee': data.cartFeeItem.discountFee,
             'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
-            'limitAmount': data.limitAmount
+            'limitAmount': data.limitAmount,
+            'invalidItems': false
           });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0);
@@ -142,6 +143,10 @@ define(
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
           that.element.html(html);
+          var invalidItems = $('.cart-disable').length;
+          if (invalidItems) {
+            this.options.order.attr('invalidItems', true);
+          };
         } else {
           this.options.hasGoods = false;
           var findRecommendProducts = new SFFindRecommendProducts({
@@ -157,7 +162,7 @@ define(
               _.each(that.options.recommendGoods, function(item) {
                 item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
                 item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
-                item.sellingPrice = item.sellingPrice / 100;
+                item.sellingPrice = item.sellingPrice;
               });
 
               var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
@@ -323,18 +328,17 @@ define(
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        //var stock = 
         if (num >= limitQuantity) {
           $(element).siblings('input').val(limitQuantity);
           return false;
         } else {
+          clearTimeout(handler);
+          handler = null;
+          $(element).siblings('input').val(num + 1);
           handler = setTimeout(function() {
-            if (handler) {
-              handler = null;
-              clearTimeout(handler);
-              $(element).siblings('input').val(num + 1);
-              that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
-            };
-          }, 500);
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+          }, 300);
 
         }
       },
@@ -344,6 +348,7 @@ define(
        */
       '.btn-num-reduce click': function(element, event) {
         event && event.preventDefault();
+        var that = this;
         if ($(element).hasClass('disable')) {
           return false;
         };
@@ -355,8 +360,13 @@ define(
           $(element).addClass('disable');
         } else {
           $(element).removeClass('disable');
+          //设置一个全局句柄变量，每次点击的时候清除句柄，数量加减1，然后300ms后发起请求
+          clearTimeout(handler);
+          handler = null;
           $(element).siblings('input').val(num - 1);
-          this.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+          handler = setTimeout(function() {
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+          }, 300);
         }
 
       },

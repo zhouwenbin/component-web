@@ -80,7 +80,7 @@ define(
 
           })
           .fail(function(errorCode) {
-            throw new Error(errorCode)
+            //throw new Error(errorCode)
           })
       },
       render: function(data) {
