@@ -16,9 +16,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.api.order.deleteOrder'
+    'sf.b2c.mall.api.order.deleteOrder',
+    'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder, SFAddItemToCart) {
 
     can.route.ready();
 
@@ -93,7 +94,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         isShowOriginPrice: function(originPrice, price, options) {
           if (originPrice !== price && originPrice > price) {
-            return options.fn(options.contexts || this); 
+            return options.fn(options.contexts || this);
           };
         }
 
@@ -321,7 +322,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '{{#if hasData}}' +
           '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
           '{{#each value}}' +
-          '<li>' +
+          '<li {{data "goods"}}>' +
 
           '<div class="product-r1">' +
           '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
@@ -335,7 +336,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
           '</div>' +
 
-          '<div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>' +
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90 addCart">购买</a></div>' +
 
           '</div>' +
           '</li>' +
@@ -357,7 +358,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '{{#if hasData}}' +
           '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
           '{{#each value}}' +
-          '<li>' +
+          '<li {{data "goods"}}>' +
 
           '<div class="product-r1">' +
           '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
@@ -371,7 +372,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
           '</div>' +
 
-          '<div class="product-r2c2 fr"><a href="" class="icon icon90">购买</a></div>' +
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90 addCart">购买</a></div>' +
 
           '</div>' +
           '</li>' +
@@ -396,7 +397,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.attr('data-is-show', 'true');
 
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).closest('.table-1-logistics').data('packageNo')
+          'bizId': $(element).closest('.table-1-logistics').attr('data-package-no')
         });
         getUserRoutes
           .sendRequest()
@@ -500,22 +501,22 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * [optionMap 状态下允许执行的操作]
        */
       optionMap: {
-        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO'],
-        'AUTO_CANCEL': ['INFO'],
-        'USER_CANCEL': ['INFO'],
-        'AUDITING': ['CANCEL', 'INFO'],
-        'OPERATION_CANCEL': ['INFO'],
-        'BUYING': ['INFO'],
-        'BUYING_EXCEPTION': ['INFO'],
-        'WAIT_SHIPPING': ['INFO'],
-        'SHIPPING': ['ROUTE', 'INFO'],
-        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO'],
-        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
-        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
-        'COMPLETED': ['INFO', 'ROUTE'],
-        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED'],
-        'CLOSED': ['INFO'],
-        'AUTO_COMPLETED': ['INFO', 'ROUTE']
+        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO', 'REBUY'],
+        'AUTO_CANCEL': ['INFO', 'REBUY'],
+        'USER_CANCEL': ['INFO', 'REBUY'],
+        'AUDITING': ['CANCEL', 'INFO', 'REBUY'],
+        'OPERATION_CANCEL': ['INFO', 'REBUY'],
+        'BUYING': ['INFO', 'REBUY'],
+        'BUYING_EXCEPTION': ['INFO', 'REBUY'],
+        'WAIT_SHIPPING': ['INFO', 'REBUY'],
+        'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
+        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'CLOSED': ['INFO', 'REBUY'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
       },
 
       /**
@@ -525,7 +526,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "NEEDPAY": '<a href="#" class="btn btn-danger btn-small gotoPay">立即付款</a>',
         "CANCEL": '<a href="#" class="btn btn-normal btn-small cancelOrder">取消订单</a>',
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
-        "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>'
+        "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
+        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>'
       },
       //删除订单
       '.deleteOrders click': function(element, event) {
@@ -745,6 +747,48 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
         'CLOSED': '订单关闭'
+      },
+      //再次购买
+      addCart: function(itemId, num) {
+        var that = this;
+        var itemsStr = JSON.stringify([{
+          itemId: itemId,
+          num: num || 1
+        }]);
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+              window.location.reload();
+            }
+          })
+          .fail(function(data) {
+            // @todo 添加失败提示
+            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
+
+            if (error) {
+              // @todo 需要确认是不是需要提交
+            }
+          })
+      },
+      //再次购买加入购物车
+      '.btn-buyagain click': function(element, event) {
+        event && event.preventDefault();
+        var itemIdList = new Array();
+        var itemId = $(element).closest('li').data('goods').itemId;
+        this.addCart(itemId);
+      },
+      //搜索无结果加入购物车
+      '.addCart click': function(element, event) {
+        event && event.preventDefault();
+        var itemId = $(element).closest('li').data('goods').itemId;
+        this.addCart(itemId);
       }
 
     });

@@ -39,6 +39,13 @@
       <span class="icon icon26" id="mobile-code-error">短信验证码输入有误，请重新输入</span>
     </li>
     {{/if}}
+    {{^if hasPswd}}
+    <li>
+      <label class="justify" for="new-password">原始密码</label>:
+      <input id="old-password" type="password" class="input" can-value="oldPwd">
+      <span id="oldPwd-error-tips" class="icon icon26"></span>
+    </li>
+    {{/if}}
     <li>
       <label class="justify" for="new-password">新密码</label>:
       <input id="new-password" type="password" class="input" can-value="newPwd">
@@ -50,5 +57,10 @@
       <span id="confirmPwd-error-tips" class="icon icon26"></span>
     </li>
   </ul>
+  {{#if hasPswd}}
   <button id="btn-confirm-bind" class="btn btn-success btn-small">确定</button>
+  {{/if}}
+  {{^if hasPswd}}
+  <button id="btn-confirm" class="btn btn-success btn-small">确定</button>
+  {{/if}}
 </div>
