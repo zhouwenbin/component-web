@@ -93,7 +93,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         isShowOriginPrice: function(originPrice, price, options) {
           if (originPrice !== price && originPrice > price) {
-            return options.fn(options.contexts || this); 
+            return options.fn(options.contexts || this);
           };
         }
 
@@ -121,6 +121,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
               this.options.tab.attr(key, true);
             }
           }, this)
+        } else {
+          this.options.tab.attr("allorderTab", true);
         }
 
         var params = {
