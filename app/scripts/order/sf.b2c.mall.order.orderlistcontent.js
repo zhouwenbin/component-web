@@ -122,6 +122,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
               this.options.tab.attr(key, true);
             }
           }, this)
+        } else {
+          this.options.tab.attr("allorderTab", true);
         }
 
         var params = {
@@ -130,7 +132,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
             "receiverName": that.options.searchValue,
             "orderId": that.options.searchValue,
             "pageNum": routeParams.page,
-            "pageSize": 10
+            "pageSize": 10,
+            "searchValue": that.options.searchValue
           })
         }
 
@@ -164,6 +167,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 var lastPackageItemList = [];
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
                   _.each(order.orderPackageItemList, function(orderPackageItem, i) {
+                    orderPackageItem.status = that.statsMap[orderPackageItem.status];
                     if (i !== 0) {
                       lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
                     };

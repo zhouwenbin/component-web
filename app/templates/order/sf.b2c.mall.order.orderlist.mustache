@@ -8,7 +8,7 @@
 <!--所有订单-->
 <div class="orderShow">
   <div class="myorder-search">
-    <input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>
+    <input placeholder="输入订单号或者收货人搜索" id="searchValue"><button id="search">搜索</button>
   </div>
   <table>
     <thead>
@@ -87,7 +87,7 @@
             {{! 如果不显示路由则不核定订单状态 }}
             {{^needCombineOperationRow orderStatus}}
             <td class="td6">
-              <div>{{orderStatus}}</div>
+              <div>{{status}}</div>
               {{#if showRouter}}
                 <div class="table-1-logistics" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
                   <div class="tooltip-pos">
