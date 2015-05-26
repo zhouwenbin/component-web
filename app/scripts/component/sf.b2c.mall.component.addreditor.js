@@ -302,6 +302,8 @@ define('sf.b2c.mall.component.addreditor', [
           }
           def.reject(error);
         });
+
+      return def;
     },
 
     update: function(addr, element) {
@@ -333,6 +335,8 @@ define('sf.b2c.mall.component.addreditor', [
         .fail(function(error) {
           def.reject(error);
         });
+
+      return def;
     },
 
     '#paddressSaveCancel click': function(element, event) {
@@ -550,9 +554,9 @@ define('sf.b2c.mall.component.addreditor', [
 
     // 存储默认收货地址，供详情页生鲜使用
     storeDefaultAddr: function(addrData) {
-      var provinceId = that.adapter.regions.getIdByName(addrData.provinceName);
-      var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, addrData.cityName);
-      var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, addrData.regionName);
+      var provinceId = this.adapter.regions.getIdByName(addrData.provinceName);
+      var cityId = this.adapter.regions.getIdBySuperreginIdAndName(provinceId, addrData.cityName);
+      var regionId = this.adapter.regions.getIdBySuperreginIdAndName(cityId, addrData.regionName);
 
       store.set('provinceId', provinceId);
       store.set('cityId', cityId);
