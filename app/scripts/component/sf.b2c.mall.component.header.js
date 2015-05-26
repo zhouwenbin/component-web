@@ -233,7 +233,11 @@ define('sf.b2c.mall.component.header', [
         .fail(function(data) {
           // @todo 添加失败提示
           var error = SFAddItemToCart.api.ERROR_CODE[data.code];
-
+          //
+          new SFMessage(null, {
+            'tip': "购物车已满",
+            'type': 'error'
+          });
           if (error) {
             // @todo 需要确认是不是需要提交
           }
@@ -336,8 +340,8 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       if (pathname == '/' || pathname == '/index.html') {
-          // @note 520活动暂时关闭浮动导航栏
-          // @note 520活动结束，打开浮动导航
+        // @note 520活动暂时关闭浮动导航栏
+        // @note 520活动结束，打开浮动导航
         $(window).scroll(function() {
           setTimeout(function() {
             if ($(window).scrollTop() > 166) {
