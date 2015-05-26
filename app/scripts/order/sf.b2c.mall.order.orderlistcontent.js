@@ -98,7 +98,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var that = this;
 
         this.options.tab = new can.Map({
-          'allorderTab': true,
+          'allorderTab': false,
           'notPayOrderListTab': false,
           'notSendOrderListTab': false,
           'notGetOrderListTab': false
@@ -110,6 +110,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
             page: 1
           });
         }
+        if (routeParams.status) {
+          _.each(this.statusMap, function(value, key, list) {
+            if (value == routeParams.status) {
+              this.options.tab.attr(key, true);
+            }
+          }, this)
+        }
+
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
