@@ -183,9 +183,9 @@ define('sf.b2c.mall.component.header', [
       }
 
       if (typeof arr[4] != 'undefined' && arr[4] != '0') {
-        $(".mini-cart-container").hide();
+        $(".mini-cart-container-parent").hide();
       } else {
-        $(".mini-cart-container").show();
+        $(".mini-cart-container-parent").show();
       }
     },
 
@@ -606,7 +606,7 @@ define('sf.b2c.mall.component.header', [
         return window.location.href = SFConfig.setting.link.ilogin;
       }
 
-      if (dest) {
+      if (dest && _.isString(dest)) {
         this.afterLoginDest = dest
       }
 

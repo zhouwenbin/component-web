@@ -62,10 +62,11 @@ define(
           // 如果有重复的itemid，则进行容错
           if ($el.length && $el.length > 1) {
             _.each($el, function(item) {
+
               that.fillPrice($(item), value);
 
               // 判断如果商品已经售完，不再显示添加购物车按钮
-              if (!value.soldOut) {
+              if (!value.soldOut && value.supportShoppingCart) {
                 that.paintCart($(item), value);
               }
             })
@@ -73,7 +74,7 @@ define(
             that.fillPrice($el, value);
 
             // 判断如果商品已经售完，不再显示添加购物车按钮
-            if (!value.soldOut) {
+            if (!value.soldOut && value.supportShoppingCart) {
               that.paintCart($el, value);
             }
           }

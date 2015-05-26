@@ -115,8 +115,19 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.element.html(html);
 
             that.renderPackageItemInfo(0, data.orderItem);
+
+            that.supplement();
           })
       },
+
+      supplement: function(){
+        var params = can.deparam(window.location.search.substr(1));
+        var pkgid = params.pkgid;
+
+        $(".order-detail-tab").find("li")[pkgid - 1].click();
+      },
+
+
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
