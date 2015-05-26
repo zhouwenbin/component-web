@@ -103,7 +103,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var that = this;
 
         this.options.tab = new can.Map({
-          'allorderTab': true,
+          'allorderTab': false,
           'notPayOrderListTab': false,
           'notSendOrderListTab': false,
           'notGetOrderListTab': false
@@ -115,6 +115,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
             page: 1
           });
         }
+        if (routeParams.status) {
+          _.each(this.statusMap, function(value, key, list) {
+            if (value == routeParams.status) {
+              this.options.tab.attr(key, true);
+            }
+          }, this)
+        }
+
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
@@ -388,7 +396,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         element.attr('data-is-show', 'true');
 
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).closest('.table-1-logistics').attr('data-orderid')
+          'bizId': $(element).closest('.table-1-logistics').data('packageNo')
         });
         getUserRoutes
           .sendRequest()
