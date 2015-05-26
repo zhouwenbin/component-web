@@ -84,14 +84,14 @@ define('sf.b2c.mall.component.search', [
         }
       },
       'sf-isSoldOut': function(soldOut, options) {
-        if (soldOut() == undefined || soldOut() == true) {
+        if (soldOut() == true) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         }
       },
       'sf-isHasResults': function(totalHits, results, options) {
-        if (results() && totalHits() > 0) {
+        if (results() && results().length > 0 && totalHits() > 0) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -299,7 +299,7 @@ define('sf.b2c.mall.component.search', [
         if(brandIds) {
           _.each(brandIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id = bvalue) {
+              if (ivalue.id ==   bvalue) {
                 that.renderData.filterBrands.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
@@ -315,7 +315,7 @@ define('sf.b2c.mall.component.search', [
         if(categoryIds) {
           _.each(categoryIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id = bvalue) {
+              if (ivalue.id == bvalue) {
                 that.renderData.filterCategories.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
@@ -331,7 +331,7 @@ define('sf.b2c.mall.component.search', [
         if(originIds) {
           _.each(originIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id = bvalue) {
+              if (ivalue.id == bvalue) {
                 that.renderData.filterOrigins.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
