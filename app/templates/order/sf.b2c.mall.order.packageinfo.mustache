@@ -14,8 +14,10 @@
       <div class="order-detail-state-r1">
           <span class="icon icon96"></span>
           <strong>当前状态：{{orderStatus}}</strong>
+          {{#isShowShippingTime}}
+          <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}，{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/isShowShippingTime}}
           {{#if isShowLinkServer}}
-      <p>顺丰海淘正在努力打包中… 若顺丰海淘较长时间未发货，您可以<a href="" class="btn btn-soon btn-small">联系客服发货</a></p>{{/if}}         
+      <p>顺丰海淘正在努力打包中… 若顺丰海淘较长时间未发货，您可以<a target="_blank" href="http://sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&amp;configID=20&amp;skillId=20&amp;enterurl=http%3A%2F%2Fsf-ocs%2Esf-express%2Ecom%3A8080%2Flive800%2Fpreview%2Ejsp&amp;pagereferrer=http%3A%2F%2Fsf-ocs%2Esf-express%2Ecom%3A8080%2Flive800%2FembedScript%2Ejsp%3FcurrentConfigId%3D20&amp;k=1" class="btn btn-soon btn-small">联系客服发货</a></p>{{/if}}         
       </div>
 
       <ul id="showUserRoutes">

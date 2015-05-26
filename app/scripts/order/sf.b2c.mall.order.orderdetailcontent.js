@@ -24,6 +24,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return 'active';
           };
         },
+        isShowBackMoney: function(orderInfo, options) {
+          if (orderInfo.orderItem.paymentStatus == 'REFUNDED') {
+            return options.fn(options.contexts || this);
+          };
+        },
         showImage: function(group) {
           var array = eval(group);
           if (array && _.isArray(array)) {
@@ -118,19 +123,24 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
-          // goodItem.imageUrl = JSON.parse(goodItem.imageUrl)[0];
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
         });
 
         packageInfo.showStep = true;
         packageInfo.isShowLinkServer = false;
+        packageInfo.isShowShippingTime = false;
+
         if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
-    
+
         if (packageInfo.status == 'AUDITING' || packageInfo.status == 'WAIT_SHIPPING' || packageInfo.status == 'SHIPPING' || packageInfo.status == 'SHIPPED') {
           packageInfo.isShowLinkServer = true;
         }
+
+        if (packageInfo.status !== 'AUTO_CANCEL' || packageInfo.status !== 'USER_CANCEL' || packageInfo.status !== 'OPERATION_CANCEL' || packageInfo.status !== 'CLOSED' || packageInfo.status !== 'COMPLETED' || packageInfo.status !== 'AUTO_COMPLETED') {
+          packageInfo.isShowShippingTime = true;
+        };
         var map = {
           'SUBMITED': '', //待支付
           'AUDITING': 'order-detail-step2', //待审核
@@ -220,7 +230,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'SUBMITED': '已提交',
         'AUTO_CANCEL': '自动取消',
         'USER_CANCEL': '用户取消',
-        'AUDITING': '待审核', 
+        'AUDITING': '待审核',
         'OPERATION_CANCEL': '运营取消',
         'BUYING': '采购中',
         'BUYING_EXCEPTION': '采购异常',
@@ -246,7 +256,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       nextStepMap: {
         'SUBMITED': 'NEEDPAY',
-        'SHIPPED': 'RECEIVED'
+        'RECEIPTED': 'RECEIPTED',
+        'SHIPPED': 'RECEIPTED',
+        'CONSIGNED': 'RECEIPTED'
       },
 
       currentStepTipsMap: {
@@ -309,7 +321,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var that = this;
         var params = can.deparam(window.location.search.substr(1));
         var confirmReceive = new SFConfirmReceive({
-          "subOrderId": params.suborderid
+          "subOrderId": params.orderid
         });
         confirmReceive
           .sendRequest()

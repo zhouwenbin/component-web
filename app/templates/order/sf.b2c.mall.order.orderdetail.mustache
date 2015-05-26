@@ -20,6 +20,7 @@
         {{#if isGiftBag}}
           <li>活动赠送礼包：{{giftBag.couponDescription}}{{giftBag.couponName}}</li>
         {{/if}}
+        {{#isShowBackMoney orderInfo}}<li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>{{/isShowBackMoney}}
     </ul>
     <ul>
         <li><span>收货人：</span>{{receiveInfo.receiveName}}</li>
