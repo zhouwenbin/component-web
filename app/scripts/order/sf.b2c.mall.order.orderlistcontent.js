@@ -124,7 +124,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
             "receiverName": that.options.searchValue,
             "orderId": that.options.searchValue,
             "pageNum": routeParams.page,
-            "pageSize": 10
+            "pageSize": 10,
+            "searchValue": that.options.searchValue
           })
         }
 
