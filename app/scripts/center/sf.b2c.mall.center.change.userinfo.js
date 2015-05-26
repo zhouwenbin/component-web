@@ -90,6 +90,7 @@ define(
 
         $('#mobile-code-error').hide();
         $('#newPwd-error-tips').hide();
+        $('#oldPwd-error-tips').hide();
         $('#confirmPwd-error-tips').hide();
 
       },
@@ -295,11 +296,11 @@ define(
 
         // 发起请求发送号码
         var that = this;
-        this.component.sms.setData({
+        var sms = new SFApiUserDownSmsCode({
           mobile: mobile,
           askType: 'RESETPSWD'
         });
-        this.component.sms.sendRequest()
+        sms.sendRequest()
           .done(function(data) {
             // @todo 开始倒计时
             that.countdown.call(that, 60);
@@ -322,6 +323,7 @@ define(
       '#btn-confirm-bind click': function(element, event) {
         event && event.preventDefault();
 
+        $('#oldPwd-error-tips').hide();
         $('#mobile-code-error').hide();
         $('#newPwd-error-tips').hide();
         $('#confirmPwd-error-tips').hide();
@@ -346,9 +348,8 @@ define(
               smsCode: inputData.mobileCode,
               newPassword: md5(inputData.newPassword + 'www.sfht.com')
             };
-
-            this.component.resetpw.setData(params);
-            this.component.resetpw.sendRequest()
+            var resetpw = new SFResetPassword(params);
+            resetpw.sendRequest()
               .done(function(data) {
                 var html = '<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a></div>'
                 $('.change-password-wrap').html(html);
@@ -384,11 +385,13 @@ define(
               oldPassword: md5(inputData.oldPassword + 'www.sfht.com'),
               newPassword: md5(inputData.newPassword + 'www.sfht.com')
             };
-            this.component.changePwd.setData(params);
-            this.component.changePwd.sendRequest()
+            var changePwd = new SFChangePwd(params);
+            changePwd.sendRequest()
               .done(function(data) {
-                var html = '<div class="order retrieve-success"><span class="icon icon33"></span><h1>密码修改成功</h1><a href="index.html" class="btn btn-send">返回首页</a></div>'
-                $('.change-password-wrap').html(html);
+                var message = new SFMessage(null, {
+                  'tip': '修改密码成功',
+                  'type': 'success'
+                });
               })
               .fail(function(error) {
                 if (error === 1000040) {

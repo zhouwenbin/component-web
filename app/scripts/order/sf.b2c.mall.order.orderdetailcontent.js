@@ -223,7 +223,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       optionHTML: {
         "NEEDPAY": '<button class="btn btn-danger btn-small" id="pay">立即支付</button>',
-        "RECEIPTED": '<button class="btn btn-danger btn-small received">确认签收</button>'
+        "RECEIPTED": '<button class="btn btn-success btn-small received">确认签收</button>'
       },
 
       statsMap: {
