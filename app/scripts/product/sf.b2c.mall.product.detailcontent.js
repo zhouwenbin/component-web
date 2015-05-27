@@ -91,7 +91,7 @@ define('sf.b2c.mall.product.detailcontent', [
             arr = uinfo.split(',');
           }
 
-          if (supportShoppingCart() && (typeof arr[4] == 'undefined' || arr[4] == '2')) {
+          if (supportShoppingCart() && (typeof arr[4] != 'undefined' && arr[4] != '2')) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);

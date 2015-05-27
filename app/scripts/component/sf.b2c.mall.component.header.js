@@ -174,6 +174,9 @@ define('sf.b2c.mall.component.header', [
       // 将弹出登录框事件注册到window上
       // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
+
+
+      this.checkTempActionAddCart();
     },
 
     controlCart: function() {
@@ -263,9 +266,12 @@ define('sf.b2c.mall.component.header', [
      * @description 加入购物车
      */
     addCart: function(itemId, num) {
-      var addItemToCart = new SFAddItemToCart({
+      var itemsStr = JSON.stringify([{
         itemId: itemId,
         num: num || 1
+      }]);
+      var addItemToCart = new SFAddItemToCart({
+        items: itemsStr
       });
 
       // 添加购物车发送请求
