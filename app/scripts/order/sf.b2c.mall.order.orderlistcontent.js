@@ -771,7 +771,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             }
           })
           .fail(function(data) {
-            if (data.code == 15000800) {
+            if (data == 15000201) {
               var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
