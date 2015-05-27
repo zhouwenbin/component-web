@@ -751,7 +751,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'RECEIPTED': '已签收',
         'COMPLETED': '已完成',
         'AUTO_COMPLETED': '自动完成',
-        'CLOSED': '订单关闭'
+        'CLOSED': '已关闭'
       },
       //再次购买
       addCart: function(itemId, num) {

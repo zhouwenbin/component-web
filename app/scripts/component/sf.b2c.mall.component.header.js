@@ -248,9 +248,8 @@ define('sf.b2c.mall.component.header', [
         .fail(function(data) {
           // @todo 添加失败提示
           var error = SFAddItemToCart.api.ERROR_CODE[data.code];
-          //
           new SFMessage(null, {
-            'tip': "购物车已满",
+            'tip': "添加购物车失败",
             'type': 'error'
           });
           if (error) {

@@ -85,9 +85,10 @@ define('sf.b2c.mall.product.detailcontent', [
         //是否显示购物车
         'sf-needshowcart': function(supportShoppingCart, options) {
           var uinfo = $.cookie('1_uinfo');
-          var arr = [];
+          var arr = new Array();
           if (uinfo) {
-            arr = uinfo.split(',');
+            //arr = uinfo.split(',');
+            arr.push(uinfo.split(','));
           }
 
           if (supportShoppingCart() && (typeof arr[4] == 'undefined' || arr[4] == '0')) {
@@ -751,6 +752,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon62"></span>{{notice}}' +
           '</div>' +
           '{{/notice}}' +
+
           '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
@@ -766,8 +768,9 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
           '<button class="btn disable" disabled="disabled">加入购物车</button>' +
           '{{/sf-needshowcart}}' +
-
           '{{/if}}' +
+
+
           '{{^if priceInfo.soldOut}}' +
           '{{^priceInfo.isPromotion}}' +
           '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +

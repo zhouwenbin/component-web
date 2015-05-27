@@ -178,6 +178,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       },
       //设为默认地址
       ".btn-setDefault click":function(element,event){
+        event && event.preventDefault();
         var that = this;
         var index = element.data('index');
         var addr = this.adapter4List.addrs.get(index);
