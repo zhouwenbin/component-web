@@ -234,8 +234,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
               var endTimeArea = $('.showOrderEndTime');
               _.each(that.options.orders, function(item, i) {
                 setInterval(function() {
-                  that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                  if (that.options.orders[i]) {
+                  if (item.leftTime > 0) {
+                    that.setCountDown(endTimeArea.eq(i), item.leftTime);
                     that.options.orders[i].leftTime = item.leftTime - 1000;
                   }
                 }, 1000);

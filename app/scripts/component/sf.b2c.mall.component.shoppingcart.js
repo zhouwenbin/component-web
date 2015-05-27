@@ -140,7 +140,7 @@ define(
               })
           }
         } else {
-          window.location.href = 'www.sfht.com';
+          window.location.href = 'index.html';
         }
 
       },
