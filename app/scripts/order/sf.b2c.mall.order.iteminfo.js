@@ -65,23 +65,23 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     invariableGoodsTemplate: function() {
       return '{{#each invariableGoodsItemList}}' +
-        '<tr class="cart-disable">' +
-        '<td class="td1">' +
-        '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
-        '<div class="order-confirm-info">' +
-        '<div class="text-error">{{description}}</div>'+
-        '<h2><a href="">{{goodsName}}</a></h2>' +
-        '<div class="cart-standard">{{{spec}}}</div>' +
-        '</div>' +
-        '</td>' +
-        '<td class="td2"></td>' +
-        '<td class="td3">{{sf.price price}}</td>' +
-        '<td class="td4">{{quantity}}</td>' +
-        '<td class="td5">' +
-        '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
-        '</td>' +
-        '</tr>' +
-        '{{/each}}'
+      '<tr class="cart-disable">' +
+      '<td class="td1">' +
+      '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
+      '<div class="order-confirm-info">' +
+      '<div class="text-error">{{description}}</div>' +
+      '<h2><a href="">{{goodsName}}</a></h2>' +
+      '<div class="cart-standard">{{{spec}}}</div>' +
+      '</div>' +
+      '</td>' +
+      '<td class="td2"></td>' +
+      '<td class="td3">{{sf.price price}}</td>' +
+      '<td class="td4">{{quantity}}</td>' +
+      '<td class="td5">' +
+      '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
+      '</td>' +
+      '</tr>' +
+      '{{/each}}'
     },
 
     /**

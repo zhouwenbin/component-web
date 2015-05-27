@@ -25,32 +25,50 @@ define(
     return can.Control.extend({
 
       helpers: {
+        //获取第一张图片
         firstimages: function(images, options) {
           if (typeof images !== 'undefined') {
             return images[0];
           };
-
         },
+        //去结算按钮是否可操作
         isShowBtn: function(canOrder, options) {
           if (canOrder === 0) {
             return options.fn(options.context || this);
           };
         },
+        //单选框是否选中
         isChecked: function(isSelected, options) {
           if (isSelected === 1) {
             return options.fn(options.context || this);
           };
         },
+        //加号是否可点击
         isShowDisable: function(canAddNum, options) {
           if (canAddNum === 0) {
             return options.fn(options.context || this);
           };
         },
-        isShowOriginPrice: function(price, activityPrice, options) {
-          if (price !== activityPrice && price > activityPrice) {
-            return options.fn(options.context || this);
-          };
+        //是否显示原价
+        isShowOriginPrice: function(price, activityPrice, canUseActivityPrice, options) {
+          if (canUseActivityPrice == 1) {
+            if ((price !== activityPrice && price > activityPrice) || canUseActivityPrice == 0) {
+              return options.fn(options.context || this);
+            };
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+
         },
+        // 0 不能使用activityPrice，1可以使用
+        isShowActivityPrice: function(canUseActivityPrice, options) {
+          if (canUseActivityPrice == 1) {
+            return options.fn(options.context || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        //展示参加了几个满减活动
         countNumActivity: function(reduceInfos, options) {
           if (reduceInfos.length > 0) {
             return reduceInfos.length;
