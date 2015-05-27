@@ -754,12 +754,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'CLOSED': '已关闭'
       },
       //再次购买
-      addCart: function(itemId, num) {
+      addCart: function(array) {
         var that = this;
-        var itemsStr = JSON.stringify([{
-          itemId: itemId,
-          num: num || 1
-        }]);
+        var itemsStr = JSON.stringify(array);
         var addItemToCart = new SFAddItemToCart({
           items: itemsStr
         });
@@ -783,19 +780,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
           })
       },
       //再次购买加入购物车
-      '.btn-buyagain click': function(element, event) {
+      '.btn-buyagain click': function($element, event) {
         event && event.preventDefault();
-        var itemIdList = new Array();    
+        var itemIdList = new Array();
 
-        var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
-        var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
-        this.addCart(itemId);
+        var array = []
+        $element.closest('.itemlist').find('.goodsWrap').each(function (index, $el) {
+          array.push({itemId: $el.data('itemIds').itemId, num: $el.data('itemIds').quantity});
+        })
+
+        // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
+        // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
+        this.addCart(array);
       },
       //搜索无结果加入购物车
       '.addCart click': function(element, event) {
         event && event.preventDefault();
         var itemId = $(element).closest('li').data('goods').itemId;
-        this.addCart(itemId);
+        this.addCart([{itemId: itemId, num: 1}]);
       }
 
     });
