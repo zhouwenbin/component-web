@@ -6,7 +6,7 @@
 .classify{
 	background: #fff;
 	border-bottom: 1px solid #d4d4d4;
-	margin-bottom: 80px;
+	margin-bottom: 32px;
 }
 .classify h2{
 	font-size: 14px;
@@ -31,8 +31,7 @@
 	vertical-align: middle;
 }
 .classify-list>li{
-	height: 39px;
-	line-height: 39px;
+	padding: 19px 0;
 	border-top: 1px dashed #d4d4d4;
 }
 .classify-logo ul{
@@ -62,6 +61,11 @@
 	max-width: 98px;
 	max-height: 48px;
 	vertical-align: middle;
+}
+.classify-logo span{
+	vertical-align: middle;
+	display: inline-block;
+	white-space: normal;
 }
 .classify-text li{
 	margin-right: 42px;
@@ -96,6 +100,11 @@
 	position: absolute;
 	right: 0;
 	top:0;
+}
+.classify .classify-select{
+	height: 39px;
+	line-height: 39px;
+	padding: 0;
 }
 .sort{
 	text-align: right;
