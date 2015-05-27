@@ -346,7 +346,7 @@ define(
         var num = parseInt($(element).siblings('input').val());
         var itemId = $(element).closest('tr').data('goods').itemId;
         var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
-        //var stock = 
+        //var stock =
         if (num >= limitQuantity) {
           $(element).siblings('input').val(limitQuantity);
           return false;
@@ -435,11 +435,12 @@ define(
             }
           })
           .fail(function(data) {
-            // @todo 添加失败提示
-            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
-
-            if (error) {
-              // @todo 需要确认是不是需要提交
+            if (data == 15000201) {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
             }
           })
       },

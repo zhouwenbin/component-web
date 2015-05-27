@@ -994,7 +994,6 @@ define('sf.b2c.mall.product.detailcontent', [
               can.trigger(window, 'updateCart');
 
               var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
-              // $('document').append($el);
               $(document.body).append($el)
               setTimeout(function() {
                 $el.remove();
@@ -1003,12 +1002,15 @@ define('sf.b2c.mall.product.detailcontent', [
             }
           })
           .fail(function(data) {
-            // @todo 添加失败提示
-            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
 
-            if (error) {
-              // @todo 需要确认是不是需要提交
+            if (data == 15000201) {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
             }
+
           })
       },
 

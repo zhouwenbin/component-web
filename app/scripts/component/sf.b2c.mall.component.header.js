@@ -283,14 +283,12 @@ define('sf.b2c.mall.component.header', [
           }
         })
         .fail(function(data) {
-          // @todo 添加失败提示
-          var error = SFAddItemToCart.api.ERROR_CODE[data.code];
-          new SFMessage(null, {
-            'tip': "添加购物车失败",
-            'type': 'error'
-          });
-          if (error) {
-            // @todo 需要确认是不是需要提交
+          if (data == 15000201) {
+            var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+            $(document.body).append($el)
+            setTimeout(function() {
+              $el.remove();
+            }, 1000);
           }
         })
     },
@@ -391,7 +389,7 @@ define('sf.b2c.mall.component.header', [
       var pathname = window.location.pathname;
 
       // @note 只有在首页需要显示浮动导航栏
-      if (pathname == '/' || pathname == '/index.html') {
+      // if (pathname == '/' || pathname == '/index.html') {
         // @note 520活动暂时关闭浮动导航栏
         // @note 520活动结束，打开浮动导航
         $(window).scroll(function() {
@@ -420,7 +418,7 @@ define('sf.b2c.mall.component.header', [
             $('.nav-qrcode').removeClass('show');
             return false;
           })
-      };
+      // };
       //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
       var authResp = can.deparam(window.location.search.substr(1));
       if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp) && typeof authResp.partnerId != 'undefined') {
