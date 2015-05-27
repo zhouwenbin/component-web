@@ -92,7 +92,7 @@
 	display: block;
 	margin:0 auto 10px;
 }
-.order-detail-step li:after{
+.order-detail-step li .line{
 	content: '';
 	width: 155px;
 	height: 3px;
@@ -103,9 +103,6 @@
 }
 .order-detail-step li:last-child{
 	margin-right: 0;
-}
-.order-detail-step li:last-child:after{
-	display: none;
 }
 .order-detail-step2 .icon92,
 .order-detail-step3 .icon92,
