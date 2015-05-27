@@ -98,10 +98,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
 
-        'sf-items-list': function  (items) {
+        'sf-items-list': function  (packages) {
           var array = [];
-          _.each(items, function(value, key, list){
-            array.push({itemId: value.itemId, num: value.quantity});
+          _.each(packages, function(package){
+            _.each(package.orderGoodsItemList, function(good){
+              array.push({itemId: good.itemId, num: good.quantity});
+            });
           });
 
           return JSON.stringify(array);
