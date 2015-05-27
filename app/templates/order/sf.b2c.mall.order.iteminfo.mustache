@@ -21,12 +21,13 @@
           {{#each orderGoodsItemList}}
           <tr>
             <td class="td1">
-                <a href="javascript:void(0)"><img src="{{sf.img productImage.thumbImgUrl}}"></a>
-                <div class="order-confirm-info">
+              <div class="cart-pos">
+                <a href="javascript:void(0)"><img src="{{sf.img productImage.thumbImgUrl}}"></a><div class="order-confirm-info">
                   <div class="text-error">{{description}}</div>
                   <h2><a href="javascript:void(0)">{{goodsName}}</a></h2>
                   <div class="cart-standard">{{{spec}}}</div>
                 </div>
+              </div>        
             </td>
             <td class="td2"></td>
             <td class="td3">{{sf.price price}}</td>

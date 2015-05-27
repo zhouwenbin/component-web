@@ -69,7 +69,7 @@
     		</div>
     		<div class="cart-footer-c2 fr">
     			<ul>
-    				<li class="li1"><span class="s1">商品总计 :</span>¥{{sf.price order.goodsTotalFee}}</li>
+    				<li class="li1">商品总计:<span class="s1">¥{{sf.price order.goodsTotalFee}}</span></li>
     				<li class="li1">
     					{{#if isShowReduceInfos}}
                         <div class="tooltip-cart">
@@ -95,9 +95,9 @@
                             <span class="icon icon16-5 icon16-5-1"></span>
                         </div>
                         {{/if}}
-    					<span class="s1">活动优惠 :</span>- ¥ {{sf.price order.discountFee}}
+    					活动优惠:<span class="s1">- ¥ {{sf.price order.discountFee}}</span>
     				</li>
-    				<li><span class="s1">总价（含税费） :</span><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></li>
+    				<li class="li1">总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span></li>
     			</ul>
                 {{#if isShowOverLimitPrice}}
     			<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
