@@ -98,10 +98,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
 
-        'sf-items-list': function  (items) {
+        'sf-items-list': function(items) {
           var array = [];
-          _.each(items, function(value, key, list){
-            array.push({itemId: value.itemId, num: value.quantity});
+          _.each(items, function(value, key, list) {
+            array.push({
+              itemId: value.itemId,
+              num: value.quantity
+            });
           });
 
           return JSON.stringify(array);
@@ -232,8 +235,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
               var endTimeArea = $('.showOrderEndTime');
               _.each(that.options.orders, function(item, i) {
                 setInterval(function() {
-                  that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                  that.options.orders[i].leftTime = item.leftTime - 1000;
+                  if (item.leftTime > 0) {
+                    that.setCountDown(endTimeArea.eq(i), item.leftTime);
+                    that.options.orders[i].leftTime = item.leftTime - 1000;
+                  }
                 }, 1000);
               });
               //分页 保留 已经调通 误删 后面设计会给样式
