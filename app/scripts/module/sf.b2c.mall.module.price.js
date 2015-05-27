@@ -47,8 +47,8 @@ define(
 
       checkCartIsShown: function(data, element) {
 
+        var that = this;
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-          var that = this;
           // 从cookie中获得值确认购物车是不是显示
           var uinfo = $.cookie('1_uinfo');
           var arr = [];
