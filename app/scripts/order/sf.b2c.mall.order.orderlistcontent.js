@@ -231,12 +231,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
-              var endTimeArea = $('.showOrderEndTime');
+              var endTimeArea = that.element.find('.showOrderEndTime');
               _.each(that.options.orders, function(item, i) {
                 setInterval(function() {
-                  if (item.leftTime > 0) {
-                    that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                    that.options.orders[i].leftTime = item.leftTime - 1000;
+                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
                   }
                 }, 1000);
               });
@@ -797,7 +797,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'CLOSED': '已关闭'
       },
       //再次购买
-      addCart: function(array) {
+      addCart: function(array, callback) {
         var that = this;
         var itemsStr = JSON.stringify(array);
         var addItemToCart = new SFAddItemToCart({
@@ -810,7 +810,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
             if (data.value) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
-              window.location.reload();
+
+              if (_.isFunction(callback)) {
+                callback();
+              }else{
+                window.location.reload();
+              }
             }
           })
           .fail(function(data) {
@@ -841,7 +846,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
         // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
-        this.addCart(JSON.parse(array));
+        this.addCart(JSON.parse(array), function () {
+          window.location.href = '/shoppingcart.html';
+        });
 
       },
       //搜索无结果加入购物车
