@@ -137,7 +137,9 @@
 	background: #e5e5e5;
 	
 }
-.cart-disable td *{
+.cart-disable td h2,
+.cart-disable .cart-standard,
+.cart-disable .td5 .text-error{
 	color: #aaa;
 }
 .cart-disable td .label{
