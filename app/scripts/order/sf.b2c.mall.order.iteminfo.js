@@ -69,10 +69,10 @@ define('sf.b2c.mall.order.iteminfo', [
         '<td class="td1">' +
         '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
         '<div class="order-confirm-info">' +
+        '<div class="text-error">{{description}}</div>'+
         '<h2><a href="">{{goodsName}}</a></h2>' +
         '<div class="cart-standard">{{{spec}}}</div>' +
         '</div>' +
-        '<div class="label label-disabled">{{description}}</div>' +
         '</td>' +
         '<td class="td2"></td>' +
         '<td class="td3">{{sf.price price}}</td>' +

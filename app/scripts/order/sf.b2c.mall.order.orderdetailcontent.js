@@ -123,8 +123,10 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       supplement: function() {
         var params = can.deparam(window.location.search.substr(1));
         var pkgid = params.pkgid;
+        if (pkgid) {
+          $(".order-detail-tab").find("li")[pkgid - 1].click();
+        };
 
-        $(".order-detail-tab").find("li")[pkgid - 1].click();
       },
 
 

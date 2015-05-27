@@ -8,7 +8,7 @@
 }
 .order-detail-c1{
 	padding: 46px 30px;
-	width: 138px;
+	width: 158px;
 }
 .order-detail-c1 ul{
 	border-bottom: 1px dashed #ccc;
@@ -169,14 +169,17 @@
 	border-color: transparent #fff transparent transparent
 }
 .order-detail-state li{
-	margin-bottom: 18px;
+	line-height: 18px;
+	margin-bottom: 15px;
 	color:#999;
+	padding-left: 130px;
 }
 .order-detail-state li:first-child{
 	color: #333;
 }
-.order-detail-state li span{
-	margin-right: 17px;
+.order-detail-state li span:first-child{
+	float:left;
+	margin-left: -130px;
 }
 .order-detail-state p{
 	color: #aaa;
