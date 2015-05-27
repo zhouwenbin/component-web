@@ -5,11 +5,12 @@ define(
     'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
     'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
+  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -36,11 +37,50 @@ define(
 
             // 如渲染价格
             that.renderPrice(data, element);
+            that.checkCartIsShown.call(that, data, element);
 
           })
           .fail(function(errorCode) {
             console.error(errorCode);
           })
+      },
+
+      checkCartIsShown: function(data, element) {
+
+        var that = this;
+        // 从cookie中获得值确认购物车是不是显示
+        var uinfo = $.cookie('1_uinfo');
+        var arr = [];
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
+
+        // 判断纬度，用户>总开关
+        //
+        // 第四位标示是否能够展示购物车
+        // 0表示听从总开关的，1表示显示，2表示不显示
+        var flag = arr[4];
+
+        // 如果判断开关关闭，使用dom操作不显示购物车
+        if (typeof flag == 'undefined' || flag == '2') {
+
+        } else if (flag == '0') {
+          // @todo 请求总开关进行判断
+          var isShowCart = new SFIsShowCart();
+
+          isShowCart
+            .sendRequest()
+            .done(function (info) {
+              if (info.value) {
+                that.paintCart.call(that, data, element);
+              }
+            })
+            .fail(function () {
+
+            })
+        }else{
+          this.paintCart.call(this, data, element);
+        }
       },
 
       /**
@@ -49,9 +89,6 @@ define(
        * @return {[type]}      [description]
        */
       renderPrice: function(data, element) {
-
-        // @todo 获得总开关的阀值
-
         var that = this;
 
         _.each(data.value, function(value, key, list) {
@@ -62,21 +99,10 @@ define(
           // 如果有重复的itemid，则进行容错
           if ($el.length && $el.length > 1) {
             _.each($el, function(item) {
-
               that.fillPrice($(item), value);
-
-              // 判断如果商品已经售完，不再显示添加购物车按钮
-              if (!value.soldOut && value.supportShoppingCart) {
-                that.paintCart($(item), value);
-              }
             })
           } else {
             that.fillPrice($el, value);
-
-            // 判断如果商品已经售完，不再显示添加购物车按钮
-            if (!value.soldOut && value.supportShoppingCart) {
-              that.paintCart($el, value);
-            }
           }
 
         });
@@ -183,18 +209,33 @@ define(
        * @param  {json} value   数据
        * @return
        */
-      paintCart: function (element, value) {
-        // 从cookie中获得值确认购物车是不是显示
-        var uinfo = $.cookie('1_uinfo');
-        var arr = [];
-        if (uinfo) {
-          arr = uinfo.split(',');
-        }
+      paintCart: function (data, element) {
+        var that = this;
+        _.each(data.value, function(value, key, list) {
 
-        // 第四位标示是否能够展示购物车
-        if (typeof arr[4] == 'undefined' || arr[4] == '0') {
-          element.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
-        }
+          var $el = element.find('[data-cms-itemid=' + value.itemId + ']');
+
+          // 如果有重复的itemid，则进行容错
+          if ($el.length && $el.length > 1) {
+            _.each($el, function(item) {
+              // 判断如果商品已经售完，不再显示添加购物车按钮
+              if (!value.soldOut && value.supportShoppingCart) {
+                $(item).find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
+              }else{
+                // @todo 显示不能添加购物车
+                $(item).find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
+              }
+            });
+          }else{
+            // 判断如果商品已经售完，不再显示添加购物车按钮
+            if (!value.soldOut && value.supportShoppingCart) {
+              $el.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
+            }else{
+              // @todo 显示不能添加购物车
+              $el.find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
+            }
+          }
+        });
       },
 
       getItemList: function() {

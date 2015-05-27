@@ -23,7 +23,7 @@ function($, can, _, Comm, SecurityType) {
   return Comm.extend({
     api: {
       METHOD_NAME: 'user.checkAppUpgrade',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
         'appVersion': 'string',
         'moduleVersion': 'string'

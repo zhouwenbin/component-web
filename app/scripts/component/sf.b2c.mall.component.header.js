@@ -21,6 +21,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.api.minicart.getTotalCount',
   'sf.b2c.mall.api.shopcart.addItemToCart',
+  'sf.b2c.mall.api.shopcart.isShowCart',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -32,7 +33,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -182,9 +183,25 @@ define('sf.b2c.mall.component.header', [
         arr = uinfo.split(',');
       }
 
-      if (typeof arr[4] != 'undefined' && arr[4] != '0') {
+      var flag = arr[4];
+
+      // 如果判断开关关闭，使用dom操作不显示购物车
+      if (typeof flag == 'undefined' || flag == '2') {
         $(".mini-cart-container-parent").hide();
-      } else {
+      }else if (flag == '0') {
+        // @todo 请求总开关进行判断
+        var isShowCart = new SFIsShowCart();
+        isShowCart
+          .sendRequest()
+          .done(function (data) {
+            if (data.value) {
+              $(".mini-cart-container-parent").show();
+            }else{
+              $(".mini-cart-container-parent").hide();
+            }
+          })
+
+      }else{
         $(".mini-cart-container-parent").show();
       }
     },
