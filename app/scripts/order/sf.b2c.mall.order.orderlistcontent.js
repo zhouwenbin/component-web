@@ -96,6 +96,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           if (originPrice !== price && originPrice > price) {
             return options.fn(options.contexts || this);
           };
+        },
+
+        'sf-items-list': function  (items) {
+          var array = [];
+          _.each(items, function(value, key, list){
+            array.push({itemId: value.itemId, num: value.quantity});
+          });
+
+          return JSON.stringify(array);
         }
 
       },
@@ -785,17 +794,20 @@ define('sf.b2c.mall.order.orderlistcontent', [
         event && event.preventDefault();
         var itemIdList = new Array();
 
-        var array = []
-        $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
-          var itemId = $(el).attr('data-itemid');
-          var num = $(el).attr('data-num');
+        // var array = []
 
-          array.push({itemId: itemId, num: num});
-        })
+        var array = $element.parent().attr('data-all');
+
+        // $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+        //   var itemId = $(el).attr('data-itemid');
+        //   var num = $(el).attr('data-num');
+
+        //   array.push({itemId: itemId, num: num});
+        // })
 
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
         // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
-        this.addCart(array);
+        this.addCart(JSON.parse(array));
       },
       //搜索无结果加入购物车
       '.addCart click': function(element, event) {
