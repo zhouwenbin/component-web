@@ -797,9 +797,9 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="fl">' +
 
           '{{#if priceInfo.soldOut}}' +
-          '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +        
+          '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
-          '<button class="btn btn-buy disable" disabled="disabled">加入购物车</button>' +
+          '<button class="btn btn-buy addtocart disable" disabled="disabled" style="display:none;">加入购物车</button>' +
           '{{/sf-needshowcart}}' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
@@ -809,7 +809,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{^priceInfo.isPromotion}}' +
           '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
-          '<button class="btn btn-soon addtocart">加入购物车</button>' +
+          '<button class="btn btn-soon addtocart" style="display:none;">加入购物车</button>' +
           '{{/sf-needshowcart}}' +
           '{{/priceInfo.isPromotion}}' +
           '{{#priceInfo.isPromotion}}' +
@@ -817,13 +817,13 @@ define('sf.b2c.mall.product.detailcontent', [
           '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
-          '<button class="btn disable addtocart" disabled="disabled">加入购物车</button>' +
+          '<button class="btn disable addtocart" disabled="disabled" style="display:none;">加入购物车</button>' +
           '{{/sf-needshowcart}}' +
           '{{/if}}' +
           '{{^if priceInfo.activitySoldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
-          '<button class="btn btn-soon addtocart">加入购物车</button>' +
+          '<button class="btn btn-soon addtocart" style="display:none;">加入购物车</button>' +
           '{{/sf-needshowcart}}' +
           '{{/if}}' +
           '{{/priceInfo.isPromotion}}' +

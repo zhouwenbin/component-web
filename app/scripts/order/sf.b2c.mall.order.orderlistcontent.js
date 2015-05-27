@@ -233,7 +233,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
               _.each(that.options.orders, function(item, i) {
                 setInterval(function() {
                   that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                  that.options.orders[i].leftTime = item.leftTime - 1000;
+                  if (that.options.orders[i]) {
+                    that.options.orders[i].leftTime = item.leftTime - 1000;
+                  }
                 }, 1000);
               });
               //分页 保留 已经调通 误删 后面设计会给样式
