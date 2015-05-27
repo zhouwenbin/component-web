@@ -123,6 +123,8 @@ define(
                     }).fail(function() {
 
                     })
+                } else {
+                  window.location.href = 'index.html';
                 }
               })
               .fail(function() {
