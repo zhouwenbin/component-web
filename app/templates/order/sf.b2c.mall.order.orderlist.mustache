@@ -105,7 +105,7 @@
 
             {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
             {{#firstPackage orderPackageItemList @index}}
-            <td class="td7" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+            <td class="td7" data-orderid='{{orderId}}' data-all="{{sf-items-list orderPackageItemList}}" data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
                   {{#isNotShowEndTime orderStatus}}
                   <span>剩余付款时间</span>
                   <div class="showOrderEndTime text-error"></div>

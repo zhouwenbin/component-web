@@ -98,6 +98,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
 
+        'sf-items-list': function  (items) {
+          var array = [];
+          _.each(items, function(value, key, list){
+            array.push({itemId: value.itemId, num: value.quantity});
+          });
+
+          return JSON.stringify(array);
+        },
+
         showRouter: function(status, options) {
           if (status == 'SHIPPED' || status == 'COMPLETED' || status == 'CONSIGNED' || status == 'RECEIPTED' || status == 'AUTO_COMPLETED') {
             return options.fn(options.contexts || this);
@@ -105,6 +114,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             return options.inverse(options.contexts || this);
           }
         },
+
         showPackageStatus: function(status, options) {
           var statsMap = {
             'SUBMITED': '已提交',
@@ -814,19 +824,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
         event && event.preventDefault();
         var itemIdList = new Array();
 
-        var array = []
+        // var array = []
 
-        $element.parent().parent().find('.itemlist .goodsWrap').each(function(index, el) {
-          var itemId = $(el).attr('data-itemid');
-          var num = $(el).attr('data-num');
+        var array = $element.parent().attr('data-all');
 
-          array.push({
-            itemId: itemId,
-            num: num
-          });
-        });
+        // $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+        //   var itemId = $(el).attr('data-itemid');
+        //   var num = $(el).attr('data-num');
 
-        this.addCart(array);
+        //   array.push({itemId: itemId, num: num});
+        // })
+
+        // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
+        // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
+        this.addCart(JSON.parse(array));
+
       },
       //搜索无结果加入购物车
       '.addCart click': function(element, event) {
