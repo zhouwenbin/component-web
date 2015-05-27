@@ -221,7 +221,7 @@ define('sf.b2c.mall.component.search', [
         }
       });
       this.renderData.bind("itemSearch", function(ev, newVal, oldVal){
-        if (that.renderData.searchData.page * that.searchParams.size > that.renderData.itemSearch.totalHits) {
+        if (that.renderData.searchData.page * that.searchParams.size >= that.renderData.itemSearch.totalHits) {
           that.renderData.attr("nextPage", 0)
         }
       });
