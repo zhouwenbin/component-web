@@ -19,7 +19,7 @@
                 <tbody>
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
-                        <td class="td1">
+                        <td class="td1" style="position:relative;">
                             {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
                             {{#isValid}}
                                 <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
@@ -75,7 +75,7 @@
                         <div class="tooltip-cart">
                             <span class="icon icon77 fl"></span>
                             {{#if order.discountFee}}
-                            <span class="text-error">参加{{countNumActivity reduceInfos}}个满减活动：省{{sf.price order.discountFee}}</span>
+                            <span class="text-error">参加{{countNumActivity reduceInfos}}个满减活动：省{{sf.price order.discountFee}}元</span>
                             {{/if}}
 
                             <div class="tooltip-pos">
@@ -84,7 +84,7 @@
                                     <div class="tooltip tooltip-active">
                                         <ul>
                                             {{#each reduceInfos}}
-                                            <li>满足指定商品满<span class="text-important">{{sf.price useRule.limit}}</span>减<span class="text-important">{{sf.price useRule.preferential}}</span>活动</li>
+                                            <li>满足指定商品满<span class="text-important">{{sf.price useRule.limit}}</span>元减<span class="text-important">{{sf.price useRule.preferential}}元</span>活动</li>
                                             {{/each}}
                                         </ul>
                                         <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
@@ -119,7 +119,7 @@
     </div>
     <div class="product">
         <ul class="myorder-tab">
-            <li><a href="">最近浏览</a></li>
+            <li><a href="">大家都在买</a></li>
         </ul>
         <div class="mb">
           <ul class="clearfix product-list">

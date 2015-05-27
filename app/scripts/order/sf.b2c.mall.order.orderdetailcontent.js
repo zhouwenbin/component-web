@@ -2,7 +2,7 @@
 
 define('sf.b2c.mall.order.orderdetailcontent', [
     'can',
-    'sf.b2c.mall.api.order.getOrder',
+    'sf.b2c.mall.api.order.getOrderV2',
     'sf.helpers',
     'sf.b2c.mall.widget.loading',
     'sf.b2c.mall.framework.comm',
@@ -100,6 +100,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.orderInfo = data;
+            that.options.gmtCreate =  data.orderItem.gmtCreate;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
             that.options.isCostCoupon = false;
@@ -152,7 +153,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           packageInfo.isShowLinkServer = true;
         }
         //如果包裹状态是自动取消，用户取消，运营取消，订单关闭，订单完成，自动完成，不展示发货仓和预计发货时间
-        if (packageInfo.status !== 'AUTO_CANCEL' || packageInfo.status !== 'USER_CANCEL' || packageInfo.status !== 'OPERATION_CANCEL' || packageInfo.status !== 'CLOSED' || packageInfo.status !== 'COMPLETED' || packageInfo.status !== 'AUTO_COMPLETED') {
+        if (packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL' || packageInfo.status == 'CLOSED' || packageInfo.status == 'COMPLETED' || packageInfo.status == 'AUTO_COMPLETED') {
           packageInfo.isShowShippingTime = false;
         };
         //状态流程图

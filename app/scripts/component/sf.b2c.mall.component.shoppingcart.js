@@ -15,9 +15,10 @@ define(
     'sf.b2c.mall.api.shopcart.updateItemNumInCart',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.shopcart.addItemToCart'
+    'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.isShowCart'
   ],
-  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart) {
+  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -93,13 +94,52 @@ define(
        */
       init: function() {
         var that = this;
-        var getCart = new SFGetCart();
-        getCart.sendRequest()
-          .done(function(data) {
-            that.render(data);
-          }).fail(function() {
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 从cookie中获得值确认购物车是不是显示
+          var uinfo = $.cookie('1_uinfo');
+          var arr = [];
+          if (uinfo) {
+            arr = uinfo.split(',');
+          }
+          // 判断纬度，用户>总开关
+          // 第四位标示是否能够展示购物车
+          // 0表示听从总开关的，1表示显示，2表示不显示
+          var flag = arr[4];
 
-          })
+          // 如果判断开关关闭，使用dom操作不显示购物车
+          if (typeof flag == 'undefined' || flag == '2') {
+
+          } else if (flag == '0') {
+            // @todo 请求总开关进行判断
+            var isShowCart = new SFIsShowCart();
+            isShowCart
+              .sendRequest()
+              .done(function(info) {
+                if (info.value) {
+                  var getCart = new SFGetCart();
+                  getCart.sendRequest()
+                    .done(function(data) {
+                      that.render(data);
+                    }).fail(function() {
+
+                    })
+                }
+              })
+              .fail(function() {
+
+              })
+          } else {
+            var getCart = new SFGetCart();
+            getCart.sendRequest()
+              .done(function(data) {
+                that.render(data);
+              }).fail(function() {
+
+              })
+          }
+        } else {
+          window.location.href = 'www.sfht.com';
+        }
 
       },
 
@@ -179,7 +219,7 @@ define(
               that.options.recommendGoods = data.value;
               _.each(that.options.recommendGoods, function(item) {
                 item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
-                item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+                item.imageName = item.imageName;
                 item.sellingPrice = item.sellingPrice;
               });
 
