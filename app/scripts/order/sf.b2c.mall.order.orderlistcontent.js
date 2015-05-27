@@ -800,7 +800,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             }
           })
           .fail(function(data) {
-            if (data == 15000201) {
+            if (data == 15000800) {
               var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
@@ -815,11 +815,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var itemIdList = new Array();
 
         var array = []
-        $element.parent('td').closest('.itemlist').find('.goodsWrap').each(function(index, $el) {
-          array.push({
-            itemId: $el.data('itemIds').itemId,
-            num: $el.data('itemIds').quantity
-          });
+
+        $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+          var itemId = $(el).attr('data-itemid');
+          var num = $(el).attr('data-num');
+
+          array.push({itemId: itemId, num: num});
         });
 
         this.addCart(array);

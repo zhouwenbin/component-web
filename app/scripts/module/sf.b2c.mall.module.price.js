@@ -173,7 +173,7 @@ define(
             }
           })
           .fail(function(data) {
-            if (data == 15000201) {
+            if (data == 15000800) {
               var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
