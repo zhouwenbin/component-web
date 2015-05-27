@@ -128,6 +128,7 @@ define('sf.b2c.mall.component.search', [
       filters: []
     }),
 
+    //排序类型map
     sortMap: {
       "DEFAULT": "DEFAULT",
       "SCORE": "SCORE",
@@ -238,7 +239,7 @@ define('sf.b2c.mall.component.search', [
 
       can.when(this.initSearchItem(this.searchData))
         .always(function(){
-          $(".loading").hide();
+          $(".mask, .loading, .loadingBg").hide();
           //渲染页面
           that.renderHtml(data);
         })
@@ -255,7 +256,9 @@ define('sf.b2c.mall.component.search', [
           }
         });
     },
-
+    /**
+     * 搜索失败
+     */
     searchFail: function() {
       new SFRecommendProducts('.recommend')
     },
@@ -290,6 +293,9 @@ define('sf.b2c.mall.component.search', [
         });
     },
 
+    /**
+     * 聚合数据处理map
+     */
     aggregationsMap: {
       byBrand: function(value) {
         var that = this;
@@ -340,7 +346,11 @@ define('sf.b2c.mall.component.search', [
         }
       }
     },
-
+    /**
+     * 实时获取商品的价格和库存数据
+     * @param itemIds 商品的items
+     * @returns {*}
+     */
     initGetProductHotDataList: function(itemIds) {
       var that = this;
       var getProductHotDataList = new SFGetProductHotDataList({
@@ -362,7 +372,11 @@ define('sf.b2c.mall.component.search', [
           })
         });
     },
-
+    /**
+     * 格式化url参数，用于跳到新的搜索页面
+     * @param {object} data url参数
+     * @returns {string} url参数
+     */
     getSearchParamStr: function(data) {
       if(!data) {
         data = this.renderData.searchData._data;
@@ -377,7 +391,10 @@ define('sf.b2c.mall.component.search', [
       });
       return paramStr.substr(0, paramStr.length - 1);
     },
-
+    /**
+     * 按新的筛选条件跳到新的搜索页面
+     * @param data url参数
+     */
     gotoNewPage: function(data) {
       window.location.href = "search.html?" + this.getSearchParamStr(data);
     },
@@ -388,42 +405,84 @@ define('sf.b2c.mall.component.search', [
     "#classify-more click": function(targetElement) {
       targetElement.parents('li').toggleClass('active');
     },
+    /**
+     * 按品牌条件筛选
+     * @param targetElement
+     */
     "[data-role=selectBrand] li click": function(targetElement) {
-      this.renderData.searchData.attr("page", 1);
-      this.renderData.searchData.attr("brandIds", [targetElement.data("id")]);
-      this.gotoNewPage();
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      delete searchDataTemp.page;
+      searchDataTemp.brandIds = [targetElement.data("id")];
+      this.gotoNewPage(searchDataTemp);
     },
+    /**
+     * 按一级分类条件筛选
+     * @param targetElement
+     */
     "[data-role=selectCategory] li click": function(targetElement) {
-      this.renderData.searchData.attr("page", 1);
-      this.renderData.searchData.attr("categoryIds", [targetElement.data("id")]);
-      this.gotoNewPage();
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      delete searchDataTemp.page;
+      searchDataTemp.categoryIds = [targetElement.data("id")];
+      this.gotoNewPage(searchDataTemp);
     },
+    /**
+     * 按货源地条件筛选
+     * @param targetElement
+     */
     "[data-role=selectOrigin] li click": function(targetElement) {
-      this.renderData.searchData.attr("page", 1);
-      this.renderData.searchData.attr("originIds", [targetElement.data("id")]);
-      this.gotoNewPage();
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      delete searchDataTemp.page;
+      searchDataTemp.originIds = [targetElement.data("id")];
+      this.gotoNewPage(searchDataTemp);
     },
+    /**
+     * 清空已选择条件
+     * @param targetElement
+     */
     '#emptyFilterBtn click': function(targetElement) {
-      this.renderData.attr("searchData", {keyword: this.renderData.searchData.attr("keyword")});
-      this.gotoNewPage();
+      this.gotoNewPage({keyword: this.renderData.searchData.attr("keyword")});
     },
+    /**
+     * 删除一个以选中条件
+     * @param targetElement
+     */
     '#classify-select li .btn-search-close click': function(targetElement) {
-      this.renderData.searchData.attr("page", 1);
-      var id = targetElement.data("id");
       var role = targetElement.data("role");
-      this.renderData.searchData.removeAttr(role);
-      this.gotoNewPage();
+
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      delete searchDataTemp.page;
+      delete searchDataTemp[role];
+      this.gotoNewPage(searchDataTemp);
     },
+
+    /**
+     * 上一页事件
+     * @param targerElement
+     */
     "#pageUpBtn click": function(targetElement) {
       var prevPage = this.renderData.prevPage;
-      this.renderData.searchData.attr("page", prevPage ? prevPage : 1);
-      this.gotoNewPage();
+
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      searchDataTemp.page = prevPage ? prevPage : 1;
+      this.gotoNewPage(searchDataTemp);
     },
+
+    /**
+     * 下一页事件
+     * @param targerElement
+     */
     "#pageDownBtn click": function(targetElement) {
       var nextPage = this.renderData.nextPage;
-      this.renderData.searchData.attr("page", nextPage);
-      this.gotoNewPage();
+
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      searchDataTemp.page = nextPage;
+      this.gotoNewPage(searchDataTemp);
     },
+
+    /**
+     * 排序事件
+     * @param targerElement
+     */
     "#sortBox li click": function(targerElement) {
       var role = targerElement.data("role");
       this.renderData.searchData.attr("sort", this.sortMap[role]);
