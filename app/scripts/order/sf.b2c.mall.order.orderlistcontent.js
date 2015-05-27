@@ -786,8 +786,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var itemIdList = new Array();
 
         var array = []
-        $element.closest('.itemlist').find('.goodsWrap').each(function (index, $el) {
-          array.push({itemId: $el.data('itemIds').itemId, num: $el.data('itemIds').quantity});
+        $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+          var itemId = $(el).attr('data-itemid');
+          var num = $(el).attr('data-num');
+
+          array.push({itemId: itemId, num: num});
         })
 
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
