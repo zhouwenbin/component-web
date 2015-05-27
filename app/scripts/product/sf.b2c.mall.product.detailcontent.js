@@ -992,6 +992,14 @@ define('sf.b2c.mall.product.detailcontent', [
             if (data.value) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
+
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
+              // $('document').append($el);
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
+
             }
           })
           .fail(function(data) {
