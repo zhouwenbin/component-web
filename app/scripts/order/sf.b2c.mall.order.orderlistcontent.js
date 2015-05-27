@@ -39,6 +39,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
             return options.fn(orderGoodsItemList[0]);
           };
         },
+        //每一个包裹中商品list中的第一条数据
+        firstPackage: function(orderPackageItemList, index, options) {
+          if (index == 0) {
+            return options.fn(options.contexts || this);
+          }
+        },
+        getPackageNum: function(index, options){
+          return index + 1;
+        },
         //后几个td的rowspan的行数（根据包裹数量）
         countTypeOfGoodsInOrder: function(orderPackageItemList, options) {
           return orderPackageItemList.length;
