@@ -1087,6 +1087,7 @@ module.exports = function(grunt) {
 
       price: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.price.js',
