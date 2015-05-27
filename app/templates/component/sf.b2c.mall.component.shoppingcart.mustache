@@ -33,8 +33,12 @@
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
-                            {{#isShowOriginPrice price activityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
-                            <strong>{{sf.price activityPrice}}</strong>
+                        
+
+                            {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
+
+                            {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
+                            {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
                             {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
                             {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
                         </td>
