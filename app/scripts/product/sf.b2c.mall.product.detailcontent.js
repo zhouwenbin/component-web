@@ -91,7 +91,7 @@ define('sf.b2c.mall.product.detailcontent', [
             arr = uinfo.split(',');
           }
 
-          if (supportShoppingCart() && (typeof arr[4] == 'undefined' || arr[4] == '2')) {
+          if (supportShoppingCart() && (typeof arr[4] != 'undefined' && arr[4] != '2')) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -170,14 +170,27 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       isShowCart: function() {
-        var uinfo = $.cookie('1_uinfo');
-        var arr = new Array();
-        if (uinfo) {
-          //arr = uinfo.split(',');
-          arr.push(uinfo.split(','));
-        }
+        if (SFComm.prototype.checkUserLogin.call(this)) {
+          var uinfo = $.cookie('1_uinfo');
+          var arr = new Array();
+          if (uinfo) {
+            //arr = uinfo.split(',');
+            arr.push(uinfo.split(','));
+          }
 
-        if (arr && arr[4] == '0') {
+          if (arr && arr[4] == '0') {
+            var isShowCart = new SFIsShowCart();
+            isShowCart
+              .sendRequest()
+              .done(function(data) {
+                if (data.value) {
+                  $('.addtocart').show();
+                } else {
+                  $('.addtocart').hide();
+                }
+              })
+          }
+        }else{
           var isShowCart = new SFIsShowCart();
           isShowCart
             .sendRequest()

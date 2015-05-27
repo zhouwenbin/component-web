@@ -174,22 +174,42 @@ define('sf.b2c.mall.component.header', [
       // 将弹出登录框事件注册到window上
       // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
+
+
+      this.checkTempActionAddCart();
     },
 
     controlCart: function() {
-      var uinfo = $.cookie('1_uinfo');
-      var arr = [];
-      if (uinfo) {
-        arr = uinfo.split(',');
-      }
 
-      var flag = arr[4];
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        var uinfo = $.cookie('1_uinfo');
+        var arr = [];
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
 
-      // 如果判断开关关闭，使用dom操作不显示购物车
-      if (typeof flag == 'undefined' || flag == '2') {
-        $(".mini-cart-container-parent").hide();
-      }else if (flag == '0') {
-        // @todo 请求总开关进行判断
+        var flag = arr[4];
+
+        // 如果判断开关关闭，使用dom操作不显示购物车
+        if (typeof flag == 'undefined' || flag == '2') {
+          $(".mini-cart-container-parent").hide();
+        }else if (flag == '0') {
+          // @todo 请求总开关进行判断
+          var isShowCart = new SFIsShowCart();
+          isShowCart
+            .sendRequest()
+            .done(function (data) {
+              if (data.value) {
+                $(".mini-cart-container-parent").show();
+              }else{
+                $(".mini-cart-container-parent").hide();
+              }
+            })
+
+        }else{
+          $(".mini-cart-container-parent").show();
+        }
+      }else{
         var isShowCart = new SFIsShowCart();
         isShowCart
           .sendRequest()
@@ -199,10 +219,7 @@ define('sf.b2c.mall.component.header', [
             }else{
               $(".mini-cart-container-parent").hide();
             }
-          })
-
-      }else{
-        $(".mini-cart-container-parent").show();
+          });
       }
     },
 
@@ -249,9 +266,12 @@ define('sf.b2c.mall.component.header', [
      * @description 加入购物车
      */
     addCart: function(itemId, num) {
-      var addItemToCart = new SFAddItemToCart({
+      var itemsStr = JSON.stringify([{
         itemId: itemId,
         num: num || 1
+      }]);
+      var addItemToCart = new SFAddItemToCart({
+        items: itemsStr
       });
 
       // 添加购物车发送请求

@@ -48,38 +48,53 @@ define(
       checkCartIsShown: function(data, element) {
 
         var that = this;
-        // 从cookie中获得值确认购物车是不是显示
-        var uinfo = $.cookie('1_uinfo');
-        var arr = [];
-        if (uinfo) {
-          arr = uinfo.split(',');
-        }
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 从cookie中获得值确认购物车是不是显示
+          var uinfo = $.cookie('1_uinfo');
+          var arr = [];
+          if (uinfo) {
+            arr = uinfo.split(',');
+          }
 
-        // 判断纬度，用户>总开关
-        //
-        // 第四位标示是否能够展示购物车
-        // 0表示听从总开关的，1表示显示，2表示不显示
-        var flag = arr[4];
+          // 判断纬度，用户>总开关
+          //
+          // 第四位标示是否能够展示购物车
+          // 0表示听从总开关的，1表示显示，2表示不显示
+          var flag = arr[4];
 
-        // 如果判断开关关闭，使用dom操作不显示购物车
-        if (typeof flag == 'undefined' || flag == '2') {
+          // 如果判断开关关闭，使用dom操作不显示购物车
+          if (typeof flag == 'undefined' || flag == '2') {
 
-        } else if (flag == '0') {
-          // @todo 请求总开关进行判断
+          } else if (flag == '0') {
+            // @todo 请求总开关进行判断
+            var isShowCart = new SFIsShowCart();
+
+            isShowCart
+              .sendRequest()
+              .done(function(info) {
+                if (info.value) {
+                  that.paintCart.call(that, data, element);
+                }
+              })
+              .fail(function() {
+
+              })
+          } else {
+            this.paintCart.call(this, data, element);
+          }
+        } else {
           var isShowCart = new SFIsShowCart();
 
           isShowCart
             .sendRequest()
-            .done(function (info) {
+            .done(function(info) {
               if (info.value) {
                 that.paintCart.call(that, data, element);
               }
             })
-            .fail(function () {
+            .fail(function() {
 
             })
-        }else{
-          this.paintCart.call(this, data, element);
         }
       },
 
@@ -112,22 +127,24 @@ define(
        * @author Michael.Lee
        * @description 加入购物车
        */
-      addCart: function (itemId, num) {
+      addCart: function(itemId, num) {
         var itemsStr = JSON.stringify([{
           itemId: itemId,
           num: num || 1
         }]);
-        var addItemToCart = new SFAddItemToCart({items: itemsStr});
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
 
         // 添加购物车发送请求
         addItemToCart.sendRequest()
-          .done(function (data) {
+          .done(function(data) {
             if (data.value) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
             }
           })
-          .fail(function (data) {
+          .fail(function(data) {
             // @todo 添加失败提示
             var error = SFAddItemToCart.api.ERROR_CODE[data.code];
 
@@ -142,15 +159,17 @@ define(
        * @description 添加购物车动作触发
        * @param  {element} el
        */
-      '.addtocart click': function (el, event) {
+      '.addtocart click': function(el, event) {
         event && event.preventDefault();
 
         var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
           // 用户如果如果登录
           this.addCart(itemId);
-        }else{
-          store.set('temp-action-addCart', {itemId: itemId});
+        } else {
+          store.set('temp-action-addCart', {
+            itemId: itemId
+          });
           can.trigger(window, 'showLogin', [window.location.href]);
         }
       },
@@ -209,7 +228,7 @@ define(
        * @param  {json} value   数据
        * @return
        */
-      paintCart: function (data, element) {
+      paintCart: function(data, element) {
         var that = this;
         _.each(data.value, function(value, key, list) {
 
@@ -221,16 +240,16 @@ define(
               // 判断如果商品已经售完，不再显示添加购物车按钮
               if (!value.soldOut && value.supportShoppingCart) {
                 $(item).find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
-              }else{
+              } else {
                 // @todo 显示不能添加购物车
                 $(item).find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
               }
             });
-          }else{
+          } else {
             // 判断如果商品已经售完，不再显示添加购物车按钮
             if (!value.soldOut && value.supportShoppingCart) {
               $el.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
-            }else{
+            } else {
               // @todo 显示不能添加购物车
               $el.find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
             }
