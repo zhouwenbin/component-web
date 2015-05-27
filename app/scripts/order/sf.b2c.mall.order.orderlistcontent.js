@@ -74,12 +74,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         //如果订单是取消状态，展示删除订单按钮
         isShowDeleteIcon: function(orderStatus, options) {
-          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消' || orderStatus == '订单关闭') {
+          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消' || orderStatus == '已关闭') {
             return options.fn(options.contexts || this);
           };
         },
         needCombineOperationRow: function(orderStatus, options) {
-          if (orderStatus === '已提交' || orderStatus == '待审核') {
+          if (orderStatus === '已提交' || orderStatus == '待审核' || orderStatus == '已关闭') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -99,7 +99,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
 
         showRouter: function(status, options) {
-          if (status == 'SHIPPED' || status == 'SHIPPING' || status == 'COMPLETED' || status == 'CONSIGNED' || status == 'RECEIPTED' || status == 'AUTO_COMPLETED') {
+          if (status == 'SHIPPED' || status == 'COMPLETED' || status == 'CONSIGNED' || status == 'RECEIPTED' || status == 'AUTO_COMPLETED') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -107,24 +107,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         showPackageStatus: function(status, options) {
           var statsMap = {
-              'SUBMITED': '已提交',
-              'AUTO_CANCEL': '自动取消',
-              'USER_CANCEL': '用户取消',
-              'AUDITING': '待审核',
-              'OPERATION_CANCEL': '运营取消',
-              'BUYING': '采购中',
-              'BUYING_EXCEPTION': '采购异常',
-              'WAIT_SHIPPING': '待发货',
-              'SHIPPING': '正在出库',
-              'LOGISTICS_EXCEPTION': '物流异常',
-              'SHIPPED': '已发货',
-              'CONSIGNED': '已出库',
-              'RECEIPTED': '已签收',
-              'COMPLETED': '已完成',
-              'AUTO_COMPLETED': '自动完成',
-              'CLOSED': '已关闭'
-            };
-            return statsMap[status];
+            'SUBMITED': '已提交',
+            'AUTO_CANCEL': '自动取消',
+            'USER_CANCEL': '用户取消',
+            'AUDITING': '待审核',
+            'OPERATION_CANCEL': '运营取消',
+            'BUYING': '采购中',
+            'BUYING_EXCEPTION': '采购异常',
+            'WAIT_SHIPPING': '待发货',
+            'SHIPPING': '正在出库',
+            'LOGISTICS_EXCEPTION': '物流异常',
+            'SHIPPED': '已发货',
+            'CONSIGNED': '已出库',
+            'RECEIPTED': '已签收',
+            'COMPLETED': '已完成',
+            'AUTO_COMPLETED': '自动完成',
+            'CLOSED': '已关闭'
+          };
+          return statsMap[status];
         }
 
       },
@@ -816,11 +816,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var array = []
 
-        $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+        $element.parent().parent().find('.itemlist .goodsWrap').each(function(index, el) {
           var itemId = $(el).attr('data-itemid');
           var num = $(el).attr('data-num');
 
-          array.push({itemId: itemId, num: num});
+          array.push({
+            itemId: itemId,
+            num: num
+          });
         });
 
         this.addCart(array);

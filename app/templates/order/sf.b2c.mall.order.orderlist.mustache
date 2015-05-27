@@ -84,7 +84,7 @@
             {{/firstPackage}}
             {{/needCombineOperationRow}}
 
-            {{! 如果不显示路由则不核定订单状态 }}
+            {{! 如果显示路由则不合并订单状态 }}
             {{^needCombineOperationRow orderStatus}}
             <td class="td6">
               <div>{{showPackageStatus status}}</div>
