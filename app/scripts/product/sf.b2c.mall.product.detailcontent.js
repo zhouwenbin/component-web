@@ -87,8 +87,7 @@ define('sf.b2c.mall.product.detailcontent', [
           var uinfo = $.cookie('1_uinfo');
           var arr = new Array();
           if (uinfo) {
-            //arr = uinfo.split(',');
-            arr.push(uinfo.split(','));
+            arr = uinfo.split(',');
           }
 
           if (supportShoppingCart() && (typeof arr[4] == 'undefined' || arr[4] == '0')) {
