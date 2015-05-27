@@ -84,11 +84,11 @@
             {{/firstPackage}}
             {{/needCombineOperationRow}}
 
-            {{! 如果不显示路由则不核定订单状态 }}
+            {{! 如果显示路由则不合并订单状态 }}
             {{^needCombineOperationRow orderStatus}}
             <td class="td6">
-              <div>{{status}}</div>
-              {{#if showRouter}}
+              <div>{{showPackageStatus status}}</div>
+              {{#showRouter status}}
                 <div class="table-1-logistics" data-pkgid="{{getPackageNum @index}}" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
                   <div class="tooltip-pos">
                     <a class="myorder-link find-route-list" href="/orderdetail.html?orderid={{orderId}}&pkgid={{getPackageNum @index}}">查看物流</a>
@@ -99,7 +99,7 @@
                     </div>
                   </div>
                 </div>
-              {{/if}}
+              {{/showRouter}}
             </td>
             {{/needCombineOperationRow}}
 

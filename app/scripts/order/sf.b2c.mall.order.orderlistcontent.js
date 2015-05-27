@@ -74,12 +74,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
         },
         //如果订单是取消状态，展示删除订单按钮
         isShowDeleteIcon: function(orderStatus, options) {
-          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消' || orderStatus == '订单关闭') {
+          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消' || orderStatus == '已关闭') {
             return options.fn(options.contexts || this);
           };
         },
         needCombineOperationRow: function(orderStatus, options) {
-          if (orderStatus === '已提交' || orderStatus == '待审核') {
+          if (orderStatus === '已提交' || orderStatus == '待审核' || orderStatus == '已关闭') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -105,6 +105,36 @@ define('sf.b2c.mall.order.orderlistcontent', [
           });
 
           return JSON.stringify(array);
+        },
+
+        showRouter: function(status, options) {
+          if (status == 'SHIPPED' || status == 'COMPLETED' || status == 'CONSIGNED' || status == 'RECEIPTED' || status == 'AUTO_COMPLETED') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
+        showPackageStatus: function(status, options) {
+          var statsMap = {
+            'SUBMITED': '已提交',
+            'AUTO_CANCEL': '自动取消',
+            'USER_CANCEL': '用户取消',
+            'AUDITING': '待审核',
+            'OPERATION_CANCEL': '运营取消',
+            'BUYING': '采购中',
+            'BUYING_EXCEPTION': '采购异常',
+            'WAIT_SHIPPING': '待发货',
+            'SHIPPING': '正在出库',
+            'LOGISTICS_EXCEPTION': '物流异常',
+            'SHIPPED': '已发货',
+            'CONSIGNED': '已出库',
+            'RECEIPTED': '已签收',
+            'COMPLETED': '已完成',
+            'AUTO_COMPLETED': '自动完成',
+            'CLOSED': '已关闭'
+          };
+          return statsMap[status];
         }
 
       },
@@ -169,14 +199,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
 
                 order.paymentAmount = order.totalPrice - order.discount;
-                order.showRouter = that.routeMap[order.orderStatus];
                 order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
                   _.each(order.orderPackageItemList, function(orderPackageItem, i) {
-                    orderPackageItem.status = that.statsMap[orderPackageItem.status];
+                    //orderPackageItem.showRouter = that.routeMap[orderPackageItem.status];
+                    //orderPackageItem.status = that.statsMap[orderPackageItem.status];
                     if (i !== 0) {
                       lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
                     };
@@ -201,12 +231,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
               that.element.html(html);
               var endTimeArea = $('.showOrderEndTime');
               _.each(that.options.orders, function(item, i) {
-                  setInterval(function() {
-                    that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                    that.options.orders[i].leftTime = item.leftTime - 1000;
-                  }, 1000);
-                })
-                //分页 保留 已经调通 误删 后面设计会给样式
+                setInterval(function() {
+                  that.setCountDown(endTimeArea.eq(i), item.leftTime);
+                  that.options.orders[i].leftTime = item.leftTime - 1000;
+                }, 1000);
+              });
+              //分页 保留 已经调通 误删 后面设计会给样式
               that.options.page = new PaginationAdapter();
               that.options.page.format(data.page);
               new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
@@ -668,7 +698,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var suborderid = $el.attr('data-suborderid');
         var recid = element.closest('.table-c4').siblings('#operationarea').attr('data-recid');
 
-        window.open("/orderdetail.html?orderid=" + orderid + "&pkgid=" + pkgid+ "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+        window.open("/orderdetail.html?orderid=" + orderid + "&pkgid=" + pkgid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {
         var that = this;
@@ -808,12 +838,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
         // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
         this.addCart(JSON.parse(array));
+
       },
       //搜索无结果加入购物车
       '.addCart click': function(element, event) {
         event && event.preventDefault();
         var itemId = $(element).closest('li').data('goods').itemId;
-        this.addCart([{itemId: itemId, num: 1}]);
+        this.addCart([{
+          itemId: itemId,
+          num: 1
+        }]);
       }
 
     });

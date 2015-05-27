@@ -13,12 +13,12 @@
                 <li><span>订单编号：</span>{{orderId}}</li>
                 <li><span>下单时间：</span>{{sf.time gmtCreate}}</li>
                 <li>
-                    <span>订单内容：</span>
+                    <span>商品名称：</span>
                     {{#orderGoodsItemList}}
                         {{goodsName}}x{{quantity}}
                         <br>
                     {{/orderGoodsItemList}}
-                <li><span>送货地址：</span>{{orderAddressItem.receiveName}} {{orderAddressItem.mobile}} {{orderAddressItem.detailAddress}}</li>
+                <li><span>收货地址：</span>{{orderAddressItem.receiveName}} {{orderAddressItem.mobile}} {{orderAddressItem.detailAddress}}</li>
             </ul>
         </div>
         <div class="gotopay">

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.checkAppUpgrade
+  * @class sf.b2c.mall.api.order.getOrderV2
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.checkAppUpgrade',
+'sf.b2c.mall.api.order.getOrderV2',
 [
   'jquery',
   'can',
@@ -22,17 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.checkAppUpgrade',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'order.getOrderV2',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'appVersion': 'string',
-        'moduleVersion': 'string'
+        'orderId': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
+        '4000100': 'order unkown error',
+        '4100600': '请求参数有误'
       }
     }
   });
