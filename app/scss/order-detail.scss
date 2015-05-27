@@ -82,10 +82,12 @@
 }
 .order-detail-step ul{
 	display: inline-block;
+	overflow: hidden;
+	margin-left: -140px;
 }
 .order-detail-step li{
-	display: inline-block;
-	margin-right: 140px;
+	float:left;
+	margin-left: 140px;
 	position: relative;
 }
 .order-detail-step li .icon{
@@ -101,9 +103,7 @@
 	top: 14px;
 	left: 41px;
 }
-.order-detail-step li:last-child{
-	margin-right: 0;
-}
+
 .order-detail-step2 .icon92,
 .order-detail-step3 .icon92,
 .order-detail-step4 .icon92,
