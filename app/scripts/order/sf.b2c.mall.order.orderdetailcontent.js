@@ -120,7 +120,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           })
       },
 
-      supplement: function(){
+      supplement: function() {
         var params = can.deparam(window.location.search.substr(1));
         var pkgid = params.pkgid;
 
@@ -130,7 +130,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
-        packageInfo.userRoutes = packageInfo.actionTraceItemList.reverse(); //获取包裹路由并倒序
+        packageInfo.userRoutes = packageInfo.actionTraceItemList;
 
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
@@ -139,19 +139,21 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         packageInfo.showStep = true;
         packageInfo.isShowLinkServer = false;
-        packageInfo.isShowShippingTime = false;
+        packageInfo.isShowShippingTime = true;
 
+        //如果订单状态是已关闭，自动取消，用户取消，运营取消，不展示订单状态流程图
         if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
           packageInfo.showStep = false;
         }
-
+        //如果包裹状态是待审核，待发货，发货中，已发货，展示联系客服
         if (packageInfo.status == 'AUDITING' || packageInfo.status == 'WAIT_SHIPPING' || packageInfo.status == 'SHIPPING' || packageInfo.status == 'SHIPPED') {
           packageInfo.isShowLinkServer = true;
         }
-
+        //如果包裹状态是自动取消，用户取消，运营取消，订单关闭，订单完成，自动完成，不展示发货仓和预计发货时间
         if (packageInfo.status !== 'AUTO_CANCEL' || packageInfo.status !== 'USER_CANCEL' || packageInfo.status !== 'OPERATION_CANCEL' || packageInfo.status !== 'CLOSED' || packageInfo.status !== 'COMPLETED' || packageInfo.status !== 'AUTO_COMPLETED') {
-          packageInfo.isShowShippingTime = true;
+          packageInfo.isShowShippingTime = false;
         };
+        //状态流程图
         var map = {
           'SUBMITED': '', //待支付
           'AUDITING': 'order-detail-step2', //待审核
