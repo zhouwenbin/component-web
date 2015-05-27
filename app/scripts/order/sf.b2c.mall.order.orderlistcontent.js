@@ -329,10 +329,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li {{data "goods"}}>' +
 
           '<div class="product-r1">' +
-          '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
 
-          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
 
           '<div class="product-r2 clearfix">' +
 
@@ -365,10 +365,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li {{data "goods"}}>' +
 
           '<div class="product-r1">' +
-          '<a href="{{linkUrl}}"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
 
-          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
 
           '<div class="product-r2 clearfix">' +
 
