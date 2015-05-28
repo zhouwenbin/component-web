@@ -275,16 +275,17 @@ define(
             //   window.parent.userLoginSccuessCallback();
             // }
             // 注册送优惠券 end
-            document.domain = "sfht.com";
-            window.parent.userLoginSccuessCallback();
 
             // 获得打车券
             if (newUser) {
-              var currentServerTime = this.component.partnerBind.getServerTime();
-              if (currentServerTime > 1432828800 && currentServerTime < 1433087999) {
+              var currentServerTime = that.component.partnerBind.getServerTime();
+              if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
                 window.parent.popMessage();
               }
             }
+
+            document.domain = "sfht.com";
+            window.parent.userLoginSccuessCallback();
 
 
           }).fail(function(errorCode) {
