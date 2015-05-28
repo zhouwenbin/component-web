@@ -27,13 +27,13 @@
   <ul>
     {{#if hasPswd}}
     <li>
-      <label class="justify" for="input-mobile">手机号码</label>:
+      <label class="justify" for="input-mobile">手机号码:</label>
       {{phoneNumber}}
       <input id="input-mobile" type="hidden" class="input" can-value="phoneNumber">
     </li>
 
     <li class="li1">
-      <label class="justify" for="input-mobile-code">短信验证码</label>:
+      <label class="justify" for="input-mobile-code">短信验证码:</label>
       <input type="text" class="input" placeholder="点击按钮获取验证码" id="input-mobile-code" can-value="mobileCode">
       <a href="#" class="btn btn-send" id="mobile-code-btn">发送验证码</a>
       <span class="icon icon26" id="mobile-code-error">短信验证码输入有误，请重新输入</span>
@@ -41,26 +41,26 @@
     {{/if}}
     {{^if hasPswd}}
     <li>
-      <label class="justify" for="new-password">原始密码</label>:
+      <label class="justify" for="new-password">原始密码:</label>
       <input id="old-password" type="password" class="input" can-value="oldPwd">
       <span id="oldPwd-error-tips" class="icon icon26"></span>
     </li>
     {{/if}}
     <li>
-      <label class="justify" for="new-password">新密码</label>:
+      <label class="justify" for="new-password">新密码:</label>
       <input id="new-password" type="password" class="input" can-value="newPwd">
       <span id="newPwd-error-tips" class="icon icon26"></span>
     </li>
     <li>
-      <label class="justify" for="confirm-password">确认密码</label>:
+      <label class="justify" for="confirm-password">确认密码:</label>
       <input id="confirm-password" type="password" class="input" can-value="confirmPwd">
       <span id="confirmPwd-error-tips" class="icon icon26"></span>
     </li>
   </ul>
   {{#if hasPswd}}
-  <button id="btn-confirm-bind" class="btn btn-success btn-small">确定</button>
+  <button style="margin-left:93px;" id="btn-confirm-bind" class="btn btn-success btn-small">确定</button>
   {{/if}}
   {{^if hasPswd}}
-  <button id="btn-confirm" class="btn btn-success btn-small">确定</button>
+  <button style="margin-left:93px;" id="btn-confirm" class="btn btn-success btn-small">确定</button>
   {{/if}}
 </div>
