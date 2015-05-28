@@ -98,12 +98,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
 
-        'sf-items-list': function(items) {
+        'sf-items-list': function  (packages) {
           var array = [];
-          _.each(items, function(value, key, list) {
-            array.push({
-              itemId: value.itemId,
-              num: value.quantity
+          _.each(packages, function(package){
+            _.each(package.orderGoodsItemList, function(good){
+              array.push({itemId: good.itemId, num: good.quantity});
             });
           });
 
@@ -150,6 +149,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       init: function(element, options) {
         var that = this;
 
+        this.handler = null;
+
         this.options.tab = new can.Map({
           'allorderTab': false,
           'notPayOrderListTab': false,
@@ -183,6 +184,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         }
 
         this.render(params);
+
       },
 
       render: function(params) {
@@ -237,15 +239,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
-              var endTimeArea = $('.showOrderEndTime');
-              _.each(that.options.orders, function(item, i) {
-                setInterval(function() {
-                  if (item.leftTime > 0) {
-                    that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                    that.options.orders[i].leftTime = item.leftTime - 1000;
-                  }
-                }, 1000);
-              });
+              that.handler = setInterval(function() {
+
+                var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
+                _.each(that.options.orders, function(item, i) {
+
+                    if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                      that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    }
+
+                });
+
+              }, 1000);
               //分页 保留 已经调通 误删 后面设计会给样式
               that.options.page = new PaginationAdapter();
               that.options.page.format(data.page);
@@ -318,6 +324,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         // 加上标示 防止触发三次
         if (!this.hasRendered) {
+
+          if (this.handler) {
+            clearInterval(this.handler);
+          }
+
           this.render(params);
           this.hasRendered = true;
           // 清空条件
@@ -802,7 +813,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'CLOSED': '已关闭'
       },
       //再次购买
-      addCart: function(array) {
+      addCart: function(array, callback) {
         var that = this;
         var itemsStr = JSON.stringify(array);
         var addItemToCart = new SFAddItemToCart({
@@ -815,7 +826,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
             if (data.value) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
-              window.location.reload();
+
+              if (_.isFunction(callback)) {
+                callback();
+              }else{
+                window.location.reload();
+              }
             }
           })
           .fail(function(data) {
@@ -846,7 +862,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
         // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
-        this.addCart(JSON.parse(array));
+        this.addCart(JSON.parse(array), function () {
+          window.location.href = '/shoppingcart.html';
+        });
 
       },
       //搜索无结果加入购物车

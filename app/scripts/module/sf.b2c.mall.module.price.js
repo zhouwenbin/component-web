@@ -158,6 +158,7 @@ define(
 
               $el.clone().appendTo($el.parent());
               $el.css({
+                zIndex: 2,
                 left:targetX-currentX,
                 top:targetY-currentY,
                 visibility:'hidden'

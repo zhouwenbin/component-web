@@ -329,6 +329,7 @@ $(function(){
     $(this).css({
       left:targetX-currentX,
       top:targetY-currentY,
+      zIndex:2,
       visibility:'hidden'
     });
     cart_num++;
