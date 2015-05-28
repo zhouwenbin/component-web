@@ -29,15 +29,14 @@
 }
 .m-dialog{
 	
-	position: fixed;
-	top:50%;
+	position: absolute;
+	top:100px;
 	left: 50%;
 	display: none;
 }
 .m-dialog .mb{
 	position: relative;
 	left: -50%;
-	margin-top: -50%;
 	background: #fff;
 	background: rgba(255,255,255,0.85);
 	border:2px solid #ccc;
