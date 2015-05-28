@@ -12,16 +12,16 @@
         <li><span>运费：</span>免运费</li>
         <li><span>实付款：</span><strong class="text-error">￥{{sf.price orderInfo.totalPrice}}</strong></li>
         {{#if isCostCoupon}}
-          <li>已使用优惠券：{{costCoupon.couponDescription}}        {{costCoupon.couponName}}</li>
+          <li>已使用优惠券：{{costCoupon.couponDescription}}</li>
         {{/if}}
         {{#if isPresentCoupon}}
-          <li>活动赠送优惠券：{{presentCoupon.couponDescription}}{{presentCoupon.couponName}}</li>
+          <li>赠送优惠券：{{presentCoupon.couponDescription}}</li>
         {{/if}}
         {{#if isGiftBag}}
-          <li>活动赠送礼包：{{giftBag.couponDescription}}{{giftBag.couponName}}</li>
+          <li>赠送礼包：{{giftBag.couponDescription}}</li>
         {{/if}}
         {{#if isShareBag}}
-          <li>活动赠送红包: {{shareBag.couponDescription}}</li>
+          <li>赠送红包: {{shareBag.couponDescription}}</li>
         {{/if}}
         {{#isShowBackMoney orderInfo}}<li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>{{/isShowBackMoney}}
     </ul>
