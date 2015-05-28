@@ -27,6 +27,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.widget.not.support',
   'sf.util',
   'sf.b2c.mall.component.header.520',
+  'sf.b2c.mall.component.header.61',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
   'text!template_header_channel_navigator',
@@ -34,6 +35,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
 ], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+  SFHeader61,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -163,6 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
+	  this.renderMap['template_header_61'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
@@ -177,7 +180,7 @@ define('sf.b2c.mall.component.header', [
 
 
       this.checkTempActionAddCart();
-    },
+	},
 
     controlCart: function() {
 
@@ -378,6 +381,10 @@ define('sf.b2c.mall.component.header', [
         new SFHeader520('.sf-b2c-mall-header', {
           "originheader": this
         });
+      },
+
+      'template_header_61': function(data) {
+        new SFHeader61('.sf-b2c-mall-header');
       }
     },
 
@@ -698,7 +705,7 @@ define('sf.b2c.mall.component.header', [
       window.popMessage = function() {
         setTimeout(function() {
           new SFMessage(null, {
-            'tip': "礼包领取成功，请至我的优惠券查看！",
+            'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
             'type': 'success'
           });
         }, 1000);
