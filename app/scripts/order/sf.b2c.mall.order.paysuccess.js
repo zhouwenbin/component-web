@@ -143,15 +143,15 @@ define('sf.b2c.mall.order.paysuccess', [
        * @return
        */
       renderLuckyMoney: function() {
-        $('.shareQrCode').each(function(index, $el) {
-          var code = $el.attr('data-code');
+        $('.shareQrCode').each(function(index, element) {
+          var code = $(element).attr('data-code');
           var qrParam = {
             width: 140,
             height: 140,
             text: "http://m.sfht.com/luckymoneyshare.html?id=" + code
           };
 
-          $el.qrcode(qrParam);
+          $(element).qrcode(qrParam);
         });
       }
     });
