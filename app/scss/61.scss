@@ -98,10 +98,36 @@
 	display: inline-block;
 	margin-left: 10px;
 	margin-bottom: 30px;
+	position: relative;
 	}
 .tab-b{
 	padding-bottom: 28px;
 }
 .footer1{
 	margin-top: 0;
+}
+.icon-soldout{
+	background: url(#{$bg-url}61/icon1.png) no-repeat;
+	width: 159px;
+	height: 159px;
+	position: absolute;
+	left: 279px;
+	top: 862px;
+	text-indent: -999em;
+}
+.mask{
+	position: absolute;;
+	display: block;
+	box-sizing:border-box;
+}
+.tab-b li span{
+	font-size: 36px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	top: 122px;
+	width: 100%;
+	z-index: 999;
 }
