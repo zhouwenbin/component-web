@@ -100,8 +100,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         'sf-items-list': function  (packages) {
           var array = [];
-          _.each(packages, function(package){
-            _.each(package.orderGoodsItemList, function(good){
+          _.each(packages, function(packageItem){
+            _.each(packageItem.orderGoodsItemList, function(good){
               array.push({itemId: good.itemId, num: good.quantity});
             });
           });
