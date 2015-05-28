@@ -138,6 +138,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
             'CLOSED': '已关闭'
           };
           return statsMap[status];
+        },
+        isShowActive: function(index, options) {
+          if (index == 0) {
+            return 'active';
+          }
         }
 
       },
@@ -266,7 +271,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                   _.each(data.value, function(item) {
                     item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
-                    item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
+                    item.imageName = item.imageName;
                   })
 
                   // 带有搜索和不带搜索的结果页不一样
@@ -470,7 +475,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
               }
               var template = can.view.mustache(that.getTraceListTemplate());
-              $(element).siblings('.tooltip-outer').children('#traceList').html(template(result));
+              $(element).siblings('.tooltip-outer').children('#traceList').html(template(result, that.helpers));
             }
           })
           .fail(function(error) {
@@ -499,12 +504,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         return '<h4>物流跟踪</h4>' +
           '<ul>' +
           '{{#each userRoutes}}' +
-          '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
-
+          '<li class="{{isShowActive @index}}"><div class="time">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div></li>' +
           '{{/each}}' +
           '</ul>' +
-          '<a id="find-more-info" href="#">查看全部</a>' +
-          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
+          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
+          '<a id="find-more-info" href="#">查看全部</a>'
       },
 
       /**
