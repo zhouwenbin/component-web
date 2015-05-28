@@ -30,7 +30,7 @@ define('sf.b2c.mall.component.search', [
   return can.Control.extend({
     helpers: {
       'sf-isShowMoreBrand': function(brands, options) {
-        if (brands().length > 8) {
+        if (brands().length > 10) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);

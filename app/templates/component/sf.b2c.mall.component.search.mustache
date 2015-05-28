@@ -12,12 +12,8 @@
 
     <!--购物须知-->
     <div class="buyer-reading">
-      <h2>购物须知</h2>
-      <p>根据海关跨境电商管理规定，个人递进境物品需界定为个人自用。个人自用物品需要满足如下条件：</p>
-      <ul>
-        <li>个人自用的海外邮寄物品总值1000元人民币以内（若不可分割的产品可以超过1000元人民币：例如一台笔记本电脑）。</li>
-        <li>在本网站上购买的商品根据[保税仓直发］和［海外直邮］商品类型进行拆分包裹。</li>
-      </ul>
+      <h2>温馨提示</h2>
+      <p>亲爱的用户，我们的商品搜索功能还在完善中，<a class="text-link" href="http://www.sfht.com/feedback.html" target="_blank">点此给我们提建议</a></p>
     </div>
   </div>
 </div>
@@ -52,9 +48,7 @@
           <div class="classify-c1 fl">
             <label>品牌：</label>
             <ul id="classify-logo">
-              {{#each brands.buckets}}
-                  <li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}">{{/pic}}{{^pic}}<span>{{key}}</span>{{/pic}}</a></li>
-              {{/each}}
+              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:"><img class="hide" src="{{pic}}" alt="{{key}}"  /><span>{{key}}</span></a></li>{{/each}}
             </ul>
           </div>
           {{#sf-isShowMoreBrand brands.buckets}}
