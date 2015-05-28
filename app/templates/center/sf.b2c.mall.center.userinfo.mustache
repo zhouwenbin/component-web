@@ -7,15 +7,15 @@
 <div class="account-manage account-manage1 active">
 {{^isModified}}
   <ul>
-    <li><label for="nickname">昵称</label>:{{user.nick}}</li>
-    <li><label for="sex">性别</label>:{{user.gender}}</li>
+    <li><label for="nickname">昵称:</label>{{user.nick}}</li>
+    <li><label for="sex">性别:</label>{{user.gender}}</li>
   </ul>
   <button class="btn btn-success btn-small" id="user-info-modify-btn">修改</button>
 {{/isModified}}
 {{#isModified}}
   <ul>
-    <li><label for="nickname">昵称</label>:<input type="text" id="nickname" class="input" can-value="input.nick" /></li>
-    <li><label for="sex">性别</label>:<select can-value='input.gender' name="" id="select-sex">
+    <li><label for="nickname">昵称:</label><input type="text" id="nickname" class="input" can-value="input.nick" /></li>
+    <li><label for="sex">性别:</label><select can-value='input.gender' name="" id="select-sex">
                 <option value="MALE">男</option>
                 <option value="FEMALE">女</option>
               </select></li>
