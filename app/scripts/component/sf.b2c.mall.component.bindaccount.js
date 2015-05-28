@@ -275,7 +275,7 @@ define(
             //   window.parent.userLoginSccuessCallback();
             // }
             // 注册送优惠券 end
-
+            document.domain = "sfht.com";
             // 获得打车券
             if (newUser) {
               var currentServerTime = that.component.partnerBind.getServerTime();
@@ -284,7 +284,6 @@ define(
               }
             }
 
-            document.domain = "sfht.com";
             window.parent.userLoginSccuessCallback();
 
 
