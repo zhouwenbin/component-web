@@ -28,10 +28,10 @@ define('sf.b2c.mall.component.header.61', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
-      this.render(tag, this.data);
+      this.render(this.data);
     },
 
-    render: function(tag, data) {
+    render: function(data) {
       //渲染页面
       var renderFn = can.mustache(template_header_61);
       var html = renderFn(data, this.helpers);
@@ -43,13 +43,17 @@ define('sf.b2c.mall.component.header.61', [
     showAD: function() {
 
       if (!this.isInShowPage()) {
-        $(".banner-scroll").hide();
+        $(".banner-scroll3").hide();
         return false;
       }
 
-      $('.banner-scroll2').delay(100).animate({
+      $('.banner-scroll3').delay(100).animate({
         "height": 90
       }, 300);
+    },
+
+    '.banner-scroll3 click': function(element, event){
+      window.location.href = "http://www.sfht.com/61.html";
     },
 
     isInShowPage: function() {

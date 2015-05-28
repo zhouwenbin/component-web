@@ -410,7 +410,7 @@ define(
                 // that.sendCoupon();
                 // 注册送优惠券 end
                 var currentServerTime = this.component.mobileRegister.getServerTime();
-                if (currentServerTime > 1432828800 && currentServerTime < 1433087999) {
+                if (currentServerTime > 1432915200 && currentServerTime < 1433087999) {
                   window.parent.popMessage();
                 }
                 // can.route.attr({
