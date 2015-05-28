@@ -33,8 +33,7 @@ define(
         },
 
         'sf-totalprice': function (selectPayType, price, discount) {
-          var discountInfo = discount();
-
+          var discountInfo = JSON.parse(discount().value);
           if(typeof discountInfo != 'undefined' &&
             !can.isEmptyObject(discountInfo) &&
             typeof discountInfo[selectPayType()] != 'undefined'
