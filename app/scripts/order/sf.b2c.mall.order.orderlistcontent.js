@@ -144,6 +144,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       init: function(element, options) {
         var that = this;
 
+        this.handler = null;
+
         this.options.tab = new can.Map({
           'allorderTab': false,
           'notPayOrderListTab': false,
@@ -177,6 +179,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         }
 
         this.render(params);
+
       },
 
       render: function(params) {
@@ -231,15 +234,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
-              var endTimeArea = that.element.find('.showOrderEndTime');
-              _.each(that.options.orders, function(item, i) {
-                setInterval(function() {
-                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
-                  }
-                }, 1000);
-              });
+              that.handler = setInterval(function() {
+
+                var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
+                _.each(that.options.orders, function(item, i) {
+
+                    if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                      that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    }
+
+                });
+
+              }, 1000);
               //分页 保留 已经调通 误删 后面设计会给样式
               that.options.page = new PaginationAdapter();
               that.options.page.format(data.page);
@@ -312,6 +319,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         // 加上标示 防止触发三次
         if (!this.hasRendered) {
+
+          if (this.handler) {
+            clearInterval(this.handler);
+          }
+
           this.render(params);
           this.hasRendered = true;
           // 清空条件
