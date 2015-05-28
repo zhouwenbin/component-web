@@ -188,6 +188,10 @@ define('sf.b2c.mall.product.detailcontent', [
                   $('.addtocart').hide();
                 }
               })
+          }else if (arr && arr[4] == '1') {
+            $('.addtocart').show();
+          }else{
+            $('.addtocart').hide();
           }
         }else{
           var isShowCart = new SFIsShowCart();
