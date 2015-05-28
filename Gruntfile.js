@@ -1389,7 +1389,7 @@ module.exports = function(grunt) {
         'copy:image',
         'copy:templates',
         'usemin',
-        'htmlmin',
+        //'htmlmin',
         'clean:extra',
         'clean:publish',
         'clean:oss',
