@@ -224,6 +224,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
                     if (coupon.couponType == "SHAREBAG") {
                       order.isShareBag = true;
                       order.shareBag = coupon;
+
+                      order.optionHMTL = '<a href="#" data-url="http://m.sfht.com/luckymoneyshare.html?id='+coupon.code+'" class="btn btn-normal btn-small" role="shareBagLink">分享红包</a>' + order.optionHMTL
                     }
                   });
                 } else {

@@ -20,6 +20,9 @@
         {{#if isGiftBag}}
           <li>活动赠送礼包：{{giftBag.couponDescription}}{{giftBag.couponName}}</li>
         {{/if}}
+        {{#if isShareBag}}
+          <li>活动赠送红包: {{shareBag.couponDescription}}</li>
+        {{/if}}
         {{#isShowBackMoney orderInfo}}<li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>{{/isShowBackMoney}}
     </ul>
     <ul>
@@ -37,7 +40,7 @@
       {{/each}}
     </ul>
     <div id="packageItemInfo">
-      
+
     </div>
   </div>
   {{! end order-detail-c2 }}
