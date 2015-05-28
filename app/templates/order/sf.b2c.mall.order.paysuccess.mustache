@@ -35,7 +35,7 @@
                   {{#orderItem.orderCouponItemList}}
 
                     {{! 现金券}}
-                    {{#sf-coupon-type couponType 'CASH'}}
+                    {{#sf-coupon-type couponType orderAction 'CASH'}}
                       <li>
                           <div class="gift">
                               <div class="gift-r1">{{couponName}}</div>
@@ -45,7 +45,7 @@
                     {{/sf-coupon-type}}
 
                     {{! 大礼包}}
-                    {{#sf-coupon-type couponType 'GIFTBAG'}}
+                    {{#sf-coupon-type couponType orderAction 'GIFTBAG'}}
                     <li>
                         <div class="coupon">
                             <div class="coupon-r1"><b>¥</b><strong>{{sf.price presentCoupon.price}}</strong>{{presentCoupon.couponName}}</div>
@@ -60,7 +60,7 @@
             {{#orderItem.orderCouponItemList}}
 
               {{! 红包}}
-              {{#sf-coupon-type couponType 'SHAREBAG'}}
+              {{#sf-coupon-type couponType orderAction 'SHAREBAG'}}
               <div class="pay-success2-bc2 fr">
                   <div class="qrcode">
                       {{! @todo 生成二维码}}

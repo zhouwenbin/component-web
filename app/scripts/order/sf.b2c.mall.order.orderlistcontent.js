@@ -427,7 +427,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           '<li {{data "goods"}}>' +
 
           '<div class="product-r1">' +
-          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img style="width:240px;height:240px;margin:0;border:0;" src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
 
           '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +

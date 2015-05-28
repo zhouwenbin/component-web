@@ -6,7 +6,7 @@ define('sf.b2c.mall.order.paysuccess', [
     'qrcode',
     'sf.b2c.mall.business.config',
     'sf.helpers',
-    'sf.b2c.mall.api.order.getOrder',
+    'sf.b2c.mall.api.order.getOrderV2',
     'sf.b2c.mall.api.minicart.getTotalCount' // 获得mini cart的数量接口
   ],
   function(can, $, qrcode, SFConfig, helpers, SFGetOrder, SFGetTotalCount) {
@@ -41,8 +41,8 @@ define('sf.b2c.mall.order.paysuccess', [
          * @param  {object} options
          * @return {object}
          */
-        'sf-coupon-type': function(couponType, definition, options) {
-          if (couponType == definition) {
+        'sf-coupon-type': function(couponType, orderAction, definition, options) {
+          if (couponType == definition && orderAction == 'PRESENT') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -71,7 +71,9 @@ define('sf.b2c.mall.order.paysuccess', [
          * @return {object}
          */
         'sf-is-not-empty': function(group, options) {
-          var array = _.findWhere(group, {orderAction: 'PRESENT'});
+          var array = _.findWhere(group, {
+            orderAction: 'PRESENT'
+          });
           if (_.isEmpty(array)) {
             return options.inverse(options.contexts || this);
           } else {
