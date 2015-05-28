@@ -168,7 +168,6 @@
 .myorder h2 span{
 	color: #999;
 	margin-left: 50px;
-	font-size: 10px;
 }
 .myorder h2 .icon{
 	position: absolute;
@@ -311,10 +310,6 @@
 .account-manage2 .btn{
 	margin-left: 79px;
 }
-.account-manage input,
-.account-manage select{
-	margin-left: 20px;
-}
 .account-manage input{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -325,6 +320,8 @@
 }
 .account-manage label{
 	font-size: 14px;
+	margin-right: 20px;
+	width:5em;
 }
 
 
