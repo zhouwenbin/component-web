@@ -26,7 +26,7 @@ define('sf.b2c.mall.module.getcoupon', [
       init: function() {
         var that = this;
 
-        $(".cms-fill-coupon").click(function(targetElement) {
+        $("[name='cms-fill-coupon']").click(function(targetElement) {
           if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
             new SFMessage(null, {
               'tip': '抱歉！需要登录后才可以领取优惠券！',
@@ -39,8 +39,8 @@ define('sf.b2c.mall.module.getcoupon', [
           }
 
           var params = {
-            bagId: $(targetElement.target).data('cmscouponbagid'),
-            type: $(targetElement.target).data('cmscoupontype')
+            bagId: $(targetElement.target).data('cms-couponbagid'),
+            type: $(targetElement.target).data('cms-coupontype')
           }
           var needSms = $(targetElement.target).data('needsms');
           var smsCon = $(targetElement.target).data('smscon');
