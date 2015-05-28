@@ -98,11 +98,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
 
-        'sf-items-list': function  (packages) {
+        'sf-items-list': function(packages) {
           var array = [];
-          _.each(packages, function(packageItem){
-            _.each(packageItem.orderGoodsItemList, function(good){
-              array.push({itemId: good.itemId, num: good.quantity});
+          _.each(packages, function(packageItem) {
+            _.each(packageItem.orderGoodsItemList, function(good) {
+              array.push({
+                itemId: good.itemId,
+                num: good.quantity
+              });
             });
           });
 
@@ -230,7 +233,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                       order.isShareBag = true;
                       order.shareBag = coupon;
 
-                      order.optionHMTL = '<a href="#" data-url="http://m.sfht.com/luckymoneyshare.html?id='+coupon.code+'" class="btn btn-normal btn-small" role="shareBagLink">分享红包</a>' + order.optionHMTL
+                      order.optionHMTL = '<a href="#" data-url="http://m.sfht.com/luckymoneyshare.html?id=' + coupon.code + '" class="btn btn-normal btn-small" role="shareBagLink">分享红包</a>' + order.optionHMTL
                     }
                   });
                 } else {
@@ -246,10 +249,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
                 _.each(that.options.orders, function(item, i) {
 
-                    if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                      that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
-                    }
+                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                  }
 
                 });
 
@@ -461,9 +464,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
         }
 
         element.attr('data-is-show', 'true');
-
+        //查看物流接口传入参数，区分老订单和新订单；老订单传入orderid,新订单传入packageNo
+        var routeParam;
+        var bizId = $(element).closest('.table-1-logistics').attr('data-package-no');
+        if (bizId == '') {
+          routeParam = $(element).closest('.table-1-logistics').attr('data-orderid');
+        } else {
+          routeParam = bizId;
+        }
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).closest('.table-1-logistics').attr('data-package-no')
+          'bizId': routeParam
         });
         getUserRoutes
           .sendRequest()
@@ -831,7 +841,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               if (_.isFunction(callback)) {
                 callback();
-              }else{
+              } else {
                 window.location.reload();
               }
             }
@@ -864,7 +874,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
         // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
-        this.addCart(JSON.parse(array), function () {
+        this.addCart(JSON.parse(array), function() {
           window.location.href = '/shoppingcart.html';
         });
 
