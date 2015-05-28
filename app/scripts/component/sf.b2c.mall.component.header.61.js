@@ -53,7 +53,7 @@ define('sf.b2c.mall.component.header.61', [
     },
 
     '.banner-scroll3 click': function(element, event){
-      window.location.href = "http://www.sfht.com/61.html";
+      window.location.href = "http://www.sfht.com/activity/211.html";
     },
 
     isInShowPage: function() {
