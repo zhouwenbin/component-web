@@ -1,5 +1,8 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+@import 'components/product';
+@import 'components/myorder-tab';
+@import 'components/address-add';
 .personal{
 	background: #fff;
 	border:1px solid #ccc;
@@ -19,13 +22,15 @@
 	font-weight: normal;
 }
 .personal-c1 li{
-	height: 58px;
-	line-height: 58px;
+
 	border-bottom: 1px solid #e5e5e5;
 	font-size: 14px;
 }
 .personal-c1 li a{
 	color:#777;
+	display: block;
+	height: 58px;
+	line-height: 58px;
 }
 .personal-c1 li.active{
 	position: relative;
@@ -45,38 +50,10 @@
 }
 .personal-c2{
 	overflow: hidden;
-	padding:0 39px;
+	padding:0 63px 0 39px;
 	border-left: 1px solid #e5e5e5;
 }
-.myorder-tab{
-	border-bottom: 1px solid #e5e5e5;
-	margin-bottom: 27px;
-}
-.myorder-tab li{
-	display: inline-block;
-	height: 68px;
-	line-height: 68px;
-	padding: 0 45px;
-	box-sizing:border-box;
-	font-size: 14px;
-}
-.myorder-tab li a{
-	color: #777;
-}
-.myorder-tab li  strong{
-	color: #de3d3f;
-	margin-left: 5px;
-	font-weight: bold;
-}
-.myorder-tab li.active{
-	border-bottom: 4px solid #db3f40;
-	position: relative;
-	top: 1px;
-	
-}
-.myorder-tab li.active a{
-	color: #de3d3f;
-}
+
 .myorder-search{
 	margin-bottom: 32px;
 
@@ -109,6 +86,12 @@
 	box-sizing:border-box;
 }
 
+.myorder table table tr:last-child td{
+	border-bottom: none;
+}
+.myorder table table tr:first-child td{
+	border-top: none;
+}
 
 .myorder thead tr{
 	margin-bottom: 20px;
@@ -119,7 +102,7 @@
 	padding-bottom: 10px;
 	text-align: center;
 	position: relative;
-	
+
 }
 .myorder thead span{
 	font-size: 16px;
@@ -128,25 +111,32 @@
 	top: -2px;
 	color: #e5e5e5;
 }
-.myorder .th1{
+.myorder .th1,
+.myorder .td1{
 	width: 108px;
 }
-.myorder .th2{
+.myorder .th2,
+.myorder .td2{
 	width: 309px;
 }
-.myorder .th3{
+.myorder .th3,
+.myorder .td3{
 	width: 64px;
 }
-.myorder .th4{
+.myorder .th4,
+.myorder .td4{
 	width: 92px;
 }
-.myorder .th5{
+.myorder .th5,
+.myorder .td5{
 	width: 98px;
 }
-.myorder .th6{
+.myorder .th6,
+.myorder .td6{
 	width: 99px;
 }
-.myorder .th7{
+.myorder .th7,
+.myorder .td7{
 	width: 119px;
 }
 .myorder .td2{
@@ -157,6 +147,9 @@
 .myorder .td4{
 	border-right: none;
 	border-left: none;
+}
+.myorder .td7{
+	padding: 18px 0;
 }
 .myorder h2{
 	height: 30px;
@@ -175,7 +168,6 @@
 .myorder h2 span{
 	color: #999;
 	margin-left: 50px;
-	font-size: 10px;
 }
 .myorder h2 .icon{
 	position: absolute;
@@ -187,6 +179,7 @@
 	color: #777;
 	text-align: center;
 }
+
 .myorder img{
 	width: 78px;
 	height: 78px;
@@ -220,7 +213,7 @@
 }
 .myorder .btn-normal{
 	margin-top: 10px;
-	margin-bottom: 39px;
+	margin-bottom: 10px;
 }
 .myorder .btn-success{
 	margin-bottom: 9px;
@@ -274,4 +267,132 @@
 }
 .myorder .tooltip a{
 	color: #999;
+}
+.myorder .icon88{
+	margin-left: 20px;
+	margin-right: 5px;
+}
+.myorder-none{
+	text-align: center;
+	margin-bottom: 48px;
+}
+.myorder-none a{
+	margin-top: 10px;
+	display: inline-block;
+}
+.myorder-none p{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+	text-align: left;
+	color: #666;
+}
+.product h2{
+	color: #666;
+	font-size: 14px;
+	font-weight: normal;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 26px;
+}
+.account-manage{
+	height: 353px;
+	display: none;
+	padding-left: 100px;
+	margin-top: 55px;
+}
+.account-manage.active{
+	display: block;
+}
+.account-manage1 .btn{
+	margin-left: 52px;
+}
+.account-manage2 .btn{
+	margin-left: 79px;
+}
+.account-manage input{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 247px;
+}
+.account-manage li{
+	margin-bottom: 13px;
+}
+.account-manage label{
+	font-size: 14px;
+	margin-right: 20px;
+	width:5em;
+}
+
+
+
+.address{
+
+	margin-bottom: 128px;
+}
+.address h2{
+	font-size: 14px;
+	font-weight: normal;
+	margin: 48px 0 22px;
+}
+.address-table{
+	border:1px solid #e5e5e5;
+	border-radius: 4px;
+}
+.address table{
+	width: 100%;
+
+}
+.address th{
+	background: #f5f7f7;
+	height: 38px;
+}
+.address td{
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+	border-top:1px solid #e5e5e5;
+}
+.address .col1{
+	padding-left: 20px;
+	width: 114px;
+}
+.address .col2{
+	width: 220px;
+}
+.address .col3{
+	width: 209px;
+}
+.address .col4{
+	width: 157px;
+}
+.address .text-link{
+	margin-right: 10px;
+}
+.address .label-error{
+	background: #dc3334;
+	padding: 0 5px;
+	margin-left: 18px;
+	display: none;
+}
+.address td:hover .label-error{
+	display: inline-block;
+}
+.address .label i{
+	border-color: transparent transparent transparent #fff;
+	border-width: 10px 5px;
+	left: 0;
+	margin-top: -10px;
+}
+.address .label-disabled{
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -10px;
+	background: #e5e5e5;
+	color: #999;
+}
+.product-list li{
+	margin-left: 22px;
 }

@@ -12,7 +12,6 @@
 @import 'components/mask';
 @import 'components/input';
 @import 'components/tooltip';
-@import 'components/table';
 @import 'components/loading';
 @import 'components/error-tips';
 @import 'components/label';
@@ -25,31 +24,11 @@
 @import 'components/register';
 @import 'components/banner';
 
+@import 'module/bdsharebuttonbox';
+
 
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/layout';
 @import 'layout/nav';
 
-.bdsharebuttonbox .bds_weixin{
-	background: url(#{$bg-url}icon.png) no-repeat;
-	width: 23px;
-    height: 18px;
-    background-position: -610px 0 !important;
-    text-indent: -999px;
-	margin:0 0 0 6px;
-	padding-left:0;
-}
-.bdsharebuttonbox .bds_tsina{
-	background: url(#{$bg-url}icon.png) no-repeat;
-	width: 21px;
-    height: 16px;
-    background-position: -670px 0 !important;
-    text-indent: -999px;
-	margin:0 0 0 6px;
-	padding-left:0;
-}
-.bdsharebuttonbox{
-	display:inline-block;
-	vertical-align:middle;
-}

@@ -8,31 +8,6 @@
 <link href="../css/detail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  == Slim::Template.new('module/header.slim').render
-  <!--main-->
-  <div class="pb">
-    <div class="pm">
-      <!--面包屑-->
-      == Slim::Template.new('module/crumbs.slim').render
-      <!--面包屑-->
-      <!--商品-->
-      == Slim::Template.new('module/goods.slim').render
-      <!--商品-->
-      <!--小编推荐-->
-      == Slim::Template.new('module/recommend2.slim').render
-      <!--小编推荐-->
-      <!--详情-->
-      == Slim::Template.new('module/detail.slim').render
-      <!--详情-->
-      <!--推荐商品-->
-      == Slim::Template.new('module/recommend.slim').render
-      <!--推荐商品-->
-    </div>
-  </div>
-  <!--main-->
-  <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
-  <!--尾部-->
 
   == Slim::Template.new('module/dialog-stockout.slim').render
 

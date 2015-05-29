@@ -1,8 +1,7 @@
-<h3>{{addr.mainTitle.text}}</h3>
+<h2>{{addr.mainTitle.text}}</h2>
     <ul>
-      <li class="li">
+      <li>
         <label for="area">选择地区：</label>
-
         <select id="s1" can-value="addr.input.nationName">
           {{#each addr.place.countries}}
           <option value="{{id}}">{{name}}</option>
@@ -31,35 +30,30 @@
         </select>
         <span class="icon icon26" id="consigneeError">{{addr.error.consignee}}</span>
       </li>
-      <li class="li">
+      <li>
         <label for="address">收货地址：</label>
-        <input id="address" type="text" can-value="addr.input.detail" placeholder="填写详细地址" />
+        <input id="address" class="input" type="text" can-value="addr.input.detail" placeholder="填写详细地址" />
         <span class="icon icon26" id="detailerror">{{addr.error.detail}}</span>
       </li>
-      <li class="li">
+      <li>
         <label for="receiver-name">收货人：</label>
-        <input id="receiver-name" type="text" can-value="addr.input.receiverName" placeholder="请填写收货人真实姓名" />
+        <input id="receiver-name" class="input" type="text" can-value="addr.input.receiverName" placeholder="请填写收货人真实姓名" />
         <span class="icon icon26" id="receiverNameError">{{addr.error.receiver}}</span>
-        <div class="text-error">收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
+        <div class="text-error"><span class="icon icon62"></span>收货人请使用和身份证号对应的真实姓名，否则您购买的商品将无法通过海关检查</div>
       </li>
-      <li class="li">
+      <li>
         <label for="cellphone">收货人手机号：</label>
-        <input id="cellphone" type="text" can-value="addr.input.cellphone" placeholder="填写联系电话" />
+        <input id="cellphone" class="input" type="text" can-value="addr.input.cellphone" placeholder="填写联系电话" />
         <span class="icon icon26" id="cellphoneerror">{{addr.error.cellphone}}</span>
       </li>
-      <li class="li">
+      <li>
         <label for="receiverCertId">收货人身份证：</label>
-        <input id="receiverCertId" can-value="addr.input.receiverId" type="text" placeholder="由于国家海关规定，海淘需提交实名信息" />
+        <input id="receiverCertId" class="input" can-value="addr.input.receiverId" type="text" placeholder="由于国家海关规定，海淘需提交实名信息" />
         <span class="icon icon26" id="receiverCertIdError">{{addr.error.receiverCertId}}</span>
       </li>
-      {{! <li class="li">
-        <label for="zipcode">填写邮编：</label>
-        <input id="zipcode" type="text" can-value="addr.input.zipCode" placeholder="填写邮编" />
-        <span class="icon icon26" id="zipcodeerror">{{addr.error.zipCode</span>
-      </li> }}
     </ul>
-    <div class="order-r2r3">
-      <a href="javascript:void(0);" class="btn btn-send" id="addressSave">保存</a>
-      <a href="javascript:void(0);" class="order-cancel" id="paddressSaveCancel">{{addr.cancle.text}}</a>
-      <span class="icon icon26-1">保存成功</span>
+    <div class="address-add-r1">
+      <button class="btn btn-danger" id="addressSave">保存</button>
+      <label><input type="checkbox" class="setDefaultAdr" />设置成默认地址</label>
+      {{! <span class="icon icon26-1">保存成功</span> }}
     </div>

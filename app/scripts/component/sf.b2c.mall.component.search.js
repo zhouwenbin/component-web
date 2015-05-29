@@ -144,7 +144,6 @@ define('sf.b2c.mall.component.search', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
-
       var that = this;
 
       this.addRenderDataBind();
@@ -227,7 +226,6 @@ define('sf.b2c.mall.component.search', [
         }
       });
     },
-
 
     /**
      * @description 渲染页面

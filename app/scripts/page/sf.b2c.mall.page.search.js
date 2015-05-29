@@ -13,7 +13,6 @@ define(
   ],
   function(can, $, SFFrameworkComm, SFFn, SFBusiness,
            SFRecommendProducts, SFSearch, SFFooter) {
-
     SFFrameworkComm.register(1);
     SFFn.monitor();
     var searchPage = can.Control.extend({

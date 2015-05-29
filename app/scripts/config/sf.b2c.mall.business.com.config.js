@@ -24,7 +24,7 @@ define([], function () {
     '404': 'http://'+main+'/404.html',
     'activated': 'http://'+main+'/activated.html',
     'agreement': 'http://'+main+'/agreement.html',
-    'center': 'http://'+main+'/center.html',
+    'center': 'http://'+main+'/orderlist.html',
     'gotopay': 'http://'+main+'/gotopay.html',
     'index': 'http://'+main+'/index.html',
     'login': 'http://'+main+'/login.html',
@@ -32,7 +32,7 @@ define([], function () {
     'order': 'http://'+main+'/order.html',
     'orderdetail': 'http://'+main+'/orderdetail.html',
     'orderlist': 'http://'+main+'/orderlist.html',
-    'passwordchange': 'http://'+main+'/password-change.html',
+    'passwordchange': 'http://'+main+'/accountmanage.html',
     'preheat': 'http://'+main+'/preheat.html',
     'process': 'http://'+main+'/process.html',
     'register': 'http://'+main+'/register.html',
@@ -43,7 +43,8 @@ define([], function () {
     'bindaccount':'http://'+main+'/bindaccount.html',//@note 绑定账号
     'setpassword':'http://'+main+'/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://'+main+'/paysuccess.html',
-    'search': 'http://'+main+'/search.html'
+    'search': 'http://'+main+'/search.html',
+    'usercenter': 'http://'+main+'/accountmanage.html',
   }
 
   return {

@@ -4,25 +4,26 @@
 .nav-inner{
 	height: 43px;
 	line-height: 43px;
-	background: url(#{$bg-url}nav.png) repeat-x;
+	background: #32363e;
 }
 .nav li{
 	float: left;
-	font-size: 16px;
+	font-size: 15px;
 	width: 114px;
 	text-align: center;
 	position:relative;
 }
 .nav .active,
 .nav li:hover{
-	background: url(#{$bg-url}header-active.png) repeat-x;
+	background: #dc3334;
 }
 .nav a{
-	color: #c5c5c5;	
+	color: #fff;	
 	display:block;
 
 }
-.nav .icon{
+.nav .icon54,
+.nav .icon55{
 	position: absolute;
 	right:0px;
 	top:5px;
@@ -33,13 +34,39 @@
 	color:#fff;
 }
 .nav-c2{
-	display: none;
+	background: #181b20;
+	padding-left: 17px;
+	padding-right: 30px;
 }
 .nav-c2 a{
-	margin: 0 10px;
-	color: #666;
-	display:inline-block;
-	height:100%;
+	color: #fff;
+	display: block;
+}
+.nav-c2 .label{
+	padding: 0;
+	width: 25px;
+	text-align: center;
+	background: #dc3334;
+	margin-left: 10px;
+	transition:all 0.5s;
+}
+.nav-c2 .label i{
+	border-color: transparent #dc3334 transparent transparent;
+	left: -6px;
+	right: auto;
+}
+.nav-c2 .label.active{
+	animation:cart-num 0.5s linear;
+}
+@keyframes cart-num{
+	50%{
+		transform:scale(1.2);
+	}
+}
+.nav-text{
+	margin-left: 15px;
+	border-left: 1px solid #5a5c60;
+	padding: 4px 0 4px 15px;
 }
 .nav-fixed{
 	height:0;

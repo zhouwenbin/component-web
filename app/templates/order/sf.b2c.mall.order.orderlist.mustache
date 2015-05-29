@@ -1,64 +1,129 @@
-<div class="table table-1">
-  <div class="table-h clearfix">
-    <div class="table-c1 fl">
-      订单信息
-    </div>
-    <div class="table-c2 fl">
-      收货人
-    </div>
-    <div class="table-c3 fl">
-      订单金额
-    </div>
-    <div class="table-c4 fl">
-      订单状态
-    </div>
-    <div class="table-c5 fl">
-      操作
-    </div>
-  </div>
-  <ul class="table-b">
-    {{#each orderlist}}
-    <li class="clearfix">
-      <div class="table-c1 fl">
-        <div class="table-r1 clearfix">
-          <div class="table-img fl">
-            <img src="{{sf.img imageUrl}}" alt="" /><span></span>
-          </div>
-          <div class="table-text">
-            <h3><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{goodsName}}</a></h3>
-            <p>{{{spec}}}</p>
-          </div>
-        </div>
-        <div class="table-r2">订单号：{{orderId}}<span>下单日期：{{sf.time gmtCreate}}</span></div>
-      </div>
+<ul class="myorder-tab">
+  <li class="{{#if tab.allorderTab}}active{{/if}}" tag="allorderTab"><a href="">所有订单</a></li>
+  <li class="{{#if tab.notPayOrderListTab}}active{{/if}}" tag="notPayOrderListTab"><a href="">待付款<strong>{{waitPayNum}}</strong></a></li>
+  <li class="{{#if tab.notSendOrderListTab}}active{{/if}}" tag="notSendOrderListTab"><a href="">待发货<strong>{{waitShippingNum}}</strong></a></li>
+  <li class="{{#if tab.notGetOrderListTab}}active{{/if}}" tag="notGetOrderListTab"><a href="">待收货<strong>{{waitCompletedNum}}</strong></a></li>
+</ul>
 
-      <div class="table-c2 fl">
-        {{orderAddressItem.receiveName}}
-      </div>
-      <div class="table-c3 fl">
-        ￥{{sf.price paymentAmount}}
-      </div>
-      <div class="table-c4 fl">
-        {{orderStatus}}
-        {{#if showRouter}}
-        <div class="table-1-logistics" data-orderid="{{orderId}}" data-suborderid="{{subOrderId}}">
-          <div class="tooltip-pos">
-            <a class="find-route-list" href="javascript:void(0);">查看物流</a>
-            <div class="tooltip-outer">
-              <div class="tooltip" id="traceList">
-                努力加载中
-              </div>
-            </div>
-          </div>
-        </div>
-        {{/if}}
-      </div>
-      <div class="table-c5 fl" id="operationarea" data-orderid='{{orderId}}' data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}">
-        {{{optionHMTL}}}
-        {{#isShareBag}}<a role="shareBagLink" href="javascript:void(0);" data-url="http://m.sfht.com/luckymoneyshare.html?id={{shareBag.code}}" class="btn btn-add">分享红包</a>{{/isShareBag}}
-        {{{needUploadIDCardHTML}}}
-      </div>
-    </li>
-    {{/each}}
-  </ul>
+<!--所有订单-->
+<div class="orderShow">
+  <div class="myorder-search">
+    <input placeholder="输入订单号或者收货人搜索" id="searchValue"><button id="search">搜索</button>
+  </div>
+  <table>
+    <thead>
+        <tr>
+            <th class="th1">包裹<span>|</span></th>
+            <th class="th2">商品</th>
+            <th class="th3">售价（元）</th>
+            <th class="th4">数量<span>|</span></th>
+            <th class="th5">实付款（元）<span>|</span></th>
+            <th class="th6">订单状态<span>|</span></th>
+            <th class="th7">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+      {{! 遍历订单信息 }}
+      {{#each orders}}
+        <tr>
+          <th colspan="7" data-orderid='{{orderId}}'>
+            <h2>订单号：{{orderId}}<span>下单时间：{{sf.time gmtCreate}}</span>
+            {{#isShowDeleteIcon orderStatus}}<a href="javascript:;" class="deleteOrders icon icon81">删除</a>{{/isShowDeleteIcon}}
+            </h2>
+          </th>
+        </tr>
+
+        {{! 遍历包裹信息 }}
+        {{#each orderPackageItemList}}
+        <tr>
+            <td class="td1">
+                {{! 显示包裹信息，包裹号自动+1 }}
+                {{#packageNo}}
+                <span class="label label-error">
+                  <span class="icon icon79"></span>包裹{{getPackageNum @index}}<i></i>
+                </span>
+                {{/packageNo}}
+                <div>共{{countGoodsInPackage orderGoodsItemList}}件商品</div>
+                {{#packageNo}}
+                <p class="myorder-address"><span class="icon icon80"></span>{{shippingWarehouse}}</p>
+                {{/packageNo}}
+            </td>
+            <td colspan="3" class="itemlist">
+                <table>
+                  <tbody>
+                  {{! 遍历商品信息 }}
+                  {{#each orderGoodsItemList}}
+                    <tr class="goodsWrap" data-itemid="{{itemId}}" data-num="{{quantity}}" {{data 'itemIds'}}>
+                        <td class="td2">
+                            <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"><img src="{{showImg imageUrl}}" alt="" /></a>
+                            <h3><a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a></h3>
+                        </td>
+                        <td class="td3">
+                            {{#isShowOriginPrice originPrice price}}<del>{{sf.price originPrice}}</del>{{/isShowOriginPrice}}
+                            <div>{{sf.price price}}</div>
+                        </td>
+                        <td class="td4">{{quantity}}</td>
+                    </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+            </td>
+
+            {{! 显示总价格，要合并行。合并原则：只展示第一条数据的价格，第二条数据不显示td，从而达到合并目的 }}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+            {{/firstPackage}}
+
+            {{! 如果不显示路由则合并订单状态 }}
+            {{#needCombineOperationRow orderStatus}}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td6" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+              <div>{{orderStatus}}</div>
+            </td>
+            {{/firstPackage}}
+            {{/needCombineOperationRow}}
+
+            {{! 如果显示路由则不合并订单状态 }}
+            {{^needCombineOperationRow orderStatus}}
+            <td class="td6">
+              <div>{{showPackageStatus status}}</div>
+              {{#showRouter status}}
+                <div class="table-1-logistics" data-pkgid="{{getPackageNum @index}}" data-orderid="{{orderId}}" data-package-no="{{packageNo}}" data-suborderid="{{subOrderId}}">
+                  <div class="tooltip-pos">
+                    <a class="myorder-link find-route-list" href="/orderdetail.html?orderid={{orderId}}&pkgid={{getPackageNum @index}}">查看物流</a>
+                    <div class="tooltip-outer">
+                      <div class="tooltip" id="traceList">
+                        努力加载中
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {{/showRouter}}
+            </td>
+            {{/needCombineOperationRow}}
+
+            {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
+            {{#firstPackage orderPackageItemList @index}}
+            <td class="td7" data-orderid='{{orderId}}' data-all="{{sf-items-list orderPackageItemList}}" data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" style="padding:5px 0px;" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
+                  {{#isNotShowEndTime orderStatus}}
+                  <span>剩余付款时间</span>
+                  <div class="showOrderEndTime text-error"></div>
+                  {{/isNotShowEndTime}}
+                  {{{optionHMTL}}}
+            </td>
+            {{/firstPackage}}
+
+        </tr>
+        {{/each}}<!--end orderPackageItemList-->
+      {{/each}}<!--end orders-->
+    </tbody>
+  </table>
+  <!-- 分页 -->
+  <div class="sf-b2c-mall-order-orderlist-pagination"></div>
+  <!-- 分页 -->
 </div>
+
+<div class="noOrderShow" style="display:none"></div>
+
+

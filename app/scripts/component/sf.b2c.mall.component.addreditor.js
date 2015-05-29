@@ -11,9 +11,11 @@ define('sf.b2c.mall.component.addreditor', [
   'sf.b2c.mall.api.user.updateReceiverInfo',
   'placeholders',
   'sf.b2c.mall.widget.message',
-  'sf.b2c.mall.adapter.address.list'
+  'sf.b2c.mall.adapter.address.list',
+  'sf.b2c.mall.api.user.setDefaultAddr',
+  'sf.b2c.mall.api.user.setDefaultRecv'
 
-], function(can,store,$cookie,RegionsAdapter, SFCreateRecAddress,SFCreateReceiverInfo,SFUpdateRecAddress, SFUpdateReceiverInfo,placeholders, SFMessage,AddressAdapter) {
+], function(can, store, $cookie, RegionsAdapter, SFCreateRecAddress, SFCreateReceiverInfo, SFUpdateRecAddress, SFUpdateReceiverInfo, placeholders, SFMessage, AddressAdapter, SFSetDefaultAddr, SFSetDefaultRecv) {
   return can.Control.extend({
 
     init: function() {
@@ -45,6 +47,11 @@ define('sf.b2c.mall.component.addreditor', [
       var html = can.view('templates/component/sf.b2c.mall.component.addreditor.mustache', data);
       element.html(html);
       this.supplement(tag);
+      $('#consigneeError').hide();
+      $('#detailerror').hide();
+      $('#cellphoneerror').hide();
+      $('#receiverNameError').hide();
+      $('#receiverCertIdError').hide();
     },
 
     /**
@@ -81,8 +88,8 @@ define('sf.b2c.mall.component.addreditor', [
               detail: null,
               recId: null,
               cellphone: null,
-              receiverName:null,
-              receiverId:null
+              receiverName: null,
+              receiverId: null
             },
             place: {
               countries: [{
@@ -103,11 +110,11 @@ define('sf.b2c.mall.component.addreditor', [
               text: '取消添加'
             },
             error: {
-              consignee:null,
+              consignee: null,
               detail: null,
               cellphone: null,
-              receiver:null,
-              receiverCertId:null
+              receiver: null,
+              receiverCertId: null
             }
           };
         },
@@ -126,8 +133,8 @@ define('sf.b2c.mall.component.addreditor', [
               detail: data.detail,
               cellphone: data.cellphone,
               recId: data.recId,
-              receiverName:data.recName,
-              receiverId:data.credtNum2
+              receiverName: data.recName,
+              receiverId: data.credtNum2
             },
             place: {
               countries: [{
@@ -150,8 +157,8 @@ define('sf.b2c.mall.component.addreditor', [
             error: {
               detail: null,
               cellphone: null,
-              receiver:null,
-              receiverCertId:null
+              receiver: null,
+              receiverCertId: null
             }
           };
         }
@@ -181,7 +188,7 @@ define('sf.b2c.mall.component.addreditor', [
       if (pid == 0) {
         this.adapter.addr.input.attr('cityName', '0');
         this.adapter.addr.place.attr('cities', '0');
-      }else{
+      } else {
         $('#consigneeError').hide();
         var cities = this.adapter.regions.findGroup(window.parseInt(pid));
         this.adapter.addr.place.attr('cities', cities);
@@ -195,7 +202,7 @@ define('sf.b2c.mall.component.addreditor', [
       if (cid == 0) {
         this.adapter.addr.input.attr('regionName', '0');
         this.adapter.addr.place.attr('regions', '0');
-      }else{
+      } else {
         var regions = this.adapter.regions.findGroup(window.parseInt(cid));
         this.adapter.addr.place.attr('regions', regions);
         this.adapter.addr.input.attr('regionName', regions[0].id);
@@ -229,6 +236,7 @@ define('sf.b2c.mall.component.addreditor', [
     },
 
     add: function(addr) {
+      var def = can.Deferred();
       var that = this;
 
       var person = {
@@ -264,9 +272,9 @@ define('sf.b2c.mall.component.addreditor', [
               'type': 'error'
             });
           }
-          return false;
+          def.reject(error);
         })
-        .then(function(){
+        .then(function() {
           addr.recId = recId;
           var createRecAddress = new SFCreateRecAddress(addr);
           return createRecAddress.sendRequest()
@@ -279,7 +287,10 @@ define('sf.b2c.mall.component.addreditor', [
 
           that.hide();
           that.onSuccess(data);
-          return true;
+
+          // 存储默认地址
+          that.storeDefaultAddr(addr);
+          def.resolve(data);
         })
         .fail(function(error) {
           if (error === 1000310) {
@@ -289,22 +300,25 @@ define('sf.b2c.mall.component.addreditor', [
               'type': 'error'
             });
           }
-          return false;
+          def.reject(error);
         });
+
+      return def;
     },
 
-    update: function(addr,element) {
+    update: function(addr, element) {
+      var def = can.Deferred();
       var that = this;
       var person = {
-        recId:addr.recId,
+        recId: addr.recId,
         recName: addr.receiverName,
         type: "ID",
         credtNum: addr.receiverId
       };
       var updateReceiverInfo = new SFUpdateReceiverInfo(person);
       var updateRecAddress = new SFUpdateRecAddress(addr);
-      can.when(updateReceiverInfo.sendRequest(),updateRecAddress.sendRequest())
-        .done(function(data,data1) {
+      can.when(updateReceiverInfo.sendRequest(), updateRecAddress.sendRequest())
+        .done(function(data, data1) {
 
           var message = new SFMessage(null, {
             'tip': '修改收货地址成功！',
@@ -312,10 +326,17 @@ define('sf.b2c.mall.component.addreditor', [
           });
 
           that.hide();
-          that.onSuccess({value: window.parseInt(addr.addrId)});
+          that.onSuccess({
+            value: window.parseInt(addr.addrId)
+          });
 
+          def.resolve(data);
         })
-        .fail(function(error) {});
+        .fail(function(error) {
+          def.reject(error);
+        });
+
+      return def;
     },
 
     '#paddressSaveCancel click': function(element, event) {
@@ -336,7 +357,7 @@ define('sf.b2c.mall.component.addreditor', [
     },
     '#addressSave click': function(element, event) {
       event && event.preventDefault();
-
+      var that = this;
       $('.tel-hide').hide();
       var addr = this.adapter.addr.input.attr();
 
@@ -358,7 +379,7 @@ define('sf.b2c.mall.component.addreditor', [
       $('#receiverCertIdError').hide();
 
       //验证是否选择省市区
-      if(typeof addr.provinceName == 'undefined' || typeof addr.cityName == 'undefined' || typeof addr.regionName == 'undefined'){
+      if (typeof addr.provinceName == 'undefined' || typeof addr.cityName == 'undefined' || typeof addr.regionName == 'undefined') {
         this.adapter.addr.attr("error", {
           "consignee": '请选择收货地区'
         })
@@ -396,7 +417,7 @@ define('sf.b2c.mall.component.addreditor', [
       }
 
       //检测收货人姓名是否填写
-      if(!addr.receiverName){
+      if (!addr.receiverName) {
         this.adapter.addr.attr("error", {
           "receiver": '请输入收货人姓名!'
         })
@@ -405,7 +426,7 @@ define('sf.b2c.mall.component.addreditor', [
       }
       //@noto 收货人姓名必须是中文和英文，且不能存在先生，小姐，女士等字符
       var testRecName = /^[\u4e00-\u9fa5]{0,10}$/.test($.trim(addr.receiverName));
-      var isReceiverName =  /先生|女士|小姐/.test($.trim(addr.receiverName));
+      var isReceiverName = /先生|女士|小姐/.test($.trim(addr.receiverName));
       if (testRecName && !isReceiverName) {} else {
         this.adapter.addr.attr("error", {
           "receiver": '由于海关发货需要实名制的信息，请您输入真实姓名。感谢您的配合!'
@@ -496,17 +517,70 @@ define('sf.b2c.mall.component.addreditor', [
         $('#receiverCertIdError').show();
         return false;
       }
-
+      var isNotChecked = $('.setDefaultAdr')[0];
       if (addr.addrId) {
-        this.update(addr,element);
-        element.parents('div#editAdrArea').toggle();
-      } else {
-        var result = this.add(addr);
-        if (result) {
-          element.parents('div#addAdrArea').toggle();
-          $('#btn-add-addr').show();
+
+        // 如果是编辑，则调用设置默认地址接口。新增则不用
+        if (isNotChecked.checked) {
+          this.setDefaultAddrFun(addr);
         }
+
+        // 执行更新
+        this.update(addr, element)
+          .done(function(){
+            element.parents('div#editAdrArea').toggle();
+          })
+          .fail(function(error){
+            console.error(error);
+          });
+
+      } else {
+        // 如果选择了设为默认地址，则isDefault = 1
+        if (isNotChecked.checked) {
+          addr.isDefault = 1;
+        }
+
+        // 执行新增，store存储放在add方法里面了
+        this.add(addr)
+          .done(function(data){
+            element.parents('div#addAdrArea').toggle();
+            $('#btn-add-addr').show();
+          })
+          .fail(function(error){
+            console.error(error);
+          })
       }
+    },
+
+    // 存储默认收货地址，供详情页生鲜使用
+    storeDefaultAddr: function(addrData) {
+      var provinceId = this.adapter.regions.getIdByName(addrData.provinceName);
+      var cityId = this.adapter.regions.getIdBySuperreginIdAndName(provinceId, addrData.cityName);
+      var regionId = this.adapter.regions.getIdBySuperreginIdAndName(cityId, addrData.regionName);
+
+      store.set('provinceId', provinceId);
+      store.set('cityId', cityId);
+      store.set('regionId', regionId);
+    },
+
+    //设为默认收货地址
+    setDefaultAddrFun: function(addrData) {
+      var that = this;
+
+      var setDefaultRecv = new SFSetDefaultRecv({
+        "recId": addrData.recId
+      });
+
+      var setDefaultAddr = new SFSetDefaultAddr({
+        "addrId": addrData.addrId
+      });
+      can.when(setDefaultRecv.sendRequest(), setDefaultAddr.sendRequest())
+        .done(function(data) {
+          that.storeDefaultAddr(addrData);
+        })
+        .fail(function() {
+
+        })
     }
   });
 })
