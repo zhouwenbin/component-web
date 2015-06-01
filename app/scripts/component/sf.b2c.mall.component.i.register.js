@@ -395,13 +395,13 @@ define(
 
                 // 注册送优惠券 begin
                 // that.sendCoupon();
-                var currentServerTime = that.component.mobileRegister.getServerTime();
-                if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
-                  new SFMessage(null, {
-                    'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
-                    'type': 'success'
-                  });
-                }
+                // var currentServerTime = that.component.mobileRegister.getServerTime();
+                // if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+                //   new SFMessage(null, {
+                //     'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
+                //     'type': 'success'
+                //   });
+                // }
                 // 注册送优惠券 end
 
                 can.route.attr({

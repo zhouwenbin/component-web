@@ -408,10 +408,10 @@ define(
                 // 注册送优惠券 begin
                 // that.sendCoupon();
                 // 注册送优惠券 end
-                var currentServerTime = that.component.mobileRegister.getServerTime();
-                if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
-                  window.parent.popMessage();
-                }
+                // var currentServerTime = that.component.mobileRegister.getServerTime();
+                // if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+                //   window.parent.popMessage();
+                // }
 
                 window.parent.userLoginSccuessCallback();
                 // can.route.attr({
