@@ -277,12 +277,12 @@ define(
             // 注册送优惠券 end
             document.domain = "sfht.com";
             // 获得打车券
-            if (newUser) {
-              var currentServerTime = that.component.partnerBind.getServerTime();
-              if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
-                window.parent.popMessage();
-              }
-            }
+            // if (newUser) {
+            //   var currentServerTime = that.component.partnerBind.getServerTime();
+            //   if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+            //     window.parent.popMessage();
+            //   }
+            // }
 
             window.parent.userLoginSccuessCallback();
 
