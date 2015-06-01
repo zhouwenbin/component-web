@@ -48,7 +48,7 @@
           <div class="classify-c1 fl">
             <label>品牌：</label>
             <ul id="classify-logo">
-              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:"><img class="hide" src="{{pic}}" alt="{{key}}"  /><span>{{key}}</span></a></li>{{/each}}
+              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}{{^pic}}<span>{{key}}</span>{{/pic}}</a></li>{{/each}}
             </ul>
           </div>
           {{#sf-isShowMoreBrand brands.buckets}}
@@ -114,7 +114,7 @@
                   {{/sf-isSoldOut}}
                 </div>
                 <h3>{{title}}</h3>
-                <p><img src="{{nationPic}}" alt="货源地" width="22" height="14" />{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
+                <p>{{#nationPic}}<img src="{{nationPic}}"  alt="货源地" width="22" height="14" />{{/nationPic}}{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
                 <div class="product-r2 clearfix">
                   <div class="product-r2c1 fl">
                     <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
