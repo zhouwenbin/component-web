@@ -2,6 +2,7 @@
 @import 'utils/placeholders';
 @import 'components/slider';
 @import 'components/product';
+@import 'components/crumbs';
 @import 'module/classify';
 @import 'module/sort';
 .nataral-h2{
@@ -73,10 +74,10 @@
 	margin-bottom: 5px;
 	margin-top: -5px;
 }
-.nataral-shop>ul{
+.nataral-shop-list{
 	margin-left: -20px;
 }
-.nataral-shop-list{
+.nataral-shop-list>li{
 	float: left;
 	width: 578px;
 	margin-left: 20px;
@@ -180,6 +181,42 @@
 .nataral-shop-link:hover{
 	color:#B87C00;
 }
+.nataral-shop-top{
+	border: 1px solid #E5E5E5;
+	margin-bottom: 20px;
+	background: #fff;
+}
+.nataral-shop-top-c1{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 25px;
+	width: 540px;
+}
+.nataral-shop-top ul{
+	margin-left: -6px;
+}
+.nataral-shop-top li{
+	display: inline-block;
+	width: 128px;
+	height: 48px;
+	border: 1px solid #E5E5E5;
+	margin-left: 6px;
+	text-align: center;
+}
+.nataral-shop-top p{
+	color: #666;
+	font-size: 13px;
+	line-height: 26px;
+}
+.nataral-shop-top h3{
+	margin-top: 22px;
+}
+.nataral-shop-top h4{
+	color: #bbb;
+	font-weight: normal;
+	margin: 10px 0;
+}
+
 .product h3{
 	font-weight: normal;
 	line-height: 24px;
@@ -191,7 +228,9 @@
 	padding-bottom: 0;
 	margin-bottom: 72px;
 }
-
+.nataral-pruduct2 li{
+	margin-bottom: 20px;
+}
 .nataral-product-price{
 	color: #999;
 	font-size: 12px;
@@ -213,6 +252,7 @@
 .nataral-pruduct .product-r2c1 strong{
 	margin-right: 10px;
 }
+
 .nataral-pruduct-r1{
 	
 	background: #F9F9F9;
@@ -251,6 +291,10 @@
 	color: #999;
 	text-indent: 8px;
 }
+.nataral-pruduct2 .nataral-product-more a{
+	margin: 109px auto;
+}
+
 .nataral-pruduct .nataral-product-more a:hover{
 	text-decoration: underline;
 	color: #666;
@@ -373,8 +417,41 @@
 	color: #fff;
 	display: block;
 }
-
+.nataral-shop-detail{
+	background: #fff;
+	padding-bottom: 36px;
+	margin-bottom: 22px;
+}
+.nataral-shop-detail-inner{
+	display: inline-block;
+	width: 483px;
+	margin-left: 30px;
+	vertical-align: top;
+}
+.nataral-shop-detail h2{
+	font-size: 24px;
+	font-weight: normal;
+	margin-bottom: 26px;
+	margin-top: 15px;
+}
+.nataral-shop-detail p{
+	color: #666;
+	margin-bottom: 17px;
+	line-height: 28px;
+	font-size: 14px;
+}
+.nataral-shop-detail .text-link{
+	font-size: 14px;
+}
 
 .btn-top{
 	display: none !important;
+}
+
+.sort{
+	margin-bottom: -45px;
+}
+.crumbs{
+	margin:0;
+	padding: 15px 0;
 }
