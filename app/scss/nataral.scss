@@ -358,7 +358,8 @@
 	border:1px solid #E5E5E5;
 	position: fixed;
 	bottom: 300px;
-	right: 0px;
+	left: 50%;
+	margin-left: 600px;
 	z-index: 2;
 }
 .nataral-top li{
@@ -377,17 +378,25 @@
 	text-align: center;
 	color: #666;
 }
+.nataral-top li a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
 .nataral-top li.active i{
 	background: #FF9F00;
 }
 .nataral-top i{
-	margin-right: 11px;
 	display: inline-block;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
 	background: #B3B7C0;
 	text-align: center;
+}
+.nataral-top li .nataral-top-text{
+	margin-left: 11px;
 }
 .nataral-top .icon111,
 .nataral-top .icon113{
@@ -401,21 +410,29 @@
 }
 .nataral-top-r1{
 	background: #D9D9D9;
-	height: 33px;
-	line-height: 33px;
+	
 	margin-top: -1px;
 	text-align: center;
 	font-size: 14px;
 }
+
 .nataral-top-r1:hover{
 	background: #999;
 }
-.nataral-top-r1 .icon{
-	margin-left: 7px;
+.nataral-top-r1 .nataral-top-text{
+	margin-right: 7px;
 }
 .nataral-top-r1 a{
 	color: #fff;
 	display: block;
+	height: 33px;
+	line-height: 33px;
+}
+.nataral-top-r1 a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
 }
 .nataral-shop-detail{
 	background: #fff;
@@ -454,4 +471,22 @@
 .crumbs{
 	margin:0;
 	padding: 15px 0;
+}
+@media all and (max-width:1400px){
+	.nataral-top{
+		width: 50px;
+		left: auto;
+		right: 0;
+		margin-left: 0;
+	}
+	.nataral-top:hover{
+		width: 121px;
+
+	}
+	.nataral-top:hover .nataral-top-text{
+		display: inline-block;
+	}
+	.nataral-top-text{
+		display: none;
+	}
 }
