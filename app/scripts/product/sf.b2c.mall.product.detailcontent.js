@@ -1316,7 +1316,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       titleTemplate: function() {
         return '<h1>{{itemInfo.basicInfo.title}}</h1>' +
-          '<p>{{itemInfo.basicInfo.subtitle}}</p>';
+          '<p>{{{itemInfo.basicInfo.subtitle}}}</p>';
       },
 
       /**

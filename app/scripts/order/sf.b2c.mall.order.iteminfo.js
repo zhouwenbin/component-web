@@ -25,6 +25,22 @@ define('sf.b2c.mall.order.iteminfo', [
       amount: 0,
       couponPrice: 0
     }),
+
+    helpers:{
+      'sf-needshowcart': function(options) {
+        var uinfo = $.cookie('1_uinfo');
+        var arr = new Array();
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
+
+        if ((typeof arr[4] != 'undefined' && arr[4] != '2')) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+    },
     /**
      * 初始化
      * @param  {DOM} element 容器element
@@ -51,7 +67,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.when(that.initOrderRender())
         .done(function() {
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj);
+          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj, that.helpers);
           that.element.html(html);
 
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
@@ -65,23 +81,23 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     invariableGoodsTemplate: function() {
       return '{{#each invariableGoodsItemList}}' +
-      '<tr class="cart-disable">' +
-      '<td class="td1"><div class="cart-pos">' +
-      '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
-      '<div class="order-confirm-info">' +
-      '<div class="text-error">{{description}}</div>' +
-      '<h2><a href="">{{goodsName}}</a></h2>' +
-      '<div class="cart-standard">{{{spec}}}</div>' +
-      '</div></div>' +
-      '</td>' +
-      '<td class="td2"></td>' +
-      '<td class="td3">{{sf.price price}}</td>' +
-      '<td class="td4">{{quantity}}</td>' +
-      '<td class="td5">' +
-      '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
-      '</td>' +
-      '</tr>' +
-      '{{/each}}'
+        '<tr class="cart-disable">' +
+        '<td class="td1"><div class="cart-pos">' +
+        '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
+        '<div class="order-confirm-info">' +
+        '<div class="text-error">{{description}}</div>' +
+        '<h2><a href="">{{goodsName}}</a></h2>' +
+        '<div class="cart-standard">{{{spec}}}</div>' +
+        '</div></div>' +
+        '</td>' +
+        '<td class="td2"></td>' +
+        '<td class="td3">{{sf.price price}}</td>' +
+        '<td class="td4">{{quantity}}</td>' +
+        '<td class="td5">' +
+        '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
+        '</td>' +
+        '</tr>' +
+        '{{/each}}'
     },
 
     /**
