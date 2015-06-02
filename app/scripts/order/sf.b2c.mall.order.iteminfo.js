@@ -65,23 +65,23 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     invariableGoodsTemplate: function() {
       return '{{#each invariableGoodsItemList}}' +
-      '<tr class="cart-disable">' +
-      '<td class="td1"><div class="cart-pos">' +
-      '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
-      '<div class="order-confirm-info">' +
-      '<div class="text-error">{{description}}</div>' +
-      '<h2><a href="">{{goodsName}}</a></h2>' +
-      '<div class="cart-standard">{{{spec}}}</div>' +
-      '</div></div>' +
-      '</td>' +
-      '<td class="td2"></td>' +
-      '<td class="td3">{{sf.price price}}</td>' +
-      '<td class="td4">{{quantity}}</td>' +
-      '<td class="td5">' +
-      '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
-      '</td>' +
-      '</tr>' +
-      '{{/each}}'
+        '<tr class="cart-disable">' +
+        '<td class="td1"><div class="cart-pos">' +
+        '<a href=""><img src="{{sf.img productImage.thumbImgUrl}}"></a>' +
+        '<div class="order-confirm-info">' +
+        '<div class="text-error">{{description}}</div>' +
+        '<h2><a href="">{{goodsName}}</a></h2>' +
+        '<div class="cart-standard">{{{spec}}}</div>' +
+        '</div></div>' +
+        '</td>' +
+        '<td class="td2"></td>' +
+        '<td class="td3">{{sf.price price}}</td>' +
+        '<td class="td4">{{quantity}}</td>' +
+        '<td class="td5">' +
+        '<strong class="text-error">{{sf.price totalPrice}}</strong>' +
+        '</td>' +
+        '</tr>' +
+        '{{/each}}'
     },
 
     /**
@@ -311,7 +311,16 @@ define('sf.b2c.mall.order.iteminfo', [
       }
 
     },
-
+    //兑换优惠券
+    '.btn-exCode click': function(element, event) {
+      event && event.preventDefault();
+      var $inputCode = $('.cart-coupon-r4');
+      if ($inputCode.hasClass('hide')) {
+        $inputCode.removeClass('hide');
+      } else {
+        $inputCode.addClass('hide');
+      }
+    },
     getSysInfo: function() {
       var mapKey = {
         'heike': this.options.vendorinfo.get

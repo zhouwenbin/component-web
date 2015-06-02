@@ -24,12 +24,12 @@
                             {{#isValid}}
                                 <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
                             {{/isValid}}
-                            <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
+                            <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                             {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
                         </td>
                         <td class="td2">
                             {{#isDiscount}}<div class="text-error">{{discountInfo}}</div>{{/isDiscount}}
-                            <h2><a href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
+                            <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
