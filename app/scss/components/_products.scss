@@ -114,6 +114,7 @@
 	border: 1px solid #d5d5d5;
 	text-align: center;
 	margin: 0 auto 10px;
+	font-size:0;
 }
 .products-c1r2 li:before{
 	content: '';
@@ -141,5 +142,14 @@
 	padding-right: 20px;
 }
 .products .product-r2 img{
-	margin-top:9px;
+	margin-right:5px;
+	vertical-align: 0px;
+}
+.products .product .icon90{
+	width: 30px;
+	height: 30px;
+	background-position: -373px -641px;
+}
+.products .product .icon90.disable{
+	background-position: -411px -641px;
 }
