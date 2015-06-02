@@ -11,13 +11,15 @@
 	margin-left: 18px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	background: #f3f3f3;
 }
 .sort li{
 	border-right: 1px solid #ccc;
-	background: #f3f3f3;
+	
 }
 .sort li:last-child{
 	border: none;
+	border-radius:0 4px 4px 0;
 }
 .sort a{
 	width: 84px;
