@@ -327,7 +327,16 @@ define('sf.b2c.mall.order.iteminfo', [
       }
 
     },
-
+    //兑换优惠券
+    '.btn-exCode click': function(element, event) {
+      event && event.preventDefault();
+      var $inputCode = $('.cart-coupon-r4');
+      if ($inputCode.hasClass('hide')) {
+        $inputCode.removeClass('hide');
+      } else {
+        $inputCode.addClass('hide');
+      }
+    },
     getSysInfo: function() {
       var mapKey = {
         'heike': this.options.vendorinfo.get

@@ -9,17 +9,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.widget.pagination',
     'sf.b2c.mall.api.order.getOrder',
     'sf.helpers',
-    'sf.b2c.mall.api.order.cancelOrder',
     'sf.b2c.mall.api.order.requestPayV2',
-    'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.api.order.deleteOrder',
     'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder, SFAddItemToCart) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart) {
 
     can.route.ready();
 
@@ -604,94 +601,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
         "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>'
       },
-      //删除订单
-      '.deleteOrders click': function(element, event) {
-        var that = this;
-
-        var message = new SFMessage(null, {
-          'tip': '确认要删除该订单？',
-          'type': 'confirm',
-          'okFunction': _.bind(that.deleted, that, element)
-        });
-        return false;
-      },
-
-      deleted: function(element) {
-        debugger;
-        var that = this;
-        var orderid = element.parents('th').attr('data-orderid');
-        var deleteOrder = new SFDeleteOrder({
-          "orderId": orderid
-        });
-        deleteOrder
-          .sendRequest()
-          .done(function(data) {
-            if (data.value) {
-              var message = new SFMessage(null, {
-                'tip': '删除成功！',
-                'type': 'success'
-              });
-
-              window.location.reload();
-              // that.render();
-            } else {
-              var message = new SFMessage(null, {
-                'tip': '删除失败！',
-                'type': 'error'
-              });
-            }
-
-          })
-          .fail(function(error) {
-
-            var message = new SFMessage(null, {
-              'tip': '删除失败！',
-              'type': 'error'
-            });
-
-          })
-      },
-      '.received click': function(element, event) {
-        var that = this;
-
-        var message = new SFMessage(null, {
-          'tip': '确认要签收该订单？',
-          'type': 'confirm',
-          'okFunction': _.bind(that.received, that, element)
-        });
-
-        return false;
-      },
-
-      received: function(element) {
-        var that = this;
-        // suborderid字段用orderid传
-        // var subOrderId = element.parent('td').attr('data-suborderid');
-        var subOrderId = element.parent('td').attr('data-orderid');
-        var confirmReceive = new SFConfirmReceive({
-          "subOrderId": subOrderId
-        });
-        confirmReceive
-          .sendRequest()
-          .done(function(data) {
-
-            var message = new SFMessage(null, {
-              'tip': '确认签收成功！',
-              'type': 'success'
-            });
-
-            window.location.reload();
-          })
-          .fail(function(error) {
-
-            var message = new SFMessage(null, {
-              'tip': '确认签收失败！',
-              'type': 'error'
-            });
-
-          })
-      },
-
+      //去支付
       '.gotoPay click': function(element, event) {
         event && event.preventDefault();
 
@@ -732,17 +642,65 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         window.open("/orderdetail.html?orderid=" + orderid + "&pkgid=" + pkgid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
+
+      //取消订单
       ".cancelOrder click": function(element, event) {
         var that = this;
-
+        var orderid = $(element).parent('td').attr('data-orderid');
         var message = new SFMessage(null, {
           'tip': '确认要取消该订单？',
           'type': 'confirm',
-          'okFunction': _.bind(that.cancelOrder, that, element)
-        });
+          'okFunction': function() {
+            var success = function() {
+              window.location.reload();
+            };
 
-        return false;
+            var error = function() {
+              // @todo 错误提示
+            };
+            SFOrderFn.orderCancel(orderid, success, error);
+          }
+        });
       },
+
+      //删除订单
+      '.deleteOrders click': function(element, event) {
+        var that = this;
+        var orderid = $(element).parents('th').attr('data-orderid');
+        var message = new SFMessage(null, {
+          'tip': '确认要删除该订单？',
+          'type': 'confirm',
+          'okFunction': function() {
+            var success = function() {
+              window.location.reload();
+            };
+
+            var error = function() {
+              // @todo 错误提示
+            };
+            SFOrderFn.orderDelete(orderid, success, error);
+          }
+        });
+      },
+      //签收订单
+      '.received click': function(element, event) {
+        var subOrderId = element.parent('td').attr('data-orderid');
+        var message = new SFMessage(null, {
+          'tip': '确认要签收该订单？',
+          'type': 'confirm',
+          'okFunction': function() {
+            var success = function() {
+              window.location.reload();
+            };
+
+            var error = function() {
+              // @todo 错误提示
+            };
+            SFOrderFn.orderConfirm(subOrderId, success, error);
+          }
+        });
+      },
+
       "[role=shareBagLink] click": function(element, event) {
         $("[role=dialog-qrcode]").before("<div class='mask show' />");
         var url = $(element).data("url");
@@ -760,36 +718,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
         };
 
         $('#shareBagQrcode').html("").qrcode(qrParam);
-      },
-
-      cancelOrder: function(element) {
-        var that = this;
-        var orderid = element.parent('td').attr('data-orderid');
-        var cancelOrder = new SFCancelOrder({
-          "orderId": orderid
-        });
-
-        cancelOrder
-          .sendRequest()
-          .done(function(data) {
-            new SFMessage(null, {
-              'tip': '订单取消成功！',
-              'type': 'success',
-              'okFunction': function() {
-                // 显示提示之后重新刷新页面
-                window.location.reload();
-              }
-            });
-
-            // 不再重新render而是页面重现刷，因为订单的状态发生了变化
-            // that.render();
-          })
-          .fail(function(error) {
-            new SFMessage(null, {
-              'tip': '订单取消失败！',
-              'type': 'error'
-            });
-          })
       },
 
       errorMap: {
@@ -864,16 +792,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // var array = []
 
         var array = $element.parent().attr('data-all');
-
-        // $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
-        //   var itemId = $(el).attr('data-itemid');
-        //   var num = $(el).attr('data-num');
-
-        //   array.push({itemId: itemId, num: num});
-        // })
-
-        // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
-        // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
         this.addCart(JSON.parse(array), function() {
           window.location.href = '/shoppingcart.html';
         });
