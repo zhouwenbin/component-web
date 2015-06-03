@@ -7,15 +7,20 @@
   <title>顺丰海淘</title>
   <!-- build:css({app, .tmp}) styles/sf.b2c.mall.search.css -->
   <link href="css/common.css" rel="stylesheet" type="text/css" />
+  <link href="css/404.css" rel="stylesheet" type="text/css" />
   <link href="css/search.css" rel="stylesheet" type="text/css" />
   <!-- endbuild -->
 </head>
 <body>
 
+<!--头部-->
+<!--# include file="/header/header.index.html" -->
+<!--头部-->
+<div class="mask"></div>
 <div class="loading"></div>
+<div style="height: 1000px;" class="loadingBg"></div>
 <div id="sf-b2c-mall-search"></div>
 <!--推荐商品-->
-<div class="recommend "></div>
 
 <!--尾部-->
 <!-- <!--# include file="/footer/footer.index.html" -->
@@ -32,6 +37,6 @@
   require(['sf.b2c.mall.page.search']);
 </script>
 <!-- endbuild -->
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
 </body>
 </html>

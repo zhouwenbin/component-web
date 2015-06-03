@@ -43,6 +43,7 @@ define([], function () {
     'bindaccount':'http://'+main+'/bindaccount.html',//@note 绑定账号
     'setpassword':'http://'+main+'/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://'+main+'/paysuccess.html',
+    'search': 'http://'+main+'/search.html',
     'usercenter': 'http://'+main+'/accountmanage.html',
   }
 

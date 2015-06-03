@@ -937,24 +937,24 @@ module.exports = function(grunt) {
         }
       },
 
-      search: {
-        options: {
-          preserveLicenseComments: false,
-          baseUrl:          './app/',
-          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.search.js',
-          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-          paths: {
-            'placeholders': '../bower_components/Placeholders/dist/placeholders',
-            'moment': '../bower_components/momentjs/min/moment.min',
-            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
-            'text': '../bower_components/text/text',
-            'JSON': '../bower_components/JSON-js/json2',
-            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
-          },
-          include:        ["JSON", "sf.b2c.mall.page.search"],
-          insertRequire:  ['sf.b2c.mall.page.search']
-        }
-      },
+      // search: {
+      //   options: {
+      //     preserveLicenseComments: false,
+      //     baseUrl:          './app/',
+      //     out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.search.js',
+      //     mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+      //     paths: {
+      //       'placeholders': '../bower_components/Placeholders/dist/placeholders',
+      //       'moment': '../bower_components/momentjs/min/moment.min',
+      //       'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+      //       'text': '../bower_components/text/text',
+      //       'JSON': '../bower_components/JSON-js/json2',
+      //       'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+      //     },
+      //     include:        ["JSON", "sf.b2c.mall.page.search"],
+      //     insertRequire:  ['sf.b2c.mall.page.search']
+      //   }
+      // },
 
       addressmanage: {
         options: {
@@ -991,6 +991,25 @@ module.exports = function(grunt) {
           },
           include: ["JSON", "sf.b2c.mall.page.accountmanage"],
           insertRequire: ['sf.b2c.mall.page.accountmanage']
+        }
+      },
+
+      search: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:          './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.search.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["JSON", "sf.b2c.mall.page.search"],
+          insertRequire:  ['sf.b2c.mall.page.search']
         }
       },
 

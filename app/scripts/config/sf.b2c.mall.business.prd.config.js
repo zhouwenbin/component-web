@@ -42,6 +42,7 @@ define([], function () {
     'bindaccount':'http://www.sfht.com/bindaccount.html',//@note 绑定账号
     'setpassword':'http://www.sfht.com/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://www.sfht.com/paysuccess.html',
+    'search': 'http://www.sfht.com/search.html',
     'usercenter': 'http://www.sfht.com/accountmanage.html',
   }
 
