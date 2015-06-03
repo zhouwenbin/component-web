@@ -763,7 +763,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.isSuccess == true) {
+            if (data.isSuccess) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
