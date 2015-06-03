@@ -27,8 +27,12 @@
 	margin-right: -1px;
 	margin-top: -1px;
 }
+
 .products .products-c2 li:hover{
 	border-color: #dfdfdf;
+}
+.products .products-c2 li:hover h3{
+	text-decoration: underline;
 }
 .products .products-c2 li:first-child{
 	width: 469px;
@@ -68,12 +72,12 @@
 }
 .products-c1r1:before{
 	border-style: solid;
-	border-width: 9px;
+	border-width: 8px;
 	border-color: #15827c #15827c transparent transparent;
 	content: '';
 	position: absolute;
 	left: 0;
-	bottom: -18px;
+	bottom: -16px;
 }
 .products2 .products-c1r1:before{
 	border-color: #c23249 #c23249 transparent transparent;
