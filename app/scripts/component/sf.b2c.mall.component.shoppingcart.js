@@ -15,7 +15,7 @@ define(
     'sf.b2c.mall.api.shopcart.updateItemNumInCart',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message',
-    'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
     'sf.b2c.mall.api.shopcart.isShowCart'
   ],
   function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart) {
@@ -470,21 +470,19 @@ define(
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.value) {
+            if (data.isSuccess == true) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
               window.location.reload();
-            }
-          })
-          .fail(function(data) {
-            if (data == 15000800) {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+            } else {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
                 $el.remove();
               }, 1000);
             }
           })
+          .fail(function(data) {})
       },
       '.addCart click': function(element, event) {
         event && event.preventDefault();

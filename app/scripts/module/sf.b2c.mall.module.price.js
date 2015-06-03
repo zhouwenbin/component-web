@@ -4,7 +4,7 @@ define(
     'underscore',
     'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
-    'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
     'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
@@ -139,48 +139,50 @@ define(
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.value) {
+            if (data.isSuccess == true) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              if($(window).scrollTop() > 166){
-                  var target=$('.nav .icon100').eq(1).offset()
-              }else{
-                  var target=$('.nav .icon100').eq(0).offset()
+              if ($(window).scrollTop() > 166) {
+                var target = $('.nav .icon100').eq(1).offset()
+              } else {
+                var target = $('.nav .icon100').eq(0).offset()
               }
 
-              var targetX=target.left,
-                  targetY=target.top,
-                  current=$el.offset(),
-                  currentX=current.left,
-                  currentY=current.top,
-                  cart_num=$('.cart-num').eq(0).text();
+              var targetX = target.left,
+                targetY = target.top,
+                current = $el.offset(),
+                currentX = current.left,
+                currentY = current.top,
+                cart_num = $('.cart-num').eq(0).text();
 
               $el.clone().appendTo($el.parent());
               $el.css({
                 zIndex: 2,
-                left:targetX-currentX,
-                top:targetY-currentY,
-                visibility:'hidden'
+                left: targetX - currentX,
+                top: targetY - currentY,
+                visibility: 'hidden'
               });
 
               cart_num++;
               $('.cart-num').text(cart_num);
               $('.nav .label-error').addClass('active');
 
-              setTimeout(function(){
-                  $('.nav .label-error').removeClass('active');
-              },500);
-            }
-          })
-          .fail(function(data) {
-            if (data == 15000800) {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+              setTimeout(function() {
+                $('.nav .label-error').removeClass('active');
+              }, 500);
+            } else {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
                 $el.remove();
               }, 1000);
             }
+
+
+          })
+          .fail(function(data) {
+
           })
       },
 

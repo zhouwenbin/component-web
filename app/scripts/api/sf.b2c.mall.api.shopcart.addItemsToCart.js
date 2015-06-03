@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.addItemToCart
+  * @class sf.b2c.mall.api.shopcart.addItemsToCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.addItemToCart',
+'sf.b2c.mall.api.shopcart.addItemsToCart',
 [
   'jquery',
   'can',
@@ -22,7 +22,7 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.addItemToCart',
+      METHOD_NAME: 'shopcart.addItemsToCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'items': 'json'

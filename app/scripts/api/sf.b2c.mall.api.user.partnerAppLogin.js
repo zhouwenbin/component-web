@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.addItemToCart
+  * @class sf.b2c.mall.api.user.partnerAppLogin
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.addItemToCart',
+'sf.b2c.mall.api.user.partnerAppLogin',
 [
   'jquery',
   'can',
@@ -22,19 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.addItemToCart',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.partnerAppLogin',
+      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
       REQUIRED: {
-        'items': 'json'
+        'partnerId': 'string',
+        'authResp': 'string',
       },
       OPTIONAL: {
+        'rembFlag': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误',
-        '15000201': '该商品不支持加入购物车',
-        '15000800': '您的购物车已满'
+        '1000320': '用户未授权',
+        '1000370': '支付宝验签失败'
       }
     }
   });

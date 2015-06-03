@@ -14,7 +14,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.api.shopcart.addItemToCart'
+    'sf.b2c.mall.api.shopcart.addItemsToCart'
   ],
   function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart) {
 
@@ -763,7 +763,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.value) {
+            if (data.isSuccess == true) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
@@ -772,16 +772,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
               } else {
                 window.location.reload();
               }
-            }
-          })
-          .fail(function(data) {
-            if (data == 15000800) {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+            } else {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
               $(document.body).append($el)
               setTimeout(function() {
                 $el.remove();
               }, 1000);
             }
+          })
+          .fail(function(data) {
+
           })
       },
       //再次购买加入购物车

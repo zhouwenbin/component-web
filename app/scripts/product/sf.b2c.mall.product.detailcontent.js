@@ -19,7 +19,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics',
     'sf.b2c.mall.api.b2cmall.getActivityInfo',
-    'sf.b2c.mall.api.shopcart.addItemToCart'
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
   ],
   function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
 
@@ -188,12 +188,12 @@ define('sf.b2c.mall.product.detailcontent', [
                   $('.addtocart').hide();
                 }
               })
-          }else if (arr && arr[4] == '1') {
+          } else if (arr && arr[4] == '1') {
             $('.addtocart').show();
-          }else{
+          } else {
             $('.addtocart').hide();
           }
-        }else{
+        } else {
           var isShowCart = new SFIsShowCart();
           isShowCart
             .sendRequest()
@@ -1002,6 +1002,12 @@ define('sf.b2c.mall.product.detailcontent', [
                 $el.remove();
               }, 1000);
 
+            } else {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
             }
           })
           .fail(function(data) {
