@@ -48,7 +48,7 @@
           <div class="classify-c1 fl">
             <label>品牌：</label>
             <ul id="classify-logo">
-              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}{{^pic}}<span>{{key}}</span>{{/pic}}</a></li>{{/each}}
+              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}<span>{{key}}</span></a></li>{{/each}}
             </ul>
           </div>
           {{#sf-isShowMoreBrand brands.buckets}}

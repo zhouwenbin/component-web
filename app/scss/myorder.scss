@@ -50,7 +50,7 @@
 }
 .personal-c2{
 	overflow: hidden;
-	padding:0 63px 0 39px;
+	padding:0 39px 0 39px;
 	border-left: 1px solid #e5e5e5;
 }
 
@@ -79,7 +79,9 @@
 	border-radius: 0 3px 3px 0;
 	vertical-align: middle;
 }
-
+.myorder-search button:hover{
+	color: #666;
+}
 .myorder table{
 	width: 100%;
 	table-layout: fixed;
@@ -134,6 +136,9 @@
 .myorder .th6,
 .myorder .td6{
 	width: 99px;
+}
+.myorder .td6 span{
+	margin: 10px 0;
 }
 .myorder .th7,
 .myorder .td7{
@@ -201,22 +206,12 @@
 	display: block;
 }
 .myorder .text-error{
-	margin-top: 10px;
+	margin: 10px 0;
 
 }
 .myorder .btn{
 	display: block;
-	margin: 0 auto;
-}
-.myorder .btn-danger{
-	margin-top: 10px;
-}
-.myorder .btn-normal{
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.myorder .btn-success{
-	margin-bottom: 9px;
+	margin: 10px auto;
 }
 .myorder-link{
 	display: block;
