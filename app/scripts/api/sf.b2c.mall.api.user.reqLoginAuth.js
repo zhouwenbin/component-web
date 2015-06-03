@@ -26,9 +26,9 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
         'partnerId': 'string',
-        'redirectUrl': 'string'
       },
       OPTIONAL: {
+        'redirectUrl': 'string'
       },
       VERIFY:{
       },

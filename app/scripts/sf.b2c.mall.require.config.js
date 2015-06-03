@@ -130,6 +130,7 @@ requirejs.config({
     'sf.b2c.mall.api.shopcart.updateItemNumInCart':'scripts/api/sf.b2c.mall.api.shopcart.updateItemNumInCart',
     'sf.b2c.mall.api.minicart.getTotalCount':'scripts/api/sf.b2c.mall.api.minicart.getTotalCount',
     'sf.b2c.mall.api.order.getOrderV2':'scripts/api/sf.b2c.mall.api.order.getOrderV2',
+    'sf.b2c.mall.api.shopcart.addItemsToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemsToCart',
 
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',

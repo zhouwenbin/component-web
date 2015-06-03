@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.removeItemsInCart
+  * @class sf.b2c.mall.api.user.partnerAppLogin
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.removeItemsInCart',
+'sf.b2c.mall.api.user.partnerAppLogin',
 [
   'jquery',
   'can',
@@ -22,18 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.removeItemsInCart',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.partnerAppLogin',
+      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
       REQUIRED: {
-        'itemIds': 'string'
+        'partnerId': 'string',
+        'authResp': 'string',
       },
       OPTIONAL: {
+        'rembFlag': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误',
-        '15000300': '购物车删除商品失败'
+        '1000320': '用户未授权',
+        '1000370': '支付宝验签失败'
       }
     }
   });

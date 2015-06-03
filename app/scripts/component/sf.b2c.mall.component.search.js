@@ -20,7 +20,7 @@ define('sf.b2c.mall.component.search', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.search.searchItem',
   'sf.b2c.mall.api.b2cmall.getProductHotDataList',
-  'sf.b2c.mall.api.shopcart.addItemToCart',
+  'sf.b2c.mall.api.shopcart.addItemsToCart',
   'sf.b2c.mall.api.shopcart.isShowCart',
   'sf.b2c.mall.component.recommendProducts',
   'text!template_component_search'
@@ -153,7 +153,7 @@ define('sf.b2c.mall.component.search', [
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.value) {
+            if (data.isSuccess == true) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
@@ -188,6 +188,12 @@ define('sf.b2c.mall.component.search', [
               setTimeout(function(){
                 $('.nav .label-error').removeClass('active');
               },500);
+            } else {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
             }
           })
           .fail(function(data) {
