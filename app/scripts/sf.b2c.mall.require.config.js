@@ -86,6 +86,7 @@ requirejs.config({
     'sf.b2c.mall.api.user.getRecvInfo': 'scripts/api/sf.b2c.mall.api.user.getRecvInfo',
     'sf.b2c.mall.api.user.partnerLogin': 'scripts/api/sf.b2c.mall.api.user.partnerLogin',
     'sf.b2c.mall.api.user.reqLoginAuth': 'scripts/api/sf.b2c.mall.api.user.reqLoginAuth',
+    'sf.b2c.mall.api.order.deleteOrder':'scripts/api/sf.b2c.mall.api.order.deleteOrder',
     //账号绑定
     'sf.b2c.mall.api.user.partnerBind': 'scripts/api/sf.b2c.mall.api.user.partnerBind',
     //设置密码并登陆
@@ -119,6 +120,19 @@ requirejs.config({
     'sf.b2c.mall.api.search.suggestKeyword': 'scripts/api/sf.b2c.mall.api.search.suggestKeyword',
 
 
+    //购物车
+    'sf.b2c.mall.api.shopcart.isShowCart': 'scripts/api/sf.b2c.mall.api.shopcart.isShowCart',
+    'sf.b2c.mall.api.shopcart.getCart': 'scripts/api/sf.b2c.mall.api.shopcart.getCart',
+    'sf.b2c.mall.api.shopcart.addItemToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart':'scripts/api/sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart',
+    'sf.b2c.mall.api.shopcart.refreshCart':'scripts/api/sf.b2c.mall.api.shopcart.refreshCart',
+    'sf.b2c.mall.api.shopcart.removeItemsInCart':'scripts/api/sf.b2c.mall.api.shopcart.removeItemsInCart',
+    'sf.b2c.mall.api.shopcart.updateItemNumInCart':'scripts/api/sf.b2c.mall.api.shopcart.updateItemNumInCart',
+    'sf.b2c.mall.api.minicart.getTotalCount':'scripts/api/sf.b2c.mall.api.minicart.getTotalCount',
+    'sf.b2c.mall.api.order.getOrderV2':'scripts/api/sf.b2c.mall.api.order.getOrderV2',
+    'sf.b2c.mall.api.shopcart.addItemsToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemsToCart',
+
+
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
     'placeholders': 'bower_components/Placeholders/dist/placeholders',
@@ -136,6 +150,7 @@ requirejs.config({
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
+    'sf.b2c.mall.component.header.61': 'scripts/component/sf.b2c.mall.component.header.61',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.login': 'scripts/component/sf.b2c.mall.component.login',
     'sf.b2c.mall.component.i.login': 'scripts/component/sf.b2c.mall.component.i.login',
@@ -229,6 +244,12 @@ requirejs.config({
     //搜索页面
     'sf.b2c.mall.page.search': 'scripts/page/sf.b2c.mall.page.search',
 
+    //购物车
+    'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
+    'sf.b2c.mall.component.shoppingcart': 'scripts/component/sf.b2c.mall.component.shoppingcart',
+    //收货地址管理
+    'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
+    'sf.b2c.mall.page.accountmanage': 'scripts/page/sf.b2c.mall.page.accountmanage',
     'sf.b2c.mall.order.step': 'scripts/order/sf.b2c.mall.order.step',
     'sf.b2c.mall.order.selectreceiveaddr': 'scripts/order/sf.b2c.mall.order.selectreceiveaddr',
     'sf.b2c.mall.order.selectreceiveperson': 'scripts/order/sf.b2c.mall.order.selectreceiveperson',
@@ -246,6 +267,7 @@ requirejs.config({
     'sf.b2c.mall.module.header': 'scripts/module/sf.b2c.mall.module.header',
     'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
+    'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
@@ -254,6 +276,7 @@ requirejs.config({
     'template_header_info_step_success': 'templates/header/sf.b2c.mall.header.info.step.success.mustache',
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_header_520': 'templates/header/sf.b2c.mall.header.520.mustache',
+    'template_header_61': 'templates/header/sf.b2c.mall.header.61.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
     'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache'

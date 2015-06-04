@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.order.orderlistcontent', [
     'can',
+    'jquery',
     'qrcode',
     'sf.b2c.mall.api.order.getOrderList',
     'sf.b2c.mall.adapter.pagination',
@@ -13,27 +14,152 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.order.fn',
     'sf.b2c.mall.api.sc.getUserRoutes',
-    'sf.b2c.mall.widget.message'
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.product.findRecommendProducts',
+    'sf.b2c.mall.api.order.deleteOrder',
+    'sf.b2c.mall.api.shopcart.addItemToCart'
   ],
-  function(can, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFCancelOrder, SFRequestPayV2, SFConfirmReceive, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFDeleteOrder, SFAddItemToCart) {
+
+    can.route.ready();
 
     return can.Control.extend({
 
-      /**
-       * 初始化
-       * @param  {DOM} element 容器element
-       * @param  {Object} options 传递的参数
-       */
-      init: function(element, options) {
-        this.render();
+      helpers: {
+        //确定第一个td需要rowspan的行数（根据第一个包裹内商品数量）
+        countTypeOfGoodsInPackage: function(orderGoodsItemList, options) {
+          return orderGoodsItemList.length;
+        },
+        //包裹内商品数量
+        countGoodsInPackage: function(orderGoodsItemList, options) {
+          var result = 0;
+          _.each(orderGoodsItemList, function(item) {
+            result = result + item.quantity;
+          })
+          return result;
+        },
+        // 计算包裹号
+        getPackageNum: function(index, options) {
+          return index + 1;
+        },
+        //每一个包裹中商品list中的第一条数据
+        first: function(orderGoodsItemList, index, options) {
+          if (index == 0) {
+            return options.fn(orderGoodsItemList[0]);
+          } else {
+            return options.inverse(orderGoodsItemList[index]);
+          };
+        },
+        //每一个包裹中商品list中的第一条数据
+        firstPackage: function(orderPackageItemList, index, options) {
+          if (index == 0) {
+            return options.fn(options.contexts || this);
+          }
+        },
+        //后几个td的rowspan的行数（根据包裹数量）
+        countTypeOfGoodsInOrder: function(orderPackageItemList, options) {
+          return orderPackageItemList.length;
+        },
+        //渲染包裹中除了第一个商品以外的其他商品
+        others: function(orderGoodsItemList, options) {
+          if (orderGoodsItemList.length > 1) {
+            return options.fn(options.contexts || this);
+          };
+        },
+        //如果订单是已提交，展示倒计时
+        isNotShowEndTime: function(orderStatus, options) {
+          if (orderStatus === '已提交') {
+            return options.fn(options.contexts || this);
+          };
+        },
+        //如果订单是取消状态，展示删除订单按钮
+        isShowDeleteIcon: function(orderStatus, options) {
+          if (orderStatus === '自动取消' || orderStatus == '用户取消' || orderStatus == '运营取消' || orderStatus == '已关闭') {
+            return options.fn(options.contexts || this);
+          };
+        },
+        needCombineOperationRow: function(orderStatus, options) {
+          if (orderStatus === '已提交' || orderStatus == '待审核' || orderStatus == '已关闭') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          };
+        },
+        showImg: function(imageUrl, options) {
+          if (imageUrl == "" || null == imageUrl) {
+            return "http://www.sfht.com/img/no.png";
+          } else {
+            return JSON.parse(imageUrl)[0] + "@144h_144w_50Q_1x.jpg";
+          }
+        },
+        isShowOriginPrice: function(originPrice, price, options) {
+          if (originPrice !== price && originPrice > price) {
+            return options.fn(options.contexts || this);
+          };
+        },
+
+        'sf-items-list': function(packages) {
+          var array = [];
+          _.each(packages, function(packageItem) {
+            _.each(packageItem.orderGoodsItemList, function(good) {
+              array.push({
+                itemId: good.itemId,
+                num: good.quantity
+              });
+            });
+          });
+
+          return JSON.stringify(array);
+        },
+
+        showRouter: function(status, options) {
+          if (status == 'SHIPPED' || status == 'COMPLETED' || status == 'CONSIGNED' || status == 'RECEIPTED' || status == 'AUTO_COMPLETED') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
+        showPackageStatus: function(status, options) {
+          var statsMap = {
+            'SUBMITED': '已提交',
+            'AUTO_CANCEL': '自动取消',
+            'USER_CANCEL': '用户取消',
+            'AUDITING': '待审核',
+            'OPERATION_CANCEL': '运营取消',
+            'BUYING': '采购中',
+            'BUYING_EXCEPTION': '采购异常',
+            'WAIT_SHIPPING': '待发货',
+            'SHIPPING': '正在出库',
+            'LOGISTICS_EXCEPTION': '物流异常',
+            'SHIPPED': '已发货',
+            'CONSIGNED': '已出库',
+            'RECEIPTED': '已签收',
+            'COMPLETED': '已完成',
+            'AUTO_COMPLETED': '自动完成',
+            'CLOSED': '已关闭'
+          };
+          return statsMap[status];
+        },
+        isShowActive: function(index, options) {
+          if (index == 0) {
+            return 'active';
+          }
+        }
+
       },
 
-      /**
-       * [render 渲染]
-       * @param  {[type]} data 数据
-       */
-      render: function(data) {
+      init: function(element, options) {
         var that = this;
+
+        this.handler = null;
+
+        this.options.tab = new can.Map({
+          'allorderTab': false,
+          'notPayOrderListTab': false,
+          'notSendOrderListTab': false,
+          'notGetOrderListTab': false
+        });
 
         var routeParams = can.route.attr();
         if (!routeParams.page) {
@@ -41,148 +167,287 @@ define('sf.b2c.mall.order.orderlistcontent', [
             page: 1
           });
         }
+        if (routeParams.status) {
+          _.each(this.statusMap, function(value, key, list) {
+            if (value == routeParams.status) {
+              this.options.tab.attr(key, true);
+            }
+          }, this)
+        } else {
+          this.options.tab.attr("allorderTab", true);
+        }
 
         var params = {
           "query": JSON.stringify({
-            "status": null,
-            "receiverName": that.options.searchValue,
-            "orderId": that.options.searchValue,
+            "status": routeParams.status,
+            "pageNum": routeParams.page,
+            "pageSize": 10,
+            "searchValue": that.options.searchValue
+          })
+        }
+
+        this.render(params);
+
+      },
+
+      render: function(params) {
+
+        var that = this;
+
+        var getOrderList = new SFGetOrderList(params);
+        getOrderList.sendRequest()
+          .done(function(data) {
+
+            //获取不同状态订单的数量
+            that.options.waitCompletedNum = data.waitCompletedNum;
+            that.options.waitPayNum = data.waitPayNum;
+            that.options.waitShippingNum = data.waitShippingNum;
+
+            if (data.orders && data.orders.length > 0) {
+
+              that.options.orders = data.orders;
+
+              _.each(that.options.orders, function(order, i) {
+
+                order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
+
+                order.paymentAmount = order.totalPrice - order.discount;
+                order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                order.orderStatus = that.statsMap[order.orderStatus];
+                //遍历包裹
+                var lastPackageItemList = [];
+                if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
+                  _.each(order.orderPackageItemList, function(orderPackageItem, i) {
+                    //orderPackageItem.showRouter = that.routeMap[orderPackageItem.status];
+                    //orderPackageItem.status = that.statsMap[orderPackageItem.status];
+                    if (i !== 0) {
+                      lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
+                    };
+                  })
+                };
+                that.options.orderGoods = lastPackageItemList;
+                //卡券处理
+                if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
+                  _.each(order.orderCouponItemList, function(coupon) {
+                    if (coupon.couponType == "SHAREBAG") {
+                      order.isShareBag = true;
+                      order.shareBag = coupon;
+
+                      order.optionHMTL = '<a href="#" data-url="http://m.sfht.com/luckymoneyshare.html?id=' + coupon.code + '" class="btn btn-normal btn-small" role="shareBagLink">分享红包</a>' + order.optionHMTL
+                    }
+                  });
+                } else {
+                  order.isShareBag = false;
+                }
+
+              })
+
+              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
+              that.element.html(html);
+              that.handler = setInterval(function() {
+
+                var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
+                _.each(that.options.orders, function(item, i) {
+
+                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                  }
+
+                });
+
+              }, 1000);
+              //分页 保留 已经调通 误删 后面设计会给样式
+              that.options.page = new PaginationAdapter();
+              that.options.page.format(data.page);
+              new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
+
+            } else {
+              $(".orderShow").hide();
+
+              // 商品推荐
+              var findRecommendProducts = new SFFindRecommendProducts({
+                'itemId': -1,
+                'size': 3
+              });
+
+              findRecommendProducts
+                .sendRequest()
+                .done(function(data) {
+                  data.hasData = true;
+
+                  if ((typeof data.value == "undefined") || (data.value && data.value.length == 0)) {
+                    data.hasData = false;
+                  }
+
+                  _.each(data.value, function(item) {
+                    item.linkUrl = 'http://www.sfht.com/detail' + "/" + item.itemId + ".html";
+                    item.imageName = item.imageName;
+                  })
+
+                  // 带有搜索和不带搜索的结果页不一样
+                  var template = null;
+                  if (that.options.searchValue) {
+                    template = can.view.mustache(that.noSearchResultShowPageTemplate());
+                  } else {
+                    template = can.view.mustache(that.noResultShowPageTemplate());
+                  }
+
+                  if ($('.myorder-tab').length > 0) {
+                    $(".noOrderShow").html(template(data)).show();
+                  } else {
+                    var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
+                    that.element.html(html);
+
+                    that.element.find('.orderShow').hide();
+                    that.element.find(".noOrderShow").html(template(data)).show();
+                  }
+                })
+                .fail(function(error) {});
+            }
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+          .always(function() {
+            that.hasRendered = false;
+          })
+      },
+
+      '{can.route} change': function(el, attr, how, newVal, oldVal) {
+        var routeParams = can.route.attr();
+
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "receiverName": this.options.searchValue,
+            "orderId": this.options.searchValue,
             "pageNum": routeParams.page,
             "pageSize": 10
           })
         }
 
-        var getOrderList = new SFGetOrderList(params);
-        getOrderList
-          .sendRequest()
-          .done(function(data) {
-            if (data.orders) {
-              that.options.orderlist = data.orders;
+        // 加上标示 防止触发三次
+        if (!this.hasRendered) {
 
-              _.each(that.options.orderlist, function(order) {
-                if (typeof order.orderGoodsItemList[0] !== 'undefined') {
-                  order.goodsName = order.orderGoodsItemList[0].goodsName;
-                  order.itemId =  order.orderGoodsItemList[0].itemId;
-                  if (order.orderGoodsItemList[0].imageUrl == "" || null == order.orderGoodsItemList[0].imageUrl) {
-                    order.imageUrl = "http://www.sfht.com/img/no.png";
-                  } else {
-                    order.imageUrl = JSON.parse(order.orderGoodsItemList[0].imageUrl)[0];
-                  }
-                  if (typeof order.orderGoodsItemList[0].spec !== 'undefined') {
-                    order.spec = order.orderGoodsItemList[0].spec.split(',').join("&nbsp;/&nbsp;");
-                  }
-                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                  order.showRouter = that.routeMap[order.orderStatus];
-                  order.orderStatus = that.statsMap[order.orderStatus];
-                  order.needUploadIDCardHTML = that.uploadIDCardTemplateMap[order.rcvrState];
-                  order.paymentAmount = order.totalPrice - order.discount;
-                  //卡券处理
+          if (this.handler) {
+            clearInterval(this.handler);
+          }
 
-                  if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
-                    _.each(order.orderCouponItemList, function(coupon) {
-                      if (coupon.couponType == "SHAREBAG") {
-                        order.isShareBag = true;
-                        order.shareBag = coupon;
-                      }
-                    });
-                  } else {
-                    order.isShareBag = false;
-                    /*
-                    order.isShareBag = true;
-                    order.shareBag = {
-                      activityId: 33
-                    };
-                    */
-                  }
-                }
-              })
-
-              var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options);
-              that.element.html(html);
-            } else {
-              var noDataTemplate = {};
-              if (that.options.searchValue == null) {
-                noDataTemplate = can.view.mustache(that.noDataTemplate());
-              } else {
-                noDataTemplate = can.view.mustache(that.queryNoDataTemplate());
-              }
-              that.element.html(noDataTemplate());
-            }
-
-            //分页 保留 已经调通 误删 后面设计会给样式
-            that.options.page = new PaginationAdapter();
-            that.options.page.format(data.page);
-            new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
-
-          })
-          .fail(function(error) {
-            console.error(error);
-          })
+          this.render(params);
+          this.hasRendered = true;
+          // 清空条件
+          this.options.searchValue = null;
+        }
+      },
+      //倒计时
+      setCountDown: function(element, leftTime) {
+        var leftsecond = parseInt(leftTime / 1000);
+        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+        $(element).html(hour + "小时" + minute + "分" + second + "秒");
       },
 
-      '{can.route} change': function(el, attr, how, newVal, oldVal) {
-        var params = can.route.attr();
-        this.render(params);
+      '.myorder-tab li click': function(element, event) {
+        event && event.preventDefault();
+        var that = this;
+        // @todo 知道当前需要访问那个tag，并且根据tag，设置params，传给render
+        var tag = $(element).attr('tag');
+        this.switchTag(tag);
+
+        // 清除条件
+        this.options.searchValue = null;
+
+        can.route.attr({
+          status: this.statusMap[tag],
+          page: 1
+        });
       },
 
-      uploadIDCardTemplateMap: {
-        0: '<div class="tooltip-pos">' +
-          '<span class="icon icon26">上传身份证照片</span>' +
-          '<div class="tooltip-outer">' +
-          '<div class="tooltip">' +
-          '<h4>请在“查看订单”中上传身份照片</h4>' +
-          '<h5>为什么要传身份证？</h5>' +
-          '<p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>' +
-          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
-          '</div>' +
-          '</div>' +
-          '</div>'
+      statusMap: {
+        'allorderTab': null,
+        'notPayOrderListTab': 'SUBMITED',
+        'notSendOrderListTab': 'WAIT_SHIPPING',
+        'notGetOrderListTab': 'SHIPPING'
+      },
+      switchTag: function(tag) {
+        var that = this;
+        _.each(this.options.tab.attr(), function(value, key) {
+          that.options.tab.attr(key, false);
+        });
+        this.options.tab.attr(tag, true);
       },
 
-      noDataTemplate: function() {
-        return '<div class="table table-1">' +
-          '<div class="table-h clearfix">' +
-          '<div class="table-c1 fl">' +
-          '订单信息' +
+      //无订单页面展示状态
+      noResultShowPageTemplate: function() {
+        return '<div class="myorder-none">' +
+          '<span class="icon icon89"></span>' +
+          '<p>亲，您当前还没有任何订单。<br /><a href="http://www.sfht.com" class="text-link">去逛逛</a></p>' +
           '</div>' +
-          '<div class="table-c2 fl">' +
-          '收货人' +
+
+          '<ul>' +
+          '{{#if hasData}}' +
+          '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
+          '{{#each value}}' +
+          '<li {{data "goods"}}>' +
+
+          '<div class="product-r1">' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img style="width:240px;height:240px;margin:0;border:0;" src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
-          '<div class="table-c3 fl">' +
-          '订单金额' +
+
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
+
+          '<div class="product-r2 clearfix">' +
+
+          '<div class="product-r2c1 fl">' +
+          '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
           '</div>' +
-          '<div class="table-c4 fl">' +
-          '订单状态' +
+
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90 addCart">购买</a></div>' +
+
           '</div>' +
-          '<div class="table-c5 fl">' +
-          '操作' +
-          '</div>' +
-          '</div>' +
-          '<p class="table-none">您暂时没有订单哦~赶快去逛逛吧~~<a href="http://www.sfht.com/index.html">去首页</a></p>' +
-          '</div>'
+          '</li>' +
+          '{{/each}}' +
+          '{{/if}}' +
+          '</ul>'
       },
 
-      queryNoDataTemplate: function() {
-        return '<div class="table table-1">' +
-          '<div class="table-h clearfix">' +
-          '<div class="table-c1 fl">' +
-          '订单信息' +
+      noSearchResultShowPageTemplate: function() {
+        return '<div class="myorder-search">' +
+          '<input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>' +
           '</div>' +
-          '<div class="table-c2 fl">' +
-          '收货人' +
+          '<div class="myorder-none">' +
+          '<span class="icon icon89"></span>' +
+          '<p>无相应订单，您可以重新搜索。<br />或者<a href="http://www.sfht.com/orderlist.html" class="text-link">查看所有订单</a></p>' +
           '</div>' +
-          '<div class="table-c3 fl">' +
-          '订单金额' +
+
+          '<ul>' +
+          '{{#if hasData}}' +
+          '<div class="product"><h2>大家都在买</h2><div class="mb"><ul class="clearfix product-list">' +
+          '{{#each value}}' +
+          '<li {{data "goods"}}>' +
+
+          '<div class="product-r1">' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"> <img style="width:240px;height:240px;margin:0;border:0;" src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
-          '<div class="table-c4 fl">' +
-          '订单状态' +
+
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
+
+          '<div class="product-r2 clearfix">' +
+
+          '<div class="product-r2c1 fl">' +
+          '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
           '</div>' +
-          '<div class="table-c5 fl">' +
-          '操作' +
+
+          '<div class="product-r2c2 fr"><a href="" class="icon icon90 addCart">购买</a></div>' +
+
           '</div>' +
-          '</div>' +
-          '<p class="table-none">未找到相关订单记录哟！<a href="http://www.sfht.com/orderlist.html">查看全部订单</a></p>' +
-          '</div>'
+          '</li>' +
+          '{{/each}}' +
+          '{{/if}}' +
+          '</ul>'
       },
 
       /**
@@ -199,9 +464,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
         }
 
         element.attr('data-is-show', 'true');
-
+        //查看物流接口传入参数，区分老订单和新订单；老订单传入orderid,新订单传入packageNo
+        var routeParam;
+        var bizId = $(element).closest('.table-1-logistics').attr('data-package-no');
+        if (bizId == '') {
+          routeParam = $(element).closest('.table-1-logistics').attr('data-orderid');
+        } else {
+          routeParam = bizId;
+        }
         var getUserRoutes = new SFGetUserRoutes({
-          'bizId': $(element).closest('.table-1-logistics').attr('data-orderid')
+          'bizId': routeParam
         });
         getUserRoutes
           .sendRequest()
@@ -226,7 +498,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 result.userRoutes = result.userRoutes.slice(len - 5, len).reverse();
               }
               var template = can.view.mustache(that.getTraceListTemplate());
-              $(element).siblings('.tooltip-outer').children('#traceList').html(template(result));
+              $(element).siblings('.tooltip-outer').children('#traceList').html(template(result, that.helpers));
             }
           })
           .fail(function(error) {
@@ -255,12 +527,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         return '<h4>物流跟踪</h4>' +
           '<ul>' +
           '{{#each userRoutes}}' +
-          '<li><div class="time fl">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div>' +
-
+          '<li class="{{isShowActive @index}}"><div class="time">{{sf.time eventTime}}</div><div class="tooltip-c2">{{position}} {{remark}}</div></li>' +
           '{{/each}}' +
           '</ul>' +
-          '<a id="find-more-info" href="#">查看全部</a>' +
-          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>'
+          '<span class="icon icon16-3"><span class="icon icon16-4"></span></span>' +
+          '<a id="find-more-info" href="#">查看全部</a>'
       },
 
       /**
@@ -296,6 +567,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'LOGISTICS_EXCEPTION': false,
         'SHIPPED': true,
         'COMPLETED': true,
+        'CONSIGNED': true,
+        'RECEIPTED': true,
         'AUTO_COMPLETED': true
       },
 
@@ -303,31 +576,81 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * [optionMap 状态下允许执行的操作]
        */
       optionMap: {
-        'SUBMITED': ['NEEDPAY', 'INFO', 'CANCEL'],
-        'AUTO_CANCEL': ['INFO'],
-        'USER_CANCEL': ['INFO'],
-        'AUDITING': ['INFO', 'CANCEL'],
-        'OPERATION_CANCEL': ['INFO'],
-        'BUYING': ['INFO'],
-        'BUYING_EXCEPTION': ['INFO'],
-        'WAIT_SHIPPING': ['INFO'],
-        'SHIPPING': ['INFO', 'ROUTE'],
-        'LOGISTICS_EXCEPTION': ['INFO', 'ROUTE'],
-        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
-        'COMPLETED': ['INFO', 'ROUTE'],
-        'AUTO_COMPLETED': ['INFO', 'ROUTE']
+        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO', 'REBUY'],
+        'AUTO_CANCEL': ['INFO', 'REBUY'],
+        'USER_CANCEL': ['INFO', 'REBUY'],
+        'AUDITING': ['CANCEL', 'INFO', 'REBUY'],
+        'OPERATION_CANCEL': ['INFO', 'REBUY'],
+        'BUYING': ['INFO', 'REBUY'],
+        'BUYING_EXCEPTION': ['INFO', 'REBUY'],
+        'WAIT_SHIPPING': ['INFO', 'REBUY'],
+        'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
+        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'CLOSED': ['INFO', 'REBUY'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
       },
 
       /**
        * [optionHTML 操作对应的html]
        */
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-send gotoPay">立即支付</a>',
-        "INFO": '<a href="#" class="btn btn-add viewOrder">查看订单</a>',
-        "CANCEL": '<a href="#" class="link cancelOrder">取消订单</a>',
-        "RECEIVED": '<a href="#" class="btn btn-send received">确认签收</a>'
+        "NEEDPAY": '<a href="#" class="btn btn-danger btn-small gotoPay">立即付款</a>',
+        "CANCEL": '<a href="#" class="btn btn-normal btn-small cancelOrder">取消订单</a>',
+        "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
+        "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
+        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>'
+      },
+      //删除订单
+      '.deleteOrders click': function(element, event) {
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'tip': '确认要删除该订单？',
+          'type': 'confirm',
+          'okFunction': _.bind(that.deleted, that, element)
+        });
+        return false;
       },
 
+      deleted: function(element) {
+        debugger;
+        var that = this;
+        var orderid = element.parents('th').attr('data-orderid');
+        var deleteOrder = new SFDeleteOrder({
+          "orderId": orderid
+        });
+        deleteOrder
+          .sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              var message = new SFMessage(null, {
+                'tip': '删除成功！',
+                'type': 'success'
+              });
+
+              window.location.reload();
+              // that.render();
+            } else {
+              var message = new SFMessage(null, {
+                'tip': '删除失败！',
+                'type': 'error'
+              });
+            }
+
+          })
+          .fail(function(error) {
+
+            var message = new SFMessage(null, {
+              'tip': '删除失败！',
+              'type': 'error'
+            });
+
+          })
+      },
       '.received click': function(element, event) {
         var that = this;
 
@@ -342,7 +665,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       received: function(element) {
         var that = this;
-        var subOrderId = element.parent('div#operationarea').eq(0).attr('data-suborderid');
+        // suborderid字段用orderid传
+        // var subOrderId = element.parent('td').attr('data-suborderid');
+        var subOrderId = element.parent('td').attr('data-orderid');
         var confirmReceive = new SFConfirmReceive({
           "subOrderId": subOrderId
         });
@@ -355,7 +680,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
               'type': 'success'
             });
 
-            that.render();
+            window.location.reload();
           })
           .fail(function(error) {
 
@@ -371,76 +696,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
         event && event.preventDefault();
 
         var that = this;
-        var orderId = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+        var orderId = element.parent('td').attr('data-orderid');
+        var recid = element.parent('td').attr('data-recid');
 
         window.open("/gotopay.html?orderid=" + orderId + "&recid=" + recid + "&otherlink=1", "_blank");
-
-
-
-        //        var callback = {
-        //          error: function() {
-        //            var message = new SFMessage(null, {
-        //              'tip': '支付失败！',
-        //              'type': 'error',
-        //              'okFunction': function() {
-        //                that.render();
-        //              }
-        //            });
-        //          }
-        //        }
-        //
-        //        SFOrderFn.payV2({
-        //          orderid: orderId
-        //        }, callback);
-
-        // var requestPayV2 = new SFRequestPayV2({
-        //   "orderId": orderId,
-        //   'payType': 'alipay'
-        // });
-        // requestPayV2
-        //   .sendRequest()
-        //   .done(function(data) {
-        //     window.location.href = data.url + '?' + data.postBody;
-        //     //that.request.call(that, that.options.orderid);
-        //   })
-        //   .fail(function(error) {
-        //     //var errorText = that.payErrorMap[error.toString()] || '支付失败';
-        //     console.error(errorText);
-        //     var template = can.view.mustache(this.gotopayTemplate());
-        //     $('#gotopay').html(template());
-        //   });
-
-        //return false;
       },
 
-      // request: function(orderId) {
-      //   var that = this;
-      //   setTimeout(function() {
-
-      //     var getOrder = new SFGetOrder({
-      //       "orderId": orderId
-      //     });
-      //     getOrder
-      //       .sendRequest()
-      //       .done(function(data) {
-      //         var order = data.content[0].basicInfo;
-      //         if (order.orderStatus == 'AUDITING') {
-      //           window.location.href = '/orderlist.html';
-      //         } else {
-      //           that.request.call(that, orderId);
-      //         }
-      //       })
-      //       .fail(function(error) {
-      //         that.request.call(that, orderId);
-      //       })
-      //   }, 1000);
-      // },
-
       ".viewOrder click": function(element, event) {
-        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
-        var suborderid = element.parent('div#operationarea').eq(0).attr('data-suborderid');
-        var recid = element.parent('div#operationarea').eq(0).attr('data-recid');
+        var orderid = element.parent('td').attr('data-orderid');
+        var suborderid = element.parent('td').attr('data-suborderid');
+        var recid = element.parent('td').attr('data-recid');
 
         var params = can.deparam(window.location.search.substr(1));
         //@note 从cookie中获取嘿客穿越过来标示
@@ -461,13 +726,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
         var $el = element.closest('.table-1-logistics');
         var orderid = $el.attr('data-orderid');
+        var pkgid = $el.attr('data-pkgid');
         var suborderid = $el.attr('data-suborderid');
         var recid = element.closest('.table-c4').siblings('#operationarea').attr('data-recid');
 
-        // var orderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-orderid');
-        // var suborderid = element.parent('#traceList').parent('.table-1-logistics').attr('data-suborderid');
-        // var recid = element.parent('#traceList').parent('.table-1-logistics').parent('.table-c4').siblings('#operationarea').attr('data-recid');
-        window.open("/orderdetail.html?orderid=" + orderid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
+        window.open("/orderdetail.html?orderid=" + orderid + "&pkgid=" + pkgid + "&suborderid=" + suborderid + "&recid=" + recid, "_blank");
       },
       ".cancelOrder click": function(element, event) {
         var that = this;
@@ -501,7 +764,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       cancelOrder: function(element) {
         var that = this;
-        var orderid = element.parent('div#operationarea').eq(0).attr('data-orderid');
+        var orderid = element.parent('td').attr('data-orderid');
         var cancelOrder = new SFCancelOrder({
           "orderId": orderid
         });
@@ -511,9 +774,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           .done(function(data) {
             new SFMessage(null, {
               'tip': '订单取消成功！',
-              'type': 'success'
+              'type': 'success',
+              'okFunction': function() {
+                // 显示提示之后重新刷新页面
+                window.location.reload();
+              }
             });
-            that.render();
+
+            // 不再重新render而是页面重现刷，因为订单的状态发生了变化
+            // that.render();
           })
           .fail(function(error) {
             new SFMessage(null, {
@@ -549,8 +818,75 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'SHIPPING': '正在出库',
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收',
         'COMPLETED': '已完成',
-        'AUTO_COMPLETED': '自动完成'
+        'AUTO_COMPLETED': '自动完成',
+        'CLOSED': '已关闭'
+      },
+      //再次购买
+      addCart: function(array, callback) {
+        var that = this;
+        var itemsStr = JSON.stringify(array);
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+
+              if (_.isFunction(callback)) {
+                callback();
+              } else {
+                window.location.reload();
+              }
+            }
+          })
+          .fail(function(data) {
+            if (data == 15000800) {
+              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
+              $(document.body).append($el)
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
+            }
+          })
+      },
+      //再次购买加入购物车
+      '.btn-buyagain click': function($element, event) {
+        event && event.preventDefault();
+        var itemIdList = new Array();
+
+        // var array = []
+
+        var array = $element.parent().attr('data-all');
+
+        // $element.parent().parent().find('.itemlist .goodsWrap').each(function (index, el) {
+        //   var itemId = $(el).attr('data-itemid');
+        //   var num = $(el).attr('data-num');
+
+        //   array.push({itemId: itemId, num: num});
+        // })
+
+        // var itemId =$(element).find('.goodsWrap').data('itemIds').itemId;
+        // var num  = $(element).find('.goodsWrap').data('itemIds').quantity;
+        this.addCart(JSON.parse(array), function() {
+          window.location.href = '/shoppingcart.html';
+        });
+
+      },
+      //搜索无结果加入购物车
+      '.addCart click': function(element, event) {
+        event && event.preventDefault();
+        var itemId = $(element).closest('li').data('goods').itemId;
+        this.addCart([{
+          itemId: itemId,
+          num: 1
+        }]);
       }
 
     });

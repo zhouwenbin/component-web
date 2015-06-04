@@ -1,6 +1,4 @@
-.product{
-	overflow: hidden;
-}
+
 .product .mh{
 	line-height: 24px;
 	margin-bottom: 37px;
@@ -92,10 +90,10 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow:ellipsis;
-	margin-bottom: 30px;
 	font-size: 14px;
 	color: #949494;
 	margin-bottom: 12px;
+	height: 15px;
 }
 .product p img{
 	margin-right: 5px;
@@ -160,4 +158,22 @@
 }
 .product-hot{	
 	background:url(#{$bg-url}product-hot.png) no-repeat;
+}
+.product-r2c2{
+	width: 35px;
+	height: 35px;
+	position: relative;
+}
+.product .icon90{
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top:0;
+	transition:0.5s left linear,
+               0.5s top ease-out,
+               0.1s visibility 0.5s linear;
+}
+.product .icon90:hover{
+	transform:scale(1.05);
+	-webkit-filter:drop-shadow(0 0 1px rgba(0,0,0,0.5));
 }

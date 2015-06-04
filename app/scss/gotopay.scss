@@ -1,0 +1,123 @@
+﻿@import 'utils/variables';
+@import 'utils/placeholders';
+.header {
+  border-bottom: 3px solid #353a42;
+}
+.nav{
+	display: none;
+}
+.order-success{
+	padding-left: 77px;
+	margin-top: 50px;
+	padding-bottom: 20px;
+	position: relative;
+}
+.order-success h1{
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 14px;
+}
+.order-success .icon36{
+	float: left;
+	margin-left: -77px;
+}
+.order-success p{
+	font-size: 14px;
+	color: #999;
+}
+.order-success-r1{
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.order-success-pos{
+	text-align: right;
+	margin-top: -13px;
+}
+.order-success-pos .icon16-1 {
+  border-width: 5px 5px;
+  margin-left: 10px;
+  border-color: #1376ce transparent transparent transparent;
+  transition: all 0.3s;
+  position: a
+}
+.order-success-pos .active .icon{
+	transform:rotate(180deg);	
+	vertical-align: 1px;
+}
+.order-success-detail{
+	display: none;
+	padding-left: 77px;
+	padding-top: 17px;
+	padding-bottom: 23px;
+	border-top: 1px solid #e5e5e5;
+}
+.order-success-detail li{
+	line-height: 19px;
+	padding-left: 63px;
+}
+.order-success-detail li span{
+	float: left;
+	margin-left: -63px;
+	color: #999;
+}
+.gotopay{
+	background: #fff;
+	border:1px solid #ccc;
+	padding: 33px 35px;
+	border-radius: 4px;
+}
+.gotopay-r1{
+	padding-bottom: 26px;
+	margin-bottom: 26px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+}
+.gotopay-r1 b{
+	font-size: 16px;
+	margin-left: 14px;
+	margin-right: 8px;
+}
+.gotopay-r1 strong{
+	font-size: 21px;
+	font-family: arial;
+	font-weight: bold;
+}
+.gotopay h2{
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+.gotopay ul{
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 12px;
+}
+.gotopay li{
+	display: inline-block;
+	margin-right: 26px;
+	position: relative;
+	cursor: pointer;
+}
+.gotopay li .icon{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+.gotopay li.active .icon{
+	display: block;
+}
+.gotopay img{
+	margin-bottom: 10px;
+}
+.gotopay h3{
+	font-weight: normal;
+	color: #999;
+	font-size: 14px;
+}
+.gotopay-r2{
+	text-align: right;
+}
+.gotopay-r2 .btn{
+	margin-left: 20px;
+}

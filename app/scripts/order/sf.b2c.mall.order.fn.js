@@ -44,9 +44,13 @@ define(
             }
           })
           .fail(function(error) {
+            var map = {
+              4001504: '该订单状态发生了变更，已不能支付，请进入订单列表中进行查看'
+            }
+
             //var errorText = that.payErrorMap[error.toString()] || '支付失败';
             if (callback && _.isFunction(callback.error)) {
-              callback.error();
+              callback.error(map[error] || requestPayV2.api.ERROR_CODE[error]);
             }
           });
       }

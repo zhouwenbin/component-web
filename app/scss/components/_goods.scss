@@ -117,11 +117,19 @@
 	color: #F78E57;
 	margin-left:10px;
 }
+.goods-price-r1 b{
+	color: #999;
+	margin-left: 10px;
+	font-weight: normal;
+}
 .goods-price-r1 a:hover{
 	text-decoration: underline;
 }
 .goods-price-r2{
 	color:#999;
+}
+.goods-price-r2 span{
+	margin-right: 22px;
 }
 .goods-price-c1{
 	width: 303px;
@@ -257,3 +265,19 @@
 	border-top: 1px dotted #fedcdc;
 	padding-left: 95px;
 }
+
+.goods-nataral{
+	color: #666;
+	margin-bottom: 10px;
+	line-height: 23px;
+}
+.goods-nataral a{
+  color: #B87C00;
+  background: #FFD62C;
+  height: 23px;
+  line-height: 23px;
+  border-radius: 3px;
+  padding: 0 10px;
+  display: inline-block;
+  margin-left: 18px;
+ }

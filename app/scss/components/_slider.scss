@@ -19,10 +19,12 @@
 	width: 100%;
 	opacity: 0;
 	filter: alpha(opacity=0);
-	-webkit-transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	-ms-transition: opacity 1s;
-	transition: opacity 1s;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	transition: all 1s;
+	will-change:opacity;
+	transform:translate3d(0,0,0);
 	z-index: -1;
 }
 .slider-img .active{

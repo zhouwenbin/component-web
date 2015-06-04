@@ -1,101 +1,122 @@
-<h2>商品信息</h2>
-<div class="table">
-  <div class="table-h clearfix">
-    <div class="table-c1 fl">商品</div>
-    <div class="table-c2 fl">数量</div>
-    <div class="table-c3 fl">单价</div>
-    <div class="table-c4 fl">优惠金额</div>
-    <div class="table-c5 fr">小计</div>
-  </div>
-  <ul class="table-b">
-    {{#each orderGoodsItemList}}
-    <li class="clearfix{{^flag}} disable{{/flag}}">
-      <div class="table-c1 fl">
-        <div class="table-img fl">
-          <img src="{{sf.img productImage.thumbImgUrl}}" alt="" width="68" height="42" /><span></span>
-        </div>
-        <div class="table-text">
-          <h3><a href="javascript:void(0);">{{goodsName}}</a></h3>
-          <p>{{{spec}}}</p>
-            <strong id="errorTips" class="{{#flag}}visuallyhidden{{/flag}}">{{description}}</strong>
-          <!--img src="img/icon-usa.png" alt="美国国旗" width="19" height="13" /-->
-        </div>
-      </div>
-      <div class="table-c2 fl">{{quantity}}</div>
-      <div class="table-c3 fl">￥{{sf.price price}}</div>
-      <div class="table-c4 fl">￥0</div>
-      <div class="table-c5 fr">￥{{sf.price totalPrice}}</div>
-    </li>
-    {{/each}}
-  </ul>
+<h1>确认商品信息</h1>
+<div class="cart">
+  <div class="cart-table">
+    <table>
+      <thead>
+          <tr>
+              <th class="th1">商品信息</th>
+              <th class="th2"></th>
+              <th class="th3">单价（元）</th>
+              <th class="th4">数量</th>
+              <th class="th5">金额（元）</th>
+          </tr>
+      </thead>
+      <tbody class="goodsItemArea">
+        {{#each orderPackageItemList}}
+          <tr>
+            <th colspan="5">
+                <span class="icon icon82"></span><span class="order-confirm-from">{{shippingWarehouse}}</span><span class="order-confirm-time">{{shippingTime}}</span>
+            </th>
+          </tr>
+          {{#each orderGoodsItemList}}
+          <tr>
+            <td class="td1">
+              <div class="cart-pos">
+                <a href="javascript:void(0)"><img src="{{sf.img productImage.thumbImgUrl}}"></a><div class="order-confirm-info">
+                  <div class="text-error">{{description}}</div>
+                  <h2><a href="javascript:void(0)">{{goodsName}}</a></h2>
+                  <div class="cart-standard">{{{spec}}}</div>
+                </div>
+              </div>        
+            </td>
+            <td class="td2"></td>
+            <td class="td3">{{sf.price price}}</td>
+            <td class="td4">{{quantity}}</td>
+            <td class="td5">
+                <strong class="text-error">{{sf.price totalPrice}}</strong>
+            </td>
+          </tr>
+          {{/each}}
+        {{/each}}
 
-  <div class="coupon2">
-    {{! <p class="coupon2-p1">开业全场免邮，有钱，任性！</p> }}
-    {{#isShowCouponArea}}
-    <h3><a href="#" class="coupon2-btn">-</a>使用优惠券抵消部分订单总额</h3>
-    <div class="js-coupon">
-      <ul class="mycoupon-h clearfix">
-        <li class="active"><a href="">可用优惠券({{orderCoupon.avaliableAmount}})</a></li>
-        <li><a href="">不可用优惠券({{orderCoupon.disableAmount}})</a></li>
-      </ul>
-      <div class="coupon2-b active">
-        <div class="coupon2-b1">
-          {{^orderCoupon.isHaveAvaliable}}
-            <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
-          {{/orderCoupon.isHaveAvaliable}}
-          {{#orderCoupon.isHaveAvaliable}}
-            <p class="coupon2-p2">以下是此订单可用的优惠券。 您可以 <a class="coupon2-link" target="_blank" href="{{links.coupon}}">[查看所有优惠券]</a>了解使用限制。    <a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
-            <h4>代金券</h4>
-            <ul>
-            {{#each orderCoupon.avaliableCoupons}}
-                <li><a href="javascript:void(0);" class="icon radio" data-code="{{couponCode}}" data-price="{{price}}"></a><strong>{{couponDescription}}</strong><span>{{couponName}}</span>有效期至{{endDate}}</li>
-            {{/each}}
-            </ul>
-          {{/orderCoupon.isHaveAvaliable}}
-        </div>
-        <div class="coupon2-b1">
-            <div class="coupon2-r1">有优惠券兑换码？<label for="conpon" class="coupon2-link" id="inputCouponCode">[点击输入兑换码]</label></div>
-            <div class="coupon2-r2 hide">
-              <input id="conpon" type="text" class="input" can-value="orderCoupon.couponExCode" value="{{orderCoupon.couponExCode}}" placeholder="输入您的兑换码">
-              <a href="javascript:void(0);" id="useCouponCodeBtn" class="btn btn-send">使用</a>
-            </div>
-        </div>
-        <div class="coupon2-r3">共使用了<strong>{{orderCoupon.useQuantity}}</strong>张优惠券，可以优惠<strong>{{sf.price orderCoupon.discountPrice}}元</strong></div>
-      </div>
-      <div class="coupon2-b">
-        <div class="coupon2-b1 coupon2-b1-1">
-            <p class="coupon2-p2">此处仅展示不符合本次订单商品使用的优惠券。<a class="coupon2-link" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">[优惠券使用规则]</a></p>
-            {{#orderCoupon.isHaveDisable}}
-            <h4>代金券</h4>
-            <ul>
-              {{#each orderCoupon.disableCoupons}}
-                <li><span>{{couponDescription}}</span><span>{{couponName}}</span><span>有效期至{{endDate}}</span><strong>{{desc}}</strong></li>
-              {{/each}}
-            </ul>
-            {{/orderCoupon.isHaveDisable}}
-        </div>
-      </div>
-    </div>
-    {{/isShowCouponArea}}
+      </tbody>
+    </table>
   </div>
-  <div class="table-f clearfix">
-    <div class="table-fc2 fr">
-        <ul class="table-fr1">
-          <li>商品总金额：￥{{sf.price orderFeeItem.goodsTotalFee}}</li>
-          {{#if showTax}}
-            <li>+税额：￥0</li>
-          {{/if}}
-          <li><span class="text-important">- 促销活动立减：￥{{sf.price orderFeeItem.discount}}</span></li>
-          {{#isShowCouponArea}}
-            <li><span class="text-important">-优惠券：￥{{sf.price orderCoupon.discountPrice}}</span></li>
-          {{/isShowCouponArea}}
+  {{! end cart-table }}
+  <div class="cart-coupon">
+    <div class="cart-coupon-r1"><a href="javascript:void(0)" id="coupon-use">-</a>使用优惠券</div>
+    <div id="coupon-use-detail">
+      {{^orderCoupon.isHaveAvaliable}}
+        <p>此订单暂无可用的优惠券。您可以 <a class="coupon2-link text-error" target="_blank" href="http://www.sfht.com/helpcenter-coupon.html">查看优惠券</a>了解使用限制。</p>
+      {{/orderCoupon.isHaveAvaliable}}
+      {{#orderCoupon.isHaveAvaliable}}
+        <div class="coupon" data-price="{{orderCoupon.bestCoupon.price}}" data-code="{{orderCoupon.bestCoupon.couponCode}}" id="useCoupon">
+          <div class="coupon-r1"><b>¥</b><strong>{{sf.price orderCoupon.bestCoupon.price}}</strong>{{orderCoupon.bestCoupon.couponName}}</div>
+          <div class="coupon-r2">有效期至：{{orderCoupon.bestCoupon.endDate}}</div>
+          <span class="icon icon85"></span>
+        </div>
+      {{/orderCoupon.isHaveAvaliable}}
+      {{#orderCoupon.isShowMore}}
+      <div class="cart-coupon-r2">
+        <a href="javascript:void(0)" class="text-link" id="coupon-more"><span class="text-error" id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
+      </div>
+      <div class="coupons" id="coupons">
+        <ul class="coupons-tab">
+          <li class="active"><a href="javascript:void(0)">可用优惠券</a></li>
+          <li><a href="javascript:void(0)">不可用优惠券</a></li>
         </ul>
-        <div class="table-fr3">实际应付款：<strong>￥{{sf.price orderFeeItem.shouldPay}}</strong></div>
+        {{! 可用优惠券 }}
+        <ul id="avaliableCoupons" class="coupons-list active">
+          {{#each orderCoupon.avaliableCoupons}}
+            <li {{data 'coupon'}}>
+              <div class="coupon">
+                  <div class="coupon-r1"><b>¥</b><strong>{{sf.price price}}</strong>{{couponName}}</div>
+                  <div class="coupon-r2">有效期至：{{endDate}}</div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        {{! 不可用优惠券 }}
+        <ul id="disableCoupons" class="coupons-list">
+          {{#each orderCoupon.disableCoupons}}
+            <li {{data 'coupon'}}>
+              <div class="coupon coupon-disable">
+                  <div class="coupon-r1"><b>¥</b><strong>{{sf.price price}}</strong>{{couponName}}</div>
+                  <div class="coupon-r2">有效期至：{{endDate}}</div>
+              </div>
+              <div class="text-error">{{desc}}!</div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/orderCoupon.isShowMore}}
+      {{! end 优惠券列表 }}
+      <div class="cart-coupon-r3">or<a href="javascript:void(0)" class="text-link">兑换优惠券？</a></div>
+      <div class="cart-coupon-r4">请输入您手中的兑换码：
+        <input class="input" type="text" can-value="orderCoupon.couponExCode" value="{{orderCoupon.couponExCode}}" id="conpon" />
+        <a id="useCouponCodeBtn" class="btn btn-normal" href="#">确定</a>
+      </div>
     </div>
   </div>
-</div>
+  {{! end cart-coupon }}
+  <div class="cart-footer clearfix">
+    <div class="cart-footer-c2 fr">
+        <ul>
+            <li class="li1">商品总计:<span class="s1">¥{{sf.price orderFeeItem.goodsTotalFee}}</span></li>
+            <li class="li1">活动优惠:<span class="s1">-¥{{sf.price orderFeeItem.discount}}</span></li>
+            <li class="li1 text-important">优惠券:<span class="s1">-¥{{sf.price couponPrice}}</span>    </li>
+            <li class="li1">
+                <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                运费:<span class="s1">免运费</span>           
+            </li>
+            <li class="li1">总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price orderFeeItem.shouldPay}}</strong></span></li>
+            <li><button id="submitOrder" class="btn btn-danger {{^flag}} btn-disable{{/flag}}">提交订单</button></li>
+        </ul>    
+        <div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div>
 
-<div class="order-f">
-  <a href="javascript:void(0)" class="btn btn-send{{^flag}} disable{{/flag}}" id="submitOrder">提交订单</a>
-  <div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div>
+    </div>
+    <span class="icon icon75"></span>
+    <span class="icon icon76"></span>
+  </div>
+  {{! end  cart-footer}}
 </div>

@@ -23,7 +23,7 @@ define([], function () {
     '404': 'http://pre.sfht.com/404.html',
     'activated': 'http://pre.sfht.com/activated.html',
     'agreement': 'http://pre.sfht.com/agreement.html',
-    'center': 'http://pre.sfht.com/center.html',
+    'center': 'http://pre.sfht.com/orderlist.html',
     'gotopay': 'http://pre.sfht.com/gotopay.html',
     'index': 'http://pre.sfht.com/index.html',
     'login': 'http://pre.sfht.com/login.html',
@@ -31,7 +31,7 @@ define([], function () {
     'order': 'http://pre.sfht.com/order.html',
     'orderdetail': 'http://pre.sfht.com/orderdetail.html',
     'orderlist': 'http://pre.sfht.com/orderlist.html',
-    'passwordchange': 'http://pre.sfht.com/password-change.html',
+    'passwordchange': 'http://pre.sfht.com/accountmanage.html',
     'preheat': 'http://pre.sfht.com/preheat.html',
     'process': 'http://pre.sfht.com/process.html',
     'register': 'http://pre.sfht.com/register.html',
@@ -42,7 +42,8 @@ define([], function () {
     'bindaccount':'http://pre.sfht.com/bindaccount.html',//@note 绑定账号
     'setpassword':'http://pre.sfht.com/setpassword.html',//@note 设置密码并登录
     'paysuccess': 'http://pre.sfht.com/paysuccess.html',
-    'search': 'http://www.sfht.com/search.html'
+    'search': 'http://www.sfht.com/search.html',
+    'usercenter': 'http://pre.sfht.com/accountmanage.html',
   }
 
   return {

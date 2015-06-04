@@ -8,3 +8,5 @@ app/__MACOSX
 /.idea
 web-oss
 web-static
+**/.DS_Store
+app/prepros.cfg
