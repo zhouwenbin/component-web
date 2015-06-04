@@ -7,9 +7,10 @@ define('sf.b2c.mall.order.paysuccess', [
     'sf.b2c.mall.business.config',
     'sf.helpers',
     'sf.b2c.mall.api.order.getOrderV2',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.minicart.getTotalCount' // 获得mini cart的数量接口
   ],
-  function(can, $, qrcode, SFConfig, helpers, SFGetOrder, SFGetTotalCount) {
+  function(can, $, qrcode, SFConfig, helpers, SFGetOrder, SFFramework, SFGetTotalCount) {
 
     return can.Control.extend({
 
@@ -102,8 +103,10 @@ define('sf.b2c.mall.order.paysuccess', [
         });
 
         var getTotalCount = new SFGetTotalCount();
+        if (SFFramework.prototype.checkUserLogin.call(this)) {
+          return can.when(getOrder.sendRequest(), getTotalCount.sendRequest());
+        }
 
-        return can.when(getOrder.sendRequest(), getTotalCount.sendRequest());
       },
 
       /**
