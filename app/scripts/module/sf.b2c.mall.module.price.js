@@ -163,7 +163,7 @@ define(
               })
 
               setTimeout(function() {
-                that.remove();
+                $el.remove();
               }, 1000);
               cart_num++;
               $('.cart-num').text(cart_num);
