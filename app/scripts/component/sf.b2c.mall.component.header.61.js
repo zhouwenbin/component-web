@@ -48,7 +48,7 @@ define('sf.b2c.mall.component.header.61', [
       }
 
       $('.banner-scroll3').delay(100).animate({
-        "height": 90
+        "height": 400
       }, 300);
     },
 
