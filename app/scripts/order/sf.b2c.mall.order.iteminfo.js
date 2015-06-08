@@ -273,7 +273,7 @@ define('sf.b2c.mall.order.iteminfo', [
     getSysType: function(saleid) {
       var defaultKey = 'b2c';
       var mapKey = {
-        'heike': 'HEIKE_ONLINE'
+        'heike': 'HEIKE'
       }
       return mapKey[saleid] || defaultKey;
     },
