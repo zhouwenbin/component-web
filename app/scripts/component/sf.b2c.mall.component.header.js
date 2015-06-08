@@ -708,7 +708,7 @@ define('sf.b2c.mall.component.header', [
       window.popMessage = function() {
         setTimeout(function() {
           new SFMessage(null, {
-            'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
+            'tip': "50元优惠券已发放至您的账户，请注意查收。",
             'type': 'success'
           });
         }, 1000);
