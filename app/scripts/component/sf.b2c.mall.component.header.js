@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-	    // this.renderMap['template_header_61'].call(this, that.data);
+	    this.renderMap['template_header_61'].call(this, that.data);
 
       this.updateCart();
 
@@ -385,7 +385,9 @@ define('sf.b2c.mall.component.header', [
       },
 
       'template_header_61': function(data) {
-        new SFHeader61('.sf-b2c-mall-header');
+        new SFHeader61('.sf-b2c-mall-header', {
+          "originheader": this
+        });
       }
     },
 
