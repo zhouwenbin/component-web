@@ -148,22 +148,23 @@ define(
               } else {
                 var target = $('.nav .icon100').eq(0).offset()
               }
-
               var targetX = target.left,
                 targetY = target.top,
-                current = $el.offset(),
+                current = $(this).offset(),
                 currentX = current.left,
                 currentY = current.top,
                 cart_num = $('.cart-num').eq(0).text();
-
-              $el.clone().appendTo($el.parent());
-              $el.css({
-                zIndex: 2,
+              $(this).clone().appendTo($(this).parent());
+              $(this).css({
                 left: targetX - currentX,
                 top: targetY - currentY,
+                zIndex: 2,
                 visibility: 'hidden'
-              });
+              })
 
+              setTimeout(function() {
+                that.remove();
+              }, 1000);
               cart_num++;
               $('.cart-num').text(cart_num);
               $('.nav .label-error').addClass('active');
