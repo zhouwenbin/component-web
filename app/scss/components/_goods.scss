@@ -69,7 +69,8 @@
 }
 
 .goods-c2{
-	overflow:hidden;
+	width: 584px;
+	float: left;
 	font-size: 14px;
 	color: #272541;
 	position: relative;
@@ -190,7 +191,18 @@
 	margin-left:15px;
 	margin-right:5px;
 }
-
+.goods-c2r2{
+	position: relative;
+}
+.goods-c2r2 img{
+	width: 44px;
+	height: 44px;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	transition: 0.5s transform ease-in-out,0.5s left linear,0.5s top ease-out,0.1s visibility 0.5s linear;
+}
 .goods-c2r2 .icon{
 	margin-left:10px;
 }
@@ -200,6 +212,7 @@
 	line-height:44px;
 	font-size:16px;
 	margin-right:10px;
+	position: relative;
 }
 .goods-share{
 	position: absolute;
