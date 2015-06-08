@@ -404,7 +404,7 @@ define('sf.b2c.mall.component.header', [
         // @note 520活动结束，打开浮动导航
         $(window).scroll(function() {
           setTimeout(function() {
-            if ($(window).scrollTop() > 256) {
+            if ($(window).scrollTop() > 566) {
               $(".nav-fixed .nav-inner").stop(true, false).animate({
                 top: '0px',
                 opacity: 1
