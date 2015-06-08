@@ -150,12 +150,12 @@ define(
               }
               var targetX = target.left,
                 targetY = target.top,
-                current = $(this).offset(),
+                current = $el.offset(),
                 currentX = current.left,
                 currentY = current.top,
                 cart_num = $('.cart-num').eq(0).text();
-              $(this).clone().appendTo($(this).parent());
-              $(this).css({
+              $el.clone().appendTo($el.parent());
+              $el.css({
                 left: targetX - currentX,
                 top: targetY - currentY,
                 zIndex: 2,
