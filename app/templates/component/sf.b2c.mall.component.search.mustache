@@ -48,7 +48,7 @@
           <div class="classify-c1 fl">
             <label>品牌：</label>
             <ul id="classify-logo">
-              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}{{^pic}}<span>{{key}}</span>{{/pic}}</a></li>{{/each}}
+              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}<span>{{key}}</span></a></li>{{/each}}
             </ul>
           </div>
           {{#sf-isShowMoreBrand brands.buckets}}
@@ -87,9 +87,7 @@
   <div class="pm">
     <div class="sort">排序:
       <ul id="sortBox">
-        <li class="{{#sf-isSortByDEFAULT searchData.sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li>
-        <li class="{{#sf-isSortBySALE searchData.sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li>
-        <li class="{{#sf-isSortByPRICE searchData.sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC searchData.sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC searchData.sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
+        <li class="{{#sf-isSortByDEFAULT searchData.sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li><li class="{{#sf-isSortBySALE searchData.sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li><li class="{{#sf-isSortByPRICE searchData.sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC searchData.sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC searchData.sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
           <a href="javascript:" id="sort-price" class="{{#sf-isSortByPRICEDESC searchData.sort}}active{{/sf-isSortByPRICEDESC}}">价格<span class="icon icon107"></span></a>
         </li>
       </ul>
@@ -119,6 +117,12 @@
                   <div class="product-r2c1 fl">
                     <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
                   </div>
+                  {{#if isShowShoppintCart}}
+                    <div class="product-r2c2 fr">
+                      <a href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
+                      <a {{#sf-isShowAddToCart soldOut supportShoppingCart}}can-click='addToCart'{{/sf-isShowAddToCart}} href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
+                    </div>
+                  {{/if}}
                 </div>
               </a>
             </li>

@@ -314,6 +314,7 @@ $(function(){
   },300);
   //----------加入购物车-------------//
   $('.product').on("click", '.icon90', function(){
+    var that = $(this);
     if($(window).scrollTop() > 166){
         var target=$('.nav .icon100').eq(1).offset()
     }else{
@@ -331,7 +332,11 @@ $(function(){
       top:targetY-currentY,
       zIndex:2,
       visibility:'hidden'
-    });
+    })
+    
+    setTimeout(function(){
+        that.remove();
+    },1000);
     cart_num++;
     $('.cart-num').text(cart_num);
     $('.nav .label-error').addClass('active');
