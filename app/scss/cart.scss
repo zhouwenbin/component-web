@@ -79,7 +79,7 @@
 }
 .cart .td1 .icon{
 	position: absolute;
-	left:86px;
+	left:59px;
 	top:0;
 }
 .cart .td2 .text-error{
@@ -186,11 +186,9 @@
 	display: inline-block;
 	margin-right: 20px;
 }
-.cart-footer-c2 li{
-	margin-bottom: 10px;
-}
 .cart-footer-c2 .li1{
 	color: #999;
+	height:30px;
 }
 .cart-footer-c2 strong{
 	font-size: 14px;
@@ -522,9 +520,9 @@
 .address-r3{
 	line-height: 19px;
 	padding: 5px 15px;
-	height: 38px;
-	word-break:break-all;
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow:ellipsis;
 }
 .address-r4{
 	padding: 5px 15px;
