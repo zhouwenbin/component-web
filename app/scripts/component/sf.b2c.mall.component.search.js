@@ -105,6 +105,13 @@ define('sf.b2c.mall.component.search', [
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+      'sf-isYZYW': function(productForm, options) {
+        if (productForm() == "YZYW") {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
       }
     },
 
@@ -112,7 +119,8 @@ define('sf.b2c.mall.component.search', [
     searchParams: {
       q: "",
       size: 20,
-      from: 0
+      from: 0,
+      productForms: ["YZYW"]
     },
 
     //用于模板渲染
