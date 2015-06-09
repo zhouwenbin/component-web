@@ -396,8 +396,9 @@
 }
 .coupon .icon85{
 	position: absolute;
-	right: 0;
+	right: -10px;
 	top: 0;
+	z-index: 1;
 }
 .coupon-disable{
 
