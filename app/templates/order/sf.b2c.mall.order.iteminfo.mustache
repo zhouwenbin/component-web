@@ -116,9 +116,8 @@
               {{/sf-needshowcart}}
               <button id="submitOrder" class="btn btn-danger {{^flag}} btn-disable{{/flag}}">提交订单</button>
             </li>
+            <li class="li1"><div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div></li>
         </ul>
-        <div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div>
-
     </div>
     <span class="icon icon75"></span>
     <span class="icon icon76"></span>

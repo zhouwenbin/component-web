@@ -26,7 +26,7 @@ define('sf.b2c.mall.order.iteminfo', [
       couponPrice: 0
     }),
 
-    helpers:{
+    helpers: {
       'sf-needshowcart': function(options) {
         var uinfo = $.cookie('1_uinfo');
         var arr = new Array();
@@ -465,9 +465,12 @@ define('sf.b2c.mall.order.iteminfo', [
           // 对mediav的转化做监控
           that.monitor['mediav']();
 
-        // window.location.href = 'gotopay.html?' +
-        //   $.param({"orderid": message.value,"recid": selectAddr.recId});
-          window.location.replace('gotopay.html?'+$.param({"orderid": message.value,"recid": selectAddr.recId}));  
+          // window.location.href = 'gotopay.html?' +
+          //   $.param({"orderid": message.value,"recid": selectAddr.recId});
+          window.location.replace('gotopay.html?' + $.param({
+            "orderid": message.value,
+            "recid": selectAddr.recId
+          }));
 
         })
         .fail(function(error) {
@@ -500,20 +503,22 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     //可用优惠券列表状态切换
     '#avaliableCoupons li click': function(element, event) {
+      event && event.preventDefault();
       var index = $('#avaliableCoupons li').index($(element));
       var activeTag = $(element).find('span.icon85');
       var activeHtml = '<span class="icon icon85"></span>';
+      $('#useCoupon').find('span.icon85').remove();
       if (activeTag.length > 0) {
         $(element).find('span.icon85').remove();
         $(element).siblings().find('span.icon85').remove();
-        this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[0]);
-        this.itemObj.attr('couponPrice', this.itemObj.orderCoupon.attr('bestCoupon.price'));
-        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.orderCoupon.attr('bestCoupon.price');
+        //this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[0]);
+        this.itemObj.attr('couponPrice', 0);
+        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
       } else {
         $(element).children('.coupon').append(activeHtml);
         $(element).siblings().find('span.icon85').remove();
-        this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[index]);
+        //this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[index]);
         this.itemObj.attr('couponPrice', $(element).data('coupon').price);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
