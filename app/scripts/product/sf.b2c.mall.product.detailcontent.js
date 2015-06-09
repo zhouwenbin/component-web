@@ -118,9 +118,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
         // if (this.isIE(6) || this.isIE(7) || this.isIE(8)) {
         // if(!!(window.attachEvent && navigator.userAgent.indexOf('Opera') === -1)){
-        if(!!(window.attachEvent)){
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
           this.support = false;
-        }else{
+        } else {
           this.support = true;
         }
 
@@ -986,7 +986,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       //判断浏览器是IE几
-      isIE:function(ver){
+      isIE: function(ver) {
         var b = document.createElement('b');
         b.innerHTML = '<!--[if IE ' + ver + ']><i></i><![endif]-->';
         return b.getElementsByTagName('i').length === 1;
@@ -1051,7 +1051,7 @@ define('sf.b2c.mall.product.detailcontent', [
                   $('.nav .label-error').removeClass('active');
                 }, 500)
                 return false;
-              }else{
+              } else {
                 var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
                 $(document.body).append($el)
                 setTimeout(function() {
