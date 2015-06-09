@@ -130,13 +130,13 @@
               {{#sf-isYZYW productForm}}
                 <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
                   <div class="product-r1">
-                    <div class="nataral-product-price2">当地售价<div class="text-important">NT${{originRetailPrice}}</div></div>
+                    <div class="nataral-product-price2">当地售价<div class="text-important">{{currencySymbol}}{{sf.price originRetailPrice}}</div></div>
                     <a href=""><img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt=""></a>
                     <span></span>
                   </div>
                   <h3><a href="">{{title}}</a></h3>
                   <div class="product-r2 clearfix">
-                    <div class="product-r2c1 fl"><span>￥</span><strong>{{sf.price sellingPrice}}</strong><span class="nataral-product-price">约 NT$890</span></div>
+                    <div class="product-r2c1 fl"><span>￥</span><strong>{{sf.price sellingPrice}}</strong><span class="nataral-product-price">约 {{currencySymbol}}{{sf.price originPrice}}</span></div>
                     <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
                   </div>
                   {{#starGoods}}

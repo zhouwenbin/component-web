@@ -79,7 +79,7 @@
 }
 .cart .td1 .icon{
 	position: absolute;
-	left:86px;
+	left:59px;
 	top:0;
 }
 .cart .td2 .text-error{
@@ -155,7 +155,7 @@
 	border: 1px solid #ccc;
 	border-top: 1px dashed #fff;
 	background: #eee;
-	padding: 18px 44px 20px 25px;
+	padding: 18px 44px 8px 25px;
 	border-radius: 0 0 4px 4px;
 	position: relative;
 }
@@ -183,13 +183,12 @@
 	color: #dc3334;
 }
 .cart-footer-c2 ul{
-	margin-bottom: 6px;
-}
-.cart-footer-c2 li{
-	margin-bottom: 10px;
+	display: inline-block;
+	margin-right: 20px;
 }
 .cart-footer-c2 .li1{
 	color: #999;
+	height:30px;
 }
 .cart-footer-c2 strong{
 	font-size: 14px;
@@ -209,6 +208,10 @@
 .cart-footer .btn-disable{
 	background: #9e9e9e;
 	color:#fff !important;
+	
+}
+.cart-footer .btn{
+	vertical-align: top;
 }
 .cart-footer-fixed{
 	position: fixed;
@@ -221,9 +224,6 @@
 }
 .cart-footer-fixed .icon75,
 .cart-footer-fixed .icon76{
-	display: none;
-}
-.cart-footer-fixed .li1{
 	display: none;
 }
 .order-confirm tbody th{
@@ -371,13 +371,25 @@
 	vertical-align: middle;
 	text-align: center;
 	position: relative;
-	width: 164px;
 	height: 58px;
-	
-	background: url(#{$bg-url}conpon-normal.png) no-repeat;
+	padding-left:11px;
+	background: url(#{$bg-url}coupon-normal.png) no-repeat;
+	margin-right: 11px;
+}
+.coupon:after{
+	content: '';
+	width: 11px;
+	height: 100%;
+	background: url(#{$bg-url}coupon-normal.png) no-repeat right bottom;
+	position: absolute;
+	right: -11px;
+	top: 0;
 }
 .coupon-disable{
 	background: url(#{$bg-url}coupon-disable.png) no-repeat;
+}
+.coupon-disable:after{
+	background: url(#{$bg-url}coupon-disable.png) no-repeat right bottom;
 }
 .coupon .icon85{
 	position: absolute;
@@ -508,9 +520,9 @@
 .address-r3{
 	line-height: 19px;
 	padding: 5px 15px;
-	height: 38px;
-	word-break:break-all;
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow:ellipsis;
 }
 .address-r4{
 	padding: 5px 15px;
@@ -553,4 +565,11 @@
 	
 	transform:rotate(180deg);
 	vertical-align: 1px;
+}
+
+.tooltip-outer{
+	bottom: 100%;
+	top: auto;
+	margin-top: 0;
+	margin-bottom: 13px;
 }
