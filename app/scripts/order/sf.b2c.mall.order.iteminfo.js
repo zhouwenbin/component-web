@@ -465,12 +465,9 @@ define('sf.b2c.mall.order.iteminfo', [
           // 对mediav的转化做监控
           that.monitor['mediav']();
 
-          window.location.href = 'gotopay.html?' +
-            $.param({
-              "orderid": message.value,
-              "recid": selectAddr.recId
-            });
-
+        // window.location.href = 'gotopay.html?' +
+        //   $.param({"orderid": message.value,"recid": selectAddr.recId});
+          window.location.replace('gotopay.html?'+$.param({"orderid": message.value,"recid": selectAddr.recId}));  
 
         })
         .fail(function(error) {
