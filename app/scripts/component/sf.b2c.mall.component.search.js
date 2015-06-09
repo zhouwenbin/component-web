@@ -142,6 +142,7 @@ define('sf.b2c.mall.component.search', [
         var itemId = context.itemId;
         var num = 1;
         var $el = element;
+        window.el = element;
         var itemsStr = JSON.stringify([{
           itemId: itemId,
           num: num || 1
@@ -154,6 +155,8 @@ define('sf.b2c.mall.component.search', [
         addItemToCart.sendRequest()
           .done(function(data) {
             if (data.isSuccess) {
+              var $el = window.el;
+
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
@@ -163,26 +166,35 @@ define('sf.b2c.mall.component.search', [
                 var target = $('.nav .icon100').eq(0).offset()
               }
 
+              $el.css({
+                  zIndex: 2,
+                  left: 0,
+                  top: 0,
+                  visibility: 'hidden'
+                });
+
+/*
               var targetX = target.left,
                 targetY = target.top,
                 current = $el.offset(),
                 currentX = current.left,
                 currentY = current.top,
                 cart_num = $('.cart-num').eq(0).text();
+                */
 
+/*
+              var cart_num = 1;
               var parent = $el.parents(":first");
               var aClone = parent.find("a:first").clone();
+              aClone.prependTo(parent);
               parent.find("a:first")
                 .css({
                   zIndex: 2,
-                  left: targetX - currentX,
-                  top: targetY - currentY,
+                  left: 0,
+                  top: 0,
                   visibility: 'hidden'
                 });
-              aClone.prependTo(parent);
-              setTimeout(function() {
-                aClone.remove();
-              }, 1000);
+              
 
 
               cart_num++;
@@ -192,6 +204,7 @@ define('sf.b2c.mall.component.search', [
               setTimeout(function() {
                 $('.nav .label-error').removeClass('active');
               }, 500);
+*/
             } else {
               var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="" class="goshoppingcart" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
               $(document.body).append($el);
