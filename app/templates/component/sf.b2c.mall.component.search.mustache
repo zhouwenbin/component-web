@@ -101,7 +101,7 @@
       <div class="mb">
         <ul class="clearfix product-list">
           {{#each itemSearch.results}}
-            <li>
+            <li data-item-id="{{itemId}}">
               <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
                 <div class="product-r1">
                   <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
@@ -119,8 +119,7 @@
                   </div>
                   {{#if isShowShoppintCart}}
                     <div class="product-r2c2 fr">
-                      <a href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
-                      <a {{#sf-isShowAddToCart soldOut supportShoppingCart}}can-click='addToCart'{{/sf-isShowAddToCart}} href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
+                      <a {{#sf-isShowAddToCart soldOut supportShoppingCart}} {{/sf-isShowAddToCart}} href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
                     </div>
                   {{/if}}
                 </div>
