@@ -497,8 +497,8 @@ define(
         if ($(element).hasClass('btn-disable')) {
           return false;
         };
-        //window.location.href = 'order.html';
-        window.location.replace('order.html');
+        window.location.href = 'order.html';
+        // window.location.replace('order.html');
       }
 
     });
