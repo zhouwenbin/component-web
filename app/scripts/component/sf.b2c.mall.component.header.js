@@ -692,9 +692,9 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('nickname', arr[0]);
 
           // 登录后刷新页面，520项目的注册信息要隐藏
-          if (!that.afterLoginDest) {
-            window.location.reload();
-          }
+          // if (!that.afterLoginDest) {
+          //   window.location.reload();
+          // }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
