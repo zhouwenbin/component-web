@@ -118,7 +118,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         // if (this.isIE(6) || this.isIE(7) || this.isIE(8)) {
         // if(!!(window.attachEvent && navigator.userAgent.indexOf('Opera') === -1)){
-        if(!+[1,]){
+        if(!!(window.attachEvent)){
           this.support = false;
         }else{
           this.support = true;
