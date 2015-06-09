@@ -143,6 +143,8 @@ define(
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
+              var $el = window.el;
+
               if ($(window).scrollTop() > 166) {
                 var target = $('.nav .icon100').eq(1).offset()
               } else {
@@ -173,11 +175,15 @@ define(
                 $('.nav .label-error').removeClass('active');
               }, 500);
             } else {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
-              $(document.body).append($el)
-              setTimeout(function() {
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="" class="goshoppingcart" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
                 $el.remove();
-              }, 1000);
+              });
+              $('.goshoppingcart').click(function(event) {
+                $el.remove();
+                window.location.href = 'http://www.sfht.com/shoppingcart.html';            
+              });
             }
 
 
@@ -197,8 +203,12 @@ define(
 
         var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+
+          window.el = el;
+
           // 用户如果如果登录
-          this.addCart(itemId, 1, el);
+          this.addCart.call(this, itemId, 1, el);
+
         } else {
           store.set('temp-action-addCart', {
             itemId: itemId

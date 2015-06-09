@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.addreditor', [
       };
       var info = map[tag].call(this, params);
       this.adapter.addr = new can.Map(info);
-      if (this.options.from == 'order') {
+      if (this.from == 'order') {
         this.adapter.isShowBtnCancel = true;
       } else {
         this.adapter.isShowBtnCancel = false;

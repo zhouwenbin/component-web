@@ -28,13 +28,14 @@ define('sf.b2c.mall.order.iteminfo', [
 
     helpers: {
       'sf-needshowcart': function(options) {
+        var params = can.deparam(window.location.search.substr(1));
         var uinfo = $.cookie('1_uinfo');
         var arr = new Array();
         if (uinfo) {
           arr = uinfo.split(',');
         }
 
-        if ((typeof arr[4] != 'undefined' && arr[4] != '2')) {
+        if ((typeof arr[4] != 'undefined' && arr[4] != '2') && typeof params.from != 'undefined') {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -318,10 +319,16 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     //获取选中优惠券的码
     getCouponCodes: function() {
+
       var span = $("#useCoupon").find('span.icon85'); //优惠券是否选中的标示
+      var $li = $('#avaliableCoupons li').find('span.icon85');
+      console.log($li.closest('li'));
       var codes = [];
       if (span.length > 0) {
         codes.push($("#useCoupon").attr('data-code'));
+        return JSON.stringify(codes);
+      } else if ($li.length > 0) {
+        codes.push($li.closest('li').data('coupon').couponCode);
         return JSON.stringify(codes);
       } else {
         return null;
