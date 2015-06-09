@@ -189,6 +189,7 @@
 .cart-footer-c2 .li1{
 	color: #999;
 	height:30px;
+	line-height: 30px;
 }
 .cart-footer-c2 strong{
 	font-size: 14px;
@@ -290,6 +291,10 @@
 }
 .order-confirm .address-add{
 	display: none;
+}
+.order-confirm .cart-footer .btn{
+	vertical-align: middle;
+	margin-left: 10px;
 }
 
 .cart-coupon{
