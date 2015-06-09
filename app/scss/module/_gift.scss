@@ -1,0 +1,17 @@
+.gift{
+	background: url(#{$bg-url}gift2.png) no-repeat;
+	color: #fff;
+	width: 155px;
+	height: 62px;
+	padding-left: 62px;
+	box-sizing:border-box;
+	padding-top: 5px;
+}
+.gift strong{
+	font-family: arial;
+	font-size: 33px;
+}
+.gift-r2{
+	font-size: 14px;
+	margin-top: 13px;
+}

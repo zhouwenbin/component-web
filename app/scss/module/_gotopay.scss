@@ -1,0 +1,60 @@
+.gotopay{
+	background: #fff;
+	border:1px solid #ccc;
+	padding: 33px 35px;
+	border-radius: 4px;
+}
+.gotopay-r1{
+	padding-bottom: 26px;
+	margin-bottom: 26px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+}
+.gotopay-r1 b{
+	font-size: 16px;
+	margin-left: 14px;
+	margin-right: 8px;
+}
+.gotopay-r1 strong{
+	font-size: 21px;
+	font-family: arial;
+	font-weight: bold;
+}
+.gotopay h2{
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+.gotopay ul{
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 12px;
+}
+.gotopay li{
+	display: inline-block;
+	margin-right: 26px;
+	position: relative;
+	cursor: pointer;
+}
+.gotopay li .icon{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+.gotopay li.active .icon{
+	display: block;
+}
+.gotopay img{
+	margin-bottom: 10px;
+}
+.gotopay h3{
+	font-weight: normal;
+	color: #999;
+	font-size: 14px;
+}
+.gotopay-r2{
+	text-align: right;
+}
+.gotopay-r2 .btn{
+	margin-left: 20px;
+}

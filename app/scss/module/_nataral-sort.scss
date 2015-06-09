@@ -1,0 +1,30 @@
+.nataral-sort{
+	display: inline-block;
+	margin-left: 34px;
+}
+.nataral-sort li{
+	display: inline-block;
+	font-size: 14px;
+	width: 80px;
+	text-align: center;
+	height: 22px;
+	line-height: 22px;
+	margin-right: 13px;
+}
+.nataral-sort li:hover{
+	background: #E9E9E9;
+}
+.nataral-sort li:hover a{
+	color: #666;
+}
+.nataral-sort li.active{
+	background: #DF3D40;
+	border-radius: 3px;
+}
+.nataral-sort li.active a{
+	color: #fff;
+}
+.nataral-sort li a{
+	color: #999;
+	display: block;
+}
