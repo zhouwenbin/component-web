@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      this.renderMap['template_header_61'].call(this, that.data);
+	    this.renderMap['template_header_61'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
@@ -386,7 +386,9 @@ define('sf.b2c.mall.component.header', [
       },
 
       'template_header_61': function(data) {
-        new SFHeader61('.sf-b2c-mall-header');
+        new SFHeader61('.sf-b2c-mall-header', {
+          "originheader": this
+        });
       }
     },
 
@@ -399,24 +401,24 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       // if (pathname == '/' || pathname == '/index.html') {
-      // @note 520活动暂时关闭浮动导航栏
-      // @note 520活动结束，打开浮动导航
-      $(window).scroll(function() {
-        setTimeout(function() {
-          if ($(window).scrollTop() > 256) {
-            $(".nav-fixed .nav-inner").stop(true, false).animate({
-              top: '0px',
-              opacity: 1
-            }, 300);
-          } else {
-            $(".nav-fixed .nav-inner").stop(true, false).animate({
-              top: '-56px',
-              opacity: 0
-            }, 0);
-          }
 
-        }, 200);
-      })
+        // @note 520活动暂时关闭浮动导航栏
+        // @note 520活动结束，打开浮动导航
+        $(window).scroll(function() {
+          setTimeout(function() {
+            if ($(window).scrollTop() > 566) {
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '0px',
+                opacity: 1
+              }, 300);
+            } else {
+              $(".nav-fixed .nav-inner").stop(true, false).animate({
+                top: '-56px',
+                opacity: 0
+              }, 0);
+            }
+          }, 200);
+        })
 
       $('#js-focus')
         .hover(function() {
@@ -691,9 +693,9 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('nickname', arr[0]);
 
           // 登录后刷新页面，520项目的注册信息要隐藏
-          if (!that.afterLoginDest) {
-            window.location.reload();
-          }
+          // if (!that.afterLoginDest) {
+          //   window.location.reload();
+          // }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
@@ -707,7 +709,7 @@ define('sf.b2c.mall.component.header', [
       window.popMessage = function() {
         setTimeout(function() {
           new SFMessage(null, {
-            'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
+            'tip': "50元优惠券已发放至您的账户，请注意查收。",
             'type': 'success'
           });
         }, 1000);
