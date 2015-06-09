@@ -475,11 +475,11 @@ define(
               can.trigger(window, 'updateCart');
               window.location.reload();
             } else {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
-              $(document.body).append($el)
-              setTimeout(function() {
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="shoppingcart.html" class="closeDialog" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
                 $el.remove();
-              }, 1000);
+              });
             }
           })
           .fail(function(data) {})

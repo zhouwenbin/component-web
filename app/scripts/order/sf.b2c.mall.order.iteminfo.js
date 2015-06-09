@@ -318,10 +318,16 @@ define('sf.b2c.mall.order.iteminfo', [
     },
     //获取选中优惠券的码
     getCouponCodes: function() {
+
       var span = $("#useCoupon").find('span.icon85'); //优惠券是否选中的标示
+      var $li = $('#avaliableCoupons li').find('span.icon85');
+      console.log($li.closest('li'));
       var codes = [];
       if (span.length > 0) {
         codes.push($("#useCoupon").attr('data-code'));
+        return JSON.stringify(codes);
+      } else if ($li.length > 0) {
+        codes.push($li.closest('li').data('coupon').couponCode);
         return JSON.stringify(codes);
       } else {
         return null;
