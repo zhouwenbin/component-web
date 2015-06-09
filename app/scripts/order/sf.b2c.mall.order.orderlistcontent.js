@@ -287,20 +287,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                   // 带有搜索和不带搜索的结果页不一样
                   var template = null;
-                  if (that.options.searchValue) {
+                  var qparams = can.deparam(window.location.search.substr(1));
+                  if (qparams.q) {
                     template = can.view.mustache(that.noSearchResultShowPageTemplate());
                   } else {
                     template = can.view.mustache(that.noResultShowPageTemplate());
                   }
 
                   if ($('.myorder-tab').length > 0) {
-                    $(".noOrderShow").html(template(data)).show();
+                    $(".noOrderShow").html(template(data)).removeClass('hide');
                   } else {
                     var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
                     that.element.html(html);
 
-                    that.element.find('.orderShow').hide();
-                    that.element.find(".noOrderShow").html(template(data)).show();
+                    that.element.find('.orderShow').addClass('hide');
+                    that.element.find(".noOrderShow").html(template(data)).removeClass('hide');
                   }
                 })
                 .fail(function(error) {});
@@ -322,7 +323,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
-            "searchValue": qparams.q || that.options.searchValue,
+            "searchValue": qparams.q || this.options.searchValue,
             // "receiverName": this.options.searchValue,
             // "orderId": this.options.searchValue,
             "pageNum": routeParams.page,
@@ -420,7 +421,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       noSearchResultShowPageTemplate: function() {
         return '<div class="myorder-search">' +
-          '<input placeholder="输入订单号搜索" id="searchValue"><button id="search">搜索</button>' +
+          '<input placeholder="输入订单号搜索" id="searchNoResultValue"><button id="search">搜索</button>' +
           '</div>' +
           '<div class="myorder-none">' +
           '<span class="icon icon89"></span>' +
