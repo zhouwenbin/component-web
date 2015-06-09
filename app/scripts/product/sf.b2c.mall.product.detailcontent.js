@@ -996,39 +996,41 @@ define('sf.b2c.mall.product.detailcontent', [
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({'border-radius': 50});
+              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({
+                'border-radius': 50
+              });
               $('.addtocart').append(that);
               // var that = $('.addtocart img');
 
-              if($(window).scrollTop() > 166){
-                  var target=$('.nav .icon100').eq(1).offset()
-              }else{
-                  var target=$('.nav .icon100').eq(0).offset()
+              if ($(window).scrollTop() > 166) {
+                var target = $('.nav .icon100').eq(1).offset()
+              } else {
+                var target = $('.nav .icon100').eq(0).offset()
               }
-              var targetX=target.left,
-                  targetY=target.top,
-                  current=that.offset(),
-                  currentX=current.left,
-                  currentY=current.top;
+              var targetX = target.left,
+                targetY = target.top,
+                current = that.offset(),
+                currentX = current.left,
+                currentY = current.top;
               that.clone().appendTo(that.parent());
               that.css({
-                left:targetX-currentX,
-                top:targetY-currentY,
+                left: targetX - currentX,
+                top: targetY - currentY,
                 // transform:'rotate(360deg)',
-                zIndex:3,
-                visibility:'hidden'
+                zIndex: 3,
+                visibility: 'hidden'
               })
 
-              setTimeout(function(){
-                  // that.remove();
-                  $('.addtocart-img:first-child').remove();
-              },1000);
+              setTimeout(function() {
+                // that.remove();
+                $('.addtocart-img:first-child').remove();
+              }, 1000);
 
               $('.nav .label-error').addClass('active');
 
-              setTimeout(function(){
-                  $('.nav .label-error').removeClass('active');
-              },500)
+              setTimeout(function() {
+                $('.nav .label-error').removeClass('active');
+              }, 500)
               return false;
 
               // var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
@@ -1038,19 +1040,20 @@ define('sf.b2c.mall.product.detailcontent', [
               // }, 1000);
 
             } else {
-              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="" class="goshoppingcart" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              if ($('.dialog-cart').length > 0) {
+                return false;
+              };
               $(document.body).append($el);
               $('.closeDialog').click(function(event) {
                 $el.remove();
               });
-              $('.goshoppingcart').click(function(event) {
+              setTimeout(function() {
                 $el.remove();
-                window.location.href = 'http://www.sfht.com/shoppingcart.html';            
-              });
+              }, 3000);
             }
           })
-          .fail(function(data) {
-          })
+          .fail(function(data) {})
       },
 
       /**
