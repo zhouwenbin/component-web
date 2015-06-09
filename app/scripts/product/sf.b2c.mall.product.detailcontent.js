@@ -1038,10 +1038,14 @@ define('sf.b2c.mall.product.detailcontent', [
               // }, 1000);
 
             } else {
-              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="shoppingcart.html" class="closeDialog" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="" class="goshoppingcart" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
               $(document.body).append($el);
               $('.closeDialog').click(function(event) {
                 $el.remove();
+              });
+              $('.goshoppingcart').click(function(event) {
+                $el.remove();
+                window.location.href = 'http://www.sfht.com/shoppingcart.html';            
               });
             }
           })
