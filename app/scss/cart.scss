@@ -155,7 +155,7 @@
 	border: 1px solid #ccc;
 	border-top: 1px dashed #fff;
 	background: #eee;
-	padding: 18px 44px 8px 25px;
+	padding: 18px 44px 18px 25px;
 	border-radius: 0 0 4px 4px;
 	position: relative;
 }
@@ -184,6 +184,7 @@
 }
 .cart-footer-c2 ul{
 	display: inline-block;
+	vertical-align: middle;
 	margin-right: 20px;
 }
 .cart-footer-c2 .li1{
@@ -210,9 +211,6 @@
 	background: #9e9e9e;
 	color:#fff !important;
 	
-}
-.cart-footer .btn{
-	vertical-align: top;
 }
 .cart-footer-fixed{
 	position: fixed;
