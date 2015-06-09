@@ -497,7 +497,7 @@ define(
         if ($(element).hasClass('btn-disable')) {
           return false;
         };
-        window.location.href = 'order.html';
+        window.location.href = 'order.html?from=shoppingcart';
         // window.location.replace('order.html');
       }
 
