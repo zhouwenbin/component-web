@@ -164,7 +164,7 @@ define(
             'invalidItems': false
           });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
-          this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0);
+          this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0 && this.options.isShowOverLimitPrice == false);
           if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
             this.options.reduceInfos = data.cartFeeItem.reduceInfos;
           };
@@ -475,10 +475,14 @@ define(
               can.trigger(window, 'updateCart');
               window.location.reload();
             } else {
-              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="shoppingcart.html" class="closeDialog" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p><a href="" class="goshoppingcart" style="display:block;text-align:center;color:#14b3e7;">去购物车</a></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
               $(document.body).append($el);
               $('.closeDialog').click(function(event) {
                 $el.remove();
+              });
+              $('.goshoppingcart').click(function(event) {
+                $el.remove();
+                window.location.href = 'http://www.sfht.com/shoppingcart.html';            
               });
             }
           })
@@ -497,7 +501,7 @@ define(
         if ($(element).hasClass('btn-disable')) {
           return false;
         };
-        window.location.href = 'order.html';
+        window.location.href = 'order.html?from=shoppingcart';
         // window.location.replace('order.html');
       }
 

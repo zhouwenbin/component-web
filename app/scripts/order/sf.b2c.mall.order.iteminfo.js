@@ -28,13 +28,14 @@ define('sf.b2c.mall.order.iteminfo', [
 
     helpers: {
       'sf-needshowcart': function(options) {
+        var params = can.deparam(window.location.search.substr(1));
         var uinfo = $.cookie('1_uinfo');
         var arr = new Array();
         if (uinfo) {
           arr = uinfo.split(',');
         }
 
-        if ((typeof arr[4] != 'undefined' && arr[4] != '2')) {
+        if ((typeof arr[4] != 'undefined' && arr[4] != '2') && typeof params.from != 'undefined') {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
