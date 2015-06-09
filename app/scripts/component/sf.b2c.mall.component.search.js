@@ -119,8 +119,7 @@ define('sf.b2c.mall.component.search', [
     searchParams: {
       q: "",
       size: 20,
-      from: 0,
-      productForms: ["YZYW"]
+      from: 0
     },
 
     //用于模板渲染
@@ -268,6 +267,12 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("searchData.sort", this.sortMap[sort] || this.sortMap["DEFAULT"]);
       }
 
+      //获取产品形态
+      var productForms = params.productForms;
+      if (productForms) {
+        this.renderData.attr("searchData.productForms", productForms.split("||"));
+      }
+
       this.render(this.renderData, element);
     },
 
@@ -311,6 +316,13 @@ define('sf.b2c.mall.component.search', [
       this.renderData.bind("itemSearch", function(ev, newVal, oldVal){
         if (that.renderData.searchData.page * that.searchParams.size >= that.renderData.itemSearch.totalHits) {
           that.renderData.attr("nextPage", 0)
+        }
+      });
+      this.renderData.bind("searchData.productForms", function(ev, newVal, oldVal){
+        if(newVal) {
+          that.searchParams.productForms = newVal.serialize();
+        } else {
+          delete that.searchParams.productForms;
         }
       });
     },
