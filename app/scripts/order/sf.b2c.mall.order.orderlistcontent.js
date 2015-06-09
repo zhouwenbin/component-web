@@ -14,9 +14,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.api.shopcart.addItemsToCart'
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
+    'sf.b2c.mall.business.config'
   ],
-  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart) {
+  function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart, SFConfig) {
 
     can.route.ready();
 
@@ -174,12 +175,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
           this.options.tab.attr("allorderTab", true);
         }
 
+        var qparams = can.deparam(window.location.search.substr(1));
+
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
             "pageNum": routeParams.page,
             "pageSize": 10,
-            "searchValue": that.options.searchValue
+            "searchValue": qparams.q || that.options.searchValue
           })
         }
 
@@ -314,11 +317,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
         var routeParams = can.route.attr();
 
+        var qparams = can.deparam(window.location.search.substr(1));
+
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
-            "receiverName": this.options.searchValue,
-            "orderId": this.options.searchValue,
+            "searchValue": qparams.q || that.options.searchValue,
+            // "receiverName": this.options.searchValue,
+            // "orderId": this.options.searchValue,
             "pageNum": routeParams.page,
             "pageSize": 10
           })
@@ -357,10 +363,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // 清除条件
         this.options.searchValue = null;
 
-        can.route.attr({
-          status: this.statusMap[tag],
-          page: 1
-        });
+        window.location.href = SFConfig.setting.link.orderlist + '#!' + $.param({ status: this.statusMap[tag], page: 1 });
+        // can.route.attr({
+        //   status: this.statusMap[tag],
+        //   page: 1
+        // });
       },
 
       statusMap: {

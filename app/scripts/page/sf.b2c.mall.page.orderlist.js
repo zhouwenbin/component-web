@@ -66,9 +66,11 @@ define(
           return false;
         }
 
-        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
-          "searchValue": searchValue
-        });
+        window.location.search = '?'+$.param({q: searchValue});
+
+        // this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
+        //   "searchValue": searchValue
+        // });
       },
 
       /**
