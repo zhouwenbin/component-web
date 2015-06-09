@@ -996,7 +996,7 @@ define('sf.b2c.mall.product.detailcontent', [
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({'border-radius': 100});
+              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({'border-radius': 50});
               $('.addtocart').append(that);
               // var that = $('.addtocart img');
 
