@@ -303,6 +303,7 @@ define('sf.b2c.mall.order.iteminfo', [
     //是否使用优惠券
     '#useCoupon click': function(element, event) {
       var span = $(element).find('span.icon85');
+      $('#avaliableCoupons li').find('span.icon85').remove();
       if (span.length > 0) {
         $(element).find('span.icon85').remove();
         this.itemObj.attr("couponPrice", 0);

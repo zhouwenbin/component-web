@@ -48,7 +48,7 @@
                             {{^isValid}}{{quantity}}{{/isValid}}
                             {{#isValid}}
                                 <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
-                                {{#each limitDescList}}<p class="text-error">{{desc}}</p>{{/each}}
+                                {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
                             {{/isValid}}
                         </td>
                         <td class="td5">

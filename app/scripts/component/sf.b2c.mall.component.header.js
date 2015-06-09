@@ -284,7 +284,7 @@ define('sf.b2c.mall.component.header', [
             // 更新mini购物车
             can.trigger(window, 'updateCart');
           } else {
-            var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">'+ data.resultMsg+'</div></div>');
+            var $el = $('<div class="dialog-cart" style="width:362px;padding:20px 0;"><div class="dialog-cart-inner">'+ data.resultMsg+'</div></div>');
             $(document.body).append($el)
             setTimeout(function() {
               $el.remove();
