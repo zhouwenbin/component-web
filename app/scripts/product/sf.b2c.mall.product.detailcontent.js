@@ -1005,6 +1005,8 @@ define('sf.b2c.mall.product.detailcontent', [
           items: itemsStr
         });
 
+        var scope = this;
+
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
@@ -1012,7 +1014,7 @@ define('sf.b2c.mall.product.detailcontent', [
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              if (this.support) {
+              if (scope.support) {
                 var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({
                   'border-radius': 50
                 });
