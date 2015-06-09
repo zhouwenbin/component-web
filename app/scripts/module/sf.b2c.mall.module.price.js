@@ -143,6 +143,8 @@ define(
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
+              var $el = window.el;
+
               if ($(window).scrollTop() > 166) {
                 var target = $('.nav .icon100').eq(1).offset()
               } else {
@@ -197,8 +199,12 @@ define(
 
         var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+
+          window.el = el;
+
           // 用户如果如果登录
-          this.addCart(itemId, 1, el);
+          this.addCart.call(this, itemId, 1, el);
+
         } else {
           store.set('temp-action-addCart', {
             itemId: itemId
