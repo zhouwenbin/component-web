@@ -342,10 +342,10 @@
 	height: 38px;
 }
 .address td{
-	height: 50px;
-	line-height: 50px;
+	line-height: 1.5;
 	position: relative;
 	border-top:1px solid #e5e5e5;
+	padding: 10px 0;
 }
 .address .col1{
 	padding-left: 20px;
@@ -355,7 +355,8 @@
 	width: 220px;
 }
 .address .col3{
-	width: 209px;
+	width: 199px;
+	padding-right: 10px;
 }
 .address .col4{
 	width: 157px;
