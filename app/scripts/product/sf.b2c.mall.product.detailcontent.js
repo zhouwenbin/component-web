@@ -996,10 +996,10 @@ define('sf.b2c.mall.product.detailcontent', [
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              $('.addtocart').append($('.thumb-item:last-child img').clone().addClass('addtocart-img'));
-              var that = $('.addtocart img');
+              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({'border-radius': 100});
+              $('.addtocart').append(that);
+              // var that = $('.addtocart img');
 
-              console.log(that);
               if($(window).scrollTop() > 166){
                   var target=$('.nav .icon100').eq(1).offset()
               }else{
@@ -1014,15 +1014,18 @@ define('sf.b2c.mall.product.detailcontent', [
               that.css({
                 left:targetX-currentX,
                 top:targetY-currentY,
-                transform:'rotate(360deg)',
+                // transform:'rotate(360deg)',
                 zIndex:3,
                 visibility:'hidden'
               })
 
               setTimeout(function(){
-                  that.remove();
+                  // that.remove();
+                  $('.addtocart-img:first-child').remove();
               },1000);
+
               $('.nav .label-error').addClass('active');
+
               setTimeout(function(){
                   $('.nav .label-error').removeClass('active');
               },500)
