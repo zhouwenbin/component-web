@@ -10,6 +10,7 @@
 }
 .goods-c1r1{
 	height: 420px;
+	position: relative;
 }
 .goods-c1r1 li{
 	position: absolute;
@@ -68,7 +69,8 @@
 }
 
 .goods-c2{
-	overflow:hidden;
+	width: 584px;
+	float: left;
 	font-size: 14px;
 	color: #272541;
 	position: relative;
@@ -189,7 +191,18 @@
 	margin-left:15px;
 	margin-right:5px;
 }
-
+.goods-c2r2{
+	position: relative;
+}
+.goods-c2r2 img{
+	width: 44px;
+	height: 44px;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	transition: 0.5s transform ease-in-out,0.5s left linear,0.5s top ease-out,0.1s visibility 0.5s linear;
+}
 .goods-c2r2 .icon{
 	margin-left:10px;
 }
@@ -199,6 +212,7 @@
 	line-height:44px;
 	font-size:16px;
 	margin-right:10px;
+	position: relative;
 }
 .goods-share{
 	position: absolute;
@@ -272,12 +286,27 @@
 	line-height: 23px;
 }
 .goods-nataral a{
-  color: #B87C00;
-  background: #FFD62C;
-  height: 23px;
-  line-height: 23px;
-  border-radius: 3px;
-  padding: 0 10px;
-  display: inline-block;
-  margin-left: 18px;
+	color: #B87C00;
+	background: #FFD62C;
+	height: 23px;
+	line-height: 23px;
+	border-radius: 3px;
+	padding: 0 10px;
+	display: inline-block;
+	margin-left: 18px;
  }
+
+ .nataral-product-price2{
+	width: 71px;
+	padding-top: 5px;
+	height: 30px;
+	background: #fff;
+	background: rgba(255,255,255,0.9);
+	position: absolute;
+	right: 10px;
+	bottom:10px;
+	font-size: 12px;
+	line-height: 15px;
+	color:#999;
+	text-align: center;
+}
