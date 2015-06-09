@@ -193,6 +193,7 @@ requirejs.config({
 
     'sf.b2c.mall.product.breadscrumb': 'scripts/product/sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent': 'scripts/product/sf.b2c.mall.product.detailcontent',
+    'sf.b2c.mall.product.searchShopInfo': 'scripts/product/sf.b2c.mall.product.searchShopInfo',
 
     'sf.b2c.mall.adapter.address.list': 'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions': 'scripts/adapter/sf.b2c.mall.adapter.regions',
@@ -243,6 +244,8 @@ requirejs.config({
 
     //搜索页面
     'sf.b2c.mall.page.search': 'scripts/page/sf.b2c.mall.page.search',
+    //搜索页面
+    'sf.b2c.mall.page.shop': 'scripts/page/sf.b2c.mall.page.shop',
 
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
