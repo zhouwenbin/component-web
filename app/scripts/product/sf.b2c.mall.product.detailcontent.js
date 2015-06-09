@@ -115,6 +115,14 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
+
+        // if (this.isIE(6) || this.isIE(7) || this.isIE(8)) {
+        if(!!(window.attachEvent && navigator.userAgent.indexOf('Opera') === -1)){
+          this.support = false;
+        }else{
+          this.support = true;
+        }
+
         // this.detailUrl = SFConfig.setting.api.detailurl;
         var that = this;
         this.component = {};
@@ -976,6 +984,13 @@ define('sf.b2c.mall.product.detailcontent', [
         return false;
       },
 
+      //判断浏览器是IE几
+      isIE:function(ver){
+        var b = document.createElement('b');
+        b.innerHTML = '<!--[if IE ' + ver + ']><i></i><![endif]-->';
+        return b.getElementsByTagName('i').length === 1;
+      },
+
       /**
        * @author Michael.Lee
        * @description 加入购物车
@@ -996,49 +1011,50 @@ define('sf.b2c.mall.product.detailcontent', [
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({
-                'border-radius': 50
-              });
-              $('.addtocart').append(that);
-              // var that = $('.addtocart img');
+              if (this.support) {
+                var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({
+                  'border-radius': 50
+                });
+                $('.addtocart').append(that);
+                // var that = $('.addtocart img');
 
-              if ($(window).scrollTop() > 166) {
-                var target = $('.nav .icon100').eq(1).offset()
-              } else {
-                var target = $('.nav .icon100').eq(0).offset()
+                if ($(window).scrollTop() > 166) {
+                  var target = $('.nav .icon100').eq(1).offset()
+                } else {
+                  var target = $('.nav .icon100').eq(0).offset()
+                }
+                var targetX = target.left,
+                  targetY = target.top,
+                  current = that.offset(),
+                  currentX = current.left,
+                  currentY = current.top;
+                that.clone().appendTo(that.parent());
+                that.css({
+                  left: targetX - currentX,
+                  top: targetY - currentY,
+                  // transform:'rotate(360deg)',
+                  zIndex: 3,
+                  visibility: 'hidden'
+                })
+
+                setTimeout(function() {
+                  // that.remove();
+                  $('.addtocart-img:first-child').remove();
+                }, 1000);
+
+                $('.nav .label-error').addClass('active');
+
+                setTimeout(function() {
+                  $('.nav .label-error').removeClass('active');
+                }, 500)
+                return false;
+              }else{
+                var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
+                $(document.body).append($el)
+                setTimeout(function() {
+                  $el.remove();
+                }, 1000);
               }
-              var targetX = target.left,
-                targetY = target.top,
-                current = that.offset(),
-                currentX = current.left,
-                currentY = current.top;
-              that.clone().appendTo(that.parent());
-              that.css({
-                left: targetX - currentX,
-                top: targetY - currentY,
-                // transform:'rotate(360deg)',
-                zIndex: 3,
-                visibility: 'hidden'
-              })
-
-              setTimeout(function() {
-                // that.remove();
-                $('.addtocart-img:first-child').remove();
-              }, 1000);
-
-              $('.nav .label-error').addClass('active');
-
-              setTimeout(function() {
-                $('.nav .label-error').removeClass('active');
-              }, 500)
-              return false;
-
-              // var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
-              // $(document.body).append($el)
-              // setTimeout(function() {
-              //   $el.remove();
-              // }, 1000);
-
             } else {
               var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
               if ($('.dialog-cart').length > 0) {
