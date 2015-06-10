@@ -204,6 +204,12 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("searchData.productForms", productForms.split("||"));
       }
 
+      //过滤店铺
+      var shopId = params.shopId;
+      if (shopId) {
+        this.renderData.attr("searchData.shopIds", shopId.split("||"));
+      }
+
       this.render(this.renderData, element);
     },
 
@@ -254,6 +260,13 @@ define('sf.b2c.mall.component.search', [
           that.searchParams.productForms = newVal.serialize();
         } else {
           delete that.searchParams.productForms;
+        }
+      });
+      this.renderData.bind("searchData.shopIds", function(ev, newVal, oldVal){
+        if(newVal) {
+          that.searchParams.shopIds = newVal.serialize();
+        } else {
+          delete that.searchParams.shopIds;
         }
       });
     },

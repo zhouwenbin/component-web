@@ -8,11 +8,12 @@ define(
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.recommendProducts',
     'sf.b2c.mall.component.search',
+    'sf.b2c.mall.shop.detail',
     'sf.b2c.mall.module.header',
     'sf.b2c.mall.module.footer'
   ],
   function(can, $, SFFrameworkComm, SFFn, SFBusiness,
-           SFRecommendProducts, SFSearch, SFFooter) {
+           SFRecommendProducts, SFSearch, SFShopDetail, SFHeader, SFFooter) {
     SFFrameworkComm.register(1);
     SFFn.monitor();
     var searchPage = can.Control.extend({
@@ -29,10 +30,11 @@ define(
        */
       render: function() {
         var that = this;
+        new SFShopDetail('#sf-b2c-mall-shop-detail');
         new SFSearch('#sf-b2c-mall-search');
       }
 
     });
 
-    new searchPage('#sf-b2c-mall-search');
+    new searchPage();
   })
