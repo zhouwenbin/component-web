@@ -1,0 +1,68 @@
+.nataral-category{
+	margin-top: 30px;
+}
+.nataral-category-h a{
+	margin-top: 35px;
+	color: #666666;
+}
+.nataral-category-h a:hover{
+	color: #3B86C4;
+}
+
+.nataral-category-bc1{
+	width: 235px;
+	height: 348px;
+	background: url(#{$bg-url}nataral-category1.jpg) no-repeat;
+	text-align: center;
+}
+.nataral-category:last-child .nataral-category-bc1{
+	background: url(#{$bg-url}nataral-category2.jpg) no-repeat;
+}
+.nataral-category-bc1:before{
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+.nataral-category-bc1 ul{
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 25px;
+}
+.nataral-category-bc1 li{
+	float: left;
+	width: 50px;
+	font-size: 14px;
+	text-align: left;
+	border-bottom: 1px dashed #fff;
+	border-bottom: 1px dashed rgba(255,255,255,0.6);
+	padding-bottom: 4px;
+	margin:10px 20px;
+}
+.nataral-category-bc1 a{
+	color: #fff;
+}
+.nataral-category-bc2{
+	overflow: hidden;
+}
+
+.nataral-category-bc2 li{
+	float: left;
+	width: 188px;
+	height: 115px;
+	margin-bottom: -1px;
+	margin-left: -1px;
+	border: 1px solid #E5E5E5;
+	background: #fff;
+	text-align: center;
+}
+.nataral-category-bc2 li:before{
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+.nataral-category-bc2 img{
+	max-width: 187px;
+	max-height: 115px;
+}
