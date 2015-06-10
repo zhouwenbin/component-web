@@ -31,7 +31,15 @@ define(
       render: function() {
         var that = this;
         new SFShopDetail('#sf-b2c-mall-shop-detail');
-        new SFSearch('#sf-b2c-mall-search');
+        new SFSearch('#sf-b2c-mall-search', {
+          filterCustom: {
+            showStatInfo: false,
+            brandName: "人气品牌",
+            categoryName: "商品分类",
+            category2ndName: "选购热点",
+            originName: ""
+          }
+        });
       }
 
     });

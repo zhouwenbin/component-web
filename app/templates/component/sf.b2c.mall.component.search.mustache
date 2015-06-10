@@ -24,73 +24,83 @@
 <div class="pb">
   <div class="classify">
     <div class="pm">
-      <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
+      {{#if filterCustom.showStatInfo}}
+        <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
+      {{/if}}
       <ul class="classify-list">
         {{#sf-hasSelect filters}}
           <li class="classify-select">
             <label>已选条件：</label>
             <ul id="classify-select">
               {{#each filterBrands}}
-                  <li><a class="btn-search" href="javascript:">品牌：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
+                  <li><a class="btn-search" href="javascript:">{{filterCustom.brandName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
               {{/each}}
               {{#each filterCategories}}
-                  <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
+                  <li><a class="btn-search" href="javascript:">{{filterCustom.categoryName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
               {{/each}}
               {{#each filterCategories2nd}}
-                  <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="category2ndIds" data-id="{{id}}"></span></a></li>
+                  <li><a class="btn-search" href="javascript:">{{filterCustom.category2ndName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="category2ndIds" data-id="{{id}}"></span></a></li>
               {{/each}}
               {{#each filterOrigins}}
-                  <li><a class="btn-search" href="javascript:">货源地：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
+                  <li><a class="btn-search" href="javascript:">{{filterCustom.originName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
               {{/each}}
             </ul>
             {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}
           </li>
         {{/sf-hasSelect}}
-        {{^searchData.brandIds}}
-        <li class="clearfix classify-logo" data-role="selectBrand">
-          <div class="classify-c1 fl">
-            <label>品牌：</label>
-            <ul id="classify-logo">
-              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}<span>{{key}}</span></a></li>{{/each}}
-            </ul>
-          </div>
-          {{#sf-isShowMoreBrand brands.buckets}}
-            <div class="classify-c2 fr">
-              <a href="javascript:" id="classify-more"><span class="classify-more"></span><span class="icon icon105"></span></a>
+        {{#if filterCustom.brandName}}
+          {{^searchData.brandIds}}
+          <li class="clearfix classify-logo" data-role="selectBrand">
+            <div class="classify-c1 fl">
+              <label>{{filterCustom.brandName}}：</label>
+              <ul id="classify-logo">
+                {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}<span>{{key}}</span></a></li>{{/each}}
+              </ul>
             </div>
-          {{/sf-isShowMoreBrand}}
-        </li>
-        {{/searchData.brandIds}}
-        {{^searchData.categoryIds}}
+            {{#sf-isShowMoreBrand brands.buckets}}
+              <div class="classify-c2 fr">
+                <a href="javascript:" id="classify-more"><span class="classify-more"></span><span class="icon icon105"></span></a>
+              </div>
+            {{/sf-isShowMoreBrand}}
+          </li>
+          {{/searchData.brandIds}}
+        {{/if}}
+        {{#if filterCustom.categoryName}}
+          {{^searchData.categoryIds}}
             <li class="classify-text" data-role="selectCategory">
-                <label>分类：</label>
-                <ul>
-                  {{#each categories.buckets}}
-                      <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-                  {{/each}}
-                </ul>
+              <label>{{filterCustom.categoryName}}：</label>
+              <ul>
+                {{#each categories.buckets}}
+                  <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                {{/each}}
+              </ul>
             </li>
-        {{/searchData.categoryIds}}
-        {{^searchData.category2ndIds}}
+          {{/searchData.categoryIds}}
+        {{/if}}
+        {{#if filterCustom.category2ndName}}
+          {{^searchData.category2ndIds}}
             <li class="classify-text" data-role="selectCategory2nd">
-                <label>二级分类：</label>
-                <ul>
-                  {{#each categories2nd.buckets}}
-                      <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-                  {{/each}}
-                </ul>
+              <label>{{filterCustom.category2ndName}}：</label>
+              <ul>
+                {{#each categories2nd.buckets}}
+                  <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                {{/each}}
+              </ul>
             </li>
-        {{/searchData.category2ndIds}}
-        {{^searchData.originIds}}
-        <li class="classify-text" data-role="selectOrigin">
-          <label>货源地：</label>
-          <ul>
-            {{#each origins.buckets}}
-              <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-            {{/each}}
-          </ul>
-        </li>
-        {{/searchData.originIds}}
+          {{/searchData.category2ndIds}}
+        {{/if}}
+        {{#if filterCustom.originName}}
+          {{^searchData.originIds}}
+          <li class="classify-text" data-role="selectOrigin">
+            <label>{{filterCustom.originName}}：</label>
+            <ul>
+              {{#each origins.buckets}}
+                <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+              {{/each}}
+            </ul>
+          </li>
+          {{/searchData.originIds}}
+        {{/if}}
       </ul>
     </div>
   </div>

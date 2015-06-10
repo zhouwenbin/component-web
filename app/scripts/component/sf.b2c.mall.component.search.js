@@ -145,7 +145,15 @@ define('sf.b2c.mall.component.search', [
       filterCategories: [],
       filterCategories2nd: [],
       filterOrigins: [],
-      filters: []
+      filters: [],
+      //定制过滤条件
+      filterCustom: {
+        showStatInfo: true,
+        brandName: "品牌",
+        categoryName: "分类",
+        category2ndName: "",
+        originName: "货源地"
+      }
     }),
 
     //排序类型map
@@ -164,6 +172,11 @@ define('sf.b2c.mall.component.search', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
+      //覆盖定制过滤条件
+      if (options.filterCustom) {
+        this.renderData.attr("filterCustom", options.filterCustom);
+      }
+
       var that = this;
 
       this.addRenderDataBind();
