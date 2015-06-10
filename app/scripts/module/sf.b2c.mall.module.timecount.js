@@ -1,23 +1,23 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.module.timecount', [
-    'can',
-    'jquery',
-    'sf.b2c.mall.business.config',
-    'sf.b2c.mall.framework.comm'
-  ],
-  function(can, $, SFConfig, SFFrameworkComm) {
+'sf.b2c.mall.module.timecount', [
+  'can',
+  'jquery',
+  'sf.b2c.mall.business.config',
+  'sf.b2c.mall.framework.comm'
+],
+function(can, $, SFConfig, SFFrameworkComm) {
 
-    SFFrameworkComm.register(1);
-    //倒计时模块主要的两个属性：1,class为timer； 2，time-line属性，该属性的值为设置日期；
-    var deadTime = can.Control.extend({
+  SFFrameworkComm.register(1);
+  //倒计时模块主要的两个属性：1,class为timer； 2，time-line属性，该属性的值为设置日期；
+  var deadTime = can.Control.extend({
 
       init: function(element, options) {
         this.refeshTime(element);
       },
 
-      //
+      //刷新倒计时组件的元素
       refeshTime: function(element) {
         var textValue = this.timeCount(element.attr("time-line"));
         element.text(textValue);
@@ -49,18 +49,18 @@ define(
         }
 
         timeInterval = timeInterval + ofh + ' 小时 ' + ofm + ' 分钟 ' + ofs + ' 秒';
+
         return timeInterval;
       }
-    })
-
-    // 查到所有需要倒计时的模块
-    var timeModules = $('.timer');
-
-
-    // 分别进行实例化 
-    setInterval(function() {
-      _.each(timeModules, function(timeModule) {
-        new deadTime($(timeModule));
-      });
-    }, 1000);
+    }
   })
+
+// 查到所有需要倒计时的模块
+var timeModules = $('.timer');
+// 查找所有的倒计时组件并分别进行实例化
+setInterval(function() {
+  _.each(timeModules, function(timeModule) {
+    new deadTime($(timeModule));
+  });
+}, 1000);
+})
