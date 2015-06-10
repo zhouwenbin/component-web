@@ -1,16 +1,17 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+
 @import 'module/slider';
 @import 'module/product';
-@import 'module/crumbs';
-@import 'module/classify';
-@import 'module/sort';
 @import 'module/nataral-nav';
 @import 'module/nataral-shop';
-@import 'module/nataral-shop-detail';
 @import 'module/nataral-product';
+@import 'module/nataral-product2';
+@import 'module/nataral-product3';
 @import 'module/nataral-sort';
 @import 'module/nataral-top';
+@import 'module/nataral-category';
+@import 'module/flashsale';
 .nataral-h2{
 	font-size: 20px;
 	color: #666;
@@ -26,10 +27,10 @@
 	display: none !important;
 }
 
-.sort{
-	margin-bottom: -45px;
+.nataral-index-c1{
+	width:890px;
 }
-.crumbs{
-	margin:0;
-	padding: 15px 0;
+
+.nataral-index-c2{
+	width:270px;
 }
