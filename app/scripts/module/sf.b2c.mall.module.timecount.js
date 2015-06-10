@@ -1,3 +1,5 @@
+'use strict';
+
 define(
   'sf.b2c.mall.module.timecount', [
     'can',
@@ -12,9 +14,10 @@ define(
     var deadTime = can.Control.extend({
 
       init: function(element, options) {
-       //  setInterval(this.refeshTime(element), 1000);
           this.refeshTime(element);
       },
+
+        //刷新倒计时组件的元素
         refeshTime: function(element){
             var textValue = this.timeCount(element.attr("time-line"));
             element.text(textValue);
@@ -53,8 +56,7 @@ define(
     // 查到所有需要倒计时的模块
     var timeModules = $('.timer');
 
-    // 分别进行实例化
-
+    // 查找所有的倒计时组件并分别进行实例化
     setInterval(function(){
         _.each(timeModules, function(timeModule) {
             new deadTime($(timeModule));
