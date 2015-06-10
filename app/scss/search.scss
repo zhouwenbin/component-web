@@ -7,8 +7,13 @@
 @import 'module/sort';
 @import 'module/search-none';
 @import 'module/search-page';
+@import 'module/crumbs';
+@import 'module/nataral-shop-detail';
 
-
+.crumbs{
+	margin:0;
+	padding: 15px 0;
+}
 .myorder-tab li{
 	height: 30px;
 	line-height: 30px;
@@ -16,4 +21,31 @@
 }
 .myorder-tab li.active{
 	border-width: 2px;
+}
+
+.nataral-shop-detail .tooltip li {
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 10px
+}
+
+.nataral-shop-detail .tooltip li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0
+}
+
+.nataral-shop-detail .tooltip h3 {
+    padding-left: 24px;
+    font-size: 14px;
+    margin-bottom: 5px
+}
+
+.nataral-shop-detail .tooltip p {
+    padding-left: 24px
+}
+
+.nataral-shop-detail .tooltip .icon69 {
+    margin-left: -24px;
+    float: left
 }
