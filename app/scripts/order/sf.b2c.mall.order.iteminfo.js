@@ -572,8 +572,9 @@ define('sf.b2c.mall.order.iteminfo', [
       'mediav': function(params) {
         var orderid = (new Date).valueOf();
 
-        var __src = $.cookie('__src');
-        if (__src == 'mediav') {
+        var __src = $.cookie('_src');
+        if(/^media_v/.test(__src)){
+        // if (__src == 'mediav') {
           var _mvq = window._mvq || [];
           window._mvq = _mvq;
           _mvq.push(['$setAccount', 'm-123868-0']);
