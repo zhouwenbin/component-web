@@ -19,17 +19,19 @@
                 <tbody>
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
-                        <td class="td1" style="position:relative;">
-                            {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
-                            {{#isValid}}
-                                <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
-                            {{/isValid}}
-                            <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
-                            {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
+                        <td class="td1">
+                            <div class="cart-pos">
+                                {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                                {{#isValid}}
+                                    <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
+                                {{/isValid}}
+                                <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
+                                {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
+                            </div>
                         </td>
                         <td class="td2">
                             {{#isDiscount}}<div class="text-error">{{discountInfo}}</div>{{/isDiscount}}
-                            <h2><a href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
+                            <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
@@ -46,7 +48,7 @@
                             {{^isValid}}{{quantity}}{{/isValid}}
                             {{#isValid}}
                                 <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
-                                {{#each limitDescList}}<p class="text-error">{{desc}}</p>{{/each}}
+                                {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
                             {{/isValid}}
                         </td>
                         <td class="td5">
@@ -69,8 +71,13 @@
     		</div>
     		<div class="cart-footer-c2 fr">
     			<ul>
-    				<li>商品总计:<span class="s1">¥{{sf.price order.goodsTotalFee}}</span></li>
-    				<li>
+                    <li class="li1">
+                        {{#if isShowOverLimitPrice}}
+                        <div class="tooltip-cart">您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                        {{/if}}
+                        总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
+                    </li>
+    				<li class="li1">
     					{{#if isShowReduceInfos}}
                         <div class="tooltip-cart">
                             <span class="icon icon77 fl"></span>
@@ -80,7 +87,7 @@
 
                             <div class="tooltip-pos">
                                 <span class="icon icon78"></span>
-                                <div class="tooltip-outer">
+                                <div class="tooltip-outer" style="top:100%;bottom:0;margin:13px 0 0 0;">
                                     <div class="tooltip tooltip-active">
                                         <ul>
                                             {{#each reduceInfos}}
@@ -97,15 +104,8 @@
                         {{/if}}
     					活动优惠:<span class="s1">- ¥ {{sf.price order.discountFee}}</span>
     				</li>
-    				<li>总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span></li>
     			</ul>
-                {{#if isShowOverLimitPrice}}
-    			<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-    			{{/if}}
-
-    			<button id="gotopay" class="btn {{canOrder}}">去结算</button>
-
-
+    			<button style="margin-top:7px;" id="gotopay" class="btn {{canOrder}}">去结算</button>
     		</div>
     		<span class="icon icon75"></span>
     		<span class="icon icon76"></span>

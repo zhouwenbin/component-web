@@ -20,7 +20,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
   'sf.b2c.mall.api.minicart.getTotalCount',
-  'sf.b2c.mall.api.shopcart.addItemToCart',
+  'sf.b2c.mall.api.shopcart.addItemsToCart',
   'sf.b2c.mall.api.shopcart.isShowCart',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
@@ -165,8 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-	    // this.renderMap['template_header_61'].call(this, that.data);
-
+      this.renderMap['template_header_61'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
@@ -181,7 +180,7 @@ define('sf.b2c.mall.component.header', [
 
 
       this.checkTempActionAddCart();
-	},
+    },
 
     controlCart: function() {
 
@@ -197,30 +196,30 @@ define('sf.b2c.mall.component.header', [
         // 如果判断开关关闭，使用dom操作不显示购物车
         if (typeof flag == 'undefined' || flag == '2') {
           $(".mini-cart-container-parent").hide();
-        }else if (flag == '0') {
+        } else if (flag == '0') {
           // @todo 请求总开关进行判断
           var isShowCart = new SFIsShowCart();
           isShowCart
             .sendRequest()
-            .done(function (data) {
+            .done(function(data) {
               if (data.value) {
                 $(".mini-cart-container-parent").show();
-              }else{
+              } else {
                 $(".mini-cart-container-parent").hide();
               }
             })
 
-        }else{
+        } else {
           $(".mini-cart-container-parent").show();
         }
-      }else{
+      } else {
         var isShowCart = new SFIsShowCart();
         isShowCart
           .sendRequest()
-          .done(function (data) {
+          .done(function(data) {
             if (data.value) {
               $(".mini-cart-container-parent").show();
-            }else{
+            } else {
               $(".mini-cart-container-parent").hide();
             }
           });
@@ -281,20 +280,24 @@ define('sf.b2c.mall.component.header', [
       // 添加购物车发送请求
       addItemToCart.sendRequest()
         .done(function(data) {
-          if (data.value) {
+          if (data.isSuccess) {
             // 更新mini购物车
             can.trigger(window, 'updateCart');
-          }
-        })
-        .fail(function(data) {
-          if (data == 15000800) {
-            var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
-            $(document.body).append($el)
+          } else {
+            var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+            if ($('.dialog-cart').length > 0) {
+              return false;
+            };
+            $(document.body).append($el);
+            $('.closeDialog').click(function(event) {
+              $el.remove();
+            });
             setTimeout(function() {
               $el.remove();
-            }, 1000);
+            }, 3000);
           }
         })
+        .fail(function(data) {})
     },
 
     /**
@@ -385,7 +388,9 @@ define('sf.b2c.mall.component.header', [
       },
 
       'template_header_61': function(data) {
-        new SFHeader61('.sf-b2c-mall-header');
+        new SFHeader61('.sf-b2c-mall-header', {
+          "originheader": this
+        });
       }
     },
 
@@ -398,36 +403,36 @@ define('sf.b2c.mall.component.header', [
 
       // @note 只有在首页需要显示浮动导航栏
       // if (pathname == '/' || pathname == '/index.html') {
-        // @note 520活动暂时关闭浮动导航栏
-        // @note 520活动结束，打开浮动导航
-        $(window).scroll(function() {
-          setTimeout(function() {
-            if ($(window).scrollTop() > 256) {
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '0px',
-                opacity: 1
-              }, 300);
-            } else {
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '-56px',
-                opacity: 0
-              }, 0);
-            }
 
-          }, 200);
+      // @note 520活动暂时关闭浮动导航栏
+      // @note 520活动结束，打开浮动导航
+      $(window).scroll(function() {
+        setTimeout(function() {
+          if ($(window).scrollTop() > 566) {
+            $(".nav-fixed .nav-inner").stop(true, false).animate({
+              top: '0px',
+              opacity: 1
+            }, 300);
+          } else {
+            $(".nav-fixed .nav-inner").stop(true, false).animate({
+              top: '-56px',
+              opacity: 0
+            }, 0);
+          }
+        }, 200);
+      })
+
+      $('#js-focus')
+        .hover(function() {
+          $('.nav-qrcode').addClass('show');
+          return false;
         })
-
-        $('#js-focus')
-          .hover(function() {
-            $('.nav-qrcode').addClass('show');
-            return false;
-          })
-          .bind('mouseleave', function() {
-            $('.nav-qrcode').removeClass('show');
-            return false;
-          })
-      // };
-      //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
+        .bind('mouseleave', function() {
+          $('.nav-qrcode').removeClass('show');
+          return false;
+        })
+        // };
+        //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
       var authResp = can.deparam(window.location.search.substr(1));
       if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp) && typeof authResp.partnerId != 'undefined') {
         delete authResp.partnerId;
@@ -690,9 +695,9 @@ define('sf.b2c.mall.component.header', [
           that.data.attr('nickname', arr[0]);
 
           // 登录后刷新页面，520项目的注册信息要隐藏
-          if (!that.afterLoginDest) {
-            window.location.reload();
-          }
+          // if (!that.afterLoginDest) {
+          //   window.location.reload();
+          // }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
@@ -706,7 +711,7 @@ define('sf.b2c.mall.component.header', [
       window.popMessage = function() {
         setTimeout(function() {
           new SFMessage(null, {
-            'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
+            'tip': "50元优惠券已发放至您的账户，请注意查收。",
             'type': 'success'
           });
         }, 1000);

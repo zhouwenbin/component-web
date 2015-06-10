@@ -4,7 +4,7 @@ define(
     'underscore',
     'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
-    'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
     'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.framework.comm'
@@ -139,48 +139,59 @@ define(
         // 添加购物车发送请求
         addItemToCart.sendRequest()
           .done(function(data) {
-            if (data.value) {
+            if (data.isSuccess) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
 
-              if($(window).scrollTop() > 166){
-                  var target=$('.nav .icon100').eq(1).offset()
-              }else{
-                  var target=$('.nav .icon100').eq(0).offset()
+              var $el = window.el;
+
+              if ($(window).scrollTop() > 166) {
+                var target = $('.nav .icon100').eq(1).offset()
+              } else {
+                var target = $('.nav .icon100').eq(0).offset()
               }
-
-              var targetX=target.left,
-                  targetY=target.top,
-                  current=$el.offset(),
-                  currentX=current.left,
-                  currentY=current.top,
-                  cart_num=$('.cart-num').eq(0).text();
-
+              var targetX = target.left,
+                targetY = target.top,
+                current = $el.offset(),
+                currentX = current.left,
+                currentY = current.top,
+                cart_num = $('.cart-num').eq(0).text();
               $el.clone().appendTo($el.parent());
               $el.css({
+                left: targetX - currentX,
+                top: targetY - currentY,
                 zIndex: 2,
-                left:targetX-currentX,
-                top:targetY-currentY,
-                visibility:'hidden'
-              });
+                visibility: 'hidden'
+              })
 
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
               cart_num++;
               $('.cart-num').text(cart_num);
               $('.nav .label-error').addClass('active');
 
+              setTimeout(function() {
+                $('.nav .label-error').removeClass('active');
+              }, 500);
+            } else {
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              if ($('.dialog-cart').length > 0) {
+                return false;
+              };
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
+                $el.remove();
+              });
               setTimeout(function(){
-                  $('.nav .label-error').removeClass('active');
-              },500);
+                $el.remove();
+              },3000);
             }
+
+
           })
           .fail(function(data) {
-            if (data == 15000800) {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
-              $(document.body).append($el)
-              setTimeout(function() {
-                $el.remove();
-              }, 1000);
-            }
+
           })
       },
 
@@ -194,8 +205,12 @@ define(
 
         var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+
+          window.el = el;
+
           // 用户如果如果登录
-          this.addCart(itemId, 1, el);
+          this.addCart.call(this, itemId, 1, el);
+
         } else {
           store.set('temp-action-addCart', {
             itemId: itemId

@@ -25,9 +25,9 @@ define('sf.b2c.mall.component.search', [
   'sf.b2c.mall.component.recommendProducts',
   'text!template_component_search'
 ], function(text, $, cookie, can, _, md5, store, helpers, SFFrameworkComm, SFConfig, SFFn, SFMessage,
-            SFSearchItem, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart,
-            SFRecommendProducts,
-            template_component_search) {
+  SFSearchItem, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart,
+  SFRecommendProducts,
+  template_component_search) {
 
   return can.Control.extend({
     helpers: {
@@ -143,76 +143,7 @@ define('sf.b2c.mall.component.search', [
       filterBrands: [],
       filterCategories: [],
       filterOrigins: [],
-      filters: [],
-      //添加到购物车
-      addToCart: function(context, element ,event) {
-        var itemId = context.itemId;
-        var num = 1;
-        var $el = element;
-        var itemsStr = JSON.stringify([{
-          itemId: itemId,
-          num: num || 1
-        }]);
-        var addItemToCart = new SFAddItemToCart({
-          items: itemsStr
-        });
-
-        // 添加购物车发送请求
-        addItemToCart.sendRequest()
-          .done(function(data) {
-            if (data.isSuccess == true) {
-              // 更新mini购物车
-              can.trigger(window, 'updateCart');
-
-              if($(window).scrollTop() > 166){
-                var target=$('.nav .icon100').eq(1).offset()
-              }else{
-                var target=$('.nav .icon100').eq(0).offset()
-              }
-
-              var targetX=target.left,
-                targetY=target.top,
-                current=$el.offset(),
-                currentX=current.left,
-                currentY=current.top,
-                cart_num=$('.cart-num').eq(0).text();
-
-              var parent = $el.parents(":first");
-              var aClone = parent.find("a:first").clone();
-              parent.find("a:first")
-                .css({
-                  zIndex: 2,
-                  left:targetX-currentX,
-                  top:targetY-currentY,
-                  visibility:'hidden'
-                });
-              aClone.prependTo(parent);
-
-              cart_num++;
-              $('.cart-num').text(cart_num);
-              $('.nav .label-error').addClass('active');
-
-              setTimeout(function(){
-                $('.nav .label-error').removeClass('active');
-              },500);
-            } else {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">' + data.resultMsg + '</div></div>');
-              $(document.body).append($el)
-              setTimeout(function() {
-                $el.remove();
-              }, 1000);
-            }
-          })
-          .fail(function(data) {
-            if (data == 15000800) {
-              var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">您的购物车已满</div></div>');
-              $(document.body).append($el)
-              setTimeout(function() {
-                $el.remove();
-              }, 1000);
-            }
-          })
-      }
+      filters: []
     }),
 
     //排序类型map
@@ -281,39 +212,39 @@ define('sf.b2c.mall.component.search', [
      */
     addRenderDataBind: function() {
       var that = this;
-      this.renderData.bind("searchData.keyword", function(ev, newVal, oldVal){
+      this.renderData.bind("searchData.keyword", function(ev, newVal, oldVal) {
         that.searchParams.q = newVal;
       });
-      this.renderData.bind("searchData.page", function(ev, newVal, oldVal){
+      this.renderData.bind("searchData.page", function(ev, newVal, oldVal) {
         that.searchParams.from = (newVal - 1) * that.searchParams.size;
         that.renderData.attr("nextPage", 1 + +newVal);
         that.renderData.attr("prevPage", newVal - 1);
       });
-      this.renderData.bind("searchData.sort", function(ev, newVal, oldVal){
+      this.renderData.bind("searchData.sort", function(ev, newVal, oldVal) {
         that.searchParams.sort = newVal;
       });
-      this.renderData.bind("searchData.brandIds", function(ev, newVal, oldVal){
-        if(newVal) {
+      this.renderData.bind("searchData.brandIds", function(ev, newVal, oldVal) {
+        if (newVal) {
           that.searchParams.brandIds = newVal.serialize();
         } else {
           delete that.searchParams.brandIds;
         }
       });
-      this.renderData.bind("searchData.categoryIds", function(ev, newVal, oldVal){
-        if(newVal) {
+      this.renderData.bind("searchData.categoryIds", function(ev, newVal, oldVal) {
+        if (newVal) {
           that.searchParams.categoryIds = newVal.serialize();
         } else {
           delete that.searchParams.categoryIds;
         }
       });
-      this.renderData.bind("searchData.originIds", function(ev, newVal, oldVal){
-        if(newVal) {
+      this.renderData.bind("searchData.originIds", function(ev, newVal, oldVal) {
+        if (newVal) {
           that.searchParams.originIds = newVal.serialize();
         } else {
           delete that.searchParams.originIds;
         }
       });
-      this.renderData.bind("itemSearch", function(ev, newVal, oldVal){
+      this.renderData.bind("itemSearch", function(ev, newVal, oldVal) {
         if (that.renderData.searchData.page * that.searchParams.size >= that.renderData.itemSearch.totalHits) {
           that.renderData.attr("nextPage", 0)
         }
@@ -336,7 +267,7 @@ define('sf.b2c.mall.component.search', [
       var that = this;
 
       can.when(this.initSearchItem(this.searchData))
-        .always(function(){
+        .always(function() {
           $(".mask, .loading, .loadingBg").hide();
           //渲染页面
           that.renderHtml(data);
@@ -378,15 +309,17 @@ define('sf.b2c.mall.component.search', [
      */
     initSearchItem: function(searchData) {
       var that = this;
-      var searchItem = new SFSearchItem({itemSearchRequest: JSON.stringify(this.searchParams)});
+      var searchItem = new SFSearchItem({
+        itemSearchRequest: JSON.stringify(this.searchParams)
+      });
       return searchItem.sendRequest()
         .done(function(itemSearchData) {
           that.renderData.attr("itemSearch", itemSearchData);
 
           //将得到的聚合数据存储起来，用于展示赛选条件
-          _.each(itemSearchData.aggregations, function(value, key, list){
+          _.each(itemSearchData.aggregations, function(value, key, list) {
             var fn = that.aggregationsMap[value.name];
-            if (_.isFunction(fn)){
+            if (_.isFunction(fn)) {
               fn.call(that, value)
             }
           })
@@ -402,10 +335,10 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("brands", value);
 
         var brandIds = this.searchParams.brandIds;
-        if(brandIds) {
+        if (brandIds) {
           _.each(brandIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id ==   bvalue) {
+              if (ivalue.id == bvalue) {
                 that.renderData.filterBrands.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
@@ -418,7 +351,7 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("categories", value);
 
         var categoryIds = this.searchParams.categoryIds;
-        if(categoryIds) {
+        if (categoryIds) {
           _.each(categoryIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
               if (ivalue.id == bvalue) {
@@ -434,7 +367,7 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("origins", value);
 
         var originIds = this.searchParams.originIds;
-        if(originIds) {
+        if (originIds) {
           _.each(originIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
               if (ivalue.id == bvalue) {
@@ -479,7 +412,7 @@ define('sf.b2c.mall.component.search', [
      * @returns {string} url参数
      */
     getSearchParamStr: function(data) {
-      if(!data) {
+      if (!data) {
         data = this.renderData.searchData._data;
       }
       var paramStr = "";
@@ -541,7 +474,9 @@ define('sf.b2c.mall.component.search', [
      * @param targetElement
      */
     '#emptyFilterBtn click': function(targetElement) {
-      this.gotoNewPage({keyword: this.renderData.searchData.attr("keyword")});
+      this.gotoNewPage({
+        keyword: this.renderData.searchData.attr("keyword")
+      });
     },
     /**
      * 删除一个以选中条件
@@ -633,6 +568,103 @@ define('sf.b2c.mall.component.search', [
             that.renderData.attr("isShowShoppintCart", !!info.value)
           });
       }
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 添加购物车动作触发
+     * @param  {element} el
+     */
+    '.addtocart click': function(el, event) {
+      event && event.preventDefault();
+
+      var itemId = el.parents("li[data-item-id]").data("itemId");
+      if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+
+        window.el = el;
+
+        // 用户如果如果登录
+        this.addCart.call(this, itemId, 1, el);
+
+      } else {
+        store.set('temp-action-addCart', {
+          itemId: itemId
+        });
+        can.trigger(window, 'showLogin', [window.location.href]);
+      }
+    },
+
+
+    /**
+     * @author Michael.Lee
+     * @description 加入购物车
+     */
+    addCart: function(itemId, num, $el) {
+      var itemsStr = JSON.stringify([{
+        itemId: itemId,
+        num: num || 1
+      }]);
+      var addItemToCart = new SFAddItemToCart({
+        items: itemsStr
+      });
+
+      // 添加购物车发送请求
+      addItemToCart.sendRequest()
+        .done(function(data) {
+          if (data.isSuccess) {
+            // 更新mini购物车
+            can.trigger(window, 'updateCart');
+
+            var $el = window.el;
+
+            if ($(window).scrollTop() > 166) {
+              var target = $('.nav .icon100').eq(1).offset()
+            } else {
+              var target = $('.nav .icon100').eq(0).offset()
+            }
+            var targetX = target.left,
+              targetY = target.top,
+              current = $el.offset(),
+              currentX = current.left,
+              currentY = current.top,
+              cart_num = $('.cart-num').eq(0).text();
+            $el.clone().appendTo($el.parent());
+            $el.css({
+              left: targetX - currentX,
+              top: targetY - currentY,
+              zIndex: 2,
+              visibility: 'hidden'
+            })
+
+            setTimeout(function() {
+              $el.remove();
+            }, 1000);
+            cart_num++;
+            $('.cart-num').text(cart_num);
+            $('.nav .label-error').addClass('active');
+
+            setTimeout(function() {
+              $('.nav .label-error').removeClass('active');
+            }, 500);
+          } else {
+            var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+            if ($('.dialog-cart').length > 0) {
+              return false;
+            };
+            $(document.body).append($el);
+            $('.closeDialog').click(function(event) {
+              $el.remove();
+            });
+            setTimeout(function() {
+              $el.remove();
+            }, 3000);
+          }
+
+
+        })
+        .fail(function(data) {
+
+        })
     }
   });
 

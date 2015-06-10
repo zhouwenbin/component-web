@@ -18,7 +18,7 @@ define('sf.b2c.mall.component.addreditor', [
 ], function(can, store, $cookie, RegionsAdapter, SFCreateRecAddress, SFCreateReceiverInfo, SFUpdateRecAddress, SFUpdateReceiverInfo, placeholders, SFMessage, AddressAdapter, SFSetDefaultAddr, SFSetDefaultRecv) {
   return can.Control.extend({
 
-    init: function() {
+    init: function(element, options) {
       this.adapter = {};
       this.request();
       this.onSuccess = this.options.onSuccess;
@@ -43,7 +43,7 @@ define('sf.b2c.mall.component.addreditor', [
      * @param  {Map} data 渲染页面的数据
      */
     render: function(data, tag, element) {
-      this.setup(element)
+      this.setup(element);
       var html = can.view('templates/component/sf.b2c.mall.component.addreditor.mustache', data);
       element.html(html);
       this.supplement(tag);
@@ -165,7 +165,11 @@ define('sf.b2c.mall.component.addreditor', [
       };
       var info = map[tag].call(this, params);
       this.adapter.addr = new can.Map(info);
-
+      if (this.from == 'order') {
+        this.adapter.isShowBtnCancel = true;
+      } else {
+        this.adapter.isShowBtnCancel = false;
+      }
       this.render(this.adapter, tag, element);
     },
 
@@ -339,11 +343,9 @@ define('sf.b2c.mall.component.addreditor', [
       return def;
     },
 
-    '#paddressSaveCancel click': function(element, event) {
-      // this.hide();
+    '#addressCancel click': function(element, event) {
+      event && event.preventDefault();
       this.element.hide();
-      this.element.empty();
-      $('#btn-add-addr').show();
       return false;
     },
 
@@ -527,10 +529,10 @@ define('sf.b2c.mall.component.addreditor', [
 
         // 执行更新
         this.update(addr, element)
-          .done(function(){
+          .done(function() {
             element.parents('div#editAdrArea').toggle();
           })
-          .fail(function(error){
+          .fail(function(error) {
             console.error(error);
           });
 
@@ -542,11 +544,11 @@ define('sf.b2c.mall.component.addreditor', [
 
         // 执行新增，store存储放在add方法里面了
         this.add(addr)
-          .done(function(data){
+          .done(function(data) {
             element.parents('div#addAdrArea').toggle();
             $('#btn-add-addr').show();
           })
-          .fail(function(error){
+          .fail(function(error) {
             console.error(error);
           })
       }

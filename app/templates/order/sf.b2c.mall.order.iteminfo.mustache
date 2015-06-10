@@ -27,7 +27,7 @@
                   <h2><a href="javascript:void(0)">{{goodsName}}</a></h2>
                   <div class="cart-standard">{{{spec}}}</div>
                 </div>
-              </div>        
+              </div>
             </td>
             <td class="td2"></td>
             <td class="td3">{{sf.price price}}</td>
@@ -91,8 +91,8 @@
       </div>
       {{/orderCoupon.isShowMore}}
       {{! end 优惠券列表 }}
-      <div class="cart-coupon-r3">or<a href="javascript:void(0)" class="text-link">兑换优惠券？</a></div>
-      <div class="cart-coupon-r4">请输入您手中的兑换码：
+      <div class="cart-coupon-r3">or<a href="javascript:void(0)" class="text-link btn-exCode">兑换优惠券？</a></div>
+      <div class="cart-coupon-r4 hide">请输入您手中的兑换码：
         <input class="input" type="text" can-value="orderCoupon.couponExCode" value="{{orderCoupon.couponExCode}}" id="conpon" />
         <a id="useCouponCodeBtn" class="btn btn-normal" href="#">确定</a>
       </div>
@@ -103,17 +103,21 @@
     <div class="cart-footer-c2 fr">
         <ul>
             <li class="li1">商品总计:<span class="s1">¥{{sf.price orderFeeItem.goodsTotalFee}}</span></li>
-            <li class="li1">活动优惠:<span class="s1">-¥{{sf.price orderFeeItem.discount}}</span></li>
-            <li class="li1 text-important">优惠券:<span class="s1">-¥{{sf.price couponPrice}}</span>    </li>
+            <li class="li1">活动优惠:<span class="s1">- ¥{{sf.price orderFeeItem.discount}}</span></li>
+            <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price couponPrice}}</span>    </li>
             <li class="li1">
                 <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-                运费:<span class="s1">免运费</span>           
+                运费:<span class="s1">免运费</span>
             </li>
             <li class="li1">总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price orderFeeItem.shouldPay}}</strong></span></li>
-            <li><button id="submitOrder" class="btn btn-danger {{^flag}} btn-disable{{/flag}}">提交订单</button></li>
-        </ul>    
-        <div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div>
-
+            <li>
+              {{#sf-needshowcart}}
+              <a class="text-link" id="backtocartedit" style="margin-right:5px;" href="http://www.sfht.com/shoppingcart.html">返回购物车修改</a>
+              {{/sf-needshowcart}}
+              <button id="submitOrder" class="btn btn-danger {{^flag}} btn-disable{{/flag}}">提交订单</button>
+            </li>
+            <li class="li1"><div class="text-error">{{^flag}}{{errorDes}}{{/flag}}</div></li>
+        </ul>
     </div>
     <span class="icon icon75"></span>
     <span class="icon icon76"></span>
