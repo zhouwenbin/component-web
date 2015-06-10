@@ -36,6 +36,9 @@
               {{#each filterCategories}}
                   <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
               {{/each}}
+              {{#each filterCategories2nd}}
+                  <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="category2ndIds" data-id="{{id}}"></span></a></li>
+              {{/each}}
               {{#each filterOrigins}}
                   <li><a class="btn-search" href="javascript:">货源地：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
               {{/each}}
@@ -59,15 +62,25 @@
         </li>
         {{/searchData.brandIds}}
         {{^searchData.categoryIds}}
-        <li class="classify-text" data-role="selectCategory">
-          <label>分类：</label>
-          <ul>
-            {{#each categories.buckets}}
-              <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
-            {{/each}}
-          </ul>
-        </li>
+            <li class="classify-text" data-role="selectCategory">
+                <label>分类：</label>
+                <ul>
+                  {{#each categories.buckets}}
+                      <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                  {{/each}}
+                </ul>
+            </li>
         {{/searchData.categoryIds}}
+        {{^searchData.category2ndIds}}
+            <li class="classify-text" data-role="selectCategory2nd">
+                <label>二级分类：</label>
+                <ul>
+                  {{#each categories2nd.buckets}}
+                      <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
+                  {{/each}}
+                </ul>
+            </li>
+        {{/searchData.category2ndIds}}
         {{^searchData.originIds}}
         <li class="classify-text" data-role="selectOrigin">
           <label>货源地：</label>

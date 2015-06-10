@@ -5,19 +5,17 @@
     <div class="nataral-shop-detail-inner">
       <h2>{{shopInfo.name}}</h2>
       <p>{{{shopInfo.desc}}}</p>
-      <a class="text-link" href="#">{{#sf-num shopInfo.branchAddressList}}{{/sf-num}}家分店</a>
-
       <div class="tooltip-pos">
-        <a class="nataral-video-c2r2-a" href="javascript:;">{{#sf-num shopInfo.branchAddressList}}{{/sf-num}}家分店</a>
-
+        <a class="text-link" href="javascript:;">{{#sf-num shopInfo.branchAddressList}}{{/sf-num}}家分店</a>
         <div class="tooltip-outer">
           <div class="tooltip">
             <ul>
               {{#each shopInfo.branchAddressList}}
-                <li><h3><span class="icon icon69"></span><a href="">{{name}}</a></h3><p>{{address}}</p></li>
+              <li><h3><span class="icon icon69"></span><a href="">{{name}}</a></h3><p>{{address}}</p></li>
               {{/each}}
             </ul>
-            <span class="icon icon16-3"><span class="icon icon16-4"></span></span></div>
+            <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+          </div>
         </div>
       </div>
     </div>

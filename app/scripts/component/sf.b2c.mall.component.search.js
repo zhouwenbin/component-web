@@ -138,10 +138,12 @@ define('sf.b2c.mall.component.search', [
       //聚合数据，主要用于前端数据展示
       brands: {},
       categories: {},
+      categories2nd: {},
       origins: {},
       //已选中的聚合数据
       filterBrands: [],
       filterCategories: [],
+      filterCategories2nd: [],
       filterOrigins: [],
       filters: []
     }),
@@ -187,6 +189,10 @@ define('sf.b2c.mall.component.search', [
       if (categoryIds) {
         this.renderData.attr("searchData.categoryIds", categoryIds.split("||"));
       }
+      var category2ndIds = params.category2ndIds;
+      if (category2ndIds) {
+        this.renderData.attr("searchData.category2ndIds", category2ndIds.split("||"));
+      }
       var originIds = params.originIds;
       if (originIds) {
         this.renderData.attr("searchData.originIds", originIds.split("||"));
@@ -207,7 +213,7 @@ define('sf.b2c.mall.component.search', [
       //过滤店铺
       var shopId = params.shopId;
       if (shopId) {
-        this.renderData.attr("searchData.shopIds", shopId.split("||"));
+        this.renderData.attr("searchData.shopId", shopId.split("||"));
       }
 
       this.render(this.renderData, element);
@@ -243,6 +249,13 @@ define('sf.b2c.mall.component.search', [
           delete that.searchParams.categoryIds;
         }
       });
+      this.renderData.bind("searchData.category2ndIds", function(ev, newVal, oldVal) {
+        if (newVal) {
+          that.searchParams.secondCategoryIds = newVal.serialize();
+        } else {
+          delete that.searchParams.secondCategoryIds;
+        }
+      });
       this.renderData.bind("searchData.originIds", function(ev, newVal, oldVal) {
         if (newVal) {
           that.searchParams.originIds = newVal.serialize();
@@ -262,7 +275,7 @@ define('sf.b2c.mall.component.search', [
           delete that.searchParams.productForms;
         }
       });
-      this.renderData.bind("searchData.shopIds", function(ev, newVal, oldVal){
+      this.renderData.bind("searchData.shopId", function(ev, newVal, oldVal){
         if(newVal) {
           that.searchParams.shopIds = newVal.serialize();
         } else {
@@ -375,6 +388,22 @@ define('sf.b2c.mall.component.search', [
           })
         }
       },
+      bySecondCategory: function(value) {
+        var that = this;
+        this.renderData.attr("categories2nd", value);
+
+        var category2ndIds = this.searchParams.secondCategoryIds;
+        if (category2ndIds) {
+          _.each(category2ndIds, function(bvalue, bkey, blist) {
+            _.each(value.buckets, function(ivalue, ikey, ilist) {
+              if (ivalue.id == bvalue) {
+                that.renderData.filterCategories2nd.push(ivalue);
+                that.renderData.filters.push(ivalue);
+              }
+            })
+          })
+        }
+      },
       byGoodsOrigin: function(value) {
         var that = this;
         this.renderData.attr("origins", value);
@@ -443,7 +472,7 @@ define('sf.b2c.mall.component.search', [
      * @param data url参数
      */
     gotoNewPage: function(data) {
-      window.location.href = "search.html?" + this.getSearchParamStr(data);
+      window.location.href = window.location.pathname + "?" + this.getSearchParamStr(data);
     },
 
     /**
@@ -470,6 +499,16 @@ define('sf.b2c.mall.component.search', [
       var searchDataTemp = _.clone(this.renderData.searchData._data);
       delete searchDataTemp.page;
       searchDataTemp.categoryIds = [targetElement.data("id")];
+      this.gotoNewPage(searchDataTemp);
+    },
+    /**
+     * 按二级分类条件筛选
+     * @param targetElement
+     */
+    "[data-role=selectCategory2nd] li click": function(targetElement) {
+      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      delete searchDataTemp.page;
+      searchDataTemp.category2ndIds = [targetElement.data("id")];
       this.gotoNewPage(searchDataTemp);
     },
     /**
