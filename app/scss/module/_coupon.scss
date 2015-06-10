@@ -1,0 +1,49 @@
+.coupon{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	position: relative;
+	height: 58px;
+	padding-left:11px;
+	background: url(#{$bg-url}coupon-normal.png) no-repeat;
+	margin-right: 11px;
+}
+.coupon:after{
+	content: '';
+	width: 11px;
+	height: 100%;
+	background: url(#{$bg-url}coupon-normal.png) no-repeat right bottom;
+	position: absolute;
+	right: -11px;
+	top: 0;
+}
+.coupon-disable{
+	background: url(#{$bg-url}coupon-disable.png) no-repeat;
+}
+.coupon-disable:after{
+	background: url(#{$bg-url}coupon-disable.png) no-repeat right bottom;
+}
+.coupon .icon85{
+	position: absolute;
+	right: -10px;
+	top: 0;
+	z-index: 1;
+}
+.coupon-disable{
+
+}
+.coupon-r1{
+	margin-bottom: 3px;
+	margin-top: 4px;
+}
+.coupon-r1 strong{
+	font-size: 32px;
+	margin-right: 10px;
+}
+.coupon-r1 b{
+	font-size: 14px;
+	font-family: arial;
+}
+.coupon-r2{
+	color: #555;
+}
