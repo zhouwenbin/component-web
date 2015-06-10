@@ -573,7 +573,7 @@ define('sf.b2c.mall.order.iteminfo', [
         var orderid = (new Date).valueOf();
 
         var __src = $.cookie('_src');
-        if(/^mediav/.test(__src)){
+        if(/^media_v/.test(__src)){
         // if (__src == 'mediav') {
           var _mvq = window._mvq || [];
           window._mvq = _mvq;
