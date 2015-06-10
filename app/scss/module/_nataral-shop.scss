@@ -13,6 +13,8 @@
 
 .nataral-shop-h{
 	border-bottom: 1px solid #E5E5E5;
+	padding: 10px;
+	position: relative;
 }
 .nataral-shop-b li{
 	width: 143px;
@@ -68,18 +70,20 @@
 	font-weight: normal;
 }
 .nataral-shop-h img{
-	width: 578px;
-	height: 244px;
+	width: 558px;
+	height: 224px;
 }
 .nataral-shop-h h3{
 	height: 50px;
 	line-height: 50px;
-	margin-top: -50px;
 	background: #fff;
 	background: rgba(255,255,255,0.75);
 	position: absolute;
-	width: 578px;
+	width: 100%;
 	text-indent: 24px;
+	left: 0;
+	bottom: 0;
+	margin-bottom: 10px;
 }
 .nataral-shop-h h3 a{
 	margin-right: 25px;
