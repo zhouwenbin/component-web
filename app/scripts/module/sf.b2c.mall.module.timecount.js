@@ -18,7 +18,7 @@ function(can, $, SFConfig, SFFrameworkComm) {
 
       //刷新倒计时组件的元素
       refeshTime: function(element) {
-         this.timeCount($(element).attr("time-line"));
+         this.timeCount($(element).attr("time-a"));
       },
 
       //deadTimeLine的时间格式为20150609211912，意思是2015年6月9日21点19分12秒
@@ -77,7 +77,6 @@ function(can, $, SFConfig, SFFrameworkComm) {
             clickEvent = setInterval(function(){
                 new  deadTime($("[data-cms-module='timeclient'][class='active']"));
             }, 1000);
-            $(timeCountModule).css("background", "red");
         } );
     });
 
