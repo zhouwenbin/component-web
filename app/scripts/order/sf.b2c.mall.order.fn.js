@@ -5,12 +5,18 @@ define(
     'jquery',
     'can',
     'underscore',
-    'sf.b2c.mall.api.order.requestPayV2'
+    'sf.b2c.mall.api.order.requestPayV2',
+    'sf.b2c.mall.api.order.cancelOrder',
+    'sf.b2c.mall.api.order.confirmReceive',
+    'sf.b2c.mall.api.order.deleteOrder'
   ],
 
-  function($, can, _, SFApiRequestPayV2) {
+  function($, can, _, SFApiRequestPayV2, SFApiCancelOrder, SFConfirmReceive, SFDeleteOrder) {
 
     var requestPayV2 = new SFApiRequestPayV2();
+    var cancelOrder = new SFApiCancelOrder();
+    var confirmReceive = new SFConfirmReceive();
+    var deleteOrder = new SFDeleteOrder();
 
     return {
       payV2: function(data, callback) {
@@ -23,7 +29,7 @@ define(
           .sendRequest()
           .done(function(data) {
             //note 兼容连连支付ie8浏览器
-            if (/https:\/\/yintong.com.cn/.test(data.url) && navigator.userAgent.indexOf("MSIE 8.0")>0) {
+            if (/https:\/\/yintong.com.cn/.test(data.url) && navigator.userAgent.indexOf("MSIE 8.0") > 0) {
               setTimeout(function() {
                 var a = document.createElement("a");
                 if (!a.click) {
@@ -53,7 +59,34 @@ define(
               callback.error(map[error] || requestPayV2.api.ERROR_CODE[error]);
             }
           });
+      },
+      //确认收货
+      orderConfirm: function(params, success, error) {
+        confirmReceive.setData({
+          subOrderId: params
+        });
+
+        confirmReceive.sendRequest().done(success).fail(error);
+      },
+      //删除订单
+      orderDelete: function(params, success, error) {
+        deleteOrder.setData({
+          orderId: params
+        });
+
+        deleteOrder.sendRequest().done(success).fail(error);
+      },
+      //取消订单
+      orderCancel: function(params, success, error) {
+        cancelOrder.setData({
+          orderId: params
+        });
+
+        cancelOrder.sendRequest().done(success).fail(error);
       }
+
+
+
     }
 
   })

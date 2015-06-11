@@ -42,18 +42,61 @@ define('sf.b2c.mall.component.header.61', [
 
     showAD: function() {
 
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        $(".banner-scroll3").hide();
+        return false;
+      }
+
       if (!this.isInShowPage()) {
         $(".banner-scroll3").hide();
         return false;
       }
 
-      $('.banner-scroll3').delay(100).animate({
-        "height": 90
-      }, 300);
+      if (store.get("closed") === 'true') {
+        $(".banner-scroll3").hide();
+        $('.banner-scroll').delay(1000).animate({
+          "height": 100
+        }, 300);
+      } else {
+        $('.banner-scroll3').delay(100).animate({
+          "height": 400
+        }, 300);
+      }
+
     },
 
-    '.banner-scroll3 click': function(element, event){
-      window.location.href = "http://www.sfht.com/activity/211.html";
+    '.close click': function(element, event) {
+      $('.banner-scroll3')
+        .animate({
+          'height': 0
+        }, 1000, function() {
+          $(".close").hide();
+        });
+
+      $('.banner-scroll').delay(1000).animate({
+        "height": 100
+      }, 300);
+
+      store.set("closed", "true");
+    },
+
+    '.banner-scroll click': function(element, event) {
+      $('.banner-scroll')
+        .animate({
+          'height': 0
+        }, 300)
+
+      $(".banner-scroll3").show();
+      $('.banner-scroll3').delay(100).animate({
+        "height": 400
+      }, 1000, function() {
+        $(".close").show();
+      });
+
+    },
+
+    '.bigpic click': function(element, event) {
+      this.options.originheader.showRegister("http://www.sfht.com/activity/251.html?_spm=0.229.1719.1");
     },
 
     isInShowPage: function() {

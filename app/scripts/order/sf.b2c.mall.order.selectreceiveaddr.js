@@ -220,12 +220,12 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     queryAddress: function(recAddrs, recPersons) {
       var result = new Array();
 
-      //取得默认的收货人和收货地址
+      //取得默认的收货人和收货地址(地址中isDefault为1，并且收货地址的recId和收货人的recId相同)
       var defaultRecAddrID = null;
       var defaultRecID = null;
       _.each(recAddrs.items, function(recAddrItem) {
         _.each(recPersons.items, function(presonItem) {
-          if (recAddrItem.isDefault != 0 && presonItem.isDefault != 0 && recAddrItem.recId != 0 && presonItem.recId != 0) {
+          if (recAddrItem.isDefault != 0 && recAddrItem.recId == presonItem.recId) {
             recAddrItem.recName = presonItem.recName;
             recAddrItem.credtNum = presonItem.credtNum;
             recAddrItem.credtNum2 = presonItem.credtNum2;

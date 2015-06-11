@@ -55,7 +55,12 @@ define(
           this.orderListComponent.destroy();
         }
 
-        var searchValue = _.str.trim($("#searchValue")[0].value);
+
+        if ($('.orderShow').hasClass('hide')) {
+          var searchValue = _.str.trim($("#searchNoResultValue")[0].value);
+        } else {
+          var searchValue = _.str.trim($("#searchValue")[0].value);
+        }
 
         if (_.str.isBlank(searchValue)) {
           searchValue = null;
@@ -66,9 +71,13 @@ define(
           return false;
         }
 
-        this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
-          "searchValue": searchValue
+        window.location.search = '?' + $.param({
+          q: searchValue
         });
+
+        // this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
+        //   "searchValue": searchValue
+        // });
       },
 
       /**

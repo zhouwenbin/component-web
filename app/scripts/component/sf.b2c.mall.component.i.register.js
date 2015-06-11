@@ -18,10 +18,11 @@ define(
     'sf.util',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.promotion.receivePro',
+    'sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.api.user.checkUserExist' //@noto 检查第三方账号绑定的手机号是否有登录密码
   ],
 
-  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage, SFReceivePro, SFCheckUserExist) {
+  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage, SFReceivePro, SFReceiveCoupon, SFCheckUserExist) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -403,6 +404,7 @@ define(
                 //   });
                 // }
                 // 注册送优惠券 end
+                that.receiveCoupon();
 
                 can.route.attr({
                   'tag': 'success',
@@ -422,6 +424,39 @@ define(
               }
             })
         }
+      },
+
+      errorMap: {
+        "11000020": "卡券不存在",
+        "11000030": "卡券已作废",
+        "11000050": "卡券已领完",
+        "11000100": "您已领过该券",
+        "11000130": "卡包不存在",
+        "11000140": "卡包已作废"
+      },
+
+      receiveCoupon: function() {
+
+        var params = {};
+        params.bagId = '236';
+        params.type = 'CARD';
+        params.receiveChannel = 'B2C';
+        params.receiveWay = 'ZTLQ';
+        var that = this;
+        var receiveCouponData = new SFReceiveCoupon(params);
+        return can.when(receiveCouponData.sendRequest())
+          .done(function(userCouponInfo) {
+            new SFMessage(null, {
+              'tip': '50元优惠券已发放至您的账户，请注意查收。',
+              'type': 'success'
+            });
+          })
+          .fail(function(error) {
+            new SFMessage(null, {
+              'tip': that.errorMap[error] || '领取失败',
+              'type': 'error'
+            });
+          });
       },
 
       sendCoupon: function() {

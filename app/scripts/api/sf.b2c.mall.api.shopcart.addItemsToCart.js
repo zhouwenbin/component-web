@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.removeItemsInCart
+  * @class sf.b2c.mall.api.shopcart.addItemsToCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.removeItemsInCart',
+'sf.b2c.mall.api.shopcart.addItemsToCart',
 [
   'jquery',
   'can',
@@ -22,10 +22,10 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.removeItemsInCart',
+      METHOD_NAME: 'shopcart.addItemsToCart',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemIds': 'string'
+        'items': 'json'
       },
       OPTIONAL: {
       },
@@ -33,7 +33,8 @@ function($, can, _, Comm, SecurityType) {
       },
       ERROR_CODE: {
         '15000100': '请求参数有误',
-        '15000300': '购物车删除商品失败'
+        '15000201': '该商品不支持加入购物车',
+        '15000800': '您的购物车已满'
       }
     }
   });
