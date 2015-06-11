@@ -726,6 +726,7 @@ module.exports = function(grunt) {
 
       order: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.order.js',

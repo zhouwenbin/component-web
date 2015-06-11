@@ -452,7 +452,7 @@ define(
         document.domain = "sfht.com";
 
         var params = {};
-        params.bagId = '234';
+        params.bagId = '236';
         params.type = 'CARD';
         params.receiveChannel = 'B2C';
         params.receiveWay = 'ZTLQ';

@@ -55,7 +55,7 @@ define('sf.b2c.mall.component.header.61', [
       if (store.get("closed") === 'true') {
         $(".banner-scroll3").hide();
         $('.banner-scroll').delay(1000).animate({
-          "height": 90
+          "height": 100
         }, 300);
       } else {
         $('.banner-scroll3').delay(100).animate({
@@ -74,7 +74,7 @@ define('sf.b2c.mall.component.header.61', [
         });
 
       $('.banner-scroll').delay(1000).animate({
-        "height": 90
+        "height": 100
       }, 300);
 
       store.set("closed", "true");

@@ -91,7 +91,8 @@ define('sf.b2c.mall.product.detailcontent', [
             arr = uinfo.split(',');
           }
 
-          if (supportShoppingCart() && (typeof arr[4] != 'undefined' && arr[4] != '2')) {
+          // arr[4]为undefined时候是未登录，也不等于2，要显示购物车
+          if (supportShoppingCart() && (arr[4] != '2')) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);

@@ -471,7 +471,7 @@ define('sf.b2c.mall.order.iteminfo', [
           store.set('regionId', regionId);
 
           // 对mediav的转化做监控
-          that.monitor['mediav'](params);
+          that.monitor['mediav'].call(that, params);
 
           // window.location.href = 'gotopay.html?' +
           //   $.param({"orderid": message.value,"recid": selectAddr.recId});
@@ -572,18 +572,20 @@ define('sf.b2c.mall.order.iteminfo', [
       'mediav': function(params) {
         var orderid = (new Date).valueOf();
 
-        var __src = $.cookie('__src');
-        if (__src == 'mediav') {
+        var __src = $.cookie('_src');
+        if(/^media_v/.test(__src)){
+        // if (__src == 'mediav') {
           var _mvq = window._mvq || [];
           window._mvq = _mvq;
           _mvq.push(['$setAccount', 'm-123868-0']);
 
           _mvq.push(['$setGeneral', 'ordercreate', '', /*用户名*/ '', /*用户id*/ '']);
           _mvq.push(['$logConversion']);
-          _mvq.push(['$addOrder', /*订单号*/ orderid, /*订单金额*/ '']);
-          _.each(this.itemObj.orderGoodsItemList, function(value, key, list){
-            _mvq.push(['$addItem', /*订单号*/ orderid, /*商品id*/ value.itemId, /*商品名称*/ '', /*商品价格*/ value.price, /*商品数量*/ value.quantity, /*商品页url*/ '', /*商品页图片url*/ '']);
-          });
+          _mvq.push(['$addOrder', /*订单号*/ orderid, /*订单金额*/ this.itemObj.orderFeeItem.actualTotalFee]);
+
+          this.itemObj.orderGoodsItemList.each(function (value, index) {
+            _mvq.push(['$addItem', /*订单号*/ orderid, /*商品id*/ value.itemId, /*商品名称*/ value.goodsName, /*商品价格*/ value.price, /*商品数量*/ value.quantity, /*商品页url*/ value.detailUrl, /*商品页图片url*/ '']);
+          })
           _mvq.push(['$logData']);
         }
       }
