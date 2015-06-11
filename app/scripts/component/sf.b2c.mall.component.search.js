@@ -173,10 +173,6 @@ define('sf.b2c.mall.component.search', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
-      //覆盖定制过滤条件
-      if (options.filterCustom) {
-        this.renderData.attr("filterCustom", options.filterCustom);
-      }
 
       var that = this;
 
@@ -224,10 +220,26 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("searchData.productForms", productForms.split("||"));
       }
 
+      if (productForms == "YZYW") {
+        this.renderData.attr("filterCustom", {
+          showStatInfo: true,
+          brandName: "人气品牌",
+          categoryName: "商品分类",
+          category2ndName: "选购热点",
+          originName: "名品货源"
+        });
+      }
+
       //过滤店铺
       var shopId = params.shopId;
       if (shopId) {
         this.renderData.attr("searchData.shopId", shopId.split("||"));
+      }
+
+
+      //覆盖定制过滤条件
+      if (options.filterCustom) {
+        this.renderData.attr("filterCustom", options.filterCustom);
       }
 
       this.render(this.renderData, element);
@@ -457,6 +469,8 @@ define('sf.b2c.mall.component.search', [
                 ivalue.attr("actualPrice", value.originPrice);
                 ivalue.attr("soldOut", value.soldOut);
                 ivalue.attr("supportShoppingCart", value.supportShoppingCart);
+                ivalue.attr("originRetailPrice", value.localSellingPrice);
+                ivalue.attr("currencySymbol", value.currencySymbol);
               }
             });
           })
