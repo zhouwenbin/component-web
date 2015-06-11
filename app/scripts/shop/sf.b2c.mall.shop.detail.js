@@ -2,15 +2,18 @@
 
 define('sf.b2c.mall.shop.detail', [
     'can',
+    'underscore',
     'zoom',
     'store',
     'jquery.cookie',
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
+    'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.product.searchShopInfo',
     "text!template_shop_detail"
   ],
-  function(can, zoom, store, cookie, helpers, SFComm, SFSearchShopInfo,
+  function(can, _, zoom, store, cookie, helpers, SFComm, SFConfig,
+           SFSearchShopInfo,
            template_shop_detail) {
   return can.Control.extend({
 
@@ -43,6 +46,9 @@ define('sf.b2c.mall.shop.detail', [
     init: function(element, options) {
       var params = can.deparam(window.location.search.substr(1));
       var shopId = params.shopId;
+      if (!/^\+?[1-9]\d*$/.test(shopId)) {
+        this.goto404();
+      }
       this.render(shopId);
     },
 
@@ -51,7 +57,14 @@ define('sf.b2c.mall.shop.detail', [
       can.when(this.initSearchShopInfo(shopId))
         .done(function(){
           that.renderHtml();
+        })
+        .fail(function() {
+          that.goto404();
         });
+    },
+
+    goto404: function() {
+      window.location.href = "404.html";
     },
 
     /**

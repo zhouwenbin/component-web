@@ -24,6 +24,7 @@
 <div class="pb">
   <div class="classify">
     <div class="pm">
+      {{#if filterCustom.showCrumbs}}<div class="crumbs"><a href="http://www.sfht.com/index.html">原汁原味</a><span>&gt;</span>123</div>{{/if}}
       {{#if filterCustom.showStatInfo}}
         <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
       {{/if}}
@@ -153,15 +154,15 @@
                 <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
                   <div class="product-r1">
                     <div class="nataral-product-price2">当地售价<div class="text-important">{{currencySymbol}}{{sf.price originRetailPrice}}</div></div>
-                    <a href=""><img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt=""></a>
+                    <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="">
                     <span></span>
                     {{#sf-isSoldOut soldOut}}
                       <div class="mask show"></div>
                       <span class="icon icon24"></span>
                     {{/sf-isSoldOut}}
                   </div>
-                  <h3><a href="">{{title}}</a></h3>
-                    <p>{{#nationPic}}<img src="{{nationPic}}"  alt="货源地" width="22" height="14" />{{/nationPic}}{{goodsOrigin}} {{shippingStartPointDesc}}</p>
+                  <h3>{{title}}</h3>
+                  <p>{{#nationPic}}<img src="{{nationPic}}"  alt="货源地" width="22" height="14" />{{/nationPic}}{{goodsOrigin}} {{shippingStartPointDesc}}</p>
                   <div class="product-r2 clearfix">
                     <div class="product-r2c1 fl"><span>￥</span><strong>{{sf.price sellingPrice}}</strong><span class="nataral-product-price">约 {{currencySymbol}}{{sf.price originPrice}}</span></div>
                     {{#if isShowShoppintCart}}

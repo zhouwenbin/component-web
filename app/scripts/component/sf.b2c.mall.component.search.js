@@ -148,6 +148,7 @@ define('sf.b2c.mall.component.search', [
       filters: [],
       //定制过滤条件
       filterCustom: {
+        showCrumbs: false,
         showStatInfo: true,
         brandName: "品牌",
         categoryName: "分类",
