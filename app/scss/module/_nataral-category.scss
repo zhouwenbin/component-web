@@ -6,13 +6,14 @@
 	color: #666666;
 }
 .nataral-category-h a:hover{
-	color: #3B86C4;
+	text-decoration: underline;
 }
 
 .nataral-category-bc1{
-	width: 235px;
+	width: 237px;
 	height: 348px;
 	background: url(#{$bg-url}nataral-category1.jpg) no-repeat;
+	background-size: 237px;
 	text-align: center;
 }
 .nataral-category:last-child .nataral-category-bc1{
@@ -42,10 +43,10 @@
 .nataral-category-bc1 a{
 	color: #fff;
 }
-.nataral-category-bc2{
-	overflow: hidden;
-}
 
+.nataral-category-bc2 ul{
+	margin-right: -2px;
+}
 .nataral-category-bc2 li{
 	float: left;
 	width: 188px;

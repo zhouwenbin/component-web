@@ -27,6 +27,17 @@
 .introduce3{
 	background: url(#{$bg-url}introduce/introduce3.jpg) no-repeat center top;
 	height: 850px;
+	position: relative;
+}
+.introduce3 a{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 112px;
+	height: 112px;
+	margin-left: -56px;
+	margin-top: -56px;
+	text-indent: -999em;
 }
 .footer1{
 	margin-top: 0;
