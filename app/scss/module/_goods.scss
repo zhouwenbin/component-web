@@ -201,7 +201,10 @@
 	z-index: -1;
 	left: 0;
 	top: 0;
-	transition: 0.5s transform ease-in-out,0.5s left linear,0.5s top ease-out,0.1s visibility 0.5s linear;
+	transition: 0.5s transform ease-in-out,
+				0.5s left linear,
+				0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28),
+				0.1s visibility 0.5s linear;
 }
 .goods-c2r2 .icon{
 	margin-left:10px;
