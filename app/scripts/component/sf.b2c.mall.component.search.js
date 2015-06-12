@@ -122,29 +122,32 @@ define('sf.b2c.mall.component.search', [
       from: 0
     },
 
+    //url中的参数
+    searchData: {
+    },
+
     //用于模板渲染
     renderData: new can.Map({
-      //url中的参数
-      searchData: {
-        keyword: "",
-        page: null
-      },
+      //接口吐出的原始数据
+      itemSearch: {},
+      keyword: "",
+      page: null,
       nextPage: null,
       prevPage: 0,
       //是否展示购物车
       isShowShoppintCart: false,
-      //接口吐出的原始数据
-      itemSearch: {},
       //聚合数据，主要用于前端数据展示
       brands: {},
       categories: {},
-      categories2nd: {},
+      secondCategories: {},
       origins: {},
+      shopNations: {},
       //已选中的聚合数据
       filterBrands: [],
       filterCategories: [],
-      filterCategories2nd: [],
+      filterSecondCategories: [],
       filterOrigins: [],
+      filterShopNations: [],
       filters: [],
       //定制过滤条件
       filterCustom: {
@@ -152,8 +155,9 @@ define('sf.b2c.mall.component.search', [
         showStatInfo: true,
         brandName: "品牌",
         categoryName: "分类",
-        category2ndName: "",
-        originName: "货源地"
+        secondCategoryName: "",
+        originName: "货源地",
+        shopNationName: ""
       }
     }),
 
@@ -184,56 +188,60 @@ define('sf.b2c.mall.component.search', [
       if (!/^\+?[1-9]\d*$/.test(page)) {
         page = 1;
       }
-      this.renderData.attr("searchData.page", page);
+      this.renderData.attr("page", page);
 
       //获取存储搜索关键字
       var keyword = params.keyword;
-      this.renderData.attr("searchData.keyword", keyword || "");
+      this.renderData.attr("keyword", keyword || "");
 
       //获取处理过滤条件
       var brandIds = params.brandIds;
       if (brandIds) {
-        this.renderData.attr("searchData.brandIds", brandIds.split("||"));
+        this.renderData.attr("brandIds", brandIds.split("||"));
       }
       var categoryIds = params.categoryIds;
       if (categoryIds) {
-        this.renderData.attr("searchData.categoryIds", categoryIds.split("||"));
+        this.renderData.attr("categoryIds", categoryIds.split("||"));
       }
-      var category2ndIds = params.category2ndIds;
-      if (category2ndIds) {
-        this.renderData.attr("searchData.category2ndIds", category2ndIds.split("||"));
+      var secondCategoryIds = params.catg2ndIds;
+      if (secondCategoryIds) {
+        this.renderData.attr("secondCategoryIds", secondCategoryIds.split("||"));
       }
       var originIds = params.originIds;
       if (originIds) {
-        this.renderData.attr("searchData.originIds", originIds.split("||"));
+        this.renderData.attr("originIds", originIds.split("||"));
+      }
+      var shopNationIds = params.snIds;
+      if (shopNationIds) {
+        this.renderData.attr("shopNationIds", shopNationIds.split("||"));
       }
 
       //获取处理排序条件
       var sort = params.sort;
       if (sort) {
-        this.renderData.attr("searchData.sort", this.sortMap[sort] || this.sortMap["DEFAULT"]);
+        this.renderData.attr("sort", this.sortMap[sort] || this.sortMap["DEFAULT"]);
       }
 
       //获取产品形态
-      var productForms = params.productForms;
-      if (productForms) {
-        this.renderData.attr("searchData.productForms", productForms.split("||"));
+      var pfs = params.pfs;
+      if (pfs) {
+        this.renderData.attr("pfs", pfs.split("||"));
       }
 
-      if (productForms == "YZYW") {
+      if (pfs == "YZYW") {
         this.renderData.attr("filterCustom", {
           showStatInfo: true,
           brandName: "人气品牌",
           categoryName: "商品分类",
-          category2ndName: "选购热点",
-          originName: "名品货源"
+          secondCategoryName: "选购热点",
+          shopNation: "名品货源"
         });
       }
 
       //过滤店铺
       var shopId = params.shopId;
       if (shopId) {
-        this.renderData.attr("searchData.shopId", shopId.split("||"));
+        this.renderData.attr("shopId", shopId.split("||"));
       }
 
 
@@ -250,62 +258,86 @@ define('sf.b2c.mall.component.search', [
      */
     addRenderDataBind: function() {
       var that = this;
-      this.renderData.bind("searchData.keyword", function(ev, newVal, oldVal) {
+      this.renderData.bind("keyword", function(ev, newVal, oldVal) {
+        that.searchData.keyword = newVal;
         that.searchParams.q = newVal;
       });
-      this.renderData.bind("searchData.page", function(ev, newVal, oldVal) {
+      this.renderData.bind("page", function(ev, newVal, oldVal) {
+        that.searchData.page = newVal;
         that.searchParams.from = (newVal - 1) * that.searchParams.size;
         that.renderData.attr("nextPage", 1 + +newVal);
         that.renderData.attr("prevPage", newVal - 1);
       });
-      this.renderData.bind("searchData.sort", function(ev, newVal, oldVal) {
+      this.renderData.bind("sort", function(ev, newVal, oldVal) {
         that.searchParams.sort = newVal;
+        that.searchData.sort = newVal;
       });
-      this.renderData.bind("searchData.brandIds", function(ev, newVal, oldVal) {
+      this.renderData.bind("brandIds", function(ev, newVal, oldVal) {
         if (newVal) {
           that.searchParams.brandIds = newVal.serialize();
+          that.searchData.brandIds = newVal.serialize();
         } else {
           delete that.searchParams.brandIds;
+          delete that.searchData.brandIds;
         }
       });
-      this.renderData.bind("searchData.categoryIds", function(ev, newVal, oldVal) {
+      this.renderData.bind("categoryIds", function(ev, newVal, oldVal) {
         if (newVal) {
           that.searchParams.categoryIds = newVal.serialize();
+          that.searchData.categoryIds = newVal.serialize();
         } else {
           delete that.searchParams.categoryIds;
+          delete that.searchData.categoryIds;
         }
       });
-      this.renderData.bind("searchData.category2ndIds", function(ev, newVal, oldVal) {
+      this.renderData.bind("secondCategoryIds", function(ev, newVal, oldVal) {
         if (newVal) {
           that.searchParams.secondCategoryIds = newVal.serialize();
+          that.searchData.catg2ndIds = newVal.serialize();
         } else {
           delete that.searchParams.secondCategoryIds;
+          delete that.searchData.catg2ndIds;
         }
       });
-      this.renderData.bind("searchData.originIds", function(ev, newVal, oldVal) {
+      this.renderData.bind("originIds", function(ev, newVal, oldVal) {
         if (newVal) {
           that.searchParams.originIds = newVal.serialize();
+          that.searchData.originIds = newVal.serialize();
         } else {
           delete that.searchParams.originIds;
+          delete that.searchData.originIds;
+        }
+      });
+      this.renderData.bind("shopNationIds", function(ev, newVal, oldVal) {
+        if (newVal) {
+          that.searchParams.shopNationIds = newVal.serialize();
+          that.searchData.snIds = newVal.serialize();
+        } else {
+          delete that.searchParams.shopNationIds;
+          delete that.searchData.snIds;
         }
       });
       this.renderData.bind("itemSearch", function(ev, newVal, oldVal) {
-        if (that.renderData.searchData.page * that.searchParams.size >= that.renderData.itemSearch.totalHits) {
+        if (that.renderData.page * that.searchParams.size >= that.renderData.itemSearch.totalHits) {
           that.renderData.attr("nextPage", 0)
         }
       });
-      this.renderData.bind("searchData.productForms", function(ev, newVal, oldVal){
+      this.renderData.bind("pfs", function(ev, newVal, oldVal){
         if(newVal) {
           that.searchParams.productForms = newVal.serialize();
+          that.searchData.pfs = newVal.serialize();
         } else {
           delete that.searchParams.productForms;
+          delete that.searchData.pfs;
         }
       });
-      this.renderData.bind("searchData.shopId", function(ev, newVal, oldVal){
+      this.renderData.bind("shopId", function(ev, newVal, oldVal){
         if(newVal) {
           that.searchParams.shopIds = newVal.serialize();
+          that.searchData.shopId = newVal.serialize();
         } else {
           delete that.searchParams.shopIds;
+          delete that.searchData.shopId;
         }
       });
     },
@@ -318,7 +350,7 @@ define('sf.b2c.mall.component.search', [
     render: function(data, element) {
       var that = this;
 
-      can.when(this.initSearchItem(this.searchData))
+      can.when(this.initSearchItem())
         .always(function() {
           $(".mask, .loading, .loadingBg").hide();
           //渲染页面
@@ -357,9 +389,9 @@ define('sf.b2c.mall.component.search', [
     },
     /**
      * @description 从服务器端获取数据
-     * @param searchData
+     * @param searchParams
      */
-    initSearchItem: function(searchData) {
+    initSearchItem: function(searchParams) {
       var that = this;
       var searchItem = new SFSearchItem({
         itemSearchRequest: JSON.stringify(this.searchParams)
@@ -416,14 +448,14 @@ define('sf.b2c.mall.component.search', [
       },
       bySecondCategory: function(value) {
         var that = this;
-        this.renderData.attr("categories2nd", value);
+        this.renderData.attr("secondCategories", value);
 
-        var category2ndIds = this.searchParams.secondCategoryIds;
-        if (category2ndIds) {
-          _.each(category2ndIds, function(bvalue, bkey, blist) {
+        var secondCategoryIds = this.searchParams.secondCategoryIds;
+        if (secondCategoryIds) {
+          _.each(secondCategoryIds, function(bvalue, bkey, blist) {
             _.each(value.buckets, function(ivalue, ikey, ilist) {
               if (ivalue.id == bvalue) {
-                that.renderData.filterCategories2nd.push(ivalue);
+                that.renderData.filterSecondCategories.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
             })
@@ -440,6 +472,22 @@ define('sf.b2c.mall.component.search', [
             _.each(value.buckets, function(ivalue, ikey, ilist) {
               if (ivalue.id == bvalue) {
                 that.renderData.filterOrigins.push(ivalue);
+                that.renderData.filters.push(ivalue);
+              }
+            })
+          })
+        }
+      },
+      byShopNation: function(value) {
+        var that = this;
+        this.renderData.attr("shopNations", value);
+
+        var shopNationIds = this.searchParams.shopNationIds;
+        if (shopNationIds) {
+          _.each(shopNationIds, function(bvalue, bkey, blist) {
+            _.each(value.buckets, function(ivalue, ikey, ilist) {
+              if (ivalue.id == bvalue) {
+                that.renderData.filterShopNations.push(ivalue);
                 that.renderData.filters.push(ivalue);
               }
             })
@@ -483,12 +531,12 @@ define('sf.b2c.mall.component.search', [
      */
     getSearchParamStr: function(data) {
       if (!data) {
-        data = this.renderData.searchData._data;
+        data = this.searchData;
       }
       var paramStr = "";
       _.each(data, function(value, key, list) {
-        if (value.serialize) {
-          paramStr += key + "=" + value.serialize().join("||") + "&";
+        if (_.isArray(value)) {
+          paramStr += key + "=" + value.join("||") + "&";
         } else {
           paramStr += key + "=" + value + "&";
         }
@@ -514,7 +562,7 @@ define('sf.b2c.mall.component.search', [
      * @param targetElement
      */
     "[data-role=selectBrand] li click": function(targetElement) {
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
       searchDataTemp.brandIds = [targetElement.data("id")];
       this.gotoNewPage(searchDataTemp);
@@ -524,7 +572,7 @@ define('sf.b2c.mall.component.search', [
      * @param targetElement
      */
     "[data-role=selectCategory] li click": function(targetElement) {
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
       searchDataTemp.categoryIds = [targetElement.data("id")];
       this.gotoNewPage(searchDataTemp);
@@ -533,10 +581,10 @@ define('sf.b2c.mall.component.search', [
      * 按二级分类条件筛选
      * @param targetElement
      */
-    "[data-role=selectCategory2nd] li click": function(targetElement) {
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+    "[data-role=selectSecondCategory] li click": function(targetElement) {
+      var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.category2ndIds = [targetElement.data("id")];
+      searchDataTemp.catg2ndIds = [targetElement.data("id")];
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -544,9 +592,19 @@ define('sf.b2c.mall.component.search', [
      * @param targetElement
      */
     "[data-role=selectOrigin] li click": function(targetElement) {
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
       searchDataTemp.originIds = [targetElement.data("id")];
+      this.gotoNewPage(searchDataTemp);
+    },
+    /**
+     * 按店铺所在地条件筛选
+     * @param targetElement
+     */
+    "[data-role=selectShopNation] li click": function(targetElement) {
+      var searchDataTemp = _.clone(this.searchData);
+      delete searchDataTemp.page;
+      searchDataTemp.snIds = [targetElement.data("id")];
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -555,7 +613,7 @@ define('sf.b2c.mall.component.search', [
      */
     '#emptyFilterBtn click': function(targetElement) {
       this.gotoNewPage({
-        keyword: this.renderData.searchData.attr("keyword")
+        keyword: this.renderData.attr("keyword")
       });
     },
     /**
@@ -565,7 +623,7 @@ define('sf.b2c.mall.component.search', [
     '#classify-select li .btn-search-close click': function(targetElement) {
       var role = targetElement.data("role");
 
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
       delete searchDataTemp[role];
       this.gotoNewPage(searchDataTemp);
@@ -578,7 +636,7 @@ define('sf.b2c.mall.component.search', [
     "#pageUpBtn click": function(targetElement) {
       var prevPage = this.renderData.prevPage;
 
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       searchDataTemp.page = prevPage ? prevPage : 1;
       this.gotoNewPage(searchDataTemp);
     },
@@ -590,7 +648,7 @@ define('sf.b2c.mall.component.search', [
     "#pageDownBtn click": function(targetElement) {
       var nextPage = this.renderData.nextPage;
 
-      var searchDataTemp = _.clone(this.renderData.searchData._data);
+      var searchDataTemp = _.clone(this.searchData);
       searchDataTemp.page = nextPage;
       this.gotoNewPage(searchDataTemp);
     },
@@ -601,7 +659,7 @@ define('sf.b2c.mall.component.search', [
      */
     "#sortBox li click": function(targerElement) {
       var role = targerElement.data("role");
-      this.renderData.searchData.attr("sort", this.sortMap[role]);
+      this.renderData.attr("sort", this.sortMap[role]);
       this.gotoNewPage();
     },
     /**

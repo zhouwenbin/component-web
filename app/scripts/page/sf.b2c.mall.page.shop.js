@@ -36,7 +36,7 @@ define(
             showStatInfo: false,
             brandName: "人气品牌",
             categoryName: "商品分类",
-            category2ndName: "选购热点",
+            secondCategoryName: "选购热点",
             originName: ""
           }
         });
