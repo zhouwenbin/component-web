@@ -1,0 +1,99 @@
+.nataral-top{
+	width: 121px;
+	border:1px solid #E5E5E5;
+	position: fixed;
+	bottom: 300px;
+	left: 50%;
+	margin-left: 600px;
+	z-index: 2;
+}
+.nataral-top li{
+	background: #fff;
+	border-bottom: 1px dashed #ddd;
+	font-size: 14px;
+	transition:all 0.5s;
+}
+.nataral-top li:hover{
+	background: #eee;
+}
+.nataral-top li a{
+	display: block;
+	height: 51px;
+	line-height: 51px;
+	text-align: center;
+	color: #666;
+}
+.nataral-top li a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.nataral-top li.active i{
+	background: #FF9F00;
+}
+.nataral-top i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #B3B7C0;
+	text-align: center;
+}
+.nataral-top li .nataral-top-text{
+	margin-left: 11px;
+}
+.nataral-top .icon111,
+.nataral-top .icon113{
+	vertical-align: -1px;
+}
+.nataral-top i:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.nataral-top-r1{
+	background: #D9D9D9;
+	
+	margin-top: -1px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.nataral-top-r1:hover{
+	background: #999;
+}
+.nataral-top-r1 .nataral-top-text{
+	margin-right: 7px;
+}
+.nataral-top-r1 a{
+	color: #fff;
+	display: block;
+	height: 33px;
+	line-height: 33px;
+}
+.nataral-top-r1 a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+@media all and (max-width:1400px){
+	.nataral-top{
+		width: 50px;
+		left: auto;
+		right: 0;
+		margin-left: 0;
+	}
+	.nataral-top:hover{
+		width: 121px;
+
+	}
+	.nataral-top:hover .nataral-top-text{
+		display: inline-block;
+	}
+	.nataral-top-text{
+		display: none;
+	}
+}

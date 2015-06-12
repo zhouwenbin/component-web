@@ -1,5 +1,6 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+<<<<<<< HEAD
 @import 'components/product';
 @import 'components/myorder-tab';
 @import 'components/address-add';
@@ -207,81 +208,18 @@
 }
 .myorder .text-error{
 	margin: 10px 0;
+=======
+@import 'module/product';
+@import 'module/myorder-tab';
+@import 'module/address-add';
+@import 'module/personal';
+@import 'module/myorder-search';
+@import 'module/myorder';
+@import 'module/myorder-none';
+@import 'module/account-manage';
+@import 'module/address-table';
+>>>>>>> zhouwenbin
 
-}
-.myorder .btn{
-	display: block;
-	margin: 10px auto;
-}
-.myorder-link{
-	display: block;
-	color: #3b86c4;
-	margin: 10px 0;
-}
-.myorder-address{
-	font-size: 10px;
-	color: #aaa;
-	margin-top: 10px;
-}
-.myorder .label-error{
-	margin-bottom: 14px;
-	background: #ff9999;
-	padding: 0 8px;
-	border-radius: 4px;
-	letter-spacing: 1px;
-}
-.myorder .icon{
-	margin-right: 5px;
-}
-.myorder .icon79{
-	vertical-align: -2px;
-}
-.myorder .page{
-	margin: 30px 0;
-	text-align: center;
-}
-.myorder .tooltip{
-	width: 220px;
-	color:#999;
-}
-.myorder .tooltip-h{
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #e5e5e5;
-}
-.myorder .tooltip li{
-	margin-bottom: 10px;
-	list-style: inside;
-	text-align: left;
-}
-.myorder .tooltip .active{
-	color:#db3f40;
-}
-.myorder .tooltip .time{
-	display: block;
-}
-.myorder .tooltip a{
-	color: #999;
-}
-.myorder .icon88{
-	margin-left: 20px;
-	margin-right: 5px;
-}
-.myorder-none{
-	text-align: center;
-	margin-bottom: 48px;
-}
-.myorder-none a{
-	margin-top: 10px;
-	display: inline-block;
-}
-.myorder-none p{
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 20px;
-	text-align: left;
-	color: #666;
-}
 .product h2{
 	color: #666;
 	font-size: 14px;
@@ -290,37 +228,8 @@
 	border-bottom: 1px solid #e5e5e5;
 	margin-bottom: 26px;
 }
-.account-manage{
-	height: 353px;
-	display: none;
-	padding-left: 100px;
-	margin-top: 55px;
-}
-.account-manage.active{
-	display: block;
-}
-.account-manage1 .btn{
-	margin-left: 52px;
-}
-.account-manage2 .btn{
-	margin-left: 79px;
-}
-.account-manage input{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 247px;
-}
-.account-manage li{
-	margin-bottom: 13px;
-}
-.account-manage label{
-	font-size: 14px;
-	margin-right: 20px;
-	width:5em;
-}
 
-
-
+<<<<<<< HEAD
 .address{
 
 	margin-bottom: 128px;
@@ -388,6 +297,8 @@
 	background: #e5e5e5;
 	color: #999;
 }
+=======
+>>>>>>> zhouwenbin
 .product-list li{
 	margin-left: 22px;
 }
