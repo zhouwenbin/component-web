@@ -3,6 +3,7 @@
 	height: 400px;
 	margin:20px auto 20px;
 	border:1px solid #e6e5e5;
+	margin-bottom: 40px;
 }
 .slider .pm{
 	position: relative;
@@ -85,4 +86,17 @@
 	opacity: 0;
 	filter: alpha(opacity=0);
 
+}
+
+.slider-time{
+	padding-top: 50px;
+	padding-left: 917px;
+	height: 142px;
+	font-family: arial;
+	font-size: 24px;
+	margin-bottom: 4px;
+}
+.slider-time span{
+	margin-right: 24px;
+	letter-spacing: 10px;
 }
