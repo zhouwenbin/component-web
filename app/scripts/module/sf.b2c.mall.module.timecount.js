@@ -10,6 +10,8 @@ define(
 function(can, $, SFConfig, SFFrameworkComm) {
 
   SFFrameworkComm.register(1);
+
+  
   //倒计时模块主要的两个属性：1,data-cms-module为timeclient表示倒计时模块； 2，name='data-cms-hour'，该属性为倒计时的时间位置；
   var deadTime = can.Control.extend({
       init: function(element, options) {
