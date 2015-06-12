@@ -36,8 +36,10 @@
               {{#each filterBrands}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.brandName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
               {{/each}}
-              {{#each filterCategories}}
+              {{#each categories.buckets}}
+                {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.categoryName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
+                {{/selected}}
               {{/each}}
               {{#each filterSecondCategories}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.secondCategoryName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="catg2ndIds" data-id="{{id}}"></span></a></li>
@@ -46,7 +48,7 @@
                   <li><a class="btn-search" href="javascript:">{{filterCustom.originName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
               {{/each}}
               {{#each filterShopNations}}
-                  <li><a class="btn-search" href="javascript:">{{filterCustom.shopNationName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="shopNationIds" data-id="{{id}}"></span></a></li>
+                  <li><a class="btn-search" href="javascript:">{{filterCustom.shopNationName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="snIds" data-id="{{id}}"></span></a></li>
               {{/each}}
             </ul>
             {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}

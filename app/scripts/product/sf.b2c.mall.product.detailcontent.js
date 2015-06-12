@@ -853,12 +853,19 @@ define('sf.b2c.mall.product.detailcontent', [
         return '<div class="goods-price-c1 fl">' +
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong></div>' +
+          '<div class="goods-price-r1">' +
+            '价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
+            '{{#priceInfo.localSellingPrice}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/priceInfo.localSellingPrice}}' +
+          '</div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}' +
 
           '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
-          '<div class="goods-price-r1">促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}</div>' +
+          '<div class="goods-price-r1">' +
+            '促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
+            '{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}' +
+            '{{^priceInfo.isPromotion}}{{#priceInfo.localSellingPrice}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/priceInfo.localSellingPrice}}{{/priceInfo.isPromotion}}' +
+          '</div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-is-showOriginPrice}}' +
           '</div>' +
@@ -1396,18 +1403,18 @@ define('sf.b2c.mall.product.detailcontent', [
       picInfoTemplate: function() {
         return '<div class="goods-c3 fl" id="itemImages">' +
           '<ul class="clearfix">' +
-          '{{#each itemInfo.basicInfo.images}}' +
-          '<li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>' +
-          '{{/each}}' +
+            '{{#each itemInfo.basicInfo.images}}' +
+            '<li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>' +
+            '{{/each}}' +
           '</ul>' +
           '</div>' +
           '<div class="goods-c1 fl">' +
           '<div class="goods-c1r1" id="bigPicArea">' +
           '<ul>' +
-          '<li class="active">' +
-          '<img src="{{itemInfo.currentImage}}" alt="">' +
-          '<span></span>' +
-          '</li>' +
+            '<li class="active">' +
+              '<img src="{{itemInfo.currentImage}}" alt="">' +
+              '<span></span>' +
+            '</li>' +
           '</ul>' +
           '</div>' +
           '</div>';

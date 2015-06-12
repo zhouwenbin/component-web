@@ -234,7 +234,7 @@ define('sf.b2c.mall.component.search', [
           brandName: "人气品牌",
           categoryName: "商品分类",
           secondCategoryName: "选购热点",
-          shopNation: "名品货源"
+          shopNationName: "名品货源"
         });
       }
 
@@ -416,83 +416,90 @@ define('sf.b2c.mall.component.search', [
     aggregationsMap: {
       byBrand: function(value) {
         var that = this;
-        this.renderData.attr("brands", value);
 
         var brandIds = this.searchParams.brandIds;
         if (brandIds) {
           _.each(brandIds, function(bvalue, bkey, blist) {
-            _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id == bvalue) {
-                that.renderData.filterBrands.push(ivalue);
-                that.renderData.filters.push(ivalue);
+            _.find(value.buckets, function(bucket) {
+              if (bucket.id == bvalue) {
+                bucket.selected = true;
+                that.renderData.filterBrands.push(bucket);
+                that.renderData.filters.push(bucket);
               }
-            })
+            });
           })
         }
+        this.renderData.attr("brands", value);
       },
       byCategory: function(value) {
         var that = this;
-        this.renderData.attr("categories", value);
 
         var categoryIds = this.searchParams.categoryIds;
         if (categoryIds) {
           _.each(categoryIds, function(bvalue, bkey, blist) {
-            _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id == bvalue) {
-                that.renderData.filterCategories.push(ivalue);
-                that.renderData.filters.push(ivalue);
-              }
-            })
+              _.find(value.buckets, function(bucket) {
+                if (bucket.id == bvalue) {
+                  bucket.selected = true;
+                  that.renderData.filterCategories.push(bucket);
+                  that.renderData.filters.push(bucket);
+                }
+              });
           })
         }
+
+        this.renderData.attr("categories", value);
       },
       bySecondCategory: function(value) {
         var that = this;
-        this.renderData.attr("secondCategories", value);
 
         var secondCategoryIds = this.searchParams.secondCategoryIds;
         if (secondCategoryIds) {
           _.each(secondCategoryIds, function(bvalue, bkey, blist) {
-            _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id == bvalue) {
-                that.renderData.filterSecondCategories.push(ivalue);
-                that.renderData.filters.push(ivalue);
+            _.find(value.buckets, function(bucket) {
+              if (bucket.id == bvalue) {
+                bucket.selected = true;
+                that.renderData.filterSecondCategories.push(bucket);
+                that.renderData.filters.push(bucket);
               }
-            })
+            });
           })
         }
+
+        this.renderData.attr("secondCategories", value);
       },
       byGoodsOrigin: function(value) {
         var that = this;
-        this.renderData.attr("origins", value);
 
         var originIds = this.searchParams.originIds;
         if (originIds) {
           _.each(originIds, function(bvalue, bkey, blist) {
-            _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id == bvalue) {
-                that.renderData.filterOrigins.push(ivalue);
-                that.renderData.filters.push(ivalue);
+            _.find(value.buckets, function(bucket) {
+              if (bucket.id == bvalue) {
+                bucket.selected = true;
+                that.renderData.filterOrigins.push(bucket);
+                that.renderData.filters.push(bucket);
               }
-            })
+            });
           })
         }
+        this.renderData.attr("origins", value);
       },
       byShopNation: function(value) {
         var that = this;
-        this.renderData.attr("shopNations", value);
 
         var shopNationIds = this.searchParams.shopNationIds;
         if (shopNationIds) {
           _.each(shopNationIds, function(bvalue, bkey, blist) {
-            _.each(value.buckets, function(ivalue, ikey, ilist) {
-              if (ivalue.id == bvalue) {
-                that.renderData.filterShopNations.push(ivalue);
-                that.renderData.filters.push(ivalue);
+            _.find(value.buckets, function(bucket) {
+              if (bucket.id == bvalue) {
+                bucket.selected = true;
+                that.renderData.filterShopNations.push(bucket);
+                that.renderData.filters.push(bucket);
               }
-            })
+            });
           })
         }
+        this.renderData.attr("shopNations", value);
       }
     },
     /**
