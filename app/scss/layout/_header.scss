@@ -88,9 +88,25 @@
 .header1-c2 a{
 	margin-left: 20px;
 }
+.header1-c2 .icon116{
+	margin-right: 8px;
+}
 .header1 a:hover{
 	color:#dc3334;
 }
 .header1-user{
 	margin-right:20px;
+}
+.header1-qrcode{
+	position: relative;
+}
+.header1-qrcode:hover img{
+	display: block;
+}
+.header1-qrcode img{
+	position: absolute;
+	left: -60px;
+	top: 10px;
+	z-index: 998;
+	display: none;
 }
