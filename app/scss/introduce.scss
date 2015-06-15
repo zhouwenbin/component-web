@@ -1,5 +1,6 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+@import 'module/slider';
 .introduce1{
 	background: url(#{$bg-url}introduce/introduce1.jpg) no-repeat center top;
 	height: 1056px;
@@ -24,9 +25,31 @@
 	background: url(#{$bg-url}introduce/introduce2.jpg) no-repeat center top;
 	height: 846px;
 }
-.introduce3{
-	background: url(#{$bg-url}introduce/introduce3.jpg) no-repeat center top;
-	height: 850px;
+.slider{
+	height: 901px;
+	margin: 0;
+}
+.slider-img li a{
+	height: 901px;
+}
+.slider .btn{
+	top: 420px
+}
+
+.slider-icon{
+	background: url(#{$bg-url}play.png) no-repeat;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 112px;
+	height: 112px;
+	margin-left: -56px;
+	margin-top: -56px;
+	text-indent: -999em;
+	transition:all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.slider-icon:hover{
+	transform:scale(1.1);
 }
 .footer1{
 	margin-top: 0;

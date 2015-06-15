@@ -6,17 +6,18 @@
 	color: #666666;
 }
 .nataral-category-h a:hover{
-	color: #3B86C4;
+	text-decoration: underline;
 }
 
 .nataral-category-bc1{
-	width: 235px;
-	height: 348px;
+	width: 237px;
+	height: 349px;
 	background: url(#{$bg-url}nataral-category1.jpg) no-repeat;
+	background-size: cover;
 	text-align: center;
 }
 .nataral-category:last-child .nataral-category-bc1{
-	background: url(#{$bg-url}nataral-category2.jpg) no-repeat;
+	background-image: url(#{$bg-url}nataral-category2.jpg);
 }
 .nataral-category-bc1:before{
 	content: '';
@@ -43,16 +44,20 @@
 	color: #fff;
 }
 .nataral-category-bc2{
+	margin-left: 237px;
+	margin-right: -1px;
+	border:1px solid #E5E5E5;
+}
+.nataral-category-bc2 ul{
+	padding: 10px 5px 5px 10px;
 	overflow: hidden;
 }
-
 .nataral-category-bc2 li{
 	float: left;
-	width: 188px;
-	height: 115px;
-	margin-bottom: -1px;
-	margin-left: -1px;
-	border: 1px solid #E5E5E5;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	width: 180px;
+	height: 106px;
 	background: #fff;
 	text-align: center;
 }
@@ -63,6 +68,6 @@
 	height: 100%;
 }
 .nataral-category-bc2 img{
-	max-width: 187px;
-	max-height: 115px;
+	max-width: 180px;
+	max-height: 106px;
 }
