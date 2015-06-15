@@ -1,5 +1,6 @@
 define(
   'sf.b2c.mall.module.price', [
+    'jquery',
     'can',
     'underscore',
     'store',
@@ -10,7 +11,7 @@ define(
     'sf.b2c.mall.framework.comm'
   ],
 
-  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm) {
+  function($, can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 
@@ -228,6 +229,14 @@ define(
       fillPrice: function(element, value) {
         // 售价
         element.find('.cms-fill-price').text(value.sellingPrice / 100);
+        // 税后折算价
+        if (value.localSellingPrice) {
+          element.find('.cms-fill-localsellingprice').text(value.currencySymbol + (value.localSellingPrice / 100));
+          if (value.isStartGoods == "true") {
+            element.find('.cms-fill-label').show();
+          }
+        }
+
 
         // 如果原价低于卖价，则不展示折扣和原价
         if (value.sellingPrice >= value.referencePrice) {
@@ -244,27 +253,6 @@ define(
           element.find('.product-r1').append('<div class="mask show"></div>');
           element.find('.product-r1').append('<span class="icon icon24"></span>');
         }
-
-
-        // 促销活动 暂时不显示
-        /*
-        if (value.activityTypeDescList && value.activityTypeDescList.length > 0) {
-          if (value.activityTypeDescList.length == 1) {
-            element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 10));
-          } else if (value.activityTypeDescList.length == 2) {
-            element.find('.cms-fill-activitytype').text(value.activityTypeDescList[0].substr(0, 4)
-              + "  " + value.activityTypeDescList[1].substr(0, 4));
-          } else if (value.activityTypeDescList.length > 2){
-            var typeDess = "";
-            _.each(value.activityTypeDescLis, function(value, key, list) {
-              typeDess += value.substr(0, 4) + " ";
-            });
-            element.find('.cms-fill-activitytype').text(typeDess)
-          }
-
-          element.find('.cms-fill-discountparent')[0].style.display = "none";
-        }
-        */
       },
 
       /**
