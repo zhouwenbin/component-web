@@ -1417,7 +1417,10 @@ define('sf.b2c.mall.product.detailcontent', [
             '</li>' +
           '</ul>' +
           '</div>' +
-          '</div>';
+          '</div>' +
+          '{{#itemInfo.localSellingPrice}}' +
+          '<div class="nataral-product-price2">当地售价<div class="text-important">{{itemInfo.currencySymbol}}{{#sf.price itemInfo.localSellingPrice}}</div></div>' +
+          '{{/itemInfo.localSellingPrice}}';
       },
 
       breadScrumbTemplate: function() {
