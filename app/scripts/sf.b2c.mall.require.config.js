@@ -248,7 +248,7 @@ requirejs.config({
 
     //搜索页面
     'sf.b2c.mall.page.search': 'scripts/page/sf.b2c.mall.page.search',
-    //搜索页面
+    //店铺页面
     'sf.b2c.mall.page.shop': 'scripts/page/sf.b2c.mall.page.shop',
 
     //购物车

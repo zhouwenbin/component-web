@@ -406,10 +406,31 @@ define('sf.b2c.mall.component.search', [
             if (_.isFunction(fn)) {
               fn.call(that, value)
             }
-          })
+          });
+
+          //关联一二级分类
+          that.unionCategory();
         });
     },
+    /**
+     * 关联一二级分类
+     */
+    unionCategory: function() {
+      if (this.renderData.filterCustom.secondCategoryName) {
+        var categoryies = this.renderData.attr("categories");
+        var secondCategoryies = this.renderData.attr("secondCategories");
 
+        _.each(categoryies.buckets, function(value, key, list) {
+          var tempSecondCategories = [];
+          _.find(secondCategoryies.buckets, function(secondCategory) {
+            if (value.id == secondCategory.levelOneCategoryId) {
+              tempSecondCategories.push(secondCategory);
+            }
+          });
+          value.attr("secondCategories", tempSecondCategories);
+        });
+      }
+    },
     /**
      * 聚合数据处理map
      */
@@ -453,17 +474,19 @@ define('sf.b2c.mall.component.search', [
         var that = this;
 
         var secondCategoryIds = this.searchParams.secondCategoryIds;
-        if (secondCategoryIds) {
-          _.each(secondCategoryIds, function(bvalue, bkey, blist) {
-            _.find(value.buckets, function(bucket) {
-              if (bucket.id == bvalue) {
-                bucket.selected = true;
-                that.renderData.filterSecondCategories.push(bucket);
-                that.renderData.filters.push(bucket);
+
+        _.each(value.buckets, function(bvalue, bkey, blist) {
+          //处理已选项
+          if (secondCategoryIds) {
+            _.find(secondCategoryIds, function(cateId) {
+              if (cateId == bvalue.id) {
+                bvalue.selected = true;
+                that.renderData.filterSecondCategories.push(bvalue);
+                that.renderData.filters.push(bvalue);
               }
-            });
-          })
-        }
+            })
+          }
+        });
 
         this.renderData.attr("secondCategories", value);
       },
