@@ -7,10 +7,11 @@ define(
     'sf.b2c.mall.api.shopcart.addItemsToCart',
     'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.framework.comm'
+    'sf.b2c.mall.framework.comm',
+     'jquery.cookie'
   ],
 
-  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm) {
+  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm, $cookie) {
 
     SFFrameworkComm.register(1);
 
