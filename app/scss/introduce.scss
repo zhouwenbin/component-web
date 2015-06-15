@@ -22,8 +22,38 @@
 	
 }
 .introduce2{
-	background: url(#{$bg-url}introduce/introduce2.jpg) no-repeat center top;
-	height: 846px;
+	background:#fff url(#{$bg-url}introduce/introduce-h.png) no-repeat center 125px;
+	padding-top: 470px;
+	padding-bottom: 223px;
+	font-size: 0;
+	height: 900px;
+	box-sizing:border-box;
+	
+}
+.introduce2 ul{
+	overflow: hidden;
+}
+.introduce2 li{
+	display: inline-block;
+	width: 25%;
+	font-size: 14px;
+	text-align: center;
+	line-height: 24px;
+	padding-top: 124px;
+	border-left: 1px solid #ececec;
+	margin-left: -1px;
+}
+.introduce2 .li1{
+	background: url(#{$bg-url}introduce/introduce1.png) no-repeat center top;
+}
+.introduce2 .li2{
+	background: url(#{$bg-url}introduce/introduce2.png) no-repeat center top;
+}
+.introduce2 .li3{
+	background: url(#{$bg-url}introduce/introduce3.png) no-repeat center top;
+}
+.introduce2 .li4{
+	background: url(#{$bg-url}introduce/introduce4.png) no-repeat center top;
 }
 .slider{
 	height: 901px;
