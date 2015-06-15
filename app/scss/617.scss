@@ -160,6 +160,7 @@ body{
 	width: 275px;
 	margin-left: 4px;
 	margin-bottom: 20px;
+	position: relative;
 }
 .m617-tab-b img{
 	width: 100%;
@@ -237,4 +238,20 @@ body{
 .m617-gl5{
 	height: 463px;
 	background: url(#{$bg-url}617/617gl_06.jpg) no-repeat center;
+}
+.mask{
+	position: absolute;;
+	display: block;
+	box-sizing:border-box;
+}
+.m617-tab-b li span{
+	font-size: 36px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	top: 122px;
+	width: 100%;
+	z-index: 999;
 }
