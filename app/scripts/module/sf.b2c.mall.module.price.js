@@ -237,7 +237,6 @@ define(
           }
         }
 
-
         // 如果原价低于卖价，则不展示折扣和原价
         if (value.sellingPrice >= value.referencePrice) {
           element.find('.cms-fill-discountparent')[0].style.display = "none";

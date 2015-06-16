@@ -277,6 +277,7 @@ requirejs.config({
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
     'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
+     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
@@ -288,7 +289,6 @@ requirejs.config({
     'template_header_61': 'templates/header/sf.b2c.mall.header.61.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
     'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
-    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
-    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
+    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache'
   }
 });

@@ -35,7 +35,7 @@
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
-                        
+
 
                             {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
 
@@ -102,7 +102,7 @@
                             <span class="icon icon16-5 icon16-5-1"></span>
                         </div>
                         {{/if}}
-    					活动优惠:<span class="s1">- ¥ {{sf.price order.discountFee}}</span>
+              已节省:<span class="s1">¥ {{sf.price order.discountFee}}</span>
     				</li>
     			</ul>
     			<button style="margin-top:7px;" id="gotopay" class="btn {{canOrder}}">去结算</button>
