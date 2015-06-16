@@ -108,6 +108,15 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+
+        //是否是yzyw
+        'sf-is-yzyw': function(productShape, options) {
+          if (productShape() == 'YZYW') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
 
       },
@@ -855,7 +864,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
           '<div class="goods-price-r1">' +
             '价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
-            '{{#priceInfo.localSellingPrice}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/priceInfo.localSellingPrice}}' +
+            '{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}' +
           '</div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}' +
@@ -864,7 +873,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-price-r1">' +
             '促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
             '{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}' +
-            '{{^priceInfo.isPromotion}}{{#priceInfo.localSellingPrice}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/priceInfo.localSellingPrice}}{{/priceInfo.isPromotion}}' +
+            '{{^priceInfo.isPromotion}}{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}{{/priceInfo.isPromotion}}' +
           '</div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-is-showOriginPrice}}' +
@@ -1370,7 +1379,7 @@ define('sf.b2c.mall.product.detailcontent', [
       renderPicInfo: function() {
         this.options.detailContentInfo.itemInfo.attr("currentImage", this.options.detailContentInfo.itemInfo.basicInfo.images[0].bigImgUrl);
         var template = can.view.mustache(this.picInfoTemplate());
-        $('#allSkuImages').html(template(this.options.detailContentInfo));
+        $('#allSkuImages').html(template(this.options.detailContentInfo, this.helpers));
       },
 
       renderBreadScrumbInfo: function() {
@@ -1412,15 +1421,14 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-c1r1" id="bigPicArea">' +
           '<ul>' +
             '<li class="active">' +
-              '<img src="{{itemInfo.currentImage}}" alt="">' +
-              '<span></span>' +
+              '<img src="{{itemInfo.currentImage}}" alt=""><span></span>' +
             '</li>' +
           '</ul>' +
           '</div>' +
           '</div>' +
-          '{{#priceInfo.localSellingPrice}}' +
-          '<div class="nataral-product-price2">当地售价<div class="text-important">{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</div></div>' +
-          '{{/priceInfo.localSellingPrice}}';
+          '{{#sf-is-yzyw priceInfo.productShape}}' +
+          '<div class="nataral-product-price2">当地售价<div class="text-important">{{priceInfo.currencySymbol}}{{priceInfo.localSellingPrice}}</div></div>' +
+          '{{/sf-is-yzyw}}';
       },
 
       breadScrumbTemplate: function() {
