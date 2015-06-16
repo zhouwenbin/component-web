@@ -1,0 +1,16 @@
+$(function(){
+  //----------头部广告-------------//
+  $('.banner-scroll')
+  .delay(5000)
+  .animate({
+    'height':0
+  },1000,function(){
+    $(this).css({
+        "background-image":"url(../img/banner-scroll2.jpg)"
+      })
+  })
+  .delay(100)
+  .animate({
+    "height":90
+  },300);
+})
