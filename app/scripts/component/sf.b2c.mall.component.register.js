@@ -408,7 +408,8 @@ define(
                 store.set('csrfToken', data.csrfToken);
                 // 注册送优惠券 begin
                 // that.sendCoupon();
-                that.receiveCoupon();
+                // that.receiveCoupon();
+                window.parent.userLoginSccuessCallback();
                 // 注册送优惠券 end
                 // var currentServerTime = that.component.mobileRegister.getServerTime();
                 // if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
