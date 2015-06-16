@@ -8,6 +8,7 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.adapter.detailcontent',
     'sf.b2c.mall.api.b2cmall.getProductHotData',
     'sf.b2c.mall.api.b2cmall.getSkuInfo',
+    'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.helpers',
     'sf.b2c.mall.framework.comm',
@@ -17,9 +18,10 @@ define('sf.b2c.mall.product.detailcontent', [
     'imglazyload',
     'sf.b2c.mall.api.product.arrivalNotice',
     'sf.b2c.mall.api.b2cmall.checkLogistics',
-    'sf.b2c.mall.api.b2cmall.getActivityInfo'
+    'sf.b2c.mall.api.b2cmall.getActivityInfo',
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
     // var FILTER_ARRAY = ['1962','1961','1954','1955','1956','1957','1958','1946','1947','1948','1949','1950','1951','1903','1904','1905','1906','1907','1908','96','97','98','99','100','1952','1953','1635','1636','1637','1638','1639','1626','1627','1628','1629','1630',,'936','937','938','939','940','1789','1790','1791','1792','1793','1795','1794','1820','1821','1822','1823','1824','1825','1826','1827','101','102','103','104','105','106','107','108','1445','1448','1446','1447','1781','1782','1783','1784','1785','1786','1787','1788','1772','907','1780','1779','1773','1774','1775','1776','1777','1778','1168','1169','1170','1171','1172','1173'];
@@ -81,6 +83,22 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
+        //是否显示购物车
+        'sf-needshowcart': function(supportShoppingCart, options) {
+          var uinfo = $.cookie('1_uinfo');
+          var arr = new Array();
+          if (uinfo) {
+            arr = uinfo.split(',');
+          }
+
+          // arr[4]为undefined时候是未登录，也不等于2，要显示购物车
+          if (supportShoppingCart() && (arr[4] != '2')) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
         //促销展示
         'sf-showActivity': function(activityType, options) {
           if (activityType != 'FLASH') {
@@ -98,6 +116,15 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {Object} options 传递的参数
        */
       init: function(element, options) {
+
+        // if (this.isIE(6) || this.isIE(7) || this.isIE(8)) {
+        // if(!!(window.attachEvent && navigator.userAgent.indexOf('Opera') === -1)){
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+          this.support = false;
+        } else {
+          this.support = true;
+        }
+
         // this.detailUrl = SFConfig.setting.api.detailurl;
         var that = this;
         this.component = {};
@@ -147,9 +174,47 @@ define('sf.b2c.mall.product.detailcontent', [
               }
             }
           }, 1000);
-
         }
 
+      },
+
+      isShowCart: function() {
+        if (SFComm.prototype.checkUserLogin.call(this)) {
+          var uinfo = $.cookie('1_uinfo');
+          var arr = new Array();
+          if (uinfo) {
+            arr = uinfo.split(',');
+            // arr.push(uinfo.split(','));
+          }
+
+          if (arr && arr[4] == '0') {
+            var isShowCart = new SFIsShowCart();
+            isShowCart
+              .sendRequest()
+              .done(function(data) {
+                if (data.value) {
+                  $('.addtocart').show();
+                } else {
+                  $('.addtocart').hide();
+                }
+              })
+          } else if (arr && arr[4] == '1') {
+            $('.addtocart').show();
+          } else {
+            $('.addtocart').hide();
+          }
+        } else {
+          var isShowCart = new SFIsShowCart();
+          isShowCart
+            .sendRequest()
+            .done(function(data) {
+              if (data.value) {
+                $('.addtocart').show();
+              } else {
+                $('.addtocart').hide();
+              }
+            })
+        }
       },
 
       /**
@@ -387,11 +452,11 @@ define('sf.b2c.mall.product.detailcontent', [
             //渲染活动信息
             that.renderActivityInfo();
 
-
-
             //渲染模板
             var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
             $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+
+            that.isShowCart();
           });
       },
 
@@ -735,6 +800,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<span class="icon icon62"></span>{{notice}}' +
           '</div>' +
           '{{/notice}}' +
+
           '<div class="goods-num"><label>数 量</label>' +
           '<span class="btn btn-num">' +
           '<a class="btn-num-reduce {{input.reduceDisable}}" href="javascript:void(0);">-</a><a class="btn-num-add {{input.addDisable}}" href="javascript:void(0);">+</a>' +
@@ -746,19 +812,33 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{#if priceInfo.soldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
+          '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
+          '<button class="btn btn-buy addtocart disable" disabled="disabled" style="display:none;">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="getNotify">到货通知</a>' +
           '{{/if}}' +
+
+
           '{{^if priceInfo.soldOut}}' +
           '{{^priceInfo.isPromotion}}' +
           '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
+          '<button class="btn btn-soon addtocart" style="display:none;">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
           '{{/priceInfo.isPromotion}}' +
           '{{#priceInfo.isPromotion}}' +
           '{{#if priceInfo.activitySoldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">卖完了</a>' +
           '<a href="javascript:void(0);" class="btn btn-buy border" id="gotobuy">原价购买</a>' +
+          '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
+          '<button class="btn disable addtocart" disabled="disabled" style="display:none;">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
           '{{/if}}' +
           '{{^if priceInfo.activitySoldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>' +
+          '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
+          '<button class="btn btn-soon addtocart" style="display:none;">加入购物车</button>' +
+          '{{/sf-needshowcart}}' +
           '{{/if}}' +
           '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
@@ -904,6 +984,139 @@ define('sf.b2c.mall.product.detailcontent', [
         this.dealBuyNumByInput(element);
 
         return false;
+      },
+
+      //判断浏览器是IE几
+      isIE: function(ver) {
+        var b = document.createElement('b');
+        b.innerHTML = '<!--[if IE ' + ver + ']><i></i><![endif]-->';
+        return b.getElementsByTagName('i').length === 1;
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 加入购物车
+       */
+      addCart: function(itemId, num) {
+        var itemsStr = JSON.stringify([{
+          itemId: itemId,
+          num: num || 1
+        }]);
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
+
+        var scope = this;
+
+        // 添加购物车发送请求
+        addItemToCart.sendRequest()
+          .done(function(data) {
+            if (data.isSuccess) {
+              // 更新mini购物车
+              can.trigger(window, 'updateCart');
+
+              if (scope.support) {
+                var that = $('.thumb-item:last-child img').clone().addClass('addtocart-img').css({
+                  'border-radius': 50
+                });
+                $('.addtocart').append(that);
+                // var that = $('.addtocart img');
+
+                if ($(window).scrollTop() > 166) {
+                  var target = $('.nav .icon100').eq(1).offset()
+                } else {
+                  var target = $('.nav .icon100').eq(0).offset()
+                }
+                var targetX = target.left,
+                  targetY = target.top,
+                  current = that.offset(),
+                  currentX = current.left,
+                  currentY = current.top;
+                that.clone().appendTo(that.parent());
+                that.css({
+                  left: targetX - currentX,
+                  top: targetY - currentY,
+                  // transform:'rotate(360deg)',
+                  zIndex: 3,
+                  visibility: 'hidden'
+                })
+
+                setTimeout(function() {
+                  // that.remove();
+                  $('.addtocart-img:first-child').remove();
+                }, 1000);
+
+                $('.nav .label-error').addClass('active');
+
+                setTimeout(function() {
+                  $('.nav .label-error').removeClass('active');
+                }, 500)
+                return false;
+              } else {
+                var $el = $('<div class="dialog-cart"><div class="dialog-cart-inner">加入购物车成功！</div></div>');
+                $(document.body).append($el)
+                setTimeout(function() {
+                  $el.remove();
+                }, 1000);
+              }
+            } else {
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              if ($('.dialog-cart').length > 0) {
+                return false;
+              };
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
+                $el.remove();
+              });
+              setTimeout(function() {
+                $el.remove();
+              }, 3000);
+            }
+          })
+          .fail(function(data) {})
+      },
+
+      /**
+       * @author Michael.Lee
+       * @description 添加购物车动作触发
+       * @param  {element} el
+       */
+      '.addtocart click': function(el, event) {
+        event && event.preventDefault();
+
+        var itemId = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+        var amount = this.options.detailContentInfo.input.buyNum;
+
+        // 错误处理分支，用户输入了错误的购买数量
+        if (amount < 1 || isNaN(amount)) {
+          this.options.detailContentInfo.input.attr("buyNum", 1);
+          var message = new SFMessage(null, {
+            'tip': '请输入正确的购买数量！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        // 错误处理分支，库存数量不够
+        var currentStock = this.options.detailContentInfo.priceInfo.currentStock;
+        if (currentStock > 0 && amount > currentStock) {
+          var message = new SFMessage(null, {
+            'tip': '商品库存仅剩' + currentStock + '件！',
+            'type': 'error'
+          });
+          return false;
+        }
+
+        if (SFComm.prototype.checkUserLogin.call(this)) {
+          // 用户如果如果登录
+          this.addCart(itemId, amount);
+        } else {
+          store.set('temp-action-addCart', {
+            itemId: itemId,
+            num: amount
+          });
+          can.trigger(window, 'showLogin', [window.location.href]);
+        }
       },
 
       /**
@@ -1162,7 +1375,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       titleTemplate: function() {
         return '<h1>{{itemInfo.basicInfo.title}}</h1>' +
-          '<p>{{itemInfo.basicInfo.subtitle}}</p>';
+          '<p>{{{itemInfo.basicInfo.subtitle}}}</p>';
       },
 
       /**

@@ -33,8 +33,7 @@ define(
         },
 
         'sf-totalprice': function (selectPayType, price, discount) {
-          var discountInfo = discount();
-
+          var discountInfo = JSON.parse(discount().value);
           if(typeof discountInfo != 'undefined' &&
             !can.isEmptyObject(discountInfo) &&
             typeof discountInfo[selectPayType()] != 'undefined'
@@ -129,29 +128,13 @@ define(
             alipay: ['lianlianpay', 'alipay', 'tenpay_forex_wxsm', 'tenpay_forex']
           }
 
-<<<<<<< HEAD
-      showPayMap: {
-        'alipay_intl': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
-          '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>无需注册登录，银行卡直接支付</h3></div>',
-        'alipay': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>' +
-          '<div class="order-r1c1 fl "><span name="radio-pay" payType="lianlianpay" class="icon radio"></span><img src="http://img.sfht.com/sfht/1.1.32/img/pay4.jpg" alt="连连支付"><h3>无需注册登录，银行卡直接支付</h3></div>' +
-          '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex_wxsm" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay2.jpg" alt="微信支付"><h3>微信扫一扫就能付款，更快捷</h3></div>' +
-          '<div class="order-r1c1 fl"><span name="radio-pay" payType="tenpay_forex" class="icon radio"></span><img src="http://img.sfht.com/sfht/img/pay3.jpg" alt="财付通"><h3>超过3亿用户的选择，汇率更优！</h3></div>'
-      },
-
-      showOnlyAliPayMap: {
-        'alipay_intl': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay_intl" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>',
-        'alipay': '<div class="order-r1c1 fl"><span name="radio-pay" payType="alipay" class="icon radio active"></span><img src="http://img.sfht.com/sfht/img/pay1.jpg" alt="支付宝"><h3>中国最大的第三方支付平台</h3></div>'
-      },
-=======
           return map[paytype];
         }
       },
 
-      'li click': function ($el, event) {
+      '.payTypeListArea li click': function ($el, event) {
         this.element.find('li').removeClass('active');
         $el.addClass('active');
->>>>>>> e4d646fa38e7c58fdc487d1bb98b3bcc6cdaa94c
 
         var payType = $el.attr('data-paytype');
         this.options.data.attr('selectPayType', payType);
@@ -199,7 +182,7 @@ define(
           error: function(errorText) {
 
             var message = new SFMessage(null, {
-              'tip': '订单支付失败！',
+              'tip': errorText || '订单支付失败！',
               'type': 'error'
             });
 

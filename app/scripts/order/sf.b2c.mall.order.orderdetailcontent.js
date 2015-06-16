@@ -2,36 +2,49 @@
 
 define('sf.b2c.mall.order.orderdetailcontent', [
     'can',
-    'sf.b2c.mall.api.order.getOrder',
+    'sf.b2c.mall.api.order.getOrderV2',
     'sf.helpers',
     'sf.b2c.mall.widget.loading',
     'sf.b2c.mall.framework.comm',
     'sf.util',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'moment',
     'sf.b2c.mall.api.order.confirmReceive'
   ],
-  function(can, SFGetOrder, helpers, loading, FrameworkComm, Utils, SFConfig, SFGetUserRoutes, SFMessage, moment, SFConfirmReceive) {
+  function(can, SFGetOrder, helpers, loading, FrameworkComm, Utils, SFConfig, SFMessage, moment, SFConfirmReceive) {
 
     return can.Control.extend({
       helpers: {
-        indexOfPackage: function(orderPackageItemList, options) {
-          for (var i = 0; i < orderPackageItemList.length; i++) {
-            return i + 1;
+        indexOfPackage: function(index, options) {
+          return index + 1;
+        },
+        isActive: function(index, options) {
+          if (index === 0) {
+            return 'active';
           };
+        },
+        isShowBackMoney: function(orderInfo, options) {
+          if (orderInfo.orderItem.paymentStatus == 'REFUNDED') {
+            return options.fn(options.contexts || this);
+          };
+        },
+        showImage: function(group) {
+          var array = eval(group);
+          if (array && _.isArray(array)) {
+            var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
+            if (/^http/.test(url)) {
+              return url;
+            } else {
+              return 'http://img0.sfht.com' + url;
+            }
+          } else {
+            return array;
+          }
         }
       },
       init: function(element, options) {
         this.render();
-        //this.renderPackageItemInfo(0,this.options);
-        //模板外要绑定事件。 todo：针对弹出层 要做一个公用组件出来
-        // $('#closeExample')[0].onclick = function() {
-        //   $(".orderdetail-upload").hide();
-        //   $(".mask2").hide();
-        //   return false;
-        // }
       },
 
       render: function(data) {
@@ -42,16 +55,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           "orderId": params.orderid
         });
 
-        var getUserRoutes = new SFGetUserRoutes({
-          'bizId': params.orderid
-        });
-
-        this.options.userRoutes = new Array()
-
-        can.when(getOrder.sendRequest())
+        getOrder.sendRequest()
           .done(function(data) {
 
-            that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
             var couponTypeMap = {
               "CASH": function() {
                 switch (tmpOrderCouponItem.orderAction) {
@@ -77,22 +83,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 that.options.isShareBag = true;
                 that.options.shareBag = tmpOrderCouponItem;
               }
-            }
+            };
+
             var couponTypeHandle = function(tag) {
               var fn = couponTypeMap[tag];
               if (_.isFunction(fn)) {
                 return fn.call(this)
               }
-            }
+            };
 
-            that.options.orderId = data.orderId;
-            that.options.recId = data.orderItem.rcvrId;
-            that.options.payType = that.payWayMap[data.orderItem.payType];
-            that.options.discount = data.orderItem.discount || 0;
-            that.options.isCostCoupon = false;
-            that.options.isPresentCoupon = false;
-            that.options.isGiftBag = false;
-            that.options.isShareBag = false;
             //处理卡券信息
             if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
               for (var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
@@ -100,118 +99,103 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               }
             }
 
-            that.options.orderStatus = that.statsMap[data.orderItem.orderStatus];
+            that.options.orderInfo = data;
+            that.options.gmtCreate =  data.orderItem.gmtCreate;
+            that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
+            that.options.discount = data.orderItem.discount || 0;
+            // that.options.isCostCoupon = false;
+            // that.options.isPresentCoupon = false;
+            // that.options.isGiftBag = false;
+            // that.options.isShareBag = false;
+
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
-
-            var productShape = data.orderItem.orderGoodsItemList[0].abbreviation;
-
-            if (productShape == 'SF-SHLK' && (data.orderItem.orderStatus == 'SHIPPED' || data.orderItem.orderStatus == 'SHIPPING')) {
-              that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus + "_FRESH"];
-            } else {
-              that.options.currentStepTips = that.currentStepTipsMap[data.orderItem.orderStatus];
-            }
-
-            that.options.showStep = true;
-            if (data.orderItem.orderStatus == 'AUTO_CANCEL' || data.orderItem.orderStatus == 'USER_CANCEL' || data.orderItem.orderStatus == 'OPERATION_CANCEL') {
-              that.options.showStep = false;
-            }
-            //订单状态流程图
-            var map = {
-              'SUBMITED': '', //待支付
-              'AUDITING': 'order-detail-step2', //待审核
-              'SHIPPING': 'order-detail-step3', //待出库
-              'SHIPPED': 'order-detail-step4', //出库中
-              'COMPLETED': 'order-detail-step5' //已完成
-            };
-            that.options.showWhereStep = map[data.orderItem.orderStatus];
-            that.options.traceList = data.orderActionTraceItemList;
-
-            _.each(that.options.traceList, function(trace) {
-              trace.operator = that.operatorMap[trace.operator] || '系统';
-              if (productShape == 'SF-SHLK' && (trace.status == 'SHIPPED' || trace.status == 'SHIPPING')) {
-                trace.description = that.statusDescription[trace.status + "_FRESH"];
-              } else {
-                trace.description = that.statusDescription[trace.status];
-              }
-            })
-
-            //加入路由
-            _.each(that.options.traceList, function(trace) {
-              if (trace.status != 'COMPLETED' && trace.status != 'AUTO_COMPLETED') {
-                that.options.userRoutes.push(trace);
-              }
-            })
-
             that.options.receiveInfo = data.orderItem.orderAddressItem;
-            that.options.productList = data.orderItem.orderGoodsItemList;
+            that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
             that.element.html(html);
-            that.renderPackageItemInfo(0,that.options);
-            $('.order-detail-tab li:first').addClass('active');
 
-          })
-          .then(function() {
-            return getUserRoutes.sendRequest();
-          })
-          .done(function(routesList) {
-            if (routesList && routesList.value) {
-              _.each(_.filter(routesList.value, function(route) {
-                return typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF';
-              }), function(route, index) {
-                that.options.userRoutes.push({
-                  "gmtHappened": moment(route.eventTime).format('YYYY/MM/DD HH:mm:ss'),
-                  "description": (typeof route.position != 'undefined' ? route.position : "") + " " + route.remark,
-                  "operator": "系统"
-                });
-                if (index == 0) {
-                  that.options.mailNo = route.mailNo;
-                  if (typeof that.options.mailNo != "undefined" && that.options.mailNo !== "") {
-                    _.last(that.options.userRoutes).description += " ， 承运单号：" + that.options.mailNo;
-                  } else {
-                    _.last(that.options.userRoutes).description;
-                  }
+            that.renderPackageItemInfo(0, data.orderItem);
 
-                }
-              })
-            }
-
-            //增加剩下的
-            _.each(that.options.traceList, function(trace) {
-              if (trace.status == 'COMPLETED' || trace.status == 'AUTO_COMPLETED') {
-                that.options.userRoutes.push(trace);
-              }
-            })
-
-            var templates = can.view.mustache(that.showUserRoutesTemplates());
-            $('#showUserRoutes').append(templates(that.options));
-
+            that.supplement();
           })
-          .fail(function(error) {
-            var templates = can.view.mustache(that.showUserRoutesTemplates());
-            $('#showUserRoutes').append(templates(that.options));
-            console.error(error);
-          })
-          .then(function() {
-            return getUserRoutes.sendRequest();
-          })
-          .done(function(routes) {
-            _.each(routes.value, function(route) {
-              if (typeof route.carrierCode != 'undefined' && route.carrierCode == 'SF') {
-                that.options.userRoutes.push({
-                  "gmtHappened": route.eventTime,
-                  "description": (typeof reoute.position != 'undefined' ? reoute.position : "") + " " + reoute.remark,
-                  "operator": "系统"
-                });
-              }
-            })
-          })
-          .fail()
       },
+
+      supplement: function() {
+        var params = can.deparam(window.location.search.substr(1));
+        var pkgid = params.pkgid;
+        if (pkgid) {
+          $(".order-detail-tab").find("li")[pkgid - 1].click();
+        };
+
+      },
+
+
       renderPackageItemInfo: function(tag, data) {
         var packageInfo = data.orderPackageItemList[tag];
-        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo);
-        $('#packageItemInfo').append(html);
+        packageInfo.userRoutes = packageInfo.actionTraceItemList;
+
+        packageInfo.orderStatus = this.statsMap[packageInfo.status];
+        _.each(packageInfo.orderGoodsItemList, function(goodItem) {
+          goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
+        });
+
+        packageInfo.showStep = true;
+        packageInfo.isShowLinkServer = false;
+        packageInfo.isShowShippingTime = true;
+
+        //如果订单状态是已关闭，自动取消，用户取消，运营取消，不展示订单状态流程图
+        if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
+          packageInfo.showStep = false;
+        }
+        //如果包裹状态是待审核，待发货，发货中，已发货，展示联系客服
+        if (packageInfo.status == 'AUDITING' || packageInfo.status == 'WAIT_SHIPPING' || packageInfo.status == 'SHIPPING' || packageInfo.status == 'SHIPPED') {
+          packageInfo.isShowLinkServer = true;
+        }
+        //如果包裹状态是自动取消，用户取消，运营取消，订单关闭，订单完成，自动完成，不展示发货仓和预计发货时间
+        if (packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL' || packageInfo.status == 'CLOSED' || packageInfo.status == 'COMPLETED' || packageInfo.status == 'AUTO_COMPLETED') {
+          packageInfo.isShowShippingTime = false;
+        };
+        //状态流程图
+        var map = {
+          'SUBMITED': '', //待支付
+          'AUDITING': 'order-detail-step2', //待审核
+          'SHIPPING': 'order-detail-step3', //待出库
+          'WAIT_SHIPPING': 'order-detail-step3',
+          'SHIPPED': 'order-detail-step4', //出库中
+          'COMPLETED': 'order-detail-step5', //已完成
+          'CLOSED': 'order-detail-step5',
+          'CONSIGNED': 'order-detail-step4',
+          'RECEIPTED': 'order-detail-step5'
+        };
+
+        packageInfo.showWhereStep = map[packageInfo.status];
+        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, this.helpers);
+        $('#packageItemInfo').html(html);
+        var len = $('#showUserRoutes li').length;
+        if (len > 3) {
+          $('#showUserRoutes li:gt(2)').hide();
+        } else {
+          $('.look-more').hide();
+        }
+
+      },
+      /**
+       * @description 查看更多物流信息
+       * @return
+       */
+      '.look-more click': function(element, event) {
+        event && event.preventDefault();
+        var tag = $(element).attr('data-tag');
+        if (tag == 1) {
+          $(element).text('收起');
+          $('#showUserRoutes li').show();
+          $(element).attr('data-tag', 2);
+        } else {
+          $(element).text('查看更多');
+          $('#showUserRoutes li:gt(2)').hide();
+          $(element).attr('data-tag', 1);
+        }
       },
       payWayMap: {
         'alipay': '支付宝',
@@ -219,34 +203,23 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'tenpay_forex_wxsm': '微信支付',
         'lianlianpay': '快捷支付'
       },
-      showUserRoutesTemplates: function() {
-        return '{{#each userRoutes}}' +
-          '<li class="clearfix">' +
-          '<span>{{gmtHappened}}</span>' +
-          '<span>{{description}}</span>' +
-          '<span>{{operator}}</span>' +
-          '</li>{{/each}}';
-      },
 
-      statusDescription: {
-        'ORDER_EDIT': '您的收货信息已成功修改，正在等待顺丰审核',
-        'SUBMITED': '您的订单已提交，请尽快完成支付',
-        'AUTO_CANCEL': '超时未支付，订单自动取消',
-        'USER_CANCEL': '用户取消订单成功',
-        'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
-        'OPERATION_CANCEL': '订单取消成功',
-        'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
-        // 'BUYING_EXCEPTION': '采购异常',
-        'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
-        'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
-        'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-        'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
-        'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
-        'COMPLETED': '您已确认收货，订单已完成',
-        'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
-      },
-
-
+      // statusDescription: {
+      //   'ORDER_EDIT': '您的收货信息已成功修改，正在等待顺丰审核',
+      //   'SUBMITED': '您的订单已提交，请尽快完成支付',
+      //   'AUTO_CANCEL': '超时未支付，订单自动取消',
+      //   'USER_CANCEL': '用户取消订单成功',
+      //   'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
+      //   'OPERATION_CANCEL': '订单取消成功',
+      //   'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
+      //   'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
+      //   'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
+      //   'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
+      //   'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
+      //   'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
+      //   'COMPLETED': '您已确认收货，订单已完成',
+      //   'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
+      // },
 
       getOptionHTML: function(operationsArr) {
         var that = this;
@@ -265,8 +238,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       optionHTML: {
-        "NEEDPAY": '<a href="#" class="btn btn-danger btn-small" id="pay">立即支付</a>',
-        "RECEIVED": '<a href="#" class="btn btn-danger btn-small received">确认签收</a>'
+        "NEEDPAY": '<button class="btn btn-danger btn-small" id="pay">立即支付</button>',
+        "RECEIPTED": '<button class="btn btn-success btn-small received">确认签收</button>'
       },
 
       statsMap: {
@@ -282,7 +255,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'LOGISTICS_EXCEPTION': '物流异常',
         'SHIPPED': '已发货',
         'COMPLETED': '已完成',
-        'AUTO_COMPLETED': '自动完成'
+        'AUTO_COMPLETED': '自动完成',
+        'CLOSED': '已关闭',
+        'CONSIGNED': '已出库',
+        'RECEIPTED': '已签收'
+
       },
 
       stepMap: {
@@ -295,7 +272,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       nextStepMap: {
         'SUBMITED': 'NEEDPAY',
-        'SHIPPED': 'RECEIVED'
+        'RECEIPTED': 'RECEIPTED',
+        'SHIPPED': 'RECEIPTED',
+        'CONSIGNED': 'RECEIPTED'
       },
 
       currentStepTipsMap: {
@@ -323,7 +302,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var params = can.route.attr();
         this.renderPackageItemInfo(params.tag, this.options);
       },
-      '.order-detail-tab click': function(element, event) {
+      '.order-detail-tab li click': function(element, event) {
         event && event.preventDefault();
         $(element).addClass('active').siblings().removeClass('active');
         var tag = $(element).attr('data-index');
@@ -358,7 +337,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var that = this;
         var params = can.deparam(window.location.search.substr(1));
         var confirmReceive = new SFConfirmReceive({
-          "subOrderId": params.suborderid
+          "subOrderId": params.orderid
         });
         confirmReceive
           .sendRequest()
@@ -372,7 +351,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               'type': 'success'
             });
 
-            that.render();
+            window.location.reload();
           })
           .fail(function(error) {
 

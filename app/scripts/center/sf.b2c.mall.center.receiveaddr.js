@@ -128,7 +128,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         var defaultRecID = null;
         _.each(recAddrs.items, function(recAddrItem) {
           _.each(recPersons.items, function(presonItem) {
-            if (recAddrItem.isDefault != 0 && presonItem.isDefault != 0 && recAddrItem.recId != 0 && presonItem.recId != 0) {
+            if (recAddrItem.isDefault != 0 && recAddrItem.recId == presonItem.recId) {
               recAddrItem.recName = presonItem.recName;
               recAddrItem.credtNum = presonItem.credtNum;
               recAddrItem.credtNum2 = presonItem.credtNum2;
@@ -178,6 +178,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       },
       //设为默认地址
       ".btn-setDefault click":function(element,event){
+        event && event.preventDefault();
         var that = this;
         var index = element.data('index');
         var addr = this.adapter4List.addrs.get(index);

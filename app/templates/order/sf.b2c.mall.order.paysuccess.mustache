@@ -2,15 +2,15 @@
     <!--支付成功-->
     <div class="pay-success clearfix">
         <div class="pay-success-c1 fl"><span class="icon icon36"></span>
-            <h1>订单支付成功</h1>
+            <h1>您的订单已支付成功，我们将尽快为您打包发货</h1>
             <ul>
                 <li><span>订单编号：</span>{{orderItem.orderId}}</li>
                 <li><span>下单时间：</span>{{sf.time orderItem.gmtCreate}}</li>
                 <li><span>支付方式：</span>{{sf-payment orderItem.payType}}</li>
-                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">{{sf.price orderItem.totalPrice}}</strong></li>
+                <li><span>支付金额：</span><b class="text-important">¥</b><strong class="text-important">{{sf.price totalPrice}}</strong></li>
             </ul>
         </div>
-        <div class="pay-success-c2 fr"><img src="../img/weixin-qrcode.png" alt="">
+        <div class="pay-success-c2 fr"><img src="http://img.sfht.com/sfht/1.1.59/img/weixin-qrcode.png" alt="">
             <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
         </div>
     </div>
@@ -23,6 +23,7 @@
             </div>
         </div>
 
+        {{#sf-is-not-empty orderItem.orderCouponItemList}}
         <div class="pay-success2-b clearfix">
             <div class="pay-success2-bc1 fl">
 
@@ -34,7 +35,7 @@
                   {{#orderItem.orderCouponItemList}}
 
                     {{! 现金券}}
-                    {{#sf-coupon-type couponType 'CASH'}}
+                    {{#sf-coupon-type couponType orderAction 'CASH'}}
                       <li>
                           <div class="gift">
                               <div class="gift-r1">{{couponName}}</div>
@@ -44,7 +45,7 @@
                     {{/sf-coupon-type}}
 
                     {{! 大礼包}}
-                    {{#sf-coupon-type couponType 'GIFTBAG'}}
+                    {{#sf-coupon-type couponType orderAction 'GIFTBAG'}}
                     <li>
                         <div class="coupon">
                             <div class="coupon-r1"><b>¥</b><strong>{{sf.price presentCoupon.price}}</strong>{{presentCoupon.couponName}}</div>
@@ -59,11 +60,11 @@
             {{#orderItem.orderCouponItemList}}
 
               {{! 红包}}
-              {{#sf-coupon-type couponType 'SHAREBAG'}}
+              {{#sf-coupon-type couponType orderAction 'SHAREBAG'}}
               <div class="pay-success2-bc2 fr">
                   <div class="qrcode">
                       {{! @todo 生成二维码}}
-                      <div class="shareQrCode" data-code="{{code}}"></div>
+                      <div style="width:125px;height:125px;margin-right:25px;" class="shareQrCode fl" data-code="{{code}}"></div>
                       <h2>支付成功散钱包，给你的伙伴发{{sf.price price}}元红包</h2>
                       <p>=(^.^)= 扫一扫分享散红包到微信</p>
                   </div>
@@ -72,5 +73,6 @@
 
             {{/orderItem.orderCouponItemList}}
         </div>
+        {{/sf-is-not-empty}}
     </div>
 </div>

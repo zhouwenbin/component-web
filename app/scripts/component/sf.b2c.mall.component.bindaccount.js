@@ -14,9 +14,10 @@ define(
     'sf.b2c.mall.api.user.partnerBindByUPswd',
     'sf.b2c.mall.api.user.checkUserExist',
     'sf.b2c.mall.api.promotion.receivePro',
+    'sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFReceivePro, SFApiUserDownSmsCode) {
+  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFReceivePro, SFReceiveCoupon, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_NO_INPUT_USERPWD = '请输入您的密码';
@@ -267,16 +268,28 @@ define(
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
 
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
             // 注册送优惠券 begin
             // if (newUser) {
-            //   that.sendCoupon();
+            //   // that.sendCoupon();
+            //   that.receiveCoupon();
             // } else {
             //   document.domain= "sfht.com";
             //   window.parent.userLoginSccuessCallback();
             // }
             // 注册送优惠券 end
-            document.domain= "sfht.com";
-            window.parent.userLoginSccuessCallback();
+            // document.domain = "sfht.com";
+            // 获得打车券
+            // if (newUser) {
+            //   var currentServerTime = that.component.partnerBind.getServerTime();
+            //   if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+            //     window.parent.popMessage();
+            //   }
+            // }
+
+            // window.parent.userLoginSccuessCallback();
 
 
           }).fail(function(errorCode) {
@@ -292,8 +305,38 @@ define(
           })
       },
 
+      errorMap: {
+        "11000020": "卡券不存在",
+        "11000030": "卡券已作废",
+        "11000050": "卡券已领完",
+        "11000100": "您已领过该券",
+        "11000130": "卡包不存在",
+        "11000140": "卡包已作废"
+      },
+
+      receiveCoupon: function() {
+        document.domain = "sfht.com";
+
+        var params = {};
+        params.bagId = '236';
+        params.type = 'CARD';
+        params.receiveChannel = 'B2C';
+        params.receiveWay = 'ZTLQ';
+        var that = this;
+        var receiveCouponData = new SFReceiveCoupon(params);
+        return can.when(receiveCouponData.sendRequest())
+          .done(function(userCouponInfo) {
+            window.parent.popMessage();
+            window.parent.userLoginSccuessCallback();
+          })
+          .fail(function(error) {
+            console.error(error);
+            window.parent.userLoginSccuessCallback();
+          });
+      },
+
       sendCoupon: function() {
-        document.domain= "sfht.com";
+        document.domain = "sfht.com";
 
         var receivePro = new SFReceivePro({
           "channel": "B2C",
@@ -326,7 +369,7 @@ define(
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
 
-            document.domain= "sfht.com";
+            document.domain = "sfht.com";
             window.parent.userLoginSccuessCallback();
 
           }).fail(function(errorCode) {

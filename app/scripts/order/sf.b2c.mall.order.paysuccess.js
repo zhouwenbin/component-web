@@ -6,10 +6,11 @@ define('sf.b2c.mall.order.paysuccess', [
     'qrcode',
     'sf.b2c.mall.business.config',
     'sf.helpers',
-    'sf.b2c.mall.api.order.getOrder',
+    'sf.b2c.mall.api.order.getOrderV2',
+    'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.api.minicart.getTotalCount' // 获得mini cart的数量接口
   ],
-  function(can, $, qrcode, SFConfig, helpers, SFGetOrder, SFGetTotalCount) {
+  function(can, $, qrcode, SFConfig, helpers, SFGetOrder, SFFramework, SFGetTotalCount) {
 
     return can.Control.extend({
 
@@ -23,7 +24,7 @@ define('sf.b2c.mall.order.paysuccess', [
          * @param  {string} payType 支付方式字段
          * @return {string}         支付方式
          */
-        'sf-payment': function (payType) {
+        'sf-payment': function(payType) {
           var map = {
             'alipay': '支付宝',
             'tenpay_forex': '财付通',
@@ -41,8 +42,8 @@ define('sf.b2c.mall.order.paysuccess', [
          * @param  {object} options
          * @return {object}
          */
-        'sf-coupon-type': function (couponType, definition, options) {
-          if (couponType == definition) {
+        'sf-coupon-type': function(couponType, orderAction, definition, options) {
+          if (couponType == definition && orderAction == 'PRESENT') {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -54,7 +55,7 @@ define('sf.b2c.mall.order.paysuccess', [
          * @param  {string} couponType 卡券类型字段
          * @return {string}            卡券类型名称
          */
-        'sf-coupon-type-name': function (couponType) {
+        'sf-coupon-type-name': function(couponType) {
           var map = {
             'CASH': '现金券',
             'GIFTBAG': '礼包',
@@ -62,6 +63,23 @@ define('sf.b2c.mall.order.paysuccess', [
           }
 
           return map[couponType];
+        },
+
+        /**
+         * @description 判断group是不是空队列
+         * @param  {array}  group   队列
+         * @param  {object} options
+         * @return {object}
+         */
+        'sf-is-not-empty': function(group, options) {
+          var array = _.findWhere(group, {
+            orderAction: 'PRESENT'
+          });
+          if (_.isEmpty(array)) {
+            return options.inverse(options.contexts || this);
+          } else {
+            return options.fn(options.contexts || this);
+          }
         }
       },
 
@@ -79,14 +97,16 @@ define('sf.b2c.mall.order.paysuccess', [
        * @param  {long} orderId 订单号
        * @return {can.promise}
        */
-      request: function (orderId) {
+      request: function(orderId) {
         var getOrder = new SFGetOrder({
           "orderId": orderId
         });
 
-        var getTotalCount  = new SFGetTotalCount();
+        var getTotalCount = new SFGetTotalCount();
+        if (SFFramework.prototype.checkUserLogin.call(this)) {
+          return can.when(getOrder.sendRequest(), getTotalCount.sendRequest());
+        }
 
-        return can.when(getOrder.sendRequest(), getTotalCount.sendRequest());
       },
 
       /**
@@ -94,9 +114,11 @@ define('sf.b2c.mall.order.paysuccess', [
        * @param  {json} data 从服务端获取的数据
        * @return
        */
-      paint: function (orderinfo, cartnum) {
+      paint: function(orderinfo, cartnum) {
         // 从params获取不同部分的数据
-        var data = _.extend(orderinfo, {cartnum: cartnum.value});
+        var data = _.extend(orderinfo, {
+          cartnum: cartnum.value
+        });
 
         var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', data, this.helpers);
         this.element.html(html);
@@ -126,15 +148,15 @@ define('sf.b2c.mall.order.paysuccess', [
        * @return
        */
       renderLuckyMoney: function() {
-        $('.shareQrCode').each(function (index, $el) {
-          var code = $el.attr('data-code');
+        $('.shareQrCode').each(function(index, element) {
+          var code = $(element).attr('data-code');
           var qrParam = {
             width: 140,
             height: 140,
             text: "http://m.sfht.com/luckymoneyshare.html?id=" + code
           };
 
-          $el.qrcode(qrParam);
+          $(element).qrcode(qrParam);
         });
       }
     });

@@ -1,39 +1,66 @@
-<h2>基本资料</h2>
+<div class="myorder">
+  <ul class="myorder-tab">
+    <li class="active"><a href="">基本资料</a></li>
+    <li><a href="">修改密码</a></li>
+  </ul>                
+</div>
+<div class="account-manage account-manage1 active">
 {{^isModified}}
-  <div class="order-b">
-    <ul>
-      <li class="active">
-        <div class="order-r1 clearfix">
-          <div class="order-r1c1 fl">
-            <span>昵称：{{user.nick}}</span>
-            <span>性别：{{user.gender}}</span>
-          </div>
-          <div class="order-r1c2 fl">
-            <a class="order-edit" href="" id="user-info-modify-btn">修改</a>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li><label for="nickname">昵称:</label>{{user.nick}}</li>
+    <li><label for="sex">性别:</label>{{user.gender}}</li>
+  </ul>
+  <button class="btn btn-success btn-small" id="user-info-modify-btn">修改</button>
 {{/isModified}}
 {{#isModified}}
-  <div class="order-b center-info">
-    <ul>
-      <li class="active">
-        <div class="order-r1 clearfix">
-            <div class="order-r1c1 fl">
-              昵称：<input type="text" class="input" can-value="input.nick">
-              性别：
-              <select can-value='input.gender' name="" id="select-sex">
+  <ul>
+    <li><label for="nickname">昵称:</label><input type="text" id="nickname" class="input" can-value="input.nick" /></li>
+    <li><label for="sex">性别:</label><select can-value='input.gender' name="" id="select-sex">
                 <option value="MALE">男</option>
                 <option value="FEMALE">女</option>
-              </select>
-            </div>
-            <div class="order-r1c2 fr">
-              <a href="#" class="btn btn-send" id="user-info-confirm-btn">保存</a>
-            </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+              </select></li>
+  </ul>
+  <button class="btn btn-success btn-small" id="user-info-confirm-btn">保存</button>
 {{/isModified}}
+</div>
+<div class="account-manage account-manage2">
+  <ul>
+    {{#if hasPswd}}
+    <li>
+      <label class="justify" for="input-mobile">手机号码:</label>
+      {{phoneNumber}}
+      <input id="input-mobile" type="hidden" class="input" can-value="phoneNumber">
+    </li>
+
+    <li class="li1">
+      <label class="justify" for="input-mobile-code">短信验证码:</label>
+      <input type="text" class="input" placeholder="点击按钮获取验证码" id="input-mobile-code" can-value="mobileCode">
+      <a href="#" class="btn btn-send" id="mobile-code-btn">发送验证码</a>
+      <span class="icon icon26" id="mobile-code-error">短信验证码输入有误，请重新输入</span>
+    </li>
+    {{/if}}
+    {{^if hasPswd}}
+    <li>
+      <label class="justify" for="new-password">原始密码:</label>
+      <input id="old-password" type="password" class="input" can-value="oldPwd">
+      <span id="oldPwd-error-tips" class="icon icon26"></span>
+    </li>
+    {{/if}}
+    <li>
+      <label class="justify" for="new-password">新密码:</label>
+      <input id="new-password" type="password" class="input" can-value="newPwd">
+      <span id="newPwd-error-tips" class="icon icon26"></span>
+    </li>
+    <li>
+      <label class="justify" for="confirm-password">确认密码:</label>
+      <input id="confirm-password" type="password" class="input" can-value="confirmPwd">
+      <span id="confirmPwd-error-tips" class="icon icon26"></span>
+    </li>
+  </ul>
+  {{#if hasPswd}}
+  <button style="margin-left:93px;" id="btn-confirm-bind" class="btn btn-success btn-small">确定</button>
+  {{/if}}
+  {{^if hasPswd}}
+  <button style="margin-left:93px;" id="btn-confirm" class="btn btn-success btn-small">确定</button>
+  {{/if}}
+</div>

@@ -1,63 +1,94 @@
-{{^itemSearch.totalHits}}
-    没有记录
-{{/itemSearch.totalHits}}
+{{^sf-isHasResults itemSearch.totalHits itemSearch.results}}
+<div class="pb">
+  <div class="pm">
+    <div class="search-none">
+      <i></i><i></i><i></i>
+      <h1>对不起....我们没有找到和：“{{searchData.keyword}}”相关的商品</h1>
+      <a class="text-important" href="http://www.sfht.com">返回首页</a>
+    </div>
+    <!--大家都在买-->
+
+    <div class="recommend"></div>
+
+    <!--购物须知-->
+    <div class="buyer-reading">
+      <h2>温馨提示</h2>
+      <p>亲爱的用户，我们的商品搜索功能还在完善中，<a class="text-link" href="http://www.sfht.com/feedback.html" target="_blank">点此给我们提建议</a></p>
+    </div>
+  </div>
+</div>
+{{/sf-isHasResults}}
 
 
-{{#itemSearch.totalHits}}
+{{#sf-isHasResults itemSearch.totalHits itemSearch.results}}
 <div class="pb">
   <div class="classify">
     <div class="pm">
-      <h2><strong>“{{searchData.q}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
+      <h2><strong>“{{searchData.keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
       <ul class="classify-list">
-        <li class="classify-select" style="display: block;">
-          <label>已选条件：</label>
-          <ul id="classify-select">
-              <li><a class="btn-search" href="javascript:">品牌：<strong>花王</strong><span class="btn-search-close"></span></a></li>
-          </ul>
-        </li>
-        <li class="clearfix classify-logo">
-        {{#each itemSearch.aggregations}}
-          {{#sf-isByBrand name}}
+        {{#sf-hasSelect filters}}
+          <li class="classify-select">
+            <label>已选条件：</label>
+            <ul id="classify-select">
+              {{#each filterBrands}}
+                  <li><a class="btn-search" href="javascript:">品牌：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
+              {{/each}}
+              {{#each filterCategories}}
+                  <li><a class="btn-search" href="javascript:">分类：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
+              {{/each}}
+              {{#each filterOrigins}}
+                  <li><a class="btn-search" href="javascript:">货源地：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
+              {{/each}}
+            </ul>
+            {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}
+          </li>
+        {{/sf-hasSelect}}
+        {{^searchData.brandIds}}
+        <li class="clearfix classify-logo" data-role="selectBrand">
           <div class="classify-c1 fl">
             <label>品牌：</label>
-              <ul id="classify-logo">
-                {{#each buckets}}
-                  <li><a href="javascript:"><img src="{{pic}}" alt="{{key}}"></a></li>
-                {{/each}}
-              </ul>
-            </div>
-            {{#sf-isShowMoreBrand buckets}}
+            <ul id="classify-logo">
+              {{#each brands.buckets}}<li data-id="{{id}}"><a href="javascript:">{{#pic}}<img src="{{pic}}" alt="{{key}}" />{{/pic}}<span>{{key}}</span></a></li>{{/each}}
+            </ul>
+          </div>
+          {{#sf-isShowMoreBrand brands.buckets}}
             <div class="classify-c2 fr">
-              <a href="javascript:"><span id="classify-more" class="classify-more"></span><span class="icon icon105"></span></a>
+              <a href="javascript:" id="classify-more"><span class="classify-more"></span><span class="icon icon105"></span></a>
             </div>
-            {{/sf-isShowMoreBrand}}
-            {{/sf-isByBrand}}
-          {{/each}}
+          {{/sf-isShowMoreBrand}}
         </li>
-
-        <li class="classify-text">
+        {{/searchData.brandIds}}
+        {{^searchData.categoryIds}}
+        <li class="classify-text" data-role="selectCategory">
           <label>分类：</label>
           <ul>
-            {{#each itemSearch.aggregations}}
-              {{#sf-isByCategory name}}
-                {{#each buckets}}
-                  <li><a href="javascript:">{{key}}</a></li>
-                {{/each}}
-              {{/sf-isByCategory}}
+            {{#each categories.buckets}}
+              <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
             {{/each}}
           </ul>
         </li>
-        <li class="classify-text">
+        {{/searchData.categoryIds}}
+        {{^searchData.originIds}}
+        <li class="classify-text" data-role="selectOrigin">
           <label>货源地：</label>
           <ul>
-            {{#each itemSearch.aggregations}}
-              {{#sf-isByGoodsOrigin name}}
-                {{#each buckets}}
-                    <li><a href="javascript:">{{key}}</a></li>
-                {{/each}}
-              {{/sf-isByGoodsOrigin}}
+            {{#each origins.buckets}}
+              <li data-id="{{id}}"><a href="javascript:">{{key}}</a></li>
             {{/each}}
           </ul>
+        </li>
+        {{/searchData.originIds}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pb">
+  <div class="pm">
+    <div class="sort">排序:
+      <ul id="sortBox">
+        <li class="{{#sf-isSortByDEFAULT searchData.sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li><li class="{{#sf-isSortBySALE searchData.sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li><li class="{{#sf-isSortByPRICE searchData.sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC searchData.sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC searchData.sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
+          <a href="javascript:" id="sort-price" class="{{#sf-isSortByPRICEDESC searchData.sort}}active{{/sf-isSortByPRICEDESC}}">价格<span class="icon icon107"></span></a>
         </li>
       </ul>
     </div>
@@ -70,24 +101,41 @@
       <div class="mb">
         <ul class="clearfix product-list">
           {{#each itemSearch.results}}
-            <li>
-              <div class="product-r1">
-                  <a href=""><img src="{{itemImage}}@240W_240h.jpg" alt="" ></a><span></span>
-                  <div class="product-new">新品</div>
-              </div>
-              <h3><a href="">{{title}}</a></h3>
-              <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-              <div class="product-r2 clearfix">
+            <li data-item-id="{{itemId}}">
+              <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+                <div class="product-r1">
+                  <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
+                  <span></span>
+                  {{#sf-isSoldOut soldOut}}
+                    <div class="mask show"></div>
+                    <span class="icon icon24"></span>
+                  {{/sf-isSoldOut}}
+                </div>
+                <h3>{{title}}</h3>
+                <p>{{#nationPic}}<img src="{{nationPic}}"  alt="货源地" width="22" height="14" />{{/nationPic}}{{goodsOrigin}}直供 {{shippingStartPointDesc}}</p>
+                <div class="product-r2 clearfix">
                   <div class="product-r2c1 fl">
-                      <span>￥</span><strong>129</strong><del>￥189</del>5折
-
+                    <span>￥</span><strong>{{sf.price sellingPrice}}</strong><del>￥{{sf.price referencePrice}}</del>{{#sf-discount sellingPrice referencePrice}}{{/sf-discount}}
                   </div>
-              </div>
+                  {{#if isShowShoppintCart}}
+                    <div class="product-r2c2 fr">
+                      <a {{#sf-isShowAddToCart soldOut supportShoppingCart}} {{/sf-isShowAddToCart}} href="javascript:" class="icon icon90 {{#sf-isShowAddToCart soldOut supportShoppingCart}}addtocart{{/sf-isShowAddToCart}}{{^sf-isShowAddToCart soldOut supportShoppingCart}}disable{{/sf-isShowAddToCart}}">购买</a>
+                    </div>
+                  {{/if}}
+                </div>
+              </a>
             </li>
           {{/each}}
-        </ul>
+          </ul>
       </div>
     </div>
   </div>
 </div>
-{{/itemSearch.totalHits}}
+<div class="pb">
+  <div class="pm">
+    <div class="search-page">
+      {{#prevPage}}<a class="btn btn-normal" href="javascript:" id="pageUpBtn">上一页</a>{{/prevPage}}{{#nextPage}}<a class="btn btn-normal" href="javascript:" id="pageDownBtn">下一页</a>{{/nextPage}}
+    </div>
+  </div>
+</div>
+{{/sf-isHasResults}}

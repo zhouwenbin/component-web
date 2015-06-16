@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '15000100': '请求参数有误',
         '15000300': '购物车删除商品失败'
       }
     }

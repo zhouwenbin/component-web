@@ -4,12 +4,14 @@ define(
     'underscore',
     'store',
     'sf.b2c.mall.api.b2cmall.getProductHotDataList',
-    'sf.b2c.mall.api.shopcart.addItemToCart',
+    'sf.b2c.mall.api.shopcart.addItemsToCart',
+    'sf.b2c.mall.api.shopcart.isShowCart',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.framework.comm'
+    'sf.b2c.mall.framework.comm',
+    'jquery'
   ],
 
-  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFConfig, SFFrameworkComm) {
+  function(can, _, store, SFGetProductHotDataList, SFAddItemToCart, SFIsShowCart, SFConfig, SFFrameworkComm, $) {
 
     SFFrameworkComm.register(1);
 
@@ -36,11 +38,65 @@ define(
 
             // 如渲染价格
             that.renderPrice(data, element);
+            that.checkCartIsShown.call(that, data, element);
 
           })
           .fail(function(errorCode) {
             console.error(errorCode);
           })
+      },
+
+      checkCartIsShown: function(data, element) {
+
+        var that = this;
+        if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+          // 从cookie中获得值确认购物车是不是显示
+          var uinfo = $.cookie('1_uinfo');
+          var arr = [];
+          if (uinfo) {
+            arr = uinfo.split(',');
+          }
+
+          // 判断纬度，用户>总开关
+          //
+          // 第四位标示是否能够展示购物车
+          // 0表示听从总开关的，1表示显示，2表示不显示
+          var flag = arr[4];
+
+          // 如果判断开关关闭，使用dom操作不显示购物车
+          if (typeof flag == 'undefined' || flag == '2') {
+
+          } else if (flag == '0') {
+            // @todo 请求总开关进行判断
+            var isShowCart = new SFIsShowCart();
+
+            isShowCart
+              .sendRequest()
+              .done(function(info) {
+                if (info.value) {
+                  that.paintCart.call(that, data, element);
+                }
+              })
+              .fail(function() {
+
+              })
+          } else {
+            this.paintCart.call(this, data, element);
+          }
+        } else {
+          var isShowCart = new SFIsShowCart();
+
+          isShowCart
+            .sendRequest()
+            .done(function(info) {
+              if (info.value) {
+                that.paintCart.call(that, data, element);
+              }
+            })
+            .fail(function() {
+
+            })
+        }
       },
 
       /**
@@ -49,9 +105,6 @@ define(
        * @return {[type]}      [description]
        */
       renderPrice: function(data, element) {
-
-        // @todo 获得总开关的阀值
-
         var that = this;
 
         _.each(data.value, function(value, key, list) {
@@ -63,11 +116,9 @@ define(
           if ($el.length && $el.length > 1) {
             _.each($el, function(item) {
               that.fillPrice($(item), value);
-              that.paintCart($(item), value);
             })
           } else {
             that.fillPrice($el, value);
-            that.paintCart($el, value);
           }
 
         });
@@ -77,28 +128,71 @@ define(
        * @author Michael.Lee
        * @description 加入购物车
        */
-      addCart: function (itemId, num) {
+      addCart: function(itemId, num, $el) {
         var itemsStr = JSON.stringify([{
           itemId: itemId,
           num: num || 1
         }]);
-        var addItemToCart = new SFAddItemToCart({items: itemsStr});
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
 
         // 添加购物车发送请求
         addItemToCart.sendRequest()
-          .done(function (data) {
-            if (data.value) {
+          .done(function(data) {
+            if (data.isSuccess) {
               // 更新mini购物车
               can.trigger(window, 'updateCart');
-            }
-          })
-          .fail(function (data) {
-            // @todo 添加失败提示
-            var error = SFAddItemToCart.api.ERROR_CODE[data.code];
 
-            if (error) {
-              // @todo 需要确认是不是需要提交
+              var $el = window.el;
+
+              if ($(window).scrollTop() > 166) {
+                var target = $('.nav .icon100').eq(1).offset()
+              } else {
+                var target = $('.nav .icon100').eq(0).offset()
+              }
+              var targetX = target.left,
+                targetY = target.top,
+                current = $el.offset(),
+                currentX = current.left,
+                currentY = current.top,
+                cart_num = $('.cart-num').eq(0).text();
+              $el.clone().appendTo($el.parent());
+              $el.css({
+                left: targetX - currentX,
+                top: targetY - currentY,
+                zIndex: 2,
+                visibility: 'hidden'
+              })
+
+              setTimeout(function() {
+                $el.remove();
+              }, 1000);
+              cart_num++;
+              $('.cart-num').text(cart_num);
+              $('.nav .label-error').addClass('active');
+
+              setTimeout(function() {
+                $('.nav .label-error').removeClass('active');
+              }, 500);
+            } else {
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+              if ($('.dialog-cart').length > 0) {
+                return false;
+              };
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
+                $el.remove();
+              });
+              setTimeout(function(){
+                $el.remove();
+              },3000);
             }
+
+
+          })
+          .fail(function(data) {
+
           })
       },
 
@@ -107,15 +201,21 @@ define(
        * @description 添加购物车动作触发
        * @param  {element} el
        */
-      '.addtocart click': function (el, event) {
+      '.addtocart click': function(el, event) {
         event && event.preventDefault();
 
         var itemId = el.closest('.cms-src-item').attr('data-cms-itemid');
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+
+          window.el = el;
+
           // 用户如果如果登录
-          this.addCart(itemId);
-        }else{
-          store.set('temp-action-addCart', {itemId: itemId});
+          this.addCart.call(this, itemId, 1, el);
+
+        } else {
+          store.set('temp-action-addCart', {
+            itemId: itemId
+          });
           can.trigger(window, 'showLogin', [window.location.href]);
         }
       },
@@ -174,12 +274,33 @@ define(
        * @param  {json} value   数据
        * @return
        */
-      paintCart: function (element, value) {
-        // @todo 从value中获得值确认购物车是不是显示
+      paintCart: function(data, element) {
+        var that = this;
+        _.each(data.value, function(value, key, list) {
 
-        if (true) {
-          element.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
-        }
+          var $el = element.find('[data-cms-itemid=' + value.itemId + ']');
+
+          // 如果有重复的itemid，则进行容错
+          if ($el.length && $el.length > 1) {
+            _.each($el, function(item) {
+              // 判断如果商品已经售完，不再显示添加购物车按钮
+              if (!value.soldOut && value.supportShoppingCart) {
+                $(item).find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
+              } else {
+                // @todo 显示不能添加购物车
+                $(item).find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
+              }
+            });
+          } else {
+            // 判断如果商品已经售完，不再显示添加购物车按钮
+            if (!value.soldOut && value.supportShoppingCart) {
+              $el.find('.cms-fill-cart').html('<a href="#" class="icon icon90 addtocart">购买</a>');
+            } else {
+              // @todo 显示不能添加购物车
+              $el.find('.cms-fill-cart').html('<a href="javascript:void(0)" class="icon icon90 disable">购买</a>');
+            }
+          }
+        });
       },
 
       getItemList: function() {
