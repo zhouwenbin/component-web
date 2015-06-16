@@ -276,6 +276,7 @@ requirejs.config({
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
+    'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
