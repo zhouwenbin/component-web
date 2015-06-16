@@ -268,14 +268,17 @@ define(
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
 
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
             // 注册送优惠券 begin
-            if (newUser) {
-              // that.sendCoupon();
-              that.receiveCoupon();
-            } else {
-              document.domain= "sfht.com";
-              window.parent.userLoginSccuessCallback();
-            }
+            // if (newUser) {
+            //   // that.sendCoupon();
+            //   that.receiveCoupon();
+            // } else {
+            //   document.domain= "sfht.com";
+            //   window.parent.userLoginSccuessCallback();
+            // }
             // 注册送优惠券 end
             // document.domain = "sfht.com";
             // 获得打车券

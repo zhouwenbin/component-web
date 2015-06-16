@@ -404,7 +404,7 @@ define(
                 //   });
                 // }
                 // 注册送优惠券 end
-                that.receiveCoupon();
+                // that.receiveCoupon();
 
                 can.route.attr({
                   'tag': 'success',
