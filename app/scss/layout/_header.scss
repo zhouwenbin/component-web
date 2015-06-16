@@ -13,9 +13,10 @@
 }
 .header-c2 span{
 	transition:all 0.5s;
+	will-change:transform;
 }
 .header-c2 span:hover{
-	transform:rotateY(360deg);
+	transform:rotatez(360deg) translate3d(0,0,0);
 }
 .header-c2{
 	height:49px;
