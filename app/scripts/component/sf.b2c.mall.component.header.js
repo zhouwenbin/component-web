@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      this.renderMap['template_header_61'].call(this, that.data);
+      // this.renderMap['template_header_61'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
@@ -408,7 +408,7 @@ define('sf.b2c.mall.component.header', [
       // @note 520活动结束，打开浮动导航
       $(window).scroll(function() {
         setTimeout(function() {
-          if ($(window).scrollTop() > 566) {
+          if ($(window).scrollTop() > 166) {
             $(".nav-fixed .nav-inner").stop(true, false).animate({
               top: '0px',
               opacity: 1
