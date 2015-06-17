@@ -20,7 +20,8 @@ define('sf.b2c.mall.shop.detail', [
     helpers: {
       'sf-firstImg': function(imageList, options) {
         if (imageList() && imageList().length > 1) {
-          return imageList()[0];
+          //imageList 首页用第一张，店铺页用第二张
+          return imageList()[1] || imageList()[0];
         } else {
           return "";
         }

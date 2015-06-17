@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.search.searchShopInNation
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.search.searchShopInNation',
 [
   'jquery',
   'can',
@@ -22,17 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'search.searchShopInNation',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'token': 'string'
+        'nationId': 'long',
+        'categoryId': 'long'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
       }
     }
   });
