@@ -189,7 +189,7 @@ module.exports = function(grunt) {
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
-        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
+        browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
       },
       dist: {
         files: [{
@@ -436,8 +436,8 @@ module.exports = function(grunt) {
       styles: {
         expand: true,
         dot: true,
-        cwd: '<%= config.app %>/styles',
-        dest: '.tmp/styles/',
+        cwd: '.tmp/concat/styles',
+        dest: '<%= config.dist %>/styles/',
         src: '{,*/}*.css'
       }
     },
@@ -1444,15 +1444,16 @@ module.exports = function(grunt) {
         'wiredep',
         'useminPrepare',
         'concurrent:dist',
-        'autoprefixer',
+        //'autoprefixer',
         'concat',
         'requirejs',
-        'cssmin',
+        //'cssmin',
         'uglify',
         'copy:dist',
         'copy:html',
         'copy:image',
         'copy:templates',
+        'copy:styles',
         'usemin',
         // 'htmlmin',
         'clean:extra',
@@ -1484,6 +1485,7 @@ module.exports = function(grunt) {
         'copy:html',
         'copy:image',
         'copy:templates',
+        'copy:styles',
         'usemin',
         //'htmlmin',
         'clean:extra',

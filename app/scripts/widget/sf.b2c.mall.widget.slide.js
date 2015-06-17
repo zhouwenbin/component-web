@@ -92,7 +92,7 @@ define(
         });
 
         $(element).on("click", ".slider-num li", function() {
-          that.options.sliderIndex = that.element.find('.slider-num li').index(element);
+          that.options.sliderIndex = that.element.find('.slider-num li').index(this);
           that.sliderSwitch();
           clearInterval(that.options.silderTimer);
         });
