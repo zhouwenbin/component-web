@@ -24,7 +24,7 @@
 <div class="pb">
   <div class="classify">
     <div class="pm">
-      {{#if filterCustom.showCrumbs}}<div class="crumbs"><a href="http://www.sfht.com/index.html">海外直采</a><span>&gt;</span>123</div>{{/if}}
+      {{#if filterCustom.showCrumbs}}<div class="crumbs"><a href="http://www.sfht.com/index.html">海外直邮</a><span>&gt;</span>123</div>{{/if}}
       {{#if filterCustom.showStatInfo}}
         <h2><strong>“{{keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
       {{/if}}
@@ -33,7 +33,7 @@
           <li class="classify-select">
             <label>已选条件：</label>
             <ul id="classify-select">
-              {{#each filterBrands}}
+              {{#each brands.buckets}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.brandName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
               {{/each}}
               {{#each categories.buckets}}

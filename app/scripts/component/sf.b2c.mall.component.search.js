@@ -85,6 +85,13 @@ define('sf.b2c.mall.component.search', [
           return options.inverse(options.contexts || this);
         }
       },
+      'sf-isSortByPRICEASC': function(sort, options) {
+        if (sort() == "PRICE_ASC") {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
       'sf-isSoldOut': function(soldOut, options) {
         if (soldOut() == true) {
           return options.fn(options.contexts || this);
