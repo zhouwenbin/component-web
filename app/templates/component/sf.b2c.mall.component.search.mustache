@@ -34,21 +34,29 @@
             <label>已选条件：</label>
             <ul id="classify-select">
               {{#each brands.buckets}}
+                {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.brandName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="brandIds" data-id="{{id}}"></span></a></li>
+                {{/selected}}
               {{/each}}
               {{#each categories.buckets}}
                 {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.categoryName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="categoryIds" data-id="{{id}}"></span></a></li>
                 {{/selected}}
               {{/each}}
-              {{#each filterSecondCategories}}
+              {{#each secondCategories.buckets}}
+                {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.secondCategoryName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="catg2ndIds" data-id="{{id}}"></span></a></li>
+                {{/selected}}
               {{/each}}
-              {{#each filterOrigins}}
+              {{#each origins.buckets}}
+                {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.originName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="originIds" data-id="{{id}}"></span></a></li>
+                {{/selected}}
               {{/each}}
-              {{#each filterShopNations}}
+              {{#each shopNations.buckets}}
+                {{#selected}}
                   <li><a class="btn-search" href="javascript:">{{filterCustom.shopNationName}}：<strong>{{key}}</strong><span class="btn-search-close" data-role="snIds" data-id="{{id}}"></span></a></li>
+                {{/selected}}
               {{/each}}
             </ul>
             {{#sf-hasSelectEmpty filters}}<a href="javascript:" class="text-disabled" id="emptyFilterBtn">全部重置</a>{{/sf-hasSelectEmpty}}
@@ -127,7 +135,7 @@
 <div class="pb">
   <div class="pm">
     <div class="sort">排序:
-      <ul id="sortBox">
+      <ul data-role="sortBox">
         <li class="{{#sf-isSortByDEFAULT sort}}active{{/sf-isSortByDEFAULT}}" data-role="DEFAULT"><a href="javascript:">综合</a></li><li class="{{#sf-isSortBySALE sort}}active{{/sf-isSortBySALE}}" data-role="SALE_DESC"><a href="javascript:">人气</a></li><li class="{{#sf-isSortByPRICE sort}}active{{/sf-isSortByPRICE}}" data-role="{{#sf-isSortByPRICEDESC sort}}PRICE_ASC{{/sf-isSortByPRICEDESC}}{{^sf-isSortByPRICEDESC sort}}PRICE_DESC{{/sf-isSortByPRICEDESC}}">
           <a href="javascript:" id="sort-price" class="{{#sf-isSortByPRICEDESC sort}}active{{/sf-isSortByPRICEDESC}}">价格<span class="icon icon107"></span></a>
         </li>
@@ -143,8 +151,8 @@
         <ul class="clearfix product-list">
           {{#each itemSearch.results}}
             <li data-item-id="{{itemId}}">
-              {{^sf-isYZYW productForm}}
-                <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+              <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+                {{^sf-isYZYW productForm}}
                   <div class="product-r1">
                     <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />
                     <span></span>
@@ -165,10 +173,8 @@
                       </div>
                     {{/if}}
                   </div>
-                </a>
-              {{/sf-isYZYW}}
-              {{#sf-isYZYW productForm}}
-                <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+                {{/sf-isYZYW}}
+                {{#sf-isYZYW productForm}}
                   <div class="product-r1">
                     <div class="nataral-product-price2">当地售价<div class="text-important">{{currencySymbol}}{{sf.price originRetailPrice}}</div></div>
                     <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="">
@@ -191,8 +197,8 @@
                   {{#starGoods}}
                     <span class="icon icon115">明星</span>
                   {{/starGoods}}
-                </a>
-              {{/sf-isYZYW}}
+                {{/sf-isYZYW}}
+              </a>
             </li>
           {{/each}}
           </ul>

@@ -58,35 +58,35 @@ define('sf.b2c.mall.component.search', [
         }
       },
       'sf-isSortByDEFAULT': function(sort, options) {
-        if (sort() == "DEFAULT" || !sort()) {
+        if (!sort() || sort().value == "DEFAULT") {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         }
       },
       'sf-isSortBySALE': function(sort, options) {
-        if (sort() == "SALE_DESC" || sort() == "SALE_ASC") {
+        if (sort() && (sort().value == "SALE_DESC" || sort().value == "SALE_ASC")) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         }
       },
       'sf-isSortByPRICE': function(sort, options) {
-        if (sort() == "PRICE_DESC" || sort() == "PRICE_ASC") {
+        if (sort() && (sort().value == "PRICE_DESC" || sort().value == "PRICE_ASC")) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         }
       },
       'sf-isSortByPRICEDESC': function(sort, options) {
-        if (sort() == "PRICE_DESC") {
+        if (sort() && (sort().value == "PRICE_DESC")) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
         }
       },
       'sf-isSortByPRICEASC': function(sort, options) {
-        if (sort() == "PRICE_ASC") {
+        if (sort() && (sort().value == "PRICE_ASC")) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -141,6 +141,10 @@ define('sf.b2c.mall.component.search', [
       page: null,
       nextPage: null,
       prevPage: 0,
+      sort : {
+        value: "DEFAULT",
+        name: "综合"
+      },
       //是否展示购物车
       isShowShoppintCart: false,
       //聚合数据，主要用于前端数据展示
@@ -170,12 +174,30 @@ define('sf.b2c.mall.component.search', [
 
     //排序类型map
     sortMap: {
-      "DEFAULT": "DEFAULT",
-      "SCORE": "SCORE",
-      "PRICE_DESC": "PRICE_DESC",
-      "PRICE_ASC": "PRICE_ASC",
-      "SALE_DESC": "SALE_DESC",
-      "SALE_ASC": "SALE_ASC"
+      "DEFAULT": {
+        value: "DEFAULT",
+        name: "综合"
+      },
+      "SCORE":  {
+        value: "SCORE",
+        name: ""
+      },
+      "PRICE_DESC":  {
+        value: "PRICE_DESC",
+        name: "价格由高到低"
+      },
+      "PRICE_ASC":  {
+        value: "PRICE_ASC",
+        name: "价格由低到高"
+      },
+      "SALE_DESC":  {
+        value: "SALE_DESC",
+        name: "人气"
+      },
+      "SALE_ASC":  {
+        value: "SALE_ASC",
+        name: "人气"
+      }
     },
 
     /**
@@ -276,8 +298,8 @@ define('sf.b2c.mall.component.search', [
         that.renderData.attr("prevPage", newVal - 1);
       });
       this.renderData.bind("sort", function(ev, newVal, oldVal) {
-        that.searchParams.sort = newVal;
-        that.searchData.sort = newVal;
+        that.searchParams.sort = newVal.value;
+        that.searchData.sort = newVal.value;
       });
       this.renderData.bind("brandIds", function(ev, newVal, oldVal) {
         if (newVal) {
@@ -434,7 +456,7 @@ define('sf.b2c.mall.component.search', [
               tempSecondCategories.push(secondCategory);
             }
           });
-          value.attr("secondCategories", tempSecondCategories);
+          value.attr("innerSecondCategories", tempSecondCategories);
         });
       }
     },
@@ -649,9 +671,14 @@ define('sf.b2c.mall.component.search', [
      * @param targetElement
      */
     '#emptyFilterBtn click': function(targetElement) {
-      this.gotoNewPage({
-        keyword: this.renderData.attr("keyword")
-      });
+      var searchDataTemp = _.clone(this.searchData);
+      delete searchDataTemp.page;
+      delete searchDataTemp.brandIds;
+      delete searchDataTemp.categoryIds;
+      delete searchDataTemp.catg2ndIds;
+      delete searchDataTemp.originIds;
+      delete searchDataTemp.snIds;
+      this.gotoNewPage(searchDataTemp);
     },
     /**
      * 删除一个以选中条件
@@ -694,9 +721,14 @@ define('sf.b2c.mall.component.search', [
      * 排序事件
      * @param targerElement
      */
-    "#sortBox li click": function(targerElement) {
+    "[data-role=sortBox] li click": function(targerElement) {
       var role = targerElement.data("role");
-      this.renderData.attr("sort", this.sortMap[role]);
+      var selectSort = _.find(this.sortMap, function(item){
+        if (item.value == role) {
+          return item;
+        }
+      })
+      this.renderData.attr("sort", selectSort);
       this.gotoNewPage();
     },
     /**
