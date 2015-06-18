@@ -547,7 +547,7 @@ define('sf.b2c.mall.component.search', [
                 ivalue.attr("actualPrice", value.originPrice);
                 ivalue.attr("soldOut", value.soldOut);
                 ivalue.attr("supportShoppingCart", value.supportShoppingCart);
-                ivalue.attr("originRetailPrice", value.localSellingPrice);
+                ivalue.attr("originPrice", value.localSellingPrice);
                 ivalue.attr("currencySymbol", value.currencySymbol);
               }
             });
