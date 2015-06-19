@@ -485,17 +485,20 @@ define('sf.b2c.mall.component.search', [
         var that = this;
 
         var categoryIds = this.searchParams.categoryIds;
-        if (categoryIds) {
-          _.each(categoryIds, function(bvalue, bkey, blist) {
-              _.find(value.buckets, function(bucket) {
-                if (bucket.id == bvalue) {
-                  bucket.selected = true;
-                  that.renderData.filterCategories.push(bucket);
-                  that.renderData.filters.push(bucket);
-                }
-              });
-          })
-        }
+        _.each(value.buckets, function(bvalue, bkey, blist) {
+          var result = _.find(categoryIds, function(bucket) {
+            if (bucket.id == bvalue) {
+              return true;
+            }
+          });
+          if (result) {
+            bucket.selected = true;
+            that.renderData.filterCategories.push(bucket);
+            that.renderData.filters.push(bucket);
+          } else {
+            bvalue.selected = false;
+          }
+        })
 
         this.renderData.attr("categories", value);
       },
@@ -503,17 +506,19 @@ define('sf.b2c.mall.component.search', [
         var that = this;
 
         var secondCategoryIds = this.searchParams.secondCategoryIds;
-
+        //处理已选项
         _.each(value.buckets, function(bvalue, bkey, blist) {
-          //处理已选项
-          if (secondCategoryIds) {
-            _.find(secondCategoryIds, function(cateId) {
-              if (cateId == bvalue.id) {
-                bvalue.selected = true;
-                that.renderData.filterSecondCategories.push(bvalue);
-                that.renderData.filters.push(bvalue);
-              }
-            })
+          var result = _.find(secondCategoryIds, function(cateId) {
+            if (cateId == bvalue.id) {
+              return true;
+            }
+          })
+          if (result) {
+            bvalue.selected = true;
+            that.renderData.filterSecondCategories.push(bvalue);
+            that.renderData.filters.push(bvalue);
+          } else {
+            bvalue.selected = false;
           }
         });
 

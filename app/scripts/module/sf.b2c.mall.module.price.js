@@ -230,7 +230,7 @@ define(
         // 售价
         element.find('.cms-fill-price').text(value.sellingPrice / 100);
         // 税后折算价
-        if (value.localSellingPrice) {
+        if (value.productShape == "YZYW") {
           element.find('.cms-fill-localsellingprice').text("约" + value.currencySymbol + (value.localSellingPrice / 100));
           if (value.isStartGoods === true) {
             element.find('.cms-fill-label').show();
