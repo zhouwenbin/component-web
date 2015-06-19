@@ -486,15 +486,15 @@ define('sf.b2c.mall.component.search', [
 
         var categoryIds = this.searchParams.categoryIds;
         _.each(value.buckets, function(bvalue, bkey, blist) {
-          var result = _.find(categoryIds, function(bucket) {
-            if (bucket.id == bvalue) {
+          var result = _.find(categoryIds, function(cateId) {
+            if (cateId == bvalue.id) {
               return true;
             }
           });
           if (result) {
-            bucket.selected = true;
-            that.renderData.filterCategories.push(bucket);
-            that.renderData.filters.push(bucket);
+            bvalue.selected = true;
+            that.renderData.filterCategories.push(bvalue);
+            that.renderData.filters.push(bvalue);
           } else {
             bvalue.selected = false;
           }
