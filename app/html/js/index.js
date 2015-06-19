@@ -239,6 +239,4 @@ $(function(){
     },500)
     return false;
   });
-
-  $('.fancybox').fancybox();
 })
