@@ -40,7 +40,7 @@ define('sf.b2c.mall.shop.detail', [
     }),
 
     /**
-     * 初始化slide控件
+     * 初始化
      * @param  {DOM} element 容器element
      * @param  {Object} options 传递的参数
      */
