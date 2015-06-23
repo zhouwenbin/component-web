@@ -132,6 +132,9 @@ requirejs.config({
     'sf.b2c.mall.api.order.getOrderV2':'scripts/api/sf.b2c.mall.api.order.getOrderV2',
     'sf.b2c.mall.api.shopcart.addItemsToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemsToCart',
 
+    //积分接口
+      'sf.b2c.mall.api.integral.getUserIntegralLog':'scripts/api/sf.b2c.mall.api.integral.getUserIntegralLog',
+      'sf.b2c.mall.api.integral.getUserTotalIntegral':'scripts/api/sf.b2c.mall.api.integral.getUserTotalIntegral',
 
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
