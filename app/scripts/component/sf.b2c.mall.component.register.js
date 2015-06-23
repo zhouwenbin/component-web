@@ -25,7 +25,7 @@ define(
   ],
 
   function($, $cookie, can, md5, _, store, placeholders, SFApiUserDownSmsCode,
-    FApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage,
+    SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage,
     SFReceivePro, SFReceiveCoupon, SFCheckUserExist, SFMediav) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
