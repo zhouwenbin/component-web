@@ -1,7 +1,7 @@
 $(function(){
   var nav_height=$('.nav').height();
   var num=$('.nataral-top li').length;
-  var nataral_pruduct=['#nataral-pruduct0','#nataral-pruduct1','#nataral-pruduct2'];
+  var nataral_pruduct=['.nataral-product2','.nataral-shop'];
   var nataral_pruduct_offset=[];
   for(i=0;i<num;i++){
     nataral_pruduct_offset[i]=$(nataral_pruduct[i]).offset().top-nav_height;
