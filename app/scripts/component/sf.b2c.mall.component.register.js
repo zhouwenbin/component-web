@@ -20,10 +20,13 @@ define(
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.promotion.receivePro',
     'sf.b2c.mall.api.coupon.receiveCoupon',
-    'sf.b2c.mall.api.user.checkUserExist' //@noto 检查第三方账号绑定的手机号是否有登录密码
+    'sf.b2c.mall.api.user.checkUserExist', //@noto 检查第三方账号绑定的手机号是否有登录密码
+    'sf.mediav'
   ],
 
-  function($, $cookie, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage, SFReceivePro, SFReceiveCoupon, SFCheckUserExist) {
+  function($, $cookie, can, md5, _, store, placeholders, SFApiUserDownSmsCode,
+    SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage,
+    SFReceivePro, SFReceiveCoupon, SFCheckUserExist, SFMediav) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -152,20 +155,6 @@ define(
             data.attr('platform', params.platform || (SFFn.isMobile.any() ? 'mobile' : null));
           }
           fn.call(this, data);
-        }
-      },
-
-      monitor: {
-        'mediav': function() {
-          var __src = $.cookie('__src');
-          if (__src == 'mediav') {
-            var _mvq = window._mvq || [];
-            window._mvq = _mvq;
-            _mvq.push(['$setAccount', 'm-123868-0']);
-
-            _mvq.push(['$setGeneral', 'register', '', /*用户名*/ '', /*用户id*/ '']);
-            _mvq.push(['$logConversion']);
-          }
         }
       },
 
@@ -422,7 +411,7 @@ define(
                 //   'csrfToken': data.csrfToken
                 // });
 
-                that.monitor['mediav']();
+                SFMediav.watchRegistered({name: mobile});
               }
             })
             .fail(function(errorCode) {

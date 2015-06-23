@@ -280,6 +280,9 @@ requirejs.config({
     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
     'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
+     'sf.mediav': 'scripts/util/sf.mediav',
+
+
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
     'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',

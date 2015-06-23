@@ -10,9 +10,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.widget.message',
     'moment',
-    'sf.b2c.mall.api.order.confirmReceive'
+    'sf.b2c.mall.api.order.confirmReceive',
+    'sf.mediav'
   ],
-  function(can, SFGetOrder, helpers, loading, FrameworkComm, Utils, SFConfig, SFMessage, moment, SFConfirmReceive) {
+  function(can, SFGetOrder, helpers, loading, FrameworkComm,
+    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFMediav) {
 
     return can.Control.extend({
       helpers: {
@@ -45,6 +47,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
       init: function(element, options) {
         this.render();
+      },
+
+      watchDetail: function (data) {
+        var uinfo = $.cookie('3_uinfo');
+        var arr = [];
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
+
+        var name = arr[0];
+        SFMediav.watchOrderDetail({name: name}, {id: (new Date()).valueOf(), amount: data.totalPrice});
       },
 
       render: function(data) {
@@ -118,6 +131,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.renderPackageItemInfo(0, data.orderItem);
 
             that.supplement();
+
+            that.watchDetail.call(that, data);
           })
       },
 
