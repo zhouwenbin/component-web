@@ -73,3 +73,13 @@
 	max-width: 180px;
 	max-height: 106px;
 }
+.nataral-category-bc2 li span{
+	display: none;
+}
+.nataral-category-bc2 li:hover span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.nataral-category-bc2 li:hover img{
+	display: none;
+}
