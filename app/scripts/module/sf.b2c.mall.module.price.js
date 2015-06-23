@@ -251,6 +251,8 @@ define(
           element.find('.cms-fill-gotobuy').addClass('disable').text('已经抢光');
           element.find('.product-r1').append('<div class="mask show"></div>');
           element.find('.product-r1').append('<span class="icon icon24"></span>');
+
+          element.find(".cms-fill-soldout").show();
         }
       },
 

@@ -3,11 +3,10 @@ define(
     'jquery',
     'can',
     'underscore',
-    'sf.b2c.mall.framework.comm',
-    'sf.b2c.mall.module.price'
+    'sf.b2c.mall.framework.comm'
   ],
 
-  function($, can, _, SFFrameworkComm, SFPrice) {
+  function($, can, _, SFFrameworkComm) {
 
     SFFrameworkComm.register(1);
 

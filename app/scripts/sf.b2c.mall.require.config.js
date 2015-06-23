@@ -278,6 +278,7 @@ requirejs.config({
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
     'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
+    'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',

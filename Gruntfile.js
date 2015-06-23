@@ -1256,7 +1256,7 @@ module.exports = function(grunt) {
             'JSON': '../bower_components/JSON-js/json2',
             'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: ["JSON", "sf.b2c.mall.module.yzywtab", "sf.b2c.mall.module.price"],
+          include: ["JSON", "sf.b2c.mall.module.yzywtab"],
           insertRequire: ['sf.b2c.mall.module.yzywtab']
         }
       },
@@ -1277,6 +1277,26 @@ module.exports = function(grunt) {
           },
           include: ["JSON", "sf.b2c.mall.module.newpage"],
           insertRequire: ['sf.b2c.mall.module.newpage']
+        }
+      },
+
+
+      sidelip: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.sidelip.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: ["JSON", "sf.b2c.mall.module.sidelip"],
+          insertRequire: ['sf.b2c.mall.module.sidelip']
         }
       },
 
