@@ -250,6 +250,10 @@ requirejs.config({
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
     'sf.b2c.mall.component.shoppingcart': 'scripts/component/sf.b2c.mall.component.shoppingcart',
+
+      //积分管理界面
+      'sf.b2c.mall.page.pointmanage': 'scripts/page/sf.b2c.mall.page.pointmanage',
+
     //收货地址管理
     'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
     'sf.b2c.mall.page.accountmanage': 'scripts/page/sf.b2c.mall.page.accountmanage',
