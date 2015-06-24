@@ -181,7 +181,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           'COMPLETED': 'order-detail-step5', //已完成
           'CLOSED': 'order-detail-step5',
           'CONSIGNED': 'order-detail-step4',
-          'RECEIPTED': 'order-detail-step5'
+          'RECEIPTED': 'order-detail-step5',
+          'AUTO_COMPLETED':'order-detail-step5'
         };
 
         packageInfo.showWhereStep = map[packageInfo.status];
