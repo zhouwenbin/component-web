@@ -1,0 +1,19 @@
+$(function(){
+  //----------注册页小章鱼特效-------------//
+  $('.password').focus(function(){
+      $(".icon34").animate({
+          "top":-28
+      },700);
+  })
+  $('.password').blur(function(){
+      $(".icon34").animate({
+          "top":-78
+      },300)
+      .animate({
+          "top":-74
+      },50)
+      .animate({
+          "top":-76
+      },50);
+  })
+})
