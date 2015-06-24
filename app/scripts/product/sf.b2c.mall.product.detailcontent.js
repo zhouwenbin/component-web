@@ -226,42 +226,7 @@ define('sf.b2c.mall.product.detailcontent', [
         if (that.options.serverRendered) {
           this.supplement();
           $(".img-lazyload").imglazyload();
-        } else {
-          can.ajax({
-              url: 'json/sf-b2c.mall.detail.getItemInfo.json'
-            })
-            .then(function(itemInfoData) {
-              that.options.detailContentInfo = {};
-              that.adapter.formatItemInfo(that.options.detailContentInfo, itemInfoData);
-
-              return can.ajax({
-                url: 'json/sf-b2c.mall.detail.getSkuInfoByItemIdPrice.json'
-              })
-            })
-            .done(function(priceData) {
-              that.adapter.formatPrice(that.options.detailContentInfo, priceData);
-
-            })
-            .then(function() {
-              return can.ajax({
-                url: 'json/sf-b2c.mall.detail.getRecommendProducts.json'
-              })
-            })
-            .done(function(recommendProducts) {
-              that.adapter.formatRecommendProducts(that.options.detailContentInfo, recommendProducts);
-              that.options.detailContentInfo = that.adapter.format(that.options.detailContentInfo);
-
-              var html = can.view('templates/product/sf.b2c.mall.product.detailcontent.mustache', that.options.detailContentInfo, that.helpers);
-              that.element.html(html);
-
-              //设置为选中
-              that.setFirstPicSelected();
-
-              that.interval = setInterval(function() {
-                that.setCountDown(that.options.detailContentInfo.priceInfo)
-              }, '1000')
-            })
-        }
+        }       
       },
 
       /**
