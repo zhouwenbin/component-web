@@ -172,6 +172,7 @@ requirejs.config({
     'sf.b2c.mall.component.recommendProducts': 'scripts/component/sf.b2c.mall.component.recommendProducts',
     //搜索
     'sf.b2c.mall.component.search': 'scripts/component/sf.b2c.mall.component.search',
+    'sf.b2c.mall.component.centerleftside': 'scripts/component/sf.b2c.mall.component.centerleftside',
 
     'sf.b2c.mall.center.register': 'scripts/center/sf.b2c.mall.center.register',
     'sf.b2c.mall.center.change.userinfo': 'scripts/center/sf.b2c.mall.center.change.userinfo',
@@ -179,6 +180,7 @@ requirejs.config({
     'sf.b2c.mall.center.receiveperson': 'scripts/center/sf.b2c.mall.center.receiveperson',
     'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
     'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
+    'sf.b2c.mall.center.invitationcontent': 'scripts/center/sf.b2c.mall.center.invitationcontent',
 
     'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
     'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -223,7 +225,7 @@ requirejs.config({
     'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
     'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
     'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
-    '': 'scripts/page/',
+
     'sf.b2c.mall.page.registeractive': 'scripts/page/sf.b2c.mall.page.registeractive',
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
@@ -234,6 +236,7 @@ requirejs.config({
     'sf.b2c.mall.page.bindaccount': 'scripts/page/sf.b2c.mall.page.bindaccount',
     //设置密码并登陆
     'sf.b2c.mall.page.setpassword': 'scripts/page/sf.b2c.mall.page.setpassword',
+    'sf.b2c.mall.page.invitation': 'scripts/page/sf.b2c.mall.page.invitation',
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
 
@@ -268,7 +271,7 @@ requirejs.config({
     'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
-     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
+    'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
 
      'sf.mediav': 'scripts/util/sf.mediav',
 
@@ -283,6 +286,8 @@ requirejs.config({
     'template_header_61': 'templates/header/sf.b2c.mall.header.61.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
     'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
-    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache'
+    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
+    'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
+    'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache'
   }
 });
