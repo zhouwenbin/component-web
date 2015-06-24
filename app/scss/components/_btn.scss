@@ -380,7 +380,8 @@
 	background:#5fa620;
 }
 
-.btn-soon{
+.btn-soon,
+.btn-cart{
 	@extend %btn;
   background: #ff8140;
   color: #fff !important;
