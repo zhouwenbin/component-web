@@ -1,52 +1,49 @@
-<div class="personal-c2">
-    <div class="integral">
-        <h2>我的积分</h2>
-        <div class="integral-r1">可用积分：<span class="text-important">{{integralTotalAmount}}</span>即将过期积分：<span class="text-important">{{integralTotalAmount}}</span><span class="text-disabled">（{{expirationDate}}）</span></div>
-        <div class="integral-tab clearfix">
-            <div class="integral-tab-c1 fl">
-                <ul>
-                    <li  tag="all"><a href="">全部</a></li>
-                    <li><a href="" tag="add">收入</a></li>
-                    <li><a href=""  tag="sub">支出</a></li>
-                </ul>
 
-            </div>
-            <div class="integral-tab-c2 fr">
-                <select>
-                    <option value="三个月内积分记录">三个月内积分记录</option>
-                </select>
-                <a class="text-link" href="">怎样获取积分？</a>
-                <a class="text-link" href="">常见问题</a>
-            </div>
+<div class="integral">
+    <h2>我的积分</h2>
+    <div class="integral-r1">可用积分：<span class="text-important">{{integralTotalAmount}}</span>即将过期积分：<span class="text-important">{{expireIntegralAmount}}</span><span class="text-disabled">（{{expirationDate}}）</span></div>
+    <div class="integral-tab clearfix">
+        <div class="integral-tab-c1 fl">
+            <ul>
+                <li  tag="all"><a href="">全部</a></li>
+                <li tag="add"><a href="" >收入</a></li>
+                <li tag="sub"><a href=""  >支出</a></li>
+            </ul>
         </div>
-    </div>
-    <div class="address">
-        <div class="address-table integral-table">
-            <table>
-                <thead>
-                <tr>
-                    <th class="col1">日期</th>
-                    <th class="col2">收入/支出</th>
-                    <th class="col3">说明</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {{#each result}}
-                        <tr>
-                            <td class="col1">{{createDate}}</td>
-                            <td class="col2"><strong class="text-success">{{integralAmount}}</strong></td>
-                            <td class="col3">{{description}}</td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-            <!-- 分页 -->
-            <div class="sf-b2c-mall-center-point-pagination"></div>
-            <!-- 分页 -->
+        <div class="integral-tab-c2 fr">
+            <select>
+                <option value="三个月内积分记录">三个月内积分记录</option>
+            </select>
+            <a class="text-link" href="">怎样获取积分？</a>
+            <a class="text-link" href="">常见问题</a>
         </div>
     </div>
 </div>
-
-<div class="noOrderShow hide"></div>
+<div class="address">
+    <div class="address-table integral-table">
+        <table>
+            <thead>
+            <tr>
+                <th class="col1">日期</th>
+                <th class="col2">收入/支出</th>
+                <th class="col3">说明</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each result}}
+                    <tr>
+                        <td class="col1">{{createDate}}</td>
+                        <td class="col2">
+                              <strong class="{{flag}}"> {{integralAmount}} </strong>
+                        <td class="col3">{{description}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <!-- 分页 -->
+        <div class="sf-b2c-mall-order-orderlist-pagination"></div>
+        <!-- 分页 -->
+    </div>
+</div>
 
 

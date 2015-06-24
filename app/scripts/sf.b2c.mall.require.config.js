@@ -253,6 +253,7 @@ requirejs.config({
 
       //积分管理界面
       'sf.b2c.mall.page.pointmanage': 'scripts/page/sf.b2c.mall.page.pointmanage',
+      'sf.b2c.mall.center.mypoint': 'scripts/center/sf.b2c.mall.center.mypoint',
 
     //收货地址管理
     'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',

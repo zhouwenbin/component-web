@@ -10,46 +10,37 @@ define('sf.b2c.mall.center.mypoint', [
     'sf.b2c.mall.api.sc.getUserRoutes',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.product.findRecommendProducts',
-    'sf.b2c.mall.business.config'
+    'sf.b2c.mall.business.config',
+    'sf.b2c.mall.framework.comm'
   ],
-  function(can, $,  IntegralLog,  PaginationAdapter, Pagination, helpers,  SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFConfig) {
+  function(can, $,  IntegralLog,  PaginationAdapter, Pagination, helpers,  SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFConfig,SFFrameworkComm) {
 
     can.route.ready();
-
+    SFFrameworkComm.register(1);
     return can.Control.extend({
-
       init: function(element, options) {
-        var that = this;
+            var that = this;
+            this.handler = null;
 
-        this.handler = null;
+              //获取当前的页码，如果为空在默认为1
+            var routeParams = can.route.attr();
+            if (!routeParams.page) {
+              routeParams = _.extend(routeParams, {
+                page: 1
+              });
+            }
 
-          //获取当前的页码，如果为空在默认为1
-        var routeParams = can.route.attr();
-        if (!routeParams.page) {
-          routeParams = _.extend(routeParams, {
-            page: 1
-          });
-        }
+          var dateList = this.getQueryDate();
+            var operateTypeV = "";
 
-       //获取当前的操作类型，如果为空则默认为查询所有
-        if (routeParams.operateType) {
-          _.each($(".integral-tab-c1 li"), function(element) {
-               if(element.attr("tag") == routeParams.operateType){
-                    $(element).addClass("active").siblings().removeClass("active");
-               }
-          }, this)
-        } else {
-            $(".integral-tab-c1 li").eq(0).addClass("active");
-        }
-
-        var params = {
-          "query": JSON.stringify({
-            "operateType": routeParams.operateType,
-            "page": routeParams.page,
-            "size": 10
-          })
-        }
-        this.render(params);
+            var params = {
+              "operateType": routeParams.operateType,
+                "startDate":dateList.startDateFormat,
+                "endDate":dateList.endDateFormat,
+                "page": routeParams.page,
+                "size": 10
+            }
+            this.render(params);
       },
 
       render: function(params) {
@@ -58,37 +49,83 @@ define('sf.b2c.mall.center.mypoint', [
         var getPointList = new IntegralLog(params);
           getPointList.sendRequest()
           .done(function(data) {
-            if (data.result && data.result.length > 0) {
-              that.options.result = data.result;
-              _.each(that.options.result, function(point, i) {
+                  that.options.integralTotalAmount = data.userTotalIntegral.integralTotalAmount;
+                  that.options.expirationDate = data.userTotalIntegral.expireDate;
+                  that.options.expireIntegralAmount = data.userTotalIntegral.expireIntegralAmount;
+                   if (data.result && data.result.length > 0) {
+                          that.options.result = data.result;
 
-              })
+                          _.each(that.options.result, function(point) {
+                                    if(point.integralAmount > 0){
+                                        point.flag = "text-success";
+                                    }
+                                   else{
+                                        point.flag = "text-important";
+                                    }
+                          })
+                    } else {
 
-              var html = can.view('templates/order/sf.b2c.mall.center.point.mustache', that.options);
-              that.element.html(html);
+                    }
+                  var html = can.view('templates/center/sf.b2c.mall.center.point.mustache', that.options);
+                  that.element.html(html);
+                  //获取当前的操作类型，设置当前的li标签
+                  var routeParams = can.route.attr();
+                  if (routeParams.operateType) {
+                      _.each($(".integral-tab-c1 li"), function(element) {
+                          if($(element).attr("tag") == routeParams.operateType){
+                              $(element).addClass("active").siblings().removeClass("active");
+                          }
+                      }, this)
+                  } else {
+                      $(".integral-tab-c1 li").eq(0).addClass("active");
+                  }
 
-              //分页 保留 已经调通 误删 后面设计会给样式
-              that.options.page = new PaginationAdapter();
-              that.options.page.format(data.page);
-              new Pagination('.sf-b2c-mall-center-point-pagination', that.options);
-            } else {
-
-            }
+                  //分页 保留 已经调通 误删 后面设计会给样式
+                  that.options.page = new PaginationAdapter();
+                  that.options.page.format({
+                      "pageNum":data.totalPage,
+                      "currentNum":data.currentPage,
+                      "totalNum":data.totalCount,
+                      "pageSize":data.pageSize
+                  });
+                  new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
           })
           .fail(function(error) {
             console.error(error);
-          })
+          });
+      },
+
+        //根据当前日期查询出最近三个月的起始和终止时间，以及之前的时间
+      getQueryDate:function(){
+          var routeParams = can.route.attr();
+          var current = new Date();
+          var yearV = current.getFullYear();
+          var monV =  current.getMonth() + 1;
+          var dayV = current.getDate();
+          var endDateFormat = yearV + "-" + (monV < 10 ? '0' + monV:  monV )+ "-" +(dayV < 10 ? '0'+dayV:dayV);
+          var startDateFormat = yearV + "-" + ((monV -2)  < 10 ? '0' + (monV -2) : (monV -2))+ "-01" ;
+          var endDate = new Date(yearV, monV - 3, 1, 0, 0, 0);
+          var newDate = new Date(new Date(yearV, monV - 3, 1, 0, 0, 0).getTime() - 100);
+          var endDateForT = newDate.getFullYear() + "-" + (newDate.getMonth() + 1) + "-" + newDate.getDate();
+          var startDateForT = "2015-07-01";
+          return {
+              "startDateFormat":startDateFormat,
+              "endDateFormat":endDateFormat,
+              "startDateForT":startDateForT,
+              "endDateForT":endDateForT
+          };
       },
 
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
-        var routeParams = can.route.attr();
-        var params = {
-          "query": JSON.stringify({
-            "operateType": routeParams.operateType,
-            "page": routeParams.page,
-            "size": 10
-          })
-        }
+          var routeParams = can.route.attr();
+          var dateList = this.getQueryDate();
+          var params = {
+              "operateType": routeParams.operateType,
+              "startDate":dateList.startDateFormat,
+              "endDate":dateList.endDateFormat,
+              "page": routeParams.page,
+              "size": 10
+          };
           this.render(params);
       },
 
@@ -99,17 +136,14 @@ define('sf.b2c.mall.center.mypoint', [
         var that = this;
         // @todo 知道当前需要访问那个tag，并且根据tag，设置params，传给render
         var tag = $(element).attr('tag');
-
+        if(tag == "all"){
+            tag = "";
+        }
          //选中li的样式的改变
        $(element).addClass("active").siblings().removeClass("active");
 
-        window.location.href = SFConfig.setting.link.pointlist + '#!' + $.param({
-            operateType: tag,
-            page: 1
-        });
-      },
-
-      receiveDErrorMap: {
+        //window.location.href = SFConfig.setting.link.pointlist + '#!' + $.param({
+          window.location.href = " http://www.sfht.com/point-manage.html" + '#!' + "operateType=" + tag + "&page=" + 1;
 
       }
     });

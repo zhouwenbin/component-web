@@ -29,7 +29,11 @@ function($, can, _, Comm, SecurityType) {
         'size': 'int',
       },
       OPTIONAL: {
-        'operateType': 'string'
+        'operateType': 'string',
+        'startDate': 'string',
+        'endDate': 'string',
+        'appId': 'string',
+        'channel': 'string'
       },
       VERIFY:{
       },

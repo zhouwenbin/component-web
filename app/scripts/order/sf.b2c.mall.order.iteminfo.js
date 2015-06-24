@@ -23,7 +23,8 @@ define('sf.b2c.mall.order.iteminfo', [
     itemObj: new can.Map({
       links: SFConfig.setting.link, //? link参数是干什么的
       amount: 0,
-      couponPrice: 0
+      couponPrice: 0,
+      totalPoint:0
     }),
 
     helpers: {
@@ -40,7 +41,7 @@ define('sf.b2c.mall.order.iteminfo', [
         } else {
           return options.inverse(options.contexts || this);
         }
-      },
+      }
     },
     /**
      * 初始化
@@ -135,6 +136,8 @@ define('sf.b2c.mall.order.iteminfo', [
           that.processFoundation(orderRenderItem);
           that.processProducts(orderRenderItem);
           that.processCoupons(orderRenderItem.orderCouponItem);
+          that.itemObj.attr('totalPoint',orderRenderItem.intrgral);
+          that.itemObj.attr('exchangeRate', orderRenderItem.proportion);
         })
         .fail();
     },
@@ -209,6 +212,13 @@ define('sf.b2c.mall.order.iteminfo', [
       this.itemObj.orderCoupon.selectCoupons = [];
       var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
       this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+        this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100 );
+        var point =   shouldPay*this.itemObj.attr("exchangeRate")/100;
+        if(point > this.itemObj.attr("integralTotalAmount")){
+            point = this.itemObj.attr("integralTotalAmount");
+        }
+        $("#usedPoint").text(point);
+
       // this.itemObj.unbind("couponPrice").bind("couponPrice", function(ev, newVal, oldVal) {
       //   this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
       // }); //?什么意思
@@ -237,6 +247,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
+          this.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee/100)*100);
           can.extend(orderCoupon, {
             useQuantity: 0,
             price: 0,
@@ -305,16 +316,29 @@ define('sf.b2c.mall.order.iteminfo', [
     '#useCoupon click': function(element, event) {
       var span = $(element).find('span.icon85');
       $('#avaliableCoupons li').find('span.icon85').remove();
+        var point = 0;
       if (span.length > 0) {
         $(element).find('span.icon85').remove();
         this.itemObj.attr("couponPrice", 0);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+          point =   shouldPay*this.itemObj.attr("exchangeRate")/100;
+          if(point > this.itemObj.attr("integralTotalAmount")){
+              point = this.itemObj.attr("integralTotalAmount");
+          }
+          $("#usedPoint").text(point);
       } else {
         $(element).append('<span class="icon icon85"></span>')
         this.itemObj.attr("couponPrice", $(element).attr('data-price'));
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+          point =   shouldPay*this.itemObj.attr("exchangeRate")/100;
+          if(point > this.itemObj.attr("integralTotalAmount")){
+              point = this.itemObj.attr("integralTotalAmount");
+          }
+          $("#usedPoint").text(point);
       }
     },
     //获取选中优惠券的码
@@ -441,6 +465,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.itemObj.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.itemObj.saleid),
             "couponCodes": that.getCouponCodes(),
+              "point":$("#pointUsed").val(),
             submitKey: that.itemObj.submitKey
           };
 
@@ -493,6 +518,56 @@ define('sf.b2c.mall.order.iteminfo', [
         });
     },
 
+      //积分模块是否展现
+      '#point-use click': function(element, event) {
+          $(element).toggleClass('active');
+          $('.cart-integral-r1').toggle(300);
+          $('.cart-integral-r2').toggle(300);
+      },
+
+      '#pointselected change': function(element, event){
+          event && event.preventDefault();
+          $("#pointUsed").val("");
+      },
+
+      '#pointUsed onblur': function(element, event) {
+          event && event.preventDefault();
+
+          if($("#pointselected").is(":checked")){
+              if($("#pointUsed").val() == null || $("#pointUsed").val() == ""){
+                  $("#pointToMoney").text("-￥0.0");
+              }
+              else{
+                  $("#pointToMoney").text("-￥" + $("#pointUsed").val());
+                  var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -$("#pointUsed").val();
+                  this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+                  this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+              }
+          }
+      },
+
+      '#pointUsed keyup': function(element, event){
+          event && event.preventDefault();
+
+        if($("#pointselected").is(":checked")){
+              if($("#pointUsed").val() == null || $("#pointUsed").val() == ""){
+                  $("#pointToMoney").text("-￥0.0");
+              }
+            else  if(!(/^[1-9]+[0-9]*$/.test($("#pointUsed").val()) ||  $("#pointUsed").val() == 0)){
+                        $("#pointToMoney").text("输入的积分格式不正确");
+             }
+             else if($("#pointUsed").val() > parseInt($("#usedPoint").text())){
+                  $("#pointUsed").val(parseInt($("#usedPoint").text()));
+              }
+             else{
+                 $("#pointToMoney").text("-￥" + $("#pointUsed").val());
+                 var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -$("#pointUsed").val();
+                 this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+                  this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+             }
+         }
+      },
+
     //是否使用优惠券交互
     '#coupon-use click': function(element, event) {
       $(element).toggleClass('active');
@@ -516,6 +591,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var activeTag = $(element).find('span.icon85');
       var activeHtml = '<span class="icon icon85"></span>';
       $('#useCoupon').find('span.icon85').remove();
+        var point = 0;
       if (activeTag.length > 0) {
         $(element).find('span.icon85').remove();
         $(element).siblings().find('span.icon85').remove();
@@ -523,6 +599,12 @@ define('sf.b2c.mall.order.iteminfo', [
         this.itemObj.attr('couponPrice', 0);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+        this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+          point =   shouldPay*this.itemObj.attr("exchangeRate")/100;
+         if(point > this.itemObj.attr("integralTotalAmount")){
+             point = this.itemObj.attr("integralTotalAmount");
+         }
+        $("#usedPoint").text(point);
       } else {
         $(element).children('.coupon').append(activeHtml);
         $(element).siblings().find('span.icon85').remove();
@@ -530,6 +612,13 @@ define('sf.b2c.mall.order.iteminfo', [
         this.itemObj.attr('couponPrice', $(element).data('coupon').price);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+          point =   shouldPay*this.itemObj.attr("exchangeRate")/100;
+          if(point > this.itemObj.attr("integralTotalAmount")){
+              point = this.itemObj.attr("integralTotalAmount");
+          }
+          $("#usedPoint").text(point);
       }
     },
     //兑换优惠券
