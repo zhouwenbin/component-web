@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.shopcart.updateItemNumForCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.shopcart.updateItemNumForCart',
 [
   'jquery',
   'can',
@@ -22,17 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'shopcart.updateItemNumForCart',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'token': 'string'
+        'itemId': 'string',
+        'num': 'int',
+        'refItemId': 'int'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
+        '15000100': '请求参数有误',
+        '15000900': '商品不在购物车内'
       }
     }
   });

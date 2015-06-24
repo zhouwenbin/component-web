@@ -85,7 +85,7 @@ define('sf.b2c.mall.order.iteminfo', [
         });
     },
 
-    watchIteminfo: function () {
+    watchIteminfo: function() {
       var uinfo = $.cookie('3_uinfo');
       var arr = [];
       if (uinfo) {
@@ -95,15 +95,17 @@ define('sf.b2c.mall.order.iteminfo', [
       var name = arr[0];
 
       var products = [];
-      this.itemObj.orderPackageItemList.each(function (packageInfo, index) {
-        packageInfo.orderGoodsItemList.each(function (value) {
+      this.itemObj.orderPackageItemList.each(function(packageInfo, index) {
+        packageInfo.orderGoodsItemList.each(function(value) {
           products.push(value);
         });
       });
-      SFMediav.watchShoppingCart({name: name}, products);
+      SFMediav.watchShoppingCart({
+        name: name
+      }, products);
     },
 
-    watchSubmit: function () {
+    watchSubmit: function() {
       var uinfo = $.cookie('3_uinfo');
       var arr = [];
       if (uinfo) {
@@ -113,12 +115,16 @@ define('sf.b2c.mall.order.iteminfo', [
       var name = arr[0];
 
       var products = [];
-      this.itemObj.orderPackageItemList.each(function (packageInfo, index) {
-        packageInfo.orderGoodsItemList.each(function (value) {
+      this.itemObj.orderPackageItemList.each(function(packageInfo, index) {
+        packageInfo.orderGoodsItemList.each(function(value) {
           products.push(value);
         });
       });
-      SFMediav.watchOrderSubmit({name: name}, {amount: this.itemObj.orderFeeItem.actualTotalFee}, products);
+      SFMediav.watchOrderSubmit({
+        name: name
+      }, {
+        amount: this.itemObj.orderFeeItem.actualTotalFee
+      }, products);
     },
 
     invariableGoodsTemplate: function() {
@@ -514,13 +520,21 @@ define('sf.b2c.mall.order.iteminfo', [
           // 对mediav的转化做监控
           // that.monitor['mediav'].call(that, params);
           that.watchSubmit.call(that);
-
-          // window.location.href = 'gotopay.html?' +
-          //   $.param({"orderid": message.value,"recid": selectAddr.recId});
-          window.location.replace('gotopay.html?' + $.param({
-            "orderid": message.value,
-            "recid": selectAddr.recId
-          }));
+          //用户到去支付页面：1.用户从详情页直接进入订单确认页，在去支付页面点击回退，页面返回到
+          //订单确认页；2.用户从购物车进入订单确认页，在去支付页面点击回退，页面返回购物车页面。
+          var params = can.deparam(window.location.search.substr(1));
+          if (params.from == 'shoppingcart') {
+            window.location.replace('gotopay.html?' + $.param({
+              "orderid": message.value,
+              "recid": selectAddr.recId
+            }));
+          } else {
+            window.location.href = 'gotopay.html?' +
+              $.param({
+                "orderid": message.value,
+                "recid": selectAddr.recId
+              });
+          }
 
 
 
@@ -617,8 +631,8 @@ define('sf.b2c.mall.order.iteminfo', [
         var orderid = (new Date).valueOf();
 
         var __src = $.cookie('_src');
-        if(/^media_v/.test(__src)){
-        // if (__src == 'mediav') {
+        if (/^media_v/.test(__src)) {
+          // if (__src == 'mediav') {
           var _mvq = window._mvq || [];
           window._mvq = _mvq;
           _mvq.push(['$setAccount', 'm-123868-0']);
@@ -627,7 +641,7 @@ define('sf.b2c.mall.order.iteminfo', [
           _mvq.push(['$logConversion']);
           _mvq.push(['$addOrder', /*订单号*/ orderid, /*订单金额*/ this.itemObj.orderFeeItem.actualTotalFee]);
 
-          this.itemObj.orderGoodsItemList.each(function (value, index) {
+          this.itemObj.orderGoodsItemList.each(function(value, index) {
             _mvq.push(['$addItem', /*订单号*/ orderid, /*商品id*/ value.itemId, /*商品名称*/ value.goodsName, /*商品价格*/ value.price, /*商品数量*/ value.quantity, /*商品页url*/ value.detailUrl, /*商品页图片url*/ '']);
           })
           _mvq.push(['$logData']);

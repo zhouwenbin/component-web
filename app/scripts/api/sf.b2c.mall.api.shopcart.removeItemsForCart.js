@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.shopcart.removeItemsForCart
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.shopcart.removeItemsForCart',
 [
   'jquery',
   'can',
@@ -22,17 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'shopcart.removeItemsForCart',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'token': 'string'
+        '删除商品列表': 'json'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
+        '15000100': '请求参数有误',
+        '15000300': '购物车删除商品失败'
       }
     }
   });
