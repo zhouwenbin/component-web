@@ -22,3 +22,52 @@
 	margin-top: 0;
 	margin-bottom: 13px;
 }
+.cart-integral{
+	margin-top: 30px;
+}
+.cart-integral-r1{
+	margin-top: -15px;
+	padding-bottom: 7px;
+	border-bottom:1px dashed #aaa;
+	margin-bottom: 13px;
+}
+.cart-integral-r1 .input{
+	margin-left: 10px;
+	margin-right: 6px;
+}
+.cart-integral-r1 .text-important{
+	margin-left: 20px;
+	font-size: 14px;
+}
+.cart-integral-r1 input[type="checkbox"]{
+	margin-right: 10px;
+}
+
+.cart-match td{
+	background: #f9f3f5;
+}
+.cart-match .td1:before{
+	content: '';
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background: #ccc;
+	border-radius: 50%;
+	margin-right: 53px;
+}
+.cart-match .td1{
+	position: relative;
+}
+.cart-match .td1:after{
+	content: '';
+	position: absolute;
+	left: 29px;
+	height: 100%;
+	width: 1px;
+	background: #ccc;
+	top: -50%;
+}
+.cart-match:nth-child(2) .td1:after{
+	height:85%;
+	top: -38%;
+}

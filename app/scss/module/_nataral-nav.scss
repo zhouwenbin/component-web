@@ -49,10 +49,9 @@
 .nataral-nav li.active:before{
 	display: block;
 }
-.nataral-nav li i{
-	font-family: edwardian script itc;
-	font-size: 48px;
-	display: inline-block;
+.nataral-nav li .icon117{
 	margin-bottom: 5px;
-	margin-top: -5px;
+}
+.nataral-nav li.active .icon117{
+	background-position: -504px -424px;
 }
