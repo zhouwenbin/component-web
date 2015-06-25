@@ -20,8 +20,9 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.b2cmall.checkLogistics',
     'sf.b2c.mall.api.b2cmall.getActivityInfo',
     'sf.b2c.mall.api.shopcart.addItemsToCart',
+    'sf.b2c.mall.api.product.findMixDiscountProducts'
   ],
-  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
+  function(can, zoom, store, cookie, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart, SFFindRecommendProducts, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart, SFFindMixDiscountProducts) {
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
     // var FILTER_ARRAY = ['1962','1961','1954','1955','1956','1957','1958','1946','1947','1948','1949','1950','1951','1903','1904','1905','1906','1907','1908','96','97','98','99','100','1952','1953','1635','1636','1637','1638','1639','1626','1627','1628','1629','1630',,'936','937','938','939','940','1789','1790','1791','1792','1793','1795','1794','1820','1821','1822','1823','1824','1825','1826','1827','101','102','103','104','105','106','107','108','1445','1448','1446','1447','1781','1782','1783','1784','1785','1786','1787','1788','1772','907','1780','1779','1773','1774','1775','1776','1777','1778','1168','1169','1170','1171','1172','1173'];
@@ -226,7 +227,7 @@ define('sf.b2c.mall.product.detailcontent', [
         if (that.options.serverRendered) {
           this.supplement();
           $(".img-lazyload").imglazyload();
-        }       
+        }
       },
 
       /**
@@ -255,6 +256,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
+
 
         //加上百度分享
 
@@ -508,6 +510,20 @@ define('sf.b2c.mall.product.detailcontent', [
         this.gotoNewItem();
         clearInterval(this.interval);
         this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+      },
+
+      //渲染搭配购买商品
+      renderMixDiscountProductInfo: function() {
+        var findMixDiscountProducts = new SFFindMixDiscountProducts({
+          'itemId': 772,
+          'activityId': 100092
+        });
+        findMixDiscountProducts.sendRequest()
+          .done(function(data){
+            
+          }).fail(function(){
+
+          })
       },
 
       /**

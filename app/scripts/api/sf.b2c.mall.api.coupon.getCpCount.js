@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.updateItemNumForCart
+  * @class sf.b2c.mall.api.coupon.getCpCount
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.updateItemNumForCart',
+'sf.b2c.mall.api.coupon.getCpCount',
 [
   'jquery',
   'can',
@@ -22,20 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.updateItemNumForCart',
+      METHOD_NAME: 'coupon.getCpCount',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'itemId': 'string',
-        'num': 'int',
+        'channel': 'string',
       },
       OPTIONAL: {
-        'mainItemId': 'int'
+        'isValid': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误',
-        '15000900': '商品不在购物车内'
+        '11000060': '参数错误'
       }
     }
   });

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.updateItemNumForCart
+  * @class sf.b2c.mall.api.product.findMixDiscountProducts
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.updateItemNumForCart',
+'sf.b2c.mall.api.product.findMixDiscountProducts',
 [
   'jquery',
   'can',
@@ -22,20 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.updateItemNumForCart',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'product.findMixDiscountProducts',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'itemId': 'string',
-        'num': 'int',
+        'itemId': 'long',
       },
       OPTIONAL: {
-        'mainItemId': 'int'
+        'activityId': 'long'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误',
-        '15000900': '商品不在购物车内'
+        '5024000': '获取搭配折扣数据错误'
       }
     }
   });
