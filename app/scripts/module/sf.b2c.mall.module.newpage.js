@@ -12,7 +12,7 @@ define(
                 $(".cms-fill-nav li").each(function(limodule){
                     var urlValue = $(this).find("a").attr("href");
                     if(($(this).find("a").attr("href")).indexOf(currentUrl) > 0){
-                        $(this).remove("active").addClass("active");
+                        $(this).removeClass("active").addClass("active");
                     }
                 });
             }
