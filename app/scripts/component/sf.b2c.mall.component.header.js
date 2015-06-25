@@ -178,7 +178,6 @@ define('sf.b2c.mall.component.header', [
       // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
 
-
       this.checkTempActionAddCart();
     },
 

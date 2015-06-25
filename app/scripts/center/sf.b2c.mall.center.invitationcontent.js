@@ -7,22 +7,53 @@ define('sf.b2c.mall.center.invitationcontent', [
     'sf.helpers',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
+    'sf.b2c.mall.component.bindalipay',
+    'sf.b2c.mall.api.user.getUserInfo',
     'text!template_center_invitationcontent'
   ],
-  function(can, $, qrcode, helpers, SFMessage, SFConfig, template_center_invitationcontent) {
+  function(can, $, qrcode, helpers, SFMessage, SFConfig, SFBindalipay, SFGetUserInfo, template_center_invitationcontent) {
 
     return can.Control.extend({
 
-      helpers: {
-
+      init: function(element, options) {
+        this.render();
       },
 
-      init: function(element, options) {
+      render: function() {
         var data = {};
 
         var renderFn = can.mustache(template_center_invitationcontent);
-        this.options.html  = renderFn(data, this.helpers);
-        this.element.append(this.options.html);
+        this.options.html = renderFn(data, this.helpers);
+        this.element.html(this.options.html);
+        this.supplement();
+      },
+
+      supplement: function() {
+        this.renderQrcode();
+      },
+
+      /** 渲染二维码 */
+      renderQrcode: function() {
+        var getUserInfo = new SFGetUserInfo();
+        getUserInfo.sendRequest()
+          .done(function(userinfo) {
+            var url = "http://www.sfht.com?src=" + userinfo.userId;
+            var qrParam = {
+              width: 140,
+              height: 140,
+              text: url
+            };
+
+            $('#shareURLQrcode').html("").qrcode(qrParam);
+            $('#urlinput').val(url);
+          })
+          .fail()
+      },
+
+      '#getmoney click': function(element, event) {
+        var isBindAlipay = false;
+        // 您的账户余额少于50元，无法体现
+        new SFBindalipay();
       }
 
     });

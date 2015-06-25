@@ -1,7 +1,6 @@
 'use strict';
 
 define(
-
   'sf.b2c.mall.component.centerleftside',
 
   [
@@ -14,10 +13,6 @@ define(
   function($, can, SFConfig, template_component_centerleftside) {
 
     return can.Control.extend({
-
-      helpers: {
-
-      },
 
       /**
        * @override
@@ -43,15 +38,15 @@ define(
 
         var that = this;
 
+        // 设定当前活动tab
         _.each(data.link, function(item) {
           if (item.url == window.location.pathname) {
             item.active = "active";
-            item.url = "";
           }
         })
 
         var renderFn = can.mustache(template_component_centerleftside);
-        this.options.html = renderFn(data, this.helpers);
+        this.options.html = renderFn(data);
         this.element.append(this.options.html);
       }
     });
