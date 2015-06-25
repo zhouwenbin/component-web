@@ -44,6 +44,18 @@ define(
           }
         },
 
+          'sf-totalPoint': function (selectPayType, price, discount) {
+              var discountInfo = JSON.parse(discount().value);
+              if(typeof discountInfo != 'undefined' &&
+                  !can.isEmptyObject(discountInfo) &&
+                  typeof discountInfo[selectPayType()] != 'undefined'
+                  ){
+                  return  Math.floor((price() - discountInfo[selectPayType()])/100);
+              }else{
+                  return  Math.floor(price()/100);
+              }
+          },
+
         'sf-getPayTypeName': function (selectPayType) {
           var map = {
             'alipay': '支付宝',

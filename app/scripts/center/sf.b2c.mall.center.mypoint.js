@@ -38,7 +38,7 @@ define('sf.b2c.mall.center.mypoint', [
                 "startDate":dateList.startDateFormat,
                 "endDate":dateList.endDateFormat,
                 "page": routeParams.page,
-                "size": 10
+                "size": 4
             }
             this.render(params);
       },
@@ -58,10 +58,12 @@ define('sf.b2c.mall.center.mypoint', [
                           _.each(that.options.result, function(point) {
                                     if(point.integralAmount > 0){
                                         point.flag = "text-success";
+                                        point.integralAmount = "+" + point.integralAmount;
                                     }
                                    else{
                                         point.flag = "text-important";
                                     }
+                              point.createDate =  that.getDateAndTime(point.createDate);
                           })
                     } else {
 
@@ -83,7 +85,7 @@ define('sf.b2c.mall.center.mypoint', [
                   //分页 保留 已经调通 误删 后面设计会给样式
                   that.options.page = new PaginationAdapter();
                   that.options.page.format({
-                      "pageNum":data.totalPage,
+                      "pageNum":data.currentPage,
                       "currentNum":data.currentPage,
                       "totalNum":data.totalCount,
                       "pageSize":data.pageSize
@@ -94,6 +96,19 @@ define('sf.b2c.mall.center.mypoint', [
             console.error(error);
           });
       },
+
+        //根据毫秒值计算日期
+        getDateAndTime: function(timeValue){
+            var DateValue = new Date(timeValue);
+            var monV = DateValue.getMonth() + 1;
+            var dayV = DateValue.getDate();
+            var hourV = DateValue.getHours();
+            var minV = DateValue.getMinutes();
+            var secV = DateValue.getSeconds();
+            var datePart = DateValue.getFullYear() + "-" + (monV < 10?("0" + monV):monV) + "-" + (dayV < 10?("0" + dayV):dayV);
+            var timePart = (hourV < 10?("0" + hourV):hourV) + ":" + (minV < 10?("0" + minV):minV)+ ":" + (secV < 10?("0" + secV):secV);
+            return   datePart + " " + timePart;
+        },
 
         //根据当前日期查询出最近三个月的起始和终止时间，以及之前的时间
       getQueryDate:function(){
@@ -124,7 +139,7 @@ define('sf.b2c.mall.center.mypoint', [
               "startDate":dateList.startDateFormat,
               "endDate":dateList.endDateFormat,
               "page": routeParams.page,
-              "size": 10
+              "size": 4
           };
           this.render(params);
       },

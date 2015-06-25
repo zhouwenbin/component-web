@@ -422,6 +422,18 @@ define('sf.b2c.mall.order.iteminfo', [
         element.removeClass("btn-disable");
         return false;
       }
+      //校验积分
+        else if($("#pointselected").is(":checked")){
+            if(!(/^[1-9]+[0-9]*$/.test($("#pointUsed").val()) ||  $("#pointUsed").val() == 0)){
+                new SFMessage(null, {
+                    'tip': "输入的积分格式不正确",
+                    'type': 'error'
+                });
+                element.removeClass("btn-disable");
+                return false;
+            }
+        }
+
       var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.itemObj.saleid);
       if (verifYVendorResult && !verifYVendorResult.result) {
         new SFMessage(null, {
