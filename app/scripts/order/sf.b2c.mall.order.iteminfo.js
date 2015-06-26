@@ -14,10 +14,12 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.api.user.setDefaultAddr',
   'sf.b2c.mall.api.user.setDefaultRecv',
   'sf.b2c.mall.widget.message',
-  'sf.b2c.mall.business.config'
+  'sf.b2c.mall.business.config',
+  'sf.mediav'
 ], function(can, store, $cookie, helpers, RegionsAdapter,
   SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFOrderRender,
-  SFReceiveExCode, SFGetRecAddressList, SFSetDefaultAddr, SFSetDefaultRecv, SFMessage, SFConfig) {
+  SFReceiveExCode, SFGetRecAddressList, SFSetDefaultAddr,
+  SFSetDefaultRecv, SFMessage, SFConfig, SFMediav) {
 
   return can.Control.extend({
     itemObj: new can.Map({
@@ -86,8 +88,47 @@ define('sf.b2c.mall.order.iteminfo', [
           // if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
           //   $('#submitOrder').addClass('btn-disable');
           // };
+
+          that.watchIteminfo.call(that);
         });
     },
+
+    watchIteminfo: function () {
+      var uinfo = $.cookie('3_uinfo');
+      var arr = [];
+      if (uinfo) {
+        arr = uinfo.split(',');
+      }
+
+      var name = arr[0];
+
+      var products = [];
+      this.itemObj.orderPackageItemList.each(function (packageInfo, index) {
+        packageInfo.orderGoodsItemList.each(function (value) {
+          products.push(value);
+        });
+      });
+      SFMediav.watchShoppingCart({name: name}, products);
+    },
+
+    watchSubmit: function () {
+      var uinfo = $.cookie('3_uinfo');
+      var arr = [];
+      if (uinfo) {
+        arr = uinfo.split(',');
+      }
+
+      var name = arr[0];
+
+      var products = [];
+      this.itemObj.orderPackageItemList.each(function (packageInfo, index) {
+        packageInfo.orderGoodsItemList.each(function (value) {
+          products.push(value);
+        });
+      });
+      SFMediav.watchOrderSubmit({name: name}, {amount: this.itemObj.orderFeeItem.actualTotalFee}, products);
+    },
+
     invariableGoodsTemplate: function() {
       return '{{#each invariableGoodsItemList}}' +
         '<tr class="cart-disable">' +
@@ -516,7 +557,8 @@ define('sf.b2c.mall.order.iteminfo', [
           store.set('regionId', regionId);
 
           // 对mediav的转化做监控
-          that.monitor['mediav'].call(that, params);
+          // that.monitor['mediav'].call(that, params);
+          that.watchSubmit.call(that);
 
           // window.location.href = 'gotopay.html?' +
           //   $.param({"orderid": message.value,"recid": selectAddr.recId});
@@ -524,6 +566,8 @@ define('sf.b2c.mall.order.iteminfo', [
             "orderid": message.value,
             "recid": selectAddr.recId
           }));
+
+
 
         })
         .fail(function(error) {

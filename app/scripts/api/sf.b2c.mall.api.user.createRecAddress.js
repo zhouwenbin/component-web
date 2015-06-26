@@ -37,7 +37,9 @@ function($, can, _, Comm, SecurityType) {
         'recName': 'string',
         'recId': 'long',
         'partnerId': 'string',
-        'isDefault': 'int'
+        'isDefault': 'int',
+        'type': 'string',
+        'credtNum': 'string'
       },
       VERIFY:{
       },

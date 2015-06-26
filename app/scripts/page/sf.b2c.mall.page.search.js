@@ -6,13 +6,12 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.util',
     'sf.b2c.mall.business.config',
-    'sf.b2c.mall.component.recommendProducts',
     'sf.b2c.mall.component.search',
     'sf.b2c.mall.module.header',
     'sf.b2c.mall.module.footer'
   ],
   function(can, $, SFFrameworkComm, SFFn, SFBusiness,
-           SFRecommendProducts, SFSearch, SFFooter) {
+           SFSearch, SFHeader) {
     SFFrameworkComm.register(1);
     SFFn.monitor();
     var searchPage = can.Control.extend({

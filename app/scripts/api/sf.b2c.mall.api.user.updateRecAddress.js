@@ -36,7 +36,9 @@ function($, can, _, Comm, SecurityType) {
         'zipCode': 'string',
         'cellphone': 'string',
         'recName': 'string',
-        'recId': 'long'
+        'recId': 'long',
+        'type': 'string',
+        'credtNum': 'string'
       },
       VERIFY:{
       },

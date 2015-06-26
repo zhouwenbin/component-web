@@ -5,14 +5,15 @@ define(
   'sf.b2c.mall.module.slider', [
     'can',
     'jquery',
-    'sf.b2c.mall.widget.slide',
+     'underscore',
+    'sf.b2c.mall.widget.slide'
   ],
-  function(can, $, SFSlide) {
+  function(can, $, _, SFSlide) {
 
     var main = can.Control.extend({
 
-      init: function() {
-        this.render();
+      init: function(element) {
+        this.render(element);
 
 
       },
@@ -43,10 +44,15 @@ define(
       //   }
       // },
 
-      render: function() {
-        new SFSlide('.cms-module-slider');
+      render: function(element) {
+        new SFSlide(element);
       }
     })
 
-    new main('body');
+
+      //一个界面支持多个轮播组件
+      var sliderModules = $(".cms-module-slider");
+      _.each(sliderModules, function(sliderModule) {
+          new main($(sliderModule));
+      });
   })
