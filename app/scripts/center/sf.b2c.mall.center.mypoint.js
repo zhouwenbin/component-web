@@ -38,7 +38,7 @@ define('sf.b2c.mall.center.mypoint', [
                 "startDate":dateList.startDateFormat,
                 "endDate":dateList.endDateFormat,
                 "page": routeParams.page,
-                "size": 4
+                "size": 10
             }
             this.render(params);
       },
@@ -66,7 +66,7 @@ define('sf.b2c.mall.center.mypoint', [
                               point.createDate =  that.getDateAndTime(point.createDate);
                           })
                     } else {
-
+                       that.options.result = null;
                     }
                   var html = can.view('templates/center/sf.b2c.mall.center.point.mustache', that.options);
                   that.element.html(html);
@@ -82,6 +82,12 @@ define('sf.b2c.mall.center.mypoint', [
                       $(".integral-tab-c1 li").eq(0).addClass("active");
                   }
 
+                  if(routeParams.timeflag == "2"){
+                      $("#timeChange").val("2");
+                  }
+                  else{
+                      $("#timeChange").val("1");
+                  }
                   //分页 保留 已经调通 误删 后面设计会给样式
                   that.options.page = new PaginationAdapter();
                   that.options.page.format({
@@ -122,7 +128,7 @@ define('sf.b2c.mall.center.mypoint', [
           var endDate = new Date(yearV, monV - 3, 1, 0, 0, 0);
           var newDate = new Date(new Date(yearV, monV - 3, 1, 0, 0, 0).getTime() - 100);
           var endDateForT = newDate.getFullYear() + "-" + (newDate.getMonth() + 1) + "-" + newDate.getDate();
-          var startDateForT = "2015-07-01";
+          var startDateForT = "2015-03-01";
           return {
               "startDateFormat":startDateFormat,
               "endDateFormat":endDateFormat,
@@ -134,16 +140,31 @@ define('sf.b2c.mall.center.mypoint', [
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
           var routeParams = can.route.attr();
           var dateList = this.getQueryDate();
+          var startDate = dateList.startDateFormat;
+          var endDate = dateList.endDateFormat;
+          if(routeParams.timeflag == "2"){
+              startDate = dateList.startDateForT;
+              endDate = dateList.endDateForT;
+          }
           var params = {
               "operateType": routeParams.operateType,
-              "startDate":dateList.startDateFormat,
-              "endDate":dateList.endDateFormat,
+              "startDate":startDate,
+              "endDate":endDate,
               "page": routeParams.page,
-              "size": 4
+              "size": 10
           };
           this.render(params);
       },
 
+        //改变时间条件
+      "#timeChange change": function(element, event){
+          var timeV = $(element).val();
+          var routeParams = can.route.attr();
+
+          window.location.href = " http://www.sfht.com/point-manage.html" + '#!' + "operateType=" + (typeof routeParams.operateType == "undefined" ? "" :  routeParams.operateType)
+                 + "&page=" + (typeof routeParams.page == "undefined"? 1 :routeParams.page) + "&timeflag="  +timeV ;
+
+      },
 
         //点击不同的li，传入不同的参数
       '.integral-tab-c1 li click': function(element, event) {
@@ -159,7 +180,6 @@ define('sf.b2c.mall.center.mypoint', [
 
         //window.location.href = SFConfig.setting.link.pointlist + '#!' + $.param({
           window.location.href = " http://www.sfht.com/point-manage.html" + '#!' + "operateType=" + tag + "&page=" + 1;
-
       }
     });
   })

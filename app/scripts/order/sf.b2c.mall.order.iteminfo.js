@@ -136,7 +136,7 @@ define('sf.b2c.mall.order.iteminfo', [
           that.processFoundation(orderRenderItem);
           that.processProducts(orderRenderItem);
           that.processCoupons(orderRenderItem.orderCouponItem);
-          that.itemObj.attr('totalPoint',orderRenderItem.intrgral);
+          that.itemObj.attr('totalPoint',orderRenderItem.integral);
           that.itemObj.attr('exchangeRate', orderRenderItem.proportion);
         })
         .fail();
@@ -477,7 +477,7 @@ define('sf.b2c.mall.order.iteminfo', [
             "sysType": that.getSysType(that.itemObj.saleid),
             "sysInfo": that.options.vendorinfo.getVendorInfo(that.itemObj.saleid),
             "couponCodes": that.getCouponCodes(),
-              "point":$("#pointUsed").val(),
+             "integral":$("#pointUsed").val(),
             submitKey: that.itemObj.submitKey
           };
 
@@ -572,12 +572,16 @@ define('sf.b2c.mall.order.iteminfo', [
                   $("#pointUsed").val(parseInt($("#usedPoint").text()));
               }
              else{
-                 $("#pointToMoney").text("-￥" + $("#pointUsed").val());
-                 var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -$("#pointUsed").val();
-                 this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
-                  this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
+                 $("#pointToMoney").text("-￥" + $("#pointUsed").val()/ this.itemObj.attr('orderRenderItem.proportion'));
              }
          }
+          else{
+            $("#pointToMoney").text("-￥0.0");
+            $("#pointUsed").val(0)
+        }
+          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -($("#pointUsed").val()*100/this.itemObj.attr('orderRenderItem.proportion'));
+          this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*100);
       },
 
     //是否使用优惠券交互
