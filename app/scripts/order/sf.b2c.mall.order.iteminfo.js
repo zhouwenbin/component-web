@@ -641,11 +641,10 @@ define('sf.b2c.mall.order.iteminfo', [
             $("#pointToMoney").text("-￥0.0");
             $("#pointUsed").val(0)
         }
-          if(!isNaN(parseInt($("#pointToMoney").text())) && parseInt($("#pointToMoney").text()) >= 0){
-              var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
-              this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
-              this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
-          }
+
+          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+          this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
       },
 
     //是否使用优惠券交互
