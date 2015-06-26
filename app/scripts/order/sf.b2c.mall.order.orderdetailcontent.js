@@ -100,7 +100,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.orderInfo = data;
-            that.options.orderInfo. totalPoint = Math.floor((data.totalPrice/100))*100;
+            that.options.orderInfo. totalPoint =data.presentIntegral;
             that.options.gmtCreate =  data.orderItem.gmtCreate;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;

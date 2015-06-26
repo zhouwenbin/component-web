@@ -121,7 +121,7 @@ define('sf.b2c.mall.order.paysuccess', [
         });
 
         //处理海淘积分
-        data.totalPoint = Math.floor(data.totalPrice/100)*100;
+        data.totalPoint = data.presentIntegral;
         var html = can.view('templates/order/sf.b2c.mall.order.paysuccess.mustache', data, this.helpers);
         this.element.html(html);
 
