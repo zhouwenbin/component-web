@@ -52,7 +52,7 @@ define('sf.b2c.mall.center.invitationcontent', [
 
       '#getmoney click': function(element, event) {
         var isBindAlipay = false;
-        // 您的账户余额少于50元，无法体现
+        // 您的账户余额少于50元，无法提现
         new SFBindalipay();
       }
 

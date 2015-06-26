@@ -28,9 +28,10 @@ function($, can, _, Comm, SecurityType) {
         'tempToken': 'string',
         'type': 'string',
         'accountId': 'string',
-        'passWord': 'string'
+        'passWord': 'string',
       },
       OPTIONAL: {
+        'srcUid': 'long'
       },
       VERIFY:{
       },

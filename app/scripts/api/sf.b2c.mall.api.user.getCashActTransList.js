@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.user.getCashActTransList
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.user.getCashActTransList',
 [
   'jquery',
   'can',
@@ -22,17 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'user.getCashActTransList',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'token': 'string'
       },
       OPTIONAL: {
+        'pgIndex': 'int',
+        'pgSize': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
       }
     }
   });

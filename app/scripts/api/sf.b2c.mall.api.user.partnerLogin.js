@@ -29,7 +29,8 @@ function($, can, _, Comm, SecurityType) {
         'authResp': 'string',
       },
       OPTIONAL: {
-        'rembFlag': 'int'
+        'rembFlag': 'int',
+        'srcUid': 'long'
       },
       VERIFY:{
       },

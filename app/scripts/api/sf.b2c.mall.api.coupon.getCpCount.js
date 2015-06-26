@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.coupon.getCpCount
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.coupon.getCpCount',
 [
   'jquery',
   'can',
@@ -22,17 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'coupon.getCpCount',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'token': 'string'
+        'channel': 'string',
       },
       OPTIONAL: {
+        'isValid': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
+        '11000060': '参数错误'
       }
     }
   });

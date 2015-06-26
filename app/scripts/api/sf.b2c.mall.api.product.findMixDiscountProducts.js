@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.renewToken
+  * @class sf.b2c.mall.api.product.findMixDiscountProducts
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.renewToken',
+'sf.b2c.mall.api.product.findMixDiscountProducts',
 [
   'jquery',
   'can',
@@ -22,17 +22,18 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.renewToken',
-      SECURITY_TYPE: SecurityType.RegisteredDevice.name,
+      METHOD_NAME: 'product.findMixDiscountProducts',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'token': 'string'
+        'itemId': 'long',
+        'activityId': 'long'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000010': '未找到用户'
+        '5025000': '获取搭配折扣数据错误'
       }
     }
   });

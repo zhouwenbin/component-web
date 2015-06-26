@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       OPTIONAL: {
         'userMsg': 'string',
         'couponCodes': 'string',
+        'integral': 'long',
         'sysInfo': 'string',
         'submitKey': 'string'
       },
@@ -49,6 +50,7 @@ function($, can, _, Comm, SecurityType) {
         '4000600': '订单商品超过限额',
         '4000700': '订单商品金额改变',
         '4001623': '订单中itemId不存在',
+        '4001626': '订单收货地址发生变化',
         '4002300': '购买的多个商品货源地不一致',
         '4002400': '购买的多个商品的商品形态不一致',
         '4002500': '购买的商品支付卡类型为空',
