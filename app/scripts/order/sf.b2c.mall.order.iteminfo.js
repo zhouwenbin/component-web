@@ -153,30 +153,39 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     initOrderRender: function(element, options) {
       var that = this;
+      var params = can.deparam(window.location.search.substr(1));
       var selectAddr = this.options.selectReceiveAddr.getSelectedAddr();
-      var orderRender = new SFOrderRender({
-        address: JSON.stringify({
-          "addrId": selectAddr.addrId,
-          "nationName": selectAddr.nationName,
-          "provinceName": selectAddr.provinceName,
-          "cityName": selectAddr.cityName,
-          "regionName": selectAddr.regionName,
-          "detail": selectAddr.detail,
-          "recName": selectAddr.recName,
-          "mobile": selectAddr.cellphone,
-          "telephone": selectAddr.cellphone,
-          "zipCode": selectAddr.zipCode,
-          "recId": selectAddr.recId,
-          "certType": "ID",
-          "certNo": selectAddr.credtNum2
-        }),
-        items: JSON.stringify([{
-          "itemId": that.itemObj.itemid,
-          "num": that.itemObj.amount
-        }]),
-        sysType: that.getSysType(that.itemObj.saleid),
-        sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
-      });
+      var itemStr;
+      var singleArr = [{
+        "itemId": this.itemObj.itemid,
+        "num": this.itemObj.amount
+      }];
+      if (params.mixproduct) {
+        itemStr = params.mixproduct;
+      } else {
+        itemStr = JSON.stringify(singleArr);
+      }
+      
+        var orderRender = new SFOrderRender({
+          address: JSON.stringify({
+            "addrId": selectAddr.addrId,
+            "nationName": selectAddr.nationName,
+            "provinceName": selectAddr.provinceName,
+            "cityName": selectAddr.cityName,
+            "regionName": selectAddr.regionName,
+            "detail": selectAddr.detail,
+            "recName": selectAddr.recName,
+            "mobile": selectAddr.cellphone,
+            "telephone": selectAddr.cellphone,
+            "zipCode": selectAddr.zipCode,
+            "recId": selectAddr.recId,
+            "certType": "ID",
+            "certNo": selectAddr.credtNum2
+          }),
+          items: itemStr,
+          sysType: that.getSysType(that.itemObj.saleid),
+          sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
+        });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
           that.processFoundation(orderRenderItem);

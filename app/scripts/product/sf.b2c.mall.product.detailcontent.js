@@ -107,8 +107,23 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
-        }
+        },
 
+        //是否展示搭配折扣（）
+        'showMixDiscount': function(activityType, options) {
+          if (activityType != 'MIX_DISCOUNT') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        'isShowCheckbox': function(index, options) {
+          if (index != 0) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
       },
 
       /**
@@ -256,7 +271,6 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
-
 
         //加上百度分享
 
@@ -470,6 +484,11 @@ define('sf.b2c.mall.product.detailcontent', [
                   that.options.detailContentInfo.priceInfo.attr("pcActivityLink", element.pcActivityLink);
                 }
 
+                //搭配折扣
+                if (element.activityType == "MIX_DISCOUNT") {
+                  that.options.detailContentInfo.priceInfo.attr("activityId", element.activityId);
+                  that.renderMixDiscountProductInfo();
+                }
               });
             }
 
@@ -514,18 +533,181 @@ define('sf.b2c.mall.product.detailcontent', [
 
       //渲染搭配购买商品
       renderMixDiscountProductInfo: function() {
+        var that = this;
+        var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+        var activityId = this.options.detailContentInfo.priceInfo.attr("activityId");
         var findMixDiscountProducts = new SFFindMixDiscountProducts({
-          'itemId': 772,
-          'activityId': 100092
+          'itemId': itemid,
+          'activityId': activityId
         });
         findMixDiscountProducts.sendRequest()
-          .done(function(data){
-            
-          }).fail(function(){
+          .done(function(data) {
+            that.options.findMixDiscount = {};
+            that.options.findMixDiscount.mixDiscount = data.value;
+            that.options.findMixDiscount.hasData = true;
+            that.options.findMixDiscount.price = new can.Map({
+              mixProductNum: 3,
+              totalMixPrice: 0,
+              totalOriginPrice: 0,
+              totalSavePrice: 0
+            });
+
+            if ((typeof data.value == "undefined") || (data.value && data.value.length <= 1)) {
+              that.options.findMixDiscount.hasData = false;
+            }
+            var totalMixPrice = 0;
+            var totalOriginPrice = 0;
+            var mixArr = [];
+            var mixArr2 = [];
+            _.each(that.options.findMixDiscount.mixDiscount, function(item) {
+              item.imageName = item.imageName.split(',')[0] + "@138h_138w_80Q_1x.jpg";
+              totalMixPrice += item.sellingPrice;
+              totalOriginPrice += item.originPrice;
+              if (item.isMixDiscountMasterItem == true) {
+                mixArr.push(item);
+              } else {
+                mixArr2.push(item);
+              }
+            });
+            that.options.findMixDiscount.mixDiscount = mixArr.concat(mixArr2);
+            that.options.findMixDiscount.price.attr({
+              totalMixPrice: totalMixPrice,
+              totalOriginPrice: totalOriginPrice,
+              totalSavePrice: totalOriginPrice - totalMixPrice
+            });
+            var mixDiscountHtml = can.view.mustache(that.MixDiscountProductsTemplate());
+            $('#recommendbuy').html(mixDiscountHtml(that.options.findMixDiscount, that.helpers));
+
+          }).fail(function() {
 
           })
       },
+      //搭配购买模板
+      MixDiscountProductsTemplate: function() {
+        return '{{#if hasData}}<div class="match">' +
+          '<div class="match-h"><h2>精选搭配</h2></div>' +
+          '<div class="match-b clearfix">' +
+          '<ul class="match-c1 fl">' +
+          '{{#each mixDiscount}}' +
+          '<li {{data "mixDiscount"}}>' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt=""></a>' +
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
+          '<p>{{#isShowCheckbox @index}}<input class="mixProduct-checked" data-isSelected="1" type="checkbox" checked>{{/isShowCheckbox}}￥{{sf.price sellingPrice}}</p>' +
+          '</li>' +
+          '{{/each}}' +
+          '</ul>' +
+          '<div class="match-c2 fl">' +
+          '<div class="match-r1">搭配优惠 : 共 {{price.mixProductNum}} 件商品</div>' +
+          '<ul>' +
+          '<li><label class="justify">套餐价</label>：<strong class="text-important">￥{{sf.price price.totalMixPrice}}</strong><span class="tag-black">省：￥{{sf.price price.totalSavePrice}}</span></li>' +
+          '<li><label class="justify">原 价</label>：<del>￥{{sf.price price.totalOriginPrice}}</del></li>' +
+          '</ul>' +
+          '<div class="match-r2">' +
+          '<button id="mix-products-buy"  class="btn btn-danger btn-small">立即购买</button>' +
+          '<button id="mix-products-add" class="btn btn-cart btn-small">加入购物车</button>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>{{/if}}'
+      },
+      //搭配商品单选框是否选中
+      '.mixProduct-checked change': function(element, event) {
+        var originPrice = $(element).closest('li').data('mixDiscount').originPrice;//原价
+        var sellingPrice = $(element).closest('li').data('mixDiscount').sellingPrice;//活动价
+        if ($(element).attr('data-isSelected') == '1') {
+          $(element).attr('data-isSelected', 0);
+          this.options.findMixDiscount.price.attr({
+            totalMixPrice: this.options.findMixDiscount.price.attr('totalMixPrice') - sellingPrice,
+            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - originPrice,
+            totalSavePrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalMixPrice')
+          });
 
+        } else {
+          $(element).attr('data-isSelected', 1);
+          this.options.findMixDiscount.price.attr({
+            totalMixPrice: this.options.findMixDiscount.price.attr('totalMixPrice') + sellingPrice,
+            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') + originPrice,
+            totalSavePrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalMixPrice')
+          });
+        }
+        var len = $('input[data-isSelected="1"]').length;
+        this.options.findMixDiscount.price.attr('mixProductNum', len);
+      },
+      //获取搭配商品中选中商品的itemid和num和mainItemId
+      getMixProductItem: function() {
+        var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+        var checkedItem = $('input[data-isSelected="1"]');
+        var arr = [];
+        $.each(checkedItem, function(index, val) {
+          arr.push({
+            itemId: $(val).closest('li').data('mixDiscount').itemId,
+            num: 1,
+            mainItemId: itemid
+          });
+        });
+        return arr;
+      },
+      //获取搭配商品中选中商品的itemid和num
+      getSelectMixProduct: function() {
+        var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+        var checkedItem = $('input[data-isSelected="1"]');
+        var arr = [];
+        $.each(checkedItem, function(index, val) {
+          arr.push({
+            itemId: $(val).closest('li').data('mixDiscount').itemId,
+            num: 1
+          });
+        });
+        return arr;
+      },
+      //搭配折扣立即购买
+      '#mix-products-buy click': function(element, event) {
+        event && event.preventDefault();
+        var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+        var mainArr = [{
+          itemId: itemid,
+          num: 1
+        }];
+        var result = JSON.stringify(mainArr.concat(this.getSelectMixProduct()));
+
+        var gotoUrl = 'http://www.sfht.com/order.html' + '?mixproduct=' + result;
+
+        if (!SFComm.prototype.checkUserLogin.call(this)) {
+          this.header.showLogin(gotoUrl);
+          return false;
+        }
+
+        window.location.href = gotoUrl;
+
+      },
+      //搭配折扣加入购物车
+      '#mix-products-add click': function(element, event) {
+        event && event.preventDefault();
+        var that = this;
+        var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
+        var mainArr = [{
+          itemId: itemid,
+          num: 1,
+          mainItemId: itemid
+        }];
+        var mixArr = this.getMixProductItem();
+        var itemsStr = JSON.stringify(mainArr.concat(mixArr));
+        var addItemToCart = new SFAddItemToCart({
+          items: itemsStr
+        });
+        if (!SFComm.prototype.checkUserLogin.call(that)) {
+          can.trigger(window, 'showLogin', [window.location.href]);
+        } else {
+          addItemToCart.sendRequest()
+            .done(function(data) {
+              window.location.href = "http://www.sfht.com/shoppingcart.html";
+            }).fail(function() {
+
+            })
+        }
+
+
+      },
       /**
        * [renderBuyInfo 渲染购买信息]
        * @param  {[type]} detailContentInfo
