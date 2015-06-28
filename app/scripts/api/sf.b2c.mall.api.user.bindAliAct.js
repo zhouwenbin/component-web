@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.shopcart.removeItemsForCart
+  * @class sf.b2c.mall.api.user.bindAliAct
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.shopcart.removeItemsForCart',
+'sf.b2c.mall.api.user.bindAliAct',
 [
   'jquery',
   'can',
@@ -22,18 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'shopcart.removeItemsForCart',
+      METHOD_NAME: 'user.bindAliAct',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'items': 'json'
+        'aliAct': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '15000100': '请求参数有误',
-        '15000300': '购物车删除商品失败'
       }
     }
   });

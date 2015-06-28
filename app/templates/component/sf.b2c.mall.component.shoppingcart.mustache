@@ -8,7 +8,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
+                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList partGoodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
                         <th class="th2">商品信息</th>
                         <th class="th3">单价（元）</th>
                         <th class="th4">数量</th>
@@ -16,7 +16,62 @@
                         <th class="th6">操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>              
+                {{! scope: "PART" }}
+                {{#each partGoodItemList}}
+                <tr {{data 'goods'}} data-isSelected="{{isSelected}}" class="{{^isTheMainProduct @index}}cart-match{{/isTheMainProduct}} {{^isValid}}cart-disable{{/isValid}}">
+                    {{#isTheMainProduct @index}}
+                    <td class="td1" colspan="2">
+                        {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                        {{#isValid}}
+                            <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>搭配优惠：{{title}}
+                        {{/isValid}}
+                    </td>                  
+                    {{/isTheMainProduct}}
+
+                    {{^isTheMainProduct @index}}
+                    <td class="td1">
+                        {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                        <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
+                    </td>
+                    <td class="td2">
+                        <h2><a href="">{{title}}</a></h2>
+                        <div class="cart-standard">{{{specs}}}</div>
+                    </td>                   
+                    {{/isTheMainProduct}}
+                       
+                    <td class="td3">
+                        {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
+
+                            {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
+                            {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
+                            {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
+                            {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
+                    </td>
+                    
+                    {{#isTheMainProduct @index}}
+                    <td class="td4">
+                        {{^isValid}}{{quantity}}{{/isValid}}
+                        {{#isValid}}
+                            <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                            {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                        {{/isValid}}
+                    </td>
+                    {{/isTheMainProduct}}
+                    {{^isTheMainProduct @index}}
+                    <td class="td4">{{quantity}}</td>
+                    {{/isTheMainProduct}}
+                    <td class="td5">
+                        <strong class="text-error">{{sf.price perTotalPrice}}</strong>
+                    </td>
+                    <td class="td6">
+                        {{#isTheMainProduct @index}}
+                        <a data-itemIds="{{itemId}}" class="deleteSingleOrder icon icon72" href="">删除</a>
+                        {{/isTheMainProduct}}
+                    </td>
+                </tr>
+                {{/each}}              
+                {{! scope: "SINGLE" }}
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
@@ -35,8 +90,6 @@
                             <div class="cart-standard">{{{specs}}}</div>
                         </td>
                         <td class="td3">
-
-
                             {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
 
                             {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
@@ -65,7 +118,7 @@
 
     	<div class="cart-footer clearfix">
     		<div class="cart-footer-c1 fl">
-    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>|
+    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList partGoodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>
     			<a id="deletedSelectGoods" href="">删除选中商品</a>
     			{{#order.invalidItems}}<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>{{/order.invalidItems}}
     		</div>

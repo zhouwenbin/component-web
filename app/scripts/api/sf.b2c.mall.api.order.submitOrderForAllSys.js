@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       OPTIONAL: {
         'userMsg': 'string',
         'couponCodes': 'string',
+        'integral': 'long',
         'sysInfo': 'string',
         'submitKey': 'string'
       },

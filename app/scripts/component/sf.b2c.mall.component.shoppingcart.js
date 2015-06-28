@@ -75,14 +75,23 @@ define(
             return reduceInfos.length;
           };
         },
-
-        'sf-is-select-all': function(goods, options) {
+        //是否为全选
+        'sf-is-select-all': function(goods, partGoods, options) {
+          var result = goods.concat(partGoods)
           var isSelectedAll = true;
-          _.each(goods, function(value, key, list) {
+          _.each(result, function(value, key, list) {
             isSelectedAll = isSelectedAll && value.isSelected
           });
 
           if (isSelectedAll) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        //是否为搭配商品中的主商品
+        'isTheMainProduct': function(index, options) {
+          if (index == 0) {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -154,7 +163,8 @@ define(
         this.options.scopeGroups = data.scopeGroups;
         if (data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
-          this.options.goodItemList = [];
+          this.options.goodItemList = []; //存放scope="single"
+          this.options.partGoodItemList = []; //存放scope="part"
           this.options.order = new can.Map({});
           this.options.order.attr({
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
@@ -171,11 +181,15 @@ define(
 
           //获取商品数据
           _.each(this.options.scopeGroups, function(cartItem) {
-            //是否显示满件
-            that.options.goodItemList.push(cartItem.goodItemList[0]);
+            if (cartItem.scope == 'SINGLE') {
+              that.options.goodItemList.push(cartItem.goodItemList[0]);
+            } else {
+              that.options.partGoodItemList.push(cartItem.goodItemList);
+            }
           });
 
-          _.each(that.options.goodItemList, function(goodsItem) {
+          //遍历scope: "single"的商品数据
+          _.each(this.options.goodItemList, function(goodsItem) {
             var result = new Array();
             _.each(goodsItem.specs, function(item) {
               result.push(item.specName + ":" + item.value);
@@ -200,6 +214,44 @@ define(
               }
             }
           });
+
+          //重组数据，把主商品放在第一位
+          var mainProductArr = [];
+          var mixProductArr = [];
+          _.each(this.options.partGoodItemList[0], function(goodsItem) {
+            if (goodsItem.itemId == goodsItem.mainItemId) {
+              mainProductArr.push(goodsItem);
+            } else {
+              mixProductArr.push(goodsItem);
+            }
+          });
+          this.options.partGoodItemList = mainProductArr.concat(mixProductArr);
+
+          _.each(this.options.partGoodItemList, function(goodsItem) {
+            var result = new Array();
+            _.each(goodsItem.specs, function(item) {
+              result.push(item.specName + ":" + item.value);
+            });
+            goodsItem.specs = result.join('&nbsp;/&nbsp;');
+            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
+              goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
+              goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
+
+              var promotionInfoArray = new Array();
+              //便利满件折促销信息
+              _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                _.each(promotionItem.promotionRuleList, function(item) {
+                  promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                });
+              });
+
+              var quantity = goodsItem.quantity;
+              if (promotionInfoArray.length > quantity) {
+                goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+              }
+            }
+          })
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
           that.element.html(html);
@@ -254,11 +306,12 @@ define(
 
       },
       // 更新购物车商品数量
-      updateItemNumInCart: function(itemId, num) {
+      updateItemNumInCart: function(itemId, num, mainItemId) {
         var that = this;
         var updateItemNumInCart = new SFUpdateItemNumInCart({
           itemId: itemId,
-          num: num
+          num: num,
+          mainItemId: mainItemId
         });
         updateItemNumInCart.sendRequest()
           .done(function(data) {
@@ -270,8 +323,9 @@ define(
        */
       deleteCartOrder: function(itemIds) {
         var that = this;
+        var itemStr = JSON.stringify(itemIds);
         var deleteorder = new SFRemoveItemsInCart({
-          itemIds: JSON.stringify(itemIds)
+          items: itemStr
         });
         deleteorder.sendRequest()
           .done(function(data) {
@@ -304,10 +358,19 @@ define(
         }
         var result = [];
         _.each(array, function(value, i) {
-          var obj = {
-            itemId: value.itemId,
-            isSelected: value.isSelected
-          };
+          if (value.groupKey) {
+            var obj = {
+              itemId: value.itemId,
+              isSelected: value.isSelected,
+              mainItemId: value.groupKey
+            };
+          } else {
+            var obj = {
+              itemId: value.itemId,
+              isSelected: value.isSelected
+            };
+          }
+
           result.push(obj);
 
         });
@@ -324,10 +387,20 @@ define(
         } else {
           $(element).attr('data-isSelected', 1);
         }
-        var obj = {
-          itemId: $(element).closest('tr').data('goods').itemId,
-          isSelected: $(element).attr('data-isSelected')
-        };
+        var good = $(element).closest('tr').data('goods');
+        if (good.groupKey) {
+          var obj = {
+            itemId: good.itemId,
+            isSelected: $(element).attr('data-isSelected'),
+            mainItemId: good.groupKey
+          }
+        } else {
+          var obj = {
+            itemId: good.itemId,
+            isSelected: $(element).attr('data-isSelected')
+          }
+        }
+
         var result = [];
         result.push(obj);
         this.refreshCartList(result);
@@ -337,14 +410,27 @@ define(
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        itemIds.push($(element).closest('tr').data('goods').itemId);
+        var good = $(element).closest('tr').data('goods');
+        if (good.groupKey) {
+          var obj = {
+            itemId: good.itemId,
+            mainItemId: good.groupKey
+          };
+          itemIds.push(obj);
+        } else {
+          var obj = {
+            itemId: good.itemId
+          };
+          itemIds.push(obj);
+        }
+
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
             'tip': '确认要删除该商品？',
             'type': 'confirm',
             'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
           });
-        };
+        }
 
       },
       //删除选中商品
@@ -353,7 +439,18 @@ define(
         var that = this;
         var itemIds = [];
         _.each($("tr[data-isSelected='1']"), function(item) {
-          itemIds.push($(item).data('goods').itemId);
+          var good = $(item).closest('tr').data('goods');
+          if (item.groupKey) {
+            var obj = {
+              itemId: item.itemId,
+              mainItemId: item.groupKey
+            }
+          } else {
+            var obj = {
+              itemId: item.itemId
+            }
+          }
+          itemIds.push(obj);
         });
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
@@ -369,7 +466,18 @@ define(
         event && event.preventDefault();
         var itemIds = [];
         _.each($('.cart-disable'), function(item) {
-          itemIds.push($(item).data('goods').itemId);
+          var good = $(item).closest('tr').data('goods');
+          if (item.groupKey) {
+            var obj = {
+              itemId: item.itemId,
+              mainItemId: item.groupKey
+            }
+          } else {
+            var obj = {
+              itemId: item.itemId
+            }
+          }
+          itemIds.push(obj);
         });
         if (itemIds.length > 0) {
           this.deleteCartOrder(itemIds);
@@ -386,8 +494,10 @@ define(
           return false;
         };
         var num = parseInt($(element).siblings('input').val());
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         //var stock =
         if (num >= limitQuantity) {
           $(element).siblings('input').val(limitQuantity);
@@ -396,8 +506,9 @@ define(
           clearTimeout(handler);
           handler = null;
           $(element).siblings('input').val(num + 1);
+
           handler = setTimeout(function() {
-            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()), mainItemId);
           }, 300);
 
         }
@@ -413,8 +524,10 @@ define(
           return false;
         };
         var num = parseInt($(element).siblings('input').val());
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         if (num <= 1) {
           $(element).siblings('input').val(1);
           $(element).addClass('disable');
@@ -425,7 +538,7 @@ define(
           handler = null;
           $(element).siblings('input').val(num - 1);
           handler = setTimeout(function() {
-            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()), mainItemId);
           }, 300);
         }
 
@@ -443,16 +556,18 @@ define(
       //手工输入商品数量
       inputBuyNum: function(element, options) {
         var amount = $(element).val();
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         if (amount < 0 || isNaN(amount) || amount == '') {
           $(element).val(1);
           return false;
         } else if (amount >= limitQuantity) {
           $(element).val(limitQuantity);
-          this.updateItemNumInCart(itemId, parseInt($(element).val()));
+          this.updateItemNumInCart(itemId, parseInt($(element).val()), mainItemId);
         } else {
-          this.updateItemNumInCart(itemId, parseInt($(element).val()));
+          this.updateItemNumInCart(itemId, parseInt($(element).val()), mainItemId);
         }
 
       },

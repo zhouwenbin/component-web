@@ -26,14 +26,14 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
         'itemId': 'long',
+        'activityId': 'long'
       },
       OPTIONAL: {
-        'activityId': 'long'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '5024000': '获取搭配折扣数据错误'
+        '5025000': '获取搭配折扣数据错误'
       }
     }
   });
