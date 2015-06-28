@@ -197,6 +197,7 @@
 
 .invite-account{
 	position: relative;
+	margin-bottom: 44px;
 }
 .invite-account h3{
 	font-size: 14px;
@@ -212,7 +213,7 @@
 	top: 0;
 }
 .invite-account .address{
-	margin-bottom: 44px;
+	margin-bottom: 0;
 }
 .icon-change{
 	background: url(#{$bg-url}icon-change.png) no-repeat;
