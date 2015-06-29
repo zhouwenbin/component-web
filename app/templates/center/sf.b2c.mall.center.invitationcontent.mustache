@@ -1,43 +1,92 @@
-<div class="integral">
-  <div class="integral-r1">欢迎回来，今日收益100,000元      累计收益500,000  账户余额：100，000 支付宝账号：18101865122 </div>
-  <div class="integral-tab clearfix">
-    <button class="btn btn-normal" id="getmoney">提现</button>
-  </div>
+<h2 class="invite-h2">我的邀请</h2>
+
+{{^hasIncome infoList}}
+<div class="invite-income">
+    <p><span class="invite-income-icon"></span>对不起您暂时还没有收益，赶紧邀请朋友赚取丰厚奖励吧！<button class="btn btn-success btn-small">分享</button></p>
 </div>
+{{/hasIncome}}
 
-<div class="address">
-  <div class="address-table integral-table">
-    <table>
-      <thead>
-        <tr>
-          <th class="col1">日期</th>
-          <th class="col2">收入</th>
-          <th class="col3">原因</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="col1">2015-03-28   12:10:15</td>
-          <td class="col2"><strong class="text-success">+50</strong></td>
-          <td class="col3">签到获得</td>
+{{#hasIncome infoList}}
+<div class="invite-income clearfix">
+    <div class="invite-income-c1 fl">
+        <span class="invite-income-icon"></span>
+        <h3>欢迎回来</h3>
+    </div>
 
-        </tr>
-        <tr>
-          <td class="col1">2015-03-28   12:10:15</td>
-          <td class="col2"><strong class="text-important">-50</strong></td>
-          <td class="col3">订单消费（订单号：123456789012345）</td>
-
-        </tr>
-        <tr>
-          <td class="col1">2015-03-28   12:10:15</td>
-          <td class="col2"><strong class="text-success">+50</strong></td>
-          <td class="col3">完成订单（订单号：123456789012345）</td>
-
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <ul class="fl">
+        <li>
+            <h4>昨日收益：</h4>
+            <div class="invite-income-price"><span class="text-important">{{sf.price lastestIncome}}</span>元</div>
+        </li>
+        <li>
+            <h4>累计收益：</h4>
+            <div class="invite-income-price"><span class="text-important">{{sf.price totalIncome}}</span>元</div>
+        </li>
+        <li>
+            <h4>账户余额：</h4>
+            <div class="invite-income-price"><span class="text-important">{{sf.price actBalance}}</span>元<button class="btn btn-normal btn-small" id="getmoney">提现</button></div>
+            <div class="invite-income-alipay">支付宝账号：{{bindAliAct}}</div>
+        </li>
+    </ul>
 </div>
+<div class="invite-account">
+    <h3>账户明细:</h3>
+    <a href="javascript:;" id="switchwiew" class="text-link"><span class="icon-change"></span>切换至收益图表</a>
+    <div class="address" id="infoList" class="active">
+        <div class="address-table integral-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col1">日期</th>
+                        <th class="col2">收入/支出</th>
+                        <th class="col3">说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each infoList}}
+                    <tr>
+                        <td class="col1">{{gmtCreate}}</td>
+                        <td class="col2"><strong class="text-success">{{income}}</strong></td>
+                        <td class="col3">{{reason}}</td>
 
-<div id="shareURLQrcode"></div>
-<input type="text" style="width:200px" id="urlinput">
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{! <div class="page"><a href=""><span class="icon icon16-7"></span></a><a class="active" href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href=""><span class="icon icon16-6"></span></a></div> }}
+    </div>
+    <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+
+</div>
+{{/hasIncome}}
+
+<div class="invite-rule">
+    <h3 class="invite-h3">本期规则</h3>
+    <div class="invite-rule-bg"></div>
+    <button class="btn btn-success btn-radius">查看规则条款</button>
+</div>
+<div class="invite-open">
+    <h3 class="invite-h3">开启您的邀请之旅</h3>
+    <ul class="clearfix">
+        <li class="invite-open-li1">
+            <h4>方式<span class="invite-open-icon1">1</span></h4>
+            <h5>微信扫一扫，朋友圈撒红包</h5>
+            <p>撒完红包找到您觉得靠谱的朋友卖力推荐，成功率更高哦！</p>
+            <span id="shareURLQrcode"></span>
+        </li>
+        <li class="invite-open-li2">
+            <h4>方式<span class="invite-open-icon2">2</span></h4>
+            <h5>复制您的url，邀请朋友注册下单</h5>
+            <p>您可以通过QQ或其他工具邀请您的朋友加入</p>
+            <input id="urlinput" value="http://www.sfht.com/12345678">
+            {{! <button class="btn btn-success btn-small">复制</button> }}
+        </li>
+        <li class="invite-open-li3">
+            <h4>方式<span class="invite-open-icon3">3</span></h4>
+            <h5>挑选商品分享</h5>
+            <p>选出您有信心的商品分享给您的朋友</p>
+            <button class="btn btn-danger btn-small" id="gotohome">开始挑选</button>
+        </li>
+    </ul>
+</div>
