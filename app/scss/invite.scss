@@ -165,7 +165,7 @@
 	color: #E85254;
 }
 .invite-open-li3 p{
-	margin-bottom: 77px;
+	margin-bottom: 30px;
 }
 .invite-open-icon1{
 	display: inline-block;
@@ -193,6 +193,13 @@
 	width: 50px;
 	height: 43px;
 	background: url(#{$bg-url}invite-open-icon3.png) no-repeat;
+}
+.invite-open-way{
+	margin-bottom: 32px;
+}
+.invite-open-way span{
+	margin-left: 8px;
+	border-width:5px 10px;
 }
 
 .invite-account{
