@@ -289,8 +289,6 @@ requirejs.config({
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
 
-    'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
-
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
     'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
@@ -310,10 +308,9 @@ requirejs.config({
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
     'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
     'template_widget_dialog': 'templates/widget/sf.b2c.mall.widget.dialog.mustache',
-    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
     'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache',
-    'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache'
+    'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
   }
