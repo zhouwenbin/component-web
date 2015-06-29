@@ -189,7 +189,7 @@ module.exports = function(grunt) {
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
-        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
+        browsers: ['> 1%', 'last 10 versions', 'Firefox ESR', 'Opera 12.1']
       },
       dist: {
         files: [{
@@ -436,8 +436,8 @@ module.exports = function(grunt) {
       styles: {
         expand: true,
         dot: true,
-        cwd: '<%= config.app %>/styles',
-        dest: '.tmp/styles/',
+        cwd: '.tmp/concat/styles',
+        dest: '<%= config.dist %>/styles/',
         src: '{,*/}*.css'
       }
     },
@@ -938,25 +938,6 @@ module.exports = function(grunt) {
         }
       },
 
-      // search: {
-      //   options: {
-      //     preserveLicenseComments: false,
-      //     baseUrl:          './app/',
-      //     out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.search.js',
-      //     mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
-      //     paths: {
-      //       'placeholders': '../bower_components/Placeholders/dist/placeholders',
-      //       'moment': '../bower_components/momentjs/min/moment.min',
-      //       'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
-      //       'text': '../bower_components/text/text',
-      //       'JSON': '../bower_components/JSON-js/json2',
-      //       'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
-      //     },
-      //     include:        ["JSON", "sf.b2c.mall.page.search"],
-      //     insertRequire:  ['sf.b2c.mall.page.search']
-      //   }
-      // },
-
       addressmanage: {
         options: {
           preserveLicenseComments: false,
@@ -1011,6 +992,25 @@ module.exports = function(grunt) {
           },
           include:        ["JSON", "sf.b2c.mall.page.search"],
           insertRequire:  ['sf.b2c.mall.page.search']
+        }
+      },
+
+      shop: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl:          './app/',
+          out:            './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.shop.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders':                 '../bower_components/Placeholders/dist/placeholders',
+            'moment':                       '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn':                 '../bower_components/momentjs/locale/zh-cn',
+            'text':                         '../bower_components/text/text',
+            'JSON':                         '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config':  'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include:        ["JSON", "sf.b2c.mall.page.shop"],
+          insertRequire:  ['sf.b2c.mall.page.shop']
         }
       },
 
@@ -1242,6 +1242,64 @@ module.exports = function(grunt) {
         }
       },
 
+      yzywtab: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.yzywtab.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: ["JSON", "sf.b2c.mall.module.yzywtab"],
+          insertRequire: ['sf.b2c.mall.module.yzywtab']
+        }
+      },
+
+      newpage: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.newpage.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: ["JSON", "sf.b2c.mall.module.newpage"],
+          insertRequire: ['sf.b2c.mall.module.newpage']
+        }
+      },
+
+
+      sidelip: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.module.sidelip.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: ["JSON", "sf.b2c.mall.module.sidelip"],
+          insertRequire: ['sf.b2c.mall.module.sidelip']
+        }
+      },
+
       feedback: {
         options: {
           preserveLicenseComments: false,
@@ -1424,15 +1482,16 @@ module.exports = function(grunt) {
         'wiredep',
         'useminPrepare',
         'concurrent:dist',
-        'autoprefixer',
+        //'autoprefixer',
         'concat',
         'requirejs',
-        'cssmin',
+        //'cssmin',
         'uglify',
         'copy:dist',
         'copy:html',
         'copy:image',
         'copy:templates',
+        'copy:styles',
         'usemin',
         // 'htmlmin',
         'clean:extra',
@@ -1494,6 +1553,7 @@ module.exports = function(grunt) {
         'copy:html',
         'copy:image',
         'copy:templates',
+        'copy:styles',
         'usemin',
         //'htmlmin',
         'clean:extra',

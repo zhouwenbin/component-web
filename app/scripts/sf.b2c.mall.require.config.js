@@ -44,9 +44,11 @@ requirejs.config({
     'sf.b2c.mall.api.products.getAllParents': 'scripts/api/sf.b2c.mall.api.products.getAllParents',
     'sf.b2c.mall.api.products.getCategories': 'scripts/api/sf.b2c.mall.api.products.getCategories',
     'sf.b2c.mall.api.products.search': 'scripts/api/sf.b2c.mall.api.products.search',
+
     'sf.b2c.mall.api.product.findRecommendProducts': 'scripts/api/sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.api.product.commitFeedback': 'scripts/api/sf.b2c.mall.api.product.commitFeedback',
     'sf.b2c.mall.api.product.arrivalNotice': 'scripts/api/sf.b2c.mall.api.product.arrivalNotice',
+    'sf.b2c.mall.api.product.searchShopInfo': 'scripts/api/sf.b2c.mall.api.product.searchShopInfo',
 
     'sf.b2c.mall.api.user.appLogin': 'scripts/api/sf.b2c.mall.api.user.appLogin',
     'sf.b2c.mall.api.user.changePassword': 'scripts/api/sf.b2c.mall.api.user.changePassword',
@@ -203,6 +205,9 @@ requirejs.config({
 
     'sf.b2c.mall.product.breadscrumb': 'scripts/product/sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent': 'scripts/product/sf.b2c.mall.product.detailcontent',
+    'sf.b2c.mall.product.searchShopInfo': 'scripts/product/sf.b2c.mall.product.searchShopInfo',
+
+    'sf.b2c.mall.shop.detail': 'scripts/shop/sf.b2c.mall.shop.detail',
 
     'sf.b2c.mall.adapter.address.list': 'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions': 'scripts/adapter/sf.b2c.mall.adapter.regions',
@@ -234,6 +239,8 @@ requirejs.config({
     'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
     'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
 
+    'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
+
     'sf.b2c.mall.page.registeractive': 'scripts/page/sf.b2c.mall.page.registeractive',
     //404页面
     'sf.b2c.mall.page.404': 'scripts/page/sf.b2c.mall.page.404',
@@ -254,6 +261,8 @@ requirejs.config({
 
     //搜索页面
     'sf.b2c.mall.page.search': 'scripts/page/sf.b2c.mall.page.search',
+    //店铺页面
+    'sf.b2c.mall.page.shop': 'scripts/page/sf.b2c.mall.page.shop',
 
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
@@ -279,7 +288,13 @@ requirejs.config({
     'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
+
     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
+
+    'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
+    'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
+    'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
+    'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
      'sf.mediav': 'scripts/util/sf.mediav',
 
@@ -299,5 +314,7 @@ requirejs.config({
     'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
     'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache',
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache'
+    'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
+    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
   }
 });
