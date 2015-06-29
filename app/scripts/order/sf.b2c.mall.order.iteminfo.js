@@ -71,7 +71,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
       can.when(that.initOrderRender())
         .done(function() {
-           that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee/100)*that.itemObj.attr('proportion'));
+           that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.shouldPay/100)*that.itemObj.attr('proportion'));
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.itemObj, that.helpers);
           that.element.html(html);
 
@@ -374,6 +374,9 @@ define('sf.b2c.mall.order.iteminfo', [
         $(element).find('span.icon85').remove();
         this.itemObj.attr("couponPrice", 0);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+          if($("#pointselected").is(":checked")){
+              shouldPay = shouldPay-  ($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          }
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
           point =   shouldPay*this.itemObj.attr("proportion")/100;
@@ -388,6 +391,9 @@ define('sf.b2c.mall.order.iteminfo', [
         $(element).append('<span class="icon icon85"></span>')
         this.itemObj.attr("couponPrice", $(element).attr('data-price'));
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+          if($("#pointselected").is(":checked")){
+              shouldPay = shouldPay-  ($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          }
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
           point =   shouldPay*this.itemObj.attr("proportion")/100;
@@ -603,7 +609,8 @@ define('sf.b2c.mall.order.iteminfo', [
       //    event && event.preventDefault();
           $("#pointUsed").val("0");
           $("#pointToMoney").text("-￥0.0" );
-          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee');
+
+          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -this.itemObj.attr('couponPrice')-($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
           this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
       },
@@ -642,6 +649,7 @@ define('sf.b2c.mall.order.iteminfo', [
              }
              else if($("#pointUsed").val() > parseInt($("#usedPoint").text())){
                   $("#pointUsed").val(parseInt($("#usedPoint").text()));
+                  $("#pointToMoney").text("-￥" + parseInt($("#usedPoint").text())/ this.itemObj.attr('proportion'));
               }
              else{
                  $("#pointToMoney").text("-￥" + $("#pointUsed").val()/ this.itemObj.attr('proportion'));
@@ -652,7 +660,7 @@ define('sf.b2c.mall.order.iteminfo', [
             $("#pointUsed").val(0)
         }
 
-          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -this.itemObj.attr('couponPrice')-($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
           this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
       },
@@ -687,6 +695,10 @@ define('sf.b2c.mall.order.iteminfo', [
         //this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[0]);
         this.itemObj.attr('couponPrice', 0);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+          if($("#pointselected").is(":checked")){
+              shouldPay = shouldPay-  ($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          }
+
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
         this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
           point =   shouldPay*this.itemObj.attr("proportion")/100;
@@ -703,6 +715,9 @@ define('sf.b2c.mall.order.iteminfo', [
         //this.itemObj.orderCoupon.attr("bestCoupon", this.itemObj.orderCoupon.attr('avaliableCoupons')[index]);
         this.itemObj.attr('couponPrice', $(element).data('coupon').price);
         var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+          if($("#pointselected").is(":checked")){
+              shouldPay = shouldPay-  ($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
+          }
         this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
           point =   shouldPay*this.itemObj.attr("proportion")/100;
