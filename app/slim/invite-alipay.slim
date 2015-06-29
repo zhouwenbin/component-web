@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/invite.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pb">
+    <div class="invite-alipay">
+        <h1 class="invite-alipay-banner">真送钱 支付宝提现！</h1>
+        <div class="invite-alipay-way">
+            <ul>
+                <li class="li1">
+                    <h2>做土豪 派发红包</h2>
+                    <p>每日红包派发不停</p>
+                </li>
+                <li class="li2">
+                    <h2>20元红包</h2>
+                    <h3>微信扫码分享朋友圈</h3>
+                    <p>好友抢得红包后<br />在顺丰海淘消费即可抵用现金</p>
+                </li>
+                <li class="li3">
+                    <h2>朋友单笔订单支付满100元即送您30元，可支付宝提现</h2>
+                    <p>请点击查看下方规则并且确认，否则无法获得奖励哦</p>
+                </li>
+                <li class="li4">
+                    <h2>登录－个人中心－我得邀请查看收益</h2>
+                </li>
+            </ul>
+        </div>
+        <div class="pm">
+            <div class="invite-open">
+                <h3 class="invite-h3">开启您的邀请之旅</h3>
+                <ul class="clearfix">
+                    <li class="invite-open-li1">
+                        <h4>方式<span class="invite-open-icon1">1</span></h4>
+                        <h5>微信扫一扫，朋友圈撒红包</h5>
+                        <p>撒完红包找到您觉得靠谱的朋友卖力推荐，成功率更高哦！</p>
+                        <img src="../img/invite-qrcode.png">
+                    </li>
+                    <li class="invite-open-li2">
+                        <h4>方式<span class="invite-open-icon2">2</span></h4>
+                        <h5>复制您的url，邀请朋友注册下单</h5>
+                        <p>您可以通过QQ或其他工具邀请您的朋友加入</p>
+                        <input value="http://www.sfht.com/12345678">
+                        <button class="btn btn-success btn-small">复制</button>
+                    </li>
+                    <li class="invite-open-li3">
+                        <h4>方式<span class="invite-open-icon3">3</span></h4>
+                        <h5>挑选商品分享</h5>
+                        <p>选出您有信心的商品分享给您的朋友</p>
+                        <div class="invite-open-way">前往首页<span class="icon icon16-5"></span>挑选商品<span class="icon icon16-5"></span>点击分享</div>
+                        <button class="btn btn-danger btn-small">开始挑选</button>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-success btn-big">登录开始分享</button>
+        </div>
+            
+    </div>   
+</div>
+<!--服务同意条款-->
+<script src="js/jquery-1.11.1.min.js"></script>
+</body>
+</html>

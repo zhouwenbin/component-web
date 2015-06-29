@@ -165,7 +165,7 @@
 	color: #E85254;
 }
 .invite-open-li3 p{
-	margin-bottom: 77px;
+	margin-bottom: 30px;
 }
 .invite-open-icon1{
 	display: inline-block;
@@ -193,6 +193,13 @@
 	width: 50px;
 	height: 43px;
 	background: url(#{$bg-url}invite-open-icon3.png) no-repeat;
+}
+.invite-open-way{
+	margin-bottom: 32px;
+}
+.invite-open-way span{
+	margin-left: 8px;
+	border-width:5px 10px;
 }
 
 .invite-account{
@@ -222,4 +229,82 @@
 	width: 22px;
 	height: 13px;
 	margin-right: 10px;
+}
+
+.invite-alipay{
+	margin-bottom: 155px;
+}
+.invite-alipay-banner{
+	background: url(#{$bg-url}invite-alipay-banner.jpg) no-repeat center top;
+	height: 308px;
+	text-indent: -999em;
+}
+
+.invite-alipay-way{
+	background:#fff url(#{$bg-url}invite-alipay-way.jpg) no-repeat center top;
+	margin-bottom: 76px;
+}
+.invite-alipay-way ul{
+	width: 986px;
+	margin: 0 auto;
+}
+.invite-alipay-way h2{
+	color: #ff9d36;
+	font-weight: normal;
+	font-size: 32px;
+	line-height: 50px;
+}
+.invite-alipay-way h3{
+	color: #ff9d36;
+	font-weight: normal;
+	font-size: 26px;
+	margin-bottom: 15px;
+}
+.invite-alipay-way p{
+	font-size: 22px;
+	line-height: 32px;
+	color: #727375;
+}
+.invite-alipay-way .li1 h2{
+	font-size: 46px;
+	padding-top: 112px;
+	margin-bottom: 20px;
+}
+.invite-alipay-way .li1 p{
+	font-size: 28px;
+}
+.invite-alipay-way .li2 h2{
+	font-size: 54px;
+	padding-top: 87px;
+	margin-bottom: 16px;
+}
+.invite-alipay-way .li3 h2{
+	padding-top: 76px;
+}
+.invite-alipay-way .li4 h2{
+	padding-top: 98px;
+}
+.invite-alipay-way .li1{
+	height: 318px;
+	padding-left: 541px;
+}
+.invite-alipay-way .li2{
+	height: 331px;
+	padding-left: 80px;
+}
+.invite-alipay-way .li3{
+	width: 390px;
+	height: 333px;
+	padding-left: 553px;
+}
+.invite-alipay-way .li4{
+	height: 301px;
+	width: 382px;
+	padding-left: 98px;
+}
+.invite-alipay .pm{
+	width: 986px;
+}
+.invite-alipay .btn-big{
+	font-size: 24px;
 }
