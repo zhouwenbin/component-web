@@ -172,12 +172,12 @@ define('sf.b2c.mall.order.iteminfo', [
           result.push(obj);
         });
         result.splice(0, 1);
-        var mixObj = {
+        var mixObj = [{
           "itemId": mainItemId,
           "num": 1,
           "groupKey": 'group:immediately',
-          "saleItems": JSON.stringify(result)
-        };
+          "saleItems": result
+        }];
         itemStr = JSON.stringify(mixObj);
       } else {
         itemStr = JSON.stringify(singleArr);
@@ -532,12 +532,12 @@ define('sf.b2c.mall.order.iteminfo', [
               });
             });
             goodItems.splice(0, 1);
-            var mixObj = {
+            var mixObj = [{
               "itemId": mainItemId,
               "num": 1,
               "price": mainProductPrice,
-              "saleItems": JSON.stringify(goodItems)
-            };
+              "saleItems": goodItems
+            }];
             itemStr = JSON.stringify(mixObj);
           } else {
             _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
