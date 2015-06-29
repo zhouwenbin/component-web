@@ -146,7 +146,7 @@ define('sf.b2c.mall.component.search', [
         name: "综合"
       },
       //是否展示购物车
-      isShowShoppintCart: false,
+      isShowShoppintCart: true,
       //聚合数据，主要用于前端数据展示
       brands: {},
       categories: {},

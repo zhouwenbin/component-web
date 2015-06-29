@@ -3,7 +3,7 @@
   <div class="pm">
     <div class="search-none">
       <i></i><i></i><i></i>
-      <h1>对不起....我们没有找到和：“{{keyword}}”相关的商品</h1>
+      <h1>对不起....我们没有找到{{#if keyword}}和：“{{keyword}}”{{/if}}相关的商品</h1>
       <a class="text-important" href="http://www.sfht.com">返回首页</a>
     </div>
     <!--大家都在买-->
@@ -26,7 +26,7 @@
     <div class="pm">
       {{#if filterCustom.showCrumbs}}<div class="crumbs"><a href="http://www.sfht.com/index.html">原汁原味</a><span>&gt;</span>123</div>{{/if}}
       {{#if filterCustom.showStatInfo}}
-        <h2><strong>“{{keyword}}”</strong>有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
+        <h2>{{#if keyword}}<strong>“{{keyword}}”</strong>{{/if}}有<span class="text-important">{{itemSearch.totalHits}}</span>条相关产品</h2>
       {{/if}}
       <ul class="classify-list">
         {{#sf-hasSelect filters}}
