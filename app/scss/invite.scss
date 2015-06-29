@@ -222,6 +222,12 @@
 .invite-account .address{
 	margin-bottom: 0;
 }
+.invite-account-b{
+	display: none;
+}
+.invite-account-b.active{
+	display: block;
+}
 .icon-change{
 	background: url(#{$bg-url}icon-change.png) no-repeat;
 	display: inline-block;
