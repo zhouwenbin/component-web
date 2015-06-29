@@ -176,7 +176,7 @@ define('sf.b2c.mall.order.iteminfo', [
           "itemId": mainItemId,
           "num": 1,
           "groupKey": 'group:immediately',
-          "saleItems": result
+          "saleItemList": result
         }];
         itemStr = JSON.stringify(mixObj);
       } else {
@@ -536,7 +536,7 @@ define('sf.b2c.mall.order.iteminfo', [
               "itemId": mainItemId,
               "num": 1,
               "price": mainProductPrice,
-              "saleItems": goodItems
+              "saleItemList": goodItems
             }];
             itemStr = JSON.stringify(mixObj);
           } else {
