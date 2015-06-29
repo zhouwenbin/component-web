@@ -157,11 +157,12 @@ define('sf.b2c.mall.order.iteminfo', [
       var selectAddr = this.options.selectReceiveAddr.getSelectedAddr();
       var itemStr;
       var result = [];
+      var mainItemId = JSON.parse(params.mixproduct)[0].itemId;
       $.each(JSON.parse(params.mixproduct), function(index, val) {
         var obj = {
           "itemId": val.itemId,
           "num": 1,
-          "mainItemId": val.itemId,
+          "mainItemId": mainItemId,
           "groupKey": 'group:immediately'
         }
         result.push(obj);
