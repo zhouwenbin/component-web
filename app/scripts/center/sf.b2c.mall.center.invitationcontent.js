@@ -181,9 +181,8 @@ define('sf.b2c.mall.center.invitationcontent', [
 
       },
 
-      "#switchwiew click": function(){
-        $("#infoList").toggle();
-        $("#chartContainerParent").toggle();
+      "#switchwiew click": function(element, event){
+        $('.invite-account-b').toggleClass('active');
       },
 
       errorMap: {

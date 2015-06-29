@@ -31,32 +31,38 @@
 </div>
 <div class="invite-account">
     <h3>账户明细:</h3>
-    <a href="javascript:;" id="switchwiew" class="text-link"><span class="icon-change"></span>切换至收益图表</a>
-    <div class="address" id="infoList" class="active">
-        <div class="address-table integral-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="col1">日期</th>
-                        <th class="col2">收入/支出</th>
-                        <th class="col3">说明</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each infoList}}
-                    <tr>
-                        <td class="col1">{{gmtCreate}}</td>
-                        <td class="col2"><strong class="text-success">{{income}}</strong></td>
-                        <td class="col3">{{reason}}</td>
 
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+    <div class="invite-account-b active">
+        <a href="javascript:;" id="switchwiew" class="text-link"><span class="icon-change"></span>切换至收益图表</a>
+        <div class="address" id="infoList" class="active">
+            <div class="address-table integral-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col1">日期</th>
+                            <th class="col2">收入/支出</th>
+                            <th class="col3">说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each infoList}}
+                        <tr>
+                            <td class="col1">{{gmtCreate}}</td>
+                            <td class="col2"><strong class="text-success">{{income}}</strong></td>
+                            <td class="col3">{{reason}}</td>
+
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            {{! <div class="page"><a href=""><span class="icon icon16-7"></span></a><a class="active" href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href=""><span class="icon icon16-6"></span></a></div> }}
         </div>
-        {{! <div class="page"><a href=""><span class="icon icon16-7"></span></a><a class="active" href="">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href=""><span class="icon icon16-6"></span></a></div> }}
     </div>
-    <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+    <div class="invite-account-b">
+        <a href="javascript:;" id="switchwiew" class="text-link"><span class="icon-change"></span>切换至收益列表</a>
+        <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+    </div>
 
 </div>
 {{/hasIncome}}
