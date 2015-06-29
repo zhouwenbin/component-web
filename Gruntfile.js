@@ -1444,6 +1444,36 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('test', function() {
+
+      config.target = 'prd';
+
+      grunt.task.run([
+        'clean:dist',
+        'wiredep',
+        'useminPrepare',
+        'concurrent:dist',
+        'autoprefixer',
+        'concat',
+        'requirejs',
+        'cssmin',
+        'uglify',
+        'copy:dist',
+        'copy:html',
+        'copy:image',
+        'copy:templates',
+        'usemin',
+        //'htmlmin',
+        'clean:extra',
+        'clean:publish',
+        'clean:oss',
+        'clean:statics',
+        'compress:testv2'
+        // 'compress:oss',
+        // 'compress:statics'
+      ]);
+  })
+
   grunt.registerTask('release', function(version) {
     config.version = version;
 
