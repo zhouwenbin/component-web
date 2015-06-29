@@ -76,11 +76,13 @@ define(
           };
         },
         //是否为全选
-        'sf-is-select-all': function(goods, partGoods, options) {
-          var result = goods.concat(partGoods)
+        'sf-is-select-all': function(goods, options) {
           var isSelectedAll = true;
-          _.each(result, function(value, key, list) {
-            isSelectedAll = isSelectedAll && value.isSelected
+          _.each(goods, function(value, key, list) {
+            _.each(value, function(item) {
+              isSelectedAll = isSelectedAll && item.isSelected
+            })
+
           });
 
           if (isSelectedAll) {
@@ -160,11 +162,12 @@ define(
       render: function(data) {
         var that = this;
         this.options.canOrder = this.btnStateMap[data.canOrder];
-        this.options.scopeGroups = data.scopeGroups;
-        if (data.scopeGroups.length > 0) {
+        this.options.partScopeGroups = [];
+        this.options.singleScope = [];
+        that.options.goodItemList = [];
+        //this.options.scopeGroups = data.scopeGroups;
+        if (typeof data.scopeGroups != 'undefined' && data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
-          this.options.goodItemList = []; //存放scope="single"
-          this.options.partGoodItemList = []; //存放scope="part"
           this.options.order = new can.Map({});
           this.options.order.attr({
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
@@ -180,77 +183,83 @@ define(
           };
 
           //获取商品数据
-          _.each(this.options.scopeGroups, function(cartItem) {
+          _.each(data.scopeGroups, function(cartItem) {
             if (cartItem.scope == 'SINGLE') {
-              that.options.goodItemList.push(cartItem.goodItemList[0]);
+              that.options.singleScope.push(cartItem);
             } else {
-              that.options.partGoodItemList.push(cartItem.goodItemList);
+              that.options.partScopeGroups.push(cartItem);
             }
           });
 
           //遍历scope: "single"的商品数据
-          _.each(this.options.goodItemList, function(goodsItem) {
-            var result = new Array();
-            _.each(goodsItem.specs, function(item) {
-              result.push(item.specName + ":" + item.value);
-            });
-            goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
-              goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
-              goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
-              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
-
-              var promotionInfoArray = new Array();
-              //便利满件折促销信息
-              _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
-                _.each(promotionItem.promotionRuleList, function(item) {
-                  promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
-                });
+          _.each(this.options.singleScope, function(singleScope) {
+            that.options.goodItemList.push(singleScope.goodItemList);
+            _.each(singleScope.goodItemList, function(goodsItem) {
+              var result = new Array();
+              _.each(goodsItem.specs, function(item) {
+                result.push(item.specName + ":" + item.value);
               });
+              goodsItem.specs = result.join('&nbsp;/&nbsp;');
+              if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
+                goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
+                goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+                goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
 
-              var quantity = goodsItem.quantity;
-              if (promotionInfoArray.length > quantity) {
-                goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
-              }
-            }
-          });
-
-          //重组数据，把主商品放在第一位
-          var mainProductArr = [];
-          var mixProductArr = [];
-          _.each(this.options.partGoodItemList[0], function(goodsItem) {
-            if (goodsItem.itemId == goodsItem.mainItemId) {
-              mainProductArr.push(goodsItem);
-            } else {
-              mixProductArr.push(goodsItem);
-            }
-          });
-          this.options.partGoodItemList = mainProductArr.concat(mixProductArr);
-
-          _.each(this.options.partGoodItemList, function(goodsItem) {
-            var result = new Array();
-            _.each(goodsItem.specs, function(item) {
-              result.push(item.specName + ":" + item.value);
-            });
-            goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
-              goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
-              goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
-              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
-
-              var promotionInfoArray = new Array();
-              //便利满件折促销信息
-              _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
-                _.each(promotionItem.promotionRuleList, function(item) {
-                  promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                var promotionInfoArray = new Array();
+                //便利满件折促销信息
+                _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                  _.each(promotionItem.promotionRuleList, function(item) {
+                    promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                  });
                 });
-              });
 
-              var quantity = goodsItem.quantity;
-              if (promotionInfoArray.length > quantity) {
-                goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+                var quantity = goodsItem.quantity;
+                if (promotionInfoArray.length > quantity) {
+                  goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+                }
               }
+            });
+          })
+
+          _.each(this.options.partScopeGroups, function(partItem) {
+            that.options.goodItemList.push(partItem.goodItemList);
+            //重组数据，把主商品放在第一位
+            
+            var found = _.find(partItem.goodItemList, function (goodsItem) {
+              return goodsItem.itemId == goodsItem.mainItemId;
+            });
+            if (found) {
+              partItem.goodItemList = _.reject(partItem.goodItemList, function (goodsItem) {
+                return goodsItem.itemId == goodsItem.mainItemId;
+              });
+              partItem.goodItemList.splice(0,0,found);
             }
+            
+            _.each(partItem.goodItemList, function(goodsItem) {
+              var result = new Array();
+              _.each(goodsItem.specs, function(item) {
+                result.push(item.specName + ":" + item.value);
+              });
+              goodsItem.specs = result.join('&nbsp;/&nbsp;');
+              if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
+                goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
+                goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+                goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
+
+                var promotionInfoArray = new Array();
+                //便利满件折促销信息
+                _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                  _.each(promotionItem.promotionRuleList, function(item) {
+                    promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                  });
+                });
+
+                var quantity = goodsItem.quantity;
+                if (promotionInfoArray.length > quantity) {
+                  goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+                }
+              }
+            });
           })
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);

@@ -157,22 +157,28 @@ define('sf.b2c.mall.order.iteminfo', [
       var selectAddr = this.options.selectReceiveAddr.getSelectedAddr();
       var itemStr;
       var result = [];
-      var mainItemId = JSON.parse(params.mixproduct)[0].itemId;
-      $.each(JSON.parse(params.mixproduct), function(index, val) {
-        var obj = {
-          "itemId": val.itemId,
-          "num": 1,
-          "mainItemId": mainItemId,
-          "groupKey": 'group:immediately'
-        }
-        result.push(obj);
-      });
       var singleArr = [{
         "itemId": this.itemObj.itemid,
         "num": this.itemObj.amount
       }];
       if (params.mixproduct) {
-        itemStr = JSON.stringify(result);
+        var mainItemId = JSON.parse(params.mixproduct)[0].itemId;
+        $.each(JSON.parse(params.mixproduct), function(index, val) {
+          var obj = {
+            "itemId": val.itemId,
+            "num": 1,
+            "groupKey": 'group:immediately'
+          }
+          result.push(obj);
+        });
+        result.splice(0, 1);
+        var mixObj = {
+          "itemId": mainItemId,
+          "num": 1,
+          "groupKey": 'group:immediately',
+          "saleItems": JSON.stringify(result)
+        };
+        itemStr = JSON.stringify(mixObj);
       } else {
         itemStr = JSON.stringify(singleArr);
       }
@@ -511,18 +517,28 @@ define('sf.b2c.mall.order.iteminfo', [
           };
 
           var goodItems = [];
+          var itemStr;
           var paramsUrl = can.deparam(window.location.search.substr(1));
+          //搭配商品下单传入参数
           if (paramsUrl.mixproduct) {
             var mainItemId = JSON.parse(paramsUrl.mixproduct)[0].itemId;
+            var mainProductPrice = that.itemObj.orderGoodsItemList[0].price;
             _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
               goodItems.push({
                 "itemId": goodItem.itemId,
-                "num": goodItem.quantity,
+                "num": 1,
                 "price": goodItem.price,
-                "mainItemId": mainItemId,
                 "groupKey": "group:immediately"
               });
             });
+            goodItems.splice(0, 1);
+            var mixObj = {
+              "itemId": mainItemId,
+              "num": 1,
+              "price": mainProductPrice,
+              "saleItems": JSON.stringify(goodItems)
+            };
+            itemStr = JSON.stringify(mixObj);
           } else {
             _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
               goodItems.push({
@@ -531,9 +547,10 @@ define('sf.b2c.mall.order.iteminfo', [
                 "price": goodItem.price
               });
             });
+            itemStr = JSON.stringify(goodItems);
           }
 
-          params.items = JSON.stringify(goodItems);
+          params.items = itemStr;
         })
         .fail(function(error) {
           element.removeClass("btn-disable");

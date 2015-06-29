@@ -8,7 +8,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList partGoodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
+                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
                         <th class="th2">商品信息</th>
                         <th class="th3">单价（元）</th>
                         <th class="th4">数量</th>
@@ -18,7 +18,8 @@
                 </thead>
                 <tbody>              
                 {{! scope: "PART" }}
-                {{#each partGoodItemList}}
+                {{#each partScopeGroups}}
+                {{#each goodItemList}}
                 <tr {{data 'goods'}} data-isSelected="{{isSelected}}" class="{{^isTheMainProduct @index}}cart-match{{/isTheMainProduct}} {{^isValid}}cart-disable{{/isValid}}">
                     {{#isTheMainProduct @index}}
                     <td class="td1" colspan="2">
@@ -70,8 +71,11 @@
                         {{/isTheMainProduct}}
                     </td>
                 </tr>
-                {{/each}}              
+                {{/each}}
+                {{/each}}
+
                 {{! scope: "SINGLE" }}
+                {{#each singleScope}}
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
@@ -112,13 +116,14 @@
                         </td>
                     </tr>
                 {{/each}}
+                {{/each}}
                 </tbody>
             </table>
         </div>
 
     	<div class="cart-footer clearfix">
     		<div class="cart-footer-c1 fl">
-    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList partGoodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>
+    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>
     			<a id="deletedSelectGoods" href="">删除选中商品</a>
     			{{#order.invalidItems}}<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>{{/order.invalidItems}}
     		</div>

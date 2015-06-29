@@ -547,7 +547,7 @@ define('sf.b2c.mall.product.detailcontent', [
             that.options.findMixDiscount.hasData = true;
             that.options.findMixDiscount.price = new can.Map({
               mixProductNum: 3,
-              totalMixPrice: 0,
+              totalSellingPrice: 0,
               totalOriginPrice: 0,
               totalSavePrice: 0
             });
@@ -555,13 +555,13 @@ define('sf.b2c.mall.product.detailcontent', [
             if ((typeof data.value == "undefined") || (data.value && data.value.length <= 1)) {
               that.options.findMixDiscount.hasData = false;
             }
-            var totalMixPrice = 0;
+            var totalSellingPrice = 0;
             var totalOriginPrice = 0;
             var mixArr = [];
             var mixArr2 = [];
             _.each(that.options.findMixDiscount.mixDiscount, function(item) {
               item.imageName = item.imageName.split(',')[0] + "@138h_138w_80Q_1x.jpg";
-              totalMixPrice += item.sellingPrice;
+              totalSellingPrice += item.sellingPrice;
               totalOriginPrice += item.originPrice;
               if (item.isMixDiscountMasterItem == true) {
                 mixArr.push(item);
@@ -571,9 +571,9 @@ define('sf.b2c.mall.product.detailcontent', [
             });
             that.options.findMixDiscount.mixDiscount = mixArr.concat(mixArr2);
             that.options.findMixDiscount.price.attr({
-              totalMixPrice: totalMixPrice,
+              totalSellingPrice: totalSellingPrice,
               totalOriginPrice: totalOriginPrice,
-              totalSavePrice: totalOriginPrice - totalMixPrice
+              totalSavePrice: totalOriginPrice - totalSellingPrice
             });
             var mixDiscountHtml = can.view.mustache(that.MixDiscountProductsTemplate());
             $('#recommendbuy').html(mixDiscountHtml(that.options.findMixDiscount, that.helpers));
@@ -599,7 +599,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="match-c2 fl">' +
           '<div class="match-r1">搭配优惠 : 共 {{price.mixProductNum}} 件商品</div>' +
           '<ul>' +
-          '<li><label class="justify">套餐价</label>：<strong class="text-important">￥{{sf.price price.totalMixPrice}}</strong><span class="tag-black">省：￥{{sf.price price.totalSavePrice}}</span></li>' +
+          '<li><label class="justify">套餐价</label>：<strong class="text-important">￥{{sf.price price.totalSellingPrice}}</strong><span class="tag-black">省：￥{{sf.price price.totalSavePrice}}</span></li>' +
           '<li><label class="justify">原 价</label>：<del>￥{{sf.price price.totalOriginPrice}}</del></li>' +
           '</ul>' +
           '<div class="match-r2">' +
@@ -612,24 +612,24 @@ define('sf.b2c.mall.product.detailcontent', [
       },
       //搭配商品单选框是否选中
       '.mixProduct-checked change': function(element, event) {
-        var originPrice = $(element).closest('li').data('mixDiscount').originPrice; //原价
-        var sellingPrice = $(element).closest('li').data('mixDiscount').sellingPrice; //活动价
+        var mixDiscount = $(element).closest('li').data('mixDiscount');
+        var originPrice = mixDiscount.originPrice; //原价
+        var sellingPrice = mixDiscount.sellingPrice; //活动价
         if ($(element).attr('data-isSelected') == '1') {
           $(element).attr('data-isSelected', 0);
           this.options.findMixDiscount.price.attr({
-            totalMixPrice: this.options.findMixDiscount.price.attr('totalMixPrice') - sellingPrice,
-            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - originPrice,
-            totalSavePrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalMixPrice')
+            totalSellingPrice: this.options.findMixDiscount.price.attr('totalSellingPrice') - sellingPrice,
+            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - originPrice
           });
-
         } else {
           $(element).attr('data-isSelected', 1);
           this.options.findMixDiscount.price.attr({
-            totalMixPrice: this.options.findMixDiscount.price.attr('totalMixPrice') + sellingPrice,
-            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') + originPrice,
-            totalSavePrice: this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalMixPrice')
+            totalSellingPrice: this.options.findMixDiscount.price.attr('totalSellingPrice') + sellingPrice,
+            totalOriginPrice: this.options.findMixDiscount.price.attr('totalOriginPrice') + originPrice
           });
         }
+        var totalSavePrice = this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalSellingPrice');
+        this.options.findMixDiscount.price.attr('totalSavePrice', totalSavePrice);
         var len = $('input[data-isSelected="1"]').length;
         this.options.findMixDiscount.price.attr('mixProductNum', len);
       },
