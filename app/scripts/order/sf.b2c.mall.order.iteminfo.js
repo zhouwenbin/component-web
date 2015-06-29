@@ -26,7 +26,8 @@ define('sf.b2c.mall.order.iteminfo', [
       links: SFConfig.setting.link, //? link参数是干什么的
       amount: 0,
       couponPrice: 0,
-      totalPoint:0  //总积分
+      totalPoint:0 , //总积分
+      pointForUsed:0
     }),
 
     helpers: {
@@ -609,7 +610,7 @@ define('sf.b2c.mall.order.iteminfo', [
       //    event && event.preventDefault();
           $("#pointUsed").val("0");
           $("#pointToMoney").text("-￥0.0" );
-
+          this.itemObj.attr('pointForUsed',0);
           var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -this.itemObj.attr('couponPrice')-($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
           this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
           this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('proportion'));
@@ -621,6 +622,7 @@ define('sf.b2c.mall.order.iteminfo', [
           if($("#pointselected").is(":checked")){
               if($("#pointUsed").val() == null || $("#pointUsed").val() == ""){
                   $("#pointToMoney").text("-￥0.0");
+                  this.itemObj.attr('pointForUsed',0);
               }
               else{
                   $("#pointToMoney").text("-￥" + $("#pointUsed").val());
@@ -643,6 +645,7 @@ define('sf.b2c.mall.order.iteminfo', [
         if($("#pointselected").is(":checked")){
               if($("#pointUsed").val() == null || $("#pointUsed").val() == ""){
                   $("#pointToMoney").text("-￥0.0");
+                  this.itemObj.attr('pointForUsed',0);
               }
             else  if(!(/^[1-9]+[0-9]*$/.test($("#pointUsed").val()) ||  $("#pointUsed").val() == 0)){
                         $("#pointToMoney").text("输入的积分格式不正确");
@@ -650,14 +653,17 @@ define('sf.b2c.mall.order.iteminfo', [
              else if($("#pointUsed").val() > parseInt($("#usedPoint").text())){
                   $("#pointUsed").val(parseInt($("#usedPoint").text()));
                   $("#pointToMoney").text("-￥" + parseInt($("#usedPoint").text())/ this.itemObj.attr('proportion'));
+                  this.itemObj.attr('pointForUsed',$("#pointUsed").val()/ this.itemObj.attr('proportion'));
               }
              else{
                  $("#pointToMoney").text("-￥" + $("#pointUsed").val()/ this.itemObj.attr('proportion'));
+                  this.itemObj.attr('pointForUsed',$("#pointUsed").val()/ this.itemObj.attr('proportion'));
              }
          }
           else{
             $("#pointToMoney").text("-￥0.0");
             $("#pointUsed").val(0)
+            this.itemObj.attr('pointForUsed',0);
         }
 
           var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') -this.itemObj.attr('couponPrice')-($("#pointUsed").val()*100/this.itemObj.attr('proportion'));
