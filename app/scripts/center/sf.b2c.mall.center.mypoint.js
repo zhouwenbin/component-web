@@ -128,7 +128,7 @@ define('sf.b2c.mall.center.mypoint', [
           var endDate = new Date(yearV, monV - 3, 1, 0, 0, 0);
           var newDate = new Date(new Date(yearV, monV - 3, 1, 0, 0, 0).getTime() - 100);
           var endDateForT = newDate.getFullYear() + "-" + (newDate.getMonth() + 1) + "-" + newDate.getDate();
-          var startDateForT = "2015-03-01";
+          var startDateForT = null;
           return {
               "startDateFormat":startDateFormat,
               "endDateFormat":endDateFormat,
