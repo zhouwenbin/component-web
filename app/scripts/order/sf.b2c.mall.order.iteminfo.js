@@ -389,7 +389,6 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var span = $("#useCoupon").find('span.icon85'); //优惠券是否选中的标示
       var $li = $('#avaliableCoupons li').find('span.icon85');
-      console.log($li.closest('li'));
       var codes = [];
       if (span.length > 0) {
         codes.push($("#useCoupon").attr('data-code'));
@@ -512,13 +511,28 @@ define('sf.b2c.mall.order.iteminfo', [
           };
 
           var goodItems = [];
-          _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
-            goodItems.push({
-              "itemId": goodItem.itemId,
-              "num": goodItem.quantity,
-              "price": goodItem.price
+          var paramsUrl = can.deparam(window.location.search.substr(1));
+          if (paramsUrl.mixproduct) {
+            var mainItemId = JSON.parse(paramsUrl.mixproduct)[0].itemId;
+            _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
+              goodItems.push({
+                "itemId": goodItem.itemId,
+                "num": goodItem.quantity,
+                "price": goodItem.price,
+                "mainItemId": mainItemId,
+                "groupKey": "group:immediately"
+              });
             });
-          });
+          } else {
+            _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
+              goodItems.push({
+                "itemId": goodItem.itemId,
+                "num": goodItem.quantity,
+                "price": goodItem.price
+              });
+            });
+          }
+
           params.items = JSON.stringify(goodItems);
         })
         .fail(function(error) {
