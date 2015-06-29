@@ -45,3 +45,11 @@
 
 chart.render();
 }
+
+
+
+$(function(){
+  $('.invite-account .text-link').click(function(){
+    $('.invite-account-b').toggleClass('active');
+  })
+})

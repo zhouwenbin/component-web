@@ -222,6 +222,19 @@
 .invite-account .address{
 	margin-bottom: 0;
 }
+.invite-account-b{
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+
+}
+.canvasjs-chart-canvas{
+	width: 100%;
+}
+.invite-account-b.active{
+	opacity: 1;
+	position: static;
+}
 .icon-change{
 	background: url(#{$bg-url}icon-change.png) no-repeat;
 	display: inline-block;
