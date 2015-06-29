@@ -440,14 +440,14 @@ define(
         var itemIds = [];
         _.each($("tr[data-isSelected='1']"), function(item) {
           var good = $(item).closest('tr').data('goods');
-          if (item.groupKey) {
+          if (good.groupKey) {
             var obj = {
-              itemId: item.itemId,
-              mainItemId: item.groupKey
+              itemId: good.itemId,
+              mainItemId: good.groupKey
             }
           } else {
             var obj = {
-              itemId: item.itemId
+              itemId: good.itemId
             }
           }
           itemIds.push(obj);

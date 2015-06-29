@@ -612,8 +612,8 @@ define('sf.b2c.mall.product.detailcontent', [
       },
       //搭配商品单选框是否选中
       '.mixProduct-checked change': function(element, event) {
-        var originPrice = $(element).closest('li').data('mixDiscount').originPrice;//原价
-        var sellingPrice = $(element).closest('li').data('mixDiscount').sellingPrice;//活动价
+        var originPrice = $(element).closest('li').data('mixDiscount').originPrice; //原价
+        var sellingPrice = $(element).closest('li').data('mixDiscount').sellingPrice; //活动价
         if ($(element).attr('data-isSelected') == '1') {
           $(element).attr('data-isSelected', 0);
           this.options.findMixDiscount.price.attr({
@@ -654,8 +654,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var arr = [];
         $.each(checkedItem, function(index, val) {
           arr.push({
-            itemId: $(val).closest('li').data('mixDiscount').itemId,
-            num: 1
+            itemId: $(val).closest('li').data('mixDiscount').itemId
           });
         });
         return arr;
@@ -665,8 +664,7 @@ define('sf.b2c.mall.product.detailcontent', [
         event && event.preventDefault();
         var itemid = $(".sf-b2c-mall-detail-content").eq(0).attr('data-itemid');
         var mainArr = [{
-          itemId: itemid,
-          num: 1
+          itemId: itemid
         }];
         var result = JSON.stringify(mainArr.concat(this.getSelectMixProduct()));
 

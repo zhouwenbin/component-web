@@ -156,36 +156,46 @@ define('sf.b2c.mall.order.iteminfo', [
       var params = can.deparam(window.location.search.substr(1));
       var selectAddr = this.options.selectReceiveAddr.getSelectedAddr();
       var itemStr;
+      var result = [];
+      $.each(JSON.parse(params.mixproduct), function(index, val) {
+        var obj = {
+          "itemId": val.itemId,
+          "num": 1,
+          "mainItemId": val.itemId,
+          "groupKey": 'group:immediately'
+        }
+        result.push(obj);
+      });
       var singleArr = [{
         "itemId": this.itemObj.itemid,
         "num": this.itemObj.amount
       }];
       if (params.mixproduct) {
-        itemStr = params.mixproduct;
+        itemStr = JSON.stringify(result);
       } else {
         itemStr = JSON.stringify(singleArr);
       }
-      
-        var orderRender = new SFOrderRender({
-          address: JSON.stringify({
-            "addrId": selectAddr.addrId,
-            "nationName": selectAddr.nationName,
-            "provinceName": selectAddr.provinceName,
-            "cityName": selectAddr.cityName,
-            "regionName": selectAddr.regionName,
-            "detail": selectAddr.detail,
-            "recName": selectAddr.recName,
-            "mobile": selectAddr.cellphone,
-            "telephone": selectAddr.cellphone,
-            "zipCode": selectAddr.zipCode,
-            "recId": selectAddr.recId,
-            "certType": "ID",
-            "certNo": selectAddr.credtNum2
-          }),
-          items: itemStr,
-          sysType: that.getSysType(that.itemObj.saleid),
-          sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
-        });
+
+      var orderRender = new SFOrderRender({
+        address: JSON.stringify({
+          "addrId": selectAddr.addrId,
+          "nationName": selectAddr.nationName,
+          "provinceName": selectAddr.provinceName,
+          "cityName": selectAddr.cityName,
+          "regionName": selectAddr.regionName,
+          "detail": selectAddr.detail,
+          "recName": selectAddr.recName,
+          "mobile": selectAddr.cellphone,
+          "telephone": selectAddr.cellphone,
+          "zipCode": selectAddr.zipCode,
+          "recId": selectAddr.recId,
+          "certType": "ID",
+          "certNo": selectAddr.credtNum2
+        }),
+        items: itemStr,
+        sysType: that.getSysType(that.itemObj.saleid),
+        sysInfo: that.options.vendorinfo.getVendorInfo(that.itemObj.saleid)
+      });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
           that.processFoundation(orderRenderItem);
