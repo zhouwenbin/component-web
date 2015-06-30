@@ -28,13 +28,16 @@
 	top: 50px;
 	right: -54px;
 }
-.match-c1 li:last-child:before{
+.match-c1 li:last-child:before,
+.match-c1 li.last:before{
 	content: '=';
 }
 .match-c1 h3{
 	font-weight: normal;
 	line-height: 19px;
 	margin: 5px 0;
+	height:38px;
+	overflow: hidden;
 }
 .match-c1 img{
 	border: 1px solid #e5e5e5;
