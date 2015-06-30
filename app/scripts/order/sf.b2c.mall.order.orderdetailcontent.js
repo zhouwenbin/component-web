@@ -95,7 +95,23 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               "SHAREBAG": function() {
                 that.options.isShareBag = true;
                 that.options.shareBag = tmpOrderCouponItem;
-              }
+              },
+               "INTRGAL": function() {
+                    switch (tmpOrderCouponItem.orderAction) {
+                        case "COST":
+                        {
+                            that.options.isCostPoint = true;
+                            that.options.costPoint = tmpOrderCouponItem.price;
+                            break;
+                        }
+                        case "PRESENT":
+                        {
+                            that.options.isPresentPoint = true;
+                            that.options.presentPoint = tmpOrderCouponItem.price;
+                            break;
+                        }
+                    }
+                }
             };
 
             var couponTypeHandle = function(tag) {
