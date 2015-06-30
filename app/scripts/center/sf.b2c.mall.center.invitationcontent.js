@@ -60,7 +60,10 @@ define('sf.b2c.mall.center.invitationcontent', [
 
       supplement: function() {
         this.renderQrcode();
-        this.renderChart();
+
+        if (this.data.infoList && this.data.infoList.length > 0) {
+          this.renderChart();
+        }
       },
 
       renderChart: function() {
@@ -161,7 +164,7 @@ define('sf.b2c.mall.center.invitationcontent', [
 
       },
 
-      "#switchwiew click": function(element, event){
+      "#switchwiew click": function(element, event) {
         $('.invite-account-b').toggleClass('active');
       },
 
