@@ -470,6 +470,18 @@ module.exports = function(grunt) {
             // dest: 'statics.web.<%=config.version%>'
         }]
       },
+      testv2: {
+        options: {
+          archive: '<%=config.statics%>/target/<%=config.statics%>.zip',
+          store: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%=config.dist%>',
+          src: ['templates/**', '*.html', 'json/**', 'header/*.html', 'footer/*.html', '*.ico', 'scripts/**', 'styles/**', 'img/**', 'font/**'],
+          dest: 'ROOT'
+        }]
+      },
       test: {
         options: {
           archive: '<%=config.publish%>/statics.<%=config.target%>.<%=config.timestamp%>.tar'
