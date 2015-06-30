@@ -556,6 +556,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
             if ((typeof data.value == "undefined") || (data.value && data.value.length <= 1)) {
               that.options.findMixDiscount.hasData = false;
+              return false;
             }
             var totalSellingPrice = 0; //套餐价
             var totalOriginPrice = 0; //原价
