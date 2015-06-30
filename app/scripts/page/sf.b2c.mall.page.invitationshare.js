@@ -47,12 +47,16 @@ define(
         });
         new Footer('.sf-b2c-mall-footer');
 
+        var params = can.deparam(window.location.search.substr(1));
+
+        this.data = {};
+        this.data.bagid = params.bagid;
+
         var renderFn = can.mustache(template_center_invitationshare);
         this.options.html = renderFn(this.data, this.helpers);
         this.element.html(this.options.html);
 
         this.supplement();
-
 
         if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
           this.header.showLogin();
