@@ -47,6 +47,7 @@ define('sf.b2c.mall.center.invitationcontent', [
           .done(function(mainInfo, infoList) {
 
             that.data = _.extend(that.data, mainInfo);
+            that.data.infoList = infoList.infos;
             var renderFn = can.mustache(template_center_invitationcontent);
             that.options.html = renderFn(that.data, that.helpers);
             that.element.html(that.options.html);

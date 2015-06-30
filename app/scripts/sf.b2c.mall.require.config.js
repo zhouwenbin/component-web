@@ -252,6 +252,7 @@ requirejs.config({
     //设置密码并登陆
     'sf.b2c.mall.page.setpassword': 'scripts/page/sf.b2c.mall.page.setpassword',
     'sf.b2c.mall.page.invitation': 'scripts/page/sf.b2c.mall.page.invitation',
+    'sf.b2c.mall.page.invitationshare': 'scripts/page/sf.b2c.mall.page.invitationshare',
     'sf.b2c.mall.campaign.common.fill.price': 'scripts/campaign/sf.b2c.mall.campaign.common.fill.price',
     'sf.b2c.mall.campaign.page.common': 'scripts/campaign/sf.b2c.mall.campaign.page.common',
 
@@ -310,6 +311,7 @@ requirejs.config({
     'template_widget_dialog': 'templates/widget/sf.b2c.mall.widget.dialog.mustache',
     'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
     'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache',
+    'template_center_invitationshare': 'templates/center/sf.b2c.mall.center.invitationshare.mustache',
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
