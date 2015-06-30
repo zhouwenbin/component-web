@@ -593,7 +593,9 @@ define('sf.b2c.mall.product.detailcontent', [
             var totalSavePrice = that.options.findMixDiscount.price.attr('totalSavePrice');
             if (totalSavePrice <= 0) {
               that.options.findMixDiscount.price.attr('isShowSavePrice', false);
-            };
+            }else{
+              that.options.findMixDiscount.price.attr('isShowSavePrice', true);
+            }
             var mixDiscountHtml = can.view.mustache(that.MixDiscountProductsTemplate());
             $('#recommendbuy').html(mixDiscountHtml(that.options.findMixDiscount, that.helpers));
 
@@ -651,7 +653,9 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.findMixDiscount.price.attr('totalSavePrice', totalSavePrice);
         if (totalSavePrice <= 0) {
           this.options.findMixDiscount.price.attr('isShowSavePrice', false);
-        };
+        }else{
+          this.options.findMixDiscount.price.attr('isShowSavePrice', true);
+        }
         var len = $('input[data-isSelected="1"]').length + 1;
         this.options.findMixDiscount.price.attr('mixProductNum', len);
       },
