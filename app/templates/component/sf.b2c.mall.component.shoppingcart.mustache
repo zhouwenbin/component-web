@@ -36,7 +36,7 @@
                         <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                     </td>
                     <td class="td2">
-                        <h2><a href="">{{title}}</a></h2>
+                        <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
                         <div class="cart-standard">{{{specs}}}</div>
                     </td>                   
                     {{/isTheMainProduct}}
@@ -60,7 +60,7 @@
                     </td>
                     {{/isTheMainProduct}}
                     {{^isTheMainProduct @index}}
-                    <td class="td4">{{quantity}}</td>
+                    <td class="td4">1件/套x{{quantity}}</td>
                     {{/isTheMainProduct}}
                     <td class="td5">
                         <strong class="text-error">{{sf.price perTotalPrice}}</strong>
