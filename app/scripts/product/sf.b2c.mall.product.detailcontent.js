@@ -650,7 +650,7 @@ define('sf.b2c.mall.product.detailcontent', [
         var totalSavePrice = this.options.findMixDiscount.price.attr('totalOriginPrice') - this.options.findMixDiscount.price.attr('totalSellingPrice');
         this.options.findMixDiscount.price.attr('totalSavePrice', totalSavePrice);
         if (totalSavePrice <= 0) {
-          that.options.findMixDiscount.price.attr('isShowSavePrice', false);
+          this.options.findMixDiscount.price.attr('isShowSavePrice', false);
         };
         var len = $('input[data-isSelected="1"]').length + 1;
         this.options.findMixDiscount.price.attr('mixProductNum', len);
