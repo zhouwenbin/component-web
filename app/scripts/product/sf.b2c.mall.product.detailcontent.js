@@ -116,7 +116,7 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
-        }
+        },
 
         //是否展示搭配折扣（）
         'showMixDiscount': function(activityType, options) {
