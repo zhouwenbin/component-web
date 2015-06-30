@@ -9,10 +9,11 @@ define(
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.business.config',
     'text!template_center_invitationshare',
+    'qrcode',
     'sf.b2c.mall.api.user.getUserInfo'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, SFBusiness, template_center_invitationshare, SFGetUserInfo) {
+  function(can, $, SFFrameworkComm, Header, Footer, SFBusiness, template_center_invitationshare, qrcode, SFGetUserInfo) {
 
     SFFrameworkComm.register(1);
 
@@ -69,7 +70,7 @@ define(
         var getUserInfo = new SFGetUserInfo();
         getUserInfo.sendRequest()
           .done(function(userinfo) {
-            var url = "http://www.sfht.com?_src=" + userinfo.userId;
+            var url = window.location.href + "?_src=" + userinfo.userId;
             var qrParam = {
               width: 125,
               height: 125,
@@ -82,11 +83,15 @@ define(
           .fail()
       },
 
+      '#gotohome click': function() {
+        window.location.href = "http://www.sfht.com";
+      },
+
       "#logintoShare click": function(element, event) {
         event && event.preventDefault();
 
         if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-          this.header.showLogin();
+          this.header.showLogin(window.location.href);
           return false;
         }
 
