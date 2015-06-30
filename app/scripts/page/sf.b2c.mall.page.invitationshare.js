@@ -42,8 +42,7 @@ define(
        */
       render: function() {
         this.header = new Header('.sf-b2c-mall-header', {
-          channel: '首页',
-          isForceLogin: true
+          channel: '首页'
         });
         new Footer('.sf-b2c-mall-footer');
 
@@ -51,11 +50,11 @@ define(
         this.options.html = renderFn(this.data, this.helpers);
         this.element.html(this.options.html);
 
-        // this.supplement();
+        this.supplement();
 
 
         if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-          // this.header.showLogin();
+          this.header.showLogin();
         }
       },
 
