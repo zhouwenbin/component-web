@@ -97,10 +97,15 @@ define('sf.b2c.mall.center.mypoint', [
                       "pageSize":data.pageSize
                   });
                   new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
+                  that.flag = true;
           })
           .fail(function(error) {
             console.error(error);
-          });
+                  that.flag = true;
+          })
+           .always(function() {
+                  that.hasRendered = false;
+            });
       },
 
         //根据毫秒值计算日期
@@ -153,7 +158,12 @@ define('sf.b2c.mall.center.mypoint', [
               "page": routeParams.page,
               "size": 10
           };
-          this.render(params);
+
+          // 加上标示 防止触发三次
+          if (!this.hasRendered) {
+              this.render(params);
+              this.hasRendered = true;
+          }
       },
 
         //改变时间条件
@@ -165,7 +175,6 @@ define('sf.b2c.mall.center.mypoint', [
                  + "&page=" + (typeof routeParams.page == "undefined"? 1 :routeParams.page) + "&timeflag="  +timeV ;
 
       },
-
         //点击不同的li，传入不同的参数
       '.integral-tab-c1 li click': function(element, event) {
         event && event.preventDefault();
