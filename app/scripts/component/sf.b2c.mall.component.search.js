@@ -257,7 +257,7 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("pfs", pfs.split("||"));
       }
 
-      /*
+      
       if (pfs == "YZYW") {
         this.renderData.attr("filterCustom", {
           showStatInfo: true,
@@ -267,7 +267,7 @@ define('sf.b2c.mall.component.search', [
           shopNationName: "名品货源"
         });
       }
-      */
+      
 
       //过滤店铺
       var shopId = params.shopId;
