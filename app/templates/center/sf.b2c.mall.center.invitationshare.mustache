@@ -28,14 +28,18 @@
                   <h4>方式<span class="invite-open-icon1">1</span></h4>
                   <h5>微信扫一扫，朋友圈撒红包</h5>
                   <p>撒完红包找到您觉得靠谱的朋友卖力推荐，成功率更高哦！</p>
-                  <img src="../img/invite-qrcode.png">
+                  {{#isLogin}}
+                  <span id="shareURLQrcode"></span>
+                  {{/isLogin}}
               </li>
               <li class="invite-open-li2">
                   <h4>方式<span class="invite-open-icon2">2</span></h4>
                   <h5>复制您的url，邀请朋友注册下单</h5>
                   <p>您可以通过QQ或其他工具邀请您的朋友加入</p>
-                  <input value="http://www.sfht.com/12345678">
-                  <button class="btn btn-success btn-small">复制</button>
+
+                  {{#isLogin}}
+                  <input value="" id="urlinput">
+                  {{/isLogin}}
               </li>
               <li class="invite-open-li3">
                   <h4>方式<span class="invite-open-icon3">3</span></h4>
@@ -46,7 +50,9 @@
               </li>
           </ul>
       </div>
-      <button class="btn btn-success btn-big">登录开始分享</button>
+      {{^isLogin}}
+      <button class="btn btn-success btn-big" id="logintoShare">登录开始分享</button>
+      {{/isLogin}}
   </div>
 
 </div>
