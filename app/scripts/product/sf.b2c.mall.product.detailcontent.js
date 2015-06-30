@@ -553,10 +553,11 @@ define('sf.b2c.mall.product.detailcontent', [
           .done(function(data) {
             that.options.findMixDiscount = {};
             that.options.findMixDiscount.mixDiscount = data.value;
+            var mixProductLen = that.options.findMixDiscount.mixDiscount.length;
             that.options.findMixDiscount.hasData = true;
             that.options.findMixDiscount.price = new can.Map({
               isShowSavePrice: true,
-              mixProductNum: 4,
+              mixProductNum: mixProductLen,
               totalSellingPrice: 0,
               totalOriginPrice: 0,
               totalSavePrice: 0
@@ -614,7 +615,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</li>' +
           '{{/each}}' +
           '</ul>' +
-          '<div class="match-c2 fl">' +
+          '<div class="match-c2 fr">' +
           '<div class="match-r1">搭配优惠 : 共 {{price.mixProductNum}} 件商品</div>' +
           '<ul>' +
           '<li><label class="justify">套餐价</label>：<strong class="text-important">￥{{sf.price price.totalSellingPrice}}</strong>{{#price.isShowSavePrice}}<span class="tag-black">省：￥{{sf.price price.totalSavePrice}}</span>{{/price.isShowSavePrice}}</li>' +
