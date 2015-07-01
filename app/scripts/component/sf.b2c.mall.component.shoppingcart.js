@@ -285,7 +285,7 @@ define(
 
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
           that.element.html(html);
-          var invalidItems = $('.cart-disable').length;
+          var invalidItems = $('.items-disable').length;
           if (invalidItems) {
             this.options.order.attr('invalidItems', true);
           };
@@ -495,7 +495,7 @@ define(
       '#cleanInvalidItemsInCart click': function(element, event) {
         event && event.preventDefault();
         var itemIds = [];
-        _.each($('.cart-disable'), function(item) {
+        _.each($('.items-disable'), function(item) {
           var good = $(item).closest('tr').data('goods');
           if (good.groupKey) {
             var obj = {
