@@ -179,6 +179,15 @@ define('sf.b2c.mall.component.header', [
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
 
       this.checkTempActionAddCart();
+
+      this.setCookie();
+    },
+
+    setCookie: function() {
+      var params = can.deparam(window.location.search.substr(1));
+      if (params._src && !$.cookie('_src')) {
+        $.cookie('_src', params._src)
+      }
     },
 
     controlCart: function() {
