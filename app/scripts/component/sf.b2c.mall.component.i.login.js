@@ -489,6 +489,7 @@ define(
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
               password: md5(password + SFConfig.setting.md5_key),
+              srcUid: $.cookie('_src'),
               vfCode: vfCode
             });
             that.sendRequest();

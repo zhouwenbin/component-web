@@ -384,7 +384,8 @@ define(
           this.component.mobileRegister.setData({
             mobile: mobile,
             smsCode: code,
-            password: md5(password + SFBizConf.setting.md5_key)
+            password: md5(password + SFBizConf.setting.md5_key),
+            srcUid: $.cookie('_src')
           });
 
           this.component.mobileRegister.sendRequest()
