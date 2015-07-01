@@ -75,9 +75,9 @@
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable"{{/isValid}}>
                         <td class="td1">
-                            <div class="cart-pos">
-                                {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                            <div class="cart-pos">                              
                                 <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
+                                {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
                                 <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                                 {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
                             </div>
