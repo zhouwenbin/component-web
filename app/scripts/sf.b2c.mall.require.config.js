@@ -138,6 +138,7 @@ requirejs.config({
       'sf.b2c.mall.api.integral.getUserIntegralLog':'scripts/api/sf.b2c.mall.api.integral.getUserIntegralLog',
       'sf.b2c.mall.api.integral.getUserTotalIntegral':'scripts/api/sf.b2c.mall.api.integral.getUserTotalIntegral',
 
+      'sf.b2c.mall.api.integral.integralactive':'scripts/api/sf.b2c.mall.page.integralactive',
     'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
     'placeholders': 'bower_components/Placeholders/dist/placeholders',

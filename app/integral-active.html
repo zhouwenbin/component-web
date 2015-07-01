@@ -11,11 +11,21 @@
 <!-- endbuild -->
 </head>
 <body>
+<!--# include file="/header/header.index.html" -->
 <div class="integral-active">
-    <div class="integral-active-r1"><a href="http://www.sfht.com/point-manage.html">查看我的积分</a></div>
+    <div class="integral-active-r1"><a href="">查看我的积分</a></div>
     <div class="integral-active-r2"></div>
     <div class="integral-active-r3"></div>
-    <div class="integral-active-r4"><a href="http://www.sfht.com/point-manage.html">去看看你得积分吧</a></div>
+    <div class="integral-active-r4"><a href="">去看看你得积分吧</a></div>
 </div>
+<!--尾部-->
+<!--# include file="/footer/footer.index.html" -->
+<!--尾部-->
 </body>
+<!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.integralactive.js -->
+<script src="scripts/sf.b2c.mall.require.config.js"></script>
+<script type="text/javascript">
+    require(['sf.b2c.mall.page.integralactive']);
+</script>
+<!-- endbuild -->
 </html>
