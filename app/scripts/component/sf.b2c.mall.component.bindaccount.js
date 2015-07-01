@@ -433,7 +433,7 @@ define(
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
               'accountId': mobile,
-              'srcUid': $.cookie('_src')
+              'srcUid': $.cookie('_src'),
               'passWord': md5(pwd + SFBizConf.setting.md5_key)
             });
 
