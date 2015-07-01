@@ -19,57 +19,53 @@
                 <tbody>              
                 {{! scope: "PART" }}
                 {{#each partScopeGroups}}
-                {{#each goodItemList}}
-                <tr {{data 'goods'}} data-isSelected="{{isSelected}}" class="{{^isTheMainProduct @index}}cart-match{{/isTheMainProduct}} {{^isValid}}cart-disable{{/isValid}}">
-                    {{#isTheMainProduct @index}}
+                {{#each firstGoodItem}}<tr {{data 'goods'}} data-isSelected="{{isSelected}}">{{/each}}
                     <td class="td1" colspan="2">
-                        {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
-                        {{#isValid}}
-                            <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>搭配优惠：{{title}}
-                        {{/isValid}}
-                    </td>                  
-                    {{/isTheMainProduct}}
-
-                    {{^isTheMainProduct @index}}
+                        {{#each firstGoodItem}}<input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>{{/each}} 搭配优惠：{{promotionDesc}}
+                    </td>
+                    <td class="td3">
+                        <strong>{{partScopePrice goodItemList}}</strong>
+                    </td>
+                    {{#each firstGoodItem}}
+                    <td class="td4">                      
+                        <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                        {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                    </td>
+                    {{/each}}
+                    <td class="td5">
+                        <strong class="text-error">{{totalPartScopePrice goodItemList}}</strong>
+                    </td>
+                    <td class="td6">
+                    {{#each firstGoodItem}}
+                        <a data-itemIds="{{itemId}}" class="deleteSingleOrder icon icon72" href="">删除</a>
+                    {{/each}}
+                    </td>
+                </tr>
+                {{#each goodItemList}}
+                <tr {{data 'goods'}} data-isSelected="{{isSelected}}" class="cart-match {{#isTheMainProduct @index}}cart-match1{{/isTheMainProduct}}">
                     <td class="td1">
                         {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
                         <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                     </td>
+
                     <td class="td2">
                         <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
                         <div class="cart-standard">{{{specs}}}</div>
                     </td>                   
-                    {{/isTheMainProduct}}
                        
                     <td class="td3">
                         {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
 
-                            {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
-                            {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
-                            {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
-                            {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
-                    </td>
-                    
-                    {{#isTheMainProduct @index}}
-                    <td class="td4">
-                        {{^isValid}}{{quantity}}{{/isValid}}
-                        {{#isValid}}
-                            <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
-                            {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
-                        {{/isValid}}
-                    </td>
-                    {{/isTheMainProduct}}
-                    {{^isTheMainProduct @index}}
+                        {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
+                        {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
+                        {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
+                        {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
+                    </td>                   
                     <td class="td4">1件/套x{{quantity}}</td>
-                    {{/isTheMainProduct}}
                     <td class="td5">
                         <strong class="text-error">{{sf.price perTotalPrice}}</strong>
                     </td>
-                    <td class="td6">
-                        {{#isTheMainProduct @index}}
-                        <a data-itemIds="{{itemId}}" class="deleteSingleOrder icon icon72" href="">删除</a>
-                        {{/isTheMainProduct}}
-                    </td>
+                    <td class="td6"></td>
                 </tr>
                 {{/each}}
                 {{/each}}
@@ -81,9 +77,7 @@
                         <td class="td1">
                             <div class="cart-pos">
                                 {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
-                                {{#isValid}}
-                                    <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
-                                {{/isValid}}
+                                <input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
                                 <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
                                 {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
                             </div>

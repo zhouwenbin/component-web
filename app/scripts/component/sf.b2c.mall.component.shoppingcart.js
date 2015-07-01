@@ -98,6 +98,26 @@ define(
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+        //搭配商品展示总价
+        'totalPartScopePrice': function(goods, options) {
+          var total = 0;
+          _.each(goods, function(items) {
+            total += items.perTotalPrice;
+          });
+          return total / 100;
+        },
+        //搭配商品总单价
+        'partScopePrice': function(goods, options) {
+          var total = 0;
+          _.each(goods, function(items) {
+            if (items.canUseActivityPrice == 1) {
+              total += items.activityPrice;
+            }else{
+              total += items.price;
+            }
+          });
+          return total / 100;
         }
       },
       /**
@@ -222,19 +242,20 @@ define(
           })
 
           _.each(this.options.partScopeGroups, function(partItem) {
+
             that.options.goodItemList.push(partItem.goodItemList);
             //重组数据，把主商品放在第一位
-            
-            var found = _.find(partItem.goodItemList, function (goodsItem) {
+            partItem.firstGoodItem = [];
+            var found = _.find(partItem.goodItemList, function(goodsItem) {
               return goodsItem.itemId == goodsItem.mainItemId;
             });
             if (found) {
-              partItem.goodItemList = _.reject(partItem.goodItemList, function (goodsItem) {
+              partItem.goodItemList = _.reject(partItem.goodItemList, function(goodsItem) {
                 return goodsItem.itemId == goodsItem.mainItemId;
               });
-              partItem.goodItemList.splice(0,0,found);
+              partItem.goodItemList.splice(0, 0, found);
             }
-            
+            partItem.firstGoodItem.push(partItem.goodItemList[0]);
             _.each(partItem.goodItemList, function(goodsItem) {
               var result = new Array();
               _.each(goodsItem.specs, function(item) {
@@ -504,6 +525,7 @@ define(
         };
         var num = parseInt($(element).siblings('input').val());
         var good = $(element).closest('tr').data('goods');
+
         var itemId = good.itemId;
         var limitQuantity = good.limitQuantity;
         var mainItemId = good.groupKey || '';

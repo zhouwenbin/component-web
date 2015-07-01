@@ -126,6 +126,7 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.inverse(options.contexts || this);
           }
         },
+        //搭配商品主商品不展示单选按钮
         'isShowCheckbox': function(index, options) {
           if (index != 0) {
             return options.fn(options.contexts || this);
@@ -133,6 +134,14 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.inverse(options.contexts || this);
           }
         },
+        'isShowIcon': function(goods, index, options) {
+          var len = goods.length - 1;
+          if (len == index) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        }
       },
 
       /**
@@ -593,7 +602,7 @@ define('sf.b2c.mall.product.detailcontent', [
             var totalSavePrice = that.options.findMixDiscount.price.attr('totalSavePrice');
             if (totalSavePrice <= 0) {
               that.options.findMixDiscount.price.attr('isShowSavePrice', false);
-            }else{
+            } else {
               that.options.findMixDiscount.price.attr('isShowSavePrice', true);
             }
             var mixDiscountHtml = can.view.mustache(that.MixDiscountProductsTemplate());
@@ -614,6 +623,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt=""></a>' +
           '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
           '<p>{{#isShowCheckbox @index}}<input class="mixProduct-checked" data-isSelected="1" type="checkbox" checked>{{/isShowCheckbox}}￥{{sf.price sellingPrice}}</p>' +
+          '{{^isShowIcon mixDiscount @index}}<span class="match-icon">+</span>{{/isShowIcon}}' +
           '</li>' +
           '{{/each}}' +
           '</ul>' +
@@ -627,6 +637,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<button id="mix-products-buy"  class="btn btn-danger btn-small">立即购买</button>' +
           '<button id="mix-products-add" class="btn btn-cart btn-small">加入购物车</button>' +
           '</div>' +
+          '<span class="match-icon">=</span>' +
           '</div>' +
           '</div>' +
           '</div>{{/if}}'
@@ -653,7 +664,7 @@ define('sf.b2c.mall.product.detailcontent', [
         this.options.findMixDiscount.price.attr('totalSavePrice', totalSavePrice);
         if (totalSavePrice <= 0) {
           this.options.findMixDiscount.price.attr('isShowSavePrice', false);
-        }else{
+        } else {
           this.options.findMixDiscount.price.attr('isShowSavePrice', true);
         }
         var len = $('input[data-isSelected="1"]').length + 1;
