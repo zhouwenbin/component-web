@@ -14,10 +14,15 @@
 	left:231px;
 	text-indent: -999em;
 }
+.app-banner a:hover{
+	opacity:0.8;
+}
 .app-banner-ios{
 	top: 260px;
+	background: url(#{$bg-url}app/app-banner-ios.png) no-repeat;
 }
 .app-banner-android{
+	background: url(#{$bg-url}app/app-banner-android.png) no-repeat;
 	top: 327px;
 }
 
