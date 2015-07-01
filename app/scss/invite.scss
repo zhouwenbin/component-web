@@ -33,6 +33,7 @@
 .invite-income{
 	background: #F5F5F5;
 	margin-bottom: 50px;
+	border-radius: 5px;
 }
 .invite-income p{
 	
@@ -54,11 +55,11 @@
 	margin-left: 22px; 
 }
 .invite-income-c1{
-	border-right: 3px solid #fff;
+	border-right: 3px dotted #fff;
 	width: 196px;
 	text-align: center;
 	padding-top: 38px;
-	padding-bottom: 49px;
+	padding-bottom: 39px;
 	margin-right: 48px;
 }
 .invite-income-c1 span{
@@ -98,7 +99,7 @@
 	margin-bottom: 49px;
 	padding-bottom: 15px;
 	text-align: center;
-	
+	border-radius: 5px;
 }
 .invite-rule-bg{
 	background: url(#{$bg-url}invite-rule.png) no-repeat center 55px;
@@ -112,9 +113,20 @@
 	line-height: 38px;
 	border-color:#50E3C2; 
 }
+.invite-rule .btn:hover{
+	background: #1ac199;
+	border-color:#1ac199; 
+
+}
+.invite-rule p{
+	display: inline-block;
+	color: #666;
+	margin-left: 20px;
+}
 .invite-open{
 	border: 1px solid #FF9E36;
 	margin-bottom: 54px;
+	border-radius: 5px;
 }
 .invite-open h3{
 	background: #FF9E36;
