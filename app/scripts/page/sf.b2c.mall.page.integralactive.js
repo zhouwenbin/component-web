@@ -1,7 +1,7 @@
 'use strict';
 
 define(
-	'sf.b2c.mall.page.pointmanage', [
+	'sf.b2c.mall.page.integralactive', [
 		'can',
 		'jquery',
 		'sf.b2c.mall.framework.comm',
