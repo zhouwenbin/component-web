@@ -12,7 +12,9 @@
 	height: 646px;
 	background: url(#{$bg-url}integral-active/integral-active_03.jpg) no-repeat center;
 }
-.integral-active-r4{
+.integral-active-r4 a{
+	display: block;
+	text-indent: -999em;
 	height: 186px;
 	background: url(#{$bg-url}integral-active/integral-active_04.jpg) no-repeat center;
 }
