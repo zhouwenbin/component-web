@@ -1,6 +1,8 @@
 @import 'utils/variables';
 @import 'utils/placeholders';
-.integral-active-r1{
+.integral-active-r1 a{
+	display: block;
+	text-indent: -999em;
 	height: 608px;
 	background: url(#{$bg-url}integral-active/integral-active_01.jpg) no-repeat center;
 }
