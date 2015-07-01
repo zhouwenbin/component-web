@@ -130,6 +130,16 @@ define('sf.b2c.mall.center.invitationcontent', [
           .fail()
       },
 
+      '#viewrule click': function(element, event){
+        event && event.preventDefault();
+        $(".m-dialog").show();
+      },
+
+      '.close click': function(element, event) {
+        event && event.preventDefault();
+        $(".m-dialog").hide();
+      }
+
       '#getmoney click': function(element, event) {
         var that = this;
 
