@@ -16,7 +16,6 @@ define(
 		var integralActive = can.Control.extend({
 
 			init: function() {
-
 				this.render();
 			},
 
@@ -44,6 +43,6 @@ define(
                     can.trigger(window, 'showLogin', [window.location.href]);
                 }
             }
-
 		});
+        new integralActive("body");
 	})
