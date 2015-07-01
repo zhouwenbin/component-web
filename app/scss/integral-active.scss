@@ -1,0 +1,18 @@
+@import 'utils/variables';
+@import 'utils/placeholders';
+.integral-active-r1{
+	height: 608px;
+	background: url(#{$bg-url}integral-active/integral-active_01.jpg) no-repeat center;
+}
+.integral-active-r2{
+	height: 608px;
+	background: url(#{$bg-url}integral-active/integral-active_02.jpg) no-repeat center;
+}
+.integral-active-r3{
+	height: 646px;
+	background: url(#{$bg-url}integral-active/integral-active_03.jpg) no-repeat center;
+}
+.integral-active-r4{
+	height: 186px;
+	background: url(#{$bg-url}integral-active/integral-active_04.jpg) no-repeat center;
+}
