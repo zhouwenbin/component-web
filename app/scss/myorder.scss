@@ -55,8 +55,8 @@
 .integral-tab-c1 li a{
 	display: block;
 	padding: 0 11px;
-	height: 20px;
-	line-height: 20px;
+	height: 15px;
+	line-height: 15px;
 	border-radius: 2px;
 }
 
@@ -71,10 +71,14 @@
 }
 .integral .tooltip{
 	left: -90%;
+	border-radius: 5px;
 }
 .integral .tooltip li{
-	margin-top: 24px;
+	margin-bottom: 24px;
 	padding-left: 20px;
+}
+.integral .tooltip li:last-child{
+	margin-bottom: 0;
 }
 .integral .tooltip li span{
 	font-size: 16px;
