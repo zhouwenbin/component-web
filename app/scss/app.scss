@@ -137,22 +137,22 @@
 .app-logistics-tire2{
 	position: absolute;
 	left: 50%;
-	top: 628px;
-	margin-left: -107px;
+	top: 626px;
+	margin-left: -106px;
 }
 .app-logistics-tire2{
-	margin-left: 94px;
+	margin-left: 95px;
 }
 .app-logistics-car{
 	transform:translate(0,-1px);
-	animation:app-logistics-car 0.8s linear forwards infinite;
+	animation:app-logistics-car 0.5s linear forwards infinite;
 }
 .app-logistics-shadow{
 	position: absolute;
 	top: 673px;
 	left: 50%;
 	margin-left: -130px;
-	animation:app-logistics-shadow 0.8s linear forwards infinite;
+	animation:app-logistics-shadow 0.5s linear forwards infinite;
 }
 
 @keyframes app-logistics-bg{
