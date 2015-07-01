@@ -48,15 +48,18 @@
 }
 .cart-match .td1:before{
 	content: '';
-	display: inline-block;
 	width: 8px;
 	height: 8px;
 	background: #ccc;
 	border-radius: 50%;
-	margin-right: 53px;
+	position: absolute;
+	left: 25px;
+	top: 50%;
+	margin-top: -6px;
 }
 .cart-match .td1{
 	position: relative;
+	padding-left: 83px;
 }
 .cart-match .td1:after{
 	content: '';
@@ -67,7 +70,10 @@
 	background: #ccc;
 	top: -50%;
 }
-.cart-match:nth-child(2) .td1:after{
-	height:85%;
-	top: -38%;
+.cart-match1 .td1:after{
+	height: 75%;
+  	top: -28%;
+}
+.cart-match .label{
+
 }

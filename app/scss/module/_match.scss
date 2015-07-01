@@ -20,18 +20,14 @@
 	margin-right: 80px;
 	position: relative;
 }
-.match-c1 li:before{
-	content: '+';
+.match-icon{
 	font-size: 48px;
 	color: #ccc;
 	position: absolute;
 	top: 50px;
 	right: -54px;
 }
-.match-c1 li:last-child:before,
-.match-c1 li.last:before{
-	content: '=';
-}
+
 .match-c1 h3{
 	font-weight: normal;
 	line-height: 19px;
@@ -50,6 +46,9 @@
 }
 .match-r1{
 	margin-bottom: 30px;
+}
+.match-c2{
+	position: relative;
 }
 .match-c2 label{
 	width: 3em;
@@ -72,4 +71,9 @@
 
 .match-r2 .btn-danger{
 	margin-right: 10px;
+}
+
+.match-c2 .match-icon{
+	right: auto;
+	left: -54px;
 }
