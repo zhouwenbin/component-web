@@ -398,6 +398,7 @@ define(
         this.component.login.sendRequest()
           .done(function(data) {
             if (data.userId) {
+              store.set('userId', data.userId);
               that.data.attr('autologin');
               store.set("alipaylogin", "false");
 

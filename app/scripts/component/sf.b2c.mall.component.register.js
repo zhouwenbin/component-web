@@ -392,6 +392,8 @@ define(
             .done(function(data) {
               if (data.csrfToken) {
 
+                store.set('userId', data.userId);
+
                 // 支付宝第三方登录只能看到支付宝支付方式
                 store.set("alipaylogin", "false");
 

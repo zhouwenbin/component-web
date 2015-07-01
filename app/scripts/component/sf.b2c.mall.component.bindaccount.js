@@ -265,6 +265,8 @@ define(
 
         this.component.partnerBind.sendRequest()
           .done(function(data) {
+
+            store.set('userId', data.userId);
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
 
@@ -366,6 +368,7 @@ define(
       partnerBindByUPswd: function() {
         this.component.partnerBindByUPswd.sendRequest()
           .done(function(data) {
+            store.set('userId', data.userId);
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
 

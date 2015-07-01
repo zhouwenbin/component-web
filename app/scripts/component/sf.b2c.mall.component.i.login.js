@@ -397,6 +397,7 @@ define(
             if (data.userId) {
 
               SFFn.dotCode();
+              store.set('userId', data.userId);
               store.set("alipaylogin", "false");
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()

@@ -390,6 +390,7 @@ define(
             .done(function(data) {
               if (data.csrfToken) {
 
+                store.set('userId', data.userId);
                 store.set("alipaylogin", "false");
                 SFFn.dotCode();
 
