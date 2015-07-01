@@ -2,7 +2,7 @@
 
 {{^hasIncome infoList}}
 <div class="invite-income">
-    <p><span class="invite-income-icon"></span>对不起您暂时还没有收益，赶紧邀请朋友赚取丰厚奖励吧！<button class="btn btn-success btn-small">分享</button></p>
+    <p><span class="invite-income-icon"></span>对不起您暂时还没有收益，赶紧邀请朋友赚取丰厚奖励吧！<a class="btn btn-success btn-small" href="#shareway">分享</a></p>
 </div>
 {{/hasIncome}}
 
@@ -72,7 +72,8 @@
     <div class="invite-rule-bg"></div>
     <button class="btn btn-success btn-radius" id="viewrule">查看规则条款</button>
 </div>
-<div class="invite-open">
+<a name="shareway"></a>
+<div class="invite-open" name="shareway">
     <h3 class="invite-h3">开启您的邀请之旅</h3>
     <ul class="clearfix">
         <li class="invite-open-li1">
