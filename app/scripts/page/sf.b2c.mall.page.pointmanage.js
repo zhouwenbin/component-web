@@ -8,9 +8,10 @@ define(
 		'sf.b2c.mall.framework.comm',
 		'sf.b2c.mall.business.config',
 		'sf.b2c.mall.component.header',
-		'sf.b2c.mall.component.footer'
+		'sf.b2c.mall.component.footer',
+		'sf.b2c.mall.component.centerleftside'
 	],
-	function(can, $, SFMyPoint, SFFrameworkComm,SFBusiness, Header, Footer) {
+	function(can, $, SFMyPoint, SFFrameworkComm,SFBusiness, Header, Footer, Centerleftside) {
 
 		SFFrameworkComm.register(1);
 
@@ -27,6 +28,7 @@ define(
 					isForceLogin: true
 				});
 				new Footer('.sf-b2c-mall-footer');
+				new Centerleftside('.sf-b2c-mall-center-leftside');
 				new SFMyPoint('.sf-b2c-mall-point-manage');
 			}
 
