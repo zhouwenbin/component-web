@@ -7,10 +7,11 @@ define(
     'sf.b2c.mall.center.change.userinfo',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.business.config',
+    'sf.b2c.mall.component.centerleftside',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer'
   ],
-  function(can, $, ChangeUserInfo, SFFrameworkComm,SFBusiness, Header, Footer) {
+  function(can, $, ChangeUserInfo, SFFrameworkComm,SFBusiness, Centerleftside, Header, Footer) {
     SFFrameworkComm.register(1);
 
     var accountmanage = can.Control.extend({
@@ -31,7 +32,7 @@ define(
           isForceLogin: true
         });
         new Footer('.sf-b2c-mall-footer');
-
+        new Centerleftside('.sf-b2c-mall-center-leftside');
         new ChangeUserInfo('.sf-b2c-mall-account-manage');
       }
 

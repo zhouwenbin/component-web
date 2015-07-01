@@ -8,10 +8,11 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.order.orderlistcontent',
+    'sf.b2c.mall.component.centerleftside',
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent, SFBusiness) {
+  function(can, $, SFFrameworkComm, Header, Footer, SFOrderListContent, Centerleftside, SFBusiness) {
 
     SFFrameworkComm.register(1);
 
@@ -35,6 +36,7 @@ define(
           isForceLogin: true
         });
         new Footer('.sf-b2c-mall-footer');
+        new Centerleftside('.sf-b2c-mall-center-leftside');
         // 列表区域
         this.orderListComponent = new SFOrderListContent('.sf-b2c-mall-order-orderlist', {
           "searchValue": null

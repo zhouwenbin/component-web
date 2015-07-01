@@ -8,9 +8,10 @@ define(
 		'sf.b2c.mall.framework.comm',
 		'sf.b2c.mall.business.config',
 		'sf.b2c.mall.component.header',
+		'sf.b2c.mall.component.centerleftside',
 		'sf.b2c.mall.component.footer'
 	],
-	function(can, $, SFReceiveaddr, SFFrameworkComm,SFBusiness, Header, Footer) {
+	function(can, $, SFReceiveaddr, SFFrameworkComm,SFBusiness, Header, Centerleftside, Footer) {
 
 		SFFrameworkComm.register(1);
 
@@ -27,6 +28,7 @@ define(
 					isForceLogin: true
 				});
 				new Footer('.sf-b2c-mall-footer');
+				new Centerleftside('.sf-b2c-mall-center-leftside');
 				new SFReceiveaddr('.sf-b2c-mall-address-manage');
 			}
 
