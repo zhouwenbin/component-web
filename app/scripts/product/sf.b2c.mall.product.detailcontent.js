@@ -22,8 +22,8 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.shopcart.addItemsToCart'
   ],
   function(can, zoom, store, cookie, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload,
-           SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart,
-           SFFindRecommendProducts, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
+    SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFIsShowCart,
+    SFFindRecommendProducts, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart) {
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
     // var FILTER_ARRAY = ['1962','1961','1954','1955','1956','1957','1958','1946','1947','1948','1949','1950','1951','1903','1904','1905','1906','1907','1908','96','97','98','99','100','1952','1953','1635','1636','1637','1638','1639','1626','1627','1628','1629','1630',,'936','937','938','939','940','1789','1790','1791','1792','1793','1795','1794','1820','1821','1822','1823','1824','1825','1826','1827','101','102','103','104','105','106','107','108','1445','1448','1446','1447','1781','1782','1783','1784','1785','1786','1787','1788','1772','907','1780','1779','1773','1774','1775','1776','1777','1778','1168','1169','1170','1171','1172','1173'];
@@ -303,8 +303,30 @@ define('sf.b2c.mall.product.detailcontent', [
         this.renderRecommendProducts();
 
         //加上百度分享
-
+        this.renderBaiduShare();
         // window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+      },
+
+      renderBaiduShare: function() {
+        $(".goods-share").innerHTML = '登录分享好友赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +
+          '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
+          '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
+          '</div>' +
+          '<script type="text/javascript">' +
+
+          'window._bd_share_config = {' +
+          '"common": {' +
+          '"bdSnsKey": {},' +
+          '"bdText": "",' +
+          '"bdMini": "2",' +
+          '"bdMiniList": false,' +
+          '"bdPic": "",' +
+          '"bdStyle": "0",' +
+          '"bdSize": "24"' +
+          '}, "share": {}' +
+          '};' +
+          'with (document)0[(getElementsByTagName("head")[0] || body).appendChild(createElement("script")).src = "http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=" + ~(-new Date() / 36e5)];' +
+          '< /script>'
       },
 
       /**
@@ -863,17 +885,17 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
           '<div class="goods-price-r1">' +
-            '价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
-            '{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}' +
+          '价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
+          '{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}' +
           '</div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-not-showOriginPrice}}' +
 
           '{{#sf-is-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
           '<div class="goods-price-r1">' +
-            '促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
-            '{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}' +
-            '{{^priceInfo.isPromotion}}{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}{{/priceInfo.isPromotion}}' +
+          '促销价：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
+          '{{#priceInfo.isPromotion}}<a href="{{priceInfo.pcActivityLink}}">{{priceInfo.activityTitle}}</a>{{/priceInfo.isPromotion}}' +
+          '{{^priceInfo.isPromotion}}{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}{{/priceInfo.isPromotion}}' +
           '</div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '{{/sf-is-showOriginPrice}}' +
@@ -1412,17 +1434,17 @@ define('sf.b2c.mall.product.detailcontent', [
       picInfoTemplate: function() {
         return '<div class="goods-c3 fl" id="itemImages">' +
           '<ul class="clearfix">' +
-            '{{#each itemInfo.basicInfo.images}}' +
-            '<li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>' +
-            '{{/each}}' +
+          '{{#each itemInfo.basicInfo.images}}' +
+          '<li class="thumb-item" data-big-pic="{{bigImgUrl}}"><a href=""><img src="{{thumbImgUrl}}" alt="" /></a><span></span></li>' +
+          '{{/each}}' +
           '</ul>' +
           '</div>' +
           '<div class="goods-c1 fl">' +
           '<div class="goods-c1r1" id="bigPicArea">' +
           '<ul>' +
-            '<li class="active">' +
-              '<img src="{{itemInfo.currentImage}}" alt=""><span></span>' +
-            '</li>' +
+          '<li class="active">' +
+          '<img src="{{itemInfo.currentImage}}" alt=""><span></span>' +
+          '</li>' +
           '</ul>' +
           '</div>' +
           '</div>' +
