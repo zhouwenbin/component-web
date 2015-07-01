@@ -32,6 +32,9 @@ define(
           "url": "/address-manage.html",
           "name": "收货地址"
         }, {
+          "url": "/point-manage.html",
+          "name": "积分管理"
+        }, {
           "url": "/invitation.html",
           "name": "我的邀请"
         });

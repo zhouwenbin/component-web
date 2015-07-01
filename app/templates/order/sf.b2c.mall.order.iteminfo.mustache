@@ -97,6 +97,18 @@
         <a id="useCouponCodeBtn" class="btn btn-normal" href="#">确定</a>
       </div>
     </div>
+
+      <!-- start 增加积分-->
+      <div class="cart-integral">
+          <div class="cart-coupon-r1"><a href="javascript:" id="point-use">-</a>使用海淘积分</div>
+          <div class="cart-integral-r1">
+              <label><input type="checkbox" id="pointselected" checked>使用</label>
+              <input type="text" class="input" id="pointUsed" value="0"/>点
+              <span class="text-important" id="pointToMoney">-￥0.0</span>
+          </div>
+          <div class="cart-integral-r2">您有积分：{{totalPoint}}点，本次订单可用：<span class="text-important" id="usedPoint">0</span><span class="text-important" >点</span></div>
+      </div>
+      <!--   end 积分模块 -->
   </div>
   {{! end cart-coupon }}
   <div class="cart-footer clearfix">
@@ -105,11 +117,13 @@
             <li class="li1">商品总计:<span class="s1">¥{{sf.price orderFeeItem.goodsTotalFee}}</span></li>
             <li class="li1">活动优惠:<span class="s1">- ¥{{sf.price orderFeeItem.discount}}</span></li>
             <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price couponPrice}}</span>    </li>
+            <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{pointForUsed}}</span>    </li>
             <li class="li1">
                 <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
                 运费:<span class="s1">免运费</span>
             </li>
             <li class="li1">总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price orderFeeItem.shouldPay}}</strong></span></li>
+            <li class="li1">可获得海淘积分 :<span class="s1">{{sf.price getpoint}}</span></li>
             <li>
               {{#sf-needshowcart}}
               <a class="text-link" id="backtocartedit" style="margin-right:5px;" href="http://www.sfht.com/shoppingcart.html">返回购物车修改</a>
