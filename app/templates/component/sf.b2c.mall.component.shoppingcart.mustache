@@ -61,7 +61,10 @@
                         {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
                         {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
                     </td>                   
-                    <td class="td4">1件/套x{{quantity}}{{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}</td>
+                    <td class="td4">
+                        <div style="padding-right:30px;">1件/套x{{quantity}}</div>
+                        {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                    </td>
                     <td class="td5">
                         <strong class="text-error">{{sf.price perTotalPrice}}</strong>
                     </td>
