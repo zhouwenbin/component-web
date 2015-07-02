@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.bindAliAct
+  * @class sf.b2c.mall.api.payment.queryPtnAuthLink
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.bindAliAct',
+'sf.b2c.mall.api.payment.queryPtnAuthLink',
 [
   'jquery',
   'can',
@@ -22,17 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.bindAliAct',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'payment.queryPtnAuthLink',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'serviceType': 'string',
+        'redirectUrl': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000440': '已绑定支付宝账户'
       }
     }
   });

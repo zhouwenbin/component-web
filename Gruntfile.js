@@ -470,6 +470,18 @@ module.exports = function(grunt) {
             // dest: 'statics.web.<%=config.version%>'
         }]
       },
+      testv2: {
+        options: {
+          archive: '<%=config.statics%>/target/<%=config.statics%>.zip',
+          store: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%=config.dist%>',
+          src: ['templates/**', '*.html', 'json/**', 'header/*.html', 'footer/*.html', '*.ico', 'scripts/**', 'styles/**', 'img/**', 'font/**'],
+          dest: 'ROOT'
+        }]
+      },
       test: {
         options: {
           archive: '<%=config.publish%>/statics.<%=config.target%>.<%=config.timestamp%>.tar'
@@ -956,6 +968,44 @@ module.exports = function(grunt) {
           insertRequire: ['sf.b2c.mall.page.addressmanage']
         }
       },
+
+      pointmanage: {
+        options: {
+          preserveLicenseComments: false,
+          baseUrl: './app/',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.pointmanage.js',
+          mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+          paths: {
+            'placeholders': '../bower_components/Placeholders/dist/placeholders',
+            'moment': '../bower_components/momentjs/min/moment.min',
+            'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+            'text': '../bower_components/text/text',
+            'JSON': '../bower_components/JSON-js/json2',
+            'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+          },
+          include: ["JSON", "sf.b2c.mall.page.pointmanage"],
+          insertRequire: ['sf.b2c.mall.page.pointmanage']
+        }
+      },
+
+        integralactive: {
+            options: {
+                preserveLicenseComments: false,
+                baseUrl: './app/',
+                out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.integralactive.js',
+                mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
+                paths: {
+                    'placeholders': '../bower_components/Placeholders/dist/placeholders',
+                    'moment': '../bower_components/momentjs/min/moment.min',
+                    'moment-zh-cn': '../bower_components/momentjs/locale/zh-cn',
+                    'text': '../bower_components/text/text',
+                    'JSON': '../bower_components/JSON-js/json2',
+                    'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
+                },
+                include: ["JSON", "sf.b2c.mall.page.integralactive"],
+                insertRequire: ['sf.b2c.mall.page.integralactive']
+            }
+        },
 
       accountmanage: {
         options: {
@@ -1484,6 +1534,37 @@ module.exports = function(grunt) {
       grunt.fail.fatal('缺少环境参数!');
     }
   });
+
+  grunt.registerTask('test', function() {
+
+      config.target = 'prd';
+
+      grunt.task.run([
+        'clean:dist',
+        'wiredep',
+        'useminPrepare',
+        'concurrent:dist',
+        'autoprefixer',
+        'concat',
+        'requirejs',
+        'cssmin',
+        'uglify',
+        'copy:dist',
+        'copy:html',
+        'copy:image',
+        'copy:templates',
+        'usemin',
+        //'htmlmin',
+        'clean:extra',
+        'clean:publish',
+        'clean:oss',
+        'clean:statics',
+        'compress:testv2'
+        // 'compress:oss',
+        // 'compress:statics'
+      ]);
+  })
+
 
   grunt.registerTask('release', function(version) {
     config.version = version;

@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.bindAliAct
+  * @class sf.b2c.mall.api.integral.checkIn
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.bindAliAct',
+'sf.b2c.mall.api.integral.checkIn',
 [
   'jquery',
   'can',
@@ -22,17 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.bindAliAct',
+      METHOD_NAME: 'integral.checkIn',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'channel': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000440': '已绑定支付宝账户'
       }
     }
   });

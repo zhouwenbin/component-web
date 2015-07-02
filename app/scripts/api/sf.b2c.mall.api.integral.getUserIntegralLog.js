@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.bindAliAct
+  * @class sf.b2c.mall.api.integral.getUserIntegralLog
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.bindAliAct',
+'sf.b2c.mall.api.integral.getUserIntegralLog',
 [
   'jquery',
   'can',
@@ -22,17 +22,22 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.bindAliAct',
+      METHOD_NAME: 'integral.getUserIntegralLog',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'page': 'int',
+        'size': 'int',
       },
       OPTIONAL: {
+        'operateType': 'string',
+        'startDate': 'string',
+        'endDate': 'string',
+        'appId': 'string',
+        'channel': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000440': '已绑定支付宝账户'
       }
     }
   });

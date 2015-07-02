@@ -32,6 +32,7 @@ define([], function () {
     'order': 'http://'+main+'/order.html',
     'orderdetail': 'http://'+main+'/orderdetail.html',
     'orderlist': 'http://'+main+'/orderlist.html',
+     'pointlist': 'http://'+main+'/point-manage.html',
     'passwordchange': 'http://'+main+'/accountmanage.html',
     'preheat': 'http://'+main+'/preheat.html',
     'process': 'http://'+main+'/process.html',

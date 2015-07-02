@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.bindAliAct
+  * @class sf.b2c.mall.api.payment.appRequestPay
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.bindAliAct',
+'sf.b2c.mall.api.payment.appRequestPay',
 [
   'jquery',
   'can',
@@ -22,17 +22,21 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.bindAliAct',
+      METHOD_NAME: 'payment.appRequestPay',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'serviceType': 'string',
+        'orderId': 'string',
+        'amount': 'int',
+        'orderName': 'string',
       },
       OPTIONAL: {
+        'reserved': 'string',
+        'ext_params': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000440': '已绑定支付宝账户'
       }
     }
   });

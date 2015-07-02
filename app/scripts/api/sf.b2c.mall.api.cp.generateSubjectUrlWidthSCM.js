@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.bindAliAct
+  * @class sf.b2c.mall.api.cp.generateSubjectUrlWidthSCM
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.bindAliAct',
+'sf.b2c.mall.api.cp.generateSubjectUrlWidthSCM',
 [
   'jquery',
   'can',
@@ -22,17 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.bindAliAct',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'cp.generateSubjectUrlWidthSCM',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'parentSCM': 'string',
+        'phone': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000440': '已绑定支付宝账户'
+        '13000001': '参数错误',
+        '13000002': '上级scm不合法',
+        '13000003': '二级scm点的父级为空'
       }
     }
   });
