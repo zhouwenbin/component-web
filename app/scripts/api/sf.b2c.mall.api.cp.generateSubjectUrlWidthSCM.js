@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.coupon.receiveExCode
+  * @class sf.b2c.mall.api.cp.generateSubjectUrlWidthSCM
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.coupon.receiveExCode',
+'sf.b2c.mall.api.cp.generateSubjectUrlWidthSCM',
 [
   'jquery',
   'can',
@@ -22,22 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'coupon.receiveExCode',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'cp.generateSubjectUrlWidthSCM',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'exCode': 'string'
+        'parentSCM': 'string',
+        'phone': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '11000100': '用户已领过该券',
-        '11000160': '优惠码不存在',
-        '11000170': '优惠码已使用',
-        '11000200': '优惠码已过期',
-        '11000209': '共用card不存在',
-        '11000220': '本账户兑换次数超出限制'
+        '13000001': '参数错误',
+        '13000002': '上级scm不合法',
+        '13000003': '二级scm点的父级为空'
       }
     }
   });
