@@ -433,7 +433,9 @@ define(
                 })
                 .always(function() {
                   document.domain = "sfht.com";
-                  window.parent.userLoginSccuessCallback();
+                  if (window.parent.userLoginSccuessCallback) {
+                     window.parent.userLoginSccuessCallback();
+                  }
                 })
 
               SFFn.dotCode();
