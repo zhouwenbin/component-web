@@ -54,20 +54,20 @@ define('sf.b2c.mall.center.invitationcontent', [
         can.when(getCashActInfo.sendRequest(), getCashActTransList.sendRequest())
           .done(function(mainInfo, infoList) {
 
-            var infoList = {
-              "infos": [{
-                "income": 100,
-                "reason": "abc",
-                "gmtOrder": "2015-05-15 14:43:42",
-                "gmtCreate": "2015-05-15 14:43:42"
-              },
-              {
-                "income": -20,
-                "reason": "abc",
-                "gmtOrder": "2015-05-16 14:43:42",
-                "gmtCreate": "2015-05-16 14:43:42"
-              }]
-            }
+            // var infoList = {
+            //   "infos": [{
+            //     "income": 100,
+            //     "reason": "abc",
+            //     "gmtOrder": "2015-05-15 14:43:42",
+            //     "gmtCreate": "2015-05-15 14:43:42"
+            //   },
+            //   {
+            //     "income": -20,
+            //     "reason": "abc",
+            //     "gmtOrder": "2015-05-16 14:43:42",
+            //     "gmtCreate": "2015-05-16 14:43:42"
+            //   }]
+            // }
 
             that.data = _.extend(that.data, mainInfo);
             that.data.infoList = infoList.infos;
