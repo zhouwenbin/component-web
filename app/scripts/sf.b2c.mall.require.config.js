@@ -251,6 +251,9 @@ requirejs.config({
     //店铺页面
     'sf.b2c.mall.page.shop': 'scripts/page/sf.b2c.mall.page.shop',
 
+    //app下载页
+    'sf.b2c.mall.page.app': 'scripts/page/sf.b2c.mall.page.app',
+
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
     'sf.b2c.mall.component.shoppingcart': 'scripts/component/sf.b2c.mall.component.shoppingcart',
