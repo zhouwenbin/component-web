@@ -26,6 +26,14 @@ define('sf.b2c.mall.center.invitationcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+
+        isNegative: function(income, options) {
+          if (parseInt(income, 10) < 0) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
       },
 
@@ -58,6 +66,12 @@ define('sf.b2c.mall.center.invitationcontent', [
                 "reason": "abc",
                 "gmtOrder": "2015-05-15 14:43:42",
                 "gmtCreate": "2015-05-15 14:43:42"
+              },
+              {
+                "income": -20,
+                "reason": "abc",
+                "gmtOrder": "2015-05-16 14:43:42",
+                "gmtCreate": "2015-05-16 14:43:42"
               }]
             }
 

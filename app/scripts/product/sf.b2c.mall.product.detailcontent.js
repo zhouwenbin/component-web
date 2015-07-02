@@ -311,10 +311,30 @@ define('sf.b2c.mall.product.detailcontent', [
         var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
 
         var url = "http://www.sfht.com/detail/" + itemid + ".html";
-        if (store.get("userId")){
-          url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + $.cookie('userId');
-        }
 
+        var that = this;
+
+        // 如果用户登录 会记录cookie,对于老用户如果已经登录的 则要重新读取userid
+        if (SFComm.prototype.checkUserLogin.call(this)) {
+          if (!$.fn.cookie('userId')) {
+            var getUserInfo = new SFGetUserInfo();
+            getUserInfo
+              .sendRequest()
+              .done(function(data) {
+                url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + data.userId;
+                that.appendRenderBaiduShareHTML(url);
+              })
+              .fail()
+          } else {
+            url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + $.cookie('userId');
+            that.appendRenderBaiduShareHTML(url);
+          }
+        } else {
+          that.appendRenderBaiduShareHTML(url);
+        }
+      },
+
+      appendRenderBaiduShareHTML: function(url){
         $(".goods-share").html('登录分享赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +
           '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
           '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +

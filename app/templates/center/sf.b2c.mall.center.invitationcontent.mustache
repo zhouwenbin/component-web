@@ -48,7 +48,12 @@
                         {{#each infoList}}
                         <tr>
                             <td class="col1">{{gmtCreate}}</td>
-                            <td class="col2"><strong class="text-success">{{income}}</strong></td>
+                            {{#isNegative income}}
+                            <td class="col2"><strong class="text-success">+{{income}}</strong></td>
+                            {{/isNegative}}
+                            {{^isNegative income}}
+                            <td class="col2"><strong class="text-disable">{{income}}</strong></td>
+                            {{/isNegative}}
                             <td class="col3">{{reason}}</td>
 
                         </tr>
