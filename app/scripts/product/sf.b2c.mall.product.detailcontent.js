@@ -315,7 +315,7 @@ define('sf.b2c.mall.product.detailcontent', [
           url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + store.get("userId");
         }
 
-        $(".goods-share").html('登录分享好友赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +
+        $(".goods-share").html('登录分享赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +
           '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
           '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
           '</div>' +
