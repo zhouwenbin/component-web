@@ -316,7 +316,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         // 如果用户登录 会记录cookie,对于老用户如果已经登录的 则要重新读取userid
         if (SFComm.prototype.checkUserLogin.call(this)) {
-          if (!$.fn.cookie('userId')) {
+          if (!$.cookie('userId')) {
             var getUserInfo = new SFGetUserInfo();
             getUserInfo
               .sendRequest()
