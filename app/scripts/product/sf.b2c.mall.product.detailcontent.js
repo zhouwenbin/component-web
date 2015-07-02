@@ -312,7 +312,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var url = "http://www.sfht.com/detail/" + itemid + ".html";
         if (store.get("userId")){
-          url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + store.get("userId");
+          url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + $.cookie('userId');
         }
 
         $(".goods-share").html('登录分享赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +

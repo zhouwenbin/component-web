@@ -6,6 +6,7 @@ define(
 
   [
     'jquery',
+    'jquery.cookie',
     'can',
     'md5',
     'store',
@@ -19,7 +20,7 @@ define(
     'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
+  function($, cookie, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -397,7 +398,7 @@ define(
             if (data.userId) {
 
               SFFn.dotCode();
-              store.set('userId', data.userId);
+              $.cookie('userId', data.userId);
               store.set("alipaylogin", "false");
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
