@@ -21,7 +21,7 @@
                 {{#each partScopeGroups}}
                 {{#each firstGoodItem}}<tr {{data 'goods'}} data-isSelected="{{isSelected}}">{{/each}}
                     <td class="td1" colspan="2">
-                        {{#each firstGoodItem}}<input data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>{{/each}} 搭配优惠：{{promotionDesc}}
+                        {{#each firstGoodItem}}<input {{^isValid}}disabled="disabled"{{/isValid}} data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>{{/each}} 搭配优惠：{{promotionDesc}}
                     </td>
                     <td class="td3">
                         <strong>{{partScopePrice goodItemList}}</strong>
