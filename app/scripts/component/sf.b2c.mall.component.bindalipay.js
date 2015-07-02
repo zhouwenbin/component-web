@@ -40,7 +40,9 @@ define(
           "alipayaccount": "",
           "alipayaccounterror": "",
           "realipayaccount": "",
-          "realipayaccounterror": ""
+          "realipayaccounterror": "",
+          "alipayname": "",
+          "alipaynameerror": ""
         });
         return this.data;
       },
@@ -66,15 +68,22 @@ define(
           return false;
         }
 
+        if (!data.alipayname) {
+          $("#alipaynameerror")[0].style.display = "";
+          this.data.attr("alipaynameerror", "不能为空");
+          return false;
+        }
+
         var bindAliAct = new SFBindAliAct({
-          "aliAct": data.alipayaccount
+          "aliAct": data.alipayaccount,
+          "aliActName": data.alipayname
         });
 
         var that = this;
 
         bindAliAct.sendRequest()
           .done(function(data) {
-            if (dta.value) {
+            if (data.value) {debugger;
               that.close();
               new SFMessage(null, {
                 'tip': '支付宝账号绑定成功！',
@@ -86,8 +95,8 @@ define(
             }
           })
           .fail(function(error) {
-            $("#realipayaccounterror")[0].style.display = "";
-            that.data.attr("realipayaccounterror", "支付宝账号绑定失败！");
+            $("#alipaynameerror")[0].style.display = "";
+            that.data.attr("alipaynameerror", "支付宝账号绑定失败！");
           })
 
       },
@@ -100,10 +109,8 @@ define(
         $("#realipayaccounterror")[0].style.display = "none";
       },
 
-
-      /** 提现接口 */
-      getMoney: function() {
-
+      "#alipayname blur": function() {
+        $("#alipaynameerror")[0].style.display = "none";
       }
     });
   })

@@ -46,6 +46,21 @@ define('sf.b2c.mall.center.invitationcontent', [
         can.when(getCashActInfo.sendRequest(), getCashActTransList.sendRequest())
           .done(function(mainInfo, infoList) {
 
+            var mainInfo = {
+              "bindAliAct": null,
+              "lastestIncome": "200",
+              "totalIncome": 400,
+              "actBalance": "10000"
+            }
+            var infoList = {
+              "infos": [{
+                "income": 100,
+                "reason": "abc",
+                "gmtOrder": "2015-05-15 14:43:42",
+                "gmtCreate": "2015-05-15 14:43:42"
+              }]
+            }
+
             that.data = _.extend(that.data, mainInfo);
             that.data.infoList = infoList.infos;
             var renderFn = can.mustache(template_center_invitationcontent);
