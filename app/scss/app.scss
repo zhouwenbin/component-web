@@ -227,7 +227,7 @@
 	font-size: 13px;
 	line-height: 20px;
 }
-.app-download img{
+.app-qrcode{
 	margin-bottom: 23px;
 	padding: 7px;
 	background: #fff;
@@ -243,4 +243,44 @@
 	color: #ec6b5f;
 	background: #fff;
 	border-radius: 50%;
+}
+.app-download p{
+	margin-bottom: 23px;
+}
+.app-download-r1{
+	color: #8a8a8a;
+	margin-bottom: 10px;
+}
+.app-download-r2 a{
+	width: 31px;
+	height: 31px;
+	text-indent: -999em;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 6px;
+	background-color: #8a8a8a;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+.app-download-qrcode{
+	position: absolute;
+	left: 40px;
+	top: -40px;
+	display: none;
+}
+.app-download-weibo{
+	background-image:  url(#{$bg-url}app/app-download-weibo.png);
+}
+.app-download-weibo:hover{
+	background-image:  url(#{$bg-url}app/app-download-weibo-hover.png);
+}
+.app-download-weixin{
+	background-image:url(#{$bg-url}app/app-download-weixin.png) ;
+}
+.app-download-weixin:hover{
+	background-image:url(#{$bg-url}app/app-download-weixin-hover.png) ;
+}
+.app-download-weixin:hover .app-download-qrcode{
+	display: block;
 }
