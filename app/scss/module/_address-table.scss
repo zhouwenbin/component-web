@@ -66,6 +66,9 @@
 	background: #e5e5e5;
 	color: #999;
 }
+.integral-table td{
+	padding: 20px 0;
+}
 .integral-table .col1{
 	width: 270px;
 	text-align: center;
@@ -77,6 +80,12 @@
 .integral-table .col3{
 	width: 236px;
 	text-align: center;
+}
+.integral-table .text-disabled{
+	color: #999;
+}
+.integral-table{
+	margin-bottom: 20px;
 }
 .integral-table strong{
 	font-weight: bold;
