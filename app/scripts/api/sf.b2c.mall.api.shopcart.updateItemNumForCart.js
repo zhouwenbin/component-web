@@ -29,7 +29,7 @@ function($, can, _, Comm, SecurityType) {
         'num': 'int',
       },
       OPTIONAL: {
-        'mainItemId': 'int'
+        'mainItemId': 'string'
       },
       VERIFY:{
       },

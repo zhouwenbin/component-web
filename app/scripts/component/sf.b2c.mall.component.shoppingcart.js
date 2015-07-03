@@ -11,8 +11,8 @@ define(
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.api.shopcart.getCart',
     'sf.b2c.mall.api.shopcart.refreshCart',
-    'sf.b2c.mall.api.shopcart.removeItemsInCart',
-    'sf.b2c.mall.api.shopcart.updateItemNumInCart',
+    'sf.b2c.mall.api.shopcart.removeItemsForCart',
+    'sf.b2c.mall.api.shopcart.updateItemNumForCart',
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.shopcart.addItemsToCart',
@@ -75,11 +75,14 @@ define(
             return reduceInfos.length;
           };
         },
-
+        //是否为全选
         'sf-is-select-all': function(goods, options) {
           var isSelectedAll = true;
           _.each(goods, function(value, key, list) {
-            isSelectedAll = isSelectedAll && value.isSelected
+            _.each(value, function(item) {
+              isSelectedAll = isSelectedAll && item.isSelected
+            })
+
           });
 
           if (isSelectedAll) {
@@ -87,6 +90,34 @@ define(
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+        //是否为搭配商品中的主商品
+        'isTheMainProduct': function(index, options) {
+          if (index == 0) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        //搭配商品展示总价
+        'totalPartScopePrice': function(goods, options) {
+          var total = 0;
+          _.each(goods, function(items) {
+            total += items.perTotalPrice;
+          });
+          return total / 100;
+        },
+        //搭配商品总单价
+        'partScopePrice': function(goods, options) {
+          var total = 0;
+          _.each(goods, function(items) {
+            if (items.canUseActivityPrice == 1) {
+              total += items.activityPrice;
+            }else{
+              total += items.price;
+            }
+          });
+          return total / 100;
         }
       },
       /**
@@ -151,10 +182,12 @@ define(
       render: function(data) {
         var that = this;
         this.options.canOrder = this.btnStateMap[data.canOrder];
-        this.options.scopeGroups = data.scopeGroups;
-        if (data.scopeGroups.length > 0) {
+        this.options.partScopeGroups = [];
+        this.options.singleScope = [];
+        that.options.goodItemList = [];
+        //this.options.scopeGroups = data.scopeGroups;
+        if (typeof data.scopeGroups != 'undefined' && data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
-          this.options.goodItemList = [];
           this.options.order = new can.Map({});
           this.options.order.attr({
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
@@ -170,40 +203,89 @@ define(
           };
 
           //获取商品数据
-          _.each(this.options.scopeGroups, function(cartItem) {
-            //是否显示满件
-            that.options.goodItemList.push(cartItem.goodItemList[0]);
-          });
-
-          _.each(that.options.goodItemList, function(goodsItem) {
-            var result = new Array();
-            _.each(goodsItem.specs, function(item) {
-              result.push(item.specName + ":" + item.value);
-            });
-            goodsItem.specs = result.join('&nbsp;/&nbsp;');
-            if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
-              goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
-              goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
-              goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
-
-              var promotionInfoArray = new Array();
-              //便利满件折促销信息
-              _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
-                _.each(promotionItem.promotionRuleList, function(item) {
-                  promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
-                });
-              });
-
-              var quantity = goodsItem.quantity;
-              if (promotionInfoArray.length > quantity) {
-                goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
-              }
+          _.each(data.scopeGroups, function(cartItem) {
+            if (cartItem.scope == 'SINGLE') {
+              that.options.singleScope.push(cartItem);
+            } else {
+              that.options.partScopeGroups.push(cartItem);
             }
           });
 
+          //遍历scope: "single"的商品数据
+          _.each(this.options.singleScope, function(singleScope) {
+            that.options.goodItemList.push(singleScope.goodItemList);
+            _.each(singleScope.goodItemList, function(goodsItem) {
+              var result = new Array();
+              _.each(goodsItem.specs, function(item) {
+                result.push(item.specName + ":" + item.value);
+              });
+              goodsItem.specs = result.join('&nbsp;/&nbsp;');
+              if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
+                goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
+                goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+                goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
+
+                var promotionInfoArray = new Array();
+                //便利满件折促销信息
+                _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                  _.each(promotionItem.promotionRuleList, function(item) {
+                    promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                  });
+                });
+
+                var quantity = goodsItem.quantity;
+                if (promotionInfoArray.length > quantity) {
+                  goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+                }
+              }
+            });
+          })
+
+          _.each(this.options.partScopeGroups, function(partItem) {
+
+            that.options.goodItemList.push(partItem.goodItemList);
+            //重组数据，把主商品放在第一位
+            partItem.firstGoodItem = [];
+            var found = _.find(partItem.goodItemList, function(goodsItem) {
+              return goodsItem.itemId == goodsItem.mainItemId;
+            });
+            if (found) {
+              partItem.goodItemList = _.reject(partItem.goodItemList, function(goodsItem) {
+                return goodsItem.itemId == goodsItem.mainItemId;
+              });
+              partItem.goodItemList.splice(0, 0, found);
+            }
+            partItem.firstGoodItem.push(partItem.goodItemList[0]);
+            _.each(partItem.goodItemList, function(goodsItem) {
+              var result = new Array();
+              _.each(goodsItem.specs, function(item) {
+                result.push(item.specName + ":" + item.value);
+              });
+              goodsItem.specs = result.join('&nbsp;/&nbsp;');
+              if (typeof goodsItem.promotionInfo !== 'undefined' && goodsItem.promotionInfo.promotionList.length > 0) {
+                goodsItem.isDiscount = (goodsItem.promotionInfo.promotionList[0].type === 'DISCOUNT');
+                goodsItem.isFlash = (goodsItem.promotionInfo.promotionList[0].type === 'FLASH');
+                goodsItem.discountInfo = goodsItem.promotionInfo.promotionList[0].useRuleDesc;
+
+                var promotionInfoArray = new Array();
+                //便利满件折促销信息
+                _.each(goodsItem.promotionInfo.promotionList, function(promotionItem) {
+                  _.each(promotionItem.promotionRuleList, function(item) {
+                    promotionInfoArray.push('再买1件,打' + item.preferential / 10 + '折');
+                  });
+                });
+
+                var quantity = goodsItem.quantity;
+                if (promotionInfoArray.length > quantity) {
+                  goodsItem.otherDiscountInfo = promotionInfoArray[quantity];
+                }
+              }
+            });
+          })
+
           var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
           that.element.html(html);
-          var invalidItems = $('.cart-disable').length;
+          var invalidItems = $('.items-disable').length;
           if (invalidItems) {
             this.options.order.attr('invalidItems', true);
           };
@@ -254,11 +336,12 @@ define(
 
       },
       // 更新购物车商品数量
-      updateItemNumInCart: function(itemId, num) {
+      updateItemNumInCart: function(itemId, num, mainItemId) {
         var that = this;
         var updateItemNumInCart = new SFUpdateItemNumInCart({
           itemId: itemId,
-          num: num
+          num: num,
+          mainItemId: mainItemId
         });
         updateItemNumInCart.sendRequest()
           .done(function(data) {
@@ -270,8 +353,9 @@ define(
        */
       deleteCartOrder: function(itemIds) {
         var that = this;
+        var itemStr = JSON.stringify(itemIds);
         var deleteorder = new SFRemoveItemsInCart({
-          itemIds: JSON.stringify(itemIds)
+          items: itemStr
         });
         deleteorder.sendRequest()
           .done(function(data) {
@@ -304,10 +388,19 @@ define(
         }
         var result = [];
         _.each(array, function(value, i) {
-          var obj = {
-            itemId: value.itemId,
-            isSelected: value.isSelected
-          };
+          if (value.groupKey) {
+            var obj = {
+              itemId: value.itemId,
+              isSelected: value.isSelected,
+              mainItemId: value.groupKey
+            };
+          } else {
+            var obj = {
+              itemId: value.itemId,
+              isSelected: value.isSelected
+            };
+          }
+
           result.push(obj);
 
         });
@@ -324,10 +417,20 @@ define(
         } else {
           $(element).attr('data-isSelected', 1);
         }
-        var obj = {
-          itemId: $(element).closest('tr').data('goods').itemId,
-          isSelected: $(element).attr('data-isSelected')
-        };
+        var good = $(element).closest('tr').data('goods');
+        if (good.groupKey) {
+          var obj = {
+            itemId: good.itemId,
+            isSelected: $(element).attr('data-isSelected'),
+            mainItemId: good.groupKey
+          }
+        } else {
+          var obj = {
+            itemId: good.itemId,
+            isSelected: $(element).attr('data-isSelected')
+          }
+        }
+
         var result = [];
         result.push(obj);
         this.refreshCartList(result);
@@ -337,14 +440,27 @@ define(
         event && event.preventDefault();
         var that = this;
         var itemIds = [];
-        itemIds.push($(element).closest('tr').data('goods').itemId);
+        var good = $(element).closest('tr').data('goods');
+        if (good.groupKey) {
+          var obj = {
+            itemId: good.itemId,
+            mainItemId: good.groupKey
+          };
+          itemIds.push(obj);
+        } else {
+          var obj = {
+            itemId: good.itemId
+          };
+          itemIds.push(obj);
+        }
+
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
             'tip': '确认要删除该商品？',
             'type': 'confirm',
             'okFunction': _.bind(that.deleteCartOrder, that, itemIds)
           });
-        };
+        }
 
       },
       //删除选中商品
@@ -353,7 +469,18 @@ define(
         var that = this;
         var itemIds = [];
         _.each($("tr[data-isSelected='1']"), function(item) {
-          itemIds.push($(item).data('goods').itemId);
+          var good = $(item).closest('tr').data('goods');
+          if (good.groupKey) {
+            var obj = {
+              itemId: good.itemId,
+              mainItemId: good.groupKey
+            }
+          } else {
+            var obj = {
+              itemId: good.itemId
+            }
+          }
+          itemIds.push(obj);
         });
         if (itemIds.length > 0) {
           var message = new SFMessage(null, {
@@ -368,8 +495,19 @@ define(
       '#cleanInvalidItemsInCart click': function(element, event) {
         event && event.preventDefault();
         var itemIds = [];
-        _.each($('.cart-disable'), function(item) {
-          itemIds.push($(item).data('goods').itemId);
+        _.each($('.items-disable'), function(item) {
+          var good = $(item).closest('tr').data('goods');
+          if (good.groupKey) {
+            var obj = {
+              itemId: good.itemId,
+              mainItemId: good.groupKey
+            }
+          } else {
+            var obj = {
+              itemId: good.itemId
+            }
+          }
+          itemIds.push(obj);
         });
         if (itemIds.length > 0) {
           this.deleteCartOrder(itemIds);
@@ -386,8 +524,11 @@ define(
           return false;
         };
         var num = parseInt($(element).siblings('input').val());
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         //var stock =
         if (num >= limitQuantity) {
           $(element).siblings('input').val(limitQuantity);
@@ -396,8 +537,9 @@ define(
           clearTimeout(handler);
           handler = null;
           $(element).siblings('input').val(num + 1);
+
           handler = setTimeout(function() {
-            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()), mainItemId);
           }, 300);
 
         }
@@ -413,8 +555,10 @@ define(
           return false;
         };
         var num = parseInt($(element).siblings('input').val());
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         if (num <= 1) {
           $(element).siblings('input').val(1);
           $(element).addClass('disable');
@@ -425,7 +569,7 @@ define(
           handler = null;
           $(element).siblings('input').val(num - 1);
           handler = setTimeout(function() {
-            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()));
+            that.updateItemNumInCart(itemId, parseInt($(element).siblings('input').val()), mainItemId);
           }, 300);
         }
 
@@ -443,16 +587,18 @@ define(
       //手工输入商品数量
       inputBuyNum: function(element, options) {
         var amount = $(element).val();
-        var itemId = $(element).closest('tr').data('goods').itemId;
-        var limitQuantity = $(element).closest('tr').data('goods').limitQuantity;
+        var good = $(element).closest('tr').data('goods');
+        var itemId = good.itemId;
+        var limitQuantity = good.limitQuantity;
+        var mainItemId = good.groupKey || '';
         if (amount < 0 || isNaN(amount) || amount == '') {
           $(element).val(1);
           return false;
         } else if (amount >= limitQuantity) {
           $(element).val(limitQuantity);
-          this.updateItemNumInCart(itemId, parseInt($(element).val()));
+          this.updateItemNumInCart(itemId, parseInt($(element).val()), mainItemId);
         } else {
-          this.updateItemNumInCart(itemId, parseInt($(element).val()));
+          this.updateItemNumInCart(itemId, parseInt($(element).val()), mainItemId);
         }
 
       },
