@@ -6,6 +6,7 @@ define('sf.b2c.mall.center.invitationcontent', [
     'qrcode',
     'sf.helpers',
     'canvasjs',
+    'moment',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.bindalipay',
@@ -15,7 +16,7 @@ define('sf.b2c.mall.center.invitationcontent', [
     'sf.b2c.mall.api.user.rqCash',
     'text!template_center_invitationcontent'
   ],
-  function(can, $, qrcode, helpers, canvasjs, SFMessage, SFConfig, SFBindalipay, SFGetUserInfo, SFGetCashActInfo, SFGetCashActTransList, SFRqCash, template_center_invitationcontent) {
+  function(can, $, qrcode, helpers, canvasjs, moment, SFMessage, SFConfig, SFBindalipay, SFGetUserInfo, SFGetCashActInfo, SFGetCashActTransList, SFRqCash, template_center_invitationcontent) {
 
     return can.Control.extend({
 
@@ -92,6 +93,7 @@ define('sf.b2c.mall.center.invitationcontent', [
       renderChart: function() {
         var dataPoints = [];
         _.each(this.data.infoList, function(item) {
+          item.gmtCreate = moment(item.gmtCreate).format('YYYY-MM-DD HH:mm:ss');
           dataPoints.push({
             x: new Date(item.gmtCreate.substring(0, 4), parseInt(item.gmtCreate.substring(5, 7), 10) - 1, item.gmtCreate.substring(8, 10)),
             y: item.income,

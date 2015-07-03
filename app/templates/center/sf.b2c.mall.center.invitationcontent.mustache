@@ -47,7 +47,7 @@
                     <tbody>
                         {{#each infoList}}
                         <tr>
-                            <td class="col1">{{gmtCreate}}</td>
+                            <td class="col1">{{sf.time gmtCreate}}</td>
                             {{^isNegative income}}
                             <td class="col2"><strong class="text-important">+{{income}}</strong></td>
                             {{/isNegative}}
