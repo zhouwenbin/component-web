@@ -25,13 +25,15 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'user.bindAliAct',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'aliAct': 'string'
+        'aliAct': 'string',
+        'aliActName': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
+        '1000440': '已绑定支付宝账户'
       }
     }
   });

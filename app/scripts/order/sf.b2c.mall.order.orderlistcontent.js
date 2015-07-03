@@ -317,15 +317,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
         var routeParams = can.route.attr();
-
         var qparams = can.deparam(window.location.search.substr(1));
 
         var params = {
           "query": JSON.stringify({
             "status": routeParams.status,
             "searchValue": qparams.q || this.options.searchValue,
-            // "receiverName": this.options.searchValue,
-            // "orderId": this.options.searchValue,
             "pageNum": routeParams.page,
             "pageSize": 10
           })
@@ -368,10 +365,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
           status: this.statusMap[tag],
           page: 1
         });
-        // can.route.attr({
-        //   status: this.statusMap[tag],
-        //   page: 1
-        // });
       },
 
       statusMap: {
@@ -392,7 +385,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       noResultShowPageTemplate: function() {
         return '<div class="myorder-none">' +
           '<span class="icon icon89"></span>' +
-          '<p>亲，您当前还没有任何订单。<br /><a href="http://www.sfht.com" class="text-link">去逛逛</a></p>' +
+          '<p>没有符合条件的宝贝，请尝试其他搜索条件。<br /><a href="http://www.sfht.com" class="text-link">去逛逛</a></p>' +
           '</div>' +
 
           '<ul>' +
@@ -624,6 +617,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       ".viewOrder click": function(element, event) {
+        event && event.preventDefault();
         var orderid = element.parent('td').attr('data-orderid');
         var suborderid = element.parent('td').attr('data-suborderid');
         var recid = element.parent('td').attr('data-recid');
@@ -658,12 +652,25 @@ define('sf.b2c.mall.order.orderlistcontent', [
       ".cancelOrder click": function(element, event) {
         var that = this;
         var orderid = $(element).parent('td').attr('data-orderid');
+
+        var routeParams = can.route.attr();
+        var qparams = can.deparam(window.location.search.substr(1));
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "searchValue": qparams.q || this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        }
+
         var message = new SFMessage(null, {
           'tip': '确认要取消该订单？',
           'type': 'confirm',
           'okFunction': function() {
             var success = function() {
-              window.location.reload();
+              //window.location.reload();
+              that.render(params);
             };
 
             var error = function() {
@@ -678,12 +685,24 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '.deleteOrders click': function(element, event) {
         var that = this;
         var orderid = $(element).parents('th').attr('data-orderid');
+
+        var routeParams = can.route.attr();
+        var qparams = can.deparam(window.location.search.substr(1));
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "searchValue": qparams.q || this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        }
+
         var message = new SFMessage(null, {
           'tip': '确认要删除该订单？',
           'type': 'confirm',
           'okFunction': function() {
             var success = function() {
-              window.location.reload();
+              that.render(params);
             };
 
             var error = function() {
@@ -696,12 +715,25 @@ define('sf.b2c.mall.order.orderlistcontent', [
       //签收订单
       '.received click': function(element, event) {
         var subOrderId = element.parent('td').attr('data-orderid');
+
+        var routeParams = can.route.attr();
+        var qparams = can.deparam(window.location.search.substr(1));
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "searchValue": qparams.q || this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        }
+
         var message = new SFMessage(null, {
           'tip': '确认要签收该订单？',
           'type': 'confirm',
           'okFunction': function() {
             var success = function() {
-              window.location.reload();
+              //window.location.reload();
+              that.render(params);
             };
 
             var error = function() {
