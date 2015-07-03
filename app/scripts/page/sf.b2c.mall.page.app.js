@@ -5,9 +5,10 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.util',
+    'sf.b2c.mall.component.header',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, SFFrameworkComm, SFFn, SFBusiness) {
+  function(can, $, SFFrameworkComm, SFFn, Header, SFBusiness) {
     SFFrameworkComm.register(1);
     SFFn.monitor();
 
@@ -17,6 +18,11 @@ define(
        * [init 初始化]
        */
       init: function() {
+        var header = new Header('.sf-b2c-mall-header', {
+          channel: '首页',
+          isForceLogin: true
+        });
+        
         this.render();
       },
 
