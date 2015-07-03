@@ -186,7 +186,10 @@ define('sf.b2c.mall.center.invitationcontent', [
                 if (data.value) {
                   var message = new SFMessage(null, {
                     'tip': '提现成功！',
-                    'type': 'success'
+                    'type': 'success',
+                    'okFunction': _.bind(function() {
+                      window.location.reload();
+                    })
                   });
                 }
               })
