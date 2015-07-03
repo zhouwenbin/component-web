@@ -96,8 +96,8 @@ define('sf.b2c.mall.center.invitationcontent', [
           item.gmtCreate = moment(item.gmtCreate).format('YYYY-MM-DD HH:mm:ss');
           dataPoints.push({
             x: new Date(item.gmtCreate.substring(0, 4), parseInt(item.gmtCreate.substring(5, 7), 10) - 1, item.gmtCreate.substring(8, 10)),
-            y: item.income,
-            indexLabel: item.income + "",
+            y: item.income / 100,
+            indexLabel: item.income / 100 + "",
             indexLabelFontColor: "#FF9E36",
             markerColor: "#FF9E36"
           });
