@@ -10,8 +10,13 @@
     </li>
 
     <li style="margin:10px 0">
-      <input id="realipayaccount" type="text" class="input" placeholder="姓名" can-value="alipayname"  style="width:100%;box-sizing: border-box; height: 40px;"/>
+      <input id="alipayname" type="text" class="input" placeholder="姓名" can-value="alipayname"  style="width:100%;box-sizing: border-box; height: 40px;"/>
       <span class="label label-error" id="alipaynameerror" style="margin-top: 5px; display:none">{{alipaynameerror}}</span>
+    </li>
+
+    <li style="margin:10px 0">
+      <input id="rule" type="checkbox" can-value="rule" style="margin-right: 5px;">我同意规则条款
+      <span class="label label-error" id="ruleerror" style="display:none">{{ruleerror}}</span>
     </li>
 
   </ol>

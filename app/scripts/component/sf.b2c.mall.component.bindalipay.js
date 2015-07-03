@@ -42,7 +42,9 @@ define(
           "realipayaccount": "",
           "realipayaccounterror": "",
           "alipayname": "",
-          "alipaynameerror": ""
+          "alipaynameerror": "",
+          "rule": false,
+          "ruleerror": ""
         });
         return this.data;
       },
@@ -50,6 +52,13 @@ define(
       ".btn-send click": function(element, event) {
         // 调用绑定接口  绑定成功后调用体现接口
         var data = this.data.attr();
+
+        if (!data.rule) {
+          $("#ruleerror")[0].style.display = "";
+          this.data.attr("ruleerror", "需同意规则条款");
+          return false;
+        }
+
         if (!data.alipayaccount) {
           $("#alipayaccounterror")[0].style.display = "";
           this.data.attr("alipayaccounterror", "不能为空");
