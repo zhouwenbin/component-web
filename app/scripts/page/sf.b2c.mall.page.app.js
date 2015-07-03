@@ -20,7 +20,7 @@ define(
       init: function() {
         var header = new Header('.sf-b2c-mall-header', {
           channel: '首页',
-          isForceLogin: true
+          isForceLogin: false
         });
         
         this.render();
