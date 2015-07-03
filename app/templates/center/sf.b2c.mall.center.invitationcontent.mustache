@@ -49,10 +49,10 @@
                         <tr>
                             <td class="col1">{{sf.time gmtCreate}}</td>
                             {{^isNegative income}}
-                            <td class="col2"><strong class="text-important">+{{income}}</strong></td>
+                            <td class="col2"><strong class="text-important">+{{sf.price income}}</strong></td>
                             {{/isNegative}}
                             {{#isNegative income}}
-                            <td class="col2"><strong class="text-disabled">{{income}}</strong></td>
+                            <td class="col2"><strong class="text-disabled">{{sf.price income}}</strong></td>
                             {{/isNegative}}
                             <td class="col3">{{reason}}</td>
 
