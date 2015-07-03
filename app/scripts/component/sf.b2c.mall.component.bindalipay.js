@@ -110,6 +110,10 @@ define(
 
       },
 
+      "#rule click": function(element, event) {
+        $("#ruleerror")[0].style.display = "none";
+      },
+
       "#alipayaccount blur": function() {
         $("#alipayaccounterror")[0].style.display = "none";
       },

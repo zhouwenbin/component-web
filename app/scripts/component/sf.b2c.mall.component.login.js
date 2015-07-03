@@ -497,7 +497,7 @@ define(
               accountId: $.trim(username),
               type: this.checkTypeOfAccount(username),
               password: md5(password + SFConfig.setting.md5_key),
-              srcUid: $.cookie('_src'),
+              srcUid: $.cookie('_ruser'),
               vfCode: vfCode
             });
             that.sendRequest();

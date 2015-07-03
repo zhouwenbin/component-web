@@ -30,7 +30,7 @@ function($, can, _, Comm, SecurityType) {
       },
       OPTIONAL: {
         'rembFlag': 'int',
-        'srcUid': 'long'
+        'srcUid': 'string'
       },
       VERIFY:{
       },

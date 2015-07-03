@@ -31,7 +31,7 @@ function($, can, _, Comm, SecurityType) {
         'passWord': 'string',
       },
       OPTIONAL: {
-        'srcUid': 'long'
+        'srcUid': 'string'
       },
       VERIFY:{
       },

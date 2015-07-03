@@ -29,7 +29,7 @@ define(
 
         var partnerLogin = new SFPartnerLogin({
           "partnerId": "wechat_open",
-          'srcUid': $.cookie('_src'),
+          'srcUid': $.cookie('_ruser'),
           "authResp": "code=" + code
         });
 

@@ -415,7 +415,7 @@ define(
               'type': 'MOBILE',
               'accountId': mobile,
               'smsCode': code,
-              'srcUid': $.cookie('_src')
+              'srcUid': $.cookie('_ruser')
             });
             this.partnerBind();
           }
@@ -436,7 +436,7 @@ define(
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
               'accountId': mobile,
-              'srcUid': $.cookie('_src'),
+              'srcUid': $.cookie('_ruser'),
               'passWord': md5(pwd + SFBizConf.setting.md5_key)
             });
 
@@ -448,7 +448,7 @@ define(
             this.component.partnerBind.setData({
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
-              'srcUid': $.cookie('_src'),
+              'srcUid': $.cookie('_ruser'),
               'accountId': mobile
             });
             this.partnerBind(true);

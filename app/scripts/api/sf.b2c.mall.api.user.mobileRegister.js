@@ -31,7 +31,7 @@ function($, can, _, Comm, SecurityType) {
       },
       OPTIONAL: {
         'nick': 'string',
-        'srcUid': 'long'
+        'srcUid': 'string'
       },
       VERIFY:{
       },
