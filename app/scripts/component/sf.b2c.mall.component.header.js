@@ -446,6 +446,7 @@ define('sf.b2c.mall.component.header', [
         delete authResp.partnerId;
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
+          'srcUid': $.cookie('_src'),
           'authResp': decodeURIComponent($.param(authResp))
         });
         partnerLogin.sendRequest()

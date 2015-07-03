@@ -448,6 +448,7 @@ define(
             this.component.partnerBind.setData({
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
+              'srcUid': $.cookie('_src'),
               'accountId': mobile
             });
             this.partnerBind(true);
