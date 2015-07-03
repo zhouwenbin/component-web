@@ -185,8 +185,8 @@ define('sf.b2c.mall.component.header', [
 
     setCookie: function() {
       var params = can.deparam(window.location.search.substr(1));
-      if (params._src && !$.cookie('_src')) {
-        $.cookie('_src', params._src, {expires: 15})
+      if (params._src && !$.cookie('_ruser')) {
+        $.cookie('_ruser', params._src, {expires: 15})
       }
     },
 
