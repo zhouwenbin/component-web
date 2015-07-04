@@ -614,7 +614,7 @@ define('sf.b2c.mall.component.search', [
      * @param data url参数
      */
     gotoNewPage: function(data) {
-      window.location.href = window.location.pathname + "?" + this.getSearchParamStr(data);
+      window.location.href = window.location.pathname + "?" + this.getSearchParamStr(data) + "#nav";
     },
 
     /**
