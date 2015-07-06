@@ -2,27 +2,27 @@
   <ol>
     <li>
       <input id="alipayaccount" type="text" class="input" placeholder="支付宝账号" can-value="alipayaccount" style="width:100%;box-sizing: border-box; height: 40px;"/>
-      <span class="label label-error" id="alipayaccounterror" style="margin-top: 5px;display:none">{{alipayaccounterror}}</span>
+      <span class="label label-error" id="alipayaccounterror" style="margin-top: 5px;display:none;padding:0 5px;">{{alipayaccounterror}}</span>
     </li>
     <li style="margin:10px 0">
       <input id="realipayaccount" type="text" class="input" placeholder="确认支付宝账号" can-value="realipayaccount"  style="width:100%;box-sizing: border-box; height: 40px;"/>
-      <span class="label label-error" id="realipayaccounterror" style="margin-top: 5px; display:none">{{realipayaccounterror}}</span>
+      <span class="label label-error" id="realipayaccounterror" style="margin-top: 5px; display:none;padding:0 5px;">{{realipayaccounterror}}</span>
     </li>
 
     <li style="margin:10px 0">
-      <input id="alipayname" type="text" class="input" placeholder="姓名" can-value="alipayname"  style="width:100%;box-sizing: border-box; height: 40px;"/>
-      <span class="label label-error" id="alipaynameerror" style="margin-top: 5px; display:none">{{alipaynameerror}}</span>
+      <input id="alipayname" type="text" class="input" placeholder="支付宝账号关联姓名" can-value="alipayname"  style="width:100%;box-sizing: border-box; height: 40px;"/>
+      <span class="label label-error" id="alipaynameerror" style="margin-top: 5px; display:none;padding:0 5px;">{{alipaynameerror}}</span>
     </li>
 
     <li style="margin:10px 0">
       <input id="rule" type="checkbox" can-value="rule" style="margin-right: 5px;">我同意规则条款
-      <span class="label label-error" id="ruleerror" style="display:none">{{ruleerror}}</span>
+      <span class="label label-error" id="ruleerror" style="display:none;padding:0 5px;">{{ruleerror}}</span>
     </li>
 
   </ol>
   <div class="register-br1">
    <button type="submit" class="btn btn-register btn-send"  style="width:220px;">绑定</button>
-   <div style="margin-top:20px;">注：支付宝账户绑定后无法解绑。<br>为了确认您能够成功付款请确认输入无误</div>
+   <div style="margin-top:20px;color:red">注：为了确认您能够成功付款请确认输入无误</div>
   </div>
 </div>
 

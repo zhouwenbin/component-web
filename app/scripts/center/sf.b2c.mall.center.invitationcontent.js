@@ -29,6 +29,14 @@ define('sf.b2c.mall.center.invitationcontent', [
           }
         },
 
+        hasBindAccount: function(bindAliAct, options) {
+          if (bindAliAct != "" && bindAliAct != null) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
         isNegative: function(income, options) {
           if (parseInt(income, 10) < 0) {
             return options.fn(options.contexts || this);
@@ -57,13 +65,12 @@ define('sf.b2c.mall.center.invitationcontent', [
 
             // var infoList = {
             //   "infos": [{
-            //     "income": 100,
+            //     "income": 10000,
             //     "reason": "abc",
             //     "gmtOrder": "2015-05-15 14:43:42",
             //     "gmtCreate": "2015-05-15 14:43:42"
-            //   },
-            //   {
-            //     "income": -20,
+            //   }, {
+            //     "income": -2000,
             //     "reason": "abc",
             //     "gmtOrder": "2015-05-16 14:43:42",
             //     "gmtCreate": "2015-05-16 14:43:42"
@@ -93,14 +100,16 @@ define('sf.b2c.mall.center.invitationcontent', [
       renderChart: function() {
         var dataPoints = [];
         _.each(this.data.infoList, function(item) {
-          item.gmtCreate = moment(item.gmtCreate).format('YYYY-MM-DD HH:mm:ss');
-          dataPoints.push({
-            x: new Date(item.gmtCreate.substring(0, 4), parseInt(item.gmtCreate.substring(5, 7), 10) - 1, item.gmtCreate.substring(8, 10)),
-            y: item.income / 100,
-            indexLabel: item.income / 100 + "",
-            indexLabelFontColor: "#FF9E36",
-            markerColor: "#FF9E36"
-          });
+          if (item.income > 0) {
+            item.gmtCreate = moment(item.gmtCreate).format('YYYY-MM-DD HH:mm:ss');
+            dataPoints.push({
+              x: new Date(item.gmtCreate.substring(0, 4), parseInt(item.gmtCreate.substring(5, 7), 10) - 1, item.gmtCreate.substring(8, 10)),
+              y: item.income / 100,
+              indexLabel: item.income / 100 + "",
+              indexLabelFontColor: "#FF9E36",
+              markerColor: "#FF9E36"
+            });
+          }
         })
 
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -155,7 +164,7 @@ define('sf.b2c.mall.center.invitationcontent', [
           .fail()
       },
 
-      '#viewrule click': function(element, event){
+      '#viewrule click': function(element, event) {
         event && event.preventDefault();
         $(".m-dialog").show();
       },
