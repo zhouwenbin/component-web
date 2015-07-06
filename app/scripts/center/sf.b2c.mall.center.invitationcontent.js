@@ -151,15 +151,14 @@ define('sf.b2c.mall.center.invitationcontent', [
         var getUserInfo = new SFGetUserInfo();
         getUserInfo.sendRequest()
           .done(function(userinfo) {
-            var url = "http://www.sfht.com?_src=" + userinfo.userId;
             var qrParam = {
               width: 125,
               height: 125,
-              text: url
+              text: "http://m.sfht.com?_src=" + userinfo.userId
             };
 
             $('#shareURLQrcode').html("").qrcode(qrParam);
-            $('#urlinput').val(url);
+            $('#urlinput').val("http://www.sfht.com?_src=" + userinfo.userId);
           })
           .fail()
       },
