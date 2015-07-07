@@ -77,7 +77,7 @@ define(
             var qrParam = {
               width: 125,
               height: 125,
-              text: "http://m.sfht.com" + "?_src=" + userinfo.userId;
+              text: "http://m.sfht.com?_src=" + userinfo.userId
             };
 
             $('#shareURLQrcode').html("").qrcode(qrParam);
