@@ -104,7 +104,9 @@ define(
       },
 
       '#gotocenterimg click': function() {
+        event && event.preventDefault();
         window.location.href = "http://www.sfht.com/invitation.html";
+        return false;
       },
 
       "#logintoShare click": function(element, event) {
