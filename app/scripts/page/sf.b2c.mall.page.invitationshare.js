@@ -57,15 +57,13 @@ define(
         this.element.html(this.options.html);
 
         this.supplement();
-
-        if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-          this.header.showLogin();
-        }
       },
 
       supplement: function() {
         if (SFFrameworkComm.prototype.checkUserLogin.call(this)) {
           this.renderQrcode();
+        } else {
+          this.header.showLogin();
         }
       },
 

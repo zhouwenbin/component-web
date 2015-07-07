@@ -162,6 +162,7 @@ requirejs.config({
     'qrcode': 'scripts/vendor/vendor.jquery.qrcode',
     'fullPage':'scripts/vendor/jquery.fullPage.min',
     'canvasjs':'scripts/vendor/canvasjs.min',
+    "chart": "scripts/vendor/Chart",
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',

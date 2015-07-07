@@ -5,7 +5,7 @@ define('sf.b2c.mall.center.invitationcontent', [
     'jquery',
     'qrcode',
     'sf.helpers',
-    'canvasjs',
+    'chart',
     'moment',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
@@ -16,7 +16,7 @@ define('sf.b2c.mall.center.invitationcontent', [
     'sf.b2c.mall.api.user.rqCash',
     'text!template_center_invitationcontent'
   ],
-  function(can, $, qrcode, helpers, canvasjs, moment, SFMessage, SFConfig, SFBindalipay, SFGetUserInfo, SFGetCashActInfo, SFGetCashActTransList, SFRqCash, template_center_invitationcontent) {
+  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFBindalipay, SFGetUserInfo, SFGetCashActInfo, SFGetCashActTransList, SFRqCash, template_center_invitationcontent) {
 
     return can.Control.extend({
 
@@ -63,19 +63,19 @@ define('sf.b2c.mall.center.invitationcontent', [
         can.when(getCashActInfo.sendRequest(), getCashActTransList.sendRequest())
           .done(function(mainInfo, infoList) {
 
-            // var infoList = {
-            //   "infos": [{
-            //     "income": 10000,
-            //     "reason": "abc",
-            //     "gmtOrder": "2015-05-15 14:43:42",
-            //     "gmtCreate": "2015-05-15 14:43:42"
-            //   }, {
-            //     "income": -2000,
-            //     "reason": "abc",
-            //     "gmtOrder": "2015-05-16 14:43:42",
-            //     "gmtCreate": "2015-05-16 14:43:42"
-            //   }]
-            // }
+            var infoList = {
+              "infos": [{
+                "income": 10000,
+                "reason": "abc",
+                "gmtOrder": "2015-05-15 14:43:42",
+                "gmtCreate": "2015-05-15 14:43:42"
+              }, {
+                "income": -2000,
+                "reason": "abc",
+                "gmtOrder": "2015-05-16 14:43:42",
+                "gmtCreate": "2015-05-16 14:43:42"
+              }]
+            }
 
             that.data = _.extend(that.data, mainInfo);
             that.data.infoList = infoList.infos;
@@ -98,52 +98,49 @@ define('sf.b2c.mall.center.invitationcontent', [
       },
 
       renderChart: function() {
-        var dataPoints = [];
+        var labels = [];
+        var data = [];
+
+        var dataMap = {};
+        // 按天进行统计
         _.each(this.data.infoList, function(item) {
           if (item.income > 0) {
             item.gmtCreate = moment(item.gmtCreate).format('YYYY-MM-DD HH:mm:ss');
-            dataPoints.push({
-              x: new Date(item.gmtCreate.substring(0, 4), parseInt(item.gmtCreate.substring(5, 7), 10) - 1, item.gmtCreate.substring(8, 10)),
-              y: item.income / 100,
-              indexLabel: item.income / 100 + "",
-              indexLabelFontColor: "#FF9E36",
-              markerColor: "#FF9E36"
-            });
+            var month = parseInt(item.gmtCreate.substring(5, 7), 10);
+            var day = item.gmtCreate.substring(8, 10);
+            var label = month + "月" + day + "日";
+
+            if (dataMap[label]) {
+              dataMap[label] = dataMap[label] + item.income / 100
+            } else {
+              dataMap[label] = item.income / 100
+            }
           }
         })
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-          theme: "theme4",
-          animationEnabled: true,
-          axisX: {
-            valueFormatString: "MM.DD",
-            interval: 1,
-            intervalType: "day",
-            lineColor: "#50E3C2",
-            lineDashType: "dash",
-            labelFontColor: "#50E3C2",
-            tickColor: "#50E3C2",
-            tickThickness: 1,
-            labelAngle: -45
-
-          },
-          axisY: {
-            includeZero: false,
-            lineColor: "#fff",
-            labelFontColor: "#fff",
-            tickColor: "#fff"
-
-          },
-          data: [{
-            type: "line",
-            lineThickness: 4,
-            color: "rgba(255,158,54,0.15)",
-            dataPoints: dataPoints
-          }]
+        _.map(dataMap, function(num, key) {
+          labels.push(key);
+          data.push(num);
         });
 
-        chart.render();
-        $(".canvasjs-chart-credit")[0].style.display = "none";
+        var lineChartData = {
+          labels: labels,
+          datasets: [{
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: data
+          }]
+        }
+
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = new Chart(ctx).Line(lineChartData, {
+          responsive: true
+        });
       },
 
       /** 渲染二维码 */
@@ -176,6 +173,11 @@ define('sf.b2c.mall.center.invitationcontent', [
       '.m-dialog click': function(element, event) {
         event && event.preventDefault();
         $(".m-dialog").hide();
+      },
+
+      '#modifyaccount click': function(element, event) {
+        event && event.preventDefault();
+        new SFBindalipay();
       },
 
       '#getmoney click': function(element, event) {
