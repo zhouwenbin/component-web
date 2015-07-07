@@ -88,6 +88,25 @@ define(
         window.location.href = "http://www.sfht.com";
       },
 
+      '#viewruleimg click': function(element, event) {
+        event && event.preventDefault();
+        $(".m-dialog").show();
+      },
+
+      '.close click': function(element, event) {
+        event && event.preventDefault();
+        $(".m-dialog").hide();
+      },
+
+      '.m-dialog click': function(element, event) {
+        event && event.preventDefault();
+        $(".m-dialog").hide();
+      },
+
+      '#gotocenterimg click': function() {
+        window.location.href = "http://www.sfht.com/invitation.html";
+      },
+
       "#logintoShare click": function(element, event) {
         event && event.preventDefault();
 
