@@ -221,6 +221,16 @@
 .young-tab-b>li.active{
 	display: block;
 }
+.young-bar{
+	background: url(#{$bg-url}young/young-bar.png) no-repeat;
+	width: 556px;
+	
+	margin: 0 auto 18px;
+}
+.young-bar-active{
+	background: url(#{$bg-url}young/young-bar-active.png) no-repeat;
+	height: 15px;
+}
 
 .spike-tab-h {
     float: left;
