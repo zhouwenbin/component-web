@@ -1,0 +1,213 @@
+@import 'utils/variables';
+@import 'utils/placeholders';
+
+@import 'base/reset';
+@import 'base/base';
+@import 'base/help';
+
+.pm{
+	width: 1180px;
+	margin: 0 auto;
+}
+
+.young-banner{
+	height: 825px;
+	background: url(#{$bg-url}young/young-banner.jpg) no-repeat center top;
+}
+.young-banner video{
+	margin-top: 458px;
+}
+.young-time{
+	height: 257px;
+	background: url(#{$bg-url}young/young-time.jpg) no-repeat center top;
+}
+.young-time-inner{
+	background: url(#{$bg-url}young/young-time-inner.jpg) no-repeat center top;
+	width: 503px;
+	height: 108px;
+	line-height: 108px;
+	padding-left: 44px;
+	font-size: 70px;
+	color: #fff;
+	box-sizing:border-box;
+	letter-spacing: 24px;
+	position: absolute;
+	margin-left: 520px;
+	margin-top: 20px;
+	border:3px solid #fff;
+	border-radius: 3px;
+	color: #d0d1d4;
+}
+.young-slider{
+	height: 1152px;
+	padding-top: 200px;
+	text-align: center;
+	background: url(#{$bg-url}young/young-slider-bg.jpg) no-repeat center top;
+}
+.young-slider .btn{
+	width: 568px;
+	height: 101px;
+	line-height: 101px;
+	display: inline-block;
+	background: url(#{$bg-url}young/young-btn.png) no-repeat;
+	font-size: 44px;
+	color: #fff;
+	box-sizing:border-box;
+	padding-left: 200px;
+	text-align: left;
+}
+.young-slider .btn span{
+	margin-left: 44px;
+}
+.young-slider-r1{
+	margin-top: 36px;
+	margin-bottom: 10px;
+}
+.young-slider-r1 li{
+	display: inline-block;
+	width: 135px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #909090;
+	margin: 0 1px;
+	font-size: 16px;
+}
+.young-slider-r1 li.active{
+	background: #d0155c
+}
+.young-slider-r1 li a{
+	display: block;
+	color: #fff;
+}
+.young-slider-r2{
+	font-size: 21px;
+	color: #515151;
+	margin-bottom: 15px;
+}
+.young-slider-r2 span{
+	color: #ff0808;
+	margin: 0 15px;
+}
+.young-coupon{
+	background: url(#{$bg-url}young/young-coupon.jpg) no-repeat center top;
+	height: 347px;
+}
+.young-coupon .pm{
+	padding-left: 290px;
+	box-sizing:border-box;
+}
+.young-h2{
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	color: #fff;
+	background: #0a0a0a;
+	font-size: 34px;
+	font-weight: normal;
+}
+.young-coupon .btn{
+	background: url(#{$bg-url}young/young-btn2.png) no-repeat;
+	width: 196px;
+	height: 47px;
+	line-height: 47px;
+	text-align: center;
+	display: inline-block;
+	font-size: 16px;
+	color: #fff;
+	margin: 242px 166px 0 0;
+}
+.young-photo{
+	padding: 18px 0;
+	background: #0a0a0a;
+	height: 279px;
+	position: relative;
+	overflow: hidden;
+}
+.young-photo ul{
+	position: absolute;
+	left: 0;
+	top: 18px;
+	white-space: nowrap;
+	width: 598px * 5;
+	animation:young-photo 50s linear infinite;
+}
+@keyframes young-photo{
+	100%{
+		transform:translate(-100%,0);
+	}
+}
+.young-photo li{
+	float: left;
+	margin-right: 7px;
+}
+.young-tab{
+	background: #ffbf00;
+	padding-top: 47px;
+	padding-bottom: 135px;
+}
+.young-tab-h{
+	margin-bottom: 20px;
+	text-align: center;
+}
+.young-tab-h li{
+	margin: 0 5px;
+	display: inline-block;
+	position: relative;
+}
+.young-tab-h li a{
+	display: block;
+	width: 118px;
+	height: 118px;
+	line-height: 118px;
+	text-align: center;
+	border-radius: 50%;
+	background: #070707;
+	color: #fff;
+	font-size: 32px;
+	border: 3px solid #fff;
+	position: relative;
+	overflow: hidden;
+}
+.young-tab-h li:before{
+	content: '';
+	border-style: solid;
+	border-width: 19px 8px;
+	border-color: #070707 transparent transparent transparent;
+	position: absolute;
+	bottom:-38px;
+	left: 50%;
+	margin-left: -9px;
+}
+.young-tab-h li.active:before{
+	border-color: #d0175d transparent transparent transparent;
+}
+.young-tab-h li.active a{
+	border-color: #d0175d;
+}
+.young-tab-h li img{
+	display: none;
+}
+.young-tab-h li.active a{
+	background: #fff;
+}
+.young-tab-h li.active img{
+	display: block;
+}
+.young-tab-h li.active span{
+	display: none;
+}
+.young-tab-b{
+	text-align: center;
+}
+.young-tab-b li{
+	border: 7px solid #d0155c;
+	padding: 8px;
+	background: #fff;
+	display: none;
+	width: 1035px;
+	height: 531px;
+}
+.young-tab-b li.active{
+	display: inline-block;
+}
