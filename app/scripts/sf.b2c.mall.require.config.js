@@ -1,4 +1,5 @@
 requirejs.config({
+  baseUrl: ' /',
   paths: {
     'can': 'http://www.google.com/bower_components/canjs/amd/can',
     'jquery': 'http://www.google.com/bower_components/jquery/dist/jquery',
@@ -305,6 +306,7 @@ requirejs.config({
     'sf.b2c.mall.module.footer': 'scripts/module/sf.b2c.mall.module.footer',
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
+    "sf.b2c.mall.module.secondkill": "scripts/module/sf.b2c.mall.module.secondkill",
 
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
     'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
