@@ -23,25 +23,18 @@ define(
        */
       init: function() {
         var that = this;
-        $('#st-stack').stackslider();
-
-        setTimeout(function() {
-
-          $('#nav').children('span:first').click(function() {
+        $('#st-stack').stackslider({
+          "firstCallback": function() {
             index = index > 1 ? index - 1 : index;
             //获取票数
             that.getTicketCount(index);
-          })
-
-          $('#nav').children('span:last').click(function() {
+          },
+          "lastCallback": function() {
             index = index > defaultNum ? index : index + 1;
             //获取票数
             that.getTicketCount(index);
-          })
-
-        }, 1000);
-
-
+          }
+        });
 
         $('.young-tab-h li').click(function() {
           var index = $('.young-tab-h li').index(this);

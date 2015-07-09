@@ -301,7 +301,7 @@
 
 			var self = this;
 
-			this.$navigation.children( 'span:last' ).on( {
+			this.$navigation.children( 'span:last' ).bind( {
 				'mousedown.stackslider' : function() {
 
 					self._navigate( 'next' );
@@ -310,11 +310,15 @@
 						self._flow( 'next' );
 					}, 600 );
 
+					if (typeof self.options.lastCallback == 'function') {
+						self.options.lastCallback.call(this);
+					};
+
 				},
 				'mouseup.stackslider mouseleave.stackslider' : function() {
 					self._mouseup( 'next' );
 				}
-			} ).end().children( 'span:first' ).on( {
+			} ).end().children( 'span:first' ).bind( {
 				'mousedown.stackslider' : function() {
 
 					self._navigate( 'prev' );
@@ -322,6 +326,10 @@
 						self.flow = true;
 						self._flow( 'prev' );
 					}, 600 );
+
+					if (typeof self.options.firstCallback == 'function') {
+						self.options.firstCallback.call(this);
+					};
 
 				},
 				'mouseup.stackslider mouseleave.stackslider' : function() {
