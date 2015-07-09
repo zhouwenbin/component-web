@@ -370,320 +370,317 @@
     <!-- build:css({app, .tmp}) styles/sf.b2c.mall.young.css -->
     <link rel="stylesheet" type="text/css" href="css/young.css" />
     <!-- endbuild -->
-
     <style type="text/css">
     @import url('demo.css');
-
-@font-face {
-    font-family: 'icomoon';
-    src:url('fonts/icomoon.eot');
-    src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.svg#icomoon') format('svg'),
-        url('fonts/icomoon.woff') format('woff'),
-        url('fonts/icomoon.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-.js .st-stack-raw {
-    display: none;
-}
-
-.st-wrapper {
-    width: 100%;
-    height: 500px;
-    position: relative;
-    margin: 0 auto;
-    -webkit-perspective: 1200px;
-    -webkit-perspective-origin : 50% 100%;
-    -moz-perspective: 1200px;
-    -moz-perspective-origin : 50% 100%;
-    -o-perspective: 1200px;
-    -o-perspective-origin : 50% 100%;
-    -ms-perspective: 1200px;
-    -ms-perspective-origin : 50% 100%;
-    perspective: 1200px;
-    perspective-origin : 50% 100%;
-}
-
-.st-stack {
-    position: absolute;
-    height: 10px;
-    bottom: 0px;
-    background-image: url(../images/gradient.png);
-    background-image: -webkit-linear-gradient(top, #fff 50%, #e7ae38 50%);
-    background-image: -moz-linear-gradient(top, #fff 50%, #e7ae38 50%);
-    background-image: -o-linear-gradient(top, #fff 50%, #e7ae38 50%);
-    background-image: -ms-linear-gradient(top, #fff 50%, #e7ae38 50%);
-    background-image: linear-gradient(to bottom, #fff 50%, #e7ae38 50%);
-    -webkit-background-size: 5px 5px;
-    -moz-background-size: 5px 5px;
-    background-size: 5px 5px;
-    background-position: bottom center;
-}
-
-.st-stack:before {
-    content: '';
-    position: absolute;
-    width: 140%;
-    left: -20%;
-    bottom: -10px;
-    height: 20px;
-    z-index: -1;
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 60%);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 60%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 60%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 60%);
-    background: radial-gradient(center, ellipse cover, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 60%);
-}
-
-.st-stack-left {
-    left: 0px;
-}
-
-.st-stack-right {
-    right: 0px;
-}
-
-.st-wrapper .st-title,
-.st-wrapper nav {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.st-wrapper .st-title {
-    padding: 0 10% 60px;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.st-wrapper .st-title h2 {
-    padding: 0 20px;
-    font-size: 28px;
-    color: #dc4e2a;
-    font-weight: 400;
-    letter-spacing: 3px;
-    font-family: 'Englebert', Arial, sans-serif;
-    line-height: 38px;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.6);
-}
-
-.st-wrapper .st-title h3 {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #fff;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-}
-
-.st-wrapper nav span {
-    color: transparent;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 50%;
-    bottom: 0;
-    cursor: pointer;
-}
-
-.st-wrapper nav span:first-child {
-    margin-left: -45px;
-}
-
-.st-wrapper nav span:last-child {
-    margin-left: 5px;
-}
-
-.st-wrapper nav span:before {
-    font-family: 'icomoon';
-    font-style: normal;
-    speak: none;
-    font-weight: normal;
-    line-height: 1;
-    font-size: 30px;
-    line-height: 40px;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    color: #fff;
-    background: #dc4e2a;
-    border-radius: 50%;
-    cursor: pointer;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.5);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-.st-wrapper nav span:first-child:before {
-    content: "\4c";
-}
-
-.st-wrapper nav span:last-child:before {
-    content: "\52";
-}
-
-.st-wrapper nav span:hover:before {
-    color: #333;
-}
-
-.st-wrapper .st-item {
-    position: absolute;
-    -webkit-transform-style : preserve-3d;
-    -moz-transform-style : preserve-3d;
-    -o-transform-style : preserve-3d;
-    -ms-transform-style : preserve-3d;
-    transform-style : preserve-3d;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.st-wrapper .st-item.st-center {
-    -webkit-transform: rotateZ(0deg) rotateY(0deg);
-    -moz-transform: rotateZ(0deg) rotateY(0deg);
-    -o-transform: rotateZ(0deg) rotateY(0deg);
-    -ms-transform: rotateZ(0deg) rotateY(0deg);
-    transform: rotateZ(0deg) rotateY(0deg);
-}
-
-.st-wrapper .st-item.st-right,
-.st-wrapper .st-item.st-rightflow {
-    opacity: 0;
-    -webkit-transform: rotateZ(90deg) rotateY(-90deg);
-    -moz-transform: rotateZ(90deg) rotateY(-91deg);
-    -o-transform: rotateZ(90deg) rotateY(-90deg);
-    -ms-transform: rotateZ(90deg) rotateY(-90deg);
-    transform: rotateZ(90deg) rotateY(-91deg);
-    pointer-events: none;
-}
-
-.st-wrapper .st-item.st-left,
-.st-wrapper .st-item.st-leftflow {
-    opacity: 0;
-    -webkit-transform: rotateZ(-90deg) rotateY(90deg);
-    -moz-transform: rotateZ(-90deg) rotateY(91deg);
-    -o-transform: rotateZ(-90deg) rotateY(90deg);
-    -ms-transform: rotateZ(-90deg) rotateY(90deg);
-    transform: rotateZ(-90deg) rotateY(91deg);
-    pointer-events: none;
-}
-.st-wrapper .st-item.st-rightflow,
-.st-wrapper .st-item.st-leftflow,
-.st-wrapper .st-item.st-center {
-    opacity: 1;
-}
-
-.st-wrapper .st-item a,
-.st-wrapper .st-item img {
-    border: none;
-    max-width: 100%;
-    display: block;
-}
-
-.st-wrapper .st-item a {
-    background: #fff;
-    box-shadow: 0 0 0 9px #fff, 0 1px 3px 9px rgba(0,0,0,0.3);
-}
-
-@media screen and (max-width: 1310px){
-    .st-wrapper .st-item {
-        width: 300px;
+    @font-face {
+        font-family: 'icomoon';
+        src: url('fonts/icomoon.eot');
+        src: url('fonts/icomoon.eot?#iefix') format('embedded-opentype'), url('fonts/icomoon.svg#icomoon') format('svg'), url('fonts/icomoon.woff') format('woff'), url('fonts/icomoon.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
     }
-    .st-wrapper {
-        height: 460px;
-    }
-}
 
-@media screen and (max-width: 1050px){
-    .st-wrapper .st-item {
-        width: 260px;
-    }
-    .st-wrapper {
-        height: 380px;
-    }
-}
-
-@media screen and (max-width: 935px){
-    .st-wrapper .st-item {
-        width: 240px;
-    }
-    .st-wrapper {
-        height: 380px;
-    }
-}
-
-@media screen and (max-width: 880px){
-    .st-wrapper .st-item {
-        width: 220px;
-    }
-    .st-wrapper .st-title {
-        bottom: 280px;
-    }
-    .st-wrapper {
-        height: 420px;
-    }
-}
-
-@media screen and (max-width: 740px){
-    .st-wrapper .st-item {
-        width: 200px;
-    }
-    .st-wrapper .st-title {
-        bottom: 240px;
-    }
-    .st-wrapper {
-        height: 370px;
-    }
-}
-
-@media screen and (max-width: 650px){
-    .st-stack {
+    .js .st-stack-raw {
         display: none;
     }
-    .st-wrapper nav {
-        bottom: 220px;
-    }
-}
 
-@media screen and (max-width: 450px){
-    .st-wrapper .st-item {
-        width: 200px;
-    }
-    .st-wrapper .st-title {
-        bottom: 150px;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-    .st-wrapper .st-title h2 {
-        font-size: 22px;
-        line-height: 32px;
-    }
-    .st-wrapper nav {
-        bottom: 140px;
-    }
     .st-wrapper {
-        height: 300px;
+        width: 100%;
+        height: 500px;
+        position: relative;
+        margin: 0 auto;
+        -webkit-perspective: 1200px;
+        -webkit-perspective-origin: 50% 100%;
+        -moz-perspective: 1200px;
+        -moz-perspective-origin: 50% 100%;
+        -o-perspective: 1200px;
+        -o-perspective-origin: 50% 100%;
+        -ms-perspective: 1200px;
+        -ms-perspective-origin: 50% 100%;
+        perspective: 1200px;
+        perspective-origin: 50% 100%;
     }
-}
 
+    .st-stack {
+        position: absolute;
+        height: 10px;
+        bottom: 0px;
+        background-image: url(../images/gradient.png);
+        background-image: -webkit-linear-gradient(top, #fff 50%, #e7ae38 50%);
+        background-image: -moz-linear-gradient(top, #fff 50%, #e7ae38 50%);
+        background-image: -o-linear-gradient(top, #fff 50%, #e7ae38 50%);
+        background-image: -ms-linear-gradient(top, #fff 50%, #e7ae38 50%);
+        background-image: linear-gradient(to bottom, #fff 50%, #e7ae38 50%);
+        -webkit-background-size: 5px 5px;
+        -moz-background-size: 5px 5px;
+        background-size: 5px 5px;
+        background-position: bottom center;
+    }
 
+    .st-stack:before {
+        content: '';
+        position: absolute;
+        width: 140%;
+        left: -20%;
+        bottom: -10px;
+        height: 20px;
+        z-index: -1;
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+        background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+        background: -o-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+        background: -ms-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+        background: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+    }
+
+    .st-stack-left {
+        left: 0px;
+    }
+
+    .st-stack-right {
+        right: 0px;
+    }
+
+    .st-wrapper .st-title,
+    .st-wrapper nav {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        text-align: center;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .st-wrapper .st-title {
+        padding: 0 10% 60px;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .st-wrapper .st-title h2 {
+        padding: 0 20px;
+        font-size: 28px;
+        color: #dc4e2a;
+        font-weight: 400;
+        letter-spacing: 3px;
+        font-family: 'Englebert', Arial, sans-serif;
+        line-height: 38px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+
+    .st-wrapper .st-title h3 {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .st-wrapper nav span {
+        color: transparent;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 50%;
+        bottom: 0;
+        cursor: pointer;
+    }
+
+    .st-wrapper nav span:first-child {
+        margin-left: -45px;
+    }
+
+    .st-wrapper nav span:last-child {
+        margin-left: 5px;
+    }
+
+    .st-wrapper nav span:before {
+        font-family: 'icomoon';
+        font-style: normal;
+        speak: none;
+        font-weight: normal;
+        line-height: 1;
+        font-size: 30px;
+        line-height: 40px;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        color: #fff;
+        background: #dc4e2a;
+        border-radius: 50%;
+        cursor: pointer;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .st-wrapper nav span:first-child:before {
+        content: "\4c";
+    }
+
+    .st-wrapper nav span:last-child:before {
+        content: "\52";
+    }
+
+    .st-wrapper nav span:hover:before {
+        color: #333;
+    }
+
+    .st-wrapper .st-item {
+        position: absolute;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .st-wrapper .st-item.st-center {
+        -webkit-transform: rotateZ(0deg) rotateY(0deg);
+        -moz-transform: rotateZ(0deg) rotateY(0deg);
+        -o-transform: rotateZ(0deg) rotateY(0deg);
+        -ms-transform: rotateZ(0deg) rotateY(0deg);
+        transform: rotateZ(0deg) rotateY(0deg);
+    }
+
+    .st-wrapper .st-item.st-right,
+    .st-wrapper .st-item.st-rightflow {
+        opacity: 0;
+        -webkit-transform: rotateZ(90deg) rotateY(-90deg);
+        -moz-transform: rotateZ(90deg) rotateY(-91deg);
+        -o-transform: rotateZ(90deg) rotateY(-90deg);
+        -ms-transform: rotateZ(90deg) rotateY(-90deg);
+        transform: rotateZ(90deg) rotateY(-91deg);
+        pointer-events: none;
+    }
+
+    .st-wrapper .st-item.st-left,
+    .st-wrapper .st-item.st-leftflow {
+        opacity: 0;
+        -webkit-transform: rotateZ(-90deg) rotateY(90deg);
+        -moz-transform: rotateZ(-90deg) rotateY(91deg);
+        -o-transform: rotateZ(-90deg) rotateY(90deg);
+        -ms-transform: rotateZ(-90deg) rotateY(90deg);
+        transform: rotateZ(-90deg) rotateY(91deg);
+        pointer-events: none;
+    }
+
+    .st-wrapper .st-item.st-rightflow,
+    .st-wrapper .st-item.st-leftflow,
+    .st-wrapper .st-item.st-center {
+        opacity: 1;
+    }
+
+    .st-wrapper .st-item a,
+    .st-wrapper .st-item img {
+        border: none;
+        max-width: 100%;
+        display: block;
+    }
+
+    .st-wrapper .st-item a {
+        background: #fff;
+        box-shadow: 0 0 0 9px #fff, 0 1px 3px 9px rgba(0, 0, 0, 0.3);
+    }
+
+    @media screen and (max-width: 1310px) {
+        .st-wrapper .st-item {
+            width: 300px;
+        }
+        .st-wrapper {
+            height: 460px;
+        }
+    }
+
+    @media screen and (max-width: 1050px) {
+        .st-wrapper .st-item {
+            width: 260px;
+        }
+        .st-wrapper {
+            height: 380px;
+        }
+    }
+
+    @media screen and (max-width: 935px) {
+        .st-wrapper .st-item {
+            width: 240px;
+        }
+        .st-wrapper {
+            height: 380px;
+        }
+    }
+
+    @media screen and (max-width: 880px) {
+        .st-wrapper .st-item {
+            width: 220px;
+        }
+        .st-wrapper .st-title {
+            bottom: 280px;
+        }
+        .st-wrapper {
+            height: 420px;
+        }
+    }
+
+    @media screen and (max-width: 740px) {
+        .st-wrapper .st-item {
+            width: 200px;
+        }
+        .st-wrapper .st-title {
+            bottom: 240px;
+        }
+        .st-wrapper {
+            height: 370px;
+        }
+    }
+
+    @media screen and (max-width: 650px) {
+        .st-stack {
+            display: none;
+        }
+        .st-wrapper nav {
+            bottom: 220px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .st-wrapper .st-item {
+            width: 200px;
+        }
+        .st-wrapper .st-title {
+            bottom: 150px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .st-wrapper .st-title h2 {
+            font-size: 22px;
+            line-height: 32px;
+        }
+        .st-wrapper nav {
+            bottom: 140px;
+        }
+        .st-wrapper {
+            height: 300px;
+        }
+    }
     </style>
+    <!-- build:css({app, .tmp}) styles/sf.b2c.mall.young.css -->
+    <link href="css/common.css" rel="stylesheet" type="text/css" />
+    <!-- endbuild -->
 </head>
 
 <body>
@@ -694,329 +691,109 @@
     </div>
     <div class="young-time">
         <div class="pm">
-            <div class="young-time-inner">3254732</div>
+            <div class="young-time-inner" id="totalVoteCount">0</div>
         </div>
     </div>
-    <div class="young-slider">
+    <div class="young-slider" style="height: 976px">
         <div class="pm">
             <ul id="st-stack" class="st-stack-raw">
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fgQV"><img src="http://img0.sfht.com/img/421f05116dbe79f78e244bae4414fa6f.jpg" /></a>
+                    <div class="st-item" id="person1">
+                        <a href="http://drbl.in/fgQV"><img style="height:400px" src="/img/young/photo/1/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fpRz"><img src="http://img0.sfht.com/img/421f05116dbe79f78e244bae4414fa6f.jpg" /></a>
+                    <div class="st-item" id="person2">
+                        <a href="http://drbl.in/fpRz"><img style="height:400px" src="/img/young/photo/2/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fGVs"><img src="lib/StackSlider/images/3.jpg" /></a>
+                    <div class="st-item" id="person3">
+                        <a href="http://drbl.in/fGVs"><img style="height:400px" src="/img/young/photo/3/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fgvZ"><img src="lib/StackSlider/images/4.jpg" /></a>
+                    <div class="st-item" id="person4">
+                        <a href="http://drbl.in/fgvZ"><img style="height:400px" src="/img/young/photo/4/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fyfM"><img src="lib/StackSlider/images/5.jpg" /></a>
+                    <div class="st-item" id="person5">
+                        <a href="http://drbl.in/fyfM"><img style="height:400px" src="/img/young/photo/5/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fCmJ"><img src="lib/StackSlider/images/6.jpg" /></a>
+                    <div class="st-item" id="person6">
+                        <a href="http://drbl.in/fCmJ"><img style="height:400px" src="/img/young/photo/6/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fsMv"><img src="lib/StackSlider/images/7.jpg" /></a>
+                    <div class="st-item" id="person7">
+                        <a href="http://drbl.in/fsMv"><img style="height:400px" src="/img/young/photo/7/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fGOf"><img src="lib/StackSlider/images/8.jpg" /></a>
+                    <div class="st-item" id="person8">
+                        <a href="http://drbl.in/fGOf"><img style="height:400px" src="/img/young/photo/8/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fypr"><img src="lib/StackSlider/images/9.jpg" /></a>
+                    <div class="st-item" id="person9">
+                        <a href="http://drbl.in/fypr"><img style="height:400px" src="/img/young/photo/9/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fEmG"><img src="lib/StackSlider/images/10.jpg" /></a>
+                    <div class="st-item" id="person10">
+                        <a href="http://drbl.in/fEmG"><img style="height:400px" src="/img/young/photo/10/1.jpg" /></a>
+                    </div>
                 </li>
                 <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/ffiw"><img src="lib/StackSlider/images/11.jpg" /></a>
-                </li>
-                <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fqWx"><img src="lib/StackSlider/images/12.jpg" /></a>
-                </li>
-                <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fkuv"><img src="lib/StackSlider/images/13.jpg" /></a>
-                </li>
-                <li>
-                    <div class="st-item">
-                        <a href="http://drbl.in/fIli"><img src="lib/StackSlider/images/14.jpg" /></a>
+                    <div class="st-item" id="person11">
+                        <a href="http://drbl.in/ffiw"><img style="height:400px" src="/img/young/photo/11/1.jpg" /></a>
+                    </div>
                 </li>
             </ul>
             <ul class="young-slider-r1">
-                <li class="active"><a href="">正儿八经照片</a></li>
-                <li class="active"><a href="">60,000票</a></li>
-                <li><a href="">80,000票</a></li>
-                <li><a href="">200,000票</a></li>
+                <li id="step1"><a href="javascript:;">正儿八经照片</a></li>
+                <li id="step2"><a href="javascript:;">60,000票</a></li>
+                <li id="step3"><a href="javascript:;">80,000票</a></li>
+                <li id="step4"><a href="javascript:;">200,000票</a></li>
             </ul>
             <div class="young-bar">
-                <div class="young-bar-active" style="width:50%"></div>
+                <div class="young-bar-active" style="width:50%" id="stepline"></div>
             </div>
-            <div class="young-slider-r2">被扒<span id="oneClick">76,543</span>次</div>
+            <div class="young-slider-r2" id="">被扒<span id="oneClick">0</span>次</div>
             <a class="btn" class="btn">扒下他<span id="clickTimes">10</span></a>
-            </div>
-            </div>
-            <h2 class="young-h2">活动专场优惠券</h2>
-            <div class="young-coupon">
-                <div class="pm">
-                    <a class="btn" href="">点我领券</a>
-                    <a class="btn" href="">点我领券</a>
-                </div>
-            </div>
-            <div class="young-photo">
-                <ul class="clearfix">
-                    <li><img src="../img/young/young-photo.jpg" alt=""></li>
-                    <li><img src="../img/young/young-photo.jpg" alt=""></li>
-                    <li><img src="../img/young/young-photo.jpg" alt=""></li>
-                    <li><img src="../img/young/young-photo.jpg" alt=""></li>
-                    <li><img src="../img/young/young-photo.jpg" alt=""></li>
-                </ul>
-            </div>
-            <h2 class="young-h2">裸价促销专场</h2>
-            <div class="young-tab">
-                <div class="pm">
-                    <ul class="young-tab-h">
-                        <li class="active"><a href="javascript:"><span>7/15</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                        <li><a href="javascript:"><span>7/15</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                        <li><a href="javascript:"><span>7/16</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                        <li><a href="javascript:"><span>7/17</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                        <li><a href="javascript:"><span>7/18</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                        <li><a href="javascript:"><span>7/19</span><img src="../img/young/young-tab-h.png" alt=""></a></li>
-                    </ul>
-                    <ul class="young-tab-b">
-                        <li class="active">
-                            <div class="young-tab-br1">
-                                <img src="../img/young/young-tab.jpg" alt="">
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://placehold.it/1035x513" alt="">
-                        </li>
-                        <li>
-                            <img src="http://placehold.it/1035x513" alt="">
-                        </li>
-                        <li>
-                            <img src="http://placehold.it/1035x513" alt="">
-                        </li>
-                        <li>
-                            <img src="http://placehold.it/1035x513" alt="">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pm spike-tab daylinetarget20150101000000" data-daylinestart="20150101000000" data-daylineend="20150709000000" style="display:  block ">
-                <ul class="spike-tab-h">
-                    <li class="cms-src-hourline active" data-hourlinestart="20150101000000" data-hourlineend="20150708115000">
-                        <a href="javascript:;">11点</a><span class="icon icon16-5"></span>
-                    </li>
-                    <li class="cms-src-hourline" data-hourlinestart="20150708115000" data-hourlineend="21150101000000">
-                        <a href="javascript:;">12点</a><span class="icon icon16-5"></span>
-                    </li>
-                </ul>
-                <div class="spike-tab-b hourlinetarget2015010100000020150101000000" data-hourlinestart="20150101000000" data-hourlineend="20150709000000" style="display:  block ">
-                    <ul>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436324400000" data-spikeprice="100">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.1" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                            </a>
-                            <div class="cms-fill-spikeinfo">
-                                <h3>日本sunstar巧虎牙膏草莓味70g</h3>
-                                <div class="clearfix">
-                                    <div class="spike-tab-c1 fl">
-                                        <div class="spike-tab-r1">秒杀价 ¥</div>
-                                        <div class="spike-tab-r2">
-                                            <del>市场价:38元</del>
-                                        </div>
-                                    </div>
-                                    <div class="spike-tab-c2 fl">9.9</div>
-                                    <div class="spike-tab-c3 fr">
-                                        <a href="">抢</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436324400000" data-spikeprice="100">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.1" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                            </a>
-                            <div class="cms-fill-spikeinfo">
-                                <h3>日本sunstar巧虎牙膏草莓味70g</h3>
-                                <div class="clearfix">
-                                    <div class="spike-tab-c1 fl">
-                                        <div class="spike-tab-r1">秒杀价 ¥</div>
-                                        <div class="spike-tab-r2">
-                                            <del>市场价:38元</del>
-                                        </div>
-                                    </div>
-                                    <div class="spike-tab-c2 fl">9.9</div>
-                                    <div class="spike-tab-c3 fr">
-                                        <a href="">抢</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436324400000" data-spikeprice="100">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.1" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                            </a>
-                            <div class="cms-fill-spikeinfo">
-                                <h3>日本sunstar巧虎牙膏草莓味70g</h3>
-                                <div class="clearfix">
-                                    <div class="spike-tab-c1 fl">
-                                        <div class="spike-tab-r1">秒杀价 ¥</div>
-                                        <div class="spike-tab-r2">
-                                            <del>市场价:38元</del>
-                                        </div>
-                                    </div>
-                                    <div class="spike-tab-c2 fl">9.9</div>
-                                    <div class="spike-tab-c3 fr">
-                                        <a href="">抢</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436324400000" data-spikeprice="100">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.1" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                            </a>
-                            <div class="cms-fill-spikeinfo">
-                                <h3>日本sunstar巧虎牙膏草莓味70g</h3>
-                                <div class="clearfix">
-                                    <div class="spike-tab-c1 fl">
-                                        <div class="spike-tab-r1">秒杀价 ¥</div>
-                                        <div class="spike-tab-r2">
-                                            <del>市场价:38元</del>
-                                        </div>
-                                    </div>
-                                    <div class="spike-tab-c2 fl">9.9</div>
-                                    <div class="spike-tab-c3 fr">
-                                        <a href="">抢</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436324400000" data-spikeprice="100">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.1" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                            </a>
-                            <div class="cms-fill-spikeinfo">
-                                <h3>日本sunstar巧虎牙膏草莓味70g</h3>
-                                <div class="clearfix">
-                                    <div class="spike-tab-c1 fl">
-                                        <div class="spike-tab-r1">秒杀价 ¥</div>
-                                        <div class="spike-tab-r2">
-                                            <del>市场价:38元</del>
-                                        </div>
-                                    </div>
-                                    <div class="spike-tab-c2 fl">9.9</div>
-                                    <div class="spike-tab-c3 fr">
-                                        <a href="">抢</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="spike-tab-b hourlinetarget2015010100000020150708115000" data-hourlinestart="20150708115000" data-hourlineend="20150709000000" style="display:  none ">
-                    <ul>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.9" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.10" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.11" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.12" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.13" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.14" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.15" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cms-src-spikeinfo" data-itemid="1" data-spiketime="
-              1436328000000" data-spikeprice="200">
-                            <a href="http://www.sfht.com/detail/1.html?_spm=0.271.2021.16" target="_blank">
-                                <img src="http://img0.sfht.com/sf/bundefined/66851038f9c097111b5b2131f37d0c57.jpg">
-                                <div class="cms-fill-spikeinfo">
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- build:js(.) scripts/require.min.js -->
-            <script src="bower_components/requirejs/require.js"></script>
-            <!-- endbuild -->
-            <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
-            <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
-            <!-- endbuild -->
-            <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.young.js -->
-            <script src="scripts/sf.b2c.mall.require.config.js"></script>
-            <script type="text/javascript">
-            require(['sf.b2c.mall.page.young']);
-            </script>
-            <!-- endbuild -->
+        </div>
+    </div>
+    <h2 class="young-h2">活动专场优惠券</h2>
+    <div class="young-coupon">
+        <div class="pm">
+            <a class="btn" id="getCoupon1" name="cms-fill-coupon" data-cms-couponbagid="{{bagid}}" data-cms-coupontype="CARD" href="javascript:;">点我领券</a>
+            <a class="btn" id="getCoupon2" name="cms-fill-coupon" data-cms-couponbagid="{{bagid}}" data-cms-coupontype="CARD" href="javascript:;">点我领券</a>
+        </div>
+    </div>
+    <div class="young-photo">
+        <ul class="clearfix">
+            <li><img src="../img/young/young-photo.jpg" alt=""></li>
+            <li><img src="../img/young/young-photo.jpg" alt=""></li>
+            <li><img src="../img/young/young-photo.jpg" alt=""></li>
+            <li><img src="../img/young/young-photo.jpg" alt=""></li>
+            <li><img src="../img/young/young-photo.jpg" alt=""></li>
+        </ul>
+    </div>
+    <!-- build:js(.) scripts/require.min.js -->
+    <script src="bower_components/requirejs/require.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({app, tmp}) scripts/sf.web.base.js-->
+    <script src="scripts/base/sf.web.base.ver.1.0.0.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({app, .tmp}) scripts/sf.b2c.mall.page.young.js -->
+    <script src="scripts/sf.b2c.mall.require.config.js"></script>
+    <script type="text/javascript">
+    require(['sf.b2c.mall.page.young']);
+    </script>
+    <!-- endbuild -->
 </body>
 
 </html>
