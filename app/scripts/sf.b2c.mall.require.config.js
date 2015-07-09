@@ -132,7 +132,7 @@ requirejs.config({
 
 
     //购物车
-    'sf.b2c.mall.api.shopcart.isShowCart': 'scripts/api/sf.b2c.mall.api.shopcart.isShowCart',
+    "sf.b2c.mall.api.shopcart.isShowCart": "scripts/api/sf.b2c.mall.api.shopcart.isShowCart.agency",
     'sf.b2c.mall.api.shopcart.getCart': 'scripts/api/sf.b2c.mall.api.shopcart.getCart',
     'sf.b2c.mall.api.shopcart.addItemToCart':'scripts/api/sf.b2c.mall.api.shopcart.addItemToCart',
     'sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart':'scripts/api/sf.b2c.mall.api.shopcart.cleanInvalidItemsInCart',
