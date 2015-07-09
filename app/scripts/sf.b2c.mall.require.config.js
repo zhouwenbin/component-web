@@ -94,6 +94,8 @@ requirejs.config({
     'sf.b2c.mall.api.user.rqCash': 'scripts/api/sf.b2c.mall.api.user.rqCash',
     'sf.b2c.mall.api.user.getCashActInfo': 'scripts/api/sf.b2c.mall.api.user.getCashActInfo',
     'sf.b2c.mall.api.user.bindAliAct': 'scripts/api/sf.b2c.mall.api.user.bindAliAct',
+     'sf.b2c.mall.api.user.getVoteNum': 'scripts/api/sf.b2c.mall.api.user.getVoteNum',
+     'sf.b2c.mall.api.user.vote': 'scripts/api/sf.b2c.mall.api.user.vote',
 
     'sf.b2c.mall.api.order.deleteOrder':'scripts/api/sf.b2c.mall.api.order.deleteOrder',
     //账号绑定
@@ -164,6 +166,7 @@ requirejs.config({
     'fullPage':'scripts/vendor/jquery.fullPage.min',
     'canvasjs':'scripts/vendor/canvasjs.min',
     "chart": "scripts/vendor/Chart",
+      'jquery.stackslider':'scripts/vendor/jquery.stackslider',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
@@ -276,6 +279,9 @@ requirejs.config({
 
     //app下载页
     'sf.b2c.mall.page.app': 'scripts/page/sf.b2c.mall.page.app',
+
+   //小鲜肉页面
+    'sf.b2c.mall.page.young': 'scripts/page/sf.b2c.mall.page.young',
 
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',

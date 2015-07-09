@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.rqCash
+  * @class sf.b2c.mall.api.user.vote
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.rqCash',
+'sf.b2c.mall.api.user.vote',
 [
   'jquery',
   'can',
@@ -22,18 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.rqCash',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.vote',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
+        'voteType': 'string',
+        'voteNo': 'string'
       },
       OPTIONAL: {
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000420': '尚未绑定支付宝账户或账户名缺失',
-        '1000430': '未达到提现金额限制',
-        '1000450': '该时间段内不支持此请求'
       }
     }
   });
