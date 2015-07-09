@@ -151,28 +151,13 @@ define('sf.b2c.mall.center.invitationcontent', [
             var qrParam = {
               width: 125,
               height: 125,
-              text: "http://m.sfht.com?_src=" + userinfo.userId
+              text: "http://m.sfht.com/invitation.html?_src=" + userinfo.userId
             };
 
             $('#shareURLQrcode').html("").qrcode(qrParam);
             $('#urlinput').val("http://www.sfht.com?_src=" + userinfo.userId);
           })
           .fail()
-      },
-
-      '#viewrule click': function(element, event) {
-        event && event.preventDefault();
-        $(".m-dialog").show();
-      },
-
-      '.close click': function(element, event) {
-        event && event.preventDefault();
-        $(".m-dialog").hide();
-      },
-
-      '.m-dialog click': function(element, event) {
-        event && event.preventDefault();
-        $(".m-dialog").hide();
       },
 
       '#modifyaccount click': function(element, event) {
