@@ -10,7 +10,7 @@ requirejs.config({
     'JSON': 'bower_components/JSON-js/json2',
 
     'text': 'bower_components/text/text',
-    'jquery.stackslider':'html/lib/StackSlider/js/jquery.stackslider.js',
+
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
     'sf.b2c.mall.framework.adapter': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.adapter',
     'sf.b2c.mall.framework.comm': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.comm',
@@ -165,6 +165,7 @@ requirejs.config({
     'fullPage':'scripts/vendor/jquery.fullPage.min',
     'canvasjs':'scripts/vendor/canvasjs.min',
     "chart": "scripts/vendor/Chart",
+      'jquery.stackslider':'scripts/vendor/jquery.stackslider',
 
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
@@ -277,6 +278,9 @@ requirejs.config({
 
     //app下载页
     'sf.b2c.mall.page.app': 'scripts/page/sf.b2c.mall.page.app',
+
+   //小鲜肉页面
+    'sf.b2c.mall.page.young': 'scripts/page/sf.b2c.mall.page.young',
 
     //购物车
     'sf.b2c.mall.page.shoppingcart': 'scripts/page/sf.b2c.mall.page.shoppingcart',
