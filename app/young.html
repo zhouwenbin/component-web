@@ -26,8 +26,8 @@
 <div class="young-slider">
     <div class="pm">
         <ul id="st-stack" class="st-stack-raw">
-            <li><div class="st-item"><a href="http://drbl.in/fgQV"><img src="lib/StackSlider/images/1.jpg"/></a></li>
-            <li><div class="st-item"><a href="http://drbl.in/fpRz"><img src="lib/StackSlider/images/2.jpg"/></a></li>
+            <li><div class="st-item"><a href="http://drbl.in/fgQV"><img src="http://img0.sfht.com/img/421f05116dbe79f78e244bae4414fa6f.jpg"/></a></li>
+            <li><div class="st-item"><a href="http://drbl.in/fpRz"><img src="http://img0.sfht.com/img/421f05116dbe79f78e244bae4414fa6f.jpg"/></a></li>
             <li><div class="st-item"><a href="http://drbl.in/fGVs"><img src="lib/StackSlider/images/3.jpg"/></a></li>
             <li><div class="st-item"><a href="http://drbl.in/fgvZ"><img src="lib/StackSlider/images/4.jpg"/></a></li>
             <li><div class="st-item"><a href="http://drbl.in/fyfM"><img src="lib/StackSlider/images/5.jpg"/></a></li>
@@ -301,28 +301,5 @@
     require(['sf.b2c.mall.page.young']);
 </script>
 <!-- endbuild -->
-<script type="text/javascript">
-    var index = 1;
-   var  defaultNum = 14;
-    $(function(){
-        if(  $(".st-wrapper nav span").length > 0){
-            //后退
-            $(".st-wrapper nav span")[0].click(function(){
-                index = index > 1? index-1:index;
-                //获取票数
-                that.getTicketCount(index);
-            });
-
-            //前进
-            $(".st-wrapper nav span")[0].click(function(){
-                index = index > defaultNum? index:index+1;
-                //获取票数
-                that.getTicketCount(index);
-            });
-        }
-
-    });
-
-</script>
 </body>
 </html>

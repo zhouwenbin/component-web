@@ -25,23 +25,26 @@ define(
       init: function() {
           var that = this;
           $( '#st-stack' ).stackslider();
-         $(function(){
 
-             if($(".st-wrapper nav span") && $(".st-wrapper nav span").length > 0){
-                 //后退
-                 $(".st-wrapper nav span")[0].click(function(){
-                     index = index > 1? index-1:index;
-                     //获取票数
-                     that.getTicketCount(index);
-                 });
+           setTimeout(function(){
+               if($(".st-wrapper nav span") && $(".st-wrapper nav span").length > 0){debugger;
+                   //后退
+                   $(".st-wrapper nav span")[0].click(function(){
+                       index = index > 1? index-1:index;
+                       //获取票数
+                       that.getTicketCount(index);
+                   });
 
-                 //前进
-                 $(".st-wrapper nav span")[0].click(function(){
-                     index = index > defaultNum? index:index+1;
-                     //获取票数
-                     that.getTicketCount(index);
-                 });
-             }
+                   //前进
+                   $(".st-wrapper nav span")[1].click(function(){
+                       index = index > defaultNum? index:index+1;
+                       //获取票数
+                       that.getTicketCount(index);
+                   });
+               }
+           }, 1000);
+
+
 
              $('.young-tab-h li').click(function() {
                  var index = $('.young-tab-h li').index(this);
@@ -56,11 +59,6 @@ define(
 
              //投票代码
              $(".pm  a.btn").click(function(){
-//                 var clickTimes = $.cookie('clickTimes');
-//                 if(clickTimes && clickTimes.split("-")[1] > 0){
-//                     $.cookie('clickTimes',  clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) -1));
-//                     $("#clickTimes").text( parseInt(clickTimes.split("-")[1]) -1 );
-//                 }
 
                  var voteTicket = new Vote(params);
                  voteTicket.sendRequest()
@@ -77,7 +75,6 @@ define(
                      .fail(function(error) {
                          console.error(error);
                      })
-             });
 
              //初始化每日可以扒衣的次数
              var obj = $.cookie('clickTimes');
