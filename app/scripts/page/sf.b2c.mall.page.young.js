@@ -9,14 +9,19 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.util',
     'jquery.stackslider',
+    'sf.b2c.mall.api.coupon.receiveCoupon',
+     'sf.b2c.mall.api.coupon.hasReceivedCp',
+     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFBusiness) {
+  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFReceiveCoupon,SFHasReceivedCp, SFMessage,SFBusiness) {
     SFFrameworkComm.register(1);
     SFFn.monitor();
-    var ticketList = null;
+    var ticketList = [];
     var index = 1;
     var defaultNum = 14;
+    var flag = true;   //判断用户是否领过优惠券
+     var times = 10;
     var young = can.Control.extend({
       /**
        * [init 初始化]
@@ -42,14 +47,15 @@ define(
           $('.young-tab-b>li').eq(index).addClass('active').siblings().removeClass('active');
         });
 
+        this.initCookie();
+
+          //投票代码
         var params = {
           'voteType': 'XXMAN',
           'voteNo': index
         };
 
-        //投票代码
         $(".pm  a.btn").click(function() {
-
           var voteTicket = new Vote(params);
           voteTicket.sendRequest()
             .done(function(data) {
@@ -58,30 +64,76 @@ define(
               that.getTicketCount(index);
               var clickTimes = $.cookie('clickTimes');
               if (clickTimes && clickTimes.split("-")[1] > 0) {
-                $.cookie('clickTimes', clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) - 1));;
-                $("#clickTimes").text(parseInt(clickTimes.split("-")[1]) - 1);
+                $.cookie('clickTimes', clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) - 1));
+                  times = parseInt(clickTimes.split("-")[1]) - 1;
+                $("#clickTimes").text(times);
               }
             })
             .fail(function(error) {
               console.error(error);
             })
-
-          //初始化每日可以扒衣的次数
-          var obj = $.cookie('clickTimes');
-          var currentDate = new Date();
-          if (typeof obj == "undefined" || obj == null) {
-            var obj = currentDate.getDate() + "-" + 10;
-            $.cookie('clickTimes', obj);
-          } else {
-            if (parseInt(obj.split("-")[0]) != currentDate.getDate()) {
-              $.cookie('clickTimes', currentDate.getDate() + "-" + 10);
-            } else {
-              $("#clickTimes").text(parseInt(obj.split("-")[1]));
+            $('#coupon').unbind("click");
+            if(!flag){
+                if(times < 10){
+                    $("#coupon").text("点我领券");
+                }
+                else{
+                    $("#coupon").text("扒下欧巴就能领券啦");
+                }
+                $("#coupon").click(function(element,event){
+                    event && event.preventDefault();
+                    that.getCoupon();
+                });
             }
-          }
+            else{
+                $("#coupon").text("今日已领，明天还有哦");
+            }
         });
 
+          return false;
       },
+
+        //查看是否已经领过优惠券
+        hasRecieveCoupon:function(){
+            var hasReceivedCp = new SFHasReceivedCp({
+                "bagType": "CARD",
+                "bagId": '337'
+            });
+
+            hasReceivedCp
+                .sendRequest()
+                .done(function(data) {
+                    flag = data.value;
+                })
+                .fail(function(error) {
+                    console.error(error);
+                })
+        },
+        //初始化每日可以扒衣的次数
+       initCookie:function(){
+           var that = this;
+           var obj = $.cookie('clickTimes');
+           var currentDate = new Date();
+           if (typeof obj == "undefined" || obj == null) {
+               var obj = currentDate.getDate() + "-" + 10;
+               times = 10;
+               $.cookie('clickTimes', obj);
+           } else {
+               if (parseInt(obj.split("-")[0]) != currentDate.getDate()) {
+                   $.cookie('clickTimes', currentDate.getDate() + "-" + 10);
+               } else {
+                   times = parseInt(obj.split("-")[1]);
+                   $("#clickTimes").text(times);
+                   if(times < 10){
+                       $("#coupon").click(function(element,event){
+                           event && event.preventDefault();
+                           that.getCoupon();
+                       });
+                   }
+               }
+           }
+           return false;
+       },
 
       //根据序号获取小鲜肉的投票数
       getTicketCount: function(index) {
@@ -91,6 +143,57 @@ define(
           }
         }
       },
+
+
+      //领取优惠券
+    getCoupon:function(){
+        if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+            new SFMessage(null, {
+                'tip': '抱歉！需要登录后才可以领取优惠券！',
+                'type': 'success',
+                'okFunction': function(){
+                    window.component.showLogin();
+                }
+            });
+            return false;
+        }
+
+        var params = {
+            bagId: "CARD",
+            type: "337"
+        }
+        that.receiveCpCodeData(params);
+
+    },
+
+        errorMap: {
+            "11000020": "卡券不存在",
+            "11000030": "卡券已作废",
+            "11000050": "卡券已领完",
+            "11000100": "您已领过该券",
+            "11000130": "卡包不存在",
+            "11000140": "卡包已作废"
+        },
+
+        receiveCpCodeData: function(params) {
+            params.receiveChannel = 'B2C';
+            params.receiveWay = 'ZTLQ';
+            var that = this;
+            var receiveCouponData = new SFReceiveCoupon(params);
+            return can.when(receiveCouponData.sendRequest())
+                .done(function(userCouponInfo) {
+                    new SFMessage(null, {
+                        'tip': '领取成功！',
+                        'type': 'success'
+                    });
+                })
+                .fail(function(error) {
+                    new SFMessage(null, {
+                        'tip': that.errorMap[error] || '领取失败',
+                        'type': 'error'
+                    });
+                });
+        },
 
       //查询票数
       getTicketList: function() {
