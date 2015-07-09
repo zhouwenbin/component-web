@@ -15,6 +15,7 @@ define(
 
     SFFrameworkComm.register(1);
 
+    // 选中的天和时间
     var activeDay = "";
     var activeTime = "";
 
@@ -27,8 +28,10 @@ define(
         var formatTime = moment(currentTime).format(format);
         var day = formatTime.substring(0, 8) + '000000';
 
+        // 根据当前时间匹配活动的天和时间
         this.activeDay(day);
 
+        // 绑定事件
         this.bindEvent();
       },
 
@@ -41,6 +44,11 @@ define(
       bindDayClick: function() {
         var that = this;
         $(".cms-src-dayline").click(function(targetElement) {
+
+          while(targetElement.target.tagName != "LI"){
+            targetElement.target = targetElement.target.parentElement;
+          }
+
           // 1激活选中天
           //  1、隐藏其他天
           $('.cms-src-dayline').removeClass("active");
@@ -50,7 +58,7 @@ define(
           // 2显示产品
           //  1、隐藏其他天的产品
           // $(".daylinetarget*").hide();
-          $("div[class*='daylinetarget']").hide();
+          $("[class*='daylinetarget']").hide();
 
           //  2、显示该天的产品
           activeDay = $(targetElement.target).attr('data-daylinestart');
@@ -108,11 +116,17 @@ define(
             hasActived = true;
             activeDay = $(item).attr('data-daylinestart');
 
+            $(".daylinetarget" + activeDay).show();
             that.activeTime($(".daylinetarget" + activeDay))
           }
         })
       },
 
+      /**
+       * [activeDay 当前时间要处于选中状态]
+       * @param  {[type]} dayProducts [description]
+       * @return {[type]}     [description]
+       */
       activeTime: function(dayProducts) {
         var that = this;
         var hours = dayProducts.find(".cms-src-hourline");
@@ -129,6 +143,7 @@ define(
       },
 
       setTimecount: function(hourLineTarget) {
+        // 当前不支持倒计时，先屏蔽
         return false;
 
         var that = this;
@@ -191,10 +206,9 @@ define(
       },
 
       /**
-       * [fillPrice 填充价格]
+       * [fillPrice 增加蒙层]
        * @param  {[type]} element [description]
        * @param  {[type]} value   [description]
-       * @return {[type]}         [description]
        */
       fillPrice: function(element, value) {
         var beginTime = element.attr('data-spiketime');
