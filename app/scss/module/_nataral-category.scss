@@ -58,12 +58,16 @@
 	float: left;
 	margin-right: 5px;
 	margin-bottom: 5px;
-	width: 180px;
-	height: 106px;
+	
 	background: #fff;
 	text-align: center;
 }
-.nataral-category-bc2 li:before{
+.nataral-category-bc2 li a{
+	display: block;
+	width: 180px;
+	height: 106px;
+}
+.nataral-category-bc2 li a:before{
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
