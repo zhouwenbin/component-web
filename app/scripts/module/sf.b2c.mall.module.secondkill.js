@@ -65,9 +65,14 @@ define(
           var dayProducts = $(".daylinetarget" + activeDay);
           dayProducts.show();
 
+          // 获得当前时间
+          var currentTime = new Date();
+          var format = 'YYYYMMDDHHmmss';
+          var formatTime = moment(currentTime).format(format);
+
           var hours = dayProducts.find(".cms-src-hourline");
           _.each(hours, function(item) {
-            if ($(item).attr('data-hourlinestart') <= activeDay && activeDay < $(item).attr('data-hourlineend')) {
+            if ($(item).attr('data-hourlinestart') <= formatTime && formatTime < $(item).attr('data-hourlineend')) {
               $(item).addClass('active');
               activeTime = $(item).attr('data-hourlinestart');
               $('.hourlinetarget' + activeDay + activeTime).show();
@@ -130,8 +135,14 @@ define(
       activeTime: function(dayProducts) {
         var that = this;
         var hours = dayProducts.find(".cms-src-hourline");
+
+        // 获得当前时间
+        var currentTime = new Date();
+        var format = 'YYYYMMDDHHmmss';
+        var formatTime = moment(currentTime).format(format);
+
         _.each(hours, function(item) {
-          if ($(item).attr('data-hourlinestart') <= activeDay && activeDay < $(item).attr('data-hourlineend')) {
+          if ($(item).attr('data-hourlinestart') <= formatTime && formatTime < $(item).attr('data-hourlineend')) {
             $(item).addClass('active');
             activeTime = $(item).attr('data-hourlinestart');
             $('.hourlinetarget' + activeDay + activeTime).show();
