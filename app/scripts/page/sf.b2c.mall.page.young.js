@@ -23,69 +23,86 @@ define(
        * [init 初始化]
        */
       init: function() {
+          var that = this;
           $( '#st-stack' ).stackslider();
-           var that = this;
+         $(function(){
 
-          $('.young-tab-h li').click(function() {
-              var index = $('.young-tab-h li').index(this);
-              $(this).addClass('active').siblings().removeClass('active');
-              $('.young-tab-b>li').eq(index).addClass('active').siblings().removeClass('active');
-          });
-          //后退
-            $(".st-wrapper nav")[0].click(function(){
-                index = index > 1? index-1:index;
-                //获取票数
-                that.getTicketCount(index);
-            });
+             if($(".st-wrapper nav span") && $(".st-wrapper nav span").length > 0){
+                 //后退
+                 $(".st-wrapper nav span")[0].click(function(){
+                     index = index > 1? index-1:index;
+                     //获取票数
+                     that.getTicketCount(index);
+                 });
 
-          //前进
-          $(".st-wrapper nav")[0].click(function(){
-              index = index > defaultNum? index:index+1;
-              //获取票数
-              that.getTicketCount(index);
-          });
+                 //前进
+                 $(".st-wrapper nav span")[0].click(function(){
+                     index = index > defaultNum? index:index+1;
+                     //获取票数
+                     that.getTicketCount(index);
+                 });
+             }
 
-            $(".pm  a.btn").click(function(){
-                //投票代码
-                var voteTicket = new Vote(params);
-                voteTicket.sendRequest()
-                    .done(function(data) {
-                        ticketList = data.infos;
-                        $(".young-time-inner").text(data.voteTotalNum);
-                        that.getTicketCount(index);
-                        var clickTimes = $.fn.cookie('clickTimes');
-                        if(clickTimes && clickTimes.split("-")[1] > 0){
-                            $.fn.cookie('clickTimes',  clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) -1));;
-                            $("#clickTimes").text( parseInt(clickTimes.split("-")[1]) -1 );
-                        }
-                    })
-                    .fail(function(error) {
-                        console.error(error);
-                    })
-            });
+             $('.young-tab-h li').click(function() {
+                 var index = $('.young-tab-h li').index(this);
+                 $(this).addClass('active').siblings().removeClass('active');
+                 $('.young-tab-b>li').eq(index).addClass('active').siblings().removeClass('active');
+             });
 
-          //初始化每日可以扒衣的次数
-          var obj = $.fn.cookie('clickTimes');
-          var currentDate = new Date();
-          if(typeof obj == "undefined" || obj == null){
-              var obj =  currentDate.getDate() + "-" + 10;
-              $.fn.cookie('clickTimes', obj);
-          }
-          else{
-              if(parseInt(obj.split("-")[0]) != currentDate.getDate()){
-                  $.fn.cookie('clickTimes',  currentDate.getDate() + "-" + 10);
-              }
-              else{
-                  $("#clickTimes").text( parseInt(obj.split("-")[1]));
-              }
-          }
+             var params = {
+                 'voteType': 'XXMAN',
+                 'voteNo':index
+             };
+
+             //投票代码
+             $(".pm  a.btn").click(function(){
+//                 var clickTimes = $.cookie('clickTimes');
+//                 if(clickTimes && clickTimes.split("-")[1] > 0){
+//                     $.cookie('clickTimes',  clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) -1));
+//                     $("#clickTimes").text( parseInt(clickTimes.split("-")[1]) -1 );
+//                 }
+
+                 var voteTicket = new Vote(params);
+                 voteTicket.sendRequest()
+                     .done(function(data) {
+                         ticketList = data.infos;
+                         $(".young-time-inner").text(data.voteTotalNum);
+                         that.getTicketCount(index);
+                         var clickTimes = $.cookie('clickTimes');
+                         if(clickTimes && clickTimes.split("-")[1] > 0){
+                             $.cookie('clickTimes',  clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) -1));;
+                             $("#clickTimes").text( parseInt(clickTimes.split("-")[1]) -1 );
+                         }
+                     })
+                     .fail(function(error) {
+                         console.error(error);
+                     })
+             });
+
+             //初始化每日可以扒衣的次数
+             var obj = $.cookie('clickTimes');
+             var currentDate = new Date();
+             if(typeof obj == "undefined" || obj == null){
+                 var obj =  currentDate.getDate() + "-" + 10;
+                 $.cookie('clickTimes', obj);
+             }
+             else{
+                 if(parseInt(obj.split("-")[0]) != currentDate.getDate()){
+                     $.cookie('clickTimes',  currentDate.getDate() + "-" + 10);
+                 }
+                 else{
+                     $("#clickTimes").text( parseInt(obj.split("-")[1]));
+                 }
+             }
+         });
+
       },
 
         //根据序号获取小鲜肉的投票数
         getTicketCount:function(index){
-            for(var ticket in ticketList){
-                if(ticket.voteNo == index){
-                    $(".young-slider-r2 span").text(ticket.voteNum);
+            for(var i = 0; i < ticketList.length; i++ ){
+                if(parseInt(ticketList[i].voteNo) == index){
+                    $(".young-slider-r2 span").text(ticketList[i].voteNum);
                 }
             }
         },
@@ -106,4 +123,5 @@ define(
         }
     });
     new young('body');
+     console.log("23");
   })
