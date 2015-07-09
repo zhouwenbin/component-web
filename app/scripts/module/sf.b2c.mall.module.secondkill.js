@@ -79,6 +79,8 @@ define(
 
               that.setTimecount($('.hourlinetarget' + activeDay + activeTime));
               that.setPrice($('.hourlinetarget' + activeDay + activeTime));
+            } else {
+              $(item).removeClass('active');
             }
           })
 
@@ -149,6 +151,8 @@ define(
 
             that.setTimecount($('.hourlinetarget' + activeDay + activeTime));
             that.setPrice($('.hourlinetarget' + activeDay + activeTime));
+          } else {
+            $(item).removeClass('active');
           }
         })
       },
