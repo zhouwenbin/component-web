@@ -10,7 +10,7 @@ requirejs.config({
     'JSON': 'bower_components/JSON-js/json2',
 
     'text': 'bower_components/text/text',
-
+    'jquery.stackslider':'html/lib/StackSlider/js/jquery.stackslider.js',
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
     'sf.b2c.mall.framework.adapter': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.adapter',
     'sf.b2c.mall.framework.comm': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.comm',
@@ -93,6 +93,8 @@ requirejs.config({
     'sf.b2c.mall.api.user.rqCash': 'scripts/api/sf.b2c.mall.api.user.rqCash',
     'sf.b2c.mall.api.user.getCashActInfo': 'scripts/api/sf.b2c.mall.api.user.getCashActInfo',
     'sf.b2c.mall.api.user.bindAliAct': 'scripts/api/sf.b2c.mall.api.user.bindAliAct',
+     'sf.b2c.mall.api.user.getVoteNum': 'scripts/api/sf.b2c.mall.api.user.getVoteNum',
+     'sf.b2c.mall.api.user.vote': 'scripts/api/sf.b2c.mall.api.user.vote',
 
     'sf.b2c.mall.api.order.deleteOrder':'scripts/api/sf.b2c.mall.api.order.deleteOrder',
     //账号绑定
