@@ -74,7 +74,7 @@ function(can, $, SFConfig, SFFrameworkComm) {
     var timeCountModules = $("[data-cms-module='timeclient']");
     var clickEvent;
     _.each(timeCountModules,function(timeCountModule){
-        $(timeCountModule) .click(function(){
+        $(timeCountModule).click(function(){
             clickEvent = setInterval(function(){
                 new  deadTime($("[data-cms-module='timeclient'][class='active']"));
             }, 1000);
