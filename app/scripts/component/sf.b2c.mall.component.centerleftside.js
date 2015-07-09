@@ -36,7 +36,7 @@ define(
           "name": "积分管理"
         }, {
           "url": "/invitation.html",
-          "name": "好友邀请"
+          "name": "邀请有礼"
         });
 
         var that = this;
