@@ -5,6 +5,10 @@
 @import 'base/base';
 @import 'base/help';
 
+@import 'components/btn';
+
+@import 'module/slider';
+
 .pm{
 	width: 1180px;
 	margin: 0 auto;
@@ -40,11 +44,11 @@
 }
 .young-slider{
 	height: 1152px;
-	padding-top: 200px;
+	padding-top: 100px;
 	text-align: center;
 	background: url(#{$bg-url}young/young-slider-bg.jpg) no-repeat center top;
 }
-.young-slider .btn{
+.young-slider .btn1{
 	width: 568px;
 	height: 101px;
 	line-height: 101px;
@@ -59,27 +63,7 @@
 .young-slider .btn span{
 	margin-left: 44px;
 }
-.young-slider-r1{
-	margin-top: 36px;
-	margin-bottom: 10px;
-}
-.young-slider-r1 li{
-	display: inline-block;
-	width: 135px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	background: #909090;
-	margin: 0 1px;
-	font-size: 16px;
-}
-.young-slider-r1 li.active{
-	background: #d0155c
-}
-.young-slider-r1 li a{
-	display: block;
-	color: #fff;
-}
+
 .young-slider-r2{
 	font-size: 21px;
 	color: #515151;
@@ -283,11 +267,13 @@
     right: -16px;
     top: 50%;
     margin-top: -8px;
-    border-width: 8px
+    border-width: 8px;
+    border-style: solid;
+    border-width: 10px;
 }
 
 .spike-tab-h li.active .icon {
-    border-color: transparent transparent transparent #800a2d
+    border-color: transparent transparent transparent #800a2d;
 }
 
 .spike-tab-h a {
@@ -315,6 +301,9 @@
     width: 275px;
     margin-bottom: 20px;
     position: relative;
+}
+.spike-tab-b li img{
+	width: 100%;
 }
 
 .spike-tab h3{
@@ -391,4 +380,59 @@
 .spike-r2 {
     background: #f3f3f3;
     padding: 10px 12px
+}
+.slider{
+	height: 700px;
+	border: none;
+	margin-bottom: 0;
+}
+.slider-img{
+	height: 700px;
+}
+.slider-img img{
+	width: 50%;
+}
+
+.tab{
+	display: inline-block;
+	margin-left: -45px;
+	margin-bottom: 20px;
+}
+.tab>li{
+	float: left;
+	background: url(#{$bg-url}young/tab-li.png) no-repeat;
+	width: 182px;
+	height:60px;
+	line-height: 60px;
+	font-size: 20px;
+	margin-right: -45px;
+	position: relative;
+	text-align: center;
+}
+@for $i from 1 through 4{
+	.tab>li:nth-child(#{$i}){
+		z-index: 5-$i;
+	}
+}
+.tab>li.active{
+	background: url(#{$bg-url}young/tab-li-active.png) no-repeat;
+	z-index: 4;
+}
+.tab img{
+	width: auto;
+}
+.tab .lock{
+	margin-right: 9px;
+}
+.unlock{
+	background: url(#{$bg-url}young/unlock.png) no-repeat;
+	width: 30px;
+	height: 27px;
+	display: inline-block;
+}
+.lock{
+	background: url(#{$bg-url}young/lock.png) no-repeat;
+	width: 22px;
+	height: 27px;
+	display: inline-block;
 }
