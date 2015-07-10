@@ -1,5 +1,5 @@
 $(function(){
-  $( '#st-stack' ).stackslider();
+  
 
 
 	$('.young-tab-h li').click(function(){
