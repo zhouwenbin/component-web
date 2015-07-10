@@ -9,10 +9,11 @@ define(
     'sf.b2c.mall.framework.comm',
     'sf.util',
     'jquery.stackslider',
+    'sf.b2c.mall.widget.message',
     'sf.b2c.mall.module.getcoupon',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFGetcoupon, SFBusiness) {
+  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFMessage, SFGetcoupon, SFBusiness) {
 
     SFFrameworkComm.register(1);
 
@@ -23,6 +24,7 @@ define(
     var defaultNum = 14;
 
     var defaultCouponid = "100";
+    var MESSAGE_CLOSE_TIME = 3000;
 
     var young = can.Control.extend({
       /**
@@ -123,11 +125,29 @@ define(
                 $.cookie('clickTimes', clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) - 1));
                 $("#clickTimes").text(parseInt(clickTimes.split("-")[1]) - 1);
               }
+
+              var message = new SFMessage(null, {
+                'tip': that.getRandomAlertInfo(),
+                'type': 'success',
+                'closeTime': MESSAGE_CLOSE_TIME
+              });
+
             })
             .fail(function(error) {
               console.error(error);
             })
         });
+      },
+
+      // 获得随机信息
+      getRandomAlertInfo: function() {
+        var map = {
+          "0": "哎呀，欧巴还差一点就脱了，继续扒！",
+          "1": "欧巴就要脱了！叫上闺蜜一起来！人多扒的快",
+          "2": "欧巴的衣服很脆弱，继续扒！根本停不下来！"
+        };
+        var random = Math.random().toString(3).substr(2, 1);
+        return map[random];
       },
 
       getAllTickets: function() {
@@ -141,17 +161,17 @@ define(
             ticketList = data.infos;
 
             data.voteTotalNum = data.voteTotalNum.toString();
-            if(data.voteTotalNum.length  == 1) {
+            if (data.voteTotalNum.length == 1) {
               data.voteTotalNum = "000000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length  == 2){
+            } else if (data.voteTotalNum.length == 2) {
               data.voteTotalNum = "00000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length  == 3){
+            } else if (data.voteTotalNum.length == 3) {
               data.voteTotalNum = "0000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length  == 4){
+            } else if (data.voteTotalNum.length == 4) {
               data.voteTotalNum = "000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length  == 5){
+            } else if (data.voteTotalNum.length == 5) {
               data.voteTotalNum = "00" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length  == 6){
+            } else if (data.voteTotalNum.length == 6) {
               data.voteTotalNum = "0" + data.voteTotalNum;
             }
             $(".young-time-inner").text(data.voteTotalNum);
