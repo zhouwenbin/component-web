@@ -392,6 +392,18 @@
 .slider-img img{
 	width: 50%;
 }
+.slider .btn-prev,
+.slider .btn-next{
+	opacity: 1;
+	display: block;
+	top: 300px;
+}
+.slider .btn-prev{
+	left: 30px;
+}
+.slider .btn-next{
+	right: 30px;
+}
 
 .tab{
 	display: inline-block;
