@@ -11,9 +11,10 @@ define(
     'jquery.stackslider',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.module.getcoupon',
+    'sf.b2c.mall.module.slider',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFMessage, SFGetcoupon, SFBusiness) {
+  function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFMessage, SFGetcoupon, Slider, SFBusiness) {
 
     SFFrameworkComm.register(1);
 
