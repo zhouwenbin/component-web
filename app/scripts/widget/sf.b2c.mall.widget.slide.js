@@ -99,7 +99,10 @@ define(
       },
 
       render: function() {
-        this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+        }
+
         this.element.hover(_.bind(this.hoverOver, this), _.bind(this.hoverOut, this));
         this.element.find('.slider-img li').eq(0).addClass('active');
         this.element.find('.slider-num li').eq(0).addClass('active');

@@ -33,27 +33,11 @@ define(
        */
       init: function() {
 
-        this.drawOubaVote();
-
         this.getAllTickets();
 
         this.initCouponStatus();
 
         this.bindEvent();
-      },
-
-      drawOubaVote: function() {
-        var that = this;
-        $('#st-stack').stackslider({
-          "firstCallback": function() {
-            index = index > 1 ? index - 1 : index;
-            that.initOnePersonInfo();
-          },
-          "lastCallback": function() {
-            index = index > defaultNum ? index : index + 1;
-            that.initOnePersonInfo();
-          }
-        });
       },
 
       initCouponStatus: function() {
@@ -81,12 +65,27 @@ define(
 
       bindEvent: function() {
         this.bindVoteEvent();
+        this.bindPreNextEvent();
+      },
+
+      bindPreNextEvent: function() {
+        var that = this;
+
+        $(".btn-prev").on("click", function() {
+          index = index > 1 ? index - 1 : index;
+          that.initOnePersonInfo();
+        });
+
+        $(".btn-next").on("click", function() {
+          index = index > defaultNum ? index : index + 1;
+          that.initOnePersonInfo();
+        });
       },
 
       bindVoteEvent: function() {
         var that = this;
 
-        $(".young-coupon .pm  a.btn").click(function() {
+        $("#voteTA").click(function() {
 
           // 如果当天已经投过10次票了，则不要再投票了
           var obj = $.cookie('clickTimes');
@@ -125,6 +124,9 @@ define(
               if (clickTimes && clickTimes.split("-")[1] > 0) {
                 $.cookie('clickTimes', clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) - 1));
                 $("#clickTimes").text(parseInt(clickTimes.split("-")[1]) - 1);
+              } else {
+                $.cookie('clickTimes', new Date().getDate() + "-" + 9);
+                $("#clickTimes").text(9);
               }
 
               var message = new SFMessage(null, {
