@@ -23,6 +23,7 @@ define(
     var ticketList = null;
     var index = 1;
     var defaultNum = 14;
+    var freshNum = 11;
 
     var defaultCouponid = "100";
     var MESSAGE_CLOSE_TIME = 3000;
@@ -32,6 +33,11 @@ define(
        * [init 初始化]
        */
       init: function() {
+
+        //无缝滚动
+        setInterval(function() {
+          $('.young-photo li').eq(0).appendTo('.young-photo ul')
+        }, 1000)
 
         this.getAllTickets();
 
@@ -66,6 +72,32 @@ define(
       bindEvent: function() {
         this.bindVoteEvent();
         this.bindPreNextEvent();
+        this.bindTabEvent();
+      },
+
+      bindTabEvent: function() {
+        var that = this;
+        //tab切换
+        $('.tab li').click(function() {
+          var tab_index = $('.tab li').index(this);
+          var people_index = freshNum - index;
+          var photo_index = tab_index + 1;
+          $('.people>li').eq(freshNum - 1 - index).find('img').attr('src', '../img/young/photo/' + people_index + '/' + photo_index + '.jpg');
+          $(this).addClass('active').siblings().removeClass('active');
+          if ($(this).hasClass('tab-lock')) {
+            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').show();
+            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').find("p").html(that.textMap[tab_index]);
+          } else {
+            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').hide();
+          }
+        })
+      },
+
+      //锁的文案
+      textMap: {
+        "1": "被扒1,000,00次就看到啦！",
+        "2": "被扒1,500,00次就看到啦！",
+        "3": "被扒3,000,00次就看到啦！"
       },
 
       bindPreNextEvent: function() {
