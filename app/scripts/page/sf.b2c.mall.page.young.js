@@ -161,6 +161,8 @@ define(
             .done(function(data) {
               ticketList = data.infos;
 
+              data.voteTotalNum = that.addPrefix4VoteNum(data.voteTotalNum);
+
               // 设定总票数
               $("#totalVoteCount").text(data.voteTotalNum);
 
@@ -213,20 +215,8 @@ define(
           .done(function(data) {
             ticketList = data.infos;
 
-            data.voteTotalNum = data.voteTotalNum.toString();
-            if (data.voteTotalNum.length == 1) {
-              data.voteTotalNum = "000000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length == 2) {
-              data.voteTotalNum = "00000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length == 3) {
-              data.voteTotalNum = "0000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length == 4) {
-              data.voteTotalNum = "000" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length == 5) {
-              data.voteTotalNum = "00" + data.voteTotalNum;
-            } else if (data.voteTotalNum.length == 6) {
-              data.voteTotalNum = "0" + data.voteTotalNum;
-            }
+            data.voteTotalNum = that.addPrefix4VoteNum(data.voteTotalNum);
+
             $(".young-time-inner").text(data.voteTotalNum);
             that.initOnePersonInfo();
           })
@@ -234,6 +224,26 @@ define(
             console.error(error)
           })
 
+      },
+
+
+      addPrefix4VoteNum: function(num){
+        num = num.toString();
+        if (num.length == 1) {
+              num = "000000" + num;
+            } else if (num.length == 2) {
+              num = "00000" + num;
+            } else if (num.length == 3) {
+              num = "0000" + num;
+            } else if (num.length == 4) {
+              num = "000" + num;
+            } else if (num.length == 5) {
+              num = "00" + num;
+            } else if (num.length == 6) {
+              num = "0" + num;
+            }
+
+            return num;
       },
 
       initOnePersonInfo: function() {
