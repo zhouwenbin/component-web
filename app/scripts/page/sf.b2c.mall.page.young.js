@@ -80,15 +80,25 @@ define(
         //tab切换
         $('.tab li').click(function() {
           var tab_index = $('.tab li').index(this);
-          var people_index = freshNum - index;
-          var photo_index = tab_index + 1;
-          $('.people>li').eq(freshNum - 1 - index).find('img').attr('src', '../img/young/photo/' + people_index + '/' + photo_index + '.jpg');
+
+          var liIndex = index - 1;
+          $('#people>li').eq(liIndex).find('img').attr('src', that.photoMap[index][tab_index + 1]);
           $(this).addClass('active').siblings().removeClass('active');
-          if ($(this).hasClass('tab-lock')) {
-            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').show();
-            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').find("p").html(that.textMap[tab_index]);
+
+          if ($(this)[0].id == "step2") {
+            $('#people>li').eq(liIndex).find("p").text("被扒1,000,00次就看到啦！");
+          } else if ($(this)[0].id == "step3") {
+            $('#people>li').eq(liIndex).find("p").text("被扒1,500,00次就看到啦！");
+          }if ($(this)[0].id == "step4") {
+            $('#people>li').eq(liIndex).find("p").text("被扒3,000,00次就看到啦！");
+          }
+
+          if ($(this).find("span").hasClass('lock')) {
+
+            $('#people>li').eq(liIndex).find('.mask').addClass("show");
           } else {
-            $('.people>li').eq(freshNum - 1 - index).find('.people-lock').hide();
+
+          $('#people>li').eq(liIndex).find('.mask').removeClass("show");
           }
         })
       },
@@ -222,6 +232,7 @@ define(
 
         var num = this.getTicketCount(index);
         $(".young-slider-r2 span").text(num);
+        $('#people>li').eq(index).find('.mask').removeClass("show");
         this.setStep(num);
       },
 
@@ -238,70 +249,94 @@ define(
 
       photoMap: {
         "1": {
-          "1": "/img/young/photo/1/1.jpg",
-          "2": "/img/young/photo/1/2.jpg",
-          "3": "/img/young/photo/1/3.jpg",
-          "4": "/img/young/photo/1/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/1/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/1/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/1/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/1/4.jpg"
         },
         "2": {
-          "1": "/img/young/photo/2/1.jpg",
-          "2": "/img/young/photo/2/2.jpg",
-          "3": "/img/young/photo/2/3.jpg",
-          "4": "/img/young/photo/2/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/2/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/2/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/2/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/2/4.jpg"
         },
         "3": {
-          "1": "/img/young/photo/3/1.jpg",
-          "2": "/img/young/photo/3/2.jpg",
-          "3": "/img/young/photo/3/3.jpg",
-          "4": "/img/young/photo/3/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/3/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/3/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/3/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/3/4.jpg"
         },
         "4": {
-          "1": "/img/young/photo/4/1.jpg",
-          "2": "/img/young/photo/4/2.jpg",
-          "3": "/img/young/photo/4/3.jpg",
-          "4": "/img/young/photo/4/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/4/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/4/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/4/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/4/4.jpg"
         },
         "5": {
-          "1": "/img/young/photo/5/1.jpg",
-          "2": "/img/young/photo/5/2.jpg",
-          "3": "/img/young/photo/5/3.jpg",
-          "4": "/img/young/photo5/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo5/4.jpg"
         },
         "6": {
-          "1": "/img/young/photo/6/1.jpg",
-          "2": "/img/young/photo/6/2.jpg",
-          "3": "/img/young/photo/6/3.jpg",
-          "4": "/img/young/photo/6/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/6/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/6/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/6/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/6/4.jpg"
         },
         "7": {
-          "1": "/img/young/photo/7/1.jpg",
-          "2": "/img/young/photo/7/2.jpg",
-          "3": "/img/young/photo/7/3.jpg",
-          "4": "/img/young/photo/7/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/7/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/7/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/7/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/7/4.jpg"
         },
         "8": {
-          "1": "/img/young/photo/8/1.jpg",
-          "2": "/img/young/photo/8/2.jpg",
-          "3": "/img/young/photo/8/3.jpg",
-          "4": "/img/young/photo/8/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/8/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/8/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/8/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/8/4.jpg"
         },
         "9": {
-          "1": "/img/young/photo/9/1.jpg",
-          "2": "/img/young/photo/9/2.jpg",
-          "3": "/img/young/photo/9/3.jpg",
-          "4": "/img/young/photo/9/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/9/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/9/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/9/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/9/4.jpg"
         },
         "10": {
-          "1": "/img/young/photo/10/1.jpg",
-          "2": "/img/young/photo/10/2.jpg",
-          "3": "/img/young/photo/10/3.jpg",
-          "4": "/img/young/photo/10/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/10/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/10/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/10/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/10/4.jpg"
         },
         "11": {
-          "1": "/img/young/photo/11/1.jpg",
-          "2": "/img/young/photo/11/2.jpg",
-          "3": "/img/young/photo/11/3.jpg",
-          "4": "/img/young/photo/11/4.jpg"
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/11/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/11/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/11/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/11/4.jpg"
+        },
+        "12": {
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/12/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/12/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/12/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/12/4.jpg"
+        },
+        "13": {
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/13/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/13/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/13/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/13/4.jpg"
+        },
+        "14": {
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/14/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/14/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/14/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/14/4.jpg"
+        },
+        "15": {
+          "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/15/1.jpg",
+          "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/15/2.jpg",
+          "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/15/3.jpg",
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/15/4.jpg"
         }
       },
 
@@ -333,6 +368,13 @@ define(
           $("#step2").removeClass("active");
           $("#step3").removeClass("active");
           $("#step4").removeClass("active");
+
+          $("#step1").find("span").addClass("unlock");
+          $("#step2").find("span").addClass("lock");
+          $("#step3").find("span").addClass("lock");
+          $("#step4").find("span").addClass("lock");
+
+
           $("#stepline")[0].style.width = "25%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
         } else if (60000 <= num && num < 80000) {
@@ -340,6 +382,12 @@ define(
           $("#step2").addClass("active");
           $("#step3").removeClass("active");
           $("#step4").removeClass("active");
+
+          $("#step1").find("span").addClass("unlock");
+          $("#step2").find("span").addClass("unlock");
+          $("#step3").find("span").addClass("lock");
+          $("#step4").find("span").addClass("lock");
+
           $("#stepline")[0].style.width = "50%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][2]);
         } else if (80000 <= num && num < 200000) {
@@ -347,6 +395,12 @@ define(
           $("#step2").addClass("active");
           $("#step3").addClass("active");
           $("#step4").removeClass("active");
+
+          $("#step1").find("span").addClass("unlock");
+          $("#step2").find("span").addClass("unlock");
+          $("#step3").find("span").addClass("unlock");
+          $("#step4").find("span").addClass("lock");
+
           $("#stepline")[0].style.width = "75%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][3]);
         } else if (200000 <= num) {
@@ -354,6 +408,12 @@ define(
           $("#step2").addClass("active");
           $("#step3").addClass("active");
           $("#step4").addClass("active");
+
+          $("#step1").find("span").addClass("unlock");
+          $("#step2").find("span").addClass("unlock");
+          $("#step3").find("span").addClass("unlock");
+          $("#step4").find("span").addClass("unlock");
+
           $("#stepline")[0].style.width = "100%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][4]);
         }
