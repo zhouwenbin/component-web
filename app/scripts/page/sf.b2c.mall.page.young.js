@@ -181,11 +181,22 @@ define(
                 $("#clickTimes").text(9);
               }
 
-              var message = new SFMessage(null, {
-                'tip': that.getRandomAlertInfo(),
-                'type': 'success',
-                'closeTime': MESSAGE_CLOSE_TIME
+              var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + that.getRandomAlertInfo() + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+
+              $(document.body).append($el);
+              $('.closeDialog').click(function(event) {
+                $el.remove();
               });
+              setTimeout(function() {
+                $el.remove();
+              }, 3000);
+
+
+              // var message = new SFMessage(null, {
+              //   'tip': that.getRandomAlertInfo(),
+              //   'type': 'success',
+              //   'closeTime': MESSAGE_CLOSE_TIME
+              // });
 
             })
             .fail(function(error) {
