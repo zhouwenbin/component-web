@@ -86,7 +86,7 @@ define(
       bindVoteEvent: function() {
         var that = this;
 
-        $(".pm  a.btn").click(function() {
+        $(".young-coupon .pm  a.btn").click(function() {
 
           // 如果当天已经投过10次票了，则不要再投票了
           var obj = $.cookie('clickTimes');
