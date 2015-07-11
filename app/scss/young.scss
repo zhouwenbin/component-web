@@ -9,6 +9,7 @@
 
 @import 'module/slider';
 
+$photo-num:5;
 .pm{
 	width: 1180px;
 	margin: 0 auto;
@@ -60,7 +61,7 @@
 	padding-left: 200px;
 	text-align: left;
 }
-.young-slider .btn span{
+.young-slider .btn1 span{
 	margin-left: 44px;
 }
 
@@ -111,17 +112,18 @@
 	position: relative;
 	overflow: hidden;
 }
+
 .young-photo ul{
 	position: absolute;
 	left: 0;
 	top: 18px;
 	white-space: nowrap;
-	width: 598px * 5;
+	width: 598px * $photo-num;
 	animation:young-photo 50s linear infinite;
 }
 @keyframes young-photo{
 	100%{
-		transform:translate(-100%,0);
+		transform:translate(-90%,0);
 	}
 }
 .young-photo li{
@@ -188,7 +190,7 @@
 	text-align: center;
 }
 .young-tab-b{
-	
+
 }
 .young-tab-b>li{
 	display: none;
@@ -200,7 +202,7 @@
 	background: #fff;
 	display: block;
 	width: 100%;
-	
+
 }
 .young-tab-b>li.active{
 	display: block;
@@ -208,7 +210,7 @@
 .young-bar{
 	background: url(#{$bg-url}young/young-bar.png) no-repeat;
 	width: 556px;
-	
+
 	margin: 0 auto 18px;
 }
 .young-bar-active{
@@ -269,7 +271,7 @@
     margin-top: -8px;
     border-width: 8px;
     border-style: solid;
-    border-width: 10px;
+    border-color: transparent transparent transparent #f63c3f
 }
 
 .spike-tab-h li.active .icon {
@@ -391,6 +393,18 @@
 }
 .slider-img img{
 	width: 50%;
+}
+.slider .btn-prev,
+.slider .btn-next{
+	opacity: 1;
+	display: block;
+	top: 300px;
+}
+.slider .btn-prev{
+	left: 30px;
+}
+.slider .btn-next{
+	right: 30px;
 }
 
 .tab{
