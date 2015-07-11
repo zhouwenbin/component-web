@@ -11,7 +11,7 @@ define(
     'jquery.stackslider',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.module.getcoupon',
-    'sf.b2c.mall.module.slider',
+    'sf.b2c.mall.widget.slide',
     'sf.b2c.mall.business.config'
   ],
   function(can, $, cookie, VoteNum, Vote, SFFrameworkComm, SFFn, stackslider, SFMessage, SFGetcoupon, Slider, SFBusiness) {
@@ -33,11 +33,18 @@ define(
        * [init 初始化]
        */
       init: function() {
-
+        var that = this;
         //无缝滚动
-        setInterval(function() {
-          $('.young-photo li').eq(0).appendTo('.young-photo ul')
-        }, 1000)
+        new Slider($(".cms-module-slider"), {
+          "preCallback": function() {
+            index = index > 1 ? index - 1 : index;
+            that.initOnePersonInfo();
+          },
+          "nextCallback": function() {
+            index = index > defaultNum ? index : index + 1;
+            that.initOnePersonInfo();
+          }
+        })
 
         this.getAllTickets();
 
@@ -89,7 +96,8 @@ define(
             $('#people>li').eq(liIndex).find("p").text("被扒1,000,00次就看到啦！");
           } else if ($(this)[0].id == "step3") {
             $('#people>li').eq(liIndex).find("p").text("被扒1,500,00次就看到啦！");
-          }if ($(this)[0].id == "step4") {
+          }
+          if ($(this)[0].id == "step4") {
             $('#people>li').eq(liIndex).find("p").text("被扒3,000,00次就看到啦！");
           }
 
@@ -98,7 +106,7 @@ define(
             $('#people>li').eq(liIndex).find('.mask').addClass("show");
           } else {
 
-          $('#people>li').eq(liIndex).find('.mask').removeClass("show");
+            $('#people>li').eq(liIndex).find('.mask').removeClass("show");
           }
         })
       },
@@ -113,15 +121,15 @@ define(
       bindPreNextEvent: function() {
         var that = this;
 
-        $(".btn-prev").on("click", function() {
-          index = index > 1 ? index - 1 : index;
-          that.initOnePersonInfo();
-        });
+        // $(".btn-prev").on("click", function() {
+        //   index = index > 1 ? index - 1 : index;
+        //   that.initOnePersonInfo();
+        // });
 
-        $(".btn-next").on("click", function() {
-          index = index > defaultNum ? index : index + 1;
-          that.initOnePersonInfo();
-        });
+        // $(".btn-next").on("click", function() {
+        //   index = index > defaultNum ? index : index + 1;
+        //   that.initOnePersonInfo();
+        // });
       },
 
       bindVoteEvent: function() {
@@ -232,7 +240,7 @@ define(
 
         var num = this.getTicketCount(index);
         $(".young-slider-r2 span").text(num);
-        $('#people>li').eq(index).find('.mask').removeClass("show");
+        $('#people>li').eq(index - 1).find('.mask').removeClass("show");
         this.setStep(num);
       },
 
@@ -376,7 +384,8 @@ define(
 
 
           $("#stepline")[0].style.width = "25%";
-          $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
+          // $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
+          $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][1]);
         } else if (60000 <= num && num < 80000) {
           $("#step1").addClass("active");
           $("#step2").addClass("active");

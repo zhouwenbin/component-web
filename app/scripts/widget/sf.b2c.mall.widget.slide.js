@@ -10,6 +10,9 @@ define(
     return can.Control.extend({
 
       init: function(element, options) {
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.autoSlider = false;
+        }
         this.options.sliderIndex = 0;
         this.render(this.options);
         this.initEvents(element);
@@ -19,6 +22,13 @@ define(
        * @description 向前浏览banner
        */
       sliderPreving: function() {
+        if (!this.autoSlider) {
+          if (this.options.sliderIndex == 0 ) {
+            return false;
+          }
+        }
+
+
         this.options.sliderIndex--;
 
         if (this.options.sliderIndex < 0) {
@@ -27,12 +37,22 @@ define(
         }
 
         this.sliderSwitch();
+
+        if (typeof this.options.preCallback) {
+          this.options.preCallback(this);
+        }
       },
 
       /**
        * @description 向后浏览banner
        */
       sliderNexting: function() {
+        if (!this.autoSlider) {
+          if (this.options.sliderIndex == (this.element.find('.slider-img li').length - 1) ) {
+            return false;
+          }
+        }
+
         this.options.sliderIndex++;
 
         var length = this.element.find('.slider-img li').length;
@@ -41,6 +61,10 @@ define(
         }
 
         this.sliderSwitch();
+
+        if (typeof this.options.nextCallback) {
+          this.options.nextCallback(this);
+        }
       },
 
       /**
