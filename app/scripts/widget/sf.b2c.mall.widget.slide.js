@@ -77,7 +77,10 @@ define(
         }, 500, function() {
           that.element.find('.slider .btn-prev').hide()
         });
-        this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+        }
       },
 
       initEvents: function(element) {
