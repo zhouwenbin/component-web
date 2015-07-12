@@ -27,6 +27,10 @@ define('sf.b2c.mall.module.getcoupon', [
         var that = this;
 
         $("[name='cms-fill-coupon']").click(function(targetElement) {
+          if ($(targetElement.target).hasClass("disabled")) {
+            return false;
+          }
+
           if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
             new SFMessage(null, {
               'tip': '抱歉！需要登录后才可以领取优惠券！',
