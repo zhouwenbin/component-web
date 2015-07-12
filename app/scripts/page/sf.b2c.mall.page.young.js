@@ -98,12 +98,12 @@ define(
           $(this).addClass('active').siblings().removeClass('active');
 
           if ($(this)[0].id == "step2") {
-            $('#people>li').eq(liIndex).find("p").text("被扒1,000,00次就看到啦！");
+            $('#people>li').eq(liIndex).find("p").text("被扒100,000次就看到啦！");
           } else if ($(this)[0].id == "step3") {
-            $('#people>li').eq(liIndex).find("p").text("被扒1,500,00次就看到啦！");
+            $('#people>li').eq(liIndex).find("p").text("被扒150,000次就看到啦！");
           }
           if ($(this)[0].id == "step4") {
-            $('#people>li').eq(liIndex).find("p").text("被扒3,000,00次就看到啦！");
+            $('#people>li').eq(liIndex).find("p").text("被扒300,000次就看到啦！");
           }
 
           if ($(this).find("span").hasClass('lock')) {
