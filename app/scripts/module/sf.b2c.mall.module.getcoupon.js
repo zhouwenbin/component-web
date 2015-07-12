@@ -32,13 +32,7 @@ define('sf.b2c.mall.module.getcoupon', [
           }
 
           if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
-            new SFMessage(null, {
-              'tip': '抱歉！需要登录后才可以领取优惠券！',
-              'type': 'success',
-              'okFunction': function(){
-                window.component.showLogin();
-              }
-            });
+            window.component.showLogin();
             return false;
           }
 
