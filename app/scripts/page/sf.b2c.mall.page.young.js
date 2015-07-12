@@ -165,7 +165,7 @@ define(
           var voteTicket = new Vote(params);
           voteTicket.sendRequest()
             .done(function(data) {
-              ticketList = data.infos;
+         //     ticketList = data.infos;
 
               data.voteTotalNum = that.addPrefix4VoteNum(data.voteTotalNum);
 
@@ -173,9 +173,8 @@ define(
               $("#totalVoteCount").text(data.voteTotalNum);
 
               // 获得该小鲜肉的投票数
-              var num = that.getTicketCount(index);
-              $(".young-slider-r2 span").text(num);
-              that.setStep(num);
+              $(".young-slider-r2 span").text(data.infos[0].voteNum);
+              that.setStep(data.infos[0].voteNum);
 
               // 记录本人投票数到cookie中去
               var clickTimes = $.cookie('clickTimes');
