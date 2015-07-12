@@ -200,6 +200,10 @@ define(
                 $el.remove();
               }, 3000);
 
+              if ($("#getCoupon1").hasClass("disabled")) {
+                $("#getCoupon1").removeClass("disabled");
+                $("#getCoupon1").text("点我领券");
+              }
 
               // var message = new SFMessage(null, {
               //   'tip': that.getRandomAlertInfo(),
