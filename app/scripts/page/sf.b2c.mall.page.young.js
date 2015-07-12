@@ -58,13 +58,18 @@ define(
         var currentDate = new Date();
         if (typeof obj == "undefined" || obj == null) {
           $("#getCoupon1").text("扒下欧巴就能领券啦！");
+          $("#getCoupon1").addClass("disabled");
           $("#clickTimes").text(10);
         } else {
           if (parseInt(obj.split("-")[0]) != currentDate.getDate()) {
             $("#getCoupon1").text("扒下欧巴就能领券啦！");
+            $("#getCoupon1").addClass("disabled");
             $("#clickTimes").text(10);
           } else {
             $("#clickTimes").text(parseInt(obj.split("-")[1]));
+            if (parseInt(obj.split("-")[1]) == 0) {
+              $("#voteTA").addClass("disabled");
+            }
           }
         }
 
@@ -147,6 +152,7 @@ define(
 
             } else {
               if (parseInt(obj.split("-")[1]) == 0) {
+                $("#voteTA").addClass("disabled");
                 return false;
               }
             }
@@ -174,6 +180,9 @@ define(
               // 记录本人投票数到cookie中去
               var clickTimes = $.cookie('clickTimes');
               if (clickTimes && clickTimes.split("-")[1] > 0) {
+                if (clickTimes.split("-")[1] == 1) {
+                  $("#voteTA").addClass("disabled");
+                }
                 $.cookie('clickTimes', clickTimes.split("-")[0] + "-" + (parseInt(clickTimes.split("-")[1]) - 1));
                 $("#clickTimes").text(parseInt(clickTimes.split("-")[1]) - 1);
               } else {
@@ -403,8 +412,6 @@ define(
           $("#step3").find("span").addClass("lock");
           $("#step4").find("span").addClass("lock");
 
-
-          $("#stepline")[0].style.width = "25%";
           // $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
           $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][1]);
         } else if (60000 <= num && num < 80000) {
@@ -418,7 +425,6 @@ define(
           $("#step3").find("span").addClass("lock");
           $("#step4").find("span").addClass("lock");
 
-          $("#stepline")[0].style.width = "50%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][2]);
         } else if (80000 <= num && num < 200000) {
           $("#step1").addClass("active");
@@ -431,7 +437,6 @@ define(
           $("#step3").find("span").addClass("unlock");
           $("#step4").find("span").addClass("lock");
 
-          $("#stepline")[0].style.width = "75%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][3]);
         } else if (200000 <= num) {
           $("#step1").addClass("active");
@@ -444,7 +449,6 @@ define(
           $("#step3").find("span").addClass("unlock");
           $("#step4").find("span").addClass("unlock");
 
-          $("#stepline")[0].style.width = "100%";
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][4]);
         }
       }
