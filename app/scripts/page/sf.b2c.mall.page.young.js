@@ -78,7 +78,7 @@ define(
         var coupon2id = this.coupon2Map[day] || defaultCouponid;
 
         $("#getCoupon1").attr("data-cms-couponbagid", coupon1id);
-        $("#getCoupon2").attr("data-cms-couponbagid", coupon2id);
+        // $("#getCoupon2").attr("data-cms-couponbagid", coupon2id);
       },
 
       bindEvent: function() {
