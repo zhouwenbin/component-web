@@ -317,7 +317,7 @@ define(
           "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/1.jpg",
           "2": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/2.jpg",
           "3": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/3.jpg",
-          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo5/4.jpg"
+          "4": "http://img.sfht.com/sfht/1.1.148/img/young/photo/5/4.jpg"
         },
         "6": {
           "1": "http://img.sfht.com/sfht/1.1.148/img/young/photo/6/1.jpg",
@@ -404,7 +404,7 @@ define(
       },
 
       setStep: function(num) {
-        if (num < 60000) {
+        if (num < 100000) {
           $("#step1").addClass("active");
           $("#step2").removeClass("active");
           $("#step3").removeClass("active");
@@ -417,7 +417,7 @@ define(
 
           // $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
           $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][1]);
-        } else if (60000 <= num && num < 80000) {
+        } else if (100000 <= num && num < 150000) {
           $("#step1").addClass("active");
           $("#step2").addClass("active");
           $("#step3").removeClass("active");
@@ -429,7 +429,7 @@ define(
           $("#step4").find("span").addClass("lock");
 
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][2]);
-        } else if (80000 <= num && num < 200000) {
+        } else if (150000 <= num && num < 300000) {
           $("#step1").addClass("active");
           $("#step2").addClass("active");
           $("#step3").addClass("active");
@@ -441,7 +441,7 @@ define(
           $("#step4").find("span").addClass("lock");
 
           $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][3]);
-        } else if (200000 <= num) {
+        } else if (300000 <= num) {
           $("#step1").addClass("active");
           $("#step2").addClass("active");
           $("#step3").addClass("active");
