@@ -165,7 +165,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      // this.renderMap['template_header_61'].call(this, that.data);
+      this.renderMap['template_header_61'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
