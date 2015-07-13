@@ -1457,3 +1457,8 @@ a[title="站长统计"] {
   height: 700px;
   margin-left: -295px;
 }
+
+.slider-img img {
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
