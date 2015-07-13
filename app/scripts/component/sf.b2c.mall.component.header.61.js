@@ -42,10 +42,10 @@ define('sf.b2c.mall.component.header.61', [
 
     showAD: function() {
 
-      if (SFComm.prototype.checkUserLogin.call(this)) {
-        $(".banner-scroll3").hide();
-        return false;
-      }
+      // if (SFComm.prototype.checkUserLogin.call(this)) {
+      //   $(".banner-scroll3").hide();
+      //   return false;
+      // }
 
       if (!this.isInShowPage()) {
         $(".banner-scroll3").hide();
