@@ -242,6 +242,9 @@ define(
         if (spikeprice < value.sellingPrice) {
           element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>秒杀已结束<br>优惠价继续</span>');
           return false;
+        }else{
+          element.find(".cms-fill-spikeinfo").html('');
+          return false;
         }
       },
 
