@@ -410,7 +410,7 @@ define(
         if (num < 100000) {
 
           $("#step1").addClass("active").siblings('li').removeClass('active');
-          // $('.tab li').find('span').addClass("lock");
+          $('.tab li').find('span').removeClass("lock");
           // $('.tab li').eq(0).find('span').addClass("unlock").removeClass('lock');
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("lock");
@@ -427,6 +427,8 @@ define(
           // $("#step3").removeClass("active");
           // $("#step4").removeClass("active");
 
+
+          $('.tab li').find('span').removeClass("lock");
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("lock");
@@ -440,7 +442,7 @@ define(
           // $("#step2").removeClass("active");
           // $("#step3").addClass("active");
           // $("#step4").removeClass("active");
-
+          $('.tab li').find('span').removeClass("lock");
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("unlock");
@@ -454,7 +456,7 @@ define(
           // $("#step2").removeClass("active");
           // $("#step3").removeClass("active");
           // $("#step4").addClass("active");
-
+          $('.tab li').find('span').removeClass("lock");
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("unlock");
