@@ -9,6 +9,7 @@
 
 @import 'module/slider';
 
+$photo-num:5;
 .pm{
 	width: 1180px;
 	margin: 0 auto;
@@ -60,8 +61,15 @@
 	padding-left: 200px;
 	text-align: left;
 }
-.young-slider .btn span{
+.young-slider .btn1.disabled{
+	background: url(#{$bg-url}young/young-btn1-disabled.png) no-repeat;
+	text-indent: -999em;
+}
+.young-slider .btn1 span{
 	margin-left: 44px;
+	display: inline-block;
+	width: 1em;
+	text-align: center;
 }
 
 .young-slider-r2{
@@ -104,6 +112,9 @@
 	color: #fff;
 	margin: 242px 166px 0 0;
 }
+.young-coupon .btn.disabled{
+	background: url(#{$bg-url}young/young-btn2-disabled.png) no-repeat;
+}
 .young-photo{
 	padding: 18px 0;
 	background: #0a0a0a;
@@ -111,17 +122,18 @@
 	position: relative;
 	overflow: hidden;
 }
+
 .young-photo ul{
 	position: absolute;
 	left: 0;
 	top: 18px;
 	white-space: nowrap;
-	width: 598px * 5;
+	width: 598px * $photo-num;
 	animation:young-photo 50s linear infinite;
 }
 @keyframes young-photo{
 	100%{
-		transform:translate(-100%,0);
+		transform:translate(-60%,0);
 	}
 }
 .young-photo li{
@@ -269,7 +281,7 @@
     margin-top: -8px;
     border-width: 8px;
     border-style: solid;
-    border-width: 10px;
+    border-color: transparent transparent transparent #f63c3f
 }
 
 .spike-tab-h li.active .icon {
@@ -389,9 +401,6 @@
 .slider-img{
 	height: 700px;
 }
-.slider-img img{
-	width: 50%;
-}
 .slider .btn-prev,
 .slider .btn-next{
 	opacity: 1;
@@ -447,4 +456,75 @@
 	width: 22px;
 	height: 27px;
 	display: inline-block;
+}
+
+.people-lock{
+	text-align: center;
+	padding-top: 227px;
+	background: rgba(0,0,0,0.96);
+	border-radius: 10px;
+	position: absolute;
+	left: 0;
+	top:0;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+.people-lock p{
+	color: #fff;
+	font-size: 28px;
+	margin-bottom: 17px;
+	margin-top: 24px;
+}
+.people-lock .btn{
+	width: 342px;
+}
+.icon-lock{
+	width: 142px;
+	height: 142px;
+	background: url(#{$bg-url}young/icon-lock.png) no-repeat;
+	display: inline-block;
+}
+.people h2{
+	font-size: 27px;
+	color: #fff;
+	background: #e3458f;
+	height: 46px;
+	line-height: 46px;
+	position: absolute;
+	left:26px;
+	top: 32px;
+	padding:0 5px;
+}
+.people h3{
+	font-size: 27px;
+	color: #fff;
+	background: #323232;
+	height: 46px;
+	line-height: 46px;
+	position: absolute;
+	left:26px;
+	top: 85px;
+	padding:0 5px;
+}
+.people .num{
+	width: 121px;
+	height: 121px;
+	line-height: 121px;
+	text-align: center;
+	border-radius: 50%;
+	background: #f0e6ea;
+	position: absolute;
+	font-size: 36px;
+	right: 30px;
+	top: 30px;
+}
+.people .num span{
+	color: #e4418f;
+}
+.slider-img li{
+	width: 590px;
+	left: 50%;
+	height: 700px;
+	margin-left: -295px;
 }

@@ -74,4 +74,10 @@ $(function(){
 	    $(this).addClass('active').siblings().removeClass('active');
 	    $('.young-tab-b>li').eq(index).addClass('active').siblings().removeClass('active');
 	  })
+	//无缝滚动
+
+	setInterval(function(){
+		$('.young-photo li').eq(0).appendTo('.young-photo ul')
+	},10000)
+	
 })
