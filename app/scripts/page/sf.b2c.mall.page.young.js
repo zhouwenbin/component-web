@@ -109,9 +109,11 @@ define(
           if ($(this).find("span").hasClass('lock')) {
 
             $('#people>li').eq(liIndex).find('.mask').addClass("show");
+            $('#people>li').eq(liIndex).find('img').addClass('blur');
           } else {
 
             $('#people>li').eq(liIndex).find('.mask').removeClass("show");
+            $('#people>li').eq(liIndex).find('img').removeClass('blur');
           }
         })
       },
@@ -274,6 +276,7 @@ define(
         var num = this.getTicketCount(index);
         $(".young-slider-r2 span").text(num);
         $('#people>li').eq(index - 1).find('.mask').removeClass("show");
+        //var num = 300001;
         this.setStep(num);
       },
 
@@ -405,11 +408,10 @@ define(
 
       setStep: function(num) {
         if (num < 100000) {
-          $("#step1").addClass("active");
-          $("#step2").removeClass("active");
-          $("#step3").removeClass("active");
-          $("#step4").removeClass("active");
 
+          $("#step1").addClass("active").siblings('li').removeClass('active');
+          // $('.tab li').find('span').addClass("lock");
+          // $('.tab li').eq(0).find('span').addClass("unlock").removeClass('lock');
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("lock");
           $("#step3").find("span").addClass("lock");
@@ -418,41 +420,47 @@ define(
           // $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][1]);
           $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][1]);
         } else if (100000 <= num && num < 150000) {
-          $("#step1").addClass("active");
-          $("#step2").addClass("active");
-          $("#step3").removeClass("active");
-          $("#step4").removeClass("active");
+          $("#step2").addClass("active").siblings('li').removeClass('active');
+
+          // $("#step1").removeClass("active");
+          // $("#step2").addClass("active");
+          // $("#step3").removeClass("active");
+          // $("#step4").removeClass("active");
 
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("lock");
           $("#step4").find("span").addClass("lock");
 
-          $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][2]);
+          //$($(".st-item")[index]).find('img').attr("src", this.photoMap[index][2]);
+          $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][2]);
         } else if (150000 <= num && num < 300000) {
-          $("#step1").addClass("active");
-          $("#step2").addClass("active");
-          $("#step3").addClass("active");
-          $("#step4").removeClass("active");
+          $("#step3").addClass("active").siblings('li').removeClass('active');
+          // $("#step1").removeClass("active");
+          // $("#step2").removeClass("active");
+          // $("#step3").addClass("active");
+          // $("#step4").removeClass("active");
 
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("unlock");
           $("#step4").find("span").addClass("lock");
 
-          $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][3]);
+          $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][3]);
         } else if (300000 <= num) {
-          $("#step1").addClass("active");
-          $("#step2").addClass("active");
-          $("#step3").addClass("active");
-          $("#step4").addClass("active");
+          $("#step4").addClass("active").siblings('li').removeClass('active');
+
+          // $("#step1").removeClass("active");
+          // $("#step2").removeClass("active");
+          // $("#step3").removeClass("active");
+          // $("#step4").addClass("active");
 
           $("#step1").find("span").addClass("unlock");
           $("#step2").find("span").addClass("unlock");
           $("#step3").find("span").addClass("unlock");
           $("#step4").find("span").addClass("unlock");
 
-          $($(".st-item")[index]).find('img').attr("src", this.photoMap[index][4]);
+          $('#people>li').eq(index - 1).find('img').attr("src", this.photoMap[index][4]);
         }
       }
     });
