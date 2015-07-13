@@ -59,7 +59,7 @@ define('sf.b2c.mall.component.header.61', [
         }, 300);
       } else {
         $('.banner-scroll3').delay(100).animate({
-          "height": 400
+          "height": 854
         }, 300);
       }
 
@@ -88,7 +88,7 @@ define('sf.b2c.mall.component.header.61', [
 
       $(".banner-scroll3").show();
       $('.banner-scroll3').delay(100).animate({
-        "height": 400
+        "height": 854
       }, 1000, function() {
         $(".close").show();
       });
