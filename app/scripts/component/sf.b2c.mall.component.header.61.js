@@ -96,6 +96,7 @@ define('sf.b2c.mall.component.header.61', [
     },
 
     '.bigpic click': function(element, event) {
+      store.set("closed", "true");
       window.location.href = "http://www.sfht.com/activity/438.html?_spm=0.229.1719.1";
       // this.options.originheader.showRegister("http://www.sfht.com/activity/438.html?_spm=0.229.1719.1");
     },
