@@ -233,7 +233,7 @@ a[title="站长统计"] {
 .btn-next {
   width: 41px;
   height: 94px;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/icon.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/icon.png) no-repeat;
   text-indent: -999em;
   background-color: #666;
   background-color: rgba(0, 0, 0, 0.5);
@@ -859,7 +859,7 @@ a[title="站长统计"] {
 
 .young-banner {
   height: 825px;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-banner.jpg) no-repeat center top;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-banner.jpg) no-repeat center top;
 }
 
 .young-banner video {
@@ -868,11 +868,11 @@ a[title="站长统计"] {
 
 .young-time {
   height: 257px;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-time.jpg) no-repeat center top;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-time.jpg) no-repeat center top;
 }
 
 .young-time-inner {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-time-inner.jpg) no-repeat center top;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-time-inner.jpg) no-repeat center top;
   width: 503px;
   height: 108px;
   line-height: 108px;
@@ -896,7 +896,7 @@ a[title="站长统计"] {
   height: 1152px;
   padding-top: 100px;
   text-align: center;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-slider-bg.jpg) no-repeat center top;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-slider-bg.jpg) no-repeat center top;
 }
 
 .young-slider .btn1 {
@@ -904,7 +904,7 @@ a[title="站长统计"] {
   height: 101px;
   line-height: 101px;
   display: inline-block;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-btn.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-btn.png) no-repeat;
   font-size: 44px;
   color: #fff;
   -webkit-box-sizing: border-box;
@@ -915,7 +915,7 @@ a[title="站长统计"] {
 }
 
 .young-slider .btn1.disabled {
-  background: url(http://img.sfht.com/sfht/1.1.155/img/young/young-btn1-disabled.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-btn1-disabled.png) no-repeat;
   text-indent: -999em;
 }
 
@@ -942,7 +942,7 @@ a[title="站长统计"] {
 }
 
 .young-coupon {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-coupon.jpg) no-repeat center top;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-coupon.jpg) no-repeat center top;
   height: 347px;
 }
 
@@ -964,7 +964,7 @@ a[title="站长统计"] {
 }
 
 .young-coupon .btn {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-btn2.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-btn2.png) no-repeat;
   width: 196px;
   height: 47px;
   line-height: 47px;
@@ -976,7 +976,7 @@ a[title="站长统计"] {
 }
 
 .young-coupon .btn.disabled {
-  background: url(http://img.sfht.com/sfht/1.1.155/img/young/young-btn2-disabled.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-btn2-disabled.png) no-repeat;
 }
 
 .young-photo {
@@ -1105,13 +1105,13 @@ a[title="站长统计"] {
 }
 
 .young-bar {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-bar.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-bar.png) no-repeat;
   width: 556px;
   margin: 0 auto 18px;
 }
 
 .young-bar-active {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/young-bar-active.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/young-bar-active.png) no-repeat;
   height: 15px;
 }
 
@@ -1324,7 +1324,7 @@ a[title="站长统计"] {
 
 .tab > li {
   float: left;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/tab-li.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/tab-li.png) no-repeat;
   width: 182px;
   height: 60px;
   line-height: 60px;
@@ -1351,7 +1351,7 @@ a[title="站长统计"] {
 }
 
 .tab > li.active {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/tab-li-active.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/tab-li-active.png) no-repeat;
   z-index: 4;
 }
 
@@ -1364,14 +1364,14 @@ a[title="站长统计"] {
 }
 
 .unlock {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/unlock.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/unlock.png) no-repeat;
   width: 30px;
   height: 27px;
   display: inline-block;
 }
 
 .lock {
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/lock.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/lock.png) no-repeat;
   width: 22px;
   height: 27px;
   display: inline-block;
@@ -1405,7 +1405,7 @@ a[title="站长统计"] {
 .icon-lock {
   width: 142px;
   height: 142px;
-  background: url(http://img.sfht.com/sfht/1.1.142/img/young/icon-lock.png) no-repeat;
+  background: url(http://img.sfht.com/sfht/1.1.168/img/young/icon-lock.png) no-repeat;
   display: inline-block;
 }
 
@@ -1456,4 +1456,9 @@ a[title="站长统计"] {
   left: 50%;
   height: 700px;
   margin-left: -295px;
+}
+
+.slider-img img {
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
 }
