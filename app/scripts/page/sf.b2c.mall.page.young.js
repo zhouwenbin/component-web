@@ -49,6 +49,8 @@ define(
         this.getAllTickets();
 
         this.initCouponStatus();
+        $("#getCoupon1").removeClass("disabled");
+        $("#getCoupon1").text("点我领券");
 
         this.bindEvent();
       },
@@ -56,22 +58,22 @@ define(
       initCouponStatus: function() {
         var obj = $.cookie('clickTimes');
         var currentDate = new Date();
-        if (typeof obj == "undefined" || obj == null) {
-          $("#getCoupon1").text("扒下欧巴就能领券啦！");
-          $("#getCoupon1").addClass("disabled");
-          $("#clickTimes").text(10);
-        } else {
-          if (parseInt(obj.split("-")[0]) != currentDate.getDate()) {
-            $("#getCoupon1").text("扒下欧巴就能领券啦！");
-            $("#getCoupon1").addClass("disabled");
-            $("#clickTimes").text(10);
-          } else {
-            $("#clickTimes").text(parseInt(obj.split("-")[1]));
-            if (parseInt(obj.split("-")[1]) == 0) {
-              $("#voteTA").addClass("disabled");
-            }
-          }
-        }
+        // if (typeof obj == "undefined" || obj == null) {
+        //   $("#getCoupon1").text("扒下欧巴就能领券啦！");
+        //   $("#getCoupon1").addClass("disabled");
+        //   $("#clickTimes").text(10);
+        // } else {
+        //   if (parseInt(obj.split("-")[0]) != currentDate.getDate()) {
+        //     $("#getCoupon1").text("扒下欧巴就能领券啦！");
+        //     $("#getCoupon1").addClass("disabled");
+        //     $("#clickTimes").text(10);
+        //   } else {
+        //     $("#clickTimes").text(parseInt(obj.split("-")[1]));
+        //     if (parseInt(obj.split("-")[1]) == 0) {
+        //       $("#voteTA").addClass("disabled");
+        //     }
+        //   }
+        // }
 
         var day = currentDate.getDate();
         var coupon1id = this.coupon1Map[day] || defaultCouponid;
