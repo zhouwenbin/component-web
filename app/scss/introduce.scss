@@ -21,6 +21,99 @@
 	margin-left: -123px;
 	
 }
+<<<<<<< HEAD
+.introduce-logistics{
+	background: url(#{$bg-url}introduce/introduce-logistics.jpg) no-repeat center top;
+	height: 990px;
+}
+.introduce-logistics h2{
+	font-size: 50px;
+	font-weight: normal;
+	text-align: center;
+	margin-bottom: 33px;
+	padding-top: 86px;
+}
+.introduce-logistics p{
+	font-size: 21px;
+	text-align: center;
+}
+.introduce-vs{
+	background: url(#{$bg-url}introduce/introduce-vs.jpg) no-repeat center top;
+	height: 1197px;
+	padding-top: 900px;
+	box-sizing:border-box;
+	font-size: 16px;
+	line-height: 28px;
+	color: #777;
+}
+.introduce-vs-c1{
+	text-align: right;
+	width: 560px;
+	margin-right: 70px;
+}
+.introduce-vs-c1 strong{
+	background: #f64f40;
+	color: #fff;
+}
+.introduce-vs-c2 strong{
+	background: #555;
+	color: #fff;
+}
+.introduce-qa{
+	padding-left: 64px;
+	background: #fff;
+	padding-bottom: 120px;
+}
+.introduce-qa h2{
+	font-size: 60px;
+	text-align: center;
+	font-weight: normal;
+	padding-top: 60px;
+	margin-bottom: 84px;
+}
+.introduce-qa h3{
+	font-size: 24px;
+	color: #df3d40;
+	font-weight: normal;
+	margin-bottom: 23px;
+}
+.introduce-qa p{
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 23px;
+}
+.introduce-qa .p1{
+	color: #1d97b3;
+	margin-bottom: -60px;
+	position: relative;
+	z-index: 1;
+	padding-left: 47px;
+}
+.introduce-qa h3 span,
+.introduce-qa p span{
+	font-size: 21px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 5px;
+	color: #fff;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 38px;
+	float: left;
+	margin-left: -64px;
+}
+.introduce-qa h3 span{
+	background: #df3d40;
+
+}
+.introduce-qa p span{
+	background: #a9e9f8;
+}
+.introduce-qa img{
+	margin-bottom: 96px;
+=======
 .introduce2{
 	background:#fff url(#{$bg-url}introduce/introduce-h.png) no-repeat center 125px;
 	padding-top: 470px;
@@ -54,6 +147,7 @@
 }
 .introduce2 .li4{
 	background: url(#{$bg-url}introduce/introduce4.png) no-repeat center top;
+>>>>>>> 2611d043662660476d37ef27f112931705581478
 }
 .slider{
 	height: 901px;

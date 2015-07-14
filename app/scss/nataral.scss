@@ -1,5 +1,43 @@
 ﻿@import 'utils/variables';
 @import 'utils/placeholders';
+<<<<<<< HEAD
+@import 'components/product';
+@import 'components/nataral-list';
+@import 'components/nataral-video';
+@import 'components/mycoupon';
+.nataral{
+	background: #fff;
+}
+.nataral-header{
+	background:#fff;
+}
+.nataral-header h1{	
+	font-size:20px;
+	font-family: "圆体";
+	font-weight: normal;
+	padding-bottom: 15px;	
+	padding-top: 30px;
+}
+.nataral-header h1 span{
+	font-size: 14px;
+	margin-left: 5px;
+	color: #888;
+}
+.nataral-header .icon10{
+	padding-right: 10px;
+	border-right: 1px solid #666;
+	margin-right:10px;
+}
+.nataral .crumbs{
+	border-top: 1px solid #f3f3f3;	
+	padding-top: 15px;
+	color:#ccc;
+}
+.nataral .crumbs a{
+	color:#ccc;
+}
+=======
+>>>>>>> 2611d043662660476d37ef27f112931705581478
 
 @import 'module/slider';
 @import 'module/product';
