@@ -13,4 +13,38 @@ $(function(){
 
   	}
   })
+  //----------加入购物车-------------//
+  $('.goods').on("click", '#addtocart-btn', function(){
+    var that = $('.addtocart-img:last-child');
+    if($(window).scrollTop() > 166){
+        var target=$('.nav .icon100').eq(1).offset()
+    }else{
+        var target=$('.nav .icon100').eq(0).offset()
+    }
+    var targetX=target.left,
+        targetY=target.top,
+        current=that.offset(),
+        currentX=current.left,
+        currentY=current.top,
+        cart_num=$('.cart-num').eq(0).text();
+    that.clone().appendTo(that.parent());
+    that.css({
+      left:targetX-currentX,
+      top:targetY-currentY,
+      transform:'rotate(360deg)',
+      zIndex:3,
+      visibility:'hidden'
+    })
+    
+    setTimeout(function(){
+        that.remove();
+    },1000);
+    cart_num++;
+    $('.cart-num').text(cart_num);
+    $('.nav .label-error').addClass('active');
+    setTimeout(function(){
+        $('.nav .label-error').removeClass('active');
+    },500)
+    return false;
+  });
 })

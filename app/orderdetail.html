@@ -7,7 +7,7 @@
   <title>顺丰海淘</title>
   <!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.detail.css -->
   <link href="css/common.css" rel="stylesheet" type="text/css" />
-  <link href="css/orderdetail.css" rel="stylesheet" type="text/css" />
+  <link href="css/order-detail.css" rel="stylesheet" type="text/css" />
   <!-- endbuild -->
   <!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
@@ -31,26 +31,6 @@
   <!--# include file="/footer/footer.index.html" -->
   <!--尾部-->
 
-  <div class="sf-b2c-mall-loading" style="height:100%"></div>
-
-  <!--身份证参考样本 和register的冲突 让文斌优化-->
-  <div class="mask2" style="display: none;width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: #000; opacity: 0.5; filter:alpha(opacity=50); z-index: 3;"></div>
-  <div class="register2 orderdetail-upload" id="orderdetail-upload" style="display: none;width: 562px;background: #fff;position: fixed;left: 50%; top: 50%; margin-left: -256px; margin-top: -265px;border-radius: 3px;z-index: 3;">
-    <div class="register-h" style="position: relative;">
-      <h2 style="font-size: 14px; height: 52px; line-height: 52px; padding-left: 20px; background: url(http://img.sfht.com/sfht/img/register-h2.png) repeat-x; border-bottom: 1px solid #E4E3E3; border-radius: 3px 3px 0 0;">参考样本</h2>
-      <a href="#" class="btn btn-close" style="position: absolute; right: 16px; top: 17px;" id="closeExample">关闭</a>
-    </div>
-    <!--注册成功-->
-    <div class="register-b1" style="padding-top: 10px; padding-bottom: 10px; text-align: center;">
-       <img src="http://img.sfht.com/sfht/img/front.jpg" alt="">
-       <p style="margin-top: 20px; color:#a3a2a3">正面样本</p>
-       <img src="http://img.sfht.com/sfht/img/behind.jpg" alt="">
-       <p style="margin-top: 20px; color:#a3a2a3">反面样本</p>
-    </div>
-    <!--注册成功-->
-  </div>
- <!--身份证参考样本-->
-
  <!-- build:js(.) scripts/require.min.js -->
  <script src="bower_components/requirejs/require.js"></script>
  <!-- endbuild -->
@@ -63,8 +43,6 @@
   require(['sf.b2c.mall.page.orderdetail']);
 </script>
 <!-- endbuild -->
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 
 </body>
 </html>

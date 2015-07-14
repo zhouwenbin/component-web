@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/order-detail.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pb">
+  <div class="pm"> 
+    <!--提交订单-->
+    <div class="order-detail clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>未付款</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span><strong class="text-error">￥98</strong></li>
+                <li>送3元优惠券</li>
+                <li>送10元红包</li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+            <button class="btn btn-danger btn-small">立即付款</button>
+        </div>
+        <div class="order-detail-c2">
+            <ul class="order-detail-tab">
+                <li class="active"><a href="">包裹1</a></li>
+                <li><a href="">包裹2</a></li>
+                <li><a href="">包裹3</a></li>
+            </ul>
+            <div class="order-detail-step">
+                <ul>
+                    <li><span class="icon icon91"></span>提交订单<div class="line"></div></li>
+                    <li><span class="icon icon92"></span>付款成功<div class="line"></div></li>
+                    <li><span class="icon icon93"></span>通过审核<div class="line"></div></li>
+                    <li><span class="icon icon94"></span>海淘发货<div class="line"></div></li>
+                    <li><span class="icon icon95"></span>确认收货</li>
+                </ul>
+            </div>
+               
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1 fl">
+                    <div class="order-detail-state-r1">
+                        <span class="icon icon96"></span>
+                        <strong>当前状态：待支付</strong>
+                        <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">香港仓发货，预计6-10天到货</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                </div>
+                <div class="order-detail-state-c2 fr">
+                    <img src="../img/weixin-qrcode.png" alt="" />
+                    <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+                </div>
+                
+                    
+            </div>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--付款成功-->
+    <div class="order-detail clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>支付宝</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span><strong class="text-error">￥98</strong></li>
+                <li>送3元优惠券</li>
+                <li>送10元红包</li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+        </div>
+        <div class="order-detail-c2">
+            <ul class="order-detail-tab">
+                <li class="active"><a href="">包裹1</a></li>
+                <li><a href="">包裹2</a></li>
+                <li><a href="">包裹3</a></li>
+            </ul>
+            <div class="order-detail-step order-detail-step2">
+                <ul>
+                    <li><span class="icon icon91"></span>提交订单<div class="line"></div></li>
+                    <li><span class="icon icon92"></span>付款成功<div class="line"></div></li>
+                    <li><span class="icon icon93"></span>通过审核<div class="line"></div></li>
+                    <li><span class="icon icon94"></span>海淘发货<div class="line"></div></li>
+                    <li><span class="icon icon95"></span>确认收货</li>
+                </ul>
+            </div>
+               
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1 fl">
+                    <div class="order-detail-state-r1">
+                        <span class="icon icon96"></span>
+                        <strong>当前状态：待审核</strong>
+                        <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">香港仓发货，预计6-10天到货</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                    
+                </div>
+                <div class="order-detail-state-c2 fr">
+                    <img src="../img/weixin-qrcode.png" alt="" />
+                    <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+                </div>
+                
+                    
+            </div>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--正在出库-->
+    <div class="order-detail clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>支付宝</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span><strong class="text-error">￥98</strong></li>
+                <li>送3元优惠券</li>
+                <li>送10元红包</li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+        </div>
+        <div class="order-detail-c2">
+            <ul class="order-detail-tab">
+                <li class="active"><a href="">包裹1</a></li>
+                <li><a href="">包裹2</a></li>
+                <li><a href="">包裹3</a></li>
+            </ul>
+            <div class="order-detail-step order-detail-step3">
+                <ul>
+                    <li><span class="icon icon91"></span>提交订单<div class="line"></div></li>
+                    <li><span class="icon icon92"></span>付款成功<div class="line"></div></li>
+                    <li><span class="icon icon93"></span>通过审核<div class="line"></div></li>
+                    <li><span class="icon icon94"></span>海淘发货<div class="line"></div></li>
+                    <li><span class="icon icon95"></span>确认收货</li>
+                </ul>
+            </div>
+               
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1 fl">
+                    <div class="order-detail-state-r1">
+                        <span class="icon icon96"></span>
+                        <strong>当前状态：正在出库</strong>
+                        <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">香港仓发货，预计6-10天到货</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                        <p>顺丰海淘正在努力打包中… 若顺丰海淘较长时间未发货，您可以<a href="" class="btn btn-soon btn-small">联系客服发货</a></p>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>仓库正在打包</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                    
+                </div>
+                <div class="order-detail-state-c2 fr">
+                    <img src="../img/weixin-qrcode.png" alt="" />
+                    <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+                </div>
+                
+                    
+            </div>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--已发货-->
+    <div class="order-detail clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>支付宝</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span><strong class="text-error">￥98</strong></li>
+                <li>送3元优惠券</li>
+                <li>送10元红包</li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+        </div>
+        <div class="order-detail-c2">
+            <ul class="order-detail-tab">
+                <li class="active"><a href="">包裹1</a></li>
+                <li><a href="">包裹2</a></li>
+                <li><a href="">包裹3</a></li>
+            </ul>
+            <div class="order-detail-step order-detail-step4">
+                <ul>
+                    <li><span class="icon icon91"></span>提交订单<div class="line"></div></li>
+                    <li><span class="icon icon92"></span>付款成功<div class="line"></div></li>
+                    <li><span class="icon icon93"></span>通过审核<div class="line"></div></li>
+                    <li><span class="icon icon94"></span>海淘发货<div class="line"></div></li>
+                    <li><span class="icon icon95"></span>确认收货</li>
+                </ul>
+            </div>
+               
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1 fl">
+                    <div class="order-detail-state-r1">
+                        <span class="icon icon96"></span>
+                        <strong>当前状态：已发货</strong>
+                        <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">香港仓发货，预计6-10天到货</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>商品已出库，顺丰速递，单号9828729306</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                    <a href="" class="btn btn-normal btn-small">展开全部</a>
+                </div>
+                <div class="order-detail-state-c2 fr">
+                    <img src="../img/weixin-qrcode.png" alt="" />
+                    <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+                </div>
+                
+                    
+            </div>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--已完成-->
+    <div class="order-detail clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>支付宝</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span><strong class="text-error">￥98</strong></li>
+                <li>送3元优惠券</li>
+                <li>送10元红包</li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+        </div>
+        <div class="order-detail-c2">
+            <ul class="order-detail-tab">
+                <li class="active"><a href="">包裹1</a></li>
+                <li><a href="">包裹2</a></li>
+                <li><a href="">包裹3</a></li>
+            </ul>
+            <div class="order-detail-step order-detail-step5">
+                <ul>
+                    <li><span class="icon icon91"></span>提交订单<div class="line"></div></li>
+                    <li><span class="icon icon92"></span>付款成功<div class="line"></div></li>
+                    <li><span class="icon icon93"></span>通过审核<div class="line"></div></li>
+                    <li><span class="icon icon94"></span>海淘发货<div class="line"></div></li>
+                    <li><span class="icon icon95"></span>确认收货</li>
+                </ul>
+            </div>
+               
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1 fl">
+                    <div class="order-detail-state-r1">
+                        <span class="icon icon96"></span>
+                        <strong>当前状态：已完成</strong>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>商品已签收</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                    <a href="" class="btn btn-normal btn-small">展开全部</a>
+                </div>
+                <div class="order-detail-state-c2 fr">
+                    <img src="../img/weixin-qrcode.png" alt="" />
+                    <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
+                </div>
+                
+                    
+            </div>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--订单已取消-->
+    <div class="order-detail order-detail-cancel clearfix">
+        <div class="order-detail-c1 fl">
+            <ul>
+                <li><span>订单号：</span>47329981</li>
+                <li><span>下单时间：</span>2015-03-01</li>
+                <li><span>支付方式：</span>支付宝</li>
+            </ul>
+            <ul>
+                <li><span>活动优惠：</span>-￥10</li>
+                <li><span>优惠券抵扣：</span>-￥10</li>
+                <li><span>运费：</span>免运费</li>
+                <li><span>实付款：</span>￥98</li>
+                <li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>
+            </ul>
+            <ul>
+                <li><span>收货人：</span>康爱媛</li>
+                <li><span>手机号：</span>18874639274</li>
+                <li><span>收货地址：</span>中国 上海 徐汇区 虹梅路2007号 远中工业区1号楼8楼</li>
+            </ul>
+        </div>
+        <div class="order-detail-c2">
+            <h1><span class="icon icon99"></span>订单已取消</h1>
+            <div class="order-detail-state clearfix">
+                <div class="order-detail-state-c1">
+                    <div class="order-detail-state-r1">
+                        <h2>尊敬的用户，由于我们在2小时内未收到您的订单款项，订单已被自动取消。</h2>
+                        <p>订单取消规则：订单会为您保留2小时（从下单算起），2小时后系统将自动取消未付款的订单。</p>
+                    </div>
+                    <ul>
+                        <li><span>2015-03-01 21:00:23</span><span>商品已签收</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
+                        <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
+                    </ul>
+                    <a href="" class="btn btn-normal btn-small">展开全部</a>
+                </div>
+            </div>
+            <span class="label label-error">共2件商品<i></i></span>
+            <table class="order-detail-table">
+                <thead>
+                    <tr>
+                        <th class="th1">商品信息</th>
+                        <th class="th2">售价</th>
+                        <th class="th3">数量</th>
+                        <th class="th4">优惠</th>
+                        <th class="th5">实付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="http://placehold.it/78x78" alt="">
+                            <h2>WaveBetter Rozz 电动牙cccccc刷成人超声波充电式自动牙刷</h2>
+                        </td>
+                        <td>88.00</td>
+                        <td>1</td>
+                        <td>10.00</td>
+                        <td>78.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="order-detail-cancel-rebuy">
+                <a href="" class="btn btn-normal btn-small">重新购买</a>
+            </div>
+            
+        </div>
+    </div>
+
+
+  </div>
+</div>
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,8 +1,181 @@
 .banner{
-	margin-bottom:20px;
+	margin-bottom:40px;
 }
+
+.banner-scroll2{
+  height: 0px;
+  overflow: hidden;
+  cursor: pointer;
+  background: url(#{$bg-url}banner-scroll2.jpg) no-repeat center top;
+}
+
 .banner-scroll{
 	display: block;
-	height:539px;
-	background: url(#{$bg-url}banner-scroll.jpg) no-repeat center top;
+	height:0px;
+  overflow: hidden;
+	background: url(#{$bg-url}520bigbannerbackground.jpg) no-repeat center top;
+
+  & .line{
+    border-top: 1px solid #e3d3da;
+    border-bottom: 1px solid #fff;
+    width: 450px;
+    margin: 30px 48px 20px 48px;
+  }
+
+  & .pm{
+    width: 1326px;
+  }
+
+  & .close{
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size: 32px;
+  }
+
+  & .banner-scroll-inner{
+    width: 550px;
+  }
+
+  & .step1{
+    padding:35px 0 0 40px;
+  }
+
+  & .step2{
+    padding:0px 0 0 40px;
+
+    & img{
+      vertical-align: top;
+    }
+  }
+
+  & .step1tip{
+    font-size:16px;
+    margin-left:6px;
+  }
+
+  & .step2tip{
+    font-size:16px;
+    margin-left:6px;
+    margin-bottom: 15px;
+    display:inline-block;
+    width: 400px;
+    line-height:20px;
+  }
+
+  & .step1info{
+    padding:0px 0 0 55px;
+    width: 350px;
+  }
+
+  & .fl:before{
+    left: 0;
+  }
+
+  & li{
+    margin-bottom: 9px;
+  }
+
+  & input{
+    padding-left: 5px;
+    vertical-align: middle;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    color: #999;
+    height: 40px;
+    padding: 0 10px;
+  }
+
+  & .input-username{
+    width: 330px;
+  }
+
+  & .input1 {
+    width: 190px;
+  }
+
+  & .password {
+    width: 330px;
+  }
+
+  & .invitemobile {
+    width: 300px;
+  }
+
+  & .invitemessages{
+    list-style:none;
+  }
+
+  & .invitemessages li{
+    font-size: 14px;
+    list-style:none;
+    margin-right: 20px;
+    display: inline-block;
+  }
+
+  & .messagedetail{
+    font-size: 14px;
+    margin: 15px 0 20px 0;
+    line-height: 20px;
+  }
+
+  & .invitemobilecode{
+    width: 170px;
+  }
+
+  & .showmobilecode{
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+  & .nextmobilecode{
+    font-size: 14px;
+  }
+
+  & .step1success{
+    padding:35px 0 0 40px;
+    text-align: center;
+    width: 450px
+  }
+
+  & .step1successtip{
+    font-size: 30px;
+    line-height: 54px;
+    & span{
+      margin-right: 10px;
+    }
+  }
+
+  & .step1successinfo{
+    font-size: 16px;
+    margin-top: 10px;
+    & span{
+      color: red;
+    }
+  }
+
+  & .step2success{
+    text-align: center;
+    width: 355px;
+    margin: 45px 0 30px 0;
+  }
+
+  & .step2successtip{
+    font-size: 30px;
+    line-height: 54px;
+    & span{
+      margin-right: 10px;
+    }
+  }
+
+  & .soldout{
+    position:absolute;
+    top:300px;
+    width:465px;
+    margin:0 30px;
+    text-align:center;
+    font-size:16px;
+    line-height:25px;
+    display:none;
+  }
 }

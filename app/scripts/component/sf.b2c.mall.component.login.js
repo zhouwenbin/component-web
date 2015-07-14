@@ -6,6 +6,7 @@ define(
 
   [
     'jquery',
+    'jquery.cookie',
     'can',
     'md5',
     'store',
@@ -19,7 +20,7 @@ define(
     'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
+  function($, cookie, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -108,18 +109,20 @@ define(
 
         this.funPlaceholder(document.getElementById('user-name'));
       },
+
       '#wechatlogin click': function(element, event) {
         var that = this;
 
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=wechat_open"
         });
 
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin', 'wechat_open');
+            store.set("alipaylogin", "false");
             window.location.href = data.loginAuthLink;
             SFFn.dotCode();
             return false;
@@ -128,18 +131,21 @@ define(
             console.error(error);
           })
       },
+
       //@note 支付宝登录
       '#alipaylogin click': function(element, event) {
         var that = this;
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=alipay_qklg"
         });
 
         reqLoginAuth
           .sendRequest()
           .done(function(data) {
             store.set('alipay-or-weixin', 'alipay_qklg');
+            //用于阿里支付登录后，只展示阿里支付
+            store.set("alipaylogin", "true");
             window.parent.location.href = data.loginAuthLink;
             SFFn.dotCode();
             return false;
@@ -350,7 +356,10 @@ define(
         var username = this.data.attr('username');
 
         this.checkUserName.call(this, username);
-        this.isNeedVerCode();
+        if (username && (username.length == 11 || /@/.test(username) != -1)) {
+          this.isNeedVerCode();
+        };
+
       },
 
       /**
@@ -390,7 +399,9 @@ define(
         this.component.login.sendRequest()
           .done(function(data) {
             if (data.userId) {
+              $.cookie('userId', data.userId);
               that.data.attr('autologin');
+              store.set("alipaylogin", "false");
 
               // deparam过程 -- 从url中获取需要请求的sku参数
               var params = can.deparam(window.location.search.substr(1));
@@ -420,6 +431,12 @@ define(
                   }
                 }).fail(function() {
 
+                })
+                .always(function() {
+                  document.domain = "sfht.com";
+                  if (window.parent.userLoginSccuessCallback) {
+                     window.parent.userLoginSccuessCallback();
+                  }
                 })
 
               SFFn.dotCode();
@@ -480,6 +497,7 @@ define(
               accountId: $.trim(username),
               type: this.checkTypeOfAccount(username),
               password: md5(password + SFConfig.setting.md5_key),
+              srcUid: $.cookie('_ruser'),
               vfCode: vfCode
             });
             that.sendRequest();

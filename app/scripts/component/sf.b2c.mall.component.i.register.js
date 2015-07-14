@@ -16,10 +16,13 @@ define(
     'sf.b2c.mall.api.user.sendActivateMail',
     'sf.b2c.mall.business.config',
     'sf.util',
+    'sf.b2c.mall.widget.message',
+    'sf.b2c.mall.api.promotion.receivePro',
+    'sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.api.user.checkUserExist' //@noto 检查第三方账号绑定的手机号是否有登录密码
   ],
 
-  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFCheckUserExist) {
+  function($, can, md5, _, store, placeholders, SFApiUserDownSmsCode, SFApiUserMobileRegister, SFApiUserSendActivateMail, SFBizConf, SFFn, SFMessage, SFReceivePro, SFReceiveCoupon, SFCheckUserExist) {
 
     var DEFAULT_FILLINFO_TAG = 'fillinfo';
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
@@ -209,7 +212,9 @@ define(
             .fail(function(errorCode) {
               if (errorCode == 1000340) {
                 var fn = can.view.mustache(ERROR_NO_SET_PWD);
-                that.element.find('#input-mobile-error').html(fn({tel:username})).show();
+                that.element.find('#input-mobile-error').html(fn({
+                  tel: username
+                })).show();
                 return false;
               };
             })
@@ -377,20 +382,37 @@ define(
           this.component.mobileRegister.setData({
             mobile: mobile,
             smsCode: code,
+            srcUid: $.cookie('_ruser'),
             password: md5(password + SFBizConf.setting.md5_key)
           });
 
           this.component.mobileRegister.sendRequest()
             .done(function(data) {
               if (data.csrfToken) {
-                // store.set('csrfToken', data.csrfToken);
+
+                store.set('userId', data.userId);
+                store.set("alipaylogin", "false");
+                SFFn.dotCode();
+
+                store.set('csrfToken', data.csrfToken);
+
+                // 注册送优惠券 begin
+                // that.sendCoupon();
+                // var currentServerTime = that.component.mobileRegister.getServerTime();
+                // if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+                //   new SFMessage(null, {
+                //     'tip': "新人礼10元打车券将在6月1日发放至您的账户，请注意查收。",
+                //     'type': 'success'
+                //   });
+                // }
+                // 注册送优惠券 end
+                // that.receiveCoupon();
+
                 can.route.attr({
                   'tag': 'success',
                   'csrfToken': data.csrfToken
                 });
               }
-
-              SFFn.dotCode();
             })
             .fail(function(errorCode) {
               if (_.isNumber(errorCode)) {
@@ -404,6 +426,64 @@ define(
               }
             })
         }
+      },
+
+      errorMap: {
+        "11000020": "卡券不存在",
+        "11000030": "卡券已作废",
+        "11000050": "卡券已领完",
+        "11000100": "您已领过该券",
+        "11000130": "卡包不存在",
+        "11000140": "卡包已作废"
+      },
+
+      receiveCoupon: function() {
+
+        var params = {};
+        params.bagId = '236';
+        params.type = 'CARD';
+        params.receiveChannel = 'B2C';
+        params.receiveWay = 'ZTLQ';
+        var that = this;
+        var receiveCouponData = new SFReceiveCoupon(params);
+        return can.when(receiveCouponData.sendRequest())
+          .done(function(userCouponInfo) {
+            new SFMessage(null, {
+              'tip': '50元优惠券已发放至您的账户，请注意查收。',
+              'type': 'success'
+            });
+          })
+          .fail(function(error) {
+            new SFMessage(null, {
+              'tip': that.errorMap[error] || '领取失败',
+              'type': 'error'
+            });
+          });
+      },
+
+      sendCoupon: function() {
+
+        var receivePro = new SFReceivePro({
+          "channel": "B2C",
+          "event": "REGISTER_USER_SUCCESS"
+        });
+
+        receivePro
+          .sendRequest()
+          .done(function(proInfo) {
+
+            if (proInfo.couponInfos) {
+              new SFMessage(null, {
+                'tip': "恭喜您获得优惠券",
+                'type': 'success'
+              });
+            }
+
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
+
       },
 
       '#input-mail focus': function($element, event) {

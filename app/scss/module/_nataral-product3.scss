@@ -1,0 +1,68 @@
+.nataral-product3.nataral-product{
+	margin-top:-1px;
+}
+.nataral-product3.nataral-product ul{
+	margin-left: 1px;
+	margin-right: -1px;
+}
+.nataral-product3.nataral-product li{
+	width: 235px;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	border: 1px solid #e5e5e5;
+	box-shadow: none;
+}
+.nataral-product3.nataral-product li:hover{
+	border-color: #e5e5e5;
+}
+.nataral-product3.nataral-product li:hover:before{
+	content: '';
+	width: 100%;
+	height: 3px;
+	background:#dd3e3f ;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.nataral-product3.nataral-product .product-r1{
+	height: 216px;
+	margin-bottom: 10px;
+}
+.nataral-product3.nataral-product .product-r1 img{
+	max-width: 216px;
+	max-height: 216px;
+}
+.nataral-product3.nataral-product .product h3{
+	margin-bottom: 6px;
+	font-size: 12px;
+	line-height: 20px;
+	height: 40px;
+}
+.nataral-product3.nataral-product .product-list li{
+	padding-top: 9px;
+}
+.nataral-product3.nataral-product .nataral-product-price2{
+	bottom: 2px;
+	right: 10px;
+}
+
+.nataral-product3.nataral-product .nataral-product-r1{
+	background: #fff;
+	border-top: none;
+	height: 18px;
+	line-height: 18px;
+	padding-bottom: 12px;
+	position: static;
+	margin-left: 0;
+	width: auto;
+	border: none;
+}
+.nataral-product3.nataral-product .product-r2c1 strong{
+	font-size: 20px;
+}
+.nataral-product3.nataral-product .product-r2c1{
+	height: 30px;
+}
+.nataral-product3.nataral-product .nataral-product .nataral-product-more:hover{
+	border-color: #e5e5e5;
+}

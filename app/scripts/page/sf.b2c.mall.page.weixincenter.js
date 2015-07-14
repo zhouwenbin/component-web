@@ -25,10 +25,11 @@ define(
         var params = can.deparam(window.location.search.substr(1))
         var code = params.code;
 
-        var to = store.get('weixinto');
+        var to = decodeURIComponent(store.get('weixinto'));
 
         var partnerLogin = new SFPartnerLogin({
           "partnerId": "wechat_open",
+          'srcUid': $.cookie('_ruser'),
           "authResp": "code=" + code
         });
 

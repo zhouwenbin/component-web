@@ -1,9 +1,9 @@
 @import 'utils/variables';
 @import 'utils/placeholders';
-@import 'components/slider';
-@import 'components/product';
-@import 'components/product2';
-@import 'components/topic';
+@import 'module/slider';
+@import 'module/product2';
+@import 'module/topic';
+@import 'module/nataral-top';
 .slider{
 	margin-bottom:20px;
 }

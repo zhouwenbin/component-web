@@ -1,4 +1,4 @@
- .label{
+ %label{
  	height: 21px;
 	line-height: 21px;
 	color: #fff;
@@ -7,6 +7,7 @@
 	padding: 0 15px;
 	display: inline-block;
 	vertical-align: middle;
+	position: relative;
  }
  .label:hover{
  	color: #fff;
@@ -25,7 +26,7 @@
  }
  .label-disabled{
  	@extend %label;
- 	background: #ccc;
+ 	background: #aaa;
  }
  .label-important{
  	@extend %label;
@@ -34,5 +35,15 @@
  .label-soon{
  	@extend %label;
  	background:#f78e57;
+ }
+
+ .label i{
+ 	  border-width: 3px 3px;
+	  border-style: solid;
+	  border-color: transparent transparent transparent #ff9999;
+	  position: absolute;
+	  right: -6px;
+	  top: 50%;
+	  margin-top: -3px;
  }
  

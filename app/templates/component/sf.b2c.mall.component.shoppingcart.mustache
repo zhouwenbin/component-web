@@ -1,0 +1,210 @@
+
+<div class="pb">
+  <div class="pm">
+    <!--购物车-->
+    {{#if hasGoods}}
+    <div class="cart">
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="th1"><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="checked"{{/sf-is-select-all}}>全选</th>
+                        <th class="th2">商品信息</th>
+                        <th class="th3">单价（元）</th>
+                        <th class="th4">数量</th>
+                        <th class="th5">金额</th>
+                        <th class="th6">操作</th>
+                    </tr>
+                </thead>
+                <tbody>              
+                {{! scope: "PART" }}
+                {{#each partScopeGroups}}
+                {{#each firstGoodItem}}<tr {{data 'goods'}} data-isSelected="{{isSelected}}">{{/each}}
+                    <td class="td1" colspan="2">
+                        {{#each firstGoodItem}}<input {{^isValid}}disabled="disabled"{{/isValid}} data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>{{/each}} 搭配优惠：{{promotionDesc}}
+                    </td>
+                    <td class="td3">
+                        <strong>{{partScopePrice goodItemList}}</strong>
+                    </td>
+                    {{#each firstGoodItem}}
+                    <td class="td4">                      
+                        <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                        {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                    </td>
+                    {{/each}}
+                    <td class="td5">
+                        <strong class="text-error">{{totalPartScopePrice goodItemList}}</strong>
+                    </td>
+                    <td class="td6">
+                    {{#each firstGoodItem}}
+                        <a data-itemIds="{{itemId}}" class="deleteSingleOrder icon icon72" href="">删除</a>
+                    {{/each}}
+                    </td>
+                </tr>
+                {{#each goodItemList}}
+                <tr {{data 'goods'}} data-isSelected="{{isSelected}}" class="cart-match {{#isTheMainProduct @index}}cart-match1{{/isTheMainProduct}} {{^isValid}}items-disable{{/isValid}}">
+                    <td class="td1">
+                        {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                        <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
+                    </td>
+
+                    <td class="td2">
+                        <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
+                        <div class="cart-standard">{{{specs}}}</div>
+                    </td>                   
+                       
+                    <td class="td3">
+                        {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
+
+                        {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
+                        {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
+                        {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
+                        {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
+                    </td>                   
+                    <td class="td4">
+                        <div style="padding-right:30px;">1件/套x{{quantity}}</div>
+                        {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                    </td>
+                    <td class="td5">
+                        <strong class="text-error">{{sf.price perTotalPrice}}</strong>
+                    </td>
+                    <td class="td6"></td>
+                </tr>
+                {{/each}}
+                {{/each}}
+
+                {{! scope: "SINGLE" }}
+                {{#each singleScope}}
+                {{#each goodItemList}}
+                    <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable items-disable"{{/isValid}}>
+                        <td class="td1">
+                            <div class="cart-pos">                              
+                                <input {{^isValid}}disabled="disabled"{{/isValid}} data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
+                                {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
+                                <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
+                                {{#isDiscount}}<span class="icon icon74">满折减</span>{{/isDiscount}}
+                            </div>
+                        </td>
+                        <td class="td2">
+                            {{#isDiscount}}<div class="text-error">{{discountInfo}}</div>{{/isDiscount}}
+                            <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
+                            <div class="cart-standard">{{{specs}}}</div>
+                        </td>
+                        <td class="td3">
+                            {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
+
+                            {{#isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price activityPrice}}</strong>{{/isShowActivityPrice}}
+                            {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
+                            {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
+                            {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
+                        </td>
+                        <td class="td4">
+                            {{^isValid}}{{quantity}}{{/isValid}}
+                            {{#isValid}}
+                                <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
+                                {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
+                            {{/isValid}}
+                        </td>
+                        <td class="td5">
+                            <strong class="text-error">{{sf.price perTotalPrice}}</strong>
+                        </td>
+                        <td class="td6">
+                            <a data-itemIds="{{itemId}}" class="deleteSingleOrder icon icon72" href="">删除</a>
+                        </td>
+                    </tr>
+                {{/each}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    	<div class="cart-footer clearfix">
+    		<div class="cart-footer-c1 fl">
+    			<label><input class="selectAll" type="checkbox" {{#sf-is-select-all goodItemList}}checked="true"{{/sf-is-select-all}} />全选</label>
+    			<a id="deletedSelectGoods" href="">删除选中商品</a>
+    			{{#order.invalidItems}}<a id="cleanInvalidItemsInCart" href="">清除无效商品</a>{{/order.invalidItems}}
+    		</div>
+    		<div class="cart-footer-c2 fr">
+    			<ul>
+                    <li class="li1">
+                        {{#if isShowOverLimitPrice}}
+                        <div class="tooltip-cart">您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+                        {{/if}}
+                        总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
+                    </li>
+    				<li class="li1">
+    					{{#if isShowReduceInfos}}
+                        <div class="tooltip-cart">
+                            <span class="icon icon77 fl"></span>
+                            {{#if order.discountFee}}
+                            <span class="text-error">参加{{countNumActivity reduceInfos}}个满减活动：省{{sf.price order.discountFee}}元</span>
+                            {{/if}}
+
+                            <div class="tooltip-pos">
+                                <span class="icon icon78"></span>
+                                <div class="tooltip-outer" style="top:100%;bottom:0;margin:13px 0 0 0;">
+                                    <div class="tooltip tooltip-active">
+                                        <ul>
+                                            {{#each reduceInfos}}
+                                            <li>满足指定商品满<span class="text-important">{{sf.price useRule.limit}}</span>元减<span class="text-important">{{sf.price useRule.preferential}}元</span>活动</li>
+                                            {{/each}}
+                                        </ul>
+                                        <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="icon icon16-5"></span>
+                            <span class="icon icon16-5 icon16-5-1"></span>
+                        </div>
+                        {{/if}}
+              已节省:<span class="s1">¥ {{sf.price order.discountFee}}</span>
+    				</li>
+    			</ul>
+    			<button style="margin-top:7px;" id="gotopay" class="btn {{canOrder}}">去结算</button>
+    		</div>
+    		<span class="icon icon75"></span>
+    		<span class="icon icon76"></span>
+    	</div>
+    </div>
+    <!--购物车-->
+    {{else}}
+    <div class="cart-none">
+        <span class="icon icon101"></span>
+        <div class="cart-none-c1">购物车空空如也<a href="index.html" class="btn btn-danger btn-small">去逛逛吧~~</a></div>
+    </div>
+    <div class="product">
+        <ul class="myorder-tab">
+            <li><a href="">大家都在买</a></li>
+        </ul>
+        <div class="mb">
+          <ul class="clearfix product-list">
+          {{#each recommendGoods}}
+            <li {{data 'goods'}}>
+              <div class="product-r1">
+                <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt="" ></a><span></span>
+              </div>
+              <h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>
+              <div class="product-r2 clearfix">
+                <div class="product-r2c1 fl">
+                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong>
+                </div>
+                <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90 addCart">购买</a></div>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+    </div>
+    <!--购物须知-->
+    <div class="buyer-reading">
+        <h2>购物须知</h2>
+        <p>根据海关跨境电商管理规定，个人递进境物品需界定为个人自用。个人自用物品需要满足如下条件：</p>
+        <ul>
+            <li>个人自用的海外邮寄物品总值1000元人民币以内（若不可分割的产品可以超过1000元人民币：例如一台笔记本电脑）。</li>
+            <li>在本网站上购买的商品根据[保税仓直发］和［原汁原味］商品类型进行拆分包裹。</li>
+        </ul>
+    </div>
+    {{/if}}
+
+  </div>
+</div>

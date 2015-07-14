@@ -9,12 +9,15 @@ define(
     'md5',
     'sf.b2c.mall.business.config',
     'sf.util',
+    'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.user.partnerBind',
     'sf.b2c.mall.api.user.partnerBindByUPswd',
     'sf.b2c.mall.api.user.checkUserExist',
+    'sf.b2c.mall.api.promotion.receivePro',
+    'sf.b2c.mall.api.coupon.receiveCoupon',
     'sf.b2c.mall.api.user.downSmsCode'
   ],
-  function($, can, store, md5, SFBizConf, SFFn, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFApiUserDownSmsCode) {
+  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFPartnerBind, SFPartnerBindByUPswd, SFCheckUserExist, SFReceivePro, SFReceiveCoupon, SFApiUserDownSmsCode) {
 
     var ERROR_NO_INPUT_USERNAME = '请输入您的常用手机号';
     var ERROR_NO_INPUT_USERPWD = '请输入您的密码';
@@ -257,11 +260,40 @@ define(
       },
 
       //绑定账号
-      partnerBind: function() {
+      partnerBind: function(newUser) {
+        var that = this;
+
         this.component.partnerBind.sendRequest()
           .done(function(data) {
+
+            $.cookie('userId', data.userId);
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
+            document.domain= "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
+            // 注册送优惠券 begin
+            // if (newUser) {
+            //   // that.sendCoupon();
+            //   that.receiveCoupon();
+            // } else {
+            //   document.domain= "sfht.com";
+            //   window.parent.userLoginSccuessCallback();
+            // }
+            // 注册送优惠券 end
+            // document.domain = "sfht.com";
+            // 获得打车券
+            // if (newUser) {
+            //   var currentServerTime = that.component.partnerBind.getServerTime();
+            //   if (currentServerTime > 1432828800000 && currentServerTime < 1433087999000) {
+            //     window.parent.popMessage();
+            //   }
+            // }
+
+            // window.parent.userLoginSccuessCallback();
+
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
@@ -275,12 +307,74 @@ define(
           })
       },
 
+      errorMap: {
+        "11000020": "卡券不存在",
+        "11000030": "卡券已作废",
+        "11000050": "卡券已领完",
+        "11000100": "您已领过该券",
+        "11000130": "卡包不存在",
+        "11000140": "卡包已作废"
+      },
+
+      receiveCoupon: function() {
+        document.domain = "sfht.com";
+
+        var params = {};
+        params.bagId = '236';
+        params.type = 'CARD';
+        params.receiveChannel = 'B2C';
+        params.receiveWay = 'ZTLQ';
+        var that = this;
+        var receiveCouponData = new SFReceiveCoupon(params);
+        return can.when(receiveCouponData.sendRequest())
+          .done(function(userCouponInfo) {
+            window.parent.popMessage();
+            window.parent.userLoginSccuessCallback();
+          })
+          .fail(function(error) {
+            console.error(error);
+            window.parent.userLoginSccuessCallback();
+          });
+      },
+
+      sendCoupon: function() {
+        document.domain = "sfht.com";
+
+        var receivePro = new SFReceivePro({
+          "channel": "B2C",
+          "event": "REGISTER_USER_SUCCESS"
+        });
+
+        receivePro
+          .sendRequest()
+          .done(function(proInfo) {
+
+            if (proInfo.couponInfos) {
+              window.parent.popMessage();
+            }
+
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+          .fail(function(error) {
+            console.error(error);
+            // can.trigger(window.parent, 'login');
+            window.parent.userLoginSccuessCallback();
+          })
+
+      },
+
       //绑定账号
       partnerBindByUPswd: function() {
         this.component.partnerBindByUPswd.sendRequest()
           .done(function(data) {
+            store.set('userId', data.userId);
             store.set('csrfToken', data.csrfToken);
             store.remove('tempToken');
+
+            document.domain = "sfht.com";
+            window.parent.userLoginSccuessCallback();
+
           }).fail(function(errorCode) {
             if (_.isNumber(errorCode)) {
               var defaultText = '绑定失败（输入有误）';
@@ -320,7 +414,8 @@ define(
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
               'accountId': mobile,
-              'smsCode': code
+              'smsCode': code,
+              'srcUid': $.cookie('_ruser')
             });
             this.partnerBind();
           }
@@ -341,6 +436,7 @@ define(
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
               'accountId': mobile,
+              'srcUid': $.cookie('_ruser'),
               'passWord': md5(pwd + SFBizConf.setting.md5_key)
             });
 
@@ -352,9 +448,10 @@ define(
             this.component.partnerBind.setData({
               'tempToken': store.get('tempToken'),
               'type': 'MOBILE',
+              'srcUid': $.cookie('_ruser'),
               'accountId': mobile
             });
-            this.partnerBind();
+            this.partnerBind(true);
           }
 
         }

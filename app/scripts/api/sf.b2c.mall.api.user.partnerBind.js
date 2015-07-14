@@ -30,7 +30,8 @@ function($, can, _, Comm, SecurityType) {
         'accountId': 'string',
       },
       OPTIONAL: {
-        'smsCode': 'string'
+        'smsCode': 'string',
+        'srcUid': 'string'
       },
       VERIFY:{
       },

@@ -10,14 +10,25 @@ define(
     return can.Control.extend({
 
       init: function(element, options) {
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.autoSlider = false;
+        }
         this.options.sliderIndex = 0;
         this.render(this.options);
+        this.initEvents(element);
       },
 
       /**
        * @description 向前浏览banner
        */
       sliderPreving: function() {
+        if (!this.autoSlider) {
+          if (this.options.sliderIndex == 0 ) {
+            return false;
+          }
+        }
+
+
         this.options.sliderIndex--;
 
         if (this.options.sliderIndex < 0) {
@@ -26,12 +37,22 @@ define(
         }
 
         this.sliderSwitch();
+
+        if (typeof this.options.preCallback) {
+          this.options.preCallback(this);
+        }
       },
 
       /**
        * @description 向后浏览banner
        */
       sliderNexting: function() {
+        if (!this.autoSlider) {
+          if (this.options.sliderIndex == (this.element.find('.slider-img li').length - 1) ) {
+            return false;
+          }
+        }
+
         this.options.sliderIndex++;
 
         var length = this.element.find('.slider-img li').length;
@@ -40,6 +61,10 @@ define(
         }
 
         this.sliderSwitch();
+
+        if (typeof this.options.nextCallback) {
+          this.options.nextCallback(this);
+        }
       },
 
       /**
@@ -76,34 +101,35 @@ define(
         }, 500, function() {
           that.element.find('.slider .btn-prev').hide()
         });
-        this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+        }
       },
 
-      '.btn-prev click': function(element, event) {
-        this.sliderPreving();
-      },
+      initEvents: function(element) {
+        var that = this;
 
-      '.btn-next click': function(element, event) {
-        this.sliderNexting();
-      },
+        $(element).on("click", ".btn-prev", function() {
+          that.sliderPreving()
+        });
 
-      '.slider-num li click': function(element, event) {
-        this.options.sliderIndex = this.element.find('.slider-num li').index(element);
-        this.sliderSwitch();
-        clearInterval(this.options.silderTimer);
-      },
+        $(element).on("click", ".btn-next", function() {
+          that.sliderNexting()
+        });
 
-      // template: function() {
-      //   return '{{#imgs}}' +
-      //     '<li><a href="###"></a></li>' +
-      //     '{{/imgs}}'
-      // },
+        $(element).on("click", ".slider-num li", function() {
+          that.options.sliderIndex = that.element.find('.slider-num li').index(this);
+          that.sliderSwitch();
+          clearInterval(that.options.silderTimer);
+        });
+      },
 
       render: function() {
-        // var template = can.view.mustache(this.template())
-        // $('.slider-num').html(template(this.options));
+        if (typeof this.element.attr("data-notauto") == 'undefined' || this.element.attr("data-notauto") != "true"){
+          this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
+        }
 
-        this.options.silderTimer = setInterval(_.bind(this.sliderNexting, this), 5000);
         this.element.hover(_.bind(this.hoverOver, this), _.bind(this.hoverOut, this));
         this.element.find('.slider-img li').eq(0).addClass('active');
         this.element.find('.slider-num li').eq(0).addClass('active');

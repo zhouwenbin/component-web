@@ -6,6 +6,7 @@ define(
 
   [
     'jquery',
+    'jquery.cookie',
     'can',
     'md5',
     'store',
@@ -19,7 +20,7 @@ define(
     'sf.b2c.mall.adapter.regions'
   ],
 
-  function($, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
+  function($, cookie, can, md5, store, SFConfig, SFLogin, SFNeedVfCode, SFCheckUserExist, SFFn, SFReqLoginAuth, GetRecAddressList, RegionsAdapter) {
 
     var DEFAULT_CAPTCHA_LINK = 'http://checkcode.sfht.com/captcha/';
     var DEFAULT_CAPTCHA_ID = 'haitaob2c';
@@ -285,7 +286,7 @@ define(
       '#wechatlogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "wechat_open",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=wechat_open"
         });
 
         reqLoginAuth
@@ -293,6 +294,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'wechat_open');
+            store.set("alipaylogin", "false");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -304,7 +306,7 @@ define(
       '#alipaylogin click': function(element, event) {
         var reqLoginAuth = new SFReqLoginAuth({
           "partnerId": "alipay_qklg",
-          "redirectUrl": "http://www.sfht.com/index.html"
+          "redirectUrl": "http://www.sfht.com/index.html?partnerId=alipay_qklg"
         });
 
         reqLoginAuth
@@ -312,6 +314,7 @@ define(
           .done(function(data) {
             SFFn.dotCode();
             store.set('alipay-or-weixin', 'alipay_qklg');
+            store.set("alipaylogin", "true");
             window.location.href = data.loginAuthLink;
             return false;
           })
@@ -352,7 +355,9 @@ define(
         var username = $(element).val();
 
         this.checkUserName.call(this, username);
-        this.isNeedVerCode();
+        if (username && (username.length == 11 || /@/.test(username) != -1)) {
+          this.isNeedVerCode();
+        };
       },
 
       /**
@@ -393,6 +398,8 @@ define(
             if (data.userId) {
 
               SFFn.dotCode();
+              $.cookie('userId', data.userId);
+              store.set("alipaylogin", "false");
               that.data.attr('autologin');
               that.component.getRecAddressList.sendRequest()
                 .done(function(data) {
@@ -427,7 +434,6 @@ define(
                     window.location.href = params.from || 'index.html';
                   }
                 }).fail(function() {})
-
             }
           })
           .fail(function(error) {
@@ -485,6 +491,7 @@ define(
               accountId: $.trim(this.data.attr('username')),
               type: this.checkTypeOfAccount(this.data.attr('username')),
               password: md5(password + SFConfig.setting.md5_key),
+              srcUid: $.cookie('_ruser'),
               vfCode: vfCode
             });
             that.sendRequest();

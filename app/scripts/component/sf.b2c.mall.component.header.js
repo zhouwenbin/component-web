@@ -13,22 +13,29 @@ define('sf.b2c.mall.component.header', [
   'underscore',
   'md5',
   'store',
+  'sf.b2c.mall.widget.message',
   'sf.b2c.mall.api.user.partnerLogin', //传参判断第三方账号是否绑定手机号码
   'sf.b2c.mall.framework.comm',
   'sf.b2c.mall.api.user.getUserInfo',
   'sf.b2c.mall.api.user.logout',
   'sf.b2c.mall.api.b2cmall.getHeaderConfig',
+  'sf.b2c.mall.api.minicart.getTotalCount',
+  'sf.b2c.mall.api.shopcart.addItemsToCart',
+  'sf.b2c.mall.api.shopcart.isShowCart',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
   'sf.util',
+  'sf.b2c.mall.component.header.520',
+  'sf.b2c.mall.component.header.61',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
   'text!template_header_channel_navigator',
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFModal, SFConfig, SFNotSupport, SFFn,
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+  SFHeader61,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -95,6 +102,7 @@ define('sf.b2c.mall.component.header', [
      * @param  {Map} options 传递的参数
      */
     init: function(element, options) {
+      this.controlCart();
       this.component = {};
       this.component.modal = new SFModal('body');
       // this.component.scanner = new SFLoginScanner();
@@ -157,60 +165,174 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      // this.showAD();
+      this.renderMap['template_header_61'].call(this, that.data);
+      this.updateCart();
+
+      // @author Michael.Lee
+      // 将更新购物车事件注册到window上
+      // 其他地方添加需要更新mini购物车的时候调用can.trigger('updateCart')
+      can.on.call(window, 'updateCart', _.bind(this.updateCart, this));
+
+      // @author Michael.Lee
+      // 将弹出登录框事件注册到window上
+      // 其他地方需要弹出登录框的时候调用window.trigger('showLogin')
+      can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
+
+      this.checkTempActionAddCart();
+
+      this.setCookie();
     },
 
-    showAD: function() {
+    setCookie: function() {
+      var params = can.deparam(window.location.search.substr(1));
+      if (params._src && !$.cookie('_ruser')) {
+        $.cookie('_ruser', params._src, {expires: 15, domain: '.sfht.com', path: '/'})
+      }
+    },
 
-      if (this.needShowAd()) {
+    controlCart: function() {
 
-        $('.banner-scroll')
-          .height(0)
-          .animate({
-            "height": 539
-          }, 1000)
-          .delay(5000)
-          .animate({
-            'height': 0
-          }, 1000, function() {
-            $(this).css({
-              "background-image": "url(../img/banner-scroll2.jpg)"
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        var uinfo = $.cookie('1_uinfo');
+        var arr = [];
+        if (uinfo) {
+          arr = uinfo.split(',');
+        }
+
+        var flag = arr[4];
+
+        // 如果判断开关关闭，使用dom操作不显示购物车
+        if (typeof flag == 'undefined' || flag == '2') {
+          $(".mini-cart-container-parent").hide();
+        } else if (flag == '0') {
+          // @todo 请求总开关进行判断
+          var isShowCart = new SFIsShowCart();
+          isShowCart
+            .sendRequest()
+            .done(function(data) {
+              if (data.value) {
+                $(".mini-cart-container-parent").show();
+              } else {
+                $(".mini-cart-container-parent").hide();
+              }
             })
-          })
-          .delay(100)
-          .animate({
-            "height": 90
-          }, 300)
 
-        store.set("lastadshowtime", new Date().getTime());
+        } else {
+          $(".mini-cart-container-parent").show();
+        }
+      } else {
+        var isShowCart = new SFIsShowCart();
+        isShowCart
+          .sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              $(".mini-cart-container-parent").show();
+            } else {
+              $(".mini-cart-container-parent").hide();
+            }
+          });
       }
     },
 
-    needShowAd: function() {
-      // 如果已经登录了 则不显示
-      if (store.get('csrfToken')) {
-        return false;
+    /**
+     * @author Michael.Lee
+     * @description 用户点击购物车之后的动作变化
+     * @param  {element}  $el   点击对象的jquery对象
+     * @param  {event}    event 绑定在点击对象的event对象
+     * @return
+     */
+    '.mini-cart-container click': function($el, event) {
+      event && event.preventDefault();
+
+      var href = $el.attr('href');
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        window.location.href = href;
+      } else {
+        // can.trigger(window, 'showLogin', [href]);
+        this.showLogin(href);
+      }
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 检查有没有临时的添加购物车的任务需要执行
+     * @return
+     */
+    checkTempActionAddCart: function() {
+      var params = store.get('temp-action-addCart');
+
+      if (params) {
+        var itemId = params.itemId;
+        var num = params.num || 1;
+
+        if (itemId && num) {
+          store.remove('temp-action-addCart');
+          this.addCart(itemId, num);
+        }
+      }
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 加入购物车
+     */
+    addCart: function(itemId, num) {
+      var itemsStr = JSON.stringify([{
+        itemId: itemId,
+        num: num || 1
+      }]);
+      var addItemToCart = new SFAddItemToCart({
+        items: itemsStr
+      });
+
+      // 添加购物车发送请求
+      addItemToCart.sendRequest()
+        .done(function(data) {
+          if (data.isSuccess) {
+            // 更新mini购物车
+            can.trigger(window, 'updateCart');
+          } else {
+            var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + data.resultMsg + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
+            if ($('.dialog-cart').length > 0) {
+              return false;
+            };
+            $(document.body).append($el);
+            $('.closeDialog').click(function(event) {
+              $el.remove();
+            });
+            setTimeout(function() {
+              $el.remove();
+            }, 3000);
+          }
+        })
+        .fail(function(data) {})
+    },
+
+    /**
+     * @author Michael.Lee
+     * @description 更新导航栏购物车，调用接口刷新购物车数量
+     */
+    updateCart: function() {
+
+      var that = this;
+
+      // 如果用户已经登陆了，可以进行购物车更新
+      // @todo 如果是白名单的用户可以看到购物车
+      if (SFComm.prototype.checkUserLogin.call(this)) {
+        this.element.find('.mini-cart').show();
+
+        var getTotalCount = new SFGetTotalCount();
+        getTotalCount.sendRequest()
+          .done(function(data) {
+            // @description 将返回数字显示在头部导航栏
+            // 需要跳动的效果
+            that.element.find('.mini-cart-num').text(data.value);
+          })
+          .fail(function(data) {
+            // 更新mini cart失败，不做任何显示
+          });
       }
 
-      // 如果显示没超过一天 则不要显示广告
-      if (store.get('lastadshowtime') && (new Date().getTime() - store.get('lastadshowtime') < 60 * 60 * 24 * 1000)) {
-        return false;
-      }
-
-      var url = window.location.href;
-
-      //URL补齐
-      if (url == "http://www.sfht.com/") {
-        url = url + "index.html";
-      }
-
-      // 如果不是详情页 首页和活动页 则不显示广告
-      var isShowURL = /index|activity|detail/.test(url);
-      if (!isShowURL) {
-        return false;
-      }
-
-      return true;
     },
 
     /**
@@ -266,6 +388,18 @@ define('sf.b2c.mall.component.header', [
 
         this.element.find('.header-channel-navigator').html(html);
       },
+
+      'template_header_520': function(data) {
+        new SFHeader520('.sf-b2c-mall-header', {
+          "originheader": this
+        });
+      },
+
+      'template_header_61': function(data) {
+        new SFHeader61('.sf-b2c-mall-header', {
+          "originheader": this
+        });
+      }
     },
 
     supplement: function(data) {
@@ -276,38 +410,43 @@ define('sf.b2c.mall.component.header', [
       var pathname = window.location.pathname;
 
       // @note 只有在首页需要显示浮动导航栏
-      if (pathname == '/' || pathname == '/index.html') {
-        $(window).scroll(function() {
-          setTimeout(function() {
-            if ($(window).scrollTop() > 166) {
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '0px',
-                opacity: 1
-              }, 300);
-            } else {
-              $(".nav-fixed .nav-inner").stop(true, false).animate({
-                top: '-56px',
-                opacity: 0
-              }, 0);
-            }
+      // if (pathname == '/' || pathname == '/index.html') {
 
-          }, 200);
+      // @note 520活动暂时关闭浮动导航栏
+      // @note 520活动结束，打开浮动导航
+      $(window).scroll(function() {
+        setTimeout(function() {
+          if ($(window).scrollTop() > (166+854)) {
+            $(".nav-fixed .nav-inner").stop(true, false).animate({
+              top: '0px',
+              opacity: 1
+            }, 300);
+          } else {
+            $(".nav-fixed .nav-inner").stop(true, false).animate({
+              top: '-56px',
+              opacity: 0
+            }, 0);
+          }
+        }, 200);
+      })
+
+      $('#js-focus')
+        .hover(function() {
+          $('.nav-qrcode').addClass('show');
+          return false;
         })
-        $('#js-focus')
-          .hover(function() {
-            $('.nav-qrcode').addClass('show');
-            return false;
-          })
-          .bind('mouseleave', function() {
-            $('.nav-qrcode').removeClass('show');
-            return false;
-          })
-      };
-      //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
+        .bind('mouseleave', function() {
+          $('.nav-qrcode').removeClass('show');
+          return false;
+        })
+        // };
+        //@note 判断是否登录，登录不做任何操作，没有登录解析url传回服务端
       var authResp = can.deparam(window.location.search.substr(1));
-      if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp)) {
+      if (!SFComm.prototype.checkUserLogin.call(that) && !can.isEmptyObject(authResp) && typeof authResp.partnerId != 'undefined') {
+        delete authResp.partnerId;
         var partnerLogin = new SFPartnerLogin({
           'partnerId': store.get('alipay-or-weixin'),
+          'srcUid': $.cookie('_ruser'),
           'authResp': decodeURIComponent($.param(authResp))
         });
         partnerLogin.sendRequest()
@@ -320,6 +459,17 @@ define('sf.b2c.mall.component.header', [
               });
             } else {
               store.set('csrfToken', data.csrfToken);
+
+              // 登陆后设置下昵称，不要调用userLoginSccuessCallback
+              var userinfo = $.cookie(APPID + '_uinfo');
+              var arr = [];
+              if (userinfo) {
+                arr = userinfo.split(',');
+              }
+
+              that.data.attr('isUserLogin', true);
+              that.data.attr('nickname', arr[0]);
+
             }
           }).fail(function(errorCode) {})
 
@@ -397,7 +547,7 @@ define('sf.b2c.mall.component.header', [
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.center;
+        window.location.href = SFConfig.setting.link.orderlist;
       } else {
         this.showLogin('center');
       }
@@ -407,7 +557,7 @@ define('sf.b2c.mall.component.header', [
       event && event.preventDefault();
 
       if (SFComm.prototype.checkUserLogin.call(this)) {
-        window.location.href = SFConfig.setting.link.center;
+        window.location.href = SFConfig.setting.link.usercenter;
       } else {
         this.showLogin('center');
       }
@@ -444,7 +594,7 @@ define('sf.b2c.mall.component.header', [
             store.remove('csrfToken');
             setTimeout(function() {
               window.location.href = SFConfig.setting.link.index;
-            }, 2000);
+            }, 1000);
 
             store.remove('provinceId');
             store.remove('cityId');
@@ -499,19 +649,20 @@ define('sf.b2c.mall.component.header', [
 
     showLogin: function(dest) {
 
-      // 给微信登录使用(！！！位置不能移)
-      store.set("weixinto", SFConfig.setting.link[dest] || dest);
-
       // 如果没有指定去哪个页面，则使用当前页面 （因为微信要转跳后关闭后去到指定页面，所以这里必须要设定）
       if (typeof dest == "undefined") {
-        store.set("weixinto", window.location.href);
+        dest = window.location.href;
+        store.set("weixinto", encodeURIComponent(window.location.href));
+      } else {
+        // 给微信登录使用(！！！位置不能移)
+        store.set("weixinto", encodeURIComponent(SFConfig.setting.link[dest] || dest));
       }
 
       if (SFFn.isMobile.any()) {
         return window.location.href = SFConfig.setting.link.ilogin;
       }
 
-      if (dest) {
+      if (dest && _.isString(dest)) {
         this.afterLoginDest = dest
       }
 
@@ -524,10 +675,12 @@ define('sf.b2c.mall.component.header', [
 
     watchLoginState: function() {
       var that = this;
-      // if (!this.component.modal.isClosed()) {
-      setInterval(function() {
+      document.domain = "sfht.com";
+      // can.on.call(window, 'login', function () {
+      window.userLoginSccuessCallback = function() {
+
         if (that.component.modal.isClosed()) {
-          that.afterLoginDest = null
+          that.afterLoginDest = null;
         }
 
         //console.log(SFComm.prototype.checkUserLogin.call(that))
@@ -546,10 +699,14 @@ define('sf.b2c.mall.component.header', [
           if (userinfo) {
             arr = userinfo.split(',');
           }
-          //window.location.reload();
+
           that.data.attr('isUserLogin', true);
           that.data.attr('nickname', arr[0]);
 
+          // 登录后刷新页面，520项目的注册信息要隐藏
+          // if (!that.afterLoginDest) {
+          //   window.location.reload();
+          // }
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
 
         } else {
@@ -558,11 +715,16 @@ define('sf.b2c.mall.component.header', [
 
           // that.renderMap['template_header_user_navigator'].call(that, that.data);
         }
+      };
 
-
-        // that.watchLoginState.call(that);
-      }, 500);
-      // }
+      window.popMessage = function() {
+        setTimeout(function() {
+          new SFMessage(null, {
+            'tip': "50元优惠券已发放至您的账户，请注意查收。",
+            'type': 'success'
+          });
+        }, 1000);
+      }
     }
   });
 });

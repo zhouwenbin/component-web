@@ -36,7 +36,10 @@ function($, can, _, Comm, SecurityType) {
         'zipCode': 'string',
         'recName': 'string',
         'recId': 'long',
-        'partnerId': 'string'
+        'partnerId': 'string',
+        'isDefault': 'int',
+        'type': 'string',
+        'credtNum': 'string'
       },
       VERIFY:{
       },

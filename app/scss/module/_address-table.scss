@@ -1,0 +1,92 @@
+.address{
+
+	margin-bottom: 128px;
+}
+.address h2{
+	font-size: 14px;
+	font-weight: normal;
+	margin: 48px 0 22px;
+}
+.address-table{
+	border:1px solid #e5e5e5;
+	border-radius: 4px;
+}
+.address table{
+	width: 100%;
+	
+}
+.address th{
+	background: #f5f7f7;
+	height: 38px;
+}
+.address td{
+	line-height: 1.5;
+	position: relative;
+	border-top:1px solid #e5e5e5;
+	padding: 10px 0;
+}
+.address .col1{
+	padding-left: 20px;
+	width: 114px;
+}
+.address .col2{
+	width: 220px;
+}
+.address .col3{
+	width: 199px;
+	padding-right: 10px;
+}
+.address .col4{
+	width: 157px;
+}
+.address .text-link{
+	margin-right: 10px;
+}
+.address .label-error{
+	background: #dc3334;
+	padding: 0 5px;
+	margin-left: 18px;
+	display: none;
+}
+.address td:hover .label-error{
+	display: inline-block;
+}
+.address .label i{
+	border-color: transparent transparent transparent #fff;
+	border-width: 10px 5px;
+	left: 0;
+	margin-top: -10px;
+}
+.address .label-disabled{
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -10px;
+	background: #e5e5e5;
+	color: #999;
+}
+.integral-table td{
+	padding: 20px 0;
+}
+.integral-table .col1{
+	width: 270px;
+	text-align: center;
+}
+.integral-table .col2{
+	width: 236px;
+	text-align: center;
+}
+.integral-table .col3{
+	width: 236px;
+	text-align: center;
+}
+.integral-table .text-disabled{
+	color: #999;
+}
+.integral-table{
+	margin-bottom: 20px;
+}
+.integral-table strong{
+	font-weight: bold;
+}

@@ -2,49 +2,52 @@
  * Created by 张可 on 2015/3/5.
  */
 define(
-  'sf.b2c.mall.center.coupon',
-  [
+  'sf.b2c.mall.center.coupon', [
     'can',
     'jquery',
     'sf.helpers',
     'sf.b2c.mall.api.coupon.getUserCouponList'
   ],
-  function(can, $, helpers, SFGetUserCouponList){
+  function(can, $, helpers, SFGetUserCouponList) {
 
 
     var optionsMap;
     return can.Control.extend({
-      init: function () {
+      init: function() {
         this.render();
       },
-      render: function (data) {
+      render: function(data) {
         var that = this;
 
         var params = {
-          "query": JSON.stringify({
-          })
+          "query": JSON.stringify({})
         }
         var getUserCouponList = new SFGetUserCouponList(params);
         getUserCouponList
           .sendRequest()
           .done(function(data) {
             var options = {
-              unUsed : {
+              unUsed: {
                 isShow: true,
                 count: 0,
                 items: []
               },
-              used : {
+              thirdparty: {
                 isShow: false,
                 count: 0,
                 items: []
               },
-              expired : {
+              used: {
                 isShow: false,
                 count: 0,
                 items: []
               },
-              cancel : {
+              expired: {
+                isShow: false,
+                count: 0,
+                items: []
+              },
+              cancel: {
                 isShow: false,
                 count: 0,
                 items: []
@@ -52,32 +55,59 @@ define(
             };
 
             var couponStatusMap = {
-              "UNUSED" : function() {
+              "UNUSED": function() {
                 options.unUsed.count++;
                 options.unUsed.items.push(tmpCoupon);
               },
-              "USED" : function() {
+              "USED": function() {
                 options.used.count++;
                 options.used.items.push(tmpCoupon);
               },
-              "CANCELED" : function() {
+              "CANCELED": function() {
                 options.cancel.count++;
                 options.cancel.items.push(tmpCoupon);
               },
-              "EXPIRED" : function() {
+              "EXPIRED": function() {
                 options.expired.count++;
                 options.expired.items.push(tmpCoupon);
               }
             }
-            var pushCoupon = function(tag) {
-              var fn = couponStatusMap[tag];
+
+            var thirdpartyMap = {
+              "EXT_MOVIETICKET": function() {
+                if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != ""){
+                  tmpCoupon.showButton = true;
+                }
+                options.thirdparty.count++;
+                options.thirdparty.items.push(tmpCoupon);
+              },
+
+              "EXT_TAXICOUPON": function() {
+                if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != ""){
+                  tmpCoupon.showButton = true;
+                }
+                options.thirdparty.count++;
+                options.thirdparty.items.push(tmpCoupon);
+              }
+            }
+
+            var pushCoupon = function(couponType, status) {
+              var fn;
+
+              if (couponType == "EXT_MOVIETICKET" || couponType == "EXT_TAXICOUPON") {
+                fn = thirdpartyMap[couponType];
+              } else {
+                fn = couponStatusMap[status];
+              }
+
               if (_.isFunction(fn)) {
                 return fn.call(this)
               }
             }
+
             if (data.items) {
               for (var i = 0, tmpCoupon; tmpCoupon = data.items[i]; i++) {
-                pushCoupon(tmpCoupon.status);
+                pushCoupon(tmpCoupon.couponType, tmpCoupon.status);
               }
             }
 
@@ -90,7 +120,7 @@ define(
           });
       },
 
-      ".mycoupon-h li click": function(targetElement){
+      ".mycoupon-h li click": function(targetElement) {
         var index = $('.mycoupon-h li').index(targetElement);
         $('.mycoupon-h li.active').removeClass('active');
         $('.mycoupon-b.active').removeClass('active');

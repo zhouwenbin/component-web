@@ -169,81 +169,13 @@ $(function(){
     },function(){
         $(this).removeClass("active");
     });
-    //----------选择收货人-------------//
-    $(".order").on("click", ".icon30", function(){
-        $(this).toggleClass("active")
-        $(this).parents(".order-b").toggleClass("active");
-        $(".order-r2").hide();
-        return false;
-    });
-    $(".order").on("click", ".icon29", function(){debugger;
-        var li=$(this).parents("li");
-        var ul=$(this).parents("ul");
-        li.addClass("active").siblings().removeClass("active");
-        ul.prepend(li);
-    })
-    $(".order").on("click", ".order-edit", function(){debugger;
-        $(".order-r2").hide();
-        $(this).parents("li").find(".order-r2").toggle();
-        $(this).parents(".order-b").find(".icon30").addClass("active");
-        return false;
-    });
-    $(".order").on("click", ".btn-add", function(){debugger;
-        $(".order-r2").hide();
-        $(this).prev().toggle();
-        return false;
-    });
-    $(".order").on("click", ".order-cancel", function(){
-        $(".order-r2").hide();
-        $(this).parents(".order-b").find(".icon30").removeClass("active");
-        return false;
-    });
-    $(".order").on("click", ".order-del", function(){
-        $(".dialog-center").show(300);
-        $(".mask").show();
-        return false;
-    });
 
-
-    //----------注册页小章鱼特效-------------//
-    $('.password').focus(function(){
-        $(".icon34").animate({
-            "top":-28
-        },700);
-    })
-    $('.password').blur(function(){
-        $(".icon34").animate({
-            "top":-78
-        },300)
-        .animate({
-            "top":-74
-        },50)
-        .animate({
-            "top":-76
-        },50);
-    })
-
-    //----------placeholder兼容-------------//
-    $(".password").keyup(function(){
-
-        if($(this).val()){
-            $(this).siblings("label").hide();
-        }else{
-            $(this).siblings("label").show();
-        }
-    })
 
     //----------dialog关闭-------------//
     $(".dialog").on("click",".btn-close,.btn-cancel,.btn-send",function(){
         $(this).parents(".dialog").hide(300);
         $(".mask").hide();
         return false;
-    })
-    //----------查看物流-------------//
-    $(".table-1-logistics").hover(function(){
-        $(this).find(".tooltip").show();
-    },function(){
-        $(this).find(".tooltip").hide();
     })
     //----------radio模拟-------------//
     $(".radio").on("click",function(){
@@ -272,44 +204,39 @@ $(function(){
           },0);
       }
   })
-  $('#js-focus').click(function(){
-    $('.nav-qrcode').toggleClass('show');
-    return false;
-  })
-  //----------订单-------------//
-  $('.mycoupon-h li').click(function(){
-    var index = $('.mycoupon-h li').index(this);
-    $('.mycoupon-h li').removeClass('active');
-    $(this).addClass('active');
-    $('.coupon2-b').removeClass('active');
-    $('.coupon2-b').eq(index).addClass('active');
-    return false;
-  })
-  $('.coupon2-btn').click(function(){
-    $('.js-coupon').toggleClass("hide");
-    if($('.js-coupon').hasClass('hide')){
-      $(this).text('+');
+
+  
+  //----------加入购物车-------------//
+  $('.product').on("click", '.icon90', function(){
+    if($(window).scrollTop() > 166){
+        var target=$('.nav .icon100').eq(1).offset()
     }else{
-      $(this).text('-');
+        var target=$('.nav .icon100').eq(0).offset()
     }
-    return false;
-  })
-  $('.coupon2 .radio').click(function(){
-    $('.coupon2 .radio').removeClass('active');
-    $(this).addClass('active');
-  })
-  //----------头部广告-------------//
-  $('.banner-scroll')
-  .delay(5000)
-  .animate({
-    'height':0
-  },1000,function(){
+    var that = $(this),
+        targetX=target.left,
+        targetY=target.top,
+        current=$(this).offset(),
+        currentX=current.left,
+        currentY=current.top,
+        cart_num=$('.cart-num').eq(0).text();
+    $(this).clone().appendTo($(this).parent());
     $(this).css({
-        "background-image":"url(../img/banner-scroll2.jpg)"
-      })
-  })
-  .delay(100)
-  .animate({
-    "height":90
-  },300)
+      left:targetX-currentX,
+      top:targetY-currentY,
+      zIndex:2,
+      visibility:'hidden'
+    })
+    
+    setTimeout(function(){
+        that.remove();
+    },1000);
+    cart_num++;
+    $('.cart-num').text(cart_num);
+    $('.nav .label-error').addClass('active');
+    setTimeout(function(){
+        $('.nav .label-error').removeClass('active');
+    },500)
+    return false;
+  });
 })

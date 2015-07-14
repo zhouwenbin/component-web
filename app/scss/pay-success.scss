@@ -1,0 +1,42 @@
+﻿@import 'utils/variables';
+@import 'utils/placeholders';
+@import 'module/pay-success';
+@import 'module/gift';
+.header {
+  border-bottom: 3px solid #353a42;
+}
+.nav{
+	display: none;
+}
+
+.qrcode img{
+	width: 125px;
+	height: 125px;
+	margin-right: 25px;
+}
+.qrcode h2{
+	padding-top: 13px;
+	margin-bottom: 13px;
+	font-size: 14px;
+}
+.coupon{
+	display: inline-block;
+	background: url(#{$bg-url}coupon2.png) no-repeat;
+	width: 164px;
+	height: 54px;
+	padding-top: 4px;
+	color: #fff;
+	text-align: center;
+}
+.coupon b{
+	font-size: 14px;
+}
+.coupon strong{
+	font-size: 30px;
+	font-family: arial;
+	margin-right: 5px;
+}
+.coupon p{
+	opacity: 0.5;
+	margin-top: 2px;
+}

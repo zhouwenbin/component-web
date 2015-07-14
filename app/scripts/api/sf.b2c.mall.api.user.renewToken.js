@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '1000010': '未找到用户'
       }
     }
   });

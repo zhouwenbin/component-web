@@ -11,7 +11,13 @@
 .header-c1 .icon11{
 	margin-top: 2px;
 }
-
+.header-c2 span{
+	transition:all 0.5s;
+	will-change:transform;
+}
+.header-c2 span:hover{
+	transform:rotateZ(360deg) translate3d(0,0,0);
+}
 .header-c2{
 	height:49px;
 	line-height:49px;
@@ -41,24 +47,24 @@
 
 .header-icon1{
 	@extend %header-icon;
-	width:16px;
-	height:17px;
-	background-position:0 -9px;
+	width:26px;
+	height:28px;
+	background-position:0 -4px;
 	margin-right:5px;
 }
 .header-icon2{
 	@extend %header-icon;
-	width:17px;
-	height:17px;
+	width:26px;
+	height:28px;
 	margin-right:5px;
-	background-position:-150px -10px;
+	background-position:-146px -4px;
 }
 .header-icon3{
 	@extend %header-icon;
-	width:17px;
-	height:18px;
+	width:26px;
+	height:28px;
 	margin-right:5px;
-	background-position:-290px -9px;
+	background-position:-252px -4px;
 }
 .header-icon4{
 	@extend %header-icon;
@@ -83,9 +89,25 @@
 .header1-c2 a{
 	margin-left: 20px;
 }
+.header1-c2 .icon116{
+	margin-right: 8px;
+}
 .header1 a:hover{
 	color:#dc3334;
 }
 .header1-user{
 	margin-right:20px;
+}
+.header1-qrcode{
+	position: relative;
+}
+.header1-qrcode:hover img{
+	display: block;
+}
+.header1-qrcode img{
+	position: absolute;
+	left: -60px;
+	top: 10px;
+	z-index: 998;
+	display: none;
 }

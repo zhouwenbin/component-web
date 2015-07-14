@@ -33,6 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '12000020': '用户已不是新用户，不能获取新手优惠'
       }
     }
   });

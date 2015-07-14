@@ -4,9 +4,6 @@
 	cursor: pointer;
 	border: 0;
 }
-button.btn{
-	border:0 !important;
-}
 .btn-top{
 	padding: 18px 21px;
 	background: rgba(0,0,0,0.3);
@@ -15,6 +12,7 @@ button.btn{
 	right: 50px;
 	display: none;
 	border-radius:5px;
+	z-index:998;
 }
 .btn-top:hover{
 	background: #7f7f7f;
@@ -382,7 +380,8 @@ button.btn{
 	background:#5fa620;
 }
 
-.btn-soon{
+.btn-soon,
+.btn-cart{
 	@extend %btn;
   background: #ff8140;
   color: #fff !important;
@@ -423,4 +422,41 @@ button.btn{
   width: 300px;
   height: 50px;
   line-height: 50px;
+}
+
+.btn-search{
+	height: 23px;
+	line-height: 23px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 6px;
+	padding-right: 3px;
+	border:1px solid #e5e5e5;
+}
+.btn-search strong{
+	color: #dd3f45;
+	margin-right: 11px;
+}
+.btn-search-close{
+	width: 15px;
+	height: 15px;
+	background: #dd3f45;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.btn-search-close:hover:before{
+	transform:rotate(180deg);
+}
+.btn-search-close:before{
+	content: '';
+	background: url(../img/icon.png) no-repeat -207px -208px;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -4px;
+	margin-top: -4px;
+	transition:all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }

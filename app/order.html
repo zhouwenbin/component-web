@@ -4,12 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>顺丰海淘</title>
+<title>顺丰海淘-订单确认页</title>
 <!-- build:css({app, .tmp}) styles/sf.b2c.mall.order.css -->
 <link href="css/common.css" rel="stylesheet" type="text/css" />
-<link href="css/order.css" rel="stylesheet" type="text/css" />
-<link href="css/coupon.css" rel="stylesheet" type="text/css" />
-<link href="css/register.css" rel="stylesheet" type="text/css" />
+<link href="css/cart.css" rel="stylesheet" type="text/css" />
 <!-- endbuild -->
 <!-- build:css({app, .tmp}) styles/sf.b2c.mall.browser.css -->
 <link href="css/browser.css" rel="stylesheet" type="text/css" />
@@ -23,35 +21,18 @@
 
 
     <div class="pm">
-
-      <!--步骤-->
-      <div class="sf-b2c-mall-order-step"></div>
-      <!--步骤-->
-
+      <div class="order-confirm">
       <!--订单-->
-      <div class="order">
-        <div class="sf-b2c-mall-order-selectReceiveAddress"></div>
+        <div class="order">
+          <div class="sf-b2c-mall-order-selectReceiveAddress"></div>
 
-        <div class="sf-b2c-mall-order-vendor-info"></div>
+          <div class="sf-b2c-mall-order-vendor-info"></div>
 
-        <!--<h2>支付方式</h2>-->
-        <!--<div class="order-b order-b-1 clearfix">-->
-          <!--<ul>-->
-            <!--<li class="active clearfix">-->
-                <!--<div class="order-r1c1 fl">-->
-                  <!--<span class="icon icon29"></span>-->
-                  <!--<img src="img/alipay.jpg" alt="alipay" />-->
-                <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
+          <div class="sf-b2c-mall-order-itemInfo"></div>
 
-        <!--</div>-->
-
-        <div class="sf-b2c-mall-order-itemInfo"></div>
-
+        </div>
+      <!--订单-->
       </div>
-      <!--订单-->
-
     </div>
   </div>
 
@@ -73,30 +54,6 @@
     require(['sf.b2c.mall.page.order']);
   </script>
   <!-- endbuild -->
-
-  <!-- CNZZ -->
-  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1253511102%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
-
-  <!-- blade -->
-  <script type="text/javascript" class="microad_blade_track">
-  var microad_blade_cn = microad_blade_cn || { 'params' : new Array(), 'complete_map' : new Object() };
-  (function() {
-  var param = {'co_account_id' : '11575', 'group_id' : 'convtrack30997', 'country_id' : '3', 'ver' : '2.1.0'};
-  microad_blade_cn.params.push(param);
-
-  var src = (location.protocol == 'https:')
-  ? 'https://d-cache.microad-cn.com/js/blade_track_cn.js' : 'http://d-cache.microad-cn.com/js/blade_track_cn.js';
-
-  var bs = document.createElement('script');
-  bs.type = 'text/javascript'; bs.async = true;
-  bs.charset = 'utf-8'; bs.src = src;
-
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(bs, s);
-  })();
-  </script>
-
-
 
 </body>
 </html>

@@ -30,7 +30,8 @@ function($, can, _, Comm, SecurityType) {
         'password': 'string',
       },
       OPTIONAL: {
-        'nick': 'string'
+        'nick': 'string',
+        'srcUid': 'string'
       },
       VERIFY:{
       },

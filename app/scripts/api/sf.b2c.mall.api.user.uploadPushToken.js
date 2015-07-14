@@ -29,7 +29,7 @@ function($, can, _, Comm, SecurityType) {
         'pushType': 'string',
       },
       OPTIONAL: {
-        'state': 'string'
+        'state': 'int'
       },
       VERIFY:{
       },

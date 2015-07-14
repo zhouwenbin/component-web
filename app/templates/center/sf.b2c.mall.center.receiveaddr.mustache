@@ -1,39 +1,42 @@
-<h2>收货地址管理  {{#isover addressList}}<span class="error-side"><span class="icon icon26">{{errorText}}</span></span>{{/isover}}</h2>
-{{^if hasData}}
-<div class="order-b active">
-  <div class="order-r2" id="addAdrArea"></div>
-  <a href="javascript:void(0)" id="btn-add-addr" class="btn btn-add">+ 添加收货地址</a>
-</div>
-{{/if}}
 
+<div class="address-add" id="addAdrArea">
+
+</div>
+<!--我的收货地址-->
 {{#if hasData}}
-<div class="order-b active" id="addrList">
-  <ul>
-    {{#each addressList}}
-    <li class="clearfix active" name="addrEach" data-addressid="{{addrId}}" data-isDefault="{{isDefault}}">
-      <div class="order-r1 clearfix">
-        <div class="order-r1c2 fr">
-          {{#defaultAddr isDefault}}
-            <span class="text-error">默认地址</span>
-          {{else}}
-            {{#if canShowSetDefaultAddr}}
-              <a href="#" class="btn btn-add btn-setDefault" data-index="{{@index}}">设为默认</a>
+<div class="address">
+  <h2>我的收货地址</h2>
+  <div class="address-table">
+    <table>
+      <thead>
+        <tr>
+          <th class="col1">收货人</th>
+          <th class="col2">收货地区</th>
+          <th class="col3">收货地址</th>
+          <th class="col4">手机号</th>
+          <th class="col5">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each addressList}}
+        <tr>
+          <td class="col1">{{recName}}</td>
+          <td class="col2">{{nationName}}{{provinceName}}{{cityName}}{{regionName}}</td>
+          <td class="col3" style="line-height:20px;padding:5px 0;">{{detail}}</td>
+          <td class="col4">{{cellphone}}</td>
+          <td class="col5">
+            <a class="text-link order-edit" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">编辑</a>
+            <a class="text-link order-del" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
+            {{#if isDefault}}
+            <span class="label label-disabled">默认地址<i></i></span>
+            {{else}}
+            <a data-index="{{@index}}" href="" class="label label-error btn-setDefault">设为默认</a>
             {{/if}}
-          {{/defaultAddr}}
-          <a class="order-edit" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">修改</a>
-          <a class="order-del" href="javascript:void(0)" data-index="{{@index}}" data-isDefault="{{isDefault}}">删除</a>
-        </div>
-        <ul class="order-r1c3">
-          <li><span>{{nationName}}</span><span>{{provinceName}}</span><span>{{cityName}}</span><span>{{regionName}}</span><span>{{detail}}</span></li>
-          <li><span>{{recName}}</span><span>|</span><span>{{credtNum}}</span></li>
-          <li><span>联系方式：{{cellphone}}</span></li>
-        </ul>
-      </div>
-      <div class="order-r2" id="editAdrArea"></div>
-    </li>
-    {{/each}}
-  </ul>
-  <div class="order-r2" id="addAdrArea"></div>
-  <a href="javascript:void(0)" id="btn-add-addr" class="btn btn-add">+ 添加地址信息</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>    
 </div>
 {{/if}}
