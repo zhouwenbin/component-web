@@ -38,7 +38,7 @@ define(
 
         this.sliderSwitch();
 
-        if (typeof this.options.preCallback) {
+        if (typeof this.options.preCallback !== 'undefined') {
           this.options.preCallback(this);
         }
       },
@@ -62,7 +62,7 @@ define(
 
         this.sliderSwitch();
 
-        if (typeof this.options.nextCallback) {
+        if (typeof this.options.nextCallback !== 'undefined') {
           this.options.nextCallback(this);
         }
       },
