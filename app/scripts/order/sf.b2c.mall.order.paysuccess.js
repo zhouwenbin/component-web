@@ -55,16 +55,22 @@ define('sf.b2c.mall.order.paysuccess', [
          * @param  {string} couponType 卡券类型字段
          * @return {string}            卡券类型名称
          */
-        'sf-coupon-type-name': function(couponType) {
-          var map = {
-            'CASH': '现金券',
-            'GIFTBAG': '礼包',
-            'SHAREBAG': '红包'
+         //恭喜您获得只展示orderAction为PRESENT，且不展示赠送的积分
+        'sf-coupon-type-name': function(couponType, orderAction, options) {
+          if (orderAction == 'PRESENT') {
+            var map = {
+              'CASH': '现金券',
+              'GIFTBAG': '礼包',
+              'SHAREBAG': '红包'
+            }
+            return map[couponType];
           }
-
-          return map[couponType];
         },
-
+        'sf-coupon-name': function(couponName, orderAction, options) {
+          if (orderAction == 'PRESENT') {
+            return couponName;
+          }
+        },
         /**
          * @description 判断group是不是空队列
          * @param  {array}  group   队列
@@ -72,10 +78,14 @@ define('sf.b2c.mall.order.paysuccess', [
          * @return {object}
          */
         'sf-is-not-empty': function(group, options) {
-          var array = _.findWhere(group, {
-            orderAction: 'PRESENT'
+          //赠送的积分不做展示
+          var array = _.filter(group, function(item) {
+            return item.orderAction == 'PRESENT'
           });
-          if (_.isEmpty(array)) {
+          var array2 = _.reject(array, function(item) {
+            return item.couponType == 'INTRGAL'
+          });
+          if (_.isEmpty(array2)) {
             return options.inverse(options.contexts || this);
           } else {
             return options.fn(options.contexts || this);
