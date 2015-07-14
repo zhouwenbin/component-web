@@ -20,9 +20,19 @@
   <div class="young-slider">
     <div class="pm">
       <div class="slider">
-        <ul class="slider-img">
+        <ul class="slider-img people">
           -for i in 1..15
-            <li><a href=""><img src="../img/young/photo/#{i}/1.jpg"></a></li>
+            <li>
+              <h2>瑞奇马丁</h2>
+                <h3>顺丰海淘商务拓展</h3>
+                <a href=""><img src="../img/young/photo/#{i}/1.jpg" alt=""></a>
+                <div class="num"><span>#{i}</span>/15</div>
+                <div class="mask people-lock">
+                  <div class="icon-lock"></div>
+                  <p>被扒1,000,00次就看到啦！</p>
+                  <button class="btn">快分享给闺蜜扒衣吧！</button>
+                </div>
+            </li>
 
         </ul>
         <div class="pm">
@@ -39,14 +49,14 @@
       </ul>
       <div class="young-bar"><div class="young-bar-active" style="width:50%"></div></div>
       <div class="young-slider-r2">被扒<span>76,543</span>次</div>
-      <a class="btn1">扒下他<span>10</span></a>
+      <a class="btn1 disabled">扒下他<span>10</span></a>
     </div>
   </div>
   <h2 class="young-h2">活动专场优惠券</h2>
   <div class="young-coupon">
     
     <div class="pm">
-      <a class="btn" href="">点我领券</a>
+      <a class="btn disabled" href="">点我领券</a>
       <a class="btn" href="">点我领券</a>
     </div>
   </div>
@@ -280,7 +290,6 @@
     </div>
 </div>
   <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/slider.js"></script>
   <script src="js/young.js"></script>
 </body>
 </html>
