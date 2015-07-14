@@ -116,6 +116,11 @@ define('sf.b2c.mall.component.header.61', [
         return false;
       }
 
+      // 小鲜肉活动，如果是438页面则不显示
+      if (window.location.href.indexOf('438.html') > -1) {
+        return false;
+      }
+
       return true;
     }
 
