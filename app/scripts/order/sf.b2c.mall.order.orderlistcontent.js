@@ -714,6 +714,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
       //签收订单
       '.received click': function(element, event) {
+        var that = this;
         var subOrderId = element.parent('td').attr('data-orderid');
 
         var routeParams = can.route.attr();
