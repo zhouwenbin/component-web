@@ -96,6 +96,7 @@ define('sf.b2c.mall.component.header.61', [
     },
 
     '.bigpic click': function(element, event) {
+      store.set("closed", "true");
       window.location.href = "http://www.sfht.com/activity/438.html?_spm=0.229.1719.1";
       // this.options.originheader.showRegister("http://www.sfht.com/activity/438.html?_spm=0.229.1719.1");
     },
@@ -112,6 +113,11 @@ define('sf.b2c.mall.component.header.61', [
       // 如果不是详情页 首页和活动页 则不显示广告
       var isShowURL = /index|activity|detail|y.html/.test(url);
       if (!isShowURL) {
+        return false;
+      }
+
+      // 小鲜肉活动，如果是438页面则不显示
+      if (window.location.href.indexOf('438.html') > -1) {
         return false;
       }
 

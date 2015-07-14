@@ -62,7 +62,7 @@ $photo-num:5;
 	text-align: left;
 }
 .young-slider .btn1.disabled{
-	background: url(http://img.sfht.com/sfht/1.1.155/img/young/young-btn1-disabled.png) no-repeat;
+	background: url(#{$bg-url}young/young-btn1-disabled.png) no-repeat;
 	text-indent: -999em;
 }
 .young-slider .btn1 span{
@@ -113,7 +113,7 @@ $photo-num:5;
 	margin: 242px 166px 0 0;
 }
 .young-coupon .btn.disabled{
-	background: url(http://img.sfht.com/sfht/1.1.155/img/young/young-btn2-disabled.png) no-repeat;
+	background: url(#{$bg-url}young/young-btn2-disabled.png) no-repeat;
 }
 .young-photo{
 	padding: 18px 0;
@@ -200,7 +200,7 @@ $photo-num:5;
 	text-align: center;
 }
 .young-tab-b{
-
+	
 }
 .young-tab-b>li{
 	display: none;
@@ -212,7 +212,7 @@ $photo-num:5;
 	background: #fff;
 	display: block;
 	width: 100%;
-
+	
 }
 .young-tab-b>li.active{
 	display: block;
@@ -220,7 +220,7 @@ $photo-num:5;
 .young-bar{
 	background: url(#{$bg-url}young/young-bar.png) no-repeat;
 	width: 556px;
-
+	
 	margin: 0 auto 18px;
 }
 .young-bar-active{
@@ -527,4 +527,7 @@ $photo-num:5;
 	left: 50%;
 	height: 700px;
 	margin-left: -295px;
+}
+.slider-img img{
+	filter:blur(10px);
 }
