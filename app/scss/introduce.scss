@@ -24,6 +24,7 @@
 .introduce-logistics{
 	background: url(#{$bg-url}introduce/introduce-logistics.jpg) no-repeat center top;
 	height: 990px;
+	text-indent: -999em;
 }
 .introduce-logistics h2{
 	font-size: 50px;
@@ -62,13 +63,16 @@
 	padding-left: 64px;
 	background: #fff;
 	padding-bottom: 120px;
+	padding-top: 60px;
 }
 .introduce-qa h2{
 	font-size: 60px;
 	text-align: center;
 	font-weight: normal;
-	padding-top: 60px;
+	height: 45px;
 	margin-bottom: 84px;
+	background: url(#{$bg-url}introduce/introduce-h2.jpg) no-repeat center top;
+	text-indent: -999em;
 }
 .introduce-qa h3{
 	font-size: 24px;
@@ -104,11 +108,11 @@
 	margin-left: -64px;
 }
 .introduce-qa h3 span{
-	background: #df3d40;
+	background: url(#{$bg-url}introduce/introduce-q.jpg) no-repeat center top;
 
 }
 .introduce-qa p span{
-	background: #a9e9f8;
+	background: url(#{$bg-url}introduce/introduce-a.jpg) no-repeat center top;
 }
 .introduce-qa img{
 	margin-bottom: 96px;
