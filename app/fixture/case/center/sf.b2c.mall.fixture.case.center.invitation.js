@@ -10,7 +10,7 @@ define('sf.b2c.mall.fixture.case.center.invitation', ['can',
 
       init: function() {
         fixtureFramework.registerSuccessFixtureMethod({
-          "getCashActTransList": function(response, data) {
+          "getCashActTransList": function(requestData) {
             return {
               "infos": [{
                 "income": 10000,
@@ -26,7 +26,7 @@ define('sf.b2c.mall.fixture.case.center.invitation', ['can',
             };
           },
 
-          "getCashActInfo": function(response, data) {
+          "getCashActInfo": function(requestData) {
             return {
               "actBalance": 0,
               "lastestIncome": 0,

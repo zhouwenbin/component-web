@@ -29,7 +29,7 @@ define('sf.b2c.mall.fixture.framework.common', ['can',
           var result = {};
 
           if (that.successMethod[action]) {
-            result = that.successMethod[action].apply(that, [response, request.data]);
+            result = that.successMethod[action].apply(that, [request.data]);
           }
 
           response(
