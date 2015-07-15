@@ -12,7 +12,25 @@ define('sf.b2c.mall.fixture.case.center.invitation', ['can',
         fixtureFramework.registerSuccessFixtureMethod({
           "getCashActTransList": function(response, data) {
             return {
-              "totalCount": 0,
+              "infos": [{
+                "income": 10000,
+                "reason": "abc",
+                "gmtOrder": "2015-05-15 14:43:42",
+                "gmtCreate": "2015-05-15 14:43:42"
+              }, {
+                "income": -2000,
+                "reason": "abc",
+                "gmtOrder": "2015-05-16 14:43:42",
+                "gmtCreate": "2015-05-16 14:43:42"
+              }]
+            };
+          },
+
+          "getCashActInfo": function(response, data) {
+            return {
+              "actBalance": 0,
+              "lastestIncome": 0,
+              "totalIncome": 0,
               "userId": 643084
             };
           }
