@@ -319,7 +319,8 @@ requirejs.config({
     'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
     'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
-    'sf.mediav': 'scripts/util/sf.mediav',
+     'sf.mediav': 'scripts/util/sf.mediav',
+
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
@@ -337,13 +338,7 @@ requirejs.config({
     'template_center_invitationshare': 'templates/center/sf.b2c.mall.center.invitationshare.mustache',
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
-    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
-
-    // fixture功能
-    'fixture': 'fixture/lib/canjs/fixture',
-    'can.object': 'fixture/lib/canjs/can.object',
-    'sf.b2c.mall.fixture.framework.common': 'fixture/framework/sf.b2c.mall.fixture.framework.common',
-    'sf.b2c.mall.fixture.case.center.invitation': 'fixture/case/center/sf.b2c.mall.fixture.case.center.invitation'
+    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
   }
 });
 
