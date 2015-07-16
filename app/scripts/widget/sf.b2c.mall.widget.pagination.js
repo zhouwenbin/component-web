@@ -84,6 +84,7 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
       }
 
       var routeParams = can.route.attr();
+      routeParams.page = (typeof routeParams.page == 'undefined') ? 1 : routeParams.page;
       var page = parseInt(routeParams.page, 10) + 1;
       this.jump(page);
     },
