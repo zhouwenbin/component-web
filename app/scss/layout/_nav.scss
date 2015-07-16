@@ -78,3 +78,23 @@
 	top: -56px;
 	z-index: 2;
 }
+.nav-pannel{
+	position: relative;
+	width: 1180px;
+	margin: 0 auto;
+}
+.nav-pannel-inner{
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #fff;
+	padding: 10px;
+	z-index: 2;
+}
+.nav-pannel-img:first-child{
+	margin-top: 0;
+}
+.nav-pannel-img li{
+	margin-top: 10px;
+}
+
