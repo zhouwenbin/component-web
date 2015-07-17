@@ -12,6 +12,7 @@
 	text-align: center;
 	padding-top: 239px;
 	padding-left: 120px;
+	height: 71px;
 }
 .m81-play{
 	width: 67px;
@@ -26,7 +27,6 @@
 	opacity: 0.8;
 }
 .m81-info{
-	font-size: 16px;
 	color: #fff;
 	width: 315px;
 	margin-left: auto;
@@ -60,4 +60,14 @@
 }
 .m81-btn:hover{
 	color: #fff;
+}
+.m81-video{
+	position: fixed;
+	width: 640px;
+	height: 480px;
+	left: 50%;
+	top: 50%;
+	margin-left: -320px;
+	margin-top: -240px;
+	display: none;
 }

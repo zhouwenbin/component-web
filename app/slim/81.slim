@@ -11,7 +11,7 @@
   
   <div class="m81">
     <div class="pm">
-      <div class="m81-day">6</div>
+      <div class="m81-day"></div>
       <a class="m81-play" href="javascript:">播放</a>
       <div class="m81-info">
         <ul>
@@ -40,7 +40,14 @@
       </div>
       <a href="" class="m81-btn">点击领取</a>
     </div>
-    
+    <div class="m81-video">
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="640" height="480">
+        <param name="movie" value="../video/flvplayer.swf" />
+        <param name="quality" value="high" />
+        <param name="allowFullScreen" value="true" />
+        <embed src="../video/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=../video/81.flv&IsAutoPlay=1" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="640" height="480"></embed>
+      </object>
+    </div>
   </div>
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/81.js"></script>
