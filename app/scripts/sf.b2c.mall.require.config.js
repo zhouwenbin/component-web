@@ -339,7 +339,7 @@ requirejs.config({
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
-    'template_header_nav_panel': 'sf.b2c.mall.header.nav.panel.mustache'
+    'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache'
   }
 });
 
