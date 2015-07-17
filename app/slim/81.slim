@@ -8,7 +8,10 @@
 <link href="../css/81.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  
+  <style type="text/css">
+  .m81{background:url(http://img0.sfht.com/img/73db857877f39d1405e84ededf342471.jpg) no-repeat center top;height:1177px}.m81-day{font-size:71px;color:#b300f5;width:84px;text-align:center;padding-top:239px;padding-left:120px;height:71px}.m81-play{width:67px;height:68px;background:url(http://img0.sfht.com/img/2f5c475831ed7345879052b170088f91.jpg) no-repeat center;margin-left:120px;margin-top:90px;display:block;text-indent:-999em}.m81-play:hover{opacity:0.8}.m81-info{color:#fff;width:315px;margin-left:auto;margin-top:25px;height:36px;overflow:hidden}.m81-info span{color:#f3da00}.m81-info ul{position:relative}.m81-info li{line-height:36px;height:36px;overflow:hidden}.m81-btn{background:#b300f5;color:#fff;width:274px;height:64px;line-height:64px;text-align:center;font-size:24px;-webkit-border-radius:5px;border-radius:5px;display:block;margin-top:350px;margin-left:59px}.m81-btn:hover{color:#fff;opacity:0.8}.m81-video{position:fixed;width:640px;height:480px;left:50%;top:50%;margin-left:-320px;margin-top:-240px;display:none;background:rgba(0,0,0,0.8)}.m81-video-close{width:30px;height:30px;-webkit-border-radius:50%;border-radius:50%;text-align:center;line-height:30px;background:#fff;position:absolute;right:-15px;top:-15px;font-size:20px}
+
+  </style>
   <div class="m81">
     <div class="pm">
       <div class="m81-day"></div>
@@ -38,18 +41,49 @@
         </ul>
         
       </div>
-      <a href="" class="m81-btn">点击领取</a>
+      <a class="m81-btn" name="cms-fill-coupon" data-cms-couponbagid="21" data-cms-coupontype="GIFTBAG" href="javascript:;">点击领取</a>
     </div>
     <div class="m81-video">
-      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="640" height="480">
-        <param name="movie" value="../video/flvplayer.swf" />
-        <param name="quality" value="high" />
-        <param name="allowFullScreen" value="true" />
-        <embed src="../video/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=../video/81.flv&IsAutoPlay=1" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="640" height="480"></embed>
-      </object>
+      <video src="http://img.sfht.com/media%2F7x640.mp4" controls="controls" width="640" height="480"></video>
+      <div class="m81-video-close">x</div>
     </div>
   </div>
-  <script src="js/jquery-1.11.1.min.js"></script>
+
+  <script src="http://img.sfht.com/sfht/1.1.158/scripts/require.min.js"></script>
+  <script src="http://img.sfht.com/sfht/1.1.158/scripts/sf.web.base.js"></script>
+  <script src="http://img.sfht.com/sfht/1.1.172/scripts/sf.b2c.mall.module.getcoupon.js"></script>
+  <script type="text/javascript">
+  $(function(){
+  //文字滚动
+  setInterval(scroll,3000);
+  function scroll(){
+    $(".m81-info ul").animate({
+      top:-36
+  },300,function(){
+    $('.m81-info li').eq(0).appendTo('.m81-info ul');
+    $(".m81-info ul").css({
+      top:0
+    })
+  });
+  }
+  //时间倒计时
+  var target_day=27;
+  var date = new Date();
+  var current_day=date.getDate();
+  var last_day=target_day-current_day;
+  $('.m81-day').text(last_day);
+  //播放视频
+  $('.m81-play').click(function(){
+    $('.m81-video').show();
+    $('video')[0].play();
+    return false;
+  })
+  $('html').click(function(){
+    $('.m81-video').hide();
+    $('video')[0].pause();
+  })
+})
+  </script>
   <script src="js/81.js"></script>
 </body>
 </html>
