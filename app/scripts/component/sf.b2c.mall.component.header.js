@@ -33,7 +33,8 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_channel_navigator',
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
-  'text!template_header_info_step_success'
+  'text!template_header_info_step_success',
+  'text!template_header_nav_panel'
 ], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
   SFHeader61,
   template_header_user_navigator,
@@ -41,7 +42,8 @@ define('sf.b2c.mall.component.header', [
   template_header_channel_navigator,
   template_header_info_step_fillinfo,
   template_header_info_step_pay,
-  template_header_info_step_success) {
+  template_header_info_step_success,
+  template_header_nav_panel) {
 
   var APPID = 1;
 
@@ -603,6 +605,48 @@ define('sf.b2c.mall.component.header', [
           })
           .fail(function() {})
       }
+    },
+
+    // @description  用户hover到tag之后出现导航
+    '.nav-tag hover': function ($element, event) {
+
+      // @description 获取tag名称
+      var tag = $element.attr('data-tag');
+
+      // @todo 初始化请求对象
+
+      // @todo  根据tag获取不同的导航数据
+      //        请求数据之后将数据存储到store中，并设置过期时间
+      var map = {
+        'index': function () {},
+        'baby': function () {},
+        'beauty': function () {},
+        'healthy': function () {},
+        'origin': function () {
+          // @description 设置参数
+        }
+      }
+
+      var fn = map[tag];
+      fn.call(this);
+
+      // @description 渲染
+      var render = function (data) {
+
+        // @refer template_header_nav_panel templates/header/sf.b2c.mall.header.nav.panel.mustache
+
+        var renderFn = can.mustache(template_header_nav_panel);
+        var html = renderFn(data);
+        this.element.find('.nav-pannel').html(html);
+
+        // @todo 动画
+      }
+
+      // @todo 请求数据并且在回调中渲染
+      // xxx.sendRequest()
+      //    .done(function(data){
+      //      render(data);
+      //    })
     },
 
     '#my-account click': function(element, event) {
