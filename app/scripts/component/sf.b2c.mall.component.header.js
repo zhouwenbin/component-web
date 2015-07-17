@@ -22,6 +22,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.minicart.getTotalCount',
   'sf.b2c.mall.api.shopcart.addItemsToCart',
   'sf.b2c.mall.api.shopcart.isShowCart',
+  'sf.b2c.mall.api.categoryPage.findCategoryPageMenus',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -35,7 +36,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_pay',
   'text!template_header_info_step_success',
   'text!template_header_nav_panel'
-], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFFindCategoryPageMenus,SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
   SFHeader61,
   template_header_user_navigator,
   template_header_info_common,
@@ -632,18 +633,17 @@ define('sf.b2c.mall.component.header', [
 
       // @description 渲染
       var render = function (data) {
-
         // @refer template_header_nav_panel templates/header/sf.b2c.mall.header.nav.panel.mustache
 
         var renderFn = can.mustache(template_header_nav_panel);
         var html = renderFn(data);
         this.element.find('.nav-pannel').html(html);
-
+//teee
         // @todo 动画
       }
-
       // @todo 请求数据并且在回调中渲染
-      // xxx.sendRequest()
+      var SFFindCategoryPageMenus=new SFFindCategoryPageMenus();
+      // SFFindCategoryPageMenus.sendRequest()
       //    .done(function(data){
       //      render(data);
       //    })
