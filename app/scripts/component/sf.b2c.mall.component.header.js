@@ -649,6 +649,10 @@ define('sf.b2c.mall.component.header', [
       //    })
     },
 
+    '.nav-pannel mouseleave': function () {
+      this.element.find('.nav-pannel').html('');
+    },
+
     '#my-account click': function(element, event) {
       event && event.preventDefault();
       // event.stopPropagation();
