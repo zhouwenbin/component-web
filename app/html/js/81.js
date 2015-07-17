@@ -1,4 +1,5 @@
 $(function(){
+  //文字滚动
   setInterval(scroll,3000);
   function scroll(){
   	$(".m81-info ul").animate({
