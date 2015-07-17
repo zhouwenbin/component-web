@@ -332,7 +332,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
       queryOrderCouponDefer.done(function(orderCoupon) {
           that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
-          this.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee / 100) * this.itemObj.attr('proportion'));
+          that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee / 100) * that.itemObj.attr('proportion'));
           can.extend(orderCoupon, {
             useQuantity: 0,
             price: 0,
