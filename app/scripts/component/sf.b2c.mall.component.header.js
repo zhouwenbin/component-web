@@ -47,6 +47,7 @@ define('sf.b2c.mall.component.header', [
   template_header_nav_panel) {
 
   var APPID = 1;
+  var nav_tag=[];
 
   return can.Control.extend({
 
@@ -609,48 +610,109 @@ define('sf.b2c.mall.component.header', [
     },
 
     // @description  用户hover到tag之后出现导航
-    '.nav-tag hover': function ($element, event) {
+    '.nav-tag mouseover': function ($element, event) {
 
+      var itemObj= new can.Map({});
+      var imgsCont=[];
+      var catesCont=[];
+      var brandsCont=[];
+      var keywordsCont=[];
       // @description 获取tag名称
       var tag = $element.attr('data-tag');
-
+      $('.nav-pannel').hide();
+      _.each(nav_tag, function(item) {
+        if(item.id==tag){
+          $('.nav-pannel').html(item.text);
+          $('.nav-pannel').show();
+          return;
+        }
+      })
       // @todo 初始化请求对象
+
 
       // @todo  根据tag获取不同的导航数据
       //        请求数据之后将数据存储到store中，并设置过期时间
       var map = {
-        'index': function () {},
-        'baby': function () {},
-        'beauty': function () {},
-        'healthy': function () {},
+        'index': function () {
+        },
+        'baby': function () {
+          var param={
+            pId:0
+          }
+          send(param);
+        },
+        'beauty': function () {
+          var param={
+            pId:1
+          }
+          send(param);
+        },
+        'healthy': function () {
+          var param={
+            pId:2
+          }
+          send(param);
+        },
         'origin': function () {
-          // @description 设置参数
+          var param={
+            pId:3
+          }
+          send(param);
         }
       }
 
-      var fn = map[tag];
-      fn.call(this);
+
 
       // @description 渲染
       var render = function (data) {
         // @refer template_header_nav_panel templates/header/sf.b2c.mall.header.nav.panel.mustache
-
         var renderFn = can.mustache(template_header_nav_panel);
         var html = renderFn(data);
-        this.element.find('.nav-pannel').html(html);
-//teee
+        $('.nav-pannel').html(html);
+        var ever={'id':tag,"text":html};
+        nav_tag.push(ever);
+        $('.nav-pannel').show();
+        //$('.nav-pannel').hide();
+        //$('.nav-pannel').fadeIn();
+
         // @todo 动画
       }
       // @todo 请求数据并且在回调中渲染
-      var SFFindCategoryPageMenus=new SFFindCategoryPageMenus();
-      // SFFindCategoryPageMenus.sendRequest()
-      //    .done(function(data){
-      //      render(data);
-      //    })
+      var send = function (param) {
+        var sFFindCategoryPageMenus = new SFFindCategoryPageMenus(param);
+        can.when(sFFindCategoryPageMenus.sendRequest())
+          .done(function(data){
+            if(data.value&&data.value.length>0){
+              _.each(data.value, function(item) {
+                if (item.type == 0) {
+                  catesCont.push(item);
+                  itemObj.attr("catesCont", catesCont);
+                } else if (item.type == 1) {
+                  brandsCont.push(item);
+                  itemObj.attr("brandsCont", brandsCont);
+                } else if (item.type == 2) {
+                  keywordsCont.push(item);
+                  itemObj.attr("keywordsCont", keywordsCont);
+                } else if (item.type == 3) {
+                  imgsCont.push(item);
+                  itemObj.attr("imgsCont", imgsCont);
+                }
+              });
+              render(itemObj);
+            }
+          }) .fail(function(error) {
+            console.error(error);
+          });
+      }
+      var fn = map[tag];
+      fn.call(this);
     },
 
-    '.nav-pannel mouseleave': function () {
-      this.element.find('.nav-pannel').html('');
+    '.nav-pannel-common mouseleave': function () {
+      $('.nav-pannel').hide();
+    },
+    '.nav-pannel mouseover': function () {
+      $('.nav-pannel').show();
     },
 
     '#my-account click': function(element, event) {

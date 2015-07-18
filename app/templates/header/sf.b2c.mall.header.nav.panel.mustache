@@ -1,40 +1,71 @@
 <div class="nav-pannel-inner clearfix">
     <!--左侧图片列表 开始 图片280*150-->
     <ul class="nav-pannel-img fl">
+      {{#if imgsCont}}
+      {{#each imgsCont}}
         <li>
-            <a href=""><img src="http://img0.sfht.com/sf/cate_1437056890936/ceab73ab673b2c84588abf7edaa2f5b2.jpg" alt=""></a>
+            <a href="{{menuLink}}"><img src="{{imgUrl}}" alt="" width="280px" height="150px"></a>
         </li>
-        <li>
-            <a href=""><img src="http://placehold.it/280x150" alt=""></a>
-        </li>
+      {{/each}}
+      {{/if}}
     </ul>
     <!--左侧图片列表 结束-->
     <!--右侧产品列表 开始-->
     <div class="nav-pannel-text fl">
+      {{#if brandsCont}}
+      {{#each brandsCont}}
         <dl>
-            <dt><span class="nav-pannel-icon1"></span>人气品牌</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a></dd>
+            <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>{{menuName}}</dt>
+            <!--<dd>-->
+              <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+            <!--</dd>-->
+          <dd>
+            {{#if itemInfos}}
+            {{#each itemInfos}}
+            <a href="{{itemLink}}">{{itemName}}</a>
+            {{/each}}
+            {{/if}}
+          </dd>
         </dl>
-        <dl>
-            <dt><span class="nav-pannel-icon2"></span>魅力彩妆</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a></dd>
-        </dl>
-        <dl>
-            <dt><span class="nav-pannel-icon3"></span>彩妆工具</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a></dd>
-        </dl>
-        <dl>
-            <dt><span class="nav-pannel-icon4"></span>面部护理</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a></dd>
-        </dl>
-        <dl>
-            <dt><span class="nav-pannel-icon5"></span>身体护理</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a></dd>
-        </dl>
-        <dl>
-            <dt><span class="nav-pannel-icon6"></span>热门搜索</dt>
-            <dd><a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a><a href="">佰草集</a><a href="">佰草集</a><a href="">佰草集</a><a href="">佰草集</a></dd>
-        </dl>
+      {{/each}}
+      {{/if}}
+
+      {{#if catesCont}}
+      {{#each catesCont}}
+      <dl>
+        <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>
+          <a style="color: #a94275;" href="{{menuLink}}">{{menuName}}</a></dt>
+        <!--<dd>-->
+        <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+        <!--</dd>-->
+        <dd>
+          {{#if itemInfos}}
+          {{#each itemInfos}}
+          <a href="{{itemLink}}">{{itemName}}</a>
+          {{/each}}
+          {{/if}}
+        </dd>
+      </dl>
+      {{/each}}
+      {{/if}}
+
+      {{#if keywordsCont}}
+      {{#each keywordsCont}}
+      <dl>
+        <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>{{menuName}}</dt>
+        <!--<dd>-->
+        <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+        <!--</dd>-->
+        <dd>
+          {{#if itemInfos}}
+          {{#each itemInfos}}
+          <a href="{{itemLink}}">{{itemName}}</a>
+          {{/each}}
+          {{/if}}
+        </dd>
+      </dl>
+      {{/each}}
+      {{/if}}
     </div>
     <!--右侧产品列表 结束-->
 </div>
