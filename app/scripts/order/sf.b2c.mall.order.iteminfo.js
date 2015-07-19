@@ -44,6 +44,13 @@ define('sf.b2c.mall.order.iteminfo', [
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+      'isShowSeckillIcon': function(goodsType, options) {
+        if (goodsType() == 'SECKILL') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
       }
     },
     /**

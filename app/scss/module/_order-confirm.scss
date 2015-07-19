@@ -67,3 +67,47 @@
 	vertical-align: middle;
 	margin-left: 10px;
 }
+.cart-standard,.godds-type{
+	display: inline-block;
+}
+.godds-type{
+	position: relative;
+	color: #fff;
+	background: #FFC208;
+	height: 14px;
+	line-height: 14px;
+	margin-left: 15px;
+	padding: 2px;
+}
+.godds-type:before{
+	content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 9px 9px;
+  left: -18px;
+  top: 0;
+  border-color: transparent #FFC208 transparent transparent;
+}
+.godds-type:after{
+	width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 7px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
