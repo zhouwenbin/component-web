@@ -32,6 +32,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
     var LIMITIED_DATE = '2015/5/26';
 
+    var DISTANCE = 0;
     return can.Control.extend({
 
       helpers: {
@@ -119,7 +120,7 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
 
-        //是否展示搭配折扣（）
+        //是否展示搭配折扣
         'showMixDiscount': function(activityType, options) {
           if (activityType != 'MIX_DISCOUNT') {
             return options.fn(options.contexts || this);
@@ -142,7 +143,30 @@ define('sf.b2c.mall.product.detailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
-        }
+        },
+        //活动开始前，进行中，已售完的文本展示priceInfo.startTime priceInfo.endTime priceInfo.activitySoldOut
+        'isShowSecKillText': function(startTime, endTime, options) {
+          var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
+          if (currentServerTime < startTime()) {
+            return '距开始：'
+          } else if (endTime() - currentServerTime > 0) {
+            return '距结束：'
+          }
+        },
+        //
+        'showActivityBeginTime': function(startTime, endTime, activitySoldOut, isPromotion, options) {
+          var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
+          var time = new Date(startTime());
+          if (currentServerTime < startTime()) {
+            return time + '开抢'
+          } else if (endTime() - currentServerTime > 0) {
+            return '活动进行中'
+          } else if (activitySoldOut()) {
+            return '已抢光'
+          } else if (!isPromotion()) {
+            return '活动结束'
+          }
+        },
       },
 
       /**
@@ -323,7 +347,7 @@ define('sf.b2c.mall.product.detailcontent', [
         }
       },
 
-      appendRenderBaiduShareHTML: function(url){
+      appendRenderBaiduShareHTML: function(url) {
         $(".goods-share").html('登录分享赢<span style="color:red">好礼</span>：<div class="bdsharebuttonbox">' +
           '<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>' +
           '<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>' +
@@ -458,7 +482,8 @@ define('sf.b2c.mall.product.detailcontent', [
           .done(function(data) {
             //获得服务器时间
             var currentServerTime = getProductHotData.getServerTime();
-
+            var currentClientTime = new Date().getTime();
+            DISTANCE = currentServerTime - currentClientTime;
 
             //设置价格相关信息
             data.discount = (data.sellingPrice * 10 / data.originPrice).toFixed(1);
@@ -501,11 +526,15 @@ define('sf.b2c.mall.product.detailcontent', [
             that.renderBuyInfo(that.options.detailContentInfo);
             //渲染活动信息
             that.renderActivityInfo();
-
-            //渲染模板
-            var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
-            $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
-
+            var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
+            if (activityType == 'SECKILL') {
+              var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
+              $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
+            } else {
+              var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
+              $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+            }
+            
             that.isShowCart();
           });
       },
@@ -547,6 +576,7 @@ define('sf.b2c.mall.product.detailcontent', [
                 element.isActivityLink = !!element.pcActivityLink;
                 element.pcActivityLink = element.pcActivityLink || "javascript:void(0);";
 
+                that.options.detailContentInfo.priceInfo.attr("activityType", element.activityType);
                 //处理限时促销
                 if (element.activityType == "FLASH") {
                   that.options.detailContentInfo.priceInfo.attr("activityTitle", element.activityTitle);
@@ -558,6 +588,12 @@ define('sf.b2c.mall.product.detailcontent', [
                   that.options.detailContentInfo.priceInfo.attr("activityId", element.activityId);
                   that.renderMixDiscountProductInfo();
                 }
+
+                if (element.activityType == "SECKILL") {
+                  that.options.detailContentInfo.priceInfo.attr("activityPrice", element.itemActivityInfo.activityPrice);
+                  that.options.detailContentInfo.priceInfo.attr("startTime", element.startTime);
+                  that.options.detailContentInfo.priceInfo.attr("endTime", element.endTime);
+                };
               });
             }
 
@@ -1123,7 +1159,28 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '{{/sf-is-limitedTimeBuy}}';
       },
-
+      //活动为秒杀的模板
+      secKilItemPriceTemplate: function() {
+        return '<div class="goods-seckill">' +
+          '<span class="goods-seckill-c1">秒杀</span>' +
+          '<div class="goods-seckill-c2">' +
+          '{{#sf-is-limitedTimeBuy priceInfo.time}}' +
+          '<b>{{isShowSecKillText priceInfo.startTime priceInfo.endTime}}</b>' +
+          '<span class="text-important">{{{priceInfo.time}}}</span>' +
+          '{{/sf-is-limitedTimeBuy}}' +
+          '{{^sf-is-limitedTimeBuy priceInfo.time}}' +
+          '本场活动已结束，请关注其他场次！' +
+          '{{/sf-is-limitedTimeBuy}}' +
+          '</div>' +
+          '</div>' +
+          '<div class="goods-price-c1 fl">' +
+          '<div class="goods-price-r1">秒杀价：<span>¥</span><strong>{{sf.price priceInfo.activityPrice}}</strong><a href="#">{{priceInfo.activityTitle}}</a></div>' +
+          '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
+          '</div>' +
+          '<div class="goods-price-c2">' +
+          '<span class="icon icon56"></span><span class="text-important">{{showActivityBeginTime priceInfo.startTime priceInfo.endTime priceInfo.activitySoldOut priceInfo.isPromotion}}</span>' +
+          '</div>'
+      },
       activityTemplate: function() {
         return '{{#each value}}{{#sf-showActivity activityType}}' +
           '<div class="goods-activity">' +

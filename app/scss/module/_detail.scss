@@ -34,3 +34,81 @@
 	word-wrap: break-word;
 	word-break: break-all;
 }
+
+// 秒杀商品样式
+.goods-price{
+	position: relative;
+	margin-top: 60px;
+}
+.goods-seckill{
+	position: absolute;
+	top: -46px;
+	left: 0;
+	background: url(http://img0.sfht.com/img/7ea6babae43d09a44538c74ab58fd05b.jpg) no-repeat;
+	width: 584px;
+	height: 45px;	
+}
+.goods-seckill-c1{
+	margin: 11px 0 0 15px;
+	width: 80px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	color: #007C84;
+	display: inline-block;
+	border-radius: 15px;
+	background: rgba(0,0,0,0.15);
+}
+.goods-seckill-c2{
+	display: inline-block;
+	color: #fff;
+	margin-left: 20px;
+	font-size: 14px;
+}
+.goods-seckill-c2 .text-important{
+	color:#fff;
+	font-size: 14px;
+}
+.goods-seckill-c2 .text-important strong{
+	font-size: 20px;
+	padding: 0 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
