@@ -24,7 +24,7 @@ define(
     var order = can.Control.extend({
 
       helpers: {
-        'sf-paytype-list': function (optionalPayTypeList, payType, options) {
+        'sf-paytype-list': function(optionalPayTypeList, payType, options) {
           if (_.contains(optionalPayTypeList(), payType)) {
             return options.fn(options.contexts || this);
           } else {
@@ -32,31 +32,31 @@ define(
           }
         },
 
-        'sf-totalprice': function (selectPayType, price, discount) {
+        'sf-totalprice': function(selectPayType, price, discount) {
           var discountInfo = JSON.parse(discount().value);
-          if(typeof discountInfo != 'undefined' &&
+          if (typeof discountInfo != 'undefined' &&
             !can.isEmptyObject(discountInfo) &&
             typeof discountInfo[selectPayType()] != 'undefined'
-          ){
-            return (price() - discountInfo[selectPayType()])/100
-          }else{
-            return price()/100
+          ) {
+            return (price() - discountInfo[selectPayType()]) / 100
+          } else {
+            return price() / 100
           }
         },
 
-//          'sf-totalPoint': function (selectPayType, price, discount) {
-//              var discountInfo = JSON.parse(discount().value);
-//              if(typeof discountInfo != 'undefined' &&
-//                  !can.isEmptyObject(discountInfo) &&
-//                  typeof discountInfo[selectPayType()] != 'undefined'
-//                  ){
-//                  return  Math.floor((price() - discountInfo[selectPayType()])/100);
-//              }else{
-//                  return  Math.floor(price()/100);
-//              }
-//          },
+        //          'sf-totalPoint': function (selectPayType, price, discount) {
+        //              var discountInfo = JSON.parse(discount().value);
+        //              if(typeof discountInfo != 'undefined' &&
+        //                  !can.isEmptyObject(discountInfo) &&
+        //                  typeof discountInfo[selectPayType()] != 'undefined'
+        //                  ){
+        //                  return  Math.floor((price() - discountInfo[selectPayType()])/100);
+        //              }else{
+        //                  return  Math.floor(price()/100);
+        //              }
+        //          },
 
-        'sf-getPayTypeName': function (selectPayType) {
+        'sf-getPayTypeName': function(selectPayType) {
           var map = {
             'alipay': '支付宝',
             'alipay_intl': '支付宝',
@@ -66,6 +66,14 @@ define(
           }
 
           return map[selectPayType()];
+        },
+        'showEndPayTime': function(orderGoodsItemList, options) {
+          var array = orderGoodsItemList();
+          if (array[0].goodsType == 'SECKILL') {
+            return '15分钟'
+          } else {
+            return '2小时00分钟'
+          }
         }
       },
 
@@ -73,11 +81,11 @@ define(
         this.render();
       },
 
-      getAlertWord: function (otherlink) {
+      getAlertWord: function(otherlink) {
         return otherlink ? PAY_ASAP : SUBMIT_SUCCESS;
       },
 
-      request: function (orderid) {
+      request: function(orderid) {
         var getOrder = new GetOrderConfirmInfo({
           "orderId": orderid
         });
@@ -85,7 +93,7 @@ define(
         return getOrder.sendRequest();
       },
 
-      paint: function (data) {
+      paint: function(data) {
         data.optionalPayTypeList = eval(data.optionalPayTypeList);
         this.options.data.attr(data);
         this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
@@ -126,7 +134,7 @@ define(
         return;
       },
 
-      getPayWay: function(paytype){
+      getPayWay: function(paytype) {
         if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
           var map = {
             alipay_intl: ['alipay_intl'],
@@ -144,7 +152,7 @@ define(
         }
       },
 
-      '.payTypeListArea li click': function ($el, event) {
+      '.payTypeListArea li click': function($el, event) {
         this.element.find('li').removeClass('active');
         $el.addClass('active');
 
@@ -178,7 +186,7 @@ define(
       //   return false;
       // },
 
-      '#order-detail click': function ($el) {
+      '#order-detail click': function($el) {
         $el.toggleClass('active');
         $('.order-success-detail').toggle();
       },

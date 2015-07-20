@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.getVoteNum
+  * @class sf.b2c.mall.api.integral.calIntegralAfterCheckin
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.getVoteNum',
+'sf.b2c.mall.api.integral.calIntegralAfterCheckin',
 [
   'jquery',
   'can',
@@ -22,18 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.getVoteNum',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'integral.calIntegralAfterCheckin',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'voteType': 'string',
+        'channel': 'string'
       },
       OPTIONAL: {
-        'voteNo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000460': '投票类型不存在'
       }
     }
   });
