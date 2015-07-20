@@ -2,7 +2,7 @@
 @import 'utils/placeholders';
 
 .m81{
-	background: url(http://img0.sfht.com/img/73db857877f39d1405e84ededf342471.jpg) no-repeat center top;
+	background: url(http://img0.sfht.com/img/43860b6576ad4cf023d97218ef86f357.jpg) no-repeat center top;
 	height: 1177px;
 }
 .m81-day{
@@ -64,6 +64,7 @@
 }
 .m81-video{
 	position: fixed;
+	z-index: 999;
 	width: 640px;
 	height: 480px;
 	left: 50%;
