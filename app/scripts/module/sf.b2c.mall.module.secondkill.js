@@ -117,16 +117,21 @@ define(
         var that = this;
         var hasActived = false;
         var dayList = $(".cms-src-dayline");
-        _.each(dayList, function(item) {
-          if ($(item).attr('data-daylinestart') <= day && day < $(item).attr('data-daylineend')) {
-            $(item).addClass('active');
-            hasActived = true;
-            activeDay = $(item).attr('data-daylinestart');
+        if(dayList!=null&&dayList.length>0){
+          _.each(dayList, function(item) {
+            if ($(item).attr('data-daylinestart') <= day && day < $(item).attr('data-daylineend')) {
+              $(item).addClass('active');
+              hasActived = true;
+              activeDay = $(item).attr('data-daylinestart');
 
-            $(".daylinetarget" + activeDay).show();
-            that.activeTime($(".daylinetarget" + activeDay))
-          }
-        })
+              $(".daylinetarget" + activeDay).show();
+              that.activeTime($(".daylinetarget" + activeDay))
+            }
+          })
+        }else {
+          $(".daylinetarget" + activeDay).show();
+          that.activeTime($(".daylinetarget" + activeDay));
+        }
       },
 
       /**
