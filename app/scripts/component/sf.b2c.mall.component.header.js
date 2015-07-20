@@ -611,7 +611,6 @@ define('sf.b2c.mall.component.header', [
 
     // @description  用户hover到tag之后出现导航
     '.nav-tag mouseover': function ($element, event) {
-
       var itemObj= new can.Map({});
       var imgsCont=[];
       var catesCont=[];
@@ -619,14 +618,23 @@ define('sf.b2c.mall.component.header', [
       var keywordsCont=[];
       // @description 获取tag名称
       var tag = $element.attr('data-tag');
-      $('.nav-pannel').hide();
+      var flag=0;
       _.each(nav_tag, function(item) {
         if(item.id==tag){
           $('.nav-pannel').html(item.text);
-          $('.nav-pannel').show();
+          $('.nav-pannel-inner').animate({
+            height:0
+          },0);
+          $('.nav-pannel-inner').animate({
+            height:330
+          },300);
+          flag=1;
           return;
         }
       })
+      if(flag==1){
+        return;
+      }
       // @todo 初始化请求对象
 
 
@@ -669,9 +677,15 @@ define('sf.b2c.mall.component.header', [
         var renderFn = can.mustache(template_header_nav_panel);
         var html = renderFn(data);
         $('.nav-pannel').html(html);
-        var ever={'id':tag,"text":html};
+        var newHtml=$('.nav-pannel').html();
+        var ever={'id':tag,"text":newHtml};
         nav_tag.push(ever);
-        $('.nav-pannel').show();
+        $('.nav-pannel-inner').animate({
+          height:0
+        },0);
+        $('.nav-pannel-inner').animate({
+          height:330
+        },300);
         //$('.nav-pannel').hide();
         //$('.nav-pannel').fadeIn();
 
@@ -708,11 +722,14 @@ define('sf.b2c.mall.component.header', [
       fn.call(this);
     },
 
-    '.nav-pannel-common mouseleave': function () {
-      $('.nav-pannel').hide();
+    '.nav-tag mouseleave': function () {
+      $('.nav-pannel-inner').hide();
+    },
+    '.nav-pannel mouseleave': function () {
+      $('.nav-pannel-inner').hide();
     },
     '.nav-pannel mouseover': function () {
-      $('.nav-pannel').show();
+      $('.nav-pannel-inner').show();
     },
 
     '#my-account click': function(element, event) {
