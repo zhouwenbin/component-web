@@ -313,6 +313,7 @@ requirejs.config({
     'sf.b2c.mall.module.lazyload': 'scripts/module/sf.b2c.mall.module.lazyload',
     'sf.b2c.mall.module.getcoupon': 'scripts/module/sf.b2c.mall.module.getcoupon',
     "sf.b2c.mall.module.secondkill": "scripts/module/sf.b2c.mall.module.secondkill",
+    "sf.b2c.mall.module.spike": "scripts/module/sf.b2c.mall.module.spike",
 
     'sf.b2c.mall.module.yzywtab': 'scripts/module/sf.b2c.mall.module.yzywtab',
     'sf.b2c.mall.module.newpage': 'scripts/module/sf.b2c.mall.module.newpage',
