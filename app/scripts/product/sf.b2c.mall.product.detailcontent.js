@@ -167,6 +167,30 @@ define('sf.b2c.mall.product.detailcontent', [
             return '活动结束'
           }
         },
+        'isSeckillActivity': function(activityType, options) {
+          if (activityType() == 'SECKILL') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        'isNotBegin': function(startTime, options) {
+          var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
+          if (currentServerTime < startTime()) {
+            return options.fn(options.contexts || this);
+          }
+        },
+        'isBeginning': function(endTime, options) {
+          var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
+          if (endTime() - currentServerTime > 0) {
+            return options.fn(options.contexts || this);
+          }
+        },
+        'isOverTime': function(activitySoldOut, isPromotion, options) {
+          if (!activitySoldOut() || !isPromotion()) {
+            return options.fn(options.contexts || this);
+          }
+        }
       },
 
       /**
@@ -524,18 +548,22 @@ define('sf.b2c.mall.product.detailcontent', [
 
             //渲染购买信息
             that.renderBuyInfo(that.options.detailContentInfo);
-            //渲染活动信息
-            that.renderActivityInfo();
-            var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
-            if (activityType == 'SECKILL') {
-              var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
-              $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
-            } else {
-              var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
-              $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
-            }
-            
-            that.isShowCart();
+            //渲染活动信息         
+            can.when(that.renderActivityInfo())
+              .then(function() {
+                var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
+                if (activityType == 'SECKILL') {
+                  var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
+                  $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
+                } else {
+                  var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
+                  $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+                }
+              })
+              .always(function() {
+                that.isShowCart();
+              })
+
           });
       },
 
@@ -550,7 +578,7 @@ define('sf.b2c.mall.product.detailcontent', [
           'itemId': itemid
         });
 
-        getActivityInfo
+        return getActivityInfo
           .sendRequest()
           .fail(function(error) {
             //console.error(error);
@@ -1095,6 +1123,19 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-c2r2 clearfix">' +
           '<div class="fl">' +
 
+          // 秒杀活动
+          '{{#isSeckillActivity priceInfo.activityType}}' +
+          // 活动未开始，原价购
+          '{{#isNotBegin priceInfo.startTime}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
+          //活动进行中，立即购买
+          '{{#isBeginning priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
+          //售完，活动结束立即抢购变灰，原价购买
+          '{{#isOverTime priceInfo.activitySoldOut priceInfo.isPromotion}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}' +
+
+          '{{/isSeckillActivity}}' +
+          // 如果不是秒杀走下面逻辑
+          '{{^isSeckillActivity priceInfo.activityType}}' +
+
           '{{#if priceInfo.soldOut}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '{{#sf-needshowcart priceInfo.supportShoppingCart}}' +
@@ -1127,6 +1168,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '{{/if}}' +
           '{{/priceInfo.isPromotion}}' +
           '{{/if}}' +
+          '{{/isSeckillActivity}}' +
 
           '</div>' +
           '</div>';
