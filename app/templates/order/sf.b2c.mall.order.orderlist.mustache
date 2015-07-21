@@ -57,7 +57,10 @@
                     <tr class="goodsWrap" data-itemid="{{itemId}}" data-num="{{quantity}}" {{data 'itemIds'}}>
                         <td class="td2">
                             <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"><img src="{{showImg imageUrl}}" alt="" /></a>
-                            <h3><a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a></h3>
+                            <h3>
+                              <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a>
+                              {{#isSecKillGoods goodsType}}<div class="godds-type">秒杀商品</div>{{/isSecKillGoods}}
+                            </h3>
                         </td>
                         <td class="td3">
                             {{#isShowOriginPrice originPrice price}}<del>{{sf.price originPrice}}</del>{{/isShowOriginPrice}}

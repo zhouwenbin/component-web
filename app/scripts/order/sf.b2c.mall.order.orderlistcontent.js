@@ -143,6 +143,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
           if (index == 0) {
             return 'active';
           }
+        },
+        'isSecKillGoods': function(goodsType, options) {
+          if (goodsType == "SECKILL") {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          };
         }
 
       },
@@ -250,8 +257,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 _.each(that.options.orders, function(item, i) {
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    if (that.options.orders[i].orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
+                      var leftTime = that.options.orders[i].gmtEnd - that.options.orders[i].gmtCreate;
+                      that.setCountDown(endTimeArea.eq(i), leftTime);
+                      leftTime = leftTime - 1000;
+                    } else {
+                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                      that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    }
+
                   }
 
                 });

@@ -187,7 +187,7 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
         'isOverTime': function(activitySoldOut, isPromotion, options) {
-          if (!activitySoldOut() || !isPromotion()) {
+          if (activitySoldOut() || !isPromotion()) {
             return options.fn(options.contexts || this);
           }
         }
