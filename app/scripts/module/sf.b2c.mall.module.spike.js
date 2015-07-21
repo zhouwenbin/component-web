@@ -1,7 +1,7 @@
 'use strict';
 
 define(
-  'sf.b2c.mall.module.secondkill', [
+  'sf.b2c.mall.module.spike', [
     'can',
     'jquery',
     'moment',
@@ -45,7 +45,7 @@ define(
         var that = this;
         $(".cms-src-dayline").click(function(targetElement) {
 
-          while(targetElement.target.tagName != "LI"){
+          while (targetElement.target.tagName != "LI") {
             targetElement.target = targetElement.target.parentElement;
           }
 
@@ -123,12 +123,11 @@ define(
               $(item).addClass('active');
               hasActived = true;
               activeDay = $(item).attr('data-daylinestart');
-
               $(".daylinetarget" + activeDay).show();
-              that.activeTime($(".daylinetarget" + activeDay))
+              that.activeTime($(".daylinetarget" + activeDay));
             }
           })
-        }else {
+        }else{
           $(".daylinetarget" + activeDay).show();
           that.activeTime($(".daylinetarget" + activeDay));
         }
@@ -231,23 +230,22 @@ define(
        * @param  {[type]} value   [description]
        */
       fillPrice: function(element, value) {
+        //秒杀未开始
         var beginTime = element.attr('data-spiketime');
-        if (new Date().getTime() < new Date(_str.trim(beginTime) - 0).getTime()){
+        var endTime = element.attr('data-spiketimeend');
+        if (new Date().getTime() < new Date(_str.trim(beginTime) - 0).getTime()) {
           element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>未开始</span>');
           return false;
         }
-
-        // 做售空处理
-        if (value.soldOut) {
-          element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>已售完</span>');
+        if (new Date().getTime() > new Date(_str.trim(endTime) - 0).getTime()) {
+          element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>秒杀已结束</span>');
           return false;
         }
-
-        var spikeprice = element.attr('data-spikeprice');
-        if (spikeprice < value.sellingPrice) {
-          element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>秒杀已结束<br>优惠价继续</span>');
+        // 做售空处理
+        if (value.soldOut) {
+          element.find(".cms-fill-spikeinfo").html('<div class="mask"></div><span>已抢光</span>');
           return false;
-        }else{
+        } else {
           element.find(".cms-fill-spikeinfo").html('');
           return false;
         }
