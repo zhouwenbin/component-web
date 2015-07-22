@@ -180,14 +180,17 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.fn(options.contexts || this);
           }
         },
-        'isBeginning': function(endTime, options) {
+
+        'isBeginning': function(soldOut, startTime, endTime, options) {
           var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
-          if (endTime() - currentServerTime > 0) {
+          if (!soldOut() && currentServerTime > startTime() && endTime() - currentServerTime > 0) {
             return options.fn(options.contexts || this);
           }
         },
-        'isOverTime': function(activitySoldOut, isPromotion, options) {
-          if (activitySoldOut() || !isPromotion()) {
+
+        'isOverTime': function(soldOut, endTime, options) {
+          var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
+          if (soldOut() || endTime() - currentServerTime < 0) {
             return options.fn(options.contexts || this);
           }
         }
@@ -514,30 +517,9 @@ define('sf.b2c.mall.product.detailcontent', [
             data.lessspend = data.originPrice - data.sellingPrice;
             data.showDiscount = data.originPrice > data.sellingPrice;
 
-            var currentClientTime = new Date().getTime();
-            var distance = currentServerTime - currentClientTime;
-
             that.options.detailContentInfo.attr("priceInfo", data);
 
-            if (that.interval) {
-              clearInterval(that.interval);
-            }
-
-            //设置倒计时
-            //如果当前时间活动已经结束了 就不要走倒计时设定了
-            if (data.endTime - new Date().getTime() + distance > 0) {
-              that.interval = setInterval(function() {
-
-                //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
-                if (data.endTime - new Date().getTime() + distance <= 0) {
-                  that.refreshPage();
-                } else {
-                  that.setCountDown(that.options.detailContentInfo.priceInfo, distance, data.endTime);
-                }
-              }, '1000')
-            } else {
-              that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-            }
+            that.initCountDown(0, currentServerTime, data.endTime);
 
             var productShape = $('#buyInfo').attr('data-productshape');
             if (productShape == 'FRESHFOOD') {
@@ -546,8 +528,7 @@ define('sf.b2c.mall.product.detailcontent', [
               that.options.detailContentInfo.priceInfo.attr("showTax", true);
             }
 
-            //渲染购买信息
-            that.renderBuyInfo(that.options.detailContentInfo);
+
             //渲染活动信息         
             can.when(that.renderActivityInfo())
               .then(function() {
@@ -561,6 +542,8 @@ define('sf.b2c.mall.product.detailcontent', [
                 }
               })
               .always(function() {
+                //渲染购买信息
+                that.renderBuyInfo(that.options.detailContentInfo);
                 that.isShowCart();
               })
 
@@ -621,6 +604,13 @@ define('sf.b2c.mall.product.detailcontent', [
                   that.options.detailContentInfo.priceInfo.attr("activityPrice", element.itemActivityInfo.activityPrice);
                   that.options.detailContentInfo.priceInfo.attr("startTime", element.startTime);
                   that.options.detailContentInfo.priceInfo.attr("endTime", element.endTime);
+
+                  if (element.endTime) {
+                    //获得服务器时间
+                    var startTime = element.startTime || 0;
+                    var currentServerTime = getActivityInfo.getServerTime();
+                    that.initCountDown(startTime, currentServerTime, element.endTime);
+                  }
                 };
               });
             }
@@ -1128,10 +1118,11 @@ define('sf.b2c.mall.product.detailcontent', [
           // 活动未开始，原价购
           '{{#isNotBegin priceInfo.startTime}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
           //活动进行中，立即购买
-          '{{#isBeginning priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
+          '{{#isBeginning priceInfo.soldOut priceInfo.startTime priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
           //售完，活动结束立即抢购变灰，原价购买
-          '{{#isOverTime priceInfo.activitySoldOut priceInfo.isPromotion}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}' +
-
+          '{{#isOverTime priceInfo.soldOut priceInfo.endTime}}' +
+          '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
+          '<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}' +
           '{{/isSeckillActivity}}' +
           // 如果不是秒杀走下面逻辑
           '{{^isSeckillActivity priceInfo.activityType}}' +
@@ -1772,22 +1763,74 @@ define('sf.b2c.mall.product.detailcontent', [
         return '{{itemInfo.basicInfo.title}}'
       },
 
+      initCountDown: function(startTime, currentServerTime, endTime) {
+        var that = this;
+        //endTime = 1445044886397
+        if (!endTime || !startTime) {
+          that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+        }
+
+        var currentClientTime = new Date().getTime();
+        var distance = currentServerTime - currentClientTime;
+
+        if (that.interval) {
+          clearInterval(that.interval);
+        }
+        //活动开始前
+        //设置倒计时
+        //如果当前时间活动已经结束了 就不要走倒计时设定了
+        if (new Date().getTime() + distance < startTime) {
+          that.interval = setInterval(function() {
+            if (new Date().getTime() + distance >= startTime) {
+              that.refreshPage();
+            } else {
+              that.setCountDown(distance, startTime);
+            }
+          }, '1000')
+        } else if (endTime - new Date().getTime() + distance > 0) {
+          that.interval = setInterval(function() {
+
+            //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
+            if (endTime - new Date().getTime() + distance <= 0) {
+              that.refreshPage();
+            } else {
+              that.setCountDown(distance, endTime);
+            }
+          }, '1000')
+        } else {
+          this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+        }
+      },
       /**
        * [showCountDown 参考倒计时]
        * @param  {[type]} currentTime
        * @param  {[type]} destTime
        * @return {[type]}
        */
-      setCountDown: function(item, distance, endDate) {
+      // setCountDown: function(item, distance, endDate) {
+      //   var leftTime = endDate - new Date().getTime() + distance;
+      //   var leftsecond = parseInt(leftTime / 1000);
+      //   var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+      //   var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+      //   var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+      //   var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+      //   item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
+      //   item.attr('timeIcon', "icon4");
+      // }
+      setCountDown: function(distance, endDate) {
         var leftTime = endDate - new Date().getTime() + distance;
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
-        item.attr('timeIcon', "icon4");
+        this.options.detailContentInfo.attr("priceInfo.time", {
+          day: day1,
+          hour: hour,
+          minute: minute,
+          second: second
+        });
+        this.options.detailContentInfo.attr('priceInfo.timeIcon', "icon4");
       }
-
     });
   })
