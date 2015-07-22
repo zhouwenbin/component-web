@@ -262,16 +262,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
                 _.each(that.options.orders, function(item, i) {
 
-                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                    if (that.options.orders[i].orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
-                      var leftTime = that.options.orders[i].gmtEnd - that.options.orders[i].gmtCreate;
-                      that.setCountDown(endTimeArea.eq(i), leftTime);
-                      leftTime = leftTime - 1000;
-                    } else {
-                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                      that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
-                    }
-
+                  if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
+                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].gmtEnd);
+                      that.options.orders[i].gmtEnd = that.options.orders[i].gmtEnd - 1000;
                   }
 
                 });
