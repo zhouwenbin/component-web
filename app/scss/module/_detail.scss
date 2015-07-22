@@ -38,7 +38,6 @@
 // 秒杀商品样式
 .goods-price{
 	position: relative;
-	margin-top: 60px;
 }
 .goods-seckill{
 	position: absolute;
@@ -72,6 +71,9 @@
 .goods-seckill-c2 .text-important strong{
 	font-size: 20px;
 	padding: 0 2px;
+}
+.text-gray,.text-gray span,.text-gray strong{
+	color:#999;
 }
 
 

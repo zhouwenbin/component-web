@@ -160,9 +160,10 @@ define('sf.b2c.mall.product.detailcontent', [
           var day = time.getDate();
           var month = time.getMonth()+1;
           var hour = time.getHours();
+          var minute = time.getMinutes();
           if (currentServerTime < startTime()) {
-            return month + '月' + day + '日' + hour +':00点开抢'
-          } else if (currentServerTime > startTime() && endTime() - currentServerTime > 0) {
+            return month + '月' + day + '日' + hour +':'+ minute +'开抢'
+          } else if (!soldOut() && currentServerTime > startTime() && endTime() - currentServerTime > 0) {
             return '活动进行中'
           } else if (soldOut()) {
             return '已抢光'
@@ -539,6 +540,7 @@ define('sf.b2c.mall.product.detailcontent', [
                 if (activityType == 'SECKILL') {
                   var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
                   $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
+                  $('#itemPrice').css('marginTop', '60px');
                 } else {
                   var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
                   $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
@@ -619,8 +621,9 @@ define('sf.b2c.mall.product.detailcontent', [
               });
             }
 
-
+            var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
             //活动信息模板
+            if (activityType != "SECKILL") {
             var activityTemplate = can.view.mustache(that.activityTemplate());
             $('.goods-activityinfos')
               .html(activityTemplate(data, that.helpers))
@@ -649,11 +652,13 @@ define('sf.b2c.mall.product.detailcontent', [
                 $(".goods-activity.active").removeClass("active");
               }
             });
+            }
+          
           });
       },
 
       refreshPage: function() {
-        this.gotoNewItem();
+        //this.gotoNewItem();
         clearInterval(this.interval);
         this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
       },
@@ -1211,7 +1216,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '</div>' +
           '<div class="goods-price-c1 fl">' +
-          '<div class="goods-price-r1">秒杀价：<span>¥</span><strong>{{sf.price priceInfo.activityPrice}}</strong><a href="#">{{priceInfo.activityTitle}}</a></div>' +
+          '<div class="goods-price-r1 {{#isOverTime priceInfo.soldOut priceInfo.endTime}}text-gray{{/isOverTime}}">秒杀价：<span>¥</span><strong>{{sf.price priceInfo.activityPrice}}</strong><a style="cursor: default;" href="javascript:void(0);">{{priceInfo.activityTitle}}</a></div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '</div>' +
           '<div class="goods-price-c2">' +
@@ -1773,24 +1778,20 @@ define('sf.b2c.mall.product.detailcontent', [
         if (!endTime || !startTime) {
           that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
         }
-
         var currentClientTime = new Date().getTime();
         var distance = currentServerTime - currentClientTime;
-
         if (that.interval) {
           clearInterval(that.interval);
         }
-        //活动开始前
-        //设置倒计时
         //如果当前时间活动已经结束了 就不要走倒计时设定了
-        if (new Date().getTime() + distance < startTime) {
+        if (startTime - new Date().getTime() + distance > 0) {
           that.interval = setInterval(function() {
-            if (new Date().getTime() + distance >= startTime) {
+            if (startTime - new Date().getTime() + distance <= 0) {
               that.refreshPage();
             } else {
               that.setCountDown(that.options.detailContentInfo.priceInfo, distance, startTime);
             }
-          }, '1000')
+          }, 1000)
         } else if (endTime - new Date().getTime() + distance > 0) {
           that.interval = setInterval(function() {
 
@@ -1801,7 +1802,7 @@ define('sf.b2c.mall.product.detailcontent', [
               that.setCountDown(that.options.detailContentInfo.priceInfo, distance, endTime);
 
             }
-          }, '1000')
+          }, 1000)
         } else {
           this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
         }
