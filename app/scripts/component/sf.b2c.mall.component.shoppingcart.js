@@ -113,7 +113,7 @@ define(
           _.each(goods, function(items) {
             if (items.canUseActivityPrice == 1) {
               total += items.activityPrice;
-            }else{
+            } else {
               total += items.price;
             }
           });
@@ -185,7 +185,8 @@ define(
         this.options.partScopeGroups = [];
         this.options.singleScope = [];
         that.options.goodItemList = [];
-        //this.options.scopeGroups = data.scopeGroups;
+        this.options.hasGoods = false;
+
         if (typeof data.scopeGroups != 'undefined' && data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
           this.options.order = new can.Map({});
@@ -283,36 +284,75 @@ define(
             });
           })
 
-          var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', this.options, this.helpers);
-          that.element.html(html);
           var invalidItems = $('.items-disable').length;
           if (invalidItems) {
             this.options.order.attr('invalidItems', true);
           };
-        } else {
-          this.options.hasGoods = false;
-          var findRecommendProducts = new SFFindRecommendProducts({
-            'itemId': -1,
-            'size': 4
-          });
-          findRecommendProducts.sendRequest()
-            .fail(function(error) {
-              //console.error(error);
-            })
-            .done(function(data) {
-              that.options.recommendGoods = data.value;
-              _.each(that.options.recommendGoods, function(item) {
-                item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
-                item.imageName = item.imageName;
-                item.sellingPrice = item.sellingPrice;
-              });
-
-              var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
-              that.element.html(html);
-            })
         }
 
+        var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
+        that.element.html(html);
+
+        var itemid = -1;
+        if (data.scopeGroups && data.scopeGroups.length > 0 && data.scopeGroups[0].goodItemList) {
+          itemid = data.scopeGroups[0].goodItemList[0].itemId;
+        }
+
+        that.renderRecommendGoods(itemid);
       },
+
+      renderRecommendGoods: function(itemid) {
+        var that = this;
+
+        var findRecommendProducts = new SFFindRecommendProducts({
+          'itemId': itemid,
+          'size': 4
+        });
+        findRecommendProducts.sendRequest()
+          .done(function(data) {
+            that.options.recommendGoods = data.value;
+            _.each(that.options.recommendGoods, function(item) {
+              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+              item.imageName = item.imageName;
+              item.sellingPrice = item.sellingPrice;
+            });
+
+            var recommendProductsTemplate = can.view.mustache(that.getRecommendGoodsHTML());
+            $('#recommendproducts').html(recommendProductsTemplate(that.options, that.helpers));
+          })
+          .fail(function(error) {
+            //console.error(error);
+          })
+      },
+
+
+      getRecommendGoodsHTML: function() {
+        return '<div class="product">' +
+          '<ul class="myorder-tab">' +
+          '<li><a href="">大家都在买</a></li>' +
+          '</ul>' +
+          '<div class="mb">' +
+          '<ul class="clearfix product-list">' +
+          '{{#each recommendGoods}}' +
+          '<li {{data "goods"}}>' +
+          '<div class="product-r1">' +
+          '<a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '</div>' +
+          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
+          '<div class="product-r2 clearfix">' +
+          '<div class="product-r2c1 fl">' +
+          '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
+          '</div>' +
+          '<div class="product-r2c2 fr"><a href="javascript:" class="icon icon90 addCart">购买</a></div>' +
+          '</div>' +
+          '</li>' +
+          '{{/each}}' +
+          '</ul>' +
+          '</div>' +
+          '</div>'
+      },
+
+
       //按钮状态
       btnStateMap: {
         '1': 'btn-danger',

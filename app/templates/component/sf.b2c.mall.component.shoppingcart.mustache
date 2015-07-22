@@ -16,7 +16,7 @@
                         <th class="th6">操作</th>
                     </tr>
                 </thead>
-                <tbody>              
+                <tbody>
                 {{! scope: "PART" }}
                 {{#each partScopeGroups}}
                 {{#each firstGoodItem}}<tr {{data 'goods'}} data-isSelected="{{isSelected}}">{{/each}}
@@ -27,7 +27,7 @@
                         <strong>{{partScopePrice goodItemList}}</strong>
                     </td>
                     {{#each firstGoodItem}}
-                    <td class="td4">                      
+                    <td class="td4">
                         <div><span class="btn btn-num"><a  class="btn-num-reduce" href="#">-</a><a class="btn-num-add {{#isShowDisable canAddNum}}disable{{/isShowDisable}}" href="#">+</a><input class="num-input" type="text" value="{{quantity}}"></span></div>
                         {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
                     </td>
@@ -51,8 +51,8 @@
                     <td class="td2">
                         <h2><a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html">{{title}}</a></h2>
                         <div class="cart-standard">{{{specs}}}</div>
-                    </td>                   
-                       
+                    </td>
+
                     <td class="td3">
                         {{#isShowOriginPrice price activityPrice canUseActivityPrice}}<del>{{sf.price price}}</del>{{/isShowOriginPrice}}
 
@@ -60,7 +60,7 @@
                         {{^isShowActivityPrice canUseActivityPrice}}<strong>{{sf.price price}}</strong>{{/isShowActivityPrice}}
                         {{#isFlash}}<div class="icon icon73">限时促销</div>{{/isFlash}}
                         {{#isDiscount}}<div class="text-error">{{otherDiscountInfo}}</div>{{/isDiscount}}
-                    </td>                   
+                    </td>
                     <td class="td4">
                         <div style="padding-right:30px;">1件/套x{{quantity}}</div>
                         {{#each limitDescList}}<p style="height:auto;" class="text-error">{{desc}}</p>{{/each}}
@@ -78,7 +78,7 @@
                 {{#each goodItemList}}
                     <tr {{data 'goods'}} data-isSelected="{{isSelected}}" {{^isValid}}class="cart-disable items-disable"{{/isValid}}>
                         <td class="td1">
-                            <div class="cart-pos">                              
+                            <div class="cart-pos">
                                 <input {{^isValid}}disabled="disabled"{{/isValid}} data-isSelected="{{isSelected}}" class="sfcheckbox" type="checkbox" {{#isChecked isSelected}}checked="checked"{{/isChecked}}>
                                 {{^isValid}}<span class="label label-disabled">已下架</span>{{/isValid}}
                                 <a target="_blank" href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{firstimages images}}"></a>
@@ -166,35 +166,18 @@
     		<span class="icon icon76"></span>
     	</div>
     </div>
+
     <!--购物车-->
     {{else}}
     <div class="cart-none">
         <span class="icon icon101"></span>
         <div class="cart-none-c1">购物车空空如也<a href="index.html" class="btn btn-danger btn-small">去逛逛吧~~</a></div>
     </div>
-    <div class="product">
-        <ul class="myorder-tab">
-            <li><a href="">大家都在买</a></li>
-        </ul>
-        <div class="mb">
-          <ul class="clearfix product-list">
-          {{#each recommendGoods}}
-            <li {{data 'goods'}}>
-              <div class="product-r1">
-                <a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt="" ></a><span></span>
-              </div>
-              <h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>
-              <div class="product-r2 clearfix">
-                <div class="product-r2c1 fl">
-                  <span>￥</span><strong>{{sf.price sellingPrice}}</strong>
-                </div>
-                <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90 addCart">购买</a></div>
-              </div>
-            </li>
-            {{/each}}
-          </ul>
-        </div>
-    </div>
+    {{/if}}
+
+    <div id= "recommendproducts"></div>
+
+    {{^if hasGoods}}
     <!--购物须知-->
     <div class="buyer-reading">
         <h2>购物须知</h2>
