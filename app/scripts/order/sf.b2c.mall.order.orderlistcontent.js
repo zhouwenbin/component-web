@@ -150,7 +150,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           } else {
             return options.inverse(options.contexts || this);
           };
-        }
+        },
+        'sf-status-show-case': SFOrderFn.helpers['sf-status-show-case']
 
       },
 
@@ -219,8 +220,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
 
                 order.paymentAmount = order.totalPrice - order.discount;
-                order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                order.orderStatus = that.statsMap[order.orderStatus];
+                //order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                //order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
