@@ -113,29 +113,9 @@
                   <span>剩余付款时间</span>
                   <div class="showOrderEndTime text-error"></div>
                   {{/isNotShowEndTime}}
+                  {{{optionHMTL}}}
                   
-                  {{! optionHMTL }}
-                  {{#sf-status-show-case orderStatus 'CANCEL'}}
-                  <button class="btn btn-normal ordercancel">取消订单</button>
-                  {{/sf-status-show-case}}
-
-                  {{#sf-status-show-case orderStatus 'NEEDPAY'}}
-                  <button class="btn btn-normal active gotopay">立即付款</button>
-                  {{/sf-status-show-case}}
-
-                  {{#sf-status-show-case orderStatus 'DELETE'}}
-                  <button class="btn btn-normal delete">删除订单</button>
-                  {{/sf-status-show-case}}
-
-                  {{#sf-status-show-case orderStatus 'RECEIVED'}}
-                  <button class="btn btn-normal success received">确认收货</button>
-                  {{/sf-status-show-case}}
                   
-                  {{^isShowRebuyBtn orderPackageItemList}}
-                  {{#sf-status-show-case orderStatus 'REBUY'}}
-                  <button class="btn btn-normal rebuy">再次购买</button>
-                  {{/sf-status-show-case}}
-                  {{/isShowRebuyBtn}}
             </td>
             {{/firstPackage}}
 

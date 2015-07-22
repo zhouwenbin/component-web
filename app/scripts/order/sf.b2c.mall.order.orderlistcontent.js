@@ -220,8 +220,13 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
 
                 order.paymentAmount = order.totalPrice - order.discount;
-                //order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
-                //order.orderStatus = that.statsMap[order.orderStatus];
+                if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
+                  order.optionHMTL = that.getOptionHTML(that.secOptionMap[order.orderStatus]);
+                }else{
+                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                }
+                
+                order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
@@ -587,7 +592,25 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'RECEIPTED': true,
         'AUTO_COMPLETED': true
       },
-
+      // 秒杀商品不展示再次购买
+      secOptionMap: {
+        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO'],
+        'AUTO_CANCEL': ['INFO'],
+        'USER_CANCEL': ['INFO'],
+        'AUDITING': ['CANCEL', 'INFO'],
+        'OPERATION_CANCEL': ['INFO'],
+        'BUYING': ['INFO'],
+        'BUYING_EXCEPTION': ['INFO'],
+        'WAIT_SHIPPING': ['INFO'],
+        'SHIPPING': ['ROUTE', 'INFO'],
+        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'COMPLETED': ['INFO', 'ROUTE'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CLOSED': ['INFO'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE']
+      },
       /**
        * [optionMap 状态下允许执行的操作]
        */
