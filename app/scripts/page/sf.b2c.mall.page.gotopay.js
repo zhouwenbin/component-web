@@ -44,18 +44,6 @@ define(
           }
         },
 
-        //          'sf-totalPoint': function (selectPayType, price, discount) {
-        //              var discountInfo = JSON.parse(discount().value);
-        //              if(typeof discountInfo != 'undefined' &&
-        //                  !can.isEmptyObject(discountInfo) &&
-        //                  typeof discountInfo[selectPayType()] != 'undefined'
-        //                  ){
-        //                  return  Math.floor((price() - discountInfo[selectPayType()])/100);
-        //              }else{
-        //                  return  Math.floor(price()/100);
-        //              }
-        //          },
-
         'sf-getPayTypeName': function(selectPayType) {
           var map = {
             'alipay': '支付宝',
@@ -97,12 +85,22 @@ define(
         data.optionalPayTypeList = eval(data.optionalPayTypeList);
         this.options.data.attr(data);
         this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
+        //this.options.data.attr('end', data.optionalPayTypeList[0]);
 
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
         this.element.find('.sf-gotopay-container').html(html);
         this.element.find('.gotopay li').first().addClass('active')
       },
-
+      setCountDown: function(item, distance, endDate) {
+        var leftTime = endDate - new Date().getTime() + distance;
+        var leftsecond = parseInt(leftTime / 1000);
+        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+        item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
+        item.attr('timeIcon', "icon4");
+      },
       render: function() {
 
         // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
