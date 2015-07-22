@@ -310,15 +310,18 @@ define(
         });
         findRecommendProducts.sendRequest()
           .done(function(data) {
-            that.options.recommendGoods = data.value;
-            _.each(that.options.recommendGoods, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
-              item.imageName = item.imageName;
-              item.sellingPrice = item.sellingPrice;
-            });
+            if (data.value) {
+              that.options.recommendGoods = data.value;
+              _.each(that.options.recommendGoods, function(item) {
+                item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+                item.imageName = item.imageName;
+                item.sellingPrice = item.sellingPrice;
+              });
 
-            var recommendProductsTemplate = can.view.mustache(that.getRecommendGoodsHTML());
-            $('#recommendproducts').html(recommendProductsTemplate(that.options, that.helpers));
+              var recommendProductsTemplate = can.view.mustache(that.getRecommendGoodsHTML());
+              $('#recommendproducts').html(recommendProductsTemplate(that.options, that.helpers));
+            }
+
           })
           .fail(function(error) {
             //console.error(error);
