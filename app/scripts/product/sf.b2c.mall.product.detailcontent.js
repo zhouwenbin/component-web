@@ -1778,34 +1778,34 @@ define('sf.b2c.mall.product.detailcontent', [
         if (!endTime || !startTime) {
           that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
         }
-        // var currentClientTime = new Date().getTime();
-        // var distance = currentServerTime - currentClientTime;
+        var currentClientTime = new Date().getTime();
+        var distance = currentServerTime - currentClientTime;
         if (that.interval) {
           clearInterval(that.interval);
         }
         //如果当前时间活动已经结束了 就不要走倒计时设定了
-        if (startTime - currentServerTime > 0) {
+        if (startTime - new Date().getTime() + distance > 0) {
           that.interval = setInterval(function() {
-            if (startTime - currentServerTime <= 0) {
+            if (startTime - new Date().getTime() + distance <= 0) {
               //that.refreshPage();
               clearInterval(that.interval);
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
               window.location.reload();
             } else {
-              that.setCountDown(that.options.detailContentInfo.priceInfo, currentServerTime, startTime);
+              that.setCountDown(that.options.detailContentInfo.priceInfo, distance, startTime);
             }
           }, 1000)
-        } else if (endTime - currentServerTime > 0) {
+        } else if (endTime - new Date().getTime() + distance > 0) {
           that.interval = setInterval(function() {
 
             //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
-            if (endTime - currentServerTime <= 0) {
+            if (endTime - new Date().getTime() + distance <= 0) {
               //that.refreshPage();
               clearInterval(that.interval);
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
               window.location.reload();
             } else {
-              that.setCountDown(that.options.detailContentInfo.priceInfo, currentServerTime, endTime);
+              that.setCountDown(that.options.detailContentInfo.priceInfo, distance, endTime);
 
             }
           }, 1000)
@@ -1821,8 +1821,8 @@ define('sf.b2c.mall.product.detailcontent', [
        */
 
 
-      setCountDown: function(item, currentServerTime, endDate) {
-        var leftTime = endDate - currentServerTime;
+      setCountDown: function(item, distance, endDate) {
+        var leftTime = endDate - new Date().getTime() + distance;
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);

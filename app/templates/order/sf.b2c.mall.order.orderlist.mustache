@@ -56,9 +56,9 @@
                   {{#each orderGoodsItemList}}
                     <tr class="goodsWrap" data-itemid="{{itemId}}" data-num="{{quantity}}" {{data 'itemIds'}}>
                         <td class="td2">
-                            <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"><img src="{{showImg imageUrl}}" alt="" /></a>
+                            <a {{^isSecKillGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"{{/isSecKillGoods}}><img src="{{showImg imageUrl}}" alt="" /></a>
                             <h3>
-                              <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a>
+                              <a {{^isSecKillGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"{{/isSecKillGoods}}>{{goodsName}}</a>
                               {{#isSecKillGoods goodsType}}<div class="godds-type">秒杀商品</div>{{/isSecKillGoods}}
                             </h3>
                         </td>

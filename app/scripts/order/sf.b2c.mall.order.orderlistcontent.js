@@ -20,7 +20,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
   function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart, SFConfig) {
 
     can.route.ready();
-
+    var DIFF = 0;
     return can.Control.extend({
 
       helpers: {
@@ -206,6 +206,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getOrderList.sendRequest()
           .done(function(data) {
 
+            var currentServerTime = getOrderList.getServerTime();
+            var currentClientTime = new Date().getTime();
+            var DIFF = currentServerTime - currentClientTime;
             //获取不同状态订单的数量
             that.options.waitCompletedNum = data.waitCompletedNum;
             that.options.waitPayNum = data.waitPayNum;
@@ -263,8 +266,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 _.each(that.options.orders, function(item, i) {
 
                   if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
-                      that.setCountDown(endTimeArea.eq(i), that.options.orders[i].gmtEnd);
-                      that.options.orders[i].gmtEnd = that.options.orders[i].gmtEnd - 1000;
+                      item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() + DIFF;
+                      console.log(item.leftTime);
+                      that.setCountDown(endTimeArea.eq(i), item.leftTime);
+                      item.leftTime -= 1000;
                   }
 
                 });
