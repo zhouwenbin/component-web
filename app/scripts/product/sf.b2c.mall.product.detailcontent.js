@@ -154,16 +154,19 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
         //
-        'showActivityBeginTime': function(startTime, endTime, activitySoldOut, isPromotion, options) {
+        'showActivityBeginTime': function(startTime, endTime, soldOut, options) {
           var currentServerTime = new Date().getTime() + DISTANCE; //服务器时间
           var time = new Date(startTime());
+          var day = time.getDate();
+          var month = time.getMonth()+1;
+          var hour = time.getHours();
           if (currentServerTime < startTime()) {
-            return time + '开抢'
-          } else if (endTime() - currentServerTime > 0) {
+            return month + '月' + day + '日' + hour +':00点开抢'
+          } else if (currentServerTime > startTime() && endTime() - currentServerTime > 0) {
             return '活动进行中'
-          } else if (activitySoldOut()) {
+          } else if (soldOut()) {
             return '已抢光'
-          } else if (!isPromotion()) {
+          } else if (endTime() - currentServerTime < 0) {
             return '活动结束'
           }
         },
@@ -588,9 +591,9 @@ define('sf.b2c.mall.product.detailcontent', [
                 element.pcActivityLink = element.pcActivityLink || "javascript:void(0);";
 
                 that.options.detailContentInfo.priceInfo.attr("activityType", element.activityType);
+                that.options.detailContentInfo.priceInfo.attr("activityTitle", element.activityTitle);
                 //处理限时促销
                 if (element.activityType == "FLASH") {
-                  that.options.detailContentInfo.priceInfo.attr("activityTitle", element.activityTitle);
                   that.options.detailContentInfo.priceInfo.attr("pcActivityLink", element.pcActivityLink);
                 }
 
@@ -601,6 +604,7 @@ define('sf.b2c.mall.product.detailcontent', [
                 }
 
                 if (element.activityType == "SECKILL") {
+                  that.options.detailContentInfo.priceInfo.attr("referItemId", element.itemActivityInfo.referItemId);
                   that.options.detailContentInfo.priceInfo.attr("activityPrice", element.itemActivityInfo.activityPrice);
                   that.options.detailContentInfo.priceInfo.attr("startTime", element.startTime);
                   that.options.detailContentInfo.priceInfo.attr("endTime", element.endTime);
@@ -1211,7 +1215,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '</div>' +
           '<div class="goods-price-c2">' +
-          '<span class="icon icon56"></span><span class="text-important">{{showActivityBeginTime priceInfo.startTime priceInfo.endTime priceInfo.activitySoldOut priceInfo.isPromotion}}</span>' +
+          '<span class="icon icon56"></span><span class="text-important">{{showActivityBeginTime priceInfo.startTime priceInfo.endTime priceInfo.soldOut}}</span>' +
           '</div>'
       },
       activityTemplate: function() {
@@ -1784,7 +1788,7 @@ define('sf.b2c.mall.product.detailcontent', [
             if (new Date().getTime() + distance >= startTime) {
               that.refreshPage();
             } else {
-              that.setCountDown(distance, startTime);
+              that.setCountDown(that.options.detailContentInfo.priceInfo, distance, startTime);
             }
           }, '1000')
         } else if (endTime - new Date().getTime() + distance > 0) {
@@ -1794,7 +1798,8 @@ define('sf.b2c.mall.product.detailcontent', [
             if (endTime - new Date().getTime() + distance <= 0) {
               that.refreshPage();
             } else {
-              that.setCountDown(distance, endTime);
+              that.setCountDown(that.options.detailContentInfo.priceInfo, distance, endTime);
+
             }
           }, '1000')
         } else {
@@ -1807,30 +1812,17 @@ define('sf.b2c.mall.product.detailcontent', [
        * @param  {[type]} destTime
        * @return {[type]}
        */
-      // setCountDown: function(item, distance, endDate) {
-      //   var leftTime = endDate - new Date().getTime() + distance;
-      //   var leftsecond = parseInt(leftTime / 1000);
-      //   var day1 = Math.floor(leftsecond / (60 * 60 * 24));
-      //   var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
-      //   var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
-      //   var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-      //   item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
-      //   item.attr('timeIcon', "icon4");
-      // }
-      setCountDown: function(distance, endDate) {
+
+
+      setCountDown: function(item, distance, endDate) {
         var leftTime = endDate - new Date().getTime() + distance;
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        this.options.detailContentInfo.attr("priceInfo.time", {
-          day: day1,
-          hour: hour,
-          minute: minute,
-          second: second
-        });
-        this.options.detailContentInfo.attr('priceInfo.timeIcon', "icon4");
+        item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
+        item.attr('timeIcon', "icon4");
       }
     });
   })
