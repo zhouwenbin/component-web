@@ -28,6 +28,7 @@ define('sf.b2c.mall.component.header', [
   'sf.util',
   'sf.b2c.mall.component.header.520',
   'sf.b2c.mall.component.header.61',
+  'sf.b2c.mall.component.header.727',
   'text!template_header_user_navigator',
   'text!template_header_info_common',
   'text!template_header_channel_navigator',
@@ -36,6 +37,7 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_info_step_success'
 ], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
   SFHeader61,
+  SFHeader727,
   template_header_user_navigator,
   template_header_info_common,
   template_header_channel_navigator,
@@ -165,7 +167,7 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      // this.renderMap['template_header_61'].call(this, that.data);
+      this.renderMap['template_header_727'].call(this, that.data);
       this.updateCart();
 
       // @author Michael.Lee
@@ -395,6 +397,12 @@ define('sf.b2c.mall.component.header', [
         });
       },
 
+      'template_header_727': function(data) {
+        new SFHeader727('.sf-b2c-mall-header', {
+          "originheader": this
+        });
+      },
+
       'template_header_61': function(data) {
         new SFHeader61('.sf-b2c-mall-header', {
           "originheader": this
@@ -416,7 +424,7 @@ define('sf.b2c.mall.component.header', [
       // @note 520活动结束，打开浮动导航
       $(window).scroll(function() {
         setTimeout(function() {
-          if ($(window).scrollTop() > (166+854)) {
+          if ($(window).scrollTop() > (166+90)) {
             $(".nav-fixed .nav-inner").stop(true, false).animate({
               top: '0px',
               opacity: 1
