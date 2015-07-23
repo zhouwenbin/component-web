@@ -184,6 +184,13 @@ define('sf.b2c.mall.component.header', [
 
       this.checkTempActionAddCart();
 
+
+      if (window.navigator.userAgent.indexOf('iPad')> -1) {
+        this.element.find('.nav-tag').one(function (event) {
+          event && event.preventDefault() && event.stopPropagation();
+        })
+      }
+
       // this.setCookie();
     },
 
