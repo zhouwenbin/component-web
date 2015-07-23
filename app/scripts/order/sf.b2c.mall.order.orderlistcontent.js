@@ -228,7 +228,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 }else{
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 }
-                
+
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
@@ -260,19 +260,20 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
-              
+
               that.handler = setInterval(function() {
 
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
                 _.each(that.options.orders, function(item, i) {
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    // that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.setCountDown($('.td7[data-orderid='+that.options.orders[i].orderId+'] .showOrderEndTime'), that.options.orders[i].leftTime);
                     that.options.orders[i].leftTime -= 1000;
                   }
 
                   // if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
-                  //     item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() - DIFF;                     
+                  //     item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() - DIFF;
                   //     that.setCountDown(endTimeArea.eq(i), item.leftTime);
                   //     item.leftTime -= 1000;
                   //     //console.log(item.leftTime);
@@ -382,7 +383,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         // }else{
         //   $(element).html(hour+ "小时" +minute + "分" + second + "秒");
         // }
-        
+
       },
 
       '.myorder-tab li click': function(element, event) {
