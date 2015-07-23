@@ -185,7 +185,7 @@ define('sf.b2c.mall.product.detailcontent', [
         },
         'isNotBegin': function(startTime,soldOut, options) {
           //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (LEFTBEGINTIME > 0 || (LEFTBEGINTIME > 0 && soldOut())) {
+          if (LEFTBEGINTIME > 0 || !(LEFTBEGINTIME > 0 && soldOut())) {
             return options.fn(options.contexts || this);
           }
         },
