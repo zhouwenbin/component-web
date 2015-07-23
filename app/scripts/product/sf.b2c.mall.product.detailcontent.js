@@ -183,10 +183,13 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.inverse(options.contexts || this);
           }
         },
-        'isNotBegin': function(startTime,soldOut, options) {
+
+        'isNotBegin': function(startTime, options) {
           //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (LEFTBEGINTIME > 0 || !(LEFTBEGINTIME > 0 && soldOut())) {
+          if (LEFTBEGINTIME > 0) {
             return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
           }
         },
 
@@ -198,7 +201,8 @@ define('sf.b2c.mall.product.detailcontent', [
         },
 
         'isOverTime': function(soldOut, endTime, options) {
-          var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+          //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+
           if (soldOut() || LEFTENDTIME < 0) {
             return options.fn(options.contexts || this);
           }
@@ -1144,13 +1148,14 @@ define('sf.b2c.mall.product.detailcontent', [
           // 秒杀活动
           '{{#isSeckillActivity priceInfo.activityType}}' +
           // 活动未开始，原价购
-          '{{#isNotBegin priceInfo.startTime priceInfo.soldOut}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
+          '{{#isNotBegin priceInfo.startTime}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
           //活动进行中，立即购买
           '{{#isBeginning priceInfo.soldOut priceInfo.startTime priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
           //售完，活动结束立即抢购变灰，原价购买
-          '{{#isOverTime priceInfo.soldOut priceInfo.endTime}}' +
+          
+          '{{^isNotBegin priceInfo.startTime}}{{#isOverTime priceInfo.soldOut priceInfo.endTime}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
-          '<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}' +
+          '<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}{{/isNotBegin}}' +
           '{{/isSeckillActivity}}' +
           // 如果不是秒杀走下面逻辑
           '{{^isSeckillActivity priceInfo.activityType}}' +
