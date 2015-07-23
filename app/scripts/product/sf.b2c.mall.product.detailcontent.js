@@ -32,7 +32,10 @@ define('sf.b2c.mall.product.detailcontent', [
 
     var LIMITIED_DATE = '2015/5/26';
 
-    var DIFF = 0;
+    //var DIFF = 0;
+
+    var LEFTBEGINTIME = 0;
+    var LEFTENDTIME = 0;
     return can.Control.extend({
 
       helpers: {
@@ -145,29 +148,31 @@ define('sf.b2c.mall.product.detailcontent', [
           }
         },
         //活动开始前，进行中，已售完的文本展示priceInfo.startTime priceInfo.endTime priceInfo.activitySoldOut
+        //LEFTBEGINTIME = this.activityBeginTime;
+        //LEFTENDTIME = this.activityEndTime;
         'isShowSecKillText': function(startTime, endTime, options) {
-          var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (currentServerTime < startTime()) {
+          //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+          if (LEFTBEGINTIME > 0) {
             return '距开始：'
-          } else if (endTime() - currentServerTime > 0) {
+          } else if (LEFTENDTIME > 0) {
             return '距结束：'
           }
         },
         //
         'showActivityBeginTime': function(startTime, endTime, soldOut, options) {
-          var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+          //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
           var time = new Date(startTime());
           var day = time.getDate();
           var month = time.getMonth()+1;
           var hour = time.getHours();
           var minute = time.getMinutes();
-          if (currentServerTime < startTime()) {
+          if (LEFTBEGINTIME > 0) {
             return month + '月' + day + '日' + hour +':'+ minute +'开抢'
-          } else if (!soldOut() && currentServerTime > startTime() && endTime() - currentServerTime > 0) {
+          } else if (!soldOut() && LEFTBEGINTIME < 0 && LEFTENDTIME > 0) {
             return '活动进行中'
-          } else if (soldOut() && endTime() - currentServerTime > 0) {
+          } else if (soldOut() && LEFTENDTIME > 0) {
             return '已抢光'
-          } else if (endTime() - currentServerTime < 0) {
+          } else if (LEFTENDTIME < 0) {
             return '活动结束'
           }
         },
@@ -178,23 +183,23 @@ define('sf.b2c.mall.product.detailcontent', [
             return options.inverse(options.contexts || this);
           }
         },
-        'isNotBegin': function(startTime, options) {
-          var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (currentServerTime < startTime()) {
+        'isNotBegin': function(startTime,soldOut, options) {
+          //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+          if (LEFTBEGINTIME > 0 || (LEFTBEGINTIME > 0 && soldOut())) {
             return options.fn(options.contexts || this);
           }
         },
 
         'isBeginning': function(soldOut, startTime, endTime, options) {
-          var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (!soldOut() && currentServerTime > startTime() && endTime() - currentServerTime > 0) {
+          //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
+          if (!soldOut() && LEFTBEGINTIME < 0 && LEFTENDTIME > 0) {
             return options.fn(options.contexts || this);
           }
         },
 
         'isOverTime': function(soldOut, endTime, options) {
           var currentServerTime = new Date().getTime() + DIFF; //服务器时间
-          if (soldOut() || endTime() - currentServerTime < 0) {
+          if (soldOut() || LEFTENDTIME < 0) {
             return options.fn(options.contexts || this);
           }
         }
@@ -1139,7 +1144,7 @@ define('sf.b2c.mall.product.detailcontent', [
           // 秒杀活动
           '{{#isSeckillActivity priceInfo.activityType}}' +
           // 活动未开始，原价购
-          '{{#isNotBegin priceInfo.startTime}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
+          '{{#isNotBegin priceInfo.startTime priceInfo.soldOut}}<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isNotBegin}}' +
           //活动进行中，立即购买
           '{{#isBeginning priceInfo.soldOut priceInfo.startTime priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
           //售完，活动结束立即抢购变灰，原价购买
@@ -1799,7 +1804,11 @@ define('sf.b2c.mall.product.detailcontent', [
         }
         //如果当前时间活动已经结束了 就不要走倒计时设定了
         this.activityBeginTime = startTime - currentClientTime - distance;
-        this.activityEndTime = endTime - currentClientTime - distance
+        this.activityEndTime = endTime - currentClientTime - distance;
+
+        LEFTBEGINTIME = this.activityBeginTime;
+        LEFTENDTIME = this.activityEndTime;
+
 
         if (this.activityBeginTime > 0) {
 
