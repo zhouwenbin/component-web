@@ -187,13 +187,13 @@ define('sf.b2c.mall.component.header', [
       this.checkTempActionAddCart();
 
 
-      if (window.navigator.userAgent.indexOf('iPad')> -1) {
-        this.element.find('.nav-tag').one(function ($element,event) {
-          //var tag = $element.attr('data-tag');
-          //alert(tag);
-          //event && event.preventDefault() && event.stopPropagation();
-        })
-      }
+      //if (window.navigator.userAgent.indexOf('iPad')> -1) {
+      //  this.element.find('.nav-tag').one(function ($element,event) {
+      //    //var tag = $element.attr('data-tag');
+      //    //alert(tag);
+      //    //event && event.preventDefault() && event.stopPropagation();
+      //  })
+      //}
 
       // this.setCookie();
     },
