@@ -661,6 +661,7 @@ define('sf.b2c.mall.product.detailcontent', [
         //this.gotoNewItem();
         clearInterval(this.interval);
         this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+        window.location.reload();
       },
 
       //渲染搭配购买商品
@@ -1789,11 +1790,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
         if (this.activityBeginTime > 0) {
 
+          //@todo 执行倒计时之前需要先执行一遍。需要提取公共方法
           if (that.activityBeginTime <= 0) {
-            //that.refreshPage();
-            clearInterval(that.interval);
-            that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-            window.location.reload();
+            that.refreshPage();
           } else {
             that.activityBeginTime -= 1000;
             that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, startTime);
@@ -1801,45 +1800,39 @@ define('sf.b2c.mall.product.detailcontent', [
 
           that.interval = setInterval(function() {
             if (that.activityBeginTime <= 0) {
-              //that.refreshPage();
-              clearInterval(that.interval);
-              that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-              window.location.reload();
+              that.refreshPage();
             } else {
               that.activityBeginTime -= 1000;
               that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, startTime);
             }
-          }, 1000)
+          }, 1000);
+
         } else if (this.activityEndTime > 0) {
           //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
           if (that.activityEndTime <= 0) {
-            //that.refreshPage();
-            clearInterval(that.interval);
-            that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-            window.location.reload();
+            that.refreshPage();
           } else {
             that.activityEndTime -= 1000;
             that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, endTime);
-
           }
 
           that.interval = setInterval(function() {
 
             //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
             if (that.activityEndTime <= 0) {
-              //that.refreshPage();
-              clearInterval(that.interval);
-              that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-              window.location.reload();
+              that.refreshPage();
             } else {
               that.activityEndTime -= 1000;
               that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, endTime);
-
             }
           }, 1000)
         } else {
           this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
         }
+      },
+
+      setTimmer:function(){
+
       },
       /**
        * [showCountDown 参考倒计时]
