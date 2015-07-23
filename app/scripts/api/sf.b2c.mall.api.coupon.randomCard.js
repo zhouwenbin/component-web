@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.getVoteNum
+  * @class sf.b2c.mall.api.coupon.randomCard
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.getVoteNum',
+'sf.b2c.mall.api.coupon.randomCard',
 [
   'jquery',
   'can',
@@ -22,18 +22,21 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.getVoteNum',
+      METHOD_NAME: 'coupon.randomCard',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'voteType': 'string',
+        'name': 'string',
       },
       OPTIONAL: {
-        'voteNo': 'string'
+        'mobile': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000460': '投票类型不存在'
+        '11000050': '卡券已领完',
+        '11000240': '用户今天的券已经领完了',
+        '11000250': '用户已经领完该活动期间所有的券',
+        '11000260': '用户输入手机号有误'
       }
     }
   });

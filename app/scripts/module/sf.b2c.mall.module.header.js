@@ -8,9 +8,10 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
+    'sf.b2c.mall.component.header.searchbox',
     'sf.b2c.mall.business.config'
   ],
-  function(can, $, SFFrameworkComm, SFHeader, SFBiz) {
+  function(can, $, SFFrameworkComm, SFHeader, SFHeaderSearchBox, SFBiz) {
 
     SFFrameworkComm.register(1);
 
@@ -18,6 +19,7 @@ define(
 
       init: function(element, options) {
         var component = new SFHeader('.sf-b2c-mall-header');
+        new SFHeaderSearchBox(".header-search");
         window.component = component;
       },
 

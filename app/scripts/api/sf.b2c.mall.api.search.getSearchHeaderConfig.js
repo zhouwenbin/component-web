@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.getVoteNum
+  * @class sf.b2c.mall.api.search.getSearchHeaderConfig
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.getVoteNum',
+'sf.b2c.mall.api.search.getSearchHeaderConfig',
 [
   'jquery',
   'can',
@@ -22,18 +22,15 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.getVoteNum',
+      METHOD_NAME: 'search.getSearchHeaderConfig',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'voteType': 'string',
       },
       OPTIONAL: {
-        'voteNo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000460': '投票类型不存在'
       }
     }
   });

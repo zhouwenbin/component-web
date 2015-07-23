@@ -128,7 +128,9 @@ requirejs.config({
     'sf.b2c.mall.api.coupon.hasReceivedCp': 'scripts/api/sf.b2c.mall.api.coupon.hasReceivedCp',
 
     'sf.b2c.mall.api.search.searchItem': 'scripts/api/sf.b2c.mall.api.search.searchItem',
-    'sf.b2c.mall.api.search.suggestKeyword': 'scripts/api/sf.b2c.mall.api.search.suggestKeyword',
+    'sf.b2c.mall.api.search.suggestKeywords': 'scripts/api/sf.b2c.mall.api.search.suggestKeywords',
+    'sf.b2c.mall.api.search.getSearchHeaderConfig': 'scripts/api/sf.b2c.mall.api.search.getSearchHeaderConfig',
+    'sf.b2c.mall.api.search.hotKeywords': 'scripts/api/sf.b2c.mall.api.search.hotKeywords',
 
 
     //购物车
@@ -171,6 +173,7 @@ requirejs.config({
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
     'sf.b2c.mall.component.header.61': 'scripts/component/sf.b2c.mall.component.header.61',
+    'sf.b2c.mall.component.header.searchbox': 'scripts/component/sf.b2c.mall.component.header.searchbox',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.login': 'scripts/component/sf.b2c.mall.component.login',
     'sf.b2c.mall.component.i.login': 'scripts/component/sf.b2c.mall.component.i.login',
