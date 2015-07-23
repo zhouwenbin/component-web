@@ -533,7 +533,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
 
-            //渲染活动信息         
+            //渲染活动信息
             can.when(that.renderActivityInfo())
               .then(function() {
                 var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
@@ -653,7 +653,7 @@ define('sf.b2c.mall.product.detailcontent', [
               }
             });
             }
-          
+
           });
       },
 
@@ -1179,7 +1179,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
           '{{#sf-not-showOriginPrice priceInfo.sellingPrice priceInfo.originPrice}}' +
           '<div class="goods-price-r1">' +
-          '价格：<span>¥</span><strong>{{sf.price priceInfo.sellingPrice}}</strong>' +
+          '价格：<span>¥</span><strong>{{#sf.price priceInfo.sellingPrice}}{{sf.price priceInfo.sellingPrice}}{{/sf.price priceInfo.sellingPrice}}}</strong>' +
           '{{#sf-is-yzyw priceInfo.productShape}}<b>约{{priceInfo.currencySymbol}}{{sf.price priceInfo.localSellingPrice}}</b>{{/sf-is-yzyw}}' +
           '</div>' +
           '<div class="goods-price-r2">国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
@@ -1216,7 +1216,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '</div>' +
           '<div class="goods-price-c1 fl">' +
-          '<div class="goods-price-r1 {{#isOverTime priceInfo.soldOut priceInfo.endTime}}text-gray{{/isOverTime}}">秒杀价：<span>¥</span><strong>{{sf.price priceInfo.activityPrice}}</strong><a style="cursor: default;" href="javascript:void(0);">{{priceInfo.activityTitle}}</a></div>' +
+          '<div class="goods-price-r1 {{#isOverTime priceInfo.soldOut priceInfo.endTime}}text-gray{{/isOverTime}}">秒杀价：<span>¥</span><strong>{{#sf.price priceInfo.activityPrice}}{{sf.price priceInfo.activityPrice}}{{/sf.price priceInfo.activityPrice}}</strong><a style="cursor: default;" href="javascript:void(0);">{{priceInfo.activityTitle}}</a></div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '</div>' +
           '<div class="goods-price-c2">' +
@@ -1784,12 +1784,23 @@ define('sf.b2c.mall.product.detailcontent', [
           clearInterval(that.interval);
         }
         //如果当前时间活动已经结束了 就不要走倒计时设定了
-        this.activityBeginTime = startTime - currentClientTime + distance;
-        this.activityEndTime = endTime - currentClientTime + distance
+        this.activityBeginTime = startTime - currentClientTime - distance;
+        this.activityEndTime = endTime - currentClientTime - distance
 
         if (this.activityBeginTime > 0) {
+
+          if (that.activityBeginTime <= 0) {
+            //that.refreshPage();
+            clearInterval(that.interval);
+            that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+            window.location.reload();
+          } else {
+            that.activityBeginTime -= 1000;
+            that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, startTime);
+          }
+
           that.interval = setInterval(function() {
-            if (this.activityBeginTime <= 0) {
+            if (that.activityBeginTime <= 0) {
               //that.refreshPage();
               clearInterval(that.interval);
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
@@ -1800,10 +1811,22 @@ define('sf.b2c.mall.product.detailcontent', [
             }
           }, 1000)
         } else if (this.activityEndTime > 0) {
+          //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
+          if (that.activityEndTime <= 0) {
+            //that.refreshPage();
+            clearInterval(that.interval);
+            that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+            window.location.reload();
+          } else {
+            that.activityEndTime -= 1000;
+            that.setCountDown.call(that, that.options.detailContentInfo.priceInfo, distance, endTime);
+
+          }
+
           that.interval = setInterval(function() {
 
             //走倒计时过程中 如果发现活动时间已经结束了，则去刷新下当前页面
-            if (this.activityEndTime <= 0) {
+            if (that.activityEndTime <= 0) {
               //that.refreshPage();
               clearInterval(that.interval);
               that.options.detailContentInfo.priceInfo.attr("timeIcon", "");
@@ -1833,7 +1856,7 @@ define('sf.b2c.mall.product.detailcontent', [
         } else {
           var leftTime = this.activityEndTime;
         }
-        
+
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
