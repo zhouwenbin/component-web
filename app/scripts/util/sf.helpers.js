@@ -58,8 +58,9 @@ define('sf.helpers', ['jquery',
 
     // return (price/100).toFixed(2).toString();
     // return (price / 100).toString();
-
-    if (parseInt(price) > 0) {
+    if (typeof price == 'undefined') {
+      return null;
+    }else if (typeof price != 'undefined' && parseInt(price) > 0) {
       return (price / 100).toString();
     }else{
       return (price / 100).toString();

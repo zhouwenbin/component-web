@@ -65,8 +65,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
         //如果订单是已提交，展示倒计时
-        isNotShowEndTime: function(orderStatus, options) {
-          if (orderStatus === '已提交') {
+        isNotShowEndTime: function(orderStatus, leftTime, options) {
+          if (orderStatus === '已提交' && leftTime > 0) {
             return options.fn(options.contexts || this);
           };
         },
@@ -260,6 +260,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
+              
               that.handler = setInterval(function() {
 
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
@@ -267,7 +268,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
                     that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    that.options.orders[i].leftTime -= 1000;
                   }
 
                   // if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
@@ -366,16 +367,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
       //倒计时
       setCountDown: function(element, leftTime) {
+        if (leftTime <= 0) {
+          window.location.reload();
+          return false;
+        }
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        if (hour <= 0) {
-          $(element).html(minute + "分" + second + "秒");
-        }else{
-          $(element).html(hour+ "小时" +minute + "分" + second + "秒");
-        }
+        $(element).html(hour+ "小时" +minute + "分" + second + "秒");
+        // if (hour <= 0) {
+        //   $(element).html(minute + "分" + second + "秒");
+        // }else{
+        //   $(element).html(hour+ "小时" +minute + "分" + second + "秒");
+        // }
         
       },
 
