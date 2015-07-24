@@ -189,14 +189,20 @@ define(
 
         if (typeof data.scopeGroups != 'undefined' && data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
-          this.options.order = new can.Map({});
-          this.options.order.attr({
+          this.options.order = new can.Map({
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
             'discountFee': data.cartFeeItem.discountFee,
             'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
             'limitAmount': data.limitAmount,
             'invalidItems': false
           });
+          // this.options.order.attr({
+          //   'actualTotalFee': data.cartFeeItem.actualTotalFee,
+          //   'discountFee': data.cartFeeItem.discountFee,
+          //   'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
+          //   'limitAmount': data.limitAmount,
+          //   'invalidItems': false
+          // });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0 && this.options.isShowOverLimitPrice == false);
           if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
@@ -284,14 +290,17 @@ define(
             });
           })
 
-          var invalidItems = $('.items-disable').length;
-          if (invalidItems) {
-            this.options.order.attr('invalidItems', true);
-          };
+          
         }
 
         var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
         that.element.html(html);
+
+        //如果没有无效商品，不展示清除无效商品按钮
+        var invalidItems = $('.items-disable').length;
+        if (invalidItems) {
+          this.options.order.attr('invalidItems', true);
+        };
 
         var itemid = -1;
         if (data.scopeGroups && data.scopeGroups.length > 0 && data.scopeGroups[0].goodItemList) {

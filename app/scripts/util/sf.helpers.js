@@ -59,12 +59,11 @@ define('sf.helpers', ['jquery',
     // return (price/100).toFixed(2).toString();
     // return (price / 100).toString();
 
-    if (parseInt(price)) {
+    if (parseInt(price) > 0) {
       return (price / 100).toString();
     }else{
-      return null;
+      return (price / 100).toString();
     }
-
   });
 
   can.Mustache.registerHelper('sf.img', function(img, options) {
