@@ -566,6 +566,7 @@ define('sf.b2c.mall.product.detailcontent', [
             } else {
               var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
               $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+              $('#itemPrice').css('marginTop', 0);
             }
           })
           .always(function() {
