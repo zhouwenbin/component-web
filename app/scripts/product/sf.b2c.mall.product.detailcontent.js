@@ -154,7 +154,7 @@ define('sf.b2c.mall.product.detailcontent', [
           //var currentServerTime = new Date().getTime() + DIFF; //服务器时间
           if (LEFTBEGINTIME > 0) {
             return '距开始：'
-          } else if (LEFTENDTIME > 0) {
+          } else if (LEFTBEGINTIME < 0 && LEFTENDTIME > 0) {
             return '距结束：'
           }
         },
@@ -170,7 +170,7 @@ define('sf.b2c.mall.product.detailcontent', [
             return month + '月' + day + '日' + hour +':'+ minute +'开抢'
           } else if (!soldOut() && LEFTBEGINTIME < 0 && LEFTENDTIME > 0) {
             return '活动进行中'
-          } else if (soldOut() && LEFTENDTIME > 0) {
+          } else if (LEFTBEGINTIME < 0 && soldOut() && LEFTENDTIME > 0) {
             return '已抢光'
           } else if (LEFTENDTIME < 0) {
             return '活动结束'
@@ -677,14 +677,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
           });
-      },
-
-      refreshPage: function() {
-        //this.gotoNewItem();
-        clearInterval(this.interval);
-        this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
-        window.location.reload();
-      },
+      },      
 
       //渲染搭配购买商品
       renderMixDiscountProductInfo: function() {
@@ -1240,7 +1233,7 @@ define('sf.b2c.mall.product.detailcontent', [
           '</div>' +
           '</div>' +
           '<div class="goods-price-c1 fl">' +
-          '<div class="goods-price-r1 {{#isOverTime priceInfo.soldOut priceInfo.endTime}}text-gray{{/isOverTime}}">秒杀价：<span>¥</span><strong>{{#sf.price priceInfo.activityPrice}}{{sf.price priceInfo.activityPrice}}{{/sf.price priceInfo.activityPrice}}</strong><a style="cursor: default;" href="javascript:void(0);">{{priceInfo.activityTitle}}</a></div>' +
+          '<div class="goods-price-r1 {{^isNotBegin priceInfo.startTime}}{{#isOverTime priceInfo.soldOut priceInfo.endTime}}text-gray{{/isOverTime}}{{/isNotBegin}}">秒杀价：<span>¥</span><strong>{{#sf.price priceInfo.activityPrice}}{{sf.price priceInfo.activityPrice}}{{/sf.price priceInfo.activityPrice}}</strong><a style="cursor: default;text-decoration:none;" href="javascript:void(0);">{{priceInfo.activityTitle}}</a></div>' +
           '<div class="goods-price-r2">原价：￥{{sf.price priceInfo.originPrice}}   国内参考价：￥{{sf.price priceInfo.referencePrice}}</div>' +
           '</div>' +
           '<div class="goods-price-c2">' +
@@ -1858,8 +1851,12 @@ define('sf.b2c.mall.product.detailcontent', [
         }
       },
 
-      setTimmer:function(){
 
+      refreshPage: function() {
+        //this.gotoNewItem();
+        clearInterval(this.interval);
+        this.options.detailContentInfo.priceInfo.attr("timeIcon", "");
+        window.location.reload();
       },
       /**
        * [showCountDown 参考倒计时]
