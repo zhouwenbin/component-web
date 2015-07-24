@@ -33,7 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
-        '-101': ''
+        '5029000': '获取前台类目数据错误'
       }
     }
   });
