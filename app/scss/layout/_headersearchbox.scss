@@ -5,7 +5,7 @@
 	position:relative;
 }
 .header-search-input {
-	width: 469px;
+	width: 429px;
 	height: 14px;
 	border-color: #E13B3A;
 	border-style: solid;
@@ -31,8 +31,9 @@
 .header-search-zoom {
 }
 .header-search-suggestKeywords {
-	width: 100%;
+	width: 500px;
 	height: 19px;
+	overflow: hidden;
 }
 .header-search-suggestKeywords li {
 	float: left;

@@ -58,7 +58,8 @@ define('sf.b2c.mall.component.header.searchbox', [
                 + '{{/each}}';
       },
       'associateList': function() {
-        return '<li>' 
+        return '{{#if associateList.data.totalCount}}' 
+                + '<li>' 
                 + '<a class="clearfix" role="header-search-link" data-keyword="{{associateList.data.suggestKeywords}}" href="http://www.sfht.com/search.html?keyword={{associateList.data.suggestKeywords}}">'
                 + '<div class="fl">{{associateList.data.suggestKeywords}}</div>'
                 + '<div class="fr">共{{associateList.data.totalCount}}个结果</div>'
@@ -79,7 +80,8 @@ define('sf.b2c.mall.component.header.searchbox', [
                 + '<div class="fr">共{{count}}个结果</div>'
                 + '</a>'
                 + '</li>'
-                + '{{/each}}';
+                + '{{/each}}'
+                + '{{/if}}';
       }
     },
 
@@ -236,6 +238,10 @@ define('sf.b2c.mall.component.header.searchbox', [
       this.initHistoriesFlag = true;
     },
 
+    /**
+     * @author zhang.ke
+     * @description 搜索框获得焦点时
+     */
     "#header-search-input focus": function() {
       $(".header-search-placeholder").hide();
 
@@ -247,6 +253,11 @@ define('sf.b2c.mall.component.header.searchbox', [
         this.showHistoriesPanel();
       }
     },
+
+    /**
+     * @author zhang.ke
+     * @description 搜索框失去焦点时
+     */
     "#header-search-input blur": function(element, event) {
       var keyword = $(element).val();
       keyword = this.trim(keyword);
@@ -255,6 +266,10 @@ define('sf.b2c.mall.component.header.searchbox', [
       }
     },
 
+    /**
+     * @author zhang.ke
+     * @description 搜索框按键事件：回城：搜索；上下方向键选择关键词
+     */
     "#header-search-input keydown": function(element, event) {
       var keyword = $(element).val();
       keyword = this.trim(keyword)
@@ -289,24 +304,12 @@ define('sf.b2c.mall.component.header.searchbox', [
 
         $("#header-search-input").val(keyword).attr("data-category-ids", categoryIds);
       }
-
-      /*
-      if (event.keyCode == 38) {
-        var links = $(".header-search-dropdown:visible li");
-        $(links[0]).addClass("active");
-        var keyword = $(links[0]).find("[data-keyword]").data("keyword");
-        $("#header-search-input").val(keyword);
-      }
-
-      if (event.keyCode == 40) {
-        var links = $(".header-search-dropdown:visible li");
-        $(links[0]).addClass("active");
-        var keyword = $(links[0]).find("[data-keyword]").data("keyword");
-        $("#header-search-input").val(keyword);
-      }
-      */
     },
 
+    /**
+     * @author zhang.ke
+     * @description 搜索框：根据键入内容进行相关联想
+     */
     "#header-search-input keyup": function(element, event) {
       if (event.keyCode == 38 || event.keyCode == 40) {
         return;
@@ -323,7 +326,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       }
 
       if (!this.lazyInitSuggestKeywords) {
-        this.lazyInitSuggestKeywords = _.debounce(this.initSuggestKeywords, 200);
+        this.lazyInitSuggestKeywords = _.debounce(this.initSuggestKeywords, 160);
       }
       this.lazyInitSuggestKeywords(keyword);
 
@@ -336,7 +339,10 @@ define('sf.b2c.mall.component.header.searchbox', [
 
     },
 
-
+    /**
+     * @author zhang.ke
+     * @description 搜索按钮事件
+     */
     "#header-search-btn click": function() {
       var keyword = $("#header-search-input").val();
       if (!keyword) {
@@ -345,6 +351,10 @@ define('sf.b2c.mall.component.header.searchbox', [
       this.search(keyword);
     },
 
+    /**
+     * @author zhang.ke
+     * @description 选择关键词进行搜索
+     */
     "[role=header-search-link] click": function(element, event) {
       var keyword = $(element).data("keyword");
 
@@ -355,8 +365,15 @@ define('sf.b2c.mall.component.header.searchbox', [
       this.saveHistories(keyword);
     },
 
+    /**
+     * @author zhang.ke
+     * @description 鼠标移出时，关闭dropdown
+     */
     ".header-search-dropdown,.header-search-input mouseout": function() {
       var hsddv = $(".header-search-dropdown:visible");
+      if (!hsddv.length) {
+        return;
+      }
       var startX = $(".header-search").offset().left;
       var startY = $(".header-search").offset().top;
       var endX = hsddv.offset().left + hsddv.width();
