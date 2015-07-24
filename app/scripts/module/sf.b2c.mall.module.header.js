@@ -18,8 +18,8 @@ define(
     var Header = can.Control.extend({
 
       init: function(element, options) {
-        var component = new SFHeader('.sf-b2c-mall-header');
         new SFHeaderSearchBox(".header-search");
+        var component = new SFHeader('.sf-b2c-mall-header');
         window.component = component;
       },
 

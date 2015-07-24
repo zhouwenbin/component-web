@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * [description]
+ * [description] 头部搜索框
+ * @author zhang.ke
+ * @date 23/07/2015
  * @param  {[type]} can
  * @return {[type]}
  */
@@ -20,11 +22,14 @@ define('sf.b2c.mall.component.header.searchbox', [
 ], function(text, $, cookie, can, _, store, SFFn, SFComm, SFConfig, SFGetSearchHeaderConfig, SFSuggestKeywords) {
 
   var STORE_HISTORY_LIST = "searchhistories";
+  var STORE_SEARCH_HEADER_CONFIG = "SearchHeaderConfig";
   var HISTORY_SIZE = 10;
+  var headerSeacrchInput = $("#header-search-input");
 
   return can.Control.extend({
 
     renderData: new can.Map({
+      "keyword": null,
       "searchHeaderConfig": null,
       "historyList": {
         data: null,
@@ -96,37 +101,79 @@ define('sf.b2c.mall.component.header.searchbox', [
     init: function(element, options) {
       var that = this;
 
-      can.when(this.initGetSearchHeaderConfig())
+      //获取URL中的keyword
+      var params = can.deparam(window.location.search.substr(1));
+      this.renderData.attr("keyword", this.trim(params.keyword || ""));
+      headerSeacrchInput.val(params.keyword);
+      this.hidePlaceholder();
+
+      var searchHeaderConfig = this.getStoreData(STORE_SEARCH_HEADER_CONFIG, 5 * 60 * 1000);
+
+      if (searchHeaderConfig) {
+        this.renderGetSearchHeaderConfig(searchHeaderConfig);
+      } else {
+        can.when(this.initGetSearchHeaderConfig())
         .done(function(searchHeaderConfig) {
-          if (searchHeaderConfig.defaultSearchText) {
-            element.find("#default-search-text").text(searchHeaderConfig.defaultSearchText);
-          }
-
-
-          var renderFn = can.mustache(that.templateMap["suggestKeywords"]());
-          var html = renderFn(searchHeaderConfig, that.helpers);
-          that.element.find(".header-search-suggestKeywords").html(html);
+          that.renderGetSearchHeaderConfig(searchHeaderConfig);
         })
+      }
+    },
+
+    renderGetSearchHeaderConfig: function(searchHeaderConfig) {
+      var that = this;
+
+      that.renderData.attr("searchHeaderConfig", searchHeaderConfig);
+      if (searchHeaderConfig.defaultSearchText) {
+        that.element.find("#default-search-text").text(searchHeaderConfig.defaultSearchText);
+      }
+
+      var renderFn = can.mustache(that.templateMap["suggestKeywords"]());
+      var html = renderFn(searchHeaderConfig, that.helpers);
+      that.element.find(".header-search-suggestKeywords").html(html);
     },
 
     /**
+     * @author zhang.ke
      * @description 对页面进行渲染
      * @param  {Map} data 渲染页面的数据
      */
     render: function(data) {
     },
 
+    /**
+     * @author zhang.ke
+     * @description 获得 searchHeaderConfig 数据
+     */
     initGetSearchHeaderConfig: function() {
     	var that = this;
 
       var getSearchHeaderConfig = new SFGetSearchHeaderConfig({});
+
       return getSearchHeaderConfig.sendRequest()
       .done(function(searchHeaderConfig) {
-        that.renderData.attr("searchHeaderConfig", searchHeaderConfig);
+          var nowDate = new Date();
+          searchHeaderConfig.storeTime = nowDate.getTime();
+          store.set(STORE_SEARCH_HEADER_CONFIG, searchHeaderConfig);
         });
     },
 
+    getStoreData: function(key, time) {
+      var data = store.get(key);
+      var nowDate = new Date();
+      nowDate = nowDate.getTime();
+
+      if (data && data.storeTime && (nowDate - data.storeTime < time)) {
+        return data;
+      }
+      return false;
+    },
+
     lazyInitSuggestKeywords: null,
+
+    /**
+     * @author zhang.ke
+     * @description 获得 suggestKeywords 数据
+     */
     initSuggestKeywords: function(keyword) {
     	var that = this;
 
@@ -187,6 +234,14 @@ define('sf.b2c.mall.component.header.searchbox', [
       store.set(STORE_HISTORY_LIST, histories);
     },
 
+    showPlaceholder : function() {
+      $(".header-search-placeholder").show();
+    },
+
+    hidePlaceholder : function() {
+      $(".header-search-placeholder").hide();
+    },
+
     showHistoriesPanel: function() {
       this.element.find("#header-search-history").show();
       this.hideAssociatePanel();
@@ -206,7 +261,7 @@ define('sf.b2c.mall.component.header.searchbox', [
     },
 
     showPanel: function() {
-      var keyword = $("#header-search-input").val();
+      var keyword = headerSeacrchInput.val();
       if (keyword) {
         this.showAssociatePanel();
       } else {
@@ -219,6 +274,10 @@ define('sf.b2c.mall.component.header.searchbox', [
       this.hideHistoriesPanel();
     },
 
+    /**
+     * @author zhang.ke
+     * @description 初始化相关联系面板
+     */
     initAssociatePanel: function() {
       var renderFn = can.mustache(this.templateMap["associateList"]());
       var html = renderFn(this.renderData, this.helpers);
@@ -243,7 +302,7 @@ define('sf.b2c.mall.component.header.searchbox', [
      * @description 搜索框获得焦点时
      */
     "#header-search-input focus": function() {
-      $(".header-search-placeholder").hide();
+      this.hidePlaceholder();
 
       if (this.initHistoriesFlag) {
         this.initHistories();
@@ -262,7 +321,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       var keyword = $(element).val();
       keyword = this.trim(keyword);
       if (!keyword) {
-        $(".header-search-placeholder").show();
+        this.showPlaceholder();
       }
     },
 
@@ -302,7 +361,7 @@ define('sf.b2c.mall.component.header.searchbox', [
         var keyword = $(links[index]).find("[data-keyword]").data("keyword");
         var categoryIds = $(links[index]).find("[data-category-ids]").data("categoryIds");
 
-        $("#header-search-input").val(keyword).attr("data-category-ids", categoryIds);
+        headerSeacrchInput.val(keyword).attr("data-category-ids", categoryIds);
       }
     },
 
@@ -315,7 +374,7 @@ define('sf.b2c.mall.component.header.searchbox', [
         return;
       }
 
-      $("#header-search-input").attr("data-category-ids", "");
+      headerSeacrchInput.attr("data-category-ids", "");
 
       var keyword = $(element).val();
       keyword = this.trim(keyword)
@@ -344,7 +403,7 @@ define('sf.b2c.mall.component.header.searchbox', [
      * @description 搜索按钮事件
      */
     "#header-search-btn click": function() {
-      var keyword = $("#header-search-input").val();
+      var keyword = headerSeacrchInput.val();
       if (!keyword) {
         return false;
       }
@@ -402,7 +461,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       }
       this.saveHistories(keyword);
 
-      var categoryIds = $("#header-search-input").data("categoryIds");
+      var categoryIds = headerSeacrchInput.data("categoryIds");
 
       this.gotoSearchPage(keyword, categoryIds);
     },
