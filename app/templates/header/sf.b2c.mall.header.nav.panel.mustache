@@ -1,0 +1,71 @@
+<div class="nav-pannel-inner clearfix">
+    <!--左侧图片列表 开始 图片280*150-->
+    <ul class="nav-pannel-img fl">
+      {{#if imgsCont}}
+      {{#each imgsCont}}
+        <li>
+            <a href="{{menuLink}}" target="_blank"><img src="{{imgUrl}}" alt="" width="280px" height="150px"></a>
+        </li>
+      {{/each}}
+      {{/if}}
+    </ul>
+    <!--左侧图片列表 结束-->
+    <!--右侧产品列表 开始-->
+    <div class="nav-pannel-text fl">
+      {{#if brandsCont}}
+      {{#each brandsCont}}
+        <dl>
+            <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>{{menuName}}</dt>
+            <!--<dd>-->
+              <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+            <!--</dd>-->
+          <dd>
+            {{#if itemInfos}}
+            {{#each itemInfos}}
+            <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+            {{/each}}
+            {{/if}}
+          </dd>
+        </dl>
+      {{/each}}
+      {{/if}}
+
+      {{#if catesCont}}
+      {{#each catesCont}}
+      <dl>
+        <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>
+          <a style="color: #a94275;" href="{{menuLink}}" target="_blank">{{menuName}}</a></dt>
+        <!--<dd>-->
+        <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+        <!--</dd>-->
+        <dd>
+          {{#if itemInfos}}
+          {{#each itemInfos}}
+          <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+          {{/each}}
+          {{/if}}
+        </dd>
+      </dl>
+      {{/each}}
+      {{/if}}
+
+      {{#if keywordsCont}}
+      {{#each keywordsCont}}
+      <dl>
+        <dt><span class="nav-pannel-icon1" style="background-repeat: round;background-image: url({{imgUrl}})"></span>{{menuName}}</dt>
+        <!--<dd>-->
+        <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
+        <!--</dd>-->
+        <dd>
+          {{#if itemInfos}}
+          {{#each itemInfos}}
+          <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+          {{/each}}
+          {{/if}}
+        </dd>
+      </dl>
+      {{/each}}
+      {{/if}}
+    </div>
+    <!--右侧产品列表 结束-->
+</div>

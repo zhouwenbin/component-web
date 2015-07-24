@@ -33,7 +33,7 @@ define('sf.b2c.mall.center.receiveaddr', [
         this.adapter4List = {};
         this.component = {};
         this.paint();
-        this.request();     
+        this.request();
       },
 
       helpers:{
@@ -64,7 +64,7 @@ define('sf.b2c.mall.center.receiveaddr', [
       paint: function() {
         var that = this;
 
-        var getRecAddressList = new SFGetRecAddressList();
+        var getRecAddressList = new SFGetRecAddressList({});
         var getIDCardUrlList = new SFGetIDCardUrlList();
 
         can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())

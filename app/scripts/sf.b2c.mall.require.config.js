@@ -12,6 +12,7 @@ requirejs.config({
 
     'text': 'bower_components/text/text',
 
+
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
     'sf.b2c.mall.framework.adapter': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.adapter',
     'sf.b2c.mall.framework.comm': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.comm',
@@ -45,6 +46,8 @@ requirejs.config({
     'sf.b2c.mall.api.products.getAllParents': 'scripts/api/sf.b2c.mall.api.products.getAllParents',
     'sf.b2c.mall.api.products.getCategories': 'scripts/api/sf.b2c.mall.api.products.getCategories',
     'sf.b2c.mall.api.products.search': 'scripts/api/sf.b2c.mall.api.products.search',
+
+    'sf.b2c.mall.api.categoryPage.findCategoryPageMenus': 'scripts/api/sf.b2c.mall.api.categoryPage.findCategoryPageMenus',
 
     'sf.b2c.mall.api.product.findRecommendProducts': 'scripts/api/sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.api.product.commitFeedback': 'scripts/api/sf.b2c.mall.api.product.commitFeedback',
@@ -173,6 +176,7 @@ requirejs.config({
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
     'sf.b2c.mall.component.header.61': 'scripts/component/sf.b2c.mall.component.header.61',
+    'sf.b2c.mall.component.header.727': 'scripts/component/sf.b2c.mall.component.header.727',
     'sf.b2c.mall.component.header.searchbox': 'scripts/component/sf.b2c.mall.component.header.searchbox',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.login': 'scripts/component/sf.b2c.mall.component.login',
