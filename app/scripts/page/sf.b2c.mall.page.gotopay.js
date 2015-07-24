@@ -60,7 +60,7 @@ define(
           if (array[0].goodsType == 'SECKILL') {
             return '15分钟'
           } else {
-            return '2小时00分钟'
+            return '2小时'
           }
         }
       },
