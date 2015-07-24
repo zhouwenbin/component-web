@@ -266,10 +266,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 _.each(that.options.orders, function(item, i) {
 
                   if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
-                      item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() + DIFF;
-                      console.log(item.leftTime);
+                      item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() + DIFF;                     
                       that.setCountDown(endTimeArea.eq(i), item.leftTime);
                       item.leftTime -= 1000;
+                      //console.log(item.leftTime);
                   }
 
                 });
@@ -366,7 +366,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $(element).html(hour + "小时" + minute + "分" + second + "秒");
+        if (hour <= 0) {
+          $(element).html(minute + "分" + second + "秒");
+        }
+        
       },
 
       '.myorder-tab li click': function(element, event) {
