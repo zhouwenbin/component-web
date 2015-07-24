@@ -4,7 +4,7 @@
 }
 
 .header-search-input {
-  width: 469px;
+  width: 429px;
   height: 14px;
   border-color: #E13B3A;
   border-style: solid;
@@ -31,7 +31,9 @@
 }
 
 .header-search-suggestKeywords {
-  width: 100%;
+  width: 500px;
+  height: 19px;
+  overflow: hidden;
 }
 
 .header-search-suggestKeywords li {
@@ -69,12 +71,13 @@
   border-style: solid;
   border-width: 0 1px 1px 1px;
   background-color: #fff;
+  display: none;
 }
 
 .header-search-dropdown li {
   height: 26px;
   line-height: 26px;
-  width: 468px;
+  width: 428px;
   display: block;
   font-size: 12px;
   color: #999;
@@ -102,21 +105,21 @@
 }
 
 .header-search-clear-history {
-  width: 460px;
+  width: 420px;
   margin: 0 4px;
   height: 26px;
   border-top: 1px solid #e5e5e5;
 }
 
 .clear-history-btn {
-  margin-right: 10px;
+  margin-right: 6px;
   cursor: pointer;
 }
 
 .clear-history-svg {
   display: block;
-  height: 26px;
-  line-height: 32px;
+  height: 20px;
+  padding-top: 6px;
 }
 
 .clear-history-btn span {
