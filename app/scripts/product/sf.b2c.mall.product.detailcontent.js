@@ -266,6 +266,9 @@ define('sf.b2c.mall.product.detailcontent', [
           }, 1000);
         }
 
+        setInterval(function(){
+          that.checkStartTime();
+        },60000);
       },
 
       isShowCart: function() {
@@ -332,6 +335,7 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       supplement: function() {
         //渲染放大镜
+        var that = this;
         $(".goods-c1r1 li").zoom();
 
         //设置为选中
@@ -342,6 +346,10 @@ define('sf.b2c.mall.product.detailcontent', [
 
         //渲染价格信息
         this.renderPriceInfo();
+        // setInterval(function(){
+        //   that.renderPriceInfo();
+        // },60000);
+        
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
@@ -532,27 +540,32 @@ define('sf.b2c.mall.product.detailcontent', [
               that.options.detailContentInfo.priceInfo.attr("showTax", true);
             }
 
+            that.checkStartTime();
+          })          
+      },
 
-            //渲染活动信息
-            can.when(that.renderActivityInfo())
-              .then(function() {
-                var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
-                if (activityType == 'SECKILL') {
-                  var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
-                  $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
-                  $('#itemPrice').css('marginTop', '60px');
-                } else {
-                  var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
-                  $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
-                }
-              })
-              .always(function() {
-                //渲染购买信息
-                that.renderBuyInfo(that.options.detailContentInfo);
-                that.isShowCart();
-              })
+      checkStartTime: function(){
+        //渲染活动信息
+        var that = this;
+        can.when(that.renderActivityInfo())
+          .then(function() {
+            var activityType = that.options.detailContentInfo.priceInfo.attr('activityType');
+            if (activityType == 'SECKILL') {
+              var secKilItemPriceTemplate = can.view.mustache(that.secKilItemPriceTemplate());
+              $('#itemPrice').html(secKilItemPriceTemplate(that.options.detailContentInfo, that.helpers));
+              $('#itemPrice').css('marginTop', '60px');
+            } else {
+              var itemPriceTemplate = can.view.mustache(that.itemPriceTemplate());
+              $('#itemPrice').html(itemPriceTemplate(that.options.detailContentInfo, that.helpers));
+            }
+          })
+          .always(function() {
+            //渲染购买信息
+            that.renderBuyInfo(that.options.detailContentInfo);
+            that.isShowCart();
+          })
 
-          });
+
       },
 
       /**
@@ -1849,7 +1862,6 @@ define('sf.b2c.mall.product.detailcontent', [
         } else {
           var leftTime = this.activityEndTime;
         }
-
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);

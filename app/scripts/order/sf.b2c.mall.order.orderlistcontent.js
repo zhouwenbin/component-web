@@ -220,7 +220,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               _.each(that.options.orders, function(order, i) {
 
-                order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
+                order.leftTime = order.gmtEnd - getOrderList.getServerTime();
 
                 order.paymentAmount = order.totalPrice - order.discount;
                 if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
@@ -265,12 +265,17 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
                 _.each(that.options.orders, function(item, i) {
 
-                  if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
-                      item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() + DIFF;                     
-                      that.setCountDown(endTimeArea.eq(i), item.leftTime);
-                      item.leftTime -= 1000;
-                      //console.log(item.leftTime);
+                  if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
+                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
                   }
+
+                  // if (that.options.orders[i] && that.options.orders[i].gmtEnd > 0 && endTimeArea.eq(i)) {
+                  //     item.leftTime = that.options.orders[i].gmtEnd - new Date().getTime() - DIFF;                     
+                  //     that.setCountDown(endTimeArea.eq(i), item.leftTime);
+                  //     item.leftTime -= 1000;
+                  //     //console.log(item.leftTime);
+                  // }
 
                 });
 
@@ -368,6 +373,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
         if (hour <= 0) {
           $(element).html(minute + "分" + second + "秒");
+        }else{
+          $(element).html(hour+ "小时" +minute + "分" + second + "秒");
         }
         
       },
