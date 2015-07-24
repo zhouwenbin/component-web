@@ -243,8 +243,14 @@ define('sf.b2c.mall.component.header.searchbox', [
     },
 
     showHistoriesPanel: function() {
-      this.element.find("#header-search-history").show();
-      this.hideAssociatePanel();
+      if (this.initHistoriesFlag) {
+        this.initHistories();
+      }
+
+      if (!this.initHistoriesFlag) {
+        this.element.find("#header-search-history").show();
+        this.hideAssociatePanel();
+      }
     },
 
     hideHistoriesPanel: function() {
@@ -303,14 +309,7 @@ define('sf.b2c.mall.component.header.searchbox', [
      */
     "#header-search-input focus": function() {
       this.hidePlaceholder();
-
-      if (this.initHistoriesFlag) {
-        this.initHistories();
-      }
-
-      if (!this.initHistoriesFlag) {
-        this.showHistoriesPanel();
-      }
+      this.showHistoriesPanel();
     },
 
     /**
