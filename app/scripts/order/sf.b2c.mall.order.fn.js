@@ -19,6 +19,36 @@ define(
     var deleteOrder = new SFDeleteOrder();
 
     return {
+
+      helpers: {
+        'sf-status-show-case': function(status, target, options) {
+          var map = {
+            'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO', 'REBUY'],
+            'AUTO_CANCEL': ['INFO', 'REBUY'],
+            'USER_CANCEL': ['INFO', 'REBUY'],
+            'AUDITING': ['CANCEL', 'INFO', 'REBUY'],
+            'OPERATION_CANCEL': ['INFO', 'REBUY'],
+            'BUYING': ['INFO', 'REBUY'],
+            'BUYING_EXCEPTION': ['INFO', 'REBUY'],
+            'WAIT_SHIPPING': ['INFO', 'REBUY'],
+            'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
+            'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
+            'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+            'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+            'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
+            'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+            'CLOSED': ['INFO', 'REBUY'],
+            'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
+          }
+
+          var array = map[status];
+          if (array && _.contains(array, target)) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        }
+      },
       payV2: function(data, callback) {
         requestPayV2.setData({
           "orderId": data.orderid,

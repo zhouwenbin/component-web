@@ -91,7 +91,7 @@ define('sf.b2c.mall.adapter.detailcontent', ['can'], function(can) {
         //一位一位去匹配
         return spec.specId == specId[index];
       })
-      if (typeof selectedSpec.attr != 'undefined') {
+      if (typeof selectedSpec != 'undefined' && typeof selectedSpec.attr != 'undefined') {
         selectedSpec.attr("selected", "active");
         selectedSpec.attr("canSelected", "");
         selectedSpec.attr("canShowDottedLine", "");

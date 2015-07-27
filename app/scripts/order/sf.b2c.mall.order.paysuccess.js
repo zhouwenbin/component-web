@@ -27,6 +27,7 @@ define('sf.b2c.mall.order.paysuccess', [
         'sf-payment': function(payType) {
           var map = {
             'alipay': '支付宝',
+            'alipay_intl': '支付宝',
             'tenpay_forex': '财付通',
             'tenpay_forex_wxsm': '微信支付',
             'lianlianpay': '快捷支付'

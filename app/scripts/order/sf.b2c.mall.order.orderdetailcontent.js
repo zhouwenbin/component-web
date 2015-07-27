@@ -43,6 +43,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           } else {
             return array;
           }
+        },
+        'isSecGoods':function(goodsType,options){
+          if (goodsType == "SECKILL") {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
         }
       },
       init: function(element, options) {
