@@ -108,6 +108,9 @@ define('sf.b2c.mall.component.header.searchbox', [
       if (keyword) {
         headerSeacrchInput.val(params.keyword);
         this.hidePlaceholder();
+      } else {
+        eaderSeacrchInput.val();
+        this.showPlaceholder();
       }
 
 
