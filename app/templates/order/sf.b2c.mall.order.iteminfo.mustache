@@ -126,11 +126,7 @@
             <li class="li1">总价（含税费）:
               <span class="s1">
                 <strong style="font-size:18px;" class="text-error">
-                  {{if orderFeeItem.shouldPay}}
-                    ¥{{sf.price orderFeeItem.shouldPay}}
-                  {{else}}
-                    ¥{{sf.price 0}}
-                  {{/if}}
+                  ¥{{sf-should-show orderFeeItem.shouldPay}}
                 </strong>
               </span>
             </li>
