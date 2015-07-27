@@ -194,7 +194,6 @@ define('sf.b2c.mall.component.header', [
       //    //event && event.preventDefault() && event.stopPropagation();
       //  })
       //}
-
       // this.setCookie();
     },
 
@@ -643,7 +642,7 @@ define('sf.b2c.mall.component.header', [
             height:0
           },0);
           $('.nav-pannel-inner').animate({
-            height:330
+            height:310
           },300);
           flag=1;
           return;
@@ -701,7 +700,7 @@ define('sf.b2c.mall.component.header', [
           height:0
         },0);
         $('.nav-pannel-inner').animate({
-          height:330
+          height:310
         },300);
         //$('.nav-pannel').hide();
         //$('.nav-pannel').fadeIn();
