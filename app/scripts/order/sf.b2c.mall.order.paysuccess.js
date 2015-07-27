@@ -91,6 +91,14 @@ define('sf.b2c.mall.order.paysuccess', [
           } else {
             return options.fn(options.contexts || this);
           }
+        },
+
+        'sf-is-show': function (totalPoint, options) {
+          if (totalPoint > 0) {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
+          }
         }
       },
 
