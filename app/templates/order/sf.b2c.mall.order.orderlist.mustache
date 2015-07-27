@@ -56,8 +56,11 @@
                   {{#each orderGoodsItemList}}
                     <tr class="goodsWrap" data-itemid="{{itemId}}" data-num="{{quantity}}" {{data 'itemIds'}}>
                         <td class="td2">
-                            <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"><img src="{{showImg imageUrl}}" alt="" /></a>
-                            <h3><a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank">{{goodsName}}</a></h3>
+                            <a {{^isSecKillGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"{{/isSecKillGoods}}><img src="{{showImg imageUrl}}" alt="" /></a>
+                            <h3>
+                              <a {{^isSecKillGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank"{{/isSecKillGoods}}>{{goodsName}}</a>
+                              {{#isSecKillGoods goodsType}}<div class="godds-type">秒杀商品</div>{{/isSecKillGoods}}
+                            </h3>
                         </td>
                         <td class="td3">
                             {{#isShowOriginPrice originPrice price}}<del>{{sf.price originPrice}}</del>{{/isShowOriginPrice}}
@@ -106,11 +109,14 @@
             {{! 显示操作，要合并行。合并原则：只展示第一条数据的操作，第二条数据不显示td，从而达到合并目的 }}
             {{#firstPackage orderPackageItemList @index}}
             <td class="td7" data-orderid='{{orderId}}' data-all="{{sf-items-list orderPackageItemList}}" data-recid='{{rcvrId}}' data-suborderid="{{subOrderId}}" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">
-                  {{#isNotShowEndTime orderStatus}}
+                  {{#isNotShowEndTime orderStatus leftTime}}
                   <span>剩余付款时间</span>
                   <div class="showOrderEndTime text-error"></div>
                   {{/isNotShowEndTime}}
+
                   {{{optionHMTL}}}
+                  
+                  
             </td>
             {{/firstPackage}}
 

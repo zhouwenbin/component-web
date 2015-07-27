@@ -6,6 +6,7 @@ define(
     'jquery',
     'store',
     'sf.helpers',
+    'underscore',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
@@ -15,7 +16,7 @@ define(
     'sf.b2c.mall.api.order.getOrderConfirmInfo'
   ],
 
-  function(can, $, store, helpers, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage, GetOrderConfirmInfo) {
+  function(can, $, store, helpers, _, SFFrameworkComm, Header, Footer, OrderSetp, SFOrderFn, SFMessage, GetOrderConfirmInfo) {
     SFFrameworkComm.register(1);
 
     var PAY_ASAP = '请您尽快完成付款，以便订单尽快处理！';
@@ -24,7 +25,7 @@ define(
     var order = can.Control.extend({
 
       helpers: {
-        'sf-paytype-list': function (optionalPayTypeList, payType, options) {
+        'sf-paytype-list': function(optionalPayTypeList, payType, options) {
           if (_.contains(optionalPayTypeList(), payType)) {
             return options.fn(options.contexts || this);
           } else {
@@ -32,31 +33,39 @@ define(
           }
         },
 
-        'sf-totalprice': function (selectPayType, price, discount) {
+        'sf-totalprice': function(selectPayType, price, discount) {
           var discountInfo = JSON.parse(discount().value);
-          if(typeof discountInfo != 'undefined' &&
+          if (typeof discountInfo != 'undefined' &&
             !can.isEmptyObject(discountInfo) &&
             typeof discountInfo[selectPayType()] != 'undefined'
-          ){
-            return (price() - discountInfo[selectPayType()])/100
-          }else{
-            return price()/100
+          ) {
+            if (price() - discountInfo[selectPayType()] <= 0) {
+              return 0.01;
+            } else {
+              return (price() - discountInfo[selectPayType()]) / 100
+            }
+          } else {
+            return price() / 100
           }
         },
 
-//          'sf-totalPoint': function (selectPayType, price, discount) {
-//              var discountInfo = JSON.parse(discount().value);
-//              if(typeof discountInfo != 'undefined' &&
-//                  !can.isEmptyObject(discountInfo) &&
-//                  typeof discountInfo[selectPayType()] != 'undefined'
-//                  ){
-//                  return  Math.floor((price() - discountInfo[selectPayType()])/100);
-//              }else{
-//                  return  Math.floor(price()/100);
-//              }
-//          },
+        'sf-show001tip': function(selectPayType, price, discount, options) {
+          var discountInfo = JSON.parse(discount().value);
+          if (typeof discountInfo != 'undefined' &&
+            !can.isEmptyObject(discountInfo) &&
+            typeof discountInfo[selectPayType()] != 'undefined'
+          ) {
+            if (price() - discountInfo[selectPayType()] <= 0) {
+              return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
+            }
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
 
-        'sf-getPayTypeName': function (selectPayType) {
+        'sf-getPayTypeName': function(selectPayType) {
           var map = {
             'alipay': '支付宝',
             'alipay_intl': '支付宝',
@@ -66,6 +75,14 @@ define(
           }
 
           return map[selectPayType()];
+        },
+        'showEndPayTime': function(orderGoodsItemList, options) {
+          var array = orderGoodsItemList();
+          if (array[0].goodsType == 'SECKILL') {
+            return '15分钟'
+          } else {
+            return '2小时'
+          }
         }
       },
 
@@ -73,11 +90,11 @@ define(
         this.render();
       },
 
-      getAlertWord: function (otherlink) {
+      getAlertWord: function(otherlink) {
         return otherlink ? PAY_ASAP : SUBMIT_SUCCESS;
       },
 
-      request: function (orderid) {
+      request: function(orderid) {
         var getOrder = new GetOrderConfirmInfo({
           "orderId": orderid
         });
@@ -85,16 +102,47 @@ define(
         return getOrder.sendRequest();
       },
 
-      paint: function (data) {
+      paint: function(data) {
         data.optionalPayTypeList = eval(data.optionalPayTypeList);
+
         this.options.data.attr(data);
         this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
+        //this.options.data.attr('end', data.optionalPayTypeList[0]);
 
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
         this.element.find('.sf-gotopay-container').html(html);
         this.element.find('.gotopay li').first().addClass('active')
+        this.customizedWeixin();
       },
 
+      // 活动期间对微信进行定制
+      customizedWeixin: function(data) {
+        if (new Date().getTime() < new Date(2015, 6, 27, 0, 0, 0).getTime()) {
+          return false;
+        }
+
+        if ($("[data-paytype=tenpay_forex_wxsm]").length == 0) {
+          return false;
+        }
+
+        $("[data-paytype=tenpay_forex_wxsm]").prependTo($('.payTypeListArea'));
+
+        this.element.find('.gotopay li').removeClass('active');
+        this.element.find('.gotopay li').first().addClass('active');
+        this.options.data.attr('selectPayType', "tenpay_forex_wxsm");
+
+        $("[data-paytype=tenpay_forex_wxsm]").find("h3").html("7.27-8.2首次下单减<span style='color:#dc3334'>2</span>元");
+      },
+      setCountDown: function(item, distance, endDate) {
+        var leftTime = endDate - new Date().getTime() + distance;
+        var leftsecond = parseInt(leftTime / 1000);
+        var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+        var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+        var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+        var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
+        item.attr('time', "<strong>" + day1 + "</strong>" + "天" + "<strong>" + hour + "</strong>" + "小时" + "<strong>" + minute + "</strong>" + "分" + "<strong>" + second + "</strong>" + "秒");
+        item.attr('timeIcon', "icon4");
+      },
       render: function() {
 
         // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
@@ -126,7 +174,7 @@ define(
         return;
       },
 
-      getPayWay: function(paytype){
+      getPayWay: function(paytype) {
         if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
           var map = {
             alipay_intl: ['alipay_intl'],
@@ -144,7 +192,7 @@ define(
         }
       },
 
-      '.payTypeListArea li click': function ($el, event) {
+      '.payTypeListArea li click': function($el, event) {
         this.element.find('li').removeClass('active');
         $el.addClass('active');
 
@@ -178,7 +226,7 @@ define(
       //   return false;
       // },
 
-      '#order-detail click': function ($el) {
+      '#order-detail click': function($el) {
         $el.toggleClass('active');
         $('.order-success-detail').toggle();
       },
