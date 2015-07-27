@@ -103,9 +103,13 @@ define('sf.b2c.mall.component.header.searchbox', [
 
       //获取URL中的keyword
       var params = can.deparam(window.location.search.substr(1));
-      this.renderData.attr("keyword", this.trim(params.keyword || ""));
-      headerSeacrchInput.val(params.keyword);
-      this.hidePlaceholder();
+      var keyword = this.trim(params.keyword);
+      this.renderData.attr("keyword", params.keyword || "");
+      if (keyword) {
+        headerSeacrchInput.val(params.keyword);
+        this.hidePlaceholder();
+      }
+
 
       var searchHeaderConfig = this.getStoreData(STORE_SEARCH_HEADER_CONFIG, 5 * 60 * 1000);
 
