@@ -109,7 +109,7 @@ define('sf.b2c.mall.component.header.searchbox', [
         headerSeacrchInput.val(params.keyword);
         this.hidePlaceholder();
       } else {
-        eaderSeacrchInput.val();
+        headerSeacrchInput.val("");
         this.showPlaceholder();
       }
 
