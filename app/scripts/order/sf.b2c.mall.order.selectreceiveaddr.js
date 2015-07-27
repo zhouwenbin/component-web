@@ -50,7 +50,7 @@ define('sf.b2c.mall.order.selectreceiveaddr', [
     paint: function(data) {
       var that = this;
 
-      var getRecAddressList = new SFGetRecAddressList();
+      var getRecAddressList = new SFGetRecAddressList({});
       var getIDCardUrlList = new SFGetIDCardUrlList();
 
       can.when(getRecAddressList.sendRequest(), getIDCardUrlList.sendRequest())

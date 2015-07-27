@@ -33,6 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '1000460': '投票类型不存在'
       }
     }
   });
