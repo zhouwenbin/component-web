@@ -22,6 +22,7 @@ define('sf.b2c.mall.component.header', [
   'sf.b2c.mall.api.minicart.getTotalCount',
   'sf.b2c.mall.api.shopcart.addItemsToCart',
   'sf.b2c.mall.api.shopcart.isShowCart',
+  'sf.b2c.mall.api.categoryPage.findCategoryPageMenus',
   'sf.b2c.mall.widget.modal',
   'sf.b2c.mall.business.config',
   'sf.b2c.mall.widget.not.support',
@@ -34,8 +35,9 @@ define('sf.b2c.mall.component.header', [
   'text!template_header_channel_navigator',
   'text!template_header_info_step_fillinfo',
   'text!template_header_info_step_pay',
-  'text!template_header_info_step_success'
-], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
+  'text!template_header_info_step_success',
+  'text!template_header_nav_panel'
+], function(text, $, cookie, can, _, md5, store, SFMessage, SFPartnerLogin, SFComm, SFGetUserInfo, SFLogout, SFGetHeaderConfig, SFGetTotalCount, SFAddItemToCart, SFIsShowCart, SFFindCategoryPageMenus,SFModal, SFConfig, SFNotSupport, SFFn, SFHeader520,
   SFHeader61,
   SFHeader727,
   template_header_user_navigator,
@@ -43,9 +45,11 @@ define('sf.b2c.mall.component.header', [
   template_header_channel_navigator,
   template_header_info_step_fillinfo,
   template_header_info_step_pay,
-  template_header_info_step_success) {
+  template_header_info_step_success,
+  template_header_nav_panel) {
 
   var APPID = 1;
+  var nav_tag=[];
 
   return can.Control.extend({
 
@@ -181,6 +185,15 @@ define('sf.b2c.mall.component.header', [
       can.on.call(window, 'showLogin', _.bind(this.showLogin, this));
 
       this.checkTempActionAddCart();
+
+
+      //if (window.navigator.userAgent.indexOf('iPad')> -1) {
+      //  this.element.find('.nav-tag').one(function ($element,event) {
+      //    //var tag = $element.attr('data-tag');
+      //    //alert(tag);
+      //    //event && event.preventDefault() && event.stopPropagation();
+      //  })
+      //}
 
       // this.setCookie();
     },
@@ -611,6 +624,129 @@ define('sf.b2c.mall.component.header', [
           })
           .fail(function() {})
       }
+    },
+
+    // @description  用户hover到tag之后出现导航
+    '.nav-tag mouseover': function ($element, event) {
+      var itemObj= new can.Map({});
+      var imgsCont=[];
+      var catesCont=[];
+      var brandsCont=[];
+      var keywordsCont=[];
+      // @description 获取tag名称
+      var tag = $element.attr('data-tag');
+      var flag=0;
+      _.each(nav_tag, function(item) {
+        if(item.id==tag){
+          $('.nav-pannel').html(item.text);
+          $('.nav-pannel-inner').animate({
+            height:0
+          },0);
+          $('.nav-pannel-inner').animate({
+            height:330
+          },300);
+          flag=1;
+          return;
+        }
+      })
+      if(flag==1){
+        return;
+      }
+      // @todo 初始化请求对象
+
+
+      // @todo  根据tag获取不同的导航数据
+      //        请求数据之后将数据存储到store中，并设置过期时间
+      var map = {
+        'index': function () {
+        },
+        'baby': function () {
+          var param={
+            pId:0
+          }
+          send(param);
+        },
+        'beauty': function () {
+          var param={
+            pId:1
+          }
+          send(param);
+        },
+        'healthy': function () {
+          var param={
+            pId:2
+          }
+          send(param);
+        },
+        'origin': function () {
+          var param={
+            pId:3
+          }
+          send(param);
+        }
+      }
+
+
+
+      // @description 渲染
+      var render = function (data) {
+        // @refer template_header_nav_panel templates/header/sf.b2c.mall.header.nav.panel.mustache
+        var renderFn = can.mustache(template_header_nav_panel);
+        var html = renderFn(data);
+        $('.nav-pannel').html(html);
+        var newHtml=$('.nav-pannel').html();
+        var ever={'id':tag,"text":newHtml};
+        nav_tag.push(ever);
+        $('.nav-pannel-inner').animate({
+          height:0
+        },0);
+        $('.nav-pannel-inner').animate({
+          height:330
+        },300);
+        //$('.nav-pannel').hide();
+        //$('.nav-pannel').fadeIn();
+
+        // @todo 动画
+      }
+      // @todo 请求数据并且在回调中渲染
+      var send = function (param) {
+        var sFFindCategoryPageMenus = new SFFindCategoryPageMenus(param);
+        can.when(sFFindCategoryPageMenus.sendRequest())
+          .done(function(data){
+            if(data.value&&data.value.length>0){
+              _.each(data.value, function(item) {
+                if (item.type == 0) {
+                  catesCont.push(item);
+                  itemObj.attr("catesCont", catesCont);
+                } else if (item.type == 1) {
+                  brandsCont.push(item);
+                  itemObj.attr("brandsCont", brandsCont);
+                } else if (item.type == 2) {
+                  keywordsCont.push(item);
+                  itemObj.attr("keywordsCont", keywordsCont);
+                } else if (item.type == 3) {
+                  imgsCont.push(item);
+                  itemObj.attr("imgsCont", imgsCont);
+                }
+              });
+              render(itemObj);
+            }
+          }) .fail(function(error) {
+            console.error(error);
+          });
+      }
+      var fn = map[tag];
+      fn.call(this);
+    },
+
+    '.nav-tag mouseleave': function () {
+      $('.nav-pannel-inner').hide();
+    },
+    '.nav-pannel mouseleave': function () {
+      $('.nav-pannel-inner').hide();
+    },
+    '.nav-pannel mouseover': function () {
+      $('.nav-pannel-inner').show();
     },
 
     '#my-account click': function(element, event) {
