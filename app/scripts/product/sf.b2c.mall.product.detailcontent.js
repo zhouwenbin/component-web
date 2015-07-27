@@ -166,6 +166,9 @@ define('sf.b2c.mall.product.detailcontent', [
           var month = time.getMonth()+1;
           var hour = time.getHours();
           var minute = time.getMinutes();
+          if (minute == 0) {
+            var minute = '00';
+          }
           if (LEFTBEGINTIME > 0) {
             return month + '月' + day + '日' + hour +':'+ minute +'开抢'
           } else if (!soldOut() && LEFTBEGINTIME < 0 && LEFTENDTIME > 0) {
