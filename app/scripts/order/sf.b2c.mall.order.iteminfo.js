@@ -28,6 +28,15 @@ define('sf.b2c.mall.order.iteminfo', [
     }),
 
     helpers: {
+
+      'sf-should-show': function (price) {
+        if (price() > 0) {
+          return price()/100
+        }else{
+          return '0'
+        }
+      },
+
       'sf-needshowcart': function(options) {
         var params = can.deparam(window.location.search.substr(1));
         var uinfo = $.cookie('1_uinfo');

@@ -123,7 +123,13 @@
                 <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
                 运费:<span class="s1">免运费</span>
             </li>
-            <li class="li1">总价（含税费）:<span class="s1"><strong style="font-size:18px;" class="text-error">¥{{sf.price orderFeeItem.shouldPay}}</strong></span></li>
+            <li class="li1">总价（含税费）:
+              <span class="s1">
+                <strong style="font-size:18px;" class="text-error">
+                  ¥{{sf-should-show orderFeeItem.shouldPay}}
+                </strong>
+              </span>
+            </li>
             {{!  <li class="li1">可获得海淘积分 :<span class="s1">{{sf.price getpoint</span></li> }}
             <li>
               {{#sf-needshowcart}}
