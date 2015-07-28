@@ -139,7 +139,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       }
 
       var renderFn = can.mustache(that.templateMap["suggestKeywords"]());
-      var html = renderFn(that.renderData.searchHeaderConfig, that.helpers);
+      var html = renderFn(that.renderData, that.helpers);
       that.element.find(".header-search-suggestKeywords").html(html);
     },
 
