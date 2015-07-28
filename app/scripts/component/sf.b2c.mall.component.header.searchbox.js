@@ -102,7 +102,7 @@ define('sf.b2c.mall.component.header.searchbox', [
     init: function(element, options) {
       var that = this;
 
-      if (options.isBlank) {
+      if (options.isBlank !== undefined) {
         this.renderData.attr("isBlank", options.isBlank);
       }
       //获取URL中的keyword

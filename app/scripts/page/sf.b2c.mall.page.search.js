@@ -29,7 +29,7 @@ define(
        */
       render: function() {
         var that = this;
-        new SFHeaderSearchBox(".header-search", { isBlank: false });
+        new SFHeaderSearchBox(".header-search");
         var component = new SFHeader('.sf-b2c-mall-header');
         new SFSearch('#sf-b2c-mall-search');
       }
