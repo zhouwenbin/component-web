@@ -38,7 +38,8 @@ define('sf.b2c.mall.component.header.searchbox', [
       "associateList": {
         data: null,
         show: true
-      }
+      },
+      isBlank: true
     }),
 
     initHistoriesFlag: true,
@@ -46,11 +47,11 @@ define('sf.b2c.mall.component.header.searchbox', [
 
     templateMap: {
       "suggestKeywords": function() {
-        return '{{#each searchLinkList}}'
+        return '{{#each searchHeaderConfig.searchLinkList}}'
                 + '<li class="active"><a href="{{link}}" target="_blank">{{content}}</a></li>'
                 + '{{/each}}'
-                + '{{#each hotKeywordList}}'
-                + '<li><a target="_blank" href="http://www.sfht.com/search.html?keyword={{.}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
+                + '{{#each searchHeaderConfig.hotKeywordList}}'
+                + '<li><a {{#if isBlank}}target="_blank"{{/if}} href="http://www.sfht.com/search.html?keyword={{.}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
                 + '{{/each}}';
       },
       'historyList': function() {
@@ -101,6 +102,9 @@ define('sf.b2c.mall.component.header.searchbox', [
     init: function(element, options) {
       var that = this;
 
+      if (options.isBlank) {
+        this.renderData.attr("isBlank", options.isBlank);
+      }
       //获取URL中的keyword
       var params = can.deparam(window.location.search.substr(1));
       var keyword = this.trim(params.keyword || "");
@@ -135,7 +139,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       }
 
       var renderFn = can.mustache(that.templateMap["suggestKeywords"]());
-      var html = renderFn(searchHeaderConfig, that.helpers);
+      var html = renderFn(that.renderData.searchHeaderConfig, that.helpers);
       that.element.find(".header-search-suggestKeywords").html(html);
     },
 

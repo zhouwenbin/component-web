@@ -7,6 +7,7 @@ define(
     'jquery',
     'sf.b2c.mall.framework.comm',
     'sf.b2c.mall.component.header',
+    'sf.b2c.mall.component.header.searchbox',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.product.breadscrumb',
     'sf.b2c.mall.product.detailcontent',
@@ -14,7 +15,7 @@ define(
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, Footer, Breadscrumb, DetailContent, SFFn) {
+  function(can, $, SFFrameworkComm, Header, SFHeaderSearchBox, Footer, Breadscrumb, DetailContent, SFFn) {
     SFFrameworkComm.register(1);
     SFFn.monitor();
 
@@ -28,7 +29,7 @@ define(
       },
 
       render: function() {
-
+        new SFHeaderSearchBox(".header-search");
         var header = new Header('.sf-b2c-mall-header', {channel: '首页'});
         new Footer('.sf-b2c-mall-footer');
 
