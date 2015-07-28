@@ -27,6 +27,7 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
       },
       OPTIONAL: {
+        'isDefault': 'int'
       },
       VERIFY:{
       },

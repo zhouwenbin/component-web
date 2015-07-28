@@ -20,7 +20,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
   function(can, $, qrcode, SFGetOrderList, PaginationAdapter, Pagination, SFGetOrder, helpers, SFRequestPayV2, SFOrderFn, SFGetUserRoutes, SFMessage, SFFindRecommendProducts, SFAddItemToCart, SFConfig) {
 
     can.route.ready();
-
+    var DIFF = 0;
     return can.Control.extend({
 
       helpers: {
@@ -65,8 +65,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           };
         },
         //如果订单是已提交，展示倒计时
-        isNotShowEndTime: function(orderStatus, options) {
-          if (orderStatus === '已提交') {
+        isNotShowEndTime: function(orderStatus, leftTime, options) {
+          if (orderStatus === '已提交' && leftTime > 0) {
             return options.fn(options.contexts || this);
           };
         },
@@ -143,7 +143,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
           if (index == 0) {
             return 'active';
           }
-        }
+        },
+        'isSecKillGoods': function(goodsType, options) {
+          if (goodsType == "SECKILL") {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          };
+        },
+        'sf-status-show-case': SFOrderFn.helpers['sf-status-show-case']
 
       },
 
@@ -198,6 +206,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         getOrderList.sendRequest()
           .done(function(data) {
 
+            var currentServerTime = getOrderList.getServerTime();
+            var currentClientTime = new Date().getTime();
+            var DIFF = currentServerTime - currentClientTime;
             //获取不同状态订单的数量
             that.options.waitCompletedNum = data.waitCompletedNum;
             that.options.waitPayNum = data.waitPayNum;
@@ -209,10 +220,15 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               _.each(that.options.orders, function(order, i) {
 
-                order.leftTime = order.gmtCreate + 7200000 - getOrderList.getServerTime();
+                order.leftTime = order.gmtEnd - getOrderList.getServerTime();
 
                 order.paymentAmount = order.totalPrice - order.discount;
-                order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
+                  order.optionHMTL = that.getOptionHTML(that.secOptionMap[order.orderStatus]);
+                }else{
+                  order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
+                }
+
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
@@ -244,15 +260,19 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
               var html = can.view('templates/order/sf.b2c.mall.order.orderlist.mustache', that.options, that.helpers);
               that.element.html(html);
+
               that.handler = setInterval(function() {
 
                 var endTimeArea = $('.sf-b2c-mall-order-orderlist .showOrderEndTime');
                 _.each(that.options.orders, function(item, i) {
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
-                    that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.options.orders[i].leftTime = that.options.orders[i].leftTime - 1000;
+                    // that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
+                    that.setCountDown($('.td7[data-orderid='+that.options.orders[i].orderId+'] .showOrderEndTime'), that.options.orders[i].leftTime);
+                    that.options.orders[i].leftTime -= 1000;
                   }
+
+
 
                 });
 
@@ -343,12 +363,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
       //倒计时
       setCountDown: function(element, leftTime) {
+
         var leftsecond = parseInt(leftTime / 1000);
         var day1 = Math.floor(leftsecond / (60 * 60 * 24));
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $(element).html(hour + "小时" + minute + "分" + second + "秒");
+        $(element).html(hour+ "小时" +minute + "分" + second + "秒");
+
       },
 
       '.myorder-tab li click': function(element, event) {
@@ -572,7 +594,25 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'RECEIPTED': true,
         'AUTO_COMPLETED': true
       },
-
+      // 秒杀商品不展示再次购买
+      secOptionMap: {
+        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO'],
+        'AUTO_CANCEL': ['INFO'],
+        'USER_CANCEL': ['INFO'],
+        'AUDITING': ['CANCEL', 'INFO'],
+        'OPERATION_CANCEL': ['INFO'],
+        'BUYING': ['INFO'],
+        'BUYING_EXCEPTION': ['INFO'],
+        'WAIT_SHIPPING': ['INFO'],
+        'SHIPPING': ['ROUTE', 'INFO'],
+        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'COMPLETED': ['INFO', 'ROUTE'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED'],
+        'CLOSED': ['INFO'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE']
+      },
       /**
        * [optionMap 状态下允许执行的操作]
        */

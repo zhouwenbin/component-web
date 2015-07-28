@@ -27,6 +27,7 @@ define('sf.b2c.mall.order.paysuccess', [
         'sf-payment': function(payType) {
           var map = {
             'alipay': '支付宝',
+            'alipay_intl': '支付宝',
             'tenpay_forex': '财付通',
             'tenpay_forex_wxsm': '微信支付',
             'lianlianpay': '快捷支付'
@@ -89,6 +90,14 @@ define('sf.b2c.mall.order.paysuccess', [
             return options.inverse(options.contexts || this);
           } else {
             return options.fn(options.contexts || this);
+          }
+        },
+
+        'sf-is-show': function (totalPoint, options) {
+          if (totalPoint > 0) {
+            return options.fn(options.contexts || this);
+          }else{
+            return options.inverse(options.contexts || this);
           }
         }
       },

@@ -1432,7 +1432,7 @@
     "superregion_id": 62
 }, {
     "id": 363,
-    "name": "大足县",
+    "name": "大足区",
     "superregion_id": 62
 }, {
     "id": 364,
@@ -1832,7 +1832,7 @@
     "superregion_id": 29
 }, {
     "id": 463,
-    "name": "海东地区",
+    "name": "海东市",
     "superregion_id": 29
 }, {
     "id": 464,
@@ -3296,7 +3296,7 @@
     "superregion_id": 96
 }, {
     "id": 1431,
-    "name": "白云矿区",
+    "name": "白云鄂博矿区",
     "superregion_id": 96
 }, {
     "id": 1432,
@@ -4224,7 +4224,7 @@
     "superregion_id": 127
 }, {
     "id": 1664,
-    "name": "扶余县",
+    "name": "扶余市",
     "superregion_id": 127
 }, {
     "id": 1665,
@@ -4932,7 +4932,7 @@
     "superregion_id": 164
 }, {
     "id": 2057,
-    "name": "铜山县",
+    "name": "铜山区",
     "superregion_id": 164
 }, {
     "id": 2058,
@@ -5909,11 +5909,11 @@
 }, {
     "id": 2302,
     "name": "含山县",
-    "superregion_id": 198
+    "superregion_id": 190
 }, {
     "id": 2303,
     "name": "和县",
-    "superregion_id": 198
+    "superregion_id": 190
 }, {
     "id": 2304,
     "name": "居巢区",
@@ -5921,7 +5921,7 @@
 }, {
     "id": 2305,
     "name": "庐江县",
-    "superregion_id": 198
+    "superregion_id": 186
 }, {
     "id": 2306,
     "name": "无为县",
@@ -8372,7 +8372,7 @@
     "superregion_id": 275
 }, {
     "id": 2918,
-    "name": "望城县",
+    "name": "望城区",
     "superregion_id": 275
 }, {
     "id": 2919,
@@ -9300,7 +9300,7 @@
     "superregion_id": 308
 }, {
     "id": 3150,
-    "name": "揭东县",
+    "name": "揭东区",
     "superregion_id": 308
 }, {
     "id": 3151,
@@ -9428,7 +9428,7 @@
     "superregion_id": 312
 }, {
     "id": 3182,
-    "name": "临桂县",
+    "name": "临桂区",
     "superregion_id": 312
 }, {
     "id": 3183,
@@ -9468,7 +9468,7 @@
     "superregion_id": 312
 }, {
     "id": 3192,
-    "name": "荔蒲县",
+    "name": "荔浦县",
     "superregion_id": 312
 }, {
     "id": 3193,
@@ -9764,7 +9764,7 @@
     "superregion_id": 323
 }, {
     "id": 3266,
-    "name": "江洲区",
+    "name": "江州区",
     "superregion_id": 323
 }, {
     "id": 3267,
@@ -10240,7 +10240,7 @@
     "superregion_id": 397
 }, {
     "id": 4306,
-    "name": "南溪县",
+    "name": "南溪区",
     "superregion_id": 397
 }, {
     "id": 4307,
@@ -10324,7 +10324,7 @@
     "superregion_id": 399
 }, {
     "id": 4327,
-    "name": "名山县",
+    "name": "名山区",
     "superregion_id": 400
 }, {
     "id": 4328,
@@ -10712,7 +10712,7 @@
     "superregion_id": 409
 }, {
     "id": 4424,
-    "name": "万山特区",
+    "name": "万山区",
     "superregion_id": 410
 }, {
     "id": 4425,
@@ -11232,7 +11232,7 @@
     "superregion_id": 424
 }, {
     "id": 4554,
-    "name": "弥勒县",
+    "name": "弥勒区",
     "superregion_id": 424
 }, {
     "id": 4555,
@@ -11256,7 +11256,7 @@
     "superregion_id": 424
 }, {
     "id": 4560,
-    "name": "蒙自县",
+    "name": "蒙自市",
     "superregion_id": 424
 }, {
     "id": 4561,
@@ -11276,7 +11276,7 @@
     "superregion_id": 425
 }, {
     "id": 4565,
-    "name": "文山县",
+    "name": "文山市",
     "superregion_id": 425
 }, {
     "id": 4566,
@@ -11360,7 +11360,7 @@
     "superregion_id": 428
 }, {
     "id": 4586,
-    "name": "潞西市",
+    "name": "芒市",
     "superregion_id": 428
 }, {
     "id": 4587,
@@ -11816,7 +11816,7 @@
     "superregion_id": 441
 }, {
     "id": 4700,
-    "name": "杨凌区",
+    "name": "杨陵区",
     "superregion_id": 441
 }, {
     "id": 4701,
@@ -12484,7 +12484,7 @@
     "superregion_id": 462
 }, {
     "id": 4867,
-    "name": "乐都县",
+    "name": "乐都区",
     "superregion_id": 463
 }, {
     "id": 4868,
@@ -12600,7 +12600,7 @@
     "superregion_id": 468
 }, {
     "id": 4896,
-    "name": "玉树县",
+    "name": "玉树市",
     "superregion_id": 468
 }, {
     "id": 4897,
@@ -13188,7 +13188,7 @@
     "superregion_id": 325
 }, {
     "id": 5045,
-    "name": "海棠湾镇",
+    "name": "海棠区",
     "superregion_id": 325
 }, {
     "id": 5046,

@@ -12,6 +12,7 @@ requirejs.config({
 
     'text': 'bower_components/text/text',
 
+
     'sf.b2c.mall.api.security.type': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.api.security.type',
     'sf.b2c.mall.framework.adapter': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.adapter',
     'sf.b2c.mall.framework.comm': 'http://www.google.com/app/scripts/framework/sf.b2c.mall.framework.comm',
@@ -45,6 +46,8 @@ requirejs.config({
     'sf.b2c.mall.api.products.getAllParents': 'scripts/api/sf.b2c.mall.api.products.getAllParents',
     'sf.b2c.mall.api.products.getCategories': 'scripts/api/sf.b2c.mall.api.products.getCategories',
     'sf.b2c.mall.api.products.search': 'scripts/api/sf.b2c.mall.api.products.search',
+
+    'sf.b2c.mall.api.categoryPage.findCategoryPageMenus': 'scripts/api/sf.b2c.mall.api.categoryPage.findCategoryPageMenus',
 
     'sf.b2c.mall.api.product.findRecommendProducts': 'scripts/api/sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.api.product.commitFeedback': 'scripts/api/sf.b2c.mall.api.product.commitFeedback',
@@ -171,6 +174,7 @@ requirejs.config({
     'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
     'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
     'sf.b2c.mall.component.header.61': 'scripts/component/sf.b2c.mall.component.header.61',
+    'sf.b2c.mall.component.header.727': 'scripts/component/sf.b2c.mall.component.header.727',
     'sf.b2c.mall.component.footer': 'scripts/component/sf.b2c.mall.component.footer',
     'sf.b2c.mall.component.login': 'scripts/component/sf.b2c.mall.component.login',
     'sf.b2c.mall.component.i.login': 'scripts/component/sf.b2c.mall.component.i.login',
@@ -331,6 +335,7 @@ requirejs.config({
     'template_header_channel_navigator': 'templates/header/sf.b2c.mall.header.channel.navigator.mustache',
     'template_header_520': 'templates/header/sf.b2c.mall.header.520.mustache',
     'template_header_61': 'templates/header/sf.b2c.mall.header.61.mustache',
+    'template_header_727': 'templates/header/sf.b2c.mall.header.727.mustache',
     'template_footer': 'templates/footer/sf.b2c.mall.footer.mustache',
     'template_widget_message': 'templates/widget/sf.b2c.mall.widget.message.mustache',
     'template_widget_dialog': 'templates/widget/sf.b2c.mall.widget.dialog.mustache',
@@ -339,7 +344,8 @@ requirejs.config({
     'template_center_invitationshare': 'templates/center/sf.b2c.mall.center.invitationshare.mustache',
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
-    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache'
+    'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
+    'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache'
   }
 });
 

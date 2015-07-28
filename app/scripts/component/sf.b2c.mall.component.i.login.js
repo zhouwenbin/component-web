@@ -59,7 +59,7 @@ define(
         this.component.login = new SFLogin();
         this.component.needVfCode = new SFNeedVfCode();
 
-        this.component.getRecAddressList = new GetRecAddressList();
+        this.component.getRecAddressList = new GetRecAddressList({});
 
         var params = can.deparam(window.location.search.substr(1));
 
