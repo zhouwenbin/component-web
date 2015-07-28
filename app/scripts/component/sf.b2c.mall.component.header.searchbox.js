@@ -47,10 +47,10 @@ define('sf.b2c.mall.component.header.searchbox', [
     templateMap: {
       "suggestKeywords": function() {
         return '{{#each searchLinkList}}'
-                + '<li class="active"><a href="{{link}}">{{content}}</a></li>'
+                + '<li class="active"><a href="{{link}}" target="_blank">{{content}}</a></li>'
                 + '{{/each}}'
                 + '{{#each hotKeywordList}}'
-                + '<li><a href="http://www.sfht.com/search.html?keyword={{.}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
+                + '<li><a target="_blank" href="http://www.sfht.com/search.html?keyword={{.}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
                 + '{{/each}}';
       },
       'historyList': function() {
