@@ -329,6 +329,10 @@ requirejs.config({
 
      'sf.mediav': 'scripts/util/sf.mediav',
 
+     // 评价晒单
+     'sf.b2c.mall.page.shareorder': 'scripts/page/sf.b2c.mall.page.shareorder',
+     'sf.b2c.mall.center.shareordercontent': 'scripts/center/sf.b2c.mall.center.shareordercontent',
+
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
     'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
@@ -348,7 +352,8 @@ requirejs.config({
     'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
-    'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache'
+    'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache',
+    'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache'
   }
 });
 
