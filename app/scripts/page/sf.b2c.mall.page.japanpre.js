@@ -30,7 +30,7 @@ define(
        */
       render: function() {
         var that = this;
-        new SFHeaderSearchBox(".header-search", {"isBlank": false});;
+        new SFJapanpre(".header-search");
       }
 
     });
