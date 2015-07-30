@@ -93,8 +93,13 @@ body{
 	top: 50%;
 	margin-top: -20px;
 }
-.japan-video-list-pic-list{
+.japan-video-list-pic-box{
+	height: 264px;
+	overflow: hidden;
 	margin-bottom: 6px;
+}
+.japan-video-list-pic-list{
+	position: relative;
 }
 .japan-video-list-pic-list li,
 .japan-video-list li{
@@ -113,7 +118,8 @@ body{
 	margin-top: 5px;
 }
 .japan-video-list-pic-list .active .japan-mask{
-	display: none;
+	background: none;
+	border: 2px solid #fff;
 }
 .japan-video-list-pic .japan-arrow{
 	border: 6px dashed transparent;
@@ -173,4 +179,23 @@ body{
 }
 .japan-banner02{
 	margin-top: 20px;
+}
+.japan-goods-box{
+	background-color: #6d6bd9;
+	margin-top: 20px;
+	padding-top: 58px;
+}
+.japan-goods-box .title{
+	text-align: center;
+	border-top: 1px solid #fff;
+}
+.japan-goods-box .text-icon{
+	position: relative;
+	top: -38px;
+	padding: 0 40px;
+	display: inline-block;
+	background: #6d6bd9 url(../img/japan/goods.png) center center no-repeat;
+	width: 508px;
+	height: 55px;
+	font: 0/0 a;
 }
