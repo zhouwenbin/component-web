@@ -7,14 +7,13 @@ body{
 .japan-box{
 	width: 1180px;
 	margin: 0 auto;
-}
-.japan-banner{
-	text-align: center;
+	padding-bottom: 520px;
 }
 .japan-banner h1,
 .japan-banner h2,
 .japan-banner h3{
 	text-indent: -999em;
+	margin: 0 auto;
 }
 .japan-banner h1{
 	margin-top: 46px;
@@ -188,6 +187,7 @@ body{
 .japan-goods-box .title{
 	text-align: center;
 	border-top: 1px solid #fff;
+	margin: 0 60px;
 }
 .japan-goods-box .text-icon{
 	position: relative;
@@ -198,4 +198,96 @@ body{
 	width: 508px;
 	height: 55px;
 	font: 0/0 a;
+}
+.japan-goods-list{
+	margin-top: -14px;
+	padding-left: 18px;
+}
+.japan-goods-list li{
+	float: left;
+	padding-left: 29px;
+	padding-right: 34px;
+	height: 284px;
+	width: 498px;
+	background-color: #fff;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	img{
+		float: left;
+		margin-right: 22px;
+	}
+}
+.japan-goods-item{
+	overflow: hidden;
+	.item{
+		margin-top: 7px;
+		font-size: 18px;
+		color: #23201a;
+		line-height: 1.2;
+		opacity: 0.8;
+	}
+	.japan-price{
+		font-size: 22px;
+		line-height: 1.2;
+		margin-top: 27px;
+		.pink{
+				font-size: 38px;
+			em{
+				padding: 0 3px;
+				font-size: 26px;
+			}
+		}
+		del{
+			font-size: 16px;
+			color: #727272;
+		}
+	}
+}
+.japan-button{
+	background-color: #510492;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 18px;
+	font-size: 20px;
+	border: 0 none;
+}
+.pink{
+	color: #fc478b;
+}
+.japan-goods-item-title{
+	padding-bottom: 6px;
+	line-height: 1.2;
+	border-bottom: 1px solid #171717;
+	padding-top: 30px;
+	h2{
+		font-size:30px;
+		font-weight: 700;
+		color: #23201a;
+	}
+	h3{
+		font-size: 24px;
+	}
+}
+.japan-active-rule{
+	margin: 42px 60px 0;
+	color: #fff;
+	font-size: 18px;
+}
+.japan-active-rule h2{
+	text-align: center;
+	border-bottom: 1px solid #fff;
+}
+.japan-active-rule h2 span{
+	position: relative;
+	top: 30px;
+	display: inline-block;
+	background-color: #482b88;
+	padding: 0 43px;
+	font-size: 58px;
+}
+.japan-active-rule-list{
+	padding: 0 50px 0 33px;
+	margin-top: 77px;
+	line-height: 1.5;
 }
