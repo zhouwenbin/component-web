@@ -37,6 +37,9 @@ body{
 	margin-top: 42px;
 	padding: 10px 0;
 	background: rgba(0,0,0,.2);
+	.japan-open .japan-mask{
+		background: none;
+	}
 }
 .japan-list li{
 	float: left;
@@ -44,17 +47,14 @@ body{
 	margin: 0 10px;
 	color: #fff;
 }
-.japan-list-text,
-.japan-mask,
-.japan-video-list-play{
+.japan-mask{
 	position: absolute;
 	left: 0;
 	top: 0;
 	bottom: 0;
 	right: 0;
 }
-.japan-list-text{
-	z-index: 2;
+.japan-mask{
 	text-align: center;
 	h2{	
 		margin-top: 22px;
@@ -86,11 +86,24 @@ body{
 	overflow: hidden;
 }
 .japan-video-list-play{
+	position: absolute;
 	color: #fff;
 	z-index: 3;
 	text-align: center;
 	top: 50%;
-	margin-top: -20px;
+	left: 50%;
+	margin-top: -45px;
+	margin-left: -40px;
+	font-size: 16px;
+	cursor: pointer;
+	.icon{
+		font: 0/0 a;
+		display: inline-block;
+		margin-bottom: 12px;
+		width: 63px;
+		height: 63px;
+		background: url(../img/japan/play-icon.png) 0 0 no-repeat;
+	}
 }
 .japan-video-list-pic-box{
 	height: 264px;
@@ -290,4 +303,28 @@ body{
 	padding: 0 50px 0 33px;
 	margin-top: 77px;
 	line-height: 1.5;
+}
+.japan-video{
+	position: fixed;
+	z-index: 999;
+	width: 640px;
+	height: 480px;
+	left: 50%;
+	top: 50%;
+	margin-left: -320px;
+	margin-top: -240px;
+	display: none;
+	background: rgba(0,0,0,0.8);
+}
+.japan-video-close{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	background: #fff;
+	position: absolute;
+	right: -15px;
+	top: -15px;
+	font-size: 20px;
 }
