@@ -52,7 +52,7 @@ define(
         return true;
       },
 
-      tip: function(message) {
+      tip: function(message, time) {
         var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + message + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
         if ($('.dialog-cart').length > 0) {
           return false;
@@ -63,10 +63,8 @@ define(
         });
         setTimeout(function() {
           $el.remove();
-        }, 3000);
+        }, time || 3000);
       }
-
-
 
     });
   })

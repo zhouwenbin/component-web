@@ -44,7 +44,7 @@ define('sf.b2c.mall.component.commenteditor', [
       //初始化图片
       var imgData = this.getImgData();
       var commentpic = new SFCommentpic(null, {
-        "imgData": imgData
+        "imgData": []
       });
     },
 

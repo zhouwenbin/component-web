@@ -14,13 +14,14 @@ define(
     return can.Control.extend({
 
       init: function(element, options) {
+        this.imgPrefix = "http://testimg.sfht.com/";
         this.initPic();
       },
 
       initPic: function() {
 
         // 如果有照片就只能查看了
-        if (this.options.imgData) {
+        if (this.options.imgData && this.options.imgData.length > 0) {
           this.listImg();
           $(".upload-btn").hide();
           return false;
@@ -30,18 +31,18 @@ define(
         var that = this;
 
         that.imgCount = 0;
-
+        var filename = "天朝进贡-banner-H5.jpg";
         // 上传组件
         var plupload = new window.plupload.Uploader({
           runtimes: "gears,html5,flash",
           browse_button: "pickbutton",
-          file_data_name: "Filedata",
+          file_data_name: 'CPRODUCT_IMG'+filename.substring(filename.lastIndexOf("."), filename.length),
           urlstream_upload: true,
           container: "img",
           max_file_size: "4mb",
-          // multipart_params: {
-          //   PHPSESSID: "mvpjl6muuk705ipboi3ia0b461"
-          // },
+          multipart_params: {
+            fileVal:  'CPRODUCT_IMG'+filename.substring(filename.lastIndexOf("."), filename.length)
+          },
           url: SFBizConf.setting.api.fileurl + "?_aid=1",
           flash_swf_url: "../img/plupload.flash.swf?r=" + Math.random(),
           silverlight_xap_url: "../img/plupload.silverlight.xap",
@@ -106,7 +107,7 @@ define(
             e702: "\u51fa\u73b0\u9009\u62e9\u56fe\u7247\u5c3a\u5bf8\u4e0d\u5339\u914d\u9519\u8bef\u3002"
           };
           var d = c["e" + (0 - b.code)];
-          "" != a.runtime && (j.error("\u4e0a\u4f20\u6587\u4ef6" + d), $("#" + b.file.id).remove(), a.stop())
+          "" != a.runtime && (SFFn.tip("\u4e0a\u4f20\u6587\u4ef6" + d), $("#" + b.file.id).remove(), a.stop())
         });
 
         plupload.bind("QueueChanged", function(a) {
@@ -116,8 +117,8 @@ define(
         plupload.bind("FileUploaded", function(a, file, result) {
           var response = result.response;
           if ("" != response) {
-            // var imgURL = "http://img30.360buyimg.com/shaidan/" + response;
-            var imgURL = "http://img0.sfht.com/sf/b267/a77adbad88d5e2128ee262d5276ade88.jpg@144h_144w_50Q_1x.jpg";
+            var filename = JSON.parse(response).content[0]["CPRODUCT_IMG.jpg"];
+            var imgURL = that.imgPrefix + filename;
             that.setValue(file.id, imgURL)
           } else {
             $("#" + file.id).remove();
@@ -128,7 +129,6 @@ define(
             $("#" + file.id).children("b").html("<em>X</em>")
           } else {
             $("#" + file.id).remove();
-
           }
         })
 
