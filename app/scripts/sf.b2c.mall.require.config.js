@@ -332,6 +332,12 @@ requirejs.config({
      // 评价晒单
      'sf.b2c.mall.page.shareorder': 'scripts/page/sf.b2c.mall.page.shareorder',
      'sf.b2c.mall.center.shareordercontent': 'scripts/center/sf.b2c.mall.center.shareordercontent',
+     'sf.b2c.mall.component.commenteditor': 'scripts/component/sf.b2c.mall.component.commenteditor',
+     'sf.b2c.mall.component.commentstar': 'scripts/component/sf.b2c.mall.component.commentstar',
+     'sf.b2c.mall.component.commenttag': 'scripts/component/sf.b2c.mall.component.commenttag',
+     'sf.b2c.mall.component.commentpic': 'scripts/component/sf.b2c.mall.component.commentpic',
+     'plupload': 'scripts/vendor/plupload',
+     'livequery': 'scripts/vendor/jquery.livequery',
 
 
     'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
@@ -353,6 +359,9 @@ requirejs.config({
     'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
     'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
     'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache',
+    'template_component_commenteditor': 'templates/component/sf.b2c.mall.component.commenteditor.mustache',
+    'template_component_commentstar': 'templates/component/sf.b2c.mall.component.commentstar.mustache',
+    'template_component_commenttag': 'templates/component/sf.b2c.mall.component.commenttag.mustache',
     'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache'
   }
 });

@@ -1,0 +1,191 @@
+define(
+  'sf.b2c.mall.component.commentpic', [
+    'jquery',
+    'can',
+    'sf.b2c.mall.business.config',
+    'sf.util',
+    'underscore',
+    'livequery',
+    'plupload'
+  ],
+  function($, can, SFBizConf, SFFn, _, livequery, plupload) {
+    'use strict'
+
+    return can.Control.extend({
+
+      init: function(element, options) {
+        this.initPic();
+      },
+
+      initPic: function() {
+
+        // 如果有照片就只能查看了
+        if (this.options.imgData) {
+          this.listImg();
+          $(".upload-btn").hide();
+          return false;
+        }
+
+        // 如果没有照片，则可以上传图片
+        var that = this;
+
+        that.imgCount = 0;
+
+        // 上传组件
+        var plupload = new window.plupload.Uploader({
+          runtimes: "gears,html5,flash",
+          browse_button: "pickbutton",
+          file_data_name: "Filedata",
+          urlstream_upload: true,
+          container: "img",
+          max_file_size: "4mb",
+          // multipart_params: {
+          //   PHPSESSID: "mvpjl6muuk705ipboi3ia0b461"
+          // },
+          url: SFBizConf.setting.api.fileurl + "?_aid=1",
+          flash_swf_url: "../img/plupload.flash.swf?r=" + Math.random(),
+          silverlight_xap_url: "../img/plupload.silverlight.xap",
+          filters: [{
+            title: "Image files",
+            extensions: "jpg,jpeg,gif,png,bmp"
+          }]
+        });
+
+        plupload.bind("Init", function() {
+          for (var i = 1; 10 >= i; i++) {
+            $("input[name=imgs" + i + "]").val("");
+          }
+          $("#pickbutton").show();
+          $(".img .ar").html(that.imgCount + "/10");
+        });
+
+        plupload.bind("FilesAdded", function(a, uploadingFiles) {
+          var imglistUl = $(".img-list-ul");
+          var imglistLi = $("li", imglistUl);
+          var uploadBtn = $(".upload-btn");
+          if (imglistLi.length + uploadingFiles.length > 11) {
+            return false;
+          } else if (imglistLi.length + uploadingFiles.length == 11) {
+            uploadBtn.hide();
+          }
+
+          _.each(uploadingFiles, function(item) {
+            var itemHTML = '<li id="' + item.id + '"><div class="del"><span>0%</span></div></li>';
+            $(itemHTML).insertBefore(uploadBtn);
+          })
+        });
+
+        plupload.bind("UploadProgress", function(a, uploadingFile) {
+          var delHTML = "";
+          if (100 == uploadingFile.percent) {
+            delHTML = '<em value="删除">X</em>';
+          } else {
+            delHTML = "<span>" + uploadingFile.percent + "%</span>";
+          }
+
+          $("#" + uploadingFile.id + " .del").html(delHTML);
+        });
+
+        plupload.bind("UploadFile", function() {});
+
+        plupload.bind("UploadComplete", function() {
+          $("#divFileProgressStatus").slideUp(1500)
+        });
+
+        plupload.bind("Error", function(a, b) {
+          var c = {
+            e100: "\u51fa\u73b0\u901a\u7528\u9519\u8bef\u3002",
+            e200: "\u51fa\u73b0Http\u9519\u8bef\u3002",
+            e300: "\u51fa\u73b0IO\u9519\u8bef\u3002",
+            e400: "\u51fa\u73b0\u5b89\u5168\u8ba4\u8bc1\u9519\u8bef\u3002",
+            e500: "\u51fa\u73b0\u63a7\u4ef6\u521d\u59cb\u5316\u9519\u8bef\u3002",
+            e600: "\u51fa\u73b0\u9009\u62e9\u6587\u4ef6\u5c3a\u5bf8\u4e0d\u7b26\u5408\u9519\u8bef\u3002",
+            e601: "\u51fa\u73b0\u9009\u62e9\u6587\u4ef6\u7c7b\u578b\u4e0d\u5339\u914d\u9519\u8bef\u3002",
+            e700: "\u51fa\u73b0\u9009\u62e9\u56fe\u7247\u683c\u5f0f\u4e0d\u5339\u914d\u9519\u8bef\u3002",
+            e701: "\u51fa\u73b0\u9009\u62e9\u56fe\u7247\u5185\u5b58\u95ee\u9898\u3002",
+            e702: "\u51fa\u73b0\u9009\u62e9\u56fe\u7247\u5c3a\u5bf8\u4e0d\u5339\u914d\u9519\u8bef\u3002"
+          };
+          var d = c["e" + (0 - b.code)];
+          "" != a.runtime && (j.error("\u4e0a\u4f20\u6587\u4ef6" + d), $("#" + b.file.id).remove(), a.stop())
+        });
+
+        plupload.bind("QueueChanged", function(a) {
+          plupload.start()
+        });
+
+        plupload.bind("FileUploaded", function(a, file, result) {
+          var response = result.response;
+          if ("" != response) {
+            // var imgURL = "http://img30.360buyimg.com/shaidan/" + response;
+            var imgURL = "http://img0.sfht.com/sf/b267/a77adbad88d5e2128ee262d5276ade88.jpg@144h_144w_50Q_1x.jpg";
+            that.setValue(file.id, imgURL)
+          } else {
+            $("#" + file.id).remove();
+            plupload.stop();
+          };
+
+          if (file.size > 0) {
+            $("#" + file.id).children("b").html("<em>X</em>")
+          } else {
+            $("#" + file.id).remove();
+
+          }
+        })
+
+        plupload.init();
+      },
+
+      listImg: function() {
+        var that = this;
+
+        var imglistUl = $(".img-list-ul");
+        var uploadBtn = $(".upload-btn");
+
+        _.each(this.options.imgData, function(item, index) {
+          var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><div class="del hide"><em value="删除">X</em></div></li>';
+          imglistUl.append($(itemHTML));
+        });
+      },
+
+      setValue: function(id, imgURL) {
+        var imgIndex = "";
+        for (var index = 1; 10 >= index; index++) {
+          var value = $("input[name=imgs" + index + "]").val();
+          if ("" == value) {
+            imgIndex = index;
+            $("input[name=imgs" + index + "]").attr("value", imgURL);
+            break
+          }
+        }
+
+        // 进行图片展示
+        if (imgIndex != "") {
+          $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><div class="del hide"><em value="删除">X</em></div>');
+          ++this.imgCount;
+          $(".upload-img-box .ar").html(this.imgCount + "/10");
+
+          $("#" + id).hover(function() {
+            $(".del", this).removeClass("hide")
+          }, function() {
+            $(".del", this).addClass("hide")
+          });
+
+          var that = this;
+
+          // 绑定删除事件
+          $("#" + id + " em").livequery("click", function() {
+            that.del(imgIndex, id);
+          });
+        }
+      },
+
+      del: function(index, id) {
+        $("input[name=imgs" + index + "]").attr("value", "");
+        $("li#" + id).remove();
+        --this.imgCount;
+        $(".upload-btn").show();
+        $(".upload-img-box .ar").html(this.imgCount + "/10")
+      }
+
+    });
+  })

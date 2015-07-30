@@ -1,0 +1,13 @@
+<ul class="tips-list">
+  {{#each data}}
+    <li vid="{{id}}"><s class="f-check"></s>{{name}}</li>
+  {{/each}}
+
+  <li class="list-last">
+      <div class="fore1" id="customeized"><s class="f-input"></s>自定义</div>
+      <div class="fore2 hide" id="customeizedinput">
+          <input type="text" maxlength="12" class="itxt">
+          <span class="">按回车提交</span>
+      </div>
+  </li>
+</ul>

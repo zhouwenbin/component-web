@@ -38,7 +38,7 @@ define(
         new Footer('.sf-b2c-mall-footer');
         new Centerleftside('.sf-b2c-mall-center-leftside');
 
-        new SFShareorder('.sf-b2c-mall-shareorder');
+        new SFShareordercontent('.sf-b2c-mall-shareorder');
       }
     });
 
