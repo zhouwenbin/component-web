@@ -35,17 +35,25 @@ define('sf.b2c.mall.component.commenteditor', [
       });
 
       //初始化标签
-      var data = this.getTagData();
+      // var data = this.getTagData();
 
-      var tag = new SFCommenttag($("#commenttagarea"), {
-        "data": data
-      });
+      // var tag = new SFCommenttag($("#commenttagarea"), {
+      //   "data": data
+      // });
 
       //初始化图片
       var imgData = this.getImgData();
       var commentpic = new SFCommentpic(null, {
         "imgData": []
       });
+    },
+
+    '#submitcomment click': function(element, event) {
+      event && event.preventDefault();
+
+      if (this.options.callback) {
+        this.options.callback.apply(this, []);
+      }
     },
 
     getImgData: function() {

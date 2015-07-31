@@ -18,7 +18,26 @@ define('sf.b2c.mall.center.shareordercontent', [
     return can.Control.extend({
 
       helpers: {
-
+        showImage: function(group) {
+          var array = eval(group);
+          if (array && _.isArray(array)) {
+            var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
+            if (/^http/.test(url)) {
+              return url;
+            } else {
+              return 'http://img0.sfht.com' + url;
+            }
+          } else {
+            return array;
+          }
+        },
+        'isSecGoods': function(goodsType, options) {
+          if (goodsType == "SECKILL") {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        }
       },
 
       init: function(element, options) {
@@ -39,19 +58,32 @@ define('sf.b2c.mall.center.shareordercontent', [
         getOrder
           .sendRequest()
           .done(function(data) {
+            debugger;
+            that.options.orderInfo = data;
+
             var renderFn = can.mustache(template_center_shareordercontent);
-            that.options.html = renderFn(that.data, that.helpers);
+            that.options.html = renderFn(that.options.orderInfo.orderItem, that.helpers);
+
             that.element.html(that.options.html);
           })
-          .fail(function(error){
-            var renderFn = can.mustache(template_center_shareordercontent);
-            that.options.html = renderFn(that.data, that.helpers);
-            that.element.html(that.options.html);
+          .fail(function(error) {
+            console.error(error);
           });
       },
 
       ".gotoshareorder click": function(element, event) {
-        this.commenteditor.show(null, "add", $("#commentEditorArea"));
+        this.commenteditor.show(null, "add", $(".commentEditorArea", element.parents("td")));
+
+        $(".commentEditorArea").stop(true, false).animate({
+          height: "0px",
+          opacity: 0
+        }, 500);
+
+        $(".commentEditorArea", element.parents("td")).stop(true, false).animate({
+          height: "405px",
+          opacity: 1
+        }, 500);
+
       }
 
     });
