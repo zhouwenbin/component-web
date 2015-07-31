@@ -20,12 +20,13 @@ define('sf.b2c.mall.component.commenteditor', [
 
     },
 
-    show: function(data, tag, element) {
-      this.render(data, tag, element);
+    show: function(data, tag, element, callback) {
+      this.render(data, tag, element, callback);
     },
 
-    render: function(data, tag, element) {
+    render: function(data, tag, element, callback) {
       this.setup(element);
+      this.submitCallback = callback;
       var renderFn = can.mustache(template_component_commenteditor);
       element.html(renderFn);
 
@@ -51,9 +52,9 @@ define('sf.b2c.mall.component.commenteditor', [
     '#submitcomment click': function(element, event) {
       event && event.preventDefault();
 
-      if (this.options.callback) {
-        this.options.callback.apply(this, []);
-      }
+      if (_.isFunction(this.submitCallback)) {
+        this.submitCallback();
+      };
     },
 
     getImgData: function() {

@@ -47,8 +47,6 @@ define('sf.b2c.mall.center.shareordercontent', [
       render: function() {
         var that = this;
 
-        that.commenteditor = new SFCommenteditor();
-
         var params = can.deparam(window.location.search.substr(1));
 
         var getOrder = new SFGetOrder({
@@ -58,7 +56,6 @@ define('sf.b2c.mall.center.shareordercontent', [
         getOrder
           .sendRequest()
           .done(function(data) {
-            debugger;
             that.options.orderInfo = data;
 
             var renderFn = can.mustache(template_center_shareordercontent);
@@ -71,9 +68,32 @@ define('sf.b2c.mall.center.shareordercontent', [
           });
       },
 
-      ".gotoshareorder click": function(element, event) {
-        this.commenteditor.show(null, "add", $(".commentEditorArea", element.parents("td")));
+      /**
+       * [submitCallback 编辑组件点击提交之后的回调]
+       * @return {[type]} [description]
+       */
+      submitCallback: function() {
+        var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
+        if (nextEle.length > 0) {
+          nextEle.click();
+        }
+      },
 
+      ".gotoshareorder click": function(element, event) {
+        // 获得当前编辑地址
+        this.editIndex = parseInt(element.attr('data-index'));
+
+        // 进行销毁和重新初始化
+        if (this.commenteditor) {
+          $(".commentEditorArea").html("")
+        }
+
+        this.commenteditor = new SFCommenteditor();
+
+        var handler = _.bind(this.submitCallback, this);
+        this.commenteditor.show(null, "add", $(".commentEditorArea", element.parents("td")), handler);
+
+        // 做动画效果
         $(".commentEditorArea").stop(true, false).animate({
           height: "0px",
           opacity: 0
