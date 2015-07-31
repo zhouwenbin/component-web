@@ -10,6 +10,8 @@ define('sf.b2c.mall.national.japanpre',
 
 	    init: function(element, options) {
 	    	this.initCarousel();
+	    	this.initEvent();
+	    	
 	    },
 
 	    render: function () {
@@ -43,8 +45,14 @@ define('sf.b2c.mall.national.japanpre',
 	    	$(".japan-video-box .japan-video-list-pic-list").on("click", "li", function() {
 	    		$(this).siblings(".active").removeClass("active");
 	    		$(this).addClass("active");
-	    		var imgSrc = $(this).find("img").attr("src");
-	    		$(".japan-video-list:visible img").attr("src", imgSrc);
+
+	    		var index = thumbList.find("li").index($(this));
+
+					$(".japan-video-list li:visible").hide();
+					var destination = $(".japan-video-list li").eq(index);
+					destination.show();
+					var videoSrc = destination.data("video");
+					$(".japan-video video").attr("src", videoSrc);
 	    	});
 
 
@@ -59,5 +67,16 @@ define('sf.b2c.mall.national.japanpre',
 	    		return Number.parseInt(top, 10);
 	    	};
 	    },
+
+	    initEvent: function() {
+	    	$(".japan-video-list li").on("click", function() {
+	    		$(".japan-video").show();
+	    	});
+
+	    	$(".japan-video-close").on("click", function() {
+	    		$(".japan-video").hide();
+	    		$('video')[0].pause();
+	    	})
+	    }
   	});
 });
