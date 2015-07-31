@@ -118,11 +118,11 @@ body{
 }
 .japan-video-list-pic .up,
 .japan-video-list-pic .down{
+	position: relative;
 	float: left;
 	width: 114px;
 	height: 14px;
 	background-color: #565162;
-	text-align: center;
 }
 .japan-video-list-pic-list li{
 	cursor: pointer;
@@ -133,17 +133,21 @@ body{
 	border: 2px solid #fff;
 }
 .japan-video-list-pic .japan-arrow{
+	position: absolute;
+	left: 50%;
+	margin-left: -6px;
 	border: 6px dashed transparent;
 	font: 0/0 a;
 }
 .japan-video-list-pic .up .japan-arrow{
 	border-bottom-style: solid;
 	border-bottom-color: #000;
-	vertical-align: 6px;
+	top: -2px;
 }
 .japan-video-list-pic .down .japan-arrow{
 	border-top-style: solid;
 	border-top-color: #000;
+	top: 4px;
 }
 .japan-intro-text{
 	overflow: hidden;
