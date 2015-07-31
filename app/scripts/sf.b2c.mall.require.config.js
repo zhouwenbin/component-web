@@ -228,8 +228,6 @@ requirejs.config({
 
     'sf.b2c.mall.shop.detail': 'scripts/shop/sf.b2c.mall.shop.detail',
 
-    'sf.b2c.mall.national.japanpre': 'scripts/national/sf.b2c.mall.national.japanpre',
-
     'sf.b2c.mall.adapter.address.list': 'scripts/adapter/sf.b2c.mall.adapter.address.list',
     'sf.b2c.mall.adapter.regions': 'scripts/adapter/sf.b2c.mall.adapter.regions',
     'sf.b2c.mall.adapter.detailcontent': 'scripts/adapter/sf.b2c.mall.adapter.detailcontent',
