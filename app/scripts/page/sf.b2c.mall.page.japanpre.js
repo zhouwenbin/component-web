@@ -71,6 +71,7 @@ define(
 
         $(".japan-video-list li").on("click", function() {
           $(".japan-video").show();
+          $('video')[0].play();
         });
 
         $(".japan-video-close").on("click", function() {
