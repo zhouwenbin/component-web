@@ -4,7 +4,7 @@
       {{#if imgsCont}}
       {{#each imgsCont}}
         <li>
-            <a href="{{menuLink}}" target="_blank"><img src="{{imgUrl}}" alt="" width="280px" height="150px"></a>
+            <a href="{{menuLink}}?_spm=0. 901.100{{@index}}.0" target="_blank"><img src="{{imgUrl}}" alt="" width="280px" height="150px"></a>
         </li>
       {{/each}}
       {{/if}}
@@ -22,7 +22,7 @@
           <dd>
             {{#if itemInfos}}
             {{#each itemInfos}}
-            <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+            <a href="{{itemLink}}&_spm=0. 901.1002.{{@index}}" target="_blank">{{itemName}}</a>
             {{/each}}
             {{/if}}
           </dd>
@@ -34,14 +34,14 @@
       {{#each catesCont}}
       <dl>
         <dt><span  style="background-image: url({{imgUrl}})"></span>
-          <a style="color: #a94275;" href="{{menuLink}}" target="_blank">{{menuName}}</a></dt>
+          <a style="color: #a94275;" href="{{menuLink}}&_spm=0. 901.1003{{@index}}.0" target="_blank">{{menuName}}</a></dt>
         <!--<dd>-->
         <!--<a href="">菲诗小铺</a><a href="">谜尚</a><a href="">我的美丽日记</a><a href="">SK-II</a><a href="">SKINFOOD</a><a href="">佰草集</a>-->
         <!--</dd>-->
         <dd>
           {{#if itemInfos}}
           {{#each itemInfos}}
-          <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+          <a href="{{itemLink}}&_spm=0. 901.1003.{{@index}}" target="_blank">{{itemName}}</a>
           {{/each}}
           {{/if}}
         </dd>
@@ -59,7 +59,7 @@
         <dd>
           {{#if itemInfos}}
           {{#each itemInfos}}
-          <a href="{{itemLink}}" target="_blank">{{itemName}}</a>
+          <a href="{{itemLink}}&_spm=0. 901.1007.{{@index}}" target="_blank">{{itemName}}</a>
           {{/each}}
           {{/if}}
         </dd>
