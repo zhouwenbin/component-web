@@ -641,6 +641,14 @@ define('sf.b2c.mall.component.header', [
       _.each(nav_tag, function(item) {
         if(item.id==tag){
           $('.nav-pannel').html(item.text);
+
+          var offsetNavTop=  $('#nav').offset().top;
+          var offsetTop=  $('.nav-fixed .nav-inner').offset().top;
+          var top=  $('.nav-fixed .nav-inner').css("top");
+          if(top=='0px'){
+            $('.nav-pannel-inner').css("top",offsetTop-offsetNavTop);
+          }
+
           $('.nav-pannel-inner').animate({
             height:0
           },0);
@@ -699,6 +707,14 @@ define('sf.b2c.mall.component.header', [
         var newHtml=$('.nav-pannel').html();
         var ever={'id':tag,"text":newHtml};
         nav_tag.push(ever);
+
+        var offsetNavTop=  $('#nav').offset().top;
+        var offsetTop=  $('.nav-fixed .nav-inner').offset().top;
+        var top=  $('.nav-fixed .nav-inner').css("top");
+        if(top=='0px'){
+          $('.nav-pannel-inner').css("top",offsetTop-offsetNavTop);
+        }
+
         $('.nav-pannel-inner').animate({
           height:0
         },0);
