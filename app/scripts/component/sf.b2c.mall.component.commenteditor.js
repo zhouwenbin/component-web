@@ -14,12 +14,14 @@ define('sf.b2c.mall.component.commenteditor', [
   'sf.b2c.mall.api.commentGoods.publishComment',
   'sf.b2c.mall.api.commentGoods.findCommentLabels',
   'sf.b2c.mall.fixture.case.center.comment',
+  'raty',
   'text!template_component_commenteditor'
 
 ], function(can, store, $, $cookie, placeholders, SFConfig, SFMessage, SFCommenttag, SFCommentstar, SFCommentpic,
   SFPublishComment,
   SFFindCommentLabels,
   FixtureComment,
+  raty,
   template_component_commenteditor) {
   return can.Control.extend({
 
@@ -53,6 +55,7 @@ define('sf.b2c.mall.component.commenteditor', [
               score: null,
               commentGoodsLabels: null,
               content: null,
+              contentTip: null,
               img: null,
               receiver: null
             }
@@ -76,6 +79,7 @@ define('sf.b2c.mall.component.commenteditor', [
               score: null,
               commentGoodsLabels: null,
               content: null,
+              contentTip: null,
               img: null,
               receiver: null
             }
@@ -99,6 +103,7 @@ define('sf.b2c.mall.component.commenteditor', [
               score: null,
               commentGoodsLabels: null,
               content: null,
+              contentTip: null,
               img: null,
               receiver: null
             }
@@ -112,15 +117,15 @@ define('sf.b2c.mall.component.commenteditor', [
       this.render(this.adapter, element);
     },
 
-    render: function(data, element) {
+    render: function(adapter, element) {
 
       // 初始化模板
       this.setup(element);
       var renderFn = can.mustache(template_component_commenteditor);
-      var html = renderFn(data, this.helpers);
+      var html = renderFn(adapter, this.helpers);
       element.html(html);
 
-      this.renderComponent(data);
+      this.renderComponent(adapter);
     },
 
     /**
@@ -128,7 +133,7 @@ define('sf.b2c.mall.component.commenteditor', [
      * @param  {[type]} data [description]
      * @return {[type]}      [description]
      */
-    renderComponent: function(data) {
+    renderComponent: function(adapter) {
       var that = this;
 
       //初始化评价星星。在点击星星后，要调用回调设定下map中取值，做到两个组件的分离
@@ -137,17 +142,21 @@ define('sf.b2c.mall.component.commenteditor', [
         "clickCallback": handle
       });
 
+      // if (data.)
+      this.component.commentstar._initStar();
+
       //初始化标签
-      var findCommentLabels = new SFFindCommentLabels({
+      this.component.findCommentLabels = new SFFindCommentLabels({
         "itemId": this.itemid,
         "fixture": true
       });
-      findCommentLabels
+      this.component.findCommentLabels
         .sendRequest()
         .done(function(data) {
 
           that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
-            "data": data.CommentGoodsLabels
+            "data": data.CommentGoodsLabels,
+            "adapter": adapter
           });
 
         })
@@ -155,17 +164,58 @@ define('sf.b2c.mall.component.commenteditor', [
 
         })
 
-      //初始化图片
-      var imgData = this.getImgData();
+      // 初始化图片
       this.component.commentpic = new SFCommentpic(null, {
         "imgData": []
       });
+    },
+
+    check: function(comment) {
+
+      // 校验分数
+      if (!comment.score) {
+        this.adapter.comment.attr("error", {
+          "score": '还没评分哟'
+        });
+        return false;
+      }
+
+      // 校验内容
+      if (!comment.content || comment.content.length < 5) {
+        this.adapter.comment.attr("error", {
+          "content": '最少5个字，多说几句吧，小伙伴期待你的使用心得',
+          "contentTip": '<span class="text-error">5</span>-300字'
+        });
+        return false;
+      }
+
+      if (!comment.content || comment.content.length > 300) {
+        this.adapter.comment.attr("error", {
+          "content": '最多300个字哦',
+          "contentTip": '5-<span class="text-error">300</span>字'
+        });
+        return false;
+      }
+
+      // 校验标签
+      var tags = this.component.commenttag.getValue();
+
+      if (tags && tags.length > 5) {
+        this.adapter.comment.attr("error", {
+          "commentGoodsLabels": '最多只能选择5个标签哦，选你认为最贴切的吧'
+        });
+        return false;
+      }
     },
 
     '#submitcomment click': function(element, event) {
       event && event.preventDefault();
 
       var comment = this.adapter.comment.input.attr();
+
+      if (!this.check(comment)) {
+        return false;
+      }
 
       var objArr = [];
       var obj = {
@@ -199,33 +249,6 @@ define('sf.b2c.mall.component.commenteditor', [
         .fail(function(error) {
           debugger;
         })
-    },
-
-
-    getImgData: function() {
-      return ["http://img0.sfht.com/sf/b267/a77adbad88d5e2128ee262d5276ade88.jpg@144h_144w_50Q_1x.jpg", "http://img0.sfht.com/sf/b267/a77adbad88d5e2128ee262d5276ade88.jpg@144h_144w_50Q_1x.jpg"]
-    },
-
-    getTagData: function(itemIds) {
-      return [{
-        "id": "1",
-        "name": "送人不错的"
-      }, {
-        "id": "2",
-        "name": "功能挺多"
-      }, {
-        "id": "3",
-        "name": "内容较丰富"
-      }, {
-        "id": "4",
-        "name": "外观很漂亮"
-      }, {
-        "id": "5",
-        "name": "发货快"
-      }, {
-        "id": "6",
-        "name": "操作灵敏"
-      }]
     },
 
     // 回调，用于组件和业务分离

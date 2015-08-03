@@ -57,31 +57,35 @@ define(
             $("input[name=imgs" + i + "]").val("");
           }
           $("#pickbutton").show();
-          $(".img .ar").html(that.imgCount + "/10");
+          // $(".img .ar").html(that.imgCount + "/5");
         });
 
         plupload.bind("FilesAdded", function(a, uploadingFiles) {
           var imglistUl = $(".img-list-ul");
           var imglistLi = $("li", imglistUl);
           var uploadBtn = $(".upload-btn");
-          if (imglistLi.length + uploadingFiles.length > 11) {
+          if (imglistLi.length + uploadingFiles.length > 6) {
             return false;
-          } else if (imglistLi.length + uploadingFiles.length == 11) {
+          } else if (imglistLi.length + uploadingFiles.length == 6) {
             uploadBtn.hide();
           }
 
           _.each(uploadingFiles, function(item) {
-            var itemHTML = '<li id="' + item.id + '"><div class="del"><span>0%</span></div></li>';
-            $(itemHTML).insertBefore(uploadBtn);
+            // var itemHTML = '<li id="' + item.id + '"><div class="del"><span>0%</span></div></li>';
+            var itemHTML = '<li id="' + item.id + '"><span>0%</span><a href="javascript:" class="comment-add-img-del">X</a></li>'
+            // imglistUl.append($(itemHTML))
+            $(itemHTML).appendTo(imglistUl);
           })
         });
 
         plupload.bind("UploadProgress", function(a, uploadingFile) {
           var delHTML = "";
           if (100 == uploadingFile.percent) {
-            delHTML = '<em value="删除">X</em>';
+            // delHTML = '<em value="删除">X</em>';
+            delHTML = '<span>0%</span>';
           } else {
-            delHTML = "<span>" + uploadingFile.percent + "%</span>";
+            // delHTML = "<span>" + uploadingFile.percent + "%</span>";
+            delHTML = '<a href="javascript:" class="comment-add-img-del">X</a>';
           }
 
           $("#" + uploadingFile.id + " .del").html(delHTML);
@@ -142,7 +146,8 @@ define(
         var uploadBtn = $(".upload-btn");
 
         _.each(this.options.imgData, function(item, index) {
-          var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><div class="del hide"><em value="删除">X</em></div></li>';
+          var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a></li>';
+          // var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><div class="del hide"><em value="删除">X</em></div></li>';
           imglistUl.append($(itemHTML));
         });
       },
@@ -177,14 +182,14 @@ define(
 
         // 进行图片展示
         if (imgIndex != "") {
-          $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><div class="del hide"><em value="删除">X</em></div>');
+          $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
           ++this.imgCount;
-          $(".upload-img-box .ar").html(this.imgCount + "/5");
+          // $(".upload-img-box .ar").html(this.imgCount + "/5");
 
           $("#" + id).hover(function() {
-            $(".del", this).removeClass("hide")
+            $(".comment-add-img-del", this).removeClass("hide")
           }, function() {
-            $(".del", this).addClass("hide")
+            $(".comment-add-img-del", this).addClass("hide")
           });
 
           var that = this;
@@ -201,7 +206,7 @@ define(
         $("li#" + id).remove();
         --this.imgCount;
         $(".upload-btn").show();
-        $(".upload-img-box .ar").html(this.imgCount + "/10")
+        // $(".upload-img-box .ar").html(this.imgCount + "/10")
       }
 
     });

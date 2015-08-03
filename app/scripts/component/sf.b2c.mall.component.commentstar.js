@@ -33,7 +33,7 @@ define(
         that.el = $(".commstar a");
       },
 
-      '.commstar a click': function(element, event) {debugger;
+      '.commstar a click': function(element, event) {
         event && event.preventDefault();
 
         this.el.removeClass("active");

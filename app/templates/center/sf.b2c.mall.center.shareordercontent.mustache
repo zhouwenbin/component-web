@@ -1,39 +1,51 @@
-<table>
-    <thead>
-        <tr>
-            <th class="th2">商品信息</th>
-            <th class="th3">规格</th>
-            <th class="th7">评价</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each orderPackageItemList}}
-            {{#each orderGoodsItemList}}
-                <tr>
-                    <td colspan="3" style="text-align:left">
-                        <ul style="list-style: none;">
-                            <li style="width:430px; display:inline-block">
-                                <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>
-                                    <img src="{{showImage imageUrl}}" alt="">
-                                </a>
-                                <h2>
-                                <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>{{goodsName}}</a>
-                                {{#isSecGoods goodsType}}<div class="godds-type">秒杀商品</div>{{/isSecGoods}}
-                                </h2>
-                            </li>
-                            <li style="width:130px; display:inline-block">
-                                {{sf.price price}} {{quantity}}
-                            </li>
-                            <li style="width:135px; display:inline-block">
-                                <a href="javascript:;" class="gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-index="{{@index}}">{{operationHTML}}</a>
-                            </li>
-                        </ul>
-                        <div class="commentEditorArea" style="height:0px"></div>
-                    </td>
-                </tr>
-            {{/each}}
-        {{/each}}
-    </tbody>
-  </table>
+  <div class="comment">
+<h2>商品评价</h2>
+<ul class="comment-h">
+  <li class="comment-c1">商品信息</li>
+  <li class="comment-c2">规格</li>
+  <li class="comment-c3">评价</li>
+</ul>
+<ul class="comment-b">
+  {{#each orderPackageItemList}}
+    {{#each orderGoodsItemList}}
+    <li class="comment-list">
+      <div class="comment-c1">
+        <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>
+            <img src="{{showImage imageUrl}}" alt="">
+        </a>
 
-  <div id="commentEditorArea"></div>
+        <h3>
+            <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>{{goodsName}}</a>
+            {{#isSecGoods goodsType}}
+            <div class="godds-type">秒杀商品</div>{{/isSecGoods}}
+        </h3>
+      </div>
+      <div class="comment-c2">{{sf.price price}} {{quantity}}</div>
+      <div class="comment-c3">
+        <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-index="{{@index}}">{{operationHTML}}</a>
+
+        <p class="p1">（已获得10积分）</p>
+      </div>
+
+      <div class="commentEditorArea"></div>
+    </li>
+    {{/each}}
+{{/each}}
+</ul>
+</div>
+
+<div class="satisfaction">
+<h2>整体满意度评价</h2>
+<ul>
+  <li>
+    <label><abbr title="必填">*</abbr>服务态度：</label><span class="rating"></span>
+  </li>
+  <li>
+    <label><abbr title="必填">*</abbr>发货速度：</label><span class="rating"></span>
+  </li>
+  <li>
+    <label><abbr title="必填">*</abbr>物流速度：</label><span class="rating"></span>
+  </li>
+</ul>
+<button class="btn btn-danger btn-small">提交</button>
+</div>

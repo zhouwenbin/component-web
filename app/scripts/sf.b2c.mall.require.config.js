@@ -352,6 +352,7 @@ requirejs.config({
         'sf.b2c.mall.component.commentpic': 'scripts/component/sf.b2c.mall.component.commentpic',
         'plupload': 'scripts/vendor/plupload',
         'livequery': 'scripts/vendor/jquery.livequery',
+        'raty': 'scripts/vendor/jquery.raty',
 
         'sf.b2c.mall.fixture.case.center.comment': 'fixture/case/center/sf.b2c.mall.fixture.case.center.comment',
 

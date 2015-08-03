@@ -115,33 +115,40 @@ define('sf.b2c.mall.center.shareordercontent', [
           $(".commentEditorArea").html("")
         }
 
-        var getComments = new SFGetComments({});
+        var getComments = new SFGetComments({
+          "orderId": this.orderid,
+          "itemID": this.orderid,
+          "fixture": true
+        });
+
+        var that = this;
         getComments.sendRequest()
-        .done(function(data){
+          .done(function(data) {
+            debugger;
+            that.commenteditor = new SFCommenteditor();
 
-        })
-        .fail(function(error){
+            var handler = _.bind(that.submitCallback, that);
+            that.commenteditor.show({
+              "orderid": that.orderid,
+              "itemid": itemId,
+            }, that.operationMap[itemStatus], $(".commentEditorArea", element.parents("li")), handler);
+          })
+          .fail(function(error) {
+            debugger;
+          })
 
-        })
 
-        this.commenteditor = new SFCommenteditor();
 
-        var handler = _.bind(this.submitCallback, this);
-        this.commenteditor.show({
-          "orderid": this.orderid,
-          "itemid": itemId,
-        }, this.operationMap[itemStatus], $(".commentEditorArea", element.parents("td")), handler);
+        // // 做动画效果
+        // $(".commentEditorArea").stop(true, false).animate({
+        //   height: "0px",
+        //   opacity: 0
+        // }, 500);
 
-        // 做动画效果
-        $(".commentEditorArea").stop(true, false).animate({
-          height: "0px",
-          opacity: 0
-        }, 500);
-
-        $(".commentEditorArea", element.parents("td")).stop(true, false).animate({
-          height: "555px",
-          opacity: 1
-        }, 500);
+        // $(".commentEditorArea", element.parents("td")).stop(true, false).animate({
+        //   height: "555px",
+        //   opacity: 1
+        // }, 500);
 
       }
 

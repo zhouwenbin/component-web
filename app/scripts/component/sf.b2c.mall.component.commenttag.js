@@ -18,7 +18,7 @@ define(
 
       render: function() {
         var that = this;
-
+        debugger;
         var renderFn = can.mustache(template_component_commenttag);
         that.options.html = renderFn(that.options, that.helpers);
         that.element.html(that.options.html);
@@ -26,21 +26,39 @@ define(
 
       '#customeized click': function(element, event) {
         event && event.preventDefault();
-        $("#customeizedinput").removeClass("hide");
-        $("#customeized").addClass("hide");
+        // $("#customeizedinput").removeClass("hide");
+        // $("#customeized").addClass("hide");
       },
 
-      ".tips-list li:not(.list-last) click": function(element, event) {
-        debugger;
-        element.toggleClass("select");
-        this.checkTag(element.parents(":eq(4)"));
+      "#customeized keydown": function(element, event) {
+        var value = $(element).val();
+
+        if (event.keyCode == 13) {
+          if (!this.checkTag(element.parents(":eq(4)"))) {
+            return false;
+          }
+          var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span>';
+          $(html).insertBefore($("#customeized"));
+          $("#customeized").text("");
+          return false;
+        }
+      },
+
+      ".btn-goods click": function(element, event) {
+        element.toggleClass("active");
+        if (!this.checkTag(element.parents(":eq(4)"))) {
+          return false;
+        }
       },
 
       getValue: function() {
         var result = [];
-        var taglist = $("ul li:not(.list-last).select", $("#commenttagarea"));
+        var taglist = $(".btn-goods.active", $("#commenttagarea"));
         _.each(taglist, function(item) {
-          result.push({"id": $(item).attr("data-id"), "value": $(item).attr("data-name")})
+          result.push({
+            "id": $(item).attr("data-id"),
+            "value": $(item).attr("data-name")
+          })
         })
 
         return result;
@@ -50,9 +68,11 @@ define(
 
         var commenttagarea = $("#commenttagarea", $(parentElement));
         var errortip = $(".msg-error-01", commenttagarea);
-        var taglist = $("ul li:not(.list-last).select", commenttagarea);
-        if (0 == taglist.length || taglist.length > 5) {
-          this.tip("要在1到5个之间");
+        var taglist = $(".btn-goods.active", commenttagarea);
+        if (taglist.length >= 5) {
+          this.options.adapter.comment.attr("error", {
+            "commentGoodsLabels": '最多只能选择5个标签哦，选你认为最贴切的吧'
+          });
           return false;
         }
 

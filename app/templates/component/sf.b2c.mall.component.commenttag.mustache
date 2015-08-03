@@ -1,13 +1,7 @@
-<ul class="tips-list">
+<div id="tips-list">
   {{#each data}}
-    <li data-id="{{id}}" data-name="{{name}}"><s class="f-check"></s>{{name}}</li>
+    <span data-id="{{id}}" data-name="{{name}}" class="btn btn-goods">{{name}}<span class="icon icon23"></span></span>
   {{/each}}
-
-  <li class="list-last">
-      <div class="fore1" id="customeized"><s class="f-input"></s>自定义</div>
-      <div class="fore2 hide" id="customeizedinput">
-          <input type="text" maxlength="12" class="itxt">
-          <span class="">按回车提交</span>
-      </div>
-  </li>
-</ul>
+  <input class="comment-add-custom" placeholder="自定义标签" id="customeized">
+  <span class="s1" id="customeizedinput">(标签不能超过12个字，按回车提交)</span>
+</div>
