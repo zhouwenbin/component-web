@@ -337,6 +337,12 @@ requirejs.config({
 
         'sf.mediav': 'scripts/util/sf.mediav',
 
+        // fixture功能
+        'fixture': 'fixture/lib/canjs/fixture',
+        'can.object': 'fixture/lib/canjs/can.object',
+        'sf.b2c.mall.fixture.framework.common': 'fixture/framework/sf.b2c.mall.fixture.framework.common',
+        'sf.b2c.mall.fixture.case.center.invitation': 'fixture/case/center/sf.b2c.mall.fixture.case.center.invitation',
+
         // 评价晒单
         'sf.b2c.mall.page.shareorder': 'scripts/page/sf.b2c.mall.page.shareorder',
         'sf.b2c.mall.center.shareordercontent': 'scripts/center/sf.b2c.mall.center.shareordercontent',

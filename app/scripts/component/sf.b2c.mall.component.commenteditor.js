@@ -12,11 +12,13 @@ define('sf.b2c.mall.component.commenteditor', [
   'sf.b2c.mall.component.commentstar',
   'sf.b2c.mall.component.commentpic',
   'sf.b2c.mall.api.commentGoods.publishComment',
+  'sf.b2c.mall.api.commentGoods.findCommentLabels',
   'sf.b2c.mall.fixture.case.center.comment',
   'text!template_component_commenteditor'
 
 ], function(can, store, $, $cookie, placeholders, SFConfig, SFMessage, SFCommenttag, SFCommentstar, SFCommentpic,
   SFPublishComment,
+  SFFindCommentLabels,
   FixtureComment,
   template_component_commenteditor) {
   return can.Control.extend({
@@ -27,13 +29,14 @@ define('sf.b2c.mall.component.commenteditor', [
 
     },
 
-    show: function(data, tag, element, callback) {
+    show: function(data, tag, element, submitCallback) {
       // orderid和itemid为全局变量
       this.orderid = data.orderid;
       this.itemid = data.itemid;
+      this.submitCallback = submitCallback;
 
       var map = {
-        'add': function(data) {
+        'add': function(data) {//发表评论
           return {
             input: {
               score: 0,
@@ -55,7 +58,30 @@ define('sf.b2c.mall.component.commenteditor', [
             }
           };
         },
-        'edit': function(data) {
+        'addplus': function(data) {//追加评论
+
+          return {
+            input: {
+              score: data.score,
+              commentGoodsLabels: null,
+              content: data.content,
+              img0: data.img0,
+              img1: data.img1,
+              img2: data.img2,
+              img3: data.img3,
+              img4: data.img4,
+              isAnonym: data.isAnonym
+            },
+            error: {
+              score: null,
+              commentGoodsLabels: null,
+              content: null,
+              img: null,
+              receiver: null
+            }
+          };
+        },
+        'view': function(data) {//查看评论
 
           return {
             input: {
@@ -83,16 +109,27 @@ define('sf.b2c.mall.component.commenteditor', [
       var info = map[tag].call(this, data);
       this.adapter.comment = new can.Map(info);
 
-      this.render(this.adapter, tag, element, callback);
+      this.render(this.adapter, element);
     },
 
-    render: function(data, tag, element, submitCallback) {
+    render: function(data, element) {
 
       // 初始化模板
       this.setup(element);
       var renderFn = can.mustache(template_component_commenteditor);
       var html = renderFn(data, this.helpers);
       element.html(html);
+
+      this.renderComponent(data);
+    },
+
+    /**
+     * [renderComponent 渲染组件]
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+    renderComponent: function(data) {
+      var that = this;
 
       //初始化评价星星。在点击星星后，要调用回调设定下map中取值，做到两个组件的分离
       var handle = _.bind(this.starClickCallback, this);
@@ -101,11 +138,22 @@ define('sf.b2c.mall.component.commenteditor', [
       });
 
       //初始化标签
-      var data = this.getTagData();
-
-      this.component.commenttag = new SFCommenttag($("#commenttagarea"), {
-        "data": data
+      var findCommentLabels = new SFFindCommentLabels({
+        "itemId": this.itemid,
+        "fixture": true
       });
+      findCommentLabels
+        .sendRequest()
+        .done(function(data) {
+
+          that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
+            "data": data.CommentGoodsLabels
+          });
+
+        })
+        .fail(function(error) {
+
+        })
 
       //初始化图片
       var imgData = this.getImgData();
@@ -115,7 +163,6 @@ define('sf.b2c.mall.component.commenteditor', [
     },
 
     '#submitcomment click': function(element, event) {
-      debugger;
       event && event.preventDefault();
 
       var comment = this.adapter.comment.input.attr();
@@ -133,19 +180,25 @@ define('sf.b2c.mall.component.commenteditor', [
       }
       objArr.push(obj);
 
-      var publishComment = new SFPublishComment({"commentGoodsInfos": objArr, "fixture":true});
+      var publishComment = new SFPublishComment({
+        "commentGoodsInfos": objArr,
+        "fixture": true
+      });
+
+      var that = this;
       publishComment
         .sendRequest()
         .done(function(data) {
-          debugger;
+
+          // 执行回调
+          if (_.isFunction(that.submitCallback)) {
+            that.submitCallback();
+          };
+
         })
         .fail(function(error) {
           debugger;
         })
-
-      if (_.isFunction(this.submitCallback)) {
-        this.submitCallback();
-      };
     },
 
 
