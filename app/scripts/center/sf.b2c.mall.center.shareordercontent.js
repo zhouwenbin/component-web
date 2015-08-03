@@ -10,10 +10,11 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.commenteditor',
+    'sf.b2c.mall.api.commentGoods.getComments',
     'sf.b2c.mall.api.order.getOrderV2',
     'text!template_center_shareordercontent'
   ],
-  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetOrder, template_center_shareordercontent) {
+  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments, SFGetOrder, template_center_shareordercontent) {
 
     return can.Control.extend({
 
@@ -59,6 +60,18 @@ define('sf.b2c.mall.center.shareordercontent', [
           .done(function(data) {
             that.options.orderInfo = data;
 
+            _.each(that.options.orderInfo.orderItem.orderPackageItemList, function(item) {
+
+              _.each(item.orderGoodsItemList, function(childItem) {
+                // 调试代码begin
+                item.itemStatus = "needRecomment";
+                // 调试代码end
+
+                item.operationHTML = that.nameMap[item.itemStatus];
+              })
+
+            })
+
             var renderFn = can.mustache(template_center_shareordercontent);
             that.options.html = renderFn(that.options.orderInfo.orderItem, that.helpers);
 
@@ -67,6 +80,17 @@ define('sf.b2c.mall.center.shareordercontent', [
           .fail(function(error) {
             console.error(error);
           });
+      },
+
+      nameMap: {
+        "needComment": "去评价",
+        "needRecomment": "去追评"
+      },
+
+      operationMap: {
+        "needComment": "add",
+        "needRecomment": "addplus",
+        "viewComment": "view"
       },
 
       /**
@@ -83,20 +107,30 @@ define('sf.b2c.mall.center.shareordercontent', [
       ".gotoshareorder click": function(element, event) {
         // 获得当前编辑地址
         this.editIndex = parseInt(element.attr('data-index'));
-        var itemid = element.attr('data-itemid');
+        var itemId = element.attr('data-itemid');
+        var itemStatus = element.attr('data-status');
 
         // 进行销毁和重新初始化
         if (this.commenteditor) {
           $(".commentEditorArea").html("")
         }
 
+        var getComments = new SFGetComments({});
+        getComments.sendRequest()
+        .done(function(data){
+
+        })
+        .fail(function(error){
+
+        })
+
         this.commenteditor = new SFCommenteditor();
 
         var handler = _.bind(this.submitCallback, this);
         this.commenteditor.show({
           "orderid": this.orderid,
-          "itemid": itemid,
-        }, "add", $(".commentEditorArea", element.parents("td")), handler);
+          "itemid": itemId,
+        }, this.operationMap[itemStatus], $(".commentEditorArea", element.parents("td")), handler);
 
         // 做动画效果
         $(".commentEditorArea").stop(true, false).animate({
