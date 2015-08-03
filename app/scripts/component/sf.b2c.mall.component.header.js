@@ -50,6 +50,7 @@ define('sf.b2c.mall.component.header', [
 
   var APPID = 1;
   var nav_tag=[];
+  var indexArray=[];
 
   return can.Control.extend({
 
@@ -98,6 +99,19 @@ define('sf.b2c.mall.component.header', [
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
+        }
+      },
+      countSpot: function(type,startindex) {
+        if(type==0){
+          return indexArray[0];
+        }
+       else if(type==1){
+          var currentindex=startindex+indexArray[1];
+          indexArray[1]=indexArray[1]+1;
+          indexArray[2]=currentindex;
+          return indexArray[2];
+        }else if(type==2){
+          return indexArray[2];
         }
       }
     },
@@ -630,6 +644,7 @@ define('sf.b2c.mall.component.header', [
 
     // @description  用户hover到tag之后出现导航
     '.nav-tag mouseover': function ($element, event) {
+      var that=this;
       var itemObj= new can.Map({});
       var imgsCont=[];
       var catesCont=[];
@@ -674,40 +689,40 @@ define('sf.b2c.mall.component.header', [
           var param={
             pId:0
           }
-          send(param);
+          send(param,that);
         },
         'beauty': function () {
           var param={
             pId:1
           }
-          send(param);
+          send(param,that);
         },
         'healthy': function () {
           var param={
             pId:2
           }
-          send(param);
+          send(param,that);
         },
         'origin': function () {
           var param={
             pId:3
           }
-          send(param);
+          send(param,that);
         }
       }
 
 
 
       // @description 渲染
-      var render = function (data) {
+      var render = function (data,that) {
         // @refer template_header_nav_panel templates/header/sf.b2c.mall.header.nav.panel.mustache
         var renderFn = can.mustache(template_header_nav_panel);
-        var html = renderFn(data);
+        //var html = can.view('templates/header/sf.b2c.mall.header.nav.panel.mustache', {}, that.helpers);
+        var html = renderFn(data,that.helpers);
         $('.nav-pannel').html(html);
         var newHtml=$('.nav-pannel').html();
         var ever={'id':tag,"text":newHtml};
         nav_tag.push(ever);
-
         var offsetNavTop=  $('#nav').offset().top;
         var offsetTop=  $('.nav-fixed .nav-inner').offset().top;
         var top=  $('.nav-fixed .nav-inner').css("top");
@@ -727,7 +742,8 @@ define('sf.b2c.mall.component.header', [
         // @todo 动画
       }
       // @todo 请求数据并且在回调中渲染
-      var send = function (param) {
+      var send = function (param,that) {
+        indexArray=[param.pId+900,0,0];
         var sFFindCategoryPageMenus = new SFFindCategoryPageMenus(param);
         can.when(sFFindCategoryPageMenus.sendRequest())
           .done(function(data){
@@ -747,7 +763,7 @@ define('sf.b2c.mall.component.header', [
                   itemObj.attr("imgsCont", imgsCont);
                 }
               });
-              render(itemObj);
+              render(itemObj,that);
             }
           }) .fail(function(error) {
             console.error(error);
