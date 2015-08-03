@@ -117,7 +117,7 @@ define(
 
       // 活动期间对微信进行定制
       customizedWeixin: function(data) {
-        if (new Date().getTime() < new Date(2015, 6, 27, 0, 0, 0).getTime()) {
+        if (new Date().getTime() < new Date(2015, 6, 27, 0, 0, 0).getTime() || new Date().getTime() > new Date(2015, 7, 3, 0, 0, 0).getTime()) {
           return false;
         }
 
