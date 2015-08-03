@@ -743,7 +743,7 @@ define('sf.b2c.mall.component.header', [
       }
       // @todo 请求数据并且在回调中渲染
       var send = function (param,that) {
-        indexArray=[param.pId+900,0,0];
+        indexArray=["page"+param.pId,0,0];
         var sFFindCategoryPageMenus = new SFFindCategoryPageMenus(param);
         can.when(sFFindCategoryPageMenus.sendRequest())
           .done(function(data){
