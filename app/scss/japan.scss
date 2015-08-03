@@ -7,7 +7,7 @@ body{
 .japan-box{
 	width: 1180px;
 	margin: 0 auto;
-	padding-bottom: 520px;
+	overflow: hidden;
 }
 .japan-banner h1,
 .japan-banner h2,
@@ -119,11 +119,11 @@ body{
 }
 .japan-video-list-pic .up,
 .japan-video-list-pic .down{
+	position: relative;
 	float: left;
 	width: 114px;
 	height: 14px;
 	background-color: #565162;
-	text-align: center;
 }
 .japan-video-list-pic-list li{
 	cursor: pointer;
@@ -134,17 +134,21 @@ body{
 	border: 2px solid #fff;
 }
 .japan-video-list-pic .japan-arrow{
+	position: absolute;
+	left: 50%;
+	margin-left: -6px;
 	border: 6px dashed transparent;
 	font: 0/0 a;
 }
 .japan-video-list-pic .up .japan-arrow{
 	border-bottom-style: solid;
 	border-bottom-color: #000;
-	vertical-align: 6px;
+	top: -2px;
 }
 .japan-video-list-pic .down .japan-arrow{
 	border-top-style: solid;
 	border-top-color: #000;
+	top: 4px;
 }
 .japan-intro-text{
 	overflow: hidden;
@@ -175,6 +179,7 @@ body{
 	font-size: 20px;
 	opacity: 0.5;
 	margin-top: 4px;
+	text-transform: uppercase;
 }
 .japan-intro-text-ct{
 	font-size: 20px;
@@ -238,6 +243,8 @@ body{
 		color: #23201a;
 		line-height: 1.2;
 		opacity: 0.8;
+		max-height: 42px;
+  		overflow: hidden;
 	}
 	.japan-price{
 		font-size: 22px;
@@ -277,13 +284,17 @@ body{
 		font-size:30px;
 		font-weight: 700;
 		color: #23201a;
+		max-height: 36px;
+		overflow: hidden;
 	}
 	h3{
+		max-height: 28px;
+		overflow: hidden;
 		font-size: 24px;
 	}
 }
 .japan-active-rule{
-	margin: 42px 60px 0;
+	margin: 42px 60px 520px;
 	color: #fff;
 	font-size: 18px;
 }
@@ -303,6 +314,14 @@ body{
 	padding: 0 50px 0 33px;
 	margin-top: 77px;
 	line-height: 1.5;
+	.num{
+		display: inline-block;
+		width: 25px;
+		margin-left: -25px;
+	}
+	li{
+		padding-left: 25px;
+	}
 }
 .japan-video{
 	position: fixed;
