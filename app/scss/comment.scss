@@ -22,17 +22,24 @@
 	width: 510px;
 	text-align: center;
 	display: inline-block;
+	vertical-align: middle;
 	font-size: 12px;
 }
+.comment-c1>img{
+	margin-left: 50px;
+}
+
 .comment-c2{
 	width: 256px;
 	text-align: center;
+	vertical-align: middle;
 	display: inline-block;
 	font-size: 12px;
 }
 .comment-c3{
 	width: 271px;
 	text-align: center;
+	vertical-align: middle;
 	display: inline-block;
 	font-size: 12px;
 }
@@ -61,14 +68,14 @@
 	line-height: 18px;
 }
 .comment-list{
-	padding: 10px 0; 
+	padding: 10px 0 10px; 
 	font-size: 0;
 	border-bottom: 1px solid #E5E5E5;
 	position: relative;
 }
 .comment-add{
 	background: #F5F5F5;
-	padding: 55px 0 55px 120px;
+	padding: 35px 0 20px 120px;
 	border: 1px solid #E6E6E6; 
 	width: 900px;
 	text-align: left;
@@ -77,6 +84,7 @@
 	position: relative;
 	margin-left:auto;
 	margin-top: 7px;
+	margin-bottom: 20px;
 }
 .comment-add:before{
 	content: '';
@@ -109,7 +117,7 @@
 	margin-bottom: 12px;
 }
 .comment-add .btn-goods{
-	margin-right: 16px;
+	margin-right: 10px;
 }
 .comment-add .textarea{
 	width: 690px;
@@ -244,8 +252,19 @@
 	margin-right: 30px;
 }
 .rating{
-	height: 26px;
-	line-height: 26px;
+	height: 28px;
+	line-height: 28px;
+	display: inline-block;
+}
+.btn-goods.active{
+	box-shadow: none;
+}
+.btn-goods .icon{
+	background: url(../img/btn-goods-active.png) no-repeat;
+	width: 16px;
+	height: 15px;
+	top: 0;
+	right: -1px;
 }
 .tooltip-cart-left.hide{
 	display: none;
