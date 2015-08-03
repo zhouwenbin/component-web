@@ -48,9 +48,10 @@ define('sf.b2c.mall.center.shareordercontent', [
         var that = this;
 
         var params = can.deparam(window.location.search.substr(1));
+        this.orderid = params.orderid;
 
         var getOrder = new SFGetOrder({
-          "orderId": params.orderid
+          "orderId": this.orderid
         });
 
         getOrder
@@ -82,6 +83,7 @@ define('sf.b2c.mall.center.shareordercontent', [
       ".gotoshareorder click": function(element, event) {
         // 获得当前编辑地址
         this.editIndex = parseInt(element.attr('data-index'));
+        var itemid = element.attr('data-itemid');
 
         // 进行销毁和重新初始化
         if (this.commenteditor) {
@@ -91,7 +93,10 @@ define('sf.b2c.mall.center.shareordercontent', [
         this.commenteditor = new SFCommenteditor();
 
         var handler = _.bind(this.submitCallback, this);
-        this.commenteditor.show(null, "add", $(".commentEditorArea", element.parents("td")), handler);
+        this.commenteditor.show({
+          "orderid": this.orderid,
+          "itemid": itemid,
+        }, "add", $(".commentEditorArea", element.parents("td")), handler);
 
         // 做动画效果
         $(".commentEditorArea").stop(true, false).animate({
@@ -100,7 +105,7 @@ define('sf.b2c.mall.center.shareordercontent', [
         }, 500);
 
         $(".commentEditorArea", element.parents("td")).stop(true, false).animate({
-          height: "405px",
+          height: "555px",
           opacity: 1
         }, 500);
 

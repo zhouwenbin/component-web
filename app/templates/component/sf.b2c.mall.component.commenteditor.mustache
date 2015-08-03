@@ -2,14 +2,19 @@
     <div class="item star">
         <span class="itemlabel"><em>*</em>评分：</span>
         <span id="commentstararea"></span>
-        <input type="hidden" name="commentStar">
+        <input type="hidden" name="commentStar" can-value="comment.input.score" >
+    </div>
+
+    <div class="item tag">
+        <span class="itemlabel"><em>*</em>标签：</span>
+        <span id="commenttagarea"></span>
     </div>
 
     <div class="item xinde">
         <span class="itemlabel"><em>*</em>心得：</span>
 
         <div class="col2">
-            <textarea placeholder="商品是否给力？快分享你的购买心得吧~"></textarea>
+            <textarea placeholder="商品是否给力？快分享你的购买心得吧~" can-value="comment.input.content"></textarea>
             <div class="clr"></div>
             <span class="msg-error-01 hide">麻烦填写10-500个字呦</span>
             <div class="tip">10-500字</div>
@@ -20,16 +25,11 @@
         <span class="itemlabel">晒单：</span>
         <div class="upload-img-box">
             <div class="img-list">
-                <input type="hidden" name="imgs1" value="">
-                <input type="hidden" name="imgs2" value="">
-                <input type="hidden" name="imgs3" value="">
-                <input type="hidden" name="imgs4" value="">
-                <input type="hidden" name="imgs5" value="">
-                <input type="hidden" name="imgs6" value="">
-                <input type="hidden" name="imgs7" value="">
-                <input type="hidden" name="imgs8" value="">
-                <input type="hidden" name="imgs9" value="">
-                <input type="hidden" name="imgs10" value="">
+                <input type="hidden" name="imgs1" can-value="comment.input.img0">
+                <input type="hidden" name="imgs2" can-value="comment.input.img1">
+                <input type="hidden" name="imgs3" can-value="comment.input.img2">
+                <input type="hidden" name="imgs4" can-value="comment.input.img3">
+                <input type="hidden" name="imgs5" can-value="comment.input.img4">
                 <ul class="img-list-ul">
                     <li class="upload-btn">
                         <div>
@@ -45,7 +45,7 @@
 
     <div class="buttonarea">
             <button class="btn btn-normal btn-small" id="submitcomment">评价并继续</button>
-            <input class="jdcheckbox" checked="checked" type="checkbox" id="anonymousFlag" name="thirdShare">
+            <input type="checkbox" id="anonymousFlag" name="thirdShare" can-value="comment.input.isAnonym">
             <label>匿名评价</label>
     </div>
 </div>

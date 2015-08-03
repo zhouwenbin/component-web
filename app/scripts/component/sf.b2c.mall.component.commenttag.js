@@ -36,10 +36,17 @@ define(
         this.checkTag(element.parents(":eq(4)"));
       },
 
+      getValue: function() {
+        var result = [];
+        var taglist = $("ul li:not(.list-last).select", $("#commenttagarea"));
+        _.each(taglist, function(item) {
+          result.push({"id": $(item).attr("data-id"), "value": $(item).attr("data-name")})
+        })
+
+        return result;
+      },
+
       checkTag: function(parentElement) {
-        var tagflag = $(parentElement).find("#commenttagarea").attr("tagflag");
-        if (typeof tagflag != 'undefined' && "false" == tagflag.toString())
-          return true;
 
         var commenttagarea = $("#commenttagarea", $(parentElement));
         var errortip = $(".msg-error-01", commenttagarea);
