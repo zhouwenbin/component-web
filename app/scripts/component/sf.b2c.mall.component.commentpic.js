@@ -36,12 +36,12 @@ define(
         var plupload = new window.plupload.Uploader({
           runtimes: "gears,html5,flash",
           browse_button: "pickbutton",
-          file_data_name: 'CPRODUCT_IMG'+filename.substring(filename.lastIndexOf("."), filename.length),
+          file_data_name: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length),
           urlstream_upload: true,
           container: "img",
           max_file_size: "4mb",
           multipart_params: {
-            fileVal:  'CPRODUCT_IMG'+filename.substring(filename.lastIndexOf("."), filename.length)
+            fileVal: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length)
           },
           url: SFBizConf.setting.api.fileurl + "?_aid=1",
           flash_swf_url: "../img/plupload.flash.swf?r=" + Math.random(),
@@ -147,9 +147,26 @@ define(
         });
       },
 
+      /**
+       * [getValue 获得取值，供其他组件调用]
+       * @return {[type]} [description]
+       */
+      getValue: function() {
+        var result = [];
+
+        for (var index = 1; 5 >= index; index++) {
+          var value = $("input[name=imgs" + index + "]").val();
+          if ("" != value) {
+            result.push(value);
+          }
+        }
+
+        return result;
+      },
+
       setValue: function(id, imgURL) {
         var imgIndex = "";
-        for (var index = 1; 10 >= index; index++) {
+        for (var index = 1; 5 >= index; index++) {
           var value = $("input[name=imgs" + index + "]").val();
           if ("" == value) {
             imgIndex = index;
@@ -162,7 +179,7 @@ define(
         if (imgIndex != "") {
           $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><div class="del hide"><em value="删除">X</em></div>');
           ++this.imgCount;
-          $(".upload-img-box .ar").html(this.imgCount + "/10");
+          $(".upload-img-box .ar").html(this.imgCount + "/5");
 
           $("#" + id).hover(function() {
             $(".del", this).removeClass("hide")
