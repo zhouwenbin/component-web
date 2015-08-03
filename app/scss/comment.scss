@@ -218,7 +218,18 @@
 .comment-add-custom:focus{
 	border: 1px solid #CC1C01;
 }
-
+.comment-add .rating{
+	height: 28px;
+	line-height: 28px;
+	display: inline-block;
+	vertical-align: top;
+}
+.comment-add .rating img{
+	vertical-align: -2px;
+}
+.rating{
+	vertical-align: 2px;
+}
 
 .satisfaction{
 	font-size: 0;
@@ -271,12 +282,7 @@
 .satisfaction .btn{
 	margin-left: 38px;
 }
-.rating{
-	height: 28px;
-	line-height: 28px;
-	display: inline-block;
-	vertical-align: top;
-}
+
 .btn-goods.active{
 	box-shadow: none;
 }
