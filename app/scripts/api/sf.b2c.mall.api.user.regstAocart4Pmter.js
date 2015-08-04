@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.coupon.randomCard
+  * @class sf.b2c.mall.api.user.regstAocart4Pmter
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.coupon.randomCard',
+'sf.b2c.mall.api.user.regstAocart4Pmter',
 [
   'jquery',
   'can',
@@ -22,21 +22,20 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'coupon.randomCard',
+      METHOD_NAME: 'user.regstAocart4Pmter',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'name': 'string',
+        'inviterMobile': 'string',
+        'inviteeMobile': 'string',
       },
       OPTIONAL: {
-        'mobile': 'string'
+        'itemIds': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '11000050': '卡券已领完',
-        '11000240': '用户今天的券已经领完了',
-        '11000250': '用户已经领完该活动期间所有的券',
-        '11000260': '用户输入手机号有误'
+        '1000020': '账户已注册',
+        '1000470': '邀请人并非推广员'
       }
     }
   });
