@@ -22,24 +22,38 @@ define(
       init: function() {
         var thumbList = $(".japan-video-list-pic-list");
 
-        $(".japan-video-box").on("click", ".up", function() {
+        $(".japan-video-box").on("click", ".down", function() {
+          var limit = 132;
           var top = getTop();
-          if (top === 0) {
+          if (top <= -limit) {
             return;
           }
-          thumbList.animate({
-            top: top - 66
+          
+          var dest = top - 66;
+          if (dest < -limit) {
+            dest = -limit;
+          }
+
+          thumbList.css({
+            top: dest + "px"
           })
           return false;
         })
-        .on("click", ".down", function() {
+        .on("click", ".up", function() {
 
           var top = getTop();
-          if (top === 0) {
+          if (top >= 0) {
             return;
           }
-          thumbList.animate({
-            top: top + 66
+
+          var dest = top + 66;
+          if (dest >= 0) {
+            dest = 0;
+          }
+
+          //thumbList.stop();
+          thumbList.css({
+            top: dest + "px"
           })
           return false;
         });
