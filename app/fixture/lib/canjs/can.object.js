@@ -119,7 +119,11 @@
             }
         };
         compareMethods.eqeq = compareMethods.similar;
-        return can.Object;
+        // return can.Object;
+
+        define('can.object', ['can'], function (can) {
+            return can.Object
+        })
     })(window.can);
 
 })();

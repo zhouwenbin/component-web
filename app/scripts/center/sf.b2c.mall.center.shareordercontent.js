@@ -11,10 +11,18 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.commenteditor',
     'sf.b2c.mall.api.commentGoods.getComments',
+    'sf.b2c.mall.api.commentGoods.publishCompreComment',
     'sf.b2c.mall.api.order.getOrderV2',
+    'sf.b2c.mall.component.commentstar',
+    'sf.b2c.mall.fixture.case.center.comment',
     'text!template_center_shareordercontent'
   ],
-  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments, SFGetOrder, template_center_shareordercontent) {
+  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
+    SFPublishCompreComment,
+    SFGetOrder,
+    SFCommentstar,
+    SFFixturecomment,
+    template_center_shareordercontent) {
 
     return can.Control.extend({
 
@@ -32,6 +40,15 @@ define('sf.b2c.mall.center.shareordercontent', [
             return array;
           }
         },
+
+        showSpec: function(spec) {
+          if (!spec) {
+            return "--";
+          } else {
+            return spec;
+          }
+        },
+
         'isSecGoods': function(goodsType, options) {
           if (goodsType == "SECKILL") {
             return options.fn(options.contexts || this);
@@ -42,7 +59,10 @@ define('sf.b2c.mall.center.shareordercontent', [
       },
 
       init: function(element, options) {
-        this.render();
+
+        this.component = {};
+
+        this.render(this.adapter);
       },
 
       render: function() {
@@ -58,15 +78,18 @@ define('sf.b2c.mall.center.shareordercontent', [
         getOrder
           .sendRequest()
           .done(function(data) {
+            debugger;
             that.options.orderInfo = data;
 
             _.each(that.options.orderInfo.orderItem.orderPackageItemList, function(item) {
 
               _.each(item.orderGoodsItemList, function(childItem) {
                 // 调试代码begin
-                item.itemStatus = "needRecomment";
+                item.itemStatus = that.getRandomStatus();
                 // 调试代码end
-
+                if (!item.spec || "" == item.spec) {
+                  item.spec = "--";
+                }
                 item.operationHTML = that.nameMap[item.itemStatus];
               })
 
@@ -76,15 +99,35 @@ define('sf.b2c.mall.center.shareordercontent', [
             that.options.html = renderFn(that.options.orderInfo.orderItem, that.helpers);
 
             that.element.html(that.options.html);
+
+            //渲染整体评价
+            that.component.commentstar1 = new SFCommentstar($("#commentstararea1"), {
+              "showtip": false
+            });
+
+            that.component.commentstar2 = new SFCommentstar($("#commentstararea2"), {
+              "showtip": false
+            });
+
+            that.component.commentstar3 = new SFCommentstar($("#commentstararea3"), {
+              "showtip": false
+            });
+
           })
           .fail(function(error) {
             console.error(error);
           });
       },
 
+      getRandomStatus: function() {
+        var status = ["needComment", "needRecomment", "viewComment"];
+        return status[Math.floor(Math.random() * 3)];
+      },
+
       nameMap: {
         "needComment": "去评价",
-        "needRecomment": "去追评"
+        "needRecomment": "去追评",
+        "viewComment": "查看评价"
       },
 
       operationMap: {
@@ -102,6 +145,32 @@ define('sf.b2c.mall.center.shareordercontent', [
         if (nextEle.length > 0) {
           nextEle.click();
         }
+      },
+
+      "#submittotaljudge click": function(element, event) {
+        event && event.preventDefault();
+
+        var serviceScore = this.component.commentstar1.getValue();
+        var sendScore = this.component.commentstar2.getValue();
+        var logisticsScore = this.component.commentstar3.getValue();
+
+        var publishCompreComment = new SFPublishCompreComment({
+          "serviceScore": serviceScore * 100,
+          "sendScore": sendScore * 100,
+          "logisticsScore": logisticsScore * 100,
+          "fixture": true
+        });
+
+        publishCompreComment
+          .sendRequest()
+          .done(function(data) {
+            if (data.value) {
+              debugger;
+            }
+          })
+          .fail(function(error) {
+            console.error(error);
+          })
       },
 
       ".gotoshareorder click": function(element, event) {
@@ -124,17 +193,19 @@ define('sf.b2c.mall.center.shareordercontent', [
         var that = this;
         getComments.sendRequest()
           .done(function(data) {
-            debugger;
+
+            data = _.extend(data.value[0], {
+              "orderid": that.orderid,
+              "itemid": itemId,
+            });
+
             that.commenteditor = new SFCommenteditor();
 
             var handler = _.bind(that.submitCallback, that);
-            that.commenteditor.show({
-              "orderid": that.orderid,
-              "itemid": itemId,
-            }, that.operationMap[itemStatus], $(".commentEditorArea", element.parents("li")), handler);
+            that.commenteditor.show(data, that.operationMap[itemStatus], $(".commentEditorArea", element.parents("li")), handler);
           })
           .fail(function(error) {
-            debugger;
+            console.error(error);
           })
 
 

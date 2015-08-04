@@ -1,3 +1,5 @@
+  <div class="crumbs"><a href="/index.html">首页</a><span>&gt;</span><a href="/orderlist.html">我的订单</a><span>&gt;</span>评价填写</div>
+
   <div class="comment">
 <h2>商品评价</h2>
 <ul class="comment-h">
@@ -20,7 +22,7 @@
             <div class="godds-type">秒杀商品</div>{{/isSecGoods}}
         </h3>
       </div>
-      <div class="comment-c2">{{sf.price price}} {{quantity}}</div>
+      <div class="comment-c2">{{showSpec spec}}</div>
       <div class="comment-c3">
         <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-index="{{@index}}">{{operationHTML}}</a>
 
@@ -38,14 +40,14 @@
 <h2>整体满意度评价</h2>
 <ul>
   <li>
-    <label><abbr title="必填">*</abbr>服务态度：</label><span class="rating"></span>
+    <label><abbr title="必填">*</abbr>服务态度：</label><span id="commentstararea1"></span>
   </li>
   <li>
-    <label><abbr title="必填">*</abbr>发货速度：</label><span class="rating"></span>
+    <label><abbr title="必填">*</abbr>发货速度：</label><span id="commentstararea2"></span>
   </li>
   <li>
-    <label><abbr title="必填">*</abbr>物流速度：</label><span class="rating"></span>
+    <label><abbr title="必填">*</abbr>物流速度：</label><span id="commentstararea3"></span>
   </li>
 </ul>
-<button class="btn btn-danger btn-small">提交</button>
+<button class="btn btn-danger btn-small" id="submittotaljudge">提交</button>
 </div>

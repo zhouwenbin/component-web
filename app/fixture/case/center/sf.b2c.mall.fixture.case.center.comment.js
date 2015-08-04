@@ -33,6 +33,12 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
             }
           },
 
+          "publishCompreComment": function(requestData) {
+            return {
+              "value": true
+            }
+          },
+
           "getComments": function(requestData) {
             return {
               "value": [{
@@ -45,7 +51,15 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                   "isAnonym": false,
                   "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"]
                 },
-                "children": {}
+                "children": {
+                  "commentId": 1,
+                  "orderId": 1,
+                  "itemId": 1,
+                  "score": 4,
+                  "content": "这个小伙不错2",
+                  "isAnonym": false,
+                  "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"]
+                }
               }]
             }
           }
