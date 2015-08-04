@@ -246,13 +246,14 @@ body{
 		color: #23201a;
 		line-height: 1.2;
 		opacity: 0.8;
-		max-height: 42px;
+		height: 42px;
   		overflow: hidden;
 	}
 	.japan-price{
 		font-size: 22px;
 		line-height: 1.2;
 		margin-top: 27px;
+		white-space: nowrap;
 		.pink{
 				font-size: 38px;
 			em{
