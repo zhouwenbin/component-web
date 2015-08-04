@@ -166,6 +166,8 @@ define('sf.b2c.mall.center.shareordercontent', [
           .done(function(data) {
             if (data.value) {
               debugger;
+              $("#inputtotal").addClass("hide");
+              $("#showtotal").removeClass("hide");
             }
           })
           .fail(function(error) {
