@@ -83,6 +83,26 @@ define(
           } else {
             return '2小时'
           }
+        },
+        'sf-show-desc': function(discount, payType, options) {
+          var discountInfo = JSON.parse(discount().value);
+          if (typeof discountInfo[payType] !== 'undefined') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        'sf-show-save': function(selectPayType, discount, options) {
+          var discountInfo = JSON.parse(discount().value);
+          if (typeof discountInfo[selectPayType()] !== 'undefined') {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+        'sf-totalsave': function(selectPayType, discount, options) {
+          var discountInfo = JSON.parse(discount().value);
+          return discountInfo[selectPayType()] / 100;
         }
       },
 
@@ -106,12 +126,15 @@ define(
         data.optionalPayTypeList = eval(data.optionalPayTypeList);
 
         this.options.data.attr(data);
-        this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
+        var discountInfo = _.keys(JSON.parse(data.discount.value));
+        this.options.data.attr('selectPayType', discountInfo[0]);
         //this.options.data.attr('end', data.optionalPayTypeList[0]);
 
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
         this.element.find('.sf-gotopay-container').html(html);
-        this.element.find('.gotopay li').first().addClass('active')
+        var selectPayType = this.options.data.attr('selectPayType');
+        $("[data-paytype=" + selectPayType + "]").addClass('active');
+        //this.element.find('.gotopay li').first().addClass('active')
         this.customizedWeixin();
       },
 
@@ -145,17 +168,6 @@ define(
       },
       render: function() {
 
-        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-        // @todo 这里的header和footer还需要渲染吗?
-        //
-        var header = new Header('.sf-b2c-mall-header', {
-          channel: '首页',
-          isForceLogin: true
-        });
-
-        var footer = new Footer('.sf-b2c-mall-footer');
-        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-
         var params = can.deparam(window.location.search.substr(1));
 
         this.options.data = new can.Map({
@@ -174,23 +186,23 @@ define(
         return;
       },
 
-      getPayWay: function(paytype) {
-        if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
-          var map = {
-            alipay_intl: ['alipay_intl'],
-            alipay: ['alipay']
-          }
+      // getPayWay: function(paytype) {
+      //   if (store.get("alipaylogin") && store.get("alipaylogin") === "true") {
+      //     var map = {
+      //       alipay_intl: ['alipay_intl'],
+      //       alipay: ['alipay']
+      //     }
 
-          return map[paytype];
-        } else {
-          var map = {
-            alipay_intl: ['lianlianpay', 'alipay_intl'],
-            alipay: ['lianlianpay', 'alipay', 'tenpay_forex_wxsm', 'tenpay_forex']
-          }
+      //     return map[paytype];
+      //   } else {
+      //     var map = {
+      //       alipay_intl: ['lianlianpay', 'alipay_intl'],
+      //       alipay: ['lianlianpay', 'alipay', 'tenpay_forex_wxsm', 'tenpay_forex']
+      //     }
 
-          return map[paytype];
-        }
-      },
+      //     return map[paytype];
+      //   }
+      // },
 
       '.payTypeListArea li click': function($el, event) {
         this.element.find('li').removeClass('active');
