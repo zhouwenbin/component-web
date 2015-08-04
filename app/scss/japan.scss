@@ -113,6 +113,8 @@ body{
 }
 .japan-video-list-pic-list{
 	position: relative;
+	top:0;
+	transition: transform 0.2s ease-in-out, left 0.2s linear, top 0.2s ease-in, visibility 0.1s linear 0.2s;
 }
 .japan-video-list-pic-list li,
 .japan-video-list li{
@@ -244,13 +246,14 @@ body{
 		color: #23201a;
 		line-height: 1.2;
 		opacity: 0.8;
-		max-height: 42px;
+		height: 42px;
   		overflow: hidden;
 	}
 	.japan-price{
 		font-size: 22px;
 		line-height: 1.2;
 		margin-top: 27px;
+		white-space: nowrap;
 		.pink{
 				font-size: 38px;
 			em{
