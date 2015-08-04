@@ -13,6 +13,7 @@ define(
     return can.Control.extend({
 
       init: function(element, options) {
+        this.view = options.view;
         this.render();
       },
 
@@ -22,6 +23,8 @@ define(
         // 统计自定义标签个数
         this.customizedTagCount = 0;
 
+        this.options.showCusomized = !this.view;
+
         var renderFn = can.mustache(template_component_commenttag);
         that.options.html = renderFn(that.options, that.helpers);
         that.element.html(that.options.html);
@@ -29,6 +32,14 @@ define(
 
       "#customeized keydown": function(element, event) {
         var value = $(element).val();
+
+        if (value && value.length > 12) {
+          this.options.adapter.comment.attr("error", {
+            "commentGoodsLabels": '最多只能输入12个字哦，再删减下吧'
+          });
+
+          return false;
+        }
 
         if (event.keyCode == 13) {
             if (this.customizedTagCount == 3) {
@@ -55,6 +66,9 @@ define(
       },
 
       ".btn-goods click": function(element, event) {
+        if (this.view) {
+          return false;
+        }
         element.toggleClass("active");
         if (!this.checkTag(element.parents(":eq(4)"))) {
           return false;
@@ -98,20 +112,6 @@ define(
         }
 
         return true;
-      },
-
-      tip: function(message, time) {
-        var $el = $('<div class="dialog-cart" style="z-index:9999;"><div class="dialog-cart-inner" style="width:242px;padding:20px 60px;"><p style="margin-bottom:10px;">' + message + '</p></div><a href="javascript:" class="icon icon108 closeDialog">关闭</a></div>');
-        if ($('.dialog-cart').length > 0) {
-          return false;
-        };
-        $(document.body).append($el);
-        $('.closeDialog').click(function(event) {
-          $el.remove();
-        });
-        setTimeout(function() {
-          $el.remove();
-        }, time || 3000);
       }
 
     });

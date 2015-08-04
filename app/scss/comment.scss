@@ -291,7 +291,7 @@
 .tooltip-cart-left.hide{
 	display: none;
 }
-.comment .commstar {
+.commstar {
     width: 105px;
     height: 14px;
     background: url(../img/star.png) 0 -14px repeat-x;
@@ -302,7 +302,7 @@
     zoom: 1;
 }
 
-.comment .commstar a {
+.commstar a {
     width: 20%;
     cursor: pointer;
     position: absolute;
@@ -313,32 +313,32 @@
     margin-right: 5px;
 }
 
-.comment .commstar .active,
-.comment .commstar a:hover {
+.commstar .active,
+.commstar a:hover {
     background: url(../img/star.png) left top repeat-x;
 }
 
-.comment .commstar .star1 {
+.commstar .star1 {
     width: 20%;
     z-index: 9;
 }
 
-.comment .commstar .star2 {
+.commstar .star2 {
     width: 40%;
     z-index: 8;
 }
 
-.comment .commstar .star3 {
+.commstar .star3 {
     width: 60%;
     z-index: 7;
 }
 
-.comment .commstar .star4 {
+.commstar .star4 {
     width: 80%;
     z-index: 6;
 }
 
-.comment .commstar .star5 {
+.commstar .star5 {
     width: 100%;
     z-index: 5;
 }

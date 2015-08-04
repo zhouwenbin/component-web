@@ -16,10 +16,32 @@
   </li>
   <li>
     <label class="justify"><abbr title="必填">*</abbr>您的评价<span>：</span></label>
-    <textarea class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.content"></textarea>
-    <span class="s1">{{{comment.error.contentTip}}}</span>
-    <p class="text-error">{{comment.error.content}}</p>
+
+    {{#if comment.input.viewcontent}}
+      <span style="padding-top: 8px; display: inline-block;">{{comment.input.content}}</span>
+    {{/if}}
+    {{^if comment.input.viewcontent}}
+      <textarea id="inputContent" class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.content"></textarea>
+      <span class="s1"><span class="text-error" id="currentword">0</span>-300字</span>
+      <p class="text-error">{{comment.error.content}}</p>
+    {{/if}}
+
   </li>
+  {{#if showpluscontent}}
+  <li>
+    <label class="justify"><abbr title="必填">*</abbr>追加评价<span>：</span></label>
+
+    {{#if comment.input.viewpluscontent}}
+      <span style="padding-top: 8px; display: inline-block;">{{comment.input.pluscontent}}</span>
+    {{/if}}
+    {{^if comment.input.viewpluscontent}}
+      <textarea id="inputContent" class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.pluscontent"></textarea>
+      <span class="s1"><span class="text-error" id="currentword">0</span>-300字</span>
+      <p class="text-error">{{comment.error.pluscontent}}</p>
+    {{/if}}
+
+  </li>
+  {{/if}}
   <li id="img">
     <label class="justify">晒 单<span>：</span></label>
 
@@ -36,10 +58,13 @@
       <span>+</span>添加照片<input type="file" class="visuallyhidden" />
     </label>
 
-    <p class="p2">( 最多可上传5张照片，每张不超过5M。<br />支持格式jpg，jpeg，bmp，png，gif )</p>
-    <p class="p3">照片将在1个工作日后展示，审核通过后将额外获得10个积分</p>
+    <p class="p2" id="imgtip1">( 最多可上传5张照片，每张不超过5M。<br />支持格式jpg，jpeg，bmp，png，gif )</p>
+    <p class="p3" id="imgtip2">照片将在1个工作日后展示，审核通过后将额外获得10个积分</p>
+
+    {{^if comment.input.view}}
     <button class="btn btn-danger btn-small" id="submitcomment">评价并继续</button><label>
     <input class="checkbox" type="checkbox" can-value="comment.input.isAnonym" />匿名评价</label>
+    {{/if}}
   </li>
 </ul>
 </div>

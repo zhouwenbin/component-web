@@ -7,10 +7,11 @@
  * Includes: can/util/object
  * Download from: http://canjs.com
  */
-(function(undefined) {
+// (function(undefined) {
+define('can.object', ['can'], function (can) {
 
     // ## util/object/object.js
-    var __m1 = (function(can) {
+    // var __m1 = (function(can) {
         var isArray = can.isArray;
 
         can.Object = {};
@@ -119,7 +120,10 @@
             }
         };
         compareMethods.eqeq = compareMethods.similar;
-        return can.Object;
-    })(window.can);
+        // return can.Object;
 
-})();
+        return can.Object;
+    });
+    // })(window.can);
+
+// })();

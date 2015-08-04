@@ -22,8 +22,12 @@ define(
 
         // 如果有照片就只能查看了
         if (this.options.imgData && this.options.imgData.length > 0) {
+          this.view = true;
           this.listImg();
-          $(".upload-btn").hide();
+          $(".comment-add-img-del").remove();
+          $("#pickbutton").hide();
+          $("#imgtip1").css({"visibility": "hidden"});
+          $("#imgtip2").css({"visibility": "hidden"});
           return false;
         }
 
@@ -57,7 +61,6 @@ define(
             $("input[name=imgs" + i + "]").val("");
           }
           $("#pickbutton").show();
-          // $(".img .ar").html(that.imgCount + "/5");
         });
 
         plupload.bind("FilesAdded", function(a, uploadingFiles) {
@@ -71,9 +74,7 @@ define(
           }
 
           _.each(uploadingFiles, function(item) {
-            // var itemHTML = '<li id="' + item.id + '"><div class="del"><span>0%</span></div></li>';
-            var itemHTML = '<li id="' + item.id + '"><span>0%</span><a href="javascript:" class="comment-add-img-del">X</a></li>'
-            // imglistUl.append($(itemHTML))
+            var itemHTML = '<li id="' + item.id + '"><span>0%</span><a href="javascript:" class="comment-add-img-del">X</a></li>';
             $(itemHTML).appendTo(imglistUl);
           })
         });
@@ -147,7 +148,6 @@ define(
 
         _.each(this.options.imgData, function(item, index) {
           var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a></li>';
-          // var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><div class="del hide"><em value="删除">X</em></div></li>';
           imglistUl.append($(itemHTML));
         });
       },
@@ -169,7 +169,7 @@ define(
         return result;
       },
 
-      setValue: function(id, imgURL) {
+      setValue: function(id, imgURL) {debugger;
         var imgIndex = "";
         for (var index = 1; 5 >= index; index++) {
           var value = $("input[name=imgs" + index + "]").val();
@@ -184,7 +184,6 @@ define(
         if (imgIndex != "") {
           $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
           ++this.imgCount;
-          // $(".upload-img-box .ar").html(this.imgCount + "/5");
 
           $("#" + id).hover(function() {
             $(".comment-add-img-del", this).removeClass("hide")
@@ -206,7 +205,6 @@ define(
         $("li#" + id).remove();
         --this.imgCount;
         $(".upload-btn").show();
-        // $(".upload-img-box .ar").html(this.imgCount + "/10")
       }
 
     });
