@@ -212,8 +212,13 @@ define('sf.b2c.mall.component.commenteditor', [
       event && event.preventDefault();
 
       var comment = this.adapter.comment.input.attr();
+      var tagList = this.component.commenttag.getValue();
 
       if (!this.check(comment)) {
+        return false;
+      }
+
+      if (tagList === false) {
         return false;
       }
 

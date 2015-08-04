@@ -18,28 +18,38 @@ define(
 
       render: function() {
         var that = this;
-        debugger;
+
+        // 统计自定义标签个数
+        this.customizedTagCount = 0;
+
         var renderFn = can.mustache(template_component_commenttag);
         that.options.html = renderFn(that.options, that.helpers);
         that.element.html(that.options.html);
-      },
-
-      '#customeized click': function(element, event) {
-        event && event.preventDefault();
-        // $("#customeizedinput").removeClass("hide");
-        // $("#customeized").addClass("hide");
       },
 
       "#customeized keydown": function(element, event) {
         var value = $(element).val();
 
         if (event.keyCode == 13) {
+            if (this.customizedTagCount == 3) {
+            this.options.adapter.comment.attr("error", {
+              "commentGoodsLabels": '最多只能自定义3个标签哦，选你认为最贴切的吧'
+            });
+            return false;
+          } else {
+            this.options.adapter.comment.attr("error", {
+              "commentGoodsLabels": ''
+            });
+          }
+
           if (!this.checkTag(element.parents(":eq(4)"))) {
             return false;
           }
           var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span>';
           $(html).insertBefore($("#customeized"));
           $("#customeized").text("");
+
+          ++this.customizedTagCount;
           return false;
         }
       },
@@ -61,6 +71,13 @@ define(
           })
         })
 
+        if (result.length > 3) {
+          this.options.adapter.comment.attr("error", {
+            "commentGoodsLabels": '最多只能选择3个标签哦，选你认为最贴切的吧'
+          });
+          return false;
+        }
+
         return result;
       },
 
@@ -69,11 +86,15 @@ define(
         var commenttagarea = $("#commenttagarea", $(parentElement));
         var errortip = $(".msg-error-01", commenttagarea);
         var taglist = $(".btn-goods.active", commenttagarea);
-        if (taglist.length >= 5) {
+        if (taglist.length > 3) {
           this.options.adapter.comment.attr("error", {
-            "commentGoodsLabels": '最多只能选择5个标签哦，选你认为最贴切的吧'
+            "commentGoodsLabels": '最多只能选择3个标签哦，选你认为最贴切的吧'
           });
           return false;
+        } else {
+          this.options.adapter.comment.attr("error", {
+            "commentGoodsLabels": ''
+          });
         }
 
         return true;

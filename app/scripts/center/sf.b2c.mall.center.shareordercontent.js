@@ -22,7 +22,7 @@ define('sf.b2c.mall.center.shareordercontent', [
         showImage: function(group) {
           var array = eval(group);
           if (array && _.isArray(array)) {
-            var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
+            var url = array[0].replace(/.jpg/g, '.jpg@100h_100w.jpg');
             if (/^http/.test(url)) {
               return url;
             } else {
