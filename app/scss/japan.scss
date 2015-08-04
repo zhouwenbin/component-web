@@ -113,6 +113,8 @@ body{
 }
 .japan-video-list-pic-list{
 	position: relative;
+	top:0;
+	transition: transform 0.2s ease-in-out, left 0.2s linear, top 0.2s ease-in, visibility 0.1s linear 0.2s;
 }
 .japan-video-list-pic-list li,
 .japan-video-list li{
