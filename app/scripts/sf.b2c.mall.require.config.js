@@ -335,6 +335,9 @@ requirejs.config({
         'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
         'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
+        //日本馆
+        'sf.b2c.mall.page.japanpre':'scripts/page/sf.b2c.mall.page.japanpre',
+
         'sf.mediav': 'scripts/util/sf.mediav',
 
         // fixture功能
