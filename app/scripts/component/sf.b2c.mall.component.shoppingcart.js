@@ -306,7 +306,7 @@ define(
         that.element.html(html);
 
         var cartFeeItem = this.options.order.attr('cartFeeItem');
-        if (typeof cartFeeItem.firstOrderInfos !== 'undefined') {
+        if (typeof cartFeeItem.firstOrderInfos !== 'undefined' && cartFeeItem.firstOrderInfos.length > 0) {
           var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;
           var firstHtml = '<tr><td colspan="6"><span>首单减</span>' + useRuleDesc + '</td></tr>';
           $('.sign-for-first').append(firstHtml);
