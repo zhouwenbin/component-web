@@ -9,7 +9,7 @@
 
     <p class="text-error">{{comment.error.score}}</p>
   </li>
-  <li>
+  <li id="tagLi">
     <label class="justify">标 签<span>：</span></label>
     <span id="commenttagarea"></span>
     <p class="text-error">{{comment.error.commentGoodsLabels}}</p>
@@ -22,12 +22,12 @@
     {{/if}}
     {{^if comment.input.viewcontent}}
       <textarea id="inputContent" class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.content"></textarea>
-      <span class="s1"><span class="text-error" id="currentword">0</span>-300字</span>
+      <span class="s1"><span class="text-error" id="currentword">0</span>/300字</span>
       <p class="text-error">{{comment.error.content}}</p>
     {{/if}}
 
   </li>
-  {{#if showpluscontent}}
+  {{#if comment.input.showpluscontent}}
   <li>
     <label class="justify"><abbr title="必填">*</abbr>追加评价<span>：</span></label>
 
@@ -62,8 +62,13 @@
     <p class="p3" id="imgtip2">照片将在1个工作日后展示，审核通过后将额外获得10个积分</p>
 
     {{^if comment.input.view}}
-    <button class="btn btn-danger btn-small" id="submitcomment">评价并继续</button><label>
-    <input class="checkbox" type="checkbox" can-value="comment.input.isAnonym" />匿名评价</label>
+      {{#if comment.input.isLastEdit}}
+        <button class="btn btn-danger btn-small" id="submitcomment">评价</button>
+      {{/if}}
+      {{^if comment.input.isLastEdit}}
+        <button class="btn btn-danger btn-small" id="submitcomment">评价并继续</button>
+      {{/if}}
+      <input class="checkbox" type="checkbox" can-value="comment.input.isAnonym" />匿名评价
     {{/if}}
   </li>
 </ul>

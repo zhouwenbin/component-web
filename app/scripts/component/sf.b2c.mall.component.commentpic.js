@@ -31,6 +31,12 @@ define(
           return false;
         }
 
+        // 如果查看状态下没有图片 则不展示任何东西
+        if (this.options.view && (!this.options.imgData || this.options.imgData.length == 0)) {
+          $("#img").remove();
+          return false;
+        }
+
         // 如果没有照片，则可以上传图片
         var that = this;
 

@@ -8,8 +8,7 @@
   <li class="comment-c3">评价</li>
 </ul>
 <ul class="comment-b">
-  {{#each orderPackageItemList}}
-    {{#each orderGoodsItemList}}
+  {{#each orderItem}}
     <li class="comment-list">
       <div class="comment-c1">
         <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>
@@ -24,7 +23,7 @@
       </div>
       <div class="comment-c2">{{showSpec spec}}</div>
       <div class="comment-c3">
-        <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-index="{{@index}}">{{operationHTML}}</a>
+        <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-index="{{@index}}" data-spec="{{spec}}" data-skuid="{{skuId}}">{{operationHTML}}</a>
 
         <p class="p1">（已获得10积分）</p>
       </div>
@@ -32,7 +31,6 @@
       <div class="commentEditorArea"></div>
     </li>
     {{/each}}
-{{/each}}
 </ul>
 </div>
 

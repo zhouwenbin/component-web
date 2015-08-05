@@ -81,7 +81,7 @@ define(
         _.each(taglist, function(item) {
           result.push({
             "id": $(item).attr("data-id"),
-            "value": $(item).attr("data-name")
+            "name": $(item).attr("data-name")
           })
         })
 

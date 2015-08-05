@@ -12,6 +12,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.component.commenteditor',
     'sf.b2c.mall.api.commentGoods.getComments',
     'sf.b2c.mall.api.commentGoods.publishCompreComment',
+    'sf.b2c.mall.api.commentGoods.findCommentStatus',
     'sf.b2c.mall.api.order.getOrderV2',
     'sf.b2c.mall.component.commentstar',
     'sf.b2c.mall.fixture.case.center.comment',
@@ -19,6 +20,7 @@ define('sf.b2c.mall.center.shareordercontent', [
   ],
   function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
     SFPublishCompreComment,
+    SFFindCommentStatus,
     SFGetOrder,
     SFCommentstar,
     SFFixturecomment,
@@ -28,7 +30,7 @@ define('sf.b2c.mall.center.shareordercontent', [
 
       helpers: {
         showImage: function(group) {
-          var array = eval(group);
+          var array = eval(group());
           if (array && _.isArray(array)) {
             var url = array[0].replace(/.jpg/g, '.jpg@100h_100w.jpg');
             if (/^http/.test(url)) {
@@ -42,15 +44,15 @@ define('sf.b2c.mall.center.shareordercontent', [
         },
 
         showSpec: function(spec) {
-          if (!spec) {
+          if (!spec()) {
             return "--";
           } else {
-            return spec;
+            return spec();
           }
         },
 
         'isSecGoods': function(goodsType, options) {
-          if (goodsType == "SECKILL") {
+          if (goodsType() == "SECKILL") {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
@@ -65,6 +67,14 @@ define('sf.b2c.mall.center.shareordercontent', [
         this.render(this.adapter);
       },
 
+      firstItemClick: function() {
+        var firstEle = $(".gotoshareorder").eq(0);
+        var status = firstEle.attr("data-status");
+        if (status == 0 || status == 1) {
+          firstEle.click();
+        }
+      },
+
       render: function() {
         var that = this;
 
@@ -75,65 +85,97 @@ define('sf.b2c.mall.center.shareordercontent', [
           "orderId": this.orderid
         });
 
-        getOrder
-          .sendRequest()
-          .done(function(data) {
-            debugger;
-            that.options.orderInfo = data;
+        var findCommentStatus = new SFFindCommentStatus({
+          "ids": JSON.stringify([this.orderid]),
+          "type": 1
+        })
 
-            _.each(that.options.orderInfo.orderItem.orderPackageItemList, function(item) {
+        this.options.data = {};
+        this.options.data.orderItem = [];
 
-              _.each(item.orderGoodsItemList, function(childItem) {
-                // 调试代码begin
-                item.itemStatus = that.getRandomStatus();
-                // 调试代码end
-                if (!item.spec || "" == item.spec) {
-                  item.spec = "--";
-                }
-                item.operationHTML = that.nameMap[item.itemStatus];
-              })
+        can.when(getOrder.sendRequest(), findCommentStatus.sendRequest())
+          .done(function(orderData, commentStatus) {
 
-            })
+            // 格式化数据
+            that.formatData(orderData, commentStatus);
 
+            // 进行渲染
             var renderFn = can.mustache(template_center_shareordercontent);
-            that.options.html = renderFn(that.options.orderInfo.orderItem, that.helpers);
-
+            that.options.html = renderFn(that.options, that.helpers);
             that.element.html(that.options.html);
 
             //渲染整体评价
-            that.component.commentstar1 = new SFCommentstar($("#commentstararea1"), {
-              "showtip": false
-            });
-
-            that.component.commentstar2 = new SFCommentstar($("#commentstararea2"), {
-              "showtip": false
-            });
-
-            that.component.commentstar3 = new SFCommentstar($("#commentstararea3"), {
-              "showtip": false
-            });
-
+            that.supplement();
           })
           .fail(function(error) {
             console.error(error);
           });
       },
 
-      getRandomStatus: function() {
-        var status = ["needComment", "needRecomment", "viewComment"];
-        return status[Math.floor(Math.random() * 3)];
+      formatData: function(orderData, commentStatus) {
+        var dataArr = [];
+        var that = this;
+        // 遍历设置状态和spec
+        _.each(orderData.orderItem.orderPackageItemList, function(item) {
+          _.each(item.orderGoodsItemList, function(childItem) {
+
+            // 设置状态
+            childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+
+            // 设置spec
+            if (!childItem.spec || "" == childItem.spec) {
+              childItem.spec = "--";
+            }
+
+            // 设置按钮
+            childItem.operationHTML = that.nameMap[childItem.itemStatus];
+
+            // 加入到数组中去
+            dataArr.push(new can.Map(childItem));
+          })
+        })
+
+        that.options.orderItem = dataArr;
+      },
+
+      supplement: function() {
+        this.component.commentstar1 = new SFCommentstar($("#commentstararea1"), {
+          "showtip": false
+        });
+
+        this.component.commentstar2 = new SFCommentstar($("#commentstararea2"), {
+          "showtip": false
+        });
+
+        this.component.commentstar3 = new SFCommentstar($("#commentstararea3"), {
+          "showtip": false
+        });
+
+        this.firstItemClick();
+      },
+
+      getCommentStatus: function(itemId, commentStatus) {
+        var result = "";
+
+        _.each(commentStatus.value, function(item) {
+          if (item.itemId == itemId) {
+            result = item.status;
+          }
+        })
+
+        return result;
       },
 
       nameMap: {
-        "needComment": "去评价",
-        "needRecomment": "去追评",
-        "viewComment": "查看评价"
+        "0": "去评价",
+        "1": "去追评",
+        "2": "查看评价"
       },
 
       operationMap: {
-        "needComment": "add",
-        "needRecomment": "addplus",
-        "viewComment": "view"
+        "0": "add",
+        "1": "addplus",
+        "2": "view"
       },
 
       /**
@@ -141,9 +183,22 @@ define('sf.b2c.mall.center.shareordercontent', [
        * @return {[type]} [description]
        */
       submitCallback: function() {
+        var currentObj = this.options.orderItem[this.editIndex];
+        var status = currentObj.attr("itemStatus");
+        if (status == 0 || status == 1) {
+          var currentStatus = parseInt(status) + 1;
+          currentObj.attr("itemStatus", currentStatus);
+          currentObj.attr("operationHTML", this.nameMap[currentStatus]);
+        }
+
         var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
         if (nextEle.length > 0) {
           nextEle.click();
+        } else {
+          // 最后一个 进行销毁
+          if (this.commenteditor) {
+            $(".commentEditorArea").html("")
+          }
         }
       },
 
@@ -155,17 +210,16 @@ define('sf.b2c.mall.center.shareordercontent', [
         var logisticsScore = this.component.commentstar3.getValue();
 
         var publishCompreComment = new SFPublishCompreComment({
+          "orderId": this.orderid,
           "serviceScore": serviceScore * 100,
           "sendScore": sendScore * 100,
-          "logisticsScore": logisticsScore * 100,
-          "fixture": true
+          "logisticsScore": logisticsScore * 100
         });
 
         publishCompreComment
           .sendRequest()
           .done(function(data) {
             if (data.value) {
-              debugger;
               $("#inputtotal").addClass("hide");
               $("#showtotal").removeClass("hide");
             }
@@ -180,6 +234,10 @@ define('sf.b2c.mall.center.shareordercontent', [
         this.editIndex = parseInt(element.attr('data-index'));
         var itemId = element.attr('data-itemid');
         var itemStatus = element.attr('data-status');
+        var skuId = element.attr('data-skuid');
+        var spec = element.attr('data-spec');
+
+        var isLastEdit = (this.editIndex == this.options.orderItem.length - 1);
 
         // 进行销毁和重新初始化
         if (this.commenteditor) {
@@ -188,18 +246,30 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         var getComments = new SFGetComments({
           "orderId": this.orderid,
-          "itemID": this.orderid,
-          "fixture": true
+          "itemID": itemId
         });
 
         var that = this;
         getComments.sendRequest()
           .done(function(data) {
 
-            data = _.extend(data.value[0], {
-              "orderid": that.orderid,
-              "itemid": itemId,
-            });
+            if (data.value) {
+              data = _.extend(data.value[0], {
+                "orderid": that.orderid,
+                "itemid": itemId,
+                "skuid": skuId,
+                "spec": spec,
+                "isLastEdit": isLastEdit
+              });
+            } else {
+              data = {
+                "orderid": that.orderid,
+                "itemid": itemId,
+                "skuid": skuId,
+                "spec": spec,
+                "isLastEdit": isLastEdit
+              }
+            }
 
             that.commenteditor = new SFCommenteditor();
 
