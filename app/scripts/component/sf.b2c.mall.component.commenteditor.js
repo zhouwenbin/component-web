@@ -46,11 +46,11 @@ define('sf.b2c.mall.component.commenteditor', [
       this.skuid = data.skuid;
       this.spec = data.spec;
       this.submitCallback = submitCallback;
-
+debugger;
       // 获得标签
       var labels = [];
       if (data.skuLabels) {
-        labels.concat(data.skuLabels);
+        labels = labels.concat(data.skuLabels);
       }
       if (data.commentGoodsLabels) {
         labels = labels.concat(data.commentGoodsLabels);
@@ -230,13 +230,15 @@ define('sf.b2c.mall.component.commenteditor', [
       }
 
       // 校验标签
-      var tags = this.component.commenttag.getValue();
+      if (this.component.commenttag) {
+        var tags = this.component.commenttag.getValue();
 
-      if (tags && tags.length > 5) {
-        this.adapter.comment.attr("error", {
-          "commentGoodsLabels": '最多只能选择5个标签哦，选你认为最贴切的吧'
-        });
-        return false;
+        if (tags && tags.length > 5) {
+          this.adapter.comment.attr("error", {
+            "commentGoodsLabels": '最多只能选择5个标签哦，选你认为最贴切的吧'
+          });
+          return false;
+        }
       }
 
       return true;
@@ -246,14 +248,16 @@ define('sf.b2c.mall.component.commenteditor', [
       event && event.preventDefault();
 
       var comment = this.adapter.comment.input.attr();
-      var tagList = this.component.commenttag.getValue();
 
       if (!this.check(comment)) {
         return false;
       }
 
-      if (tagList === false) {
-        return false;
+      if (this.component.commenttag) {
+        var tagList = this.component.commenttag.getValue();
+        if (tagList === false) {
+          return false;
+        }
       }
 
       var objArr = [];
@@ -266,7 +270,7 @@ define('sf.b2c.mall.component.commenteditor', [
         "content": comment.content,
         "extralContent": comment.pluscontent,
         "imgs": this.component.commentpic.getValue(),
-        "commentGoodsLabels": this.component.commenttag.getValue(),
+        "commentGoodsLabels": this.component.commenttag ? this.component.commenttag.getValue() : [],
         "isAnonym": comment.isAnonym,
         "commentStatus2": this.status,
         "terminalType": 1,
