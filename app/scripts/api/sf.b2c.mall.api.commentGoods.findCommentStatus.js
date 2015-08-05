@@ -25,7 +25,8 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'commentGoods.findCommentStatus',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'ids': 'long'
+        'ids': 'long',
+        'type': 'int'
       },
       OPTIONAL: {
       },
