@@ -172,6 +172,17 @@ define(
       },
       render: function() {
 
+        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+        // @todo 这里的header和footer还需要渲染吗?
+        //
+        var header = new Header('.sf-b2c-mall-header', {
+          channel: '首页',
+          isForceLogin: true
+        });
+
+        var footer = new Footer('.sf-b2c-mall-footer');
+        // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+        
         var params = can.deparam(window.location.search.substr(1));
 
         this.options.data = new can.Map({
