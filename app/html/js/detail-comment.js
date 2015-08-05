@@ -22,16 +22,22 @@ $(function(){
     that.index=0;
     
     that.checkBtn=function(){
-      if(that.index==0){
-        that.bigImg.find('.comment-img-big-prev').hide();
+      if(that.bigImg.find('li').hasClass('active')){
+        that.bigImg.find('a').show();
+        if(that.index==0){
+          that.bigImg.find('.comment-img-big-prev').hide();
+        }else{
+          that.bigImg.find('.comment-img-big-prev').show();
+        }
+        if(that.index==that.num-1){
+          that.bigImg.find('.comment-img-big-next').hide();
+        }else{
+          that.bigImg.find('.comment-img-big-next').show();
+        }
       }else{
-        that.bigImg.find('.comment-img-big-prev').show();
+        that.bigImg.find('a').hide();
       }
-      if(that.index==that.num-1){
-        that.bigImg.find('.comment-img-big-next').hide();
-      }else{
-        that.bigImg.find('.comment-img-big-next').show();
-      }
+        
     }
     
     //图片放大
@@ -42,11 +48,7 @@ $(function(){
       that.index=that.smallImg.find('li').index(this);
       $(this).toggleClass('active').siblings().removeClass('active');
       that.bigImg.find('li').eq(that.index).toggleClass('active').siblings().removeClass('active');
-      if($(this).hasClass('active')){
-        that.bigImg.find('a').show();
-      }else{
-        that.bigImg.find('a').hide();
-      }
+      
       that.checkBtn();
     });
     
@@ -59,7 +61,6 @@ $(function(){
     
     //向前
     $('.comment-img-big-prev').click(function(){
-    
       that.index--;
       that.smallImg.find('li').eq(that.index).addClass('active').siblings().removeClass('active');
       that.bigImg.find('li').eq(that.index).addClass('active').siblings().removeClass('active');
@@ -68,7 +69,6 @@ $(function(){
 
     //向后
     $('.comment-img-big-next').click(function(){
-      
       that.index++;
       that.smallImg.find('li').eq(that.index).addClass('active').siblings().removeClass('active');
       that.bigImg.find('li').eq(that.index).addClass('active').siblings().removeClass('active');
