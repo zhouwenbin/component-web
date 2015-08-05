@@ -80,7 +80,7 @@ define(
             top = top.substr(0, top.length - 2);
           }
           
-          return Number.parseInt(top, 10);
+          return +top;
         };
 
         $(".japan-video-list li").on("click", function() {
@@ -92,6 +92,8 @@ define(
           $(".japan-video").hide();
           $('video')[0].pause();
         });
+
+
       },
 
 
