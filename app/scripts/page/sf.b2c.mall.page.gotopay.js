@@ -133,8 +133,12 @@ define(
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
         this.element.find('.sf-gotopay-container').html(html);
         var selectPayType = this.options.data.attr('selectPayType');
-        $("[data-paytype=" + selectPayType + "]").addClass('active');
-        //this.element.find('.gotopay li').first().addClass('active')
+        if (selectPayType) {
+          $("[data-paytype=" + selectPayType + "]").addClass('active');
+        } else {
+          this.element.find('.gotopay li').first().addClass('active');
+        }
+
         this.customizedWeixin();
       },
 
