@@ -25,11 +25,12 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'commentGoods.publishCompreComment',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-      },
-      OPTIONAL: {
+        'orderId': 'long',
         'serviceScore': 'int',
         'sendScore': 'int',
         'logisticsScore': 'int'
+      },
+      OPTIONAL: {
       },
       VERIFY:{
       },
