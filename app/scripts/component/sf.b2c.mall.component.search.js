@@ -119,6 +119,13 @@ define('sf.b2c.mall.component.search', [
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+      'sf-isNullArray': function(array, options) {
+        if (array() && array().length > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
       }
     },
 

@@ -93,6 +93,7 @@
         {{/if}}
         {{#if filterCustom.secondCategoryName}}
           {{^secondCategoryIds}}
+          {{#sf-isNullArray secondCategories.buckets}}
             <li class="classify-text" data-role="selectSecondCategory">
               <label>{{filterCustom.secondCategoryName}}：</label>
               <ul>
@@ -101,6 +102,7 @@
                 {{/each}}
               </ul>
             </li>
+            {{/sf-isNullArray}}
           {{/secondCategoryIds}}
         {{/if}}
         {{#if filterCustom.originName}}
