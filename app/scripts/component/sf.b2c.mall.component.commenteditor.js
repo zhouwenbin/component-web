@@ -30,26 +30,52 @@ define('sf.b2c.mall.component.commenteditor', [
     init: function(element, options) {
       this.component = {};
       this.adapter = {};
+      this.commentId = null;
+    },
+
+    statusMap: {
+      "add": 0,
+      "addplus": 1,
+      "view": 2
     },
 
     show: function(data, tag, element, submitCallback) {
       // orderid和itemid为全局变量
       this.orderid = data.orderid;
       this.itemid = data.itemid;
+      this.skuid = data.skuid;
+      this.spec = data.spec;
       this.submitCallback = submitCallback;
+
+      // 获得标签
+      var labels = [];
+      if (data.skuLabels) {
+        labels.concat(data.skuLabels);
+      }
+      if (data.commentGoodsLabels) {
+        labels = labels.concat(data.commentGoodsLabels);
+      }
+
+      // 获得commentId
+      if (data.commentId) {
+        this.commentId = data.commentId;
+      }
+
+      this.status = this.statusMap[tag];
 
       var map = {
         'add': function(data) { //发表评论
           return {
             input: {
               score: 0,
-              commentGoodsLabels: null,
+              commentGoodsLabels: labels,
               viewcontent: false,
               content: '',
               showpluscontent: false,
               img: null,
               isAnonym: true,
-              view: false
+              view: false,
+              isLastEdit: data.isLastEdit
             },
             error: {
               score: null,
@@ -65,16 +91,17 @@ define('sf.b2c.mall.component.commenteditor', [
 
           return {
             input: {
-              score: data.commentGoodsInfo.score,
-              commentGoodsLabels: null,
+              score: data.score,
+              commentGoodsLabels: labels,
               viewcontent: true,
-              content: data.commentGoodsInfo.content,
+              content: data.content,
               showpluscontent: true,
               viewpluscontent: false,
               pluscontent: '',
-              img: data.commentGoodsInfo.imgs,
+              img: data.imgs,
               isAnonym: true,
-              view: false
+              view: false,
+              isLastEdit: data.isLastEdit
             },
             error: {
               score: null,
@@ -91,13 +118,13 @@ define('sf.b2c.mall.component.commenteditor', [
           return {
             input: {
               score: data.score,
-              commentGoodsLabels: null,
+              commentGoodsLabels: labels,
               viewcontent: true,
-              content: data.commentGoodsInfo.content,
+              content: data.content,
               showpluscontent: true,
               viewpluscontent: true,
-              pluscontent: data.children.content,
-              img: data.commentGoodsInfo.imgs,
+              pluscontent: data.extralContent,
+              img: data.imgs,
               isAnonym: data.isAnonym,
               view: true
             },
@@ -148,29 +175,42 @@ define('sf.b2c.mall.component.commenteditor', [
       });
 
       //初始化标签
-      this.component.findCommentLabels = new SFFindCommentLabels({
-        "itemId": this.itemid,
-        "fixture": true
-      });
-      this.component.findCommentLabels
-        .sendRequest()
-        .done(function(data) {
 
-          that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
-            "data": data.CommentGoodsLabels,
-            "showtip": true,
-            "view": tag === 'add' ? false : true,
-            "adapter": adapter
-          });
+      var isTagView = (tag === 'add' ? false : true);
+      if (isTagView && adapter.comment.input.commentGoodsLabels.length == 0) {
+        $("#tagLi").remove();
+      } else {
+        that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
+          "data": adapter.comment.input.commentGoodsLabels,
+          "showtip": true,
+          "view": isTagView,
+          "adapter": adapter
+        });
+      }
 
-        })
-        .fail(function(error) {
+      // this.component.findCommentLabels = new SFFindCommentLabels({
+      //   "itemId": this.itemid
+      // });
+      // this.component.findCommentLabels
+      //   .sendRequest()
+      //   .done(function(data) {
 
-        })
+      //     that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
+      //       "data": data.CommentGoodsLabels,
+      //       "showtip": true,
+      //       "view": tag === 'add' ? false : true,
+      //       "adapter": adapter
+      //     });
+
+      //   })
+      //   .fail(function(error) {
+
+      //   })
 
       // 初始化图片
       this.component.commentpic = new SFCommentpic(null, {
-        "imgData": adapter.comment.input.attr("img")
+        "imgData": adapter.comment.input.attr("img"),
+        "view": adapter.comment.input.attr("view")
       });
     },
 
@@ -218,20 +258,24 @@ define('sf.b2c.mall.component.commenteditor', [
 
       var objArr = [];
       var obj = {
+        "commentId": this.commentId,
         "orderId": this.orderid,
+        "skuId": this.skuid,
         "itemId": this.itemid,
-        "score": comment.score,
+        "score": comment.score * 100,
         "content": comment.content,
+        "extralContent": comment.pluscontent,
         "imgs": this.component.commentpic.getValue(),
         "commentGoodsLabels": this.component.commenttag.getValue(),
         "isAnonym": comment.isAnonym,
-        "terminalType": 1
+        "commentStatus2": this.status,
+        "terminalType": 1,
+        "itemPro": this.spec
       }
       objArr.push(obj);
-
+      debugger;
       var publishComment = new SFPublishComment({
-        "commentGoodsInfos": objArr,
-        "fixture": true
+        "commentGoodsInfos": JSON.stringify(objArr)
       });
 
       var that = this;
