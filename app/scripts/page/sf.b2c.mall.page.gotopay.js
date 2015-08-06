@@ -127,7 +127,11 @@ define(
 
         this.options.data.attr(data);
         var discountInfo = _.keys(JSON.parse(data.discount.value));
-        this.options.data.attr('selectPayType', discountInfo[0]);
+        if (discountInfo[0]) {
+          this.options.data.attr('selectPayType', discountInfo[0]);
+        }else{
+          this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
+        }       
         //this.options.data.attr('end', data.optionalPayTypeList[0]);
 
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
