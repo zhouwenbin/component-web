@@ -32,15 +32,75 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         "fixture": true
       });
 
-      can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest)
+      can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
         .done(function(labels, commentData) {
+
+          that.options.outline = labels;
+          that.options.comments = commentData;
+          that.options.totalCount = commentData.keyValuePaires[0];
+          that.options.goodCount = commentData.keyValuePaires[1];
+          that.options.middleCount = commentData.keyValuePaires[2];
+          that.options.badCount = commentData.keyValuePaires[3];
+          that.options.shareorderCount = commentData.keyValuePaires[4];
+          that.options.addplusCount = commentData.keyValuePaires[5];
+
+          that.options = new can.Map(that.options);
+
           var renderFn = can.mustache(template_product_detailcomment);
-          that.options.html = renderFn(that.data, that.helpers);
+          that.options.html = renderFn(that.options, that.helpers);
           that.element.html(that.options.html);
         })
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    getComments: function(type) {
+      var that = this;
+
+      var findCommentInfoList = new SFfindCommentInfoList({
+        "itemId": this.options.itemId,
+        "type": type,
+        "pageNum": 0,
+        "pageSize": 10,
+        "fixture": true
+      });
+
+      findCommentInfoList
+        .sendRequest()
+        .done(function(data) {
+
+          // 放入缓存，后面不要重复请求
+          that.options[that.commentsObjMap[type]] = data;
+
+          that.options.attr("comments", data);
+
+        })
+        .fail(function(error) {
+          console.error(error);
+        })
+    },
+
+    commentsObjMap: {
+      "0":"totalComments",
+      "1": "goodComments",
+      "2": "middleComments",
+      "3": "badComments",
+      "4": "shareorderComments",
+      "5": "addplusComments",
+    },
+
+    '.comment-tab li click': function(element, event) {
+      element.addClass('active').siblings().removeClass('active');
+      var type = element.attr("data-type");
+
+      // 不要重复请求
+      if (!this.options[this.commentsObjMap[type]]) {
+        this.getComments(type);
+      } else {
+        this.options.attr("comments", this.options[this.commentsObjMap[type]]);
+      }
+
     }
   });
 })

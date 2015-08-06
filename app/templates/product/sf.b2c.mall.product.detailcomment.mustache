@@ -2,19 +2,15 @@
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
-      <div class="comment-progress"><div style="width:95%"></div></div><span class="text-error"><span class="comment-num">95%</span>好评</span>
-      <p>共112条评价</p>
+      <div class="comment-progress"><div style="width:{{outline.satisfaction}}%"></div></div><span class="text-error"><span class="comment-num">{{outline.satisfaction}}%</span>好评</span>
+      <p>共{{totalCount}}条评价</p>
     </div>
     <div class="comment-hc2">
       <h3>大家认为</h3>
       <ul class="comment-label">
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
-          <li>补水效果<span>（98）</span></li>
+        {{#each outline.CommentGoodsLabels}}
+          <li>{{name}}<span>（{{count}}）</span></li>
+        {{/each}}
       </ul>
     </div>
     <div class="comment-hc3">
@@ -25,12 +21,12 @@
   </div>
   <div class="comment-tab">
     <ul>
-      <li class="active"><a href="javascript:">全部评价<span>（112）</span></a></li>
-      <li><a href="javascript:">好评<span>（106）</span></a></li>
-      <li><a href="javascript:">中评<span>（6）</span></a></li>
-      <li><a href="javascript:">差评<span>（0）</span></a></li>
-      <li><a href="javascript:">晒单<span>（10）</span></a></li>
-      <li><a href="javascript:">追评<span>（15）</span></a></li>
+      <li class="active" data-type="0"><a href="javascript:">全部评价<span>（{{totalCount}}）</span></a></li>
+      <li data-type="1"><a href="javascript:">好评<span>（{{goodCount}}）</span></a></li>
+      <li data-type="2"><a href="javascript:">中评<span>（{{middleCount}}）</span></a></li>
+      <li data-type="3"><a href="javascript:">差评<span>（{{badCount}}）</span></a></li>
+      <li data-type="4"><a href="javascript:">晒单<span>（{{shareorderCount}}）</span></a></li>
+      <li data-type="5"><a href="javascript:">追评<span>（{{addplusCount}}）</span></a></li>
     </ul>
   </div>
   <div class="comment-list">
@@ -44,44 +40,55 @@
         </tr>
       </thead>
       <tbody>
+          {{#each comments.commentGoods}}
           <tr>
             <td class="col1">
               <ul class="comment-label">
-                  <li>补水效果</li>
-                  <li>补水效果</li>
-                  <li>补水效果</li>
+                {{#each commentGoodsInfo.skuLabels}}
+                  <li>{{name}}</li>
+                {{/each}}
+                {{#each commentGoodsInfo.commentGoodsLabels}}
+                  <li>{{name}}</li>
+                {{/each}}
               </ul>
-              <p class="p1">补水效果不错，很赞~</p>
+              <p class="p1">{{commentGoodsInfo.content}}</p>
               <ul class="comment-img">
-                  <li><img src="http://dummyimage.com/80x80" alt=""></li>
-                  <li><img src="http://dummyimage.com/80x80" alt=""></li>
-                  <li><img src="http://dummyimage.com/80x80" alt=""></li>
+                  {{#each commentGoodsInfo.imgs}}
+                  <li><img src="{{.}}" alt=""></li>
+                  {{/each}}
               </ul>
               <div class="comment-img-big">
                 <a href="javascript:" class="comment-img-big-prev"></a>
                 <ul>
-                    <li><img src="http://dummyimage.com/#{i*2}00x300" alt=""></li>
-                    <li><img src="http://dummyimage.com/#{i*2}00x300" alt=""></li>
-                    <li><img src="http://dummyimage.com/#{i*2}00x300" alt=""></li>
+                    {{#each commentGoodsInfo.imgs}}
+                      <li><img src="{{.}}" alt=""></li>
+                    {{/each}}
                 </ul>
                 <a href="javascript:" class="comment-img-big-next"></a>
               </div>
+
+              {{#if commentGoodsInfo.extralContent}}
               <div class="comment-additional">
                 <h4>7天后追加：</h4>
-                <p>赞赞赞，用完皮肤好好~</p>
+                <p>{{commentGoodsInfo.extralContent}}</p>
               </div>
-              <p class="p2"><span class="text-important">客服回复：</span>小章鱼祝您购物愉快哦~~本月27号顺丰海淘有大促活动哦~希望您能继续支持，见证顺丰海淘的成长！</p>
+              {{/if}}
+
+              {{#each children}}
+              <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.content}}</p>
+              {{/each }}
             </td>
             <td class="col2">
               <span class="rating"></span>
             </td>
-            <td class="col3">颜色：深褐色</td>
+            <td class="col3">{{commentGoodsInfo.itemPro}}</td>
             <td class="col4">
-              <p class="p3">F****Z</p>
-              <p>来自顺丰海淘iOS手机版</p>
-              <p>2015-07-25</p>
+              <p class="p3">{{commentGoodsInfo.userNick}}</p>
+              <p>{{commentGoodsInfo.terminalType}}</p>
+              <p>{{sf.time commentGoodsInfo.gmtCreate}}</p>
             </td>
           </tr>
+          {{/each}}
       </tbody>
     </table>
   </div>

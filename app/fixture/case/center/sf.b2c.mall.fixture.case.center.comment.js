@@ -34,8 +34,80 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
           },
 
           "findCommentInfoList": function(requestData) {
+            debugger;
+            if (requestData.type == 2) {
+              return {
+                "commentGoods": [{
+                  "commentGoodsInfo": {
+                    "commentId": 1,
+                    "pId": 0,
+                    "orderId": 100,
+                    "skuId": 1,
+                    "itemId": 1,
+                    "score": 100,
+                    "content": "abc2",
+                    "extralContent": "efg2",
+                    "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"],
+                    "isAnonym": false,
+                    "terminalType": 1,
+                    "skuLabels": [{
+                      "id": 1,
+                      "name": "送人不错的2",
+                      "count": 2
+                    }, {
+                      "id": 2,
+                      "name": "功能挺多2",
+                      "count": 3
+                    }],
+                    "commentGoodsLabels": [{
+                      "id": 1,
+                      "name": "送人不错的2",
+                      "count": 2
+                    }, {
+                      "id": 2,
+                      "name": "功能挺多2",
+                      "count": 3
+                    }],
+                    "userId": "123",
+                    "userNick": "海淘用户2",
+                    "itemPro": "规格：红色2",
+                    "gmtCreate": "12334343",
+                    "gmtExtral": "12343434"
+                  },
+                  "children": [{
+                    "commentGoodsInfo": {
+                      "commentId": 1,
+                      "pId": 0,
+                      "orderId": 100,
+                      "skuId": 1,
+                      "itemId": 1,
+                      "content": "abc",
+                      "terminalType": 1,
+                      "userNick": "海淘用户",
+                      "gmtCreate": "12334343",
+                      "gmtExtral": "12343434"
+                    },
+                    "children": {}
+                  }]
+                }],
+                "page": {
+                  "pageNum": 10,
+                  "currentNum": 0,
+                  "totalNum": 100,
+                  "pageSize": 0
+                },
+                "keyValuePaires": {
+                  "0": 100,
+                  "1": 100,
+                  "2": 100,
+                  "3": 100,
+                  "4": 100,
+                  "5": 200
+                }
+              }
+            }
             return {
-              "commentGoods": {
+              "commentGoods": [{
                 "commentGoodsInfo": {
                   "commentId": 1,
                   "pId": 0,
@@ -72,8 +144,22 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                   "gmtCreate": "12334343",
                   "gmtExtral": "12343434"
                 },
-                "children": {}
-              },
+                "children": [{
+                  "commentGoodsInfo": {
+                    "commentId": 1,
+                    "pId": 0,
+                    "orderId": 100,
+                    "skuId": 1,
+                    "itemId": 1,
+                    "content": "abc",
+                    "terminalType": 1,
+                    "userNick": "海淘用户",
+                    "gmtCreate": "12334343",
+                    "gmtExtral": "12343434"
+                  },
+                  "children": {}
+                }]
+              }],
               "page": {
                 "pageNum": 10,
                 "currentNum": 0,
