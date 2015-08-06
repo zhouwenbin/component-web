@@ -6,9 +6,10 @@ define(
     'can',
     'jquery',
     'sf.helpers',
+    'underscore.string',
     'sf.b2c.mall.api.coupon.getUserCouponList'
   ],
-  function(can, $, helpers, SFGetUserCouponList) {
+  function(can, $, helpers, _string, SFGetUserCouponList) {
 
 
     var optionsMap;
@@ -73,29 +74,19 @@ define(
               }
             }
 
-            var thirdpartyMap = {
-              "EXT_MOVIETICKET": function() {
-                if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != ""){
-                  tmpCoupon.showButton = true;
-                }
-                options.thirdparty.count++;
-                options.thirdparty.items.push(tmpCoupon);
-              },
-
-              "EXT_TAXICOUPON": function() {
-                if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != ""){
-                  tmpCoupon.showButton = true;
-                }
-                options.thirdparty.count++;
-                options.thirdparty.items.push(tmpCoupon);
+            var thirdpartyMap = function() {
+              if (tmpCoupon.customUrl != null && tmpCoupon.customUrl != "") {
+                tmpCoupon.showButton = true;
               }
-            }
+              options.thirdparty.count++;
+              options.thirdparty.items.push(tmpCoupon);
+            };
 
             var pushCoupon = function(couponType, status) {
               var fn;
 
-              if (couponType == "EXT_MOVIETICKET" || couponType == "EXT_TAXICOUPON") {
-                fn = thirdpartyMap[couponType];
+              if (_string.startsWith(couponType, 'EXT_') !== -1) {
+                fn = thirdpartyMap;
               } else {
                 fn = couponStatusMap[status];
               }
