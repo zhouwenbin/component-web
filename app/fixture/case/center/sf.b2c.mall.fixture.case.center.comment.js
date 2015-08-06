@@ -212,15 +212,15 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
             return {
               "commentGoods":[{
                 "commentGoodsInfo": [{
-                  "commentId",1,
-                  "pId",1,
-                  "orderId",1,
-                  "skuId",1,
-                  "itemId",1,
-                  "score",500,
+                  "commentId":1,
+                  "pId":1,
+                  "orderId":1,
+                  "skuId":1,
+                  "itemId":1,
+                  "score":500,
                   "content":"小章鱼祝您购物愉快哦~~本月27号顺丰海淘有大促活动哦~希望您能继续支持，见证顺丰海淘的成长！",
-                  "extralContent":"追评"
-                  "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"]
+                  "extralContent":"追评",
+                  "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"],
                   "isAnonym":true,
                   "terminalType":"pc",
                   "commentStatus":0,
@@ -239,20 +239,20 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                   "userHeadImageUrl":"http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg",
                   "userNick":"昵称",
                   "itemPro":"",
-                  "gmtCreate",2015-07-26,
-                  "gmtExtral",2015-07-26
+                  "gmtCreate":2015-07-26,
+                  "gmtExtral":2015-07-26
                 }],
                 "children":[{
                   "commentGoodsInfo": [{
-                    "commentId",1,
-                    "pId",1,
-                    "orderId",1,
-                    "skuId",1,
-                    "itemId",1,
-                    "score",500,
+                    "commentId":1,
+                    "pId":1,
+                    "orderId":1,
+                    "skuId":1,
+                    "itemId":1,
+                    "score":500,
                     "content":"小章鱼祝您购物愉快哦~~本月27号顺丰海淘有大促活动哦~希望您能继续支持，见证顺丰海淘的成长！",
-                    "extralContent":"追评"
-                    "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"]
+                    "extralContent":"追评",
+                    "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"],
                     "isAnonym":true,
                     "terminalType":"pc",
                     "commentStatus":0,
@@ -271,14 +271,15 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                     "userHeadImageUrl":"http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg",
                     "userNick":"昵称",
                     "itemPro":"",
-                    "gmtCreate",2015-07-26,
-                    "gmtExtral",2015-07-26
+                    "gmtCreate":2015-07-26,
+                    "gmtExtral":2015-07-26
                   }]
                 }]           
 
               }]
             }
           }
+
         })
       }
 
