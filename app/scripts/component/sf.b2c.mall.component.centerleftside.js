@@ -37,6 +37,9 @@ define(
         }, {
           "url": "/invitation.html",
           "name": "邀请有礼"
+        }, {
+          "url": "/message.html",
+          "name": "消息中心"
         });
 
         var that = this;
