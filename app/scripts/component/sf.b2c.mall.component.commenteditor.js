@@ -46,7 +46,7 @@ define('sf.b2c.mall.component.commenteditor', [
       this.skuid = data.skuid;
       this.spec = data.spec;
       this.submitCallback = submitCallback;
-debugger;
+
       // 获得标签
       var labels = [];
       if (data.skuLabels) {

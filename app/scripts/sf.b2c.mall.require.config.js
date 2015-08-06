@@ -348,6 +348,7 @@ requirejs.config({
 
         // 评价晒单
         'sf.b2c.mall.page.shareorder': 'scripts/page/sf.b2c.mall.page.shareorder',
+        'sf.b2c.mall.page.detailcomment': 'scripts/page/sf.b2c.mall.page.detailcomment',
         'sf.b2c.mall.center.shareordercontent': 'scripts/center/sf.b2c.mall.center.shareordercontent',
         'sf.b2c.mall.component.commenteditor': 'scripts/component/sf.b2c.mall.component.commenteditor',
         'sf.b2c.mall.component.commentstar': 'scripts/component/sf.b2c.mall.component.commentstar',
@@ -355,11 +356,11 @@ requirejs.config({
         'sf.b2c.mall.component.commentpic': 'scripts/component/sf.b2c.mall.component.commentpic',
         'plupload': 'scripts/vendor/plupload',
         'livequery': 'scripts/vendor/jquery.livequery',
-        'raty': 'scripts/vendor/jquery.raty',
+        'sf.b2c.mall.product.detailcomment': 'scripts/product/sf.b2c.mall.product.detailcomment',
 
         'sf.b2c.mall.fixture.case.center.comment': 'fixture/case/center/sf.b2c.mall.fixture.case.center.comment',
 
-
+        'template_product_detailcomment': 'templates/product/sf.b2c.mall.product.detailcomment.mustache',
         'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
         'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
         'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',

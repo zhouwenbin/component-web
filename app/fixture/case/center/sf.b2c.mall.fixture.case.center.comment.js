@@ -33,6 +33,64 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
             }
           },
 
+          "findCommentInfoList": function(requestData) {
+            return {
+              "commentGoods": {
+                "commentGoodsInfo": {
+                  "commentId": 1,
+                  "pId": 0,
+                  "orderId": 100,
+                  "skuId": 1,
+                  "itemId": 1,
+                  "score": 100,
+                  "content": "abc",
+                  "extralContent": "efg",
+                  "imgs": ["http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg"],
+                  "isAnonym": false,
+                  "terminalType": 1,
+                  "skuLabels": [{
+                    "id": 1,
+                    "name": "送人不错的",
+                    "count": 2
+                  }, {
+                    "id": 2,
+                    "name": "功能挺多",
+                    "count": 3
+                  }],
+                  "commentGoodsLabels": [{
+                    "id": 1,
+                    "name": "送人不错的",
+                    "count": 2
+                  }, {
+                    "id": 2,
+                    "name": "功能挺多",
+                    "count": 3
+                  }],
+                  "userId": "123",
+                  "userNick": "海淘用户",
+                  "itemPro": "规格：红色",
+                  "gmtCreate": "12334343",
+                  "gmtExtral": "12343434"
+                },
+                "children": {}
+              },
+              "page": {
+                "pageNum": 10,
+                "currentNum": 0,
+                "totalNum": 100,
+                "pageSize": 0
+              },
+              "keyValuePaires": {
+                "0": 100,
+                "1": 100,
+                "2": 100,
+                "3": 100,
+                "4": 100,
+                "5": 200
+              }
+            }
+          },
+
           "publishCompreComment": function(requestData) {
             return {
               "value": true
