@@ -378,16 +378,16 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       renderComment: function() {
-        $(".detail-tab-h li:eq(0)").on("click", function(){debugger;
-          this.addClass("acitve");
+        $(".detail-tab-h li:eq(0)").on("click", function(){
+          $(this).addClass("acitve").siblings().removeClass('active');
           $(".comment").removeClass("active");
           $("#detailcontent").addClass("acitve");
         })
 
-        $(".detail-tab-h li:eq(1)").on("click", function(){debugger;
-          $(".comment").addClass("active");
+        $(".detail-tab-h li:eq(1)").on("click", function(){
+          $(".comment").addClass("active").siblings().removeClass('active');
           $("#detailcontent").removeClass("acitve");
-          this.addClass("acitve");
+          $(this).addClass("acitve");
         })
 
         var detailcomment = new SFDetailcomment('.comment', {"itemId": this.itemid});
