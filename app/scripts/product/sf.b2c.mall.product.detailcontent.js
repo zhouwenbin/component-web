@@ -392,7 +392,9 @@ define('sf.b2c.mall.product.detailcontent', [
           $("#detail4product").removeClass("active");
         })
 
-        var detailcomment = new SFDetailcomment('.comment', {"itemId": this.itemid});
+        if (!this.detailcomment) {
+          this.detailcomment = new SFDetailcomment('.comment', {"itemId": this.itemid});
+        }
       },
 
       renderBaiduShare: function() {

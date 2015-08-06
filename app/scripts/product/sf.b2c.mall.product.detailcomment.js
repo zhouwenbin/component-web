@@ -51,7 +51,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           var renderFn = can.mustache(template_product_detailcomment);
           that.options.html = renderFn(that.options, that.helpers);
           that.element.html(that.options.html);
-debugger;
+
           that.options.page = new PaginationAdapter();
           that.options.page.format({
             "pageNum": commentData.page.pageNum,
@@ -61,10 +61,15 @@ debugger;
           });
           new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
 
+          that.supplement(that.options.totalCount);
         })
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    supplement: function(value) {
+      $("#comment-totalcount").text(value)
     },
 
     getComments: function(type) {
