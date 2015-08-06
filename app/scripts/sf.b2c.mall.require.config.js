@@ -217,6 +217,7 @@ requirejs.config({
         'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
         'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
         'sf.b2c.mall.center.invitationcontent': 'scripts/center/sf.b2c.mall.center.invitationcontent',
+        'sf.b2c.mall.center.message': 'scripts/center/sf.b2c.mall.center.message',
 
         'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
         'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
