@@ -3,9 +3,10 @@
 define('sf.b2c.mall.product.detailcomment', ['can',
   'sf.b2c.mall.api.commentGoods.findCommentInfoListByType',
   'sf.b2c.mall.fixture.case.center.comment',
-  'text!template_center_message'
+  'text!template_center_message',
+  'sf.b2c.mall.component.centerleftside'
 ], function(can, SFfindCommentInfoListByType, Fixturecomment, template_center_message) {
-  return can.Control.extend({
+  var CenterMessage = can.Control.extend({
 
     /**
      * 初始化控件
@@ -40,6 +41,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         .fail(function(error) {
           console.error(error);
         })
-    }
-  });
+      }
+      
+      new Centerleftside('.sf-b2c-mall-center-leftside');
+    });
+    
+    new CenterMessage('.sf-b2c-mall-messsage');
 })
