@@ -92,7 +92,7 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                 }],
                 "page": {
                   "pageNum": 10,
-                  "currentNum": 0,
+                  "currentNum": 10,
                   "totalNum": 100,
                   "pageSize": 0
                 },

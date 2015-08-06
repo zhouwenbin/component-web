@@ -22,9 +22,12 @@ define('sf.b2c.mall.product.detailcontent', [
     'sf.b2c.mall.api.b2cmall.checkLogistics',
     'sf.b2c.mall.api.b2cmall.getActivityInfo',
     'sf.b2c.mall.api.shopcart.addItemsToCart',
-    'sf.b2c.mall.api.product.findMixDiscountProducts'
+    'sf.b2c.mall.api.product.findMixDiscountProducts',
+    'sf.b2c.mall.product.detailcomment'
   ],
-  function(can, _, zoom, store, cookie, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFGetUserInfo, SFIsShowCart, SFFindRecommendProducts, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart, SFFindMixDiscountProducts) {
+  function(can, _, zoom, store, cookie, helpers, SFComm, SFConfig, SFMessage, SFShowArea, SFImglazyload, SFDetailcontentAdapter, SFGetProductHotData, SFGetSKUInfo, SFGetUserInfo, SFIsShowCart, SFFindRecommendProducts, SFArrivalNotice, CheckLogistics, SFGetActivityInfo, SFAddItemToCart,
+    SFFindMixDiscountProducts,
+    SFDetailcomment) {
 
     var NOTICE_WORD = '温馨提示：为了给您更好的服务，现顺丰保税仓正在升级中，5月19至25日期间您所下单的奶粉、纸尿裤商品将推迟至5月26日再发货，敬请谅解!';
     // var FILTER_ARRAY = ['1962','1961','1954','1955','1956','1957','1958','1946','1947','1948','1949','1950','1951','1903','1904','1905','1906','1907','1908','96','97','98','99','100','1952','1953','1635','1636','1637','1638','1639','1626','1627','1628','1629','1630',,'936','937','938','939','940','1789','1790','1791','1792','1793','1795','1794','1820','1821','1822','1823','1824','1825','1826','1827','101','102','103','104','105','106','107','108','1445','1448','1446','1447','1781','1782','1783','1784','1785','1786','1787','1788','1772','907','1780','1779','1773','1774','1775','1776','1777','1778','1168','1169','1170','1171','1172','1173'];
@@ -361,7 +364,7 @@ define('sf.b2c.mall.product.detailcontent', [
         // setInterval(function(){
         //   that.renderPriceInfo();
         // },60000);
-        
+
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
@@ -369,6 +372,27 @@ define('sf.b2c.mall.product.detailcontent', [
         //加上百度分享
         this.renderBaiduShare();
         // window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
+        // 渲染评论
+        this.renderComment();
+      },
+
+      renderComment: function() {
+        $(".detail-tab-h li:eq(0)").on("click", function(){
+          $(this).addClass("active").siblings().removeClass('active');
+
+          $(".comment").removeClass("active");
+          $("#detail4product").addClass("active");
+        })
+
+        $(".detail-tab-h li:eq(1)").on("click", function(){
+          $(this).addClass("active").siblings().removeClass('active');
+
+          $(".comment").addClass("active");
+          $("#detail4product").removeClass("active");
+        })
+
+        var detailcomment = new SFDetailcomment('.comment', {"itemId": this.itemid});
       },
 
       renderBaiduShare: function() {
@@ -519,10 +543,10 @@ define('sf.b2c.mall.product.detailcontent', [
        */
       renderPriceInfo: function() {
         var that = this;
-        var itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
+        this.itemid = $('.sf-b2c-mall-detail-content').eq(0).attr('data-itemid');
 
         var getProductHotData = new SFGetProductHotData({
-          'itemId': itemid
+          'itemId': this.itemid
         });
 
         getProductHotData
@@ -553,7 +577,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
             that.checkStartTime();
-          })          
+          })
       },
 
       checkStartTime: function(){
@@ -681,7 +705,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
           });
-      },      
+      },
 
       //渲染搭配购买商品
       renderMixDiscountProductInfo: function() {
@@ -1149,7 +1173,7 @@ define('sf.b2c.mall.product.detailcontent', [
           //活动进行中，立即购买
           '{{#isBeginning priceInfo.soldOut priceInfo.startTime priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
           //售完，活动结束立即抢购变灰，原价购买
-          
+
           '{{^isNotBegin priceInfo.startTime}}{{#isOverTime priceInfo.soldOut priceInfo.endTime}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}{{/isNotBegin}}' +
