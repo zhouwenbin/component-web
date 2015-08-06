@@ -382,14 +382,14 @@ define('sf.b2c.mall.product.detailcontent', [
           $(this).addClass("acitve").siblings().removeClass('active');
 
           $(".comment").removeClass("active");
-          $("#detailcontent").addClass("acitve");
+          $(".detail-tab-b").addClass("acitve");
         })
 
         $(".detail-tab-h li:eq(1)").on("click", function(){
           $(this).addClass("acitve").siblings().removeClass('active');
 
           $(".comment").addClass("active");
-          $("#detailcontent").removeClass("acitve");
+          $(".detail-tab-b").removeClass("acitve");
         })
 
         var detailcomment = new SFDetailcomment('.comment', {"itemId": this.itemid});
