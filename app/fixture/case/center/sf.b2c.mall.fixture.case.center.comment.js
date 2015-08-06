@@ -239,8 +239,8 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                   "userHeadImageUrl":"http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg",
                   "userNick":"昵称",
                   "itemPro":"",
-                  "gmtCreate":2015-07-26,
-                  "gmtExtral":2015-07-26
+                  "gmtCreate":"2015-07-26",
+                  "gmtExtral":"2015-07-26"
                 }],
                 "children":[{
                   "commentGoodsInfo": [{
@@ -271,8 +271,8 @@ define('sf.b2c.mall.fixture.case.center.comment', ['can',
                     "userHeadImageUrl":"http://img0.sfht.com/sf/bundefined/5415d8c2b1dc83eecb37a75a92bb778a.jpg@63h_63w.jpg",
                     "userNick":"昵称",
                     "itemPro":"",
-                    "gmtCreate":2015-07-26,
-                    "gmtExtral":2015-07-26
+                    "gmtCreate":"2015-07-26",
+                    "gmtExtral":"2015-07-26"
                   }]
                 }]           
 
