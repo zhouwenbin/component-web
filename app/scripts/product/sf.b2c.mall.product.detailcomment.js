@@ -69,7 +69,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     supplement: function(value) {
-      $("#comment-totalcount").text(value)
+      $("#comment-totalcount").text("（" + value + "）")
     },
 
     getComments: function(type) {
