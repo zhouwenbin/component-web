@@ -89,3 +89,31 @@
 .aboutus-c2 strong{
 	color: #e13b3a;
 }
+.aboutus-c2 table{
+	width: 100%;
+	margin-bottom: 19px;
+}
+.aboutus-c2 th{
+	height: 41px;
+	line-height: 41px;
+	background: #de3f45;
+	color: #fff;
+	text-align: center;
+	border-right: 1px solid #fff;
+}
+.aboutus-c2 th:last-child{
+	border-color: #de3f45;
+}
+.aboutus-c2 td{
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	border: 1px solid #de3f45;
+}
+.aboutus-c2 .star{
+	display: inline-block;
+	width: 16px;
+	height: 15px;
+	background: url(#{$bg-url}/star.png) no-repeat;
+	margin-right: 10px;
+}
