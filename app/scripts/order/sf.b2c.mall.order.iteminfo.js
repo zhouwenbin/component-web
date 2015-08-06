@@ -57,7 +57,14 @@ define('sf.b2c.mall.order.iteminfo', [
         } else {
           return options.inverse(options.contexts || this);
         }
-      }
+      },
+      'sf-show-etk': function(transporterName, options) {
+        if (typeof transporterName() !== 'undefined' && transporterName() === 'ETK') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
     },
     /**
      * 初始化
