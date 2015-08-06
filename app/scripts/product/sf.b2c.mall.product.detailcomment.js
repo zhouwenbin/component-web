@@ -4,8 +4,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
   'sf.b2c.mall.api.commentGoods.findCommentLabels',
   'sf.b2c.mall.api.commentGoods.findCommentInfoList',
   'sf.b2c.mall.fixture.case.center.comment',
+  'sf.b2c.mall.adapter.pagination',
+  'sf.b2c.mall.widget.pagination',
   'text!template_product_detailcomment'
-], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, template_product_detailcomment) {
+], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, PaginationAdapter, Pagination, template_product_detailcomment) {
   return can.Control.extend({
 
     /**
@@ -49,6 +51,16 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           var renderFn = can.mustache(template_product_detailcomment);
           that.options.html = renderFn(that.options, that.helpers);
           that.element.html(that.options.html);
+debugger;
+          that.options.page = new PaginationAdapter();
+          that.options.page.format({
+            "pageNum": commentData.page.pageNum,
+            "currentNum": commentData.page.currentNum,
+            "totalNum": commentData.page.totalNum,
+            "pageSize": commentData.page.pageSize
+          });
+          new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
+
         })
         .fail(function(error) {
           console.error(error);
@@ -82,7 +94,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     commentsObjMap: {
-      "0":"totalComments",
+      "0": "totalComments",
       "1": "goodComments",
       "2": "middleComments",
       "3": "badComments",
