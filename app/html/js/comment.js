@@ -20,7 +20,7 @@ $(function(){
     $(this).parent().remove();
   })
   //标签选择
-  $('.comment').on('click','.btn-goods',function(){
+  $('.comment').on('click','.js-comment-add .btn-goods',function(){
     $(this).toggleClass('active');
   })
   //自定义标签
@@ -40,4 +40,6 @@ $(function(){
   $('.satisfaction').on('click','.btn',function(){
     $('.satisfaction').html('<p><img src="../img/comment-icon.png">非常感谢您的评价，顺丰海淘会继续努力哦~</p>');
   })
+  //图片缩放
+  new CommentImg();
 })

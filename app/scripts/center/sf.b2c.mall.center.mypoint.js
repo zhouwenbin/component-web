@@ -91,10 +91,10 @@ define('sf.b2c.mall.center.mypoint', [
                   //分页 保留 已经调通 误删 后面设计会给样式
                   that.options.page = new PaginationAdapter();
                   that.options.page.format({
-                      "pageNum":2,
-                      "currentNum":2,
-                      "totalNum":2,
-                      "pageSize":2
+                      "pageNum":data.currentPage,
+                      "currentNum":data.currentPage,
+                      "totalNum":data.totalCount,
+                      "pageSize":data.pageSize
                   });
                   new Pagination('.sf-b2c-mall-order-orderlist-pagination', that.options);
                   that.flag = true;
