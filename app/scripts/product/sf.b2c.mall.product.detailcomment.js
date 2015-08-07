@@ -19,6 +19,15 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+      showTerminal: function(terminalType) {
+        var map = {
+          "1": "顺丰海淘web网页版",
+          "3": "顺丰海淘H5网页版",
+          "4": "顺丰海淘APP版"
+        }
+        return map[terminalType()];
+      },
+
       showStar: function(score) {
         score = score() / 100;
         var imgArr = [];

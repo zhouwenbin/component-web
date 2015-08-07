@@ -67,7 +67,7 @@
                 <a href="javascript:" class="comment-img-big-prev"></a>
                 <ul>
                     {{#each commentGoodsInfo.imgs}}
-                      <li><img src="{{.}}" alt="" height="200px"></li>
+                      <li><img src="{{.}}" alt="" height="300px"></li>
                     {{/each}}
                 </ul>
                 <a href="javascript:" class="comment-img-big-next"></a>
@@ -92,7 +92,7 @@
             <td class="col3">{{commentGoodsInfo.itemPro}}</td>
             <td class="col4">
               <p class="p3">{{commentGoodsInfo.userNick}}</p>
-              <p>{{commentGoodsInfo.terminalType}}</p>
+              <p>{{showTerminal commentGoodsInfo.terminalType}}</p>
               <p>{{sf.time commentGoodsInfo.gmtCreate}}</p>
             </td>
           </tr>
