@@ -17,6 +17,22 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+
+      showStar: function(score) {
+        score = score() / 100;
+        var imgArr = [];
+        var onImg = "http://img0.sfht.com/img/5fdc69349cd3d4c3f32531c9c2b07d35.jpg";
+        var offImg = "http://img0.sfht.com/img/4b9d8e58142d0d0c5daeab5b6560c858.jpg";
+        for (var i = 0; i < score; i++) {
+          imgArr.push('<img src="' + onImg + '">');
+        }
+
+        for (var i = 0; i < 5 - score; i++) {
+          imgArr.push('<img src="' + offImg + '">');
+        }
+
+        return imgArr.join("");
       }
     },
 
@@ -129,6 +145,53 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         this.options.attr("comments", this.options[this.commentsObjMap[type]]);
       }
 
+    },
+
+    '.comment-img li click': function(element, event) {
+      this.smallImg = element.parents('.comment-img');
+      this.bigImg = this.smallImg.siblings('.comment-img-big');
+      this.num = this.smallImg.find('li').length;
+      this.index = this.smallImg.find('li').index(this);
+      element.toggleClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).toggleClass('active').siblings().removeClass('active');
+
+      this.checkBtn();
+    },
+
+    checkBtn: function() {
+      if (this.bigImg.find('li').hasClass('active')) {
+        this.bigImg.find('a').show();
+        if (this.index == 0) {
+          this.bigImg.find('.comment-img-big-prev').hide();
+        } else {
+          this.bigImg.find('.comment-img-big-prev').show();
+        }
+        if (this.index == this.num - 1) {
+          this.bigImg.find('.comment-img-big-next').hide();
+        } else {
+          this.bigImg.find('.comment-img-big-next').show();
+        }
+      } else {
+        this.bigImg.find('a').hide();
+      }
+    },
+
+    //向前
+    '.comment-img-big-prev click': function(){
+      this.index--;
+      this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.checkBtn();
+    },
+
+    //向后
+    '.comment-img-big-next click': function(){
+      this.index++;
+      this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.checkBtn();
     }
+
+
   });
 })

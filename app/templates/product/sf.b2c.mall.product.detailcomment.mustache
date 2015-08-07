@@ -67,7 +67,7 @@
                 <a href="javascript:" class="comment-img-big-prev"></a>
                 <ul>
                     {{#each commentGoodsInfo.imgs}}
-                      <li><img src="{{.}}" alt="" width="80px" height="80px"></li>
+                      <li><img src="{{.}}" alt="" height="200px"></li>
                     {{/each}}
                 </ul>
                 <a href="javascript:" class="comment-img-big-next"></a>
@@ -85,7 +85,9 @@
               {{/each }}
             </td>
             <td class="col2">
-              <span class="rating"></span>
+              <span class="rating" title="gorgeous">
+              {{{showStar commentGoodsInfo.score}}}
+              </span>
             </td>
             <td class="col3">{{commentGoodsInfo.itemPro}}</td>
             <td class="col4">
