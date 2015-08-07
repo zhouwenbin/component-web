@@ -41,7 +41,7 @@ define(
 
       feedbackTemplate: function() {
         return '<div class="feedback">' +
-          '<h2>意见反馈</h2>' +
+          '<h2>我要吐槽</h2>' +
           '<textarea can-value="feedback" placeholder="输入您对顺丰海淘的建议或意见，帮助我们做的更好" id="mytext" maxlength="800"></textarea><span class="text-error">{{error.feedback}}</span>' +
           '<div class="feedback-r1">' +
           '<label class="justify">联系方式</label>：<input id="input-link" type="text" can-value="email"/><span class="text-error">{{error.email}}</span><br><br>' +
