@@ -10,6 +10,16 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 ], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, PaginationAdapter, Pagination, template_product_detailcomment) {
   return can.Control.extend({
 
+    helpers: {
+      hasComments: function(comments, options) {
+        if (comments().length > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      }
+    },
+
     /**
      * 初始化控件
      * @param  {DOM} element 容器element
@@ -24,10 +34,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({
-        "itemId": this.options.itemid
+        "itemId": this.options.itemId
       });
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": this.options.itemid,
+        "itemId": this.options.itemId,
         "type": 0,
         "pageNum": 0,
         "pageSize": 10
@@ -78,7 +88,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var that = this;
 
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": that.options.itemid,
+        "itemId": that.options.itemId,
         "type": type,
         "pageNum": 0,
         "pageSize": 10
