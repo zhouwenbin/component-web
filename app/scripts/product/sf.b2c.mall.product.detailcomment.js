@@ -39,8 +39,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": this.options.itemId,
         "type": 0,
-        "pageNum": 0,
-        "pageSize": 10
+        "pageNum": 10,
+        "pageSize": 1
       });
 
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
@@ -90,8 +90,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": that.options.itemId,
         "type": type,
-        "pageNum": 0,
-        "pageSize": 10
+        "pageNum": 10,
+        "pageSize": 1
       });
 
       findCommentInfoList

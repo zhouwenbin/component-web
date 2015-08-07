@@ -35,7 +35,7 @@
         <table><tbody><tr><td ><p class="p4" style="text-align:center">暂无评价</p></td></tr></tbody></table>
     {{/comments.commentGoods}}
 
-    {{#if hasComments}}
+    {{#hasComments comments.commentGoods}}
     <table>
       <thead>
         <tr>
@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-          {{#comments.commentGoods}}
+          {{#each comments.commentGoods}}
           <tr>
             <td class="col1">
               <ul class="comment-label">
@@ -60,14 +60,14 @@
               <p class="p1">{{commentGoodsInfo.content}}</p>
               <ul class="comment-img">
                   {{#each commentGoodsInfo.imgs}}
-                  <li><img src="{{.}}" alt=""></li>
+                  <li><img src="{{.}}" alt="" width="80px" height="80px"></li>
                   {{/each}}
               </ul>
               <div class="comment-img-big">
                 <a href="javascript:" class="comment-img-big-prev"></a>
                 <ul>
                     {{#each commentGoodsInfo.imgs}}
-                      <li><img src="{{.}}" alt=""></li>
+                      <li><img src="{{.}}" alt="" width="80px" height="80px"></li>
                     {{/each}}
                 </ul>
                 <a href="javascript:" class="comment-img-big-next"></a>
@@ -94,13 +94,13 @@
               <p>{{sf.time commentGoodsInfo.gmtCreate}}</p>
             </td>
           </tr>
-          {{/comments.commentGoods}}
+          {{/each}}
       </tbody>
     </table>
     {{/if}}
   </div>
 
-  {{#if hasComments}}
+  {{#hasComments comments.commentGoods}}
   <div class="sf-b2c-mall-detailcomment-pagination"></div>
   {{/if}}
 {{! </div> }}
