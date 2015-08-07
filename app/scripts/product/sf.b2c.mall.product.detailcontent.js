@@ -209,6 +209,19 @@ define('sf.b2c.mall.product.detailcontent', [
           if (soldOut() || LEFTENDTIME < 0) {
             return options.fn(options.contexts || this);
           }
+        },
+
+        'isShowVideo': function(images, options) {
+          var imgs = images();
+          var videoData = _.find(imgs, function(img) {
+            if (img.mediaType == "VIDEO") {
+              return img.videoUrl;
+            }
+          });
+
+          if (videoUrl) {
+            return '<div id="videoArea" style="text-align: center;"><video controls="controls" width="800" src="' + videoData.videoUrl + '"></video></div>';
+          }
         }
       },
 
@@ -1692,7 +1705,7 @@ define('sf.b2c.mall.product.detailcontent', [
 
       renderDetail: function() {
         var template = can.view.mustache(this.detailTemplate());
-        $('#detailcontent').html(template(this.options.detailContentInfo));
+        $('#detailcontent').html(template(this.options.detailContentInfo, this.helpers));
 
         $(".img-lazyload").imglazyload();
       },
@@ -1709,7 +1722,8 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       detailTemplate: function() {
-        return '{{&itemInfo.basicInfo.description}}';
+        return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' + 
+        '{{&itemInfo.basicInfo.description}}';
       },
 
       /**
