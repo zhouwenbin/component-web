@@ -617,22 +617,22 @@ define('sf.b2c.mall.order.orderlistcontent', [
        * [optionMap 状态下允许执行的操作]
        */
       optionMap: {
-        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO', 'REBUY'],
-        'AUTO_CANCEL': ['INFO', 'REBUY'],
-        'USER_CANCEL': ['INFO', 'REBUY'],
-        'AUDITING': ['CANCEL', 'INFO', 'REBUY'],
-        'OPERATION_CANCEL': ['INFO', 'REBUY'],
-        'BUYING': ['INFO', 'REBUY'],
-        'BUYING_EXCEPTION': ['INFO', 'REBUY'],
-        'WAIT_SHIPPING': ['INFO', 'REBUY'],
-        'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
-        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
-        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
-        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'CLOSED': ['INFO', 'REBUY'],
-        'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
+        'SUBMITED': ['NEEDPAY', 'CANCEL', 'INFO', 'REBUY', 'SHAREORDER'],
+        'AUTO_CANCEL': ['INFO', 'REBUY', 'SHAREORDER'],
+        'USER_CANCEL': ['INFO', 'REBUY', 'SHAREORDER'],
+        'AUDITING': ['CANCEL', 'INFO', 'REBUY', 'SHAREORDER'],
+        'OPERATION_CANCEL': ['INFO', 'REBUY', 'SHAREORDER'],
+        'BUYING': ['INFO', 'REBUY', 'SHAREORDER'],
+        'BUYING_EXCEPTION': ['INFO', 'REBUY', 'SHAREORDER'],
+        'WAIT_SHIPPING': ['INFO', 'REBUY', 'SHAREORDER'],
+        'SHIPPING': ['ROUTE', 'INFO', 'REBUY', 'SHAREORDER'],
+        'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY', 'SHAREORDER'],
+        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY', 'SHAREORDER'],
+        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY', 'SHAREORDER'],
+        'COMPLETED': ['INFO', 'ROUTE', 'REBUY', 'SHAREORDER'],
+        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY', 'SHAREORDER'],
+        'CLOSED': ['INFO', 'REBUY', 'SHAREORDER'],
+        'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY', 'SHAREORDER']
       },
 
       /**
@@ -643,7 +643,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "CANCEL": '<a href="#" class="btn btn-normal btn-small cancelOrder">取消订单</a>',
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
-        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>'
+        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>',
+        "SHAREORDER": '<a href="#" class="myorder-link btn-shareorder">去评价</a>'
       },
       //去支付
       '.gotoPay click': function(element, event) {
@@ -752,6 +753,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
           }
         });
       },
+
+      '.btn-shareorder click': function(element, event) {
+        var orderId = element.parent('td').attr('data-orderid');
+        window.location.href = "/shareorder.html?orderid=" + orderId;
+      },
+
       //签收订单
       '.received click': function(element, event) {
         var that = this;
