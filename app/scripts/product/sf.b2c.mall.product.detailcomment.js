@@ -20,7 +20,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       },
 
       hasLabel: function(labels, options) {
-        if (labels().length > 0) {
+        if (labels() && labels().length > 0) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
