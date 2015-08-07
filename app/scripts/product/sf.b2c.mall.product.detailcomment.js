@@ -20,18 +20,17 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     render: function() {
+      debugger;
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({
-        "itemId": this.options.itemId,
-        "fixture": true
+        "itemId": this.options.itemid
       });
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": this.options.itemId,
+        "itemId": this.options.itemid,
         "type": 0,
         "pageNum": 0,
-        "pageSize": 10,
-        "fixture": true
+        "pageSize": 10
       });
 
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
@@ -39,12 +38,15 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           that.options.outline = labels;
           that.options.comments = commentData;
-          that.options.totalCount = commentData.keyValuePaires[0];
-          that.options.goodCount = commentData.keyValuePaires[1];
-          that.options.middleCount = commentData.keyValuePaires[2];
-          that.options.badCount = commentData.keyValuePaires[3];
-          that.options.shareorderCount = commentData.keyValuePaires[4];
-          that.options.addplusCount = commentData.keyValuePaires[5];
+
+          if (that.options.outline.keyValuePaires) {
+            that.options.outline.totalCount = labels.commentCount;
+            that.options.outline.goodCount = labels.keyValuePaires[0].value;
+            that.options.outline.middleCount = labels.keyValuePaires[1].value;
+            that.options.outline.badCount = labels.keyValuePaires[2].value;
+            that.options.outline.shareorderCount = labels.keyValuePaires[3].value;
+            that.options.outline.addplusCount = labels.keyValuePaires[4].value;
+          }
 
           that.options = new can.Map(that.options);
 
@@ -61,7 +63,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           });
           new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
 
-          that.supplement(that.options.totalCount);
+          that.supplement(that.options.outline.totalCount);
         })
         .fail(function(error) {
           console.error(error);
@@ -76,11 +78,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var that = this;
 
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": this.options.itemId,
+        "itemId": that.options.itemid,
         "type": type,
         "pageNum": 0,
-        "pageSize": 10,
-        "fixture": true
+        "pageSize": 10
       });
 
       findCommentInfoList

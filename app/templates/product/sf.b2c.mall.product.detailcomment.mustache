@@ -2,15 +2,15 @@
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
-      <div class="comment-progress"><div style="width:{{outline.satisfaction}}%"></div></div><span class="text-error"><span class="comment-num">{{outline.satisfaction}}%</span>好评</span>
-      <p>共{{totalCount}}条评价</p>
+      <div class="comment-progress"><div style="width:{{outline.satisfaction}}%"></div></div><span class="text-error"><span class="comment-num">{{outline.score}}%</span>好评</span>
+      <p>共{{outline.totalCount}}条评价</p>
     </div>
     <div class="comment-hc2">
       <h3>大家认为</h3>
       <ul class="comment-label">
-        {{#each outline.CommentGoodsLabels}}
+        {{#outline.commentGoodsLabels}}
           <li>{{name}}<span>（{{count}}）</span></li>
-        {{/each}}
+        {{/outline.commentGoodsLabels}}
       </ul>
     </div>
     <div class="comment-hc3">
@@ -21,15 +21,21 @@
   </div>
   <div class="comment-tab">
     <ul>
-      <li class="active" data-type="0"><a href="javascript:">全部评价<span>（{{totalCount}}）</span></a></li>
-      <li data-type="1"><a href="javascript:">好评<span>（{{goodCount}}）</span></a></li>
-      <li data-type="2"><a href="javascript:">中评<span>（{{middleCount}}）</span></a></li>
-      <li data-type="3"><a href="javascript:">差评<span>（{{badCount}}）</span></a></li>
-      <li data-type="4"><a href="javascript:">晒单<span>（{{shareorderCount}}）</span></a></li>
-      <li data-type="5"><a href="javascript:">追评<span>（{{addplusCount}}）</span></a></li>
+      <li class="active" data-type="0"><a href="javascript:">全部评价<span>（{{outline.totalCount}}）</span></a></li>
+      <li data-type="1"><a href="javascript:">好评<span>（{{outline.goodCount}}）</span></a></li>
+      <li data-type="2"><a href="javascript:">中评<span>（{{outline.middleCount}}）</span></a></li>
+      <li data-type="3"><a href="javascript:">差评<span>（{{outline.badCount}}）</span></a></li>
+      <li data-type="4"><a href="javascript:">晒单<span>（{{outline.shareorderCount}}）</span></a></li>
+      <li data-type="5"><a href="javascript:">追评<span>（{{outline.addplusCount}}）</span></a></li>
     </ul>
   </div>
   <div class="comment-list">
+
+    {{^comments.commentGoods}}
+        <table><tbody><tr><td ><p class="p4" style="text-align:center">暂无评价</p></td></tr></tbody></table>
+    {{/comments.commentGoods}}
+
+    {{#if hasComments}}
     <table>
       <thead>
         <tr>
@@ -40,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-          {{#each comments.commentGoods}}
+          {{#comments.commentGoods}}
           <tr>
             <td class="col1">
               <ul class="comment-label">
@@ -88,9 +94,13 @@
               <p>{{sf.time commentGoodsInfo.gmtCreate}}</p>
             </td>
           </tr>
-          {{/each}}
+          {{/comments.commentGoods}}
       </tbody>
     </table>
+    {{/if}}
   </div>
+
+  {{#if hasComments}}
   <div class="sf-b2c-mall-detailcomment-pagination"></div>
+  {{/if}}
 {{! </div> }}
