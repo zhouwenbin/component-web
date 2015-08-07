@@ -266,6 +266,7 @@ requirejs.config({
         'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
         'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
         'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
+        'sf.b2c.mall.page.message': 'scripts/page/sf.b2c.mall.page.message',
 
         'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
 

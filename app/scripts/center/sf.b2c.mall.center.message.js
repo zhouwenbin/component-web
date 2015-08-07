@@ -4,10 +4,9 @@ define('sf.b2c.mall.center.message', ['can',
   'sf.b2c.mall.api.commentGoods.findCommentInfoListByType',
   'sf.b2c.mall.fixture.case.center.comment',
   'sf.b2c.mall.adapter.pagination',
-  'sf.b2c.mall.widget.pagination',
-  'sf.b2c.mall.component.centerleftside'
-], function(can, SFfindCommentInfoListByType, Fixturecomment, PaginationAdapter, Pagination, Centerleftside) {
-  var CenterMessage = can.Control.extend({
+  'sf.b2c.mall.widget.pagination'
+], function(can, SFfindCommentInfoListByType, Fixturecomment, PaginationAdapter, Pagination) {
+  return can.Control.extend({
 
     /**
      * 初始化控件
@@ -195,9 +194,6 @@ define('sf.b2c.mall.center.message', ['can',
       // var renderFn = can.mustache(template_center_message);
       // that.options.html = renderFn(that.options);
       // that.element.html(that.options.html);
-
-      new Centerleftside('.sf-b2c-mall-center-leftside');
     }
   })
-  new CenterMessage('.sf-b2c-mall-messsage');
 })

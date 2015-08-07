@@ -1,0 +1,28 @@
+.imglist{
+	margin-bottom: 20px;
+}
+.imglist li{
+	float: left;
+	text-align: center;
+	border: 10px solid #fff;
+	margin-left: -1px;
+	position: relative;
+	background:#fff;
+	box-sizing:border-box;
+}
+.imglist li:before{
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;
+}
+.imglist img{
+	width: 100%;
+	vertical-align:middle;
+}
+@for $i from 1 through 10{
+	.imglist#{$i} li{
+		width: 100% / $i;
+	}
+}
