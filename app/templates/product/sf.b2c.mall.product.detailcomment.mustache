@@ -6,12 +6,17 @@
       <p>共{{outline.totalCount}}条评价</p>
     </div>
     <div class="comment-hc2">
+      {{^hasLabel outline.commentGoodsLabels}}
+        <h3>暂无标签</h3>
+      {{/hasLabel}}
+      {{#hasLabel outline.commentGoodsLabels}}
       <h3>大家认为</h3>
       <ul class="comment-label">
         {{#outline.commentGoodsLabels}}
           <li>{{name}}<span>（{{count}}）</span></li>
         {{/outline.commentGoodsLabels}}
       </ul>
+      {{/hasLabel}}
     </div>
     <div class="comment-hc3">
       <p>首个晒单用户可获得100积分</p>
