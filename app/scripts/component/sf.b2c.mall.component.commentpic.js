@@ -63,7 +63,7 @@ define(
         });
 
         plupload.bind("Init", function() {
-          for (var i = 1; 10 >= i; i++) {
+          for (var i = 1; 5 >= i; i++) {
             $("input[name=imgs" + i + "]").val("");
           }
           $("#pickbutton").show();
@@ -73,10 +73,10 @@ define(
           var imglistUl = $(".img-list-ul");
           var imglistLi = $("li", imglistUl);
           var uploadBtn = $(".upload-btn");
-          if (imglistLi.length + uploadingFiles.length > 6) {
+          if (imglistLi.length + uploadingFiles.length > 5) {
             return false;
-          } else if (imglistLi.length + uploadingFiles.length == 6) {
-            uploadBtn.hide();
+          } else if (imglistLi.length + uploadingFiles.length == 5) {
+            $(".comment-add-img-add").hide();
           }
 
           _.each(uploadingFiles, function(item) {
@@ -200,7 +200,7 @@ define(
           var that = this;
 
           // 绑定删除事件
-          $("#" + id + " em").livequery("click", function() {
+          $("#" + id + " .comment-add-img-del").livequery("click", function() {
             that.del(imgIndex, id);
           });
         }

@@ -117,10 +117,15 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         // 遍历设置状态和spec
         _.each(orderData.orderItem.orderPackageItemList, function(item) {
+          var packageStatus = item.status;
           _.each(item.orderGoodsItemList, function(childItem) {
 
             // 设置状态
-            childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+            if (packageStatus != 'COMPLETED' && packageStatus != 'AUTO_COMPLETED') {
+              childItem.itemStatus = "-1";
+            } else {
+              childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+            }
 
             // 设置spec
             if (!childItem.spec || "" == childItem.spec) {
@@ -169,6 +174,7 @@ define('sf.b2c.mall.center.shareordercontent', [
       },
 
       nameMap: {
+        "-1": "商品未签收，暂无法评价",
         "0": "去评价",
         "1": "去追评",
         "2": "查看评价"
@@ -185,6 +191,7 @@ define('sf.b2c.mall.center.shareordercontent', [
        * @return {[type]} [description]
        */
       submitCallback: function() {
+        // 设置按钮状态和文案
         var currentObj = this.options.orderItem[this.editIndex];
         var status = currentObj.attr("itemStatus");
         if (status == 0 || status == 1) {
@@ -193,8 +200,17 @@ define('sf.b2c.mall.center.shareordercontent', [
           currentObj.attr("operationHTML", this.nameMap[currentStatus]);
         }
 
-        var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
         if (nextEle.length > 0) {
+          // 如果下一个状态为不能评价，咋停止自动打开
+          var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
+          if (that.options.orderItem[nextEle].status == -1) {
+            if (this.commenteditor) {
+              $(".commentEditorArea").html("")
+            }
+
+            return false;
+          }
+
           nextEle.click();
         } else {
           // 最后一个 进行销毁
@@ -253,6 +269,10 @@ define('sf.b2c.mall.center.shareordercontent', [
         var itemStatus = element.attr('data-status');
         var skuId = element.attr('data-skuid');
         var spec = element.attr('data-spec');
+
+        if (itemStatus == "-1") {
+          return false;
+        }
 
         var isLastEdit = (this.editIndex == this.options.orderItem.length - 1);
 
