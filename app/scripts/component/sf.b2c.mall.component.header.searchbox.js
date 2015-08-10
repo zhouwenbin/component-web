@@ -371,7 +371,7 @@ define('sf.b2c.mall.component.header.searchbox', [
         var keyword = $(links[index]).find("[data-keyword]").data("keyword");
         var categoryIds = $(links[index]).find("[data-category-ids]").data("categoryIds");
 
-        headerSeacrchInput.val(keyword).attr("data-category-ids", categoryIds);
+        headerSeacrchInput.val(keyword).attr("data-category-ids", categoryIds || "");
       }
     },
 
