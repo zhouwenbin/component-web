@@ -200,10 +200,10 @@ define('sf.b2c.mall.center.shareordercontent', [
           currentObj.attr("operationHTML", this.nameMap[currentStatus]);
         }
 
+        var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
         if (nextEle.length > 0) {
           // 如果下一个状态为不能评价，咋停止自动打开
-          var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
-          if (that.options.orderItem[nextEle].status == -1) {
+          if (this.options.orderItem[this.editIndex + 1].status == "-1") {
             if (this.commenteditor) {
               $(".commentEditorArea").html("")
             }
