@@ -1,4 +1,4 @@
-{{! <div class="comment detail-tab-b active"> }}
+<div class="comment detail-tab-b active"> }}
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
@@ -87,14 +87,34 @@
 
               {{#if commentGoodsInfo.extralContent}}
               <div class="comment-additional">
-                <h4>7天后追加：</h4>
+                <h4>{{showCommentPlusTime commentGoodsInfo.gmtExtral commentGoodsInfo.gmtCreate}}追加：</h4>
                 <p>{{commentGoodsInfo.extralContent}}</p>
+
+                <ul class="comment-img">
+                    {{#each commentGoodsInfo.extralImgs}}
+                    <li><img src="{{.}}" alt="" width="80px" height="80px"></li>
+                    {{/each}}
+                </ul>
+                <div class="comment-img-big">
+                  <a href="javascript:" class="comment-img-big-prev"></a>
+                  <ul>
+                      {{#each commentGoodsInfo.extralImgs}}
+                        <li><img src="{{.}}" alt="" height="300px"></li>
+                      {{/each}}
+                  </ul>
+                  <a href="javascript:" class="comment-img-big-next"></a>
+                </div>
+
+                {{#commentGoodsInfo.sysReplyExtralContent}}
+                <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.sysReplyExtralContent}}</p>
+                {{/commentGoodsInfo.sysReplyExtralContent }}
+
               </div>
               {{/if}}
 
-              {{#each children}}
-              <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.content}}</p>
-              {{/each }}
+              {{#commentGoodsInfo.sysReplyContent}}
+              <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.sysReplyContent}}</p>
+              {{/commentGoodsInfo.sysReplyContent }}
             </td>
             <td class="col2">
               <span class="rating" title="gorgeous">
@@ -117,4 +137,4 @@
   {{#hasComments comments.commentGoods}}
   <div class="sf-b2c-mall-detailcomment-pagination"></div>
   {{/if}}
-{{! </div> }}
+{{! </div>

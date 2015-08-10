@@ -27,6 +27,19 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+      showCommentPlusTime: function(plusTime, time) {
+        plusTime = plusTime();
+        time = time();
+
+        var day = (plusTime - time)/(3600 * 24 * 1000);
+
+        if (day < 1) {
+          return ((plusTime - time)/(3600 * 1000)).toFixed() + "小时后"
+        } else {
+          return day.toFixed() + "天后"
+        }
+      },
+
       showTerminal: function(terminalType) {
         var map = {
           "1": "顺丰海淘web网页版",
