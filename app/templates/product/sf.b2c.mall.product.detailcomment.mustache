@@ -2,12 +2,20 @@
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
-      <div class="comment-progress"><div style="width:{{outline.score}}%"></div></div><span class="text-error"><span class="comment-num">{{outline.score}}%</span>好评</span>
+      {{^hasLabel outline.commentGoodsLabels}}
+        <p>暂无评价</p>
+      {{/hasLabel}}
+      {{#hasLabel outline.commentGoodsLabels}}
+        <div class="comment-progress"><div style="width:{{outline.score}}%"></div></div>
+        <span class="text-error"><span class="comment-num">{{outline.score}}%</span>好评</span>
+      {{/hasLabel}}
+
       <p>共{{outline.totalCount}}条评价</p>
     </div>
     <div class="comment-hc2">
       {{^hasLabel outline.commentGoodsLabels}}
-        <h3>暂无标签</h3>
+        <h3>大家认为</h3>
+        <p style="color: #999; margin-top: 15px;">暂无标签，快来分享下你对该商品的感受吧</p>
       {{/hasLabel}}
       {{#hasLabel outline.commentGoodsLabels}}
       <h3>大家认为</h3>
@@ -19,7 +27,7 @@
       {{/hasLabel}}
     </div>
     <div class="comment-hc3">
-      <p>首个晒单用户可获得100积分</p>
+      <p>首个含有晒单的评价将获得100积分</p>
       <a class="text-link" href="http://www.sfht.com/helpcenter-point.html">积分规则</a>
     </div>
   </div>

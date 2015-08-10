@@ -25,7 +25,7 @@ define(
 
       render: function() {
 
-        new DetailComment('.sf-b2c-mall-detailcomment', {'itemId': 1180});
+        new DetailComment('.sf-b2c-mall-detailcomment', {'itemId': 177});
       }
     });
 

@@ -227,12 +227,12 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.paymentAmount = order.totalPrice - order.discount;
                 if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
                   order.optionHMTL = that.getOptionHTML(that.secOptionMap[order.orderStatus]);
-                }else{
+                } else {
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 }
 
                 // 完成状态下要加入评论按钮
-                if (order.orderStatus == 'AUTO_COMPLETED' || order.orderStatus == 'COMPLETED'){
+                if (order.orderStatus == 'AUTO_COMPLETED' || order.orderStatus == 'COMPLETED') {
                   order.optionHMTL = that.getOptionHTML(that.commentMap[order.commentStatus]) + order.optionHMTL;
                 }
 
@@ -275,7 +275,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
                     // that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.setCountDown($('.td7[data-orderid='+that.options.orders[i].orderId+'] .showOrderEndTime'), that.options.orders[i].leftTime);
+                    that.setCountDown($('.td7[data-orderid=' + that.options.orders[i].orderId + '] .showOrderEndTime'), that.options.orders[i].leftTime);
                     that.options.orders[i].leftTime -= 1000;
                   }
 
@@ -376,7 +376,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $(element).html(hour+ "小时" +minute + "分" + second + "秒");
+        $(element).html(hour + "小时" + minute + "分" + second + "秒");
 
       },
 
@@ -773,13 +773,14 @@ define('sf.b2c.mall.order.orderlistcontent', [
       '.btn-shareorder click': function(element, event) {
         var orderId = element.parent('td').attr('data-orderid');
         var commentSatisf = element.parent('td').attr('data-commentSatisf');
-        window.location.href = "/shareorder.html?orderid=" + orderId +"&commentSatisf=" + commentSatisf;
+        window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;
       },
 
       //签收订单
       '.received click': function(element, event) {
         var that = this;
         var subOrderId = element.parent('td').attr('data-orderid');
+        var commentSatisf = element.parent('td').attr('data-commentSatisf');
 
         var routeParams = can.route.attr();
         var qparams = can.deparam(window.location.search.substr(1));
@@ -798,7 +799,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
           'okFunction': function() {
             var success = function() {
               //window.location.reload();
-              that.render(params);
+              that.received(subOrderId, commentSatisf);
             };
 
             var error = function() {
@@ -806,6 +807,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
             };
             SFOrderFn.orderConfirm(subOrderId, success, error);
           }
+        });
+      },
+
+      received: function(subOrderId, commentSatisf) {
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'okFunction': function() {
+            window.location.href = "/shareorder.html?orderid=" + subOrderId + "&commentSatisf=" + commentSatisf;
+          },
+          'closeFunction': function() {
+            that.render(params);
+          },
+          'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
+          'type': 'confirm'
         });
       },
 
