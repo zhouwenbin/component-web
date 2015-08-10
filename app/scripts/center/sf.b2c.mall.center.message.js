@@ -35,7 +35,7 @@ define('sf.b2c.mall.center.message', ['can',
              that.options.commentGoods = commentData.commentGoods;
 
              _.each(that.options.commentGoods, function(date) {
-               date.commentGoodsInfo.gmtCreate =  that.getDate(date.commentGoodsInfo.gmtCreate);
+               date.commentGoodsInfo.gmtReply =  that.getDate(date.commentGoodsInfo.gmtReply);
              })
            } else {
              that.options.result = null;
