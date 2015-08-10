@@ -219,7 +219,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
           });
 
-          if (videoUrl) {
+          if (videoData) {
             return '<div id="videoArea" style="text-align: center;"><video controls="controls" width="800" src="' + videoData.videoUrl + '"></video></div>';
           }
         }
