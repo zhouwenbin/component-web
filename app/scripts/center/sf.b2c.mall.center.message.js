@@ -38,7 +38,7 @@ define('sf.b2c.mall.center.message', ['can',
                date.commentGoodsInfo.gmtReply =  that.getDate(date.commentGoodsInfo.gmtReply);
              })
            } else {
-             that.options.result = null;
+             that.options.commentGoods = null;
            }
            that.options = new can.Map(that.options);
 
