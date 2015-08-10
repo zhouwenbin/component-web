@@ -83,7 +83,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         "itemId": this.options.itemId
       });
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": this.options.itemId,
+        itemId": this.options.itemId,"
         "type": 0,
         "pageNum": 10,
         "pageSize": 1
