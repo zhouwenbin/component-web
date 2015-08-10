@@ -108,7 +108,7 @@
 	position: absolute;
 	left: -60px;
 	top: 10px;
-	z-index: 998;
+	z-index: map-get($z-index,header1-qrcode-img);
 	display: none;
 }
 @import 'headersearchbox';
