@@ -80,6 +80,7 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         var params = can.deparam(window.location.search.substr(1));
         this.orderid = params.orderid;
+        this.commentSatisf = params.commentSatisf;
 
         var getOrder = new SFGetOrder({
           "orderId": this.orderid
@@ -89,9 +90,6 @@ define('sf.b2c.mall.center.shareordercontent', [
           "ids": JSON.stringify([this.orderid]),
           "type": 1
         })
-
-        this.options.data = {};
-        this.options.data.orderItem = [];
 
         can.when(getOrder.sendRequest(), findCommentStatus.sendRequest())
           .done(function(orderData, commentStatus) {
@@ -115,6 +113,7 @@ define('sf.b2c.mall.center.shareordercontent', [
       formatData: function(orderData, commentStatus) {
         var dataArr = [];
         var that = this;
+
         // 遍历设置状态和spec
         _.each(orderData.orderItem.orderPackageItemList, function(item) {
           _.each(item.orderGoodsItemList, function(childItem) {
@@ -136,6 +135,8 @@ define('sf.b2c.mall.center.shareordercontent', [
         })
 
         that.options.orderItem = dataArr;
+        that.options.showinputtotal = (this.commentSatisf === "1") ? false : true;
+        that.options = new can.Map(this.options);
       },
 
       supplement: function() {
@@ -216,12 +217,12 @@ define('sf.b2c.mall.center.shareordercontent', [
           "logisticsScore": logisticsScore * 100
         });
 
+        var that = this;
         publishCompreComment
           .sendRequest()
           .done(function(data) {
             if (data.value) {
-              $("#inputtotal").addClass("hide");
-              $("#showtotal").removeClass("hide");
+              that.options.attr("showinputtotal", false);
             }
           })
           .fail(function(error) {

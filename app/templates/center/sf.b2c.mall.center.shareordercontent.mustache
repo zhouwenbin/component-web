@@ -35,6 +35,7 @@
 </div>
 
 <div class="satisfaction">
+  {{#if showinputtotal}}
   <div id="inputtotal">
     <h2>整体满意度评价</h2>
     <ul>
@@ -51,7 +52,10 @@
     <button class="btn btn-danger btn-small" id="submittotaljudge">提交</button>
 
   </div>
-  <div id="showtotal" class="hide">
+  {{/if}}
+  {{^if showinputtotal}}
+  <div id="showtotal">
     <p><img src="../img/comment-icon.png">非常感谢您的评价，顺丰海淘会继续努力哦~</p>
   </div>
+  {{/if}}
 </div>
