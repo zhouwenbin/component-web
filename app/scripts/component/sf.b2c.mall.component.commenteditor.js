@@ -247,6 +247,12 @@ define('sf.b2c.mall.component.commenteditor', [
     '#submitcomment click': function(element, event) {
       event && event.preventDefault();
 
+      if (element.hasClass("disable")) {
+        return false;
+      }
+
+      element.addClass("disable");
+
       var comment = this.adapter.comment.input.attr();
 
       if (!this.check(comment)) {
@@ -295,6 +301,9 @@ define('sf.b2c.mall.component.commenteditor', [
         })
         .fail(function(error) {
 
+        })
+        .always(function(){
+          element.removeClass("disable");
         })
     },
 
