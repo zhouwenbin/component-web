@@ -120,7 +120,7 @@
             <li class="order-first-buy-tips"></li>
             <li class="li1">
             {{#sf-show-firstOrderTips activityDescription}}
-                <div class="tooltip-cart tooltip-firstorder"><span class="text-error">{{sf-show-description activityDescription}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/sf-show-firstOrderTips}}活动优惠 :<span class="s1">- ¥{{sf.price orderFeeItem.discount}}</span></span>
+                <div class="tooltip-cart tooltip-firstorder"><span class="text-error">若符合【{{sf-show-description activityDescription}}】的优惠条件，活动优惠将在提交订单后实现减免</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/sf-show-firstOrderTips}}活动优惠 :<span class="s1">- ¥{{sf.price orderFeeItem.discount}}</span></span>
             </li>
             <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price couponPrice}}</span>    </li>
             <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{pointForUsed}}</span>    </li>
