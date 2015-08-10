@@ -5,10 +5,10 @@
                 <img src="{{commentGoodsInfo.imgs}}" alt="">
                 <div class="message-r1">
                     <div class="message-r1c1 fl"><span class="text-important">顺丰海淘客服</span>回复了您：</div>
-                    <div class="message-r1c2 fr">{{commentGoodsInfo.gmtCreate}}</div>
+                    <div class="message-r1c2 fr">{{commentGoodsInfo.gmtReply}}</div>
                 </div>
-                <p class="message-r2">{{commentGoodsInfo.content}}</p>
-                <p class="message-r3">我：{{children.commentGoodsInfo.content}}</p>
+                <p class="message-r2">{{commentGoodsInfo.sysReplyContent}}</p>
+                <p class="message-r3">我：{{commentGoodsInfo.content}}</p>
             </li>
         {{/each}}
     </ul>
