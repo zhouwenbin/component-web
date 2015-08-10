@@ -7,6 +7,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.helpers',
     'chart',
     'moment',
+    'sf.util',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.commenteditor',
@@ -18,7 +19,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.fixture.case.center.comment',
     'text!template_center_shareordercontent'
   ],
-  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
+  function(can, $, qrcode, helpers, chart, moment, utils, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
     SFPublishCompreComment,
     SFFindCommentStatus,
     SFGetOrder,
@@ -209,6 +210,21 @@ define('sf.b2c.mall.center.shareordercontent', [
         var serviceScore = this.component.commentstar1.getValue();
         var sendScore = this.component.commentstar2.getValue();
         var logisticsScore = this.component.commentstar3.getValue();
+
+        if (!serviceScore) {
+          utils.tip("请选择服务态度哦~");
+          return false;
+        }
+
+        if (!sendScore) {
+          utils.tip("请选择发货速度哦~");
+          return false;
+        }
+
+        if (!logisticsScore) {
+          utils.tip("请选择物流速度哦~");
+          return false;
+        }
 
         var publishCompreComment = new SFPublishCompreComment({
           "orderId": this.orderid,
