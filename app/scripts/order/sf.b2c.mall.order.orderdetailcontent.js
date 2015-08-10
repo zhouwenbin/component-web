@@ -175,7 +175,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return findCommentStatus.sendRequest()
           })
           .done(function(commentData){
-            debugger;
             $("#commentstep").html(that.commentOperationHTML[commentData.value[0].status]);
             that.commentSatisf = commentData.value[0].commentSatisf;
           })

@@ -76,7 +76,6 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     render: function() {
-      debugger;
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({

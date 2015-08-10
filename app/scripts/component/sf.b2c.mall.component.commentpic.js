@@ -175,7 +175,7 @@ define(
         return result;
       },
 
-      setValue: function(id, imgURL) {debugger;
+      setValue: function(id, imgURL) {
         var imgIndex = "";
         for (var index = 1; 5 >= index; index++) {
           var value = $("input[name=imgs" + index + "]").val();
