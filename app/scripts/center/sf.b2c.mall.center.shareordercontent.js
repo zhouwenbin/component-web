@@ -124,7 +124,7 @@ define('sf.b2c.mall.center.shareordercontent', [
             if (packageStatus != 'COMPLETED' && packageStatus != 'AUTO_COMPLETED') {
               childItem.itemStatus = "-1";
             } else {
-              childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+              that.setCommentStatus(childItem, commentStatus);
             }
 
             // 设置spec
@@ -161,16 +161,14 @@ define('sf.b2c.mall.center.shareordercontent', [
         this.firstItemClick();
       },
 
-      getCommentStatus: function(itemId, commentStatus) {
-        var result = "";
-
+      setCommentStatus: function(childrenItem, commentStatus) {
         _.each(commentStatus.value, function(item) {
-          if (item.itemId == itemId) {
-            result = item.status;
+          if (item.itemId == childrenItem.itemId) {
+            // result = item.status;
+            childrenItem.itemStatus = item.status;
+            childrenItem.integralAmount = item.integralAmount;
           }
         })
-
-        return result;
       },
 
       nameMap: {
@@ -190,7 +188,7 @@ define('sf.b2c.mall.center.shareordercontent', [
        * [submitCallback 编辑组件点击提交之后的回调]
        * @return {[type]} [description]
        */
-      submitCallback: function() {
+      submitCallback: function(integralAmount) {
         // 设置按钮状态和文案
         var currentObj = this.options.orderItem[this.editIndex];
         var status = currentObj.attr("itemStatus");
@@ -198,6 +196,7 @@ define('sf.b2c.mall.center.shareordercontent', [
           var currentStatus = parseInt(status) + 1;
           currentObj.attr("itemStatus", currentStatus);
           currentObj.attr("operationHTML", this.nameMap[currentStatus]);
+          currentObj.attr("integralAmount", integralAmount);
         }
 
         var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
