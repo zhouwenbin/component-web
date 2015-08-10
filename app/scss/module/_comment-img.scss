@@ -50,7 +50,7 @@
 	height: 25px;
 	border-left: 2px solid #fff;
 	border-top: 2px solid #fff;
-	z-index: 2;
+	z-index: map-get($z-index,comment-img-big-prev);
 	position: absolute;
 	top: 50%;
 	margin-top: -12px;

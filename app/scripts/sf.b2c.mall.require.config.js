@@ -378,6 +378,7 @@ requirejs.config({
         'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
         'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache',
         'template_center_invitationshare': 'templates/center/sf.b2c.mall.center.invitationshare.mustache',
+        'template_center_message': 'templates/center/sf.b2c.mall.center.message.mustache',
         'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
         'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
         'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',

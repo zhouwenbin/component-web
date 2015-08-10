@@ -12,7 +12,7 @@
 	right: 50px;
 	display: none;
 	border-radius:5px;
-	z-index:998;
+	z-index:map-get($z-index,btn-top);
 }
 .btn-top:hover{
 	background: #7f7f7f;
@@ -239,7 +239,7 @@
 }
 .btn-select-1{
 	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
-	z-index: 1;
+	z-index: map-get($z-index,btn-select-1);
 }
 .btn-select-1 .btn-select-num{
 	height: 39px;
@@ -279,7 +279,7 @@
 }
 .btn-brand{
 	*position: relative;
-	*z-index: 2;
+	*z-index: map-get($z-index,btn-brand);
 	background: #272541;
 	color: #fff;
 }
@@ -291,7 +291,7 @@
 	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
 	background: #f4f4f9;
 	position: absolute;
-	z-index: 2;
+	z-index: map-get($z-index,btn-brand-detail);
 	left: -48px;
 	top: 38px;
 	display: none;

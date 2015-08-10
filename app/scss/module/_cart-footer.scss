@@ -63,7 +63,7 @@
 	position: fixed;
 	width: 1180px;
 	box-sizing:border-box;
-	z-index: 1;
+	z-index: map-get($z-index,cart-footer-fixed);
 	bottom: 0;
 	border: 1px solid #ccc;
 	border-radius: 3px;

@@ -229,7 +229,7 @@ Copyright (c) 2012
 /* cover */
 .jCountdown .group>.container>.cover{
 	position:absolute;
-	z-index:1;
+	z-index:map-get($z-index,jCountdown-group-container-cover);
 	padding:0px;
 	margin:0px;
 }
@@ -333,7 +333,7 @@ Copyright (c) 2012
 
 .jCountdown.metal .group>.container>.text{
 	position:relative;
-	z-index:2;
+	z-index:map-get($z-index,jCountdown-metal-group-container-text);
 	width:60px;
 	height:60px;
 }
