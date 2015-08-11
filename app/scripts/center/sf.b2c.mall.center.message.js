@@ -26,7 +26,6 @@ define('sf.b2c.mall.center.message', ['can',
          "pageSize": 1
        });
 
-
        can.when(findCommentInfoListByType.sendRequest())
          .done(function(commentData) {
            that.options.comments = commentData;
@@ -46,10 +45,10 @@ define('sf.b2c.mall.center.message', ['can',
            that.element.html(html);
            that.options.page = new PaginationAdapter();
            that.options.page.format({
-             "pageNum":commentData.page.pageNum,
+             "pageNum":commentData.page.pageSize,
              "currentNum":commentData.page.currentNum,
              "totalNum":commentData.page.totalNum,
-             "pageSize":commentData.page.pageSize
+             "pageSize":commentData.page.pageNum
            });
            new Pagination('.sf-b2c-mall-message-pagination', that.options);
          })

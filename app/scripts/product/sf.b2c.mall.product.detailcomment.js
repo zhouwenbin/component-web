@@ -118,10 +118,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           that.options.page = new PaginationAdapter();
           that.options.page.format({
-            "pageNum": commentData.page.pageNum,
+            "pageNum": commentData.page.pageSize,
             "currentNum": commentData.page.currentNum,
             "totalNum": commentData.page.totalNum,
-            "pageSize": commentData.page.pageSize
+            "pageSize": commentData.page.pageNum
           });
           new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
 
