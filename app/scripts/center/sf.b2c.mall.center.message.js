@@ -13,6 +13,16 @@ define('sf.b2c.mall.center.message', ['can',
      * @param  {DOM} element 容器element
      * @param  {Object} options 传递的参数
      */
+    helpers: {
+      hasComments: function(comments, options) {
+        if (comments().length > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      }
+    },
+
     init: function(element, options) {
       this.render();
     },
@@ -41,7 +51,7 @@ define('sf.b2c.mall.center.message', ['can',
            }
            that.options = new can.Map(that.options);
 
-           var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options);
+           var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
            that.element.html(html);
            that.options.page = new PaginationAdapter();
            that.options.page.format({
@@ -51,6 +61,7 @@ define('sf.b2c.mall.center.message', ['can',
              "pageSize":commentData.page.pageNum
            });
            new Pagination('.sf-b2c-mall-message-pagination', that.options);
+
          })
          .fail(function(error) {
            console.error(error);

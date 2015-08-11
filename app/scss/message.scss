@@ -5,6 +5,9 @@
 .message{
 	padding: 40px 0;
 }
+.message ul{
+  margin-bottom: 20px;
+}
 .message li{
 	padding: 20px 0 20px 110px;
 	border-bottom: 1px solid #E5E5E5; 
@@ -34,4 +37,18 @@
 	background: #F5F5F5;
 	color: #666;
 	padding: 4px 11px;
+}
+.message-none{
+  text-align: center;
+  padding:110px 0;
+  font-size: 14px;
+  color:#666;
+}
+.message-icon{
+  display: inline-block;
+  vertical-align: middle;
+  width: 50px;
+  height: 60px;
+  background: url(#{$bg-url}comment-icon.png) no-repeat;
+  margin-right: 20px;
 }
