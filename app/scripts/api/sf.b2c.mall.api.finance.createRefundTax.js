@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.coupon.randomCard
+  * @class sf.b2c.mall.api.finance.createRefundTax
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.coupon.randomCard',
+'sf.b2c.mall.api.finance.createRefundTax',
 [
   'jquery',
   'can',
@@ -22,21 +22,22 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'coupon.randomCard',
-      SECURITY_TYPE: SecurityType.None.name,
+      METHOD_NAME: 'finance.createRefundTax',
+      SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'name': 'string',
+        'bizId': 'string',
+        'masterBizId': 'string',
+        'buyerName': 'string',
+        'buyerTelephone': 'string',
+        'alipayAccount': 'string',
+        'alipayUserName': 'string',
+        'url': 'string'
       },
       OPTIONAL: {
-        'mobile': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '11000050': '卡券已领完',
-        '11000240': '用户今天的券已经领完了',
-        '11000250': '用户已经领完该活动期间所有的券',
-        '11000260': '用户输入手机号有误'
       }
     }
   });
