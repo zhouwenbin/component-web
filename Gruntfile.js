@@ -1633,7 +1633,7 @@ module.exports = function(grunt) {
         options: {
           preserveLicenseComments: false,
           baseUrl: './app/',
-          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.center.message.js',
+          out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.message.js',
           mainConfigFile: "./<%= config.app %>/scripts/sf.b2c.mall.require.config.js",
           paths: {
             'placeholders': '../bower_components/Placeholders/dist/placeholders',
@@ -1642,8 +1642,8 @@ module.exports = function(grunt) {
             'text': '../bower_components/text/text',
             'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.<%= config.target %>.config'
           },
-          include: ["sf.b2c.mall.center.message"],
-          insertRequire: ['sf.b2c.mall.center.message']
+          include: ["sf.b2c.mall.page.message"],
+          insertRequire: ['sf.b2c.mall.page.message']
         }
       }
 
