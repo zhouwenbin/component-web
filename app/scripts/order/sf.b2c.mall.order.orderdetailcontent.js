@@ -11,10 +11,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.widget.message',
     'moment',
     'sf.b2c.mall.api.order.confirmReceive',
+    'sf.b2c.mall.api.finance.getRefundTax',
     'sf.mediav'
   ],
   function(can, SFGetOrder, helpers, loading, FrameworkComm,
-    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFMediav) {
+    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFGetRefundTax,SFMediav) {
 
     return can.Control.extend({
       helpers: {
