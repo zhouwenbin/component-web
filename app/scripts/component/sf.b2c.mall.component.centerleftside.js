@@ -23,6 +23,9 @@ define(
         data.link = [];
 
         data.link.push({
+          "url": "/message.html",
+          "name": "消息中心"
+        }, {
           "url": "/orderlist.html",
           "name": "我的订单"
         }, {
@@ -37,9 +40,6 @@ define(
         }, {
           "url": "/invitation.html",
           "name": "邀请有礼"
-        }, {
-          "url": "/message.html",
-          "name": "消息中心"
         });
 
         var that = this;
