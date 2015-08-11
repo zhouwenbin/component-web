@@ -1,4 +1,4 @@
-<div class="comment detail-tab-b active">
+{{!<div class="comment detail-tab-b active"> }}
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
@@ -13,12 +13,11 @@
       <p>共{{outline.totalCount}}条评价</p>
     </div>
     <div class="comment-hc2">
+      <h3>大家认为</h3>
       {{^hasLabel outline.commentGoodsLabels}}
-        <h3>大家认为</h3>
         <p style="color: #999; margin-top: 15px;">暂无标签，快来分享下你对该商品的感受吧</p>
       {{/hasLabel}}
       {{#hasLabel outline.commentGoodsLabels}}
-      <h3>大家认为</h3>
       <ul class="comment-label">
         {{#outline.commentGoodsLabels}}
           <li>{{name}}<span>（{{count}}）</span></li>

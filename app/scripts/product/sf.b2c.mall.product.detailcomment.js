@@ -32,9 +32,16 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         time = time();
 
         var day = (plusTime - time)/(3600 * 24 * 1000);
+        var hour = (plusTime - time)/(3600 * 1000);
+        var min = (plusTime - time)/(60 * 1000);
+        var sec = (plusTime - time)/(1000);
 
-        if (day < 1) {
-          return ((plusTime - time)/(3600 * 1000)).toFixed() + "小时后"
+        if (min < 1) {
+          return sec.toFixed() + "秒后"
+        } else if (hour < 1) {
+          return min.toFixed() + "分钟后"
+        } else if (day < 1) {
+          return hour.toFixed() + "小时后"
         } else {
           return day.toFixed() + "天后"
         }
@@ -76,7 +83,6 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     render: function() {
-      debugger;
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({

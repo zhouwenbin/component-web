@@ -658,9 +658,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
         "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>',
-        "COMMENT": '<a href="#" class="btn btn-success btn-small btn-shareorder">去评价</a>',
-        "COMMENT_PLUS": '<a href="#" class="btn btn-success btn-small btn-shareorder">追加评价</a>',
-        "COMMENT_VIEW": '<a href="#" class="btn btn-success btn-small btn-shareorder">查看评价</a>'
+        "COMMENT": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">去评价</a>',
+        "COMMENT_PLUS": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">追加评价</a>',
+        "COMMENT_VIEW": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">查看评价</a>'
       },
       //去支付
       '.gotoPay click': function(element, event) {
@@ -771,6 +771,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
       },
 
       '.btn-shareorder click': function(element, event) {
+        event && event.preventDefault();
+
         var orderId = element.parent('td').attr('data-orderid');
         var commentSatisf = element.parent('td').attr('data-commentSatisf');
         window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;

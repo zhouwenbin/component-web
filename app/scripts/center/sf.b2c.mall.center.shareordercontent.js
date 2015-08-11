@@ -7,6 +7,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.helpers',
     'chart',
     'moment',
+    'sf.util',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.business.config',
     'sf.b2c.mall.component.commenteditor',
@@ -18,7 +19,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.fixture.case.center.comment',
     'text!template_center_shareordercontent'
   ],
-  function(can, $, qrcode, helpers, chart, moment, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
+  function(can, $, qrcode, helpers, chart, moment, utils, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
     SFPublishCompreComment,
     SFFindCommentStatus,
     SFGetOrder,
@@ -116,10 +117,15 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         // 遍历设置状态和spec
         _.each(orderData.orderItem.orderPackageItemList, function(item) {
+          var packageStatus = item.status;
           _.each(item.orderGoodsItemList, function(childItem) {
 
             // 设置状态
-            childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+            if (packageStatus != 'COMPLETED' && packageStatus != 'AUTO_COMPLETED') {
+              childItem.itemStatus = "-1";
+            } else {
+              childItem.itemStatus = that.getCommentStatus(childItem.itemId, commentStatus);
+            }
 
             // 设置spec
             if (!childItem.spec || "" == childItem.spec) {
@@ -168,6 +174,7 @@ define('sf.b2c.mall.center.shareordercontent', [
       },
 
       nameMap: {
+        "-1": "商品未签收，暂无法评价",
         "0": "去评价",
         "1": "去追评",
         "2": "查看评价"
@@ -184,6 +191,7 @@ define('sf.b2c.mall.center.shareordercontent', [
        * @return {[type]} [description]
        */
       submitCallback: function() {
+        // 设置按钮状态和文案
         var currentObj = this.options.orderItem[this.editIndex];
         var status = currentObj.attr("itemStatus");
         if (status == 0 || status == 1) {
@@ -194,6 +202,15 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         var nextEle = $(".gotoshareorder").eq(this.editIndex + 1);
         if (nextEle.length > 0) {
+          // 如果下一个状态为不能评价，咋停止自动打开
+          if (this.options.orderItem[this.editIndex + 1].status == "-1") {
+            if (this.commenteditor) {
+              $(".commentEditorArea").html("")
+            }
+
+            return false;
+          }
+
           nextEle.click();
         } else {
           // 最后一个 进行销毁
@@ -209,6 +226,21 @@ define('sf.b2c.mall.center.shareordercontent', [
         var serviceScore = this.component.commentstar1.getValue();
         var sendScore = this.component.commentstar2.getValue();
         var logisticsScore = this.component.commentstar3.getValue();
+
+        if (!serviceScore) {
+          utils.tip("请选择服务态度哦~");
+          return false;
+        }
+
+        if (!sendScore) {
+          utils.tip("请选择发货速度哦~");
+          return false;
+        }
+
+        if (!logisticsScore) {
+          utils.tip("请选择物流速度哦~");
+          return false;
+        }
 
         var publishCompreComment = new SFPublishCompreComment({
           "orderId": this.orderid,
@@ -237,6 +269,10 @@ define('sf.b2c.mall.center.shareordercontent', [
         var itemStatus = element.attr('data-status');
         var skuId = element.attr('data-skuid');
         var spec = element.attr('data-spec');
+
+        if (itemStatus == "-1") {
+          return false;
+        }
 
         var isLastEdit = (this.editIndex == this.options.orderItem.length - 1);
 
