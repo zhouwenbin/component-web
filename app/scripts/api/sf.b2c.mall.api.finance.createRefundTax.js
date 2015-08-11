@@ -27,6 +27,7 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
         'bizId': 'string',
         'masterBizId': 'string',
+        'mailNo': 'string',
         'buyerName': 'string',
         'buyerTelephone': 'string',
         'alipayAccount': 'string',
