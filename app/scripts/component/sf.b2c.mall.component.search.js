@@ -183,6 +183,7 @@ define('sf.b2c.mall.component.search', [
     sortMap: {
       "DEFAULT": {
         value: "DEFAULT",
+        _spm: "0.sear12.0.0",
         name: "综合"
       },
       "SCORE":  {
@@ -191,18 +192,22 @@ define('sf.b2c.mall.component.search', [
       },
       "PRICE_DESC":  {
         value: "PRICE_DESC",
+        _spm: "0.sear12.2.0",
         name: "价格由高到低"
       },
       "PRICE_ASC":  {
         value: "PRICE_ASC",
+        _spm: "0.sear12.2.1",
         name: "价格由低到高"
       },
       "SALE_DESC":  {
         value: "SALE_DESC",
+        _spm: "0.sear12.1.0",
         name: "人气"
       },
       "SALE_ASC":  {
         value: "SALE_ASC",
+        _spm: "0.sear12.1.1",
         name: "人气"
       }
     },
@@ -637,7 +642,10 @@ define('sf.b2c.mall.component.search', [
     "[data-role=selectBrand] li click": function(targetElement) {
       var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.brandIds = [targetElement.data("id")];
+      var index = $(targetElement).index("[data-role=selectBrand] li");
+      var brandId = targetElement.data("id");
+      searchDataTemp.brandIds = [brandId];
+      searchDataTemp._spm = ["0.sear7.", brandId, ".", index].join("");
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -647,7 +655,10 @@ define('sf.b2c.mall.component.search', [
     "[data-role=selectCategory] li click": function(targetElement) {
       var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.categoryIds = [targetElement.data("id")];
+      var index = $(targetElement).index("[data-role=selectCategory] li");
+      var categoryId = targetElement.data("id");
+      searchDataTemp.categoryIds = [categoryId];
+      searchDataTemp._spm = ["0.sear8.", categoryId, ".", index].join("");
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -657,7 +668,10 @@ define('sf.b2c.mall.component.search', [
     "[data-role=selectSecondCategory] li click": function(targetElement) {
       var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.catg2ndIds = [targetElement.data("id")];
+      var index = $(targetElement).index("[data-role=selectSecondCategory] li");
+      var catg2ndId = targetElement.data("id");
+      searchDataTemp.catg2ndIds = [catg2ndId];
+      searchDataTemp._spm = ["0.sear9.", catg2ndId, ".", index].join("");
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -667,7 +681,10 @@ define('sf.b2c.mall.component.search', [
     "[data-role=selectOrigin] li click": function(targetElement) {
       var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.originIds = [targetElement.data("id")];
+      var index = $(targetElement).index("[data-role=selectOrigin] li");
+      var originId = targetElement.data("id");
+      searchDataTemp.originIds = [originId];
+      searchDataTemp._spm = ["0.sear10.", originId, ".", index].join("");
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -677,7 +694,10 @@ define('sf.b2c.mall.component.search', [
     "[data-role=selectShopNation] li click": function(targetElement) {
       var searchDataTemp = _.clone(this.searchData);
       delete searchDataTemp.page;
-      searchDataTemp.snIds = [targetElement.data("id")];
+      var index = $(targetElement).index("[data-role=selectShopNation] li");
+      var snId = targetElement.data("id");
+      searchDataTemp.snIds = [snId];
+      searchDataTemp._spm = ["0.sear11.", snId, ".", index].join("");
       this.gotoNewPage(searchDataTemp);
     },
     /**
@@ -716,6 +736,7 @@ define('sf.b2c.mall.component.search', [
 
       var searchDataTemp = _.clone(this.searchData);
       searchDataTemp.page = prevPage ? prevPage : 1;
+      searchDataTemp._spm = "0.sear13.0.0";
       this.gotoNewPage(searchDataTemp);
     },
 
@@ -728,6 +749,7 @@ define('sf.b2c.mall.component.search', [
 
       var searchDataTemp = _.clone(this.searchData);
       searchDataTemp.page = nextPage;
+      searchDataTemp._spm = "0.sear13.0.1";
       this.gotoNewPage(searchDataTemp);
     },
 
@@ -742,8 +764,11 @@ define('sf.b2c.mall.component.search', [
           return item;
         }
       })
-      this.renderData.attr("sort", selectSort);
-      this.gotoNewPage();
+
+      var searchDataTemp = _.clone(this.searchData);
+      searchDataTemp.sort = selectSort.value;
+      searchDataTemp._spm = selectSort._spm;
+      this.gotoNewPage(searchDataTemp);
     },
     /**
      * 是否显示接口数据、用户数据、实时库存
