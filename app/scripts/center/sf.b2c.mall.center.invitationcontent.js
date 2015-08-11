@@ -182,7 +182,7 @@ define('sf.b2c.mall.center.invitationcontent', [
               .done(function(data) {
                 if (data.value) {
                   var message = new SFMessage(null, {
-                    'tip': '提现成功！',
+                    'tip': '提现成功，提现金额约3个工作日内到账！',
                     'type': 'success',
                     'okFunction': _.bind(function() {
                       window.location.reload();
