@@ -60,9 +60,7 @@ define('sf.b2c.mall.center.message', ['can',
              "totalNum":commentData.page.totalNum,
              "pageSize":commentData.page.pageNum
            });
-           if(commentData.page.pageNum.length > 0){
-             new Pagination('.sf-b2c-mall-message-pagination', that.options);
-           }
+           new Pagination('.sf-b2c-mall-message-pagination', that.options);
 
          })
          .fail(function(error) {
