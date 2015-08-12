@@ -48,16 +48,16 @@ define('sf.b2c.mall.component.header.searchbox', [
     templateMap: {
       "suggestKeywords": function() {
         return '{{#each searchHeaderConfig.searchLinkList}}'
-                + '<li class="active"><a href="{{link}}" target="_blank">{{content}}</a></li>'
+                + '<li class="active"><a href="{{#linkSpm link @index}}{{/linkSpm}}" target="_blank">{{content}}</a></li>'
                 + '{{/each}}'
                 + '{{#each searchHeaderConfig.hotKeywordList}}'
-                + '<li><a {{#if isBlank}}target="_blank"{{/if}} href="http://www.sfht.com/search.html?keyword={{.}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
+                + '<li><a {{#if isBlank}}target="_blank"{{/if}} href="http://www.sfht.com/search.html?keyword={{.}}&_spm=0.sear6.0.{{@index}}" data-keyword="{{.}}" role="header-search-link">{{.}}</a></li>'
                 + '{{/each}}';
       },
       'historyList': function() {
         return '{{#each historyList.data}}'
                 + '<li>' 
-                + '<a class="clearfix" role="header-search-link" data-keyword="{{.}}" href="http://www.sfht.com/search.html?keyword={{.}}">'
+                + '<a class="clearfix" role="header-search-link" data-keyword="{{.}}" href="http://www.sfht.com/search.html?keyword={{.}}&_spm=0.sear0.0.{{@index}}">'
                 + '<div class="fl">{{.}}</div>'
                 + '</a>'
                 + '</li>'
@@ -66,14 +66,14 @@ define('sf.b2c.mall.component.header.searchbox', [
       'associateList': function() {
         return '{{#if associateList.data.totalCount}}' 
                 + '<li>' 
-                + '<a class="clearfix" role="header-search-link" data-keyword="{{associateList.data.suggestKeywords}}" href="http://www.sfht.com/search.html?keyword={{associateList.data.suggestKeywords}}">'
+                + '<a class="clearfix" role="header-search-link" data-keyword="{{associateList.data.suggestKeywords}}" href="http://www.sfht.com/search.html?keyword={{associateList.data.suggestKeywords}}&_spm=0.sear2.0.0">'
                 + '<div class="fl">{{associateList.data.suggestKeywords}}</div>'
                 + '<div class="fr">共{{associateList.data.totalCount}}个结果</div>'
                 + '</a>'
                 + '</li>'
                 + '{{#each associateList.data.aggregation.buckets}}'
                 + '<li class="header-search-dropdown-category">'
-                + '<a class="clearfix" role="header-search-link" data-keyword="{{associateList.data.suggestKeywords}}" data-category-ids={{id}} href="http://www.sfht.com/search.html?keyword={{associateList.data.suggestKeywords}}&categoryIds={{id}}">'
+                + '<a class="clearfix" role="header-search-link" data-keyword="{{associateList.data.suggestKeywords}}" data-category-ids={{id}} href="http://www.sfht.com/search.html?keyword={{associateList.data.suggestKeywords}}&categoryIds={{id}}&_spm=0.sear3.0.{{@index}}">'
                 + '<div class="fl">在<span>{{key}}</span>下搜索</div>'
                 + '<div class="fr">共{{count}}个结果</div>'
                 + '</a>'
@@ -81,7 +81,7 @@ define('sf.b2c.mall.component.header.searchbox', [
                 + '{{/each}}'
                 + '{{#each associateList.data.relevanceList}}'
                 + '<li>' 
-                + '<a class="clearfix" role="header-search-link" data-keyword="{{keyword}}" href="http://www.sfht.com/search.html?keyword={{keyword}}">'
+                + '<a class="clearfix" role="header-search-link" data-keyword="{{keyword}}" href="http://www.sfht.com/search.html?keyword={{keyword}}&_spm=0.sear4.0.{{@index}}">'
                 + '<div class="fl">{{keyword}}</div>'
                 + '<div class="fr">共{{count}}个结果</div>'
                 + '</a>'
@@ -92,6 +92,14 @@ define('sf.b2c.mall.component.header.searchbox', [
     },
 
     helpers: {
+      "linkSpm": function(link, index, options) {
+        var link = link();
+        if (link.split("?").length > 1) {
+          return link + "&_spm=0.sear5.0." + index();
+        } else {
+          return link + "?_spm=0.sear5.0." + index();
+        }
+      },
     },
 
     /**
@@ -482,7 +490,7 @@ define('sf.b2c.mall.component.header.searchbox', [
      */
     gotoSearchPage: function(keyword, categoryIds) {
       var params = can.deparam(window.location.search.substr(1));
-      var href = ["http://www.sfht.com/search.html?keyword=", keyword]
+      var href = ["http://www.sfht.com/search.html?_spm=0.sear1.0.0&keyword=", keyword]
 
       if (categoryIds) {
         href.push("&categoryIds=");
