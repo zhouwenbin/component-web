@@ -23,10 +23,6 @@ define('sf.b2c.mall.component.commenteditor', [
   template_component_commenteditor) {
   return can.Control.extend({
 
-    helpers: {
-
-    },
-
     init: function(element, options) {
       this.component = {};
       this.adapter = {};

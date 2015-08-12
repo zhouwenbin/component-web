@@ -45,7 +45,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return array;
           }
         },
-        'isSecGoods':function(goodsType,options){
+        'isSecGoods': function(goodsType, options) {
           if (goodsType == "SECKILL") {
             return options.fn(options.contexts || this);
           } else {
@@ -57,7 +57,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         this.render();
       },
 
-      watchDetail: function (data) {
+      watchDetail: function(data) {
         var uinfo = $.cookie('3_uinfo');
         var arr = [];
         if (uinfo) {
@@ -65,7 +65,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         }
 
         var name = arr[0];
-        SFMediav.watchOrderDetail({name: name}, {id: (new Date()).valueOf(), amount: data.totalPrice});
+        SFMediav.watchOrderDetail({
+          name: name
+        }, {
+          id: (new Date()).valueOf(),
+          amount: data.totalPrice
+        });
       },
 
       render: function(data) {
@@ -110,22 +115,22 @@ define('sf.b2c.mall.order.orderdetailcontent', [
                 that.options.isShareBag = true;
                 that.options.shareBag = tmpOrderCouponItem;
               },
-               "INTRGAL": function() {
-                    switch (tmpOrderCouponItem.orderAction) {
-                        case "COST":
-                        {
-                            that.options.isCostPoint = true;
-                            that.options.costPoint = tmpOrderCouponItem.price;
-                            break;
-                        }
-                        case "PRESENT":
-                        {
-                            that.options.isPresentPoint = true;
-                            that.options.presentPoint = tmpOrderCouponItem.price;
-                            break;
-                        }
+              "INTRGAL": function() {
+                switch (tmpOrderCouponItem.orderAction) {
+                  case "COST":
+                    {
+                      that.options.isCostPoint = true;
+                      that.options.costPoint = tmpOrderCouponItem.price;
+                      break;
+                    }
+                  case "PRESENT":
+                    {
+                      that.options.isPresentPoint = true;
+                      that.options.presentPoint = tmpOrderCouponItem.price;
+                      break;
                     }
                 }
+              }
             };
 
             var couponTypeHandle = function(tag) {
@@ -143,8 +148,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             }
 
             that.options.orderInfo = data;
-            that.options.orderInfo. totalPoint =data.presentIntegral;
-            that.options.gmtCreate =  data.orderItem.gmtCreate;
+            that.options.orderInfo.totalPoint = data.presentIntegral;
+            that.options.gmtCreate = data.orderItem.gmtCreate;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
             // that.options.isCostCoupon = false;
@@ -155,11 +160,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
             that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
-            if(typeof that.options.costPoint == "undefined"  || that.options.costPoint == ""){
-                that.options.costPoint = 0;
+            if (typeof that.options.costPoint == "undefined" || that.options.costPoint == "") {
+              that.options.costPoint = 0;
             }
-            if(typeof that.options.totalPoint == "undefined"  || that.options.totalPoint == ""){
-                that.options.totalPoint = 0;
+            if (typeof that.options.totalPoint == "undefined" || that.options.totalPoint == "") {
+              that.options.totalPoint = 0;
             }
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
@@ -174,9 +179,22 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .then(function() {
             return findCommentStatus.sendRequest()
           })
-          .done(function(commentData){
-            $("#commentstep").html(that.commentOperationHTML[commentData.value[0].status]);
-            that.commentSatisf = commentData.value[0].commentSatisf;
+          .done(function(commentData) {
+
+            var showCommentButton = false;
+
+            //只要有一个包裹为签收状态，则暂时按钮
+            _.each(that.options.orderPackageItemList, function(item) {
+              if (item.status == "COMPLETED" || item.status == "AUTO_COMPLETED") {
+                showCommentButton = true;
+              }
+            })
+
+            if (showCommentButton) {
+              $("#commentstep").html(that.commentOperationHTML[commentData.value[0].status]);
+              that.commentSatisf = commentData.value[0].commentSatisf;
+            }
+
           })
       },
 
@@ -192,7 +210,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       '.btn-shareorder click': function(element, event) {
         var orderId = this.orderid;
         var commentSatisf = this.commentSatisf;
-        window.location.href = "/shareorder.html?orderid=" + orderId +"&commentSatisf=" + commentSatisf;
+        window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;
       },
 
       renderPackageItemInfo: function(tag, data) {
@@ -231,7 +249,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           'CLOSED': 'order-detail-step5',
           'CONSIGNED': 'order-detail-step4',
           'RECEIPTED': 'order-detail-step5',
-          'AUTO_COMPLETED':'order-detail-step5'
+          'AUTO_COMPLETED': 'order-detail-step5'
         };
 
         packageInfo.showWhereStep = map[packageInfo.status];
@@ -416,7 +434,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             var message = new SFMessage(null, {
               'okFunction': function() {
-                window.location.href = "/shareorder.html?orderid=" + that.orderid +"&commentSatisf=" + that.commentSatisf;
+                window.location.href = "/shareorder.html?orderid=" + that.orderid + "&commentSatisf=" + that.commentSatisf;
               },
               'closeFunction': function() {
                 that.render();
