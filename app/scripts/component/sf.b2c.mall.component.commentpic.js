@@ -210,7 +210,7 @@ define(
         $("input[name=imgs" + index + "]").attr("value", "");
         $("li#" + id).remove();
         --this.imgCount;
-        $(".upload-btn").show();
+        $(".comment-add-img-add").show();
       }
 
     });

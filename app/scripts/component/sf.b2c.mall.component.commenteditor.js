@@ -302,7 +302,7 @@ define('sf.b2c.mall.component.commenteditor', [
         .fail(function(error) {
 
         })
-        .always(function(){
+        .always(function() {
           element.removeClass("disable");
         })
     },
@@ -336,6 +336,9 @@ define('sf.b2c.mall.component.commenteditor', [
         return false;
       }
 
+      this.adapter.comment.attr("error", {
+        "content": ''
+      });
       return true;
     },
 

@@ -30,10 +30,14 @@ define(
         that.element.html(that.options.html);
       },
 
-      "#customeized keydown": function(element, event) {
+      "#customeized keyup": function(element, event) {
         var value = $(element).val();
 
-        if (value && value.length > 12) {
+        if (!value){
+          return false;
+        }
+
+        if (value.length > 12) {
           this.options.adapter.comment.attr("error", {
             "commentGoodsLabels": '最多只能输入12个字哦，再删减下吧'
           });
@@ -58,7 +62,7 @@ define(
           }
           var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span>';
           $(html).insertBefore($("#customeized"));
-          $("#customeized").text("");
+          $(element).val("");
 
           ++this.customizedTagCount;
           return false;

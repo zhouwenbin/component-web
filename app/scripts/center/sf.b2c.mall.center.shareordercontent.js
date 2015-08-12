@@ -2,6 +2,7 @@
 
 define('sf.b2c.mall.center.shareordercontent', [
     'can',
+    'store',
     'jquery',
     'qrcode',
     'sf.helpers',
@@ -19,7 +20,7 @@ define('sf.b2c.mall.center.shareordercontent', [
     'sf.b2c.mall.fixture.case.center.comment',
     'text!template_center_shareordercontent'
   ],
-  function(can, $, qrcode, helpers, chart, moment, utils, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
+  function(can, store, $, qrcode, helpers, chart, moment, utils, SFMessage, SFConfig, SFCommenteditor, SFGetComments,
     SFPublishCompreComment,
     SFFindCommentStatus,
     SFGetOrder,
@@ -71,7 +72,7 @@ define('sf.b2c.mall.center.shareordercontent', [
       firstItemClick: function() {
         var firstEle = $(".gotoshareorder").eq(0);
         var status = firstEle.attr("data-status");
-        if (status == 0 || status == 1) {
+        if (status == 0 || status == 2) {
           firstEle.click();
         }
       },
@@ -141,8 +142,21 @@ define('sf.b2c.mall.center.shareordercontent', [
         })
 
         that.options.orderItem = dataArr;
-        that.options.showinputtotal = (this.commentSatisf === "1") ? false : true;
+        that.options.showinputtotal = this.canShowInputTotal();
         that.options = new can.Map(this.options);
+      },
+
+      canShowInputTotal: function() {
+        var totaljudge = store.get("totaljudge" + this.orderid);
+        if (totaljudge) {
+          return false;
+        }
+
+        if (this.commentSatisf === "1") {
+          return false;
+        }
+
+        return true;
       },
 
       supplement: function() {
@@ -254,6 +268,7 @@ define('sf.b2c.mall.center.shareordercontent', [
           .done(function(data) {
             if (data.value) {
               that.options.attr("showinputtotal", false);
+              store.set("totaljudge" + that.orderid, true)
             }
           })
           .fail(function(error) {
@@ -277,7 +292,13 @@ define('sf.b2c.mall.center.shareordercontent', [
 
         // 进行销毁和重新初始化
         if (this.commenteditor) {
-          $(".commentEditorArea").html("")
+          // 如果是自身编辑已经存在了，则要销毁掉，这样就可以支持点击按钮关闭当前编辑了
+          if (element.parents(".comment-list").find(".comment-add").length > 0) {
+            $(".commentEditorArea", element.parents(".comment-list")).html("");
+            return false;
+          } else {
+            $(".commentEditorArea", element.parents(".comment-list").siblings()).html("");
+          }
         }
 
         var getComments = new SFGetComments({
@@ -315,19 +336,6 @@ define('sf.b2c.mall.center.shareordercontent', [
           .fail(function(error) {
             console.error(error);
           })
-
-
-
-        // // 做动画效果
-        // $(".commentEditorArea").stop(true, false).animate({
-        //   height: "0px",
-        //   opacity: 0
-        // }, 500);
-
-        // $(".commentEditorArea", element.parents("td")).stop(true, false).animate({
-        //   height: "555px",
-        //   opacity: 1
-        // }, 500);
 
       }
 
