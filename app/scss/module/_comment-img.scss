@@ -35,7 +35,7 @@
 .comment-img-big{
 	margin-bottom: 20px;
 	position: relative;
-	display: inline-block;
+	display: block;
 }
 .comment-img-big li{
 	display: none;
@@ -63,4 +63,30 @@
 .comment-img-big-next{
 	transform:rotate(-225deg);
 	right: 19px;
+}
+.comment-img-del{
+  display: inline-block;
+  vertical-align: top;
+}
+.comment-img-del>li:hover{
+  border-color: #E13B3A;
+}
+.comment-add-img-del{
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: #fff;
+  background: #E13B3A;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+  font-size: 12px;
+}
+.comment-add-img-del:hover{
+  color: #fff;
+}
+.comment-img-del>li:hover .comment-add-img-del{
+  display: block;
 }
