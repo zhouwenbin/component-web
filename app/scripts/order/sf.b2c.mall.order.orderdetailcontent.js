@@ -51,6 +51,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+        'refundTaxStatus': function(refundTax, stateText, options) {
+          if (refundTax.state == stateText) {
+            return options.fn(options.contexts || this);
+          }
         }
       },
       init: function(element, options) {
@@ -183,6 +188,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
 
       renderPackageItemInfo: function(tag, data) {
+        var that = this;
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList;
 
@@ -229,13 +235,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           });
           getRefundTax.sendRequest()
             .done(function(data) {
-              console.log(data);
+              packageInfo.refundTax = new can.Map(data);
+              var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+              $('#packageItemInfo').html(html);
             }).fail(function(errorCode) {
 
             })
+        } else {
+
         }
-        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, this.helpers);
-        $('#packageItemInfo').html(html);
+
         var len = $('#showUserRoutes li').length;
         if (len > 3) {
           $('#showUserRoutes li:gt(2)').hide();
@@ -243,6 +252,17 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           $('.look-more').hide();
         }
 
+      },
+      // 申请退税     
+      '.btn-refundtax click': function(element, event) {
+        event && event.preventDefault();
+        var params = can.deparam(window.location.search.substr(1));
+        var gotoUrl = 'http://www.sfht.com/createRefundTax.html' + '?' + $.param({
+          "bizId": $(element).attr('data-bizId'),
+          "saleid": $(element).attr('data-mailNo'),
+          "orderid": params.orderid
+        });
+        window.location.href = gotoUrl;
       },
       /**
        * @description 查看更多物流信息

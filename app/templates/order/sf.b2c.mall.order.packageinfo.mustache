@@ -16,6 +16,27 @@
           <strong>当前状态：{{orderStatus}}</strong>
           {{#isShowShippingTime}}
           <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}，{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/isShowShippingTime}}
+          {{! 退税 }}
+          {{^if refundTax}}
+          <div class="order-detail-refundtax">
+           <span>如您购买的商品被税，请点击申请返还税金按钮，提交申请>></span>
+           <button data-bizId="{{bizId}}" data-mailNo="{{mailNo}}" class="btn btn-success btn-small btn-refundtax">申请返还税金</button>  
+          </div>
+          {{/if}}
+          {{#if refundTax}}
+          <div class="order-detail-refundtax">
+           {{#refundTaxStatus refundTax '待审核'}}
+           退税申请：<span class="text-important">资料已上传——审核中</span>
+           {{/refundTaxStatus}} 
+           {{#refundTaxStatus refundTax '审核失败'}}
+           退税申请：<span class="text-important">资料已上传——审核中</span>
+           {{/refundTaxStatus}} 
+           {{#refundTaxStatus refundTax '退款成功'}}
+           退税申请：<span class="text-important">资料已上传——审核中</span>
+           {{/refundTaxStatus}}
+          </div>
+          {{/if}}
+
           {{#if isShowLinkServer}}
       <p>顺丰海淘正在努力打包中… 若顺丰海淘较长时间未发货，您可以<a target="_blank" href="http://sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&amp;configID=20&amp;skillId=20&amp;enterurl=http%3A%2F%2Fsf-ocs%2Esf-express%2Ecom%3A8080%2Flive800%2Fpreview%2Ejsp&amp;pagereferrer=http%3A%2F%2Fsf-ocs%2Esf-express%2Ecom%3A8080%2Flive800%2FembedScript%2Ejsp%3FcurrentConfigId%3D20&amp;k=1" class="btn btn-soon btn-small">联系客服发货</a></p>{{/if}}         
       </div>
