@@ -40,8 +40,24 @@ body{
 	margin-top: 42px;
 	padding: 10px;
 	background: rgba(0,0,0,.2);
+	.active::after{
+		content: "";
+		position: absolute;
+		bottom: -34px;
+		left: 50%;
+		margin-left: -12px;
+		border-width: 12px;
+		border-style: dashed;
+		border-color: transparent;
+		border-top: 12px solid #000;
+		opacity: 0.25;
+	}
 	.active .japan-mask{
-		background: rgba(0,0,0,.2);
+		background: none;
+	}
+	.active:hover .japan-mask,
+	.no-open:hover .japan-mask{
+		border: 0 none;
 	}
 }
 .japan-list li{
@@ -49,6 +65,26 @@ body{
 	position: relative;
 	margin: 0 6px;
 	color: #fff;
+	.japan-mask{
+		background: none;
+	}
+	&:hover{
+		cursor: pointer;
+		.japan-mask{
+			border-bottom: 2px solid #dd3e3f;
+		}
+	}
+}
+.japan-list .no-open{
+	.japan-mask{
+		background: rgba(0,0,0,.6);
+		span{
+			font-size: 14px;
+		}
+	}
+	&:hover{
+		cursor: default;
+	}
 }
 .japan-mask{
 	position: absolute;
