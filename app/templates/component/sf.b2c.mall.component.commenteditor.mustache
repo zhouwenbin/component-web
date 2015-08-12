@@ -35,8 +35,8 @@
       <span style="padding-top: 8px; display: inline-block;">{{comment.input.pluscontent}}</span>
     {{/if}}
     {{^if comment.input.viewpluscontent}}
-      <textarea id="inputContent" class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.pluscontent"></textarea>
-      <span class="s1"><span class="text-error" id="currentword">0</span>-300字</span>
+      <textarea id="inputContentplus" class="textarea" placeholder="商品是否给力，快来分享下您的购物心得吧~" can-value="comment.input.pluscontent"></textarea>
+      <span class="s1"><span class="text-error" id="pluscurrentword">0</span>/300字</span>
       <p class="text-error">{{comment.error.pluscontent}}</p>
     {{/if}}
 

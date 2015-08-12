@@ -33,20 +33,20 @@ define(
       "#customeized keyup": function(element, event) {
         var value = $(element).val();
 
-        if (!value){
-          return false;
-        }
-
-        if (value.length > 12) {
-          this.options.adapter.comment.attr("error", {
-            "commentGoodsLabels": '最多只能输入12个字哦，再删减下吧'
-          });
-
+        if (!value) {
           return false;
         }
 
         if (event.keyCode == 13) {
-            if (this.customizedTagCount == 3) {
+          if (value.length > 12) {
+            this.options.adapter.comment.attr("error", {
+              "commentGoodsLabels": '最多只能输入12个字哦，再删减下吧'
+            });
+
+            return false;
+          }
+
+          if (this.customizedTagCount == 3) {
             this.options.adapter.comment.attr("error", {
               "commentGoodsLabels": '最多只能自定义3个标签哦，选你认为最贴切的吧'
             });

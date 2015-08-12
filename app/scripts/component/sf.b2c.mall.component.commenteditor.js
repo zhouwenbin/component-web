@@ -31,6 +31,12 @@ define('sf.b2c.mall.component.commenteditor', [
       this.component = {};
       this.adapter = {};
       this.commentId = null;
+
+      this.show(this.options.data, this.options.tag);
+    },
+
+    destroy: function() {
+      can.Control.prototype.destroy.call( this );
     },
 
     statusMap: {
@@ -39,13 +45,13 @@ define('sf.b2c.mall.component.commenteditor', [
       "view": 2
     },
 
-    show: function(data, tag, element, submitCallback) {
+    show: function(data, tag) {
       // orderid和itemid为全局变量
       this.orderid = data.orderid;
       this.itemid = data.itemid;
       this.skuid = data.skuid;
       this.spec = data.spec;
-      this.submitCallback = submitCallback;
+      this.tag = tag;
 
       // 获得标签
       var labels = [];
@@ -72,6 +78,7 @@ define('sf.b2c.mall.component.commenteditor', [
               viewcontent: false,
               content: '',
               showpluscontent: false,
+              pluscontent: '',
               img: null,
               isAnonym: true,
               view: false,
@@ -143,16 +150,16 @@ define('sf.b2c.mall.component.commenteditor', [
       var info = map[tag].call(this, data);
       this.adapter.comment = new can.Map(info);
 
-      this.render(this.adapter, element, tag);
+      this.render(this.adapter, tag);
     },
 
-    render: function(adapter, element, tag) {
+    render: function(adapter, tag) {
 
       // 初始化模板
-      this.setup(element);
+      // this.setup(element);
       var renderFn = can.mustache(template_component_commenteditor);
       var html = renderFn(adapter, this.helpers);
-      element.html(html);
+      this.element.html(html);
 
       this.renderComponent(adapter, tag);
     },
@@ -175,7 +182,6 @@ define('sf.b2c.mall.component.commenteditor', [
       });
 
       //初始化标签
-
       var isTagView = (tag === 'add' ? false : true);
       if (isTagView && adapter.comment.input.commentGoodsLabels.length == 0) {
         $("#tagLi").remove();
@@ -187,25 +193,6 @@ define('sf.b2c.mall.component.commenteditor', [
           "adapter": adapter
         });
       }
-
-      // this.component.findCommentLabels = new SFFindCommentLabels({
-      //   "itemId": this.itemid
-      // });
-      // this.component.findCommentLabels
-      //   .sendRequest()
-      //   .done(function(data) {
-
-      //     that.component.commenttag = new SFCommenttag($("#commenttagarea"), {
-      //       "data": data.CommentGoodsLabels,
-      //       "showtip": true,
-      //       "view": tag === 'add' ? false : true,
-      //       "adapter": adapter
-      //     });
-
-      //   })
-      //   .fail(function(error) {
-
-      //   })
 
       // 初始化图片
       this.component.commentpic = new SFCommentpic(null, {
@@ -227,6 +214,13 @@ define('sf.b2c.mall.component.commenteditor', [
       // 校验内容
       if (!this.checkContent()) {
         return false;
+      }
+
+
+      if (this.tag == "addplus") {
+        if (!this.checkContentPlus()) {
+          return false;
+        }
       }
 
       // 校验标签
@@ -256,12 +250,14 @@ define('sf.b2c.mall.component.commenteditor', [
       var comment = this.adapter.comment.input.attr();
 
       if (!this.check(comment)) {
+        element.removeClass("disable");
         return false;
       }
 
       if (this.component.commenttag) {
         var tagList = this.component.commenttag.getValue();
         if (tagList === false) {
+          element.removeClass("disable");
           return false;
         }
       }
@@ -294,8 +290,8 @@ define('sf.b2c.mall.component.commenteditor', [
         .done(function(data) {
 
           // 执行回调
-          if (_.isFunction(that.submitCallback)) {
-            that.submitCallback(data.integralAmount);
+          if (_.isFunction(that.options.submitCallback)) {
+            that.options.submitCallback(data.integralAmount);
           };
 
         })
@@ -342,8 +338,51 @@ define('sf.b2c.mall.component.commenteditor', [
       return true;
     },
 
+    checkContentPlus: function() {
+      var comment = this.adapter.comment.input.attr();
+
+      if (!comment.pluscontent) {
+        this.adapter.comment.attr("error", {
+          "pluscontent": '和小伙伴分享下购物心得嘛'
+        });
+        return false;
+      }
+
+      if (!comment.pluscontent || comment.pluscontent.length < 5) {
+        this.adapter.comment.attr("error", {
+          "pluscontent": '最少5个字，多说几句吧，小伙伴期待你的使用心得'
+        });
+        return false;
+      }
+
+      if (!comment.pluscontent || comment.pluscontent.length > 300) {
+        this.adapter.comment.attr("error", {
+          "pluscontent": '最多300个字哦'
+        });
+        return false;
+      }
+
+      this.adapter.comment.attr("error", {
+        "pluscontent": ''
+      });
+      return true;
+    },
+
+    "#inputContentplus blur": function(element, event) {
+      event && event.preventDefault();
+
+      this.checkContentPlus();
+    },
+
+    '#inputContentplus keyup': function(element, event) {
+      event && event.preventDefault();
+      // 统计内容个数
+      $("#pluscurrentword").text(element.val().length);
+    },
+
     '#inputContent blur': function(element, event) {
       event && event.preventDefault();
+
       this.checkContent();
     },
 

@@ -299,6 +299,9 @@ define('sf.b2c.mall.center.shareordercontent', [
           } else {
             $(".commentEditorArea", element.parents(".comment-list").siblings()).html("");
           }
+
+          this.commenteditor.destroy();
+          this.commenteditor = null;
         }
 
         var getComments = new SFGetComments({
@@ -328,10 +331,15 @@ define('sf.b2c.mall.center.shareordercontent', [
               }
             }
 
-            that.commenteditor = new SFCommenteditor();
-
+            var id = window.parseInt(Math.random() * 10000);
             var handler = _.bind(that.submitCallback, that);
-            that.commenteditor.show(data, that.operationMap[itemStatus], $(".commentEditorArea", element.parents("li")), handler);
+
+            that.commenteditor = new SFCommenteditor($(".commentEditorArea", element.parents("li")), {
+              "id": id,
+              "data": data,
+              "tag": that.operationMap[itemStatus],
+              "submitCallback": handler
+            });
           })
           .fail(function(error) {
             console.error(error);
