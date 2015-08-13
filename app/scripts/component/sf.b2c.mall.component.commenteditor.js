@@ -295,7 +295,7 @@ define('sf.b2c.mall.component.commenteditor', [
 
           // 执行回调
           if (_.isFunction(that.options.submitCallback)) {
-            that.options.submitCallback(data.integralAmount);
+            that.options.submitCallback(data.value[0].integralAmount);
           };
 
         })
