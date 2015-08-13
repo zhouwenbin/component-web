@@ -102,12 +102,12 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           that.options.comments = commentData;
 
           if (that.options.outline.keyValuePaires) {
-            that.options.outline.totalCount = labels.commentCount;
-            that.options.outline.goodCount = labels.keyValuePaires[0].value;
-            that.options.outline.middleCount = labels.keyValuePaires[1].value;
-            that.options.outline.badCount = labels.keyValuePaires[2].value;
-            that.options.outline.shareorderCount = labels.keyValuePaires[3].value;
-            that.options.outline.addplusCount = labels.keyValuePaires[4].value;
+            that.options.outline.totalCount = labels.keyValuePaires[0].value;
+            that.options.outline.goodCount = labels.keyValuePaires[1].value;
+            that.options.outline.middleCount = labels.keyValuePaires[2].value;
+            that.options.outline.badCount = labels.keyValuePaires[3].value;
+            that.options.outline.shareorderCount = labels.keyValuePaires[4].value;
+            that.options.outline.addplusCount = labels.keyValuePaires[5].value;
           }
 
           that.options = new can.Map(that.options);
