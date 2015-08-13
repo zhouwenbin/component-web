@@ -9,7 +9,7 @@ define(
 		'sf.b2c.mall.api.order.getOrderV2',
 		'plupload'
 	],
-	function(can, $, SFFrameworkComm, SFFn, SFBusiness, SFCreateRefundTax, SFGetOrderV2, plupload) {
+	function(can, $, SFFrameworkComm, SFFn, SFBizConf, SFCreateRefundTax, SFGetOrderV2, plupload) {
 
 		SFFrameworkComm.register(1);
 		SFFn.monitor();
@@ -30,7 +30,6 @@ define(
 					.done(function(data) {
 						that.options.data = new can.Map(data);
 					});
-
 
 			},
 			'#alipayaccount blur': function(element, event) {
@@ -78,7 +77,7 @@ define(
 					});
 
 					createRefundTax.sendRequest()
-						.done(function() {
+						.done(function(data) {
 
 						})
 				};

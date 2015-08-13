@@ -175,6 +175,8 @@ requirejs.config({
         'canvasjs': 'scripts/vendor/canvasjs.min',
         "chart": "scripts/vendor/Chart",
         'jquery.stackslider': 'scripts/vendor/jquery.stackslider',
+        'plupload': 'scripts/vendor/plupload',
+        'livequery': 'scripts/vendor/jquery.livequery',
 
         'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
         'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
