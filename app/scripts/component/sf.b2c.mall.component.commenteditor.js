@@ -55,8 +55,14 @@ define('sf.b2c.mall.component.commenteditor', [
       // if (data.skuLabels) {
       //   labels = labels.concat(data.skuLabels);
       // }
-      if (data.commentGoodsLabels) {
-        labels = labels.concat(data.commentGoodsLabels);
+      if (tag == 'add') {
+        if (data.skuLabels) {
+          labels = labels.concat(data.skuLabels);
+        }
+      } else if (tag == "view" || tag == "addplus") {
+        if (data.commentGoodsLabels) {
+          labels = labels.concat(data.commentGoodsLabels);
+        }
       }
 
       // 获得commentId
