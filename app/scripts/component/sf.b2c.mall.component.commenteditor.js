@@ -32,7 +32,7 @@ define('sf.b2c.mall.component.commenteditor', [
     },
 
     destroy: function() {
-      can.Control.prototype.destroy.call( this );
+      can.Control.prototype.destroy.call(this);
     },
 
     statusMap: {
@@ -293,7 +293,16 @@ define('sf.b2c.mall.component.commenteditor', [
           };
 
         })
-        .fail(function(error) {
+        .fail(function(error, message) {
+          debugger;
+          if (error == 14013000) {
+            that.adapter.comment.attr("error", {
+              "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
+            });
+            that.adapter.comment.attr("error", {
+              "pluscontent": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
+            });
+          }
 
         })
         .always(function() {
