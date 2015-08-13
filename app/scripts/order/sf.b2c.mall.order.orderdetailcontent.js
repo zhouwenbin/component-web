@@ -346,9 +346,9 @@ debugger;
       },
 
       commentOperationHTML: {
-        "0": '<button class="btn btn-success btn-small btn-shareorder">填写评价</button>',
-        "1": '<button class="btn btn-success btn-small btn-shareorder">追加评价</button>',
-        "2": '<button class="btn btn-success btn-small btn-shareorder">查看评价</button>'
+        "0": '<button class="btn btn-normal btn-small btn-shareorder">填写评价</button>',
+        "1": '<button class="btn btn-normal btn-small btn-shareorder">追加评价</button>',
+        "2": '<button class="btn btn-normal btn-small btn-shareorder">查看评价</button>'
       },
 
       stepMap: {

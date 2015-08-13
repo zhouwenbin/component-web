@@ -641,10 +641,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'WAIT_SHIPPING': ['INFO', 'REBUY'],
         'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
         'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
-        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
-        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'SHIPPED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
+        'CONSIGNED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
+        'COMPLETED': ['ROUTE', 'INFO', 'REBUY'],
+        'RECEIPTED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
         'CLOSED': ['INFO', 'REBUY'],
         'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
       },
@@ -664,9 +664,9 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
         "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>',
-        "COMMENT": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">填写评价</a>',
-        "COMMENT_PLUS": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">追加评价</a>',
-        "COMMENT_VIEW": '<a href="javascript:;" class="btn btn-success btn-small btn-shareorder">查看评价</a>'
+        "COMMENT": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">填写评价</a>',
+        "COMMENT_PLUS": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">追加评价</a>',
+        "COMMENT_VIEW": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">查看评价</a>'
       },
       //去支付
       '.gotoPay click': function(element, event) {
