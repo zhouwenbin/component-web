@@ -39,7 +39,9 @@
 	text-align: center;
 }
 .cart tbody tr{
-	border-top: 1px solid #e5e5e5;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 }
 .cart td{
 	padding: 20px 25px;
@@ -139,5 +141,39 @@
 	color: #fff;
 	padding: 0;
 	margin-right: 5px;
-
 }
+.sign-for-first tr td{
+	background: #eee;
+	padding: 14px 0 14px 24px;
+	color:#df3c3a;
+}
+.sign-for-first tr td span{
+	padding: 2px 5px;
+	background: #df3c3a;
+	color: #fff;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
