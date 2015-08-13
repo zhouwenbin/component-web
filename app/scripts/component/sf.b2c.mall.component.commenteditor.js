@@ -52,9 +52,9 @@ define('sf.b2c.mall.component.commenteditor', [
 
       // 获得标签
       var labels = [];
-      if (data.skuLabels) {
-        labels = labels.concat(data.skuLabels);
-      }
+      // if (data.skuLabels) {
+      //   labels = labels.concat(data.skuLabels);
+      // }
       if (data.commentGoodsLabels) {
         labels = labels.concat(data.commentGoodsLabels);
       }
@@ -294,7 +294,6 @@ define('sf.b2c.mall.component.commenteditor', [
 
         })
         .fail(function(error, message) {
-          debugger;
           if (error == 14013000) {
             that.adapter.comment.attr("error", {
               "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"

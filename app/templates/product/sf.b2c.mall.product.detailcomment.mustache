@@ -2,13 +2,13 @@
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
-      {{^hasComments comments.commentGoods}}
+      {{^hasComments2 outline.commentCount}}
         <p>暂无评价</p>
-      {{/hasComments}}
-      {{#hasComments comments.commentGoods}}
+      {{/hasComments2}}
+      {{#hasComments2 outline.commentCount}}
         <div class="comment-progress"><div style="width:{{outline.score}}%"></div></div>
         <span class="text-error"><span class="comment-num">{{outline.score}}%</span>好评</span>
-      {{/hasComments}}
+      {{/hasComments2}}
 
       <p>共{{outline.totalCount}}条评价</p>
     </div>
