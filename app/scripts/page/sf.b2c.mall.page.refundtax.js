@@ -65,7 +65,7 @@ define(
 				if (name == '') {
 					$('#errorAlipayName').show();
 					return false;
-				}else{
+				} else {
 					return true;
 				}
 			},
@@ -74,26 +74,34 @@ define(
 				$('#errorAlipayAccount').hide();
 				$('#errorAlipayName').hide();
 				var params = can.deparam(window.location.search.substr(1));
+				var tag = params.tag;
 				var alipayAccount = $('#alipayaccount').val();
 				var alipayname = $('#alipayname').val();
 				var buyerName = this.options.orderItem.orderAddressItem.receiveName;
 				var buyerTelephone = this.options.orderItem.orderAddressItem.telephone;
+				var bizId = this.options.orderItem.orderPackageItemList[tag].packageNo;
+				var mailNo = this.options.orderItem.orderPackageItemList[tag].mailNo;
 				if (this.checkAlipayAccount(alipayAccount) && this.checkAlipayName(alipayname)) {
 					var params = can.deparam(window.location.search.substr(1));
 
 					var createRefundTax = new SFCreateRefundTax({
-						'bizId': '10101000192763S0001',
+						'bizId': bizId,
 						'masterBizId': params.orderid,
-						'mailNo': '1234',
+						'mailNo': mailNo,
 						'buyerName': buyerName,
 						'buyerTelephone': buyerTelephone,
 						'alipayAccount': alipayAccount,
 						'alipayUserName': alipayname,
-						'url':'http://img.sfht.com/sfht/1.1.185/img/icon.png'
+						'url': 'http://img.sfht.com/sfht/1.1.185/img/icon.png'
 					});
 
 					createRefundTax.sendRequest()
 						.done(function(data) {
+							$('.dialog-success-refertax').show();
+							$('.back-to-orderdetail').click(function() {
+								window.location.href = "http://www.sfht.com/orderdetail.html?orderid=10101000192763&suborderid=&recid=3695";
+							})
+						}).fail(function(errorCode) {
 
 						})
 				};
