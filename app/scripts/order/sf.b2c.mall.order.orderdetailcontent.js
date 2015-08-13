@@ -259,7 +259,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var params = can.deparam(window.location.search.substr(1));
         var gotoUrl = 'http://www.sfht.com/createRefundTax.html' + '?' + $.param({
           "bizId": $(element).attr('data-bizId'),
-          "saleid": $(element).attr('data-mailNo'),
+          "mailNo": $(element).attr('data-mailNo'),
           "orderid": params.orderid
         });
         window.location.href = gotoUrl;

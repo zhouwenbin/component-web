@@ -305,6 +305,9 @@ requirejs.config({
         //日本馆
         'sf.b2c.mall.page.japanpre': 'scripts/page/sf.b2c.mall.page.japanpre',
 
+        //退税
+        'sf.b2c.mall.page.refundtax': 'scripts/page/sf.b2c.mall.page.refundtax',
+
 
         //收货地址管理
         'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
