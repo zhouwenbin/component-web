@@ -32,17 +32,22 @@ define('sf.b2c.mall.center.shareordercontent', [
 
       helpers: {
         showImage: function(group) {
-          var array = eval(group());
-          if (array && _.isArray(array)) {
-            var url = array[0].replace(/.jpg/g, '.jpg@100h_100w.jpg');
-            if (/^http/.test(url)) {
-              return url;
+          try {
+            var array = eval(group());
+            if (array && _.isArray(array)) {
+              var url = array[0].replace(/.jpg/g, '.jpg@100h_100w.jpg');
+              if (/^http/.test(url)) {
+                return url;
+              } else {
+                return 'http://img0.sfht.com' + url;
+              }
             } else {
-              return 'http://img0.sfht.com' + url;
+              return array;
             }
-          } else {
-            return array;
+          } catch (e) {
+            return group();
           }
+
         },
 
         showSpec: function(spec) {
@@ -119,12 +124,17 @@ define('sf.b2c.mall.center.shareordercontent', [
         // 遍历设置状态和spec
         _.each(orderData.orderItem.orderPackageItemList, function(item) {
           var packageStatus = item.status;
+          var packageNo = item.packageNo;
           _.each(item.orderGoodsItemList, function(childItem) {
 
+            childItem.packageNo = packageNo;
+
             // 设置状态
-            if (packageStatus != 'COMPLETED' && packageStatus != 'AUTO_COMPLETED') {
+            if (packageStatus != 'RECEIPTED') {
               childItem.itemStatus = "-1";
             } else {
+              childItem.itemStatus = 0;
+              childItem.integralAmount = 0;
               that.setCommentStatus(childItem, commentStatus);
             }
 
@@ -283,6 +293,7 @@ define('sf.b2c.mall.center.shareordercontent', [
         var itemStatus = element.attr('data-status');
         var skuId = element.attr('data-skuid');
         var spec = element.attr('data-spec');
+        var packageNo = element.attr('data-packageno');
 
         if (itemStatus == "-1") {
           return false;
@@ -319,6 +330,7 @@ define('sf.b2c.mall.center.shareordercontent', [
                 "itemid": itemId,
                 "skuid": skuId,
                 "spec": spec,
+                "packageNo": packageNo,
                 "isLastEdit": isLastEdit
               });
             } else {
@@ -327,6 +339,7 @@ define('sf.b2c.mall.center.shareordercontent', [
                 "itemid": itemId,
                 "skuid": skuId,
                 "spec": spec,
+                "packageNo": packageNo,
                 "isLastEdit": isLastEdit
               }
             }

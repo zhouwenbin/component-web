@@ -231,8 +231,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 }
 
-
-
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
@@ -241,9 +239,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
                   _.each(order.orderPackageItemList, function(orderPackageItem, i) {
                     // 只要有一个包裹为完成状态 就要展示评价标签
-                    if (orderPackageItem.status == "COMPLETED" || orderPackageItem.status == "AUTO_COMPLETED") {
+                    if (orderPackageItem.status == "RECEIPTED") {
                       showCommentButton = true;
                     }
+
                     if (i !== 0) {
                       lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
                     };

@@ -47,6 +47,7 @@ define('sf.b2c.mall.component.commenteditor', [
       this.itemid = data.itemid;
       this.skuid = data.skuid;
       this.spec = data.spec;
+      this.packageNo = data.packageNo;
       this.tag = tag;
 
       // 获得标签
@@ -262,6 +263,7 @@ define('sf.b2c.mall.component.commenteditor', [
       var obj = {
         "commentId": this.commentId,
         "orderId": this.orderid,
+        "packageNo": this.packageNo,
         "skuId": this.skuid,
         "itemId": this.itemid,
         "score": comment.score * 100,

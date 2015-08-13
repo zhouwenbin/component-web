@@ -27,10 +27,10 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
         'itemId': 'long',
         'type': 'int',
-        'pageNum': 'int',
+        'pageSize': 'int',
       },
       OPTIONAL: {
-        'pageSize': 'int'
+        'pageNum': 'int'
       },
       VERIFY:{
       },

@@ -26,10 +26,10 @@ function($, can, _, Comm, SecurityType) {
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
         'type': 'int',
-        'pageNum': 'int',
+        'pageSize': 'int',
       },
       OPTIONAL: {
-        'pageSize': 'int'
+        'pageNum': 'int'
       },
       VERIFY:{
       },
