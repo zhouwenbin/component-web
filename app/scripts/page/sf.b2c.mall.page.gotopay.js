@@ -127,11 +127,12 @@ define(
 
         this.options.data.attr(data);
         var discountInfo = _.keys(JSON.parse(data.discount.value));
-        if (discountInfo[0]) {
-          this.options.data.attr('selectPayType', discountInfo[0]);
-        }else{
+        var array = _.intersection(discountInfo, data.optionalPayTypeList);
+        if (array.length > 0) {
+          this.options.data.attr('selectPayType', array[0]);
+        } else {
           this.options.data.attr('selectPayType', data.optionalPayTypeList[0]);
-        }       
+        }
         //this.options.data.attr('end', data.optionalPayTypeList[0]);
 
         var html = can.view('templates/order/sf.b2c.mall.order.gotopay.mustache', this.options.data, this.helpers);
@@ -186,7 +187,7 @@ define(
 
         var footer = new Footer('.sf-b2c-mall-footer');
         // －－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-        
+
         var params = can.deparam(window.location.search.substr(1));
 
         this.options.data = new can.Map({
