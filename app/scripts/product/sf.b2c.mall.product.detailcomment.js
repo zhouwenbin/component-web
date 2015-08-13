@@ -19,6 +19,14 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+      hasComments: function(commentCount, options) {
+        if (commentCount() > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+
       hasLabel: function(labels, options) {
         if (labels() && labels().length > 0) {
           return options.fn(options.contexts || this);
