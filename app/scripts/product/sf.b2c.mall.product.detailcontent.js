@@ -374,7 +374,7 @@ define('sf.b2c.mall.product.detailcontent', [
         // setInterval(function(){
         //   that.renderPriceInfo();
         // },60000);
-        
+
 
         //渲染推荐商品信息
         this.renderRecommendProducts();
@@ -459,8 +459,8 @@ define('sf.b2c.mall.product.detailcontent', [
               data.hasData = false;
             }
 
-            _.each(data.value, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+            _.each(data.value, function(item, index) {
+              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html" + "?_spm=0.rec0918." + item.itemId + "." + (index + 1);
               item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
               //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
             })
@@ -566,7 +566,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
             that.checkStartTime();
-          })          
+          })
       },
 
       checkStartTime: function(){
@@ -694,7 +694,7 @@ define('sf.b2c.mall.product.detailcontent', [
             }
 
           });
-      },      
+      },
 
       //渲染搭配购买商品
       renderMixDiscountProductInfo: function() {
@@ -1162,7 +1162,7 @@ define('sf.b2c.mall.product.detailcontent', [
           //活动进行中，立即购买
           '{{#isBeginning priceInfo.soldOut priceInfo.startTime priceInfo.endTime}}<a href="javascript:void(0);" class="btn btn-buy" id="gotobuy">立即购买</a>{{/isBeginning}}' +
           //售完，活动结束立即抢购变灰，原价购买
-          
+
           '{{^isNotBegin priceInfo.startTime}}{{#isOverTime priceInfo.soldOut priceInfo.endTime}}' +
           '<a href="javascript:void(0);" class="btn btn-buy disable">立即购买</a>' +
           '<a href="http://www.sfht.com/detail/{{priceInfo.referItemId}}.html" class="btn btn-buy">原价购</a>{{/isOverTime}}{{/isNotBegin}}' +
@@ -1722,7 +1722,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       detailTemplate: function() {
-        return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' + 
+        return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' +
         '{{&itemInfo.basicInfo.description}}';
       },
 
