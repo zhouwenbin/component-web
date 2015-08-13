@@ -20,19 +20,20 @@
           {{^if refundTax}}
           <div class="order-detail-refundtax">
            <span>如您购买的商品被税，请点击申请返还税金按钮，提交申请>></span>
-           <button data-bizId="{{bizId}}" data-mailNo="{{mailNo}}" class="btn btn-success btn-small btn-refundtax">申请返还税金</button>  
+           <button data-tag="{{tag}}" class="btn btn-success btn-small btn-refundtax">申请返还税金</button>  
           </div>
           {{/if}}
           {{#if refundTax}}
           <div class="order-detail-refundtax">
-           {{#refundTaxStatus refundTax '待审核'}}
+           {{#refundTaxStatus refundTax 'AUDITING'}}
            退税申请：<span class="text-important">资料已上传——审核中</span>
            {{/refundTaxStatus}} 
-           {{#refundTaxStatus refundTax '审核失败'}}
-           退税申请：<span class="text-important">资料已上传——审核中</span>
+           {{#refundTaxStatus refundTax 'AUDIT_FAIL'}}
+           退税申请：<span class="text-important">审核失败（{{failReason}}）</span>
+           <button data-tag="{{tag}}" class="btn btn-success btn-small btn-refundtax">重新申请</button>
            {{/refundTaxStatus}} 
-           {{#refundTaxStatus refundTax '退款成功'}}
-           退税申请：<span class="text-important">资料已上传——审核中</span>
+           {{#refundTaxStatus refundTax 'REFUND_SUCCESS'}}
+           退税申请：<span class="text-important">税金返还成功</span>
            {{/refundTaxStatus}}
           </div>
           {{/if}}

@@ -191,7 +191,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         var that = this;
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList;
-
+        packageInfo.tag = tag;
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
@@ -242,7 +242,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             })
         } else {
-
+          var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+          $('#packageItemInfo').html(html);
         }
 
         var len = $('#showUserRoutes li').length;
@@ -257,9 +258,9 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       '.btn-refundtax click': function(element, event) {
         event && event.preventDefault();
         var params = can.deparam(window.location.search.substr(1));
-        var gotoUrl = 'http://www.sfht.com/createRefundTax.html' + '?' + $.param({
-          "bizId": $(element).attr('data-bizId'),
-          "mailNo": $(element).attr('data-mailNo'),
+        var tag = $(element).attr('data-tag')
+        var gotoUrl = 'http://www.sfht.com/refund-tax.html' + '?' + $.param({
+          "tag": tag,
           "orderid": params.orderid
         });
         window.location.href = gotoUrl;

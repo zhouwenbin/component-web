@@ -7,9 +7,10 @@ define(
 		'sf.b2c.mall.business.config',
 		'sf.b2c.mall.api.finance.createRefundTax',
 		'sf.b2c.mall.api.order.getOrderV2',
-		'plupload'
+		'plupload',
+		'livequery'
 	],
-	function(can, $, SFFrameworkComm, SFFn, SFBizConf, SFCreateRefundTax, SFGetOrderV2, plupload) {
+	function(can, $, SFFrameworkComm, SFFn, SFBizConf, SFCreateRefundTax, SFGetOrderV2, plupload, livequery) {
 
 		SFFrameworkComm.register(1);
 		SFFn.monitor();
@@ -22,14 +23,14 @@ define(
 				$('#errorAlipayAccount').hide();
 				this.initPic();
 				var params = can.deparam(window.location.search.substr(1));
-
+				this.options = new can.Map({});
 				var getOrder = new SFGetOrderV2({
 					"orderId": params.orderid
 				});
 
 				getOrder.sendRequest()
 					.done(function(data) {
-						that.options.data = new can.Map(data);
+						that.options.attr(data);
 					});
 
 			},
@@ -37,18 +38,22 @@ define(
 				var alipayAccount = $(element).val();
 				this.checkAlipayAccount(alipayAccount);
 			},
-			'alipayname blur': function(element, event) {
+			'#alipayname blur': function(element, event) {
 				var alipayname = $(element).val();
-				if (!alipayname) {
-					$('#errorAlipayAccount').show();
-				}
+				this.checkAlipayName(alipayname);
+			},
+			'#alipayaccount focus': function(element, event) {
+				$('#errorAlipayAccount').hide();
+			},
+			'#alipayname focus': function(element, event) {
+				$('#errorAlipayName').hide();
 			},
 			checkAlipayAccount: function(account) {
 				var isTelNum = /^1\d{10}$/.test(account);
 				var isMail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(account);
-				if (!account) {
+				if (account == '') {
 					$('#errorAlipayAccount').text('请输入支付宝账号').show();
-				} else if (!isTelNum || !isMail) {
+				} else if (!isTelNum && !isMail) {
 					$('#errorAlipayAccount').show();
 					return false;
 				} else {
@@ -56,24 +61,35 @@ define(
 					return true;
 				}
 			},
+			checkAlipayName: function(name) {
+				if (name == '') {
+					$('#errorAlipayName').show();
+					return false;
+				}else{
+					return true;
+				}
+			},
 			'.btn-refer-tax click': function(element, event) {
 				event && event.preventDefault();
+				$('#errorAlipayAccount').hide();
+				$('#errorAlipayName').hide();
 				var params = can.deparam(window.location.search.substr(1));
 				var alipayAccount = $('#alipayaccount').val();
 				var alipayname = $('#alipayname').val();
-				var buyerName = this.options.data.orderItem.orderAddressItem.receiveName;
-				var buyerTelephone = this.options.data.orderItem.orderAddressItem.telephone;
-				if (this.checkAlipayAccount && alipayname) {
+				var buyerName = this.options.orderItem.orderAddressItem.receiveName;
+				var buyerTelephone = this.options.orderItem.orderAddressItem.telephone;
+				if (this.checkAlipayAccount(alipayAccount) && this.checkAlipayName(alipayname)) {
 					var params = can.deparam(window.location.search.substr(1));
 
 					var createRefundTax = new SFCreateRefundTax({
-						'bizId': params.bizId,
+						'bizId': '10101000192763S0001',
 						'masterBizId': params.orderid,
-						'mailNo': params.mailNo,
+						'mailNo': '1234',
 						'buyerName': buyerName,
 						'buyerTelephone': buyerTelephone,
 						'alipayAccount': alipayAccount,
-						'alipayUserName': alipayname
+						'alipayUserName': alipayname,
+						'url':'http://img.sfht.com/sfht/1.1.185/img/icon.png'
 					});
 
 					createRefundTax.sendRequest()
