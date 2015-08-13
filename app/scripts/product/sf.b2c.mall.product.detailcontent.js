@@ -485,8 +485,8 @@ define('sf.b2c.mall.product.detailcontent', [
               data.hasData = false;
             }
 
-            _.each(data.value, function(item) {
-              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+            _.each(data.value, function(item, index) {
+              item.linkUrl = that.detailUrl + "/" + item.itemId + ".html" + "?_spm=0.rec0918." + item.itemId + "." + (index + 1);
               item.imageName = item.imageName + "@102h_102w_80Q_1x.jpg";
               //<img src="58dd43abc59b1ebe37508d03f28f3cfd.jpg@71h_71w_50Q_1x.jpg" alt="">
             })
@@ -1748,7 +1748,7 @@ define('sf.b2c.mall.product.detailcontent', [
       },
 
       detailTemplate: function() {
-        return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' + 
+        return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' +
         '{{&itemInfo.basicInfo.description}}';
       },
 

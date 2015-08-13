@@ -109,16 +109,24 @@ define(
         },
         //搭配商品总单价
         'partScopePrice': function(goods, options) {
-          var total = 0;
-          _.each(goods, function(items) {
-            if (items.canUseActivityPrice == 1) {
-              total += items.activityPrice;
-            } else {
-              total += items.price;
-            }
-          });
-          return total / 100;
-        }
+            var total = 0;
+            _.each(goods, function(items) {
+              if (items.canUseActivityPrice == 1) {
+                total += items.activityPrice;
+              } else {
+                total += items.price;
+              }
+            });
+            return total / 100;
+          }
+          // 'sf-show-firstOrder': function(cartFeeItem, options) {
+          //   var firstOrderInfos = cartFeeItem().firstOrderInfos;
+          //   if (typeof firstOrderInfos !== 'undefined') {
+          //     return options.fn(options.contexts || this);
+          //   } else {
+          //     return options.inverse(options.contexts || this);
+          //   }
+          // }
       },
       /**
        * [init 初始化]
@@ -190,6 +198,7 @@ define(
         if (typeof data.scopeGroups != 'undefined' && data.scopeGroups.length > 0) {
           this.options.hasGoods = true;
           this.options.order = new can.Map({
+            'cartFeeItem': data.cartFeeItem,
             'actualTotalFee': data.cartFeeItem.actualTotalFee,
             'discountFee': data.cartFeeItem.discountFee,
             'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
@@ -290,12 +299,18 @@ define(
             });
           })
 
-          
+
         }
 
         var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
         that.element.html(html);
 
+        var cartFeeItem = this.options.order.attr('cartFeeItem');
+        if (typeof cartFeeItem.firstOrderInfos !== 'undefined' && cartFeeItem.firstOrderInfos.length > 0) {
+          var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;
+          var firstHtml = '<tr><td colspan="6"><span>首单减</span>' + useRuleDesc + '</td></tr>';
+          $('.sign-for-first').append(firstHtml);
+        };
         //如果没有无效商品，不展示清除无效商品按钮
         var invalidItems = $('.items-disable').length;
         if (invalidItems) {
@@ -321,8 +336,8 @@ define(
           .done(function(data) {
             if (data.value) {
               that.options.recommendGoods = data.value;
-              _.each(that.options.recommendGoods, function(item) {
-                item.linkUrl = that.detailUrl + "/" + item.itemId + ".html";
+              _.each(that.options.recommendGoods, function(item, index) {
+                item.linkUrl = "http://www.sfht.com/detail/" + item.itemId + ".html" + "?_spm=0.rec1109." + item.itemId + "." + (index + 1);
                 item.imageName = item.imageName;
                 item.sellingPrice = item.sellingPrice;
               });
@@ -348,9 +363,9 @@ define(
           '{{#each recommendGoods}}' +
           '<li {{data "goods"}}>' +
           '<div class="product-r1">' +
-          '<a href="http://www.sfht.com/detail/{{itemId}}.html"><img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
+          '<a href="{{linkUrl}}"><img src="{{sf.img imageName}}" alt="" ></a><span></span>' +
           '</div>' +
-          '<h3><a href="http://www.sfht.com/detail/{{itemId}}.html">{{productName}}</a></h3>' +
+          '<h3><a href="{{linkUrl}}">{{productName}}</a></h3>' +
           '<div class="product-r2 clearfix">' +
           '<div class="product-r2c1 fl">' +
           '<span>￥</span><strong>{{sf.price sellingPrice}}</strong>' +
