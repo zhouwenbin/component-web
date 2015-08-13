@@ -26,8 +26,12 @@ define(
           this.listImg();
           $(".comment-add-img-del").remove();
           $("#pickbutton").hide();
-          $("#imgtip1").css({"visibility": "hidden"});
-          $("#imgtip2").css({"visibility": "hidden"});
+          $("#imgtip1").css({
+            "visibility": "hidden"
+          });
+          $("#imgtip2").css({
+            "visibility": "hidden"
+          });
           return false;
         }
 
@@ -151,10 +155,13 @@ define(
 
         var imglistUl = $(".img-list-ul");
         var uploadBtn = $(".upload-btn");
+        var bigImglistUl = $("#comment-img-big-ul");
 
         _.each(this.options.imgData, function(item, index) {
           var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a></li>';
           imglistUl.append($(itemHTML));
+          var bigItemHTML = '<li id=imgli' + index + '><img height="300px" alt="" src="' + item + '"></li>';
+          bigImglistUl.append($(bigItemHTML));
         });
       },
 
@@ -189,6 +196,11 @@ define(
         // 进行图片展示
         if (imgIndex != "") {
           $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
+
+          var bigImglistUl = $("#comment-img-big-ul");
+          var bigItemHTML = '<li id=imgli' + id + '><img height="300px" alt="" src="' + imgURL + '"></li>';
+          bigImglistUl.append($(bigItemHTML));
+
           ++this.imgCount;
 
           $("#" + id).hover(function() {

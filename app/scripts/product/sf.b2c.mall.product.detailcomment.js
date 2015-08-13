@@ -202,6 +202,12 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       this.checkBtn();
     },
 
+    '.comment-img-big li click': function() {
+      this.smallImg.find('li').removeClass('active');
+      this.bigImg.find('li').removeClass('active');
+      this.bigImg.find('a').hide();
+    },
+
     checkBtn: function() {
       if (this.bigImg.find('li').hasClass('active')) {
         this.bigImg.find('a').show();

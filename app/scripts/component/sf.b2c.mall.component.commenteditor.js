@@ -402,6 +402,57 @@ define('sf.b2c.mall.component.commenteditor', [
       event && event.preventDefault();
       // 统计内容个数
       $("#currentword").text(element.val().length);
+    },
+
+    '.comment-img li click': function(element, event) {
+      this.smallImg = element.parents('.comment-img');
+      this.bigImg = this.smallImg.siblings('.comment-img-big');
+      this.num = this.smallImg.find('li').length;
+      this.index = this.smallImg.find('li').index(this);
+      element.toggleClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).toggleClass('active').siblings().removeClass('active');
+
+      this.checkBtn();
+    },
+
+    '.comment-img-big li click': function() {
+      this.smallImg.find('li').removeClass('active');
+      this.bigImg.find('li').removeClass('active');
+      this.bigImg.find('a').hide();
+    },
+
+    checkBtn: function() {
+      if (this.bigImg.find('li').hasClass('active')) {
+        this.bigImg.find('a').show();
+        if (this.index == 0) {
+          this.bigImg.find('.comment-img-big-prev').hide();
+        } else {
+          this.bigImg.find('.comment-img-big-prev').show();
+        }
+        if (this.index == this.num - 1) {
+          this.bigImg.find('.comment-img-big-next').hide();
+        } else {
+          this.bigImg.find('.comment-img-big-next').show();
+        }
+      } else {
+        this.bigImg.find('a').hide();
+      }
+    },
+
+    //向前
+    '.comment-img-big-prev click': function() {
+      this.index--;
+      this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.checkBtn();
+    },
+
+    //向后
+    '.comment-img-big-next click': function() {
+      this.index++;
+      this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
+      this.checkBtn();
     }
 
   });
