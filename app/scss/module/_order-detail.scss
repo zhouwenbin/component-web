@@ -359,3 +359,32 @@
 .btn-refer-tax{
 	margin:20px 0 0 100px;
 }
+.comment-add-img>li{
+	font-size: 12px;
+	display: inline-block;
+	border:1px solid #979797;
+	margin-right: 10px;
+	position: relative;
+}
+.comment-add-img>li:hover{
+	border-color: #E13B3A;
+}
+.comment-add-img-del{
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	text-align: center;
+	color: #fff;
+	background: #E13B3A;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+.comment-add-img-del:hover{
+	color: #fff;
+}
+.comment-add-img>li:hover .comment-add-img-del{
+	display: block;
+	
+}
