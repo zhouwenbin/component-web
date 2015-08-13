@@ -36,15 +36,23 @@
                    <span id="errorAlipayAccount" class="text-important hide">请输入支付宝账户</span>              
               </div>
               <div class="order-createrefundtax-b1-c2 clearfix">
-                  <label class="fl" for="">税金缴纳证明：</label>
-                  <div class="upload fl">
-                      <button class="btn btn-disable btn-upload-img">上传照片</button>
-                      <input type="file" class="visuallyhidden" />
-                  </div>
-                  <p class="fl">为了更好的帮您解决问题，请您提供相关凭证:即中华人民共
+                  <label class="" for="">税金缴纳证明：</label>
+                  
+                  <label class="comment-add-img-add" id="pickbutton">
+                    上传照片<input type="file" class="visuallyhidden" />
+                  </label>
+                               
+                  <p class="">为了更好的帮您解决问题，请您提供相关凭证:即中华人民共
 和国海关旅客行李、个人邮递物品进口税款缴纳证的正、反面，每
 张不超过5M，支持GIF,JPEG,JPG,PNG,BMP格式</p>
               </div>
+
+              <input type="hidden" name="imgs1" can-value="comment.input.img0">
+              <input type="hidden" name="imgs2" can-value="comment.input.img1">
+              <input type="hidden" name="imgs3" can-value="comment.input.img2">
+              <input type="hidden" name="imgs4" can-value="comment.input.img3">
+              <input type="hidden" name="imgs5" can-value="comment.input.img4">
+              
               <ul class="comment-add-img img-list-ul">
     
               </ul>

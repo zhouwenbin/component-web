@@ -338,24 +338,15 @@
 	border:1px solid #ccc;
 	padding-left: 5px;
 }
-.order-createrefundtax-b1-c2 label{
-	margin-top:13px;
-}
-.order-createrefundtax-b1-c2 .upload{
-	margin-left: 5px;
-
-}
 .order-createrefundtax-b1-c2 p{
+	display: inline-block;
 	width: 345px;
 	margin:0 0 0 15px;
 	line-height: 18px;
 	color:#999;
+	vertical-align: middle;
 }
-.btn-upload-img{
-	width: 90px;
-	height: 39px;
-	line-height: 39px;
-}
+
 .btn-refer-tax{
 	margin:20px 0 0 100px;
 }
@@ -386,5 +377,18 @@
 }
 .comment-add-img>li:hover .comment-add-img-del{
 	display: block;
-	
+}
+.order-createrefundtax-b1-c2 label.comment-add-img-add{
+	color:#fff;
+}
+.comment-add-img-add{
+	width: 90px;
+	height: 39px;
+	display: inline-block;
+	border-radius: 5px;
+	color: #fff;
+	background: #ccc;
+	text-align: center;
+	line-height: 39px;
+	cursor: pointer;
 }

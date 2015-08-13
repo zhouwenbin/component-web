@@ -20,6 +20,7 @@ define(
 			init: function(options) {
 				var that = this;
 				$('#errorAlipayAccount').hide();
+				this.initPic();
 				var params = can.deparam(window.location.search.substr(1));
 
 				var getOrder = new SFGetOrderV2({
@@ -72,8 +73,7 @@ define(
 						'buyerName': buyerName,
 						'buyerTelephone': buyerTelephone,
 						'alipayAccount': alipayAccount,
-						'alipayUserName': alipayname,
-						'url':
+						'alipayUserName': alipayname
 					});
 
 					createRefundTax.sendRequest()
@@ -85,27 +85,6 @@ define(
 
 			//初始化图片上传控件
 			initPic: function() {
-
-				// 如果有照片就只能查看了
-				if (this.options.imgData && this.options.imgData.length > 0) {
-					this.view = true;
-					this.listImg();
-					$(".comment-add-img-del").remove();
-					$("#pickbutton").hide();
-					$("#imgtip1").css({
-						"visibility": "hidden"
-					});
-					$("#imgtip2").css({
-						"visibility": "hidden"
-					});
-					return false;
-				}
-
-				// 如果查看状态下没有图片 则不展示任何东西
-				if (this.options.view && (!this.options.imgData || this.options.imgData.length == 0)) {
-					$("#img").remove();
-					return false;
-				}
 
 				// 如果没有照片，则可以上传图片
 				var that = this;
@@ -216,6 +195,60 @@ define(
 				plupload.init();
 			},
 
+			/**
+			 * [getValue 获得取值，供其他组件调用]
+			 * @return {[type]} [description]
+			 */
+			getValue: function() {
+				var result = [];
+
+				for (var index = 1; 5 >= index; index++) {
+					var value = $("input[name=imgs" + index + "]").val();
+					if ("" != value) {
+						result.push(value);
+					}
+				}
+
+				return result;
+			},
+
+			setValue: function(id, imgURL) {
+				var imgIndex = "";
+				for (var index = 1; 5 >= index; index++) {
+					var value = $("input[name=imgs" + index + "]").val();
+					if ("" == value) {
+						imgIndex = index;
+						$("input[name=imgs" + index + "]").attr("value", imgURL);
+						break
+					}
+				}
+
+				// 进行图片展示
+				if (imgIndex != "") {
+					$("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
+					++this.imgCount;
+
+					$("#" + id).hover(function() {
+						$(".comment-add-img-del", this).removeClass("hide")
+					}, function() {
+						$(".comment-add-img-del", this).addClass("hide")
+					});
+
+					var that = this;
+
+					// 绑定删除事件
+					$("#" + id + " .comment-add-img-del").livequery("click", function() {
+						that.del(imgIndex, id);
+					});
+				}
+			},
+
+			del: function(index, id) {
+				$("input[name=imgs" + index + "]").attr("value", "");
+				$("li#" + id).remove();
+				--this.imgCount;
+				$(".comment-add-img-add").show();
+			}
 		});
 		new refundtax('body');
 	})
