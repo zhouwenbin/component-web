@@ -2,13 +2,13 @@
   <div class="comment-h">
     <div class="comment-hc1">
       <h3>商品评价</h3>
-      {{^hasLabel outline.commentGoodsLabels}}
+      {{^hasComments comments.commentGoods}}
         <p>暂无评价</p>
-      {{/hasLabel}}
-      {{#hasLabel outline.commentGoodsLabels}}
+      {{/hasComments}}
+      {{#hasComments comments.commentGoods}}
         <div class="comment-progress"><div style="width:{{outline.score}}%"></div></div>
         <span class="text-error"><span class="comment-num">{{outline.score}}%</span>好评</span>
-      {{/hasLabel}}
+      {{/hasComments}}
 
       <p>共{{outline.totalCount}}条评价</p>
     </div>
@@ -43,7 +43,17 @@
   <div class="comment-list">
 
     {{^comments.commentGoods}}
-        <table><tbody><tr><td ><p class="p4" style="text-align:center">暂无评价</p></td></tr></tbody></table>
+        <table>
+          <thead>
+          <tr>
+            <th class="col1">评价心得</th>
+            <th class="col2">满意度</th>
+            <th class="col3">商品信息</th>
+            <th class="col4">评价用户</th>
+          </tr>
+        </thead>
+
+        <tbody><tr><td colspan="4"><p class="p4" style="text-align:center">暂无评价</p></td></tr></tbody></table>
     {{/comments.commentGoods}}
 
     {{#hasComments comments.commentGoods}}
