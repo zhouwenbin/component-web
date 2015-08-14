@@ -114,11 +114,11 @@ define(
 				var that = this;
 
 				that.imgCount = 0;
-				var filename = "天朝进贡-banner-H5.jpg";
+				var filename = "1.jpg";
 				// 上传组件
 				var plupload = new window.plupload.Uploader({
 					runtimes: "gears,html5,flash",
-					browse_button: "pickbutton",
+					browse_button: "pickbutton",//THIRD_ORDER,如果是私有，需要在url上加上orderid
 					file_data_name: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length),
 					urlstream_upload: true,
 					container: "img",
