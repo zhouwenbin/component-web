@@ -17,7 +17,7 @@
           {{#isShowShippingTime}}
           <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}，{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/isShowShippingTime}}
           {{! 退税 }}
-          {{#isShowRefundTax status}}
+          {{#isShowRefundTax status transporterName}}
           {{^sf-show-refundTax refundTax}}
           <div class="order-detail-refundtax">
            <span>如您购买的商品被税，请点击申请返还税金按钮，提交申请>></span>

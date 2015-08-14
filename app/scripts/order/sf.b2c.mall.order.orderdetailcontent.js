@@ -63,13 +63,13 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           } else {
             if (typeof refundTax.state !== 'undefined') {
               return options.fn(options.contexts || this);
-            }else{
+            } else {
               return options.inverse(options.contexts || this);
             }
           }
         },
-        'isShowRefundTax': function(status, options) {
-          if (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED') {
+        'isShowRefundTax': function(status, transporterName, options) {
+          if (transporterName == 'ETK' && (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED')) {
             return options.fn(options.contexts || this);
           }
         }
