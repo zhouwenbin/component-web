@@ -20,8 +20,9 @@ define(
 
 			init: function(options) {
 				var that = this;
-				$('#errorAlipayAccount').hide();
+				this.imgPrefix = "http://testimg.sfht.com/";
 				this.initPic();
+				$('#errorAlipayAccount').hide();
 				var params = can.deparam(window.location.search.substr(1));
 				this.options = new can.Map({});
 				var getOrder = new SFGetOrderV2({
@@ -80,7 +81,7 @@ define(
 				var buyerName = this.options.orderItem.orderAddressItem.receiveName;
 				var buyerTelephone = this.options.orderItem.orderAddressItem.telephone;
 				var bizId = this.options.orderItem.orderPackageItemList[tag].packageNo;
-				var mailNo = this.options.orderItem.orderPackageItemList[tag].mailNo;
+				var mailNo = this.options.orderItem.orderPackageItemList[tag].logisticsNo;
 				if (this.checkAlipayAccount(alipayAccount) && this.checkAlipayName(alipayname)) {
 					var params = can.deparam(window.location.search.substr(1));
 
@@ -92,14 +93,19 @@ define(
 						'buyerTelephone': buyerTelephone,
 						'alipayAccount': alipayAccount,
 						'alipayUserName': alipayname,
-						'url': 'http://img.sfht.com/sfht/1.1.185/img/icon.png'
+						'url': this.getValue()
 					});
 
 					createRefundTax.sendRequest()
 						.done(function(data) {
+							$('.mask').show();
 							$('.dialog-success-refertax').show();
 							$('.back-to-orderdetail').click(function() {
-								window.location.href = "http://www.sfht.com/orderdetail.html?orderid=10101000192763&suborderid=&recid=3695";
+								window.history.back();
+							});
+							$('.btn-close').click(function() {
+								$('.mask').hide();
+								$('.dialog-success-refertax').hide();
 							})
 						}).fail(function(errorCode) {
 
@@ -118,7 +124,7 @@ define(
 				// 上传组件
 				var plupload = new window.plupload.Uploader({
 					runtimes: "gears,html5,flash",
-					browse_button: "pickbutton",//THIRD_ORDER,如果是私有，需要在url上加上orderid
+					browse_button: "pickbutton", //THIRD_ORDER,如果是私有，需要在url上加上orderid
 					file_data_name: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length),
 					urlstream_upload: true,
 					container: "img",
@@ -136,9 +142,7 @@ define(
 				});
 
 				plupload.bind("Init", function() {
-					for (var i = 1; 5 >= i; i++) {
-						$("input[name=imgs" + i + "]").val("");
-					}
+					$("input[name=imgs1]").val("");
 					$("#pickbutton").show();
 				});
 
@@ -146,10 +150,8 @@ define(
 					var imglistUl = $(".img-list-ul");
 					var imglistLi = $("li", imglistUl);
 					var uploadBtn = $(".upload-btn");
-					if (imglistLi.length + uploadingFiles.length > 5) {
+					if (imglistLi.length + uploadingFiles.length > 1) {
 						return false;
-					} else if (imglistLi.length + uploadingFiles.length == 5) {
-						$(".comment-add-img-add").hide();
 					}
 
 					_.each(uploadingFiles, function(item) {
@@ -224,27 +226,16 @@ define(
 			 * @return {[type]} [description]
 			 */
 			getValue: function() {
-				var result = [];
-
-				for (var index = 1; 5 >= index; index++) {
-					var value = $("input[name=imgs" + index + "]").val();
-					if ("" != value) {
-						result.push(value);
-					}
-				}
-
-				return result;
+				var value = $("input[name=imgs1]").val();
+				return value;
 			},
 
 			setValue: function(id, imgURL) {
 				var imgIndex = "";
-				for (var index = 1; 5 >= index; index++) {
-					var value = $("input[name=imgs" + index + "]").val();
-					if ("" == value) {
-						imgIndex = index;
-						$("input[name=imgs" + index + "]").attr("value", imgURL);
-						break
-					}
+				var value = $("input[name=imgs1]").val();
+				if ("" == value) {
+					imgIndex = 1;
+					$("input[name=imgs1]").attr("value", imgURL);
 				}
 
 				// 进行图片展示
