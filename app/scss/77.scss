@@ -1,0 +1,36 @@
+@import 'utils/variables';
+@import 'utils/placeholders';
+
+body{
+	background-color: #fff;
+}
+.nav-pannel{
+	display: none;
+}
+.m77-banner,
+.m77-banner-02{
+	text-indent: -999em;
+}
+.m77-bannera{
+	background: #f7d4d8 url(../img/77/love-banner01a.jpg) center 0 no-repeat;
+	height: 240px;
+}
+.m77-bannerb{
+	background: #f7d4d8 url(../img/77/love-banner01b.jpg) center 0 no-repeat;
+	height: 240px;
+}
+.m77-banner-02{
+	background: url(../img/77/love-banner02.png) center 0 no-repeat;
+	height: 97px;
+}
+.m77-list{
+	width: 1180px;
+	margin: 0 auto;
+}
+.m77-list li{
+	float: left;
+}
+.love-banner-ad{
+	text-align: center;
+	background-color: #ea4879;
+}
