@@ -250,8 +250,11 @@ define('sf.b2c.mall.order.iteminfo', [
       });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
-          orderRenderItem.activityDescription = JSON.parse(orderRenderItem.activityDescription.value);
-          that.itemObj.attr('activityDescription', orderRenderItem.activityDescription);
+          if (typeof orderRenderItem.activityDescription !== 'undefined') {
+            orderRenderItem.activityDescription = JSON.parse(orderRenderItem.activityDescription.value);
+            that.itemObj.attr('activityDescription', orderRenderItem.activityDescription);
+          }
+
           that.processFoundation(orderRenderItem);
           that.processProducts(orderRenderItem);
           that.processCoupons(orderRenderItem.orderCouponItem);

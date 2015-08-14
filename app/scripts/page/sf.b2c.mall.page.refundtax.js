@@ -55,7 +55,7 @@ define(
 				if (account == '') {
 					$('#errorAlipayAccount').text('请输入支付宝账号').show();
 				} else if (!isTelNum && !isMail) {
-					$('#errorAlipayAccount').show();
+					$('#errorAlipayAccount').text('请输入正确的支付宝账号').show();
 					return false;
 				} else {
 					$('#errorAlipayAccount').hide();
