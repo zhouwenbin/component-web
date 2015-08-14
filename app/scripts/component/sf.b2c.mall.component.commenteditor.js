@@ -414,7 +414,7 @@ define('sf.b2c.mall.component.commenteditor', [
       this.smallImg = element.parents('.comment-img');
       this.bigImg = this.smallImg.siblings('.comment-img-big');
       this.num = this.smallImg.find('li').length;
-      this.index = this.smallImg.find('li').index(this);
+      this.index = this.smallImg.find('li').index(element);
       element.toggleClass('active').siblings().removeClass('active');
       this.bigImg.find('li').eq(this.index).toggleClass('active').siblings().removeClass('active');
 

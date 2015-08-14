@@ -160,7 +160,7 @@ define(
         _.each(this.options.imgData, function(item, index) {
           var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a></li>';
           imglistUl.append($(itemHTML));
-          var bigItemHTML = '<li id=imgli' + index + '><img height="300px" alt="" src="' + item + '"></li>';
+          var bigItemHTML = '<li id=imgli' + index + '><img style="height:300px;max-width:500px" alt="" src="' + item + '"></li>';
           bigImglistUl.append($(bigItemHTML));
         });
       },
@@ -198,7 +198,7 @@ define(
           $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
 
           var bigImglistUl = $("#comment-img-big-ul");
-          var bigItemHTML = '<li id=imgli' + id + '><img height="300px" alt="" src="' + imgURL + '"></li>';
+          var bigItemHTML = '<li id=imgli' + id + '><img style="height:300px;max-width:500px" alt="" src="' + imgURL + '"></li>';
           bigImglistUl.append($(bigItemHTML));
 
           ++this.imgCount;
