@@ -405,10 +405,10 @@
 	margin: 10px 0 0 100px;
 }
 .dialog-big-img{
-	width: 500px;
-	height: 500px;
-	margin-left: -250px;
-	margin-top: -250px;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
 }
 
 
