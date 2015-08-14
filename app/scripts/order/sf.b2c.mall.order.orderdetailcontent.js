@@ -58,10 +58,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           }
         },
         'sf-show-refundTax': function(refundTax, options) {
-          if (typeof refundTax.state !== 'undefined') {
-            return options.fn(options.contexts || this);
-          } else {
+          if (typeof refundTax == 'undefined') {
             return options.inverse(options.contexts || this);
+          } else {
+            if (typeof refundTax.state !== 'undefined') {
+              return options.fn(options.contexts || this);
+            }else{
+              return options.inverse(options.contexts || this);
+            }
           }
         },
         'isShowRefundTax': function(status, options) {
