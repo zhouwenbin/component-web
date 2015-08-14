@@ -31,7 +31,7 @@
            退税申请：<span class="text-important">资料已上传——审核中</span>
            {{/refundTaxStatus}} 
            {{#refundTaxStatus refundTax 'AUDIT_FAIL'}}
-           退税申请：<span class="text-important">审核失败（{{failReason}}）</span>
+           退税申请：<span class="text-important">审核失败（{{refundTax.failReason}}）</span>
            <button data-tag="{{tag}}" class="btn btn-success btn-small btn-refundtax">重新申请</button>
            {{/refundTaxStatus}} 
            {{#refundTaxStatus refundTax 'REFUND_SUCCESS'}}
