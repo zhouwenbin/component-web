@@ -119,9 +119,15 @@
               </div>
               {{/if}}
 
-              {{#commentGoodsInfo.sysReplyContent}}
-              <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.sysReplyContent}}</p>
-              {{/commentGoodsInfo.sysReplyContent }}
+              {{#commentGoodsInfo.sysReplyExtralContent}}
+                <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.sysReplyExtralContent}}</p>
+              {{/commentGoodsInfo.sysReplyExtralContent }}
+
+              {{^commentGoodsInfo.sysReplyExtralContent}}
+                {{#commentGoodsInfo.sysReplyContent}}
+                <p class="p2"><span class="text-important">客服回复：</span>{{commentGoodsInfo.sysReplyContent}}</p>
+                {{/commentGoodsInfo.sysReplyContent }}
+              {{/commentGoodsInfo.sysReplyExtralContent }}
             </td>
             <td class="col2">
               <span class="rating" title="gorgeous">
