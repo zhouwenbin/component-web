@@ -290,6 +290,7 @@ define('sf.b2c.mall.center.shareordercontent', [
         // 获得当前编辑地址
         this.editIndex = parseInt(element.attr('data-index'));
         var itemId = element.attr('data-itemid');
+        var itemName = element.attr('data-itemname');
         var itemStatus = element.attr('data-status');
         var skuId = element.attr('data-skuid');
         var spec = element.attr('data-spec');
@@ -328,6 +329,7 @@ define('sf.b2c.mall.center.shareordercontent', [
               data = _.extend(data.value[0], {
                 "orderid": that.orderid,
                 "itemid": itemId,
+                "itemName": itemName,
                 "skuid": skuId,
                 "spec": spec,
                 "packageNo": packageNo,
@@ -337,6 +339,7 @@ define('sf.b2c.mall.center.shareordercontent', [
               data = {
                 "orderid": that.orderid,
                 "itemid": itemId,
+                "itemName": itemName,
                 "skuid": skuId,
                 "spec": spec,
                 "packageNo": packageNo,

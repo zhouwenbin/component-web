@@ -19,7 +19,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
-      hasComments: function(commentCount, options) {
+      hasComments2: function(commentCount, options) {
         if (commentCount() > 0) {
           return options.fn(options.contexts || this);
         } else {

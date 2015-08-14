@@ -45,6 +45,7 @@ define('sf.b2c.mall.component.commenteditor', [
       // orderid和itemid为全局变量
       this.orderid = data.orderid;
       this.itemid = data.itemid;
+      this.itemName = data.itemName;
       this.skuid = data.skuid;
       this.spec = data.spec;
       this.packageNo = data.packageNo;
@@ -272,6 +273,7 @@ define('sf.b2c.mall.component.commenteditor', [
         "packageNo": this.packageNo,
         "skuId": this.skuid,
         "itemId": this.itemid,
+        "itemName": this.itemName,
         "score": comment.score * 100,
         "content": comment.content,
         "extralContent": comment.pluscontent,
@@ -300,7 +302,11 @@ define('sf.b2c.mall.component.commenteditor', [
 
         })
         .fail(function(error, message) {
-          if (error == 14013000) {
+          if (error == 14029000) {
+            that.adapter.comment.attr("error", {
+              "commentGoodsLabels": '您的标签中有如下敏感词：' + message + "。请重新选择哦~"
+            });
+          } else if (error == 14013000) {
             that.adapter.comment.attr("error", {
               "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
             });
