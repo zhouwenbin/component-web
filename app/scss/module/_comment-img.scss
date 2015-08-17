@@ -34,8 +34,11 @@
 }
 .comment-img-big{
 	margin-bottom: 20px;
-	position: relative;
-	display: block;
+
+}
+.comment-img-big-inner{
+  display: inline-block;
+  position: relative;
 }
 .comment-img-big li{
 	display: none;
@@ -48,8 +51,8 @@
 .comment-img-big-next{
 	width: 25px;
 	height: 25px;
-	border-left: 2px solid #fff;
-	border-top: 2px solid #fff;
+	border-left: 2px solid #E13B3A;
+	border-top: 2px solid #E13B3A;
 	z-index: map-get($z-index,comment-img-big-prev);
 	position: absolute;
 	top: 50%;
