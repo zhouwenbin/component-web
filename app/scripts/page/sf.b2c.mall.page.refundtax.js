@@ -63,6 +63,7 @@ define(
 				$('#errorAlipayName').hide();
 			},
 			checkAlipayAccount: function(account) {
+				var account = $.trim(account);
 				var isTelNum = /^1\d{10}$/.test(account);
 				var isMail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(account);
 				if (account == '') {
@@ -76,6 +77,7 @@ define(
 				}
 			},
 			checkAlipayName: function(name) {
+				var name = $.trim(name);
 				if (name == '') {
 					$('#errorAlipayName').show();
 					return false;
