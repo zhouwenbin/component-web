@@ -20,11 +20,13 @@ define(
 
 			init: function(options) {
 
-				
+
 				var that = this;
 				this.imgPrefix = "http://testimg.sfht.com/";
 				this.initPic();
+				$('#errorNoPicTips').hide();
 				$('#errorAlipayAccount').hide();
+				$('#errorAlipayName').hide();
 				var params = can.deparam(window.location.search.substr(1));
 				this.options = new can.Map({});
 				var getOrder = new SFGetOrderV2({
@@ -74,8 +76,13 @@ define(
 			},
 			'.btn-refer-tax click': function(element, event) {
 				event && event.preventDefault();
+				$('#errorNoPicTips').hide();
 				$('#errorAlipayAccount').hide();
 				$('#errorAlipayName').hide();
+				if (this.getValue() == '') {
+					$('#errorNoPicTips').show();
+					return false;
+				};
 				var params = can.deparam(window.location.search.substr(1));
 				var tag = params.tag;
 				var alipayAccount = $('#alipayaccount').val();
@@ -110,7 +117,10 @@ define(
 								$('.dialog-success-refertax').hide();
 							})
 						}).fail(function(errorCode) {
-
+							var map = {
+								'12110000': '该订单已提交过退税申请'
+							}
+							$('#errorNoPicTips').text(map[errorCode]).show();
 						})
 				};
 			},
@@ -229,7 +239,7 @@ define(
 				$('.mask').show();
 				$('.dialog-big-img').append(imgHtml).show();
 			},
-			'.dialog-big-img click':function(element,event){
+			'.dialog-big-img click': function(element, event) {
 				$(element).hide();
 				$('.mask').hide();
 			},
