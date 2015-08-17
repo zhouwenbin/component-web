@@ -424,12 +424,12 @@ define('sf.b2c.mall.product.detailcontent', [
             getUserInfo
               .sendRequest()
               .done(function(data) {
-                url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + data.userId;
+                url = "http://www.sfht.com/detail/" + itemid + ".html?_ruser=" + data.userId;
                 that.appendRenderBaiduShareHTML(url);
               })
               .fail()
           } else {
-            url = "http://www.sfht.com/detail/" + itemid + ".html?_src=" + $.cookie('userId');
+            url = "http://www.sfht.com/detail/" + itemid + ".html?_ruser=" + $.cookie('userId');
             that.appendRenderBaiduShareHTML(url);
           }
         } else {
