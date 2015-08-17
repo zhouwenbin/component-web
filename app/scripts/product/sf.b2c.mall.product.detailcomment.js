@@ -99,7 +99,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": this.options.itemId,
         "type": 0,
-        "pageNum": 10,
+        "pageNum": 3,
         "pageSize": 1
       });
 
@@ -150,7 +150,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": that.options.itemId,
         "type": type,
-        "pageNum": 10,
+        "pageNum": 3,
         "pageSize": 1
       });
 
