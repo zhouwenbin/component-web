@@ -45,7 +45,9 @@ define(
 				getOrder.sendRequest()
 					.done(function(data) {
 						that.options.attr(data);
-					});
+					}).fail(function(errorCode){
+						window.location.href = 'index.html';
+					})
 
 			},
 			'#alipayaccount blur': function(element, event) {
