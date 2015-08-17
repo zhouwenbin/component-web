@@ -31,13 +31,23 @@ define(
       },
 
       "#customeized keyup": function(element, event) {
-        var value = $(element).val();
+        var value = $.trim($(element).val());
 
         if (!value) {
           return false;
         }
 
         if (event.keyCode == 13) {
+
+          var reg = /^(\w|[\u4E00-\u9FA5])*$/;
+          if (!value.match(reg)) {
+            this.options.adapter.comment.attr("error", {
+              "commentGoodsLabels": '只能使用汉字、字母和数字哦~'
+            });
+
+            return false;
+          }
+
           if (value.length > 12) {
             this.options.adapter.comment.attr("error", {
               "commentGoodsLabels": '最多只能输入12个字哦，再删减下吧'
