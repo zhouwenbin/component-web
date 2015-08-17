@@ -135,12 +135,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           that.element.html(that.options.html);
 
           that.options.page = new PaginationAdapter();
-          that.options.page.format({
-            "pageNum": commentData.page.pageSize,
-            "currentNum": commentData.page.currentNum,
-            "totalNum": commentData.page.totalNum,
-            "pageSize": commentData.page.pageNum
-          });
+          that.formatPageData(commentData);
+
           new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
 
           that.supplement(that.options.outline.totalCount);
@@ -156,7 +152,9 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       } else {
         var routeParams = can.route.attr();
         this.render(routeParams.page);
-        $("body,html").animate({scrollTop: $('.comment-tab').offset().top - $(".nav-inner").height()},0);
+        $("body,html").animate({
+          scrollTop: $('.comment-tab').offset().top - $(".nav-inner").height()
+        }, 0);
         this.currentRouteData = el.page;
       }
     },
@@ -184,6 +182,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           that.options.attr("comments", data);
 
+          this.formatPageData(data);
+
         })
         .fail(function(error) {
           console.error(error);
@@ -207,9 +207,21 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       if (!this.options[this.commentsObjMap[type]]) {
         this.getComments(type);
       } else {
-        this.options.attr("comments", this.options[this.commentsObjMap[type]]);
+        var cacheData = this.options[this.commentsObjMap[type]];
+        this.options.attr("comments", cacheData);
+
+        this.formatPageData(cacheData);
       }
 
+    },
+
+    formatPageData: function(pageData) {
+      this.options.page.format({
+        "pageNum": pageData.page.pageSize,
+        "currentNum": pageData.page.currentNum,
+        "totalNum": pageData.page.totalNum,
+        "pageSize": pageData.page.pageNum
+      });
     },
 
     '.comment-img li click': function(element, event) {
