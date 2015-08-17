@@ -5,7 +5,7 @@
 	border:1px solid #E5E5E5;
 	font-size: 0;
 	padding: 24px 0;
-	margin-bottom: 19px; 
+	margin-bottom: 19px;
 }
 .comment-h>div{
 	font-size: 12px;
@@ -18,11 +18,12 @@
 .comment-hc1{
 	border-right: 1px solid #E5E5E5;
 	width: 228px;
-	
+
 }
 .comment-hc2{
 	width: 529px;
 	border-right: 1px solid #E5E5E5;
+	overflow: hidden;
 }
 .comment-hc1 h3{
 	margin-bottom: 15px;

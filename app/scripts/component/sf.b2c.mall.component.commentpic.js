@@ -30,7 +30,7 @@ define(
             "visibility": "hidden"
           });
           $("#imgtip2").css({
-            "visibility": "hidden"
+            "display": "none"
           });
           return false;
         }
