@@ -130,7 +130,7 @@ define(
 					file_data_name: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length),
 					urlstream_upload: true,
 					container: "img",
-					max_file_size: "4mb",
+					max_file_size: "5mb",
 					multipart_params: {
 						fileVal: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length)
 					},
