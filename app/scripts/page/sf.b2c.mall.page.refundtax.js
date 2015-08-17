@@ -29,7 +29,7 @@ define(
 					isForceLogin: true
 				});
 				var footer = new Footer('.sf-b2c-mall-footer');
-				
+
 				var that = this;
 				this.imgPrefix = "http://testimg.sfht.com/";
 				this.initPic();
@@ -109,8 +109,8 @@ define(
 						'mailNo': mailNo,
 						'buyerName': buyerName,
 						'buyerTelephone': buyerTelephone,
-						'alipayAccount': alipayAccount,
-						'alipayUserName': alipayname,
+						'alipayAccount': $.trim(alipayAccount),
+						'alipayUserName': $.trim(alipayname),
 						'url': this.getValue()
 					});
 
@@ -126,6 +126,9 @@ define(
 								$('.dialog-success-refertax').hide();
 							})
 						}).fail(function(errorCode) {
+							if (errorCode == '-140') {
+								return false;
+							};
 							var map = {
 								'12110000': '该订单已提交过退税申请'
 							}
