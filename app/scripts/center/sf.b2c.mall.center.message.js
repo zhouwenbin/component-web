@@ -2,10 +2,11 @@
 
 define('sf.b2c.mall.center.message', ['can',
   'sf.b2c.mall.api.commentGoods.findCommentInfoListByType',
+  'sf.b2c.mall.api.product.findSaleBaseInfoList',
   'sf.b2c.mall.fixture.case.center.comment',
   'sf.b2c.mall.adapter.pagination',
   'sf.b2c.mall.widget.pagination'
-], function(can, SFfindCommentInfoListByType, Fixturecomment, PaginationAdapter, Pagination) {
+], function(can, SFfindCommentInfoListByType, SFfindSaleBaseInfoList, Fixturecomment, PaginationAdapter, Pagination) {
   return can.Control.extend({
 
     /**
@@ -32,9 +33,11 @@ define('sf.b2c.mall.center.message', ['can',
 
        var findCommentInfoListByType = new SFfindCommentInfoListByType({
          "type": 0,
-         "pageNum": 10,
+         "pageNum": 3,
          "pageSize": 1
        });
+
+
 
        can.when(findCommentInfoListByType.sendRequest())
          .done(function(commentData) {
@@ -45,27 +48,40 @@ define('sf.b2c.mall.center.message', ['can',
 
              _.each(that.options.commentGoods, function(date) {
                date.commentGoodsInfo.gmtReply =  that.getDate(date.commentGoodsInfo.gmtReply);
+               var findSaleBaseInfoList = new SFfindSaleBaseInfoList({
+                 "sale_base_info_list": date.commentGoodsInfo.itemId
+               });
+               can.when(findSaleBaseInfoList.sendRequest()).done(function(findSaleBaseInfoListData){
+                 date.commentGoodsInfo.defaultImgs = findSaleBaseInfoListData.value[0].defaultImgs;
+
+                 that.getTemple(commentData);
+               })
              })
+
            } else {
              that.options.commentGoods = null;
+             that.getTemple(commentData);
            }
-           that.options = new can.Map(that.options);
-
-           var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
-           that.element.html(html);
-           that.options.page = new PaginationAdapter();
-           that.options.page.format({
-             "pageNum":commentData.page.pageSize,
-             "currentNum":commentData.page.currentNum,
-             "totalNum":commentData.page.totalNum,
-             "pageSize":commentData.page.pageNum
-           });
-           new Pagination('.sf-b2c-mall-message-pagination', that.options);
 
          })
          .fail(function(error) {
            console.error(error);
          });
+    },
+
+    getTemple: function(commentData){
+      var that = this;
+      that.options = new can.Map(that.options);
+      var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
+      that.element.html(html);
+      that.options.page = new PaginationAdapter();
+      that.options.page.format({
+        "pageNum":commentData.page.pageSize,
+        "currentNum":commentData.page.currentNum,
+        "totalNum":commentData.page.totalNum,
+        "pageSize":commentData.page.pageNum
+      });
+      new Pagination('.sf-b2c-mall-message-pagination', that.options);
     },
 
     getDate: function(timeValue){

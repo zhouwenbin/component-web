@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>日本馆</title>
 	<link rel="stylesheet" href="../css/common.css">
-	<link rel="stylesheet" href="../css/japan.css">
+	<link rel="stylesheet" href="../css/australia.css">
 </head>
 <body>
 	== Slim::Template.new('module/header.slim').render
@@ -16,31 +16,38 @@
 		</div>
 		<!-- 馆列表 -->
 		<ul class="japan-list clearfix">
-			<li class="active">
+			<li>
+				<a href="http://www.sfht.com/activity/553.html">
 				<img src="http://img0.sfht.com/img/5ad0856f7d17cf6adb47d4ad7d2ed96a.jpg" alt="" width="278" height="112">
 				<div class="japan-mask">
 					<p>精致</p>
 					<h2>日本馆</h2>
 					<span>Japan</span>
 				</div>
+				</a>
 			</li>
-			<li>
+			<li class="active">
+				<a href="http://www.sfht.com/activity/595.html">
 				<img src="http://img0.sfht.com/img/9a67523c11e031d1ffc383f415658799.jpg"  alt="" width="278" height="112">
 				<div class="japan-mask">
 					<p>纯净</p>
 					<h2>澳大利亚馆</h2>
 					<span>Australia</span>
 				</div>
+				</a>
 			</li>
 			<li>
+				<a href="http://www.sfht.com/activity/596.html">
 				<img src="http://img0.sfht.com/img/68493c7b38ffe545bf1c6b79cde4f536.jpg" alt="" width="278" height="112">
 				<div class="japan-mask">
 					<p>探索</p>
 					<h2>新西兰馆</h2>
 					<span>New Zealand</span>
 				</div>
+				</a>
 			</li>
 			<li class="no-open">
+				<a href="javascript:;">
 				<img src="http://img0.sfht.com/img/9ca3885d47feb0eaed4898650b7621bd.jpg" alt="" width="278" height="112">
 				<div class="japan-mask">
 					<p>魅力</p>
@@ -48,6 +55,7 @@
 					<!-- <span>Italy</span> -->
 					<span>敬请期待</span>
 				</div>
+				</a>
 			</li>
 		</ul>
 		<!-- 馆列表 -->
@@ -104,8 +112,8 @@
 			</div>
 			<!-- 视频部分 -->
 			<!-- 简介 -->
-			<div class="japan-intro-text">
-				<div class="japan-intro-text-inner">
+			<div class="country-intro-text">
+				<!-- <div class="japan-intro-text-inner">
 					<div class="japan-intro-text-title">
 						<h2>顺丰海淘携手日本知名品牌</h2>
 						<p>SFHT&Japanese</p>
@@ -116,16 +124,17 @@
 						<p>原生态直邮免税</p>
 					</div>
 					<span class="japan-flag">japan</span>
-				</div>
+				</div> -->
+				<img src="../img/country/australia-intro.jpg" width="464" height="297" alt="">
 			</div>
 			<!-- 简介 -->
 		</div>
 		<!-- 视频简介 -->
 		<!-- 日本馆banner02 -->
-		<img src="../img/japan/japan-banner02.jpg" alt="" width="1180" height="400" class="japan-banner02" />
+		<img src="../img/country/australia-banner02.jpg" alt="" width="1180" height="400" class="japan-banner02" />
 		<!-- 日本馆banner02 -->
 		<!-- 单品推荐 -->
-		<div class="japan-goods-box">
+		<div class="japan-goods-box australia-goods-box">
 			<h2 class="title"><span class="text-icon">日本国宝级 单品推荐</span></h2>
 			<ul class="japan-goods-list clearfix">
 				<li>
@@ -182,7 +191,7 @@
 		<!-- 单品推荐 -->
 		<!-- 活动规则 -->
 		<div class="japan-active-rule">
-			<h2><span>活动规则</span></h2>
+			<h2><span class="australia-active">活动规则</span></h2>
 			<ol class="japan-active-rule-list">
 				<li><span class="num">1.</span>【活动时间】2015-8-5 10:00:00 - 2015-8-31 23:59:59</li>
 				<li><span class="num">2.</span>99元减30元（不封顶），是指订单金额满99元购物车会立即减30元，并且根据订单金额可以累计立减。</li>
@@ -194,7 +203,7 @@
 		</div>
 		<!-- 活动规则 -->
 		<!-- 视频box -->
-		<div class="japan-video" style="display:block;">
+		<div class="japan-video" >
 			<!-- 这里放视频内容 -->
 			<a href="javascript:" class="japan-video-close">x</a>
 		</div>
