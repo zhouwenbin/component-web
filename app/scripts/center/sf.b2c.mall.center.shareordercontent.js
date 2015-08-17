@@ -58,6 +58,14 @@ define('sf.b2c.mall.center.shareordercontent', [
           }
         },
 
+        shouldShowIntegral: function(integral, options) {
+          if (integral() > 0) {
+            return options.fn(options.contexts || this);
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
+
         'isSecGoods': function(goodsType, options) {
           if (goodsType() == "SECKILL") {
             return options.fn(options.contexts || this);

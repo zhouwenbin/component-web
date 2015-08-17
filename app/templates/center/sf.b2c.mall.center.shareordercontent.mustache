@@ -25,7 +25,9 @@
       <div class="comment-c3">
         <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-itemname="{{goodsName}}" data-packageno="{{packageNo}}" data-index="{{@index}}" data-spec="{{spec}}" data-skuid="{{skuId}}">{{operationHTML}}</a>
 
+        {{#shouldShowIntegral integralAmount}}
         <p class="p1">（已获得{{integralAmount}}积分）</p>
+        {{/shouldShowIntegral}}
       </div>
 
       <div class="commentEditorArea"></div>
