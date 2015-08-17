@@ -54,6 +54,7 @@ requirejs.config({
         'sf.b2c.mall.api.product.arrivalNotice': 'scripts/api/sf.b2c.mall.api.product.arrivalNotice',
         'sf.b2c.mall.api.product.searchShopInfo': 'scripts/api/sf.b2c.mall.api.product.searchShopInfo',
         'sf.b2c.mall.api.product.findMixDiscountProducts': 'scripts/api/sf.b2c.mall.api.product.findMixDiscountProducts',
+        'sf.b2c.mall.api.product.findSaleBaseInfoList': 'scripts/api/sf.b2c.mall.api.product.findSaleBaseInfoList',
 
         'sf.b2c.mall.api.user.appLogin': 'scripts/api/sf.b2c.mall.api.user.appLogin',
         'sf.b2c.mall.api.user.changePassword': 'scripts/api/sf.b2c.mall.api.user.changePassword',

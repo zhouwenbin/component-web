@@ -3,7 +3,7 @@
     <ul>
         {{#each comments.commentGoods}}
             <li>
-                <img src="{{commentGoodsInfo.imgs}}" alt="">
+                <a href="http://www.sfht.com/detail/{{commentGoodsInfo.itemId}}.html"><img src="{{commentGoodsInfo.defaultImgs}}" alt="" width="90" height="90"></a>
                 <div class="message-r1">
                     <div class="message-r1c1 fl"><span class="text-important">顺丰海淘客服</span>回复了您：</div>
                     <div class="message-r1c2 fr">{{commentGoodsInfo.gmtReply}}</div>
