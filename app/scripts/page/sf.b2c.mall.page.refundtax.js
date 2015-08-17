@@ -82,7 +82,7 @@ define(
 				$('#errorAlipayAccount').hide();
 				$('#errorAlipayName').hide();
 				if (this.getValue() == '') {
-					$('#errorNoPicTips').show();
+					$('#errorNoPicTips').text('请上传缴税证明照片').show();
 					return false;
 				};
 				var params = can.deparam(window.location.search.substr(1));
