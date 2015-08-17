@@ -12,10 +12,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'moment',
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.api.commentGoods.findCommentStatus',
+    'sf.b2c.mall.api.finance.getRefundTax',
     'sf.mediav'
   ],
   function(can, SFGetOrder, helpers, loading, FrameworkComm,
-    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFFindCommentStatus, SFMediav) {
+    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFFindCommentStatus, SFGetRefundTax, SFMediav) {
 
     return can.Control.extend({
       helpers: {
@@ -51,9 +52,31 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           } else {
             return options.inverse(options.contexts || this);
           }
+        },
+        'refundTaxStatus': function(refundTax, stateText, options) {
+          if (refundTax.state == stateText) {
+            return options.fn(options.contexts || this);
+          }
+        },
+        'sf-show-refundTax': function(refundTax, options) {
+          if (typeof refundTax == 'undefined') {
+            return options.inverse(options.contexts || this);
+          } else {
+            if (typeof refundTax.state !== 'undefined') {
+              return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
+            }
+          }
+        },
+        'isShowRefundTax': function(status, transporterName, options) {
+          if (transporterName == 'ETK' && (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED')) {
+            return options.fn(options.contexts || this);
+          }
         }
       },
       init: function(element, options) {
+
         this.render();
       },
 
@@ -169,8 +192,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
             that.element.html(html);
+            var params = can.route.attr();
+            if (params.tag) {
+              $('.order-detail-tab li').eq(params.tag).addClass('active').siblings().removeClass('active');
+              that.renderPackageItemInfo(params.tag, data.orderItem);
+            } else {
+              $('.order-detail-tab li').eq(0).addClass('active').siblings().removeClass('active');
+              that.renderPackageItemInfo(0, data.orderItem);
+            }
 
-            that.renderPackageItemInfo(0, data.orderItem);
 
             that.supplement();
 
@@ -214,9 +244,10 @@ debugger;
       },
 
       renderPackageItemInfo: function(tag, data) {
+        var that = this;
         var packageInfo = data.orderPackageItemList[tag];
         packageInfo.userRoutes = packageInfo.actionTraceItemList;
-
+        packageInfo.tag = tag;
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
           goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
@@ -253,8 +284,24 @@ debugger;
         };
 
         packageInfo.showWhereStep = map[packageInfo.status];
-        var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, this.helpers);
-        $('#packageItemInfo').html(html);
+        //如果transporterName = etk，并且包裹状态是已出库、完成、自动完成、签收展示退税流程
+        if (packageInfo.transporterName == 'ETK' && (packageInfo.status == "CONSIGNED" || packageInfo.status == 'COMPLETED' || packageInfo.status == 'AUTO_COMPLETED' || packageInfo.status == 'RECEIPTED')) {
+          var getRefundTax = new SFGetRefundTax({
+            bizId: packageInfo.packageNo
+          });
+          getRefundTax.sendRequest()
+            .done(function(data) {
+              packageInfo.refundTax = new can.Map(data);
+              var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+              $('#packageItemInfo').html(html);
+            }).fail(function(errorCode) {
+
+            })
+        } else {
+          var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+          $('#packageItemInfo').html(html);
+        }
+
         var len = $('#showUserRoutes li').length;
         if (len > 3) {
           $('#showUserRoutes li:gt(2)').hide();
@@ -262,6 +309,17 @@ debugger;
           $('.look-more').hide();
         }
 
+      },
+      // 申请退税
+      '.btn-refundtax click': function(element, event) {
+        event && event.preventDefault();
+        var params = can.deparam(window.location.search.substr(1));
+        var tag = $(element).attr('data-tag')
+        var gotoUrl = 'http://www.sfht.com/refund-tax.html' + '?' + $.param({
+          "tag": tag,
+          "orderid": params.orderid
+        });
+        window.location.href = gotoUrl;
       },
       /**
        * @description 查看更多物流信息
@@ -389,6 +447,7 @@ debugger;
       },
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
         var params = can.route.attr();
+        $('.order-detail-tab li').eq(params.tag).addClass('active').siblings().removeClass('active');
         this.renderPackageItemInfo(params.tag, this.options);
       },
       '.order-detail-tab li click': function(element, event) {

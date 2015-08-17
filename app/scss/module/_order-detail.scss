@@ -140,7 +140,7 @@
 	line-height: 30px;
 }
 .order-detail-state-r1{
-	padding-bottom: 27px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid #d0d0d0;
 	margin-bottom: 27px;
 }
@@ -302,3 +302,129 @@
   left: -4px;
   top: 7px;
 }
+.order-detail-refundtax{
+	margin-top: 20px;
+	color:#666;
+}
+.btn-refundtax{
+	margin-left: 20px;
+}
+// 退税
+.order-createrefundtax{
+	background: #fff;
+	margin-top: 45px;
+	padding: 80px 0 300px 315px;
+}
+.order-createrefundtax h2{
+	font-size:18px;
+	font-weight: normal;
+	color: #333;
+}
+.order-createrefundtax-b1{
+	margin-top: 80px;
+}
+.order-createrefundtax-b1-c1{
+	margin-bottom: 20px;
+}
+.order-createrefundtax-b1-c1 label,.order-createrefundtax-b1-c2 label{
+	color: #666;
+	font-size: 14px;
+}
+.order-createrefundtax-b1-c1 input{
+	vertical-align: middle;
+	width: 235px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	border:1px solid #ccc;
+	padding-left: 5px;
+}
+.order-createrefundtax-b1-c2 p{
+	display: inline-block;
+	width: 345px;
+	margin:0 0 0 15px;
+	line-height: 18px;
+	color:#999;
+	vertical-align: middle;
+}
+
+.btn-refer-tax{
+	margin:20px 0 0 100px;
+}
+.comment-add-img>li{
+	font-size: 12px;
+	display: inline-block;
+	border:1px solid #979797;
+	margin-right: 10px;
+	position: relative;
+}
+.comment-add-img>li:hover{
+	border-color: #E13B3A;
+}
+.comment-add-img-del{
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	text-align: center;
+	color: #fff;
+	background: #E13B3A;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+.comment-add-img-del:hover{
+	color: #fff;
+}
+.comment-add-img>li:hover .comment-add-img-del{
+	display: block;
+}
+.order-createrefundtax-b1-c2 label.comment-add-img-add{
+	color:#fff;
+}
+.comment-add-img-add{
+	width: 90px;
+	height: 39px;
+	display: inline-block;
+	border-radius: 5px;
+	color: #fff;
+	background: #ccc;
+	text-align: center;
+	line-height: 39px;
+	cursor: pointer;
+}
+.dialog-success-refertax{
+	width: 376px;
+	background: #fff;
+	margin-left: -188px;
+	padding: 60px 0 27px 0;
+}
+.dialog-b-c1{
+	margin: 18px 0;
+}
+.comment-add-img{
+	margin: 10px 0 0 100px;
+}
+.dialog-big-img{
+  z-index: 999;
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+#errorNoPicTips{
+	margin: 10px 0 0 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

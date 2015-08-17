@@ -163,6 +163,9 @@ requirejs.config({
         'sf.b2c.mall.api.integral.getUserIntegralLog': 'scripts/api/sf.b2c.mall.api.integral.getUserIntegralLog',
         'sf.b2c.mall.api.integral.getUserTotalIntegral': 'scripts/api/sf.b2c.mall.api.integral.getUserTotalIntegral',
 
+        //退税接口
+        'sf.b2c.mall.api.finance.createRefundTax': 'scripts/api/sf.b2c.mall.api.finance.createRefundTax',
+        'sf.b2c.mall.api.finance.getRefundTax': 'scripts/api/sf.b2c.mall.api.finance.getRefundTax',
 
         'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
@@ -218,6 +221,7 @@ requirejs.config({
         'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
         'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
         'sf.b2c.mall.center.invitationcontent': 'scripts/center/sf.b2c.mall.center.invitationcontent',
+
         'sf.b2c.mall.center.message': 'scripts/center/sf.b2c.mall.center.message',
 
         'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
@@ -267,6 +271,7 @@ requirejs.config({
         'sf.b2c.mall.page.federal.login': 'scripts/page/sf.b2c.mall.page.federal.login',
         'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
         'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
+
         'sf.b2c.mall.page.message': 'scripts/page/sf.b2c.mall.page.message',
 
         'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
@@ -309,6 +314,13 @@ requirejs.config({
         'sf.b2c.mall.page.pointmanage': 'scripts/page/sf.b2c.mall.page.pointmanage',
         'sf.b2c.mall.center.mypoint': 'scripts/center/sf.b2c.mall.center.mypoint',
         'sf.b2c.mall.page.integralactive': 'scripts/page/sf.b2c.mall.page.integralactive',
+
+        //日本馆
+        'sf.b2c.mall.page.japanpre': 'scripts/page/sf.b2c.mall.page.japanpre',
+
+        //退税
+        'sf.b2c.mall.page.refundtax': 'scripts/page/sf.b2c.mall.page.refundtax',
+
         //收货地址管理
         'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
         'sf.b2c.mall.page.accountmanage': 'scripts/page/sf.b2c.mall.page.accountmanage',
@@ -338,9 +350,6 @@ requirejs.config({
         'sf.b2c.mall.module.timecount': 'scripts/module/sf.b2c.mall.module.timecount',
         'sf.b2c.mall.module.sidelip': 'scripts/module/sf.b2c.mall.module.sidelip',
 
-        //日本馆
-        'sf.b2c.mall.page.japanpre':'scripts/page/sf.b2c.mall.page.japanpre',
-
         'sf.mediav': 'scripts/util/sf.mediav',
 
         // fixture功能
@@ -364,6 +373,8 @@ requirejs.config({
         'sf.b2c.mall.fixture.case.center.comment': 'fixture/case/center/sf.b2c.mall.fixture.case.center.comment',
 
         'template_product_detailcomment': 'templates/product/sf.b2c.mall.product.detailcomment.mustache',
+
+
         'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
         'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
         'template_header_info_step_fillinfo': 'templates/header/sf.b2c.mall.header.info.step.fillinfo.mustache',
