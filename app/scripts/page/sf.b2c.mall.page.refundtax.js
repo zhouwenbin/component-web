@@ -19,7 +19,9 @@ define(
 
 
 			init: function(options) {
-
+				if (!SFFrameworkComm.prototype.checkUserLogin.call(this)) {
+					window.location.href = 'index.html';
+				}
 
 				var that = this;
 				this.imgPrefix = "http://testimg.sfht.com/";
