@@ -75,6 +75,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         }
       },
       init: function(element, options) {
+
         this.render();
       },
 
@@ -184,8 +185,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
             that.element.html(html);
+            var params = can.route.attr();
+            if (params.tag) {
+              $('.order-detail-tab li').eq(params.tag).addClass('active').siblings().removeClass('active');
+              that.renderPackageItemInfo(params.tag, data.orderItem);
+            } else {
+              $('.order-detail-tab li').eq(0).addClass('active').siblings().removeClass('active');
+              that.renderPackageItemInfo(0, data.orderItem);
+            }
 
-            that.renderPackageItemInfo(0, data.orderItem);
 
             that.supplement();
 
@@ -401,6 +409,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
       '{can.route} change': function(el, attr, how, newVal, oldVal) {
         var params = can.route.attr();
+        $('.order-detail-tab li').eq(params.tag).addClass('active').siblings().removeClass('active');
         this.renderPackageItemInfo(params.tag, this.options);
       },
       '.order-detail-tab li click': function(element, event) {
