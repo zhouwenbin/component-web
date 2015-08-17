@@ -67,17 +67,20 @@
                     <label class="comment-add-img-add">
                       <span>+</span>添加照片<input type="file" class="visuallyhidden" />
                     </label>
+                    <p class="p2">( 最多可上传5张照片，每张不超过5M。<br />支持格式jpg，jpeg，bmp，png，gif )</p>
                     <div class="comment-img-big">
-                      <a href="javascript:" class="comment-img-big-prev"></a>
-                      <ul>
-                        -for i in 1..3
-                          <li><img src="http://dummyimage.com/#{i*2}00x300" alt=""></li>
-                      </ul>
-                      <a href="javascript:" class="comment-img-big-next"></a>
+                      <div class="comment-img-big-inner">
+                        <a href="javascript:" class="comment-img-big-prev"></a>
+                        <ul>
+                          -for i in 1..3
+                            <li><img src="http://dummyimage.com/#{i*2}00x300" alt=""></li>
+                        </ul>
+                        <a href="javascript:" class="comment-img-big-next"></a>
+                      </div>
                     </div>
 
 
-                    <p class="p2">( 最多可上传5张照片，每张不超过5M。<br />支持格式jpg，jpeg，bmp，png，gif )</p>
+
                     <p class="p3">照片将在1个工作日后展示，审核通过后将额外获得10个积分</p>
                     <button class="btn btn-danger btn-small">评价并继续</button><label><input class="checkbox" type="checkbox" checked />匿名评价</label>
                   </li>
