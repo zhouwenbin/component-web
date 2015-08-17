@@ -31,7 +31,7 @@ define(
 				var footer = new Footer('.sf-b2c-mall-footer');
 
 				var that = this;
-				this.imgPrefix = "http://testimg.sfht.com/";
+				this.imgPrefix = "http://img0.sfht.com/";
 				this.initPic();
 				$('#errorNoPicTips').hide();
 				$('#errorAlipayAccount').hide();
