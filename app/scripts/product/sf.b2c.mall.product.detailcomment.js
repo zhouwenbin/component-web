@@ -156,7 +156,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       } else {
         var routeParams = can.route.attr();
         this.render(routeParams.page);
-        $("body,html").animate({scrollTop: $('#detaillastcomment').offset().top - $(".nav-inner").height()},0);
+        $("body,html").animate({scrollTop: $('.comment-tab').offset().top - $(".nav-inner").height()},0);
         this.currentRouteData = el.page;
       }
     },
