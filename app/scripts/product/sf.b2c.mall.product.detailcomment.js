@@ -62,7 +62,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         var map = {
           "1": "顺丰海淘web网页版",
           "3": "顺丰海淘H5网页版",
-          "4": "顺丰海淘APP版"
+          "4": "顺丰海淘iOS手机版",
+          "5": "顺丰海淘Andriod版",
         }
         return map[terminalType()];
       },
