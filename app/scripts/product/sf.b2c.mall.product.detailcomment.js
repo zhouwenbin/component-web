@@ -8,6 +8,9 @@ define('sf.b2c.mall.product.detailcomment', ['can',
   'sf.b2c.mall.widget.pagination',
   'text!template_product_detailcomment'
 ], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, PaginationAdapter, Pagination, template_product_detailcomment) {
+
+  can.route.ready();
+
   return can.Control.extend({
 
     helpers: {
@@ -39,10 +42,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         plusTime = plusTime();
         time = time();
 
-        var day = (plusTime - time)/(3600 * 24 * 1000);
-        var hour = (plusTime - time)/(3600 * 1000);
-        var min = (plusTime - time)/(60 * 1000);
-        var sec = (plusTime - time)/(1000);
+        var day = (plusTime - time) / (3600 * 24 * 1000);
+        var hour = (plusTime - time) / (3600 * 1000);
+        var min = (plusTime - time) / (60 * 1000);
+        var sec = (plusTime - time) / (1000);
 
         if (min < 1) {
           return sec.toFixed() + "秒后"
@@ -87,10 +90,17 @@ define('sf.b2c.mall.product.detailcomment', ['can',
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
-      this.render();
+      var routeParams = can.route.attr();
+      if (!routeParams.page) {
+        routeParams = _.extend(routeParams, {
+          page: 1
+        });
+      }
+
+      this.render(routeParams.page);
     },
 
-    render: function() {
+    render: function(page) {
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({
@@ -100,7 +110,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         "itemId": this.options.itemId,
         "type": 0,
         "pageNum": 3,
-        "pageSize": 1
+        "pageSize": page
       });
 
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
@@ -138,6 +148,17 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    '{can.route} change': function(el, attr, how, newVal, oldVal) {
+      if (el.page == this.currentRouteData) {
+        return true;
+      } else {
+        var routeParams = can.route.attr();
+        this.render(routeParams.page);
+        $("body,html").animate({scrollTop: $('#detaillastcomment').offset().top - $(".nav-inner").height()},0);
+        this.currentRouteData = el.page;
+      }
     },
 
     supplement: function(value) {
@@ -227,7 +248,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     //向前
-    '.comment-img-big-prev click': function(){
+    '.comment-img-big-prev click': function() {
       this.index--;
       this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
       this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
@@ -235,7 +256,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     //向后
-    '.comment-img-big-next click': function(){
+    '.comment-img-big-next click': function() {
       this.index++;
       this.smallImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
       this.bigImg.find('li').eq(this.index).addClass('active').siblings().removeClass('active');
