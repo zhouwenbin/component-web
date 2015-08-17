@@ -222,13 +222,17 @@ define(
 
 				plupload.init();
 			},
-			// '.comment-add-img li click': function(element, event) {
-			// 	$('.dialog-big-img').html('');
-			// 	var src = $(element).find('img').attr('src');
-			// 	var imgHtml = '<img src="' + src + '" alt="" />'
-			// 	$('.mask').show();
-			// 	$('.dialog-big-img').append(imgHtml).show();
-			// },
+			'.comment-add-img li click': function(element, event) {
+				$('.dialog-big-img').html('');
+				var src = $(element).find('img').attr('src');
+				var imgHtml = '<img src="' + src + '" alt="" />'
+				$('.mask').show();
+				$('.dialog-big-img').append(imgHtml).show();
+			},
+			'.dialog-big-img click':function(element,event){
+				$(element).hide();
+				$('.mask').hide();
+			},
 			/**
 			 * [getValue 获得取值，供其他组件调用]
 			 * @return {[type]} [description]
