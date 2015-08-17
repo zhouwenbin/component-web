@@ -1595,6 +1595,7 @@ module.exports = function(grunt) {
 
       refundtax: {
         options: {
+          optimize: 'none',
           preserveLicenseComments: false,
           baseUrl: './app/',
           out: './<%= config.tmp %>/concat/scripts/sf.b2c.mall.page.refundtax.js',

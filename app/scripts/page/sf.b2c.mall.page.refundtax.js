@@ -8,9 +8,11 @@ define(
 		'sf.b2c.mall.api.finance.createRefundTax',
 		'sf.b2c.mall.api.order.getOrderV2',
 		'plupload',
-		'livequery'
+		'livequery',
+		'sf.b2c.mall.component.header',
+		'sf.b2c.mall.component.footer'
 	],
-	function(can, $, SFFrameworkComm, SFFn, SFBizConf, SFCreateRefundTax, SFGetOrderV2, plupload, livequery) {
+	function(can, $, SFFrameworkComm, SFFn, SFBizConf, SFCreateRefundTax, SFGetOrderV2, plupload, livequery, Header, Footer) {
 
 		SFFrameworkComm.register(1);
 		SFFn.monitor();
@@ -23,6 +25,11 @@ define(
 					window.location.href = 'index.html';
 				}
 
+				var header = new Header('.sf-b2c-mall-header', {
+					isForceLogin: true
+				});
+				var footer = new Footer('.sf-b2c-mall-footer');
+				
 				var that = this;
 				this.imgPrefix = "http://testimg.sfht.com/";
 				this.initPic();
