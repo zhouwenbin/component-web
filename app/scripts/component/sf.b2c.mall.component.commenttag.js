@@ -46,16 +46,16 @@ define(
             return false;
           }
 
-          if (this.customizedTagCount == 3) {
-            this.options.adapter.comment.attr("error", {
-              "commentGoodsLabels": '最多只能自定义3个标签哦，选你认为最贴切的吧'
-            });
-            return false;
-          } else {
-            this.options.adapter.comment.attr("error", {
-              "commentGoodsLabels": ''
-            });
-          }
+          // if (this.customizedTagCount == 3) {
+          //   this.options.adapter.comment.attr("error", {
+          //     "commentGoodsLabels": '最多只能自定义3个标签哦，选你认为最贴切的吧'
+          //   });
+          //   return false;
+          // } else {
+          //   this.options.adapter.comment.attr("error", {
+          //     "commentGoodsLabels": ''
+          //   });
+          // }
 
           if (!this.checkTag(element.parents(":eq(4)"))) {
             return false;
@@ -104,7 +104,7 @@ define(
         var commenttagarea = $("#commenttagarea", $(parentElement));
         var errortip = $(".msg-error-01", commenttagarea);
         var taglist = $(".btn-goods.active", commenttagarea);
-        if (taglist.length > 3) {
+        if (taglist.length >= 3) {
           this.options.adapter.comment.attr("error", {
             "commentGoodsLabels": '最多只能选择3个标签哦，选你认为最贴切的吧'
           });

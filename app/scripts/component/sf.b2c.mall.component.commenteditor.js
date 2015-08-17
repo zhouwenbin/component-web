@@ -308,9 +308,7 @@ define('sf.b2c.mall.component.commenteditor', [
             });
           } else if (error == 14013000) {
             that.adapter.comment.attr("error", {
-              "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
-            });
-            that.adapter.comment.attr("error", {
+              "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~",
               "pluscontent": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
             });
           }
