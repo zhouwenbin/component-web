@@ -54,18 +54,14 @@ define('sf.b2c.mall.center.message', ['can',
                can.when(findSaleBaseInfoList.sendRequest()).done(function(findSaleBaseInfoListData){
                  date.commentGoodsInfo.defaultImgs = findSaleBaseInfoListData.value[0].defaultImgs;
 
-                 that.getTemple();
+                 that.getTemple(commentData);
                })
              })
 
            } else {
              that.options.commentGoods = null;
-             that.getTemple();
+             that.getTemple(commentData);
            }
-
-
-
-
 
          })
          .fail(function(error) {
@@ -73,7 +69,7 @@ define('sf.b2c.mall.center.message', ['can',
          });
     },
 
-    getTemple: function(){
+    getTemple: function(commentData){
       var that = this;
       that.options = new can.Map(that.options);
       var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
