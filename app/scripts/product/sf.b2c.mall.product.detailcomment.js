@@ -31,6 +31,14 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+      showNoData: function(totalCount) {
+        if (totalCount() == 0) {
+          return "暂无评价"
+        } else {
+          return "未找到符合条件的评价"
+        }
+      },
+
       hasLabel: function(labels, options) {
         if (labels() && labels().length > 0) {
           return options.fn(options.contexts || this);
@@ -64,7 +72,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           "1": "顺丰海淘web网页版",
           "3": "顺丰海淘H5网页版",
           "4": "顺丰海淘iOS手机版",
-          "5": "顺丰海淘Andriod版",
+          "5": "顺丰海淘Andriod手机版",
         }
         return map[terminalType()];
       },
@@ -167,7 +175,6 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       $("#comment-totalcount").text("（" + value + "）");
       $(".img-lazyload").imglazyload();
       $("[data-type='" + commentType + "']").addClass('active').siblings().removeClass('active');
-
 
       $(window).scroll(function() {
         if ($(window).scrollTop() <= ($('.detail-tab-h').offset().top + $(".detail-tab-h").height() + $(".nav-inner").height())) {
