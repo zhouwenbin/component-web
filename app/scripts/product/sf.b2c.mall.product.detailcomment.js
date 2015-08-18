@@ -6,8 +6,9 @@ define('sf.b2c.mall.product.detailcomment', ['can',
   'sf.b2c.mall.fixture.case.center.comment',
   'sf.b2c.mall.adapter.pagination',
   'sf.b2c.mall.widget.pagination',
+  'imglazyload',
   'text!template_product_detailcomment'
-], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, PaginationAdapter, Pagination, template_product_detailcomment) {
+], function(can, SFFindCommentLabels, SFfindCommentInfoList, Fixturecomment, PaginationAdapter, Pagination, SFImglazyload, template_product_detailcomment) {
 
   can.route.ready();
 
@@ -91,6 +92,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
+      this.commentType = 0;
+
       var routeParams = can.route.attr();
       if (!routeParams.page) {
         routeParams = _.extend(routeParams, {
@@ -98,10 +101,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         });
       }
 
-      this.render(routeParams.page);
+      this.render(this.commentType, routeParams.page);
     },
 
-    render: function(page) {
+    render: function(commentType, page) {
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({
@@ -109,27 +112,27 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       });
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": this.options.itemId,
-        "type": 0,
+        "type": commentType,
         "pageNum": 3,
         "pageSize": page
       });
 
+      that.options = new can.Map(that.options);
+
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
         .done(function(labels, commentData) {
 
-          that.options.outline = labels;
-          that.options.comments = commentData;
-
-          if (that.options.outline.keyValuePaires) {
-            that.options.outline.totalCount = labels.keyValuePaires[0].value;
-            that.options.outline.goodCount = labels.keyValuePaires[1].value;
-            that.options.outline.middleCount = labels.keyValuePaires[2].value;
-            that.options.outline.badCount = labels.keyValuePaires[3].value;
-            that.options.outline.shareorderCount = labels.keyValuePaires[4].value;
-            that.options.outline.addplusCount = labels.keyValuePaires[5].value;
+          if (labels.keyValuePaires) {
+            labels.totalCount = labels.keyValuePaires[0].value;
+            labels.goodCount = labels.keyValuePaires[1].value;
+            labels.middleCount = labels.keyValuePaires[2].value;
+            labels.badCount = labels.keyValuePaires[3].value;
+            labels.shareorderCount = labels.keyValuePaires[4].value;
+            labels.addplusCount = labels.keyValuePaires[5].value;
           }
 
-          that.options = new can.Map(that.options);
+          that.options.attr("outline", labels);
+          that.options.attr("comments", commentData);
 
           var renderFn = can.mustache(template_product_detailcomment);
           that.options.html = renderFn(that.options, that.helpers);
@@ -140,7 +143,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
 
-          that.supplement(that.options.outline.totalCount);
+          that.supplement(commentType, that.options.outline.totalCount);
         })
         .fail(function(error) {
           console.error(error);
@@ -152,16 +155,18 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         return true;
       } else {
         var routeParams = can.route.attr();
-        this.render(routeParams.page);
+        this.render(this.commentType, routeParams.page);
         $("body,html").animate({
-          scrollTop: $('.comment-tab').offset().top - $(".nav-inner").height()
+          scrollTop: $('#detaillastcomment').offset().top - $(".nav-inner").height()
         }, 0);
         this.currentRouteData = el.page;
       }
     },
 
-    supplement: function(value) {
-      $("#comment-totalcount").text("（" + value + "）")
+    supplement: function(commentType, value) {
+      $("#comment-totalcount").text("（" + value + "）");
+      $(".img-lazyload").imglazyload();
+      $("[data-type='" + commentType + "']").addClass('active').siblings().removeClass('active');
     },
 
     getComments: function(type) {
@@ -183,8 +188,9 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           that.options.attr("comments", data);
 
-          this.formatPageData(data);
+          that.formatPageData(data);
 
+          $(".img-lazyload").imglazyload();
         })
         .fail(function(error) {
           console.error(error);
@@ -201,8 +207,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     '.comment-tab li click': function(element, event) {
+
       element.addClass('active').siblings().removeClass('active');
       var type = element.attr("data-type");
+      this.commentType = type;
 
       // 不要重复请求
       if (!this.options[this.commentsObjMap[type]]) {
@@ -212,8 +220,11 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         this.options.attr("comments", cacheData);
 
         this.formatPageData(cacheData);
+        $(".img-lazyload").imglazyload();
       }
 
+      // 修改page为1
+      can.route.attr("page", 1);
     },
 
     formatPageData: function(pageData) {
