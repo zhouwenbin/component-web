@@ -167,6 +167,13 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       $("#comment-totalcount").text("（" + value + "）");
       $(".img-lazyload").imglazyload();
       $("[data-type='" + commentType + "']").addClass('active').siblings().removeClass('active');
+
+
+      $(window).scroll(function() {
+        if ($(window).scrollTop() <= ($('.detail-tab-h').offset().top + $(".detail-tab-h").height() + $(".nav-inner").height())) {
+          $('.detail-tab-h li:eq(0)').addClass('active').siblings().removeClass('active');
+        }
+      })
     },
 
     getComments: function(type) {
