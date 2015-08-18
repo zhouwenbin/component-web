@@ -78,6 +78,9 @@ define(
           return false;
         }
         element.addClass("hover");
+
+        $(".commstar a").removeClass("active");
+        this.setTip(element.attr("_val"));
       },
 
       '.commstar a mouseout': function(element, event) {
@@ -86,6 +89,8 @@ define(
           return false;
         }
         element.removeClass("hover");
+        this.resetStar(this.star);
+        this.setTip(this.star);
       },
 
       initStar: function(level) {
