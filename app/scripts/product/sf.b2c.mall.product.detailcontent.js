@@ -1687,6 +1687,8 @@ define('sf.b2c.mall.product.detailcontent', [
             that.setFirstPicSelected();
 
             $(".goods-c1r1 li").zoom();
+
+            that.renderComment();
           })
       },
 
