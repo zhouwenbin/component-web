@@ -67,7 +67,7 @@ define(
           //   });
           // }
 
-          if (!this.checkTag(element.parents(":eq(4)"))) {
+          if (!this.checkTag(element.parents(":eq(4)"), 3)) {
             return false;
           }
           var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span>';
@@ -84,7 +84,7 @@ define(
           return false;
         }
         element.toggleClass("active");
-        if (!this.checkTag(element.parents(":eq(4)"))) {
+        if (!this.checkTag(element.parents(":eq(4)"), 4)) {
           return false;
         }
       },
@@ -109,12 +109,12 @@ define(
         return result;
       },
 
-      checkTag: function(parentElement) {
+      checkTag: function(parentElement, length) {
 
         var commenttagarea = $("#commenttagarea", $(parentElement));
         var errortip = $(".msg-error-01", commenttagarea);
         var taglist = $(".btn-goods.active", commenttagarea);
-        if (taglist.length >= 3) {
+        if (taglist.length >= length) {
           this.options.adapter.comment.attr("error", {
             "commentGoodsLabels": '最多只能选择3个标签哦，选你认为最贴切的吧'
           });
