@@ -223,9 +223,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         $(".img-lazyload").imglazyload();
       }
 
-
+      // 修改page为1
       can.route.attr("page", 1);
-
     },
 
     formatPageData: function(pageData) {
