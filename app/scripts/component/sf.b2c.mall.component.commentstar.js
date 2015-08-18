@@ -12,6 +12,25 @@ define(
 
     return can.Control.extend({
 
+      dataBinder: {
+        callbacks: {},
+        context: this,
+
+        on: function(name, callback, context) {
+          this.context = context;
+
+          this.callbacks[name] = this.callbacks[name] || [];
+          this.callbacks[name].push(callback);
+        },
+
+        publish: function(name) {
+          this.callbacks[name] = this.callbacks[name] || [];
+          for (var i = 0, len = this.callbacks[name].length; i < len; i++) {
+            this.callbacks[name][i].apply(this.context,  Array.prototype.slice.call(arguments, 1));
+          }
+        }
+      },
+
       init: function(element, options) {
         this.star = options.level || options.defaultLevel;
         this.view = options.view;
@@ -20,6 +39,8 @@ define(
         this.render();
 
         this.initStar(this.star);
+
+        // this.dataBinder.on("star", this.setTip, this);
       },
 
       render: function() {
@@ -43,6 +64,7 @@ define(
         this.star = element.attr("_val");
 
         this.resetStar(this.star);
+        // this.dataBinder.publish("star", this.star);
         this.setTip(this.star);
 
         if (typeof this.options.clickCallback != 'undefined') {
