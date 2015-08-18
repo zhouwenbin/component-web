@@ -404,7 +404,7 @@ define('sf.b2c.mall.product.detailcontent', [
           // $(".comment").addClass("active");
           // $("#detail4product").removeClass("active");
 
-          $("body,html").animate({scrollTop: $('#detaillastcomment').offset().top - $(".nav-inner").height()},500);
+          $("body,html").animate({scrollTop: $('#detaillastcomment').offset().top - $(".nav-inner").height()}, 0);
 
         })
 
