@@ -183,7 +183,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
           that.options.attr("comments", data);
 
-          this.formatPageData(data);
+          that.formatPageData(data);
 
         })
         .fail(function(error) {
