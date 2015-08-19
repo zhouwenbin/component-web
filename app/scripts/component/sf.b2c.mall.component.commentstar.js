@@ -81,14 +81,11 @@ define(
       '.commstar a click': function(element, event) {
         event && event.preventDefault();
 
-        if (this.view) {
-          return false;
-        }
-
         this.el.removeClass("active");
         element.addClass("active");
 
-        this.dataWatcher.setAttr("star", element.attr("_val"));
+        // this.dataWatcher.setAttr("star", element.attr("_val"));
+        this.star = element.attr("_val");
         this.resetStar(this.star);
 
         if (typeof this.options.clickCallback != 'undefined') {
@@ -120,20 +117,16 @@ define(
 
       '.commstar a mouseover': function(element, event) {
         event && event.preventDefault();
-        if (this.view) {
-          return false;
-        }
+
         element.addClass("hover");
 
-        $(".commstar a").removeClass("active");
+        $(".commstar a", this.element).removeClass("active");
         this.setTip(element.attr("_val"));
       },
 
       '.commstar a mouseout': function(element, event) {
         event && event.preventDefault();
-        if (this.view) {
-          return false;
-        }
+
         element.removeClass("hover");
         this.resetStar(this.star);
         this.setTip(this.star);
