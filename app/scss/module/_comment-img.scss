@@ -1,10 +1,9 @@
 .comment-img{
 	font-size: 0;
-	margin-bottom: 15px;
 }
 .comment-img li{
 	display: inline-block;
-	border:1px solid #979797;
+	border:1px solid #ccc;
 	margin-right: 10px;
 	cursor: -webkit-zoom-in;
 	position: relative;
@@ -33,10 +32,9 @@
 	margin-left: -5px;
 }
 .comment-img-big{
-	margin-bottom: 20px;
   position: relative;
   text-align: center;
-
+  margin-right: 35px;
 }
 .comment-img-big-inner{
   position: relative;
@@ -44,6 +42,9 @@
 .comment-img-big li{
 	display: none;
 	cursor: -webkit-zoom-out;
+  background: #fff;
+  padding: 10px 0;
+  margin-top: 15px;
 }
 .comment-img-big li.active{
 	display: block;
