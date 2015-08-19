@@ -48,7 +48,7 @@ define(
         var filename = "天朝进贡-banner-H5.jpg";
         // 上传组件
         var plupload = new window.plupload.Uploader({
-          runtimes: "gears,html5,flash",
+          runtimes: "gears,html5,html4,flash",
           browse_button: "pickbutton",
           file_data_name: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length),
           urlstream_upload: true,
