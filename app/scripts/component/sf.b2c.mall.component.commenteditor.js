@@ -49,6 +49,7 @@ define('sf.b2c.mall.component.commenteditor', [
       this.skuid = data.skuid;
       this.spec = data.spec;
       this.packageNo = data.packageNo;
+      this.itemImg = data.itemImg;
       this.tag = tag;
 
       // 获得标签
@@ -275,6 +276,7 @@ define('sf.b2c.mall.component.commenteditor', [
         "skuId": this.skuid,
         "itemId": this.itemid,
         "itemName": this.itemName,
+        "itemImg": this.itemImg,
         "score": comment.score * 100,
         "content": comment.content,
         "extralContent": comment.pluscontent,

@@ -304,6 +304,13 @@ define('sf.b2c.mall.center.shareordercontent', [
         var spec = element.attr('data-spec');
         var packageNo = element.attr('data-packageno');
 
+        var itemImg = null;
+        try {
+          itemImg = JSON.parse(this.options.orderItem[this.editIndex].imageUrl)[0];
+        } catch (e) {
+
+        }
+
         if (itemStatus == "-1") {
           return false;
         }
@@ -333,26 +340,19 @@ define('sf.b2c.mall.center.shareordercontent', [
         getComments.sendRequest()
           .done(function(data) {
 
+            var dataObj = {
+              "orderid": that.orderid,
+              "itemid": itemId,
+              "itemName": itemName,
+              "itemImg": itemImg,
+              "skuid": skuId,
+              "spec": spec,
+              "packageNo": packageNo,
+              "isLastEdit": isLastEdit
+            };
+
             if (data.value) {
-              data = _.extend(data.value[0], {
-                "orderid": that.orderid,
-                "itemid": itemId,
-                "itemName": itemName,
-                "skuid": skuId,
-                "spec": spec,
-                "packageNo": packageNo,
-                "isLastEdit": isLastEdit
-              });
-            } else {
-              data = {
-                "orderid": that.orderid,
-                "itemid": itemId,
-                "itemName": itemName,
-                "skuid": skuId,
-                "spec": spec,
-                "packageNo": packageNo,
-                "isLastEdit": isLastEdit
-              }
+              data = _.extend(dataObj, data.value[0]);
             }
 
             var id = window.parseInt(Math.random() * 10000);

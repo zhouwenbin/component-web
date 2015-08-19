@@ -36,7 +36,7 @@ define(
         }
       },
 
-      init: function(element, options) {debugger;
+      init: function(element, options) {
         this.star = options.level || options.defaultLevel;
         this.view = options.view;
         this.el = null;
@@ -69,7 +69,7 @@ define(
 
         this.dataWatcher.setAttr("star", element.attr("_val"));
         this.resetStar(this.star);
-debugger;
+
         if (typeof this.options.clickCallback != 'undefined') {
           this.options.clickCallback.apply(this, [this.star]);
         }
@@ -93,7 +93,7 @@ debugger;
         $(".comment-add-score", this.element).text(map[score])
       },
 
-      getValue: function() {debugger;
+      getValue: function() {
         return this.star;
       },
 
