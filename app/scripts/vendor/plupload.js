@@ -1187,7 +1187,7 @@
    c.runtimes.Html5 = c.addRuntime("html5", {
      getFeatures: function() {
        var d, e, g, h, i, j;
-       return e = g = i = j = !1, a.XMLHttpRequest && (d = new XMLHttpRequest, g = !!d.upload, e = !(!d.sendAsBinary && !d.upload)), e && (h = !!(d.sendAsBinary || a.Uint8Array && a.ArrayBuffer), i = !(!File || !File.prototype.getAsDataURL && !a.FileReader || !h), j = !(!File || !(File.prototype.mozSlice || File.prototype.webkitSlice || File.prototype.slice))), f = c.ua.safari && c.ua.windows, {
+       return e = g = i = j = !1, window.XMLHttpRequest && (d = new XMLHttpRequest, g = !!d.upload, e = !(!d.sendAsBinary && !d.upload)), e && (h = !!(d.sendAsBinary || a.Uint8Array && a.ArrayBuffer), i = !(!File || !File.prototype.getAsDataURL && !a.FileReader || !h), j = !(!File || !(File.prototype.mozSlice || File.prototype.webkitSlice || File.prototype.slice))), f = c.ua.safari && c.ua.windows, {
          html5: e,
          dragdrop: function() {
            var a = b.createElement("div");
