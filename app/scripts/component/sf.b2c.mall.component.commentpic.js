@@ -58,8 +58,8 @@ define(
             fileVal: 'CPRODUCT_IMG' + filename.substring(filename.lastIndexOf("."), filename.length)
           },
           url: SFBizConf.setting.api.fileurl + "?_aid=1",
-          flash_swf_url: "../img/plupload.flash.swf?r=" + Math.random(),
-          silverlight_xap_url: "../img/plupload.silverlight.xap",
+          flash_swf_url: "http://www.sfht.com/img/plupload.flash.swf?r=" + Math.random(),
+          silverlight_xap_url: "http://www.sfht.com/img/plupload.silverlight.xap",
           filters: [{
             title: "Image files",
             extensions: "jpg,jpeg,gif,png,bmp"
