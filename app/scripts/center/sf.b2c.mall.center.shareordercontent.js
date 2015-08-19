@@ -352,7 +352,7 @@ define('sf.b2c.mall.center.shareordercontent', [
             };
 
             if (data.value) {
-              data = _.extend(dataObj, data.value[0]);
+              dataObj = _.extend(dataObj, data.value[0]);
             }
 
             var id = window.parseInt(Math.random() * 10000);
@@ -360,7 +360,7 @@ define('sf.b2c.mall.center.shareordercontent', [
 
             that.commenteditor = new SFCommenteditor($(".commentEditorArea", element.parents("li")), {
               "id": id,
-              "data": data,
+              "data": dataObj,
               "tag": that.operationMap[itemStatus],
               "submitCallback": handler
             });

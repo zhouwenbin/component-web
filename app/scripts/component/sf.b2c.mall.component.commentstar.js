@@ -31,8 +31,25 @@ define(
         trigger: function(name) {
           this.callbacks[name] = this.callbacks[name] || [];
           for (var i = 0, len = this.callbacks[name].length; i < len; i++) {
-            this.callbacks[name][i].apply(this.context,  Array.prototype.slice.call(arguments, 1));
+            this.callbacks[name][i].apply(this.context, Array.prototype.slice.call(arguments, 1));
           }
+        }
+      },
+
+      helpers: {
+        showStar: function(score) {
+          var imgArr = [];
+          var onImg = "http://img0.sfht.com/img/5fdc69349cd3d4c3f32531c9c2b07d35.jpg";
+          var offImg = "http://img0.sfht.com/img/4b9d8e58142d0d0c5daeab5b6560c858.jpg";
+          for (var i = 0; i < score; i++) {
+            imgArr.push('<img style="margin-right:5px" src="' + onImg + '">');
+          }
+
+          for (var i = 0; i < 5 - score; i++) {
+            imgArr.push('<img style="margin-right:5px" src="' + offImg + '">');
+          }
+
+          return imgArr.join("");
         }
       },
 
@@ -50,6 +67,10 @@ define(
 
       render: function() {
         var that = this;
+
+        that.data = {};
+        that.data.view = this.view;
+        that.data.score = this.star;
 
         var renderFn = can.mustache(template_component_commentstar);
         that.options.html = renderFn(that.data, that.helpers);
