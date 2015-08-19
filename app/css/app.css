@@ -1,17 +1,17 @@
 .app-banner {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/app/app-banner.jpg) no-repeat center top;
+  background: url(../img/app/app-banner.jpg) no-repeat center top;
   height: 464px;
 }
 
 .app-anywhere {
   position: relative;
-  background: #f1f2e7 url(http://img.sfht.com/sfht/1.1.185/img/app/app-map.png) repeat-x center 270px;
+  background: #f1f2e7 url(../img/app/app-map.png) repeat-x center 270px;
   text-align: center;
   color: #4a4a4a;
 }
 
 .app-anywhere-bg {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/app/app-anywhere-bg.png) repeat-x left 474px;
+  background: url(../img/app/app-anywhere-bg.png) repeat-x left 474px;
   height: 900px;
   -webkit-animation: app-anywhere-bg 20s linear forwards infinite;
           animation: app-anywhere-bg 20s linear forwards infinite;
@@ -82,7 +82,7 @@
 .app-favorable {
   padding-top: 131px;
   padding-bottom: 170px;
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/app/app-favorable.png) no-repeat center 305px;
+  background: #fff url(../img/app/app-favorable.png) no-repeat center 305px;
 }
 
 .app-favorable li {
@@ -134,7 +134,7 @@
 }
 
 .app-logistics-bg {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/app/app-logistics-bg.png) repeat-x left 434px;
+  background: url(../img/app/app-logistics-bg.png) repeat-x left 434px;
   -webkit-animation: app-logistics-bg 20s linear forwards infinite;
           animation: app-logistics-bg 20s linear forwards infinite;
   padding-top: 103px;
@@ -342,19 +342,19 @@
 }
 
 .app-download-weibo {
-  background-image: url(http://img.sfht.com/sfht/1.1.185/img/app/app-download-weibo.png);
+  background-image: url(../img/app/app-download-weibo.png);
 }
 
 .app-download-weibo:hover {
-  background-image: url(http://img.sfht.com/sfht/1.1.185/img/app/app-download-weibo-hover.png);
+  background-image: url(../img/app/app-download-weibo-hover.png);
 }
 
 .app-download-weixin {
-  background-image: url(http://img.sfht.com/sfht/1.1.185/img/app/app-download-weixin.png);
+  background-image: url(../img/app/app-download-weixin.png);
 }
 
 .app-download-weixin:hover {
-  background-image: url(http://img.sfht.com/sfht/1.1.185/img/app/app-download-weixin-hover.png);
+  background-image: url(../img/app/app-download-weixin-hover.png);
 }
 
 .app-download-weixin:hover .app-download-qrcode {

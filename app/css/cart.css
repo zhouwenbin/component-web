@@ -66,14 +66,14 @@
   height: 152px;
   border: 1px solid #e5e5e5;
   position: relative;
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/adress-li.png) no-repeat -5px top;
+  background: #fff url(../img/adress-li.png) no-repeat -5px top;
   padding-top: 5px;
   -webkit-border-radius: 4px;
           border-radius: 4px;
 }
 
 .address li.active {
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/adress-li-active.png) no-repeat -5px top;
+  background: #fff url(../img/adress-li-active.png) no-repeat -5px top;
 }
 
 .address li.add {
@@ -667,7 +667,7 @@
   position: relative;
   height: 58px;
   padding-left: 11px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/coupon-normal.png) no-repeat;
+  background: url(../img/coupon-normal.png) no-repeat;
   margin-right: 11px;
 }
 
@@ -675,18 +675,18 @@
   content: '';
   width: 11px;
   height: 100%;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/coupon-normal.png) no-repeat right bottom;
+  background: url(../img/coupon-normal.png) no-repeat right bottom;
   position: absolute;
   right: -11px;
   top: 0;
 }
 
 .coupon-disable {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/coupon-disable.png) no-repeat;
+  background: url(../img/coupon-disable.png) no-repeat;
 }
 
 .coupon-disable:after {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/coupon-disable.png) no-repeat right bottom;
+  background: url(../img/coupon-disable.png) no-repeat right bottom;
 }
 
 .coupon .icon85 {

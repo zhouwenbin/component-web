@@ -1,5 +1,5 @@
 .children-day {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/61/bg.jpg) no-repeat center top;
+  background: url(../img/61/bg.jpg) no-repeat center top;
 }
 
 .children-day .pm {
@@ -91,12 +91,12 @@
   width: 33%;
   text-align: center;
   display: inline-block;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/61/tab-h.png) no-repeat center bottom;
+  background: url(../img/61/tab-h.png) no-repeat center bottom;
   padding-bottom: 40px;
 }
 
 .tab-h li.active {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/61/tab-h-active.png) no-repeat center bottom;
+  background: url(../img/61/tab-h-active.png) no-repeat center bottom;
 }
 
 .tab-h .active a {
@@ -132,7 +132,7 @@
 }
 
 .icon-soldout {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/61/icon1.png) no-repeat;
+  background: url(../img/61/icon1.png) no-repeat;
   width: 159px;
   height: 159px;
   position: absolute;

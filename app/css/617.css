@@ -4,7 +4,7 @@ body {
 
 .m617-banner {
   height: 700px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617_01.jpg) no-repeat center top;
+  background: url(../img/617/617_01.jpg) no-repeat center top;
   margin-bottom: 20px;
 }
 
@@ -27,7 +27,7 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: 142px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617_06.jpg) no-repeat center top;
+  background: url(../img/617/617_06.jpg) no-repeat center top;
   font-family: arial;
   font-size: 24px;
   margin-bottom: 4px;
@@ -70,7 +70,7 @@ body {
 }
 
 .m617-top li:first-child {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617_top.png) no-repeat center;
+  background: url(../img/617/617_top.png) no-repeat center;
   height: 96px;
   line-height: 96px;
   text-indent: -999em;
@@ -208,7 +208,7 @@ body {
     width: 45px;
   }
   .m617-top li:first-child {
-    background-image: url(http://img.sfht.com/sfht/1.1.185/img/617/617_top2.png);
+    background-image: url(../img/617/617_top2.png);
     height: 41px;
     line-height: 41px;
   }
@@ -254,32 +254,32 @@ body {
 
 .m617-gl1 {
   height: 609px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_02.jpg) no-repeat center;
+  background: url(../img/617/617gl_02.jpg) no-repeat center;
 }
 
 .m617-gl2 {
   height: 427px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_03.jpg) no-repeat center;
+  background: url(../img/617/617gl_03.jpg) no-repeat center;
 }
 
 .m617-gl3 {
   height: 348px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_04.jpg) no-repeat center;
+  background: url(../img/617/617gl_04.jpg) no-repeat center;
 }
 
 .m617-gl4 {
   height: 432px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_05.jpg) no-repeat center;
+  background: url(../img/617/617gl_05.jpg) no-repeat center;
 }
 
 .m617-gl5 {
   height: 463px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_06.jpg) no-repeat center;
+  background: url(../img/617/617gl_06.jpg) no-repeat center;
 }
 
 .m617-gl6 {
   height: 817px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/617/617gl_07.jpg) no-repeat center;
+  background: url(../img/617/617gl_07.jpg) no-repeat center;
 }
 
 .mask {

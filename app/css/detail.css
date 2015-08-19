@@ -1,24 +1,24 @@
 .comparison-icon1, .comparison-icon2 {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/comparison.png) no-repeat;
+  background: url(../img/comparison.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
 }
 
 .faq-icon1, .faq-icon2 {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/faq.png) no-repeat;
+  background: url(../img/faq.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
   margin-right: 14px;
 }
 
 .comparison-icon1, .comparison-icon2 {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/comparison.png) no-repeat;
+  background: url(../img/comparison.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
 }
 
 .faq-icon1, .faq-icon2 {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/faq.png) no-repeat;
+  background: url(../img/faq.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
   margin-right: 14px;
@@ -594,7 +594,7 @@
 }
 
 .flow {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/flow.png) no-repeat;
+  background: url(../img/flow.png) no-repeat;
   height: 164px;
   text-indent: -999em;
   margin: 13px 0 30px;
@@ -720,7 +720,7 @@
 }
 
 .notify-icon {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/notify-icon.png) no-repeat;
+  background: url(../img/notify-icon.png) no-repeat;
   width: 20px;
   height: 20px;
   display: inline-block;

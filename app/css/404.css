@@ -1,6 +1,6 @@
 .pagenofind,
 .pagenofind-goods {
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/404.png) no-repeat 150px 73px;
+  background: #fff url(../img/404.png) no-repeat 150px 73px;
   text-align: center;
   margin-top: 44px;
   margin-bottom: 74px;
@@ -17,7 +17,7 @@
 }
 
 .pagenofind-goods {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/404-goods.jpg) no-repeat center;
+  background: url(../img/404-goods.jpg) no-repeat center;
 }
 
 .recommend {
@@ -123,7 +123,7 @@
 }
 
 .gameover {
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/gameover.jpg) no-repeat center 43px;
+  background: #fff url(../img/gameover.jpg) no-repeat center 43px;
   height: 421px;
   margin-bottom: 18px;
   margin-top: 18px;

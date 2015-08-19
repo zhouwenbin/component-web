@@ -221,7 +221,7 @@
   height: 65px;
   display: inline-block;
   vertical-align: middle;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-income-icon.png) no-repeat;
+  background: url(../img/invite-income-icon.png) no-repeat;
   margin-right: 17px;
 }
 
@@ -287,7 +287,7 @@
 }
 
 .invite-rule-bg {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-rule.png) no-repeat center 55px;
+  background: url(../img/invite-rule.png) no-repeat center 55px;
   height: 230px;
   border-bottom: 1px dashed #E5E5E5;
   margin-bottom: 15px;
@@ -388,7 +388,7 @@
   margin-left: 10px;
   width: 50px;
   height: 43px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-open-icon1.png) no-repeat;
+  background: url(../img/invite-open-icon1.png) no-repeat;
 }
 
 .invite-open-icon2 {
@@ -398,7 +398,7 @@
   margin-left: 10px;
   width: 50px;
   height: 43px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-open-icon2.png) no-repeat;
+  background: url(../img/invite-open-icon2.png) no-repeat;
 }
 
 .invite-open-icon3 {
@@ -408,7 +408,7 @@
   margin-left: 10px;
   width: 50px;
   height: 43px;
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-open-icon3.png) no-repeat;
+  background: url(../img/invite-open-icon3.png) no-repeat;
 }
 
 .invite-open-way {
@@ -461,7 +461,7 @@
 }
 
 .icon-change {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/icon-change.png) no-repeat;
+  background: url(../img/icon-change.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
   width: 22px;
@@ -474,13 +474,13 @@
 }
 
 .invite-alipay-banner {
-  background: url(http://img.sfht.com/sfht/1.1.185/img/invite-alipay-banner.jpg) no-repeat center top;
+  background: url(../img/invite-alipay-banner.jpg) no-repeat center top;
   height: 308px;
   text-indent: -999em;
 }
 
 .invite-alipay-way {
-  background: #fff url(http://img.sfht.com/sfht/1.1.185/img/invite-alipay-way.jpg) no-repeat center top;
+  background: #fff url(../img/invite-alipay-way.jpg) no-repeat center top;
   margin-bottom: 76px;
 }
 

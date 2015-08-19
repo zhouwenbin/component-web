@@ -145,7 +145,7 @@
 }
 
 .order-detail-state {
-  background: #f5f5f5 url(http://img.sfht.com/sfht/1.1.185/img/order-detail-state.png) no-repeat 580px 85px;
+  background: #f5f5f5 url(../img/order-detail-state.png) no-repeat 580px 85px;
   padding: 30px 28px 30px 69px;
   min-height: 198px;
   margin-bottom: 26px;
