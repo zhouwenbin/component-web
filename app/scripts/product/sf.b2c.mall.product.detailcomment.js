@@ -139,6 +139,11 @@ define('sf.b2c.mall.product.detailcomment', ['can',
             labels.addplusCount = labels.keyValuePaires[5].value;
           }
 
+          // 如果没有评价，则不展示标签
+          if (labels.totalCount == 0) {
+            labels.commentGoodsLabels = [];
+          }
+
           that.options.attr("outline", labels);
           that.options.attr("comments", commentData);
 
