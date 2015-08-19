@@ -210,7 +210,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return findCommentStatus.sendRequest()
           })
           .done(function(commentData) {
-debugger;
+
             var showCommentButton = false;
 
             //只要有一个包裹为签收状态，则暂时按钮

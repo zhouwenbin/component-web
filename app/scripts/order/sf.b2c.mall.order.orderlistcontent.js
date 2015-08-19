@@ -790,17 +790,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var subOrderId = element.parent('td').attr('data-orderid');
         var commentSatisf = element.parent('td').attr('data-commentSatisf');
 
-        var routeParams = can.route.attr();
-        var qparams = can.deparam(window.location.search.substr(1));
-        var params = {
-          "query": JSON.stringify({
-            "status": routeParams.status,
-            "searchValue": qparams.q || this.options.searchValue,
-            "pageNum": routeParams.page,
-            "pageSize": 10
-          })
-        }
-
         var message = new SFMessage(null, {
           'tip': '确认要签收该订单？',
           'type': 'confirm',
@@ -826,6 +815,16 @@ define('sf.b2c.mall.order.orderlistcontent', [
             window.location.href = "/shareorder.html?orderid=" + subOrderId + "&commentSatisf=" + commentSatisf;
           },
           'closeFunction': function() {
+            var routeParams = can.route.attr();
+            var qparams = can.deparam(window.location.search.substr(1));
+            var params = {
+              "query": JSON.stringify({
+                "status": routeParams.status,
+                "searchValue": qparams.q || this.options.searchValue,
+                "pageNum": routeParams.page,
+                "pageSize": 10
+              })
+            }
             that.render(params);
           },
           'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
