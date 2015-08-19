@@ -48,17 +48,7 @@ define('sf.b2c.mall.center.message', ['can',
 
              _.each(that.options.commentGoods, function(date) {
                date.commentGoodsInfo.gmtReply =  that.getDate(date.commentGoodsInfo.gmtReply);
-               var findSaleBaseInfoList = new SFfindSaleBaseInfoList({
-                 "sale_base_info_list": date.commentGoodsInfo.itemId
-               });
-               can.when(findSaleBaseInfoList.sendRequest()).done(function(findSaleBaseInfoListData){
-                 //date.commentGoodsInfo.defaultImgs = findSaleBaseInfoListData.value[0].defaultImgs
-                 var imgArray = findSaleBaseInfoListData.value[0].defaultImgs.split(",");
-                 if(imgArray.length > 0){
-                   date.commentGoodsInfo.defaultImgs = imgArray[0];
-                 }
-                 that.getTemple(commentData);
-               })
+               that.getTemple(commentData);
              })
 
            } else {
