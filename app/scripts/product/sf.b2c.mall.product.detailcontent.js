@@ -1756,7 +1756,9 @@ define('sf.b2c.mall.product.detailcontent', [
 
       detailTemplate: function() {
         return '{{#isShowVideo itemInfo.basicInfo.images}}{{/isShowVideo}}' +
-        '{{&itemInfo.basicInfo.description}}';
+        '<div class="detail-content">' +
+        '{{&itemInfo.basicInfo.description}}' +
+        '</div>';
       },
 
       /**
