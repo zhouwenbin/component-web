@@ -408,11 +408,11 @@ define('sf.b2c.mall.product.detailcontent', [
 
         })
 
-        if (!this.detailcomment) {
+        // if (!this.detailcomment) {
           var comparison = $(".comparison");
           comparison.before("<div id='detaillastcomment'></div>");
           this.detailcomment = new SFDetailcomment('#detaillastcomment', {"itemId": this.itemid});
-        }
+        // }
       },
 
       renderBaiduShare: function() {
