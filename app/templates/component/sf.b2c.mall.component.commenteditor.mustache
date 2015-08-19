@@ -72,10 +72,10 @@
 
     {{^if comment.input.view}}
       {{#if comment.input.isLastEdit}}
-        <button class="btn btn-danger btn-small" id="submitcomment">评价</button>
+        <button class="btn btn-danger btn-small" id="submitcomment" type="button">评价</button>
       {{/if}}
       {{^if comment.input.isLastEdit}}
-        <button class="btn btn-danger btn-small" id="submitcomment">评价并继续</button>
+        <button class="btn btn-danger btn-small" id="submitcomment" type="button">评价并继续</button>
       {{/if}}
       <input class="checkbox" type="checkbox" can-value="comment.input.isAnonym" />匿名评价
     {{/if}}
