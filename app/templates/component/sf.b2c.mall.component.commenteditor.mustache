@@ -2,7 +2,7 @@
 <ul>
   <li>
     <label class="justify">
-        <abbr title="必填">*</abbr>商品评分<span>：</span>
+        {{^if comment.input.viewcontent}}<abbr title="必填">*</abbr>{{/if}}商品评分<span>：</span>
     </label>
 
     <span id="commentstararea"></span>
@@ -15,7 +15,7 @@
     <p class="text-error">{{comment.error.commentGoodsLabels}}</p>
   </li>
   <li>
-    <label class="justify"><abbr title="必填">*</abbr>您的评价<span>：</span></label>
+    <label class="justify">{{^if comment.input.viewcontent}}<abbr title="必填">*</abbr>{{/if}}您的评价<span>：</span></label>
 
     {{#if comment.input.viewcontent}}
       <p class="p4">{{comment.input.content}}</p>
@@ -29,7 +29,7 @@
   </li>
   {{#if comment.input.showpluscontent}}
   <li>
-    <label class="justify"><abbr title="必填">*</abbr>追加评价<span>：</span></label>
+    <label class="justify">{{^if comment.input.view}}<abbr title="必填">*</abbr>{{/if}}追加评价<span>：</span></label>
 
     {{#if comment.input.viewpluscontent}}
       <p class="p4">{{comment.input.pluscontent}}</p>
