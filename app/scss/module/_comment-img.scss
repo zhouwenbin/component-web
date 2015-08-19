@@ -51,22 +51,20 @@
 }
 .comment-img-big-prev,
 .comment-img-big-next{
-	width: 25px;
-	height: 25px;
-	border-left: 2px solid #E13B3A;
-	border-top: 2px solid #E13B3A;
+	width: 21px;
+	height: 37px;
 	z-index: map-get($z-index,comment-img-big-prev);
 	position: absolute;
 	top: 50%;
-	margin-top: -12px;
+	margin-top: -18px;
 	display: none;
 }
 .comment-img-big-prev{
-	transform:rotate(-45deg);
+	background: url(#{$bg-url}comment-img-prev.png) no-repeat;
 	left: 19px;
 }
 .comment-img-big-next{
-	transform:rotate(-225deg);
+  background: url(#{$bg-url}comment-img-next.png) no-repeat;
 	right: 19px;
 }
 .comment-img-del{
