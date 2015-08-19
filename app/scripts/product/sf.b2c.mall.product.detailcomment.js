@@ -144,6 +144,11 @@ define('sf.b2c.mall.product.detailcomment', ['can',
             labels.commentGoodsLabels = [];
           }
 
+          // 过滤掉自定义的标签
+          labels.commentGoodsLabels = _.filter(labels.commentGoodsLabels, function(item) {
+            return item.id != "-1";
+          })
+
           that.options.attr("outline", labels);
           that.options.attr("comments", commentData);
 
