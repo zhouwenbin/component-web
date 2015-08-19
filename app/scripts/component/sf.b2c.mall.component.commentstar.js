@@ -12,7 +12,7 @@ define(
 
     return can.Control.extend({
 
-      dataBinder: {
+      dataWatcher: {
         callbacks: {},
         context: this,
 
@@ -23,7 +23,12 @@ define(
           this.callbacks[name].push(callback);
         },
 
-        publish: function(name) {
+        setAttr: function(name, value) {
+          this.context[name] = value;
+          this.trigger(name);
+        },
+
+        trigger: function(name) {
           this.callbacks[name] = this.callbacks[name] || [];
           for (var i = 0, len = this.callbacks[name].length; i < len; i++) {
             this.callbacks[name][i].apply(this.context,  Array.prototype.slice.call(arguments, 1));
@@ -31,7 +36,7 @@ define(
         }
       },
 
-      init: function(element, options) {
+      init: function(element, options) {debugger;
         this.star = options.level || options.defaultLevel;
         this.view = options.view;
         this.el = null;
@@ -40,7 +45,7 @@ define(
 
         this.initStar(this.star);
 
-        // this.dataBinder.on("star", this.setTip, this);
+        this.dataWatcher.on("star", this.setTip, this);
       },
 
       render: function() {
@@ -61,12 +66,10 @@ define(
 
         this.el.removeClass("active");
         element.addClass("active");
-        this.star = element.attr("_val");
 
+        this.dataWatcher.setAttr("star", element.attr("_val"));
         this.resetStar(this.star);
-        // this.dataBinder.publish("star", this.star);
-        this.setTip(this.star);
-
+debugger;
         if (typeof this.options.clickCallback != 'undefined') {
           this.options.clickCallback.apply(this, [this.star]);
         }
@@ -90,7 +93,7 @@ define(
         $(".comment-add-score", this.element).text(map[score])
       },
 
-      getValue: function() {
+      getValue: function() {debugger;
         return this.star;
       },
 

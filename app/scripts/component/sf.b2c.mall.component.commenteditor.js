@@ -181,6 +181,7 @@ define('sf.b2c.mall.component.commenteditor', [
       this.component.commentstar = new SFCommentstar($("#commentstararea"), {
         "clickCallback": handle,
         "defaultLevel": 5,
+        "level": adapter.comment.input.score/100,
         "view": tag === 'add' ? false : true,
         "showtip": true
       });
