@@ -70,7 +70,7 @@ define(
           if (!this.checkTag(element.parents(":eq(4)"), 3)) {
             return false;
           }
-          var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span>';
+          var html = '<span data-id="-1" data-name="' + value + '" class="btn btn-goods active">' + value + '<span class="icon icon23"></span></span>';
           $(html).insertBefore($("#customeized"));
           $(element).val("");
 
