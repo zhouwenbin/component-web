@@ -48,33 +48,26 @@ define('sf.b2c.mall.center.message', ['can',
 
              _.each(that.options.commentGoods, function(date) {
                date.commentGoodsInfo.gmtReply =  that.getDate(date.commentGoodsInfo.gmtReply);
-               that.getTemple(commentData);
              })
 
            } else {
              that.options.commentGoods = null;
-             that.getTemple(commentData);
            }
-
+           that.options = new can.Map(that.options);
+           var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
+           that.element.html(html);
+           that.options.page = new PaginationAdapter();
+           that.options.page.format({
+             "pageNum":commentData.page.pageSize,
+             "currentNum":commentData.page.currentNum,
+             "totalNum":commentData.page.totalNum,
+             "pageSize":commentData.page.pageNum
+           });
+           new Pagination('.sf-b2c-mall-message-pagination', that.options);
          })
          .fail(function(error) {
            console.error(error);
          });
-    },
-
-    getTemple: function(commentData){
-      var that = this;
-      that.options = new can.Map(that.options);
-      var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
-      that.element.html(html);
-      that.options.page = new PaginationAdapter();
-      that.options.page.format({
-        "pageNum":commentData.page.pageSize,
-        "currentNum":commentData.page.currentNum,
-        "totalNum":commentData.page.totalNum,
-        "pageSize":commentData.page.pageNum
-      });
-      new Pagination('.sf-b2c-mall-message-pagination', that.options);
     },
 
     getDate: function(timeValue){
