@@ -5,8 +5,10 @@ define('sf.b2c.mall.center.message', ['can',
   'sf.b2c.mall.api.product.findSaleBaseInfoList',
   'sf.b2c.mall.fixture.case.center.comment',
   'sf.b2c.mall.adapter.pagination',
-  'sf.b2c.mall.widget.pagination'
-], function(can, SFfindCommentInfoListByType, SFfindSaleBaseInfoList, Fixturecomment, PaginationAdapter, Pagination) {
+  'sf.b2c.mall.widget.pagination',
+  'text!template_center_message'
+], function(can, SFfindCommentInfoListByType, SFfindSaleBaseInfoList, Fixturecomment, PaginationAdapter, Pagination, template_center_message) {
+  can.route.ready();
   return can.Control.extend({
 
     /**
@@ -25,23 +27,28 @@ define('sf.b2c.mall.center.message', ['can',
     },
 
     init: function(element, options) {
-      this.render();
+      var routeParams = can.route.attr();
+      if (!routeParams.page) {
+        routeParams = _.extend(routeParams, {
+          page: 1
+        });
+      }
+
+      this.render(routeParams.page);
     },
 
-    render: function() {
+    render: function(page) {
       var that = this;
 
        var findCommentInfoListByType = new SFfindCommentInfoListByType({
          "type": 0,
          "pageNum": 3,
-         "pageSize": 1
+         "pageSize": page
        });
-
 
 
        can.when(findCommentInfoListByType.sendRequest())
          .done(function(commentData) {
-           that.options.comments = commentData;
 
            if (commentData.commentGoods && commentData.commentGoods.length > 0) {
              that.options.commentGoods = commentData.commentGoods;
@@ -54,8 +61,13 @@ define('sf.b2c.mall.center.message', ['can',
              that.options.commentGoods = null;
            }
            that.options = new can.Map(that.options);
-           var html = can.view('templates/center/sf.b2c.mall.center.message.mustache', that.options,that.helpers);
-           that.element.html(html);
+
+           that.options.attr("comments", commentData);
+
+           var renderFn = can.mustache(template_center_message);
+           that.options.html = renderFn(that.options, that.helpers);
+           that.element.html(that.options.html);
+
            that.options.page = new PaginationAdapter();
            that.options.page.format({
              "pageNum":commentData.page.pageSize,
@@ -68,6 +80,16 @@ define('sf.b2c.mall.center.message', ['can',
          .fail(function(error) {
            console.error(error);
          });
+    },
+
+    '{can.route} change': function(el, attr, how, newVal, oldVal) {
+      if (el.page == this.currentRouteData) {
+        return true;
+      } else {
+        var routeParams = can.route.attr();
+        this.render(routeParams.page);
+        this.currentRouteData = el.page;
+      }
     },
 
     getDate: function(timeValue){
