@@ -422,9 +422,6 @@ define('sf.b2c.mall.component.header.searchbox', [
      */
     "#header-search-btn click": function() {
       var keyword = headerSeacrchInput.val();
-      if (!keyword) {
-        return false;
-      }
       this.search(keyword);
     },
 
@@ -475,7 +472,7 @@ define('sf.b2c.mall.component.header.searchbox', [
       keyword = this.trim(keyword)
 
       if (!keyword) {
-        return false;
+        keyword = this.renderData.searchHeaderConfig.defaultSearchText;
       }
       this.saveHistories(keyword);
 
