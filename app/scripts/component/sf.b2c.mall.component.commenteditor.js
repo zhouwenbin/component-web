@@ -277,6 +277,14 @@ define('sf.b2c.mall.component.commenteditor', [
         }
       }
 
+      var imgs = this.component.commentpic.getValue();
+      var extralImgs = null;
+
+      if (this.tag == "addplus") {
+        imgs = null;
+        extralImgs = this.component.commentpic.getValue();
+      }
+
       var objArr = [];
       var obj = {
         "commentId": this.commentId,
@@ -289,7 +297,8 @@ define('sf.b2c.mall.component.commenteditor', [
         "score": comment.score * 100,
         "content": comment.content,
         "extralContent": comment.pluscontent,
-        "imgs": this.component.commentpic.getValue(),
+        "imgs": imgs,
+        "extralImgs": extralImgs,
         "commentGoodsLabels": this.component.commenttag ? this.component.commenttag.getValue() : [],
         "isAnonym": comment.isAnonym,
         "commentStatus2": this.status,
