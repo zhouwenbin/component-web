@@ -123,7 +123,7 @@ define(
             e702: "\u51fa\u73b0\u9009\u62e9\u56fe\u7247\u5c3a\u5bf8\u4e0d\u5339\u914d\u9519\u8bef\u3002"
           };
           var d = c["e" + (0 - b.code)];
-          "" != a.runtime && (SFFn.tip("\u4e0a\u4f20\u6587\u4ef6" + d), $("#" + b.file.id).remove(), a.stop())
+          "" != a.runtime && (SFFn.tip("\u4e0a\u4f20\u6587\u4ef6" + d), $("#" + b.file.id).remove(), a.stop(), $(".comment-add-img-add").show())
         });
 
         plupload.bind("QueueChanged", function(a) {
@@ -135,7 +135,11 @@ define(
           if ("" != response) {
             var filename = JSON.parse(response).content[0]["CPRODUCT_IMG.jpg"];
             var imgURL = that.imgPrefix + filename;
-            that.setValue(file.id, imgURL)
+            that.setValue(file.id, imgURL);
+
+            var imglistLi = $("li", $(".img-list-ul"));
+            $(".plupload").css("left", 92 * imglistLi.length + "px");
+
           } else {
             $("#" + file.id).remove();
             plupload.stop();
@@ -224,6 +228,9 @@ define(
         $("li#" + id).remove();
         --this.imgCount;
         $(".comment-add-img-add").show();
+
+        var imglistLi = $("li", $(".img-list-ul"));
+        $(".plupload").css("left", (imglistLi.length * 92) + "px");
       }
 
     });
