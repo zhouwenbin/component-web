@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.order.requestPayV2
+  * @class sf.b2c.mall.api.search.searchItemNoCache
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.order.requestPayV2',
+'sf.b2c.mall.api.search.searchItemNoCache',
 [
   'jquery',
   'can',
@@ -22,22 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'order.requestPayV2',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'search.searchItemNoCache',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'orderId': 'string',
-        'payType': 'string',
+        'itemSearchRequest': 'json'
       },
       OPTIONAL: {
-        'extInfo': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '4000100': 'order unkown error',
-        '4001500': '请求支付系统失败',
-        '4001504': '订单当前状态不允许支付',
-        '4001700': '满足查询条件的订单不存在'
       }
     }
   });

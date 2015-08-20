@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>确定订单</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../css/order-detail.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+== Slim::Template.new('module/header2.slim').render
+<div class="pm">
+   <div class="order-createrefundtax">
+        <h2>申请返还税金信息填写</h2>
+        <div class="order-createrefundtax-b1">
+            <div class="order-createrefundtax-b1-c1">
+                <label for="">支付宝账户：</label>
+                <input type="text" />
+            </div>
+            <div class="order-createrefundtax-b1-c1">
+                <label for="">账户真实姓名：</label>
+                <input type="text" />
+            </div>
+            <div class="order-createrefundtax-b1-c1">
+                <label for="">税金缴纳证明：</label>
+                <div class="">
+                    <button>上传照片sss</button>
+                    <input type="file" />
+
+                </div>
+                <p></p>
+            </div>
+            <ul></ul>
+            <button class="">提交申请</button>
+        </div>
+    </div> 
+</div>
+
+<!--尾部--> 
+== Slim::Template.new('module/footer.slim').render 
+<!--尾部--> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<script src="js/index.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>
