@@ -77,6 +77,8 @@
                 {{/each}}
               </ul>
               <p class="p1">{{commentGoodsInfo.content}}</p>
+
+              {{#commentGoodsInfo.imgs}}
               <ul class="comment-img">
                   {{#each commentGoodsInfo.imgs}}
                   <li><img alt="" width="80px" height="80px" class="img-lazyload" lazy-src="{{.}}"></li>
@@ -91,12 +93,15 @@
                   </ul>
                   <a href="javascript:" class="comment-img-big-next"></a>
               </div>
+              {{/commentGoodsInfo.imgs}}
+
 
               {{#if commentGoodsInfo.extralContent}}
               <div class="comment-additional">
                 <h4>{{showCommentPlusTime commentGoodsInfo.gmtExtral commentGoodsInfo.gmtCreate}}追加：</h4>
                 <p>{{commentGoodsInfo.extralContent}}</p>
 
+                {{#commentGoodsInfo.extralImgs}}
                 <ul class="comment-img">
                     {{#each commentGoodsInfo.extralImgs}}
                     <li><img src="{{.}}" alt="" width="80px" height="80px" class="img-lazyload" lazy-src="{{.}}"></li>
@@ -111,6 +116,7 @@
                   </ul>
                   <a href="javascript:" class="comment-img-big-next"></a>
                 </div>
+                {{/commentGoodsInfo.extralImgs}}
 
               </div>
               {{/if}}
