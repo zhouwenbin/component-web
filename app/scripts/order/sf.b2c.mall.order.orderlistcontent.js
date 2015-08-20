@@ -789,6 +789,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var that = this;
         var subOrderId = element.parent('td').attr('data-orderid');
         var commentSatisf = element.parent('td').attr('data-commentSatisf');
+        var commentStatus = element.parent('td').attr('data-commentStatus');
+
+        var routeParams = can.route.attr();
+        var qparams = can.deparam(window.location.search.substr(1));
+        var params = {
+          "query": JSON.stringify({
+            "status": routeParams.status,
+            "searchValue": qparams.q || this.options.searchValue,
+            "pageNum": routeParams.page,
+            "pageSize": 10
+          })
+        };
 
         var message = new SFMessage(null, {
           'tip': '确认要签收该订单？',
@@ -796,7 +808,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
           'okFunction': function() {
             var success = function() {
               //window.location.reload();
-              that.received(subOrderId, commentSatisf);
+              if (commentStatus == "0") {
+                that.received(subOrderId, commentSatisf, params);
+              } else {
+                that.render(params);
+              }
             };
 
             var error = function() {
@@ -807,7 +823,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         });
       },
 
-      received: function(subOrderId, commentSatisf) {
+      received: function(subOrderId, commentSatisf, params) {
         var that = this;
 
         var message = new SFMessage(null, {
@@ -815,16 +831,6 @@ define('sf.b2c.mall.order.orderlistcontent', [
             window.location.href = "/shareorder.html?orderid=" + subOrderId + "&commentSatisf=" + commentSatisf;
           },
           'closeFunction': function() {
-            var routeParams = can.route.attr();
-            var qparams = can.deparam(window.location.search.substr(1));
-            var params = {
-              "query": JSON.stringify({
-                "status": routeParams.status,
-                "searchValue": qparams.q || this.options.searchValue,
-                "pageNum": routeParams.page,
-                "pageSize": 10
-              })
-            }
             that.render(params);
           },
           'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',

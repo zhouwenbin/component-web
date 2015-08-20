@@ -211,6 +211,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           })
           .done(function(commentData) {
 
+            that.commentStatus = commentData.value[0].status;
+
             var showCommentButton = false;
 
             //只要有一个包裹为签收状态，则暂时按钮
@@ -221,7 +223,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             })
 
             if (showCommentButton) {
-              $("#commentstep").html(that.commentOperationHTML[commentData.value[0].status]);
+              $("#commentstep").html(that.commentOperationHTML[that.commentStatus]);
               that.commentSatisf = commentData.value[0].commentSatisf;
             }
 
@@ -491,16 +493,26 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .sendRequest()
           .done(function(data) {
 
-            var message = new SFMessage(null, {
-              'okFunction': function() {
-                window.location.href = "/shareorder.html?orderid=" + that.orderid + "&commentSatisf=" + that.commentSatisf;
-              },
-              'closeFunction': function() {
-                that.render();
-              },
-              'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
-              'type': 'confirm'
-            });
+            if (that.commentStatus == "0") {
+              var message = new SFMessage(null, {
+                'okFunction': function() {
+                  window.location.href = "/shareorder.html?orderid=" + that.orderid + "&commentSatisf=" + that.commentSatisf;
+                },
+                'closeFunction': function() {
+                  that.render();
+                },
+                'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
+                'type': 'confirm'
+              });
+            } else {
+              var message = new SFMessage(null, {
+                'okFunction': function() {
+                  that.render();
+                },
+                'tip': '确认签收成功！',
+                'type': 'success'
+              });
+            }
 
             window.location.reload();
           })
