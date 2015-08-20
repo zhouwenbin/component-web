@@ -210,6 +210,10 @@ define('sf.b2c.mall.component.commenteditor', [
         "imgData": adapter.comment.input.attr("img"),
         "view": adapter.comment.input.attr("view")
       });
+
+      if (tag == "addplus") {
+        $(".checkbox").attr("disabled","disabled");
+      }
     },
 
     check: function(comment) {
@@ -312,12 +316,12 @@ define('sf.b2c.mall.component.commenteditor', [
         .fail(function(error, message) {
           if (error == 14029000) {
             that.adapter.comment.attr("error", {
-              "commentGoodsLabels": '您的标签中有如下敏感词：' + message + "。请重新选择哦~"
+              "commentGoodsLabels": message
             });
           } else if (error == 14013000) {
             that.adapter.comment.attr("error", {
-              "content": '您的评价中有如下敏感词：' + message + "。请重新输入哦~",
-              "pluscontent": '您的评价中有如下敏感词：' + message + "。请重新输入哦~"
+              "content": message,
+              "pluscontent": message
             });
           }
 
