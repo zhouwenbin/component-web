@@ -59,6 +59,11 @@ define('sf.b2c.mall.component.commenteditor', [
       // }
       if (tag == 'add') {
         if (data.skuLabels) {
+          // 过滤掉-1
+          data.skuLabels = _.filter(data.skuLabels, function(item) {
+            return item.id != "-1";
+          })
+
           labels = labels.concat(data.skuLabels);
         }
       } else if (tag == "view" || tag == "addplus") {
