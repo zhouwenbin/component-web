@@ -31,6 +31,14 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+      canshowImg: function(imgs, options) {
+        if (imgs() && imgs().length > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+
       showNoData: function(totalCount) {
         if (totalCount() == 0) {
           return "暂无评价"
