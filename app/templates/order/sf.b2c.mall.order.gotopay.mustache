@@ -24,9 +24,13 @@
         </div>
         <div class="gotopay">
             <div class="gotopay-r1">应付金额:<b class="text-important">¥</b><strong class="text-important">{{sf-totalprice selectPayType price discount}}</strong>
+            {{! 首单减 }}
+            {{#sf-show-save selectPayType discount}}
+            <span class="gotopay-r1-c1">原应付：¥{{sf.price price}}</span><span class="gotopay-r1-c1">首单减优惠：-¥{{sf-totalsave selectPayType discount}}</span>
+            {{/sf-show-save}}
 
             {{#sf-show001tip selectPayType price discount}}
-            <span style="font-size: 12px;margin-top: 8px;color: #999;">由于国家政策清关要求，支付金额最小为<span style="color:#dc3334">0.01</span>元
+            <span style="font-size: 12px;margin:8px 0 0 30px;color: #999;">由于国家政策清关要求，支付金额最小为<span style="color:#dc3334">0.01</span>元
             </span>
             {{/sf-show001tip}}
 
@@ -37,7 +41,8 @@
                 {{#sf-paytype-list optionalPayTypeList 'alipay'}}
                     <li data-payType="alipay">
                         <img src="http://img.sfht.com/sfht/1.1.59/img/gotopay2.png" alt="支付宝" />
-                        <h3>中国最大的第三方支付平台</h3>
+                        {{#sf-show-desc discount 'alipay'}}<h3 class="text-important">{{desc}}</h3>{{/sf-show-desc}}
+                        {{^sf-show-desc discount 'alipay'}}<h3>中国最大的第三方支付平台</h3>{{/sf-show-desc}}
                         <span class="icon icon85"></span>
                     </li>
                 {{/sf-paytype-list}}
@@ -45,7 +50,8 @@
                 {{#sf-paytype-list optionalPayTypeList 'alipay_intl'}}
                     <li data-payType="alipay_intl">
                         <img src="http://img.sfht.com/sfht/1.1.59/img/gotopay2.png" alt="支付宝" />
-                        <h3>中国最大的第三方支付平台</h3>
+                        {{#sf-show-desc discount 'alipay_intl'}}<h3 class="text-important">{{desc}}</h3>{{/sf-show-desc}}
+                        {{^sf-show-desc discount 'alipay_intl'}}<h3>中国最大的第三方支付平台</h3>{{/sf-show-desc}}
                         <span class="icon icon85"></span>
                     </li>
                 {{/sf-paytype-list}}
@@ -53,7 +59,9 @@
                 {{#sf-paytype-list optionalPayTypeList 'lianlianpay'}}
                     <li data-payType="lianlianpay">
                         <img src="http://img.sfht.com/sfht/1.1.59/img/gotopay1.png" alt="快捷支付" />
-                        <h3>无需注册登录，银行卡直接付款</h3>
+                        {{#sf-show-desc discount 'lianlianpay'}}<h3 class="text-important">{{desc}}</h3>{{/sf-show-desc}}
+                        {{^sf-show-desc discount 'lianlianpay'}}<h3>无需注册登录，银行卡直接付款</h3>{{/sf-show-desc}}
+                        
                         <span class="icon icon85"></span>
                     </li>
                 {{/sf-paytype-list}}
@@ -61,7 +69,9 @@
                 {{#sf-paytype-list optionalPayTypeList 'tenpay_forex_wxsm'}}
                     <li data-payType="tenpay_forex_wxsm">
                         <img src="http://img.sfht.com/sfht/1.1.59/img/gotopay3.png" alt="微信支付" />
-                        <h3>微信扫一扫就能付款，更快捷</h3>
+                        {{#sf-show-desc discount 'tenpay_forex_wxsm'}}<h3 class="text-important">{{desc}}</h3>{{/sf-show-desc}}
+                        {{^sf-show-desc discount 'tenpay_forex_wxsm'}}<h3>微信扫一扫就能付款，更快捷</h3>{{/sf-show-desc}}
+                        
                         <span class="icon icon85"></span>
                     </li>
                 {{/sf-paytype-list}}
@@ -69,7 +79,9 @@
                 {{#sf-paytype-list optionalPayTypeList 'tenpay_forex'}}
                     <li data-payType="tenpay_forex">
                         <img src="http://img.sfht.com/sfht/1.1.59/img/gotopay4.png" alt="财付通" />
-                        <h3>超过3亿用户的选择，汇率更优！</h3>
+                        {{#sf-show-desc discount 'tenpay_forex'}}<h3 class="text-important">{{desc}}</h3>{{/sf-show-desc}}
+                        {{^sf-show-desc discount 'tenpay_forex'}}<h3>超过3亿用户的选择，汇率更优！</h3>{{/sf-show-desc}}
+                        
                         <span class="icon icon85"></span>
                     </li>
                 {{/sf-paytype-list}}

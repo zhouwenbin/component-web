@@ -75,11 +75,11 @@ define(
             var qrParam = {
               width: 125,
               height: 125,
-              text: "http://m.sfht.com?_src=" + userinfo.userId
+              text: "http://m.sfht.com?_ruser=" + userinfo.userId
             };
 
             $('#shareURLQrcode').html("").qrcode(qrParam);
-            $('#urlinput').val(window.location.href + "?_src=" + userinfo.userId);
+            $('#urlinput').val(window.location.href + "?_ruser=" + userinfo.userId);
           })
           .fail()
       },

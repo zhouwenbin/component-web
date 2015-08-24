@@ -29,10 +29,10 @@ define('sf.b2c.mall.order.iteminfo', [
 
     helpers: {
 
-      'sf-should-show': function (price) {
+      'sf-should-show': function(price) {
         if (price() > 0) {
-          return price()/100
-        }else{
+          return price() / 100
+        } else {
           return '0'
         }
       },
@@ -57,6 +57,25 @@ define('sf.b2c.mall.order.iteminfo', [
         } else {
           return options.inverse(options.contexts || this);
         }
+      },
+      'sf-show-etk': function(transporterName, options) {
+        if (typeof transporterName() !== 'undefined' && transporterName() === 'ETK') {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      'sf-show-firstOrderTips': function(activityDescription, options) {
+        var activityDescription = activityDescription();
+        if (activityDescription && activityDescription['FIRST_ORDER']) {
+          return options.fn(options.contexts || this);
+        }
+      },
+      'sf-show-description': function(activityDescription, options) {
+        var activityDescription = activityDescription();
+        if (activityDescription) {
+          return activityDescription['FIRST_ORDER'];
+        }     
       }
     },
     /**
@@ -233,6 +252,10 @@ define('sf.b2c.mall.order.iteminfo', [
       });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
+          if (typeof orderRenderItem.activityDescription !== 'undefined' && !can.isEmptyObject(orderRenderItem.activityDescription)) {
+            orderRenderItem.activityDescription = JSON.parse(orderRenderItem.activityDescription.value);
+            that.itemObj.attr('activityDescription', orderRenderItem.activityDescription);
+          }
           that.processFoundation(orderRenderItem);
           that.processProducts(orderRenderItem);
           that.processCoupons(orderRenderItem.orderCouponItem);

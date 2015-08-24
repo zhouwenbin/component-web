@@ -4,7 +4,8 @@
     <div class="search-none">
       <i></i><i></i><i></i>
       <h1>对不起....我们没有找到{{#if keyword}}和：“{{keyword}}”{{/if}}相关的商品</h1>
-      <a class="text-important" href="http://www.sfht.com">返回首页</a>
+      <a class="text-important" href="http://www.sfht.com">返回首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="text-important" href="http://www.sfht.com/feedback.html">我要吐槽</a>
     </div>
     <!--大家都在买-->
 
@@ -93,6 +94,7 @@
         {{/if}}
         {{#if filterCustom.secondCategoryName}}
           {{^secondCategoryIds}}
+          {{#sf-isNullArray secondCategories.buckets}}
             <li class="classify-text" data-role="selectSecondCategory">
               <label>{{filterCustom.secondCategoryName}}：</label>
               <ul>
@@ -101,6 +103,7 @@
                 {{/each}}
               </ul>
             </li>
+            {{/sf-isNullArray}}
           {{/secondCategoryIds}}
         {{/if}}
         {{#if filterCustom.originName}}
@@ -151,7 +154,7 @@
         <ul class="clearfix product-list">
           {{#each itemSearch.results}}
             <li data-item-id="{{itemId}}">
-              <a href="http://www.sfht.com/detail/{{itemId}}.html" target="_blank" title="{{title}}">
+              <a href="http://www.sfht.com/detail/{{itemId}}.html?_spm=0.sere0.0.{{@index}}" target="_blank" title="{{title}}">
                 {{^sf-isYZYW productForm}}
                   <div class="product-r1">
                     <img src="{{itemImage.bigImgUrl}}@240W_240h.jpg" alt="" />

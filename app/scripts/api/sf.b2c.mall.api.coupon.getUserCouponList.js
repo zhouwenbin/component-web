@@ -27,7 +27,11 @@ function($, can, _, Comm, SecurityType) {
       REQUIRED: {
       },
       OPTIONAL: {
-        'isValid': 'int'
+        'isValid': 'int',
+        'pgIndex': 'int',
+        'pgSize': 'int',
+        'status': 'string',
+        'isExtCoupon': 'int'
       },
       VERIFY:{
       },
