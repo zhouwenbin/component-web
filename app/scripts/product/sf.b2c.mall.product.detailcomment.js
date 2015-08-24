@@ -128,6 +128,12 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       this.setup(element);
       var that = this;
 
+      // 如果已经纯在数据了，则不用重新请求
+      if (that.labels && that.commentData) {
+        that.renderComment(labels, commentData);
+        return false;
+      }
+
       var findCommentLabels = new SFFindCommentLabels({
         "itemId": this.itemId
       });
@@ -143,42 +149,51 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
         .done(function(labels, commentData) {
 
-          if (labels.keyValuePaires) {
-            labels.totalCount = labels.keyValuePaires[0].value;
-            labels.goodCount = labels.keyValuePaires[1].value;
-            labels.middleCount = labels.keyValuePaires[2].value;
-            labels.badCount = labels.keyValuePaires[3].value;
-            labels.shareorderCount = labels.keyValuePaires[4].value;
-            labels.addplusCount = labels.keyValuePaires[5].value;
-          }
+          that.labels = labels;
+          that.commentData = commentData;
 
-          // 如果没有评价，则不展示标签
-          if (labels.totalCount == 0) {
-            labels.commentGoodsLabels = [];
-          }
-
-          // 过滤掉自定义的标签
-          labels.commentGoodsLabels = _.filter(labels.commentGoodsLabels, function(item) {
-            return item.id != "-1";
-          })
-
-          that.options.attr("outline", labels);
-          that.options.attr("comments", commentData);
-
-          var renderFn = can.mustache(template_product_detailcomment);
-          that.options.html = renderFn(that.options, that.helpers);
-          that.element.html(that.options.html);
-
-          that.options.page = new PaginationAdapter();
-          that.formatPageData(commentData);
-
-          new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
-
-          that.supplement(commentType, that.options.outline.totalCount);
+          that.renderComment(labels, commentData);
         })
         .fail(function(error) {
           console.error(error);
         })
+    },
+
+    renderComment: function(labels, commentData) {
+      var that = this;
+
+      if (labels.keyValuePaires) {
+        labels.totalCount = labels.keyValuePaires[0].value;
+        labels.goodCount = labels.keyValuePaires[1].value;
+        labels.middleCount = labels.keyValuePaires[2].value;
+        labels.badCount = labels.keyValuePaires[3].value;
+        labels.shareorderCount = labels.keyValuePaires[4].value;
+        labels.addplusCount = labels.keyValuePaires[5].value;
+      }
+
+      // 如果没有评价，则不展示标签
+      if (labels.totalCount == 0) {
+        labels.commentGoodsLabels = [];
+      }
+
+      // 过滤掉自定义的标签
+      labels.commentGoodsLabels = _.filter(labels.commentGoodsLabels, function(item) {
+        return item.id != "-1";
+      })
+
+      that.options.attr("outline", labels);
+      that.options.attr("comments", commentData);
+
+      var renderFn = can.mustache(template_product_detailcomment);
+      that.options.html = renderFn(that.options, that.helpers);
+      that.element.html(that.options.html);
+
+      that.options.page = new PaginationAdapter();
+      that.formatPageData(commentData);
+
+      new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
+
+      that.supplement(commentType, that.options.outline.totalCount);
     },
 
     '{can.route} change': function(el, attr, how, newVal, oldVal) {
