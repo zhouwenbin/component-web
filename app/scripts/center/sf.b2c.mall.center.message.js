@@ -42,7 +42,7 @@ define('sf.b2c.mall.center.message', ['can',
 
        var findCommentInfoListByType = new SFfindCommentInfoListByType({
          "type": 0,
-         "pageNum": 3,
+         "pageNum": 15,
          "pageSize": page
        });
 
