@@ -23,6 +23,9 @@ define(
         data.link = [];
 
         data.link.push({
+          "url": "/coupon.html",
+          "name": "我的优惠券"
+        }, {
           "url": "/message.html",
           "name": "消息中心"
         }, {
