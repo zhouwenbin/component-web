@@ -14,7 +14,8 @@ define(
     return can.Control.extend({
 
       init: function(element, options) {
-        this.imgPrefix = "http://testimg.sfht.com/";
+        this.imgPrefix = "http://img0.sfht.com/"
+        // this.imgPrefix = "http://testimg.sfht.com/";
         this.initPic();
       },
 
