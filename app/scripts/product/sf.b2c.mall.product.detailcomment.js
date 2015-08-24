@@ -132,7 +132,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
 
       // 如果已经存在数据了，则不用重新请求
       if (that.labels && that.commentData) {
-        that.renderComment(commentType, labels, commentData);
+        that.renderComment(commentType, that.labels, that.commentData);
         return false;
       }
 
