@@ -52,12 +52,12 @@
 }
 .comment-img-big-prev,
 .comment-img-big-next{
-	width: 21px;
-	height: 37px;
+	width: 30px;
+	height: 60px;
 	z-index: map-get($z-index,comment-img-big-prev);
 	position: absolute;
 	top: 50%;
-	margin-top: -18px;
+	margin-top: -30px;
 	display: none;
 }
 .comment-img-big-prev{
