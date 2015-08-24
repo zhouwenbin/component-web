@@ -129,6 +129,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     render: function(commentType, page) {
       this.setup(this.element);
       var that = this;
+      that.options = new can.Map(that.options);
 
       // 如果已经存在数据了，则不用重新请求
       if (that.labels && that.commentData) {
@@ -145,8 +146,6 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         "pageNum": 3,
         "pageSize": page
       });
-
-      that.options = new can.Map(that.options);
 
       can.when(findCommentLabels.sendRequest(), findCommentInfoList.sendRequest())
         .done(function(labels, commentData) {
