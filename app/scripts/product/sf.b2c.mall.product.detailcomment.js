@@ -198,6 +198,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     '{can.route} change': function(el, attr, how, newVal, oldVal) {
+      this.labels = null;
+      this.commentData = null;
       if (el.page == this.currentRouteData) {
         return true;
       } else {
