@@ -1,0 +1,31 @@
+.comment-tab ul{
+	font-size: 0;
+	border-bottom: 1px solid #E5E5E5;
+	margin-bottom: 20px;
+}
+.comment-tab li{
+	display: inline-block;
+	width: 154px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 12px;
+	text-align: center;
+	box-sizing:border-box;
+}
+.comment-tab li.active{
+	border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+	position: relative;
+}
+.comment-tab li.active:before{
+	content: '';
+	height: 2px;
+	background: #DB3437;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+.comment-tab li span{
+	color: #999;
+}

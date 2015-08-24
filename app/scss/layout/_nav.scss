@@ -91,7 +91,7 @@
 	width: 100%;
 	left: 0;
 	top: -56px;
-	z-index: 2;
+	z-index: map-get($z-index,nav-fixed-nav-inner);
 }
 .nav-pannel{
 	position: relative;
@@ -104,7 +104,7 @@
 	top: 0;
 	background: #fff;
 	padding: 10px;
-	z-index: 2;
+	z-index: map-get($z-index,nav-pannel-inner);
 	box-shadow:0px 1px 4px rgba(102,102,102,0.3)
 }
 .nav-pannel-img{

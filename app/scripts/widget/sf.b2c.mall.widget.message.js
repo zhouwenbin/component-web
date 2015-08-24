@@ -67,6 +67,9 @@ define(
       },
 
       '#close click': function() {
+        if (typeof this.data.closeFunction != 'undefined' && this.data.closeFunction != null) {
+          this.data.closeFunction.apply(this);
+        }
         this.close();
         return false;
       },

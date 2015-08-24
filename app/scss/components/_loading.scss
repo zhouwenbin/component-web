@@ -2,7 +2,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 10000;
+  z-index: map-get($z-index,u-loading);
 }
 .u-loading-bg{
   width: 100%;

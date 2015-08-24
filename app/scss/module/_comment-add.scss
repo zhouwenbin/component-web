@@ -1,0 +1,146 @@
+.comment-add{
+	background: #F5F5F5;
+	padding: 35px 0 20px 120px;
+	border: 1px solid #E6E6E6;
+	width: 900px;
+	text-align: left;
+	font-size: 12px;
+	position: relative;
+	margin-left:auto;
+	margin-top: 7px;
+	margin-bottom: 20px;
+}
+.comment-add:before{
+	content: '';
+	border-left: 1px solid #E6E6E6;
+	border-top: 1px solid #E6E6E6;
+	background: #F5F5F5;
+	transform:rotate(45deg);
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: -11px;
+	right: 146px;
+}
+.comment-add .justify{
+	float:left;
+	margin-left: -77px;
+	height: 28px;
+	line-height: 28px;
+	color: #333;
+  width: 5em;
+}
+.comment-add .justify abbr{
+	color: #E13B3A;
+	float: left;
+	margin-left: -10px;
+}
+.comment-add>ul>li{
+	margin-bottom: 12px;
+}
+.comment-add .btn-goods{
+	margin-right: 10px;
+
+}
+.comment-add .textarea{
+	width: 690px;
+	height: 110px;
+	border: 1px solid #ccc;
+	padding: 6px 9px;
+}
+.comment-add-img{
+	font-size: 0;
+	display: inline-block;
+}
+.comment-add-img>li{
+	font-size: 12px;
+	display: inline-block;
+	border:1px solid #ccc;
+	margin-right: 10px;
+	position: relative;
+}
+.comment-add-img>li:hover{
+	border-color: #E13B3A;
+}
+.comment-add-img-del{
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	text-align: center;
+	color: #fff;
+	background: #E13B3A;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+.comment-add-img-del:hover{
+	color: #fff;
+}
+.comment-add-img>li:hover .comment-add-img-del{
+	display: block;
+}
+.comment-add .p2{
+	color: #999;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 18px;
+	padding: 22px 0px;
+}
+.comment-add .p3{
+	color: #999;
+	margin-top: 8px;
+	margin-bottom: 19px;
+}
+.comment-add .p4{
+	line-height: 26px;
+}
+.comment-add .s1{
+	color: #999;
+	margin-left: 10px;
+}
+.comment-add .checkbox{
+	margin-left: 20px;
+	margin-right: 5px;
+}
+.comment-add-img-add{
+	display: inline-block;
+	width: 81px;
+	height: 81px;
+	border: 1px dashed #ccc;
+	color: #ccc;
+	vertical-align: middle;
+	text-align: center;
+	margin-right: 10px;
+	background: #fff;
+	cursor: pointer;
+}
+.comment-add-img-add span{
+	font-family: serif;
+	font-size: 60px;
+	display: block;
+	margin-bottom: -4px;
+}
+.comment-add .text-error{
+	margin-top: 5px;
+}
+.comment-add-custom{
+	width: 80px;
+	border: 1px dashed #ccc;
+	height: 27px;
+	line-height: 27px;
+	padding: 0 5px;
+  text-align: center;
+}
+.comment-add-custom:focus{
+	border: 1px solid #CC1C01;
+}
+.comment-add .rating{
+	height: 28px;
+	line-height: 28px;
+	display: inline-block;
+	vertical-align: top;
+}
+.comment-add .rating img{
+	vertical-align: -2px;
+}

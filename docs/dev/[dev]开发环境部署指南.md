@@ -1,4 +1,4 @@
-141环境：
+141环境： sfhaitao@1
 grunt build:prd
 cd dist
 tar -cvf dist.tar ./*
@@ -6,6 +6,7 @@ scp dist.tar admin@10.32.156.141:/home/admin/statics
 ssh admin@10.32.156.141
 cd statics
 tar -xvf dist.tar
+
 
 123环境：
 1、执行打包。进入haitao-b2c-web目录执行如下命令

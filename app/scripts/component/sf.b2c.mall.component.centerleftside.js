@@ -23,6 +23,9 @@ define(
         data.link = [];
 
         data.link.push({
+          "url": "/message.html",
+          "name": "消息中心"
+        }, {
           "url": "/orderlist.html",
           "name": "我的订单"
         }, {

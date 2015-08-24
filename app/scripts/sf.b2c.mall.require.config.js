@@ -54,6 +54,7 @@ requirejs.config({
         'sf.b2c.mall.api.product.arrivalNotice': 'scripts/api/sf.b2c.mall.api.product.arrivalNotice',
         'sf.b2c.mall.api.product.searchShopInfo': 'scripts/api/sf.b2c.mall.api.product.searchShopInfo',
         'sf.b2c.mall.api.product.findMixDiscountProducts': 'scripts/api/sf.b2c.mall.api.product.findMixDiscountProducts',
+        'sf.b2c.mall.api.product.findSaleBaseInfoList': 'scripts/api/sf.b2c.mall.api.product.findSaleBaseInfoList',
 
         'sf.b2c.mall.api.user.appLogin': 'scripts/api/sf.b2c.mall.api.user.appLogin',
         'sf.b2c.mall.api.user.changePassword': 'scripts/api/sf.b2c.mall.api.user.changePassword',
@@ -135,6 +136,14 @@ requirejs.config({
         'sf.b2c.mall.api.search.getSearchHeaderConfig': 'scripts/api/sf.b2c.mall.api.search.getSearchHeaderConfig',
         'sf.b2c.mall.api.search.hotKeywords': 'scripts/api/sf.b2c.mall.api.search.hotKeywords',
 
+        //评价
+        'sf.b2c.mall.api.commentGoods.publishComment': 'scripts/api/sf.b2c.mall.api.commentGoods.publishComment',
+        'sf.b2c.mall.api.commentGoods.publishCompreComment': 'scripts/api/sf.b2c.mall.api.commentGoods.publishCompreComment',
+        'sf.b2c.mall.api.commentGoods.getComments': 'scripts/api/sf.b2c.mall.api.commentGoods.getComments',
+        'sf.b2c.mall.api.commentGoods.findCommentStatus': 'scripts/api/sf.b2c.mall.api.commentGoods.findCommentStatus',
+        'sf.b2c.mall.api.commentGoods.findCommentInfoListByType': 'scripts/api/sf.b2c.mall.api.commentGoods.findCommentInfoListByType',
+        'sf.b2c.mall.api.commentGoods.findCommentLabels': 'scripts/api/sf.b2c.mall.api.commentGoods.findCommentLabels',
+        'sf.b2c.mall.api.commentGoods.findCommentInfoList': 'scripts/api/sf.b2c.mall.api.commentGoods.findCommentInfoList',
 
         //购物车
         "sf.b2c.mall.api.shopcart.isShowCart": "scripts/api/sf.b2c.mall.api.shopcart.isShowCart.agency",
@@ -175,8 +184,6 @@ requirejs.config({
         'canvasjs': 'scripts/vendor/canvasjs.min',
         "chart": "scripts/vendor/Chart",
         'jquery.stackslider': 'scripts/vendor/jquery.stackslider',
-        'plupload': 'scripts/vendor/plupload',
-        'livequery': 'scripts/vendor/jquery.livequery',
 
         'sf.b2c.mall.component.header': 'scripts/component/sf.b2c.mall.component.header',
         'sf.b2c.mall.component.header.520': 'scripts/component/sf.b2c.mall.component.header.520',
@@ -214,6 +221,8 @@ requirejs.config({
         'sf.b2c.mall.center.receiveaddr': 'scripts/center/sf.b2c.mall.center.receiveaddr',
         'sf.b2c.mall.center.coupon': 'scripts/center/sf.b2c.mall.center.coupon',
         'sf.b2c.mall.center.invitationcontent': 'scripts/center/sf.b2c.mall.center.invitationcontent',
+
+        'sf.b2c.mall.center.message': 'scripts/center/sf.b2c.mall.center.message',
 
         'sf.b2c.mall.widget.slide': 'scripts/widget/sf.b2c.mall.widget.slide',
         'sf.b2c.mall.widget.modal': 'scripts/widget/sf.b2c.mall.widget.modal',
@@ -263,6 +272,8 @@ requirejs.config({
         'sf.b2c.mall.page.coupon': 'scripts/page/sf.b2c.mall.page.coupon',
         'sf.b2c.mall.page.paysuccess': 'scripts/page/sf.b2c.mall.page.paysuccess',
 
+        'sf.b2c.mall.page.message': 'scripts/page/sf.b2c.mall.page.message',
+
         'sf.b2c.mall.page.weixincenter': 'scripts/page/sf.b2c.mall.page.weixincenter',
 
         'sf.b2c.mall.page.registeractive': 'scripts/page/sf.b2c.mall.page.registeractive',
@@ -310,7 +321,6 @@ requirejs.config({
         //退税
         'sf.b2c.mall.page.refundtax': 'scripts/page/sf.b2c.mall.page.refundtax',
 
-
         //收货地址管理
         'sf.b2c.mall.page.addressmanage': 'scripts/page/sf.b2c.mall.page.addressmanage',
         'sf.b2c.mall.page.accountmanage': 'scripts/page/sf.b2c.mall.page.accountmanage',
@@ -342,6 +352,28 @@ requirejs.config({
 
         'sf.mediav': 'scripts/util/sf.mediav',
 
+        // fixture功能
+        'fixture': 'fixture/lib/canjs/fixture',
+        'can.object': 'fixture/lib/canjs/can.object',
+        'sf.b2c.mall.fixture.framework.common': 'fixture/framework/sf.b2c.mall.fixture.framework.common',
+        'sf.b2c.mall.fixture.case.center.invitation': 'fixture/case/center/sf.b2c.mall.fixture.case.center.invitation',
+
+        // 评价晒单
+        'sf.b2c.mall.page.shareorder': 'scripts/page/sf.b2c.mall.page.shareorder',
+        'sf.b2c.mall.page.detailcomment': 'scripts/page/sf.b2c.mall.page.detailcomment',
+        'sf.b2c.mall.center.shareordercontent': 'scripts/center/sf.b2c.mall.center.shareordercontent',
+        'sf.b2c.mall.component.commenteditor': 'scripts/component/sf.b2c.mall.component.commenteditor',
+        'sf.b2c.mall.component.commentstar': 'scripts/component/sf.b2c.mall.component.commentstar',
+        'sf.b2c.mall.component.commenttag': 'scripts/component/sf.b2c.mall.component.commenttag',
+        'sf.b2c.mall.component.commentpic': 'scripts/component/sf.b2c.mall.component.commentpic',
+        'plupload': 'scripts/vendor/plupload',
+        'livequery': 'scripts/vendor/jquery.livequery',
+        'sf.b2c.mall.product.detailcomment': 'scripts/product/sf.b2c.mall.product.detailcomment',
+
+        'sf.b2c.mall.fixture.case.center.comment': 'fixture/case/center/sf.b2c.mall.fixture.case.center.comment',
+
+        'template_product_detailcomment': 'templates/product/sf.b2c.mall.product.detailcomment.mustache',
+
 
         'template_header_user_navigator': 'templates/header/sf.b2c.mall.header.user.navigator.mustache',
         'template_header_info_common': 'templates/header/sf.b2c.mall.header.info.common.mustache',
@@ -358,9 +390,14 @@ requirejs.config({
         'template_component_centerleftside': 'templates/component/sf.b2c.mall.component.centerleftside.mustache',
         'template_center_invitationcontent': 'templates/center/sf.b2c.mall.center.invitationcontent.mustache',
         'template_center_invitationshare': 'templates/center/sf.b2c.mall.center.invitationshare.mustache',
+        'template_center_message': 'templates/center/sf.b2c.mall.center.message.mustache',
         'template_component_bindalipay': 'templates/component/sf.b2c.mall.component.bindalipay.mustache',
         'template_component_search': 'templates/component/sf.b2c.mall.component.search.mustache',
         'template_shop_detail': 'templates/shop/sf.b2c.mall.shop.detail.mustache',
-        'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache'
+        'template_header_nav_panel': 'templates/header/sf.b2c.mall.header.nav.panel.mustache',
+        'template_component_commenteditor': 'templates/component/sf.b2c.mall.component.commenteditor.mustache',
+        'template_component_commentstar': 'templates/component/sf.b2c.mall.component.commentstar.mustache',
+        'template_component_commenttag': 'templates/component/sf.b2c.mall.component.commenttag.mustache',
+        'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache'
     }
 });

@@ -1,0 +1,21 @@
+<div class="message">
+  {{#hasComments comments.commentGoods}}
+    <ul>
+        {{#each comments.commentGoods}}
+            <li>
+                <a href="http://www.sfht.com/detail/{{commentGoodsInfo.itemId}}.html"><img src="{{commentGoodsInfo.itemImg}}" alt="" width="90" height="90"></a>
+                <div class="message-r1">
+                    <div class="message-r1c1 fl"><span class="text-important">顺丰海淘客服</span>回复了您：</div>
+                    <div class="message-r1c2 fr">{{commentGoodsInfo.gmtReply}}</div>
+                </div>
+                <p class="message-r2">{{commentGoodsInfo.sysReplyContent}}</p>
+                <p class="message-r3">我：{{commentGoodsInfo.content}}</p>
+            </li>
+        {{/each}}
+    </ul>
+    <div class="sf-b2c-mall-message-pagination"></div>
+  {{/hasComments}}
+    {{^hasComments comments.commentGoods}}
+    <p class="message-none"><span class="message-icon"></span>您暂未收到任何消息~</p>
+    {{/hasComments}}
+</div>

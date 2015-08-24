@@ -108,19 +108,22 @@ define(
         var that = this;
 
         _.each(data.value, function(value, key, list) {
+          try{
+            // 填充价格
+            var $el = element.find('[data-cms-itemid=' + value.itemId + ']');
 
-          // 填充价格
-          var $el = element.find('[data-cms-itemid=' + value.itemId + ']');
-
-          // 如果有重复的itemid，则进行容错
-          if ($el.length && $el.length > 1) {
-            _.each($el, function(item) {
-              that.fillPrice($(item), value);
-            })
-          } else {
-            that.fillPrice($el, value);
+            // 如果有重复的itemid，则进行容错
+            if ($el.length && $el.length > 1) {
+              _.each($el, function(item) {
+                that.fillPrice($(item), value);
+              })
+            } else {
+              that.fillPrice($el, value);
+            }
           }
-
+          catch(e){
+            console.log(e);
+          }
         });
       },
 
@@ -318,7 +321,12 @@ define(
 
     // 分别进行实例化
     _.each(priceModules, function(priceModule) {
-      new price($(priceModule));
+      try{
+        new price($(priceModule));
+      }
+      catch(e){
+        console.log(e);
+      }
     });
 
   });

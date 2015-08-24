@@ -1,0 +1,52 @@
+.comment-list table{
+	table-layout: fixed;
+	width: 100%;
+	margin-bottom: 32px;
+}
+.comment-list th{
+	height: 38px;
+	line-height: 38px;
+	background: #F5F5F5;
+	color: #666;
+}
+.comment-list thead tr{
+	border: 1px solid #F5F5F5;	
+}
+.comment-list tbody tr{
+	border: 1px solid #E5E5E5;
+	border-top: none;
+}
+.comment-list td{
+	color: #999;
+	padding: 32px 0;
+	vertical-align: top;
+}
+.comment-list .col1{
+	padding-left: 30px;
+	width: 520px;
+}
+.comment-list .col2{
+	width: 148px;
+	padding-left: 80px;
+}
+.comment-list .col3{
+	width: 140px;
+}
+.comment-list .col4 p{
+	margin-bottom: 14px;
+}
+.comment-list .p1{
+	margin-bottom: 10px;
+	line-height: 20px;
+	color: #333;
+}
+.comment-list .p2{
+	color: #666;
+	line-height: 20px;
+}
+.comment-list .p3{
+	color: #666;
+}
+.comment-list .p4{
+	text-align: center;
+}
