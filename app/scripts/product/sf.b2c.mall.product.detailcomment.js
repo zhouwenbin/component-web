@@ -112,6 +112,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     show: function(element) {
+      this.element = element;
+
       this.commentType = 0;
 
       var routeParams = can.route.attr();
@@ -121,16 +123,16 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         });
       }
 
-      this.render(this.commentType, routeParams.page, element);
+      this.render(this.commentType, routeParams.page);
     },
 
-    render: function(commentType, page, element) {
-      this.setup(element);
+    render: function(commentType, page) {
+      this.setup(this.element);
       var that = this;
 
-      // 如果已经纯在数据了，则不用重新请求
+      // 如果已经存在数据了，则不用重新请求
       if (that.labels && that.commentData) {
-        that.renderComment(labels, commentData);
+        that.renderComment(commentType, labels, commentData);
         return false;
       }
 
@@ -159,7 +161,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         })
     },
 
-    renderComment: function(labels, commentData) {
+    renderComment: function(commentType, labels, commentData) {
       var that = this;
 
       if (labels.keyValuePaires) {
