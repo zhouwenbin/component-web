@@ -108,6 +108,10 @@ define('sf.b2c.mall.product.detailcomment', ['can',
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
+      this.itemId = options.itemId;
+    },
+
+    show: function(element) {
       this.commentType = 0;
 
       var routeParams = can.route.attr();
@@ -117,17 +121,18 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         });
       }
 
-      this.render(this.commentType, routeParams.page);
+      this.render(this.commentType, routeParams.page, element);
     },
 
-    render: function(commentType, page) {
+    render: function(commentType, page, element) {
+      this.setup(element);
       var that = this;
 
       var findCommentLabels = new SFFindCommentLabels({
-        "itemId": this.options.itemId
+        "itemId": this.itemId
       });
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": this.options.itemId,
+        "itemId": this.itemId,
         "type": commentType,
         "pageNum": 3,
         "pageSize": page
@@ -205,7 +210,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var that = this;
 
       var findCommentInfoList = new SFfindCommentInfoList({
-        "itemId": that.options.itemId,
+        "itemId": that.itemId,
         "type": type,
         "pageNum": 3,
         "pageSize": 1

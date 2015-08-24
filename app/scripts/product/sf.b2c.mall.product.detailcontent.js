@@ -402,7 +402,12 @@ define('sf.b2c.mall.product.detailcontent', [
 
         var detailcontent = $(".detail-content");
         detailcontent.after("<div id='detaillastcomment'></div>");
-        this.detailcomment = new SFDetailcomment('#detaillastcomment', {"itemId": this.itemid});
+
+        if (!this.detailcomment) {
+          this.detailcomment = new SFDetailcomment(null, {"itemId": this.itemid});
+        }
+
+        this.detailcomment.show('#detaillastcomment');
       },
 
       renderBaiduShare: function() {
