@@ -12,7 +12,7 @@ define(
     'sf.b2c.mall.business.config'
   ],
 
-  function(can, $, SFFrameworkComm, Header, DetailComment, SFFn) {
+  function(can, $, SFFrameworkComm, Header, SFDetailcomment, SFFn) {
     SFFrameworkComm.register(1);
 
     var home = can.Control.extend({
@@ -25,7 +25,11 @@ define(
 
       render: function() {
 
-        new DetailComment('.sf-b2c-mall-detailcomment', {'itemId': 2514});
+        if (!this.detailcomment) {
+          this.detailcomment = new SFDetailcomment(null, {"itemId": 120});
+        }
+
+        this.detailcomment.show('.sf-b2c-mall-detailcomment');
       }
     });
 

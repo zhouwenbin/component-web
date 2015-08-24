@@ -287,6 +287,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         "totalNum": pageData.page.totalNum,
         "pageSize": pageData.page.pageNum
       });
+
+      new Pagination('.sf-b2c-mall-detailcomment-pagination', this.options);
     },
 
     '.comment-img li click': function(element, event) {
