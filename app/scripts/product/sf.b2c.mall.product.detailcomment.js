@@ -154,7 +154,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
           that.labels = labels;
           that.commentData = commentData;
 
-          that.renderComment(labels, commentData);
+          that.renderComment(commentType, labels, commentData);
         })
         .fail(function(error) {
           console.error(error);
