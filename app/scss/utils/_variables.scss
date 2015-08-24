@@ -1,7 +1,7 @@
 //dev环境
 $bg-url:"../img/";
 //线上环境
-//$bg-url:"http://img.sfht.com/sfht/1.1.185/img/";
+$bg-url:"http://img.sfht.com/sfht/1.1.250/img/";
 $z-index:(
         goods-c2r2-img:-1,
         register-h-icon34:-1,
@@ -45,4 +45,4 @@ $z-index:(
         dialog-cart:999,
         u-loading:1000,
         header-search-dropdown:99999
-)
+);
