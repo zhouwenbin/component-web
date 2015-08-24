@@ -29,9 +29,9 @@ define(
           this.detailcomment = new SFDetailcomment(null, {"itemId": 120});
         }
 
-        this.detailcomment.show('.sf-b2c-mall-detailcomment');
+        this.detailcomment.show('#detaillastcomment');
       }
     });
 
-    new home('.sf-b2c-mall-detailcomment');
+    new home('#detaillastcomment');
   });
