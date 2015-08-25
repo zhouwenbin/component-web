@@ -143,7 +143,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": this.itemId,
         "type": commentType,
-        "pageNum": 3,
+        "pageNum": 15,
         "pageSize": page
       });
 
@@ -190,6 +190,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       that.element.html(that.options.html);
 
       that.options.page = new PaginationAdapter();
+      that.options.scroll = false;
       that.formatPageData(commentData);
 
       new Pagination('.sf-b2c-mall-detailcomment-pagination', that.options);
@@ -198,6 +199,8 @@ define('sf.b2c.mall.product.detailcomment', ['can',
     },
 
     '{can.route} change': function(el, attr, how, newVal, oldVal) {
+      this.labels = null;
+      this.commentData = null;
       if (el.page == this.currentRouteData) {
         return true;
       } else {
@@ -228,7 +231,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
       var findCommentInfoList = new SFfindCommentInfoList({
         "itemId": that.itemId,
         "type": type,
-        "pageNum": 3,
+        "pageNum": 15,
         "pageSize": 1
       });
 

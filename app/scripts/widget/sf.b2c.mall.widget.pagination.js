@@ -8,6 +8,10 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
      * @param  {Object} options 传递的参数
      */
     init: function(element, options) {
+      this.scroll = true;
+      if (this.options.scroll === false) {
+        this.scroll = false;
+      }
       this.paint();
     },
 
@@ -52,10 +56,12 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
     '.pagination-set-page click': function(element, event) {
       event && event.preventDefault();
 
-      if (document.documentElement && document.documentElement.scrollTop) {
-        document.documentElement.scrollTop = 0;
-      } else if (document.body) {
-        document.body.scrollTop = 0;
+      if (this.scroll) {
+        if (document.documentElement && document.documentElement.scrollTop) {
+          document.documentElement.scrollTop = 0;
+        } else if (document.body) {
+          document.body.scrollTop = 0;
+        }
       }
 
       var page = can.$(element).attr('data-target');
@@ -64,10 +70,13 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
 
     '.pagination-prev click': function(element, event) {
       event && event.preventDefault();
-      if (document.documentElement && document.documentElement.scrollTop) {
-        document.documentElement.scrollTop = 0;
-      } else if (document.body) {
-        document.body.scrollTop = 0;
+
+      if (this.scroll) {
+        if (document.documentElement && document.documentElement.scrollTop) {
+          document.documentElement.scrollTop = 0;
+        } else if (document.body) {
+          document.body.scrollTop = 0;
+        }
       }
 
       var routeParams = can.route.attr();
@@ -77,10 +86,13 @@ define('sf.b2c.mall.widget.pagination', ['can'], function(can) {
 
     '.pagination-next click': function(element, event) {
       event && event.preventDefault();
-      if (document.documentElement && document.documentElement.scrollTop) {
-        document.documentElement.scrollTop = 0;
-      } else if (document.body) {
-        document.body.scrollTop = 0;
+
+      if (this.scroll) {
+        if (document.documentElement && document.documentElement.scrollTop) {
+          document.documentElement.scrollTop = 0;
+        } else if (document.body) {
+          document.body.scrollTop = 0;
+        }
       }
 
       var routeParams = can.route.attr();

@@ -141,7 +141,7 @@ define('sf.b2c.mall.component.commenteditor', [
               showpluscontent: true,
               viewpluscontent: true,
               pluscontent: data.extralContent,
-              img: data.imgs,
+              img: data.imgs || data.extralImgs,
               isAnonym: data.isAnonym,
               view: true
             },
