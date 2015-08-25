@@ -23,7 +23,7 @@
                         <div class="mycoupon-r1">
                             <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
                             <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}</p>
-                            <p class="ellipsis2">{{useNotice}}</p>
+                            <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
                         </div>
                       {{#customUrl}}
                           <div class="mycoupon-gotohref">
@@ -51,7 +51,7 @@
                           <div class="mycoupon-r1">
                               <div class="mycoupon-r1r1" style="padding:10px 0;line-height:1.5">兑换码:{{extCode}}</div>
                               <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}</p>
-                              <p class="ellipsis2">{{useNotice}}</p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
                           </div>
                       </div>
                   </li>
@@ -73,8 +73,8 @@
                           <h3>{{title}}</h3>
                           <div class="mycoupon-r1">
                               <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-                              <p>使用时间：{{sf.time useTime "YYYY-MM-DD"}}</p>
-                              <p class="ellipsis2">订单号：{{orderId}}<br />{{useNotice}}</p>
+                              <p>使用时间：{{sf.time useTime "YYYY-MM-DD"}}订单号：<br />{{orderId}}</p>
+                              <p class="ellipsis" title="{{useNotice}}">{{useNotice}}</p>
                           </div>
                       </div>
                   </li>
@@ -97,7 +97,7 @@
                           <div class="mycoupon-r1">
                               <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
                               <p>过期时间：{{sf.time endTime "YYYY-MM-DD"}}</p>
-                              <p class="ellipsis2">{{useNotice}}</p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
                           </div>
                       </div>
                   </li>
@@ -120,7 +120,7 @@
                           <div class="mycoupon-r1">
                               <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
                               <p>{{cancelReason}}<br /></p>
-                              <p class="ellipsis2">{{useNotice}}</p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
                           </div>
                       </div>
                   </li>
