@@ -71,8 +71,8 @@ define(
               hasPswd: false
             });
             if (!data.hasPswd) {
-              this.data.attr('hasPswd', true);
-              data.attr("phoneNumber", data.mobile);
+              that.data.attr('hasPswd', true);
+              that.data.attr("phoneNumber", data.mobile);
             }
 
 
