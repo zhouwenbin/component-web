@@ -15,37 +15,7 @@
 	border-radius: 4px;
 	position: relative;
 }
-/*.mycoupon h2{
-	padding-left: 0;
-	font-size: 16px;
-    margin-bottom: 15px;
-    margin-top: 35px;
-}
-.mycoupon-h{
-	display: inline-block;
-	border-left: 1px solid #eee;
-  	border-right: 1px solid #eee;
-}
-.mycoupon-h li{
-	float: left;
-	width: 164px;
-	height: 56px;
-	line-height: 56px;
-	background: #eee;
-	border-top: 4px solid #eee;
-	text-align: center;
-	font-size: 14px;
-}
-.mycoupon-h li.active{
-	background: #fff;
-	border-top-color: #dc3334;
-}
-.mycoupon-h li.active a{
-	color: #dc3334;
-}
-.mycoupon-h a{
-	display: block;
-}*/
+
 .mycoupon-b{
 	background: #fff;
 	margin-right: -38px;
@@ -111,6 +81,9 @@ p.mycoupon-b{
 	overflow: hidden;
 	margin-top: 5px;
 }
+.mycoupon-line3 .ellipsis2{
+  margin-top: 0;
+}
 .mycoupon-r1r1{
 	padding-bottom: 3px;
 	border-bottom: 1px dashed #fff;
@@ -147,7 +120,7 @@ p.mycoupon-b{
 	margin-bottom: 5px;
 }
 .mycoupon-line3 p{
-	line-height: 22px;
+	line-height: 18px;
 }
 .mycoupon-gotohref{
 	text-align: center;
