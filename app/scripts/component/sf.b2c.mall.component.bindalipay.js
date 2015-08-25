@@ -130,7 +130,7 @@ define(
 
       checkAccount: function(account){
         var isTelNum = /^1\d{10}$/.test(account);
-        var isEmail = /^([a-zA-Z0-9-_]*[-_\.]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\.][a-zA-Z]{2,3}([\.][a-zA-Z]{2})?$/.test(account);
+        var isEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(account);
         if (!isTelNum && !isEmail) {
           return "账号不合法，必须为邮箱或者手机号"
         } else {
