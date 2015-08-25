@@ -23,14 +23,14 @@ define(
         data.link = [];
 
         data.link.push({
-          "url": "/coupon.html",
-          "name": "我的优惠券"
-        }, {
           "url": "/message.html",
           "name": "消息中心"
         }, {
           "url": "/orderlist.html",
           "name": "我的订单"
+        }, {
+          "url": "/coupon.html",
+          "name": "卡券管理"
         }, {
           "url": "/accountmanage.html",
           "name": "账户管理"
