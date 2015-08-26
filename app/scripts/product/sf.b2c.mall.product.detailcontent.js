@@ -401,7 +401,7 @@ define('sf.b2c.mall.product.detailcontent', [
         })
 
         var detailcontent = $(".detail-content");
-        detailcontent.after("<div id='detaillastcomment' style='display:none'></div>");
+        detailcontent.after("<div id='detaillastcomment'></div>");
 
         if (!this.detailcomment) {
           this.detailcomment = new SFDetailcomment(null, {"itemId": this.itemid});
