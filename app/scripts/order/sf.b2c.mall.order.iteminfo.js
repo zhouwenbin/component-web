@@ -77,6 +77,22 @@ define('sf.b2c.mall.order.iteminfo', [
         if (activityDescription) {
           return activityDescription['FIRST_ORDER'];
         }
+      },
+      //展示最优的优惠券
+      'sf-show-bestCoupon': function(orderCouponItem, options) {
+        var orderCouponItem = orderCouponItem();
+        if (orderCouponItem && orderCouponItem.avaliableAmount > 0) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      //是否展示显示更多
+      'sf-show-morecoupon': function(orderCouponItem, options) {
+        var orderCouponItem = orderCouponItem();
+        if (orderCouponItem.avaliableCoupons.length > 0 || orderCouponItem.disableCoupons.length > 0) {
+          return options.fn(options.contexts || this);
+        }
       }
     },
     /**
@@ -102,31 +118,40 @@ define('sf.b2c.mall.order.iteminfo', [
       //   saleid: arr[2],
       //   amount: params.amount
       // });
-
       can.when(that.initOrderRender())
-        .done(function() {
-          //that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.shouldPay / 100) * that.itemObj.attr('proportion'));
+        .then(function() {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.options.data, that.helpers);
           that.element.html(html);
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
-          $('.goodsItemArea').append(invariableGoodshtml(that.itemObj));
-          // var point = that.itemObj.orderFeeItem.shouldPay * that.itemObj.proportion / 100;
-          // if (point < that.itemObj.totalPoint) {
-          //   if (point < 0) {
-          //     point = 0;
-          //   }
-          //   $("#usedPoint").text(point);
-          // } else {
-          //   $("#usedPoint").text(that.itemObj.totalPoint);
-          // }
-
-          //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
-          // if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
-          //   $('#submitOrder').addClass('btn-disable');
-          // };
-
+          $('.goodsItemArea').append(invariableGoodshtml(that.options.data));
+          that.reCalculateOrderPrice();
           that.watchIteminfo.call(that);
         });
+      // can.when(that.initOrderRender())
+      //   .done(function() {
+      //     //that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.shouldPay / 100) * that.itemObj.attr('proportion'));
+      //     var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.options.data, that.helpers);
+      //     that.element.html(html);
+      //     var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
+      //     $('.goodsItemArea').append(invariableGoodshtml(that.itemObj));
+      //     // var point = that.itemObj.orderFeeItem.shouldPay * that.itemObj.proportion / 100;
+      //     // if (point < that.itemObj.totalPoint) {
+      //     //   if (point < 0) {
+      //     //     point = 0;
+      //     //   }
+      //     //   $("#usedPoint").text(point);
+      //     // } else {
+      //     //   $("#usedPoint").text(that.itemObj.totalPoint);
+      //     // }
+
+      //     //@noto如果商品渠道是嘿客，但是该用户不是从嘿客穿越过来的，则不能购买此商品
+      //     // if (that.options.productChannels == 'heike' && arr[2] == 'undefined') {
+      //     //   $('#submitOrder').addClass('btn-disable');
+      //     // };
+
+      //     that.watchIteminfo.call(that);
+      //   }).then(that.reCalculateOrderPrice())
+
     },
 
     watchIteminfo: function() {
@@ -144,6 +169,7 @@ define('sf.b2c.mall.order.iteminfo', [
           products.push(value);
         });
       });
+
       SFMediav.watchShoppingCart({
         name: name
       }, products);
@@ -159,20 +185,16 @@ define('sf.b2c.mall.order.iteminfo', [
       var name = arr[0];
 
       var products = [];
-      _.each(this.options.data, function(packageInfo, index) {
+      _.each(this.options.data.attr('orderPackageItemList'), function(packageInfo, index) {
         _.each(packageInfo.orderGoodsItemList, function(value) {
           products.push(value);
         });
       });
-      // this.itemObj.orderPackageItemList.each(function(packageInfo, index) {
-      //   packageInfo.orderGoodsItemList.each(function(value) {
-      //     products.push(value);
-      //   });
-      // });
+
       SFMediav.watchOrderSubmit({
         name: name
       }, {
-        amount: this.itemObj.orderFeeItem.actualTotalFee
+        amount: this.options.data.attr('orderFeeItem.actualTotalFee')
       }, products);
     },
 
@@ -255,15 +277,28 @@ define('sf.b2c.mall.order.iteminfo', [
       });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
-          //活动信息
-          if (typeof orderRenderItem.activityDescription !== 'undefined' && !can.isEmptyObject(orderRenderItem.activityDescription)) {
-            orderRenderItem.activityDescription = JSON.parse(orderRenderItem.activityDescription.value);
-          }
+
+          that.processProducts(orderRenderItem);
 
           that.options.data = new can.Map(orderRenderItem);
+          that.options.data.attr('usedPoints', 0);
+          if (that.options.data.orderCouponItem.avaliableAmount > 0) {
+            //获取最优的一张优惠券
+            that.options.data.attr('bestCoupon', that.options.data.orderCouponItem.avaliableCoupons[0]);
+            //删除可用优惠券中的第一张，因为第一张在上面展示了 
+            that.options.data.orderCouponItem.avaliableCoupons.splice(0, 1);
+          };
+          //获取所有包裹下的所有商品
+          if (that.options.data.orderPackageItemList.length > 0) {
+            var array = new Array();
+            _.each(that.options.data.orderPackageItemList, function(packageItem) {
+              array.push(packageItem.orderGoodsItemList);
+            });
+            that.options.data.attr("orderGoodsItemList", array);
+          };
 
           // //that.processFoundation(orderRenderItem);
-          // that.processProducts(orderRenderItem);
+
           // that.processCoupons(orderRenderItem.orderCouponItem);
           // that.itemObj.attr('totalPoint', orderRenderItem.integral);
           // $("#usedPoint").text(orderRenderItem.integral);
@@ -273,19 +308,26 @@ define('sf.b2c.mall.order.iteminfo', [
 
         });
     },
-
+    //计算总价
     reCalculateOrderPrice: function(element, options) {
       var that = this;
       var orderPriceReCalculate = new SFOrderPriceReCalculate({
         request: JSON.stringify({
           "couponCode": that.getCouponCodes(),
           "integral": $("#pointUsed").val(),
-          "submitKey": that.itemObj.submitKey
+          "submitKey": that.options.data.attr('submitKey')
         })
       });
       orderPriceReCalculate.sendRequest()
         .done(function(data) {
-          that.itemObj.attr('orderFeeItem', data);
+          that.options.data.attr('orderFeeItem', data.orderFeeItem);
+          var point = that.options.data.attr('orderFeeItem.actualTotalFee') * that.options.data.attr('proportion') / 100;
+          point = (point < 0) ? 0 : point;
+          if (point < that.options.data.attr('integral')) {
+            that.options.data.attr('useIntegral', point);
+          } else {
+            that.options.data.attr('useIntegral', that.options.data.attr('integral'));
+          }
         })
         .fail(function(errorCode) {
 
@@ -311,78 +353,85 @@ define('sf.b2c.mall.order.iteminfo', [
      * @param 商品列表
      */
     processProducts: function(orderRenderItem) {
-      var that = this;
+      //活动信息
+      if (typeof orderRenderItem.activityDescription !== 'undefined' && !can.isEmptyObject(orderRenderItem.activityDescription)) {
+        orderRenderItem.activityDescription = JSON.parse(orderRenderItem.activityDescription.value);
+      }
 
-      _.each(orderRenderItem.orderPackageItemList, function(packageItem) {
-        _.each(packageItem.orderGoodsItemList, function(goodItem) {
-          if (goodItem.specItemList) {
-            var result = new Array();
-            _.each(goodItem.specItemList, function(item) {
-              result.push(item.specName + ":" + item.spec.specValue);
-            });
-            goodItem.spec = result.join('&nbsp;/&nbsp;');
-            goodItem.totalPrice = goodItem.price * goodItem.quantity;
-          }
+      //计算商品总价
+      if (orderRenderItem.orderPackageItemList.length > 0) {
+        _.each(orderRenderItem.orderPackageItemList, function(packageItem) {
+          _.each(packageItem.orderGoodsItemList, function(goodItem) {
+            if (goodItem.specItemList) {
+              var result = new Array();
+              _.each(goodItem.specItemList, function(item) {
+                result.push(item.specName + ":" + item.spec.specValue);
+              });
+              goodItem.spec = result.join('&nbsp;/&nbsp;');
+              goodItem.totalPrice = goodItem.price * goodItem.quantity;
+            }
+          });
         });
-        that.itemObj.attr("orderGoodsItemList", packageItem.orderGoodsItemList);
-      });
+      };
 
-      this.itemObj.attr("orderPackageItemList", orderRenderItem.orderPackageItemList);
-      //便利无效商品列表
-      _.each(orderRenderItem.invariableGoodsItemList, function(goodItem) {
-        goodItem.totalPrice = goodItem.price * goodItem.quantity;
-      });
-      this.itemObj.attr("invariableGoodsItemList", orderRenderItem.invariableGoodsItemList);
+      //遍历不可用商品，计算总价
+      if (orderRenderItem.invariableGoodsItemList.length > 0) {
+        _.each(orderRenderItem.invariableGoodsItemList, function(goodItem) {
+          goodItem.totalPrice = goodItem.price * goodItem.quantity;
+        });
+      };
+
     },
     /**
      * 加工优惠券信息
      * @param 优惠券
      */
-    processCoupons: function(orderCoupon) {
+    // processCoupons: function(orderCoupon) {
 
-      can.extend(orderCoupon, {
-        useQuantity: 0, //?这个参数干嘛用的
-        couponExCode: "",
-        isHaveAvaliable: false,
-        isShowMore: false,
-        bestCoupon: null
-      });
+    //   can.extend(orderCoupon, {
+    //     useQuantity: 0, //?这个参数干嘛用的
+    //     couponExCode: "",
+    //     isHaveAvaliable: false,
+    //     isShowMore: false,
+    //     bestCoupon: null
+    //   });
 
-      this.itemObj.attr("orderCoupon", orderCoupon);
-      if (orderCoupon.avaliableAmount > 0) {
-        this.itemObj.orderCoupon.attr("isHaveAvaliable", true);
-        this.itemObj.orderCoupon.attr("bestCoupon", orderCoupon.avaliableCoupons[0]);
-        this.itemObj.attr("couponPrice", orderCoupon.avaliableCoupons[0].price);
-      };
-      if (orderCoupon.avaliableAmount > 0 || orderCoupon.disableAmount > 0) {
-        this.itemObj.orderCoupon.attr("isShowMore", true);
-      };
+    //   this.itemObj.attr("orderCoupon", orderCoupon);
+    //   if (orderCoupon.avaliableAmount > 0) {
+    //     this.itemObj.orderCoupon.attr("isHaveAvaliable", true);
+    //     this.itemObj.orderCoupon.attr("bestCoupon", orderCoupon.avaliableCoupons[0]);
+    //     this.itemObj.attr("couponPrice", orderCoupon.avaliableCoupons[0].price);
+    //   };
+    //   if (orderCoupon.avaliableAmount > 0 || orderCoupon.disableAmount > 0) {
+    //     this.itemObj.orderCoupon.attr("isShowMore", true);
+    //   };
 
-      this.itemObj.orderCoupon.selectCoupons = [];
-      var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
-      this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
-      //       this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('orderRenderItem.proportion') );
-      //        var point =   shouldPay*this.itemObj.attr("proportion")/100;
-      //        if(point > this.itemObj.attr("integralTotalAmount")){
-      //            point = this.itemObj.attr("integralTotalAmount");
-      //        }
-      //        $("#usedPoint").text(point);
+    //   this.itemObj.orderCoupon.selectCoupons = [];
+    //   var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+    //   this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+    //   //       this.itemObj.attr("getpoint", Math.floor(shouldPay/100)*this.itemObj.attr('orderRenderItem.proportion') );
+    //   //        var point =   shouldPay*this.itemObj.attr("proportion")/100;
+    //   //        if(point > this.itemObj.attr("integralTotalAmount")){
+    //   //            point = this.itemObj.attr("integralTotalAmount");
+    //   //        }
+    //   //        $("#usedPoint").text(point);
 
-      // this.itemObj.unbind("couponPrice").bind("couponPrice", function(ev, newVal, oldVal) {
-      //   this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
-      // }); //?什么意思
+    //   // this.itemObj.unbind("couponPrice").bind("couponPrice", function(ev, newVal, oldVal) {
+    //   //   this.attr("orderFeeItem.shouldPay", this.attr("orderFeeItem.shouldPay") + oldVal - newVal);
+    //   // }); //?什么意思
 
-    },
+    // },
 
     initCoupons: function(options) {
       var that = this;
-
+      var paramsUrl = can.deparam(window.location.search.substr(1));
       var params = {
         "items": "",
-        'system': that.getSysType(that.itemObj.saleid)
+        'system': that.getSysType(paramsUrl.saleid)
       }
       var goodItems = [];
-      _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
+
+      _.each(that.options.data.orderGoodsItemList, function(goodItem) {
         goodItems.push({
           "itemId": goodItem.itemId,
           "num": goodItem.quantity,
@@ -393,22 +442,24 @@ define('sf.b2c.mall.order.iteminfo', [
       params.items = JSON.stringify(goodItems);
 
       var queryOrderCoupon = new SFQueryOrderCoupon(params);
-      var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
-      queryOrderCouponDefer.done(function(orderCoupon) {
-          that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
-          that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee / 100) * that.itemObj.attr('proportion'));
-          can.extend(orderCoupon, {
-            useQuantity: 0,
-            price: 0,
-            couponExCode: ""
-          });
-          that.itemObj.attr("orderCoupon", orderCoupon);
-          that.itemObj.orderCoupon.selectCoupons = [];
+      //var queryOrderCouponDefer = queryOrderCoupon.sendRequest();
+      return queryOrderCoupon.done(function(orderCoupon) {
+          console.log(orderCoupon);
+          //that.itemObj.attr("orderFeeItem.shouldPay", that.itemObj.orderFeeItem.actualTotalFee);
+          // that.itemObj.attr("getpoint", Math.floor(that.itemObj.orderFeeItem.actualTotalFee / 100) * that.itemObj.attr('proportion'));
+          // can.extend(orderCoupon, {
+          //   useQuantity: 0,
+          //   price: 0,
+          //   couponExCode: ""
+          // });
+          // that.itemObj.attr("orderCoupon", orderCoupon);
+          // that.itemObj.orderCoupon.selectCoupons = [];
+
         })
         .fail(function(error) {
           console.error(error);
         });
-      return queryOrderCouponDefer;
+      //return queryOrderCouponDefer;
     },
 
     request: function() {
@@ -465,52 +516,54 @@ define('sf.b2c.mall.order.iteminfo', [
     //是否使用优惠券
     '#useCoupon click': function(element, event) {
       var span = $(element).find('span.icon85');
-      var rateValue = this.itemObj.attr('proportion');
+      //var rateValue = this.itemObj.attr('proportion');
       $('#avaliableCoupons li').find('span.icon85').remove();
-      var point = 0;
+      //var point = 0;
       if (span.length > 0) {
         $(element).find('span.icon85').remove();
-        this.itemObj.attr("couponPrice", 0);
-        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
-        if ($("#pointselected").is(":checked")) {
-          if (rateValue == 0) {
-            shouldPay = shouldPay - 0;
-          } else {
-            shouldPay = shouldPay - ($("#pointUsed").val() * 100 / rateValue);
-          }
-        }
-        this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
-        this.itemObj.attr("getpoint", Math.floor(shouldPay / 100) * rateValue);
-        point = shouldPay * rateValue / 100;
-        if (point > this.itemObj.attr("totalPoint")) {
-          point = this.itemObj.attr("totalPoint");
-        }
-        if (point < 0) {
-          point = 0;
-        }
-        $("#usedPoint").text(point);
+        this.reCalculateOrderPrice();
+        // this.itemObj.attr("couponPrice", 0);
+        // var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+        // if ($("#pointselected").is(":checked")) {
+        //   if (rateValue == 0) {
+        //     shouldPay = shouldPay - 0;
+        //   } else {
+        //     shouldPay = shouldPay - ($("#pointUsed").val() * 100 / rateValue);
+        //   }
+        // }
+        // this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+        // this.itemObj.attr("getpoint", Math.floor(shouldPay / 100) * rateValue);
+        // point = shouldPay * rateValue / 100;
+        // if (point > this.itemObj.attr("totalPoint")) {
+        //   point = this.itemObj.attr("totalPoint");
+        // }
+        // if (point < 0) {
+        //   point = 0;
+        // }
+        // $("#usedPoint").text(point);
       } else {
         $(element).append('<span class="icon icon85"></span>')
-        this.itemObj.attr("couponPrice", $(element).attr('data-price'));
-        var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
-        if ($("#pointselected").is(":checked")) {
-          if (rateValue == 0) {
-            shouldPay = shouldPay - 0;
-          } else {
-            shouldPay = shouldPay - ($("#pointUsed").val() * 100 / rateValue);
-          }
+        this.reCalculateOrderPrice();
+        // this.itemObj.attr("couponPrice", $(element).attr('data-price'));
+        // var shouldPay = this.itemObj.attr('orderFeeItem.actualTotalFee') - this.itemObj.attr('couponPrice');
+        // if ($("#pointselected").is(":checked")) {
+        //   if (rateValue == 0) {
+        //     shouldPay = shouldPay - 0;
+        //   } else {
+        //     shouldPay = shouldPay - ($("#pointUsed").val() * 100 / rateValue);
+        //   }
 
-        }
-        this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
-        this.itemObj.attr("getpoint", Math.floor(shouldPay / 100) * rateValue);
-        point = shouldPay * rateValue / 100;
-        if (point > this.itemObj.attr("totalPoint")) {
-          point = this.itemObj.attr("totalPoint");
-        }
-        if (point < 0) {
-          point = 0;
-        }
-        $("#usedPoint").text(point);
+        // }
+        // this.itemObj.attr("orderFeeItem.shouldPay", shouldPay);
+        // this.itemObj.attr("getpoint", Math.floor(shouldPay / 100) * rateValue);
+        // point = shouldPay * rateValue / 100;
+        // if (point > this.itemObj.attr("totalPoint")) {
+        //   point = this.itemObj.attr("totalPoint");
+        // }
+        // if (point < 0) {
+        //   point = 0;
+        // }
+        // $("#usedPoint").text(point);
       }
     },
     //获取选中优惠券的码
@@ -518,13 +571,10 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var span = $("#useCoupon").find('span.icon85'); //优惠券是否选中的标示
       var $li = $('#avaliableCoupons li').find('span.icon85');
-      var codes = [];
       if (span.length > 0) {
-        codes.push($("#useCoupon").attr('data-code'));
-        return JSON.stringify(codes);
+        return $("#useCoupon").attr('data-code');
       } else if ($li.length > 0) {
-        codes.push($li.closest('li').data('coupon').couponCode);
-        return JSON.stringify(codes);
+        return $li.closest('li').data('coupon').couponCode
       } else {
         return null;
       }
@@ -552,9 +602,8 @@ define('sf.b2c.mall.order.iteminfo', [
       if (element.hasClass("btn-disable")) {
         return false;
       }
-      $('#errorTips').addClass('visuallyhidden');
-      element.addClass("btn-disable");
 
+      var paramsUrl = can.deparam(window.location.search.substr(1));
 
       var selectAddr = that.options.selectReceiveAddr.getSelectedAddr();
       var isDetailInvalid = /[<>'"]/.test($.trim(selectAddr.detail));
@@ -605,7 +654,7 @@ define('sf.b2c.mall.order.iteminfo', [
         }
       }
 
-      var verifYVendorResult = that.options.vendorinfo.verifYVendor(that.itemObj.saleid);
+      var verifYVendorResult = that.options.vendorinfo.verifYVendor(paramsUrl.saleid);
       if (verifYVendorResult && !verifYVendorResult.result) {
         new SFMessage(null, {
           'tip': verifYVendorResult.message,
@@ -615,15 +664,6 @@ define('sf.b2c.mall.order.iteminfo', [
         element.removeClass("btn-disable");
         return false;
       }
-
-      //实例化接口
-      // var setDefaultRecv = new SFSetDefaultRecv({
-      //   "recId": selectAddr.recId
-      // });
-
-      // var setDefaultAddr = new SFSetDefaultAddr({
-      //   "addrId": selectAddr.addrId
-      // });
 
       var params = {
         "address": JSON.stringify({
@@ -641,21 +681,21 @@ define('sf.b2c.mall.order.iteminfo', [
           "certNo": selectAddr.credtNum2
         }),
         "items": "",
-        "sysType": that.getSysType(that.itemObj.saleid),
-        "sysInfo": that.options.vendorinfo.getVendorInfo(that.itemObj.saleid),
+        "sysType": that.getSysType(paramsUrl.saleid),
+        "sysInfo": that.options.vendorinfo.getVendorInfo(paramsUrl.saleid),
         "couponCodes": that.getCouponCodes(),
         "integral": $("#pointUsed").val(),
-        "submitKey": that.itemObj.submitKey
+        "submitKey": that.options.data.attr('submitKey')
       };
 
       var goodItems = [];
       var itemStr;
-      var paramsUrl = can.deparam(window.location.search.substr(1));
+
       //搭配商品下单传入参数
       if (paramsUrl.mixproduct) {
         var mainItemId = JSON.parse(paramsUrl.mixproduct)[0].itemId;
-        var mainProductPrice = that.itemObj.orderGoodsItemList[0].price;
-        _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
+        var mainProductPrice = that.options.data.orderGoodsItemList[0].price;
+        _.each(that.options.data.attr('orderGoodsItemList'), function(goodItem) {
           goodItems.push({
             "itemId": goodItem.itemId,
             "num": 1,
@@ -672,7 +712,7 @@ define('sf.b2c.mall.order.iteminfo', [
         }];
         itemStr = JSON.stringify(mixObj);
       } else {
-        _.each(that.itemObj.orderGoodsItemList, function(goodItem) {
+        _.each(that.options.data.attr('orderGoodsItemList'), function(goodItem) {
           goodItems.push({
             "itemId": goodItem.itemId,
             "num": goodItem.quantity,
@@ -686,6 +726,7 @@ define('sf.b2c.mall.order.iteminfo', [
       var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
       can.when(submitOrderForAllSys.sendRequest())
         .done(function(message) {
+          //下单后把选中地址设为默认地址，把省市区存入localstorage中，便于详情页自动展示
           var provinceId = that.adapter.regions.getIdByName(selectAddr.provinceName);
           var cityId = that.adapter.regions.getIdBySuperreginIdAndName(provinceId, selectAddr.cityName);
           var regionId = that.adapter.regions.getIdBySuperreginIdAndName(cityId, selectAddr.regionName);
@@ -699,8 +740,7 @@ define('sf.b2c.mall.order.iteminfo', [
           that.watchSubmit.call(that);
           //用户到去支付页面：1.用户从详情页直接进入订单确认页，在去支付页面点击回退，页面返回到
           //订单确认页；2.用户从购物车进入订单确认页，在去支付页面点击回退，页面返回购物车页面。
-          var params = can.deparam(window.location.search.substr(1));
-          if (params.from == 'shoppingcart') {
+          if (paramsUrl.from == 'shoppingcart') {
             window.location.replace('gotopay.html?' + $.param({
               "orderid": message.value,
               "recid": selectAddr.recId
@@ -712,9 +752,6 @@ define('sf.b2c.mall.order.iteminfo', [
                 "recid": selectAddr.recId
               });
           }
-
-
-
         })
         .fail(function(error) {
           element.removeClass("btn-disable");
@@ -737,6 +774,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
     '#pointselected click': function(element, event) {
       //    event && event.preventDefault();
+      this.options.data.attr('usedPoints', 0);
       $("#pointUsed").val("0");
       $("#pointToMoney").text("-￥0.0");
       this.itemObj.attr('pointForUsed', 0);
@@ -774,17 +812,17 @@ define('sf.b2c.mall.order.iteminfo', [
 
     '#pointUsed keyup': function(element, event) {
       event && event.preventDefault();
-      var pointValue = 0;
-      var rateValue = this.itemObj.attr('proportion');
-      if ($("#pointselected").is(":checked")) {
-        pointValue = $("#pointUsed").val();
-        if (pointValue == null || pointValue == "") {
+
+      var pointValue = $(element).val(); //输入使用积分数
+      var canUsePoints = this.options.data.attr('useIntegral'); //本次订单可用积分数
+      if ($("#pointselected")[0].checked) {
+        if (pointValue == null || ||!(/^[1-9]+[0-9]*$/.test(pointValue) || ) {
           $("#pointToMoney").text("-￥0.0");
-          this.itemObj.attr('pointForUsed', 0);
+          this.options.data.attr('orderFeeItem.integralReduce', 0);
         } else if (!(/^[1-9]+[0-9]*$/.test(pointValue) || pointValue == 0)) {
-          pointValue = 0;
+          $(element).val(0);
           $("#pointToMoney").text("输入的积分格式不正确");
-        } else if (pointValue > parseInt($("#usedPoint").text())) {
+        } else if (pointValue > canUsePoints) {
           pointValue = parseInt($("#usedPoint").text());
           $("#pointUsed").val(parseInt($("#usedPoint").text()));
           if (rateValue == 0) {
@@ -840,7 +878,7 @@ define('sf.b2c.mall.order.iteminfo', [
     //可用优惠券列表状态切换
     '#avaliableCoupons li click': function(element, event) {
       event && event.preventDefault();
-      var rateValue = this.itemObj.attr('proportion');
+      //var rateValue = this.itemObj.attr('proportion');
       var index = $('#avaliableCoupons li').index($(element));
       var activeTag = $(element).find('span.icon85');
       var activeHtml = '<span class="icon icon85"></span>';
@@ -901,7 +939,7 @@ define('sf.b2c.mall.order.iteminfo', [
     '#useCouponCodeBtn click': function(element, event) {
       event && event.preventDefault();
       var that = this;
-      var exCode = that.itemObj.orderCoupon.couponExCode;
+      var exCode = this.options.data.attr('couponExCode');
       var receiveExCode = new SFReceiveExCode({
         exCode: exCode
       });
