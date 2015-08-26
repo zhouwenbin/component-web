@@ -120,6 +120,7 @@ define('sf.b2c.mall.order.iteminfo', [
       // });
       can.when(that.initOrderRender())
         .then(function() {
+          console.log(that.options.data);
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.options.data, that.helpers);
           that.element.html(html);
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
@@ -281,7 +282,6 @@ define('sf.b2c.mall.order.iteminfo', [
           that.processProducts(orderRenderItem);
 
           that.options.data = new can.Map(orderRenderItem);
-          that.options.data.attr('usedPoints', 0);
           if (that.options.data.orderCouponItem.avaliableAmount > 0) {
             //获取最优的一张优惠券
             that.options.data.attr('bestCoupon', that.options.data.orderCouponItem.avaliableCoupons[0]);
@@ -815,19 +815,19 @@ define('sf.b2c.mall.order.iteminfo', [
 
       var pointValue = $(element).val(); //输入使用积分数
       var canUsePoints = this.options.data.attr('useIntegral'); //本次订单可用积分数
+      var rateValue = this.options.data.attr('proportion'); //积分比例
       if ($("#pointselected")[0].checked) {
-        if (pointValue == null || ||!(/^[1-9]+[0-9]*$/.test(pointValue) || ) {
-          $("#pointToMoney").text("-￥0.0");
-          this.options.data.attr('orderFeeItem.integralReduce', 0);
-        } else if (!(/^[1-9]+[0-9]*$/.test(pointValue) || pointValue == 0)) {
+        
+        if (pointValue == null || !/^[1-9]+[0-9]*$/.test(pointValue) || pointValue == 0) {
           $(element).val(0);
-          $("#pointToMoney").text("输入的积分格式不正确");
+          this.options.data.attr('orderFeeItem.integralReduce', 0);
         } else if (pointValue > canUsePoints) {
-          pointValue = parseInt($("#usedPoint").text());
-          $("#pointUsed").val(parseInt($("#usedPoint").text()));
+          $(element).val(canUsePoints);
+          // pointValue = parseInt($("#usedPoint").text());
+          // $("#pointUsed").val(parseInt($("#usedPoint").text()));
           if (rateValue == 0) {
             $("#pointToMoney").text("-￥0");
-            this.itemObj.attr('pointForUsed', "0");
+            this.options.data.attr('orderFeeItem.integralReduce', 0);
           } else {
             $("#pointToMoney").text("-￥" + parseInt($("#usedPoint").text()) / rateValue);
             this.itemObj.attr('pointForUsed', pointValue / rateValue);
