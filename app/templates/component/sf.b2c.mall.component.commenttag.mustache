@@ -1,0 +1,9 @@
+<div id="tips-list">
+  {{#each data}}
+    <span data-id="{{id}}" data-name="{{name}}" class="btn btn-goods">{{name}}<span class="icon icon23"></span></span>
+  {{/each}}
+  {{#if showCusomized}}
+  <input class="comment-add-custom" placeholder="自定义标签" id="customeized">
+  <span class="s1" id="customeizedinput">(标签不能超过12个字，按回车提交)</span>
+  {{/if}}
+</div>

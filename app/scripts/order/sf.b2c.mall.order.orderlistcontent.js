@@ -164,7 +164,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
           'allorderTab': false,
           'notPayOrderListTab': false,
           'notSendOrderListTab': false,
-          'notGetOrderListTab': false
+          'notGetOrderListTab': false,
+          'notCommentOrderListTab': false
         });
 
         var routeParams = can.route.attr();
@@ -213,6 +214,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             that.options.waitCompletedNum = data.waitCompletedNum;
             that.options.waitPayNum = data.waitPayNum;
             that.options.waitShippingNum = data.waitShippingNum;
+            that.options.waitCommentNum = data.waitCommentNum;
 
             if (data.orders && data.orders.length > 0) {
 
@@ -225,22 +227,33 @@ define('sf.b2c.mall.order.orderlistcontent', [
                 order.paymentAmount = order.totalPrice - order.discount;
                 if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
                   order.optionHMTL = that.getOptionHTML(that.secOptionMap[order.orderStatus]);
-                }else{
+                } else {
                   order.optionHMTL = that.getOptionHTML(that.optionMap[order.orderStatus]);
                 }
 
                 order.orderStatus = that.statsMap[order.orderStatus];
                 //遍历包裹
                 var lastPackageItemList = [];
+                var showCommentButton = false;
+
                 if (order.orderPackageItemList && order.orderPackageItemList.length > 0) {
                   _.each(order.orderPackageItemList, function(orderPackageItem, i) {
-                    //orderPackageItem.showRouter = that.routeMap[orderPackageItem.status];
-                    //orderPackageItem.status = that.statsMap[orderPackageItem.status];
+                    // 只要有一个包裹为完成状态 就要展示评价标签
+                    if (orderPackageItem.status == "RECEIPTED") {
+                      showCommentButton = true;
+                    }
+
                     if (i !== 0) {
                       lastPackageItemList.push(orderPackageItem.orderGoodsItemList[i]);
                     };
                   })
                 };
+
+                // 完成状态下要加入评论按钮
+                if (showCommentButton) {
+                  //order.optionHMTL = that.getOptionHTML(that.commentMap[order.commentStatus]) + order.optionHMTL;
+                }
+
                 that.options.orderGoods = lastPackageItemList;
                 //卡券处理
                 if (order.orderCouponItemList && order.orderCouponItemList.length > 0) {
@@ -268,7 +281,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                   if (that.options.orders[i] && that.options.orders[i].leftTime > 0 && endTimeArea.eq(i)) {
                     // that.setCountDown(endTimeArea.eq(i), that.options.orders[i].leftTime);
-                    that.setCountDown($('.td7[data-orderid='+that.options.orders[i].orderId+'] .showOrderEndTime'), that.options.orders[i].leftTime);
+                    that.setCountDown($('.td7[data-orderid=' + that.options.orders[i].orderId + '] .showOrderEndTime'), that.options.orders[i].leftTime);
                     that.options.orders[i].leftTime -= 1000;
                   }
 
@@ -369,7 +382,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
         var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
         var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
         var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
-        $(element).html(hour+ "小时" +minute + "分" + second + "秒");
+        $(element).html(hour + "小时" + minute + "分" + second + "秒");
 
       },
 
@@ -393,7 +406,8 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'allorderTab': null,
         'notPayOrderListTab': 'SUBMITED',
         'notSendOrderListTab': 'WAIT_SHIPPING',
-        'notGetOrderListTab': 'SHIPPING'
+        'notGetOrderListTab': 'SHIPPING',
+        'notCommentOrderListTab': 'WAIT_COMMENT'
       },
       switchTag: function(tag) {
         var that = this;
@@ -627,12 +641,18 @@ define('sf.b2c.mall.order.orderlistcontent', [
         'WAIT_SHIPPING': ['INFO', 'REBUY'],
         'SHIPPING': ['ROUTE', 'INFO', 'REBUY'],
         'LOGISTICS_EXCEPTION': ['ROUTE', 'INFO', 'REBUY'],
-        'SHIPPED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'CONSIGNED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
-        'COMPLETED': ['INFO', 'ROUTE', 'REBUY'],
-        'RECEIPTED': ['INFO', 'ROUTE', 'RECEIVED', 'REBUY'],
+        'SHIPPED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
+        'CONSIGNED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
+        'COMPLETED': ['ROUTE', 'INFO', 'REBUY'],
+        'RECEIPTED': ['ROUTE', 'RECEIVED', 'INFO', 'REBUY'],
         'CLOSED': ['INFO', 'REBUY'],
         'AUTO_COMPLETED': ['INFO', 'ROUTE', 'REBUY']
+      },
+
+      commentMap: {
+        "0": ['COMMENT'],
+        "1": ['COMMENT_PLUS'],
+        "2": ['COMMENT_VIEW']
       },
 
       /**
@@ -643,7 +663,10 @@ define('sf.b2c.mall.order.orderlistcontent', [
         "CANCEL": '<a href="#" class="btn btn-normal btn-small cancelOrder">取消订单</a>',
         "RECEIVED": '<a href="#" class="btn btn-success btn-small received">确认收货</a>',
         "INFO": '<a href="#" class="myorder-link viewOrder">订单详情</a>',
-        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>'
+        "REBUY": '<a href="#" class="myorder-link btn-buyagain">再次购买</a>',
+        "COMMENT": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">填写评价</a>',
+        "COMMENT_PLUS": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">追加评价</a>',
+        "COMMENT_VIEW": '<a href="javascript:;" class="btn btn-normal btn-small btn-shareorder">查看评价</a>'
       },
       //去支付
       '.gotoPay click': function(element, event) {
@@ -752,10 +775,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
           }
         });
       },
+
+      '.btn-shareorder click': function(element, event) {
+        event && event.preventDefault();
+
+        var orderId = element.parent('td').attr('data-orderid');
+        var commentSatisf = element.parent('td').attr('data-commentSatisf');
+        window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;
+      },
+
       //签收订单
       '.received click': function(element, event) {
         var that = this;
         var subOrderId = element.parent('td').attr('data-orderid');
+        var commentSatisf = element.parent('td').attr('data-commentSatisf');
+        var commentStatus = element.parent('td').attr('data-commentStatus');
 
         var routeParams = can.route.attr();
         var qparams = can.deparam(window.location.search.substr(1));
@@ -766,7 +800,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
             "pageNum": routeParams.page,
             "pageSize": 10
           })
-        }
+        };
 
         var message = new SFMessage(null, {
           'tip': '确认要签收该订单？',
@@ -774,7 +808,11 @@ define('sf.b2c.mall.order.orderlistcontent', [
           'okFunction': function() {
             var success = function() {
               //window.location.reload();
-              that.render(params);
+              if (commentStatus == "0") {
+                that.received(subOrderId, commentSatisf, params);
+              } else {
+                that.render(params);
+              }
             };
 
             var error = function() {
@@ -782,6 +820,21 @@ define('sf.b2c.mall.order.orderlistcontent', [
             };
             SFOrderFn.orderConfirm(subOrderId, success, error);
           }
+        });
+      },
+
+      received: function(subOrderId, commentSatisf, params) {
+        var that = this;
+
+        var message = new SFMessage(null, {
+          'okFunction': function() {
+            window.location.href = "/shareorder.html?orderid=" + subOrderId + "&commentSatisf=" + commentSatisf;
+          },
+          'closeFunction': function() {
+            that.render(params);
+          },
+          'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
+          'type': 'confirm'
         });
       },
 

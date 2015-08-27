@@ -1,96 +1,133 @@
-<ul class="mycoupon-h clearfix">
-    <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 ({{unUsed.count}})</a></li>
-    <li {{#thirdparty.isShow}}class="active"{{/thirdparty.isShow}}><a href="javascript:void(0);">外部券 ({{thirdparty.count}})</a></li>
-    <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 ({{used.count}})</a></li>
-    <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 ({{expired.count}})</a></li>
-    <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 ({{cancel.count}})</a></li>
-</ul>
+<div class="myorder">
+    <div class="mycoupon-tab">
+        <ul class="myorder-tab">
+            <li {{#unUsed.isShow}}class="active"{{/unUsed.isShow}}><a href="javascript:void(0);">未使用 <strong>{{unUsed.count}}</strong></a></li>
+            <li {{#thirdparty.isShow}}class="active"{{/thirdparty.isShow}}><a href="javascript:void(0);">外部券 <strong>{{thirdparty.count}}</strong></a></li>
+            <li {{#used.isShow}}class="active"{{/used.isShow}}><a href="javascript:void(0);">已使用 <strong>{{used.count}}</strong></a></li>
+            <li {{#expired.isShow}}class="active"{{/expired.isShow}}><a href="javascript:void(0);">已过期 <strong>{{expired.count}}</strong></a></li>
+            <li {{#cancel.isShow}}class="active"{{/cancel.isShow}}><a href="">已作废 <strong>{{cancel.count}}</strong></a></li>
+        </ul>
+        <a href="http://www.sfht.com/helpcenter-coupon.html" class="mycoupon-rule">优惠券使用规则</a>
+    </div>
+    <!--未使用-->
+    {{^unUsed.count}}
+        <p class="mycoupon mycoupon-b{{#unUsed.isShow}} active{{/unUsed.isShow}}"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
+    {{/unUsed.count}}
+    {{#unUsed.count}}
+      <div class="mycoupon {{#unUsed.isShow}} active{{/unUsed.isShow}}">
+          <ul class="mycoupon-b clearfix mycoupon-b1{{#unUsed.isShow}} active{{/unUsed.isShow}}">
+            {{#each unUsed.items}}
+                <li class="mycouponunused">
+                    <div class="mycoupon-inner-b">
+                        <h3>{{title}}</h3>
+                        <div class="mycoupon-r1">
+                            <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
+                            <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}</p>
+                            <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
+                        </div>
+                      {{#customUrl}}
+                          <div class="mycoupon-gotohref">
+                              <a class="btn btn-normal btn-big gotohref" href="{{customUrl}}" target="_blank">去看看</a>
+                          </div>
+                      {{/customUrl}}
+                    </div>
+                </li>
+            {{/each}}
+          </ul>
+      </div>
 
-<!--未使用-->
-{{^unUsed.count}}
-  <p class="mycoupon-b{{#unUsed.isShow}} active{{/unUsed.isShow}}"><span class="icon icon51"></span>您还没有可用的优惠券哦~</p>
-{{/unUsed.count}}
-{{#unUsed.count}}
-<ul class="mycoupon-b clearfix mycoupon-b1{{#unUsed.isShow}} active{{/unUsed.isShow}}">
-  {{#each unUsed.items}}
-  <li class="mycouponunused">
-    <h3>{{title}}</h3>
-    <div class="mycoupon-r1">
-      <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-      <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
-    </div>
-    {{#customUrl}}
-    <a class="btn btn-normal btn-big gotohref" href="{{customUrl}}" target="_blank">去看看</a>
-    {{/customUrl}}
-  </li>
-  {{/each}}
-</ul>
-{{/unUsed.count}}
-<!--第三方-->
-{{^thirdparty.count}}
-  <p class="mycoupon-b{{#thirdparty.isShow}} active{{/thirdparty.isShow}}"><span class="icon icon51"></span>您还没有外部优惠券哦~</p>
-{{/thirdparty.count}}
-{{#thirdparty.count}}
-<ul class="mycoupon-b clearfix mycoupon-b1{{#thirdparty.isShow}} active{{/thirdparty.isShow}}">
-  {{#each thirdparty.items}}
-  <li>
-    <h3>{{title}}</h3>
-    <div class="mycoupon-r1">
-      <div class="mycoupon-r1r1" style="margin-top:35px">兑换码:{{extCode}}</div>
-      <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
-    </div>
-  </li>
-  {{/each}}
-</ul>
-{{/thirdparty.count}}
-<!--已使用-->
-{{^used.count}}
-    <p class="mycoupon-b{{#used.isShow}} active{{/used.isShow}}"><span class="icon icon51"></span>您还没有已用的优惠券哦~</p>
-{{/used.count}}
-{{#used.count}}
-<ul class="mycoupon-b clearfix mycoupon-b2 mycoupon-line3{{#used.isShow}} active{{/used.isShow}}">
-  {{#each used.items}}
-      <li>
-          <h3>{{title}}</h3>
-          <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-              <p>使用时间：{{sf.time useTime "YYYY-MM-DD"}}<br />订单号：{{orderId}}<br />{{useNotice}}</p>
-          </div>
-      </li>
-  {{/each}}
-</ul>
-{{/used.count}}
-<!--已过期-->
-{{^expired.count}}
-    <p class="mycoupon-b{{#expired.isShow}} active{{/expired.isShow}}"><span class="icon icon51"></span>您还没有过期的优惠券哦~</p>
-{{/expired.count}}
-{{#expired.count}}
-<ul class="mycoupon-b clearfix mycoupon-b3{{#expired.isShow}} active{{/expired.isShow}}">
-  {{#each expired.items}}
-      <li>
-          <h3>{{title}}</h3>
-          <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-              <p>过期时间：{{sf.time endTime "YYYY-MM-DD"}}<br />{{useNotice}}</p>
-          </div>
-      </li>
-  {{/each}}
-</ul>
-{{/expired.count}}
-<!--已作废-->
-{{^cancel.count}}
-    <p class="mycoupon-b{{#cancel.isShow}} active{{/cancel.isShow}}"><span class="icon icon51"></span>您还没有作废的优惠券哦~</p>
-{{/cancel.count}}
-{{#cancel.count}}
-<ul class="mycoupon-b clearfix mycoupon-b4{{#cancel.isShow}} active{{/cancel.isShow}}">
-  {{#each cancel.items}}
-      <li>
-          <h3>{{title}}</h3>
-          <div class="mycoupon-r1">
-              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
-              <p>{{cancelReason}}<br />{{useNotice}}</p>
-          </div>
-      </li>
-  {{/each}}
-</ul>
-{{/cancel.count}}
+    {{/unUsed.count}}
+    <!--第三方-->
+    {{^thirdparty.count}}
+        <p class="mycoupon mycoupon-b{{#thirdparty.isShow}} active{{/thirdparty.isShow}}"><span class="icon icon51"></span>您还没有外部优惠券哦~</p>
+    {{/thirdparty.count}}
+    {{#thirdparty.count}}
+        <div class="mycoupon {{#thirdparty.isShow}} active{{/thirdparty.isShow}}">
+            <ul class="mycoupon-b clearfix mycoupon-b1{{#thirdparty.isShow}} active{{/thirdparty.isShow}}">
+              {{#each thirdparty.items}}
+                  <li>
+                      <div class="mycoupon-inner-b fl">
+                          <h3>{{title}}</h3>
+                          <div class="mycoupon-r1">
+                              <div class="mycoupon-r1r1" style="padding:10px 0;line-height:1.5">兑换码:{{extCode}}</div>
+                              <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}</p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
+                          </div>
+                      </div>
+                  </li>
+              {{/each}}
+            </ul>
+        </div>
+
+    {{/thirdparty.count}}
+      <!--已使用-->
+    {{^used.count}}
+        <p class="mycoupon mycoupon-b{{#used.isShow}} active{{/used.isShow}}"><span class="icon icon51"></span>您还没有已用的优惠券哦~</p>
+    {{/used.count}}
+    {{#used.count}}
+        <div class="mycoupon {{#used.isShow}} active{{/used.isShow}}">
+            <ul class="mycoupon-b clearfix mycoupon-b1 mycoupon-line3{{#used.isShow}} active{{/used.isShow}}">
+              {{#each used.items}}
+                  <li>
+                      <div class="mycoupon-inner-b fl">
+                          <h3>{{title}}</h3>
+                          <div class="mycoupon-r1">
+                              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
+                              <p>使用时间：{{sf.time useTime "YYYY-MM-DD"}}订单号：<br />{{orderId}}</p>
+                              <p class="ellipsis" title="{{useNotice}}">{{useNotice}}</p>
+                          </div>
+                      </div>
+                  </li>
+              {{/each}}
+            </ul>
+        </div>
+
+    {{/used.count}}
+      <!--已过期-->
+    {{^expired.count}}
+        <p class="mycoupon mycoupon-b{{#expired.isShow}} active{{/expired.isShow}}"><span class="icon icon51"></span>您还没有过期的优惠券哦~</p>
+    {{/expired.count}}
+    {{#expired.count}}
+        <div class="mycoupon {{#expired.isShow}} active{{/expired.isShow}}">
+            <ul class="mycoupon-b clearfix mycoupon-b3{{#expired.isShow}} active{{/expired.isShow}}">
+              {{#each expired.items}}
+                  <li>
+                      <div class="mycoupon-inner-b fl">
+                          <h3>{{title}}</h3>
+                          <div class="mycoupon-r1">
+                              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
+                              <p>过期时间：{{sf.time endTime "YYYY-MM-DD"}}</p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
+                          </div>
+                      </div>
+                  </li>
+              {{/each}}
+            </ul>
+        </div>
+
+    {{/expired.count}}
+      <!--已作废-->
+    {{^cancel.count}}
+        <p class="mycoupon mycoupon-b{{#cancel.isShow}} active{{/cancel.isShow}}"><span class="icon icon51"></span>您还没有作废的优惠券哦~</p>
+    {{/cancel.count}}
+    {{#cancel.count}}
+        <div class="mycoupon {{#cancel.isShow}} active{{/cancel.isShow}}">
+            <ul class="mycoupon-b clearfix mycoupon-b2{{#cancel.isShow}} active{{/cancel.isShow}}">
+              {{#each cancel.items}}
+                  <li>
+                      <div class="mycoupon-inner-b fl">
+                          <h3>{{title}}</h3>
+                          <div class="mycoupon-r1">
+                              <div class="mycoupon-r1r1"><span>￥</span><strong>{{sf.price reduceCost}}</strong>满{{sf.price leastCost}}元立减</div>
+                              <p>{{cancelReason}}<br /></p>
+                              <p class="ellipsis2" title="{{useNotice}}">{{useNotice}}</p>
+                          </div>
+                      </div>
+                  </li>
+              {{/each}}
+            </ul>
+        </div>
+
+    {{/cancel.count}}
+
+</div>

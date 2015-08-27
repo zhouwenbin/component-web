@@ -111,12 +111,12 @@ define(
           });
       },
 
-      ".mycoupon-h li click": function(targetElement) {
-        var index = $('.mycoupon-h li').index(targetElement);
-        $('.mycoupon-h li.active').removeClass('active');
-        $('.mycoupon-b.active').removeClass('active');
+      ".myorder-tab li click": function(targetElement) {
+        var index = $('.myorder-tab li').index(targetElement);
+        $('.myorder-tab li').removeClass('active');
+        $('.mycoupon').removeClass('active');
         $(targetElement).addClass('active');
-        $('.mycoupon-b').eq(index).addClass('active');
+        $('.mycoupon').eq(index).addClass('active');
         return false;
       }
     })

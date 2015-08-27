@@ -1,0 +1,101 @@
+﻿@import 'utils/variables';
+@import 'utils/placeholders';
+@import 'module/crumbs';
+@import 'module/comment-img';
+@import 'module/comment-add';
+@import 'module/satisfaction';
+*{
+	box-sizing:border-box;
+}
+.comment{
+	padding: 36px 60px;
+	background: #fff;
+	margin-bottom: 20px;
+	color: #666;
+}
+.comment h2{
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 18px;
+	color: #333;
+}
+.comment-c1{
+	width: 510px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 12px;
+}
+.comment-c1 img{
+	margin-left: 50px;
+}
+
+.comment-c2{
+	width: 256px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 12px;
+
+}
+.comment-c3{
+	width: 271px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 12px;
+}
+.comment-c3 .p1{
+	color: #999;
+	margin-top: 7px;
+}
+.comment-h{
+	background: #F5F5F5;
+	height: 36px;
+	line-height: 36px;
+	border-bottom: 1px solid #E5E5E5;
+	font-size: 0;
+
+}
+.comment-b .comment-c1{
+	text-align: left;
+}
+.comment h3{
+	font-weight: normal;
+	display: inline-block;
+	width: 300px;
+	max-height: 36px;
+	overflow: hidden;
+	vertical-align: middle;
+	margin-left: 10px;
+	line-height: 18px;
+	color: #333;
+}
+.comment-list{
+	padding: 10px 0 10px;
+	font-size: 0;
+	border-bottom: 1px solid #E5E5E5;
+	position: relative;
+}
+
+.rating{
+	vertical-align: 2px;
+}
+
+
+
+.btn-goods.active{
+	box-shadow: none;
+}
+.btn-goods .icon{
+	background: url(../img/btn-goods-active.png) no-repeat;
+	width: 16px;
+	height: 15px;
+	top: 0;
+	right: -1px;
+}
+.tooltip-cart-left.hide{
+	display: none;
+}
+
+

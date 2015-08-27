@@ -11,11 +11,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.widget.message',
     'moment',
     'sf.b2c.mall.api.order.confirmReceive',
+    'sf.b2c.mall.api.commentGoods.findCommentStatus',
     'sf.b2c.mall.api.finance.getRefundTax',
     'sf.mediav'
   ],
   function(can, SFGetOrder, helpers, loading, FrameworkComm,
-    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFGetRefundTax, SFMediav) {
+    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFFindCommentStatus, SFGetRefundTax, SFMediav) {
 
     return can.Control.extend({
       helpers: {
@@ -98,10 +99,16 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       render: function(data) {
         var that = this;
         var params = can.deparam(window.location.search.substr(1));
+        this.orderid = params.orderid;
 
         var getOrder = new SFGetOrder({
-          "orderId": params.orderid
+          "orderId": this.orderid
         });
+
+        var findCommentStatus = new SFFindCommentStatus({
+          "ids": JSON.stringify([this.orderid]),
+          "type": 0
+        })
 
         getOrder.sendRequest()
           .done(function(data) {
@@ -199,6 +206,28 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             that.watchDetail.call(that, data);
           })
+          .then(function() {
+            return findCommentStatus.sendRequest()
+          })
+          .done(function(commentData) {
+
+            that.commentStatus = commentData.value[0].status;
+
+            var showCommentButton = false;
+
+            //只要有一个包裹为签收状态，则暂时按钮
+            _.each(that.options.orderPackageItemList, function(item) {
+              if (item.status == "RECEIPTED") {
+                showCommentButton = true;
+              }
+            })
+
+            if (showCommentButton) {
+              //$("#commentstep").html(that.commentOperationHTML[that.commentStatus]);
+              that.commentSatisf = commentData.value[0].commentSatisf;
+            }
+
+          })
       },
 
       supplement: function() {
@@ -210,6 +239,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       },
 
+      '.btn-shareorder click': function(element, event) {
+        var orderId = this.orderid;
+        var commentSatisf = this.commentSatisf;
+        window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;
+      },
 
       renderPackageItemInfo: function(tag, data) {
         var that = this;
@@ -278,7 +312,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         }
 
       },
-      // 申请退税     
+      // 申请退税
       '.btn-refundtax click': function(element, event) {
         event && event.preventDefault();
         var params = can.deparam(window.location.search.substr(1));
@@ -371,6 +405,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       },
 
+      commentOperationHTML: {
+        "0": '<button class="btn btn-normal btn-small btn-shareorder">填写评价</button>',
+        "1": '<button class="btn btn-normal btn-small btn-shareorder">追加评价</button>',
+        "2": '<button class="btn btn-normal btn-small btn-shareorder">查看评价</button>'
+      },
+
       stepMap: {
         'SUBMITED': '<li class="active"><div><h3>提交订单</h3><p></p>2014/12/23 11:34:23<p></p></div><span></span><div class="line"></div></li>',
         'AUDITING': '<li><div><h3>付款成功</h3></div><span></span><div class="line"></div></li>',
@@ -453,13 +493,26 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           .sendRequest()
           .done(function(data) {
 
-            var message = new SFMessage(null, {
-              'okFunction': function() {
-                that.render();
-              },
-              'tip': '确认签收成功！',
-              'type': 'success'
-            });
+            if (that.commentStatus == "0") {
+              var message = new SFMessage(null, {
+                'okFunction': function() {
+                  window.location.href = "/shareorder.html?orderid=" + that.orderid + "&commentSatisf=" + that.commentSatisf;
+                },
+                'closeFunction': function() {
+                  that.render();
+                },
+                'tip': '快去分享你的使用心得吧，每个商品首个含有晒单的评价可获得100积分~',
+                'type': 'confirm'
+              });
+            } else {
+              var message = new SFMessage(null, {
+                'okFunction': function() {
+                  that.render();
+                },
+                'tip': '确认签收成功！',
+                'type': 'success'
+              });
+            }
 
             window.location.reload();
           })

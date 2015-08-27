@@ -1,0 +1,26 @@
+.comment-additional{
+	padding: 15px 10px 11px;
+	margin-bottom: 10px;
+	background: #F5F5F5;
+	position: relative;
+
+}
+.comment-additional:before{
+	border-width: 9px 7px;
+	border-style: solid;
+	border-color: transparent transparent #F5F5F5 transparent;
+	content: '';
+	position: absolute;
+	left: 24px;
+	top: -17px;
+}
+.comment-additional h4{
+	color: #999;
+	font-weight: normal;
+	margin-bottom: 8px;
+}
+.comment-additional p{
+	color: #666;
+	line-height: 16px;
+  margin-bottom: 5px;
+}

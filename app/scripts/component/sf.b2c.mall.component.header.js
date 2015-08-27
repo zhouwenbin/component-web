@@ -770,7 +770,9 @@ define('sf.b2c.mall.component.header', [
           });
       }
       var fn = map[tag];
-      fn.call(this);
+      if (typeof fn != 'undefined') {
+        fn.call(this);
+      }
     },
 
     '.nav-tag mouseleave': function () {

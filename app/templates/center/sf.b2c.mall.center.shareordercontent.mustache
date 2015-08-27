@@ -1,0 +1,63 @@
+  <div class="crumbs"><a href="/index.html">首页</a><span>&gt;</span><a href="/orderlist.html">我的订单</a><span>&gt;</span>评价填写</div>
+
+  <div class="comment">
+<h2>商品评价</h2>
+<ul class="comment-h">
+  <li class="comment-c1">商品信息</li>
+  <li class="comment-c2">规格</li>
+  <li class="comment-c3">评价</li>
+</ul>
+<ul class="comment-b">
+  {{#each orderItem}}
+    <li class="comment-list">
+      <div class="comment-c1">
+        <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>
+            <img src="{{showImage imageUrl}}" alt="" style="height:100px; width:100px">
+        </a>
+
+        <h3>
+            <a {{^isSecGoods goodsType}}href="http://www.sfht.com/detail/{{itemId}}.html"{{/isSecGoods}}>{{goodsName}}</a>
+            {{#isSecGoods goodsType}}
+            <div class="godds-type">秒杀商品</div>{{/isSecGoods}}
+        </h3>
+      </div>
+      <div class="comment-c2">{{showSpec spec}}</div>
+      <div class="comment-c3">
+        <a href="javascript:;" class="text-link comment-view gotoshareorder" data-status="{{itemStatus}}" data-itemid="{{itemId}}" data-itemname="{{goodsName}}" data-packageno="{{packageNo}}" data-index="{{@index}}" data-spec="{{spec}}" data-skuid="{{skuId}}">{{operationHTML}}</a>
+
+        {{#shouldShowIntegral integralAmount}}
+        <p class="p1">（已获得{{integralAmount}}积分）</p>
+        {{/shouldShowIntegral}}
+      </div>
+
+      <div class="commentEditorArea"></div>
+    </li>
+    {{/each}}
+</ul>
+</div>
+
+<div class="satisfaction">
+  {{#if showinputtotal}}
+  <div id="inputtotal">
+    <h2>整体满意度评价</h2>
+    <ul>
+      <li>
+        <label><abbr title="必填">*</abbr>服务态度：</label><span id="commentstararea1"></span>
+      </li>
+      <li>
+        <label><abbr title="必填">*</abbr>发货速度：</label><span id="commentstararea2"></span>
+      </li>
+      <li>
+        <label><abbr title="必填">*</abbr>物流速度：</label><span id="commentstararea3"></span>
+      </li>
+    </ul>
+    <button class="btn btn-danger btn-small" id="submittotaljudge" type="button">提交</button>
+
+  </div>
+  {{/if}}
+  {{^if showinputtotal}}
+  <div id="showtotal">
+    <p><img src="../img/comment-icon.png">非常感谢您的评价，顺丰海淘会继续努力哦~</p>
+  </div>
+  {{/if}}
+</div>

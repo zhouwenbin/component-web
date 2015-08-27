@@ -9,9 +9,10 @@ define(
     'sf.b2c.mall.component.header',
     'sf.b2c.mall.component.footer',
     'sf.b2c.mall.center.coupon',
-    'sf.b2c.mall.framework.comm'
+    'sf.b2c.mall.framework.comm',
+    'sf.b2c.mall.component.centerleftside'
   ],
-  function(can, $, Header, Footer, Coupon, SFFrameworkComm) {
+  function(can, $, Header, Footer, Coupon, SFFrameworkComm, Centerleftside) {
     SFFrameworkComm.register(1);
 
     var coupon = can.Control.extend({
@@ -29,6 +30,7 @@ define(
       render: function() {
         new Header('.sf-b2c-mall-header', {isForceLogin: true});
         new Footer('.sf-b2c-mall-footer');
+        new Centerleftside('.sf-b2c-mall-center-leftside');
         new Coupon('.sf-b2c-mall-center-coupon');
       }
     });

@@ -89,7 +89,7 @@
 	color: #1d97b3;
 	margin-bottom: -60px;
 	position: relative;
-	z-index: 1;
+	z-index: map-get($z-index,introduce-qa-p1);
 	padding-left: 47px;
 }
 .introduce-qa h3 span,
