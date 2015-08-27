@@ -95,20 +95,25 @@ define('sf.b2c.mall.order.iteminfo', [
      */
     init: function(element, options) {
       var that = this;
-
       var arr = [];
-      this.adapter = {};
-      this.request();
-      //@note 从cookie中获取嘿客穿越过来标示
-      var heike_sign = $.cookie('1_uinfo');
+      var heike_sign = $.cookie('1_uinfo'); //@note 从cookie中获取嘿客穿越过来标示
       if (heike_sign) {
         arr = heike_sign.split(',');
       }
+      this.options.data = new can.Map({
+        saleid: arr[2]
+      });
+      this.adapter = {};
+      this.request();
+      this.render();
+    },
+    render: function() {
+      var that = this;
       can.when(that.initOrderRender())
-        .then(function() {
-          console.log(that.options.data);
+        .done(function() {
           var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.options.data, that.helpers);
           that.element.html(html);
+          console.log(that.options.data);
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
           $('.goodsItemArea').append(invariableGoodshtml(that.options.data));
           that.calculateUseIntegral();
@@ -116,7 +121,6 @@ define('sf.b2c.mall.order.iteminfo', [
           if (that.options.data.attr('submitKey') && (that.options.data.attr('integral') > 0 || that.options.data.attr('orderCouponItem.avaliableAmount') > 0)) {
             that.reCalculateOrderPrice();
           }
-
           that.watchIteminfo.call(that);
         });
     },
@@ -285,15 +289,14 @@ define('sf.b2c.mall.order.iteminfo', [
           "certNo": selectAddr.credtNum2
         }),
         items: itemStr,
-        sysType: that.getSysType(params.saleid),
-        sysInfo: that.options.vendorinfo.getVendorInfo(params.saleid)
+        sysType: that.getSysType(that.options.data.attr('saleid')),
+        sysInfo: that.options.vendorinfo.getVendorInfo(that.options.data.attr('saleid'))
       });
       return orderRender.sendRequest()
         .done(function(orderRenderItem) {
 
           that.processProducts(orderRenderItem);
-
-          that.options.data = new can.Map(orderRenderItem);
+          that.options.data.attr(orderRenderItem);
           if (that.options.data.orderCouponItem.avaliableAmount > 0) {
             //获取最优的一张优惠券
             that.options.data.attr('bestCoupon', that.options.data.orderCouponItem.avaliableCoupons[0]);
@@ -365,15 +368,15 @@ define('sf.b2c.mall.order.iteminfo', [
 
     initCoupons: function(options) {
       var that = this,
-        paramsUrl = can.deparam(window.location.search.substr(1)),
         params = {
           "items": this.initItemsParam(),
-          'system': that.getSysType(paramsUrl.saleid)
+          'system': that.getSysType(this.options.data.attr('saleid'))
         },
         queryOrderCoupon = new SFQueryOrderCoupon(params);
       return queryOrderCoupon.sendRequest()
         .done(function(orderCoupon) {
           $('#conpon').val('');
+          that.options.data.attr('orderCouponItem', orderCoupon);
           that.options.data.attr('orderCouponItem', orderCoupon);
         })
         .fail(function(error) {
@@ -515,7 +518,7 @@ define('sf.b2c.mall.order.iteminfo', [
         return false;
       }
 
-      var verifYVendorResult = that.options.vendorinfo.verifYVendor(paramsUrl.saleid);
+      var verifYVendorResult = that.options.vendorinfo.verifYVendor(this.options.data.attr('saleid'));
       if (verifYVendorResult && !verifYVendorResult.result) {
         new SFMessage(null, {
           'tip': verifYVendorResult.message,
@@ -541,8 +544,8 @@ define('sf.b2c.mall.order.iteminfo', [
           "certNo": selectAddr.credtNum2
         }),
         "items": this.initItemsParam(),
-        "sysType": that.getSysType(paramsUrl.saleid),
-        "sysInfo": that.options.vendorinfo.getVendorInfo(paramsUrl.saleid),
+        "sysType": that.getSysType(this.options.data.attr('saleid')),
+        "sysInfo": that.options.vendorinfo.getVendorInfo(this.options.data.attr('saleid')),
         "couponCodes": JSON.stringify([that.getCouponCodes()]),
         "integral": $("#pointUsed").val(),
         "submitKey": that.options.data.attr('submitKey')
@@ -584,7 +587,7 @@ define('sf.b2c.mall.order.iteminfo', [
             'tip': that.errorMap[error] || '下单失败',
             'type': 'error'
           });
-          that.initOrderRender();
+          that.render();
           //window.location.href.reload();
         });
     },
@@ -641,6 +644,8 @@ define('sf.b2c.mall.order.iteminfo', [
 
         if (pointValue > canUsePoints) {
           $(element).val(canUsePoints);
+          $("#pointToMoney").text("-￥" + canUsePoints / rateValue);
+          this.reCalculateOrderPrice();
         } else {
           $("#pointToMoney").text("-￥" + pointValue / rateValue);
           this.reCalculateOrderPrice();
@@ -708,7 +713,7 @@ define('sf.b2c.mall.order.iteminfo', [
                 'type': 'success'
               });
             });
-          that.initOrderRender();
+          that.render();
         })
         .fail(function(error) {
           var errorMap = {
