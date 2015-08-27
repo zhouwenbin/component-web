@@ -83,7 +83,7 @@ define('sf.b2c.mall.order.iteminfo', [
       //是否展示显示更多
       'sf-show-morecoupon': function(orderCouponItem, options) {
         var orderCouponItem = orderCouponItem();
-        if (orderCouponItem.avaliableCoupons.length > 0 || orderCouponItem.disableCoupons.length > 0) {
+        if ((orderCouponItem.avaliableCoupons && orderCouponItem.avaliableCoupons.length > 0) || (orderCouponItem.disableCoupons && orderCouponItem.disableCoupons.length > 0)) {
           return options.fn(options.contexts || this);
         }
       }
