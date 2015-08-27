@@ -196,7 +196,7 @@ define('sf.b2c.mall.component.header', [
         var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
 
         if (!isNotShowNotice) {
-          $('#notice').fadeIn();
+          $('.notice').fadeIn();
         }
       }
 
