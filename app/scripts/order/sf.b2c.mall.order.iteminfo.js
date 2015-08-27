@@ -447,14 +447,11 @@ define('sf.b2c.mall.order.iteminfo', [
     //获取选中优惠券的码
     getCouponCodes: function() {
       var span = $("#useCoupon").find('span.icon85'), //优惠券是否选中的标示
-        $li = $('#avaliableCoupons li').find('span.icon85'),
-        codes = [];
+        $li = $('#avaliableCoupons li').find('span.icon85');
       if (span.length > 0) {
-        codes.push($("#useCoupon").attr('data-code'));
-        return JSON.stringify(codes);
+        return $("#useCoupon").attr('data-code');
       } else if ($li.length > 0) {
-        codes.push($li.closest('li').data('coupon').couponCode);
-        return JSON.stringify(codes);
+        return $li.closest('li').data('coupon').couponCode;
       } else {
         return null;
       }
@@ -546,7 +543,7 @@ define('sf.b2c.mall.order.iteminfo', [
         "items": this.initItemsParam(),
         "sysType": that.getSysType(paramsUrl.saleid),
         "sysInfo": that.options.vendorinfo.getVendorInfo(paramsUrl.saleid),
-        "couponCodes": that.getCouponCodes(),
+        "couponCodes": JSON.stringify([that.getCouponCodes()]),
         "integral": $("#pointUsed").val(),
         "submitKey": that.options.data.attr('submitKey')
       };
