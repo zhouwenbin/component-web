@@ -21,7 +21,7 @@
 	background: #fff;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
-	
+  position: relative;
 }
 .product-list li:hover{
 	outline-color:#dd3e3f;
@@ -53,6 +53,12 @@
 	z-index: map-get($z-index,product-list-li-icon25);
 	width: 74px;
 	height: 0;
+}
+
+.product-list li .icon115{
+  position: absolute;
+  left: 0;
+  top:0;
 }
 
 .product-r1{
@@ -155,10 +161,10 @@
 	top:2px;
 	position: absolute;
 }
-.product-new{	
+.product-new{
 	background:url(#{$bg-url}product-new.png) no-repeat;
 }
-.product-hot{	
+.product-hot{
 	background:url(#{$bg-url}product-hot.png) no-repeat;
 }
 .product-r2c2{
