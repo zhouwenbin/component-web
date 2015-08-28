@@ -132,7 +132,7 @@ define('sf.b2c.mall.component.search', [
     //用于调用搜索接口的对象
     searchParams: {
       q: "",
-      size: 20,
+      size: 48,
       from: 0
     },
 
@@ -269,7 +269,7 @@ define('sf.b2c.mall.component.search', [
         this.renderData.attr("pfs", pfs.split("||"));
       }
 
-      
+
       if (pfs == "YZYW") {
         this.renderData.attr("filterCustom", {
           showStatInfo: true,
@@ -279,7 +279,7 @@ define('sf.b2c.mall.component.search', [
           shopNationName: "名品货源"
         });
       }
-      
+
 
       //过滤店铺
       var shopId = params.shopId;
