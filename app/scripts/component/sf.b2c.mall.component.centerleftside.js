@@ -22,32 +22,12 @@ define(
         var data = {};
         data.link = [];
 
-        // data.link.push({
-        //   "url": "/message.html",
-        //   "name": "消息中心"
-        // }, {
-        //   "url": "/orderlist.html",
-        //   "name": "我的订单"
-        // }, {
-        //   "url": "/accountmanage.html",
-        //   "name": "账户管理"
-        // }, {
-        //   "url": "/address-manage.html",
-        //   "name": "收货地址"
-        // }, {
-        //   "url": "/point-manage.html",
-        //   "name": "积分管理"
-        // }, {
-        //   "url": "/invitation.html",
-        //   "name": "邀请有礼"
-        // });
-
-    data.link.push({
+        data.link.push({
+          "url": "/message.html",
+          "name": "消息中心"
+        }, {
           "url": "/orderlist.html",
           "name": "我的订单"
-        }, {
-          "url": "/coupon.html",
-          "name": "我的优惠券"
         }, {
           "url": "/accountmanage.html",
           "name": "账户管理"
@@ -61,6 +41,26 @@ define(
           "url": "/invitation.html",
           "name": "邀请有礼"
         });
+
+    // data.link.push({
+    //       "url": "/orderlist.html",
+    //       "name": "我的订单"
+    //     }, {
+    //       "url": "/coupon.html",
+    //       "name": "我的优惠券"
+    //     }, {
+    //       "url": "/accountmanage.html",
+    //       "name": "账户管理"
+    //     }, {
+    //       "url": "/address-manage.html",
+    //       "name": "收货地址"
+    //     }, {
+    //       "url": "/point-manage.html",
+    //       "name": "积分管理"
+    //     }, {
+    //       "url": "/invitation.html",
+    //       "name": "邀请有礼"
+    //     });
 
         var that = this;
 
