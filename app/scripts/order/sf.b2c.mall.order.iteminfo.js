@@ -303,13 +303,6 @@ define('sf.b2c.mall.order.iteminfo', [
             //删除可用优惠券中的第一张，因为第一张在上面展示了 
             that.options.data.orderCouponItem.avaliableCoupons.splice(0, 1);
           };
-          //如果用户没有积分
-          if (that.options.data.attr('integral') <= 0) {
-            //输入框内的积分使用量
-            that.options.data.attr('usedIntegral', 0);
-            //省了多少钱(输入的积分数量/积分比率)
-            that.options.data.attr('reduceMoney', 0);
-          };
         })
         .fail(function(errorCode) {
 
@@ -326,14 +319,12 @@ define('sf.b2c.mall.order.iteminfo', [
         })
       });
       if (this.options.data.attr('submitKey') && (this.options.data.attr('integral') > 0 || this.options.data.attr('orderCouponItem.avaliableAmount') > 0)) {
-        orderPriceReCalculate.sendRequest()
+        return orderPriceReCalculate.sendRequest()
           .done(function(data) {
             that.options.data.attr('orderFeeItem', data.orderFeeItem);
             //输入框内的积分使用量
             that.options.data.attr('usedIntegral', data.usedIntegral || 0);
-            //省了多少钱(输入的积分数量/积分比率)
-            that.options.data.attr('reduceMoney', that.options.data.attr('usedIntegral') / that.options.data.attr('proportion'));
-            //that.calculateUseIntegral();
+
           })
           .fail(function(errorCode) {
 
@@ -612,9 +603,9 @@ define('sf.b2c.mall.order.iteminfo', [
 
     '#pointselected click': function(element, event) {
       //    event && event.preventDefault();   
-      this.reCalculateOrderPrice();
       $("#pointUsed").val("0");
       $("#pointToMoney").text("-￥0.0");
+      this.reCalculateOrderPrice();
     },
 
     '#pointUsed onblur': function(element, event) {
@@ -644,6 +635,7 @@ define('sf.b2c.mall.order.iteminfo', [
 
 
       if (rateValue == 0) {
+        $(element).val(0);
         $("#pointToMoney").text("-￥0");
         return false;
       }
@@ -655,8 +647,14 @@ define('sf.b2c.mall.order.iteminfo', [
         }
 
         if (pointValue > canUsePoints) {
-          this.reCalculateOrderPrice();
+          can.when(that.reCalculateOrderPrice())
+            .done(function() {
+              var saveMoney = that.options.data.attr('usedIntegral');
+              $(element).val(saveMoney);
+              $("#pointToMoney").text("-￥" + saveMoney / rateValue);
+            });
         } else {
+          $("#pointToMoney").text("-￥" + pointValue / rateValue);
           this.reCalculateOrderPrice();
         }
       } else {
