@@ -185,8 +185,19 @@ define('sf.b2c.mall.component.header', [
         // }, 800);
       }
 
-      if (new Date().getTime() < new Date(2015, 8, 1, 0, 0, 0).getTime()) {
+      if (new Date().getTime() < new Date(2015, 9, 1, 0, 0, 0).getTime()) {
         this.renderMap['template_header_727'].call(this, that.data);
+      }
+
+      if (new Date().getTime() < new Date(2015, 9, 6, 0, 0, 0).getTime()) {
+        // this.renderMap['template_header_727'].call(this, that.data);
+
+        var pathname = window.location.pathname;
+        var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
+
+        if (!isNotShowNotice) {
+          $('.notice').fadeIn();
+        }
       }
 
       this.updateCart();
