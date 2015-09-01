@@ -379,7 +379,6 @@ define('sf.b2c.mall.order.iteminfo', [
         .done(function(orderCoupon) {
           $('#conpon').val('');
           that.options.data.attr('orderCouponItem', orderCoupon);
-          that.options.data.attr('orderCouponItem', orderCoupon);
         })
         .fail(function(error) {
           console.error(error);
