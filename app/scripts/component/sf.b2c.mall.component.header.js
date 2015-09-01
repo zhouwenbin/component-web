@@ -186,7 +186,7 @@ define('sf.b2c.mall.component.header', [
       }
 
       if (new Date().getTime() < new Date(2015, 8, 1, 0, 0, 0).getTime()) {
-        this.renderMap['template_header_727'].call(this, that.data);
+        // this.renderMap['template_header_727'].call(this, that.data);
       }
 
       if (new Date().getTime() < new Date(2015, 8, 6, 0, 0, 0).getTime()) {
