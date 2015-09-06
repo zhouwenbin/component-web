@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.user.createReceiverInfo
+  * @class sf.b2c.mall.api.user.setPassword
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.user.createReceiverInfo',
+'sf.b2c.mall.api.user.setPassword',
 [
   'jquery',
   'can',
@@ -22,25 +22,17 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'user.createReceiverInfo',
+      METHOD_NAME: 'user.setPassword',
       SECURITY_TYPE: SecurityType.UserLogin.name,
       REQUIRED: {
-        'recName': 'string',
-        'type': 'string',
-        'credtNum': 'string',
+        'pswd': 'string'
       },
       OPTIONAL: {
-        'credtImgUrl1': 'string',
-        'credtImgUrl2': 'string',
-        'partnerId': 'string'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '1000200': '收货人身份信息已存在，选择即可',
-        '1000280': '身份证号码错误',
-        '1000310': '已达到最大允许数目',
-        '1000490': '海关发货需要实名制信息，请输入真实姓名'
+        '1000500': '用户手机号尚未验证，不允许设置密码'
       }
     }
   });
