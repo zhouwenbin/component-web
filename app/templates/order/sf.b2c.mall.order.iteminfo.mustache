@@ -124,9 +124,16 @@
             </li>
             <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price orderFeeItem.couponReduce}}</span>    </li>
             <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{sf.price orderFeeItem.integralReduce}}</span>    </li>
-            <li class="li1">
+            {{! <li class="li1">
                 <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-                运费:<span class="s1">免运费</span>
+                运费:<span class="s1">免运费</span> LOGISTICS_FEE_REDUCE
+            </li> }}
+            
+            <li class="li1">
+            {{#sf-free-shipping activityDescription orderFeeItem.goodsTotalFee}}<span class="text-important">【已满足满{{sf-logistics-fee activityDescription}}元包邮】</span>{{/sf-free-shipping}}
+
+            {{^sf-free-shipping activityDescription orderFeeItem.goodsTotalFee}}<span>【还差<i>{{sf-postage activityDescription orderFeeItem.goodsTotalFee}}</i>元即可包邮】</span>{{/sf-free-shipping}}
+              运费：<span class="s1">¥{{sf.price orderFeeItem.logisticsFee}}</span>
             </li>
             <li class="li1">总价（含税费）:
               <span class="s1">

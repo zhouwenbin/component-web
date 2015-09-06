@@ -67,12 +67,6 @@ define('sf.b2c.mall.order.iteminfo', [
           return options.fn(options.contexts || this);
         }
       },
-      'sf-show-description': function(activityDescription, options) {
-        var activityDescription = activityDescription();
-        if (activityDescription) {
-          return activityDescription['FIRST_ORDER'];
-        }
-      },
       //展示最优的优惠券
       'sf-show-bestCoupon': function(orderCouponItem, options) {
         var orderCouponItem = orderCouponItem();
@@ -87,6 +81,31 @@ define('sf.b2c.mall.order.iteminfo', [
         var orderCouponItem = orderCouponItem();
         if ((orderCouponItem.avaliableCoupons && orderCouponItem.avaliableCoupons.length > 0) || (orderCouponItem.disableCoupons && orderCouponItem.disableCoupons.length > 0)) {
           return options.fn(options.contexts || this);
+        }
+      },
+      //是否包邮
+      'sf-free-shipping': function(activityDescription, goodsTotalFee, options) {
+        var activityDescription = activityDescription();
+        var goodsTotalFee = goodsTotalFee();
+        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE'] && goodsTotalFee > activityDescription['LOGISTICS_FEE_REDUCE']) {
+          return options.fn(options.contexts || this);
+        } else {
+          return options.inverse(options.contexts || this);
+        }
+      },
+      //显示邮费
+      'sf-logistics-fee': function(activityDescription, options) {
+        var activityDescription = activityDescription();
+        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
+          return activityDescription['LOGISTICS_FEE_REDUCE'];
+        }
+      },
+      //显示还差多少钱才能包邮
+      'sf-postage': function(activityDescription, goodsTotalFee, options) {
+        var activityDescription = activityDescription();
+        var goodsTotalFee = goodsTotalFee();
+        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
+          return activityDescription['LOGISTICS_FEE_REDUCE'] - goodsTotalFee;
         }
       }
     },
@@ -114,7 +133,7 @@ define('sf.b2c.mall.order.iteminfo', [
       can.when(that.initOrderRender())
         .done(function() {
           var renderFn = can.mustache(template_order_iteminfo);
-          var html = renderFn(that.options.data, that.helpers);  
+          var html = renderFn(that.options.data, that.helpers);
           that.element.html(html);
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
           $('.goodsItemArea').append(invariableGoodshtml(that.options.data));
