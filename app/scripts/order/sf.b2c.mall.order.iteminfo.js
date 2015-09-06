@@ -1,6 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.order.iteminfo', [
+  'text',
   'can',
   'store',
   'jquery.cookie',
@@ -14,10 +15,11 @@ define('sf.b2c.mall.order.iteminfo', [
   'sf.b2c.mall.widget.message',
   'sf.b2c.mall.business.config',
   'sf.mediav',
-  'sf.b2c.mall.api.order.orderPriceReCalculate'
-], function(can, store, $cookie, helpers, RegionsAdapter,
+  'sf.b2c.mall.api.order.orderPriceReCalculate',
+  'text!template_order_iteminfo'
+], function(text, can, store, $cookie, helpers, RegionsAdapter,
   SFSubmitOrderForAllSys, SFQueryOrderCoupon, SFOrderRender,
-  SFReceiveExCode, SFGetRecAddressList, SFMessage, SFConfig, SFMediav, SFOrderPriceReCalculate) {
+  SFReceiveExCode, SFGetRecAddressList, SFMessage, SFConfig, SFMediav, SFOrderPriceReCalculate, template_order_iteminfo) {
 
   return can.Control.extend({
 
@@ -111,9 +113,9 @@ define('sf.b2c.mall.order.iteminfo', [
       var that = this;
       can.when(that.initOrderRender())
         .done(function() {
-          var html = can.view('templates/order/sf.b2c.mall.order.iteminfo.mustache', that.options.data, that.helpers);
+          var renderFn = can.mustache(template_order_iteminfo);
+          var html = renderFn(that.options.data, that.helpers);  
           that.element.html(html);
-          console.log(that.options.data);
           var invariableGoodshtml = can.view.mustache(that.invariableGoodsTemplate());
           $('.goodsItemArea').append(invariableGoodshtml(that.options.data));
           that.calculateUseIntegral();

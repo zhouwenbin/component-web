@@ -402,6 +402,10 @@ requirejs.config({
         'template_component_commenteditor': 'templates/component/sf.b2c.mall.component.commenteditor.mustache',
         'template_component_commentstar': 'templates/component/sf.b2c.mall.component.commentstar.mustache',
         'template_component_commenttag': 'templates/component/sf.b2c.mall.component.commenttag.mustache',
-        'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache'
+        'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache',
+
+        //订单页
+        'template_order_iteminfo': 'templates/order/sf.b2c.mall.order.iteminfo.mustache'
+
     }
 });
