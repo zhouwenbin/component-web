@@ -223,7 +223,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             })
 
             if (showCommentButton) {
-              //$("#commentstep").html(that.commentOperationHTML[that.commentStatus]);
+              $("#commentstep").html(that.commentOperationHTML[that.commentStatus]);
               that.commentSatisf = commentData.value[0].commentSatisf;
             }
 

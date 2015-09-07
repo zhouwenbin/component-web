@@ -8,6 +8,19 @@
 	margin-right: 10px;
 	cursor: -webkit-zoom-in;
 	position: relative;
+	width: 80px;
+	height: 80px;
+	vertical-align: middle;
+	text-align: center;
+}
+.comment-img li img{
+	max-width: 78px;
+	max-height: 78px;
+}
+.comment-img li span{
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
 }
 .comment-img li.active{
 	cursor: -webkit-zoom-out;
