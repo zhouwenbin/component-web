@@ -108,7 +108,7 @@ define(
         var that = this;
 
         _.each(data.value, function(value, key, list) {
-          try{
+          try {
             // 填充价格
             var $el = element.find('[data-cms-itemid=' + value.itemId + ']');
 
@@ -120,8 +120,7 @@ define(
             } else {
               that.fillPrice($el, value);
             }
-          }
-          catch(e){
+          } catch (e) {
             console.log(e);
           }
         });
@@ -187,9 +186,9 @@ define(
               $('.closeDialog').click(function(event) {
                 $el.remove();
               });
-              setTimeout(function(){
+              setTimeout(function() {
                 $el.remove();
-              },3000);
+              }, 3000);
             }
 
 
@@ -252,10 +251,17 @@ define(
         // 做售空处理
         if (value.soldOut) {
           element.find('.cms-fill-gotobuy').addClass('disable').text('已经抢光');
-          element.find('.product-r1').append('<div class="mask show"></div>');
-          element.find('.product-r1').append('<span class="icon icon24"></span>');
-
-          element.find(".cms-fill-soldout").show();
+          var status = element.find('.cms-fill-status');
+          if (status) {
+            status.append('<div class="mask show"></div><span class="icon icon24"></span>');
+          } else {
+            status = element.find('.product-r1');
+            if (status) {
+              status.append('<div class="mask show"></div><span class="icon icon24"></span>');
+            } else {
+              element.find(".cms-fill-soldout").show();
+            }
+          }
         }
       },
 
@@ -321,10 +327,9 @@ define(
 
     // 分别进行实例化
     _.each(priceModules, function(priceModule) {
-      try{
+      try {
         new price($(priceModule));
-      }
-      catch(e){
+      } catch (e) {
         console.log(e);
       }
     });
