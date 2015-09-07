@@ -86,7 +86,7 @@ define(
           }
 
           _.each(uploadingFiles, function(item) {
-            var itemHTML = '<li id="' + item.id + '"><span>0%</span><a href="javascript:" class="comment-add-img-del">X</a></li>';
+            var itemHTML = '<li id="' + item.id + '"><span>0%</span><a href="javascript:" class="comment-add-img-del">X</a><span><span></li>';
             $(itemHTML).appendTo(imglistUl);
           })
         });
@@ -164,7 +164,7 @@ define(
         var bigImglistUl = $("#comment-img-big-ul");
 
         _.each(this.options.imgData, function(item, index) {
-          var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a></li>';
+          var itemHTML = '<li id=imgli' + index + '><img width="80px" height="80px" alt="" src="' + item + '"><a href="javascript:" class="comment-add-img-del">X</a><span></span></li>';
           imglistUl.append($(itemHTML));
           var bigItemHTML = '<li id=imgli' + index + '><img style="height:300px;max-width:500px" alt="" src="' + item + '"></li>';
           bigImglistUl.append($(bigItemHTML));
@@ -201,7 +201,7 @@ define(
 
         // 进行图片展示
         if (imgIndex != "") {
-          $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a>');
+          $("#" + id).html('<img width="80px" height="80px" alt="" src="' + imgURL + '"><a href="javascript:" class="comment-add-img-del">X</a><span></span>');
 
           var bigImglistUl = $("#comment-img-big-ul");
           var bigItemHTML = '<li id=imgli' + id + '><img style="height:300px;max-width:500px" alt="" src="' + imgURL + '"></li>';
