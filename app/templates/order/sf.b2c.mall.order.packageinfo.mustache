@@ -16,6 +16,12 @@
           <strong>当前状态：{{orderStatus}}</strong>
           {{#isShowShippingTime}}
           <div class="tooltip-cart"><span class="icon icon98 fl"></span><span class="text-error">{{shippingWarehouse}}，{{shippingTime}}</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/isShowShippingTime}}
+          {{! 展示物流公司和承运单号 }}
+          {{#sf-show-logisticsinfo status}}
+          <div class="order-logistics-info">
+           <span class="order-logistics-info">物流公司:<i>{{transporterDesc}}</i></span><span>承运单号:<i>{{logisticsNo}}</i></span>         
+          </div>
+          {{/sf-show-logisticsinfo}}
           {{! 退税 }}
           {{#isShowRefundTax status transporterName}}
           {{^sf-show-refundTax refundTax}}
@@ -49,7 +55,11 @@
         {{#each userRoutes}}
           <li class="clearfix">
             <span>{{gmtHappened}}</span>
+            {{#if takePlace}}
+            <span>【{{takePlace}}】{{status}}</span>
+            {{else}}
             <span>{{status}}</span>
+            {{/if}}
           </li>
         {{/each}}
       </ul>
