@@ -81,14 +81,14 @@
               {{#canshowImg commentGoodsInfo.imgs}}
               <ul class="comment-img">
                   {{#each commentGoodsInfo.imgs}}
-                  <li><img alt="" width="80px" height="80px" class="img-lazyload" lazy-src="{{.}}"></li>
+                  <li><img alt="" class="img-lazyload" lazy-src="{{.}}@80h_80w.jpg"></li>
                   {{/each}}
               </ul>
               <div class="comment-img-big">
                   <a href="javascript:" class="comment-img-big-prev"></a>
                   <ul>
                     {{#each commentGoodsInfo.imgs}}
-                        <li><img src="{{.}}" alt="" style="height:300px;max-width:500px"></li>
+                        <li><img alt="" style="height:300px;max-width:500px" class="img-lazyload" lazy-src="{{.}}"></li>
                     {{/each}}
                   </ul>
                   <a href="javascript:" class="comment-img-big-next"></a>
@@ -104,14 +104,14 @@
                 {{#canshowImg commentGoodsInfo.extralImgs}}
                 <ul class="comment-img">
                     {{#each commentGoodsInfo.extralImgs}}
-                    <li><img src="{{.}}" alt="" width="80px" height="80px" class="img-lazyload" lazy-src="{{.}}"></li>
+                    <li><img alt="" class="img-lazyload" lazy-src="{{.}}@80h_80w.jpg"></li>
                     {{/each}}
                 </ul>
                 <div class="comment-img-big">
                   <a href="javascript:" class="comment-img-big-prev"></a>
                   <ul>
                       {{#each commentGoodsInfo.extralImgs}}
-                        <li><img src="{{.}}" alt="" style="height:300px;max-width:500px" class="img-lazyload" lazy-src="{{.}}"></li>
+                        <li><img alt="" style="height:300px;max-width:500px" class="img-lazyload" lazy-src="{{.}}"></li>
                       {{/each}}
                   </ul>
                   <a href="javascript:" class="comment-img-big-next"></a>
