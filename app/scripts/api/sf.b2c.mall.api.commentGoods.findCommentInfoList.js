@@ -35,6 +35,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '14023000': '分页获取评论列表错误!'
       }
     }
   });

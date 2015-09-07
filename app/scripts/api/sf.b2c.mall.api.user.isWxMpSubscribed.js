@@ -1,6 +1,6 @@
 // Auto Generated.  DO NOT EDIT!
 /**
-  * @class sf.b2c.mall.api.commentGoods.findCommentInfoListByType
+  * @class sf.b2c.mall.api.user.isWxMpSubscribed
   * @param  {Object} $
   * @param  {Object} can
   * @param  {Object} _
@@ -9,7 +9,7 @@
   * @return {can.Construct}
   */
 define(
-'sf.b2c.mall.api.commentGoods.findCommentInfoListByType',
+'sf.b2c.mall.api.user.isWxMpSubscribed',
 [
   'jquery',
   'can',
@@ -22,19 +22,16 @@ function($, can, _, Comm, SecurityType) {
 
   return Comm.extend({
     api: {
-      METHOD_NAME: 'commentGoods.findCommentInfoListByType',
-      SECURITY_TYPE: SecurityType.UserLogin.name,
+      METHOD_NAME: 'user.isWxMpSubscribed',
+      SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'type': 'int',
-        'pageSize': 'int',
+        'authResp': 'string'
       },
       OPTIONAL: {
-        'pageNum': 'int'
       },
       VERIFY:{
       },
       ERROR_CODE: {
-        '14021000': '通过指定类型分页获取评论列表错误!'
       }
     }
   });

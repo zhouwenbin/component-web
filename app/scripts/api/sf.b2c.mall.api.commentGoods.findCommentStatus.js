@@ -33,6 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '14025000': '获取评论状态失败'
       }
     }
   });

@@ -35,6 +35,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '14027000': '发表订单满意度失败'
       }
     }
   });

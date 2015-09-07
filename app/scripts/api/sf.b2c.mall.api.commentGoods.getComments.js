@@ -33,6 +33,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '14017000': '获取评价详情错误!'
       }
     }
   });

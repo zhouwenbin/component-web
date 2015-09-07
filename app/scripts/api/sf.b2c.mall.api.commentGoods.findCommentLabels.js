@@ -32,6 +32,7 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '14019000': '获取评价标签错误!'
       }
     }
   });
