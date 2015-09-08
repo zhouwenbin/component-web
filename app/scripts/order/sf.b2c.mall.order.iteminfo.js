@@ -102,17 +102,14 @@ define('sf.b2c.mall.order.iteminfo', [
       //显示邮费
       'sf-logistics-fee': function(activityDescription, options) {
         var activityDescription = activityDescription();
-        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
-          return activityDescription['LOGISTICS_FEE_REDUCE'];
-        }
+        return activityDescription['LOGISTICS_FEE_REDUCE'] / 100;
+
       },
       //显示还差多少钱才能包邮
       'sf-postage': function(activityDescription, goodsTotalFee, options) {
         var activityDescription = activityDescription();
         var goodsTotalFee = goodsTotalFee();
-        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
-          return activityDescription['LOGISTICS_FEE_REDUCE'] - goodsTotalFee;
-        }
+        return (activityDescription['LOGISTICS_FEE_REDUCE'] - goodsTotalFee) / 100;
       }
     },
     /**
