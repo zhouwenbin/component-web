@@ -251,7 +251,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                 // 完成状态下要加入评论按钮
                 if (showCommentButton) {
-                  //order.optionHMTL = that.getOptionHTML(that.commentMap[order.commentStatus]) + order.optionHMTL;
+                  order.optionHMTL = that.getOptionHTML(that.commentMap[order.commentStatus]) + order.optionHMTL;
                 }
 
                 that.options.orderGoods = lastPackageItemList;

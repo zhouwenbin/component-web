@@ -75,6 +75,7 @@ define('sf.b2c.mall.product.detailcomment', ['can',
         }
       },
 
+
       showTerminal: function(terminalType) {
         var map = {
           "1": "顺丰海淘web网页版",
