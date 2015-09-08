@@ -83,11 +83,17 @@ define('sf.b2c.mall.order.iteminfo', [
           return options.fn(options.contexts || this);
         }
       },
+      'sf-free-shipping': function(activityDescription, options) {
+        var activityDescription = activityDescription();
+        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
+          return options.fn(options.contexts || this);
+        }
+      },
       //是否包邮
-      'sf-free-shipping': function(activityDescription, goodsTotalFee, options) {
+      'sf-show-postage': function(activityDescription, goodsTotalFee, options) {
         var activityDescription = activityDescription();
         var goodsTotalFee = goodsTotalFee();
-        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE'] && goodsTotalFee > activityDescription['LOGISTICS_FEE_REDUCE']) {
+        if (goodsTotalFee > activityDescription['LOGISTICS_FEE_REDUCE']) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
