@@ -2,6 +2,7 @@
 
 define(
   'sf.b2c.mall.component.shoppingcart', [
+    'text',
     'can',
     'jquery',
     'underscore',
@@ -16,9 +17,10 @@ define(
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.shopcart.addItemsToCart',
-    'sf.b2c.mall.api.shopcart.isShowCart'
+    'sf.b2c.mall.api.shopcart.isShowCart',
+    'text!template_component_shoppingcart'
   ],
-  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart) {
+  function(text, can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart, template_component_shoppingcart) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -301,10 +303,10 @@ define(
 
 
         }
-
-        var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
+        var renderFn = can.mustache(template_component_shoppingcart);
+        var html = renderFn(that.options, that.helpers);
         that.element.html(html);
-
+        //首单减促销信息展示
         var cartFeeItem = this.options.order.attr('cartFeeItem');
         if (typeof cartFeeItem.firstOrderInfos !== 'undefined' && cartFeeItem.firstOrderInfos.length > 0) {
           var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;

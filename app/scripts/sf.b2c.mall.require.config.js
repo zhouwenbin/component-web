@@ -405,7 +405,10 @@ requirejs.config({
         'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache',
 
         //订单页
-        'template_order_iteminfo': 'templates/order/sf.b2c.mall.order.iteminfo.mustache'
+        'template_order_iteminfo': 'templates/order/sf.b2c.mall.order.iteminfo.mustache',
+        //购物车
+        'template_component_shoppingcart': 'templates/component/sf.b2c.mall.component.shoppingcart.mustache',
+
 
     }
 });
