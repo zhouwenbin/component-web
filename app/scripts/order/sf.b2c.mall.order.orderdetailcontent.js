@@ -29,7 +29,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           };
         },
         isShowBackMoney: function(orderInfo, options) {
-          if (orderInfo.orderItem.paymentStatus == 'REFUNDED') {
+          if (typeof orderInfo !== 'undefined' && orderInfo.orderItem.paymentStatus == 'REFUNDED') {
             return options.fn(options.contexts || this);
           };
         },
@@ -76,7 +76,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         }
       },
       init: function(element, options) {
-
+        this.options = new can.Map({});
         this.render();
       },
 
@@ -112,7 +112,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         getOrder.sendRequest()
           .done(function(data) {
-
+            //that.options.attr(data);
             var couponTypeMap = {
               "CASH": function() {
                 switch (tmpOrderCouponItem.orderAction) {
@@ -175,6 +175,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.gmtCreate = data.orderItem.gmtCreate;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
+            that.options.logisticsFee = data.
             // that.options.isCostCoupon = false;
             // that.options.isPresentCoupon = false;
             // that.options.isGiftBag = false;

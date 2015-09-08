@@ -349,6 +349,7 @@ define('sf.b2c.mall.order.iteminfo', [
             //输入框内的积分使用量
             that.options.data.attr('usedIntegral', data.usedIntegral || 0);
 
+            //that.calculateUseIntegral();
           })
           .fail(function(errorCode) {
 
