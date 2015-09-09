@@ -29,11 +29,12 @@ function($, can, _, Comm, SecurityType) {
         'smsCode': 'string',
         'password': 'string',
         'bagType': 'string',
-        'bagId': 'long'
+        'bagId': 'long',
       },
       OPTIONAL: {
         'nick': 'string',
         'srcUid': 'string',
+        'envDesc': 'string'
       },
       VERIFY:{
       },

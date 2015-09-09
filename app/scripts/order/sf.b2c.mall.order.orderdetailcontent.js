@@ -1,6 +1,7 @@
 'use strict';
 
 define('sf.b2c.mall.order.orderdetailcontent', [
+    'text',
     'can',
     'sf.b2c.mall.api.order.getOrderV2',
     'sf.helpers',
@@ -13,10 +14,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
     'sf.b2c.mall.api.order.confirmReceive',
     'sf.b2c.mall.api.commentGoods.findCommentStatus',
     'sf.b2c.mall.api.finance.getRefundTax',
-    'sf.mediav'
+    'sf.mediav',
+    'text!template_order_orderdetail',
+    'text!template_order_packageinfo'
   ],
-  function(can, SFGetOrder, helpers, loading, FrameworkComm,
-    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFFindCommentStatus, SFGetRefundTax, SFMediav) {
+  function(text, can, SFGetOrder, helpers, loading, FrameworkComm,
+    Utils, SFConfig, SFMessage, moment, SFConfirmReceive, SFFindCommentStatus, SFGetRefundTax, SFMediav, template_order_orderdetail, template_order_packageinfo) {
 
     return can.Control.extend({
       helpers: {
@@ -73,10 +76,14 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           if (transporterName == 'ETK' && (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED')) {
             return options.fn(options.contexts || this);
           }
+        },
+        'sf-show-logisticsinfo': function(status, options) {
+          if (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED') {
+            return options.fn(options.contexts || this);
+          }
         }
       },
       init: function(element, options) {
-        this.options = new can.Map({});
         this.render();
       },
 
@@ -102,11 +109,11 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         this.orderid = params.orderid;
 
         var getOrder = new SFGetOrder({
-          "orderId": this.orderid
+          "orderId": params.orderid
         });
 
         var findCommentStatus = new SFFindCommentStatus({
-          "ids": JSON.stringify([this.orderid]),
+          "ids": JSON.stringify([params.orderid]),
           "type": 0
         })
 
@@ -175,11 +182,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             that.options.gmtCreate = data.orderItem.gmtCreate;
             that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             that.options.discount = data.orderItem.discount || 0;
-            that.options.logisticsFee = data.
-            // that.options.isCostCoupon = false;
-            // that.options.isPresentCoupon = false;
-            // that.options.isGiftBag = false;
-            // that.options.isShareBag = false;
+
 
             that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             that.options.receiveInfo = data.orderItem.orderAddressItem;
@@ -191,7 +194,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
               that.options.totalPoint = 0;
             }
 
-            var html = can.view('templates/order/sf.b2c.mall.order.orderdetail.mustache', that.options, that.helpers);
+            var renderFn = can.mustache(template_order_orderdetail);
+            var html = renderFn(that.options, that.helpers);
             that.element.html(html);
             var params = can.route.attr();
             if (params.tag) {
@@ -295,13 +299,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           getRefundTax.sendRequest()
             .done(function(data) {
               packageInfo.refundTax = new can.Map(data);
-              var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+              var renderFn = can.mustache(template_order_packageinfo);
+              var html = renderFn(packageInfo, that.helpers);
               $('#packageItemInfo').html(html);
             }).fail(function(errorCode) {
 
             })
         } else {
-          var html = can.view('templates/order/sf.b2c.mall.order.packageinfo.mustache', packageInfo, that.helpers);
+          var renderFn = can.mustache(template_order_packageinfo);
+          var html = renderFn(packageInfo, that.helpers);
           $('#packageItemInfo').html(html);
         }
 
@@ -348,23 +354,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         'lianlianpay': '快捷支付'
       },
 
-      // statusDescription: {
-      //   'ORDER_EDIT': '您的收货信息已成功修改，正在等待顺丰审核',
-      //   'SUBMITED': '您的订单已提交，请尽快完成支付',
-      //   'AUTO_CANCEL': '超时未支付，订单自动取消',
-      //   'USER_CANCEL': '用户取消订单成功',
-      //   'AUDITING': '您的订单已付款成功，正在等待顺丰审核',
-      //   'OPERATION_CANCEL': '订单取消成功',
-      //   'BUYING': '您的订单已经审核通过，不能修改。订单进入顺丰海外采购阶段',
-      //   'WAIT_SHIPPING': '您的订单已经审核通过，不能修改，订单正在等待仓库发货',
-      //   'SHIPPING': '您的订单已经分配给顺丰海外仓，正在等待出库操作',
-      //   'SHIPPED': '您的订单已从顺丰海外仓出库完成，正在进行跨境物流配送',
-      //   'SHIPPING_FRESH': '您的订单已经分配给顺丰仓库，正在等待出库操作',
-      //   'SHIPPED_FRESH': '您的订单已从顺丰仓库出库完成，正在进行物流配送',
-      //   'COMPLETED': '您已确认收货，订单已完成',
-      //   'AUTO_COMPLETED': '系统确认订单已签收超过7天，订单自动完成'
-      // },
-
       getOptionHTML: function(operationsArr) {
         var that = this;
         var result = [];
@@ -375,10 +364,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         })
 
         return result.join("");
-      },
-
-      operatorMap: {
-        "USER": "用户"
       },
 
       optionHTML: {

@@ -30,10 +30,11 @@ function($, can, _, Comm, SecurityType) {
         'accountId': 'string',
         'smsCode': 'string',
         'bagType': 'string',
-        'bagId': 'long'
+        'bagId': 'long',
       },
       OPTIONAL: {
         'srcUid': 'string',
+        'envDesc': 'string'
       },
       VERIFY:{
       },
