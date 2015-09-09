@@ -554,6 +554,7 @@ define('sf.b2c.mall.order.iteminfo', [
         return false;
       }
 
+      var couponCodeValue = that.getCouponCodes();
       var params = {
         "address": JSON.stringify({
           "addrId": selectAddr.addrId,
@@ -572,11 +573,11 @@ define('sf.b2c.mall.order.iteminfo', [
         "items": this.initItemsParam(),
         "sysType": that.getSysType(this.options.data.attr('saleid')),
         "sysInfo": that.options.vendorinfo.getVendorInfo(this.options.data.attr('saleid')),
-        "couponCodes": JSON.stringify([that.getCouponCodes()]),
+        "couponCodes": null,
         "integral": $("#pointUsed").val(),
         "submitKey": that.options.data.attr('submitKey')
       };
-
+      params.couponCodes = (couponCodeValue == null) ? couponCodeValue : JSON.stringify([couponCodeValue]);
       var submitOrderForAllSys = new SFSubmitOrderForAllSys(params);
       can.when(submitOrderForAllSys.sendRequest())
         .done(function(message) {

@@ -122,13 +122,6 @@
             {{#sf-show-firstOrderTips activityDescription}}
                 <div class="tooltip-cart tooltip-firstorder"><span class="text-error">若符合首单减的活动条件，优惠金额将在支付时减免</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>{{/sf-show-firstOrderTips}}活动优惠 :<span class="s1">- ¥{{sf.price orderFeeItem.discount}}</span></span>
             </li>
-            <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price orderFeeItem.couponReduce}}</span>    </li>
-            <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{sf.price orderFeeItem.integralReduce}}</span>    </li>
-            {{! <li class="li1">
-                <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
-                运费:<span class="s1">免运费</span> LOGISTICS_FEE_REDUCE
-            </li> }}
-            
             <li class="li1">
             {{#sf-free-shipping activityDescription}}
               {{#sf-show-postage activityDescription orderFeeItem.goodsTotalFee}}
@@ -141,6 +134,8 @@
             {{/sf-free-shipping}}
               运费：<span class="s1">¥{{sf.price orderFeeItem.logisticsFee}}</span>
             </li>
+            <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price orderFeeItem.couponReduce}}</span>    </li>
+            <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{sf.price orderFeeItem.integralReduce}}</span>    </li>                
             <li class="li1">总价（含税费）:
               <span class="s1">
                 <strong style="font-size:18px;" class="text-error">
