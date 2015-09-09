@@ -23,21 +23,25 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
     return can.Control.extend({
       helpers: {
+        //当前包裹号+1
         indexOfPackage: function(index, options) {
-          return index + 1;
+          return index() + 1;
         },
+        //当前展示包裹
         isActive: function(index, options) {
-          if (index === 0) {
+          if (index() === 0) {
             return 'active';
           };
         },
-        isShowBackMoney: function(orderInfo, options) {
-          if (typeof orderInfo !== 'undefined' && orderInfo.orderItem.paymentStatus == 'REFUNDED') {
+        //是否展示退款
+        isShowBackMoney: function(orderItem, options) {
+          var orderItem = orderItem();
+          if (orderItem.paymentStatus && orderItem.paymentStatus == 'REFUNDED') {
             return options.fn(options.contexts || this);
-          };
+          }
         },
         showImage: function(group) {
-          var array = eval(group);
+          var array = eval(group());
           if (array && _.isArray(array)) {
             var url = array[0].replace(/.jpg/g, '.jpg@63h_63w.jpg');
             if (/^http/.test(url)) {
@@ -49,19 +53,47 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             return array;
           }
         },
+        //展示消费的优惠券，以及赠送的优惠券，红包，礼包
+        'sf-coupon-type': function(action, type, target, options) {
+          if (action() == 'COST') {
+
+            if (type() == 'CASH' && target == 'COSTCOUPON') {
+              return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
+            }
+
+          } else if (action() == 'PRESENT') {
+
+            if (type() == 'CASH' && target == 'CASH') {
+              return options.fn(options.contexts || this);
+            } else if (type() == 'GIFTBAG' && target == 'GIFTBAG') {
+              return options.fn(options.contexts || this);
+            } else if (type() == 'SHAREBAG' && target == 'SHAREBAG') {
+              return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
+            }
+
+          } else {
+            return options.inverse(options.contexts || this);
+          }
+        },
         'isSecGoods': function(goodsType, options) {
-          if (goodsType == "SECKILL") {
+          if (goodsType() == "SECKILL") {
             return options.fn(options.contexts || this);
           } else {
             return options.inverse(options.contexts || this);
           }
         },
         'refundTaxStatus': function(refundTax, stateText, options) {
-          if (refundTax.state == stateText) {
+          var refundTax = refundTax();
+          if (refundTax.state == stateText()) {
             return options.fn(options.contexts || this);
           }
         },
         'sf-show-refundTax': function(refundTax, options) {
+          var refundTax = refundTax();
           if (typeof refundTax == 'undefined') {
             return options.inverse(options.contexts || this);
           } else {
@@ -73,17 +105,24 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           }
         },
         'isShowRefundTax': function(status, transporterName, options) {
-          if (transporterName == 'ETK' && (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED')) {
+          var status = status();
+          if (transporterName() == 'ETK' && (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED')) {
             return options.fn(options.contexts || this);
           }
         },
         'sf-show-logisticsinfo': function(status, options) {
+          var status = status();
           if (status == "CONSIGNED" || status == 'COMPLETED' || status == 'AUTO_COMPLETED' || status == 'RECEIPTED') {
             return options.fn(options.contexts || this);
           }
         }
       },
       init: function(element, options) {
+        var params = can.deparam(window.location.search.substr(1));
+        this.options = new can.Map({
+          orderid: params.orderid
+        });
+
         this.render();
       },
 
@@ -104,111 +143,41 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       render: function(data) {
-        var that = this;
-        var params = can.deparam(window.location.search.substr(1));
-        this.orderid = params.orderid;
-
-        var getOrder = new SFGetOrder({
-          "orderId": params.orderid
-        });
-
-        var findCommentStatus = new SFFindCommentStatus({
-          "ids": JSON.stringify([params.orderid]),
-          "type": 0
-        })
+        var that = this,
+          orderid = this.options.attr('orderid'),
+          getOrder = new SFGetOrder({
+            "orderId": orderid
+          }),
+          findCommentStatus = new SFFindCommentStatus({
+            "ids": JSON.stringify([orderid]),
+            "type": 0
+          });
 
         getOrder.sendRequest()
           .done(function(data) {
-            //that.options.attr(data);
-            var couponTypeMap = {
-              "CASH": function() {
-                switch (tmpOrderCouponItem.orderAction) {
-                  case "COST":
-                    {
-                      that.options.isCostCoupon = true;
-                      that.options.costCoupon = tmpOrderCouponItem;
-                      break;
-                    }
-                  case "PRESENT":
-                    {
-                      that.options.isPresentCoupon = true;
-                      that.options.presentCoupon = tmpOrderCouponItem;
-                      break;
-                    }
-                }
-              },
-              "GIFTBAG": function() {
-                that.options.isGiftBag = true;
-                that.options.giftBag = tmpOrderCouponItem;
-              },
-              "SHAREBAG": function() {
-                that.options.isShareBag = true;
-                that.options.shareBag = tmpOrderCouponItem;
-              },
-              "INTRGAL": function() {
-                switch (tmpOrderCouponItem.orderAction) {
-                  case "COST":
-                    {
-                      that.options.isCostPoint = true;
-                      that.options.costPoint = tmpOrderCouponItem.price;
-                      break;
-                    }
-                  case "PRESENT":
-                    {
-                      that.options.isPresentPoint = true;
-                      that.options.presentPoint = tmpOrderCouponItem.price;
-                      break;
-                    }
-                }
-              }
-            };
+            console.log(data);
 
-            var couponTypeHandle = function(tag) {
-              var fn = couponTypeMap[tag];
-              if (_.isFunction(fn)) {
-                return fn.call(this)
-              }
-            };
+            data.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
+            data.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
+            data.orderPackageItemList = data.orderItem.orderPackageItemList;
 
-            //处理卡券信息
-            if (data.orderItem.orderCouponItemList && data.orderItem.orderCouponItemList.length > 0) {
-              for (var i = 0, tmpOrderCouponItem; tmpOrderCouponItem = data.orderItem.orderCouponItemList[i]; i++) {
-                couponTypeHandle(tmpOrderCouponItem.couponType);
-              }
-            }
-
-            that.options.orderInfo = data;
-            that.options.orderInfo.totalPoint = data.presentIntegral;
-            that.options.gmtCreate = data.orderItem.gmtCreate;
-            that.options.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
-            that.options.discount = data.orderItem.discount || 0;
-
-
-            that.options.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
-            that.options.receiveInfo = data.orderItem.orderAddressItem;
-            that.options.orderPackageItemList = data.orderItem.orderPackageItemList;
-            if (typeof that.options.costPoint == "undefined" || that.options.costPoint == "") {
-              that.options.costPoint = 0;
-            }
-            if (typeof that.options.totalPoint == "undefined" || that.options.totalPoint == "") {
-              that.options.totalPoint = 0;
-            }
+            that.options.attr(data);
 
             var renderFn = can.mustache(template_order_orderdetail);
             var html = renderFn(that.options, that.helpers);
             that.element.html(html);
+
+            //自动切换包裹
             var params = can.route.attr();
             if (params.tag) {
               $('.order-detail-tab li').eq(params.tag).addClass('active').siblings().removeClass('active');
-              that.renderPackageItemInfo(params.tag, data.orderItem);
+              that.renderPackageItemInfo(params.tag, that.options);
             } else {
               $('.order-detail-tab li').eq(0).addClass('active').siblings().removeClass('active');
-              that.renderPackageItemInfo(0, data.orderItem);
+              that.renderPackageItemInfo(0, that.options);
             }
 
-
             that.supplement();
-
             that.watchDetail.call(that, data);
           })
           .then(function() {
@@ -220,7 +189,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
             var showCommentButton = false;
 
-            //只要有一个包裹为签收状态，则暂时按钮
+            //只要有一个包裹为签收状态，则展示按钮
             _.each(that.options.orderPackageItemList, function(item) {
               if (item.status == "RECEIPTED") {
                 showCommentButton = true;
@@ -234,25 +203,26 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
           })
       },
-
+      // 从订单列表过来的包裹号
       supplement: function() {
         var params = can.deparam(window.location.search.substr(1));
         var pkgid = params.pkgid;
         if (pkgid) {
           $(".order-detail-tab").find("li")[pkgid - 1].click();
         };
-
       },
 
       '.btn-shareorder click': function(element, event) {
-        var orderId = this.orderid;
+        var orderId = this.options.attr('orderid');
         var commentSatisf = this.commentSatisf;
         window.location.href = "/shareorder.html?orderid=" + orderId + "&commentSatisf=" + commentSatisf;
       },
 
       renderPackageItemInfo: function(tag, data) {
         var that = this;
-        var packageInfo = data.orderPackageItemList[tag];
+        var packageInfo = data.attr('orderPackageItemList')[tag];
+
+        console.log(packageInfo);
         packageInfo.userRoutes = packageInfo.actionTraceItemList;
         packageInfo.tag = tag;
         packageInfo.orderStatus = this.statsMap[packageInfo.status];
