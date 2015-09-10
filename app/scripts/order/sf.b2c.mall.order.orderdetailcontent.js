@@ -155,11 +155,15 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         getOrder.sendRequest()
           .done(function(data) {
-            console.log(data);
 
             data.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             data.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             data.orderPackageItemList = data.orderItem.orderPackageItemList;
+            _.each(data.orderItem.orderCouponItemList, function(item) {
+              if (item.couponType == "INTRGAL" && item.orderAction == "COST") {
+                data.costPoint = item.price
+              }
+            });
 
             that.options.attr(data);
 
@@ -219,48 +223,46 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       renderPackageItemInfo: function(tag, data) {
-        var that = this;
-        var packageInfo = data.attr('orderPackageItemList')[tag];
+        var that = this,
+          map = {
+            'SUBMITED': '', //待支付
+            'AUDITING': 'order-detail-step2', //待审核
+            'SHIPPING': 'order-detail-step3', //待出库
+            'WAIT_SHIPPING': 'order-detail-step3',
+            'SHIPPED': 'order-detail-step4', //出库中
+            'COMPLETED': 'order-detail-step5', //已完成
+            'CLOSED': 'order-detail-step5',
+            'CONSIGNED': 'order-detail-step4',
+            'RECEIPTED': 'order-detail-step5',
+            'AUTO_COMPLETED': 'order-detail-step5'
+          },
+          packageInfo = data.attr('orderPackageItemList')[tag];
 
-        console.log(packageInfo);
-        packageInfo.userRoutes = packageInfo.actionTraceItemList;
-        packageInfo.tag = tag;
-        packageInfo.orderStatus = this.statsMap[packageInfo.status];
         _.each(packageInfo.orderGoodsItemList, function(goodItem) {
-          goodItem.totalPrice = goodItem.price * goodItem.quantity - goodItem.discount;
+          goodItem.attr('totalPrice', goodItem.price * goodItem.quantity - goodItem.discount);
         });
-
-        packageInfo.showStep = true;
-        packageInfo.isShowLinkServer = false;
-        packageInfo.isShowShippingTime = true;
+        packageInfo.attr({
+          'showWhereStep': map[packageInfo.status],
+          'tag': tag,
+          'orderStatus': this.statsMap[packageInfo.status],
+          'showStep': true,
+          'isShowLinkServer': false,
+          'isShowShippingTime': true
+        });
 
         //如果订单状态是已关闭，自动取消，用户取消，运营取消，不展示订单状态流程图
         if (packageInfo.status == 'CLOSED' || packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL') {
-          packageInfo.showStep = false;
+          packageInfo.attr('showStep', false);
         }
         //如果包裹状态是待审核，待发货，发货中，已发货，展示联系客服
         if (packageInfo.status == 'AUDITING' || packageInfo.status == 'WAIT_SHIPPING' || packageInfo.status == 'SHIPPING' || packageInfo.status == 'SHIPPED') {
-          packageInfo.isShowLinkServer = true;
+          packageInfo.attr('isShowLinkServer', true);
         }
         //如果包裹状态是自动取消，用户取消，运营取消，订单关闭，订单完成，自动完成，不展示发货仓和预计发货时间
         if (packageInfo.status == 'AUTO_CANCEL' || packageInfo.status == 'USER_CANCEL' || packageInfo.status == 'OPERATION_CANCEL' || packageInfo.status == 'CLOSED' || packageInfo.status == 'COMPLETED' || packageInfo.status == 'AUTO_COMPLETED') {
-          packageInfo.isShowShippingTime = false;
-        };
-        //状态流程图
-        var map = {
-          'SUBMITED': '', //待支付
-          'AUDITING': 'order-detail-step2', //待审核
-          'SHIPPING': 'order-detail-step3', //待出库
-          'WAIT_SHIPPING': 'order-detail-step3',
-          'SHIPPED': 'order-detail-step4', //出库中
-          'COMPLETED': 'order-detail-step5', //已完成
-          'CLOSED': 'order-detail-step5',
-          'CONSIGNED': 'order-detail-step4',
-          'RECEIPTED': 'order-detail-step5',
-          'AUTO_COMPLETED': 'order-detail-step5'
+          packageInfo.attr('isShowShippingTime', true);
         };
 
-        packageInfo.showWhereStep = map[packageInfo.status];
         //如果transporterName = etk，并且包裹状态是已出库、完成、自动完成、签收展示退税流程
         if (packageInfo.transporterName == 'ETK' && (packageInfo.status == "CONSIGNED" || packageInfo.status == 'COMPLETED' || packageInfo.status == 'AUTO_COMPLETED' || packageInfo.status == 'RECEIPTED')) {
           var getRefundTax = new SFGetRefundTax({
@@ -268,7 +270,8 @@ define('sf.b2c.mall.order.orderdetailcontent', [
           });
           getRefundTax.sendRequest()
             .done(function(data) {
-              packageInfo.refundTax = new can.Map(data);
+              packageInfo.attr('refundTax', data);
+              //packageInfo.refundTax = new can.Map(data);
               var renderFn = can.mustache(template_order_packageinfo);
               var html = renderFn(packageInfo, that.helpers);
               $('#packageItemInfo').html(html);
@@ -440,11 +443,12 @@ define('sf.b2c.mall.order.orderdetailcontent', [
       },
 
       received: function(element) {
-        var that = this;
-        var params = can.deparam(window.location.search.substr(1));
-        var confirmReceive = new SFConfirmReceive({
-          "subOrderId": params.orderid
-        });
+        var that = this,
+          orderid = this.options.attr('orderid'),
+          confirmReceive = new SFConfirmReceive({
+            "subOrderId": orderid
+          });
+
         confirmReceive
           .sendRequest()
           .done(function(data) {
@@ -452,7 +456,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
             if (that.commentStatus == "0") {
               var message = new SFMessage(null, {
                 'okFunction': function() {
-                  window.location.href = "/shareorder.html?orderid=" + that.orderid + "&commentSatisf=" + that.commentSatisf;
+                  window.location.href = "/shareorder.html?orderid=" + orderid + "&commentSatisf=" + that.commentSatisf;
                 },
                 'closeFunction': function() {
                   that.render();
@@ -484,7 +488,6 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
       '#pay click': function(element, event) {
         event && event.preventDefault();
-        var that = this;
         var params = can.deparam(window.location.search.substr(1));
 
         window.open("/gotopay.html?orderid=" + params.orderid + "&recid=" + params.recid + "&otherlink=1", "_blank");
