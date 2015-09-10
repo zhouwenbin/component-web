@@ -85,7 +85,7 @@ define('sf.b2c.mall.order.iteminfo', [
       },
       'sf-free-shipping': function(activityDescription, options) {
         var activityDescription = activityDescription();
-        if (activityDescription && activityDescription['LOGISTICS_FEE_REDUCE']) {
+        if (activityDescription && activityDescription['POSTAGE_FREE']) {
           return options.fn(options.contexts || this);
         }
       },
@@ -93,7 +93,7 @@ define('sf.b2c.mall.order.iteminfo', [
       'sf-show-postage': function(activityDescription, goodsTotalFee, options) {
         var activityDescription = activityDescription();
         var goodsTotalFee = goodsTotalFee();
-        if (goodsTotalFee > activityDescription['LOGISTICS_FEE_REDUCE']) {
+        if (goodsTotalFee > activityDescription['POSTAGE_FREE']) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -102,14 +102,14 @@ define('sf.b2c.mall.order.iteminfo', [
       //显示邮费
       'sf-logistics-fee': function(activityDescription, options) {
         var activityDescription = activityDescription();
-        return activityDescription['LOGISTICS_FEE_REDUCE'] / 100;
+        return activityDescription['POSTAGE_FREE'] / 100;
 
       },
       //显示还差多少钱才能包邮
       'sf-postage': function(activityDescription, goodsTotalFee, options) {
         var activityDescription = activityDescription();
         var goodsTotalFee = goodsTotalFee();
-        return (activityDescription['LOGISTICS_FEE_REDUCE'] - goodsTotalFee) / 100;
+        return (activityDescription['POSTAGE_FREE'] - goodsTotalFee) / 100;
       }
     },
     /**

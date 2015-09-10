@@ -129,7 +129,7 @@
               {{/sf-show-postage}}
 
               {{^sf-show-postage activityDescription orderFeeItem.goodsTotalFee}}
-              <span>【还差<i>{{sf-postage activityDescription orderFeeItem.goodsTotalFee}}</i>元即可包邮】</span>
+              <span>【还差<b class="text-important">&nbsp;{{sf-postage activityDescription orderFeeItem.goodsTotalFee}}&nbsp;</b>元即可包邮】</span>
               {{/sf-show-postage}}
             {{/sf-free-shipping}}
               运费：<span class="s1">¥{{sf.price orderFeeItem.logisticsFee}}</span>
