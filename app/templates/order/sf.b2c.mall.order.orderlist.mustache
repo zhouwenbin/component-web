@@ -76,7 +76,7 @@
 
             {{! 显示总价格，要合并行。合并原则：只展示第一条数据的价格，第二条数据不显示td，从而达到合并目的 }}
             {{#firstPackage orderPackageItemList @index}}
-            <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price paymentAmount}}</td>
+            <td class="td5" rowspan="{{countTypeOfGoodsInOrder orderPackageItemList}}">￥{{sf.price actualPrice}}</td>
             {{/firstPackage}}
 
             {{! 如果不显示路由则合并订单状态 }}

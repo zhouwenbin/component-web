@@ -224,7 +224,7 @@ define('sf.b2c.mall.order.orderlistcontent', [
 
                 order.leftTime = order.gmtEnd - getOrderList.getServerTime();
 
-                order.paymentAmount = order.totalPrice - order.discount;
+                //order.paymentAmount = order.totalPrice - order.discount;
                 if (typeof order.orderPackageItemList[0].orderGoodsItemList[0].goodsType !== 'undefinded' && order.orderPackageItemList[0].orderGoodsItemList[0].goodsType == 'SECKILL') {
                   order.optionHMTL = that.getOptionHTML(that.secOptionMap[order.orderStatus]);
                 } else {
