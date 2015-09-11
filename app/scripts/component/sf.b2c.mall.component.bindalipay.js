@@ -12,9 +12,10 @@ define(
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.user.bindAliAct',
     'text!template_component_bindalipay',
-    'sf.b2c.mall.widget.dialog'
+    'sf.b2c.mall.widget.dialog',
+    'underscore.string',
   ],
-  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFBindAliAct, template_component_bindalipay, SFDialog) {
+  function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFBindAliAct, template_component_bindalipay, SFDialog, _str) {
 
 
     return SFDialog.extend({
@@ -130,7 +131,8 @@ define(
 
       checkAccount: function(account){
         var isTelNum = /^1\d{10}$/.test(account);
-        var isEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(account);
+        var isEmail = _str.include(account, '@');
+
         if (!isTelNum && !isEmail) {
           return "账号不合法，必须为邮箱或者手机号"
         } else {
