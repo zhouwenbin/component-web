@@ -13,7 +13,7 @@ define(
     'sf.b2c.mall.api.user.bindAliAct',
     'text!template_component_bindalipay',
     'sf.b2c.mall.widget.dialog',
-    'underscore.string',
+    'underscore.string'
   ],
   function($, can, store, md5, SFBizConf, SFFn, SFMessage, SFBindAliAct, template_component_bindalipay, SFDialog, _str) {
 
