@@ -315,22 +315,14 @@ define(
         var cartFeeItem = this.options.order.attr('cartFeeItem');
         if (typeof cartFeeItem.firstOrderInfos !== 'undefined' && cartFeeItem.firstOrderInfos.length > 0) {
           var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;
-          var firstHtml = '<tr><td colspan="6"><span>首单减</span>' + useRuleDesc + '</td></tr>';
-          $('.sign-for-first').append(firstHtml);
+          var firstHtml = '<span>首单减</span>' + useRuleDesc;
+          $('.sign-for-first').show().find('#lable-for-useRuleDesc').append(firstHtml);
         };
         //满额包邮信息展示
         if (typeof cartFeeItem.reductPostageInfos !== 'undefined' && cartFeeItem.reductPostageInfos.length > 0) {
-          var useRuleDesc = cartFeeItem.reductPostageInfos[0].useRule.ruleDesc,
-            limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100,
-            preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100,
-            firstHtml = '';
-          if (typeof useRuleDesc != 'undefined') {
-            firstHtml = '<tr><td colspan="6">' + useRuleDesc + '</td></tr>';
-          } else {
-            firstHtml = '<tr><td colspan="6">全场满' + limit + '元即可减免' + preferential + '元运费</td></tr>';
-
-          }
-          $('.sign-for-freepostage').append(firstHtml);
+          var useRuleDesc = cartFeeItem.reductPostageInfos[0].useRule.ruleDesc;
+          var firstHtml = '<b>' + useRuleDesc + '</b>';
+          $('.sign-for-first').show().find('#lable-for-useRuleDesc').append(firstHtml);
         };
         //如果没有无效商品，不展示清除无效商品按钮
         var invalidItems = $('.items-disable').length;

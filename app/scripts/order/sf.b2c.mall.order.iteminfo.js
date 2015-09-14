@@ -151,7 +151,7 @@ define('sf.b2c.mall.order.iteminfo', [
     //计算本次订单可以使用的积分数（订单总价*积分比例）
     calculateUseIntegral: function() {
       if (this.options.data.attr('proportion') > 0) {
-        var point = this.options.data.attr('orderFeeItem.actualTotalFee') * this.options.data.attr('proportion') / 100;
+        var point = this.options.data.attr('orderFeeItem.goodsTotalFee') * this.options.data.attr('proportion') / 100;
         point = (point < 0) ? 0 : point;
         if (point < this.options.data.attr('integral')) {
           this.options.data.attr('useIntegral', point);
