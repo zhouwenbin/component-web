@@ -17,6 +17,7 @@
                     </tr>
                 </thead>
                 <tbody class="sign-for-first"></tbody>
+                <tbody class="sign-for-freepostage"></tbody>
                 <tbody>
                 {{! scope: "PART" }}
                 {{#each partScopeGroups}}
@@ -131,6 +132,9 @@
                         {{#if isShowOverLimitPrice}}
                         <div class="tooltip-cart">您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
                         {{/if}}
+                        {{#sf-is-freepostage order}}
+                        <span class="text-important">【还差{{sf-left-freepostage order}}元即可包邮】</span>
+                        {{/sf-is-freepostage}}
                         总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
                     </li>
     				<li class="li1">

@@ -111,24 +111,35 @@ define(
         },
         //搭配商品总单价
         'partScopePrice': function(goods, options) {
-            var total = 0;
-            _.each(goods, function(items) {
-              if (items.canUseActivityPrice == 1) {
-                total += items.activityPrice;
-              } else {
-                total += items.price;
-              }
-            });
-            return total / 100;
+          var total = 0;
+          _.each(goods, function(items) {
+            if (items.canUseActivityPrice == 1) {
+              total += items.activityPrice;
+            } else {
+              total += items.price;
+            }
+          });
+          return total / 100;
+        },
+        'sf-is-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem;
+          if (cartFeeItem.reductPostageInfos !== 'undefined' && cartFeeItem.reductPostageInfos.length > 0) {
+            var limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100;
+            var actualTotalFee = cartFeeItem.actualTotalFee / 100;
+            if (limit > actualTotalFee) {
+              return options.fn(options.contexts || this);
+            }
+          } else {
+            return options.inverse(options.contexts || this);
           }
-          // 'sf-show-firstOrder': function(cartFeeItem, options) {
-          //   var firstOrderInfos = cartFeeItem().firstOrderInfos;
-          //   if (typeof firstOrderInfos !== 'undefined') {
-          //     return options.fn(options.contexts || this);
-          //   } else {
-          //     return options.inverse(options.contexts || this);
-          //   }
-          // }
+        },
+        'sf-left-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem,
+            limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100,
+            actualTotalFee = cartFeeItem.actualTotalFee / 100;
+          return limit - actualTotalFee;
+
+        }
       },
       /**
        * [init 初始化]
@@ -207,13 +218,6 @@ define(
             'limitAmount': data.limitAmount,
             'invalidItems': false
           });
-          // this.options.order.attr({
-          //   'actualTotalFee': data.cartFeeItem.actualTotalFee,
-          //   'discountFee': data.cartFeeItem.discountFee,
-          //   'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
-          //   'limitAmount': data.limitAmount,
-          //   'invalidItems': false
-          // });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0 && this.options.isShowOverLimitPrice == false);
           if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
@@ -312,6 +316,20 @@ define(
           var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;
           var firstHtml = '<tr><td colspan="6"><span>首单减</span>' + useRuleDesc + '</td></tr>';
           $('.sign-for-first').append(firstHtml);
+        };
+        //满额包邮信息展示
+        if (typeof cartFeeItem.reductPostageInfos !== 'undefined' && cartFeeItem.reductPostageInfos.length > 0) {
+          var useRuleDesc = cartFeeItem.reductPostageInfos[0].useRule.ruleDesc,
+            limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100,
+            preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100,
+            firstHtml = '';
+          if (typeof useRuleDesc != 'undefined') {
+            firstHtml = '<tr><td colspan="6">' + useRuleDesc + '</td></tr>';
+          } else {
+            firstHtml = '<tr><td colspan="6">全场满' + limit + '元即可减免' + preferential + '元运费</td></tr>';
+
+          }
+          $('.sign-for-freepostage').append(firstHtml);
         };
         //如果没有无效商品，不展示清除无效商品按钮
         var invalidItems = $('.items-disable').length;
