@@ -216,7 +216,8 @@ define(
             'discountFee': data.cartFeeItem.discountFee,
             'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
             'limitAmount': data.limitAmount,
-            'invalidItems': false
+            'invalidItems': false,
+            'selectNum': data.selectNum || 0
           });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0 && this.options.isShowOverLimitPrice == false);
