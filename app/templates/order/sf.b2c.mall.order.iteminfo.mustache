@@ -124,13 +124,7 @@
             </li>
             <li class="li1">
             {{#sf-free-shipping activityDescription}}
-              {{#sf-show-postage activityDescription orderFeeItem.goodsTotalFee}}
-              <span class="text-important">【已满足满{{sf-logistics-fee activityDescription}}元包邮】</span>
-              {{/sf-show-postage}}
-
-              {{^sf-show-postage activityDescription orderFeeItem.goodsTotalFee}}
-              <span>【还差<b class="text-important">&nbsp;{{sf-postage activityDescription orderFeeItem.goodsTotalFee}}&nbsp;</b>元即可包邮】</span>
-              {{/sf-show-postage}}
+              <span class="text-important">【{{activityDescription.POSTAGE_FREE}}】</span>   
             {{/sf-free-shipping}}
               运费：<span class="s1">¥{{sf.price orderFeeItem.logisticsFee}}</span>
             </li>

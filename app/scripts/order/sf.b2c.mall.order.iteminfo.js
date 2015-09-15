@@ -90,10 +90,11 @@ define('sf.b2c.mall.order.iteminfo', [
         }
       },
       //是否包邮
-      'sf-show-postage': function(activityDescription, goodsTotalFee, options) {
-        var activityDescription = activityDescription();
-        var goodsTotalFee = goodsTotalFee();
-        if (goodsTotalFee > activityDescription['POSTAGE_FREE']) {
+      'sf-show-postage': function(activityDescription, goodsTotalFee, discount, options) {
+        var activityDescription = activityDescription(),
+          goodsTotalFee = goodsTotalFee(),
+          discount = discount();
+        if (goodsTotalFee > activityDescription['POSTAGE_FREE'] + discount) {
           return options.fn(options.contexts || this);
         } else {
           return options.inverse(options.contexts || this);
@@ -106,10 +107,12 @@ define('sf.b2c.mall.order.iteminfo', [
 
       },
       //显示还差多少钱才能包邮
-      'sf-postage': function(activityDescription, goodsTotalFee, options) {
-        var activityDescription = activityDescription();
-        var goodsTotalFee = goodsTotalFee();
-        return (activityDescription['POSTAGE_FREE'] - goodsTotalFee) / 100;
+      'sf-postage': function(activityDescription, goodsTotalFee, discount, options) {
+        var activityDescription = activityDescription(),
+          goodsTotalFee = goodsTotalFee(),
+          discount = discount();
+
+        return (activityDescription['POSTAGE_FREE'] - goodsTotalFee - discount) / 100;
       }
     },
     /**
@@ -653,17 +656,21 @@ define('sf.b2c.mall.order.iteminfo', [
 
     '#pointUsed keyup': function(element, event) {
       event && event.preventDefault();
-      var that = this;
-      var pointValue = $(element).val(); //输入使用积分数
-      var canUsePoints = this.options.data.attr('useIntegral'); //本次订单可用积分数 
-      var rateValue = this.options.data.attr('proportion'); //积分比例
+      var that = this,
+        pointValue = $(element).val(), //输入使用积分数
+        canUsePoints = this.options.data.attr('useIntegral'), //本次订单可用积分数 
+        rateValue = this.options.data.attr('proportion'); //积分比例
 
 
       if (rateValue == 0) {
         $(element).val(0);
-        $("#pointToMoney").text("-￥0");
+        $("#pointToMoney").text("-￥0.0");
         return false;
       }
+      if (pointValue == 0) {
+        $("#pointToMoney").text("-￥0.0");
+        this.reCalculateOrderPrice();
+      };
       if ($("#pointselected")[0].checked) {
         //输入非数字字符自动转为0
         if (pointValue && !/^[1-9]+[0-9]*$/.test(pointValue)) {
