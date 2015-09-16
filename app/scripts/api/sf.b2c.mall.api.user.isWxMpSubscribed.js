@@ -25,9 +25,9 @@ function($, can, _, Comm, SecurityType) {
       METHOD_NAME: 'user.isWxMpSubscribed',
       SECURITY_TYPE: SecurityType.None.name,
       REQUIRED: {
-        'authResp': 'string'
       },
       OPTIONAL: {
+        'authResp': 'string'
       },
       VERIFY:{
       },
