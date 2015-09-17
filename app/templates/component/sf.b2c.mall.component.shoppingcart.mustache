@@ -134,6 +134,9 @@
                         {{#sf-is-freepostage order}}
                         <span class="text-important">{{sf-left-freepostage order}}</span>
                         {{/sf-is-freepostage}}
+                        {{^sf-is-freepostage order}}
+                        <span class="text-important">【{{sf-full-freepostage order}}】</span>
+                        {{/sf-is-freepostage}}
                         总价（不含运费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
                     </li>
     				<li class="li1">

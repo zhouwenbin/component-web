@@ -126,7 +126,7 @@
             {{#sf-free-shipping activityDescription}}
               <span class="text-important">【{{activityDescription.POSTAGE_FREE}}】</span>   
             {{/sf-free-shipping}}
-              运费：<span class="s1">¥{{sf.price orderFeeItem.logisticsFee}}</span>
+              运费：<span class="s1">+ ¥{{sf.price orderFeeItem.logisticsFee}}</span>
             </li>
             <li class="li1 text-important">优惠券:<span class="s1">- ¥{{sf.price orderFeeItem.couponReduce}}</span>    </li>
             <li class="li1 text-important">积分抵扣:<span class="s1">- ¥{{sf.price orderFeeItem.integralReduce}}</span>    </li>                

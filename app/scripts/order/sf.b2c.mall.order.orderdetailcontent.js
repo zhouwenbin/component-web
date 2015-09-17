@@ -88,7 +88,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
         },
         'refundTaxStatus': function(refundTax, stateText, options) {
           var refundTax = refundTax();
-          if (refundTax.state == stateText()) {
+          if (refundTax.state == stateText) {
             return options.fn(options.contexts || this);
           }
         },
@@ -155,7 +155,7 @@ define('sf.b2c.mall.order.orderdetailcontent', [
 
         getOrder.sendRequest()
           .done(function(data) {
-            data.costPoint = 0;//初始化积分使用量
+            data.costPoint = 0; //初始化积分使用量
             data.payType = that.payWayMap[data.orderItem.payType] || '线上支付';
             data.nextStep = that.optionHTML[that.nextStepMap[data.orderItem.orderStatus]];
             data.orderPackageItemList = data.orderItem.orderPackageItemList;

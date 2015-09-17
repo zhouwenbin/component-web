@@ -128,6 +128,8 @@ define(
             var actualTotalFee = cartFeeItem.actualTotalFee / 100;
             if (limit > actualTotalFee) {
               return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
             }
           }
         },
@@ -142,7 +144,16 @@ define(
           } else {
             return '【还差' + (limit - actualTotalFee).toFixed(2) + '元即可包邮】';
           }
-
+        },
+        'sf-full-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem,
+            logisticsFee = order.cartFeeItem.logisticsFee / 100,
+            preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100;
+          if (logisticsFee > preferential) {
+            return '已满足满额减邮';
+          } else {
+            return '已满足满额包邮';
+          }
         }
       },
       /**
