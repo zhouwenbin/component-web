@@ -133,14 +133,14 @@ define(
         },
         'sf-left-freepostage': function(order, options) {
           var cartFeeItem = order.cartFeeItem,
-            logisticsFee = order.cartFeeItem.logisticsFee,
+            logisticsFee = order.cartFeeItem.logisticsFee / 100,
             limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100,
             preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100,
             actualTotalFee = cartFeeItem.actualTotalFee / 100;
           if (logisticsFee > preferential) {
             return '【还差' + (limit - actualTotalFee).toFixed(2) + '元即可减免' + preferential + '元邮费】';
           } else {
-            return '【还差<b>' + (limit - actualTotalFee).toFixed(2) + '</b>元即可包邮】';
+            return '【还差' + (limit - actualTotalFee).toFixed(2) + '元即可包邮】';
           }
 
         }
