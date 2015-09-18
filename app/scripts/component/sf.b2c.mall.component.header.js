@@ -189,14 +189,14 @@ define('sf.b2c.mall.component.header', [
          this.renderMap['template_header_727'].call(this, that.data);
       }
 
-      if (new Date().getTime() < new Date(2015, 8, 14, 0, 0, 0).getTime()) {
+      if (new Date().getTime() < new Date(2015, 8, 22, 0, 0, 0).getTime() && new Date().getTime() > new Date(2015, 8, 18, 0, 0, 0).getTime()) {
         // this.renderMap['template_header_727'].call(this, that.data);
 
         var pathname = window.location.pathname;
         var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
 
         if (!isNotShowNotice) {
-          $('.notice .pm').text('亲爱的顺丰海淘会员，由于近日活动单量剧增，台湾仓发货会有所延迟，9.13恢复正常。给您带来不便，敬请谅解。');
+          $('.notice .pm').text('亲爱的海淘会员，由于最近活动单量激增，9.17 － 9.21 期间香港仓库的订单发货可能会延迟5-10个工作日。 给您带来不便敬请谅解。');
           $('.notice').fadeIn();
         }
       }
