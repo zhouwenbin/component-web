@@ -12,7 +12,7 @@
         <li><span>积分抵扣：</span>-￥{{sf.price costPoint}}</li>
         <li><span>运费：</span>￥{{sf.price orderItem.logisticsFee}}</li>
         <li><span>实付款：</span><strong class="text-error">￥{{sf.price totalPrice}}</strong></li>
-        <li><span>可获得海淘积分：</span>{{presentIntegral}}</li>
+        
         {{#orderItem.orderCouponItemList}}
 
             {{#sf-coupon-type orderAction couponType 'COSTCOUPON'}}
