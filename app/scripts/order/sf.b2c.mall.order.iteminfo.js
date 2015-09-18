@@ -113,6 +113,17 @@ define('sf.b2c.mall.order.iteminfo', [
           discount = discount();
 
         return (activityDescription['POSTAGE_FREE'] - goodsTotalFee - discount) / 100;
+      },
+      'sf-show-couponTips': function(orderFeeItem, options) {
+        var orderFeeItem = orderFeeItem(),
+          logisticsFee = orderFeeItem.logisticsFee,
+          goodsTotalFee = orderFeeItem.goodsTotalFee,
+          discount = orderFeeItem.discount,
+          couponReduce = orderFeeItem.couponReduce,
+          integralReduce = orderFeeItem.integralReduce;
+        if (logisticsFee > 0 & goodsTotalFee - discount - couponReduce - integralReduce <= 0) {
+          return options.fn(options.contexts || this);
+        }
       }
     },
     /**
