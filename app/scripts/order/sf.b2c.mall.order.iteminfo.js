@@ -113,17 +113,6 @@ define('sf.b2c.mall.order.iteminfo', [
           discount = discount();
 
         return (activityDescription['POSTAGE_FREE'] - goodsTotalFee - discount) / 100;
-      },
-      'sf-show-couponTips': function(orderFeeItem, options) {
-        var orderFeeItem = orderFeeItem(),
-          logisticsFee = orderFeeItem.logisticsFee,
-          goodsTotalFee = orderFeeItem.goodsTotalFee,
-          discount = orderFeeItem.discount,
-          couponReduce = orderFeeItem.couponReduce,
-          integralReduce = orderFeeItem.integralReduce;
-        if (logisticsFee > 0 & goodsTotalFee - discount - couponReduce - integralReduce <= 0) {
-          return options.fn(options.contexts || this);
-        }
       }
     },
     /**
@@ -139,7 +128,8 @@ define('sf.b2c.mall.order.iteminfo', [
         arr = heike_sign.split(',');
       }
       this.options.data = new can.Map({
-        saleid: arr[2]
+        'saleid': arr[2],
+        'sf-show-couponTips': false
       });
       this.adapter = {};
       this.request();
@@ -341,6 +331,17 @@ define('sf.b2c.mall.order.iteminfo', [
             //删除可用优惠券中的第一张，因为第一张在上面展示了 
             that.options.data.orderCouponItem.avaliableCoupons.splice(0, 1);
           };
+
+          var logisticsFee = orderRenderItem.orderFeeItem.logisticsFee,
+            goodsTotalFee = orderRenderItem.orderFeeItem.goodsTotalFee,
+            discount = orderRenderItem.orderFeeItem.discount,
+            couponReduce = orderRenderItem.orderFeeItem.couponReduce,
+            integralReduce = orderRenderItem.orderFeeItem.integralReduce;
+          if (logisticsFee > 0 && goodsTotalFee - discount - couponReduce - integralReduce <= 0) {
+            that.options.data.attr('sf-show-couponTips', true);
+          } else {
+            that.options.data.attr('sf-show-couponTips', false);
+          }
         })
         .fail(function(errorCode) {
 
@@ -361,11 +362,21 @@ define('sf.b2c.mall.order.iteminfo', [
         return orderPriceReCalculate.sendRequest()
           .done(function(data) {
             that.options.data.attr({
-                'orderFeeItem': data.orderFeeItem,
-                'usedIntegral': data.usedIntegral || 0,
-                'useIntegral': data.orderIntegral
-              })
-              //that.calculateUseIntegral();
+              'orderFeeItem': data.orderFeeItem,
+              'usedIntegral': data.usedIntegral || 0,
+              'useIntegral': data.orderIntegral
+            });
+            var logisticsFee = data.orderFeeItem.logisticsFee,
+              goodsTotalFee = data.orderFeeItem.goodsTotalFee,
+              discount = data.orderFeeItem.discount,
+              couponReduce = data.orderFeeItem.couponReduce,
+              integralReduce = data.orderFeeItem.integralReduce;
+            if (logisticsFee > 0 && goodsTotalFee - discount - couponReduce - integralReduce <= 0) {
+              that.options.data.attr('sf-show-couponTips', true);
+            } else {
+              that.options.data.attr('sf-show-couponTips', false);
+            }
+            //that.calculateUseIntegral();
           })
           .fail(function(errorCode) {
 
