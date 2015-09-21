@@ -35,7 +35,10 @@ define('sf.b2c.mall.component.header.727', [
       //渲染页面
       var renderFn = can.mustache(template_header_727);
       var html = renderFn(data, this.helpers);
-      this.element.prepend(html);
+      this.element.prepend(html);dddddd
+
+      // 88元包邮上线希望banner不要点击，切记，下次要去掉！！！！！！！！！
+      $('.banner-scroll').css({'cursor': 'default'});
 
       this.showAD();
     },
