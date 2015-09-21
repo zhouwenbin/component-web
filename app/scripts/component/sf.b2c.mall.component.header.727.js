@@ -38,7 +38,7 @@ define('sf.b2c.mall.component.header.727', [
       this.element.prepend(html);dddddd
 
       // 88元包邮上线希望banner不要点击，切记，下次要去掉！！！！！！！！！
-      $('.banner-scroll').css({'cursor': 'default'});
+      // $('.banner-scroll').css({'cursor': 'default'});
 
       this.showAD();
     },
@@ -56,8 +56,9 @@ define('sf.b2c.mall.component.header.727', [
     },
 
     ".banner-scroll click": function() {
-      return false;
+      // return false;
       // window.location.href = "http://www.sfht.com/activity/705.html?_spm=0.404.2830.1";
+      window.location.href = "http://www.sfht.com/helpcenter-postage.html";
     },
 
     isInShowPage: function() {
