@@ -58,7 +58,7 @@ define('sf.b2c.mall.component.header.727', [
     ".banner-scroll click": function() {
       // return false;
       // window.location.href = "http://www.sfht.com/activity/705.html?_spm=0.404.2830.1";
-      window.location.href = "http://www.sfht.com/helpcenter-postage.html";
+      window.location.href = "http://www.sfht.com/activity/627.html?_spm=0.404.2830.1";
     },
 
     isInShowPage: function() {
