@@ -189,14 +189,16 @@ define('sf.b2c.mall.component.header', [
          this.renderMap['template_header_727'].call(this, that.data);
       }
 
-      if (new Date().getTime() < new Date(2015, 9, 1, 0, 0, 0).getTime() && new Date().getTime() > new Date(2015, 8, 22, 0, 0, 0).getTime()) {
+      if (new Date().getTime() < new Date(2015, 9, 8, 0, 0, 0).getTime() && new Date().getTime() > new Date(2015, 9, 1, 0, 0, 0).getTime()) {
         // this.renderMap['template_header_727'].call(this, that.data);
 
-        var pathname = window.location.pathname;
-        var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
+        // 全站通告不受限制
+        var isNotShowNotice = false;
+        // var pathname = window.location.pathname;
+        // var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
 
         if (!isNotShowNotice) {
-          $('.notice .pm').text('亲爱的海淘会员，由于最近活动单量激增，9.22 － 9.30 期间香港仓库的订单发货可能会延迟5-10个工作日。 给您带来不便敬请谅解。');
+          $('.notice .pm').html('亲爱的海淘会员，国庆期间因海关和仓库放假，订单发货及清关时效将会有延迟，<a href="/helpcenter-transport-failure.html">点此了解详情</a>');
           $('.notice').fadeIn();
         }
       }
