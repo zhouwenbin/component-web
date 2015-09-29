@@ -189,7 +189,7 @@ define('sf.b2c.mall.component.header', [
          this.renderMap['template_header_727'].call(this, that.data);
       }
 
-      if (new Date().getTime() < new Date(2015, 9, 8, 0, 0, 0).getTime() && new Date().getTime() > new Date(2015, 9, 1, 0, 0, 0).getTime()) {
+      if (new Date().getTime() < new Date(2015, 9, 8, 0, 0, 0).getTime() && new Date().getTime() > new Date(2015, 8, 27, 0, 0, 0).getTime()) {
         // this.renderMap['template_header_727'].call(this, that.data);
 
         // 全站通告不受限制
