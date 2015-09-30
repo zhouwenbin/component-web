@@ -199,7 +199,7 @@ define('sf.b2c.mall.component.header', [
         var isNotShowNotice = (pathname.indexOf('orderlist.html') == -1);
 
         if (!isNotShowNotice) {
-          $('.notice .pm').html('亲爱的海淘会员，国庆期间因海关放假，订单发货及清关时效将会有延迟，<a href="/helpcenter-transport-failure.html">点此了解详情</a>');
+          $('.notice .pm').html('亲爱的海淘会员，国庆期间因海关放假，订单发货及清关时效将会有延迟，<a href="http://www.sfht.com/activity/794.html">点此了解详情</a>');
           $('.notice').fadeIn();
         }
       }
