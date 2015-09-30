@@ -194,8 +194,9 @@ define('sf.b2c.mall.component.header', [
 
         // 全站通告不受限制
         var isNotShowNotice = false;
-        // var pathname = window.location.pathname;
+        var pathname = window.location.pathname;
         // var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
+        var isNotShowNotice = (pathname.indexOf('orderlist.html') == -1);
 
         if (!isNotShowNotice) {
           $('.notice .pm').html('亲爱的海淘会员，国庆期间因海关放假，订单发货及清关时效将会有延迟，<a href="/helpcenter-transport-failure.html">点此了解详情</a>');
