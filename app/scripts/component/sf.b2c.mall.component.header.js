@@ -193,15 +193,20 @@ define('sf.b2c.mall.component.header', [
         // this.renderMap['template_header_727'].call(this, that.data);
 
         // 全站通告不受限制
-        var isNotShowNotice = false;
         var pathname = window.location.pathname;
         // var isNotShowNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1)
         var isNotShowNotice = (pathname.indexOf('orderlist.html') == -1);
 
+        var isShowOtherNotice = (pathname == '/') || (pathname.indexOf('index.html') > -1) || (pathname.indexOf('activity') > -1) || (pathname.indexOf('detail') > -1)
+
         if (!isNotShowNotice) {
           $('.notice .pm').html('<a href="http://www.sfht.com/activity/794.html">亲爱的海淘会员，国庆期间因海关放假，订单发货及清关时效将会有延迟，点此了解详情</a>');
           $('.notice').fadeIn();
+        }else if (isShowOtherNotice) {
+          $('.notice .pm').html('亲爱的海淘会员，国庆期间因海关放假，订单包裹清关将会有延迟，给您带来不便，敬请谅解。');
+          $('.notice').fadeIn();
         }
+
       }
 
       this.updateCart();
