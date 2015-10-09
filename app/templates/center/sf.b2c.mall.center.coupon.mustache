@@ -53,9 +53,13 @@
                               <p>有效期：{{sf.time startTime "YYYY-MM-DD"}}至{{sf.time endTime "YYYY-MM-DD"}}</p>
                               <p class="ellipsis2" title="{{useNotice}}">
                                 {{useNotice}}
-                                {{#customUrl}}<a href="{{customUrl}}" style="float: right;color: white;text-decoration: none;">去看看</a>{{/customUrl}}
                               </p>
                           </div>
+                          {{#customUrl}}
+                          <div class="mycoupon-gotohref" style="margin-right: 50px;">
+                              <a class="btn btn-normal btn-big gotohref" href="{{customUrl}}" target="_blank">去看看</a>
+                          </div>
+                          {{/customUrl}}
                       </div>
                   </li>
               {{/each}}
