@@ -2,6 +2,7 @@
 
 define(
   'sf.b2c.mall.component.shoppingcart', [
+    'text',
     'can',
     'jquery',
     'underscore',
@@ -16,9 +17,10 @@ define(
     'sf.b2c.mall.api.product.findRecommendProducts',
     'sf.b2c.mall.widget.message',
     'sf.b2c.mall.api.shopcart.addItemsToCart',
-    'sf.b2c.mall.api.shopcart.isShowCart'
+    'sf.b2c.mall.api.shopcart.isShowCart',
+    'text!template_component_shoppingcart'
   ],
-  function(can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart) {
+  function(text, can, $, _, SFFrameworkComm, SFFn, helpers, SFBusiness, SFGetCart, SFRefreshCart, SFRemoveItemsInCart, SFUpdateItemNumInCart, SFFindRecommendProducts, SFMessage, SFAddItemToCart, SFIsShowCart, template_component_shoppingcart) {
 
     SFFrameworkComm.register(1);
     SFFn.monitor();
@@ -109,24 +111,50 @@ define(
         },
         //搭配商品总单价
         'partScopePrice': function(goods, options) {
-            var total = 0;
-            _.each(goods, function(items) {
-              if (items.canUseActivityPrice == 1) {
-                total += items.activityPrice;
-              } else {
-                total += items.price;
-              }
-            });
-            return total / 100;
+          var total = 0;
+          _.each(goods, function(items) {
+            if (items.canUseActivityPrice == 1) {
+              total += items.activityPrice;
+            } else {
+              total += items.price;
+            }
+          });
+          return total / 100;
+        },
+        'sf-is-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem;
+          if (cartFeeItem.reductPostageInfos !== 'undefined' && cartFeeItem.reductPostageInfos.length > 0) {
+            var limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100;
+            var actualTotalFee = cartFeeItem.actualTotalFee / 100;
+            if (limit > actualTotalFee) {
+              return options.fn(options.contexts || this);
+            } else {
+              return options.inverse(options.contexts || this);
+            }
           }
-          // 'sf-show-firstOrder': function(cartFeeItem, options) {
-          //   var firstOrderInfos = cartFeeItem().firstOrderInfos;
-          //   if (typeof firstOrderInfos !== 'undefined') {
-          //     return options.fn(options.contexts || this);
-          //   } else {
-          //     return options.inverse(options.contexts || this);
-          //   }
-          // }
+        },
+        'sf-left-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem,
+            logisticsFee = order.cartFeeItem.logisticsFee / 100,
+            limit = cartFeeItem.reductPostageInfos[0].useRule.limit / 100,
+            preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100,
+            actualTotalFee = cartFeeItem.actualTotalFee / 100;
+          if (logisticsFee > preferential) {
+            return '【还差' + (limit - actualTotalFee).toFixed(2) + '元即可减免' + preferential + '元邮费】';
+          } else {
+            return '【还差' + (limit - actualTotalFee).toFixed(2) + '元即可包邮】';
+          }
+        },
+        'sf-full-freepostage': function(order, options) {
+          var cartFeeItem = order.cartFeeItem,
+            logisticsFee = order.cartFeeItem.logisticsFee / 100,
+            preferential = cartFeeItem.reductPostageInfos[0].useRule.preferential / 100;
+          if (logisticsFee > preferential) {
+            return '已满足满额减邮';
+          } else {
+            return '已满足满额包邮';
+          }
+        }
       },
       /**
        * [init 初始化]
@@ -203,15 +231,9 @@ define(
             'discountFee': data.cartFeeItem.discountFee,
             'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
             'limitAmount': data.limitAmount,
-            'invalidItems': false
+            'invalidItems': false,
+            'selectNum': data.selectNum || 0
           });
-          // this.options.order.attr({
-          //   'actualTotalFee': data.cartFeeItem.actualTotalFee,
-          //   'discountFee': data.cartFeeItem.discountFee,
-          //   'goodsTotalFee': data.cartFeeItem.goodsTotalFee,
-          //   'limitAmount': data.limitAmount,
-          //   'invalidItems': false
-          // });
           this.options.isShowOverLimitPrice = (data.errorCode === 15000600);
           this.options.isShowReduceInfos = (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined' && data.cartFeeItem.reduceInfos[0].reducePrice !== 0 && this.options.isShowOverLimitPrice == false);
           if (typeof data.cartFeeItem.reduceInfos[0] !== 'undefined') {
@@ -301,15 +323,24 @@ define(
 
 
         }
-
-        var html = can.view('templates/component/sf.b2c.mall.component.shoppingcart.mustache', that.options, that.helpers);
+        var renderFn = can.mustache(template_component_shoppingcart);
+        var html = renderFn(that.options, that.helpers);
         that.element.html(html);
-
+        //首单减促销信息展示
         var cartFeeItem = this.options.order.attr('cartFeeItem');
         if (typeof cartFeeItem.firstOrderInfos !== 'undefined' && cartFeeItem.firstOrderInfos.length > 0) {
-          var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc;
-          var firstHtml = '<tr><td colspan="6"><span>首单减</span>' + useRuleDesc + '</td></tr>';
-          $('.sign-for-first').append(firstHtml);
+          var useRuleDesc = cartFeeItem.firstOrderInfos[0].useRule.ruleDesc,
+            firstHtml = '<span>' + useRuleDesc + '</span>';
+          $('.sign-for-first').show().find('#lable-for-useRuleDesc').append(firstHtml);
+        };
+        //满额包邮信息展示
+        if (typeof cartFeeItem.reductPostageInfos !== 'undefined' && cartFeeItem.reductPostageInfos.length > 0) {
+          var useRuleDesc = cartFeeItem.reductPostageInfos[0].useRule.ruleDesc,
+            firstHtml = '<span>' + useRuleDesc + '</span>';
+          if ($('#lable-for-useRuleDesc').find('span').length > 0) {
+            firstHtml = '|<span>' + useRuleDesc + '</span>';
+          };
+          $('.sign-for-first').show().find('#lable-for-useRuleDesc').append(firstHtml);
         };
         //如果没有无效商品，不展示清除无效商品按钮
         var invalidItems = $('.items-disable').length;

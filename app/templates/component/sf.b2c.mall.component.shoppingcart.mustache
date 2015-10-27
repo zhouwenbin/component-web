@@ -16,7 +16,7 @@
                         <th class="th6">操作</th>
                     </tr>
                 </thead>
-                <tbody class="sign-for-first"></tbody>
+                <tbody class="sign-for-first hide"><tr><td colspan="6" id="lable-for-useRuleDesc"></td></tr></tbody>
                 <tbody>
                 {{! scope: "PART" }}
                 {{#each partScopeGroups}}
@@ -131,7 +131,13 @@
                         {{#if isShowOverLimitPrice}}
                         <div class="tooltip-cart">您已经超过了海关<span class="text-error">限额¥{{sf.price order.limitAmount}}</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
                         {{/if}}
-                        总价（含税费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
+                        {{#sf-is-freepostage order}}
+                        <span class="text-important">{{sf-left-freepostage order}}</span>
+                        {{/sf-is-freepostage}}
+                        {{^sf-is-freepostage order}}
+                        <span class="text-important">【{{sf-full-freepostage order}}】</span>
+                        {{/sf-is-freepostage}}
+                        总价（不含运费）:<span class="s1"><strong class="text-error">¥{{sf.price order.actualTotalFee}}</strong></span>
                     </li>
     				<li class="li1">
     					{{#if isShowReduceInfos}}
@@ -158,6 +164,7 @@
                             <span class="icon icon16-5 icon16-5-1"></span>
                         </div>
                         {{/if}}
+                        <span style="padding-right:10px;">已选商品&nbsp;<em class="text-important">{{order.selectNum}}</em>&nbsp;件</span>
               已节省:<span class="s1">¥ {{sf.price order.discountFee}}</span>
     				</li>
     			</ul>

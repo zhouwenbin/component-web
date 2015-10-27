@@ -167,6 +167,10 @@ requirejs.config({
         'sf.b2c.mall.api.finance.createRefundTax': 'scripts/api/sf.b2c.mall.api.finance.createRefundTax',
         'sf.b2c.mall.api.finance.getRefundTax': 'scripts/api/sf.b2c.mall.api.finance.getRefundTax',
 
+        //订单确认页计算金额
+        'sf.b2c.mall.api.order.orderPriceReCalculate': 'scripts/api/sf.b2c.mall.api.order.orderPriceReCalculate',
+
+
         'sf.b2c.mall.business.config': 'scripts/config/sf.b2c.mall.business.prd.config',
 
         'placeholders': 'bower_components/Placeholders/dist/placeholders',
@@ -399,7 +403,10 @@ requirejs.config({
         'template_component_commentstar': 'templates/component/sf.b2c.mall.component.commentstar.mustache',
         'template_component_commenttag': 'templates/component/sf.b2c.mall.component.commenttag.mustache',
         'template_center_shareordercontent': 'templates/center/sf.b2c.mall.center.shareordercontent.mustache',
-
+        //订单页
+        'template_order_iteminfo': 'templates/order/sf.b2c.mall.order.iteminfo.mustache',
+        //购物车
+        'template_component_shoppingcart': 'templates/component/sf.b2c.mall.component.shoppingcart.mustache',
         //订单详情
         'template_order_orderdetail': 'templates/order/sf.b2c.mall.order.orderdetail.mustache',
         'template_order_packageinfo': 'templates/order/sf.b2c.mall.order.packageinfo.mustache'

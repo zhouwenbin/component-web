@@ -2,35 +2,43 @@
 <div class="order-detail clearfix">
   <div class="order-detail-c1 fl">
     <ul>
-        <li><span>订单号：</span>{{orderInfo.orderId}}</li>
-        <li><span>下单时间：</span>{{sf.time gmtCreate}}</li>
+        <li><span>订单号：</span>{{orderId}}</li>
+        <li><span>下单时间：</span>{{sf.time orderItem.gmtCreate}}</li>
         <li><span>支付方式：</span>{{payType}}</li>
     </ul>
     <ul>
-        <li><span>活动优惠：</span>-￥{{sf.price orderInfo.activityReducePrice}}</li>
-        <li><span>优惠券抵扣：</span>-￥{{sf.price orderInfo.couponReducePrice}}</li>
+        <li><span>活动优惠：</span>-￥{{sf.price activityReducePrice}}</li>
+        <li><span>优惠券抵扣：</span>-￥{{sf.price couponReducePrice}}</li>
         <li><span>积分抵扣：</span>-￥{{sf.price costPoint}}</li>
-        <li><span>运费：</span>免运费</li>
-        <li><span>实付款：</span><strong class="text-error">￥{{sf.price orderInfo.totalPrice}}</strong></li>
-        <li><span>可获得海淘积分：</span>{{orderInfo.totalPoint}}</li>
-        {{#if isCostCoupon}}
-          <li>已使用优惠券：{{costCoupon.couponDescription}}{{costCoupon.couponName}}</li>
-        {{/if}}
-        {{#if isPresentCoupon}}
-          <li>赠送优惠券：{{presentCoupon.couponDescription}}{{presentCoupon.couponName}}</li>
-        {{/if}}
-        {{#if isGiftBag}}
-          <li>赠送礼包：{{giftBag.couponDescription}}{{giftBag.couponName}}</li>
-        {{/if}}
-        {{#if isShareBag}}
-          <li>赠送红包: {{shareBag.couponDescription}}{{shareBag.couponName}}</li>
-        {{/if}}
-        {{#isShowBackMoney orderInfo}}<li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>{{/isShowBackMoney}}
+        <li><span>运费：</span>￥{{sf.price orderItem.logisticsFee}}</li>
+        <li><span>实付款：</span><strong class="text-error">￥{{sf.price totalPrice}}</strong></li>
+        
+        {{#orderItem.orderCouponItemList}}
+
+            {{#sf-coupon-type orderAction couponType 'COSTCOUPON'}}
+            <li><span>已使用优惠券：</span>{{couponDescription}}{{couponName}}</li>
+            {{/sf-coupon-type}}
+
+            {{#sf-coupon-type orderAction couponType 'CASH'}}
+            <li><span>赠送优惠券：</span>{{couponDescription}}{{couponName}}</li>
+            {{/sf-coupon-type}}
+
+            {{#sf-coupon-type orderAction couponType 'GIFTBAG'}}
+            <li><span>赠送礼包：</span>{{couponDescription}}{{couponName}}</li>
+            {{/sf-coupon-type}}
+
+            {{#sf-coupon-type orderAction couponType 'SHAREBAG'}}
+            <li><span>赠送红包：</span>{{couponDescription}}{{couponName}}</li>
+            {{/sf-coupon-type}}
+
+        {{/orderItem.orderCouponItemList}}
+
+        {{#isShowBackMoney orderItem}}<li><span class="icon icon97"></span><strong class="text-success">已退款</strong></li>{{/isShowBackMoney}}
     </ul>
     <ul>
-        <li><span>收货人：</span>{{receiveInfo.receiveName}}</li>
-        <li><span>手机号：</span>{{receiveInfo.mobile}}</li>
-        <li><span>收货地址：</span>{{receiveInfo.country}} {{receiveInfo.province}} {{receiveInfo.city}} {{receiveInfo.region}} {{receiveInfo.detailAddress}}</li>
+        <li><span>收货人：</span>{{orderItem.orderAddressItem.receiveName}}</li>
+        <li><span>手机号：</span>{{orderItem.orderAddressItem.mobile}}</li>
+        <li><span>收货地址：</span>{{orderItem.orderAddressItem.country}} {{orderItem.orderAddressItem.province}} {{orderItem.orderAddressItem.city}} {{orderItem.orderAddressItem.region}} {{orderItem.orderAddressItem.detailAddress}}</li>
     </ul>
     <span id="commentstep" style="margin-bottom:10px;display: inline-block;"></span>{{{nextStep}}}
   </div>

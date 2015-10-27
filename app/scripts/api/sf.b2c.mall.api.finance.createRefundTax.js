@@ -39,6 +39,8 @@ function($, can, _, Comm, SecurityType) {
       VERIFY:{
       },
       ERROR_CODE: {
+        '12100000': '财务系统内部异常',
+        '12110000': '该订单已提交过退税申请'
       }
     }
   });
