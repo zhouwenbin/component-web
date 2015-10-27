@@ -1,0 +1,21 @@
+%header-icon{
+	background:url(http://img0.sfht.com/cmsres/20151013/287d7c27-1494-4e00-8d69-5520ff497bad.png) no-repeat;
+	vertical-align:middle;
+	display:inline-block;
+}
+%comparison-icon{
+	background:url(#{$bg-url}comparison.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+}
+%faq-icon{
+	background:url(#{$bg-url}faq.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+	margin-right:14px;
+}
+%discovery-icon{
+	background: url(#{$bg-url}discovery.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}

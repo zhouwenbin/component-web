@@ -1,0 +1,44 @@
+@import 'module/product-1';
+.products5{
+	border: 1px solid #E5E5E5;
+	margin-bottom: 30px;
+}
+.products5-c1{
+	width: 236px;
+	height:330px;
+}
+.products5-c2{
+	width: 708px;
+}
+.products5-c3{
+	overflow:hidden;
+}
+
+.products5 .product-1{
+	margin-bottom: 0;
+}
+.products5 .product-1-r1 img{
+	max-width: 196px;
+	max-height: 196px;
+}
+.products5 .product-1-r1{
+	height: 196px;
+	margin-bottom: 17px;
+}
+.products5 .product-1-list li{
+	padding: 19px;
+	width: 196px;
+}
+.products5 .product-1-r2c1 img{
+	vertical-align: 0px;
+	margin-right: 7px;
+}
+.products5 .product-1-r2c1 strong{
+	font-size: 18px;
+}
+.products5 .product-1-r2c1 del{
+	color: #ccc;
+}
+.products5 .scroll li{
+	height: 74px;
+}

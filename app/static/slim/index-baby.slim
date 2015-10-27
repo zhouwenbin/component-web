@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>顺丰海淘</title>
+<!-- <link href="../css/swiper.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<link href="../css/index-baby.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  == Slim::Template.new('module/header.slim').render
+  <div class="pb">
+    <!--热卖商品-->
+    <div class="tab-baby clearfix pm">
+      <h2 class="tab-baby-hot fl">精选推荐</h2>
+      <ul class="fl">
+        <li class="tab-baby-first"><i class="baby-icon01"></i><a href="">孕期产后</a></li>
+        <li class="active"><i class="baby-icon02"></i><a href="">0－6月</a></li>
+        <li><i class="baby-icon03"></i><a href="">6－12月</a></li>
+        <li><i class="baby-icon04"></i><a href="">1－3岁</a></li>
+        <li><i class="baby-icon05"></i><a href="">3－6岁</a></li>
+        <li class="tab-baby-last active"><i class="baby-icon06"></i><a href="">6岁以上</a></li>
+      </ul>
+    </div>
+    <div class="products4 clearfix pm">
+      <div class="product-1 fl">
+        <ul class="product-1-list">
+          -for i in 1..3
+            <li>
+              <div class="product-1-r1">
+                <a href=""><img src="../img/index-makeup/product-img#{i}.png" alt="" ></a><span></span>
+                
+              </div>
+              <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+              <div class="product-1-r2 clearfix">
+                <div class="product-1-r2c1 fl">
+                  <img src="../img/icon-usa.png" alt="" width="22" height="14" /><span>￥</span><strong>129</strong><del>￥189</del>
+                </div>
+              </div>
+              <div class="icon icon-new"></div>
+            </li>
+        </ul>
+      </div>
+      <ul class="products4-c2">
+        -for i in 1..4
+          <li class="clearfix">
+            <div class="products4-c2c1 fr">
+              <a href=""><img src="../img/index-makeup/product-img#{i}.png" alt="" ></a>
+            </div>
+            <div class="products4-c2c2">
+              <h4>NGYEG法式马卡龙五色6颗装</h4>
+              <p><span class="text-important">￥129</span></p>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+  <!--尾部-->
+  == Slim::Template.new('module/footer.slim').render
+  <!--尾部-->
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/scroll.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/slider2.js"></script>
+</body>
+</html>

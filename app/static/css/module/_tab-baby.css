@@ -1,0 +1,21 @@
+.tab {
+  margin-bottom: 20px;
+}
+
+.tab li {
+  float: left;
+  box-sizing: border-box;
+  width: 207px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+  background: #C7B2FF;
+  font-size: 18px;
+  margin-right: 2px;
+  color: #fff;
+}
+
+.tab li.active {
+  background: #AF8FFF;
+}

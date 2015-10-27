@@ -1,0 +1,125 @@
+/*footer1*/
+.footer1{
+	height: 54px;
+	line-height: 54px;
+	padding: 13px 0;
+	background: #3E3A39;
+	color: #fff;
+	font-size: 14px;
+}
+.footer1 ul{
+	overflow: hidden;
+}
+.footer1 li{
+	float: left;
+	width: 235px;
+	text-align: center;
+	border-left: 1px solid #635D5C;
+	margin-left: -1px;
+}
+.footer1 h2{
+	margin-top: 15px;
+	color: #949494;
+	font-weight:normal;
+}
+%footer1-icon{
+	display: inline-block;
+	background:url(#{$bg-url}footer-icon.png) no-repeat;
+	vertical-align:middle;
+	margin-right: 24px;
+}
+.footer-icon01{
+	@extend %footer1-icon;
+	background-position: -39px -72px;
+	width: 37px;
+	height: 36px;
+}
+.footer-icon02{
+	@extend %footer1-icon;
+	background-position:-158px -72px;
+	width: 27px;
+	height: 33px;
+}
+.footer-icon03{
+	@extend %footer1-icon;
+	background-position:-38px -127px;
+	width: 36px;
+	height: 40px;
+}
+.footer-icon04{
+	@extend %footer1-icon;
+	background-position:-152px -127px;
+	width: 40px;
+	height: 31px;
+}
+.footer-icon05{
+	@extend %footer1-icon;
+	background-position:-48px -193px;
+	width: 36px;
+	height: 33px;
+}
+.footer-icon06{
+	@extend %footer1-icon;
+	background-position:-38px -13px;
+	width: 147px;
+	height: 41px;
+	margin-right: 0;
+}
+
+/*footer2*/
+.footer2{
+	background: #F1F1F1;
+	font-size: 14px;
+	padding-bottom: 25px;
+}
+.footer2 .pm{
+	padding-top: 29px;
+	padding-bottom: 26px;
+}
+.footer2 dl{
+	float: left;
+	margin-left:98px;
+}
+.footer2 dt{
+	font-size: 14px;
+	color: #3E3A39;
+	margin-bottom: 22px;
+}
+.footer2 dd{
+	margin-top: 10px;
+}
+.footer2 a,
+.footer2 dd{
+	font-size: 12px;
+	color: #999;
+}
+.footer2-c1{
+	margin-right: 88px;
+}
+.footer2-c2{
+	margin-left:-98px;
+}
+.footer2-c2 .icon{
+	margin-right: 10px;
+}
+
+.footer2-c3{
+	padding-left: 38px;
+}
+.footer2-c4{
+	margin-right: 16px;
+	text-align: center;
+	position: relative;
+}
+.footer2-c4:hover img,
+.footer2-c4:active img{
+	display:block;
+}
+.footer2 .icon66{
+	margin-right: 10px;
+}
+.footer-copyright{
+	text-align: center;
+	font-size: 12px;
+	color: #999;
+}

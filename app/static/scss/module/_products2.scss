@@ -1,0 +1,48 @@
+@import 'scroll';
+.products2{
+	border:1px solid #F1F1F1;
+	margin-bottom: 30px;
+	height: 500px;
+	overflow: hidden;
+}
+.products2-c1{
+	width: 190px;
+}
+.products2-c2{
+	width: 280px;
+}
+.products2-c3{
+	overflow: hidden;
+}
+
+.products2-list ul{
+	margin-bottom: -1px;
+}
+.products2-list li{
+	float: left;
+	width: 196px;
+	padding:0 20px;
+	height: 249px;
+	border-left: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	margin-left: -1px;
+	text-align: center;
+}
+.products2-list h3{
+	padding-top: 28px;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: normal;
+}
+.products2-list p{
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 26px;
+}
+.products2-list .text-important,
+.products2-list del{
+	margin: 0 4px;
+}
+.products2-list-img{
+	position: relative;
+}
