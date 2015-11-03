@@ -1,9 +1,10 @@
-﻿@import 'utils/variables';
-@import 'utils/placeholders';
-@import 'module/pay-success';
-@import 'module/gift';
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/pay-success';
+@import '../../module/gift';
 .header {
-  border-bottom: 3px solid #353a42;
+  border-bottom: 1px solid #353a42;
+  padding-bottom:23px;
 }
 .nav{
 	display: none;
