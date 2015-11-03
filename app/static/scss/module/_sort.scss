@@ -1,5 +1,5 @@
 .sort{
-	text-align: right;
+	text-align: left;
 	margin-bottom: 17px;
 }
 .sort ul,
@@ -36,4 +36,17 @@
 }
 .sort a.active .icon107{
 	transform:rotate(180deg);
+}
+.sort label{
+	height: 28px;
+	line-height: 28px;
+	padding-left: 30px;
+	input{
+		vertical-align: text-top;
+		margin-top: 2px;
+	}
+}
+.sf-b2c-mall-search-pagesShow .page{
+	text-align: center;
+	margin-bottom: 30px;
 }
