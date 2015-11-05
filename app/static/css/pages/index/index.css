@@ -1,0 +1,59 @@
+/*
+Error: File to import not found or unreadable: utils/variables.
+       Load paths:
+         /Users/user/git/haitao-b2c-web/app/static/scss/pages/index
+         /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/bourbon-4.0.2/app/assets/stylesheets
+         /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/neat-1.7.0/app/assets/stylesheets
+         /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/bitters-0.10.1/app/assets/stylesheets
+         /Users/user/git/haitao-b2c-web/app/static/scss/pages/index/sass
+         /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/compass-core-1.0.1/stylesheets
+         Compass::SpriteImporter
+        on line 1 of index.scss
+
+1: @import 'utils/variables';
+2: @import 'utils/placeholders';
+3: @import 'module/slider';
+4: @import 'module/brand';
+5: @import 'module/flashsale';
+6: @import 'module/products';
+
+Backtrace:
+index.scss:1
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:66:in `rescue in import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:45:in `import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:28:in `imported_file'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:37:in `css_import?'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:301:in `visit_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `map'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `load'
+/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: utils/variables.\A        Load paths:\A          /Users/user/git/haitao-b2c-web/app/static/scss/pages/index\A          /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/bourbon-4.0.2/app/assets/stylesheets\A          /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/neat-1.7.0/app/assets/stylesheets\A          /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/bitters-0.10.1/app/assets/stylesheets\A          /Users/user/git/haitao-b2c-web/app/static/scss/pages/index/sass\A          /Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/compass-core-1.0.1/stylesheets\A          Compass::SpriteImporter\A         on line 1 of index.scss\A \A 1: @import 'utils/variables';\A 2: @import 'utils/placeholders';\A 3: @import 'module/slider';\A 4: @import 'module/brand';\A 5: @import 'module/flashsale';\A 6: @import 'module/products';"; }
