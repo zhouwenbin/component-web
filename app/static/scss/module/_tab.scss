@@ -40,6 +40,9 @@
 	color: #666;
 	margin: 0 10px;
 }
+.tab-text a:hover{
+	text-decoration: underline;
+}
 .tab-text span{
 	color: #ccc;
 }
@@ -76,4 +79,13 @@
 	border-radius: 2px;
 	margin: 0 5px;
 	color: #fff;
+}
+.tab-content{
+	opacity:0;
+	display:none;
+	transition:all 0.5s;
+}
+.tab-content.active{
+	display:block;
+	opacity:1;
 }

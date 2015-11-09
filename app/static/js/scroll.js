@@ -11,6 +11,10 @@ function Scroll(element){
     var scrollLiHeight = scrollLi.height() + 8;
     var scrollLiLength = scrollLi.length;
     var index = 0;
+    if (scrollLiLength < 7){
+        scrollPrev.hide();
+        scrollNext.hide();
+    }
     scrollPrev.click(function(){
         index--;
         if(index < 0){

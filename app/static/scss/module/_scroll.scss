@@ -6,7 +6,7 @@
 }
 .scroll:hover .scroll-prev,
 .scroll:hover .scroll-next{
-	display: block;
+	opacity:1;
 }
 .scroll ul{
 	position: relative;
@@ -26,8 +26,9 @@
 	position: absolute;
 	left: 50%;
 	margin-left: -50px;
-	display: none;
-	z-index: 1
+	opacity:0;
+	z-index: 1;
+	transition:all 0.5s;
 }
 .scroll-prev{
 	background: url(http://img0.sfht.com/cmsres/20150921/7481120f-26b2-41b3-a39f-a26048f64526.png) no-repeat;

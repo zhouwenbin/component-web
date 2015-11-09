@@ -87,7 +87,7 @@
 	width: 16px;
 	height: 0;
 	padding-top: 16px;
-	background: url(http://img.sfht.com/sfht/img/icon.png) no-repeat -101px 0;
+	background: url(#{$bg-url}icon.png) no-repeat -101px 0;
 	overflow: hidden;
 	position: relative;
 }
@@ -190,7 +190,7 @@
 .btn-select{
 	border: 1px solid #c6c6c6;
 	padding-right:5px;
-	background: #fff url(http://img.sfht.com/sfht/img/btn-select.png) repeat-x;
+	background: #fff url(http://img0.sfht.com/sfht/img/btn-select.png) repeat-x;
 	cursor: pointer;
 	*display: inline;
 	*zoom:1;
@@ -238,7 +238,7 @@
 	margin-top: -5px;
 }
 .btn-select-1{
-	background: url(http://img.sfht.com/sfht/img/btn-select1.png) repeat-x;
+	background: url(http://img0.sfht.com/sfht/img/btn-select1.png) repeat-x;
 	z-index: map-get($z-index,btn-select-1);
 }
 .btn-select-1 .btn-select-num{
@@ -325,10 +325,9 @@
   vertical-align: middle;
   font-size: 14px;
   text-align: center;
-  border-radius: 2px;
-  width: 134px;
-  height: 44px;
-  line-height: 44px;
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
 
 }
 
@@ -351,14 +350,15 @@
 .btn-danger{
 	@extend %btn;
   color:#fff !important;
-  background:#dc3334;
+  background:#E73736;
   border: 1px solid #dc3334;
 }
 .btn-danger:hover{
-	background:#e84145;
+	background:#E73736;
+	background: rgba(231,55,54,0.9);
 }
 .btn-danger:active{
-	background:#ce393d;
+	box-shadow:inset 0 1px 3px rgba(0,0,0,0.25);
 }
 .btn-warnning{
 	@extend %btn;
@@ -393,6 +393,18 @@
 .btn-soon:active{
 	background:#f7661d;
 }
+.btn-black{
+	@extend %btn;
+  background: #3E3A39;
+  color: #fff !important;
+  border: 1px solid #3E3A39;
+}
+.btn-black:hover{
+	background: rgba(62,58,57,0.9);
+}
+.btn-black:active{
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+}
 .btn-disable{
 	@extend %btn;
   color: #888888 !important;
@@ -408,9 +420,9 @@
 }
 
 .btn-small{
-	width:90px;
-	height:36px;
-	line-height:36px;
+	width:80px;
+	height:30px;
+	line-height:30px;
 	font-size:12px;
 }
 .btn-big{
@@ -450,7 +462,7 @@
 }
 .btn-search-close:before{
 	content: '';
-	background: url(../img/icon.png) no-repeat -207px -208px;
+	background: url(#{$bg-url}icon.png) no-repeat -207px -208px;
 	width: 8px;
 	height: 8px;
 	position: absolute;
@@ -459,4 +471,4 @@
 	margin-left: -4px;
 	margin-top: -4px;
 	transition:all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
+} 

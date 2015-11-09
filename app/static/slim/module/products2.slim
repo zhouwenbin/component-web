@@ -8,8 +8,8 @@
   <div class="scroll">
     <a href="javascript:" class="scroll-prev"></a>
     <ul>
-      -for i in 1..16
-        <li><a href=""><img src="../img/index-makeup/logo#{i%6+1}.png" alt="" /></a></li>
+      -for i in 1..12
+        <li><a href=""><img src="../../../img/other/index-makeup/logo#{i%6+1}.png" alt="" /></a></li>
     </ul>
     <a href="javascript:" class="scroll-next"></a>
   </div>
@@ -18,9 +18,11 @@
   <div class="swiper-container">    
       <div class="swiper-wrapper">
           -for i in 1..3
-            <div class="swiper-slide"><img src="../img/index-makeup/slider2-img#{i}.png" alt="" width="280" height="500"></div>
+            <div class="swiper-slide"><img src="../../../img/other/index-makeup/slider2-img#{i}.png" alt="" width="280" height="500"></div>
       </div>
       <div class="swiper-pagination"></div>
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
   </div>
 </div>
 <div class="products2-c3">
@@ -28,18 +30,18 @@
     <ul class="clearfix">
       -for i in 1..3
         <li>
-          <h3>倩碧超级品牌日</h3>
+          <h3><a href="">倩碧超级品牌日</a></h3>
           <p>超值礼赠</p>
           <div class="products2-list-img">
-            <img src="../img/index-makeup/products2-list#{i}.png" alt="" width="186" height="140">
+            <img src="../../../img/other/index-makeup/products2-list#{i}.png" alt="" width="186" height="140">
           </div>
         </li>
-	  -for i in 1..3
+      -for i in 1..3
         <li>
-          <h3>倩碧超级品牌日</h3>
+          <h3><a href="">倩碧超级品牌日</a></h3>
           <p><span class="text-important">￥89</span><del>￥129</del></p>
           <div class="products2-list-img">
-            <img src="../img/index-makeup/product-img#{i}.png" alt="" width="140" height="140">
+            <img src="../../../img/other/index-makeup/product-img#{i}.png" alt="" width="140" height="140">
             <div class="icon icon-soldout icon-soldout-normal">已售光</div>
           </div>
         </li>

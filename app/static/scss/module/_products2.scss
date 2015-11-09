@@ -10,6 +10,7 @@
 }
 .products2-c2{
 	width: 280px;
+	border-left:1px solid #F1F1F1;
 }
 .products2-c3{
 	overflow: hidden;
@@ -33,6 +34,9 @@
 	margin-bottom: 8px;
 	font-size: 14px;
 	font-weight: normal;
+}
+.products2-list h3 a:hover{
+	text-decoration: underline;
 }
 .products2-list p{
 	font-size: 14px;
