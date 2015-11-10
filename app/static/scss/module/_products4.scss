@@ -17,11 +17,8 @@
 	max-width: 120px;
 	max-height: 120px;
 }
-.products4-c2 p{
+.products4-c2 .text-important{
 	font-size: 14px;
-}
-.products4-c2 p .text-important{
-	font-size:18px;
 }
 .products4-c2c1{
 	margin-left: 10px;
@@ -35,6 +32,9 @@
 	overflow:hidden;
 	margin-bottom: 41px;
 }
+.products4-c2 h4 a:hover{
+	text-decoration: underline;
+}
 .products4 .product-1{
 	margin-bottom: 0;
 }
@@ -47,15 +47,12 @@
 	margin-bottom: 17px;
 }
 .products4 .product-1-list li{
-	padding: 19px;
+	padding: 21px 19px 20px;
 	width: 196px;
 }
 .products4 .product-1-r2c1 img{
 	vertical-align: 0px;
 	margin-right: 7px;
-}
-.products4 .product-1-r2c1 strong{
-	font-size: 18px;
 }
 .products4 .product-1-r2c1 del{
 	color: #ccc;

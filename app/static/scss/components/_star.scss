@@ -1,7 +1,7 @@
 .commstar {
     width: 105px;
     height: 14px;
-    background: url(../img/star.png) 0 -14px repeat-x;
+    background: url(#{$bg-url}star.png) 0 -14px repeat-x;
     position: relative;
     margin-top: 5px;
     display: inline-block;
@@ -22,7 +22,7 @@
 
 .commstar .active,
 .commstar a:hover {
-    background: url(../img/star.png) left top repeat-x;
+    background: url(#{$bg-url}star.png) left top repeat-x;
 }
 
 .commstar .star1 {
