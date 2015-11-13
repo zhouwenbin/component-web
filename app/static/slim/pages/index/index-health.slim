@@ -4,19 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/swiper.min.css" rel="stylesheet" type="text/css" />
-<link href="../css/index-health.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/swiper.min.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/index-health.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-  == Slim::Template.new('module/header.slim').render
+  == Slim::Template.new('../../module/header.slim').render
   <div class="pb">
     <!--热卖商品-->
-    == Slim::Template.new('module/slider.slim').render
-    == Slim::Template.new('module/product-1.slim').render
+    == Slim::Template.new('../../module/slider.slim').render
+    == Slim::Template.new('../../module/product-1.slim').render
     
-    == Slim::Template.new('module/product2-1.slim').render
+    == Slim::Template.new('../../module/product2-1.slim').render
     
     <div class="flashsale3">
       <div class="pm">
@@ -24,23 +24,23 @@
         <ul>
           -for i in 1..4
             <li>
-              <img src="../img/index-makeup/flashsale3-img#{i}.png">
+              <img src="../../../img/other/index-makeup/flashsale3-img#{i}.png">
             </li>
         </ul>
       </div>   
     </div>
     -for i in 1..3
-      == Slim::Template.new('module/products2.slim').render
-    <div class="index2-banner" style="height:300px; background: url(../img/index-makeup/index-health-banner.png) no-repeat center top">
+      == Slim::Template.new('../../module/products2.slim').render
+    <div class="index2-banner" style="height:300px; background: url(../../../img/index-makeup/index-health-banner.png) no-repeat center top">
   </div>
   <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
+  == Slim::Template.new('../../module/footer.slim').render
   <!--尾部-->
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/slider.js"></script>
-  <script src="js/scroll.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/slider2.js"></script>
-  <script src="js/slidebar.js"></script>
+  <script src="../../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../../js/slider.js"></script>
+  <script src="../../../js/scroll.js"></script>
+  <script src="../../../js/swiper.min.js"></script>
+  <script src="../../../js/slider2.js"></script>
+  <script src="../../../js/slidebar.js"></script>
 </body>
 </html>
