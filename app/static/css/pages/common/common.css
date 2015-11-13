@@ -2792,7 +2792,7 @@ a[title="站长统计"] {
 
 .footer-icon01, .footer-icon02, .footer-icon03, .footer-icon04, .footer-icon05, .footer-icon06 {
   display: inline-block;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/footer-icon.png) no-repeat;
+  background: url(http://img0.sfht.com/fqht/web-common-oss/2.0.12/img/footer-icon.png) no-repeat;
   vertical-align: middle;
   margin-right: 24px; }
 
@@ -2908,6 +2908,13 @@ a[title="站长统计"] {
 .svg-footer5 {
   font-size: 36px;
   margin-right: 18px; }
+
+.svg-footer6 {
+  width: 147px;
+  height: 41px; }
+
+.svg-avatar {
+  margin-right: 10px; }
 
 /*布局*/
 .pm {
