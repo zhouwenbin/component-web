@@ -5,13 +5,13 @@ body{
 	background: #C2F1F8;
 }
 .tab li.active{
-	background: #C2F1F8;
+	background: #0CC0DB;
 }
 .tab li.active a{
 	color:#333;
 }
 .tab li.active:before{
-	border-color: #C2F1F8 transparent transparent transparent;
+	border-color: #0CC0DB transparent transparent transparent;
 }
 .slidebar-c1>li strong{
 	color: #99E7FF;
