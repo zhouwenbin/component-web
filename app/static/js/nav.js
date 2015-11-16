@@ -18,9 +18,9 @@ $(function(){
   //----------加入购物车-------------//
   $('.product-1').on("click", '.btn-black', function(){
     if($(window).scrollTop() > 166){
-        var target=$('.header-icon05').eq(1).offset()
+        var target=$('.nav-fixed-cart').offset()
     }else{
-        var target=$('.header-icon05').eq(0).offset()
+        var target=$('.cart-num').offset()
     }
     var that = $(this),
         targetX=target.left,
