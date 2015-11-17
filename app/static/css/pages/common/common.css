@@ -143,7 +143,8 @@ a[title="站长统计"] {
 /*两端对齐*/
 .justify {
   text-align: justify;
-  text-align-last: justify;
+  -moz-text-align-last: justify;
+       text-align-last: justify;
   display: inline-block;
   vertical-align: middle;
   width: 4em; }
@@ -2940,7 +2941,6 @@ a[title="站长统计"] {
   height: 37px;
   line-height: 37px;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box; }
 
 .nav-c1 a:hover,

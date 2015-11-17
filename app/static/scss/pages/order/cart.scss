@@ -1,13 +1,13 @@
-﻿@import 'utils/variables';
-@import 'utils/placeholders';
-@import 'module/address-add';
-@import 'module/address';
-@import 'module/cart';
-@import 'module/cart-footer';
-@import 'module/order-confirm';
-@import 'module/cart-coupon';
-@import 'module/coupon';
-@import 'module/coupons';
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/address-add';
+@import '../../module/address';
+@import '../../module/cart';
+@import '../../module/cart-footer';
+@import '../../module/order-confirm';
+@import '../../module/cart-coupon';
+@import '../../module/coupon';
+@import '../../module/coupons';
 .nav{
 	display: none;
 }
@@ -77,4 +77,55 @@
 }
 .cart-match .label{
 
+}
+.cart-delete-icon01,
+.cart-sale-icon01,
+.cart-cut-icon01{
+	display: inline-block;
+}
+.cart-delete-icon01{	
+	background: url(#{$bg-url}/icon/cart-delete-icon01.png) no-repeat;
+}
+.cart-sale-icon01{
+	background: url(#{$bg-url}/icon/cart-sale-icon01.png) no-repeat;
+}
+.cart-cut-icon01{
+	background: url(#{$bg-url}/icon/cart-cut-icon01.png) no-repeat;
+}
+.cart-save-icon01{
+	background: url(#{$bg-url}/icon/cart-save-icon01.png) no-repeat;
+	margin-left: -30px;
+	margin-top: 4px;
+}
+.svg-cart-delete,
+.cart-delete-icon01{
+	width: 16px;
+	height: 18px;
+}
+.svg-cart-sale,
+.cart-sale-icon01{
+	width: 58px;
+	height: 14px;
+}
+.cart-cut-icon01,
+.svg-cart-cut,
+.svg-cart-cut-gray,
+.cart-cut-gray-icon01{
+	width: 60px;
+	height: 48px;
+	position: absolute;
+    left: 56px;
+    top: -10px;
+}
+.svg-cart-save{
+	width: 20px;
+	height: 20px;
+	margin: -1px 4px 0 -24px;
+}
+.svg-cart-doubt{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	left: 6px;
+	top: -1px;
 }
