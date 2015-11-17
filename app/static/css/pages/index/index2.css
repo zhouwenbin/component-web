@@ -1044,6 +1044,32 @@
 .products5 .scroll li {
   height: 74px; }
 
+.icon-addtocart {
+  fill: #fff;
+  color: #E73736;
+  margin-top: -5px; }
+
+.icon-addtocart:hover {
+  fill: #E73736;
+  color: #fff; }
+
+.icon-addtocart-disabled {
+  fill: #fff;
+  color: #666; }
+
+.icon-addtocart-disabled:hover {
+  fill: #fff;
+  color: #666; }
+
+.icon-addtocart-png {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url(http://img0.sfht.com/cmsres/20151113/bd66cc51-615b-4780-915a-b77de0d70363.png); }
+
+.icon-addtocart-png:hover {
+  background: url(http://img0.sfht.com/cmsres/20151113/e750b918-9738-41be-adb6-a6bd07dd1c81.png); }
+
 .product-1 {
   margin-bottom: 20px; }
 
