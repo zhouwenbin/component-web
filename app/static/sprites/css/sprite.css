@@ -1,0 +1,221 @@
+.icon {
+    font-size: 10px;
+}
+
+.icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 18.1em 81.5em;
+}
+
+.no-svg .icon:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.icon.icon-addtocart:before {
+    background-position: 0em 0em;
+    width: 3em;
+    height: 3em;
+}
+
+.icon.icon-ashbin:before {
+    background-position: 0em -3em;
+    width: 1.6em;
+    height: 1.6em;
+}
+
+.icon.icon-beauty-makeup:before {
+    background-position: 0em -4.6em;
+    width: 1.3em;
+    height: 1.5em;
+}
+
+.icon.icon-body:before {
+    background-position: 0em -6.1em;
+    width: 1.2em;
+    height: 1.8em;
+}
+
+.icon.icon-cup:before {
+    background-position: 0em -7.9em;
+    width: 1.6em;
+    height: 1.2em;
+}
+
+.icon.icon-earth:before {
+    background-position: 0em -9.1em;
+    width: 1.7em;
+    height: 1.7em;
+}
+
+.icon.icon-face:before {
+    background-position: 0em -10.8em;
+    width: 1.6em;
+    height: 1.6em;
+}
+
+.icon.icon-footer1:before {
+    background-position: 0em -12.4em;
+    width: 3.7em;
+    height: 3.6em;
+}
+
+.icon.icon-footer2:before {
+    background-position: 0em -16em;
+    width: 3.6em;
+    height: 4em;
+}
+
+.icon.icon-footer3:before {
+    background-position: 0em -20em;
+    width: 2.7em;
+    height: 3.3em;
+}
+
+.icon.icon-footer4:before {
+    background-position: 0em -23.3em;
+    width: 4em;
+    height: 3.1em;
+}
+
+.icon.icon-footer5:before {
+    background-position: 0em -26.4em;
+    width: 3.6em;
+    height: 3.3em;
+}
+
+.icon.icon-footer6:before {
+    background-position: 0em -29.7em;
+    width: 14.7em;
+    height: 4.1em;
+}
+
+.icon.icon-hair:before {
+    background-position: 0em -33.8em;
+    width: 1.5em;
+    height: 1.3em;
+}
+
+.icon.icon-header-cart-black:before {
+    background-position: 0em -35.1em;
+    width: 2.2em;
+    height: 1.9em;
+}
+
+.icon.icon-header-cart-red:before {
+    background-position: 0em -37em;
+    width: 2.5em;
+    height: 2.2em;
+}
+
+.icon.icon-header-logo:before {
+    background-position: 0em -39.2em;
+    width: 14.9em;
+    height: 3.6em;
+}
+
+.icon.icon-header-logo-big:before {
+    background-position: 0em -42.8em;
+    width: 18.1em;
+    height: 6.6em;
+}
+
+.icon.icon-header-num:before {
+    background-position: 0em -49.4em;
+    width: 2.3em;
+    height: 2.4em;
+}
+
+.icon.icon-header1:before {
+    background-position: 0em -51.8em;
+    width: 18.1em;
+    height: 6.6em;
+}
+
+.icon.icon-header2:before {
+    background-position: 0em -58.4em;
+    width: 2em;
+    height: 2.4em;
+}
+
+.icon.icon-header3:before {
+    background-position: 0em -60.8em;
+    width: 2em;
+    height: 2.4em;
+}
+
+.icon.icon-header4:before {
+    background-position: 0em -63.2em;
+    width: 2em;
+    height: 2.4em;
+}
+
+.icon.icon-header6:before {
+    background-position: 0em -65.6em;
+    width: 0.8em;
+    height: 1.3em;
+}
+
+.icon.icon-header8:before {
+    background-position: 0em -66.9em;
+    width: 2.3em;
+    height: 2.4em;
+}
+
+.icon.icon-makeup:before {
+    background-position: 0em -69.3em;
+    width: 1.5em;
+    height: 1.2em;
+}
+
+.icon.icon-man:before {
+    background-position: 0em -70.5em;
+    width: 1.3em;
+    height: 1.4em;
+}
+
+.icon.icon-mask:before {
+    background-position: 0em -71.9em;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.icon.icon-mouth:before {
+    background-position: 0em -73.4em;
+    width: 1.3em;
+    height: 1.5em;
+}
+
+.icon.icon-sidebar1:before {
+    background-position: 0em -74.9em;
+    width: 1.2em;
+    height: 1.5em;
+}
+
+.icon.icon-sidebar2:before {
+    background-position: 0em -76.4em;
+    width: 1.6em;
+    height: 1em;
+}
+
+.icon.icon-sidebar3:before {
+    background-position: 0em -77.4em;
+    width: 1.3em;
+    height: 1.5em;
+}
+
+.icon.icon-sidebar4:before {
+    background-position: 0em -78.9em;
+    width: 1.3em;
+    height: 1.1em;
+}
+
+.icon.icon-women:before {
+    background-position: 0em -80em;
+    width: 1.4em;
+    height: 1.5em;
+}
+
