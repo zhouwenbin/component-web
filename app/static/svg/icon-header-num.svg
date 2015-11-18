@@ -9,9 +9,6 @@
             <g id="Group-Copy" sketch:type="MSLayerGroup">
                 <g id="Oval-1-+-1" transform="translate(1390.000000, 35.000000)">
                     <path d="M11.5075911,23.4103281 C15.5255299,21.9001845 22.5075911,17.260851 22.5075911,11.1857187 C22.5075911,5.1105865 17.5827233,0.18571875 11.5075911,0.18571875 C5.43245883,0.18571875 0.507591073,5.1105865 0.507591073,11.1857187 C0.507591073,17.260851 8.16781033,21.9001845 11.5075911,23.4103281 Z" id="Oval-1" fill="#E73736" sketch:type="MSShapeGroup"></path>
-                    <text id="1" sketch:type="MSTextLayer" font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="8" y="15">12</tspan>
-                    </text>
                 </g>
             </g>
         </g>
