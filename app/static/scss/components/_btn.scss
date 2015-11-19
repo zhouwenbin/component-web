@@ -1,3 +1,91 @@
+/*
+@styleguide
+
+# btn 按钮
+
+<h2 class="index-h2">btn-small</h2>
+<button class="btn btn-normal btn-small">btn-normal</button>
+<button class="btn btn-dashed btn-small">btn-dashed</button>
+<button class="btn btn-danger btn-small">btn-danger</button>
+<button class="btn btn-disable btn-small">btn-disable</button>
+<button class="btn btn-success btn-small">btn-success</button>
+<button class="btn btn-warnning btn-small">btn-warnning</button>
+<button class="btn btn-soon btn-small">btn-soon</button>
+<h2 class="index-h2">btn-normal</h2>
+<button class="btn btn-normal">btn-normal</button>
+<button class="btn btn-dashed">btn-dashed</button>
+<button class="btn btn-danger">btn-danger</button>
+<button class="btn btn-disable">btn-disable</button>
+<button class="btn btn-success">btn-success</button>
+<button class="btn btn-warnning">btn-warnning</button>
+<button class="btn btn-soon">btn-soon</button>
+<h2 class="index-h2">btn-big</h2>
+<button class="btn btn-normal btn-big">btn-normal</button>
+<button class="btn btn-dashed btn-big">btn-dashed</button>
+<button class="btn btn-danger btn-big">btn-danger</button>
+<button class="btn btn-disable btn-big">btn-disable</button>
+<button class="btn btn-success btn-big">btn-success</button>
+<button class="btn btn-warnning btn-big">btn-warnning</button>
+<button class="btn btn-soon btn-big">btn-soon</button>
+<h2 class="index-h2">btn-large</h2>
+<button class="btn btn-normal btn-large">btn-normal</button>
+<button class="btn btn-dashed btn-large">btn-dashed</button>
+<button class="btn btn-danger btn-large">btn-danger</button>
+<button class="btn btn-disable btn-large">btn-disable</button>
+<button class="btn btn-success btn-large">btn-success</button>
+<button class="btn btn-warnning btn-large">btn-warnning</button>
+<button class="btn btn-soon btn-large">btn-soon</button>
+<h2 class="index-h2">btn-radius</h2>
+<button class="btn btn-normal btn-radius">btn-normal</button>
+<button class="btn btn-dashed btn-radius">btn-dashed</button>
+<button class="btn btn-danger btn-radius">btn-danger</button>
+<button class="btn btn-disable btn-radius">btn-disable</button>
+<button class="btn btn-success btn-radius">btn-success</button>
+<button class="btn btn-warnning btn-radius">btn-warnning</button>
+<button class="btn btn-soon btn-radius">btn-soon</button>
+
+    <h2 class="index-h2">btn-small</h2>
+	<button class="btn btn-normal btn-small">btn-normal</button>
+	<button class="btn btn-dashed btn-small">btn-dashed</button>
+	<button class="btn btn-danger btn-small">btn-danger</button>
+	<button class="btn btn-disable btn-small">btn-disable</button>
+	<button class="btn btn-success btn-small">btn-success</button>
+	<button class="btn btn-warnning btn-small">btn-warnning</button>
+	<button class="btn btn-soon btn-small">btn-soon</button>
+	<h2 class="index-h2">btn-normal</h2>
+	<button class="btn btn-normal">btn-normal</button>
+	<button class="btn btn-dashed">btn-dashed</button>
+	<button class="btn btn-danger">btn-danger</button>
+	<button class="btn btn-disable">btn-disable</button>
+	<button class="btn btn-success">btn-success</button>
+	<button class="btn btn-warnning">btn-warnning</button>
+	<button class="btn btn-soon">btn-soon</button>
+	<h2 class="index-h2">btn-big</h2>
+	<button class="btn btn-normal btn-big">btn-normal</button>
+	<button class="btn btn-dashed btn-big">btn-dashed</button>
+	<button class="btn btn-danger btn-big">btn-danger</button>
+	<button class="btn btn-disable btn-big">btn-disable</button>
+	<button class="btn btn-success btn-big">btn-success</button>
+	<button class="btn btn-warnning btn-big">btn-warnning</button>
+	<button class="btn btn-soon btn-big">btn-soon</button>
+	<h2 class="index-h2">btn-large</h2>
+	<button class="btn btn-normal btn-large">btn-normal</button>
+	<button class="btn btn-dashed btn-large">btn-dashed</button>
+	<button class="btn btn-danger btn-large">btn-danger</button>
+	<button class="btn btn-disable btn-large">btn-disable</button>
+	<button class="btn btn-success btn-large">btn-success</button>
+	<button class="btn btn-warnning btn-large">btn-warnning</button>
+	<button class="btn btn-soon btn-large">btn-soon</button>
+	<h2 class="index-h2">btn-radius</h2>
+	<button class="btn btn-normal btn-radius">btn-normal</button>
+	<button class="btn btn-dashed btn-radius">btn-dashed</button>
+	<button class="btn btn-danger btn-radius">btn-danger</button>
+	<button class="btn btn-disable btn-radius">btn-disable</button>
+	<button class="btn btn-success btn-radius">btn-success</button>
+	<button class="btn btn-warnning btn-radius">btn-warnning</button>
+	<button class="btn btn-soon btn-radius">btn-soon</button>
+
+*/
 .btn{
 	display: inline-block;
 	vertical-align: middle;

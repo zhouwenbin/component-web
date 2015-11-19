@@ -1,1 +1,41 @@
-.account-manage{height:353px;display:none;padding-left:100px;margin-top:55px}.account-manage.active{display:block}.account-manage1 .btn{margin-left:52px}.account-manage2 .btn{margin-left:79px}.account-manage input{padding-top:10px;padding-bottom:10px;width:247px}.account-manage li{margin-bottom:13px}.account-manage label{font-size:14px;margin-right:20px;width:5em}
+@charset "UTF-8";
+/*
+@styleguide
+
+# 账号管理
+
+*/
+.account-manage {
+  height: 353px;
+  display: none;
+  padding-left: 100px;
+  margin-top: 55px;
+}
+
+.account-manage.active {
+  display: block;
+}
+
+.account-manage1 .btn {
+  margin-left: 52px;
+}
+
+.account-manage2 .btn {
+  margin-left: 79px;
+}
+
+.account-manage input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 247px;
+}
+
+.account-manage li {
+  margin-bottom: 13px;
+}
+
+.account-manage label {
+  font-size: 14px;
+  margin-right: 20px;
+  width: 5em;
+}

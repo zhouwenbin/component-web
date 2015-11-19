@@ -1,7 +1,5 @@
 @charset "UTF-8";
 /*
-@styleguide
-
 # reset
 
 */
@@ -66,8 +64,6 @@ body, textarea, input, button, select, keygen, legend {
   outline: 0; }
 
 /*
-@styleguide
-
 # base
 
 */
@@ -95,8 +91,6 @@ a[title="站长统计"] {
   display: none; }
 
 /*
-@styleguide
-
 # help
 
 */
@@ -182,8 +176,6 @@ a[title="站长统计"] {
   vertical-align: middle; }
 
 /*
-@styleguide
-
 # btn 按钮
 
 <h2 class="index-h2">btn-small</h2>
@@ -734,8 +726,6 @@ a[title="站长统计"] {
           transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
 /*
-@styleguide
-
 # 弹窗
 
 <div class="dialog dialog-center show" style="position:static;margin:0">
@@ -941,8 +931,6 @@ a[title="站长统计"] {
   margin-top: 20px; }
 
 /*
-@styleguide
-
 # 图标
 
 已弃用，改成[svg](../app/static/icon/inlinesvg/symbols.html)
@@ -2017,8 +2005,6 @@ a[title="站长统计"] {
   fill: currentColor; }
 
 /*
-@styleguide
-
 # 文字
 
 <span class="text-success">success</span>
@@ -2051,8 +2037,6 @@ a[title="站长统计"] {
   color: #1376ce; }
 
 /*
-@styleguide
-
 # 蒙层
   
 */
@@ -2072,8 +2056,6 @@ a[title="站长统计"] {
   display: block; }
 
 /*
-@styleguide
-
 # input
 
 <input type="text" class="input" />
@@ -2106,8 +2088,6 @@ a[title="站长统计"] {
   color: #999; }
 
 /*
-@styleguide
-
 # 弹出提示
 
 <div class="tooltip-pos">
@@ -2300,8 +2280,6 @@ a[title="站长统计"] {
   border-color: transparent #fff transparent transparent; }
 
 /*
-@styleguide
-
 # 加载
   
 */
@@ -2359,8 +2337,6 @@ a[title="站长统计"] {
   padding-left: 10px; }
 
 /*
-@styleguide
-
 # 标签
 
 <span class="label label-success">success</span>
@@ -2419,8 +2395,6 @@ a[title="站长统计"] {
   margin-top: -3px; }
 
 /*
-@styleguide
-
 # 分页
 
 <div class="page">
@@ -2479,8 +2453,6 @@ a[title="站长统计"] {
   margin-right: -5px; }
 
 /*
-@styleguide
-
 # 链接
 
 <a class="link">链接</a>
@@ -2498,8 +2470,6 @@ a[title="站长统计"] {
   text-decoration: underline; }
 
 /*
-@styleguide
-
 # 提示
   
 */
@@ -2523,8 +2493,6 @@ a[title="站长统计"] {
   top: 6px; }
 
 /*
-@styleguide
-
 # 步骤
   
 */
@@ -2580,8 +2548,6 @@ a[title="站长统计"] {
   border-color: transparent transparent transparent #dc3334; }
 
 /*
-@styleguide
-
 # 标题
 	
 */
@@ -2596,8 +2562,6 @@ a[title="站长统计"] {
   margin-left: 20px; }
 
 /*
-@styleguide
-
 # 广告
 
 */
@@ -2721,8 +2685,6 @@ a[title="站长统计"] {
     display: none; }
 
 /*
-@styleguide
-
 # 标签
   
 */
@@ -2757,8 +2719,6 @@ a[title="站长统计"] {
   top: 10px; }
 
 /*
-@styleguide
-
 # 评星
   
 */
@@ -3106,8 +3066,6 @@ a[title="站长统计"] {
   margin: 0 13px; }
 
 /*
-@styleguide
-
 # 头部
 
 */
@@ -3287,8 +3245,6 @@ a[title="站长统计"] {
   height: 16px; }
 
 /*
-@styleguide
-
 # 头部搜索
 
 */
@@ -3408,8 +3364,6 @@ a[title="站长统计"] {
   line-height: 26px; }
 
 /*
-@styleguide
-
 # 尾部
 
 */
@@ -3563,8 +3517,6 @@ a[title="站长统计"] {
   margin-right: 10px; }
 
 /*
-@styleguide
-
 # 居中布局
 
 */
@@ -3573,8 +3525,6 @@ a[title="站长统计"] {
   margin: 0 auto; }
 
 /*
-@styleguide
-
 # 导航
 
 */
