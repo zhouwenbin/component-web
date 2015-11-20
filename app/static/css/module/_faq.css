@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# faq
+	
+	<div class="faq">
+	  <h3>FAQ</h3>
+	  <h4><span class="faq-icon1"></span>顺丰海淘如何保证网站所售商品均为正品？</h4>
+	  <p><span class="faq-icon2"></span>顺丰海淘所有商品均由正规渠道进货，全程政府监管，保证100%原装正品。<br />我们有严格的供应商选择和监管系统，只有符合SFHT筛选规则的供应商才能成为我们的合作供货方。例如：针对供应商，我们会考核其公司年度报税记录，其它交易往来记录，相关货源进货凭证等文档信息。在下单前，我们还会有专人进行货源地实地考察，以确保货物品质。所以，在100%正品的顺丰海淘网站购物，会给您带来高性价比和无后顾之忧的超值体验。</p>
+	  <h4><span class="faq-icon1"></span>保税仓、海外仓发货和海外直邮有什么区别？</h4>
+	  <p><span class="faq-icon2"></span>答：顺丰海淘的直采自营模式对比传统的海淘模式，其优势在于由保税仓在国内设仓，在物流到货上有很大的时效优势，一般情况下3~5天便可到货；海外仓发货，一般情况下6~10天即可到货；海外直邮商品到货时间为15天以上。</p>
+	  <h4><span class="faq-icon1"></span>下单后什么时候发货？大概多久可以收到商品？</h4>
+	  <p><span class="faq-icon2"></span>答：通常情况下，您的订单将在24小时内完成订单审核并打包出库，转由海关清关，通常需要2-3工作日的时间完成。物流合计时间请参考02条所示的物流时效。</p>
+	  <h4><span class="faq-icon1"></span>所售商品经由海关均会收取关税吗？</h4>
+	  <p><span class="faq-icon2"></span>答：依据《中华人民共和国进境物品归类表》的规定，以商品实际销售价格作为完税价格，参照个人物品行邮税税率征收进境物品进口税。海外进口商品需要依法向海关申报及纳税，但顺丰海淘已为您缴纳了商品税费，您享受的一定是高性价比的购物体验。</p>
+	</div>
+	
+*/
+.faq-icon1 {
+  width: 24px;
+  height: 25px;
+}
+
+.faq-icon2 {
+  width: 24px;
+  height: 25px;
+  background-position: -24px 0;
+  margin-left: -40px;
+}
+
+.faq {
+  padding: 0 30px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 8px;
+}
+
+.faq h3 {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.faq h4 {
+  font-size: 18px;
+  margin-bottom: 21px;
+  font-weight: normal;
+}
+
+.faq p {
+  padding-left: 40px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #666;
+  line-height: 24px;
+}

@@ -1,1 +1,69 @@
-.sort{text-align:right;margin-bottom:17px}.sort ul,.sort li{display:inline-block;vertical-align:middle}.sort ul{margin-left:18px;border:1px solid #ccc;-webkit-border-radius:4px;border-radius:4px}.sort li{border-right:1px solid #ccc;background:#f3f3f3}.sort li:last-child{border:none}.sort a{width:84px;height:28px;line-height:28px;text-align:center;display:block}.sort li.active{background:#fff}.sort .icon107{margin-left:3px}.sort a.active .icon107{-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg)}
+@charset "UTF-8";
+/*
+@styleguide
+
+# 排序
+	
+*/
+.sort {
+  text-align: left;
+  margin-bottom: 17px;
+}
+
+.sort ul,
+.sort li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sort ul {
+  margin-left: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f3f3f3;
+}
+
+.sort li {
+  border-right: 1px solid #ccc;
+}
+
+.sort li:last-child {
+  border: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.sort a {
+  width: 84px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  display: block;
+}
+
+.sort li.active {
+  background: #fff;
+}
+
+.sort .icon107 {
+  margin-left: 3px;
+}
+
+.sort a.active .icon107 {
+  transform: rotate(180deg);
+}
+
+.sort label {
+  height: 28px;
+  line-height: 28px;
+  padding-left: 30px;
+}
+
+.sort label input {
+  vertical-align: text-top;
+  margin-top: 2px;
+}
+
+.sf-b2c-mall-search-pagesShow .page {
+  text-align: center;
+  margin-bottom: 30px;
+}

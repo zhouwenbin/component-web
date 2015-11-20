@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 小编推荐
+
+	<div class="recommend2 clearfix">
+	    <h2 class="fl">小编推荐</h2>
+	    <p>新百伦这款夹克, New balance 新百伦女士放风立领软壳到评价普遍时质量好，价格很合理。但是衣服偏小。采用92%涤纶＋8%弹性纤维混合而成，防风且防水。插肩袖设计胸前有nb的logo。适合秋季a运动a穿着。</p>
+	</div>
+
+*/
+.recommend2 {
+  padding: 25px 50px 25px 44px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.recommend2 h2 {
+  font-size: 18px;
+  line-height: 22px;
+  width: 2em;
+  color: #999;
+  font-weight: normal;
+  padding-right: 36px;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  border-right: 1px solid #eee;
+}
+
+.recommend2 p {
+  font-size: 14px;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 20px 0 20px 38px;
+  color: #666;
+}

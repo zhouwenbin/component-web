@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 限时特卖2
+	
+*/
+.flashsale2 h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.flashsale2 .flashsale-c1 {
+  width: 500px;
+  height: 280px;
+}
+
+.flashsale2 p {
+  border-top: none;
+  padding-top: 0;
+}
+
+.flashsale2 .flashsale-c2-inner {
+  height: 197px;
+}

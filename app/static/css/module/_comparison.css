@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 海淘对比
+
+	<div class="comparison">
+		<div class="comparison-c1 fl">
+			<h3><span class="comparison-icon1"></span>顺丰海淘</h3>
+			<ul>
+			  <li>中文界面，方便浏览与支付</li>
+			  <li>政府监管，极速清关</li>
+			  <li>自营模式，提前备货，物流3~10天即可到手</li>
+			  <li>商品含税包邮，高性价比</li>
+			  <li>完善的客服体系，支持电话咨询与货品质量问题的赔付</li>
+			</ul>
+		</div>
+		<div class="comparison-c2">
+			<h3><span class="comparison-icon2"></span>传统海淘</h3>
+			<ul>
+			  <li>外文界面，付款繁琐</li>
+			  <li>运输安全无保障</li>
+			  <li>费心寻找转运公司，流程漫长，须30天以上</li>
+			  <li>关税自理且昂贵，不划算</li>
+			  <li>无客服无售后，满意靠运气</li>
+			</ul>
+		</div>
+	</div>
+
+*/
+.comparison {
+  padding: 48px 27px;
+  text-align: left;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.comparison li {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.comparison h3 {
+  padding-bottom: 6px;
+  font-size: 24px;
+}
+
+.comparison-c1 {
+  padding-left: 70px;
+  width: 440px;
+}
+
+.comparison-c1 h3 {
+  color: #dc3434;
+  font-weight: normal;
+}
+
+.comparison-c2 {
+  overflow: hidden;
+  padding-left: 44px;
+  padding-left: 70px;
+}
+
+.comparison-icon1 {
+  width: 54px;
+  height: 54px;
+  margin-left: -70px;
+  margin-right: 18px;
+}
+
+.comparison-icon2 {
+  width: 54px;
+  height: 54px;
+  margin-right: 18px;
+  margin-left: -70px;
+  background-position: -54px 0;
+}

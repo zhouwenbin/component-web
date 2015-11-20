@@ -1,3 +1,32 @@
+/*
+@styleguide
+
+# 海淘对比
+
+	<div class="comparison">
+		<div class="comparison-c1 fl">
+			<h3><span class="comparison-icon1"></span>顺丰海淘</h3>
+			<ul>
+			  <li>中文界面，方便浏览与支付</li>
+			  <li>政府监管，极速清关</li>
+			  <li>自营模式，提前备货，物流3~10天即可到手</li>
+			  <li>商品含税包邮，高性价比</li>
+			  <li>完善的客服体系，支持电话咨询与货品质量问题的赔付</li>
+			</ul>
+		</div>
+		<div class="comparison-c2">
+			<h3><span class="comparison-icon2"></span>传统海淘</h3>
+			<ul>
+			  <li>外文界面，付款繁琐</li>
+			  <li>运输安全无保障</li>
+			  <li>费心寻找转运公司，流程漫长，须30天以上</li>
+			  <li>关税自理且昂贵，不划算</li>
+			  <li>无客服无售后，满意靠运气</li>
+			</ul>
+		</div>
+	</div>
+
+*/
 .comparison{
 	padding:48px 27px;
 	text-align:left;

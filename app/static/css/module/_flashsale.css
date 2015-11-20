@@ -1,0 +1,201 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 限时特卖1
+
+	<div class="flashsale">
+		<h2 class="index-h2">限时特卖<span>每周一、四 上午10:00 强势更新</span></h2>
+
+		<ul>
+		  <li class="clearfix">
+		    <div class="flashsale-c1 fl">
+		      <a href=""><img src="http://placehold.it/670x340" alt="" /></a>
+		    </div>
+		    <div class="flashsale-c2">
+		      <div class="flashsale-c2-inner">
+		      	<h3><a href="">荷兰Nutrilon牛栏婴儿奶粉1段 850g/罐</a></h3>
+			      <div class="flashsale-address"><img src="../img/icon-usa.png" alt="" width="23" height="17">广州保税仓发货</div>
+			      <p>荷兰奶粉第一品牌，进口市场占有率高达73%。只采用最优质无污染的天然牧场奶源。口味清淡、粉质精细，更有活动超值狂欢价，单罐仅需110元，好味道更有好价格！</p>
+			      <div class="flashsale-c2r1">
+			        <span class="icon icon56"></span>仅剩：<span class="text-error">3天5小时20分10秒</span>
+			      </div>
+		      </div>
+			      
+		      <div class="flashsale-c2r2 clearfix">
+		        <div class="flashsale-c2r2c1 fl">
+		          <span>￥</span><strong>69</strong>元起
+		        </div>
+		        <div class="flashsale-c2r2c2 fr">
+		          <a href="#" class="btn btn-buy">立即抢购</a>
+		        </div>
+		      </div>
+		    </div>
+		  </li>
+		  <li class="clearfix">
+		    <div class="flashsale-c1 fl">
+		      <a href=""><img src="http://placehold.it/670x340" alt="" /></a>
+		    </div>
+		    <div class="flashsale-c2">
+		      <div class="flashsale-c2-inner">
+		      	<h3><a href="">荷兰Nutrilon牛栏婴儿奶粉1段 850g/罐</a></h3>
+			      <div class="flashsale-address"><img src="../img/icon-usa.png" alt="" width="23" height="17">广州保税仓发货</div>
+			      <p>荷兰奶粉第一品牌，进口市场占有率高达73%。只采用最优质无污染的天然牧场奶源。口味清淡、粉质精细，更有活动超值狂欢价，单罐仅需110元，好味道更有好价格！</p>
+			      <div class="flashsale-c2r1">
+			        <span class="icon icon56"></span>活动已结束
+			      </div>
+		      </div>
+			      
+		      <div class="flashsale-c2r2 clearfix">
+		        <div class="flashsale-c2r2c1 fl">
+		          <strong>7</strong>折起
+		        </div>
+		        <div class="flashsale-c2r2c2 fr">
+		          <a href="#" class="btn btn-buy disable">已结束</a>
+		        </div>
+		      </div>
+		    </div>
+		  </li>
+		  <li class="clearfix">
+		    <div class="flashsale-c1 fl">
+		      <a href=""><img src="http://placehold.it/670x340" alt="" /></a>
+		    </div>
+		    <div class="flashsale-c2">
+		      <div class="flashsale-c2-inner">
+		      	<h3><a href="">荷兰Nutrilon牛栏婴儿奶粉1段 850g/罐</a></h3>
+			      <div class="flashsale-address"><img src="../img/icon-usa.png" alt="" width="23" height="17">广州保税仓发货</div>
+			      <p>荷兰奶粉第一品牌，进口市场占有率高达73%。只采用最优质无污染的天然牧场奶源。口味清淡、粉质精细，更有活动超值狂欢价，单罐仅需110元，好味道更有好价格！</p>
+			      <div class="flashsale-c2r1">
+			        <span class="icon icon56"></span><span class="text-error">3天5小时20分10秒</span>后开始
+			      </div>
+		      </div>
+			      
+		      <div class="flashsale-c2r2 clearfix">
+		        <div class="flashsale-c2r2c1 fl">
+		          <span>￥</span><strong>69</strong>元起
+		        </div>
+		        <div class="flashsale-c2r2c2 fr">
+		          <a href="#" class="btn btn-buy soon">即将开始</a>
+		        </div>
+		      </div>
+		    </div>
+		  </li>
+		</ul>
+	</div>
+	
+*/
+.flashsale {
+  margin-bottom: 40px;
+}
+
+.flashsale li {
+  padding: 9px;
+  background: #fff;
+  margin-bottom: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+.flashsale-c1 {
+  width: 670px;
+  height: 340px;
+  text-align: center;
+}
+
+.flashsale-c1:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.flashsale-c1 img {
+  max-width: 670px;
+  max-height: 340px;
+  vertical-align: middle;
+}
+
+.flashsale-c1 img:hover {
+  opacity: 0.85;
+}
+
+.flashsale-c2 {
+  overflow: hidden;
+  padding: 20px 30px 12px;
+}
+
+.flashsale-c2r1 {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 14px;
+}
+
+.flashsale-c2r1 .text-error {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.flashsale-c2r2c1 {
+  color: #dc3334;
+  font-size: 18px;
+}
+
+.flashsale-c2r2c2 {
+  padding-top: 5px;
+}
+
+.flashsale-c2r2 strong {
+  font-size: 48px;
+  font-weight: normal;
+  margin-right: 6px;
+}
+
+.flashsale-c2r2 span {
+  font-size: 24px;
+}
+
+.flashsale h3 {
+  font-size: 20px;
+  line-height: 32px;
+  max-height: 64px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.flashsale h3:hover {
+  text-decoration: underline;
+}
+
+.flashsale p {
+  font-size: 14px;
+  line-height: 24px;
+  max-height: 72px;
+  overflow: hidden;
+  color: #666;
+  margin-bottom: 20px;
+  border-top: 1px dotted #ccc;
+  padding-top: 10px;
+}
+
+.flashsale .icon56 {
+  margin-right: 8px;
+}
+
+.flashsale .btn {
+  height: 44px;
+  line-height: 44px;
+  width: 135px;
+}
+
+.flashsale-address {
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.flashsale-address img {
+  margin-right: 5px;
+}
+
+.flashsale-c2-inner {
+  height: 250px;
+}

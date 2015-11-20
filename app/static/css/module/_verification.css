@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 验证
+	
+*/
+.verification {
+  background: #fff;
+  border-radius: 4px;
+  padding: 45px 37px 80px 370px;
+  margin-top: 56px;
+  margin-bottom: 137px;
+}
+
+.verification h1 {
+  font-size: 18px;
+  color: #64aa30;
+  margin-bottom: 55px;
+}
+
+.verification .icon36 {
+  margin-right: 20px;
+}
+
+.verification li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.verification p {
+  font-size: 12px;
+  color: #949494;
+  margin-top: 12px;
+  margin-left: 88px;
+}
+
+.verification label {
+  margin-right: 18px;
+  display: inline-block;
+  width: 5em;
+  text-align: right;
+}
+
+.verification .btn {
+  padding: 0 120px;
+  margin-left: 92px;
+}
+
+.verification .input {
+  width: 248px;
+}
+
+.verification.retrieve h1 {
+  padding-left: 88px;
+  margin-bottom: 25px;
+}
+
+.verification-1 h1 {
+  color: #333;
+  font-weight: normal;
+}
+
+.verification-1 .icon26 {
+  display: none;
+}
+
+.verification-1 .li1 .input {
+  width: 118px;
+}
+
+.verification-1 .li1 .btn {
+  width: 117px;
+  padding: 0;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.verification-1 label {
+  width: 6em;
+}
+
+.verification-1 h1 {
+  margin-left: 15px;
+}
+
+.verification-1 .btn {
+  margin-left: 101px;
+}

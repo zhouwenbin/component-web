@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 详情页
+	
+*/
+.detail {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 30px 0;
+}
+
+.detail-h {
+  font-size: 14px;
+}
+
+.detail-tab-h {
+  margin: 0 50px;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.detail-tab-b {
+  display: none;
+}
+
+.detail-tab-b.active {
+  display: block;
+}
+
+.detail-tab-h li {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0 14px 9px;
+  font-weight: normal;
+  margin-bottom: -2px;
+  margin-right: 10px;
+}
+
+.detail-tab-h li a {
+  color: #666;
+}
+
+.detail-tab-h li.active {
+  border-bottom: 2px solid #dc3334;
+}
+
+.detail-tab-h li.active a {
+  color: #333;
+}
+
+.detail-tab-h span {
+  font-size: 14px;
+}
+
+.detail-h ul {
+  padding-top: 30px;
+  margin: -2px 50px 0;
+}
+
+.detail-h li {
+  margin-bottom: 17px;
+  width: 33.3%;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-b {
+  padding: 0 50px;
+}
+
+.detail-content {
+  font-size: 14px;
+  line-height: 1.7;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/*
+@styleguide
+
+# 秒杀商品
+	
+*/
+.goods-price {
+  position: relative;
+}
+
+.goods-seckill {
+  position: absolute;
+  top: -46px;
+  left: 0;
+  background: url(http://img0.sfht.com/img/7ea6babae43d09a44538c74ab58fd05b.jpg) no-repeat;
+  width: 584px;
+  height: 45px;
+}
+
+.goods-seckill-c1 {
+  margin: 11px 0 0 15px;
+  width: 80px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #007C84;
+  display: inline-block;
+  border-radius: 15px;
+  background: #fff;
+  opacity: 0.7;
+}
+
+.goods-seckill-c2 {
+  display: inline-block;
+  color: #fff;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.goods-seckill-c2 .text-important {
+  color: #fff;
+  font-size: 14px;
+}
+
+.goods-seckill-c2 .text-important strong {
+  font-size: 20px;
+  padding: 0 2px;
+}
+
+.text-gray, .text-gray span, .text-gray strong {
+  color: #999;
+}

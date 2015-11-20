@@ -1,4 +1,61 @@
 @import '../../module/product-1';
+/*
+@styleguide
+
+# 图片列表3
+
+	<div class="products3 clearfix pm">
+      <div class="products3-c1 fl">
+        <div class="swiper-container products3-c1c1 fl">    
+            <div class="swiper-wrapper">
+                -for i in 1..3
+                  <div class="swiper-slide"><img src="../../../img/other/index-makeup/products3-slider.png" alt="" width="472" height="330"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+        <div class="product-1">
+          <ul class="product-1-list">
+            -for i in 1..6
+              <li>
+                <div class="product-1-r1">
+                  <a href=""><img src="../../../img/other/index-makeup/product-img#{i}.png" alt="" ></a><span></span>
+                  <div class="icon icon-soldout icon-soldout-big">已售光</div>
+                </div>
+                <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+                <div class="product-1-r2 clearfix">
+                  <div class="product-1-r2c1 fl">
+                    <img src="../../../img/other/icon-usa.png" alt="" width="22" height="14" /><span>￥</span><strong>129</strong><del>￥189</del>
+                  </div>
+                </div>
+              </li>
+          </ul>
+        </div>
+          
+      </div>
+      <div class="products3-c2">
+        <div class="hotsale">
+          <h3>热销排行榜</h3>
+          <ul>
+            -for i in 1..5
+              <li class="clearfix">
+                <div class="hotsale-icon hotsale-icon#{i}"></div>
+                <div class="hotsale-c1 fl">
+                  <a href=""><img src="../../../img/other/index-makeup/product-img#{i}.png" alt="" ></a>
+                </div>
+                <div class="hotsale-c2">
+                  <h4><a href="">Chanel 珍爱香水 50ml</a></h4>
+                  <p><span class="text-important">￥129</span><del>￥189</del></p>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+*/
+
+
 .products3{
 	border: 1px solid #E5E5E5;
 	margin-bottom: 30px;
