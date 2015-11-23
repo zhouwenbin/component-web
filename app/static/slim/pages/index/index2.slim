@@ -16,9 +16,16 @@
       
     <!--热卖商品-->
     == Slim::Template.new('../../module/slider.slim').render
-    <h2 class="index2-h2 pm clearfix">
-      <div class="fl index2-h2-c1"><i></i>当季热销</div>
-    </h2>
+    <div class="classify pm">
+      <span>新品分类：</span>
+      <ul>
+        <li class="active"><a href="">全部新品</a></li>
+        <li><a href="">美妆个护</a></li>
+        <li><a href="">妈妈推荐</a></li>
+        <li><a href="">品牌包包</a></li>
+        <li><a href="">名牌包包</a></li>
+      </ul>
+    </div>
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
       <symbol id="icon-addtocart" viewBox="0 0 30 30">
         <ellipse cx="15" cy="15" rx="15" ry="15"></ellipse>

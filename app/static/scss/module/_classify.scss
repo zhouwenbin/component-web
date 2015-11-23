@@ -1,107 +1,35 @@
 .classify{
-	background: #fff;
-	border-bottom: 1px solid #d4d4d4;
-	margin-bottom: 32px;
+	padding-bottom:15px;
+	border-bottom:1px solid #E5E5E5;
+	margin-bottom:20px;
+	font-size:0;
 }
-.classify h2{
-	font-size: 14px;
-	font-weight: normal;
-	padding: 14px 0 10px;
-	
+.classify span{
+	font-size:14px;
+	color:#9B9B9B;
+	margin-right:15px;
 }
-.classify h2 strong{
-	margin-right: 14px;
+.classify ul{
+	display:inline-block;
 }
-.classify label{
-	color:#848484;
+.classify li{
 	display: inline-block;
-	width: 5em;
-	text-align: right;
-	vertical-align: middle;
-	margin-right: 23px;
+	font-size:14px;
+	margin-right:5px;
+	border-radius:2px;
 }
-.classify-list ul,
-.classify-list li li{
-	display: inline-block;
-	vertical-align: middle;
+.classify li a{
+	display:block;
+	padding:0 14px;
+	height:31px;
+	line-height:31px;
 }
-.classify-list>li{
-	padding: 19px 0;
-	border-top: 1px dashed #d4d4d4;
+.classify li:hover{
+	background:#F1F1F1;
 }
-.classify-logo ul{
-	width: 1008px;
-	height: 50px;
-	overflow: hidden;
+.classify li.active{
+	background:#E73736;
 }
-.classify .active ul{
-	height: auto;
-	padding-bottom: 1px;
-}
-.classify-logo li{
-	width: 98px;
-	height: 48px;
-	border: 1px solid #e5e5e5;
-	margin-right: -1px;
-	margin-bottom: -1px;
-	text-align: center;
-	overflow: hidden;
-}
-.classify-logo li:before{
-	content: '';
-	display: inline-block;
-	vertical-align: middle;
-	height: 100%;
-}
-.classify-logo li:hover img{
-	display: none;
-}
-.classify-logo img{
-	max-width: 98px;
-	max-height: 48px;
-	vertical-align: middle;
-}
-.classify-logo span{
-	vertical-align: middle;
-	display: inline-block;
-	white-space: normal;
-}
-.classify-text li{
-	margin-right: 42px;
-}
-
-.classify-c2{
-	padding-top: 13px;
-}
-.classify-c2 a{
-	color: #584a4c;
-}
-.classify .icon105{
-	margin-left: 5px;
-	transition:all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-.classify .active .icon105{
-	transform:rotate(180deg);
-}
-.classify-more:before{
-	content: '更多'
-}
-.classify .active .classify-more:before{
-	content: '收起'
-}
-.classify .btn-search{
-	margin-right: 10px;
-}
-.classify-select{
-	position: relative;
-}
-.classify-select .text-disabled{
-	position: absolute;
-	right: 0;
-	top:0;
-}
-.classify .classify-select{
-	height: 39px;
-	line-height: 39px;
-	padding: 0;
+.classify li.active a{
+	color:#fff;
 }
