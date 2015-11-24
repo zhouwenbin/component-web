@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/index/index.css" rel="stylesheet" type="text/css" />
 <link href="lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-  == Slim::Template.new('module/header.slim').render
+  == Slim::Template.new('../../module/header.slim').render
   <div class="pb">
 
     <div class="pm">
@@ -26,14 +26,14 @@
         <ul class="slider-num"></ul> 
       </div>
       <!--品牌特卖-->
-      == Slim::Template.new('module/brand.slim').render
+      == Slim::Template.new('../../module/brand.slim').render
       <!--品牌特卖-->
       <img src="http://placehold.it/1180x100" class="banner" alt="" />
       <!--限时特卖-->
-      == Slim::Template.new('module/flashsale.slim').render
+      == Slim::Template.new('../../module/flashsale.slim').render
       <!--限时特卖-->
       <!--热卖商品-->
-      == Slim::Template.new('module/product.slim').render
+      == Slim::Template.new('../../module/product.slim').render
 
       <!--母婴保健-->
       <div class="products">
@@ -394,7 +394,7 @@
     </div>
   </div>
   <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
+  == Slim::Template.new('../../module/footer.slim').render
   <!--尾部-->
   <div class="nataral-top nataral-top1">
     <ul>

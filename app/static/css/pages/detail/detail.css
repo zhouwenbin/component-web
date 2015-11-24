@@ -1,0 +1,69 @@
+/*
+Error: Undefined operation: "30 times i".
+        on line 1 of ../../module/_detail.scss
+        from line 8 of detail.scss
+
+1: @import '../../utils/variables';
+2: @import '../../utils/placeholders';
+3: @import '../../utils/placeholders';
+4: @import '../../module/crumbs';
+5: @import '../../module/goods';
+6: @import '../../module/recommend';
+
+Backtrace:
+../../module/_detail.scss:1
+detail.scss:8
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/operation.rb:85:in `rescue in _perform'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/operation.rb:81:in `_perform'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/interpolation.rb:100:in `_perform'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:536:in `block in run_interp_no_strip'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:534:in `map'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:534:in `run_interp_no_strip'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:195:in `visit_comment'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `map'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:88:in `block in with_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:88:in `with_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `map'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/root_node.rb:20:in `render'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/engine.rb:268:in `render'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:415:in `run'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/base.rb:52:in `parse'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/base.rb:19:in `parse!'
+/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/bin/sass:13:in `<top (required)>'
+/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `load'
+/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined operation: \"30 times i\".\A         on line 1 of ../../module/_detail.scss\A         from line 8 of detail.scss\A \A 1: @import '../../utils/variables';\A 2: @import '../../utils/placeholders';\A 3: @import '../../utils/placeholders';\A 4: @import '../../module/crumbs';\A 5: @import '../../module/goods';\A 6: @import '../../module/recommend';"; }

@@ -1,0 +1,340 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 注册
+	
+	<div class="mask"></div>
+	<div class="register">
+		<div class="register-h">
+			<h2>注册顺丰海淘</h2>
+			<ul>
+				<li><a href="">手机注册</a><span class="icon icon16-2"></span></li>
+				<li class="active"><a href="">邮箱注册</a><span class="icon icon16-2"></span></li>
+			</ul>
+			<a href="#" class="btn btn-close">关闭</a>
+			<span class="icon icon34"></span>
+			<span class="icon icon35"></span>
+		</div>
+		<!--手机注册-->
+		<div class="register-b">
+			<ol>
+				<li>
+					<input type="text" placeholder="手机号" /><span class="icon icon26">手机号输入错误</span>
+				</li>
+				<li>
+					<div class="clearfix">
+						<div class="fl">
+							<input type="text" class="input1" placeholder="手机验证码" />
+						</div>
+
+						<a href="#" class="btn btn-send fr">发送验证码</a>
+						<!--不可发送时--<a href="#" class="btn btn-send disable">发送验证码</a><!--不可发送时-->
+					</div>
+					<span class="icon icon26">手机验证码错误</span>
+
+				</li>
+
+				<li>
+					<label for="password">设置密码</label>
+					<input id="password" type="passward" class="password" />
+					<p>6-18位字母、数字或标点符号</p>
+				</li>
+			</ol>
+			<div class="register-br1">
+				<a href="#" class="btn btn-send btn-register">同意协议并注册</a>
+			</div>
+			<div class="register-br2">
+				<a href="">《顺丰海淘服务协议》</a>
+			</div>
+		</div>
+		<!--手机注册-->
+		<!--邮箱注册-->
+		<div class="register-b active">
+			<ol>
+
+				<li>
+					<input type="email" placeholder="邮箱地址" />
+				</li>
+				<li>
+					<input type="text" class="input2" /><img src="../img/code.jpg" width="80" alt="验证码" /><a class="a1" href="">换一个</a>
+				</li>
+			</ol>
+			<div class="register-br1">
+				<a href="#" class="btn btn-send btn-register">同意协议并注册</a>
+			</div>
+			<div class="register-br2">
+				<a href="">《顺丰海淘服务协议》</a>
+			</div>
+		</div>
+		<!--邮箱注册-->
+		<div class="register-other">
+			<h3>使用第三方账号登陆</h3>
+			<span class="icon icon52"></span><span class="icon icon68"></span>
+		</div>
+	</div>
+
+*/
+.register {
+  width: 562px;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -256px;
+  margin-top: -265px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  z-index: 3; }
+
+.register.register-top {
+  top: 0;
+  left: 0;
+  margin: 0px;
+  width: 100%; }
+
+.register h2 {
+  font-size: 14px;
+  height: 52px;
+  line-height: 52px;
+  padding-left: 20px;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/register-h2.png) repeat-x;
+  border-bottom: 1px solid #E4E3E3;
+  -webkit-border-radius: 3px 3px 0 0;
+          border-radius: 3px 3px 0 0; }
+
+.register-h {
+  position: relative; }
+
+.register-h .btn-close {
+  position: absolute;
+  right: 16px;
+  top: 17px; }
+
+.register-h .icon35 {
+  position: absolute;
+  left: 228px;
+  top: -9px; }
+
+.register-h .icon34 {
+  position: absolute;
+  left: 239px;
+  top: -76px;
+  z-index: -1; }
+
+.register-h ul {
+  background: #32363f;
+  text-align: center;
+  position: relative; }
+
+.register-h li {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 46px;
+  line-height: 46px;
+  margin: 0 16px;
+  position: relative; }
+
+.register-h li a {
+  display: block;
+  color: #ccc; }
+
+.register-h li span {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -8px;
+  display: none; }
+
+.register-h .active span {
+  display: block; }
+
+.register-h .active a {
+  color: #fff; }
+
+.register-b {
+  padding: 40px 130px 40px;
+  margin: 0 16px;
+  border-bottom: 1px solid  #EEE;
+  display: none;
+  background: #fff;
+  position: relative; }
+
+.register-b h3 {
+  margin-bottom: 10px; }
+
+.register-b.active {
+  display: block; }
+
+.register-b li {
+  margin-bottom: 9px; }
+
+.register-b li p {
+  font-size: 12px;
+  color: #949494;
+  margin-top: 12px; }
+
+.register-b li .btn {
+  width: 112px;
+  text-align: center;
+  padding: 0; }
+
+.register-b .a1 {
+  color: #A3A2A3; }
+
+.register-b .a1:hover {
+  color: #333; }
+
+.register-b .icon26 {
+  margin-top: 5px;
+  display: none; }
+
+.register li {
+  position: relative; }
+
+.register li label {
+  position: absolute;
+  left: 17px;
+  top: 13px;
+  color: #999; }
+
+.register li input {
+  vertical-align: middle;
+  width: 253px;
+  padding: 12px 0 12px 16px;
+  border: 1px solid #CCCCCC;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  color: #999; }
+
+.register li input:focus {
+  color: #333; }
+
+.register .input1 {
+  width: 135px; }
+
+.register .input2 {
+  width: 126px; }
+
+.register input:focus {
+  -webkit-box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
+          box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
+  border-color: #66afe9; }
+
+.register-br1 {
+  margin-bottom: 10px; }
+
+.register-br2 {
+  text-align: right; }
+
+.register-br2 a {
+  color: #a3a2a3; }
+
+.register-br2 a:hover {
+  color: #333; }
+
+.register-br2c1 input {
+  margin-right: 6px;
+  vertical-align: middle; }
+
+.register-fr2 {
+  border-top: 1px solid #E4E4E4;
+  height: 65px;
+  line-height: 65px;
+  text-align: center;
+  color: #a3a2a3;
+  background: #F7F7F7; }
+
+.register-fr2 a {
+  margin-left: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px; }
+
+.register-f h3, .register-f p {
+  margin-left: 32px; }
+
+.register-f h3 {
+  margin-bottom: 5px; }
+
+/*注册成功*/
+.register-b1 {
+  padding-top: 121px;
+  padding-bottom: 142px;
+  text-align: center; }
+
+.register-b1 h3 {
+  margin-top: 31px;
+  font-size: 14px; }
+
+.register-b1 p {
+  margin-top: 20px;
+  color: #a3a2a3; }
+
+.register-b2 {
+  padding: 125px 121px 179px; }
+
+.register-b2r1 {
+  margin-bottom: 16px; }
+
+.register-b2r1 span {
+  color: #67b222; }
+
+.register-b2r2 {
+  margin-bottom: 29px; }
+
+.register-b2r3 {
+  margin-bottom: 54px; }
+
+.register-b2r4 {
+  text-align: center;
+  margin-bottom: 10px; }
+
+.register-b2r4 a {
+  color: #2a4dff;
+  text-decoration: underline; }
+
+.register-b2r5 {
+  text-align: center; }
+
+.register-b3 {
+  padding-top: 32px;
+  padding-bottom: 32px; }
+
+.register-b4 {
+  padding-top: 53px;
+  padding-bottom: 51px; }
+
+.register-main {
+  height: 246px; }
+
+.register-b-main {
+  height: 290px; }
+
+.register-other {
+  text-align: center; }
+
+.register-other h3 {
+  color: #999;
+  margin-bottom: 26px;
+  margin-top: 25px;
+  font-weight: normal;
+  position: relative; }
+
+.register-other h3:before,
+.register-other h3:after {
+  content: '';
+  position: absolute;
+  width: 52px;
+  top: 5px;
+  border-bottom: 1px solid #ededed; }
+
+.register-other h3:before {
+  left: 0; }
+
+.register-other h3:after {
+  right: 0; }
+
+.register-other .icon {
+  margin: 0 13px; }

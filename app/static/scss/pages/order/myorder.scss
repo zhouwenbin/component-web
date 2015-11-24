@@ -1,14 +1,14 @@
-﻿@import 'utils/variables';
-@import 'utils/placeholders';
-@import 'module/product';
-@import 'module/myorder-tab';
-@import 'module/address-add';
-@import 'module/personal';
-@import 'module/myorder-search';
-@import 'module/myorder';
-@import 'module/myorder-none';
-@import 'module/account-manage';
-@import 'module/address-table';
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/product';
+@import '../../module/myorder-tab';
+@import '../../module/address-add';
+@import '../../module/personal';
+@import '../../module/myorder-search';
+@import '../../module/myorder';
+@import '../../module/myorder-none';
+@import '../../module/account-manage';
+@import '../../module/address-table';
 
 .product h2{
 	color: #666;

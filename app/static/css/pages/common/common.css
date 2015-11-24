@@ -733,6 +733,11 @@ a[title="站长统计"] {
   -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
           transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
+.btn-outline.btn-danger {
+  background: #fff;
+  color: #E73736 !important;
+  border: 1px solid #E73736; }
+
 /*
 @styleguide
 
@@ -2026,12 +2031,14 @@ a[title="站长统计"] {
 <span class="text-waining">waining</span>
 <span class="text-disabled">disabled</span>
 <span class="text-link">link</span>
+<span class="text-orange">orange</span>
 
 	<span class="text-success">success</span>
 	<span class="text-error">error</span>
 	<span class="text-waining">waining</span>
 	<span class="text-disabled">disabled</span>
 	<span class="text-link">link</span>
+	<span class="text-orange">orange</span>
   
 */
 .text-success {
@@ -2049,6 +2056,9 @@ a[title="站长统计"] {
 
 .text-link {
   color: #1376ce; }
+
+.text-orange {
+  color: #F38612; }
 
 /*
 @styleguide
