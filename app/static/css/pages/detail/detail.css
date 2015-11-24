@@ -1,69 +1,1212 @@
+@charset "UTF-8";
+.comparison-icon1, .comparison-icon2 {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/comparison.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle; }
+
+.faq-icon1, .faq-icon2 {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/faq.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 14px; }
+
+.comparison-icon1, .comparison-icon2 {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/comparison.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle; }
+
+.faq-icon1, .faq-icon2 {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/faq.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 14px; }
+
 /*
-Error: Undefined operation: "30 times i".
-        on line 1 of ../../module/_detail.scss
-        from line 8 of detail.scss
+@styleguide
 
-1: @import '../../utils/variables';
-2: @import '../../utils/placeholders';
-3: @import '../../utils/placeholders';
-4: @import '../../module/crumbs';
-5: @import '../../module/goods';
-6: @import '../../module/recommend';
+# 面包屑
 
-Backtrace:
-../../module/_detail.scss:1
-detail.scss:8
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/operation.rb:85:in `rescue in _perform'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/operation.rb:81:in `_perform'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/interpolation.rb:100:in `_perform'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:536:in `block in run_interp_no_strip'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:534:in `map'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:534:in `run_interp_no_strip'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:195:in `visit_comment'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `map'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:88:in `block in with_import'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:88:in `with_import'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `map'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/tree/root_node.rb:20:in `render'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/engine.rb:268:in `render'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:415:in `run'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:63:in `process_result'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/base.rb:52:in `parse'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/lib/sass/exec/base.rb:19:in `parse!'
-/Applications/Prepros.app/Contents/Resources/app/ruby/ruby_gems/gems/sass-3.4.13/bin/sass:13:in `<top (required)>'
-/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `load'
-/Applications/Prepros.app/Contents/Resources/app/ruby/loader.rb:15:in `<main>'
+	<div class="crumbs">
+	    <a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴
+	</div>
+
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined operation: \"30 times i\".\A         on line 1 of ../../module/_detail.scss\A         from line 8 of detail.scss\A \A 1: @import '../../utils/variables';\A 2: @import '../../utils/placeholders';\A 3: @import '../../utils/placeholders';\A 4: @import '../../module/crumbs';\A 5: @import '../../module/goods';\A 6: @import '../../module/recommend';"; }
+.crumbs {
+  margin: 20px 0;
+  color: #585758;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+.crumbs a {
+  color: #585758; }
+
+.crumbs span {
+  margin: 0 20px; }
+
+.goods {
+  margin-bottom: 47px;
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 30px 20px;
+  position: relative; }
+
+.goods-c1 {
+  width: 420px;
+  margin-right: 30px; }
+
+.goods-c1r1 {
+  height: 420px;
+  position: relative; }
+
+.goods-c1r1 li {
+  position: absolute;
+  border: 1px solid #eee;
+  text-align: center;
+  height: 418px;
+  width: 418px;
+  font-size: 0; }
+
+.goods-c1r1 li:hover {
+  border-color: #eee; }
+
+.goods-c1r1 .active {
+  opacity: 1;
+  filter: alpha(opacity=100); }
+
+.goods-c1r1 img {
+  max-width: 418px;
+  max-height: 418px;
+  vertical-align: middle; }
+
+.goods-c3 {
+  width: 76px;
+  margin-right: 10px; }
+
+.goods-c3 a {
+  outline: none; }
+
+.goods-c3 img {
+  max-width: 74px;
+  max-height: 74px;
+  vertical-align: middle; }
+
+.goods-c1r1 span,
+.goods-c3 span {
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+  display: inline-block; }
+
+.goods-c3 li {
+  border: 1px solid #eee;
+  outline: 1px solid #fff;
+  float: left;
+  width: 74px;
+  height: 74px;
+  text-align: center;
+  font-size: 0;
+  margin-bottom: 10px; }
+
+.goods-c3 li:hover,
+.goods-c3 li.active {
+  border: 1px solid #dc3334;
+  outline: 1px solid #dc3334; }
+
+.goods-c2 {
+  width: 584px;
+  float: left;
+  font-size: 14px;
+  color: #272541;
+  position: relative;
+  padding-right: 20px; }
+
+.goods h1 {
+  font-size: 18px;
+  margin-bottom: 17px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+.goods p {
+  color: #686675;
+  margin-bottom: 10px;
+  line-height: 1.5; }
+
+.goods-c2r1 {
+  margin-bottom: 20px; }
+
+.goods-c2r1 img {
+  margin-right: 8px; }
+
+.goods-price {
+  background: #fff6f6;
+  border: 1px solid #fddcdc;
+  padding: 18px 14px; }
+
+.goods-price-r1 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666; }
+
+.goods-price-r1 span {
+  color: #dc3334;
+  font-size: 24px;
+  font-family: Arial;
+  margin-left: 5px; }
+
+.goods-price-r1 strong {
+  color: #dc3334;
+  font-size: 36px;
+  font-family: Arial; }
+
+.goods-price-r1 a {
+  color: #F78E57;
+  margin-left: 10px; }
+
+.goods-price-r1 b {
+  color: #999;
+  margin-left: 10px;
+  font-weight: normal; }
+
+.goods-price-r1 a:hover {
+  text-decoration: underline; }
+
+.goods-price-r2 {
+  color: #999; }
+
+.goods-price-r2 span {
+  margin-right: 22px; }
+
+.goods-price-c1 {
+  width: 303px; }
+
+.goods-price-c2 {
+  overflow: hidden;
+  padding: 16px 0 16px 24px;
+  border-left: 1px solid #fbe3e3; }
+
+.goods-price-c2 b {
+  color: #999;
+  margin: 0 5px;
+  font-weight: normal; }
+
+.goods-price-c2 .icon {
+  vertical-align: -5px; }
+
+.goods-price-c2 strong {
+  font-size: 24px; }
+
+.goods-c2 ul {
+  margin-top: 20px; }
+
+.goods-c2 li {
+  margin-bottom: 18px; }
+
+.goods-c2 label {
+  font-size: 14px;
+  color: #999;
+  margin-right: 24px;
+  min-width: 4em;
+  display: inline-block;
+  text-align: justify;
+  height: 14px; }
+
+.goods-c2 label:after {
+  content: '';
+  width: 100%;
+  height: 0;
+  display: inline-block; }
+
+.goods-c2 .btn-goods {
+  margin-right: 6px;
+  margin-bottom: 6px; }
+
+.goods-c2 select {
+  margin-right: 5px; }
+
+.goods-num {
+  padding-top: 14px;
+  border-top: 1px dotted #fddcdc;
+  margin-bottom: 16px; }
+
+.goods-num .icon62 {
+  margin-left: 15px;
+  margin-right: 5px; }
+
+.goods-c2r2 {
+  position: relative; }
+
+.goods-c2r2 img {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  -webkit-transition: 0.5s -webkit-transform ease-in-out, 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear;
+          transition: 0.5s transform ease-in-out, 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
+
+.goods-c2r2 .icon {
+  margin-left: 10px; }
+
+.goods-c2r2 .btn {
+  width: 134px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 16px;
+  margin-right: 10px;
+  position: relative; }
+
+.goods-share {
+  position: absolute;
+  right: 0px;
+  bottom: 10px; }
+
+.goods-activity {
+  border: 1px solid #fddcdc;
+  padding: 0 13px;
+  height: 30px;
+  line-height: 30px;
+  color: #666;
+  margin-top: -1px;
+  position: relative; }
+
+.goods-activity .label {
+  margin-right: 11px;
+  vertical-align: middle; }
+
+.goods-activity b {
+  color: #999;
+  font-weight: normal; }
+
+.goods-activity .icon67 {
+  margin-left: 6px; }
+
+.goods-activity-c1 a {
+  color: #666; }
+
+.goods-activity-detail {
+  line-height: 24px;
+  border: 1px solid #ffc3c3;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  border-top: none;
+  display: none;
+  width: 100%;
+  margin-left: -1px;
+  z-index: 1; }
+
+.goods-activity.active {
+  border-style: solid;
+  border-bottom-color: #fff; }
+
+.goods-activity.active .goods-activity-detail {
+  display: block; }
+
+.goods-activity.active .icon67 {
+  background-position: -132px -204px; }
+
+.goods-activity-link {
+  color: #3b86c4;
+  margin-left: 10px; }
+
+.goods-activity ul {
+  margin-top: 0; }
+
+.goods-activity li {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 0;
+  border-top: 1px dotted #fedcdc;
+  padding-left: 95px; }
+
+.goods-nataral {
+  color: #666;
+  margin-bottom: 10px;
+  line-height: 23px; }
+
+.goods-nataral a {
+  color: #B87C00;
+  background: #FFD62C;
+  height: 23px;
+  line-height: 23px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  padding: 0 10px;
+  display: inline-block;
+  margin-left: 18px; }
+
+.nataral-product-price2 {
+  padding: 5px 5px 0;
+  height: 30px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  right: 658px;
+  top: 410px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #999;
+  text-align: center; }
+
+.goods-collect {
+  display: inline-block;
+  position: relative;
+  margin-left: 18px; }
+
+.goods-collect svg {
+  margin-right: 5px;
+  vertical-align: middle;
+  fill: #fff; }
+
+.goods-collect.active svg {
+  fill: #E73736; }
+
+.goods-tooltip {
+  width: 195px;
+  background: url(http://img0.sfht.com/cmsres/20151124/1c32a283-6474-4076-af6d-8143ca423681.png) no-repeat;
+  height: 37px;
+  line-height: 26px;
+  text-align: center;
+  position: absolute;
+  font-size: 12px;
+  left: -60px;
+  top: -40px; }
+
+.goods-tooltip a {
+  color: #29BFD6; }
+
+/*
+@styleguide
+
+# 相关商品
+
+	<div class="recommend">
+	    <h2>相关商品</h2>
+	    <ul class="clearfix">
+	      <li>
+	        <div class="recommend-c2">
+	          <a href=""><img src="http://placehold.it/100x100" alt="" /></a>
+	        </div>
+	        <div class="recommend-c1">
+	          <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+	          <div class="recommend-r1">¥1280</div>
+
+	        </div>
+	      </li>
+	      <li>
+	        <div class="recommend-c2">
+	          <a href=""><img src="http://placehold.it/100x100" alt="" /></a>
+	        </div>
+	        <div class="recommend-c1">
+	          <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+	          <div class="recommend-r1">¥1280</div>
+
+	        </div>
+	      </li>
+	      <li>
+	        <div class="recommend-c2">
+	          <a href=""><img src="http://placehold.it/100x100" alt="" /></a>
+	        </div>
+	        <div class="recommend-c1">
+	          <h3><a href="">Kate Spade  女款手提包手拎包女款手提包手拎包</a></h3>
+	          <div class="recommend-r1">¥1280</div>
+
+	        </div>
+	      </li>
+	      <li>
+	        <div class="recommend-c2">
+	          <a href=""><img src="http://placehold.it/100x100" alt="" /></a>
+	        </div>
+	        <div class="recommend-c1">
+	          <h3><a href="">Kate Spade  女款手提包手拎包</a></h3>
+	          <div class="recommend-r1">¥1280</div>
+
+	        </div>
+	      </li>
+	    </ul>
+	</div>
+
+*/
+.recommend {
+  background: #fff;
+  padding: 25px 50px;
+  margin-bottom: 20px; }
+
+.recommend h2 {
+  font-size: 16px;
+  color: #666;
+  font-weight: normal;
+  margin-bottom: 15px; }
+
+.recommend h3 {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  margin-bottom: 10px;
+  height: 28px;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all; }
+
+.recommend ul {
+  margin-left: -15px; }
+
+.recommend li {
+  float: left;
+  padding: 5px;
+  width: 246px;
+  margin-left: 15px;
+  border: 1px solid #efefef;
+  margin-bottom: 16px; }
+
+.recommend li:hover {
+  border-color: #ccc; }
+
+.recommend img {
+  max-width: 120px;
+  max-height: 120px; }
+
+.recommend-c1 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 93px; }
+
+.recommend-r1 {
+  font-size: 14px;
+  color: #dc3334; }
+
+.recommend-c2 {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 5px; }
+
+.recommend-c2:after {
+  content: '';
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle; }
+
+/*
+@styleguide
+
+# 小编推荐
+
+	<div class="recommend2 clearfix">
+	    <h2 class="fl">小编推荐</h2>
+	    <p>新百伦这款夹克, New balance 新百伦女士放风立领软壳到评价普遍时质量好，价格很合理。但是衣服偏小。采用92%涤纶＋8%弹性纤维混合而成，防风且防水。插肩袖设计胸前有nb的logo。适合秋季a运动a穿着。</p>
+	</div>
+
+*/
+.recommend2 {
+  padding: 25px 50px 25px 44px;
+  background: #fff;
+  margin-bottom: 20px; }
+
+.recommend2 h2 {
+  font-size: 18px;
+  line-height: 22px;
+  width: 2em;
+  color: #999;
+  font-weight: normal;
+  padding-right: 36px;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  border-right: 1px solid #eee; }
+
+.recommend2 p {
+  font-size: 14px;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 20px 0 20px 38px;
+  color: #666; }
+
+/*
+@styleguide
+
+# 详情页
+	
+*/
+.detail {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 30px 0; }
+
+.detail-h {
+  font-size: 14px; }
+
+.detail-tab-h {
+  margin: 0 50px;
+  border-bottom: 2px solid #EEEEEE; }
+
+.detail-tab-b {
+  display: none; }
+
+.detail-tab-b.active {
+  display: block; }
+
+.detail-tab-h li {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0 14px 9px;
+  font-weight: normal;
+  margin-bottom: -2px;
+  margin-right: 10px; }
+
+.detail-tab-h li a {
+  color: #666; }
+
+.detail-tab-h li.active {
+  border-bottom: 2px solid #dc3334; }
+
+.detail-tab-h li.active a {
+  color: #333; }
+
+.detail-tab-h span {
+  font-size: 14px; }
+
+.detail-h ul {
+  padding-top: 30px;
+  margin: -2px 50px 0; }
+
+.detail-h li {
+  margin-bottom: 17px;
+  width: 33.3%;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.detail-b {
+  padding: 0 50px; }
+
+.detail-content {
+  font-size: 14px;
+  line-height: 1.7;
+  word-wrap: break-word;
+  word-break: break-all; }
+
+/*
+@styleguide
+
+# 秒杀商品
+	
+*/
+.goods-price {
+  position: relative; }
+
+.goods-seckill {
+  position: absolute;
+  top: -46px;
+  left: 0;
+  background: url(http://img0.sfht.com/img/7ea6babae43d09a44538c74ab58fd05b.jpg) no-repeat;
+  width: 584px;
+  height: 45px; }
+
+.goods-seckill-c1 {
+  margin: 11px 0 0 15px;
+  width: 80px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #007C84;
+  display: inline-block;
+  -webkit-border-radius: 15px;
+          border-radius: 15px;
+  background: #fff;
+  opacity: 0.7; }
+
+.goods-seckill-c2 {
+  display: inline-block;
+  color: #fff;
+  margin-left: 20px;
+  font-size: 14px; }
+
+.goods-seckill-c2 .text-important {
+  color: #fff;
+  font-size: 14px; }
+
+.goods-seckill-c2 .text-important strong {
+  font-size: 20px;
+  padding: 0 2px; }
+
+.text-gray, .text-gray span, .text-gray strong {
+  color: #999; }
+
+/*
+@styleguide
+
+# 流程
+
+<ul class="flow clearfix">
+  <li><div class="flow-r1"><div class="flow-icon1"></div></div><h3>海外正品采买</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon2"></div></div><h3>海外&保税仓库备货</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon3"></div></div><h3>海关检验检疫</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon4"></div></div><h3>客户订单支付</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon5"></div></div><h3>快速清关</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon6"></div></div><h3>顶尖物流配送</h3></li>
+</ul>
+
+*/
+.flow {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/flow.png) no-repeat;
+  height: 164px;
+  text-indent: -999em;
+  margin: 13px 0 30px; }
+
+/*
+@styleguide
+
+# 海淘对比
+
+	<div class="comparison">
+		<div class="comparison-c1 fl">
+			<h3><span class="comparison-icon1"></span>顺丰海淘</h3>
+			<ul>
+			  <li>中文界面，方便浏览与支付</li>
+			  <li>政府监管，极速清关</li>
+			  <li>自营模式，提前备货，物流3~10天即可到手</li>
+			  <li>商品含税包邮，高性价比</li>
+			  <li>完善的客服体系，支持电话咨询与货品质量问题的赔付</li>
+			</ul>
+		</div>
+		<div class="comparison-c2">
+			<h3><span class="comparison-icon2"></span>传统海淘</h3>
+			<ul>
+			  <li>外文界面，付款繁琐</li>
+			  <li>运输安全无保障</li>
+			  <li>费心寻找转运公司，流程漫长，须30天以上</li>
+			  <li>关税自理且昂贵，不划算</li>
+			  <li>无客服无售后，满意靠运气</li>
+			</ul>
+		</div>
+	</div>
+
+*/
+.comparison {
+  padding: 48px 27px;
+  text-align: left;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5; }
+
+.comparison li {
+  font-size: 14px;
+  line-height: 2; }
+
+.comparison h3 {
+  padding-bottom: 6px;
+  font-size: 24px; }
+
+.comparison-c1 {
+  padding-left: 70px;
+  width: 440px; }
+
+.comparison-c1 h3 {
+  color: #dc3434;
+  font-weight: normal; }
+
+.comparison-c2 {
+  overflow: hidden;
+  padding-left: 44px;
+  padding-left: 70px; }
+
+.comparison-icon1 {
+  width: 54px;
+  height: 54px;
+  margin-left: -70px;
+  margin-right: 18px; }
+
+.comparison-icon2 {
+  width: 54px;
+  height: 54px;
+  margin-right: 18px;
+  margin-left: -70px;
+  background-position: -54px 0; }
+
+/*
+@styleguide
+
+# faq
+	
+	<div class="faq">
+	  <h3>FAQ</h3>
+	  <h4><span class="faq-icon1"></span>顺丰海淘如何保证网站所售商品均为正品？</h4>
+	  <p><span class="faq-icon2"></span>顺丰海淘所有商品均由正规渠道进货，全程政府监管，保证100%原装正品。<br />我们有严格的供应商选择和监管系统，只有符合SFHT筛选规则的供应商才能成为我们的合作供货方。例如：针对供应商，我们会考核其公司年度报税记录，其它交易往来记录，相关货源进货凭证等文档信息。在下单前，我们还会有专人进行货源地实地考察，以确保货物品质。所以，在100%正品的顺丰海淘网站购物，会给您带来高性价比和无后顾之忧的超值体验。</p>
+	  <h4><span class="faq-icon1"></span>保税仓、海外仓发货和海外直邮有什么区别？</h4>
+	  <p><span class="faq-icon2"></span>答：顺丰海淘的直采自营模式对比传统的海淘模式，其优势在于由保税仓在国内设仓，在物流到货上有很大的时效优势，一般情况下3~5天便可到货；海外仓发货，一般情况下6~10天即可到货；海外直邮商品到货时间为15天以上。</p>
+	  <h4><span class="faq-icon1"></span>下单后什么时候发货？大概多久可以收到商品？</h4>
+	  <p><span class="faq-icon2"></span>答：通常情况下，您的订单将在24小时内完成订单审核并打包出库，转由海关清关，通常需要2-3工作日的时间完成。物流合计时间请参考02条所示的物流时效。</p>
+	  <h4><span class="faq-icon1"></span>所售商品经由海关均会收取关税吗？</h4>
+	  <p><span class="faq-icon2"></span>答：依据《中华人民共和国进境物品归类表》的规定，以商品实际销售价格作为完税价格，参照个人物品行邮税税率征收进境物品进口税。海外进口商品需要依法向海关申报及纳税，但顺丰海淘已为您缴纳了商品税费，您享受的一定是高性价比的购物体验。</p>
+	</div>
+	
+*/
+.faq-icon1 {
+  width: 24px;
+  height: 25px; }
+
+.faq-icon2 {
+  width: 24px;
+  height: 25px;
+  background-position: -24px 0;
+  margin-left: -40px; }
+
+.faq {
+  padding: 0 30px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 8px; }
+
+.faq h3 {
+  font-size: 28px;
+  margin-bottom: 24px; }
+
+.faq h4 {
+  font-size: 18px;
+  margin-bottom: 21px;
+  font-weight: normal; }
+
+.faq p {
+  padding-left: 40px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #666;
+  line-height: 24px; }
+
+/*
+@styleguide
+
+# 流程
+
+	<div class="notify">
+	  <h3><span class="notify-icon"></span>消费者告知书</h3>
+	  <h4>尊敬的用户：</h4>
+	  <p>在您选购进口商品前，请仔细阅读本文，同意告知的内容后再下单购买：</p>
+	  <ul>
+	    <li>您在本网站上购买的进口商品，仅限个人自用，请勿再进行二次销售。</li>
+	    <li>您购买的进口商品所适用的质量、标识、健康标准等均按照原产国标准，与我国标准可能会有所不同，产生的差异以及其它风险，将由您个人承担。</li>
+	    <li>本网站（公司）默认顺丰海淘代您向海关进行申报和代缴税款。</li>
+	  </ul>
+	</div>
+
+*/
+.notify {
+  padding: 48px 30px; }
+
+.notify h3 {
+  color: #b5856d;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: normal; }
+
+.notify h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: normal; }
+
+.notify p,
+.notify li {
+  font-size: 14px;
+  color: #666;
+  line-height: 28px; }
+
+.notify ul {
+  padding-left: 15px; }
+
+.notify li {
+  list-style: inherit; }
+
+.notify-icon {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/notify-icon.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px; }
+
+.match {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 30px 0; }
+
+.match h2 {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0 14px 9px;
+  border-bottom: 2px solid #dc3334;
+  margin-bottom: -2px; }
+
+.match-h {
+  border-bottom: 2px solid #eee;
+  margin: 0 50px; }
+
+.match-c1 li {
+  float: left;
+  width: 140px;
+  margin-right: 80px;
+  position: relative; }
+
+.match-icon {
+  font-size: 48px;
+  color: #ccc;
+  position: absolute;
+  top: 50px;
+  right: -54px; }
+
+.match-c1 h3 {
+  font-weight: normal;
+  line-height: 19px;
+  margin: 5px 0;
+  height: 38px;
+  overflow: hidden; }
+
+.match-c1 img {
+  border: 1px solid #e5e5e5; }
+
+.match-c1 input {
+  margin-right: 18px; }
+
+.match-b {
+  padding: 25px 50px; }
+
+.match-r1 {
+  margin-bottom: 30px; }
+
+.match-c2 {
+  position: relative; }
+
+.match-c2 label {
+  width: 3em;
+  color: #a9a9a9; }
+
+.match-c2 del {
+  color: #a9a9a9; }
+
+.match-c2 li {
+  margin-bottom: 10px; }
+
+.match-c2 ul {
+  margin-bottom: 23px; }
+
+.match-c2 .text-important {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 13px; }
+
+.match-r2 .btn-danger {
+  margin-right: 10px; }
+
+.match-c2 .match-icon {
+  right: auto;
+  left: -54px; }
+
+.comment {
+  padding: 20px 0; }
+
+.comment-h {
+  border: 1px solid #E5E5E5;
+  font-size: 0;
+  padding: 24px 0;
+  margin-bottom: 19px;
+  overflow: hidden; }
+
+.comment-h > div {
+  font-size: 12px;
+  float: left;
+  vertical-align: middle;
+  height: 92px;
+  padding-top: 8px;
+  padding-left: 40px; }
+
+.comment-hc1 {
+  border-right: 1px solid #E5E5E5;
+  width: 228px; }
+
+.comment-hc2 {
+  border-right: 1px solid #E5E5E5;
+  width: 539px;
+  overflow: hidden; }
+
+.comment-hc2 .comment-label {
+  height: 74px; }
+
+.comment-hc3 {
+  width: 150px; }
+
+.comment-hc1 h3 {
+  margin-bottom: 15px; }
+
+.comment-hc1 p {
+  color: #999;
+  margin-top: 15px; }
+
+.comment-num {
+  font-size: 18px;
+  margin-right: 5px; }
+
+.comment h3 {
+  font-size: 14px;
+  font-weight: normal; }
+
+.comment-hc2 h3 {
+  margin-bottom: 8px; }
+
+.comment-hc3 p {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  color: #666;
+  line-height: 20px; }
+
+.comment-img {
+  font-size: 0;
+  height: 95px; }
+
+.comment-img li {
+  display: inline-block;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  cursor: -webkit-zoom-in;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  text-align: center; }
+
+.comment-img li img {
+  max-width: 78px;
+  max-height: 78px; }
+
+.comment-img li span {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle; }
+
+.comment-img li.active {
+  cursor: -webkit-zoom-out; }
+
+.comment-img li.active:before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid #E13B3A;
+  -webkit-border-radius: 3px;
+          border-radius: 3px; }
+
+.comment-img li.active:after {
+  content: '';
+  border-style: solid;
+  border-width: 6px 5px;
+  border-color: #E13B3A transparent transparent transparent;
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  margin-left: -5px; }
+
+.comment-img-big {
+  position: relative;
+  text-align: center;
+  margin-right: 35px; }
+
+.comment-img-big-inner {
+  position: relative; }
+
+.comment-img-big li {
+  display: none;
+  cursor: -webkit-zoom-out;
+  background: #fff;
+  padding: 10px 0;
+  margin-top: 15px; }
+
+.comment-img-big li.active {
+  display: block; }
+
+.comment-img-big-prev,
+.comment-img-big-next {
+  width: 30px;
+  height: 60px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  display: none; }
+
+.comment-img-big-prev {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-prev.png) no-repeat;
+  left: 19px; }
+
+.comment-img-big-next {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-next.png) no-repeat;
+  right: 19px; }
+
+.comment-img-del {
+  display: inline-block;
+  vertical-align: top; }
+
+.comment-img-del > li:hover {
+  border-color: #E13B3A; }
+
+.comment-add-img-del {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: #fff;
+  background: #E13B3A;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+  font-size: 12px; }
+
+.comment-add-img-del:hover {
+  color: #fff; }
+
+.comment-img-del > li:hover .comment-add-img-del {
+  display: block; }
+
+.comment-list table {
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 32px; }
+
+.comment-list th {
+  height: 38px;
+  line-height: 38px;
+  background: #F5F5F5;
+  color: #666; }
+
+.comment-list thead tr {
+  border: 1px solid #F5F5F5; }
+
+.comment-list tbody tr {
+  border: 1px solid #E5E5E5;
+  border-top: none; }
+
+.comment-list td {
+  color: #999;
+  padding: 32px 0;
+  vertical-align: top; }
+
+.comment-list .col1 {
+  padding-left: 30px;
+  width: 520px; }
+
+.comment-list .col2 {
+  width: 148px;
+  padding-left: 80px; }
+
+.comment-list .col3 {
+  width: 140px; }
+
+.comment-list .col4 p {
+  margin-bottom: 14px; }
+
+.comment-list .p1 {
+  margin-bottom: 10px;
+  line-height: 20px;
+  color: #333; }
+
+.comment-list .p2 {
+  color: #666;
+  line-height: 20px; }
+
+.comment-list .p3 {
+  color: #666; }
+
+.comment-list .p4 {
+  text-align: center; }
+
+.comment-tab ul {
+  font-size: 0;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 20px; }
+
+.comment-tab li {
+  display: inline-block;
+  width: 154px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 12px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.comment-tab li.active {
+  border-left: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5;
+  position: relative; }
+
+.comment-tab li.active:before {
+  content: '';
+  height: 2px;
+  background: #DB3437;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0; }
+
+.comment-tab li span {
+  color: #999; }
+
+.comment-additional {
+  padding: 15px 10px 11px;
+  margin-bottom: 10px;
+  background: #F5F5F5;
+  position: relative; }
+
+.comment-additional:before {
+  border-width: 9px 7px;
+  border-style: solid;
+  border-color: transparent transparent #F5F5F5 transparent;
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: -17px; }
+
+.comment-additional h4 {
+  color: #999;
+  font-weight: normal;
+  margin-bottom: 8px; }
+
+.comment-additional p {
+  color: #666;
+  line-height: 16px;
+  margin-bottom: 5px; }
+
+.comment-label {
+  font-size: 0;
+  overflow: hidden; }
+
+.comment-label li {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #666;
+  height: 27px;
+  line-height: 27px;
+  padding: 0 10px;
+  background: #FFF4F4;
+  margin-right: 10px; }
+
+.comment-label li span {
+  color: #aaa; }
+
+.comment-progress {
+  width: 100px;
+  background: #ccc;
+  display: inline-block;
+  margin-right: 21px; }
+
+.comment-progress > div {
+  height: 8px;
+  background: #DB3437; }

@@ -313,3 +313,30 @@
 	color:#999;
 	text-align: center;
 }
+.goods-collect{
+	display: inline-block;
+	position: relative;
+	margin-left:18px;
+}
+.goods-collect svg{
+	margin-right:5px;
+	vertical-align:middle;
+	fill:#fff;
+}
+.goods-collect.active svg{
+	fill:#E73736;
+}
+.goods-tooltip{
+	width:195px;
+	background:url(http://img0.sfht.com/cmsres/20151124/1c32a283-6474-4076-af6d-8143ca423681.png) no-repeat;
+	height:37px;
+	line-height:26px;
+	text-align:center;
+	position: absolute;
+	font-size:12px;
+	left:-60px;
+	top:-40px;
+}
+.goods-tooltip a{
+	color:#29BFD6;
+}

@@ -4,20 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/detail.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/detail/detail.css" rel="stylesheet" type="text/css" />
 <link href="lib/raty/lib/jquery.raty.css" rel="stylesheet">
 </head>
 <body>
-  == Slim::Template.new('module/header.slim').render
+  == Slim::Template.new('../../module/header.slim').render
   <!--main-->
   <div class="pb">
     <div class="pm">
       <!--面包屑-->
-      == Slim::Template.new('module/crumbs.slim').render
+      == Slim::Template.new('../../module/crumbs.slim').render
       <!--面包屑-->
       <!--商品-->
-      == Slim::Template.new('module/goods.slim').render
+      == Slim::Template.new('../../module/goods.slim').render
       <!--商品-->
       <!--精选搭配-->
       <div class="match">
@@ -62,19 +62,19 @@
       </div>
       <!--精选搭配-->
       <!--小编推荐-->
-      == Slim::Template.new('module/recommend2.slim').render
+      == Slim::Template.new('../../module/recommend2.slim').render
       <!--小编推荐-->
       <!--详情-->
-      == Slim::Template.new('module/detail.slim').render
+      == Slim::Template.new('../../module/detail.slim').render
       <!--详情-->
       <!--推荐商品-->
-      == Slim::Template.new('module/recommend.slim').render
+      == Slim::Template.new('../../module/recommend.slim').render
       <!--推荐商品-->
     </div>
   </div>
   <!--main-->
   <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
+  == Slim::Template.new('../../module/footer.slim').render
   <!--尾部-->
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="lib/raty/lib/jquery.raty.js"></script>
