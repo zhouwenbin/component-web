@@ -4,23 +4,43 @@
 
 # 商品列表
 
-	<div class="product">
-		<div class="mb">
-		  <ul class="clearfix product-list">
-		  	-for i in 1..8
+	<div class="product-1">
+		<div class="mb pm">
+		  <h2 class="index2-h2 pm"><i></i>限时秒杀<span class="text-error">每日10:00更新</span></h2>
+		  <div class="tab tab2">
+		  	<ul class="clearfix">
+		  		<li class="active"><a href="">9月10日</a></li>
+	  			<li><a href="">9月11日</a></li>
+	  			<li><a href="">9月12日</a></li>
+	  			<li><a href="">9月13日</a></li>
+	  			<li><a href="">9月14日</a></li>
+		  	</ul>
+		  </div>
+		  <div class="tab-time clearfix">
+		  	<ul class="tab-time-c1 fl">
+		  		<li class="active"><a href="">10 : 00</a></li>
+		  		<li><a href="">12 : 00</a></li>
+		  		<li><a href="">14 : 00</a></li>
+		  		<li><a href="">16 : 00</a></li>
+		  		<li><a href="">20 : 00</a></li>
+		  	</ul>
+		  	<div class="tab-time-c2 fr">距本场结束还剩：<span>02</span>时<span>21</span>分<span>29</span>秒</div>
+		  </div>
+		  <ul class="clearfix product-1-list">
+		  	-for i in 1..4
 			    <li>
-			      <div class="product-r1">
-			        <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-			        <div class="product-new">新品</div>
+			      <div class="product-1-r1">
+			        <a href=""><img src="../img/index-makeup/product-imgi.png" alt="" ></a><span></span>
+			        <div class="icon icon-soldout icon-soldout-big">已售光</div>
 			      </div>
 			      <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
 			      <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
-			      <div class="product-r2 clearfix">
-			        <div class="product-r2c1 fl">
-			          <span>￥</span><strong>129</strong><del>￥189</del>5折
+			      <div class="product-1-r2 clearfix">
+			        <div class="product-1-r2c1 fl">
+			          <span>秒杀价：￥</span><strong>129</strong>
 			          
 			        </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
+		            <div class="product-1-r2c2 fr"><button class="btn btn-black btn-small">加入购物车<img src="../img/index-makeup/product-imgi.png" class="addtocart-img" alt=""></button></div>
 			      </div>
 			    </li>
 		  </ul>
@@ -28,42 +48,41 @@
 	</div>
 	
 */
-.product {
+.product-1 {
   margin-bottom: 20px; }
 
-.product .mh {
+.product-1 .mh {
   line-height: 24px;
   margin-bottom: 37px;
   height: 31px;
   padding-left: 4px; }
 
-.product-list {
-  margin-left: -22px; }
-
-.product-list li {
+.product-1-list li {
   float: left;
-  width: 271px;
-  margin-left: 23px;
-  border: 3px solid #fff;
+  width: 239px;
+  border: 1px solid #fff;
   -webkit-box-shadow: 0 0 0 1px #e5e5e5;
           box-shadow: 0 0 0 1px #e5e5e5;
-  padding-top: 10px;
+  padding: 27px;
   background: #fff;
   padding-bottom: 20px;
-  margin-bottom: 20px;
   position: relative; }
 
-.product-list li:hover {
-  outline-color: #dd3e3f;
-  border-color: #dd3e3f; }
+.product-1-list li:hover:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  border-bottom: 3px solid #E73736; }
 
-.product-list li .mask {
+.product-1-list li .mask {
   position: absolute;
   background: #fff;
   z-index: 0; }
 
-.product-list li .icon24,
-.product-list li .icon24-1 {
+.product-1-list li .icon24,
+.product-1-list li .icon24-1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,7 +91,7 @@
   width: 75px;
   height: 0; }
 
-.product-list li .icon25 {
+.product-1-list li .icon25 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,125 +101,131 @@
   width: 74px;
   height: 0; }
 
-.product-list li .icon115 {
+.product-1-list li .icon115 {
   position: absolute;
   left: 0;
   top: 0; }
 
-.product-r1 {
-  height: 240px;
+.product-1-r1 {
+  height: 229px;
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 13px;
   position: relative;
   font-size: 0; }
 
-.product-r1 img {
-  max-width: 240px;
-  max-height: 240px; }
+.product-1-r1 img {
+  max-width: 229px;
+  max-height: 229px; }
 
-.product-r1 a {
+.product-1-r1 a {
   display: inline-block;
   vertical-align: middle; }
 
-.product-r1 span {
+.product-1-r1 span {
   width: 0;
   height: 100%;
   display: inline-block;
   vertical-align: middle;
   overflow: hidden; }
 
-.product h3 {
-  margin-bottom: 13px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 14px;
-  line-height: 18px;
-  height: 36px;
-  overflow: hidden; }
+.product-1 .icon-new,
+.product-1 .icon-hot,
+.product-1 .icon-sale {
+  position: absolute;
+  right: 20px;
+  top: -3px; }
 
-.product p {
-  padding-left: 16px;
-  padding-right: 16px;
+.product-1-r1 .icon-soldout1,
+.product-1-r1 .icon-soldout2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -65px;
+  margin-top: -65px; }
+
+.product-1 h3 {
+  margin-bottom: 13px;
+  font-size: 14px;
+  line-height: 21px;
+  height: 42px;
+  overflow: hidden;
+  font-weight: normal; }
+
+.product-1 h3 a:hover {
+  text-decoration: underline; }
+
+.product-1 p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;
   color: #949494;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   height: 15px; }
 
-.product p img {
+.product-1 p img {
   margin-right: 5px;
-  vertical-align: middle; }
+  vertical-align: middle;
+  width: 18px;
+  height: 12px; }
 
-.product-r2 {
-  padding-left: 16px;
-  padding-right: 16px; }
+.product-1-r2 {
+  margin-bottom: 25px; }
 
-.product-r2c1 {
-  font-size: 14px;
+.product-1-r2c1 {
   color: #dc3334;
-  height: 41px;
   padding-top: 4px; }
 
-.product-r2c1 strong {
-  font-size: 24px;
+.product-1-r2c1 strong {
+  font-size: 14px;
   margin-right: 7px; }
 
-.product-r2c1 del {
+.product-1-r2c1 del {
   color: #666;
   margin-right: 13px; }
 
-.product .mf {
+.product-1 .mf {
   text-align: center;
   padding-top: 5px;
   *padding-top: 43px; }
 
-.product .btn-more {
+.product-1 .btn-more {
   -webkit-border-radius: 28px;
           border-radius: 28px; }
 
-.product .label {
+.product-1 .label {
   position: absolute;
   left: 16px;
   top: -14px; }
 
-.product-new,
-.product-hot {
-  width: 49px;
-  height: 49px;
-  color: #fff;
-  font-size: 14px;
-  line-height: 49px;
-  text-align: center;
-  right: 12px;
-  top: 2px;
-  position: absolute; }
+.product-1-r2c1 img {
+  width: 18px;
+  height: 12px; }
 
-.product-new {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/product-new.png) no-repeat; }
+.product-1 .btn {
+  position: relative;
+  overflow: visible; }
 
-.product-hot {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/product-hot.png) no-repeat; }
-
-.product-r2c2 {
-  width: 35px;
-  height: 35px;
-  position: relative; }
-
-.product .icon90 {
-  z-index: 1;
+.addtocart-img {
+  width: 44px;
+  height: 44px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   position: absolute;
+  z-index: -1;
   left: 0;
   top: 0;
-  -webkit-transition: 0.5s left linear, 0.5s top ease-out, 0.1s visibility 0.5s linear;
-          transition: 0.5s left linear, 0.5s top ease-out, 0.1s visibility 0.5s linear; }
+  -webkit-transition: 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear;
+          transition: 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
 
-.product .icon90:hover {
-  -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-          transform: scale(1.05);
-  -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5)); }
+.product-1-comment {
+  margin-left: 26px; }
+
+.product-1-comment span {
+  color: #29BFD6; }
+
+.product-1-r3 {
+  color: #9B9B9B; }
 
 .myorder-tab {
   border-bottom: 1px solid #e5e5e5;
@@ -249,42 +274,6 @@
 .buyer-reading li {
   list-style: inside; }
 
-.classify {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #E5E5E5;
-  margin-bottom: 20px;
-  font-size: 0; }
-
-.classify span {
-  font-size: 14px;
-  color: #9B9B9B;
-  margin-right: 15px; }
-
-.classify ul {
-  display: inline-block; }
-
-.classify li {
-  display: inline-block;
-  font-size: 14px;
-  margin-right: 5px;
-  -webkit-border-radius: 2px;
-          border-radius: 2px; }
-
-.classify li a {
-  display: block;
-  padding: 0 14px;
-  height: 31px;
-  line-height: 31px; }
-
-.classify li:hover {
-  background: #F1F1F1; }
-
-.classify li.active {
-  background: #E73736; }
-
-.classify li.active a {
-  color: #fff; }
-
 /*
 @styleguide
 
@@ -293,7 +282,7 @@
 */
 .sort {
   text-align: left;
-  margin-bottom: 17px; }
+  margin-bottom: 30px; }
 
 .sort ul,
 .sort li {
@@ -339,7 +328,8 @@
   padding-left: 30px; }
   .sort label input {
     vertical-align: text-top;
-    margin-top: 2px; }
+    margin-top: 2px;
+    margin-right: 5px; }
 
 .sf-b2c-mall-search-pagesShow .page {
   text-align: center;
@@ -372,7 +362,8 @@
   margin: 0 10px; }
 
 .search-page {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 20px; }
 
 .search-page .btn {
   margin: 0 5px; }
@@ -521,6 +512,114 @@
   position: absolute;
   left: 28px;
   top: 12px; }
+
+.classify {
+  background: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 30px; }
+
+.classify h2 {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0 10px; }
+
+.classify h2 strong {
+  margin-right: 14px; }
+
+.classify label {
+  color: #848484;
+  display: inline-block;
+  width: 5em;
+  text-align: right;
+  vertical-align: middle;
+  margin-right: 23px; }
+
+.classify-list ul,
+.classify-list li li {
+  display: inline-block;
+  vertical-align: middle; }
+
+.classify-list > li {
+  padding: 19px 0;
+  border-top: 1px dashed #d4d4d4; }
+
+.classify-logo ul {
+  width: 1008px;
+  height: 50px;
+  overflow: hidden; }
+
+.classify .active ul {
+  height: auto;
+  padding-bottom: 1px; }
+
+.classify-logo li {
+  width: 98px;
+  height: 48px;
+  border: 1px solid #e5e5e5;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  text-align: center;
+  overflow: hidden; }
+
+.classify-logo li:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%; }
+
+.classify-logo li:hover img {
+  display: none; }
+
+.classify-logo img {
+  max-width: 98px;
+  max-height: 48px;
+  vertical-align: middle; }
+
+.classify-logo span {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal; }
+
+.classify-text li {
+  margin-right: 42px; }
+
+.classify-c2 {
+  padding-top: 13px; }
+
+.classify-c2 a {
+  color: #584a4c; }
+
+.classify .icon105 {
+  margin-left: 5px;
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+          transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+.classify .active .icon105 {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg); }
+
+.classify-more:before {
+  content: 'æ›´å¤š'; }
+
+.classify .active .classify-more:before {
+  content: 'æ”¶èµ·'; }
+
+.classify .btn-search {
+  margin-right: 10px; }
+
+.classify-select {
+  position: relative; }
+
+.classify-select .text-disabled {
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+.classify .classify-select {
+  height: 39px;
+  line-height: 39px;
+  padding: 0; }
 
 .crumbs {
   margin: 0;

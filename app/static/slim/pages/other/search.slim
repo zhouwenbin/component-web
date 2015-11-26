@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>顺丰海淘</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/search.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/other/search.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <!--头部-->
-== Slim::Template.new('module/header.slim').render
+== Slim::Template.new('../../module/header.slim').render
 <!--头部-->
 <div class="pb">
 <div id="classify" class="classify">
@@ -78,148 +78,34 @@
 			<li><a href="javascript:">综合</a></li>
 			<li><a href="javascript:">人气</a></li>
 			<li class="active"><a href="javascript:" id="sort-price">价格<span class="icon icon107"></span></a></li>
+			<li class="active"><a href="javascript:" id="sort-price">评价<span class="icon icon107"></span></a></li>
+			<li><a href="javascript:">上新时间</a></li>
 		</ul>
+		<label><input type="checkbox">只看有货商品</label>
+		<label><input type="checkbox">只看促销</label>
 	</div>
 	<!--热卖商品-->
-	<div class="nataral-product nataral-product2">
-		<div class="product">
-		  <div class="mb">
-		    <ul class="clearfix product-list">
-		      
-		      <li>
-
-		        <div class="product-r1">
-		          
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-
-		        <div class="product-r1">
-		          
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		      <li>
-		        <div class="product-r1">
-		          <div class="nataral-product-price2">当地售价<div class="text-important">NT$1120</div></div>
-		          <a href=""><img src="http://placehold.it/240x240" srcset="http://placehold.it/240x240 1x,../img/product.webp 1x" alt="" ></a><span></span>
-		        </div>
-		        <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
-		        
-		        <div class="product-r2 clearfix">
-		          <div class="product-r2c1 fl">
-		            <span>￥</span><strong>129</strong><span class="nataral-product-price">约 NT$890</span>
-		            
-		          </div>
-		            <div class="product-r2c2 fr"><a href="javascript:" class="icon icon90">购买</a></div>
-		        </div>
-		        <span class="icon icon115">明星</span>
-		      </li>
-		    </ul>
-		  </div>
+	<div class="product-1">
+		<div class="mb pm">
+		  <ul class="clearfix product-1-list">
+		  	-for i in 1..4
+			    <li>
+			      <div class="product-1-r1">
+			        <a href=""><img src="../img/index-makeup/product-img#{i}.png" alt="" ></a><span></span>
+			        <div class="icon icon-soldout icon-soldout-big">已售光</div>
+			      </div>
+			      <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
+			      <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
+			      <div class="product-1-r2 clearfix">
+			        <div class="product-1-r2c1 fl">
+			          <span>秒杀价：￥</span><strong>129</strong>
+			          
+			        </div>
+		            <div class="product-1-r2c2 fr"><button class="btn btn-black btn-small">加入购物车<img src="../img/index-makeup/product-img#{i}.png" class="addtocart-img" alt=""></button></div>
+			      </div>
+			      <div class="product-1-r3">30天销量：235 <span class="product-1-comment">评价：<span>0</span></span></div>
+			    </li>
+		  </ul>
 		</div>
 	</div>
 	<div class="search-page">
@@ -231,7 +117,7 @@
 </div>
 </div>
 <!--尾部-->
-== Slim::Template.new('module/footer.slim').render
+== Slim::Template.new('../../module/footer.slim').render
 <!--尾部-->
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/index.js"></script>
