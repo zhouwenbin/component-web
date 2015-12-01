@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>确定订单</title>
-<link href="../css/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/gotopay.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../css/pages/order/gotopay.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-== Slim::Template.new('module/header2.slim').render
+== Slim::Template.new('../../module/header2.slim').render
 <div class="pb">
   <div class="pm"> 
     
@@ -38,25 +38,29 @@ Mediheal可莱丝HDP收缩毛孔去粉刺竹炭面膜 10片/盒</li>
       <div class="gotopay-r1">应付金额:<b class="text-important">¥</b><strong class="text-important">896.90</strong>
         <span class="gotopay-r1-c1">原应付：￥388</span><span class="gotopay-r1-c1">首单减优惠：-￥388</span>
       </div>
-      <h2>支付方式:</h2>
-      <ul>
+      <h2>推荐支付方式:</h2>
+      <ul class="first">
         <li class="active">
-          <img src="../img/gotopay1.png" alt="快捷支付" />
+          <img src="../../../img/other/gotopay2.png" alt="支付宝" />
+          <h3>中国最大的第三方支付平台</h3>
+          <span class="icon icon85"></span>
+        </li>
+      </ul>
+      <h2>其他支付方式:</h2>
+      <button class="btn btn-normal">其他支付方式</button>
+      <ul class="last hide">
+        <li>
+          <img src="../../../img/other/gotopay1.png" alt="快捷支付" />
           <h3>首次使用快捷支付，立减5元</h3>
           <span class="icon icon85"></span>
         </li>
         <li>
-          <img src="../img/gotopay2.png" alt="支付宝" />
-          <h3 class="text-important">首次使用快捷支付，立减5元</h3>
-          <span class="icon icon85"></span>
-        </li>
-        <li>
-          <img src="../img/gotopay3.png" alt="微信支付" />
+          <img src="../../../img/other/gotopay3.png" alt="微信支付" />
           <h3>首次使用快捷支付，立减5元</h3>
           <span class="icon icon85"></span>
         </li>
         <li>
-          <img src="../img/gotopay4.png" alt="财付通" />
+          <img src="../../../img/other/gotopay4.png" alt="财付通" />
           <h3>首次使用快捷支付，立减5元</h3>
           <span class="icon icon85"></span>
         </li>
@@ -66,7 +70,7 @@ Mediheal可莱丝HDP收缩毛孔去粉刺竹炭面膜 10片/盒</li>
   </div>
 </div>
 <!--尾部--> 
-== Slim::Template.new('module/footer.slim').render 
+== Slim::Template.new('../../module/footer.slim').render 
 <!--尾部--> 
 <script src="js/jquery-1.11.1.min.js"></script> 
 <script src="js/index.js"></script>
