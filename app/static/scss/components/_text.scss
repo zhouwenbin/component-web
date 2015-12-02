@@ -37,3 +37,12 @@
 .text-orange{
 	color:#F38612;
 }
+.text-dark {
+	color: #999;
+}
+.text-dark:hover{
+	color: #666
+}
+.text-dark:hover svg{
+	fill:#999;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-username</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1.整页-登录-0" sketch:type="MSArtboardGroup" transform="translate(-895.000000, -403.000000)" fill="#E5E5E5">
+            <path d="M905,415.029667 C905,415.029667 897.727273,415.029667 895,420.863 C895,420.863 899.554545,422.529667 905,422.529667 C910.445455,422.529667 915,420.863 915,420.863 C912.272727,415.029667 905,415.029667 905,415.029667 L905,415.029667 Z M905,414.196333 C907.727273,414.196333 909.545455,411.696333 909.545455,407.529667 C909.545455,403.363 905,403.363 905,403.363 C905,403.363 900.454545,403.363 900.454545,407.529667 C900.454545,411.696333 902.272727,414.196333 905,414.196333 L905,414.196333 Z" id="icon-username" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
