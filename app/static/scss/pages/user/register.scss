@@ -1,3 +1,11 @@
 ﻿@import '../../utils/variables';
 @import '../../utils/placeholders';
 @import '../../module/register';
+
+html, body, .login {
+  height: 100%;
+}
+.pm {
+  position: relative;
+  height: 0;
+}
