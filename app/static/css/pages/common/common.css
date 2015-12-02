@@ -2917,8 +2917,8 @@ a[title="站长统计"] {
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
 
 .login-inner.submit {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: -209px -1139px;
+  background-image: url("http://img0.sfht.com/cmsres/20151202/928ea954-925f-4795-b81b-215725077d77.png");
+  background-position: 0 top;
   background-repeat: no-repeat;
   border: none;
   -webkit-animation: submit 2s infinite;
@@ -2926,23 +2926,22 @@ a[title="站长统计"] {
 
 @-webkit-keyframes submit {
   100% {
-    background-position: -729px -1139px; } }
+    background-position: -520px top; } }
 
 @keyframes submit {
   100% {
-    background-position: -729px -1139px; } }
+    background-position: -520px top; } }
 .icon-qrcode {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -1139px;
+  background-image: url("http://img0.sfht.com/cmsres/20151202/928ea954-925f-4795-b81b-215725077d77.png");
   width: 190px;
   height: 190px;
   margin: 0 auto;
   margin-bottom: 14px; }
 
 .login {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
+  background-image: url("http://img0.sfht.com/cmsres/20151202/d56e2a28-397b-4477-b376-da5e96089fee.png");
   background-repeat: no-repeat;
-  background-position: center -431px;
+  background-position: center 85px;
   background-color: #FEF9F0; }
 
 .login-inner h2 {
@@ -3050,139 +3049,6 @@ a[title="站长统计"] {
   top: 12px;
   right: 55px; }
 
-.ani {
-  width: 73px;
-  height: 73px;
-  position: absolute; }
-
-.ani1 {
-  left: 217px;
-  top: 532px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png"); }
-
-.ani1-1 {
-  left: 802px;
-  top: 156px; }
-
-.ani2 {
-  left: 648px;
-  top: 190px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -61px; }
-
-.ani3 {
-  left: 1003px;
-  top: 331px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -122px; }
-
-.ani4 {
-  left: 235px;
-  top: 717px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -183px; }
-
-.ani4-1 {
-  left: 966px;
-  top: 414px; }
-
-.ani5 {
-  left: 217px;
-  top: 320px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -244px; }
-
-.ani6 {
-  left: 38px;
-  top: 342px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -305px; }
-
-.ani6-1 {
-  left: 985px;
-  top: 592px; }
-
-.ani7 {
-  left: 94px;
-  top: 209px;
-  background-image: url("http://img0.sfht.com/cmsres/20151202/1a2b5074-f53a-4658-b2b0-7d777752cc67.png");
-  background-position: 0 -366px; }
-
-.ani:hover {
-  -webkit-animation: ani 1s steps(29);
-          animation: ani 1s steps(29); }
-
-@-webkit-keyframes ani1 {
-  0% {
-    background-position: 0 0px; }
-  100% {
-    background-position: -2117px 0px; } }
-
-@keyframes ani1 {
-  0% {
-    background-position: 0 0px; }
-  100% {
-    background-position: -2117px 0px; } }
-@-webkit-keyframes ani2 {
-  0% {
-    background-position: 0 -61px; }
-  100% {
-    background-position: -2117px -61px; } }
-@keyframes ani2 {
-  0% {
-    background-position: 0 -61px; }
-  100% {
-    background-position: -2117px -61px; } }
-@-webkit-keyframes ani3 {
-  0% {
-    background-position: 0 -122px; }
-  100% {
-    background-position: -2117px -122px; } }
-@keyframes ani3 {
-  0% {
-    background-position: 0 -122px; }
-  100% {
-    background-position: -2117px -122px; } }
-@-webkit-keyframes ani4 {
-  0% {
-    background-position: 0 -183px; }
-  100% {
-    background-position: -2117px -183px; } }
-@keyframes ani4 {
-  0% {
-    background-position: 0 -183px; }
-  100% {
-    background-position: -2117px -183px; } }
-@-webkit-keyframes ani5 {
-  0% {
-    background-position: 0 -244px; }
-  100% {
-    background-position: -2117px -244px; } }
-@keyframes ani5 {
-  0% {
-    background-position: 0 -244px; }
-  100% {
-    background-position: -2117px -244px; } }
-@-webkit-keyframes ani6 {
-  0% {
-    background-position: 0 -305px; }
-  100% {
-    background-position: -2117px -305px; } }
-@keyframes ani6 {
-  0% {
-    background-position: 0 -305px; }
-  100% {
-    background-position: -2117px -305px; } }
-@-webkit-keyframes ani7 {
-  0% {
-    background-position: 0 -366px; }
-  100% {
-    background-position: -2117px -366px; } }
-@keyframes ani7 {
-  0% {
-    background-position: 0 -366px; }
-  100% {
-    background-position: -2117px -366px; } }
 /*
 @styleguide
 
