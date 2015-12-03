@@ -1,0 +1,53 @@
+.svg {
+    font-size: 10px;
+}
+
+.svg:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 14.7em 21.4em;
+}
+
+.no-svg .svg:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.svg.index-car:before {
+    background-position: 0em 0em;
+    width: 4em;
+    height: 3.1em;
+}
+
+.svg.index-cart:before {
+    background-position: 0em -3.1em;
+    width: 3.6em;
+    height: 4em;
+}
+
+.svg.index-earth:before {
+    background-position: 0em -7.1em;
+    width: 3.7em;
+    height: 3.6em;
+}
+
+.svg.index-list:before {
+    background-position: 0em -10.7em;
+    width: 2.7em;
+    height: 3.3em;
+}
+
+.svg.index-logo:before {
+    background-position: 0em -14em;
+    width: 14.7em;
+    height: 4.1em;
+}
+
+.svg.index-package:before {
+    background-position: 0em -18.1em;
+    width: 3.6em;
+    height: 3.3em;
+}
+

@@ -1,0 +1,71 @@
+.svg {
+    font-size: 10px;
+}
+
+.svg:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 9.5em 26.9em;
+}
+
+.no-svg .svg:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.svg.index-account:before {
+    background-position: 0em 0em;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.svg.index-alipay:before {
+    background-position: 0em -1.5em;
+    width: 3.6em;
+    height: 3.7em;
+}
+
+.svg.index-close:before {
+    background-position: 0em -5.2em;
+    width: 1.7em;
+    height: 1.5em;
+}
+
+.svg.index-logo:before {
+    background-position: 0em -6.7em;
+    width: 9.5em;
+    height: 9.5em;
+}
+
+.svg.index-password:before {
+    background-position: 0em -16.2em;
+    width: 1.8em;
+    height: 1.9em;
+}
+
+.svg.index-reflash:before {
+    background-position: 0em -18.1em;
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.svg.index-success:before {
+    background-position: 0em -19.9em;
+    width: 1.7em;
+    height: 1.4em;
+}
+
+.svg.index-username:before {
+    background-position: 0em -21.3em;
+    width: 2em;
+    height: 2em;
+}
+
+.svg.index-webchat:before {
+    background-position: 0em -23.3em;
+    width: 3.6em;
+    height: 3.6em;
+}
+
