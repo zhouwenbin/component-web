@@ -1,0 +1,71 @@
+.svg {
+    font-size: 10px;
+}
+
+.svg:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 18.1em 25.2em;
+}
+
+.no-svg .svg:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.svg.index-arrow-right:before {
+    background-position: 0em 0em;
+    width: 0.8em;
+    height: 1.3em;
+}
+
+.svg.index-cart-black:before {
+    background-position: 0em -1.3em;
+    width: 2.2em;
+    height: 1.9em;
+}
+
+.svg.index-cart-red:before {
+    background-position: 0em -3.2em;
+    width: 2.5em;
+    height: 2.2em;
+}
+
+.svg.index-kuai:before {
+    background-position: 0em -5.4em;
+    width: 2em;
+    height: 2.4em;
+}
+
+.svg.index-logo:before {
+    background-position: 0em -7.8em;
+    width: 14.9em;
+    height: 3.6em;
+}
+
+.svg.index-logo-big:before {
+    background-position: 0em -11.4em;
+    width: 18.1em;
+    height: 6.6em;
+}
+
+.svg.index-mian:before {
+    background-position: 0em -18em;
+    width: 2em;
+    height: 2.4em;
+}
+
+.svg.index-num:before {
+    background-position: 0em -20.4em;
+    width: 2.3em;
+    height: 2.4em;
+}
+
+.svg.index-zheng:before {
+    background-position: 0em -22.8em;
+    width: 2em;
+    height: 2.4em;
+}
+

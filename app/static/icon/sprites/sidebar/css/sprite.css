@@ -1,0 +1,41 @@
+.svg {
+    font-size: 10px;
+}
+
+.svg:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 1.6em 5.1em;
+}
+
+.no-svg .svg:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.svg.index-baby:before {
+    background-position: 0em 0em;
+    width: 1.2em;
+    height: 1.5em;
+}
+
+.svg.index-health:before {
+    background-position: 0em -1.5em;
+    width: 1.3em;
+    height: 1.5em;
+}
+
+.svg.index-makeup:before {
+    background-position: 0em -3em;
+    width: 1.6em;
+    height: 1em;
+}
+
+.svg.index-trend:before {
+    background-position: 0em -4em;
+    width: 1.3em;
+    height: 1.1em;
+}
+
