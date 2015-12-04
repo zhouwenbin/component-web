@@ -4,6 +4,7 @@
 	margin-bottom: 20px;
 	padding: 30px 20px;
 	position: relative;
+	overflow: hidden;
 }
 .goods-c1{
 	width: 420px;
@@ -91,25 +92,41 @@
 }
 .goods-c2r1{
 	margin-bottom:20px;
+	color: #666666;
 }
 .goods-c2r1 img{
 	margin-right:8px;
 }
+.goods-c2r1-from{
+	margin-left: 20px;
+}
 .goods-price{
 	background:#fff6f6;
 	border:1px solid #fddcdc;
-	padding:18px 14px;
+	padding:10px 0;
 }
 .goods-price-r1{
 	margin-bottom:10px;
 	font-size:14px;
+	padding-left: 14px;
 	color:#666;
+}
+.goods-price-r1 em{
+	display: inline-block;
+	background-color: #E73736;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 12px;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 7px;
+	vertical-align: middle;
 }
 .goods-price-r1 span{
 	color:#dc3334;
 	font-size:24px;
 	font-family:Arial;
-	margin-left:5px;
+	margin-left:10px;
 }
 .goods-price-r1 strong{
 	color:#dc3334;
@@ -134,32 +151,44 @@
 .goods-price-r2 span{
 	margin-right: 22px;
 }
+.goods-price-r1 b{
+	margin-left: 20px;
+}
 .goods-price-c1{
 	width: 303px;
 }
 .goods-price-c2{
-	overflow:hidden;
-	padding:16px 0 16px 24px;
-	border-left:1px solid #fbe3e3;
+	position: relative;
+	color: #666;
+	padding:14px 10px 0;
+	border-top:1px solid #fbe3e3;
 	
 }
 .goods-price-c2 b{
 	color:#999;
-	margin:0 5px;
+	margin-left: 23px;
+	margin-right: -5px;
 	font-weight:normal;
 }
-.goods-price-c2 .icon{
-	
-	vertical-align:-5px;
-}
 .goods-price-c2 strong{
-	font-size:24px;
+	display: inline-block;
+	margin: 0 5px;
+	color: #fff;
+	background-color: #3E3A39;
+	width: 20px;
+	height: 17px;
+	line-height: 17px;
+	text-align: center;
+	border-radius: 3px;
+	font-size:14px;
+	font-weight: 400;
 }
 .goods-c2 ul{
 	margin-top:20px;
 }
 .goods-c2 li{
 	margin-bottom:18px;
+	line-height: 10px;
 }
 .goods-c2 label{
 	font-size:14px;
@@ -176,19 +205,20 @@
 	height:0;
 	display:inline-block;
 }
+.goods-c2 .tips{
+	color: #999;
+	margin-left: 20px;
+}
+.goods-c2 a.tips:hover{
+	color: #333;
+}
 .goods-c2 .btn-goods{
 	margin-right:6px;
-	margin-bottom:6px;
 }
 .goods-c2 select{
 	margin-right:5px;
 }
-.goods-num{
-	padding-top:14px;
-	border-top:1px dotted #fddcdc;
-	margin-bottom:16px;
-}
-.goods-num .icon62{
+.goods-c2 .icon62{
 	margin-left:15px;
 	margin-right:5px;
 }
@@ -210,18 +240,40 @@
 .goods-c2r2 .icon{
 	margin-left:10px;
 }
+.btn-buy.disable{
+	border: 0 none;
+	border-radius: 0;
+}
 .goods-c2r2 .btn{
 	width:134px;
-	height:44px;
-	line-height:44px;
+	height:45px;
+	line-height:45px;
 	font-size:16px;
 	margin-right:10px;
 	position: relative;
 }
+.goods-c2r3{
+	position: relative;
+	margin-top: 20px;
+}
+.goods-c2r3 svg{	
+	fill: #E73736; 
+	stroke: #E73736;
+	margin-right: 3px;
+}
+.goods-c2r3 .icon-star02{
+	fill: #fff;
+}
+.goods-c2r3 .text-important{
+	font-size: 18px;
+	margin-left: 10px;
+	margin-right: 5px;
+}
 .goods-share{
 	position: absolute;
 	right: 0px;
-	bottom: 10px;
+	top: 0px;
+	color: #666;
 }
 
 .goods-activity{
@@ -243,6 +295,11 @@
 }
 .goods-activity .icon67{
 	margin-left:6px;
+}
+.goods-activity-c1{
+	position: absolute;
+	right: 17px;
+	top: 19px;
 }
 .goods-activity-c1 a{
 	color:#666;
@@ -316,15 +373,20 @@
 .goods-collect{
 	display: inline-block;
 	position: relative;
-	margin-left:18px;
+	margin-left:10px;
+	vertical-align: -3px;
+	color: #666;
 }
 .goods-collect svg{
 	margin-right:5px;
 	vertical-align:middle;
 	fill:#fff;
+	stroke: #666;
+	margin-top: -4px;
 }
 .goods-collect.active svg{
-	fill:#E73736;
+	fill:#FF8134;
+	stroke: none;
 }
 .goods-tooltip{
 	width:195px;
@@ -335,7 +397,7 @@
 	position: absolute;
 	font-size:12px;
 	left:-60px;
-	top:-40px;
+	top:-50px;
 }
 .goods-tooltip a{
 	color:#29BFD6;
