@@ -1,7 +1,8 @@
-
+<!--[if IE 8]> <link href="../../../../modules/login/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
 <include src="symbols/svg/symbols.svg"></include>
 <div class="login-inner">
-  <svg class="icon-logo" width="95" height="95"><use xlink:href="#icon-logo"></use></svg>
+  <svg class="icon-logo"><use xlink:href="#icon-logo"></use></svg>
+  <!--[if IE 8]><span class="svg icon-logo"></span><![endif]-->
   <!-- 注册 -->
 
   <div class="register">
@@ -16,14 +17,17 @@
       </li>
       <li>
        <input class="input" placeholder="设置6-18位字母、数字或标点符号的密码">
-       <svg class="icon-password" width="18" height="18"><use xlink:href="#icon-password"></use></svg>
+       <svg class="icon-password"><use xlink:href="#icon-password"></use></svg>
+       <!--[if IE 8]><span class="svg icon-password"></span><![endif]-->
        <div class="text-error">密码不能为空</div>
       </li>
       <li>
        <input class="input" placeholder="输入右侧图形验证码，点击图片可刷新">
        <img class="login-code" src="http://img0.sfht.com/cmsres/20151202/946602d5-5740-4859-9dbe-4c3d4c7a57e6.jpeg" alt="验证码">
-       <svg class="icon-reflash" width="18" height="18"><use xlink:href="#icon-reflash"></use></svg>
-       <svg class="icon-success hide" width="17" height="14"><use xlink:href="#icon-success"></use></svg>
+       <svg class="icon-reflash"><use xlink:href="#icon-reflash"></use></svg>
+       <!--[if IE 8]><span class="svg icon-reflash"></span><![endif]-->
+       <svg class="icon-success hide"><use xlink:href="#icon-success"></use></svg>
+       <!--[if IE 8]><span class="svg icon-success"></span><![endif]-->
       </li>
     </ul>
     <div class="login-r1">

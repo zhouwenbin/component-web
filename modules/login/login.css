@@ -11,6 +11,8 @@
   top: -110px;
   left: 50%;
   margin-left: -47px;
+  width: 95px;
+  height: 95px;
 }
 
 .icon-account {
@@ -28,18 +30,30 @@
 
 .icon-password {
   fill: #E5E5E5;
+  width: 18px;
+  height: 18px;
 }
 
 .icon-reflash {
   fill: #E5E5E5;
+  width: 18px;
+  height: 18px;
 }
 
 .icon-username {
   fill: #E5E5E5;
+  width: 20px;
+  height: 19px;
 }
 
 .icon-success {
   fill: #E5E5E5;
+  width: 17px;
+  height: 14px;
+}
+.icon-alipay{
+  width: 36px;
+  height: 37px;
 }
 
 .login .svg{
