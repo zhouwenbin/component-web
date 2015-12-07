@@ -41,6 +41,10 @@
   fill: #E5E5E5;
 }
 
+.login .svg {
+  display: inline-block;
+}
+
 .login-inner {
   width: 520px;
   height: 420px;
@@ -175,13 +179,13 @@
   color: #333;
 }
 
-.login-r2 svg {
+.login-r2 svg, .login-r2 .svg {
   margin-right: 7px;
   vertical-align: middle;
   opacity: 0.5;
 }
 
-.login-r2 a:hover svg {
+.login-r2 a:hover svg, .login-r2 a:hover .svg {
   opacity: 1;
 }
 
