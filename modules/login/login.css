@@ -105,7 +105,8 @@
   margin-bottom: 15px;
 }
 
-.login-inner li svg {
+.login-inner li svg,
+.login-inner li .svg {
   position: absolute;
   top: 17px;
   right: 15px;
