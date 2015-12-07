@@ -16,13 +16,17 @@
     "cssnext": "^1.8.4",
     "gulp-cssnext": "^1.0.1",
     "gulp-html-tag-include": "^1.0.1",
+    "gulp-livereload": "^3.8.1",
     "gulp-posthtml": "^1.5.2",
+    "gulp-react": "^3.1.0",
     "gulp-svg-sprites": "^3.0.0",
     "gulp-svg2png": "^0.3.0",
     "highlight.js": "^8.9.1",
+    "postcss-modules": "^0.1.2",
     "postcss-scss": "^0.1.3",
     "postcss-style-guide": "^0.9.3",
     "posthtml-include": "^1.0.1",
-    "precss": "^1.3.0"
+    "precss": "^1.3.0",
+    "react": "^0.14.3"
   }
 }

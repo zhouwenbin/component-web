@@ -15,25 +15,25 @@
     background-image: url("../svg/sprite.png");
 }
 
-.svg.index-baby:before {
+.svg.icon-baby:before {
     background-position: 0em 0em;
     width: 1.2em;
     height: 1.5em;
 }
 
-.svg.index-health:before {
+.svg.icon-health:before {
     background-position: 0em -1.5em;
     width: 1.3em;
     height: 1.5em;
 }
 
-.svg.index-makeup:before {
+.svg.icon-makeup:before {
     background-position: 0em -3em;
     width: 1.6em;
     height: 1em;
 }
 
-.svg.index-trend:before {
+.svg.icon-trend:before {
     background-position: 0em -4em;
     width: 1.3em;
     height: 1.1em;

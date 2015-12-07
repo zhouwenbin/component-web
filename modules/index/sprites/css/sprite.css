@@ -15,91 +15,91 @@
     background-image: url("../svg/sprite.png");
 }
 
-.svg.index-icon-addtocart:before {
+.svg.icon-icon-addtocart:before {
     background-position: 0em 0em;
     width: 3em;
     height: 3em;
 }
 
-.svg.index-icon-ashbin:before {
+.svg.icon-icon-ashbin:before {
     background-position: 0em -3em;
     width: 1.6em;
     height: 1.6em;
 }
 
-.svg.index-icon-beauty-makeup:before {
+.svg.icon-icon-beauty-makeup:before {
     background-position: 0em -4.6em;
     width: 1.3em;
     height: 1.5em;
 }
 
-.svg.index-icon-body:before {
+.svg.icon-icon-body:before {
     background-position: 0em -6.1em;
     width: 1.2em;
     height: 1.8em;
 }
 
-.svg.index-icon-cup:before {
+.svg.icon-icon-cup:before {
     background-position: 0em -7.9em;
     width: 1.6em;
     height: 1.2em;
 }
 
-.svg.index-icon-earth:before {
+.svg.icon-icon-earth:before {
     background-position: 0em -9.1em;
     width: 1.7em;
     height: 1.7em;
 }
 
-.svg.index-icon-face:before {
+.svg.icon-icon-face:before {
     background-position: 0em -10.8em;
     width: 1.6em;
     height: 1.6em;
 }
 
-.svg.index-icon-hair:before {
+.svg.icon-icon-hair:before {
     background-position: 0em -12.4em;
     width: 1.5em;
     height: 1.3em;
 }
 
-.svg.index-icon-makeup:before {
+.svg.icon-icon-makeup:before {
     background-position: 0em -13.7em;
     width: 1.5em;
     height: 1.2em;
 }
 
-.svg.index-icon-man:before {
+.svg.icon-icon-man:before {
     background-position: 0em -14.9em;
     width: 1.3em;
     height: 1.4em;
 }
 
-.svg.index-icon-mask:before {
+.svg.icon-icon-mask:before {
     background-position: 0em -16.3em;
     width: 1.5em;
     height: 1.5em;
 }
 
-.svg.index-icon-mouth:before {
+.svg.icon-icon-mouth:before {
     background-position: 0em -17.8em;
     width: 1.3em;
     height: 1.5em;
 }
 
-.svg.index-icon-star:before {
+.svg.icon-icon-star:before {
     background-position: 0em -19.3em;
     width: 2em;
     height: 2em;
 }
 
-.svg.index-icon-trash:before {
+.svg.icon-icon-trash:before {
     background-position: 0em -21.3em;
     width: 3em;
     height: 3em;
 }
 
-.svg.index-icon-women:before {
+.svg.icon-icon-women:before {
     background-position: 0em -24.3em;
     width: 1.4em;
     height: 1.5em;
