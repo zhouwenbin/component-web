@@ -64,10 +64,7 @@ html, body, .login {
   top: 209px;
 }
 .icon-close{
-  display: block;
-}
-.icon-logo{
-  display: block;
+  display: none;
 }
 
 @for $i from 1 to 7{

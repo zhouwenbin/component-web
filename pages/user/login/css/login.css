@@ -12,7 +12,6 @@
   margin-left: -47px;
   width: 95px;
   height: 95px;
-  display: none;
 }
 
 .icon-account {
@@ -30,7 +29,6 @@
   top: 20px;
   width: 17px;
   height: 15px;
-  display: none;
 }
 
 .icon-password {
@@ -316,10 +314,7 @@ html, body, .login {
   top: 209px;
 }
 .icon-close{
-  display: block;
-}
-.icon-logo{
-  display: block;
+  display: none;
 }
 
 .ani1 {
