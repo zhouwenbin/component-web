@@ -26,20 +26,6 @@ gulp.task("common", function () {
         .pipe(gulp.dest("./docs/common"));
 });
 
-gulp.task("index2", function () {
-
-    var processedCSS = fs.readFileSync("./app/static/css/pages/index/index2.css", "utf-8");
-    return gulp.src("./app/static/css/pages/index/index2.css")
-        .pipe(postcss([
-            require("postcss-style-guide")({
-                name: "首页样式指南",
-                processedCSS: processedCSS,
-                dir: "./docs/index2"
-            })
-        ]))
-        .pipe(gulp.dest("./docs/index2"));
-});
-
 gulp.task("svg", function () {
   for(var i in modules){
     gulp.src("modules/"+modules[i]+"/svgs/*.svg")

@@ -1,8 +1,0 @@
-.mixins-title {
-    color: black;
-    font-size: 40px;
-}
-
-.mixins-title:hover {
-    color: red;
-}
