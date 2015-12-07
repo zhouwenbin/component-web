@@ -13,12 +13,15 @@
   margin-left: -47px;
   width: 95px;
   height: 95px;
+  display: none;
 }
 
 .icon-account {
   fill: #C5C5C5;
   margin-right: 8px;
   vertical-align: middle;
+  width: 15px;
+  height: 14px;
 }
 
 .icon-close {
@@ -26,6 +29,9 @@
   position: absolute;
   right: 20px;
   top: 20px;
+  width: 17px;
+  height: 15px;
+  display: none;
 }
 
 .icon-password {
@@ -52,6 +58,10 @@
   height: 14px;
 }
 .icon-alipay{
+  width: 36px;
+  height: 37px;
+}
+.icon-webchat{
   width: 36px;
   height: 37px;
 }

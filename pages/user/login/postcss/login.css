@@ -63,6 +63,12 @@ html, body, .login {
   left: 94px;
   top: 209px;
 }
+.icon-close{
+  display: block;
+}
+.icon-logo{
+  display: block;
+}
 
 @for $i from 1 to 7{
   .ani$i{
