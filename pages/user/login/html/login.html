@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!--[if !IE 8]><html xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-svg"><![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
@@ -23,15 +24,15 @@
 
   </div>
   <div class="login">
-    
+    <!--[if IE 8]> <link href="../../../../modules/login/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
 
     <symbol id="icon-account" viewBox="0 0 15 15">
             <title>icon-account</title><path d="M7.5 8.75s-5.455 0-7.5 4.375c0 0 3.416 1.25 7.5 1.25s7.5-1.25 7.5-1.25C12.955 8.75 7.5 8.75 7.5 8.75zm0-.625c2.045 0 3.41-1.875 3.41-5S7.5 0 7.5 0 4.09 0 4.09 3.125s1.365 5 3.41 5z" fill="#C5C5C5" fill-rule="evenodd"/>
     </symbol>
 
-    <symbol id="icon-alipay" viewBox="0 0 36 37">
-            <title>icon-alipay</title><defs><path id="aba" d="M18 36.862c9.94 0 18-8.058 18-18 0-9.94-8.06-18-18-18s-18 8.06-18 18c0 9.942 8.06 18 18 18z"/></defs><g fill="none" fill-rule="evenodd"><mask id="abb" fill="#fff"><use xlink:href="#aba"/></mask><use fill="#0AE" xlink:href="#aba"/><path d="M15.545 11.62V8.73h3.194v2.887h6.52v1.27l-6.52.043v1.793l5.383.044s-.098 1.007-.78 2.837c-.682 1.83-1.322 2.764-1.322 2.764L32.467 23.8s-.375.98-.826 1.84c-.452.86-1.08 1.785-1.08 1.785l-9.983-4.732s-1.888 2.088-3.813 3.007c-1.926.92-4.136 1.49-6.53.926-2.395-.565-4.094-2.096-3.802-4.922.293-2.826 3.314-3.8 5.8-3.8 2.485 0 7.2 1.61 7.2 1.61s.397-.888.782-1.903c.385-1.015.494-1.83.494-1.83H10.666V14.77h4.88v-1.925l-6.083.044v-1.27h6.082zm2.686 9.903s-2.99 3.552-6.51 3.552c-3.524 0-4.264-1.687-4.264-2.9 0-1.214.732-2.534 3.73-2.724 2.997-.19 7.045 2.073 7.045 2.073z" fill="#FFF" mask="url(#abb)"/></g>
+    <symbol id="icon-alipay" viewBox="0 0 36 36">
+            <title>Clip 5 Copy</title><defs><path id="aba" d="M18 36c9.94 0 18-8.06 18-18S27.94 0 18 0 0 8.06 0 18s8.06 18 18 18z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#0AE" xlink:href="#aba"/><path d="M15.545 10.758V7.87h3.194v2.888h6.52v1.27l-6.52.043v1.795l5.383.043s-.098 1.007-.78 2.837c-.682 1.83-1.322 2.765-1.322 2.765l10.446 3.427s-.375.98-.826 1.84c-.452.86-1.08 1.784-1.08 1.784l-9.983-4.73s-1.888 2.086-3.813 3.006c-1.926.918-4.136 1.49-6.53.925-2.395-.563-4.094-2.094-3.802-4.92.293-2.828 3.314-3.802 5.8-3.802 2.485 0 7.2 1.61 7.2 1.61s.397-.888.782-1.903c.385-1.014.494-1.83.494-1.83H10.666v-1.007h4.88v-1.925l-6.083.044v-1.27h6.082zm2.686 9.904s-2.99 3.55-6.51 3.55c-3.524 0-4.264-1.685-4.264-2.9 0-1.213.732-2.532 3.73-2.722 2.997-.19 7.045 2.072 7.045 2.072z" fill="#FFF"/></g>
     </symbol>
 
     <symbol id="icon-close" viewBox="0 0 17 15">
@@ -63,7 +64,10 @@
     </symbol>
     </svg>
     <div class="login-inner">
-      <svg class="icon-logo" width="95" height="95"><use xlink:href="#icon-logo"></use></svg>
+      <svg class="icon-logo"><use xlink:href="#icon-logo"></use></svg>
+      <!--[if IE 8]><span class="svg icon-logo"></span><![endif]-->
+      <a href=""><svg class="icon-close"><use xlink:href="#icon-close"></use></svg>
+      <!--[if IE 8]><span class="svg icon-close"></span><![endif]--></a>
       <!--登录-->
 
       <div class="login-form">
@@ -71,12 +75,14 @@
         <ul>
          <li class="active">
            <input class="input" placeholder="手机号/邮箱">
-           <svg class="icon-username" width="20" height="19"><use xlink:href="#icon-username"></use></svg>
+           <svg class="icon-username"><use xlink:href="#icon-username"></use></svg>
+           <!--[if IE 8]><span class="svg icon-username"></span><![endif]-->
            <div class="text-error">手机号不能为空</div>
          </li>
          <li>
            <input class="input" placeholder="密码">
-           <svg class="icon-password" width="18" height="18"><use xlink:href="#icon-password"></use></svg>
+           <svg class="icon-password"><use xlink:href="#icon-password"></use></svg>
+           <!--[if IE 8]><span class="svg icon-password"></span><![endif]-->
            <div class="text-error">密码不能为空</div>
          </li>
         </ul>
@@ -90,8 +96,8 @@
          </div>
         </div>
         <div class="login-r2">
-         <a href=""><svg class="icon-webchat" width="36" height="36"><use xlink:href="#icon-webchat"></use></svg>微信登录</a>
-         <a href=""><svg class="icon-alipay" width="36" height="37"><use xlink:href="#icon-alipay"></use></svg>支付宝登录</a>
+         <a href=""><svg class="icon-webchat"><use xlink:href="#icon-webchat"></use></svg><!--[if IE 8]><span class="svg icon-webchat"></span><![endif]-->微信登录</a>
+         <a href=""><svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->支付宝登录</a>
         </div>
       </div>
       <!--微信登录-->
@@ -101,7 +107,7 @@
         <p>请用微信扫描二维码登录</p>
         <div class="login-r1">
          <div class="login-r1c1">
-           <a class="text-dark" href=""><svg class="icon-account" width="15" height="14"><use xlink:href="#icon-account"></use></svg>用丰趣海淘账号登录</a>
+           <a class="text-dark" href=""><svg class="icon-account"><use xlink:href="#icon-account"></use><!--[if IE 8]><span class="svg icon-account"></span><![endif]--></svg>用丰趣海淘账号登录</a>
          </div>
          <div class="login-r1c2">不是会员？<a class="text-important" href="">去注册</a></div>
         </div>

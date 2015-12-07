@@ -15,37 +15,37 @@
     background-image: url("../svg/sprite.png");
 }
 
-.svg.index-car:before {
+.svg.icon-car:before {
     background-position: 0em 0em;
     width: 4em;
     height: 3.1em;
 }
 
-.svg.index-cart:before {
+.svg.icon-cart:before {
     background-position: 0em -3.1em;
     width: 3.6em;
     height: 4em;
 }
 
-.svg.index-earth:before {
+.svg.icon-earth:before {
     background-position: 0em -7.1em;
     width: 3.7em;
     height: 3.6em;
 }
 
-.svg.index-list:before {
+.svg.icon-list:before {
     background-position: 0em -10.7em;
     width: 2.7em;
     height: 3.3em;
 }
 
-.svg.index-logo:before {
+.svg.icon-logo:before {
     background-position: 0em -14em;
     width: 14.7em;
     height: 4.1em;
 }
 
-.svg.index-package:before {
+.svg.icon-package:before {
     background-position: 0em -18.1em;
     width: 3.6em;
     height: 3.3em;
