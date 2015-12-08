@@ -604,10 +604,10 @@
           transform: rotate(180deg); }
 
 .classify-more:before {
-  content: 'æ›´å¤š'; }
+  content: '收起'; }
 
 .classify .active .classify-more:before {
-  content: 'æ”¶èµ·'; }
+  content: '展开'; }
 
 .classify .btn-search {
   margin-right: 10px; }
