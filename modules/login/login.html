@@ -22,11 +22,19 @@
        <!--[if IE 8]><span class="svg icon-password"></span><![endif]-->
        <div class="text-error">密码不能为空</div>
      </li>
+     <li class="hide">
+      <input class="input" placeholder="输入右侧图形验证码，点击图片可刷新">
+      <img class="login-code" src="http://img0.sfht.com/cmsres/20151202/946602d5-5740-4859-9dbe-4c3d4c7a57e6.jpeg" alt="验证码">
+      <svg class="icon-reflash"><use xlink:href="#icon-reflash"></use></svg>
+      <!--[if IE 8]><span class="svg icon-reflash"></span><![endif]-->
+      <svg class="icon-success hide"><use xlink:href="#icon-success"></use></svg>
+      <!--[if IE 8]><span class="svg icon-success"></span><![endif]-->
+     </li>
     </ul>
     <div class="text-error hide">账号或密码不正确</div>
     <div class="login-r1">
      <div class="login-r1c1">
-       <button class="btn btn-danger">登录</button>不是会员？<a class="text-important" href="">去注册</a>
+       <button class="btn btn-danger">登录</button>不是会员？<a class="text-important" href="">去注册</a><a class="text-dark hide" href="">第三方账号登录</a>
      </div>
      <div class="login-r1c2">
        <a class="text-dark" href="">忘记密码</a>
