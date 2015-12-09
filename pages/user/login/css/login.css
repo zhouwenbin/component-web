@@ -155,12 +155,12 @@
 }
 
 .login-inner .input1 {
-  width: 270px;
+  width: 150px;
   margin-right: 11px;
 }
 
 .login-inner .input2 {
-  width: 135px;
+  width: 255px;
 }
 
 .login-inner input:focus ~ svg, .login-inner li.active svg {
@@ -232,7 +232,7 @@
 .login-send {
   position: absolute;
   top: 7px;
-  left: 151px;
+  right: 15px;
   color: #999;
   height: 40px;
   line-height: 40px;
