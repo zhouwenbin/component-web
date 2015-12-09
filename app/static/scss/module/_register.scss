@@ -6,210 +6,267 @@
 */
 
 
-.icon-logo {
-  position: absolute;
-  top: -110px;
-  left: 50%;
-  margin-left: -47px;
+.register{
+	width: 562px;
+	background: #fff;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -256px;
+	margin-top: -265px;
+	border-radius: 3px;
+	z-index: map-get($z-index,register);
+}
+.register.register-top{
+	top: 0;
+	left: 0;
+	margin: 0px;
+	width: 100%
+}
+.register h2{
+	font-size: 14px;
+	height: 52px;
+	line-height: 52px;
+	padding-left: 20px;
+	background: url(#{$bg-url}register-h2.png) repeat-x;
+	border-bottom: 1px solid #E4E3E3;
+	border-radius: 3px 3px 0 0;
+}
+.register-h{
+	position: relative;
+}
+.register-h .btn-close{
+	position: absolute;
+	right: 16px;
+	top: 17px;
+}
+.register-h .icon35{
+	position: absolute;
+	left: 228px;
+	top: -9px;
+}
+.register-h .icon34{
+	position: absolute;
+	left: 239px;
+	top: -76px;
+	z-index: map-get($z-index,register-h-icon34);
+}
+.register-h ul{
+
+	background: #32363f;
+	text-align: center;
+	position: relative;
+}
+.register-h li{
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+	height:46px;
+	line-height: 46px;
+	margin:0 16px;
+	position: relative;
+
+}
+.register-h li a{
+	display: block;
+	color:#ccc;
+}
+.register-h li span{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -8px;
+	display: none;
+}
+.register-h .active span{
+	display: block;
+}
+.register-h .active a{
+	color: #fff;
+}
+.register-b{
+	padding:40px 130px 40px;
+	margin: 0 16px;
+	border-bottom: 1px solid  #EEE;
+	display: none;
+	background: #fff;
+	position: relative;
+}
+.register-b h3{
+	margin-bottom:10px;
+}
+.register-b.active{
+	display: block;
+}
+.register-b li{
+	margin-bottom: 9px;
+}
+.register-b li p{
+	font-size: 12px;
+	color: #949494;
+	margin-top: 12px;
+}
+.register-b li .btn{
+	width: 112px;
+	text-align: center;
+	padding: 0;
+}
+.register-b .a1{
+	color: #A3A2A3;
+}
+.register-b .a1:hover{
+	color: #333;
+}
+.register-b .icon26{
+	margin-top: 5px;
+	display: none;
+}
+.register li{
+	position: relative;
+}
+.register li label{
+	position: absolute;
+	left: 17px;
+	top: 13px;
+	color: #999;
+}
+.register li input{
+	vertical-align: middle;
+	width: 253px;
+	padding: 12px 0 12px 16px;
+	border:1px solid #CCCCCC;
+	border-radius: 3px;
+	color: #999;
+}
+.register li input:focus{
+	color: #333;
+}
+.register .input1{
+	width: 135px;
+}
+.register .input2{
+	width: 126px;
+}
+.register input:focus{
+	box-shadow: 0 0 10px rgba(102,175,233,0.5);
+	border-color: #66afe9;
+}
+.register-br1{
+	margin-bottom: 10px;
+}
+.register-br2{
+	text-align: right;
+}
+.register-br2 a{
+	color: #a3a2a3;
+}
+.register-br2 a:hover{
+	color: #333;
+}
+.register-br2c1 input{
+	margin-right: 6px;
+	vertical-align: middle;
+}
+.register-fr2{
+	border-top: 1px solid #E4E4E4;
+	height: 65px;
+	line-height: 65px;
+	text-align: center;
+	color: #a3a2a3;
+	background: #F7F7F7;
+}
+.register-fr2 a{
+	margin-left: 12px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 30px;
 }
 
-.icon-account {
-  fill: #C5C5C5;
-  margin-right: 8px;
-  vertical-align: middle;
+.register-f h3, .register-f p{
+	margin-left: 32px;
+}
+.register-f h3{
+	margin-bottom: 5px;
+}
+/*注册成功*/
+.register-b1{
+	padding-top: 121px;
+	padding-bottom: 142px;
+	text-align: center;
+}
+.register-b1 h3{
+	margin-top: 31px;
+	font-size: 14px;
+}
+.register-b1 p{
+	margin-top: 20px;
+	color:#a3a2a3
+}
+.register-b2{
+	padding: 125px 121px 179px;
+}
+.register-b2r1{
+	margin-bottom: 16px;
 }
 
-.icon-close {
-  stroke: #B5B5B5;
-  position: absolute;
-  right: 20px;
-  top: 20px;
+.register-b2r1 span{
+	color:#67b222;
 }
-
-.icon-password {
-  fill: #E5E5E5;
+.register-b2r2{
+	margin-bottom: 29px;
 }
-
-.icon-reflash {
-  fill: #E5E5E5;
+.register-b2r3{
+	margin-bottom: 54px;
 }
-
-.icon-username {
-  fill: #E5E5E5;
+.register-b2r4{
+	text-align: center;
+	margin-bottom: 10px;
 }
-
-.icon-success {
-  fill: #E5E5E5;
+.register-b2r4 a{
+	color: #2a4dff;
+	text-decoration: underline;
 }
-
-.login-inner {
-  width: 520px;
-  height: 420px;
-  background: #fff;
-  position: fixed;
-  z-index: 999;
-  left: 50%;
-  top: 50%;
-  margin-left: -260px;
-  margin-top: -210px;
-  border-top: 3px solid #DD3E42;
-  box-sizing: border-box;
-  padding: 53px 50px 0;
-  box-shadow: 0 0 5px rgba(0,0,0,.15);
+.register-b2r5{
+	text-align: center;
 }
-
-.login-inner.submit {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/928ea954-925f-4795-b81b-215725077d77.png");
-  background-position:0 top;
-  background-repeat: no-repeat;
-  border: none;
-  animation: submit 2s infinite;
+.register-b3{
+	padding-top: 32px;
+	padding-bottom: 32px;
 }
-
-@keyframes submit {
-  100% {
-    background-position: -520px top;
-  }
+.register-b4{
+	padding-top: 53px;
+	padding-bottom: 51px;
 }
-
-.icon-qrcode {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/20827da4-382e-48a8-b55e-ef9b61c8fcb7.png");
-  width: 190px;
-  height: 190px;
-  margin: 0 auto;
-  margin-bottom: 14px;
+.register-main{
+	height: 246px;
 }
-
-.login {
-  background-image: url("http://img0.sfht.com/cmsres/20151202/d56e2a28-397b-4477-b376-da5e96089fee.png");
-  background-repeat: no-repeat;
-  background-position: center 85px;
-  background-color: #FEF9F0;
+.register-b-main{
+	height: 290px;
 }
-
-.login-inner h2 {
-  margin-bottom: 31px;
-  text-align: center;
+.register-other{
+	text-align:center;
 }
-
-.login-inner h2 span {
-  display: inline-block;
-  font-size: 16px;
-  color: #DD3E42;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #DD3E42;
+.register-other h3{
+	color:#999;
+	margin-bottom:26px;
+	margin-top:25px;
+	font-weight:normal;
+	position: relative;
 }
-
-.login-inner li {
-  position: relative;
-  margin-bottom: 15px;
+.register-other h3:before,
+.register-other h3:after{
+	content:'';
+	position: absolute;
+	width:52px;
+	top:5px;
+	border-bottom:1px solid #ededed;
 }
-
-.login-inner li svg {
-  position: absolute;
-  top: 17px;
-  right: 15px;
+.register-other h3:before{
+	left:0;
 }
-
-.login-inner input {
-  width: 100%;
-  height: 54px;
-  line-height: 54px;
-  box-sizing: border-box;
+.register-other h3:after{
+	right:0;
 }
-
-.login-inner .input1 {
-  width: 270px;
-  margin-right: 15px;
-}
-
-.login-inner .input2 {
-  width: 135px;
-}
-
-.login-inner input:focus ~ svg, .login-inner li.active svg {
-  fill: #5BC2D8;
-}
-
-.login-r1 {
-  margin-top: 20px;
-  color: #999;
-  display: table;
-  width: 100%;
-  margin-bottom: 40px;
-}
-
-.login-r1>div {
-  display: table-cell;
-}
-
-.login-r1c2 {
-  text-align: right;
-}
-
-.login-inner .btn {
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  margin-right: 15px;
-}
-
-.login-r2 {
-  text-align: center;
-}
-
-.login-r2 a {
-  margin: 0 30px;
-  color: #999;
-}
-
-.login-r2 a:hover {
-  color: #333;
-}
-
-.login-r2 svg {
-  margin-right: 7px;
-  vertical-align: middle;
-  opacity: 0.5;
-}
-
-.login-r2 a:hover svg {
-  opacity: 1;
-}
-
-.login-inner li .text-error {
-  background: #fff;
-  position: absolute;
-  margin-top: -7px;
-  margin-left: 15px;
-  padding: 0 5px;
-}
-
-.login-qrcode {
-  margin-bottom: 36px;
-}
-
-.login-qrcode p {
-  text-align: center;
-}
-
-.login-send {
-  position: absolute;
-  top: 7px;
-  left: 151px;
-  color: #999;
-  height: 40px;
-  line-height: 40px;
-  border-left: 1px solid #E5E5E5;
-  padding-left: 15px;
-}
-
-.login-send span {
-  color: #5BC2D8;
-}
-
-.login-code {
-  position: absolute;
-  top: 12px;
-  right: 55px;
+.register-other .icon{
+	margin: 0 13px;
 }
