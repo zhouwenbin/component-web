@@ -10,7 +10,7 @@ var precss = require("precss");
 var path = require("path");
 var react = require('gulp-react');
 var modules = ["login","header","footer","sidebar","index"];
-var pages = ["login"]
+var pages = ["user/login"]
 
 gulp.task("common", function () {
 
@@ -77,23 +77,38 @@ gulp.task('react', function () {
         .pipe(react())
         .pipe(gulp.dest('test/js/'));
 });
+gulp.task('watch', function() {
+  for(var i in pages){
+    gulp.watch("pages/"+ pages[i] +"/posthtml/**.html",["html"]);
+    gulp.watch("pages/"+ pages[i] +"/postcss/**.css",["css"]);
+  }
+  for(var i in modules){
+    gulp.watch("modules/"+ modules[i] +"/**.html",["html"]);
+    gulp.watch("modules/"+ modules[i] +"/**.css",["css"]);
+  }
+});
 
-
-gulp.task("default", function () {
+gulp.task("html", function () {
     for(var i in pages){
       //html
-      gulp.src("pages/user/"+ pages[i] +"/posthtml/**.html")
+      gulp.src("pages/"+ pages[i] +"/posthtml/**.html")
           .pipe(include())
-          .pipe(gulp.dest("pages/user/"+ pages[i] +"/html/"));
+          .pipe(gulp.dest("pages/"+ pages[i] +"/html/"));
+    }
+});
+
+gulp.task("css", function () {
+    for(var i in pages){
       //css
-      gulp.src("pages/user/"+ pages[i] +"/postcss/**.css")
+      gulp.src("pages/"+ pages[i] +"/postcss/**.css")
       .pipe(
           postcss([
               require("precss")({ /* options */ })
           ])
       )
       .pipe(cssnext())
-      .pipe(gulp.dest("pages/user/"+ pages[i] +"/css/"))
+      .pipe(gulp.dest("pages/"+ pages[i] +"/css/"))
     }
-
 });
+
+gulp.task('default', ['watch', 'css', 'html']);
