@@ -8,7 +8,8 @@ var include = require("gulp-html-tag-include");
 var cssnext = require("gulp-cssnext");
 var precss = require("precss");
 var path = require("path");
-var react = require('gulp-react');
+var browserSync = require('browser-sync').create();
+var reload      = browserSync.reload;
 var modules = ["login","header","footer","sidebar","index"];
 var pages = ["user/login"]
 
@@ -111,4 +112,17 @@ gulp.task("css", function () {
     }
 });
 
-gulp.task('default', ['watch', 'css', 'html']);
+gulp.task('serve', function () {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    gulp.watch("pages/user/login/html/*.html").on("change", browserSync.reload);
+    gulp.watch("pages/user/login/css/*.css").on("change", browserSync.reload);
+});
+
+gulp.task('default', ['watch', 'css', 'html', 'serve']);
