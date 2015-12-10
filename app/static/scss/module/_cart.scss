@@ -2,11 +2,11 @@
 @styleguide
 
 # 购物车
-	
+
 */
 .cart{
 	margin-top: 20px;
-	
+
 }
 .cart-table{
 	border: 1px solid #ccc;
@@ -136,7 +136,7 @@
 }
 .cart-disable td{
 	background: #e5e5e5;
-	
+
 }
 .cart-disable td h2,
 .cart-disable .cart-standard,
@@ -178,22 +178,37 @@
 	margin-left:10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.cart-cut{
+	@extend .cart-disable;
+}
+.cart-cut td{
+	position: relative;
+	padding-left: 145px;
+	color: #999;
+}
+.cart-cut svg{
+	left:26px;
+	bottom:-16px;
+	top: auto;
+	z-index: 1;
+}
+.cart-cut  a{
+	color:#0074D1;
+	margin-left:27px;
+}
+.cart-cut-goods .td1{
+	position: relative;
+}
+.cart-cut-goods .td1:before{
+	content: '';
+	position: absolute;
+	left: 30px;
+	height: 100%;
+	width: 0;
+	border-left: 1px dashed #ccc;
+	top: -50%;
+}
+.cart-cut-goods1 .td1:before{
+	height: 50%;
+  top: 0;
+}
