@@ -10,8 +10,8 @@ var precss = require("precss");
 var path = require("path");
 var browserSync = require('browser-sync').create();
 var reload      = browserSync.reload;
-var modules = ["login","header","footer","sidebar","index"];
-var pages = ["user/login"]
+var modules = fs.readdirSync("modules");
+var pages = fs.readdirSync("pages");
 
 gulp.task("common", function () {
 
@@ -115,9 +115,10 @@ gulp.task('serve', function () {
             baseDir: "./"
         }
     });
-
-    gulp.watch("pages/user/login/html/*.html").on("change", browserSync.reload);
-    gulp.watch("pages/user/login/css/*.css").on("change", browserSync.reload);
+    for(var i in pages){
+      gulp.watch("pages/"+ pages[i] +"/html/*.html").on("change", browserSync.reload);
+      gulp.watch("pages/"+ pages[i] +"/css/*.css").on("change", browserSync.reload);
+    }
 });
 
 gulp.task('default', ['watch', 'css', 'html', 'serve']);
