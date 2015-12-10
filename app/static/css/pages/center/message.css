@@ -14,7 +14,8 @@
   margin-bottom: 35px; }
 
 .personal > div {
-  display: table-cell; }
+  display: table-cell;
+  vertical-align: top; }
 
 .personal-c1 {
   width: 198px;
@@ -59,6 +60,12 @@
   padding: 0 39px 0 39px;
   border-left: 1px solid #e5e5e5; }
 
+/*
+@styleguide
+
+# 消息
+
+*/
 .message {
   padding: 40px 0; }
 

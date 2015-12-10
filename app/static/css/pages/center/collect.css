@@ -14,7 +14,8 @@
   margin-bottom: 35px; }
 
 .personal > div {
-  display: table-cell; }
+  display: table-cell;
+  vertical-align: top; }
 
 .personal-c1 {
   width: 198px;
@@ -88,6 +89,12 @@
 .myorder-tab li.active a {
   color: #de3d3f; }
 
+/*
+@styleguide
+
+# 收藏
+
+*/
 .collect ul {
   margin-left: -12px; }
 

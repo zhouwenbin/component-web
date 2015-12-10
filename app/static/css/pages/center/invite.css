@@ -14,7 +14,8 @@
   margin-bottom: 35px; }
 
 .personal > div {
-  display: table-cell; }
+  display: table-cell;
+  vertical-align: top; }
 
 .personal-c1 {
   width: 198px;
@@ -150,6 +151,12 @@
 .integral-table strong {
   font-weight: bold; }
 
+/*
+@styleguide
+
+# 邀请
+
+*/
 .invite-h2 {
   font-size: 14px;
   font-weight: normal;

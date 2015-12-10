@@ -1,0 +1,28 @@
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/personal';
+@import '../../module/myorder-tab';
+@import '../../module/collect';
+@import '../../module/mycoupon';
+@import '../../components/gift';
+@import '../../module/address-table';
+@import '../../module/invite';
+@import '../../module/message';
+@import '../../module/product';
+@import '../../module/address-add';
+@import '../../module/myorder-search';
+@import '../../module/myorder';
+@import '../../module/myorder-none';
+@import '../../module/account-manage';
+@import '../../module/integral';
+.product h2{
+	color: #666;
+	font-size: 14px;
+	font-weight: normal;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 26px;
+}
+.product-list li{
+	margin-left: 22px;
+}

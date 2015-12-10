@@ -1,0 +1,52 @@
+/*
+@styleguide
+
+# 收藏
+
+*/
+.collect ul{
+	margin-left:-12px;
+}
+.collect-list li{
+	float:left;
+	width:216px;
+	padding:10px;
+	box-sizing:border-box;
+	margin-left:12px;
+	border:1px solid #E5E5E5;
+	margin-bottom:12px;
+}
+.collect-list li:hover .icon-trash{
+	display: block;
+}
+.collect-r1{
+	position: relative
+}
+.collect-r1 .icon-trash{
+	position:absolute;
+	right:0px;
+	top:0px;
+	display: none;
+}
+.collect-list h3{
+	margin-top:16px;
+	font-size:14px;
+	line-height: 21px;
+	margin-bottom:5px;
+	height: 42px;
+	overflow: hidden;
+}
+.collect-list strong{
+	font-size:18px;
+	margin-right:5px;
+}
+.collect-list del{
+	font-size:14px;
+	color:#ccc;
+}
+.collect .text-orange{
+	margin-top:8px;
+}
+.collect-r2c1{
+	padding-top: 5px;
+}

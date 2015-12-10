@@ -1,26 +1,9 @@
-﻿@import '../../utils/variables';
-@import '../../utils/placeholders';
-@import '../../module/product';
-@import '../../module/myorder-tab';
-@import '../../module/address-add';
-@import '../../module/personal';
-@import '../../module/myorder-search';
-@import '../../module/myorder';
-@import '../../module/myorder-none';
-@import '../../module/account-manage';
-@import '../../module/address-table';
+/*
+@styleguide
 
-.product h2{
-	color: #666;
-	font-size: 14px;
-	font-weight: normal;
-	padding-bottom: 8px;
-	border-bottom: 1px solid #e5e5e5;
-	margin-bottom: 26px;
-}
-.product-list li{
-	margin-left: 22px;
-}
+# 邀请
+
+*/
 .integral h2{
 	font-size: 18px;
 	font-weight: normal;

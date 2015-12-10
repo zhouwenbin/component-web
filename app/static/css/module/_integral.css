@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 邀请
+
+*/
+.integral h2 {
+  font-size: 18px;
+  font-weight: normal;
+  padding: 43px 0 20px;
+  border-bottom: 1px dashed #ccc; }
+
+.integral-r1 {
+  padding: 20px 0;
+  border-bottom: 1px dashed #ccc; }
+
+.integral-r1 .text-important {
+  font-size: 26px; }
+
+.integral-r1 .text-important:first-child {
+  margin-right: 120px; }
+
+.integral-tab {
+  padding-top: 26px;
+  padding-bottom: 15px;
+  height: 18px; }
+
+.integral-tab-c1 {
+  overflow: hidden; }
+
+.integral-tab-c1 ul {
+  margin-left: -11px; }
+
+.integral-tab-c1 li {
+  display: inline-block;
+  padding: 0 10px;
+  border-left: 1px solid #bbb; }
+
+.integral-tab-c1 li a {
+  display: block;
+  padding: 0 11px;
+  height: 15px;
+  line-height: 15px;
+  -webkit-border-radius: 2px;
+          border-radius: 2px; }
+
+.integral-tab-c1 li a:hover {
+  background: #eee; }
+
+.integral-tab-c1 li.active a {
+  color: #DD322D; }
+
+.integral-tab-c2 a {
+  margin-left: 16px; }
+
+.integral .tooltip {
+  left: -90%;
+  -webkit-border-radius: 5px;
+          border-radius: 5px; }
+
+.integral .tooltip li {
+  margin-bottom: 24px;
+  padding-left: 20px; }
+
+.integral .tooltip li:last-child {
+  margin-bottom: 0; }
+
+.integral .tooltip li span {
+  font-size: 16px;
+  color: #F5A623;
+  font-weight: bold;
+  float: left;
+  margin-left: -20px; }
+
+.integral .tooltip .icon16-3 {
+  left: 92%; }

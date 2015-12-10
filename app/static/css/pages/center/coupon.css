@@ -204,7 +204,8 @@ p.mycoupon-b {
   margin-bottom: 35px; }
 
 .personal > div {
-  display: table-cell; }
+  display: table-cell;
+  vertical-align: top; }
 
 .personal-c1 {
   width: 198px;
