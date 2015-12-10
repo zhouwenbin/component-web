@@ -73,11 +73,6 @@ gulp.task("test", function () {
     .pipe(gulp.dest("test/css/"))
 });
 
-gulp.task('react', function () {
-    return gulp.src('test/jsx/*.jsx')
-        .pipe(react())
-        .pipe(gulp.dest('test/js/'));
-});
 gulp.task('watch', function() {
   for(var i in pages){
     gulp.watch("pages/"+ pages[i] +"/posthtml/**.html",["html"]);
