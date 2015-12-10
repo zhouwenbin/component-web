@@ -11,6 +11,9 @@
 	margin-top: 35px;
 	margin-bottom: 35px;
 }
+.personal>div{
+	display: table-cell;
+}
 .personal-c1{
 	width: 198px;
 	text-align: center;
@@ -51,8 +54,6 @@
 	left: 0px;
 }
 .personal-c2{
-	min-height: 500px;
-	margin-left: 198px;
 	padding:0 39px 0 39px;
 	border-left: 1px solid #e5e5e5;
 }
