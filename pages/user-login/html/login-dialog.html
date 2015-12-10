@@ -5,14 +5,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
 <title>登陆顺丰海淘</title>
-<link href="../../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
 <link href="../css/login-dialog.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
   <!-- 弹窗  -->
   <div class="mask show"></div>
-  <!--[if IE 8]> <link href="../../../../modules/login/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
+  <!--[if IE 8]> <link href="../../../modules/login/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
 
   <symbol id="icon-account" viewBox="0 0 15 15">
@@ -56,37 +56,56 @@
     <!--[if IE 8]><span class="svg icon-logo"></span><![endif]-->
     <a href=""><svg class="icon-close"><use xlink:href="#icon-close"></use></svg>
     <!--[if IE 8]><span class="svg icon-close"></span><![endif]--></a>
-    <!-- 注册 -->
+    <!--登录-->
 
-    <div class="login-register">
-      <h2><span>注册</span></h2>
+    <div class="login-form">
+      <h2><span>登录</span></h2>
       <ul>
-        <li>
-          <input class="input input1" placeholder="仅限中国大陆手机">
-          <input class="input input2" placeholder="输入图形验证码">
-          <img class="login-code" src="http://img0.sfht.com/cmsres/20151202/946602d5-5740-4859-9dbe-4c3d4c7a57e6.jpeg" alt="验证码">
-          <svg class="icon-reflash"><use xlink:href="#icon-reflash"></use></svg>
-          <!--[if IE 8]><span class="svg icon-reflash"></span><![endif]-->
-          <svg class="icon-success hide"><use xlink:href="#icon-success"></use></svg>
-          <!--[if IE 8]><span class="svg icon-success"></span><![endif]-->
-        </li>
-        <li>
-          <a class="login-send" href="">获取短信验证码</a>
-          <a class="login-send hide" href=""><span>15秒</span>后可重新发送</a>
-          <input class="input" placeholder="输入短信验证码">
-        </li>
-        <li>
-         <input class="input" placeholder="设置6-18位字母、数字或标点符号的密码">
+       <li class="active">
+         <input class="input" placeholder="手机号/邮箱">
+         <svg class="icon-username"><use xlink:href="#icon-username"></use></svg>
+         <!--[if IE 8]><span class="svg icon-username"></span><![endif]-->
+         <div class="text-error">手机号不能为空</div>
+       </li>
+       <li>
+         <input class="input" placeholder="密码">
          <svg class="icon-password"><use xlink:href="#icon-password"></use></svg>
          <!--[if IE 8]><span class="svg icon-password"></span><![endif]-->
          <div class="text-error">密码不能为空</div>
-        </li>
+       </li>
+       <li class="hide">
+        <input class="input" placeholder="输入右侧图形验证码，点击图片可刷新">
+        <img class="login-code" src="http://img0.sfht.com/cmsres/20151202/946602d5-5740-4859-9dbe-4c3d4c7a57e6.jpeg" alt="验证码">
+        <svg class="icon-reflash"><use xlink:href="#icon-reflash"></use></svg>
+        <!--[if IE 8]><span class="svg icon-reflash"></span><![endif]-->
+        <svg class="icon-success hide"><use xlink:href="#icon-success"></use></svg>
+        <!--[if IE 8]><span class="svg icon-success"></span><![endif]-->
+       </li>
       </ul>
+      <div class="text-error hide">账号或密码不正确</div>
       <div class="login-r1">
        <div class="login-r1c1">
-         <button class="btn btn-danger">同意协议并注册</button><a class="text-dark" href="">《丰趣海淘服务协议》</a>
+         <button class="btn btn-danger">登录</button>不是会员？<a class="text-important" href="">去注册</a><a class="text-dark hide" href="">第三方账号登录</a>
        </div>
-       <div class="login-r1c2">已有账户？<a class="text-important" href="">去登录</div>
+       <div class="login-r1c2">
+         <a class="text-dark" href="">忘记密码</a>
+       </div>
+      </div>
+      <div class="login-r2">
+       <a href=""><svg class="icon-webchat"><use xlink:href="#icon-webchat"></use></svg><!--[if IE 8]><span class="svg icon-webchat"></span><![endif]-->微信登录</a>
+       <a href=""><svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->支付宝登录</a>
+      </div>
+    </div>
+    <!--微信登录-->
+    <div class="login-qrcode hide">
+      <h2><span>登录</span></h2>
+      <div class="icon-qrcode"></div>
+      <p>请用微信扫描二维码登录</p>
+      <div class="login-r1">
+       <div class="login-r1c1">
+         <a class="text-dark" href=""><svg class="icon-account"><use xlink:href="#icon-account"></use><!--[if IE 8]><span class="svg icon-account"></span><![endif]--></svg>用丰趣海淘账号登录</a>
+       </div>
+       <div class="login-r1c2">不是会员？<a class="text-important" href="">去注册</a></div>
       </div>
     </div>
   </div>

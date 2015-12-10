@@ -1,4 +1,4 @@
-﻿@import '../../../../modules/login/login.css';
+﻿@import '../../../modules/login/login.css';
 
 html, body, .login {
   height: 100%;
