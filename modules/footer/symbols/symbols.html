@@ -211,7 +211,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-car')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-car">
-                <pre id="snippet-icon-car-pre"><code>&lt;svg class=&quot;svg icon-car&quot;&gt;&lt;use xlink:href=&quot;#icon-car&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-car&quot;&gt;&lt;use xlink:href=&quot;#icon-car&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -227,7 +227,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-cart')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-cart">
-                <pre id="snippet-icon-cart-pre"><code>&lt;svg class=&quot;svg icon-cart&quot;&gt;&lt;use xlink:href=&quot;#icon-cart&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-cart&quot;&gt;&lt;use xlink:href=&quot;#icon-cart&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -243,7 +243,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-earth')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-earth">
-                <pre id="snippet-icon-earth-pre"><code>&lt;svg class=&quot;svg icon-earth&quot;&gt;&lt;use xlink:href=&quot;#icon-earth&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-earth&quot;&gt;&lt;use xlink:href=&quot;#icon-earth&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -259,7 +259,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-list')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-list">
-                <pre id="snippet-icon-list-pre"><code>&lt;svg class=&quot;svg icon-list&quot;&gt;&lt;use xlink:href=&quot;#icon-list&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-list&quot;&gt;&lt;use xlink:href=&quot;#icon-list&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -275,7 +275,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-logo')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-logo">
-                <pre id="snippet-icon-logo-pre"><code>&lt;svg class=&quot;svg icon-logo&quot;&gt;&lt;use xlink:href=&quot;#icon-logo&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-logo&quot;&gt;&lt;use xlink:href=&quot;#icon-logo&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -291,7 +291,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-package')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-package">
-                <pre id="snippet-icon-package-pre"><code>&lt;svg class=&quot;svg icon-package&quot;&gt;&lt;use xlink:href=&quot;#icon-package&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-package&quot;&gt;&lt;use xlink:href=&quot;#icon-package&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -303,22 +303,9 @@
 </footer>
 <script type="text/javascript">
     var openSnippet;
-    function selectText(id) {
-        if (document.selection) {
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById(id +"-pre"));
-            range.select();
-        } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(document.getElementById(id +"-pre"));
-            window.getSelection().addRange(range);
-        }
-    }
-
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
-        selectText(id);
     }
     function hidePopover() {
 
