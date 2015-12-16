@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .mycoupon-tab {
   position: relative; }
 
@@ -144,106 +143,82 @@ p.mycoupon-b {
 .mycoupon-b3 .mycoupon-inner-b h3 {
   display: none; }
 
-/*
-@styleguide
+body {
+  background: #f9f9f9; }
 
-# 礼包
-	
-*/
-.gift {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/gift.png) no-repeat;
-  width: 211px;
-  padding-left: 47px;
-  height: 157px; }
+.index-h2 {
+  margin-top: 34px; }
 
-.gift .coupon-r1 {
-  padding-top: 37px; }
-
-.myorder-tab {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 27px; }
-
-.myorder-tab li {
-  display: inline-block;
-  height: 68px;
-  line-height: 68px;
-  padding: 0 45px;
-  box-sizing: border-box;
-  font-size: 14px; }
-
-.myorder-tab li a {
-  color: #777; }
-
-.myorder-tab li strong {
-  color: #de3d3f;
-  margin-left: 5px;
-  font-weight: bold; }
-
-.myorder-tab li.active {
-  border-bottom: 4px solid #db3f40;
-  position: relative;
-  top: 1px; }
-
-.myorder-tab li.active a {
-  color: #de3d3f; }
-
-/*
-@styleguide
-
-# 个人中心
-
-*/
-.personal {
+.active-step {
+  border: 1px solid #f2f2f2;
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 35px;
-  margin-bottom: 35px;
-  display: table;
-  width: 100%; }
+  padding: 70px 47px;
+  margin-bottom: 23px; }
 
-.personal > div {
-  display: table-cell;
-  vertical-align: top; }
+.active-step ul {
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 50px; }
 
-.personal-c1 {
-  width: 198px;
+.active-step li {
+  margin-bottom: 64px;
+  padding-left: 60px;
+  font-size: 20px;
+  position: relative; }
+
+.active-step li span {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 20px;
+  color: #fff;
+  font-family: arial;
+  margin-right: 24px;
+  vertical-align: middle;
+  background: #fd9a4a;
+  border-radius: 50%;
   text-align: center; }
 
-.personal-c1 h1 {
-  height: 58px;
-  line-height: 58px;
-  color: #de3d3f;
-  border-bottom: 1px solid #e5e5e5;
-  font-size: 16px;
-  font-weight: normal; }
+.active-step li i {
+  width: 4px;
+  height: 57px;
+  position: absolute;
+  background: #fd9a4a;
+  left: 75px;
+  top: 39px; }
 
-.personal-c1 li {
-  border-bottom: 1px solid #e5e5e5;
-  font-size: 14px; }
+.active-step-r1 {
+  padding-left: 60px; }
 
-.personal-c1 li a {
-  color: #777;
-  display: block;
-  height: 58px;
-  line-height: 58px; }
+.active-step-r1 .btn {
+  margin-right: 25px; }
 
-.personal-c1 li.active {
-  position: relative;
-  margin-left: -1px;
-  box-sizing: border-box;
-  padding-right: 4px;
-  width: 200px;
+.active-info {
+  border: 1px solid #f2f2f2;
+  border-bottom: none;
+  padding-bottom: 8px;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/active-info.png) no-repeat left bottom; }
+
+.active-info-b {
+  padding: 32px 60px;
   background: #fff; }
 
-.personal-c1 li.active:before {
-  content: '';
-  height: 100%;
-  width: 4px;
-  background: #db3f40;
-  position: absolute;
-  left: 0px; }
+.active-info h2 {
+  font-size: 18px;
+  color: #ff9900;
+  margin-bottom: 16px; }
 
-.personal-c2 {
-  padding: 0 39px 0 39px;
-  border-left: 1px solid #e5e5e5; }
+.active-info li {
+  font-size: 14px;
+  margin-bottom: 10px;
+  list-style-type: disc;
+  margin-left: 20px; }
+
+.active-info .icon {
+  margin-right: 9px; }
+
+.mycoupon-r1r1 {
+  font-size: 16px; }
+
+.banner {
+  margin-top: 40px; }

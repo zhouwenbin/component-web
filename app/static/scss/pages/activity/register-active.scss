@@ -1,6 +1,6 @@
-﻿@import 'utils/variables';
-@import 'utils/placeholders';
-@import 'module/mycoupon';
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/mycoupon';
 body{
 	background: #f9f9f9;
 }
@@ -56,7 +56,7 @@ body{
 .active-info{
 	border:1px solid #f2f2f2;
 	border-bottom: none;
-	
+
 	padding-bottom: 8px;
 	background: url(#{$bg-url}active-info.png) no-repeat left bottom;
 }

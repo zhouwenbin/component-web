@@ -36,14 +36,11 @@
   border-width: 5px 5px;
   margin-left: 10px;
   border-color: #1376ce transparent transparent transparent;
-  -webkit-transition: all 0.3s;
-          transition: all 0.3s;
+  transition: all 0.3s;
   position: a; }
 
 .order-success-pos .active .icon {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
   vertical-align: 1px; }
 
 .order-success-detail {
@@ -72,8 +69,7 @@
   background: #fff;
   border: 1px solid #ccc;
   padding: 33px 35px;
-  -webkit-border-radius: 4px;
-          border-radius: 4px; }
+  border-radius: 4px; }
 
 .gotopay-r1 {
   padding-bottom: 26px;

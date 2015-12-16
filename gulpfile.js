@@ -1,7 +1,6 @@
 var fs = require("fs");
 var gulp = require("gulp");
 var svgSprite = require("gulp-svg-sprites");
-var svg2png = require("gulp-svg2png");
 var filter = require("gulp-filter");
 var postcss = require("gulp-postcss");
 var include = require("gulp-html-tag-include");
@@ -9,7 +8,8 @@ var cssnext = require("gulp-cssnext");
 var precss = require("precss");
 var path = require("path");
 var browserSync = require('browser-sync').create();
-var reload      = browserSync.reload;
+var reload = browserSync.reload;
+var sass = require('gulp-sass');
 var modules = fs.readdirSync("modules");
 var pages = fs.readdirSync("pages");
 
@@ -47,30 +47,6 @@ gulp.task("svg", function () {
         .pipe(gulp.dest("modules/"+modules[i]+"/sprites/"));
   }
 
-});
-gulp.task("test", function () {
-
-    //css
-    gulp.src("test/postcss/**.css")
-    .pipe(
-      postcss([
-        require("postcss-modules")({
-          getJSON: function(cssFileName, json) {
-            var cssName       = path.basename(cssFileName, ".css");
-            var jsonFileName  = path.resolve("./test/css/" + cssName + ".json");
-            fs.writeFileSync(jsonFileName, JSON.stringify(json));
-          },
-          generateScopedName: function(name, filename, css) {
-            var i         = css.indexOf("." + name);
-            var numLines  = css.substr(0, i).split(/[\r\n]/).length;
-            var file      = path.basename(filename, ".css");
-
-            return file + "-" + name;
-          }
-        })
-      ])
-    )
-    .pipe(gulp.dest("test/css/"))
 });
 
 gulp.task('watch', function() {
@@ -121,4 +97,13 @@ gulp.task('serve', function () {
     }
 });
 
-gulp.task('default', ['watch', 'css', 'html', 'serve']);
+gulp.task('sass', function () {
+  gulp.src('./app/static/scss/pages/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./app/static/css/pages'));
+});
+gulp.task('sass:watch', function () {
+  gulp.watch('./app/static/scss/pages/**/*.scss', ['sass']);
+});
+
+gulp.task('default', ['watch', 'css', 'html', 'serve', 'sass']);

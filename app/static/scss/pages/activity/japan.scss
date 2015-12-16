@@ -1,5 +1,5 @@
-@import 'utils/variables';
-@import 'utils/placeholders';
+@import '../../utils/variables';
+@import '../../utils/placeholders';
 
 body{
 	background: #482b88 url(http://img0.sfht.com/img/5f765bae82b26aa0127a7d7d45bd60e2.jpg) center 178px no-repeat;
@@ -94,13 +94,13 @@ body{
 }
 .japan-mask{
 	text-align: center;
-	h2{	
+	h2{
 		margin-top: 11px;
 		margin-bottom: 10px;
 		font-size: 22px;
 	}
 	p{
-		margin-top: 25px;		
+		margin-top: 25px;
 		font-size: 14px;
 	}
 	span{

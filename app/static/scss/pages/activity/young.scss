@@ -1,13 +1,13 @@
-@import 'utils/variables';
-@import 'utils/placeholders';
+@import '../../utils/variables';
+@import '../../utils/placeholders';
 
-@import 'base/reset';
-@import 'base/base';
-@import 'base/help';
+@import '../../base/reset';
+@import '../../base/base';
+@import '../../base/help';
 
-@import 'components/btn';
+@import '../../components/btn';
 
-@import 'module/slider';
+@import '../../module/slider';
 
 $photo-num:5;
 .pm{
@@ -200,7 +200,7 @@ $photo-num:5;
 	text-align: center;
 }
 .young-tab-b{
-	
+
 }
 .young-tab-b>li{
 	display: none;
@@ -212,7 +212,7 @@ $photo-num:5;
 	background: #fff;
 	display: block;
 	width: 100%;
-	
+
 }
 .young-tab-b>li.active{
 	display: block;
@@ -220,7 +220,7 @@ $photo-num:5;
 .young-bar{
 	background: url(#{$bg-url}young/young-bar.png) no-repeat;
 	width: 556px;
-	
+
 	margin: 0 auto 18px;
 }
 .young-bar-active{

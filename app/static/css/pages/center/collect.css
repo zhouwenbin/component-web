@@ -8,8 +8,7 @@
 .personal {
   background: #fff;
   border: 1px solid #ccc;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   margin-top: 35px;
   margin-bottom: 35px;
   display: table;
@@ -44,8 +43,7 @@
 .personal-c1 li.active {
   position: relative;
   margin-left: -1px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding-right: 4px;
   width: 200px;
   background: #fff; }
@@ -71,8 +69,7 @@
   height: 68px;
   line-height: 68px;
   padding: 0 45px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 14px; }
 
 .myorder-tab li a {
@@ -104,8 +101,7 @@
   float: left;
   width: 216px;
   padding: 10px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin-left: 12px;
   border: 1px solid #E5E5E5;
   margin-bottom: 12px; }

@@ -57,8 +57,7 @@
   right: -4px;
   bottom: -4px;
   border: 1px solid #E13B3A;
-  -webkit-border-radius: 3px;
-          border-radius: 3px; }
+  border-radius: 3px; }
 
 .comment-img li.active:after {
   content: '';
@@ -143,17 +142,14 @@
   margin-left: auto;
   margin-top: 7px;
   margin-bottom: 20px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 .comment-add:before {
   content: '';
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
   background: #F5F5F5;
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
   position: absolute;
   width: 20px;
   height: 20px;
@@ -402,8 +398,7 @@
   vertical-align: 2px; }
 
 .btn-goods.active {
-  -webkit-box-shadow: none;
-          box-shadow: none; }
+  box-shadow: none; }
 
 .btn-goods .icon {
   background: url(../img/btn-goods-active.png) no-repeat;

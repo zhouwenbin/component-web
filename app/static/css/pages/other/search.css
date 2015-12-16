@@ -61,8 +61,7 @@
   float: left;
   width: 239px;
   border: 1px solid #fff;
-  -webkit-box-shadow: 0 0 0 1px #e5e5e5;
-          box-shadow: 0 0 0 1px #e5e5e5;
+  box-shadow: 0 0 0 1px #e5e5e5;
   padding: 27px;
   background: #fff;
   padding-bottom: 20px;
@@ -194,8 +193,7 @@
   *padding-top: 43px; }
 
 .product-1 .btn-more {
-  -webkit-border-radius: 28px;
-          border-radius: 28px; }
+  border-radius: 28px; }
 
 .product-1 .label {
   position: absolute;
@@ -213,14 +211,12 @@
 .addtocart-img {
   width: 44px;
   height: 44px;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   position: absolute;
   z-index: -1;
   left: 0;
   top: 0;
-  -webkit-transition: 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear;
-          transition: 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
+  transition: 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
 
 .product-1-comment {
   margin-left: 26px; }
@@ -240,8 +236,7 @@
   height: 68px;
   line-height: 68px;
   padding: 0 45px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 14px; }
 
 .myorder-tab li a {
@@ -296,8 +291,7 @@
 .sort ul {
   margin-left: 18px;
   border: 1px solid #ccc;
-  -webkit-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   background: #f3f3f3; }
 
 .sort li {
@@ -305,8 +299,7 @@
 
 .sort li:last-child {
   border: none;
-  -webkit-border-radius: 0 4px 4px 0;
-          border-radius: 0 4px 4px 0; }
+  border-radius: 0 4px 4px 0; }
 
 .sort a {
   width: 84px;
@@ -322,9 +315,7 @@
   margin-left: 3px; }
 
 .sort a.active .icon107 {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg); }
+  transform: rotate(180deg); }
 
 .sort label {
   height: 28px;
@@ -360,8 +351,7 @@
   display: inline-block;
   width: 8px;
   height: 8px;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   background: #dc3334;
   margin: 0 10px; }
 
@@ -464,8 +454,7 @@
   height: 150px;
   line-height: 150px;
   text-align: center;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   background: #F9F9F9;
   display: block;
   margin: 94px auto 95px;
@@ -595,13 +584,10 @@
 
 .classify .icon105 {
   margin-left: 5px;
-  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-          transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
 .classify .active .icon105 {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg); }
+  transform: rotate(180deg); }
 
 .classify-more:before {
   content: '收起'; }

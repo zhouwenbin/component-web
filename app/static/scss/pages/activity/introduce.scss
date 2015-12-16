@@ -1,10 +1,10 @@
-﻿@import 'utils/variables';
-@import 'utils/placeholders';
-@import 'module/slider';
+﻿@import '../../utils/variables';
+@import '../../utils/placeholders';
+@import '../../module/slider';
 .introduce1{
 	background: url(http://img0.sfht.com/img/7857f99df418f1c3dd5c7af2d5279a0c.jpg) no-repeat center top;
 	height: 1056px;
-	
+
 }
 .introduce1 .pm{
 	position: relative;
@@ -19,7 +19,7 @@
 	left: 50%;
 	margin-top: -37px;
 	margin-left: -123px;
-	
+
 }
 .introduce-logistics{
 	background: url(http://img0.sfht.com/img/960cf22a63365039ad285a330890959a.jpg) no-repeat center top;

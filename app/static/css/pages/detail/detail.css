@@ -159,8 +159,7 @@
   display: inline-block;
   background-color: #E73736;
   color: #fff;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
+  border-radius: 3px;
   font-size: 12px;
   height: 20px;
   line-height: 20px;
@@ -220,8 +219,7 @@
   height: 17px;
   line-height: 17px;
   text-align: center;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
+  border-radius: 3px;
   font-size: 14px;
   font-weight: 400; }
 
@@ -274,16 +272,14 @@
   z-index: -1;
   left: 0;
   top: 0;
-  -webkit-transition: 0.5s -webkit-transform ease-in-out, 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear;
-          transition: 0.5s transform ease-in-out, 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
+  transition: 0.5s transform ease-in-out, 0.5s left linear, 0.5s top cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.1s visibility 0.5s linear; }
 
 .goods-c2r2 .icon {
   margin-left: 10px; }
 
 .btn-buy.disable {
   border: 0 none;
-  -webkit-border-radius: 0;
-          border-radius: 0; }
+  border-radius: 0; }
 
 .goods-c2r2 .btn {
   width: 134px;
@@ -390,8 +386,7 @@
   background: #FFD62C;
   height: 23px;
   line-height: 23px;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
+  border-radius: 3px;
   padding: 0 10px;
   display: inline-block;
   margin-left: 18px; }
@@ -680,8 +675,7 @@
   text-align: center;
   color: #007C84;
   display: inline-block;
-  -webkit-border-radius: 15px;
-          border-radius: 15px;
+  border-radius: 15px;
   background: #fff;
   opacity: 0.7; }
 
@@ -1062,8 +1056,7 @@
   right: -4px;
   bottom: -4px;
   border: 1px solid #E13B3A;
-  -webkit-border-radius: 3px;
-          border-radius: 3px; }
+  border-radius: 3px; }
 
 .comment-img li.active:after {
   content: '';
@@ -1201,8 +1194,7 @@
   line-height: 45px;
   font-size: 12px;
   text-align: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 .comment-tab li.active {
   border-left: 1px solid #E5E5E5;
