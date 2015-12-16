@@ -110,7 +110,8 @@ gulp.task('sass:watch', function () {
 gulp.task('slim', function(){
   gulp.src("./app/static/slim/pages/**/*.slim")
     .pipe(slim({
-      pretty: true
+      pretty: true,
+      chdir: true
     }))
     .pipe(gulp.dest("./app/static/html/pages/"));
 });
