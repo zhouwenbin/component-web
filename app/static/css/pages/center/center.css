@@ -226,6 +226,7 @@ p.mycoupon-b {
 .mycoupon-r1r1 {
   padding-bottom: 3px;
   border-bottom: 1px dashed #fff;
+  border-color: #FFFFFF;
   border-color: rgba(255, 255, 255, 0.6);
   margin-bottom: 5px;
   font-size: 15px; }
@@ -979,10 +980,13 @@ p.mycoupon-b {
   position: absolute;
   left: 0;
   top: 0;
-  transition: 0.5s left linear, 0.5s top ease-out, 0.1s visibility 0.5s linear; }
+  -webkit-transition: 0.5s left linear, 0.5s top ease-out, 0.1s visibility 0.5s linear;
+          transition: 0.5s left linear, 0.5s top ease-out, 0.1s visibility 0.5s linear; }
 
 .product .icon90:hover {
-  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
   -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5)); }
 
 /*

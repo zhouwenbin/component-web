@@ -84,6 +84,7 @@ p.mycoupon-b {
 .mycoupon-r1r1 {
   padding-bottom: 3px;
   border-bottom: 1px dashed #fff;
+  border-color: #FFFFFF;
   border-color: rgba(255, 255, 255, 0.6);
   margin-bottom: 5px;
   font-size: 15px; }

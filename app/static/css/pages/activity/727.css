@@ -272,7 +272,7 @@ body {
 .m727-nav .today {
   color: #f8de00; }
 
-.m727-nav .active::after {
+.m727-nav .active:after {
   content: "";
   position: absolute;
   bottom: -10px;

@@ -155,7 +155,8 @@ a[title="站长统计"] {
 /*两端对齐*/
 .justify {
   text-align: justify;
-  text-align-last: justify;
+  -moz-text-align-last: justify;
+       text-align-last: justify;
   display: inline-block;
   vertical-align: middle;
   width: 4em; }
@@ -276,6 +277,7 @@ a[title="站长统计"] {
 
 .btn-top {
   padding: 18px 21px;
+  background: #000000;
   background: rgba(0, 0, 0, 0.3);
   position: fixed;
   bottom: 100px;
@@ -646,6 +648,7 @@ a[title="站长统计"] {
   border: 1px solid #3E3A39; }
 
 .btn-black:hover {
+  background: #3E3A39;
   background: rgba(62, 58, 57, 0.9); }
 
 .btn-black:active {
@@ -700,7 +703,9 @@ a[title="站长统计"] {
   position: relative; }
 
 .btn-search-close:hover:before {
-  transform: rotate(180deg); }
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg); }
 
 .btn-search-close:before {
   content: '';
@@ -712,7 +717,8 @@ a[title="站长统计"] {
   left: 50%;
   margin-left: -4px;
   margin-top: -4px;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  -webkit-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+          transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
 .btn-outline.btn-danger {
   background: #fff;
@@ -3212,6 +3218,7 @@ a[title="站长统计"] {
   color: #666;
   margin-left: -1px; }
   .cart-item:hover {
+    color: #666666;
     color: rgba(102, 102, 102, 0.8); }
 
 .header1-c2 .icon116 {
@@ -3220,6 +3227,7 @@ a[title="站长统计"] {
 .header1 a {
   color: #ccc; }
   .header1 a:hover {
+    color: #CCCCCC;
     color: rgba(204, 204, 204, 0.8); }
 
 .header1-user {
@@ -3618,6 +3626,7 @@ a[title="站长统计"] {
   color: #999;
   padding-left: 16px; }
   .nav .header-c2 a:hover {
+    color: #999999;
     color: rgba(153, 153, 153, 0.8); }
 
 .nav-fixed {

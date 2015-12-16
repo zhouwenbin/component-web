@@ -318,6 +318,12 @@ html, body, .login {
   left: 94px;
   top: 209px; }
 
+@-webkit-keyframes ani1 {
+  0% {
+    background-position: 0 0px; }
+  100% {
+    background-position: -2117px 0px; } }
+
 @keyframes ani1 {
   0% {
     background-position: 0 0px; }
@@ -328,7 +334,14 @@ html, body, .login {
   background-position: 0 0px; }
 
 .ani1:hover {
-  animation: ani1 1s steps(29); }
+  -webkit-animation: ani1 1s steps(29);
+          animation: ani1 1s steps(29); }
+
+@-webkit-keyframes ani2 {
+  0% {
+    background-position: 0 -73px; }
+  100% {
+    background-position: -2117px -73px; } }
 
 @keyframes ani2 {
   0% {
@@ -340,7 +353,14 @@ html, body, .login {
   background-position: 0 -73px; }
 
 .ani2:hover {
-  animation: ani2 1s steps(29); }
+  -webkit-animation: ani2 1s steps(29);
+          animation: ani2 1s steps(29); }
+
+@-webkit-keyframes ani3 {
+  0% {
+    background-position: 0 -146px; }
+  100% {
+    background-position: -2117px -146px; } }
 
 @keyframes ani3 {
   0% {
@@ -352,7 +372,14 @@ html, body, .login {
   background-position: 0 -146px; }
 
 .ani3:hover {
-  animation: ani3 1s steps(29); }
+  -webkit-animation: ani3 1s steps(29);
+          animation: ani3 1s steps(29); }
+
+@-webkit-keyframes ani4 {
+  0% {
+    background-position: 0 -219px; }
+  100% {
+    background-position: -2117px -219px; } }
 
 @keyframes ani4 {
   0% {
@@ -364,7 +391,14 @@ html, body, .login {
   background-position: 0 -219px; }
 
 .ani4:hover {
-  animation: ani4 1s steps(29); }
+  -webkit-animation: ani4 1s steps(29);
+          animation: ani4 1s steps(29); }
+
+@-webkit-keyframes ani5 {
+  0% {
+    background-position: 0 -292px; }
+  100% {
+    background-position: -2117px -292px; } }
 
 @keyframes ani5 {
   0% {
@@ -376,7 +410,14 @@ html, body, .login {
   background-position: 0 -292px; }
 
 .ani5:hover {
-  animation: ani5 1s steps(29); }
+  -webkit-animation: ani5 1s steps(29);
+          animation: ani5 1s steps(29); }
+
+@-webkit-keyframes ani6 {
+  0% {
+    background-position: 0 -365px; }
+  100% {
+    background-position: -2117px -365px; } }
 
 @keyframes ani6 {
   0% {
@@ -388,7 +429,14 @@ html, body, .login {
   background-position: 0 -365px; }
 
 .ani6:hover {
-  animation: ani6 1s steps(29); }
+  -webkit-animation: ani6 1s steps(29);
+          animation: ani6 1s steps(29); }
+
+@-webkit-keyframes ani7 {
+  0% {
+    background-position: 0 -438px; }
+  100% {
+    background-position: -2117px -438px; } }
 
 @keyframes ani7 {
   0% {
@@ -400,4 +448,5 @@ html, body, .login {
   background-position: 0 -438px; }
 
 .ani7:hover {
-  animation: ani7 1s steps(29); }
+  -webkit-animation: ani7 1s steps(29);
+          animation: ani7 1s steps(29); }

@@ -11,7 +11,12 @@
 .app-anywhere-bg {
   background: url(http://img0.sfht.com/sfht/1.1.258/img/app/app-anywhere-bg.png) repeat-x left 474px;
   height: 900px;
-  animation: app-anywhere-bg 20s linear forwards infinite; }
+  -webkit-animation: app-anywhere-bg 20s linear forwards infinite;
+          animation: app-anywhere-bg 20s linear forwards infinite; }
+
+@-webkit-keyframes app-anywhere-bg {
+  100% {
+    background-position: -1190px 474px; } }
 
 @keyframes app-anywhere-bg {
   100% {
@@ -36,14 +41,26 @@
   position: absolute;
   left: 50%;
   top: 547px;
-  transform: translate3d(-50%, -3px, 0);
-  animation: app-anywhere-plane 1s linear forwards infinite; }
+  -webkit-transform: translate3d(-50%, -3px, 0);
+          transform: translate3d(-50%, -3px, 0);
+  -webkit-animation: app-anywhere-plane 1s linear forwards infinite;
+          animation: app-anywhere-plane 1s linear forwards infinite; }
+
+@-webkit-keyframes app-anywhere-plane {
+  50% {
+    -webkit-transform: translate3d(-50%, 3px, 0);
+            transform: translate3d(-50%, 3px, 0); }
+  100% {
+    -webkit-transform: translate3d(-50%, -3px, 0);
+            transform: translate3d(-50%, -3px, 0); } }
 
 @keyframes app-anywhere-plane {
   50% {
-    transform: translate3d(-50%, 3px, 0); }
+    -webkit-transform: translate3d(-50%, 3px, 0);
+            transform: translate3d(-50%, 3px, 0); }
   100% {
-    transform: translate3d(-50%, -3px, 0); } }
+    -webkit-transform: translate3d(-50%, -3px, 0);
+            transform: translate3d(-50%, -3px, 0); } }
 
 .app-favorable {
   padding-top: 131px;
@@ -92,7 +109,8 @@
 
 .app-logistics-bg {
   background: url(http://img0.sfht.com/sfht/1.1.258/img/app/app-logistics-bg.png) repeat-x left 434px;
-  animation: app-logistics-bg 20s linear forwards infinite;
+  -webkit-animation: app-logistics-bg 20s linear forwards infinite;
+          animation: app-logistics-bg 20s linear forwards infinite;
   padding-top: 103px;
   padding-bottom: 137px; }
 
@@ -119,31 +137,59 @@
   margin-left: 95px; }
 
 .app-logistics-car {
-  transform: translate(0, -1px);
-  animation: app-logistics-car 0.5s linear forwards infinite; }
+  -webkit-transform: translate(0, -1px);
+      -ms-transform: translate(0, -1px);
+          transform: translate(0, -1px);
+  -webkit-animation: app-logistics-car 0.5s linear forwards infinite;
+          animation: app-logistics-car 0.5s linear forwards infinite; }
 
 .app-logistics-shadow {
   position: absolute;
   top: 673px;
   left: 50%;
   margin-left: -130px;
-  animation: app-logistics-shadow 0.5s linear forwards infinite; }
+  -webkit-animation: app-logistics-shadow 0.5s linear forwards infinite;
+          animation: app-logistics-shadow 0.5s linear forwards infinite; }
+
+@-webkit-keyframes app-logistics-bg {
+  100% {
+    background-position: -1920px 434px; } }
 
 @keyframes app-logistics-bg {
   100% {
     background-position: -1920px 434px; } }
 
+@-webkit-keyframes app-logistics-car {
+  50% {
+    -webkit-transform: translate3d(0, 1px, 0);
+            transform: translate3d(0, 1px, 0); }
+  100% {
+    -webkit-transform: translate3d(0, -1px, 0);
+            transform: translate3d(0, -1px, 0); } }
+
 @keyframes app-logistics-car {
   50% {
-    transform: translate3d(0, 1px, 0); }
+    -webkit-transform: translate3d(0, 1px, 0);
+            transform: translate3d(0, 1px, 0); }
   100% {
-    transform: translate3d(0, -1px, 0); } }
+    -webkit-transform: translate3d(0, -1px, 0);
+            transform: translate3d(0, -1px, 0); } }
+
+@-webkit-keyframes app-logistics-shadow {
+  50% {
+    -webkit-transform: scaleX(0.8);
+            transform: scaleX(0.8); }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1); } }
 
 @keyframes app-logistics-shadow {
   50% {
-    transform: scaleX(0.8); }
+    -webkit-transform: scaleX(0.8);
+            transform: scaleX(0.8); }
   100% {
-    transform: scaleX(1); } }
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1); } }
 
 .app-user {
   background: #ec6b5f;
