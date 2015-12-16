@@ -1,0 +1,23 @@
+.svg {
+    font-size: 10px;
+}
+
+.svg:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 2.3em 2em;
+}
+
+.no-svg .svg:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.svg.icon-cart:before {
+    background-position: 0em 0em;
+    width: 2.3em;
+    height: 2em;
+}
+
