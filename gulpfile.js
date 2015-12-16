@@ -10,6 +10,7 @@ var path = require("path");
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
+var slim = require("gulp-slim");
 var modules = fs.readdirSync("modules");
 var pages = fs.readdirSync("pages");
 
@@ -105,5 +106,12 @@ gulp.task('sass', function () {
 gulp.task('sass:watch', function () {
   gulp.watch('./app/static/scss/pages/**/*.scss', ['sass']);
 });
+gulp.task('slim', function(){
+  gulp.src("./app/static/slim/pages/**/*.slim")
+    .pipe(slim({
+      pretty: true
+    }))
+    .pipe(gulp.dest("./app/static/html/pages/"));
+});
 
-gulp.task('default', ['watch', 'css', 'html', 'serve', 'sass']);
+gulp.task('default', ['watch', 'css', 'html', 'serve']);
