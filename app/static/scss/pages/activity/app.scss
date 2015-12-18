@@ -4,7 +4,16 @@
 	background: url(http://img0.sfht.com/cmsres/20150923/ecc7799a-a6f3-4fdf-9a5b-19495e643762.jpeg) no-repeat center top;
 	height: 464px;
 }
-
+.app-banner .pm{
+	position: relative;
+}
+.app-banner-qrcode{
+	width: 136px;
+	height: 136px;
+	position: relative;
+	top: 251px;
+	left: 54px;
+}
 .app-anywhere{
 	position: relative;
 	background: #f1f2e7 url(#{$bg-url}app/app-map.png) repeat-x center 270px;
