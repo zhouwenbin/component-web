@@ -10,11 +10,11 @@
 </head>
 <body>
 
-  == Slim::Template.new('module/header.slim').render
+  == Slim::Template.new('../../module/header.slim').render
   <div class="pb">
     <!--热卖商品-->
-    == Slim::Template.new('module/slider.slim').render
-    == Slim::Template.new('module/product-1.slim').render
+    == Slim::Template.new('../../module/slider.slim').render
+    == Slim::Template.new('../../module/product-1.slim').render
     <div class="product-1">
       <div class="mb pm">
         <h2 class="index2-h2 pm clearfix">
@@ -25,14 +25,14 @@
             <li>
               <div class="product-1-r1">
                 <a href=""><img src="../img/index-makeup/product-img#{i}.png" alt="" ></a><span></span>
-                
+
               </div>
               <h3><a href="">白色恋人 巧克力夹心饼干12枚白色恋人 巧克力夹心饼干12枚</a></h3>
               <p><img src="../img/icon-usa.png" alt="" width="22" height="14" />广州保税仓发货</p>
               <div class="product-1-r2 clearfix">
                 <div class="product-1-r2c1 fl">
                   <span>￥</span><strong>129</strong><del>￥189</del>
-                  
+
                 </div>
                   <div class="product-1-r2c2 fr"><button class="btn btn-black btn-small">加入购物车</button></div>
               </div>
@@ -53,7 +53,7 @@
         </ul>
       </div>
     </div>
-    
+
     <div class="products6 pm">
       <h2 class="index2-h2 pm clearfix">
         <div class="fl index2-h2-c1"><i></i>品类名称<span>可自定义副标题</span></div>
@@ -63,7 +63,7 @@
         <div class="products6-c1 fl">
           <a href=""><img src="../img/index-makeup/products6-c1.png" alt="" width="236" height="500" ></a>
         </div>
-        <div class="swiper-container fl">    
+        <div class="swiper-container fl">
             <div class="swiper-wrapper">
                 -for i in 1..3
                   <div class="swiper-slide"><img src="../img/index-makeup/products6-slider.png" alt="" width="472" height="250"></div>
@@ -87,10 +87,10 @@
 
   </div>
   <div class="index2-banner" style="height:300px; background: url(../img/index-makeup/index-digital-banner.png) no-repeat center top">
-    
+
   </div>
   <!--尾部-->
-  == Slim::Template.new('module/footer.slim').render
+  == Slim::Template.new('../../module/footer.slim').render
   <!--尾部-->
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/slider.js"></script>

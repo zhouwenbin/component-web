@@ -45,8 +45,7 @@
   width: 271px;
   margin-left: 23px;
   border: 3px solid #fff;
-  -webkit-box-shadow: 0 0 0 1px #e5e5e5;
-          box-shadow: 0 0 0 1px #e5e5e5;
+  box-shadow: 0 0 0 1px #e5e5e5;
   padding-top: 10px;
   background: #fff;
   padding-bottom: 20px;
@@ -157,8 +156,7 @@
   *padding-top: 43px; }
 
 .product .btn-more {
-  -webkit-border-radius: 28px;
-          border-radius: 28px; }
+  border-radius: 28px; }
 
 .product .label {
   position: absolute;
@@ -211,8 +209,7 @@
   height: 68px;
   line-height: 68px;
   padding: 0 45px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 14px; }
 
 .myorder-tab li a {

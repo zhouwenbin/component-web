@@ -8,8 +8,7 @@
 .personal {
   background: #fff;
   border: 1px solid #ccc;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   margin-top: 35px;
   margin-bottom: 35px;
   display: table;
@@ -44,8 +43,7 @@
 .personal-c1 li.active {
   position: relative;
   margin-left: -1px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding-right: 4px;
   width: 200px;
   background: #fff; }

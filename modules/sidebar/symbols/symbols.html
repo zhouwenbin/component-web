@@ -203,7 +203,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-baby')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-baby">
-                <pre id="snippet-icon-baby-pre"><code>&lt;svg class=&quot;svg icon-baby&quot;&gt;&lt;use xlink:href=&quot;#icon-baby&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-baby&quot;&gt;&lt;use xlink:href=&quot;#icon-baby&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -219,7 +219,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-health')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-health">
-                <pre id="snippet-icon-health-pre"><code>&lt;svg class=&quot;svg icon-health&quot;&gt;&lt;use xlink:href=&quot;#icon-health&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-health&quot;&gt;&lt;use xlink:href=&quot;#icon-health&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -235,7 +235,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-makeup')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-makeup">
-                <pre id="snippet-icon-makeup-pre"><code>&lt;svg class=&quot;svg icon-makeup&quot;&gt;&lt;use xlink:href=&quot;#icon-makeup&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-makeup&quot;&gt;&lt;use xlink:href=&quot;#icon-makeup&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -251,7 +251,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-trend')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-trend">
-                <pre id="snippet-icon-trend-pre"><code>&lt;svg class=&quot;svg icon-trend&quot;&gt;&lt;use xlink:href=&quot;#icon-trend&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre><code>&lt;svg class=&quot;svg icon-trend&quot;&gt;&lt;use xlink:href=&quot;#icon-trend&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -263,22 +263,9 @@
 </footer>
 <script type="text/javascript">
     var openSnippet;
-    function selectText(id) {
-        if (document.selection) {
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById(id +"-pre"));
-            range.select();
-        } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(document.getElementById(id +"-pre"));
-            window.getSelection().addRange(range);
-        }
-    }
-
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
-        selectText(id);
     }
     function hidePopover() {
 

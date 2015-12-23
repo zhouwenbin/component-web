@@ -1,5 +1,5 @@
-@import 'utils/variables';
-@import 'utils/placeholders';
+@import '../../utils/variables';
+@import '../../utils/placeholders';
 .discovery-header{
 	font-size: 36px;
 	color: #a68569;
@@ -64,7 +64,7 @@
 .discovery-icon1{
 	@extend %discovery-icon;
 	width: 18px;
-	height: 16px;	
+	height: 16px;
 	background-position: 0 -18px;
 	margin-right: 5px;
 }
@@ -77,7 +77,7 @@
 	height: 16px;
 	background-position: -21px 0;
 	margin-left: 19px;
-	margin-right: 5px;	
+	margin-right: 5px;
 }
 .discovery-icon3{
 	@extend %discovery-icon;
@@ -105,7 +105,7 @@
 	position: absolute;
 	top:5px;
 }
-.discovery-index-f:before{	
+.discovery-index-f:before{
 	margin-left: 4%;
 }
 .discovery-index-f:after{

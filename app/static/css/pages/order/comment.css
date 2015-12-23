@@ -57,8 +57,7 @@
   right: -4px;
   bottom: -4px;
   border: 1px solid #E13B3A;
-  -webkit-border-radius: 3px;
-          border-radius: 3px; }
+  border-radius: 3px; }
 
 .comment-img li.active:after {
   content: '';
@@ -143,8 +142,7 @@
   margin-left: auto;
   margin-top: 7px;
   margin-bottom: 20px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 .comment-add:before {
   content: '';
@@ -402,8 +400,7 @@
   vertical-align: 2px; }
 
 .btn-goods.active {
-  -webkit-box-shadow: none;
-          box-shadow: none; }
+  box-shadow: none; }
 
 .btn-goods .icon {
   background: url(../img/btn-goods-active.png) no-repeat;

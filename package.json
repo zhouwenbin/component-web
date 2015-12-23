@@ -20,6 +20,8 @@
     "gulp-postcss": "^6.0.1",
     "gulp-posthtml": "^1.5.2",
     "gulp-react": "^3.1.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-slim": "^0.3.0",
     "gulp-svg-sprites": "^3.0.0",
     "gulp-svg2png": "^0.3.0",
     "highlight.js": "^8.9.1",

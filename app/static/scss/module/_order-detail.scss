@@ -2,7 +2,7 @@
 @styleguide
 
 # 订单详情
-	
+
 */
 .order-detail{
 	background: #fff;
@@ -76,7 +76,7 @@
 }
 .order-detail-tab li.active a{
 	color: #db3f40;
-	background: #fff; 
+	background: #fff;
 	border-left: 1px solid #f2f2f2;
 	border-right: 1px solid #f2f2f2;
 }
@@ -209,7 +209,7 @@
 }
 .order-detail-table .th1{
 	width: 456px;
-	
+
 }
 .order-detail-table .th2{
 	width: 115px;
@@ -335,6 +335,9 @@
 .order-createrefundtax-b1-c1 label,.order-createrefundtax-b1-c2 label{
 	color: #666;
 	font-size: 14px;
+	width: 7em;
+	display: inline-block;
+	text-align: right;
 }
 .order-createrefundtax-b1-c1 input{
 	vertical-align: middle;
@@ -352,6 +355,54 @@
 	line-height: 18px;
 	color:#999;
 	vertical-align: middle;
+}
+.order-createrefundtax-help{
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	border-radius: 50%;
+	background: #ccc;
+	display: inline-block;
+	color: #fff;
+	margin-left: 12px;
+}
+
+.order-createrefundtax-dialog{
+	box-sizing: border-box;
+	width: 800px;
+	height: 580px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -400px;
+	margin-top: -290px;
+	z-index: 999;
+	background: #fff;
+	padding: 42px 86px 0;
+	font-size: 14px;
+}
+.order-createrefundtax-dialog h2{
+	margin-bottom: 28px;
+	font-size: 16px;
+}
+.order-createrefundtax-dialog p{
+	margin-bottom: 32px;
+}
+.order-createrefundtax-dialog li{
+	margin-top: 22px;
+}
+.order-createrefundtax-dialog-close{
+	background: #e5e5e5;
+	width: 29px;
+	height: 29px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 29px;
+	right: 11px;
+	top: 11px;
+	position: absolute;
+	font-size: 16px;
 }
 
 .btn-refer-tax{
@@ -387,6 +438,7 @@
 }
 .order-createrefundtax-b1-c2 label.comment-add-img-add{
 	color:#fff;
+	text-align: center;
 }
 .comment-add-img-add{
 	width: 90px;
@@ -432,13 +484,3 @@
 .order-logistics-info span i{
 	color:#333;
 }
-
-
-
-
-
-
-
-
-
-
