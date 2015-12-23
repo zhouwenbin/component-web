@@ -2,6 +2,7 @@ var fs = require("fs");
 var gulp = require("gulp");
 var svgSprite = require("gulp-svg-sprites");
 var filter = require("gulp-filter");
+var svg2png = require("gulp-svg2png");
 var postcss = require("gulp-postcss");
 var include = require("gulp-html-tag-include");
 var cssnext = require("gulp-cssnext");

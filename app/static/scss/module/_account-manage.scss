@@ -4,20 +4,35 @@
 # 账号管理
 
 */
+.account-manage-wp{
+	position: relative;
+}
 .account-manage{
 	height: 353px;
 	display: none;
-	padding-left: 100px;
-	margin-top: 55px;
+	padding-left: 45px;
+	margin-top: 43px;
 }
 .account-manage.active{
 	display: block;
 }
 .account-manage1 .btn{
-	margin-left: 52px;
+	margin-left: 90px;
 }
 .account-manage2 .btn{
-	margin-left: 79px;
+	height: 30px;
+	line-height: 30px;
+	border: 0 none;
+	font-size: 12px;
+	margin-right: 10px;
+}
+.account-manage2 .btn-canel{
+	color: #666;
+	font-size: 12px;
+}
+.account-manage2 .btn-canel:hover,
+.account-manage2 .btn-input-reset:hover{
+	color: #333;
 }
 .account-manage input{
 	padding-top: 10px;
@@ -25,10 +40,176 @@
 	width: 247px;
 }
 .account-manage li{
-	margin-bottom: 13px;
+	margin-left: 90px;
+	margin-bottom: 16px;
+	position: relative;
+	color: #666;
+	font-size: 14px;
+	line-height: 28px;
+}
+.account-manage li a{
+	color: #4E9BDF;
+	font-size: 14px;
 }
 .account-manage label{
 	font-size: 14px;
 	margin-right: 20px;
+	position: absolute;
 	width:5em;
+	left: -90px;
+}
+.account-manage-fix{
+	margin-left: 20px;
+}
+.account-manage-input-box{
+	margin-bottom: 10px;
+}
+.account-manage .input{
+	width: 170px;
+	height: 28px;
+	line-height: 28px;
+	color: #666;
+	font-size: 12px;
+	padding: 0 10px;
+	border: 1px solid #979797;
+	border-radius: 0;
+}
+.account-manage-input-box .btn{
+	margin-left: 8px;
+}
+.account-manage-input-box .input-vcode{
+	width: 58px;
+}
+.account-manage-input-box .input-tips,
+.account-manage .input-error{
+	margin-left: 10px;
+}
+.account-manage-input-box .input-tips{
+	font-size: 12px;
+	color: #B2B2B2;
+}
+.account-manage2 .input-pw-tips{
+	margin-left: 20px;
+}
+.account-manage-input-box .input-tips-strong{
+	font-size: 12px;
+	font-weight: 400;
+	color: #666;
+}
+.account-manage .input-error{
+	color: #EE5151;
+	font-size: 12px;
+}
+.icon-wechat,
+.icon-alipay{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+.account-manage-sns{
+	margin-right: 30px;
+}
+.account-manage-sns .tips{
+	color: #B2B2B2;
+}
+.account-manage-tips{
+	color: #B2B2B2;
+	line-height: 20px;
+	margin-top: 40px;
+}
+.input-pw-brtips{
+	position: relative;
+	display: inline-block;
+	color: #666;
+	background-color: #F2F2F2;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	border-radius: 4px;
+	margin-left: 18px;
+	font-size: 12px;
+}
+.input-pw-brtips:before{
+	position: absolute;
+	content: "";
+	border: 7px dashed transparent;
+	border-right: 10px dashed #F2F2F2;
+	border-radius: 4px;
+	left: -15px;
+	top: 7px;
+}
+.account-dialog{
+	position: absolute;
+	font-size: 14px;
+	color: #666;
+	background-color: rgba(242,242,242,0.9);
+	text-align: center;
+	left: 50%;
+	top: 50%;
+}
+.account-dialog-success{		
+	width: 180px;
+	height: 60px;
+	line-height: 60px;
+	margin-left: -90px;
+	margin-top: -30px;
+}
+.account-dialog-close{
+	width: 360px;
+	height: 120px;
+	line-height: 120px;
+	margin-top: -60px;
+	margin-left: -180px;
+}
+.account-dialog-iclose{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 20px;
+	height: 20px;
+	color: #979797;
+}
+.account-dialog-iclose:hover{
+	color: #EE5151;
+}
+.account-dialog-iclose i,
+.account-dialog-iclose i:before{
+	position: absolute;	
+	width: 20px;
+	height: 20px;
+}
+.account-dialog-iclose i{
+	top: 7px;
+	left: 7px;
+	line-height: 1;
+	transform: rotate(45deg);
+	border-left: 1px solid;
+}
+.account-dialog-iclose i:before{
+	content: "";
+	border-top: 1px solid;
+	top: 10px;
+	right: 10px;
+}
+.account-dialog-btn{
+	width: 480px;
+	height: 135px;	
+	padding-top: 65px;
+	margin-left: -240px;
+	margin-top: -100px;
+}
+.account-dialog-btn{
+	padding-top: 65px;
+}
+.account-dialog-btn-box{
+	margin-top: 30px;
+}
+.account-dialog-btn-box .btn{
+	margin: 0 20px;
+	font-size: 12px;
+	width: 90px;
+}
+.account-dialog-btn-box .btn-disable{
+	background-color: #999;
+	color: #fff !important;
 }

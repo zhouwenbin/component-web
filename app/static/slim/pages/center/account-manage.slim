@@ -9,6 +9,16 @@
 </head>
 <body>
 == Slim::Template.new('../../module/header.slim').render
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
+
+<symbol id="icon-alipay" viewBox="0 0 20 20">
+        <title>Clip 5 Copy + Path</title><defs><path id="aaa" d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#0AE" xlink:href="#aaa"/><path d="M8.97 6.05V4.443h1.775V6.05h3.622v.704l-3.622.024v.997l2.99.024s-.054.558-.433 1.575c-.38 1.017-.734 1.536-.734 1.536l5.803 1.905s-.208.544-.458 1.022c-.25.477-.6.99-.6.99L11.765 12.2s-1.05 1.16-2.12 1.67-2.297.828-3.627.514c-1.33-.313-2.275-1.164-2.113-2.734.163-1.57 1.84-2.112 3.222-2.112 1.38 0 4 .894 4 .894s.22-.493.434-1.057c.214-.563.274-1.017.274-1.017H6.26v-.56h2.71V6.73l-3.38.026V6.05h3.38zm1.492 5.5s-1.66 1.974-3.618 1.974c-1.957 0-2.368-.937-2.368-1.61 0-.676.407-1.408 2.072-1.514 1.665-.106 3.914 1.15 3.914 1.15z" fill="#FFF"/></g>
+</symbol>
+
+<symbol id="icon-wechat" viewBox="0 0 20 20">
+        <title>Imported Layers Copy 3</title><g fill="none" fill-rule="evenodd"><path d="M10 0C4.48 0 0 4.478 0 10s4.48 10 10 10 9.998-4.478 9.998-10S15.52 0 10 0z" fill="#64B406"/><path d="M16.06 15.14l.43 1.427-1.565-.857c-.57.143-1.144.286-1.712.286-2.715 0-4.853-1.855-4.853-4.14 0-2.282 2.138-4.14 4.853-4.14 2.563 0 4.846 1.858 4.846 4.14 0 1.286-.853 2.426-2 3.284z" fill="#FFF"/><path d="M7.645 13.142c-.713 0-1.285-.145-2-.286l-1.994 1 .572-1.717c-1.428-1-2.284-2.285-2.284-3.852 0-2.715 2.57-4.853 5.707-4.853 2.804 0 5.262 1.707 5.756 4.007-.18-.02-.363-.034-.548-.034-2.71 0-4.85 2.023-4.85 4.516 0 .414.064.814.175 1.196-.176.014-.353.022-.532.022z" fill="#FFF"/><path d="M11.528 9.585c-.273 0-.547.275-.547.547 0 .277.275.548.548.548.414 0 .685-.27.685-.548 0-.272-.27-.547-.685-.547M14.538 9.585c-.27 0-.544.275-.544.547 0 .277.273.548.544.548.41 0 .685-.27.685-.548 0-.272-.275-.547-.685-.547M5.918 5.616c-.41 0-.824.27-.824.683 0 .41.414.684.824.684S6.6 6.71 6.6 6.3c0-.413-.272-.684-.682-.684M9.748 6.984c.412 0 .685-.275.685-.685 0-.413-.273-.684-.685-.684-.41 0-.822.27-.822.683 0 .41.412.684.822.684" fill="#64B406"/></g>
+</symbol>
+</svg>
 <div class="pb">
   <div class="pm">
     <!--我的订单-->
@@ -21,27 +31,128 @@
                 <li><a href="">收货地址</a></li>
             </ul>
     	</div>
-    	<div class="personal-c2">
+    	<div class="personal-c2 account-manage-wp">
             <div class="myorder">
                 <ul class="myorder-tab">
-                    <li class="active"><a href="">基本资料</a></li>
-                    <li><a href="">修改密码</a></li>
+                    <li><a href="">基本资料</a></li>
+                    <!-- <li class="active"><a href="">修改密码</a></li> -->
+                    <li class="active"><a href="">账号和密码</a></li>
                 </ul>
             </div>
             <div class="account-manage account-manage1 active">
               <ul>
-                <li><label for="nickname">昵称:</label><input type="text" id="nickname" class="input" /></li>
-                <li><label for="sex">性别:</label><select name="" id="sex"><option value="女">女</option></select></li>
+                <li><label for="nickname" class="justify">昵 称:</label><input type="text" id="nickname" class="input" /></li>
+                <li><label for="sex" class="justify">性 别:</label><select name="" id="sex"><option value="女">女</option></select></li>
               </ul>
-              <button class="btn btn-success btn-small">保存</button>
+              <button class="btn btn-danger btn-small">保存</button>
             </div>
-            <div class="account-manage account-manage2">
-              <ul>
+            <div class="account-manage account-manage2 active" style="height:1500px;">
+              <!-- <ul>
                 <li><label for="password-old" class="justify">原始密码:</label><input type="text" id="password-old" class="input" /></li>
                 <li><label for="password-new" class="justify">新 密 码:</label><input type="text" id="password-new" class="input" /></li>
                 <li><label for="password-confirm" class="justify">确认密码:</label><input type="text" id="password-confirm" class="input" /></li>
-              </ul>
-              <button class="btn btn-success btn-small">确定</button>
+              </ul> -->
+              <ul>
+                <!-- 未设置状态样式参考开始 -->
+                <li><label class="justify">邮 箱：</label><a href="">绑定邮箱</a></li>
+                <li><label class="justify">手 机：</label><a href="">绑定手机</a></li>
+                <!-- 未设置状态样式参考结束 -->
+                <!-- 设置后状态参考开始 -->
+                <li><label class="justify">邮 箱：</label>su***ys@gmail.com<a href="" class="account-manage-fix">修改</a></li>
+                <li><label class="justify">手 机：</label>138****4466<a href="" class="account-manage-fix">修改</a></li>
+                <!-- 设置后状态参考结束 -->
+                <!-- 绑定邮箱开始 -->
+                <li>
+                  <label class="justify">邮 箱：</label>
+                  <div class="account-manage-input-box"><input type="password" class="input" placeholder="输入密码" /></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" placeholder="输入邮箱地址" /><a href="" class="btn btn-danger btn-small">获取验证码</a></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" value="sunnydays@gmail.com" /><span class="input-tips">验证码已发送至该邮箱</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" value="sunnydays@gmail.com" /><span class="input-error">该邮箱已注册</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input input-vcode" /><span class="input-tips"><em class="input-tips-strong">60秒后</em>可重新发送</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input input-vcode" /><span class="input-tips"><a href="#" class="input-tips-strong btn-input-reset">重新发送</a></span></div>
+                  <button class="btn btn-danger btn-small">确定</button><a href="" class="btn-canel">取消</a>
+                </li>
+                <!-- 绑定邮箱结束 -->
+                <!-- 绑定手机号状态参考开始 -->
+                <li>
+                  <label class="justify">手 机：</label>
+                  <div class="account-manage-input-box"><input type="password" class="input" placeholder="输入密码" /></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" placeholder="输入手机号" /><a href="" class="btn btn-danger btn-small">获取验证码</a></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" value="sunnydays@gmail.com" /><span class="input-tips">验证码已发送至该号码</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input" value="sunnydays@gmail.com" /><span class="input-error">该号码已注册</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input input-vcode" /><span class="input-tips"><em class="input-tips-strong">60秒后</em>可重新发送</span></div>
+                  <div class="account-manage-input-box"><input type="text" class="input input-vcode" /><span class="input-tips"><a href="#" class="input-tips-strong btn-input-reset">重新发送</a></span></div>
+                  <button class="btn btn-danger btn-small">确定</button><a href="" class="btn-canel">取消</a>
+                </li>
+                <!-- 绑定手机号状态参考结束 -->
+                <!-- 设置密码开始 -->
+                <li>
+                  <label class="justify">账户密码：</label><a href="">设置密码</a><span class="input-pw-brtips">设置账户密码即可用手机号/邮箱直接登录丰趣海淘</span>
+                </li>
+                <li>
+                  <label class="justify">账户密码：</label><a href="">设置密码</a><span class="input-error input-pw-tips">请先绑定邮箱或手机号</span>
+                  <div class="account-manage-input-box">
+                    <div class="account-manage-input-box"><input type="password" class="input" placeholder="输入密码" /><span class="input-tips">6-18位字母、数字或符号组合</span></div>
+                  </div>
+                  <div class="account-manage-input-box">
+                    <div class="account-manage-input-box"><input type="password" class="input" placeholder="再次输入密码" /></div>
+                  </div>
+                  <div class="account-manage-input-box">
+                    <div class="account-manage-input-box"><input type="password" class="input" value="11111" /><span class="input-error">密码格式错误</span></div>
+                  </div>
+                    <button class="btn btn-danger btn-small">确定</button><a href="" class="btn-canel">取消</a>
+                </li>
+                <!-- 设置密码结束 -->
+                <!-- 绑定第三方账号开始 -->
+                <li>
+                  <label class="justify">社交账号：</label>
+                  <a href="" class="account-manage-sns">
+                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>绑定微信
+                  </a>
+                  <a href="" class="account-manage-sns">
+                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>绑定支付宝
+                  </a>
+                </li>
+                <li>
+                  <label class="justify">社交账号：</label>
+                  <span class="account-manage-sns">
+                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>Miss苏 <a href="">（解绑）</a>
+                  </span>
+                  <span class="account-manage-sns">
+                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>Yao <a href="">（解绑）</a>
+                  </span>
+                </li>
+                <li>
+                  <label class="justify">社交账号：</label>
+                  <span class="account-manage-sns">
+                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>Miss苏 <span class="tips">（解绑）</span>
+                  </span>
+                  <a href="#" class="account-manage-sns">
+                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>绑定支付宝
+                  </a>
+                </li>
+                <!-- 绑定第三方账号结束 -->
+              </ul> 
+              <dl class="account-manage-tips">
+                <dt>温馨提示：</dt>
+                <dd>1、绑定常用的手机或邮箱，可用于密码找回；</dd>
+                <dd>2、验证手机号以便接收订单进度信息。</dd>
+              </dl>
+            </div>
+            <div class="account-dialog account-dialog-success">
+              <p>手机号绑定成功！</p>
+            </div>
+            <div class="account-dialog account-dialog-close">
+              <p>该支付宝账号已绑定其他丰趣海淘账号</p>
+              <a href="" class="account-dialog-iclose"><i></i></a>
+            </div>
+            <div class="account-dialog account-dialog-btn">
+              <p>解绑支付宝后你将无法使用支付宝登录顺丰海淘，确定要解绑吗？</p>
+              <div class="account-dialog-btn-box">
+                <button class="btn btn-disable">取消</button>
+                <button class="btn btn-danger">确定</button>
+              </div>           
+              <a href="" class="account-dialog-iclose"><i></i></a>
             </div>
         </div>
     </div>
