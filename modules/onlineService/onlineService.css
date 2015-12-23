@@ -1,0 +1,25 @@
+/*
+@styleguide
+
+# 常见问题
+
+*/
+.onlineService{
+  background: #fff;
+  margin-bottom: 10px;
+}
+.onlineService h2{
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  padding-left: 12px;
+  font-weight: normal;
+}
+.onlineService h2 svg{
+  margin-right: 10px;
+}
+.onlineService .icon-online{
+  width: 23px;
+  height: 23px;
+  vertical-align: middle;
+}

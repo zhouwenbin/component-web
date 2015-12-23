@@ -1,0 +1,71 @@
+/*
+@styleguide
+
+# 自助服务
+
+*/
+.selfService{
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.selfService h2{
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  padding-left: 12px;
+  font-weight: normal;
+}
+.selfService h2 svg{
+  margin-right: 10px;
+}
+.selfService ul{
+  display: flex;
+}
+.selfService li{
+  flex:1;
+  text-align: center;
+  border-top: 1px solid #f7f7f9;
+  border-right: 1px solid #f7f7f9;
+  padding-top: 4px;
+  padding-bottom: 18px;
+  color: #666;
+}
+.selfService li svg{
+  fill: #666;
+  display: inline-block;
+  vertical-align: middle;
+}
+.selfService li a{
+  color: #666;
+}
+.selfService .icon-delivery{
+  width: 22px;
+  height: 22px;
+}
+.selfService .icon-airplane{
+  width: 21px;
+  height: 23px;
+}
+.selfService .icon-bookmark{
+  width: 25px;
+  height: 22px;
+}
+.selfService .icon-edit{
+  width: 19px;
+  height: 29px;
+}
+.selfService .icon-coffee{
+  width: 23px;
+  height: 23px;
+  vertical-align: middle;
+}
+.selfService div{
+  height: 49px;
+}
+.selfService div:before{
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
