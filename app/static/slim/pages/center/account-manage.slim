@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!--[if !IE 8]><html xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-svg"><![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=1280">
@@ -9,6 +10,7 @@
 </head>
 <body>
 == Slim::Template.new('../../module/header.slim').render
+<!--[if IE 8]> <link href="../../../../../modules/center/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
 
 <symbol id="icon-alipay" viewBox="0 0 20 20">
@@ -107,28 +109,30 @@
                 <li>
                   <label class="justify">社交账号：</label>
                   <a href="" class="account-manage-sns">
-                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>绑定微信
+                    <svg class="icon-wechat"><use xlink:href="#icon-wechat"></use></svg>
+                    <!--[if IE 8]><span class="svg icon-wechat"></span><![endif]-->绑定微信
                   </a>
                   <a href="" class="account-manage-sns">
-                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>绑定支付宝
+                    <svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->绑定支付宝
                   </a>
                 </li>
                 <li>
                   <label class="justify">社交账号：</label>
                   <span class="account-manage-sns">
-                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>Miss苏 <a href="">（解绑）</a>
+                    <svg class="icon-wechat"><use xlink:href="#icon-wechat"></use></svg>
+                    <!--[if IE 8]><span class="svg icon-wechat"></span><![endif]-->Miss苏 <a href="">（解绑）</a>
                   </span>
                   <span class="account-manage-sns">
-                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>Yao <a href="">（解绑）</a>
+                    <svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->Yao <a href="">（解绑）</a>
                   </span>
                 </li>
                 <li>
                   <label class="justify">社交账号：</label>
                   <span class="account-manage-sns">
-                    <svg class="svg icon-wechat"><use xlink:href="#icon-wechat"></use></svg>Miss苏 <span class="tips">（解绑）</span>
+                    <svg class="icon-wechat"><use xlink:href="#icon-wechat"></use></svg><!--[if IE 8]><span class="svg icon-wechat"></span><![endif]-->Miss苏 <span class="tips">（解绑）</span>
                   </span>
                   <a href="#" class="account-manage-sns">
-                    <svg class="svg icon-alipay"><use xlink:href="#icon-alipay"></use></svg>绑定支付宝
+                    <svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->绑定支付宝
                   </a>
                 </li>
                 <!-- 绑定第三方账号结束 -->
