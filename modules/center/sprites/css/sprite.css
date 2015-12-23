@@ -1,8 +1,8 @@
-.svg {
+.center-icon {
     font-size: 10px;
 }
 
-.svg:before {
+.center-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
@@ -11,17 +11,17 @@
     background-size: 2em 4em;
 }
 
-.no-svg .svg:before {
+.no-svg .center-icon:before {
     background-image: url("../svg/sprite.png");
 }
 
-.svg.icon-alipay:before {
+.center-icon.icon-alipay:before {
     background-position: 0em 0em;
     width: 2em;
     height: 2em;
 }
 
-.svg.icon-wechat:before {
+.center-icon.icon-wechat:before {
     background-position: 0em -2em;
     width: 2em;
     height: 2em;

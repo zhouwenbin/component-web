@@ -2,3 +2,10 @@
 @import '../../../modules/selfService/selfService.css';
 @import '../../../modules/commonProblem/commonProblem.css';
 @import '../../../modules/onlineService/onlineService.css';
+.service-mian{
+  background: #fff;
+  padding: 34px 110px 87px;
+}
+.no-svg svg{
+  display: none;
+}

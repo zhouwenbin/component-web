@@ -1,8 +1,8 @@
-.svg {
+.footer-icon {
     font-size: 10px;
 }
 
-.svg:before {
+.footer-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
@@ -11,41 +11,41 @@
     background-size: 14.7em 21.4em;
 }
 
-.no-svg .svg:before {
+.no-svg .footer-icon:before {
     background-image: url("../svg/sprite.png");
 }
 
-.svg.icon-car:before {
+.footer-icon.icon-car:before {
     background-position: 0em 0em;
     width: 4em;
     height: 3.1em;
 }
 
-.svg.icon-cart:before {
+.footer-icon.icon-cart:before {
     background-position: 0em -3.1em;
     width: 3.6em;
     height: 4em;
 }
 
-.svg.icon-earth:before {
+.footer-icon.icon-earth:before {
     background-position: 0em -7.1em;
     width: 3.7em;
     height: 3.6em;
 }
 
-.svg.icon-list:before {
+.footer-icon.icon-list:before {
     background-position: 0em -10.7em;
     width: 2.7em;
     height: 3.3em;
 }
 
-.svg.icon-logo:before {
+.footer-icon.icon-logo:before {
     background-position: 0em -14em;
     width: 14.7em;
     height: 4.1em;
 }
 
-.svg.icon-package:before {
+.footer-icon.icon-package:before {
     background-position: 0em -18.1em;
     width: 3.6em;
     height: 3.3em;

@@ -177,14 +177,14 @@
 
 <li title="icon-cart">
             <div class="icon-box" id="icon-box-icon-cart">
-                <div class="svg icon-cart"></div>
+                <div class="detail-icon icon-cart"></div>
             </div>
             <h2>icon-cart</h2>
             <button onclick="showPopover('snippet-icon-cart')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-cart')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-cart">
-                <pre><code>&lt;span class=&quot;svg icon-cart&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;detail-icon icon-cart&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -202,6 +202,18 @@
     var modeView = document.getElementById("mode-view");
     var icons = document.querySelectorAll(".icon");
 
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function setSize (fontSize) {
         for (var i = 0; i < icons.length; i++) {
             icons[i].style.fontSize = fontSize + 'px';
@@ -211,6 +223,7 @@
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id)
     }
     function hidePopover() {
 

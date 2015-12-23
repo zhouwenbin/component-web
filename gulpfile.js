@@ -34,13 +34,13 @@ gulp.task("svg", function () {
     gulp.src("modules/"+modules[i]+"/svgs/*.svg")
         .pipe(svgSprite({
           mode: "symbols",
-          common: "svg",
+          common: modules[i]+"-icon",
           selector: "icon-%f"
         }))
         .pipe(gulp.dest("modules/"+modules[i]+"/symbols"))
     gulp.src("modules/"+modules[i]+"/svgs/*.svg")
         .pipe(svgSprite({
-            common: "svg",
+            common: modules[i]+"-icon",
             selector: "icon-%f"
         }))
         .pipe(gulp.dest("modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview

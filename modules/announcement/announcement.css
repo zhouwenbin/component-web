@@ -21,4 +21,6 @@
   width: 20px;
   height: 18px;
   vertical-align: middle;
+  fill: #f29545;
+  fill-rule: evenodd;
 }

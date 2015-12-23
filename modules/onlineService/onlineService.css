@@ -5,21 +5,46 @@
 
 */
 .onlineService{
-  background: #fff;
   margin-bottom: 10px;
 }
 .onlineService h2{
-  height: 40px;
-  line-height: 40px;
-  font-size: 16px;
-  padding-left: 12px;
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
   font-weight: normal;
 }
-.onlineService h2 svg{
-  margin-right: 10px;
+.onlineService-icon{
+  width: 58px;
+  height: 58px;
+  margin-bottom: 14px;
 }
-.onlineService .icon-online{
-  width: 23px;
-  height: 23px;
-  vertical-align: middle;
+.onlineService-type{
+  overflow: hidden;
+}
+.onlineService p{
+  font-size: 16px;
+  margin-bottom: 54px;
+  color: #5c5c5c;
+}
+.onlineService h3{
+  font-size: 16px;
+  margin-bottom: 53px;
+}
+.onlineService-type>li{
+  float: left;
+  width: 33%;
+  text-align: center;
+  border-right:1px solid #e5e5e5;
+}
+.onlineService-type>li:last-child{
+  border-right: none;
+}
+.onlineService-item{
+  font-size: 0;
+}
+.onlineService-item>li{
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 12px 22px;
 }

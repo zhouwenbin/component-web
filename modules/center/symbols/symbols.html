@@ -186,7 +186,7 @@
         
 <li title="icon-alipay">
             <div class="icon-box" id="icon-box-icon-alipay">
-                <svg class="svg icon-alipay">
+                <svg class="center-icon icon-alipay">
                     <use xlink:href="#icon-alipay" />
                 </svg>
             </div>
@@ -195,14 +195,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-alipay')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-alipay">
-                <pre><code>&lt;svg class=&quot;svg icon-alipay&quot;&gt;&lt;use xlink:href=&quot;#icon-alipay&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-alipay-pre"><code>&lt;svg class=&quot;center-icon icon-alipay&quot;&gt;&lt;use xlink:href=&quot;#icon-alipay&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-wechat">
             <div class="icon-box" id="icon-box-icon-wechat">
-                <svg class="svg icon-wechat">
+                <svg class="center-icon icon-wechat">
                     <use xlink:href="#icon-wechat" />
                 </svg>
             </div>
@@ -211,7 +211,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-wechat')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-wechat">
-                <pre><code>&lt;svg class=&quot;svg icon-wechat&quot;&gt;&lt;use xlink:href=&quot;#icon-wechat&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-wechat-pre"><code>&lt;svg class=&quot;center-icon icon-wechat&quot;&gt;&lt;use xlink:href=&quot;#icon-wechat&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -223,9 +223,22 @@
 </footer>
 <script type="text/javascript">
     var openSnippet;
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id);
     }
     function hidePopover() {
 

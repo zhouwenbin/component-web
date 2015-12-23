@@ -1,0 +1,107 @@
+.onlineService-icon {
+    font-size: 10px;
+}
+
+.onlineService-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sprite.svg");
+    background-repeat: no-repeat;
+    background-size: 5.8em 87em;
+}
+
+.no-svg .onlineService-icon:before {
+    background-image: url("../svg/sprite.png");
+}
+
+.onlineService-icon.icon-onlineService1:before {
+    background-position: 0em 0em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService10:before {
+    background-position: 0em -5.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService11:before {
+    background-position: 0em -11.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService12:before {
+    background-position: 0em -17.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService13:before {
+    background-position: 0em -23.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService14:before {
+    background-position: 0em -29em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService15:before {
+    background-position: 0em -34.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService2:before {
+    background-position: 0em -40.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService3:before {
+    background-position: 0em -46.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService4:before {
+    background-position: 0em -52.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService5:before {
+    background-position: 0em -58em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService6:before {
+    background-position: 0em -63.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService7:before {
+    background-position: 0em -69.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService8:before {
+    background-position: 0em -75.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService9:before {
+    background-position: 0em -81.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+

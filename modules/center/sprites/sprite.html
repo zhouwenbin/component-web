@@ -177,14 +177,14 @@
 
 <li title="icon-alipay">
             <div class="icon-box" id="icon-box-icon-alipay">
-                <div class="svg icon-alipay"></div>
+                <div class="center-icon icon-alipay"></div>
             </div>
             <h2>icon-alipay</h2>
             <button onclick="showPopover('snippet-icon-alipay')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-alipay')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-alipay">
-                <pre><code>&lt;span class=&quot;svg icon-alipay&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;center-icon icon-alipay&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -193,14 +193,14 @@
 
 <li title="icon-wechat">
             <div class="icon-box" id="icon-box-icon-wechat">
-                <div class="svg icon-wechat"></div>
+                <div class="center-icon icon-wechat"></div>
             </div>
             <h2>icon-wechat</h2>
             <button onclick="showPopover('snippet-icon-wechat')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-wechat')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-wechat">
-                <pre><code>&lt;span class=&quot;svg icon-wechat&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;center-icon icon-wechat&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -218,6 +218,18 @@
     var modeView = document.getElementById("mode-view");
     var icons = document.querySelectorAll(".icon");
 
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function setSize (fontSize) {
         for (var i = 0; i < icons.length; i++) {
             icons[i].style.fontSize = fontSize + 'px';
@@ -227,6 +239,7 @@
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id)
     }
     function hidePopover() {
 
