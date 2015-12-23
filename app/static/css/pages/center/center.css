@@ -124,7 +124,7 @@
   margin-bottom: 12px;
 }
 
-.collect-list li:hover .icon-trash {
+.collect-list .collect-r1:hover .icon-trash {
   display: block;
 }
 
