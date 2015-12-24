@@ -6,7 +6,7 @@
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/commonProblem.png");
+    background-image: url("../svg/commonProblem.svg");
     background-repeat: no-repeat;
     background-size: 4em 8em;
 }
@@ -26,3 +26,4 @@
     width: 2em;
     height: 2em;
 }
+

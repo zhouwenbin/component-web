@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>登陆顺丰海淘</title>
+<title>订单选择</title>
 <link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
-<link href="../css/service-index.css" rel="stylesheet" type="text/css" />
+<link href="../css/service-orderSelect.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -444,171 +444,144 @@
     </div>
 
     <div class="service-mian">
-      <link href="../../../modules/selfService/sprites/css/sprite.css" rel="stylesheet" type="text/css" />
-      <div class="selfService">
-        <h2>自助服务</h2>
-        <ul>
-          <li>
-            <div>
-              <a href="">
-                <span class="selfService-icon icon-delivery"></span>
-              </a>
-            </div>
-            <h3><a href="">催发货</a></h3>
-            <p>给快递加点“催发剂”</p>
-          </li>
-          <li>
-            <div>
-              <a href="">
-                <span class="selfService-icon icon-airplane"></span>
-              </a>
-            </div>
-            <h3><a href="">催物流</a></h3>
-            <p>给快递小哥加点油</p>
-          </li>
-          <li>
-            <div>
-              <a href="">
-                <span class="selfService-icon icon-bookmark"></span>
-              </a>
-            </div>
-            <h3><a href="">退货退款</a></h3>
-            <p>记得我们曾经爱过...</p>
-          </li>
-          <li>
-            <div>
-              <a href="">
-                <span class="selfService-icon icon-edit"></span>
-              </a>
-            </div>
-            <h3><a href="">问题与意见</a></h3>
-            <p>我要吐槽</p>
-          </li>
-        </ul>
+      <div class="myorder">
+        <h1>您有以下订单可以取消</h1>
+          <table>
+              <tbody>
+                  <!--待付款-->
+
+                  <tr>
+                      <th colspan="7">
+                          <h2>订单号：148293829566<span>下单时间：2015-03-27</span></h2>
+                      </th>
+                  </tr>
+                  <tr>
+                      <td rowspan="2" class="td1">
+                          <span class="label label-error"><span class="icon icon79"></span>包裹1<i></i></span>
+                          <div>共3件商品</div>
+                          <p class="myorder-address"><span class="icon icon80"></span>香港仓库发货</p>
+                      </td>
+                      <td class="td2">
+                          <img src="http://placehold.it/78x78" alt="" />
+                          <h3>
+                              玉兰油 OLAY 水感透皙亮肤洁面乳
+                              <div class="godds-type">秒杀商品</div>
+                          </h3>
+                      </td>
+                      <td class="td3">
+                          <del>95.00</del>
+                          <div>59.00</div>
+                      </td>
+                      <td class="td4">2</td>
+                      <td class="td5">449.00</td>
+                      <td class="td6"><span>待付款</span></td>
+                      <td class="td7">
+                          <a class="btn btn-danger btn-small">申请退款</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td2">
+                          <img src="http://placehold.it/78x78" alt="" />
+                          <h3>
+                              玉兰油 OLAY 水感透皙亮肤洁面乳
+                              <div class="godds-type">秒杀商品</div>
+                          </h3>
+                      </td>
+                      <td class="td3">
+                          <del>95.00</del>
+                          <div>59.00</div>
+                      </td>
+                      <td class="td4">2</td>
+                      <td class="td5">449.00</td>
+                      <td class="td6"><span>待付款</span></td>
+                      <td class="td7">
+                          <a class="btn btn-danger btn-small">申请退款</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td1">
+                          <span class="label label-error"><span class="icon icon79"></span>包裹1<i></i></span>
+                          <div>共3件商品</div>
+                          <p class="myorder-address"><span class="icon icon80"></span>香港仓库发货</p>
+                      </td>
+                      <td class="td2">
+                          <img src="http://placehold.it/78x78" alt="" />
+                          <h3>玉兰油 OLAY 水感透皙亮肤洁面乳</h3>
+                      </td>
+                      <td class="td3">
+                          <del>95.00</del>
+                          <div>59.00</div>
+                      </td>
+                      <td class="td4">2</td>
+                      <td class="td5">449.00</td>
+                      <td class="td6"><span>待付款</span></td>
+                      <td class="td7">
+                          <a class="btn btn-danger btn-small">申请退款</a>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <th colspan="7">
+                          <h2>订单号：148293829566<span>下单时间：2015-03-27</span></h2>
+                      </th>
+                  </tr>
+                  <tr>
+                      <td class="td1">
+                          <span class="label label-error"><span class="icon icon79"></span>包裹1<i></i></span>
+                          <div>共3件商品</div>
+                          <p class="myorder-address"><span class="icon icon80"></span>香港仓库发货</p>
+                      </td>
+                      <td colspan="3">
+                          <table>
+                              <tr>
+                                  <td class="td2">
+                                      <img src="http://placehold.it/78x78" alt="" />
+                                      <h3>玉兰油 OLAY 水感透皙亮肤洁面乳</h3>
+                                  </td>
+                                  <td class="td3">
+                                      <del>95.00</del>
+                                      <div>59.00</div>
+                                  </td>
+                                  <td class="td4">2</td>
+                              </tr>
+                          </table>
+                      </td>
+                      <td rowspan="1" class="td5">449.00</td>
+                      <td rowspan="1" class="td6"><span>待付款</span><a class="myorder-link" href="">查看物流</a></td>
+                      <td rowspan="1" class="td7">
+                          <a class="btn btn-danger btn-small">申请退款</a>
+                      </td>
+                  </tr>
+                  <!--已取消-->
+
+
+              </tbody>
+          </table>
       </div>
 
-      <link href="../../../modules/commonProblem/sprites/css/sprite.css" rel="stylesheet" type="text/css" />
-      <div class="commonProblem">
-        <h2>常见问题</h2>
-        <ul class="commonProblem-tab">
-          <li class="active"><a href="">物流相关</a></li>
-          <li><a href="">订单相关</a></li>
-          <li><a href="">售后相关</a></li>
-        </ul>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>订购商品会不会与网站显示有差异?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>丰趣海淘所有商品都经过严格的进仓验货扫描，网站照片都是商品实物照片，不会存在显示差异，但商品尺寸大小是根据海外尺寸而定，建议您在购买前了解“尺码对照”详情！</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>丰趣海淘网站上的产品有没有保修期？是多久?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>因跨境商品保修环节比较复杂，暂无法做到全球联保，请您见谅。</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>订单提交成功后可以修改吗?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>当订单提交成功后，仓库会按您的指示安排发货，目前不提供修改订单信息服务。</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>订单提交成功后商品降价了，可以退给我差价吗?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>丰趣海淘商品价格会根据市场运营、推出活动等情况进行调动，因此无法对所有商品进行价格保证，请您谅解。</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>是不是丰趣海淘官网上所有的货物都可以选择，有没有进口禁寄品?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>丰趣海淘官方网站所有商品都是按照《大陆各口岸个人物品清关要求》严格筛选的，您可以放心选择。</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>可以提供货物的清关税单吗?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>丰趣海淘遵循海关规定的商品进口税率缴纳关税，但由于是批量进口和清关，暂时无法提供单个物品的税金计算明细，如您对税金仍有疑问，请凭身份证及货物至海关平台查询，海关总署官方网站：www.customs.gov.cn
-      海关电话：12360</dd>
-        </dl>
-        <dl>
-          <dt><span class="commonProblem-icon icon-q"></span>为什么订单中的商品会分多个包裹寄给我?</dt>
-          <dd><span class="commonProblem-icon icon-a"></span>当您使用购物车提交含有多件商品的订单时，由于商品可能存放在不同的仓库。您在收货时可能会收到多个包裹，具体可在我的订单中查询。</dd>
-        </dl>
+      <link href="../../../modules/orderSelect-dialog/sprites/css/sprite.css" rel="stylesheet" type="text/css" />
+
+      <div class="mask"></div>
+      <div class="orderSelect-dialog hide">
+        <a href="" class="orderSelect-dialog-icon icon-close"></a>
+        <div class="orderSelect-dialog-select">
+          <select name="" id="" class="select">
+            <option value="">请选择催发货原因</option>
+            <option value="">商品质量问题</option>
+            <option value="">不喜欢/与自己的预期不符合</option>
+            <option value="">7天无理由退换货</option>
+            <option value="">其他</option>
+          </select>
+          <a class="orderSelect-dialog-arrow"><i></i></a>
+        </div>
+        <a href="" class="btn btn-danger">催发货</a>
       </div>
 
-      <link href="../../../modules/onlineService/sprites/css/sprite.css" rel="stylesheet" type="text/css" />
-      <div class="onlineService">
-        <h2>在线客服</h2>
-        <p>选择您咨询的问题类型：</p>
-        <ul class="onlineService-type">
-          <li>
-            <h3>订单相关</h3>
-            <ul class="onlineService-item">
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService1"></span></a>
-                <div><a href="">订单配送</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService2"></span></a>
-                <div><a href="">退货退款</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService3"></span></a>
-                <div><a href="">订单操作</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService4"></span></a>
-                <div><a href="">补寄发票</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService5"></span></a>
-                <div><a href="">包裹异常</a></div>
-              </li>
-            </ul>
-          </li>
 
-          <li>
-            <h3>购物问题</h3>
-            <ul class="onlineService-item">
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService6"></span></a>
-                <div><a href="">支付配送</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService7"></span></a>
-                <div><a href="">商品咨询</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService8"></span></a>
-                <div><a href="">售后咨询</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService9"></span></a>
-                <div><a href="">配送方式</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService10"></span></a>
-                <div><a href="">活动咨询</a></div>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <h3>账户问题/投诉</h3>
-            <ul class="onlineService-item">
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService11"></span></a>
-                <div><a href="">钱包体现</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService12"></span></a>
-                <div><a href="">密码问题</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService13"></span></a>
-                <div><a href="">手机操作</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService14"></span></a>
-                <div><a href="">优惠券积分</a></div>
-              </li>
-              <li>
-                <a href=""><span class="onlineService-icon icon-onlineService15"></span></a>
-                <div><a href="">建议投诉</a></div>
-              </li>
-            </ul>
-          </li>
-        </ul>
+      <div class="orderSelect-dialog success">
+        <a href="" class="orderSelect-dialog-icon icon-close"></a>
+        <span class="orderSelect-dialog-icon icon-success"></span>
+        <p>您的催发货需求已收到，<br>我们会联系仓库优先安排为您发货。</p>
       </div>
 
     </div>

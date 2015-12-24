@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/announcement.svg");
     background-repeat: no-repeat;
-    background-size: 5.9em 5.5em;
+    background-size: 3.9em 3.7em;
 }
 
 .no-svg .announcement-icon:before {
@@ -17,7 +17,7 @@
 
 .announcement-icon.icon-voise:before {
     background-position: -1em -1em;
-    width: 3.9em;
-    height: 3.5em;
+    width: 1.9em;
+    height: 1.7em;
 }
 

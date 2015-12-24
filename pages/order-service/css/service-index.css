@@ -134,8 +134,8 @@
   float: left;
   margin-left: -26px;
   margin-top: 3px;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 .commonProblem dl{
   font-size: 14px;
@@ -206,7 +206,4 @@
 .service-mian{
   background: #fff;
   padding: 34px 110px 87px;
-}
-.no-svg svg{
-  display: none;
 }
