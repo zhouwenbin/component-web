@@ -11,7 +11,8 @@
     background: #fce7c4;
     padding-left: 13px;
     border: 1px solid rgb(249, 206, 137);
-    border-radius: 4px;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
     margin-top: 25px;
     margin-bottom: 22px
 }
@@ -19,7 +20,9 @@
     margin-right: 10px;
     width: 20px;
     height: 18px;
-    vertical-align: middle
+    vertical-align: middle;
+    fill: #f29545;
+    fill-rule: evenodd
 }
 /*
 @styleguide
@@ -183,8 +186,10 @@
     text-align: center;
     right: 11px;
     top: 1px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px
+    -webkit-border-top-right-radius: 4px;
+            border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 4px
 }
 .return-goods-imi-select-box .select-arrow i {
     display: inline-block;
@@ -220,7 +225,8 @@
     width: 360px;
     height: 77px;
     padding: 10px 20px;
-    border-radius: 4px;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
     line-height: 1.5
 }
 .return-goods-c2-list .textarea-num {
@@ -232,7 +238,8 @@
     line-height: 24px;
     text-align: center;
     background-color: #e6e4e5;
-    border-radius: 4px;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
     color: #555555;
     font-size: 12px
 }
@@ -267,12 +274,14 @@
     position: absolute;
     color: #fff;
     background-color: #ccc;
-    border-radius: 50%;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
     width: 26px;
     height: 26px;
     right: -11px;
     top: -11px;
     -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
             transform: rotate(45deg)
 }
 .return-goods-l2-pic .close i, .return-goods-l2-pic .close i:before {
