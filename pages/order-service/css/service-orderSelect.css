@@ -11,7 +11,8 @@
   background: #fce7c4;
   padding-left: 13px;
   border: 1px solid rgb(249, 206, 137);
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
   margin-top: 25px;
   margin-bottom: 22px;
 }
@@ -38,7 +39,8 @@
 }
 .myorder table{
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .myorder table table tr:last-child td{
   border-bottom: none;
@@ -149,7 +151,8 @@
   margin-bottom: 14px;
   background: #ff9999;
   padding: 0 8px;
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
   letter-spacing: 1px;
 }
 .myorder .icon{
@@ -212,7 +215,8 @@
   width: 4px;
   height: 4px;
   background: #fff;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   content: '';
   position: absolute;
   left: -4px;
@@ -238,7 +242,8 @@
   margin-top: -90px;
   z-index: 999;
   text-align: center;
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
 }
 .orderSelect-dialog.success{
   width: 512px;
@@ -277,7 +282,8 @@
   border-width: 1px;
   border-color: rgb(230, 229, 229);
   border-style: solid;
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
   color: #aaa;
   padding-left: 10px;
 }

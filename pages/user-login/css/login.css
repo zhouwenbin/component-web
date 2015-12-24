@@ -80,9 +80,11 @@
   margin-left: -260px;
   margin-top: -210px;
   border-top: 3px solid #DD3E42;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 53px 50px 0;
-  box-shadow: 0 0 5px rgba(0,0,0,.15);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.15);
+          box-shadow: 0 0 5px rgba(0,0,0,.15);
 }
 
 .login-inner.submit {
@@ -151,7 +153,8 @@
   width: 100%;
   height: 54px;
   line-height: 54px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .login-inner .input1 {

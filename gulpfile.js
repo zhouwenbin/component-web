@@ -78,7 +78,7 @@ gulp.task("css", function () {
               require("precss")({ /* options */ })
           ])
       )
-      .pipe(cssnext())
+      .pipe(cssnext({ browsers: ['last 10 versions'] }))
       .pipe(gulp.dest("pages/"+ pages[i] +"/css/"))
     }
 });
