@@ -33,15 +33,12 @@ gulp.task("svg", function () {
   for(var i in modules){
     gulp.src("modules/"+modules[i]+"/svgs/*.svg")
         .pipe(svgSprite({
-          mode: "symbols",
-          common: modules[i]+"-icon",
-          selector: "icon-%f"
-        }))
-        .pipe(gulp.dest("modules/"+modules[i]+"/symbols"))
-    gulp.src("modules/"+modules[i]+"/svgs/*.svg")
-        .pipe(svgSprite({
             common: modules[i]+"-icon",
-            selector: "icon-%f"
+            selector: "icon-%f",
+            padding:10,
+            svg: {
+                sprite: "svg/"+modules[i]+".svg"
+            }
         }))
         .pipe(gulp.dest("modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file

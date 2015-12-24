@@ -6,35 +6,35 @@
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/sprite.svg");
+    background-image: url("../svg/selfService.svg");
     background-repeat: no-repeat;
-    background-size: 7em 22.3em;
+    background-size: 9em 30.3em;
 }
 
 .no-svg .selfService-icon:before {
-    background-image: url("../svg/sprite.png");
+    background-image: url("../svg/selfService.png");
 }
 
 .selfService-icon.icon-airplane:before {
-    background-position: 0em 0em;
+    background-position: -1em -1em;
     width: 5.6938em;
     height: 6.3em;
 }
 
 .selfService-icon.icon-bookmark:before {
-    background-position: 0em -6.3em;
+    background-position: -1em -9.3em;
     width: 7em;
     height: 5.9em;
 }
 
 .selfService-icon.icon-delivery:before {
-    background-position: 0em -12.2em;
+    background-position: -1em -17.2em;
     width: 5.5em;
     height: 5.2em;
 }
 
 .selfService-icon.icon-edit:before {
-    background-position: 0em -17.4em;
+    background-position: -1em -24.4em;
     width: 4.9030000000000005em;
     height: 4.9em;
 }

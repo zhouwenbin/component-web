@@ -17,7 +17,6 @@
 .onlineService-icon{
   width: 58px;
   height: 58px;
-  margin-bottom: 14px;
 }
 .onlineService-type{
   overflow: hidden;
@@ -47,4 +46,7 @@
   display: inline-block;
   font-size: 13px;
   margin: 0 12px 22px;
+}
+.onlineService-item>li div{
+  margin-top: 14px;
 }
