@@ -1,0 +1,209 @@
+/*
+@styleguide
+
+# 订单选择
+
+*/
+.myorder h1{
+  font-size: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 12px;
+  font-weight: normal;
+}
+.myorder table{
+	width: 100%;
+	box-sizing:border-box;
+}
+
+.myorder table table tr:last-child td{
+	border-bottom: none;
+}
+.myorder table table tr:first-child td{
+	border-top: none;
+}
+
+
+.myorder .th1,
+.myorder .td1{
+	width: 108px;
+}
+.myorder .th2,
+.myorder .td2{
+	width: 309px;
+}
+.myorder .th3,
+.myorder .td3{
+	width: 64px;
+}
+.myorder .th4,
+.myorder .td4{
+	width: 92px;
+}
+.myorder .th5,
+.myorder .td5{
+	width: 98px;
+}
+.myorder .th6,
+.myorder .td6{
+	width: 99px;
+}
+.myorder .td6 span{
+	margin: 10px 0;
+}
+.myorder .th7,
+.myorder .td7{
+	width: 119px;
+}
+.myorder .td2{
+	text-align: left;
+}
+.myorder .td2,
+.myorder .td3,
+.myorder .td4{
+	border-right: none;
+	border-left: none;
+}
+.myorder .td7{
+	padding: 18px 0;
+}
+.myorder h2{
+	height: 30px;
+	line-height: 30px;
+	background: #eee;
+	margin-top: 20px;
+	text-indent: 15px;
+	color: #666;
+	font-weight: normal;
+	position: relative;
+	border: 1px solid #eee;
+	position: relative;
+	width: 100%;
+	margin-left: -1px;
+}
+.myorder h2 span{
+	color: #999;
+	margin-left: 50px;
+}
+.myorder h2 .icon{
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+.myorder td{
+	border:1px solid #e5e5e5;
+	color: #777;
+	text-align: center;
+}
+
+.myorder img{
+	width: 78px;
+	height: 78px;
+	border:1px solid #e5e5e5;
+	margin: 18px 19px 18px 30px;
+}
+.myorder h3{
+	color: #888;
+	line-height: 20px;
+	display: inline-block;
+	width: 142px;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
+}
+.myorder del{
+	color: #aaa;
+	margin-bottom: 5px;
+	display: block;
+}
+.myorder .text-error{
+	margin: 10px 0;
+
+}
+.myorder .btn{
+	display: block;
+	margin: 10px auto;
+}
+.myorder-link{
+	display: block;
+	color: #3b86c4;
+	margin: 10px 0;
+}
+.myorder-address{
+	font-size: 10px;
+	color: #aaa;
+	margin-top: 10px;
+}
+.myorder .label-error{
+	margin-bottom: 14px;
+	background: #ff9999;
+	padding: 0 8px;
+	border-radius: 4px;
+	letter-spacing: 1px;
+}
+.myorder .icon{
+	margin-right: 5px;
+}
+.myorder .icon79{
+	vertical-align: -2px;
+}
+.myorder .page{
+	margin: 30px 0;
+	text-align: center;
+}
+.myorder .tooltip{
+	width: 220px;
+	color:#999;
+}
+.myorder .tooltip-h{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.myorder .tooltip li{
+	margin-bottom: 10px;
+	list-style: inside;
+	text-align: left;
+}
+.myorder .tooltip .active{
+	color:#db3f40;
+}
+.myorder .tooltip .time{
+	display: block;
+}
+.myorder .tooltip a{
+	color: #999;
+}
+.myorder .icon88{
+	margin-left: 20px;
+	margin-right: 5px;
+}
+.godds-type{
+	width: 50px;
+	margin-left: 8px;
+	position: relative;
+	color: #fff;
+	background: #FFC208;
+	height: 14px;
+	line-height: 14px;
+	padding: 2px;
+}
+.godds-type:before{
+	content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 9px 9px;
+  left: -18px;
+  top: 0;
+  border-color: transparent #FFC208 transparent transparent;
+}
+.godds-type:after{
+	width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 7px;
+}

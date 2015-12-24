@@ -5,30 +5,50 @@
 
 */
 .commonProblem{
-  background: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 70px;
 }
 .commonProblem h2{
-  height: 40px;
-  line-height: 40px;
-  font-size: 16px;
-  padding-left: 12px;
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
   font-weight: normal;
 }
 
-.commonProblem li{
-  height: 44px;
-  line-height: 44px;
-  padding-left: 10px;
-  border-top: 1px solid #f7f7f9;
+.commonProblem-tab{
+    overflow: hidden;
+    border-bottom: 1px solid #c9c9c9;
+}
+.commonProblem-tab li {
+    float: left;
+    width: 122px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px
+}
+.commonProblem-tab li.active {
+    border-bottom: 3px solid #e53a3c
+}
+
+.commonProblem-icon {
+    float: left;
+    margin-left: -26px;
+    margin-top:3px;
+    width: 20px;
+    height: 20px
+}
+.commonProblem dl{
   font-size: 14px;
+  line-height: 28px;
+  margin-top: 37px;
 }
-.commonProblem li a{
-  color: #666;
+.commonProblem dt {
+    padding-left: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
-.commonProblem .icon-message{
-  width: 23px;
-  height: 23px;
-  vertical-align: middle;
-  margin-right: 10px;
+.commonProblem dd {
+    color: #4c4c4c;
+    padding-left: 26px;
 }

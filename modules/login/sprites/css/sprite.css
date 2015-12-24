@@ -1,70 +1,70 @@
-.svg {
+.login-icon {
     font-size: 10px;
 }
 
-.svg:before {
+.login-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/sprite.svg");
+    background-image: url("../svg/login.svg");
     background-repeat: no-repeat;
-    background-size: 9.5em 26.8em;
+    background-size: 11.5em 44.8em;
 }
 
-.no-svg .svg:before {
-    background-image: url("../svg/sprite.png");
+.no-svg .login-icon:before {
+    background-image: url("../svg/login.png");
 }
 
-.svg.icon-account:before {
-    background-position: 0em 0em;
+.login-icon.icon-account:before {
+    background-position: -1em -1em;
     width: 1.5em;
     height: 1.5em;
 }
 
-.svg.icon-alipay:before {
-    background-position: 0em -1.5em;
+.login-icon.icon-alipay:before {
+    background-position: -1em -4.5em;
     width: 3.6em;
     height: 3.6em;
 }
 
-.svg.icon-close:before {
-    background-position: 0em -5.1em;
+.login-icon.icon-close:before {
+    background-position: -1em -10.1em;
     width: 1.7em;
     height: 1.5em;
 }
 
-.svg.icon-logo:before {
-    background-position: 0em -6.6em;
+.login-icon.icon-logo:before {
+    background-position: -1em -13.6em;
     width: 9.5em;
     height: 9.5em;
 }
 
-.svg.icon-password:before {
-    background-position: 0em -16.1em;
+.login-icon.icon-password:before {
+    background-position: -1em -25.1em;
     width: 1.8em;
     height: 1.9em;
 }
 
-.svg.icon-reflash:before {
-    background-position: 0em -18em;
+.login-icon.icon-reflash:before {
+    background-position: -1em -29em;
     width: 1.8em;
     height: 1.8em;
 }
 
-.svg.icon-success:before {
-    background-position: 0em -19.8em;
+.login-icon.icon-success:before {
+    background-position: -1em -32.8em;
     width: 1.7em;
     height: 1.4em;
 }
 
-.svg.icon-username:before {
-    background-position: 0em -21.2em;
+.login-icon.icon-username:before {
+    background-position: -1em -36.2em;
     width: 2em;
     height: 2em;
 }
 
-.svg.icon-webchat:before {
-    background-position: 0em -23.2em;
+.login-icon.icon-webchat:before {
+    background-position: -1em -40.2em;
     width: 3.6em;
     height: 3.6em;
 }

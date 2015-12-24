@@ -31,24 +31,22 @@ gulp.task("common", function () {
 
 gulp.task("svg", function () {
   for(var i in modules){
-    gulp.src("modules/"+modules[i]+"/svgs/*.svg")
-        .pipe(svgSprite({
-          mode: "symbols",
-          common: "svg",
-          selector: "icon-%f"
-        }))
-        .pipe(gulp.dest("modules/"+modules[i]+"/symbols"))
-    gulp.src("modules/"+modules[i]+"/svgs/*.svg")
-        .pipe(svgSprite({
-            common: "svg",
-            selector: "icon-%f"
-        }))
-        .pipe(gulp.dest("modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
-        .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
-        .pipe(svg2png())           // Create a PNG
-        .pipe(gulp.dest("modules/"+modules[i]+"/sprites/"));
+    if(modules[i] !== '.DS_Store'){
+      gulp.src("modules/"+modules[i]+"/svgs/*.svg")
+          .pipe(svgSprite({
+              common: modules[i]+"-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/"+modules[i]+".svg"
+              }
+          }))
+          .pipe(gulp.dest("modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("modules/"+modules[i]+"/sprites/"));
+    }
   }
-
 });
 
 gulp.task('watch', function() {
@@ -80,7 +78,7 @@ gulp.task("css", function () {
               require("precss")({ /* options */ })
           ])
       )
-      .pipe(cssnext())
+      .pipe(cssnext({ browsers: ['last 10 versions'] }))
       .pipe(gulp.dest("pages/"+ pages[i] +"/css/"))
     }
 });
@@ -102,7 +100,7 @@ gulp.task('serve', function () {
 gulp.task('sass', function () {
   gulp.src('./app/static/scss/pages/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(cssnext())
+    .pipe(cssnext({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('./app/static/css/pages'));
 });
 gulp.task('sass:watch', function () {

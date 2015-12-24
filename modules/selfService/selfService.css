@@ -5,67 +5,73 @@
 
 */
 .selfService{
-  background: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 48px;
 }
-
 .selfService h2{
-  height: 40px;
-  line-height: 40px;
-  font-size: 16px;
-  padding-left: 12px;
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
   font-weight: normal;
 }
-.selfService h2 svg{
-  margin-right: 10px;
-}
 .selfService ul{
-  display: flex;
+  overflow: hidden;
+  margin-left: -63px;
 }
 .selfService li{
-  flex:1;
+  float: left;
+  width: 192px;
+  height: 205px;
   text-align: center;
-  border-top: 1px solid #f7f7f9;
-  border-right: 1px solid #f7f7f9;
-  padding-top: 4px;
-  padding-bottom: 18px;
-  color: #666;
+  background: #fceded;
+  margin-left: 63px;
 }
-.selfService li svg{
-  fill: #666;
+.selfService li div{
+  height: 117px;
+}
+.selfService li div a{
   display: inline-block;
   vertical-align: middle;
 }
-.selfService li a{
-  color: #666;
+
+.selfService li div::before{
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.selfService h3{
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.selfService h3 a{
+  color: #4c4c4c;
+}
+.selfService p{
+  color: #4c4c4c;
+  font-size: 13px;
 }
 .selfService .icon-delivery{
-  width: 22px;
-  height: 22px;
+  width: 55px;
+  height: 52px;
+  fill: #000;
+  fill-rule: evenodd;
 }
 .selfService .icon-airplane{
-  width: 21px;
-  height: 23px;
+  width: 56px;
+  height: 63px;
+  fill: #000;
+  fill-rule: evenodd;
 }
 .selfService .icon-bookmark{
-  width: 25px;
-  height: 22px;
+  width: 70px;
+  height: 59px;
+  fill: #000;
+  fill-rule: evenodd;
 }
 .selfService .icon-edit{
-  width: 19px;
-  height: 29px;
-}
-.selfService .icon-coffee{
-  width: 23px;
-  height: 23px;
-  vertical-align: middle;
-}
-.selfService div{
+  width: 49px;
   height: 49px;
-}
-.selfService div:before{
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
+  fill: #000;
+  fill-rule: evenodd;
 }

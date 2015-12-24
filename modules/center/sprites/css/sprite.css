@@ -1,28 +1,28 @@
-.svg {
+.center-icon {
     font-size: 10px;
 }
 
-.svg:before {
+.center-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/sprite.svg");
+    background-image: url("../svg/center.svg");
     background-repeat: no-repeat;
-    background-size: 2em 4em;
+    background-size: 4em 8em;
 }
 
-.no-svg .svg:before {
-    background-image: url("../svg/sprite.png");
+.no-svg .center-icon:before {
+    background-image: url("../svg/center.png");
 }
 
-.svg.icon-alipay:before {
-    background-position: 0em 0em;
+.center-icon.icon-alipay:before {
+    background-position: -1em -1em;
     width: 2em;
     height: 2em;
 }
 
-.svg.icon-wechat:before {
-    background-position: 0em -2em;
+.center-icon.icon-wechat:before {
+    background-position: -1em -5em;
     width: 2em;
     height: 2em;
 }

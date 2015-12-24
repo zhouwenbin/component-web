@@ -202,7 +202,7 @@
         
 <li title="icon-car">
             <div class="icon-box" id="icon-box-icon-car">
-                <svg class="svg icon-car">
+                <svg class="footer-icon icon-car">
                     <use xlink:href="#icon-car" />
                 </svg>
             </div>
@@ -211,14 +211,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-car')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-car">
-                <pre><code>&lt;svg class=&quot;svg icon-car&quot;&gt;&lt;use xlink:href=&quot;#icon-car&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-car-pre"><code>&lt;svg class=&quot;footer-icon icon-car&quot;&gt;&lt;use xlink:href=&quot;#icon-car&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-cart">
             <div class="icon-box" id="icon-box-icon-cart">
-                <svg class="svg icon-cart">
+                <svg class="footer-icon icon-cart">
                     <use xlink:href="#icon-cart" />
                 </svg>
             </div>
@@ -227,14 +227,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-cart')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-cart">
-                <pre><code>&lt;svg class=&quot;svg icon-cart&quot;&gt;&lt;use xlink:href=&quot;#icon-cart&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-cart-pre"><code>&lt;svg class=&quot;footer-icon icon-cart&quot;&gt;&lt;use xlink:href=&quot;#icon-cart&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-earth">
             <div class="icon-box" id="icon-box-icon-earth">
-                <svg class="svg icon-earth">
+                <svg class="footer-icon icon-earth">
                     <use xlink:href="#icon-earth" />
                 </svg>
             </div>
@@ -243,14 +243,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-earth')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-earth">
-                <pre><code>&lt;svg class=&quot;svg icon-earth&quot;&gt;&lt;use xlink:href=&quot;#icon-earth&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-earth-pre"><code>&lt;svg class=&quot;footer-icon icon-earth&quot;&gt;&lt;use xlink:href=&quot;#icon-earth&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-list">
             <div class="icon-box" id="icon-box-icon-list">
-                <svg class="svg icon-list">
+                <svg class="footer-icon icon-list">
                     <use xlink:href="#icon-list" />
                 </svg>
             </div>
@@ -259,14 +259,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-list')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-list">
-                <pre><code>&lt;svg class=&quot;svg icon-list&quot;&gt;&lt;use xlink:href=&quot;#icon-list&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-list-pre"><code>&lt;svg class=&quot;footer-icon icon-list&quot;&gt;&lt;use xlink:href=&quot;#icon-list&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-logo">
             <div class="icon-box" id="icon-box-icon-logo">
-                <svg class="svg icon-logo">
+                <svg class="footer-icon icon-logo">
                     <use xlink:href="#icon-logo" />
                 </svg>
             </div>
@@ -275,14 +275,14 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-logo')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-logo">
-                <pre><code>&lt;svg class=&quot;svg icon-logo&quot;&gt;&lt;use xlink:href=&quot;#icon-logo&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-logo-pre"><code>&lt;svg class=&quot;footer-icon icon-logo&quot;&gt;&lt;use xlink:href=&quot;#icon-logo&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
         
 <li title="icon-package">
             <div class="icon-box" id="icon-box-icon-package">
-                <svg class="svg icon-package">
+                <svg class="footer-icon icon-package">
                     <use xlink:href="#icon-package" />
                 </svg>
             </div>
@@ -291,7 +291,7 @@
             <br/>
             <button onclick="invertBackground('icon-box-icon-package')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-package">
-                <pre><code>&lt;svg class=&quot;svg icon-package&quot;&gt;&lt;use xlink:href=&quot;#icon-package&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <pre id="snippet-icon-package-pre"><code>&lt;svg class=&quot;footer-icon icon-package&quot;&gt;&lt;use xlink:href=&quot;#icon-package&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -303,9 +303,22 @@
 </footer>
 <script type="text/javascript">
     var openSnippet;
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id);
     }
     function hidePopover() {
 

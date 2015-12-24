@@ -4,22 +4,25 @@
 # 公告
 
 */
-.announcement {
-    color: #f18629;
-    height: 38px;
-    line-height: 38px;
-    background: #fce7c4;
-    padding-left: 13px;
-    border: 1px solid rgb(249, 206, 137);
-    border-radius: 4px;
-    margin-top: 25px;
-    margin-bottom: 22px
+.announcement{
+  color: #f18629;
+  height: 38px;
+  line-height: 38px;
+  background: #fce7c4;
+  padding-left: 13px;
+  border: 1px solid rgb(249, 206, 137);
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  margin-top: 25px;
+  margin-bottom: 22px;
 }
-.announcement .icon-voise {
-    margin-right: 10px;
-    width: 20px;
-    height: 18px;
-    vertical-align: middle
+.announcement .icon-voise{
+  margin-right: 10px;
+  width: 20px;
+  height: 18px;
+  vertical-align: middle;
+  fill: #f29545;
+  fill-rule: evenodd;
 }
 /*
 @styleguide
@@ -27,108 +30,75 @@
 # 自助服务
 
 */
-.selfService {
-    background: #fff;
-    margin-bottom: 10px
+.selfService{
+  margin-bottom: 48px;
 }
-.selfService h2 {
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    padding-left: 12px;
-    font-weight: normal
+.selfService h2{
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
+  font-weight: normal;
 }
-.selfService h2 svg {
-    margin-right: 10px
+.selfService ul{
+  overflow: hidden;
+  margin-left: -63px;
 }
-.selfService ul {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex
+.selfService li{
+  float: left;
+  width: 192px;
+  height: 205px;
+  text-align: center;
+  background: #fceded;
+  margin-left: 63px;
 }
-.selfService li {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    text-align: center;
-    border-top: 1px solid #f7f7f9;
-    border-right: 1px solid #f7f7f9;
-    padding-top: 4px;
-    padding-bottom: 18px;
-    color: #666
+.selfService li div{
+  height: 117px;
 }
-.selfService li svg {
-    fill: #666;
-    display: inline-block;
-    vertical-align: middle
+.selfService li div a{
+  display: inline-block;
+  vertical-align: middle;
 }
-.selfService li a {
-    color: #666
+.selfService li div:before{
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
-.selfService .icon-delivery {
-    width: 22px;
-    height: 22px
+.selfService h3{
+  font-size: 16px;
+  margin-bottom: 12px;
 }
-.selfService .icon-airplane {
-    width: 21px;
-    height: 23px
+.selfService h3 a{
+  color: #4c4c4c;
 }
-.selfService .icon-bookmark {
-    width: 25px;
-    height: 22px
+.selfService p{
+  color: #4c4c4c;
+  font-size: 13px;
 }
-.selfService .icon-edit {
-    width: 19px;
-    height: 29px
+.selfService .icon-delivery{
+  width: 55px;
+  height: 52px;
+  fill: #000;
+  fill-rule: evenodd;
 }
-.selfService .icon-coffee {
-    width: 23px;
-    height: 23px;
-    vertical-align: middle
+.selfService .icon-airplane{
+  width: 56px;
+  height: 63px;
+  fill: #000;
+  fill-rule: evenodd;
 }
-.selfService div {
-    height: 49px
+.selfService .icon-bookmark{
+  width: 70px;
+  height: 59px;
+  fill: #000;
+  fill-rule: evenodd;
 }
-.selfService div:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle
-}
-/*
-@styleguide
-
-# 常见问题
-
-*/
-.commonProblem {
-    background: #fff;
-    margin-bottom: 10px
-}
-.commonProblem h2 {
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    padding-left: 12px;
-    font-weight: normal
-}
-.commonProblem li {
-    height: 44px;
-    line-height: 44px;
-    padding-left: 10px;
-    border-top: 1px solid #f7f7f9;
-    font-size: 14px
-}
-.commonProblem li a {
-    color: #666
-}
-.commonProblem .icon-message {
-    width: 23px;
-    height: 23px;
-    vertical-align: middle;
-    margin-right: 10px
+.selfService .icon-edit{
+  width: 49px;
+  height: 49px;
+  fill: #000;
+  fill-rule: evenodd;
 }
 /*
 @styleguide
@@ -136,22 +106,105 @@
 # 常见问题
 
 */
-.onlineService {
-    background: #fff;
-    margin-bottom: 10px
+.commonProblem{
+  margin-bottom: 70px;
 }
-.onlineService h2 {
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    padding-left: 12px;
-    font-weight: normal
+.commonProblem h2{
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
+  font-weight: normal;
 }
-.onlineService h2 svg {
-    margin-right: 10px
+.commonProblem-tab{
+  overflow: hidden;
+  border-bottom: 1px solid #c9c9c9;
 }
-.onlineService .icon-online {
-    width: 23px;
-    height: 23px;
-    vertical-align: middle
+.commonProblem-tab li{
+  float: left;
+  width: 122px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 14px;
+}
+.commonProblem-tab li.active{
+  border-bottom: 3px solid #e53a3c;
+}
+.commonProblem-icon{
+  float: left;
+  margin-left: -26px;
+  margin-top: 3px;
+  width: 20px;
+  height: 20px;
+}
+.commonProblem dl{
+  font-size: 14px;
+  line-height: 28px;
+  margin-top: 37px;
+}
+.commonProblem dt{
+  padding-left: 26px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.commonProblem dd{
+  color: #4c4c4c;
+  padding-left: 26px;
+}
+/*
+@styleguide
+
+# 常见问题
+
+*/
+.onlineService{
+  margin-bottom: 10px;
+}
+.onlineService h2{
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
+  font-weight: normal;
+}
+.onlineService-icon{
+  width: 58px;
+  height: 58px;
+}
+.onlineService-type{
+  overflow: hidden;
+}
+.onlineService p{
+  font-size: 16px;
+  margin-bottom: 54px;
+  color: #5c5c5c;
+}
+.onlineService h3{
+  font-size: 16px;
+  margin-bottom: 53px;
+}
+.onlineService-type>li{
+  float: left;
+  width: 33%;
+  text-align: center;
+  border-right: 1px solid #e5e5e5;
+}
+.onlineService-type>li:last-child{
+  border-right: none;
+}
+.onlineService-item{
+  font-size: 0;
+}
+.onlineService-item>li{
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 12px 22px;
+}
+.onlineService-item>li div{
+  margin-top: 14px;
+}
+.service-mian{
+  background: #fff;
+  padding: 34px 110px 87px;
 }
