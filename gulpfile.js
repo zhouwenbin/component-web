@@ -100,7 +100,7 @@ gulp.task('serve', function () {
 gulp.task('sass', function () {
   gulp.src('./app/static/scss/pages/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(cssnext())
+    .pipe(cssnext({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('./app/static/css/pages'));
 });
 gulp.task('sass:watch', function () {
