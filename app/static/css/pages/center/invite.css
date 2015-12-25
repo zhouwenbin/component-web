@@ -8,7 +8,8 @@
 .personal {
   background: #fff;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   margin-top: 35px;
   margin-bottom: 35px;
   display: table;
@@ -43,7 +44,8 @@
 .personal-c1 li.active {
   position: relative;
   margin-left: -1px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-right: 4px;
   width: 200px;
   background: #fff; }
@@ -70,7 +72,8 @@
 
 .address-table {
   border: 1px solid #e5e5e5;
-  border-radius: 4px; }
+  -webkit-border-radius: 4px;
+          border-radius: 4px; }
 
 .address table {
   width: 100%; }
@@ -170,7 +173,8 @@
   font-weight: normal;
   font-size: 14px;
   text-align: center;
-  border-radius: 5px 5px 5px 0;
+  -webkit-border-radius: 5px 5px 5px 0;
+          border-radius: 5px 5px 5px 0;
   margin-left: -10px;
   margin-top: -10px;
   position: relative; }
@@ -187,7 +191,8 @@
 .invite-income {
   background: #F5F5F5;
   margin-bottom: 50px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   overflow: hidden; }
 
 .invite-income p {
@@ -220,7 +225,8 @@
   margin-bottom: 7px; }
 
 .invite-income h3 {
-  font-weight: normal; }
+  font-weight: normal;
+  margin-top: 10px; }
 
 .invite-income h4 {
   font-size: 14px;
@@ -251,10 +257,11 @@
   margin-bottom: 49px;
   padding-bottom: 15px;
   text-align: center;
-  border-radius: 5px; }
+  -webkit-border-radius: 5px;
+          border-radius: 5px; }
 
 .invite-rule-bg {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/invite-rule.png) no-repeat center 55px;
+  background: url(http://img0.sfht.com/cmsres/20151225/5f9344e5-38be-440b-8b42-617b858d57cd.png) no-repeat center 55px;
   height: 230px;
   border-bottom: 1px dashed #E5E5E5;
   margin-bottom: 15px; }
@@ -277,7 +284,8 @@
 .invite-open {
   border: 1px solid #FF9E36;
   margin-bottom: 54px;
-  border-radius: 5px; }
+  -webkit-border-radius: 5px;
+          border-radius: 5px; }
 
 .invite-open h3 {
   background: #FF9E36; }
