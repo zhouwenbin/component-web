@@ -4,6 +4,7 @@
 # 公告
 
 */
+@import "sprites/css/sprite.css";
 .announcement{
   color: #f18629;
   height: 38px;

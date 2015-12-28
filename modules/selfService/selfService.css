@@ -4,6 +4,7 @@
 # 自助服务
 
 */
+@import "sprites/css/sprite.css";
 .selfService{
   margin-bottom: 48px;
 }

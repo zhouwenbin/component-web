@@ -4,6 +4,7 @@
 # 订单选择-弹窗
 
 */
+@import "sprites/css/sprite.css";
 .mask{
 	display: block;
 }

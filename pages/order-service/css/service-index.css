@@ -4,6 +4,25 @@
 # 公告
 
 */
+.announcement-icon{
+  font-size: 10px;
+}
+.announcement-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/announcement.svg");
+  background-repeat: no-repeat;
+  background-size: 3.9em 3.7em;
+}
+.no-svg .announcement-icon:before{
+  background-image: url("../svg/announcement.png");
+}
+.announcement-icon.icon-voise:before{
+  background-position: -1em -1em;
+  width: 1.9em;
+  height: 1.7em;
+}
 .announcement{
   color: #f18629;
   height: 38px;
@@ -30,6 +49,40 @@
 # 自助服务
 
 */
+.selfService-icon{
+  font-size: 10px;
+}
+.selfService-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/selfService.svg");
+  background-repeat: no-repeat;
+  background-size: 9em 30.3em;
+}
+.no-svg .selfService-icon:before{
+  background-image: url("../svg/selfService.png");
+}
+.selfService-icon.icon-airplane:before{
+  background-position: -1em -1em;
+  width: 5.6938em;
+  height: 6.3em;
+}
+.selfService-icon.icon-bookmark:before{
+  background-position: -1em -9.3em;
+  width: 7em;
+  height: 5.9em;
+}
+.selfService-icon.icon-delivery:before{
+  background-position: -1em -17.2em;
+  width: 5.5em;
+  height: 5.2em;
+}
+.selfService-icon.icon-edit:before{
+  background-position: -1em -24.4em;
+  width: 4.9030000000000005em;
+  height: 4.9em;
+}
 .selfService{
   margin-bottom: 48px;
 }
@@ -106,6 +159,30 @@
 # 常见问题
 
 */
+.commonProblem-icon{
+  font-size: 10px;
+}
+.commonProblem-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/commonProblem.svg");
+  background-repeat: no-repeat;
+  background-size: 4em 8em;
+}
+.no-svg .commonProblem-icon:before{
+  background-image: url("../svg/commonProblem.png");
+}
+.commonProblem-icon.icon-a:before{
+  background-position: -1em -1em;
+  width: 2em;
+  height: 2em;
+}
+.commonProblem-icon.icon-q:before{
+  background-position: -1em -5em;
+  width: 2em;
+  height: 2em;
+}
 .commonProblem{
   margin-bottom: 70px;
 }
@@ -158,6 +235,95 @@
 # 常见问题
 
 */
+.onlineService-icon{
+  font-size: 10px;
+}
+.onlineService-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/onlineService.svg");
+  background-repeat: no-repeat;
+  background-size: 7.8em 117em;
+}
+.no-svg .onlineService-icon:before{
+  background-image: url("../svg/onlineService.png");
+}
+.onlineService-icon.icon-onlineService1:before{
+  background-position: -1em -1em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService10:before{
+  background-position: -1em -8.8em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService11:before{
+  background-position: -1em -16.6em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService12:before{
+  background-position: -1em -24.4em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService13:before{
+  background-position: -1em -32.2em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService14:before{
+  background-position: -1em -40em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService15:before{
+  background-position: -1em -47.8em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService2:before{
+  background-position: -1em -55.6em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService3:before{
+  background-position: -1em -63.4em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService4:before{
+  background-position: -1em -71.2em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService5:before{
+  background-position: -1em -79em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService6:before{
+  background-position: -1em -86.8em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService7:before{
+  background-position: -1em -94.6em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService8:before{
+  background-position: -1em -102.4em;
+  width: 5.8em;
+  height: 5.8em;
+}
+.onlineService-icon.icon-onlineService9:before{
+  background-position: -1em -110.2em;
+  width: 5.8em;
+  height: 5.8em;
+}
 .onlineService{
   margin-bottom: 10px;
 }
