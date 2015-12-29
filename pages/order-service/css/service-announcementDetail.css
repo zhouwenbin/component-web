@@ -1,0 +1,83 @@
+/*
+@styleguide
+
+# 公告
+
+*/
+.announcement-icon{
+  font-size: 10px;
+}
+.announcement-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/announcement.svg");
+  background-repeat: no-repeat;
+  background-size: 3.9em 3.7em;
+}
+.no-svg .announcement-icon:before{
+  background-image: url("../svg/announcement.png");
+}
+.announcement-icon.icon-voise:before{
+  background-position: -1em -1em;
+  width: 1.9em;
+  height: 1.7em;
+}
+.announcement-icon{
+  vertical-align: middle;
+  margin-right: 13px;
+}
+.announcementDetail li{
+  margin-bottom: 20px;
+}
+.announcementDetail h3{
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+.announcementDetail li.active h3{
+  color: #f4953a;
+}
+.announcementDetail-time{
+  color: #999;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+  padding-left: 34px;
+}
+.announcementDetail p{
+  font-size: 14px;
+  line-height: 24px;
+  padding: 15px 28px 25px;
+  border-bottom: 1px solid #e5e5e5;
+  display: none;
+}
+.announcementDetail li.active p{
+  display: block;
+}
+/*
+@styleguide
+
+# 面包屑
+
+	<div class="crumbs">
+	    <a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴
+	</div>
+
+*/
+.crumbs{
+  margin: 20px 0;
+  color: #585758;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.crumbs a{
+  color: #585758;
+}
+.crumbs span{
+  margin: 0 20px;
+}
+.service-mian{
+  background: #fff;
+  padding: 53px 52px;
+}
