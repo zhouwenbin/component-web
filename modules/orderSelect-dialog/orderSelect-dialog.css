@@ -91,3 +91,8 @@
 	font-size: 14px;
 	line-height: 21px;
 }
+.orderSelect-dialog-input{
+	width: 440px;
+	margin-top: 50px;
+	margin-bottom: 21px;
+}

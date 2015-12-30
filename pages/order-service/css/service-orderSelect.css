@@ -360,6 +360,11 @@
   font-size: 14px;
   line-height: 21px;
 }
+.orderSelect-dialog-input{
+  width: 440px;
+  margin-top: 50px;
+  margin-bottom: 21px;
+}
 .service-mian{
   background: #fff;
   padding: 34px 110px 87px;
