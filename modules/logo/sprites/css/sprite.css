@@ -1,0 +1,29 @@
+.logo-icon {
+    font-size: 10px;
+}
+
+.logo-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/logo.svg");
+    background-repeat: no-repeat;
+    background-size: 24.2308em 13.6em;
+}
+
+.no-svg .logo-icon:before {
+    background-image: url("../svg/logo.png");
+}
+
+.logo-icon.icon-logo1:before {
+    background-position: -1em -1em;
+    width: 22.049em;
+    height: 3.6em;
+}
+
+.logo-icon.icon-logo2:before {
+    background-position: -1em -6.6em;
+    width: 22.2308em;
+    height: 6em;
+}
+
