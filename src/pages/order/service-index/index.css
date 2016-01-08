@@ -1,8 +1,0 @@
-@import '../../../modules/announcement/index.css';
-@import '../../../modules/selfService/index.css';
-@import '../../../modules/commonProblem/index.css';
-@import '../../../modules/onlineService/index.css';
-.service-mian{
-  background: #fff;
-  padding: 34px 110px 87px;
-}
