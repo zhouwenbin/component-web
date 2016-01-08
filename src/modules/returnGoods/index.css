@@ -1,0 +1,256 @@
+/*
+@styleguide
+
+# 退货退款
+
+*/
+.return-goods{
+  background-color: #fff;
+  display: table;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.return-goods-c1,
+.return-goods-c2{
+  display: table-cell;
+  vertical-align: top;
+}
+.return-goods-c1{
+  width: 250px;
+  border-right: 1px solid #e5e5e5;
+  padding: 30px 10px 30px 20px;
+}
+.return-goods-c1 dl{
+  font-size: 14px;
+  color: #333;
+}
+.return-goods-c1 h2,
+.return-goods-l1,
+.return-goods-c1-list{
+  border-bottom: 1px dashed #ccc;
+}
+.return-goods-c1 h2{
+  font-size: 14px;
+  color: #333;
+  padding-bottom: 20px;
+  font-weight: 400;
+}
+.return-goods-l1{
+  padding: 20px 20px 28px 0;
+}
+.return-goods-l1 .fl{
+  margin-right: 20px;
+}
+.return-goods-l1text{
+  color: #888;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+.return-goods-c1-list{
+  padding: 33px 0 13px 0;
+  color: #666;
+}
+.return-goods-c1-list li{
+  margin-bottom: 16px;
+}
+.return-goods-c1-list span{
+  color: #aaa;
+}
+.return-goods-c1-list .text-error{
+  font-size: 16px;
+}
+.return-goods-c1-list strong{
+  font-weight: 700;
+}
+.return-goods-c2{
+  padding: 64px 54px 150px 42px;
+}
+.return-goods-step{
+  margin-left: -19px;
+  overflow: hidden;
+}
+.return-goods-step li{
+  position: relative;
+  /*margin-right: 10px;*/
+  float: left;
+  background-color: #eee;
+  height: 37px;
+  line-height: 37px;
+  text-align: center;
+  width: 203px;
+  font-size: 14px;
+}
+.return-goods-step li:before,
+.return-goods-step li:after{
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  font-size: 0;
+  z-index: 1;
+}
+.return-goods-step li:before{ 
+  top: -2px; 
+  right: -38px;
+  border: 20px dashed transparent;
+  border-left: 18px solid #fff;
+}
+.return-goods-step li:after{
+  top: 0px; 
+  right: -34px;
+  border: 18px dashed transparent;
+  border-left: 16px solid #eee;
+}
+.return-goods-step .active{
+  background-color: #ea352f;
+  color: #fff;
+}
+.return-goods-step .active:after{
+  border-left-color: #ea352f;
+}
+
+.return-goods-step li:last-child:before,
+.return-goods-step li:last-child:after{
+  border: 0 none;
+}
+.return-goods-form{
+  padding-top: 9px;
+}
+.return-goods-c2-list{
+  position: relative;
+  line-height: 40px;
+  font-size: 14px;
+  margin-top: 23px;
+  margin-left: 110px;
+}
+.return-goods-label{
+  position: absolute;
+  left: -125px;
+  padding-left: 18px;
+}
+.return-goods-label em{
+  color: #f54e42;
+  margin-left: -18px;
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+}
+.return-goods-c2-list .radio-box{
+  margin-right: 64px;
+}
+.return-goods-c2-list .radio-box input{
+  margin-right: 15px;
+}
+.return-goods-c2-list .input{
+  padding: 10px 20px;
+  height: 18px;
+  line-height: 18px;
+  width: 106px;
+  margin-right: 10px;
+}
+.return-goods-imi-select-box{
+  position: relative;
+}
+.return-goods-imi-select-box .select-box{
+  position: relative;
+  display: inline-block;
+}
+.return-goods-imi-select-box .select-input{
+  width: 360px;
+}
+.return-goods-imi-select-box .select-arrow{
+  position: absolute;
+  background-color: #e3e3e3;
+  width: 29px;
+  height: 38px;
+  text-align: center;
+  right: 11px;
+  top: 1px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.return-goods-imi-select-box .select-arrow i{
+  display: inline-block;
+  border: 6px dashed transparent;
+  vertical-align: middle;
+  margin-top: 18px;
+  border-top: 6px solid #a3a3a3;
+}
+.return-goods-imi-select-box ul{
+  position: absolute;
+  top: 39px;
+  width: 400px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 1;
+  display: none;
+}
+.return-goods-imi-select-box li{
+  padding-left: 20px;
+}
+.return-goods-imi-select-box li:hover{
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.return-goods-c2-list .textarea-box{
+  position: relative;
+  display: inline-block;
+}
+.return-goods-c2-list textarea{
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  width: 360px;
+  height: 77px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.return-goods-c2-list .textarea-num{
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 25px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #e6e4e5;
+  border-radius: 4px;
+  color: #555555;
+  font-size: 12px;
+}
+.upload-btn{
+  position: relative;
+  width: 118px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 0;
+  margin-right: 20px;
+}
+.upload-btn-tips{
+  overflow: hidden;
+  line-height: 1.5;
+  color: #aaa;
+  font-size: 12px;
+}
+.return-goods-l2-pic{
+  position: relative;
+  margin-top: 26px;
+  display: inline-block;
+}
+.return-goods-l2-pic img{
+  width: 118px;
+  height: 118px;
+  border: 1px solid #ccc;
+}
+.return-goods-l2-pic .close{
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  right: -11px;
+  top: -11px;
+  background: url(http://img0.sfht.com/cmsres/20151224/84b3b815-bfbb-423c-bfc4-be08aac11b8a.png) 0 0 no-repeat;
+}
