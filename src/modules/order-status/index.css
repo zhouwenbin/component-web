@@ -5,6 +5,15 @@
 
 */
 @import "sprites/css/sprite.css";
+.order-status-icon{
+	margin-right: 24px;
+	position: relative;
+	z-index: 1;
+}
+.order-status-icon.icon-step-active:before{
+	width: 2.3em;
+	height: 2.3em;
+}
 .order-status{
 	background: #fff8f2;
 	border: 1px solid #ccc;
@@ -12,18 +21,27 @@
 	margin-bottom: -36px;
 	margin-top: 35px;
 	padding-left: 25px;
-	padding-bottom: 7px;
+	padding-bottom: 14px;
 }
 .order-status h2{
 	height: 46px;
 	line-height: 46px;
 	font-size: 14px;
 	border-bottom: 1px dashed #ccc;
-	margin-bottom: 21px;
+	margin-bottom: 17px;
 }
 .order-status li{
-	margin: 12px 0;
+	margin-top: 16px;
 	color: #969696;
+	position: relative;
+}
+.order-status li:before{
+	content: '';
+	height: 100%;
+	border-left: 1px dashed #969696;
+	position: absolute;
+    left: 12px;
+    top: 14px;         
 }
 .order-status li.active{
 	color: #333;
@@ -32,6 +50,4 @@
 	margin-left: 69px;
 	margin-right: 29px;
 }
-.order-status-icon{
-	margin-right: 24px;
-}
+
