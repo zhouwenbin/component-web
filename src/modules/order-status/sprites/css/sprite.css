@@ -1,0 +1,29 @@
+.order-status-icon {
+    font-size: 10px;
+}
+
+.order-status-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/order-status.svg");
+    background-repeat: no-repeat;
+    background-size: 4.2em 8.2em;
+}
+
+.no-svg .order-status-icon:before {
+    background-image: url("../svg/order-status.png");
+}
+
+.order-status-icon.icon-step:before {
+    background-position: -1em -1em;
+    width: 2em;
+    height: 2em;
+}
+
+.order-status-icon.icon-step-active:before {
+    background-position: -1em -5em;
+    width: 2.2em;
+    height: 2.2em;
+}
+

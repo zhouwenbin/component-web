@@ -12,10 +12,10 @@ var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 var slim = require("gulp-slim");
-var modules = fs.readdirSync("modules");
-var pages = fs.readdirSync("pages");
+var modules = fs.readdirSync("src/modules");
+var pages = fs.readdirSync("src/pages");
 
-gulp.task("common", function () {
+gulp.task("guild", function () {
 
     var processedCSS = fs.readFileSync("./app/static/css/pages/common/common.css", "utf-8");
     return gulp.src("./app/static/css/pages/common/common.css")
@@ -32,7 +32,7 @@ gulp.task("common", function () {
 gulp.task("svg", function () {
   for(var i in modules){
     if(modules[i] !== '.DS_Store'){
-      gulp.src("modules/"+modules[i]+"/svgs/*.svg")
+      gulp.src("src/modules/"+modules[i]+"/svgs/*.svg")
           .pipe(svgSprite({
               common: modules[i]+"-icon",
               selector: "icon-%f",
@@ -41,45 +41,48 @@ gulp.task("svg", function () {
                   sprite: "svg/"+modules[i]+".svg"
               }
           }))
-          .pipe(gulp.dest("modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
           .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
           .pipe(svg2png())           // Create a PNG
-          .pipe(gulp.dest("modules/"+modules[i]+"/sprites/"));
+          .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/"));
+
+      gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
+          .pipe(gulp.dest("dist/svg"))
     }
   }
 });
 
 gulp.task('watch', function() {
   for(var i in pages){
-    gulp.watch("pages/"+ pages[i] +"/posthtml/**.html",["html"]);
-    gulp.watch("pages/"+ pages[i] +"/postcss/**.css",["css"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.html",["html"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.css",["css"]);
   }
   for(var i in modules){
-    gulp.watch("modules/"+ modules[i] +"/**.html",["html"]);
-    gulp.watch("modules/"+ modules[i] +"/**.css",["css"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.html",["html"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.css",["css"]);
   }
 });
 
 gulp.task("html", function () {
     for(var i in pages){
       //html
-      gulp.src("pages/"+ pages[i] +"/posthtml/**.html")
+      gulp.src("src/pages/"+ pages[i] +"/**.html")
           .pipe(include())
-          .pipe(gulp.dest("pages/"+ pages[i] +"/html/"));
+          .pipe(gulp.dest("dist/"+ pages[i]));
     }
 });
 
 gulp.task("css", function () {
     for(var i in pages){
       //css
-      gulp.src("pages/"+ pages[i] +"/postcss/**.css")
+      gulp.src("src/pages/"+ pages[i] +"/**.css")
       .pipe(
           postcss([
               require("precss")({ /* options */ })
           ])
       )
       .pipe(cssnext({ browsers: ['last 10 versions'] }))
-      .pipe(gulp.dest("pages/"+ pages[i] +"/css/"))
+      .pipe(gulp.dest("dist/"+ pages[i]))
     }
 });
 
@@ -92,8 +95,8 @@ gulp.task('serve', function () {
         }
     });
     for(var i in pages){
-      gulp.watch("pages/"+ pages[i] +"/html/*.html").on("change", browserSync.reload);
-      gulp.watch("pages/"+ pages[i] +"/css/*.css").on("change", browserSync.reload);
+      gulp.watch("src/pages/"+ pages[i] +"/*.html").on("change", browserSync.reload);
+      gulp.watch("src/pages/"+ pages[i] +"/*.css").on("change", browserSync.reload);
     }
 });
 

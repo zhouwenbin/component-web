@@ -10,7 +10,14 @@
 <body>
 == Slim::Template.new('../../module/header.slim').render
 <div class="pb">
-  <div class="pm"> 
+  <div class="pm">
+    <div class="order-status">
+      <h2>订单状态：已提交</h2>
+      <ul>
+        <li class="active"><span class="order-status-icon icon-step"></span>阶段一：定金支付 ￥160 <span class="text-important order-status-step">待支付</span>请在2015-10-10 09:36:54前支付定金，逾期系统将自动取消订单</li>
+        <li><span class="order-status-icon icon-step-active"></span>阶段二：尾款支付 ￥320 <span class="order-status-step">未开始</span></li>
+      </ul>
+    </div>
     <!--提交订单-->
     <div class="order-detail clearfix">
         <div class="order-detail-c1 fl">
@@ -49,7 +56,7 @@
                     <li><span class="icon icon95"></span>确认收货</li>
                 </ul>
             </div>
-               
+
             <div class="order-detail-state clearfix">
                 <div class="order-detail-state-c1 fl">
                     <div class="order-detail-state-r1">
@@ -60,7 +67,7 @@
                         <!-- 退税 -->
                         <div class="order-detail-refundtax">
                          <span>如您购买的商品被税，请点击申请返还税金按钮，提交申请>></span>
-                         <button class="btn btn-success btn-small btn-refundtax">申请返还税金</button>  
+                         <button class="btn btn-success btn-small btn-refundtax">申请返还税金</button>
                         </div>
                     </div>
                     <ul>
@@ -71,8 +78,8 @@
                     <img src="../img/weixin-qrcode.png" alt="" />
                     <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
                 </div>
-                
-                    
+
+
             </div>
             <table class="order-detail-table">
                 <thead>
@@ -150,7 +157,7 @@
                     <li><span class="icon icon95"></span>确认收货</li>
                 </ul>
             </div>
-               
+
             <div class="order-detail-state clearfix">
                 <div class="order-detail-state-c1 fl">
                     <div class="order-detail-state-r1">
@@ -162,14 +169,14 @@
                         <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
                         <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
                     </ul>
-                    
+
                 </div>
                 <div class="order-detail-state-c2 fr">
                     <img src="../img/weixin-qrcode.png" alt="" />
                     <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
                 </div>
-                
-                    
+
+
             </div>
             <table class="order-detail-table">
                 <thead>
@@ -243,7 +250,7 @@
                     <li><span class="icon icon95"></span>确认收货</li>
                 </ul>
             </div>
-               
+
             <div class="order-detail-state clearfix">
                 <div class="order-detail-state-c1 fl">
                     <div class="order-detail-state-r1">
@@ -257,14 +264,14 @@
                         <li><span>2015-03-01 21:00:23</span><span>订单已付款，等待审核</span></li>
                         <li><span>2015-03-01 21:00:23</span><span>订单已提交，等待付款</span></li>
                     </ul>
-                    
+
                 </div>
                 <div class="order-detail-state-c2 fr">
                     <img src="../img/weixin-qrcode.png" alt="" />
                     <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
                 </div>
-                
-                    
+
+
             </div>
             <table class="order-detail-table">
                 <thead>
@@ -338,7 +345,7 @@
                     <li><span class="icon icon95"></span>确认收货</li>
                 </ul>
             </div>
-               
+
             <div class="order-detail-state clearfix">
                 <div class="order-detail-state-c1 fl">
                     <div class="order-detail-state-r1">
@@ -357,8 +364,8 @@
                     <img src="../img/weixin-qrcode.png" alt="" />
                     <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
                 </div>
-                
-                    
+
+
             </div>
             <table class="order-detail-table">
                 <thead>
@@ -432,7 +439,7 @@
                     <li><span class="icon icon95"></span>确认收货</li>
                 </ul>
             </div>
-               
+
             <div class="order-detail-state clearfix">
                 <div class="order-detail-state-c1 fl">
                     <div class="order-detail-state-r1">
@@ -450,8 +457,8 @@
                     <img src="../img/weixin-qrcode.png" alt="" />
                     <div class="text-error">关注顺丰海淘，实时跟踪物流信息</div>
                 </div>
-                
-                    
+
+
             </div>
             <table class="order-detail-table">
                 <thead>
@@ -562,17 +569,17 @@
             <div class="order-detail-cancel-rebuy">
                 <a href="" class="btn btn-normal btn-small">重新购买</a>
             </div>
-            
+
         </div>
     </div>
 
 
   </div>
 </div>
-<!--尾部--> 
-== Slim::Template.new('../../module/footer.slim').render 
-<!--尾部--> 
-<script src="js/jquery-1.11.1.min.js"></script> 
+<!--尾部-->
+== Slim::Template.new('../../module/footer.slim').render
+<!--尾部-->
+<script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/cart.js"></script>
 </body>
