@@ -110,6 +110,7 @@
 	font-size:14px;
 	padding-left: 14px;
 	color:#666;
+	position: relative;	
 }
 .goods-price-r1 em{
 	display: inline-block;
@@ -407,4 +408,106 @@
 	vertical-align: text-top;
 	margin-top: -2px;
 	margin-right: 2px;
+}
+/*presell*/
+.presell-money{
+	margin-top: 15px;
+}
+.presell-money span{
+	font-size: 20px;
+	margin-right: 20px;
+	margin-left: 0;
+}
+.goods-price-r1 .goods-activity-c1{
+	top: 20px;
+}
+.presell-rules-box{
+	position: absolute;
+	background-color: #fff;
+	font-size: 12px;
+	z-index: 1;
+	padding: 20px 30px;
+	width: 350px;
+	line-height: 1.5;
+	border: 1px solid #E9E0D7;
+	border-radius: 4px;
+	right: 10px;
+	top: 45px;
+}
+.presell-rules-bg{
+	position: absolute;
+	background: url(../../../img/other/presell-rules-bg.png) 0 0 no-repeat;
+	right: 40px;
+	top: -9px;
+	width: 20px;
+	height: 12px;
+	z-index: 1;
+}
+.presell-rules-box h2{
+	color: #E73736;
+}
+.presell-rules-box li{
+	color: #666;
+	margin-bottom: 0;
+	line-height: 1.5;
+}
+.goods-price-r1 .goods-activity-c1 span{
+	font-size: 14px;
+	color: #666;
+}
+.presell-btn-buy{
+	border: 0 none;
+	background-color: #E73736;
+	border-radius: 0;
+}
+.goods-c2r2 .btn-normal{
+	border: 1px solid #E5E5E5;
+	height: 43px;
+	line-height: 43px;
+	color: #666;
+}
+.presell-steps{
+	background-color: #fff;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	border: 1px dashed #979797;
+}
+.presell-steps li{
+	float: left;
+	color: #969696;
+	width: 287px;
+	padding-right: 7px;
+	text-align: center;
+	height: 70px;
+	padding-top: 18px;
+	background: url(../../../img/other/presell-steps-line.png) right 0 no-repeat;
+}
+.presell-steps .presell-steps-last{
+	background: none;
+}
+.presell-steps-inner{
+	position: relative;
+	display: inline-block;
+	padding-left: 65px;
+	text-align: left;
+	height: 52px;
+	line-height: 1.3;
+}
+.presell-steps svg{
+	position: absolute;
+	left: 0px;
+	top: 0;
+	width: 45px;
+	height: 45px;
+}
+.presell-steps h2{
+	font-size: 14px;
+}
+.presell-steps p{
+	color: #969696;
+	font-size: 12px;
+	margin-bottom: 0;
+}
+.presell-steps02 h2{
+	margin-top: 15px;
 }
