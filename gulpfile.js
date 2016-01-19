@@ -30,8 +30,8 @@ gulp.task("guild", function () {
 });
 
 gulp.task("svg", function () {
-  for(var i in modules){
-    if(modules[i] !== '.DS_Store'){
+  for(var i in modules) {
+    if(modules[i] !== '.DS_Store') {
       gulp.src("src/modules/"+modules[i]+"/svgs/*.svg")
           .pipe(svgSprite({
               common: modules[i]+"-icon",
@@ -47,19 +47,19 @@ gulp.task("svg", function () {
           .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/"));
       // 复制svg文件
       gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
-          .pipe(gulp.dest("dist/svg"))
+          .pipe(gulp.dest("dist/pages/svg"))
     }
   }
 });
 
 gulp.task('watch', function() {
-  for(var i in pages){
+  for(var i in pages) {
     gulp.watch("src/pages/"+ pages[i] +"/**.slim",["html"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.html",["html"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.scss",["css"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.css",["css"]);
   }
-  for(var i in modules){
+  for(var i in modules) {
     gulp.watch("src/modules/"+ modules[i] +"/**.slim",["html"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.html",["html"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.scss",["css"]);
@@ -68,23 +68,47 @@ gulp.task('watch', function() {
 });
 
 gulp.task("html", function () {
-    for(var i in pages){
-      //html
-      gulp.src("src/pages/"+ pages[i] +"/**.html")
-          .pipe(include())
-          .pipe(gulp.dest("dist/"+ pages[i]));
-      //slim
-      gulp.src("src/pages/"+ pages[i] +"/**.slim")
-        .pipe(slim({
-          pretty: true,
-          chdir: true
-        }))
-        .pipe(gulp.dest("dist/"+ pages[i]));
-        }
+  for(var i in pages) {
+    //html
+    gulp.src("src/pages/"+ pages[i] +"/**.html")
+        .pipe(include())
+        .pipe(gulp.dest("dist/pages/"+ pages[i]));
+    //slim
+    gulp.src("src/pages/"+ pages[i] +"/**.slim")
+      .pipe(slim({
+        pretty: true,
+        chdir: true
+      }))
+      .pipe(gulp.dest("dist/pages/"+ pages[i]));
+  }
+    
+});
+
+gulp.task("demo", function () {
+  for(var i in modules) {
+    //module demo
+    gulp.src("src/modules/"+ modules[i] +"/demo.html")
+        .pipe(include())
+        .pipe(gulp.dest("dist/modules/"+ modules[i]));
+    //postcss
+    gulp.src("src/modules/"+ modules[i] +"/**.css")
+      .pipe(
+          postcss([
+              require("precss")({ /* options */ })
+          ])
+      )
+      .pipe(cssnext({ browsers: ['last 10 versions'] }))
+      .pipe(gulp.dest("dist/modules/"+ modules[i]))
+    //sass
+      gulp.src("src/modules/"+ modules[i] +"/**.scss")
+      .pipe(sass().on('error', sass.logError))
+      .pipe(cssnext({ browsers: ['last 10 versions'] }))
+      .pipe(gulp.dest("dist/modules/"+ modules[i]));
+  }
 });
 
 gulp.task("css", function () {
-    for(var i in pages){
+    for(var i in pages) {
       //postcss
       gulp.src("src/pages/"+ pages[i] +"/**.css")
       .pipe(
@@ -93,12 +117,12 @@ gulp.task("css", function () {
           ])
       )
       .pipe(cssnext({ browsers: ['last 10 versions'] }))
-      .pipe(gulp.dest("dist/"+ pages[i]))
+      .pipe(gulp.dest("dist/pages/"+ pages[i]))
       //sass
       gulp.src("src/pages/"+ pages[i] +"/**.scss")
       .pipe(sass().on('error', sass.logError))
       .pipe(cssnext({ browsers: ['last 10 versions'] }))
-      .pipe(gulp.dest("dist/"+ pages[i]));
+      .pipe(gulp.dest("dist/pages/"+ pages[i]));
     }
 });
 
@@ -110,7 +134,7 @@ gulp.task('serve', function () {
             baseDir: "./"
         }
     });
-    for(var i in pages){
+    for(var i in pages) {
       gulp.watch("src/pages/"+ pages[i] +"/*.html").on("change", browserSync.reload);
       gulp.watch("src/pages/"+ pages[i] +"/*.css").on("change", browserSync.reload);
     }
@@ -125,7 +149,7 @@ gulp.task('sass', function () {
 gulp.task('sass:watch', function () {
   gulp.watch('./app/static/scss/pages/**/*.scss', ['sass']);
 });
-gulp.task('slim', function(){
+gulp.task('slim', function() {
   gulp.src("./app/static/slim/pages/**/*.slim")
     .pipe(slim({
       pretty: true,

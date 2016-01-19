@@ -1,6 +1,6 @@
-@import '../../modules/announcement/announcement.css';
-@import '../../modules/orderSelect/orderSelect.css';
-@import '../../modules/orderSelect-dialog/orderSelect-dialog.css';
+@import '../../modules/announcement/index.css';
+@import '../../modules/orderSelect/index.css';
+@import '../../modules/orderSelect-dialog/index.css';
 .service-mian{
   background: #fff;
   padding: 34px 110px 87px;

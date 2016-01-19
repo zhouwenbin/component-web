@@ -1,0 +1,17 @@
+.cart-footer-icon {
+    font-size: 10px;
+}
+
+.cart-footer-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/cart-footer.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .cart-footer-icon:before {
+    background-image: url("../svg/cart-footer.png");
+}
+

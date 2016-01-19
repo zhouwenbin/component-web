@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-reflash</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="2.整页-注册-0" sketch:type="MSArtboardGroup" transform="translate(-897.000000, -542.000000)" fill="#E5E5E5">
+            <path d="M915,548.75 L908.25,548.75 L910.772988,546.227012 C909.498047,544.952141 907.802988,544.25 906,544.25 C904.197012,544.25 902.501953,544.952141 901.227012,546.227012 C899.952141,547.501953 899.25,549.197012 899.25,551 C899.25,552.802988 899.952141,554.498047 901.227012,555.772988 C902.501953,557.047859 904.197012,557.75 906,557.75 C907.802988,557.75 909.498047,557.047859 910.772953,555.772953 C910.879406,555.666535 910.98143,555.556883 911.079797,555.444805 L912.772922,556.926324 C911.123285,558.810102 908.700703,560 906,560 C901.029434,560 897,555.970566 897,551 C897,546.029434 901.029434,542 906,542 C908.485301,542 910.734984,543.007684 912.363562,544.636438 L915,542 L915,548.75 L915,548.75 Z" id="icon-reflash" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
