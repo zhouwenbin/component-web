@@ -45,7 +45,7 @@ gulp.task("svg", function () {
           .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
           .pipe(svg2png())           // Create a PNG
           .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/"));
-
+      // 复制svg文件
       gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
           .pipe(gulp.dest("dist/svg"))
     }
@@ -54,11 +54,15 @@ gulp.task("svg", function () {
 
 gulp.task('watch', function() {
   for(var i in pages){
+    gulp.watch("src/pages/"+ pages[i] +"/**.slim",["html"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.html",["html"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.scss",["css"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.css",["css"]);
   }
   for(var i in modules){
+    gulp.watch("src/modules/"+ modules[i] +"/**.slim",["html"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.html",["html"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.scss",["css"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.css",["css"]);
   }
 });
@@ -69,12 +73,19 @@ gulp.task("html", function () {
       gulp.src("src/pages/"+ pages[i] +"/**.html")
           .pipe(include())
           .pipe(gulp.dest("dist/"+ pages[i]));
-    }
+      //slim
+      gulp.src("src/pages/"+ pages[i] +"/**.slim")
+        .pipe(slim({
+          pretty: true,
+          chdir: true
+        }))
+        .pipe(gulp.dest("dist/"+ pages[i]));
+        }
 });
 
 gulp.task("css", function () {
     for(var i in pages){
-      //css
+      //postcss
       gulp.src("src/pages/"+ pages[i] +"/**.css")
       .pipe(
           postcss([
@@ -83,6 +94,11 @@ gulp.task("css", function () {
       )
       .pipe(cssnext({ browsers: ['last 10 versions'] }))
       .pipe(gulp.dest("dist/"+ pages[i]))
+      //sass
+      gulp.src("src/pages/"+ pages[i] +"/**.scss")
+      .pipe(sass().on('error', sass.logError))
+      .pipe(cssnext({ browsers: ['last 10 versions'] }))
+      .pipe(gulp.dest("dist/"+ pages[i]));
     }
 });
 
@@ -103,7 +119,7 @@ gulp.task('serve', function () {
 gulp.task('sass', function () {
   gulp.src('./app/static/scss/pages/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(cssnext({ browsers: ['last 2 versions'] }))
+    .pipe(cssnext({ browsers: ['last 10 versions'] }))
     .pipe(gulp.dest('./app/static/css/pages'));
 });
 gulp.task('sass:watch', function () {
