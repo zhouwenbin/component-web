@@ -1,4 +1,5 @@
 @import '../../modules/crumbs-old/crumbs.css';
 @import '../../modules/goods-detail/index.css';
-@import '../../modules/goods-match/index.css';
-@import '../../modules/goods-recommends/index.css';
+@import '../../modules/match/index.css';
+@import '../../modules/recommends2/index.css';
+@import '../../modules/detail/index.css';

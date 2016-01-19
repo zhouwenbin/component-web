@@ -8,15 +8,14 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <include src="../../modules/header/header.html"></include>
+	== Slim::Template.new('../../modules/header/index.slim").render
   <div class="pm">
-  <!--[if IE 8]><div class="no-svg"><![endif]-->
-    <!-- <include src="../../modules/order-status/index.html"></include> -->
-    <include src="../../modules/crumbs-old/crumbs.html"></include>
-    <include src="../../modules/goods-detail/index.html"></include>
-    <include src="../../modules/match/index.html"></include>
-    <include src="../../modules/recommends2/index.html"></include>
-    <include src="../../modules/detail/index.html"></include>
+  <!--[if IE 8]><div class="no-svg"><![endif]--> 
+    == Slim::Template.new('../../modules/crumbs-old/index.slim").render
+    == Slim::Template.new('../../modules/goods-detail/index.slim").render
+    == Slim::Template.new('../../modules/match/index.slim").render
+    == Slim::Template.new('../../modules/recommends2/index.slim").render
+    == Slim::Template.new('../../modules/detail/index.slim").render
   <!--[if IE 8]></div><![endif]-->
   </div>
 </body>
