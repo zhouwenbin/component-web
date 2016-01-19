@@ -1,0 +1,132 @@
+/*
+@styleguide
+
+# 订单确认
+	
+*/
+.order-confirm tbody th{
+	height: 40px;
+	background: #f5f5f4;
+	padding-left: 32px;
+}
+.order-confirm-from{
+	font-size: 14px;
+}
+
+.order-confirm .icon82{
+	margin-right: 17px;
+}
+.order-confirm-time{
+	font-size: 12px;
+	color: #9a9a9a;
+	margin-left: 18px;
+}
+.order-confirm-info{
+	display: inline-block;
+	margin-left: 39px;
+	vertical-align: middle;
+	width: 445px;
+}
+.order-confirm h1{
+	font-size: 16px;
+	font-weight: normal;
+	margin: 20px 0;
+}
+.order-confirm  thead th{
+	padding: 0 25px !important;
+}
+.order-confirm .th1{
+	width: 569px;
+}
+.order-confirm .th2{
+	width: auto;
+}
+.order-confirm .text-error{
+	margin-bottom: 8px;
+	font-size: 12px;
+}
+.order-confirm .td2{
+	text-align: center;
+}
+.order-confirm .cart-disable .td1{
+	padding-left: 25px;
+}
+.order-confirm .th1{
+	padding-left: 38px;
+}
+.order-confirm .icon16-1{
+	border-width: 5px 5px;
+	margin-left:10px;
+}
+
+.order-confirm .cart-table{
+	border-bottom-style: solid;
+	border-radius: 4px;
+}
+.order-confirm .label-disabled{
+	display: block;
+}
+.order-confirm .address-add{
+	display: none;
+}
+.order-confirm .cart-footer .btn{
+	vertical-align: middle;
+	margin-left: 10px;
+}
+.cart-standard{
+	margin-right: 15px;
+}
+.cart-standard,.godds-type{
+	display: inline-block;
+}
+.godds-type{
+	position: relative;
+	color: #fff;
+	background: #FFC208;
+	height: 14px;
+	line-height: 14px;
+	padding: 2px;
+}
+.godds-type:before{
+	content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 9px 9px;
+  left: -18px;
+  top: 0;
+  border-color: transparent #FFC208 transparent transparent;
+}
+.godds-type:after{
+	width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 7px;
+}
+.tooltip-firstorder{
+	padding: 0 10px;
+}
+.icon-etk{
+	background: #c4c4c4;
+	border-radius: 5px;
+	margin-left: 18px;
+	display: inline-block;
+	padding: 5px;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
