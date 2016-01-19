@@ -1,5 +1,5 @@
-@import '../../modules/announcementDetail/announcementDetail.css';
-@import '../../modules/crumbs/crumbs.css';
+@import '../../modules/announcementDetail/index.css';
+@import '../../modules/crumbs/index.css';
 .service-mian{
   background: #fff;
   padding: 53px 52px;

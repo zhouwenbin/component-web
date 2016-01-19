@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-account</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1.整页-登录-2" sketch:type="MSArtboardGroup" transform="translate(-510.000000, -638.000000)" fill="#C5C5C5">
+            <g id="用丰趣账号登录-+-user-(1)-copy-7" sketch:type="MSLayerGroup" transform="translate(510.000000, 638.000000)">
+                <g id="icon-account" sketch:type="MSShapeGroup">
+                    <path d="M7.5,8.75 C7.5,8.75 2.04545455,8.75 0,13.125 C0,13.125 3.41590909,14.375 7.5,14.375 C11.5840909,14.375 15,13.125 15,13.125 C12.9545455,8.75 7.5,8.75 7.5,8.75 L7.5,8.75 Z M7.5,8.125 C9.54545455,8.125 10.9090909,6.25 10.9090909,3.125 C10.9090909,0 7.5,0 7.5,0 C7.5,0 4.09090909,0 4.09090909,3.125 C4.09090909,6.25 5.45454545,8.125 7.5,8.125 L7.5,8.125 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

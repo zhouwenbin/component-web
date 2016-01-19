@@ -1,7 +1,7 @@
-@import '../../modules/announcement/announcement.css';
-@import '../../modules/selfService/selfService.css';
-@import '../../modules/commonProblem/commonProblem.css';
-@import '../../modules/onlineService/onlineService.css';
+@import '../../modules/announcement/index.css';
+@import '../../modules/selfService/index.css';
+@import '../../modules/commonProblem/index.css';
+@import '../../modules/onlineService/index.css';
 .service-mian{
   background: #fff;
   padding: 34px 110px 87px;
