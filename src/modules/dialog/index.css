@@ -1,0 +1,190 @@
+/*
+@styleguide
+
+# 弹窗
+
+
+*/
+.dialog-center{
+	width: 482px;
+	left: 50%;
+	top: 50%;
+	margin-left: -307px;
+	margin-top: -163px;
+	position: fixed;
+	background: #fff;
+	border-radius: 4px;
+	z-index: map-get($z-index,dialog-center);
+	text-align: center;
+	display: none;
+	padding-bottom:16px;
+}
+.dialog-center.show{
+	display:block;
+}
+.dialog-center .btn-close{
+	position: absolute;
+	right: 17px;
+	top: 17px;
+}
+.dialog-center p{
+	padding-top: 53px;
+	margin-bottom: 37px;
+	font-size: 14px;
+}
+.dialog-r1 .btn{
+	margin: 0 5px;
+}
+.dialog-f{
+	padding-top:12px;
+	border-top:1px solid #eee;
+	padding-right:40px;
+	text-align:right;
+}
+.dialog-f .btn{
+	margin-left: 20px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 26px;
+	font-size:14px;
+}
+.dialog-stockout .dialog-b{
+	padding:49px 60px 20px;
+	text-align:left;
+	height:auto;
+	width:auto;
+}
+.dialog-stockout p{
+	margin-bottom:27px;
+	padding-top:0;
+}
+.dialog-stockout .input{
+	width:276px;
+	padding:10px;
+	height:auto;
+}
+.dialog-stockout-r2 .btn{
+	padding:0 55px;
+}
+.dialog-stockout-r2{
+	padding-left:49px;
+	padding-top:30px;
+}
+.dialog-subscription .dialog-b{
+	padding-top:48px;
+	padding-bottom:20px;
+}
+.dialog-subscription h3{
+	font-size:18px;
+	color:#64aa30;
+	margin-top:25px;
+}
+.dialog h2,
+.dialog-h{
+	height:54px;
+	line-height:54px;
+	background:#eee;
+	color:#999;
+	padding-left:40px;
+	text-align:left;
+	font-size:16px;
+	border-radius:4px 4px 0 0;
+}
+.dialog-qrcode{
+	width:323px;
+	margin-left:-161px;
+}
+.dialog-qrcode .dialog-b{
+	padding-top:20px;
+}
+.dialog-qrcode p{
+	padding-top:10px;
+	color: #666;
+	font-size: 12px;
+}
+.dialog-qrcode h3{
+	font-weight: normal;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+.dialog-coupon{
+	padding-bottom:59px;
+}
+.dialog-coupon .icon37{
+	margin-right:5px;
+}
+.dialog-coupon .btn-success{
+	padding:0 30px;
+}
+
+.dialog-cart{
+	
+	position: fixed;
+	top:50%;
+	left:50%;
+	z-index: map-get($z-index,dialog-cart);
+}
+.dialog-cart-inner{
+	position: relative;
+	left:-50%;
+	color: #fff;
+	background: #333;
+	background: rgba(51,51,51,0.9);
+	font-size: 14px;
+	line-height: 21px;
+	padding: 20px 82px;
+	border-radius: 4px;
+	text-align: center;
+}
+.dialog-cart .icon{
+	position: absolute;
+	left:50%;
+	top: 10px;
+	margin-left: -25px;
+}
+.dialog-alipay .dialog-b{
+	text-align: left;
+	padding-left: 79px;
+}
+.dialog-alipay .dialog-f{
+	text-align: center;
+	background: #F9F9F9;
+}
+.dialog-alipay label{
+	display: inline-block;
+	width: 103px;
+}
+.dialog-alipay li{
+	margin-bottom: 10px;
+}
+.dialog-alipay .text-important{
+	margin: 19px 0;
+}
+.dialog-alipay-title{
+	font-size: 14px;
+	margin: 38px 0 18px;
+}
+
+.dialog-copy .icon{
+	margin-right: 15px; 
+}
+.dialog-agreement{
+	width: 800px;
+	margin-left: -400px;
+}
+.dialog-agreement h1{
+	font-size: 14px;
+	font-weight: normal;
+}
+.dialog-agreement p{
+	margin: 0 45px;
+	padding-top: 0px;
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #666;
+  line-height: 20px;
+  text-align: left;
+}
+.dialog-agreement .btn-large{
+	margin-top: 20px;
+}

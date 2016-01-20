@@ -1,0 +1,34 @@
+/*
+@styleguide
+
+# input
+
+<input type="text" class="input" />
+<h2 class="index-h2">radio</h2>
+<a href="#" class="icon radio"></a>
+<a href="#" class="icon radio active"></a>
+
+	<input type="text" class="input" />
+	<h2 class="index-h2">radio</h2>
+	<a href="#" class="icon radio"></a>
+	<a href="#" class="icon radio active"></a>
+	
+*/
+
+.input {
+  vertical-align: middle;
+  padding: 12px 0 12px 16px;
+  border: 1px solid #CCCCCC;
+  border-radius: 3px;
+  height: 18px;
+  color: #999;
+}
+
+.input:focus {
+  border-color: #66afe9;
+  color: #333;
+}
+
+:-ms-input-placeholder {
+  color: #999;
+}

@@ -1,0 +1,199 @@
+/*
+@styleguide
+
+# 弹出提示
+
+<div class="tooltip-pos">
+<span class="icon icon26">上传身份证照片</span>
+<div class="tooltip-outer">
+  <div class="tooltip">
+    <h4>请在“查看订单”中上传身份照片</h4>
+    <h5>为什么要传身份证？</h5>
+    <p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>
+    <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+  </div>
+
+</div>
+</div>
+<br>
+
+<div class="tooltip-pos">
+  <a href="">查看物流</a>
+  <div class="tooltip-outer">
+    <div class="tooltip">
+      <h4>物流跟踪</h4>
+      <ul>
+        <li class="active"><div class="time fl">2014\12\12 13:23:25</div><div class="tooltip-c2">从海外仓发出从海外仓发出从海外仓发出从海外仓发出从海外仓发出</div></li>
+        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+      </ul>
+      <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+      <a href="">查看全部</a>
+    </div>
+
+  </div>
+</div>
+<br>
+
+<label class="btn btn-brand">UGG<input type="radio" name="brank" value="UGG" class="visuallyhidden" /><div class="detail">UGG  起源于1978年南加州海滩的UGG品牌一直是美国高端时尚生活方式的国际知名品牌。<br />材质上乘，工艺精湛，带来一年四季的鞋履、服饰、配饰、箱包及家居类全线产品。<span class="icon icon16-3"><span class="icon icon16-4"></span></span></div></label>
+</br>
+<span class="tooptip-success"><span class="icon icon37"></span>保存成功</span>
+
+<div class="tooltip-cart tooltip-cart-left">四星不错<span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥1000</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+
+	<div class="tooltip-pos">
+	<span class="icon icon26">上传身份证照片</span>
+	<div class="tooltip-outer">
+	  <div class="tooltip">
+	    <h4>请在“查看订单”中上传身份照片</h4>
+	    <h5>为什么要传身份证？</h5>
+	    <p>由于国家政策规定，您在购买海外商品时，在物流及海关清关过程中需要出示购买人的身份证复印件。</p>
+	    <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+	  </div>
+
+	</div>
+	</div>
+	<br>
+
+	<div class="tooltip-pos">
+	  <a href="">查看物流</a>
+	  <div class="tooltip-outer">
+	    <div class="tooltip">
+	      <h4>物流跟踪</h4>
+	      <ul>
+	        <li class="active"><div class="time fl">2014\12\12 13:23:25</div><div class="tooltip-c2">从海外仓发出从海外仓发出从海外仓发出从海外仓发出从海外仓发出</div></li>
+	        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+	        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+	        <li><span class="time">2014\12\12 13:23:25</span>从海外仓发出</li>
+	      </ul>
+	      <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+	      <a href="">查看全部</a>
+	    </div>
+
+	  </div>
+	</div>
+	<br>
+
+	<label class="btn btn-brand">UGG<input type="radio" name="brank" value="UGG" class="visuallyhidden" /><div class="detail">UGG  起源于1978年南加州海滩的UGG品牌一直是美国高端时尚生活方式的国际知名品牌。<br />材质上乘，工艺精湛，带来一年四季的鞋履、服饰、配饰、箱包及家居类全线产品。<span class="icon icon16-3"><span class="icon icon16-4"></span></span></div></label>
+	</br>
+	<span class="tooptip-success"><span class="icon icon37"></span>保存成功</span>
+
+	<div class="tooltip-cart tooltip-cart-left">四星不错<span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+	<div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥1000</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>
+
+*/
+.tooltip{
+
+	border:1px solid #DEDDDE;
+	padding: 24px 27px;
+	width: 510px;
+	line-height: 18px;
+	box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
+	background: #f4f4f9;
+	position: relative;
+	display: inline-block;
+	color: #333840
+}
+.tooltip .icon16-3{
+	position: absolute;
+	left: 50%;
+	top: -27px;
+	margin-left: -10px
+}
+.tooptip-success{
+	display: inline-block;
+	font-size: 14px;
+	color: #67b222;
+	height: 46px;
+	line-height: 46px;
+	padding: 0 20px;
+	border:2px solid #67b222;
+	background: #fff;
+}
+.tooptip-success .icon{
+	margin-right: 10px;
+}
+.tooltip-c2{
+	overflow: hidden;
+}
+.tooltip-pos{
+	position: relative;
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+}
+.tooltip-pos:hover .tooltip{
+	display: block;
+}
+.tooltip-outer{
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	margin-top: 13px;
+}
+.tooltip{
+	display: none;
+	background: #fff;
+	position: relative;
+	left: -50%;
+	z-index: map-get($z-index,tooltip);
+}
+.tooltip-cart{
+	position: relative;
+	display: inline-block;
+	background:#fff;
+	border:1px solid #dd3e3f;
+	height:28px;
+	line-height:28px;
+	padding-left: 34px;
+	padding-right: 15px;
+	border-radius: 2px;
+	margin-right: 14px;
+}
+.tooltip-cart .icon77,
+.tooltip-cart .icon83{
+	margin-left: -30px;
+	margin-top: 4px;
+}
+.tooltip-cart .icon62{
+  margin-left: -20px;
+	margin-top: 4px;
+}
+.tooltip-cart .icon78{
+	margin-left: 10px;
+}
+.tooltip-cart .icon16-5{
+	position: absolute;
+	right: -10px;
+	top: 8px;
+}
+.tooltip-cart .icon16-5-1{
+	border-color: transparent transparent transparent #fff;
+	right: -9px;
+}
+.tooltip-active{
+	text-align: left;
+	width: 227px;
+	margin-left: -135px;
+	left: 0;
+}
+.tooltip-active li{
+	list-style: inside;
+}
+
+.tooltip-cart-left{
+	padding: 0 8px;
+	margin-left: 15px;
+	color: #E13B3A;
+}
+.tooltip-cart-left .icon16-5 {
+  left: -10px;
+  border-color: transparent #e03d40 transparent transparent;
+}
+
+.tooltip-cart-left .icon16-5-1 {
+  left: -9px;
+  border-color: transparent #fff transparent transparent;
+}

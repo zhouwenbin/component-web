@@ -1,0 +1,57 @@
+/*
+@styleguide
+
+# 海淘对比
+
+*/
+@import '../../utils/variables';
+%comparison-icon{
+	background:url(#{$bg-url}comparison.png) no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+}
+.comparison{
+	padding:48px 27px;
+	text-align:left;
+	margin-top:48px;
+	margin-bottom:48px;
+	border-top:1px solid #e5e5e5;
+	border-bottom:1px solid #e5e5e5;
+}
+.comparison li{
+	font-size:14px;
+	line-height:2;
+}
+.comparison h3{
+	padding-bottom:6px;
+	font-size:24px;
+}
+.comparison-c1{
+	padding-left:70px;
+	width:440px;
+}
+.comparison-c1 h3{
+	color:#dc3434;
+	font-weight:normal;
+}
+.comparison-c2{
+	overflow:hidden;
+	padding-left:44px;
+	padding-left:70px;
+}
+
+.comparison-icon1{
+	width:54px;
+	height:54px;
+	margin-left:-70px;
+	margin-right:18px;
+	@extend %comparison-icon;
+}
+.comparison-icon2{
+	width:54px;
+	height:54px;
+	margin-right:18px;
+	margin-left:-70px;
+	background-position:-54px 0;
+	@extend %comparison-icon;
+}

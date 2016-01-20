@@ -86,24 +86,40 @@ gulp.task("html", function () {
 
 gulp.task("demo", function () {
   for(var i in modules) {
-    //module demo
-    gulp.src("src/modules/"+ modules[i] +"/demo.html")
-        .pipe(include())
+    if(modules[i] !== '.DS_Store') {
+      //copy demo.html
+      // gulp.src("src/demo/**.html")
+      //     .pipe(gulp.dest("src/modules/"+ modules[i]));
+      //html
+      gulp.src("src/modules/"+ modules[i] +"/**.html")
+          .pipe(include())
+          .pipe(gulp.dest("dist/modules/"+ modules[i]));
+
+      //slim
+      gulp.src("src/modules/"+ modules[i] +"/**.slim")
+        .pipe(slim({
+          pretty: true,
+          chdir: true
+        }))
         .pipe(gulp.dest("dist/modules/"+ modules[i]));
-    //postcss
-    gulp.src("src/modules/"+ modules[i] +"/**.css")
-      .pipe(
-          postcss([
-              require("precss")({ /* options */ })
-          ])
-      )
-      .pipe(cssnext({ browsers: ['last 10 versions'] }))
-      .pipe(gulp.dest("dist/modules/"+ modules[i]))
-    //sass
-      gulp.src("src/modules/"+ modules[i] +"/**.scss")
-      .pipe(sass().on('error', sass.logError))
-      .pipe(cssnext({ browsers: ['last 10 versions'] }))
-      .pipe(gulp.dest("dist/modules/"+ modules[i]));
+
+      
+      //postcss
+      gulp.src("src/modules/"+ modules[i] +"/**.css")
+        .pipe(
+            postcss([
+                require("precss")({ /* options */ })
+            ])
+        )
+        .pipe(cssnext({ browsers: ['last 10 versions'] }))
+        .pipe(gulp.dest("dist/modules/"+ modules[i]))
+      //sass
+        gulp.src("src/modules/"+ modules[i] +"/**.scss")
+        .pipe(sass().on('error', sass.logError))
+        .pipe(cssnext({ browsers: ['last 10 versions'] }))
+        .pipe(gulp.dest("dist/modules/"+ modules[i]));
+    }
+      
   }
 });
 
