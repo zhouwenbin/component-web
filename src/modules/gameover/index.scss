@@ -1,0 +1,14 @@
+@import '../../utils/variables';
+.gameover{
+	background:#fff url(#{$bg-url}gameover.jpg) no-repeat center 43px;
+	height:421px;
+	margin-bottom: 18px;
+	margin-top:18px;
+}
+.gameover p{
+	padding-top:147px;
+	height:36px;
+	line-height:36px;
+	font-size:16px;
+	text-align:center;
+}
