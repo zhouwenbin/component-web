@@ -1,0 +1,17 @@
+.flow-icon {
+    font-size: 10px;
+}
+
+.flow-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/flow.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .flow-icon:before {
+    background-image: url("../svg/flow.png");
+}
+

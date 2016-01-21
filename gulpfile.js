@@ -87,9 +87,6 @@ gulp.task("html", function () {
 gulp.task("demo", function () {
   for(var i in modules) {
     if(modules[i] !== '.DS_Store') {
-      //copy demo.html
-      // gulp.src("src/demo/**.html")
-      //     .pipe(gulp.dest("src/modules/"+ modules[i]));
       //html
       gulp.src("src/modules/"+ modules[i] +"/**.html")
           .pipe(include())
@@ -174,4 +171,4 @@ gulp.task('slim', function() {
     .pipe(gulp.dest("./app/static/html/pages/"));
 });
 
-gulp.task('default', ['watch', 'css', 'html', 'serve']);
+gulp.task('default', ['watch', 'css', 'html', 'serve','demo']);

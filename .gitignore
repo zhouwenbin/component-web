@@ -12,3 +12,4 @@ web-static
 app/prepros.cfg
 *.sublime-*
 **/.DS_Store
+prepros.cfg

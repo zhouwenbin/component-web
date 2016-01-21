@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>登陆顺丰海淘</title>
+<link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	== Slim::Template.new('../../modules/header/index.slim").render
+  <div class="pm">
+  <!--[if IE 8]><div class="no-svg"><![endif]--> 
+    == Slim::Template.new('../../modules/crumbs-old/index.slim").render
+    == Slim::Template.new('../../modules/goods-detail/index.slim").render
+    == Slim::Template.new('../../modules/match/index.slim").render
+    == Slim::Template.new('../../modules/recommends2/index.slim").render
+    == Slim::Template.new('../../modules/detail/index.slim").render
+  <!--[if IE 8]></div><![endif]-->
+  </div>
+</body>
+</html>
