@@ -48,6 +48,9 @@ gulp.task("svg", function () {
       // 复制svg文件
       gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
           .pipe(gulp.dest("dist/pages/svg"))
+
+      gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
+          .pipe(gulp.dest("dist/modules/svg"))
     }
   }
 });

@@ -1,0 +1,17 @@
+.btn-icon {
+    font-size: 10px;
+}
+
+.btn-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/btn.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .btn-icon:before {
+    background-image: url("../svg/btn.png");
+}
+

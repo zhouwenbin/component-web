@@ -1,0 +1,17 @@
+.dialog-qrcode-icon {
+    font-size: 10px;
+}
+
+.dialog-qrcode-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/dialog-qrcode.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .dialog-qrcode-icon:before {
+    background-image: url("../svg/dialog-qrcode.png");
+}
+
