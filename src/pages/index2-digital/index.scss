@@ -1,0 +1,25 @@
+@import '../../modules/slider/index';
+@import '../../modules/product-1/index';
+@import '../../modules/index2-h2/index';
+@import '../../modules/products6/index';
+body{
+	background:#fff;
+}
+.index2-h2 i{
+	background: #EF5A7E;
+}
+.tab li.active{
+	background: #FD79B2;
+}
+.tab li.active a{
+	color:#fff;
+}
+.tab li.active:before{
+	border-color: #FD79B2 transparent transparent transparent;
+}
+.slidebar-c1>li strong{
+	color: #ED587D;
+}
+.slidebar-c2 li strong{
+	color:#ED587D;
+}

@@ -1,0 +1,124 @@
+@import '../../utils/variables';
+%baby-icon{
+	background: url(#{$bg-url}baby-icon.png) no-repeat;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	z-index: 2;
+}
+.tab-baby{
+	padding-top: 37px;
+}
+.tab-baby-hot{
+	font-size: 18px;
+	color: #AF8FFF;
+	width: 40px;
+	height: 40px;
+	padding: 12px 11px;
+	border: 3px solid #AF8FFF;
+	background-color: #fff;
+}
+.tab-baby ul{
+	margin-top: 20px;
+}
+.tab-baby li{
+	float: left;
+	width: 127px;
+	margin-left: -1px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	margin-right: 42px;
+	position: relative;
+	white-space: nowrap;
+	background: #C7B2FF;
+	&:last-child:after{
+		background-position: 0 -180px;
+	}
+	&:last-child.active:after{
+		background-position: 0 -240px;
+	}
+}
+.tab-baby .tab-baby-last:after{
+	background-position: 0 -180px;
+}
+.tab-baby .tab-baby-last.active:after{
+	background-position: 0 -240px;
+}
+.tab-baby li:first-child,
+.tab-baby-first{
+	width: 167px;
+}
+
+.tab-baby li:first-child.active:before,
+.tab-baby-first.actice:before{
+	background-image: none;
+}
+.tab-baby .active:before,
+.tab-baby li:after{
+	content: "";
+	width: 46px;
+	height: 50px;
+	position: absolute;
+	right: -44px;
+	top: 0;
+	background:url(http://img0.sfht.com/cmsres/20151010/200161b5-729c-4dcc-bf92-5602ed97d918.png) right 0 no-repeat;
+}
+.tab-baby .active:after{
+	background-position: 0 -60px;
+}
+.tab-baby .active:before{
+	left: -44px;
+	background-position: 0 -120px;
+}
+.tab-baby li a{
+	vertical-align: middle;
+	color: #fff;
+}
+.tab-baby li a:hover{
+	color:rgba(255,255,255,0.8);
+}
+.tab-baby li.active{
+	background: #AF8FFF;
+}
+.baby-icon01{
+	@extend %baby-icon;
+	width: 60px;
+	height: 95px;
+	margin: -45px 7px 0 13px;
+}
+.baby-icon02{
+	@extend %baby-icon;
+	width: 74px;
+	height: 75px;
+	background-position: -87px 0;
+	margin: -36px 3px 0 -11px;
+}
+.baby-icon03{
+	@extend %baby-icon;
+	width: 72px;
+	height: 79px;
+	margin: -38px -3px 0 -8px;
+	background-position: -173px 0;
+}
+.baby-icon04{
+	@extend %baby-icon;
+	width: 61px;
+	height: 83px;
+	margin: -40px 0px 0 -6px;
+	background-position: -257px 0;
+}
+.baby-icon05{
+	@extend %baby-icon;
+	width: 58px;
+	height: 81px;
+	margin: -39px 4px 0 -9px;
+	background-position: -339px 0;
+}
+.baby-icon06{
+	@extend %baby-icon;
+	width: 52px;
+	height: 79px;
+	margin: -38px 4px 0 -1px;
+	background-position: -420px 0;
+}

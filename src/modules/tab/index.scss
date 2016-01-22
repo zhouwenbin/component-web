@@ -1,0 +1,99 @@
+/*
+@styleguide
+
+# tab选项卡
+
+*/
+
+
+.tab{
+	margin-bottom: 20px;
+}
+.tab li{
+	float: left;
+	box-sizing:border-box;
+	width: 120px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	position: relative;
+	border:1px solid #E5E5E5;
+	font-size: 14px;
+	margin-right: 3px;
+}
+
+.tab li.active{
+	background: #333;
+}
+.tab li.active a{
+	color: #fff;
+} 
+
+.tab li.active:before{
+	content: '';
+	border-width: 6px;
+	border-style: solid;
+	border-color: #333 transparent transparent transparent;
+	position: absolute;
+	left:50%;
+	margin-left: -3px;
+	bottom: -12px;
+}
+
+.tab-text{
+	font-size: 14px;
+	padding-top:5px;
+}
+.tab-text a{
+	color: #666;
+	margin: 0 10px;
+}
+.tab-text a:hover{
+	text-decoration: underline;
+}
+.tab-text span{
+	color: #ccc;
+}
+.tab-time{
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	border-top: 1px solid #E5E5E5;
+	overflow: hidden;
+}
+.tab-time li{
+	float: left;
+	width: 120px;
+	text-align: center;
+	margin-right: 3px;
+}
+.tab-time li a{
+	display: block;
+	width: 80px;
+	margin: 0 auto;
+	margin-top: -1px; 
+	
+}
+.tab-time li.active a{
+	border-top: 3px solid #E73736;
+}
+.tab-time-c2 span{
+	display: inline-block;
+	width: 20px;
+	height: 17px;
+	line-height: 17px;
+	text-align: center;
+	background: #3E3A39;
+	border-radius: 2px;
+	margin: 0 5px;
+	color: #fff;
+}
+.tab-content{
+	opacity:0;
+	display:none;
+	transition:all 0.5s;
+}
+.tab-content.active{
+	display:block;
+	opacity:1;
+}
