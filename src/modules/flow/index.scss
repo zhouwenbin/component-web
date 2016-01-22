@@ -11,12 +11,11 @@
   <li><div class="flow-r1"><div class="flow-icon5"></div></div><h3>快速清关</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
   <li><div class="flow-r1"><div class="flow-icon6"></div></div><h3>顶尖物流配送</h3></li>
 </ul>
-
 */
-@import '../../pages/utils/variables';
+@import '../../utils/variables';
+
 .flow{
-	/*background: url(#{$bg-url}flow.png) no-repeat;*/
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/flow.png) no-repeat;
+	background: url(#{$bg-url}flow.png) no-repeat;
 	height:164px;
 	text-indent:-999em;
 	margin:13px 0 30px;
