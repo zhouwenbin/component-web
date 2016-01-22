@@ -7,7 +7,8 @@
 */
 .slidebar {
   width: 175px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 400px;
   background: #3E3A39;
   color: #fff;
@@ -78,7 +79,8 @@
   top: 0;
   color: #333;
   padding: 38px 20px 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: none; }
 
 .slidebar-c2-2 {
@@ -279,7 +281,8 @@
   display: block;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   overflow: hidden;
   background: #fff; }
 
@@ -358,7 +361,8 @@
   background: url(http://img0.sfht.com/img/b3252112381d2328dc66e71cfcbb656f.jpg) no-repeat center top;
   height: 1160px;
   padding-top: 900px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-size: 16px;
   line-height: 28px;
   color: #777; }
@@ -416,7 +420,8 @@
   height: 25px;
   line-height: 25px;
   text-align: center;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   color: #fff;
   display: inline-block;
   vertical-align: middle;

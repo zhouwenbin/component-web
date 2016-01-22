@@ -1,0 +1,72 @@
+/*
+@styleguide
+
+# 热卖
+	
+*/
+.hotsale{
+	padding: 32px 20px 0;
+}
+.hotsale-c1{
+	width: 70px;
+	text-align: center;
+	margin-right: 22px;
+}
+.hotsale-c2{
+	overflow: hidden;
+
+}
+.hotsale h3{
+	font-size: 16px;
+	color: #666; 
+	font-weight: normal;
+	margin-bottom: 27px;
+}
+.hotsale li{
+	padding: 23px 0;
+	border-top:1px solid #E5E5E5;
+	position: relative;
+}
+.hotsale img{
+	max-width: 70px;
+	height: 70px;
+}
+.hotsale h4{
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 14px;
+	font-weight: normal;
+}
+.hotsale h4 a:hover{
+	text-decoration: underline;
+}
+.hotsale .text-important{
+	font-size: 14px;
+}
+.hotsale del{
+	
+	color: #ccc;
+	margin-left: 8px;
+}
+.hotsale-icon{
+	width: 44px;
+	height: 38px;
+	
+	position: absolute;
+	left: 0;
+	top: 7px;
+}
+.hotsale-icon1{
+	background: url(../img/index-makeup/hotsale-icon.png) no-repeat;
+}
+.hotsale-icon2{
+	background: url(../img/index-makeup/hotsale-icon.png) no-repeat;
+	background-position: left -120px;
+	
+}
+
+.hotsale-icon3{
+	background: url(../img/index-makeup/hotsale-icon.png) no-repeat;
+	background-position: left -238px;
+	
+}

@@ -13,7 +13,8 @@
   top: 50%;
   margin-left: -256px;
   margin-top: -265px;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
   z-index: 3; }
 
 .register.register-top {
@@ -29,7 +30,8 @@
   padding-left: 20px;
   background: url(http://img0.sfht.com/sfht/1.1.258/img/register-h2.png) repeat-x;
   border-bottom: 1px solid #E4E3E3;
-  border-radius: 3px 3px 0 0; }
+  -webkit-border-radius: 3px 3px 0 0;
+          border-radius: 3px 3px 0 0; }
 
 .register-h {
   position: relative; }
@@ -132,7 +134,8 @@
   width: 253px;
   padding: 12px 0 12px 16px;
   border: 1px solid #CCCCCC;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
   color: #999; }
 
 .register li input:focus {
@@ -145,7 +148,8 @@
   width: 126px; }
 
 .register input:focus {
-  box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
+  -webkit-box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
+          box-shadow: 0 0 10px rgba(102, 175, 233, 0.5);
   border-color: #66afe9; }
 
 .register-br1 {

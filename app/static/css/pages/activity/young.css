@@ -283,7 +283,8 @@ a[title="站长统计"] {
   bottom: 100px;
   right: 50px;
   display: none;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   z-index: 998; }
 
 .btn-top:hover {
@@ -319,8 +320,10 @@ a[title="站长统计"] {
   font-size: 14px;
   background: #dd3e3f;
   border: 1px solid #c2363d;
-  border-radius: 2px;
-  box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1); }
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1);
+          box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1); }
 
 .btn-buy:hover,
 .btn-more:hover {
@@ -335,7 +338,8 @@ a[title="站长统计"] {
 .btn-more.disable {
   background: #999;
   border: 2px solid #999;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   cursor: not-allowed; }
 
 .btn-buy.border {
@@ -404,7 +408,8 @@ a[title="站长统计"] {
 
 .btn-goods.active {
   border-color: #dc3334;
-  box-shadow: 0 0 0 1px #dc3334; }
+  -webkit-box-shadow: 0 0 0 1px #dc3334;
+          box-shadow: 0 0 0 1px #dc3334; }
 
 .btn-goods.active .icon {
   display: block; }
@@ -479,9 +484,11 @@ a[title="站长统计"] {
   color: #cdcdcd;
   top: 23px;
   left: -1px;
-  border-radius: 2px;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
   display: none;
-  box-shadow: 3px 3px 5px rgba(4, 0, 0, 0.15); }
+  -webkit-box-shadow: 3px 3px 5px rgba(4, 0, 0, 0.15);
+          box-shadow: 3px 3px 5px rgba(4, 0, 0, 0.15); }
 
 .btn-select li {
   border-bottom: 1px solid #c6c6c6;
@@ -519,8 +526,10 @@ a[title="站长统计"] {
   line-height: 40px;
   color: #fff;
   background: #67b222;
-  border-radius: 2px;
-  box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1);
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1);
+          box-shadow: 0 2px 1px rgba(4, 0, 0, 0.1);
   border: 1px solid #448509; }
 
 .btn-send:hover {
@@ -533,7 +542,8 @@ a[title="站长统计"] {
 .btn-send.disable {
   background: #ccc;
   border: 1px solid #ccc;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   cursor: not-allowed; }
 
 .btn-register {
@@ -552,7 +562,8 @@ a[title="站长统计"] {
   padding: 24px 27px;
   width: 348px;
   line-height: 18px;
-  box-shadow: 1px 1px 5px rgba(4, 0, 0, 0.16);
+  -webkit-box-shadow: 1px 1px 5px rgba(4, 0, 0, 0.16);
+          box-shadow: 1px 1px 5px rgba(4, 0, 0, 0.16);
   background: #f4f4f9;
   position: absolute;
   z-index: 2;
@@ -576,7 +587,8 @@ a[title="站长统计"] {
   line-height: 34px;
   padding: 0 25px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
   background: #fff;
   font-size: 14px;
   color: #999; }
@@ -612,7 +624,8 @@ a[title="站长统计"] {
   background: rgba(231, 55, 54, 0.9); }
 
 .btn-danger:active {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25); }
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25); }
 
 .btn-warnning {
   background: #1376ce;
@@ -652,7 +665,8 @@ a[title="站长统计"] {
   background: rgba(62, 58, 57, 0.9); }
 
 .btn-black:active {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25); }
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25); }
 
 .btn-disable {
   color: #888888 !important;
@@ -663,7 +677,8 @@ a[title="站长统计"] {
   background: #e8e8e8; }
 
 .btn-radius {
-  border-radius: 22px; }
+  -webkit-border-radius: 22px;
+          border-radius: 22px; }
 
 .btn-small {
   width: 80px;
@@ -733,7 +748,8 @@ a[title="站长统计"] {
 */
 .slidebar {
   width: 175px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 400px;
   background: #3E3A39;
   color: #fff;
@@ -804,7 +820,8 @@ a[title="站长统计"] {
   top: 0;
   color: #333;
   padding: 38px 20px 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: none; }
 
 .slidebar-c2-2 {
@@ -1005,7 +1022,8 @@ a[title="站长统计"] {
   display: block;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   overflow: hidden;
   background: #fff; }
 
@@ -1069,13 +1087,15 @@ a[title="站长统计"] {
   padding-left: 44px;
   font-size: 70px;
   color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   letter-spacing: 24px;
   position: absolute;
   margin-left: 520px;
   margin-top: 20px;
   border: 3px solid #fff;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
   color: #d0d1d4; }
 
 .young-slider {
@@ -1092,7 +1112,8 @@ a[title="站长统计"] {
   background: url(http://img0.sfht.com/sfht/1.1.258/img/young/young-btn.png) no-repeat;
   font-size: 44px;
   color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-left: 200px;
   text-align: left; }
 
@@ -1124,7 +1145,8 @@ a[title="站长统计"] {
 
 .young-coupon .pm {
   padding-left: 290px;
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 .young-h2 {
   height: 70px;
@@ -1199,7 +1221,8 @@ a[title="站长统计"] {
   height: 118px;
   line-height: 118px;
   text-align: center;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   background: #070707;
   color: #fff;
   font-size: 32px;
@@ -1269,10 +1292,12 @@ a[title="站长统计"] {
 .spike-tab-h li {
   width: 27px;
   padding-top: 8px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 79px;
   background: #f63c3f;
   text-align: center;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   font-size: 17px;
   margin-bottom: 40px;
@@ -1284,6 +1309,7 @@ a[title="站长统计"] {
   width: 11px;
   height: 11px;
   background: #f63c3f;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
   position: absolute;
   right: -31px;
@@ -1383,6 +1409,7 @@ a[title="站长统计"] {
 .spike-r1 .mask {
   position: absolute;
   display: block;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   z-index: 0;
   width: 100%;
@@ -1483,7 +1510,8 @@ a[title="站长统计"] {
   padding-top: 227px;
   background: #000000;
   background: rgba(0, 0, 0, 0.96);
-  border-radius: 10px;
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
   position: absolute;
   left: 0;
   top: 0;
@@ -1533,7 +1561,8 @@ a[title="站长统计"] {
   height: 121px;
   line-height: 121px;
   text-align: center;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   background: #f0e6ea;
   position: absolute;
   font-size: 36px;

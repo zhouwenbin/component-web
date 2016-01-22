@@ -1,0 +1,46 @@
+@import '../product-1/index';
+@import '../hotsale/index';
+/*
+@styleguide
+
+# 图片列表3
+
+*/
+
+
+.products3{
+	border: 1px solid #E5E5E5;
+	margin-bottom: 30px;
+	background: #fff;
+}
+.products3-c1{
+	width: 949px;
+}
+.products3-c1c1{
+	width: 472px;
+}
+.products3-c2{
+	overflow: hidden;
+}
+.products3 .product-1-r1 img{
+	max-width: 196px;
+	max-height: 196px;
+}
+.products3 .product-1-r1{
+	height: 196px;
+	margin-bottom: 17px;
+}
+.products3 .product-1-list li{
+	padding: 21px 19px;
+	width: 196px;
+}
+.products3 .product-1-r2c1 img{
+	vertical-align: 0px;
+	margin-right: 7px;
+}
+.products3 .product-1-r2c1 strong{
+	font-size: 14px;
+}
+.products3 .product-1-r2c1 del{
+	color: #ccc;
+}

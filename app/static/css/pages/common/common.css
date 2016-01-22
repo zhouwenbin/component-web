@@ -277,6 +277,7 @@ a[title="站长统计"] {
 
 .btn-top {
   padding: 18px 21px;
+  background: #000000;
   background: rgba(0, 0, 0, 0.3);
   position: fixed;
   bottom: 100px;
@@ -660,6 +661,7 @@ a[title="站长统计"] {
   border: 1px solid #3E3A39; }
 
 .btn-black:hover {
+  background: #3E3A39;
   background: rgba(62, 58, 57, 0.9); }
 
 .btn-black:active {
@@ -3249,6 +3251,7 @@ a[title="站长统计"] {
   color: #666;
   margin-left: -1px; }
   .cart-item:hover {
+    color: #666666;
     color: rgba(102, 102, 102, 0.8); }
 
 .header1-c2 .icon116 {
@@ -3257,6 +3260,7 @@ a[title="站长统计"] {
 .header1 a {
   color: #ccc; }
   .header1 a:hover {
+    color: #CCCCCC;
     color: rgba(204, 204, 204, 0.8); }
 
 .header1-user {
@@ -3666,6 +3670,7 @@ a[title="站长统计"] {
   color: #999;
   padding-left: 16px; }
   .nav .header-c2 a:hover {
+    color: #999999;
     color: rgba(153, 153, 153, 0.8); }
 
 .nav-fixed {

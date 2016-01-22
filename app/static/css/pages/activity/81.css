@@ -50,7 +50,8 @@
   line-height: 64px;
   text-align: center;
   font-size: 24px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   display: block;
   margin-top: 350px;
   margin-left: 59px; }
@@ -75,7 +76,8 @@
 .m81-video-close {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   text-align: center;
   line-height: 30px;
   background: #fff;

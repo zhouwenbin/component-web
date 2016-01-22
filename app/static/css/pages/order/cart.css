@@ -63,7 +63,8 @@
   position: relative;
   background: #fff url(http://img0.sfht.com/sfht/1.1.258/img/adress-li.png) no-repeat -5px top;
   padding-top: 5px;
-  border-radius: 4px; }
+  -webkit-border-radius: 4px;
+          border-radius: 4px; }
 
 .address li.active {
   background: #fff url(http://img0.sfht.com/sfht/1.1.258/img/adress-li-active.png) no-repeat -5px top; }
@@ -164,7 +165,8 @@
 .cart-table {
   border: 1px solid #ccc;
   border-bottom: 1px dashed #ccc;
-  border-radius: 4px 4px 0 0; }
+  -webkit-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0; }
 
 .cart table {
   width: 100%;
@@ -177,7 +179,8 @@
   padding: 0 25px; }
 
 .cart .th1 {
-  border-radius: 4px 0 0 0;
+  -webkit-border-radius: 4px 0 0 0;
+          border-radius: 4px 0 0 0;
   width: 143px;
   padding-right: 40px; }
 
@@ -190,7 +193,8 @@
   padding-right: 99px; }
 
 .cart th:last-child {
-  border-radius: 0 4px 0 0; }
+  -webkit-border-radius: 0 4px 0 0;
+          border-radius: 0 4px 0 0; }
 
 .cart .th4,
 .cart .td4 {
@@ -280,7 +284,8 @@
 .cart .label-disabled {
   background: #aaa;
   width: 80px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-size: 12px;
   margin-top: 5px;
   position: absolute;
@@ -364,7 +369,8 @@
   border-top: 1px dashed #fff;
   background: #eee;
   padding: 18px 44px 18px 25px;
-  border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 4px;
   position: relative; }
 
 .cart-footer-c1 a {
@@ -424,11 +430,13 @@
 .cart-footer-fixed {
   position: fixed;
   width: 1180px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   z-index: 1;
   bottom: 0;
   border: 1px solid #ccc;
-  border-radius: 3px; }
+  -webkit-border-radius: 3px;
+          border-radius: 3px; }
 
 .cart-footer-fixed .icon75,
 .cart-footer-fixed .icon76 {
@@ -504,7 +512,8 @@
 
 .order-confirm .cart-table {
   border-bottom-style: solid;
-  border-radius: 4px; }
+  -webkit-border-radius: 4px;
+          border-radius: 4px; }
 
 .order-confirm .label-disabled {
   display: block; }
@@ -543,7 +552,8 @@
   width: 4px;
   height: 4px;
   background: #fff;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   content: '';
   position: absolute;
   left: -4px;
@@ -554,7 +564,8 @@
 
 .icon-etk {
   background: #c4c4c4;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   margin-left: 18px;
   display: inline-block;
   padding: 5px;
@@ -566,7 +577,8 @@
   background: #fff;
   border: 1px solid #ccc;
   border-bottom: 1px dashed #ccc;
-  border-radius: 4px 4px 0 0; }
+  -webkit-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0; }
 
 .cart-coupon-r1 {
   margin-bottom: 26px; }
@@ -579,7 +591,8 @@
   text-align: center;
   background: #de312d;
   color: #fff;
-  border-radius: 2px;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
   margin-right: 20px;
   text-indent: -999em;
   position: relative; }
@@ -708,13 +721,15 @@
   line-height: 40px;
   text-align: center;
   color: #aaa;
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 .coupons-tab li.active a {
   color: #333;
   border: 1px solid #ccc;
   background: #fff;
-  border-radius: 4px; }
+  -webkit-border-radius: 4px;
+          border-radius: 4px; }
 
 .coupons-list {
   margin-left: 7px;
@@ -772,7 +787,8 @@
   width: 8px;
   height: 8px;
   background: #ccc;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   position: absolute;
   left: 25px;
   top: 50%;
