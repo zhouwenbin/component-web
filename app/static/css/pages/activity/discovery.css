@@ -26,7 +26,8 @@
   margin-right: 39px; }
 
 .discovery-index li:hover {
-  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.14); }
+  -webkit-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.14);
+          box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.14); }
 
 .discovery-index h2 {
   font-size: 18px;
@@ -57,7 +58,8 @@
   width: 28px;
   height: 28px;
   line-height: 28px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
   text-align: center;
   color: #fff;
   position: absolute;

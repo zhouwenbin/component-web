@@ -57,16 +57,16 @@ gulp.task("svg", function () {
 
 gulp.task('watch', function() {
   for(var i in pages) {
-    gulp.watch("src/pages/"+ pages[i] +"/**.slim",["html"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.slim",["slim"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.html",["html"]);
-    gulp.watch("src/pages/"+ pages[i] +"/**.scss",["css"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.scss",["sass"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.css",["css"]);
   }
   for(var i in modules) {
-    gulp.watch("src/modules/"+ modules[i] +"/**.slim",["html"]);
-    gulp.watch("src/modules/"+ modules[i] +"/**.html",["html"]);
-    gulp.watch("src/modules/"+ modules[i] +"/**.scss",["css"]);
-    gulp.watch("src/modules/"+ modules[i] +"/**.css",["css"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.slim",["demo"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.html",["demo"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.scss",["demo"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.css",["demo"]);
   }
 });
 
@@ -96,12 +96,12 @@ gulp.task("demo", function () {
           .pipe(gulp.dest("dist/modules/"+ modules[i]));
 
       //slim
-      gulp.src("src/modules/"+ modules[i] +"/**.slim")
-        .pipe(slim({
-          pretty: true,
-          chdir: true
-        }))
-        .pipe(gulp.dest("dist/modules/"+ modules[i]));
+      // gulp.src("src/modules/"+ modules[i] +"/**.slim")
+      //   .pipe(slim({
+      //     pretty: true,
+      //     chdir: true
+      //   }))
+      //   .pipe(gulp.dest("dist/modules/"+ modules[i]));
 
       
       //postcss

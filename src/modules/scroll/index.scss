@@ -1,0 +1,40 @@
+.scroll{
+	padding: 0 17px 0 14px;
+	position: relative;
+	height: 500px;
+	overflow: hidden;
+}
+.scroll:hover .scroll-prev,
+.scroll:hover .scroll-next{
+	opacity:1;
+}
+.scroll ul{
+	position: relative;
+	padding-top: 3px;
+}
+.scroll li{
+	padding: 4px 0;
+	text-align: center;
+	border-bottom: 1px solid #E5E5E5;
+	margin-top: -1px;
+	height: 75px
+}
+.scroll-prev,
+.scroll-next{
+	width: 100px;
+	height: 25px;
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	opacity:0;
+	z-index: 1;
+	transition:all 0.5s;
+}
+.scroll-prev{
+	background: url(http://img0.sfht.com/cmsres/20150921/7481120f-26b2-41b3-a39f-a26048f64526.png) no-repeat;
+	top: 0;
+}
+.scroll-next{
+	background: url(http://img0.sfht.com/cmsres/20150921/4ed80c01-d520-41c3-b436-c181343b7f23.png) no-repeat;
+	bottom: 0;
+}

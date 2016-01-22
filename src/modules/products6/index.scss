@@ -1,0 +1,38 @@
+@import '../product-1/index';
+@import '../products2/index';
+/*
+@styleguide
+
+# 图片列表5
+	
+*/
+
+.products6{
+	margin-bottom: 30px;
+	background:#fff;
+}
+.products6-r1{
+	box-shadow:0 0 0 1px #E5E5E5;
+}
+.products6 .swiper-container{
+	width: 472px;
+	height:249px;
+	border-left:1px solid #E5E5E5;
+	border-bottom:1px solid #E5E5E5;
+}
+.products6-imgs li{
+	float: left;
+	width: 169px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	border:1px solid #E5E5E5;
+	box-sizing:border-box;
+	margin-right: -1px;
+	margin-top: -1px;
+	background: #fff;
+}
+.products6-imgs li:first-child,
+.products6-imgs li:last-child{
+	width: 171px;
+}

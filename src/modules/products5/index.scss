@@ -1,0 +1,81 @@
+@import '../product-1/index';
+/*
+@styleguide
+
+# 图片列表5
+	
+*/
+
+.products5{
+	border: 1px solid #E5E5E5;
+	margin-bottom: 30px;
+	background:#fff;
+}
+.products5-c1{
+	width: 235px;
+	height:330px;
+}
+.products5-c2{
+	width: 708px;
+	border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+}
+.products5-c3{
+	overflow:hidden;
+}
+
+.products5 .product-1{
+	margin-bottom: 0;
+}
+.products5 .product-1-r1 img{
+	max-width: 196px;
+	max-height: 196px;
+}
+.products5 .product-1-r1{
+	height: 196px;
+	margin-bottom: 17px;
+}
+.products5 .product-1-list li{
+	padding: 19px;
+	width: 196px;
+}
+.products5 .product-1-r2c1 img{
+	vertical-align: 0px;
+	margin-right: 7px;
+}
+.products5 .product-1-r2c1 strong{
+	font-size: 14px;
+}
+.products5 .product-1-r2c1 del{
+	color: #ccc;
+}
+.products5 .scroll li{
+	height: 74px;
+}
+
+.icon-addtocart{
+	fill:#fff;
+	color:#E73736;
+	margin-top:-5px;
+}
+.icon-addtocart:hover{
+	fill:#E73736;
+	color:#fff;
+}
+.icon-addtocart-disabled{
+	fill:#fff;
+	color:#666;
+}
+.icon-addtocart-disabled:hover{
+	fill:#fff;
+	color:#666;
+}
+.icon-addtocart-png{
+	display:inline-block;
+	width:30px;
+	height:30px;
+	background: url(http://img0.sfht.com/cmsres/20151113/bd66cc51-615b-4780-915a-b77de0d70363.png);
+}
+.icon-addtocart-png:hover{
+	background: url(http://img0.sfht.com/cmsres/20151113/e750b918-9738-41be-adb6-a6bd07dd1c81.png);
+}

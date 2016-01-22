@@ -778,32 +778,33 @@
   top: 10px;
   width: 20px;
   height: 20px;
-  color: #979797; }
+  color: #979797;
+  background: url(http://img0.sfht.com/cmsres/20151231/42d2fd51-e7e5-4a37-94a2-f2e10c532868.png) 0 0 no-repeat; }
 
 .account-dialog-iclose:hover {
-  color: #EE5151; }
+  /*color: #EE5151;*/
+  background: url(http://img0.sfht.com/cmsres/20151231/1a2033d8-edbe-4b9a-8eed-362e9cf221ca.png) 0 0 no-repeat; }
 
-.account-dialog-iclose i,
-.account-dialog-iclose i:before {
-  position: absolute;
-  width: 20px;
-  height: 20px; }
-
-.account-dialog-iclose i {
-  top: 7px;
-  left: 7px;
-  line-height: 1;
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-  border-left: 1px solid; }
-
-.account-dialog-iclose i:before {
-  content: "";
-  border-top: 1px solid;
-  top: 10px;
-  right: 10px; }
-
+/*.account-dialog-iclose i,
+.account-dialog-iclose i:before{
+	position: absolute;	
+	width: 20px;
+	height: 20px;
+}
+.account-dialog-iclose i{
+	top: 7px;
+	left: 7px;
+	line-height: 1;
+	transform: rotate(45deg);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865474, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865474, SizingMethod='auto expand')";
+	border-left: 1px solid;
+}
+.account-dialog-iclose i:before{
+	content: "";
+	border-top: 1px solid;
+	top: 10px;
+	right: 10px;
+}*/
 .account-dialog-btn {
   width: 480px;
   height: 135px;

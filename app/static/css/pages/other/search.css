@@ -586,7 +586,11 @@
   white-space: normal; }
 
 .classify-text li {
-  margin-right: 42px; }
+  margin-right: 42px;
+  line-height: 1.5; }
+
+.classify-text ul {
+  width: 1090px; }
 
 .classify-c2 {
   padding-top: 13px; }

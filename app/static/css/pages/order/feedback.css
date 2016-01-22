@@ -20,7 +20,8 @@
   padding: 53px 158px;
   background: #fff;
   margin: 46px 0;
-  border-radius: 10px; }
+  -webkit-border-radius: 10px;
+          border-radius: 10px; }
 
 .feedback h2 {
   font-size: 18px;

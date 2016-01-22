@@ -47,7 +47,8 @@
   margin-left: -299px;
   margin-top: -143px;
   background: #fff;
-  box-shadow: 0 0 10px #000; }
+  -webkit-box-shadow: 0 0 10px #000;
+          box-shadow: 0 0 10px #000; }
 
 .u-dialog-h {
   border-bottom: 1px solid #E5E5E5;
