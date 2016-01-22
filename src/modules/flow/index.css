@@ -13,9 +13,10 @@
 </ul>
 
 */
-
+@import '../../pages/utils/variables';
 .flow{
-	background: url(#{$bg-url}flow.png) no-repeat;
+	/*background: url(#{$bg-url}flow.png) no-repeat;*/
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/flow.png) no-repeat;
 	height:164px;
 	text-indent:-999em;
 	margin:13px 0 30px;

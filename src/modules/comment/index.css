@@ -1,0 +1,11 @@
+.comment{
+	padding: 20px 0;
+}
+.comment-num{
+	font-size: 18px;
+	margin-right: 5px;
+}
+.comment h3{
+	font-size: 14px;
+	font-weight: normal;
+}
