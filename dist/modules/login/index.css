@@ -247,3 +247,6 @@
   top: 12px;
   right: 55px;
 }
+.login input::-ms-clear { 
+  display: none; 
+} 
