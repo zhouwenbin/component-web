@@ -158,7 +158,7 @@
     <h4>Files Generated:</h4>
     <ol>
         <li><a href="css/sprite.css">css/sprite.css</a></li>
-        <li><a href="svg/cart.svg">svg/cart.svg</a></li>
+        <li><a href="svg/comment-progress.svg">svg/comment-progress.svg</a></li>
     </ol>
     <h4>Usage:</h4>
     <ol>
@@ -186,18 +186,6 @@
     var modeView = document.getElementById("mode-view");
     var icons = document.querySelectorAll(".icon");
 
-    function selectText(id) {
-        if (document.selection) {
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById(id +"-pre"));
-            range.select();
-        } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(document.getElementById(id +"-pre"));
-            window.getSelection().addRange(range);
-        }
-    }
-
     function setSize (fontSize) {
         for (var i = 0; i < icons.length; i++) {
             icons[i].style.fontSize = fontSize + 'px';
@@ -207,7 +195,6 @@
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
-        selectText(id)
     }
     function hidePopover() {
 

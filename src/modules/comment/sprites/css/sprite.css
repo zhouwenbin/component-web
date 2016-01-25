@@ -1,17 +1,17 @@
-.cart-icon {
+.comment-icon {
     font-size: 10px;
 }
 
-.cart-icon:before {
+.comment-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/cart.svg");
+    background-image: url("../svg/comment.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .cart-icon:before {
-    background-image: url("../svg/cart.png");
+.no-svg .comment-icon:before {
+    background-image: url("../svg/comment.png");
 }
 

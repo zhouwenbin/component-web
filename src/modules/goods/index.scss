@@ -1,8 +1,6 @@
 @import '../../utils/variables';
 .goods{
-	margin-bottom: 47px;
 	background: #fff;
-	margin-bottom: 20px;
 	padding: 30px 20px;
 	position: relative;
 	overflow: hidden;
@@ -111,6 +109,7 @@
 	font-size:14px;
 	padding-left: 14px;
 	color:#666;
+	position: relative;	
 }
 .goods-price-r1 em{
 	display: inline-block;
@@ -408,4 +407,60 @@
 	vertical-align: text-top;
 	margin-top: -2px;
 	margin-right: 2px;
+}
+.presell-money{
+	margin-top: 15px;
+}
+.presell-money span{
+	font-size: 20px;
+	margin-right: 20px;
+	margin-left: 0;
+}
+.goods-price-r1 .goods-activity-c1{
+	top: 20px;
+}
+.presell-rules-box{
+	position: absolute;
+	background-color: #fff;
+	font-size: 12px;
+	z-index: 1;
+	padding: 20px 30px;
+	width: 350px;
+	line-height: 1.5;
+	border: 1px solid #E9E0D7;
+	border-radius: 4px;
+	right: 10px;
+	top: 45px;
+}
+.presell-rules-bg{
+	position: absolute;
+	background: url(http://img0.sfht.com/cmsres/20160125/95a5fdfd-38ba-4ae4-9c24-c38c0709a4f4.png) 0 0 no-repeat;
+	right: 40px;
+	top: -9px;
+	width: 20px;
+	height: 12px;
+	z-index: 1;
+}
+.presell-rules-box h2{
+	color: #E73736;
+}
+.presell-rules-box li{
+	color: #666;
+	margin-bottom: 0;
+	line-height: 1.5;
+}
+.goods-price-r1 .goods-activity-c1 span{
+	font-size: 14px;
+	color: #666;
+}
+.presell-btn-buy{
+	border: 0 none;
+	background-color: #E73736;
+	border-radius: 0;
+}
+.goods-c2r2 .btn-normal{
+	border: 1px solid #E5E5E5;
+	height: 43px;
+	line-height: 43px;
+	color: #666;
 }

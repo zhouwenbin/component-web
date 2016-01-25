@@ -1,0 +1,15 @@
+.detail-h{
+	font-size: 14px;
+}
+.detail-h ul{
+	padding-top:30px;
+	margin: -2px 50px 0;
+}
+.detail-h li{
+	margin-bottom: 17px;
+	width: 33.3%;
+	float: left;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
