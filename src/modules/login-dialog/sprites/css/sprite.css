@@ -1,0 +1,17 @@
+.login-dialog-icon {
+    font-size: 10px;
+}
+
+.login-dialog-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/login-dialog.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .login-dialog-icon:before {
+    background-image: url("../svg/login-dialog.png");
+}
+

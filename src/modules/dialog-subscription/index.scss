@@ -1,2 +1,11 @@
 @import "../../utils/variables";
-@import "../dialog/index.css";
+@import "../dialog/index";
+.dialog-subscription .dialog-b{
+	padding-top:48px;
+	padding-bottom:20px;
+}
+.dialog-subscription h3{
+	font-size:18px;
+	color:#64aa30;
+	margin-top:25px;
+}

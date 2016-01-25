@@ -1,0 +1,352 @@
+
+@import '../../utils/variables';
+.nataral-top{
+	width: 121px;
+	border:1px solid #E5E5E5;
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	margin-left: 600px;
+	z-index: map-get($z-index,nataral-top);
+}
+.nataral-top li{
+	background: #fff;
+	border-bottom: 1px dashed #ddd;
+	font-size: 14px;
+	transition:all 0.5s;
+	padding-left: 17px;
+}
+.nataral-top li:hover{
+	background: #eee;
+}
+.nataral-top li a{
+	display: block;
+	height: 51px;
+	line-height: 51px;
+	color: #666;
+}
+.nataral-top li a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.nataral-top li.active i{
+	background: #FF9F00;
+}
+
+.nataral-top i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 50%;
+	background: #B3B7C0;
+	text-align: center;
+	color: #fff;
+	font-size: 12px;
+}
+.nataral-top i:before{
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+.nataral-top li .nataral-top-text{
+	margin-left: 11px;
+}
+.nataral-top .icon111,
+.nataral-top .icon113{
+	vertical-align: -1px;
+}
+.nataral-top-r1{
+	background: #D9D9D9;
+	
+	margin-top: -1px;
+	text-align: center;
+	font-size: 14px;
+}
+.nataral-top1 li.active i{
+	background: #FF9B00;
+}
+.nataral-top1 li.active a{
+	color: #F5A623;     
+}
+.nataral-top1 .nataral-top-r1{
+	background: #FFB748;
+}
+.nataral-top2 li.active i{
+	background: #EC93E1;
+}
+.nataral-top2 li.active a{
+	color: #EC93E1;     
+}
+.nataral-top2 .nataral-top-r1{
+	background: #EB94E0;
+}
+.nataral-top3 li.active i{
+	background: #FE787B;
+}
+.nataral-top3 li.active a{
+	color: #FE787B ;     
+}
+.nataral-top3 .nataral-top-r1{
+	background: #FE787B;
+}
+.nataral-top4 li.active i{
+	background: #95C84F;
+}
+.nataral-top4 li.active a{
+	color: #95C84F;     
+}
+.nataral-top4 .nataral-top-r1{
+	background: #95C84F;
+}
+
+.nataral-top-r1:hover{
+	background: #999;
+}
+.nataral-top-r1 .nataral-top-text{
+	margin-right: 7px;
+}
+.nataral-top-r1 a{
+	color: #fff;
+	display: block;
+	height: 33px;
+	line-height: 33px;
+}
+.nataral-top-r1 a:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+@media all and (max-width:1400px){
+	.nataral-top{
+		width: 50px;
+		left: auto;
+		right: 0;
+		margin-left: 0;
+	}
+	.nataral-top:hover{
+		width: 121px;
+
+	}
+	.nataral-top:hover .nataral-top-text{
+		display: inline-block;
+	}
+	.nataral-top-text{
+		display: none;
+	}
+}
+
+
+.icon-floor{
+	display: inline-block;
+	vertical-align: middle;
+	background: url(#{$bg-url}icon-floor.png) no-repeat;
+}
+.icon-floor1{
+	@extend .icon-floor;
+	width: 13px;
+	height: 12px;
+	background-position: -530px -88px;
+}
+.icon-floor2{
+	@extend .icon-floor;
+	width: 17px;
+	height: 13px;
+	background-position: -530px -108px;
+}
+.icon-floor3{
+	@extend .icon-floor;
+	width: 13px;
+	height: 13px;
+	background-position: -530px -128px;
+}
+.icon-floor4{
+	@extend .icon-floor;
+	width: 15px;
+	height: 14px;
+	background-position: -530px -148px;
+}
+.icon-floor5{
+	@extend .icon-floor;
+	width: 17px;
+	height: 17px;
+	background-position: -158px -88px;
+}
+.icon-floor6{
+	@extend .icon-floor;
+	width: 15px;
+	height: 15px;
+	background-position: -158px -108px;
+}
+.icon-floor7{
+	@extend .icon-floor;
+	width: 16px;
+	height: 16px;
+	background-position: -158px -128px;
+}
+.icon-floor8{
+	@extend .icon-floor;
+	width: 15px;
+	height: 13px;
+	background-position: -158px -148px;
+}
+.icon-floor9{
+	@extend .icon-floor;
+	width: 14px;
+	height: 15px;
+	background-position: -158px -168px;
+}
+.icon-floor10{
+	@extend .icon-floor;
+	width: 12px;
+	height: 18px;
+	background-position: -158px -187px;
+}
+.icon-floor11{
+	@extend .icon-floor;
+	width: 13px;
+	height: 15px;
+	background-position: -158px -208px;
+}
+.icon-floor12{
+	@extend .icon-floor;
+	width: 15px;
+	height: 12px;
+	background-position: -158px -228px;
+}
+.icon-floor13{
+	@extend .icon-floor;
+	width: 13px;
+	height: 15px;
+	background-position: -158px -248px;
+}
+.icon-floor14{
+	@extend .icon-floor;
+	width: 13px;
+	height: 16px;
+	background-position: -158px -269px;
+}
+.icon-floor15{
+	@extend .icon-floor;
+	width: 13px;
+	height: 13px;
+	background-position: -158px -288px;
+}
+.icon-floor16{
+	@extend .icon-floor;
+	width: 17px;
+	height: 12px;
+	background-position: -282px -88px;
+}
+.icon-floor17{
+	@extend .icon-floor;
+	width: 17px;
+	height: 11px;
+	background-position: -283px -109px;
+}
+.icon-floor18{
+	@extend .icon-floor;
+	width: 13px;
+	height: 15px;
+	background-position: -283px -128px;
+}
+.icon-floor19{
+	@extend .icon-floor;
+	width: 10px;
+	height: 17px;
+	background-position: -283px -148px;
+}
+.icon-floor20{
+	@extend .icon-floor;
+	width: 17px;
+	height: 13px;
+	background-position: -283px -168px;
+}
+.icon-floor21{
+	@extend .icon-floor;
+	width: 15px;
+	height: 12px;
+	background-position: -283px -189px;
+}
+.icon-floor22{
+	@extend .icon-floor;
+	width: 15px;
+	height: 15px;
+	background-position: -407px -88px;
+}
+.icon-floor23{
+	@extend .icon-floor;
+	width: 14px;
+	height: 15px;
+	background-position: -407px -109px;
+}
+.icon-floor24{
+	@extend .icon-floor;
+	width: 16px;
+	height: 16px;
+	background-position: -407px -128px;
+}
+.icon-floor25{
+	@extend .icon-floor;
+	width: 16px;
+	height: 17px;
+	background-position: -407px -149px;
+}
+.icon-floor26{
+	@extend .icon-floor;
+	width: 10px;
+	height: 17px;
+	background-position: -407px -168px;
+}
+.icon-floor27{
+	@extend .icon-floor;
+	width: 12px;
+	height: 15px;
+	background-position: -407px -188px;
+}
+.icon-floor28{
+	@extend .icon-floor;
+	width: 16px;
+	height: 17px;
+	background-position: -407px -209px;
+}
+.icon-floor29{
+	@extend .icon-floor;
+	width: 10px;
+	height: 17px;
+	background-position: -407px -228px;
+}
+.icon-floor30{
+	@extend .icon-floor;
+	width: 16px;
+	height: 16px;
+	background-position: -407px -248px;
+}
+.icon-floor31{
+	@extend .icon-floor;
+	width: 15px;
+	height: 15px;
+	background-position: -407px -268px;
+}
+.icon-floor32{
+	@extend .icon-floor;
+	width: 15px;
+	height: 14px;
+	background-position: -407px -288px;
+}
+.icon-floor33{
+	@extend .icon-floor;
+	width: 17px;
+	height: 8px;
+	background-position: -407px -309px;
+}
+.icon-floor34{
+	@extend .icon-floor;
+	width: 15px;
+	height: 17px;
+	background-position: -407px -328px;
+}

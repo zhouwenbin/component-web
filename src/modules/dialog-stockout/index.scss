@@ -1,2 +1,24 @@
 @import "../../utils/variables";
-@import "../dialog/index.css";
+@import "../dialog/index";
+.dialog-stockout .dialog-b{
+	padding:49px 60px 20px;
+	text-align:left;
+	height:auto;
+	width:auto;
+}
+.dialog-stockout p{
+	margin-bottom:27px;
+	padding-top:0;
+}
+.dialog-stockout .input{
+	width:276px;
+	padding:10px;
+	height:auto;
+}
+.dialog-stockout-r2 .btn{
+	padding:0 55px;
+}
+.dialog-stockout-r2{
+	padding-left:49px;
+	padding-top:30px;
+}

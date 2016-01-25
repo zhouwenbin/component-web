@@ -1,2 +1,19 @@
 @import "../../utils/variables";
-@import "../dialog/index.css";
+@import "../dialog/index";
+.dialog-qrcode{
+	width:323px;
+	margin-left:-161px;
+}
+.dialog-qrcode .dialog-b{
+	padding-top:20px;
+}
+.dialog-qrcode p{
+	padding-top:10px;
+	color: #666;
+	font-size: 12px;
+}
+.dialog-qrcode h3{
+	font-weight: normal;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
