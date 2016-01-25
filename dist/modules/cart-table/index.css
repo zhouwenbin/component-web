@@ -1,0 +1,5 @@
+.cart-table {
+  border: 1px solid #ccc;
+  border-bottom: 1px dashed #ccc;
+  -webkit-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0; }

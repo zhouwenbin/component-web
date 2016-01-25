@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 地址列表
+
+*/
+.invite-income {
+  background: #F5F5F5;
+  margin-bottom: 50px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  overflow: hidden; }
+
+.invite-income p {
+  text-align: center;
+  padding: 33px 0;
+  font-size: 14px;
+  color: #666; }
+
+.invite-income-icon {
+  width: 53px;
+  height: 65px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/invite-income-icon.png) no-repeat;
+  margin-right: 17px; }
+
+.invite-income p .btn-success {
+  margin-left: 22px; }
+
+.invite-income-c1 {
+  border-right: 3px dotted #fff;
+  width: 196px;
+  text-align: center;
+  padding-top: 38px;
+  padding-bottom: 39px;
+  margin-right: 48px; }
+
+.invite-income-c1 span {
+  margin-right: 0;
+  margin-bottom: 7px; }
+
+.invite-income h3 {
+  font-weight: normal;
+  margin-top: 10px; }
+
+.invite-income h4 {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 20px; }
+
+.invite-income ul {
+  padding-top: 38px; }
+
+.invite-income li {
+  float: left;
+  width: 200px; }
+
+.invite-income li .btn {
+  position: absolute;
+  margin-left: 14px;
+  margin-top: -7px; }
+
+.invite-income .text-important {
+  font-size: 28px; }
+
+.invite-income-alipay {
+  margin-top: 15px;
+  color: #999; }

@@ -1,0 +1,78 @@
+/*
+@styleguide
+
+# 常见问题
+
+*/
+.commonProblem-icon{
+  font-size: 10px;
+}
+.commonProblem-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/commonProblem.svg");
+  background-repeat: no-repeat;
+  background-size: 4em 8em;
+}
+.no-svg .commonProblem-icon:before{
+  background-image: url("../svg/commonProblem.png");
+}
+.commonProblem-icon.icon-a:before{
+  background-position: -1em -1em;
+  width: 2em;
+  height: 2em;
+}
+.commonProblem-icon.icon-q:before{
+  background-position: -1em -5em;
+  width: 2em;
+  height: 2em;
+}
+.commonProblem{
+  margin-bottom: 70px;
+}
+.commonProblem h2{
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
+  font-weight: normal;
+}
+
+.commonProblem-tab{
+    overflow: hidden;
+    border-bottom: 1px solid #c9c9c9;
+}
+.commonProblem-tab li {
+    float: left;
+    width: 122px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px
+}
+.commonProblem-tab li.active {
+    border-bottom: 3px solid #e53a3c
+}
+
+.commonProblem-icon {
+    float: left;
+    margin-left: -26px;
+    margin-top:3px;
+    width: 20px;
+    height: 20px
+}
+.commonProblem dl{
+  font-size: 14px;
+  line-height: 28px;
+  margin-top: 37px;
+}
+.commonProblem dt {
+    padding-left: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.commonProblem dd {
+    color: #4c4c4c;
+    padding-left: 26px;
+}

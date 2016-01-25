@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 地址列表
+
+*/
+.invite-h3 {
+  width: 140px;
+  height: 38px;
+  line-height: 38px;
+  background: #E85254;
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  -webkit-border-radius: 5px 5px 5px 0;
+          border-radius: 5px 5px 5px 0;
+  margin-left: -10px;
+  margin-top: -10px;
+  position: relative; }
+
+.invite-h3:before {
+  content: '';
+  border-width: 5px;
+  border-style: solid;
+  border-color: #E85254 #E85254 transparent transparent;
+  position: absolute;
+  bottom: -10px;
+  left: 0px; }
+
+.invite-open {
+  border: 1px solid #FF9E36;
+  margin-bottom: 54px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px; }
+
+.invite-open h3 {
+  background: #FF9E36; }
+
+.invite-open h3:before {
+  border-color: #FF9E36 #FF9E36 transparent transparent; }
+
+.invite-open li {
+  float: left;
+  width: 200px;
+  height: 242px;
+  padding: 24px 48px 0;
+  border-right: 1px dashed #E5E5E5;
+  margin-bottom: 50px; }
+
+.invite-open li:last-child {
+  border: none; }
+
+.invite-open h4 {
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: normal; }
+
+.invite-open h5 {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 10px; }
+
+.invite-open p {
+  line-height: 18px;
+  color: #999;
+  margin-bottom: 14px; }
+
+.invite-open-li1 h4 {
+  color: #FF9E36; }
+
+.invite-open-li2 h4 {
+  color: #8BC951; }
+
+.invite-open-li2 input {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 14px;
+  text-indent: 6px; }
+
+.invite-open-li3 h4 {
+  color: #E85254; }
+
+.invite-open-li3 p {
+  margin-bottom: 30px; }
+
+.invite-open-icon1 {
+  display: inline-block;
+  text-indent: -999em;
+  vertical-align: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 43px;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/invite-open-icon1.png) no-repeat; }
+
+.invite-open-icon2 {
+  display: inline-block;
+  text-indent: -999em;
+  vertical-align: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 43px;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/invite-open-icon2.png) no-repeat; }
+
+.invite-open-icon3 {
+  display: inline-block;
+  text-indent: -999em;
+  vertical-align: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 43px;
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/invite-open-icon3.png) no-repeat; }
+
+.invite-open-way {
+  margin-bottom: 32px; }
+
+.invite-open-way span {
+  margin-left: 8px;
+  border-width: 5px 10px; }

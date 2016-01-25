@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 流程
+
+*/
+.notify {
+  padding: 48px 30px; }
+
+.notify h3 {
+  color: #b5856d;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: normal; }
+
+.notify h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: normal; }
+
+.notify p,
+.notify li {
+  font-size: 14px;
+  color: #666;
+  line-height: 28px; }
+
+.notify ul {
+  padding-left: 15px; }
+
+.notify li {
+  list-style: inherit; }
+
+.notify-icon {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/notify-icon.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px; }

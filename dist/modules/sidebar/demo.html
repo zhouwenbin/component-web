@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>登陆顺丰海淘</title>
+<link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="pm">
+    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+    <symbol id="svg-sidebar4" viewBox="0 0 13 11">
+      <title>sidebar4</title>
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-389.000000, -504.000000)" fill="#FFFFFF">
+              <g id="Group" transform="translate(388.000000, 259.000000)">
+                  <path d="M4.39142986,249.17348 L6.62980065,255.107647 L1.15294671,249.17348 L4.39142986,249.17348 L4.39142986,249.17348 Z M8.54811525,245.67348 L10.063958,248.506814 L5.00036245,248.506814 L6.24586806,245.67348 L8.54811525,245.67348 L8.54811525,245.67348 Z M9.98828379,249.17348 L7.53232874,255.627147 L5.10401413,249.17348 L9.98828379,249.17348 L9.98828379,249.17348 Z M10.7079467,249.17348 L13.8001377,249.17348 L8.45895795,255.056814 L10.7079467,249.17348 L10.7079467,249.17348 Z M13.7644074,248.506814 L10.8265984,248.506814 L9.31092424,245.67348 L10.4369355,245.67348 L13.7644074,248.506814 L13.7644074,248.506814 Z M4.06614896,245.67348 L5.50901413,245.67348 L4.26165458,248.506814 L1.1104748,248.506814 L4.06614896,245.67348 L4.06614896,245.67348 Z"></path>
+              </g>
+          </g>
+      </g>
+    </symbol>
+    <symbol id="svg-sidebar3" viewBox="0 0 13 15">
+      <title>sidebar3</title>
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-389.000000, -419.000000)" fill="#FFFFFF">
+              <g id="Group" transform="translate(388.000000, 259.000000)">
+                  <path d="M13.7969847,161.189782 L13.6531019,160.305368 L13.182228,161.071882 C12.2646831,162.563958 10.2923873,163.488498 8.20441775,164.465217 C7.33945187,164.870105 6.4447747,165.291836 5.60084041,165.762115 C3.72084992,166.75386 2.15499795,168.892569 3.15984059,171.230585 C3.16801955,171.24974 3.17853534,171.269059 3.18738196,171.288379 C2.17235736,171.760639 1.42440056,172.660079 1.01628756,173.90909 C0.959535649,174.082638 1.05584698,174.2689 1.23127715,174.325042 C1.2653283,174.335776 1.30004711,174.34106 1.33393134,174.34106 C1.47497653,174.34106 1.60583976,174.252057 1.65157512,174.112195 C2.01361892,173.004366 2.64456663,172.24776 3.52739267,171.859714 C4.16134489,172.710938 5.30873499,173.434024 6.82501249,173.434024 L6.82534633,173.434024 C7.89712285,173.434024 9.55945307,173.040199 11.3937082,171.225797 L11.4117353,171.193927 C14.3486466,167.785071 14.1668736,163.462903 13.7969847,161.189782 L13.7969847,161.189782 Z"></path>
+              </g>
+          </g>
+      </g>
+    </symbol>
+    <symbol id="svg-sidebar2" viewBox="0 0 16 10">
+      <title>sidebar2</title>
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-388.000000, -342.000000)" fill="#FFFFFF">
+              <g id="Group" transform="translate(388.000000, 259.000000)">
+                  <path d="M0.837063538,86.8115797 C1.44482813,86.3777115 2.20134751,85.8373405 2.85415757,85.1517066 L2.99872209,84.99946 C3.79976315,84.1556432 4.89656785,83 5.74230519,83 C5.82611071,83 6.05378236,83.1140104 6.23710693,83.2058473 C6.64146855,83.4082027 7.19563253,83.6856339 7.85979125,83.7001253 C8.50823644,83.6856339 9.06240042,83.4082027 9.46693663,83.2058473 C9.6500866,83.1140104 9.87793285,83 9.96173837,83 C10.8079995,83 11.9055026,84.1566907 12.7068928,85.0012059 L12.8497114,85.151532 C13.5088069,85.8439751 14.2808652,86.3873142 14.9012006,86.8239759 C15.124682,86.9812858 15.3877964,87.1667055 15.6021988,87.3364117 C15.1274755,87.3006198 14.5481699,87.1955137 13.9447701,87.0848206 C13.0836685,86.9266377 12.1930603,86.7633915 11.4101771,86.7633915 C11.0398614,86.7633915 10.4727774,86.8964327 9.81612628,87.0506 C9.12857186,87.2121002 8.34918055,87.3950756 7.85333124,87.3966469 C7.35503761,87.3950756 6.5756463,87.2121002 5.88826647,87.0506 C5.23144073,86.8964327 4.66435673,86.7633915 4.29404111,86.7633915 C3.51150709,86.7633915 2.61897834,86.9266377 1.75613071,87.0844714 C1.16774614,87.1921964 0.601535117,87.2952073 0.133271792,87.3337928 C0.347674239,87.1614677 0.612534591,86.9720323 0.837063538,86.8115797 L0.837063538,86.8115797 Z M13.3282758,90.2680334 C12.734828,91.0474248 11.2608985,92.3603778 8.05900395,92.3980903 C8.04416339,92.3982649 8.02932283,92.3994871 8.01500605,92.4015822 L7.88563128,92.4000109 L7.76219274,92.4015822 C7.74770137,92.3994871 7.73303541,92.3982649 7.71802025,92.3980903 C4.23782157,92.3549654 2.73979796,90.6163501 2.47476301,90.268208 C1.40013185,88.8562597 0.692499022,88.3279357 0.243091938,88.0239661 C0.738068271,87.9796191 1.29956523,87.8780049 1.88201358,87.771502 C2.71413252,87.6192553 3.57471042,87.4617708 4.29404111,87.4617708 C4.58351933,87.4617708 5.16561848,87.5983039 5.7286868,87.7306468 C6.4879997,87.9087336 7.27315263,88.0931057 7.85333124,88.0950262 C8.43106552,88.0931057 9.21639305,87.9087336 9.97570595,87.7304722 C10.5387743,87.5983039 11.1208734,87.4617708 11.4101771,87.4617708 C12.1296823,87.4617708 12.9883397,87.6192553 13.8187127,87.7716766 C14.4512697,87.8877822 15.0597327,87.9983007 15.5842156,88.0344418 C15.1239836,88.3478395 14.3849237,88.8805284 13.3282758,90.2680334 L13.3282758,90.2680334 Z"></path>
+              </g>
+          </g>
+      </g>
+    </symbol>
+    <symbol id="svg-sidebar1" viewBox="0 0 12 15">
+      <title>sidebar1</title>
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-389.000000, -259.000000)" fill="#FFFFFF">
+              <g id="Group" transform="translate(388.000000, 259.000000)">
+                  <g transform="translate(1.000000, 0.000000)">
+                      <path d="M11.97375,5.01975904 C11.97375,2.24927711 9.3249375,0.160301205 5.8125,0.160301205 C5.6053125,0.160301205 5.4375,0.322048193 5.4375,0.521746988 L5.4375,4.3373494 L0.3789375,4.3373494 C0.1719375,4.3373494 0.0039375,4.49927711 0.0039375,4.69879518 C0.0039375,8.16740964 2.0176875,9.92638554 5.98875,9.92638554 C10.0160625,9.92638554 11.97375,8.32138554 11.97375,5.01975904 L11.97375,5.01975904 Z" id="Fill-1"></path>
+                      <path d="M9.2653125,10.4607831 C7.978125,10.4607831 6.931125,11.4701205 6.931125,12.7106024 C6.931125,13.9510843 7.978125,14.9604217 9.2653125,14.9604217 C10.5523125,14.9604217 11.5993125,13.9510843 11.5993125,12.7106024 C11.5993125,11.4701205 10.5523125,10.4607831 9.2653125,10.4607831 L9.2653125,10.4607831 Z" id="Fill-2"></path>
+                      <path d="M2.8100625,10.4607831 C1.5230625,10.4607831 0.4760625,11.4701205 0.4760625,12.7106024 C0.4760625,13.9510843 1.5230625,14.9604217 2.8100625,14.9604217 C4.09725,14.9604217 5.14425,13.9510843 5.14425,12.7106024 C5.14425,11.4701205 4.09725,10.4607831 2.8100625,10.4607831 L2.8100625,10.4607831 Z" id="Fill-3"></path>
+                  </g>
+              </g>
+          </g>
+      </g>
+    </symbol>
+    </defs>
+    </svg>
+    <div class="slidebar">
+      <h2>美妆个护分类</h2>
+      <ul class="slidebar-c1">
+          <li>
+            <div class="slidebar-c1-inner">
+              <h3>
+                <svg class="svg svg-sidebar#{i}">
+                  <switch>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-sidebar#{i}"></use>
+                    <foreignObject>
+                      <div class="slidebar-icon slidebar-icon#{i}"></div>
+                    </foreignObject>
+                  </switch>
+                  
+                </svg>
+                <a href="">推荐品牌</a>
+              </h3>
+              <div class="slidebar-c1-link"><a href="">资深堂</a><a href=""><strong>菲诗小铺</strong></a><a href="">倩碧</a></div>
+              <div class="slidebar-hover"></div>
+              <div class="slidebar-c2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+              <div class="slidebar-c2 slidebar-c2-2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+         <li>
+            <div class="slidebar-c1-inner">
+              <h3>
+                <svg class="svg svg-sidebar#{i}">
+                  <switch>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-sidebar#{i}"></use>
+                    <foreignObject>
+                      <div class="slidebar-icon slidebar-icon#{i}"></div>
+                    </foreignObject>
+                  </switch>
+                  
+                </svg>
+                <a href="">推荐品牌</a>
+              </h3>
+              <div class="slidebar-c1-link"><a href="">资深堂</a><a href=""><strong>菲诗小铺</strong></a><a href="">倩碧</a></div>
+              <div class="slidebar-hover"></div>
+              <div class="slidebar-c2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+              <div class="slidebar-c2 slidebar-c2-2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="slidebar-c1-inner">
+              <h3>
+                <svg class="svg svg-sidebar#{i}">
+                  <switch>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-sidebar#{i}"></use>
+                    <foreignObject>
+                      <div class="slidebar-icon slidebar-icon#{i}"></div>
+                    </foreignObject>
+                  </switch>
+                  
+                </svg>
+                <a href="">推荐品牌</a>
+              </h3>
+              <div class="slidebar-c1-link"><a href="">资深堂</a><a href=""><strong>菲诗小铺</strong></a><a href="">倩碧</a></div>
+              <div class="slidebar-hover"></div>
+              <div class="slidebar-c2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+              <div class="slidebar-c2 slidebar-c2-2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="slidebar-c1-inner">
+              <h3>
+                <svg class="svg svg-sidebar#{i}">
+                  <switch>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-sidebar#{i}"></use>
+                    <foreignObject>
+                      <div class="slidebar-icon slidebar-icon#{i}"></div>
+                    </foreignObject>
+                  </switch>
+                  
+                </svg>
+                <a href="">推荐品牌</a>
+              </h3>
+              <div class="slidebar-c1-link"><a href="">资深堂</a><a href=""><strong>菲诗小铺</strong></a><a href="">倩碧</a></div>
+              <div class="slidebar-hover"></div>
+              <div class="slidebar-c2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+              <div class="slidebar-c2 slidebar-c2-2">
+                <ul>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                    <li>
+                      <h3>国际品牌#{i}</h3>
+                      <div class="slidebar-c2-link"><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a><span>|</span><a href="">资深堂</a><span>|</span><a href=""><strong>菲诗小铺</strong></a><span>|</span><a href="">倩碧</a></div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div> 
+    
+    <style type="text/css">
+    	.nav-demo{
+    		position: fixed;
+    		right: 0;
+    		top: 0;
+    		width: 150px;
+    		border-left: 1px solid #ccc;
+    		z-index: 9999;
+    	}
+    	.nav-demo li.title{
+    		background: #333;
+    		color: #fff;
+    	}
+    	.nav-demo li{
+    		height: 30px;
+    		line-height: 30px;
+    		border-bottom: 1px solid #ccc;
+    		background: #eee;
+    		padding-left: 10px;
+    		position: relative;
+    	}
+    	.nav-demo li:hover{
+    		background: #fff;
+    	}
+    	.nav-demo li.title:hover{
+    		background: #333;
+    	}
+    	
+    	.nav-demo a{
+    		display: block;
+    	}
+    	.nav-demo-page{
+    		left: 0;
+    		right: auto;
+    	}
+    	.nav-demo li ul{
+    		display: none;
+    		position: absolute;
+    		width: 150px;
+    		left:-150px;
+    		top: 0;
+    		z-index: 9999;
+    	}
+    	.nav-demo li:hover ul{
+    		display: block;
+    	}
+    	.nav-demo-page li ul{
+    		left:150px;
+    	}
+    </style>
+    <ul class="nav-demo nav-demo-page">
+    	<li class="title">页面列表</li>
+    	<li>
+    		用户
+    		<ul>
+    			<li><a href="../../pages/login/index.html">登录</a></li>
+    			<li><a href="../../pages/register/index.html">注册</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		个人中心
+    		<ul>
+    			<li><a href="../../pages/account-manage/index.html">账号管理</a></li>
+    			<li><a href="../../pages/address-manage/index.html">地址管理</a></li>
+    			<li><a href="../../pages/collect/index.html">我的收藏</a></li>
+    			<li><a href="../../pages/coupon/index.html">我的优惠券</a></li>
+    			<li><a href="../../pages/integral/index.html">积分管理</a></li>
+    			<li><a href="../../pages/invite/index.html">我的邀请</a></li>
+    			<li><a href="../../pages/message/index.html">消息中心</a></li>
+    			<li><a href="../../pages/myorder/index.html">我的订单</a></li>
+    			<li><a href="../../pages/myorder-search-none/index.html">订单搜索为空</a></li>
+    			<li><a href="../../pages/sale-management/index.html">售后管理</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		自助客服
+    		<ul>
+    			<li><a href="../../pages/service-index/index.html">客服首页</a></li>
+    			<li><a href="../../pages/orderSelect/index.html">订单选择</a></li>
+    			<li><a href="../../pages/announcementDetail/index.html">公告详情</a></li>
+    			<li><a href="../../pages/return-goods/index.html">申请退款</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		订单
+    		<ul>
+    			<li><a href="../../pages/order-detail/index.html">订单详情</a></li>
+    			<li><a href="../../pages/order-confirm/index.html">订单确认</a></li>
+    		</ul>
+    	</li>		
+    	<li>
+    		活动
+    		<ul>
+    			<li><a href="../../pages/activity-free/index.html">免单</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		cms
+    		<ul>
+    			<li><a href="../../pages/index/index.html">首页1</a></li>
+    			<li><a href="../../pages/index2/index.html">首页2</a></li>
+    			<li><a href="../../pages/index2-baby/index.html">母婴频道</a></li>
+    			<li><a href="../../pages/index2-digital/index.html">数码频道</a></li>
+    			<li><a href="../../pages/index2-health/index.html">健康频道</a></li>
+    			<li><a href="../../pages/index2-makeup/index.html">美妆频道</a></li>
+    		</ul>
+    	</li>	
+    </ul>
+    <ul class="nav-demo">
+    	<li class="title">组件列表</li>
+    	<li>
+    		弹窗
+    		<ul>
+    			<li><a href="../../modules/dialog/demo.html">弹窗</a></li>
+    			<li><a href="../../modules/dialog-browser/demo.html">浏览器提示</a></li>
+    			<li><a href="../../modules/dialog-qrcode/demo.html">分享散红包到微信</a></li>
+    			<li><a href="../../modules/dialog-stockout/demo.html">到货通知</a></li>
+    			<li><a href="../../modules/dialog-subscription/demo.html">订阅成功</a></li>
+    			<li><a href="../../modules/login-dialog/demo.html">登录</a></li>
+    			<li><a href="../../modules/register-dialog/demo.html">注册</a></li>
+    			<li><a href="../../modules/orderSelect-dialog/demo.html">申请退款</a></li>
+    			<li><a href="../../modules/account-dialog/demo.html">账户管理</a></li>
+    			<li><a href="../../modules/center-del-dialog/demo.html">删除收货人信息</a></li>
+    			<li><a href="../../modules/dialog-alipay/demo.html">绑定支付宝账号</a></li>
+    			<li><a href="../../modules/dialog-copy/demo.html">复制成功</a></li>
+    			<li><a href="../../modules/dialog-agreement/demo.html">服务同意条款</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		商品列表
+    		<ul>
+    			<li><a href="../../modules/product/demo.html">商品列表</a></li>
+    			<li><a href="../../modules/product-1/demo.html">商品列表</a></li>
+    			<li><a href="../../modules/product2/demo.html">每日上新</a></li>
+    			<li><a href="../../modules/product2-1/demo.html">每日上新</a></li>
+    			<li><a href="../../modules/products1/demo.html">商品列表1</a></li>
+    			<li><a href="../../modules/products2/demo.html">商品列表2</a></li>
+    			<li><a href="../../modules/products3/demo.html">商品列表3</a></li>
+    			<li><a href="../../modules/hotsale/demo.html">热销排行榜</a></li>
+    			<li><a href="../../modules/products4/demo.html">商品列表4</a></li>
+    			<li><a href="../../modules/products5/demo.html">商品列表5</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		小组件
+    		<ul>
+    			<li><a href="../../modules/btn/demo.html">按钮</a></li>
+    			<li><a href="../../modules/text/demo.html">文字样式</a></li>
+    			<li><a href="../../modules/tooltip/demo.html">提示</a></li>
+    			<li><a href="../../modules/coupon/demo.html">单个优惠券</a></li>
+    			<li><a href="../../modules/input/demo.html">输入框单选</a></li>
+    			<li><a href="../../modules/crumbs/demo.html">面包屑</a></li>
+    			<li><a href="../../modules/page/demo.html">分页</a></li>
+    			<li><a href="../../modules/label/demo.html">标签</a></li>
+    			<li><a href="../../modules/dialog-cart/demo.html">toast</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		头尾
+    		<ul>
+    			<li><a href="../../modules/header/demo.html">头部</a></li>
+    			<li><a href="../../modules/footer/demo.html">尾部</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		cms组件
+    		<ul>
+    			<li><a href="../../modules/brand/demo.html">品牌特卖</a></li>
+    			<li><a href="../../modules/flashsale/demo.html">限时特卖</a></li>
+    			<li><a href="../../modules/sidebar/demo.html">侧边栏</a></li>
+    			<li><a href="../../modules/slider/demo.html">侧边栏+幻灯</a></li>
+    			<li><a href="../../modules/topic/demo.html">专题列表</a></li>
+    			<li><a href="../../modules/index2-h2/demo.html">标题</a></li>
+    			<li><a href="../../modules/tab/demo.html">选项卡</a></li>
+    			<li><a href="../../modules/tab-baby/demo.html">选项卡-母婴</a></li>
+    			<li><a href="../../modules/nataral-top/demo.html">回到顶部</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		个人中心
+    		<ul>
+    			<li><a href="../../modules/account-manage/demo.html">账户管理</a></li>
+    			<li><a href="../../modules/mycoupon/demo.html">我的优惠券</a></li>
+    			<li><a href="../../modules/myorder-tab/demo.html">我的订单选项卡</a></li>
+    			<li><a href="../../modules/myorder-search/demo.html">我的订单搜索</a></li>
+    			<li><a href="../../modules/myorder-none/demo.html">订单为空</a></li>
+    			<li><a href="../../modules/myorder/demo.html">我的订单</a></li>
+    			<li><a href="../../modules/personal/demo.html">个人中心</a></li>
+    			<li><a href="../../modules/address-table/demo.html">地址表格</a></li>
+    			<li><a href="../../modules/collect/demo.html">收藏</a></li>
+    			<li><a href="../../modules/integral/demo.html">积分</a></li>
+    			<li><a href="../../modules/integral-tab/demo.html">积分选项卡</a></li>
+    			<li><a href="../../modules/invite/demo.html">邀请</a></li>
+    			<li><a href="../../modules/invite-rule/demo.html">邀请规则</a></li>
+    			<li><a href="../../modules/invite-open/demo.html">开启邀请</a></li>
+    			<li><a href="../../modules/invite-open/demo.html">我的邀请</a></li>
+    			<li><a href="../../modules/invite-account/demo.html">账户明细</a></li>
+    			<li><a href="../../modules/message/demo.html">消息</a></li>
+    			<li><a href="../../modules/sale-management/demo.html">售后管理</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		订单
+    		<ul>
+    			<li><a href="../../modules/address/demo.html">地址</a></li>
+    			<li><a href="../../modules/address-add/demo.html">添加地址</a></li>
+    			<li><a href="../../modules/cart/demo.html">去结算</a></li>
+    			<li><a href="../../modules/cart-coupon/demo.html">使用优惠券</a></li>
+    			<li><a href="../../modules/cart-table/demo.html">去结算表格</a></li>
+    			<li><a href="../../modules/order-confirm/demo.html">订单确认</a></li>
+    			<li><a href="../../modules/order-detail/demo.html">订单详情</a></li>
+    			<li><a href="../../modules/order-status/demo.html">订单状态</a></li>
+    			<li><a href="../../modules/order-success/demo.html">订单支付成功</a></li>
+    			<li><a href="../../modules/coupons/demo.html">多个优惠券</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		自助客服
+    		<ul>
+    			<li><a href="../../modules/orderSelect/demo.html">订单选择</a></li>
+    			<li><a href="../../modules/announcement/demo.html">公告</a></li>
+    			<li><a href="../../modules/announcementDetail/demo.html">公告详情</a></li>
+    			<li><a href="../../modules/commonProblem/demo.html">常见问题</a></li>
+    			<li><a href="../../modules/selfService/demo.html">自助服务</a></li>
+    			<li><a href="../../modules/onlineService/demo.html">在线客服</a></li>
+    			<li><a href="../../modules/returnGoods/demo.html">退货退款商品</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		详情
+    		<ul>
+    			<li><a href="../../modules/comparison/demo.html">海淘对比</a></li>
+    			<li><a href="../../modules/flow/demo.html">购买流程</a></li>
+    			<li><a href="../../modules/match/demo.html">精选搭配</a></li>
+    			<li><a href="../../modules/faq/demo.html">faq</a></li>
+    			<li><a href="../../modules/goods/demo.html">商品详情</a></li>
+    			<li><a href="../../modules/recommends2/demo.html">小编推荐</a></li>
+    			<li><a href="../../modules/comment-h/demo.html">评论头部</a></li>
+    			<li><a href="../../modules/comment-tab/demo.html">评论选项卡</a></li>
+    			<li><a href="../../modules/comment-list/demo.html">评论列表</a></li>
+    			<li><a href="../../modules/notify/demo.html">消费告客户书</a></li>
+    			<li><a href="../../modules/detail-tab/demo.html">详情页选项卡</a></li>
+    			<li><a href="../../modules/detail-h/demo.html">商品横向描述</a></li>
+    			<li><a href="../../modules/detail-content/demo.html">商品纵向描述</a></li>
+    			<li><a href="../../modules/presell-steps/demo.html">预付商品步骤</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		用户
+    		<ul>
+    			<li><a href="../../modules/login/demo.html">登录</a></li>
+    			<li><a href="../../modules/register/demo.html">注册</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		其他
+    		<ul>
+    			<li><a href="../../modules/aboutus/demo.html">关于我们</a></li>
+    			<li><a href="../../modules/feedback/demo.html">反馈</a></li>
+    			<li><a href="../../modules/gameover/demo.html">活动结束</a></li>
+    			<li><a href="../../modules/notify/demo.html">消费者告知书</a></li>
+    			<li><a href="../../modules/recommends/demo.html">相关商品</a></li>
+    		</ul>
+    	</li>
+    	
+    </ul>
+
+  </div>
+
+</body>
+</html>

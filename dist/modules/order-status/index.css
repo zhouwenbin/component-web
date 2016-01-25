@@ -1,0 +1,77 @@
+/*
+@styleguide
+
+# 订单状态
+
+*/
+.order-status-icon{
+	font-size: 10px;
+}
+.order-status-icon:before{
+	content: ' ';
+	vertical-align: middle;
+	display: inline-block;
+	background-image: url("../svg/order-status.svg");
+	background-repeat: no-repeat;
+	background-size: 4.2em 8.2em;
+}
+.no-svg .order-status-icon:before{
+	background-image: url("../svg/order-status.png");
+}
+.order-status-icon.icon-step:before{
+	background-position: -1em -1em;
+	width: 2em;
+	height: 2em;
+}
+.order-status-icon.icon-step-active:before{
+	background-position: -1em -5em;
+	width: 2.2em;
+	height: 2.2em;
+}
+.order-status-icon{
+	margin-right: 24px;
+	position: relative;
+	z-index: 1;
+}
+.order-status-icon.icon-step-active:before{
+	width: 2.3em;
+	height: 2.3em;
+}
+.order-status{
+	background: #fff8f2;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	        border-radius: 5px;
+	margin-bottom: -36px;
+	margin-top: 35px;
+	padding-left: 25px;
+	padding-bottom: 14px;
+}
+.order-status h2{
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	border-bottom: 1px dashed #ccc;
+	margin-bottom: 17px;
+}
+.order-status li{
+	margin-top: 16px;
+	color: #969696;
+	position: relative;
+}
+.order-status li:before{
+	content: '';
+	height: 100%;
+	border-left: 1px dashed #969696;
+	position: absolute;
+    left: 12px;
+    top: 14px;         
+}
+.order-status li.active{
+	color: #333;
+}
+.order-status-step{
+	margin-left: 69px;
+	margin-right: 29px;
+}
+

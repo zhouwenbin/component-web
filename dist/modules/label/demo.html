@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>登陆顺丰海淘</title>
+<link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="pm">
+    <span class="label label-success">success</span>
+    <span class="label label-error">error</span>
+    <span class="label label-waining">waining</span>
+    <span class="label label-disabled">disabled</span>
+    <span class="label label-soon">soon</span>
+    
+    <style type="text/css">
+    	.nav-demo{
+    		position: fixed;
+    		right: 0;
+    		top: 0;
+    		width: 150px;
+    		border-left: 1px solid #ccc;
+    		z-index: 9999;
+    	}
+    	.nav-demo li.title{
+    		background: #333;
+    		color: #fff;
+    	}
+    	.nav-demo li{
+    		height: 30px;
+    		line-height: 30px;
+    		border-bottom: 1px solid #ccc;
+    		background: #eee;
+    		padding-left: 10px;
+    		position: relative;
+    	}
+    	.nav-demo li:hover{
+    		background: #fff;
+    	}
+    	.nav-demo li.title:hover{
+    		background: #333;
+    	}
+    	
+    	.nav-demo a{
+    		display: block;
+    	}
+    	.nav-demo-page{
+    		left: 0;
+    		right: auto;
+    	}
+    	.nav-demo li ul{
+    		display: none;
+    		position: absolute;
+    		width: 150px;
+    		left:-150px;
+    		top: 0;
+    		z-index: 9999;
+    	}
+    	.nav-demo li:hover ul{
+    		display: block;
+    	}
+    	.nav-demo-page li ul{
+    		left:150px;
+    	}
+    </style>
+    <ul class="nav-demo nav-demo-page">
+    	<li class="title">页面列表</li>
+    	<li>
+    		用户
+    		<ul>
+    			<li><a href="../../pages/login/index.html">登录</a></li>
+    			<li><a href="../../pages/register/index.html">注册</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		个人中心
+    		<ul>
+    			<li><a href="../../pages/account-manage/index.html">账号管理</a></li>
+    			<li><a href="../../pages/address-manage/index.html">地址管理</a></li>
+    			<li><a href="../../pages/collect/index.html">我的收藏</a></li>
+    			<li><a href="../../pages/coupon/index.html">我的优惠券</a></li>
+    			<li><a href="../../pages/integral/index.html">积分管理</a></li>
+    			<li><a href="../../pages/invite/index.html">我的邀请</a></li>
+    			<li><a href="../../pages/message/index.html">消息中心</a></li>
+    			<li><a href="../../pages/myorder/index.html">我的订单</a></li>
+    			<li><a href="../../pages/myorder-search-none/index.html">订单搜索为空</a></li>
+    			<li><a href="../../pages/sale-management/index.html">售后管理</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		自助客服
+    		<ul>
+    			<li><a href="../../pages/service-index/index.html">客服首页</a></li>
+    			<li><a href="../../pages/orderSelect/index.html">订单选择</a></li>
+    			<li><a href="../../pages/announcementDetail/index.html">公告详情</a></li>
+    			<li><a href="../../pages/return-goods/index.html">申请退款</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		订单
+    		<ul>
+    			<li><a href="../../pages/order-detail/index.html">订单详情</a></li>
+    			<li><a href="../../pages/order-confirm/index.html">订单确认</a></li>
+    		</ul>
+    	</li>		
+    	<li>
+    		活动
+    		<ul>
+    			<li><a href="../../pages/activity-free/index.html">免单</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		cms
+    		<ul>
+    			<li><a href="../../pages/index/index.html">首页1</a></li>
+    			<li><a href="../../pages/index2/index.html">首页2</a></li>
+    			<li><a href="../../pages/index2-baby/index.html">母婴频道</a></li>
+    			<li><a href="../../pages/index2-digital/index.html">数码频道</a></li>
+    			<li><a href="../../pages/index2-health/index.html">健康频道</a></li>
+    			<li><a href="../../pages/index2-makeup/index.html">美妆频道</a></li>
+    		</ul>
+    	</li>	
+    </ul>
+    <ul class="nav-demo">
+    	<li class="title">组件列表</li>
+    	<li>
+    		弹窗
+    		<ul>
+    			<li><a href="../../modules/dialog/demo.html">弹窗</a></li>
+    			<li><a href="../../modules/dialog-browser/demo.html">浏览器提示</a></li>
+    			<li><a href="../../modules/dialog-qrcode/demo.html">分享散红包到微信</a></li>
+    			<li><a href="../../modules/dialog-stockout/demo.html">到货通知</a></li>
+    			<li><a href="../../modules/dialog-subscription/demo.html">订阅成功</a></li>
+    			<li><a href="../../modules/login-dialog/demo.html">登录</a></li>
+    			<li><a href="../../modules/register-dialog/demo.html">注册</a></li>
+    			<li><a href="../../modules/orderSelect-dialog/demo.html">申请退款</a></li>
+    			<li><a href="../../modules/account-dialog/demo.html">账户管理</a></li>
+    			<li><a href="../../modules/center-del-dialog/demo.html">删除收货人信息</a></li>
+    			<li><a href="../../modules/dialog-alipay/demo.html">绑定支付宝账号</a></li>
+    			<li><a href="../../modules/dialog-copy/demo.html">复制成功</a></li>
+    			<li><a href="../../modules/dialog-agreement/demo.html">服务同意条款</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		商品列表
+    		<ul>
+    			<li><a href="../../modules/product/demo.html">商品列表</a></li>
+    			<li><a href="../../modules/product-1/demo.html">商品列表</a></li>
+    			<li><a href="../../modules/product2/demo.html">每日上新</a></li>
+    			<li><a href="../../modules/product2-1/demo.html">每日上新</a></li>
+    			<li><a href="../../modules/products1/demo.html">商品列表1</a></li>
+    			<li><a href="../../modules/products2/demo.html">商品列表2</a></li>
+    			<li><a href="../../modules/products3/demo.html">商品列表3</a></li>
+    			<li><a href="../../modules/hotsale/demo.html">热销排行榜</a></li>
+    			<li><a href="../../modules/products4/demo.html">商品列表4</a></li>
+    			<li><a href="../../modules/products5/demo.html">商品列表5</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		小组件
+    		<ul>
+    			<li><a href="../../modules/btn/demo.html">按钮</a></li>
+    			<li><a href="../../modules/text/demo.html">文字样式</a></li>
+    			<li><a href="../../modules/tooltip/demo.html">提示</a></li>
+    			<li><a href="../../modules/coupon/demo.html">单个优惠券</a></li>
+    			<li><a href="../../modules/input/demo.html">输入框单选</a></li>
+    			<li><a href="../../modules/crumbs/demo.html">面包屑</a></li>
+    			<li><a href="../../modules/page/demo.html">分页</a></li>
+    			<li><a href="../../modules/label/demo.html">标签</a></li>
+    			<li><a href="../../modules/dialog-cart/demo.html">toast</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		头尾
+    		<ul>
+    			<li><a href="../../modules/header/demo.html">头部</a></li>
+    			<li><a href="../../modules/footer/demo.html">尾部</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		cms组件
+    		<ul>
+    			<li><a href="../../modules/brand/demo.html">品牌特卖</a></li>
+    			<li><a href="../../modules/flashsale/demo.html">限时特卖</a></li>
+    			<li><a href="../../modules/sidebar/demo.html">侧边栏</a></li>
+    			<li><a href="../../modules/slider/demo.html">侧边栏+幻灯</a></li>
+    			<li><a href="../../modules/topic/demo.html">专题列表</a></li>
+    			<li><a href="../../modules/index2-h2/demo.html">标题</a></li>
+    			<li><a href="../../modules/tab/demo.html">选项卡</a></li>
+    			<li><a href="../../modules/tab-baby/demo.html">选项卡-母婴</a></li>
+    			<li><a href="../../modules/nataral-top/demo.html">回到顶部</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		个人中心
+    		<ul>
+    			<li><a href="../../modules/account-manage/demo.html">账户管理</a></li>
+    			<li><a href="../../modules/mycoupon/demo.html">我的优惠券</a></li>
+    			<li><a href="../../modules/myorder-tab/demo.html">我的订单选项卡</a></li>
+    			<li><a href="../../modules/myorder-search/demo.html">我的订单搜索</a></li>
+    			<li><a href="../../modules/myorder-none/demo.html">订单为空</a></li>
+    			<li><a href="../../modules/myorder/demo.html">我的订单</a></li>
+    			<li><a href="../../modules/personal/demo.html">个人中心</a></li>
+    			<li><a href="../../modules/address-table/demo.html">地址表格</a></li>
+    			<li><a href="../../modules/collect/demo.html">收藏</a></li>
+    			<li><a href="../../modules/integral/demo.html">积分</a></li>
+    			<li><a href="../../modules/integral-tab/demo.html">积分选项卡</a></li>
+    			<li><a href="../../modules/invite/demo.html">邀请</a></li>
+    			<li><a href="../../modules/invite-rule/demo.html">邀请规则</a></li>
+    			<li><a href="../../modules/invite-open/demo.html">开启邀请</a></li>
+    			<li><a href="../../modules/invite-open/demo.html">我的邀请</a></li>
+    			<li><a href="../../modules/invite-account/demo.html">账户明细</a></li>
+    			<li><a href="../../modules/message/demo.html">消息</a></li>
+    			<li><a href="../../modules/sale-management/demo.html">售后管理</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		订单
+    		<ul>
+    			<li><a href="../../modules/address/demo.html">地址</a></li>
+    			<li><a href="../../modules/address-add/demo.html">添加地址</a></li>
+    			<li><a href="../../modules/cart/demo.html">去结算</a></li>
+    			<li><a href="../../modules/cart-coupon/demo.html">使用优惠券</a></li>
+    			<li><a href="../../modules/cart-table/demo.html">去结算表格</a></li>
+    			<li><a href="../../modules/order-confirm/demo.html">订单确认</a></li>
+    			<li><a href="../../modules/order-detail/demo.html">订单详情</a></li>
+    			<li><a href="../../modules/order-status/demo.html">订单状态</a></li>
+    			<li><a href="../../modules/order-success/demo.html">订单支付成功</a></li>
+    			<li><a href="../../modules/coupons/demo.html">多个优惠券</a></li>
+    			
+    		</ul>
+    	</li>
+    	<li>
+    		自助客服
+    		<ul>
+    			<li><a href="../../modules/orderSelect/demo.html">订单选择</a></li>
+    			<li><a href="../../modules/announcement/demo.html">公告</a></li>
+    			<li><a href="../../modules/announcementDetail/demo.html">公告详情</a></li>
+    			<li><a href="../../modules/commonProblem/demo.html">常见问题</a></li>
+    			<li><a href="../../modules/selfService/demo.html">自助服务</a></li>
+    			<li><a href="../../modules/onlineService/demo.html">在线客服</a></li>
+    			<li><a href="../../modules/returnGoods/demo.html">退货退款商品</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		详情
+    		<ul>
+    			<li><a href="../../modules/comparison/demo.html">海淘对比</a></li>
+    			<li><a href="../../modules/flow/demo.html">购买流程</a></li>
+    			<li><a href="../../modules/match/demo.html">精选搭配</a></li>
+    			<li><a href="../../modules/faq/demo.html">faq</a></li>
+    			<li><a href="../../modules/goods/demo.html">商品详情</a></li>
+    			<li><a href="../../modules/recommends2/demo.html">小编推荐</a></li>
+    			<li><a href="../../modules/comment-h/demo.html">评论头部</a></li>
+    			<li><a href="../../modules/comment-tab/demo.html">评论选项卡</a></li>
+    			<li><a href="../../modules/comment-list/demo.html">评论列表</a></li>
+    			<li><a href="../../modules/notify/demo.html">消费告客户书</a></li>
+    			<li><a href="../../modules/detail-tab/demo.html">详情页选项卡</a></li>
+    			<li><a href="../../modules/detail-h/demo.html">商品横向描述</a></li>
+    			<li><a href="../../modules/detail-content/demo.html">商品纵向描述</a></li>
+    			<li><a href="../../modules/presell-steps/demo.html">预付商品步骤</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		用户
+    		<ul>
+    			<li><a href="../../modules/login/demo.html">登录</a></li>
+    			<li><a href="../../modules/register/demo.html">注册</a></li>
+    		</ul>
+    	</li>
+    	<li>
+    		其他
+    		<ul>
+    			<li><a href="../../modules/aboutus/demo.html">关于我们</a></li>
+    			<li><a href="../../modules/feedback/demo.html">反馈</a></li>
+    			<li><a href="../../modules/gameover/demo.html">活动结束</a></li>
+    			<li><a href="../../modules/notify/demo.html">消费者告知书</a></li>
+    			<li><a href="../../modules/recommends/demo.html">相关商品</a></li>
+    		</ul>
+    	</li>
+    	
+    </ul>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+/*
+@styleguide
+
+# 公告
+
+*/
+.announcement-icon{
+  font-size: 10px;
+
+}
+.announcement-icon:before{
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/announcement.svg");
+  background-repeat: no-repeat;
+  background-size: 3.9em 3.7em;
+
+}
+.no-svg .announcement-icon:before{
+  background-image: url("../svg/announcement.png");
+
+}
+.announcement-icon.icon-voise:before{
+  background-position: -1em -1em;
+  width: 1.9em;
+  height: 1.7em;
+
+}
+.announcement{
+  color: #f18629;
+  height: 38px;
+  line-height: 38px;
+  background: #fce7c4;
+  padding-left: 13px;
+  border: 1px solid rgb(249, 206, 137);
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  margin-top: 25px;
+  margin-bottom: 22px;
+
+}
+.announcement .icon-voise{
+  margin-right: 10px;
+  width: 20px;
+  height: 18px;
+  vertical-align: middle;
+  fill: #f29545;
+  fill-rule: evenodd;
+}

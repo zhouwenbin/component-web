@@ -1,0 +1,323 @@
+@charset "UTF-8";
+.myorder-tab {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 27px;
+  padding-left: 15px; }
+
+.myorder-tab li {
+  display: inline-block;
+  height: 68px;
+  line-height: 80px;
+  margin: 0 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px; }
+
+.myorder-tab li a {
+  color: #777; }
+
+.myorder-tab li strong {
+  color: #de3d3f;
+  margin-left: 5px;
+  font-weight: bold; }
+
+.myorder-tab li.active {
+  border-bottom: 4px solid #db3f40;
+  position: relative;
+  top: 1px; }
+
+.myorder-tab li.active a {
+  color: #de3d3f; }
+
+/*
+@styleguide
+
+# 账号管理
+
+*/
+.account-manage-wp {
+  position: relative; }
+
+.account-manage {
+  min-height: 313px;
+  padding-bottom: 40px;
+  display: none;
+  padding-left: 45px;
+  margin-top: 43px; }
+
+.account-manage.active {
+  display: block; }
+
+.account-manage1 .btn {
+  margin-left: 90px; }
+
+.account-manage2 .btn {
+  height: 30px;
+  line-height: 30px;
+  border: 0 none;
+  font-size: 12px;
+  margin-right: 10px; }
+
+.account-manage2 .btn-canel {
+  color: #666;
+  font-size: 12px; }
+
+.account-manage2 .btn-canel:hover,
+.account-manage2 .btn-input-reset:hover {
+  color: #333; }
+
+.account-manage input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 247px; }
+
+.account-manage li {
+  margin-left: 90px;
+  margin-bottom: 16px;
+  position: relative;
+  color: #666;
+  font-size: 14px;
+  line-height: 28px;
+  min-height: 28px; }
+
+.account-manage li a {
+  color: #4E9BDF;
+  font-size: 14px; }
+
+.account-manage label {
+  font-size: 14px;
+  margin-right: 20px;
+  position: absolute;
+  width: 5em;
+  left: -90px; }
+
+.account-manage-fix {
+  margin-left: 20px; }
+
+.account-manage-input-box {
+  margin-top: 10px; }
+
+.account-manage .input {
+  width: 170px;
+  height: 28px;
+  line-height: 28px;
+  color: #666;
+  font-size: 12px;
+  padding: 0 10px;
+  border: 1px solid #979797;
+  -webkit-border-radius: 0;
+          border-radius: 0; }
+
+.account-manage-input-box .btn-vcode {
+  margin-left: 8px; }
+
+.account-manage-input-box .input-vcode {
+  width: 58px; }
+
+.account-manage-input-box .input-tips,
+.account-manage .input-error {
+  margin-left: 10px; }
+
+.account-manage-input-box .input-tips {
+  font-size: 12px;
+  color: #B2B2B2; }
+
+.account-manage2 .input-pw-tips {
+  margin-left: 20px; }
+
+.account-manage-input-box .input-tips-strong {
+  font-size: 12px;
+  font-weight: 400;
+  color: #666; }
+
+.account-manage .input-error {
+  color: #EE5151;
+  font-size: 12px; }
+
+.icon-wechat,
+.icon-alipay {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px; }
+
+.account-manage-sns {
+  margin-right: 30px; }
+
+.account-manage-sns .tips {
+  color: #B2B2B2; }
+
+.account-manage-tips {
+  color: #B2B2B2;
+  line-height: 20px;
+  margin-top: 40px; }
+
+.input-pw-brtips {
+  position: relative;
+  display: inline-block;
+  color: #666;
+  background-color: #F2F2F2;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  margin-left: 18px;
+  font-size: 12px; }
+
+.input-pw-brtips:before {
+  position: absolute;
+  content: "";
+  border: 7px dashed transparent;
+  border-right: 10px dashed #F2F2F2;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  left: -15px;
+  top: 7px; }
+
+/*
+@styleguide
+
+# 账号管理
+
+*/
+.account-dialog {
+  position: absolute;
+  font-size: 14px;
+  color: #666;
+  background-color: #F2F2F2;
+  background-color: rgba(242, 242, 242, 0.9);
+  text-align: center;
+  left: 50%;
+  top: 50%; }
+
+.account-dialog-success {
+  width: 180px;
+  height: 60px;
+  line-height: 60px;
+  margin-left: -90px;
+  margin-top: -30px; }
+
+.account-dialog-close {
+  width: 360px;
+  height: 120px;
+  line-height: 120px;
+  margin-top: -60px;
+  margin-left: -180px; }
+
+.account-dialog-iclose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  color: #979797;
+  background: url(http://img0.sfht.com/cmsres/20151231/42d2fd51-e7e5-4a37-94a2-f2e10c532868.png) 0 0 no-repeat; }
+
+.account-dialog-iclose:hover {
+  /*color: #EE5151;*/
+  background: url(http://img0.sfht.com/cmsres/20151231/1a2033d8-edbe-4b9a-8eed-362e9cf221ca.png) 0 0 no-repeat; }
+
+/*.account-dialog-iclose i,
+.account-dialog-iclose i:before{
+	position: absolute;	
+	width: 20px;
+	height: 20px;
+}
+.account-dialog-iclose i{
+	top: 7px;
+	left: 7px;
+	line-height: 1;
+	transform: rotate(45deg);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865474, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865474, SizingMethod='auto expand')";
+	border-left: 1px solid;
+}
+.account-dialog-iclose i:before{
+	content: "";
+	border-top: 1px solid;
+	top: 10px;
+	right: 10px;
+}*/
+.account-dialog-btn {
+  width: 480px;
+  height: 135px;
+  padding-top: 65px;
+  margin-left: -240px;
+  margin-top: -100px; }
+
+.account-dialog-btn {
+  padding-top: 65px; }
+
+.account-dialog-btn-box {
+  margin-top: 30px; }
+
+.account-dialog-btn-box .btn {
+  margin: 0 20px;
+  font-size: 12px;
+  width: 90px; }
+
+.account-dialog-btn-box .btn-disable {
+  background-color: #999;
+  color: #fff !important; }
+
+/*
+@styleguide
+
+# 个人中心
+
+*/
+.personal {
+  background: #fff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  display: table;
+  width: 100%; }
+
+.personal > div {
+  display: table-cell;
+  vertical-align: top; }
+
+.personal-c1 {
+  width: 198px;
+  text-align: center; }
+
+.personal-c1 h1 {
+  height: 58px;
+  line-height: 58px;
+  color: #de3d3f;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 16px;
+  font-weight: normal; }
+
+.personal-c1 li {
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 14px; }
+
+.personal-c1 li a {
+  color: #777;
+  display: block;
+  height: 58px;
+  line-height: 58px; }
+
+.personal-c1 li.active {
+  position: relative;
+  margin-left: -1px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-right: 4px;
+  width: 200px;
+  background: #fff; }
+
+.personal-c1 li.active:before {
+  content: '';
+  height: 100%;
+  width: 4px;
+  background: #db3f40;
+  position: absolute;
+  left: 0px; }
+
+.personal-c2 {
+  padding: 0 39px 0 39px;
+  border-left: 1px solid #e5e5e5; }

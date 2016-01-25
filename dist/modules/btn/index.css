@@ -1,0 +1,569 @@
+/*
+@styleguide
+
+# btn 按钮
+
+<h2 class="index-h2">btn-small</h2>
+<button class="btn btn-normal btn-small">btn-normal</button>
+<button class="btn btn-dashed btn-small">btn-dashed</button>
+<button class="btn btn-danger btn-small">btn-danger</button>
+<button class="btn btn-disable btn-small">btn-disable</button>
+<button class="btn btn-success btn-small">btn-success</button>
+<button class="btn btn-warnning btn-small">btn-warnning</button>
+<button class="btn btn-soon btn-small">btn-soon</button>
+<h2 class="index-h2">btn-normal</h2>
+<button class="btn btn-normal">btn-normal</button>
+<button class="btn btn-dashed">btn-dashed</button>
+<button class="btn btn-danger">btn-danger</button>
+<button class="btn btn-disable">btn-disable</button>
+<button class="btn btn-success">btn-success</button>
+<button class="btn btn-warnning">btn-warnning</button>
+<button class="btn btn-soon">btn-soon</button>
+<h2 class="index-h2">btn-big</h2>
+<button class="btn btn-normal btn-big">btn-normal</button>
+<button class="btn btn-dashed btn-big">btn-dashed</button>
+<button class="btn btn-danger btn-big">btn-danger</button>
+<button class="btn btn-disable btn-big">btn-disable</button>
+<button class="btn btn-success btn-big">btn-success</button>
+<button class="btn btn-warnning btn-big">btn-warnning</button>
+<button class="btn btn-soon btn-big">btn-soon</button>
+<h2 class="index-h2">btn-large</h2>
+<button class="btn btn-normal btn-large">btn-normal</button>
+<button class="btn btn-dashed btn-large">btn-dashed</button>
+<button class="btn btn-danger btn-large">btn-danger</button>
+<button class="btn btn-disable btn-large">btn-disable</button>
+<button class="btn btn-success btn-large">btn-success</button>
+<button class="btn btn-warnning btn-large">btn-warnning</button>
+<button class="btn btn-soon btn-large">btn-soon</button>
+<h2 class="index-h2">btn-radius</h2>
+<button class="btn btn-normal btn-radius">btn-normal</button>
+<button class="btn btn-dashed btn-radius">btn-dashed</button>
+<button class="btn btn-danger btn-radius">btn-danger</button>
+<button class="btn btn-disable btn-radius">btn-disable</button>
+<button class="btn btn-success btn-radius">btn-success</button>
+<button class="btn btn-warnning btn-radius">btn-warnning</button>
+<button class="btn btn-soon btn-radius">btn-soon</button>
+
+    <h2 class="index-h2">btn-small</h2>
+	<button class="btn btn-normal btn-small">btn-normal</button>
+	<button class="btn btn-dashed btn-small">btn-dashed</button>
+	<button class="btn btn-danger btn-small">btn-danger</button>
+	<button class="btn btn-disable btn-small">btn-disable</button>
+	<button class="btn btn-success btn-small">btn-success</button>
+	<button class="btn btn-warnning btn-small">btn-warnning</button>
+	<button class="btn btn-soon btn-small">btn-soon</button>
+	<h2 class="index-h2">btn-normal</h2>
+	<button class="btn btn-normal">btn-normal</button>
+	<button class="btn btn-dashed">btn-dashed</button>
+	<button class="btn btn-danger">btn-danger</button>
+	<button class="btn btn-disable">btn-disable</button>
+	<button class="btn btn-success">btn-success</button>
+	<button class="btn btn-warnning">btn-warnning</button>
+	<button class="btn btn-soon">btn-soon</button>
+	<h2 class="index-h2">btn-big</h2>
+	<button class="btn btn-normal btn-big">btn-normal</button>
+	<button class="btn btn-dashed btn-big">btn-dashed</button>
+	<button class="btn btn-danger btn-big">btn-danger</button>
+	<button class="btn btn-disable btn-big">btn-disable</button>
+	<button class="btn btn-success btn-big">btn-success</button>
+	<button class="btn btn-warnning btn-big">btn-warnning</button>
+	<button class="btn btn-soon btn-big">btn-soon</button>
+	<h2 class="index-h2">btn-large</h2>
+	<button class="btn btn-normal btn-large">btn-normal</button>
+	<button class="btn btn-dashed btn-large">btn-dashed</button>
+	<button class="btn btn-danger btn-large">btn-danger</button>
+	<button class="btn btn-disable btn-large">btn-disable</button>
+	<button class="btn btn-success btn-large">btn-success</button>
+	<button class="btn btn-warnning btn-large">btn-warnning</button>
+	<button class="btn btn-soon btn-large">btn-soon</button>
+	<h2 class="index-h2">btn-radius</h2>
+	<button class="btn btn-normal btn-radius">btn-normal</button>
+	<button class="btn btn-dashed btn-radius">btn-dashed</button>
+	<button class="btn btn-danger btn-radius">btn-danger</button>
+	<button class="btn btn-disable btn-radius">btn-disable</button>
+	<button class="btn btn-success btn-radius">btn-success</button>
+	<button class="btn btn-warnning btn-radius">btn-warnning</button>
+	<button class="btn btn-soon btn-radius">btn-soon</button>
+
+*/
+.btn{
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 0;
+}
+.btn-top{
+	padding: 18px 21px;
+	background: #000000;
+	background: rgba(0,0,0,0.3);
+	position: fixed;
+	bottom: 100px;
+	right: 50px;
+	display: none;
+	-webkit-border-radius:5px;
+	        border-radius:5px;
+	z-index:map-get($z-index,btn-top);
+}
+.btn-top:hover{
+	background: #7f7f7f;
+	background: rgba(0,0,0,0.5);
+}
+
+.btn-prev, .btn-next{
+	width: 41px;
+	height: 94px;
+	background: url(#{$bg-url}icon.png) no-repeat;
+	text-indent: -999em;
+	background-color: #666;
+	background-color: rgba(0,0,0,0.5);
+
+}
+.btn-prev:hover, .btn-next:hover{
+	opacity: 1;
+}
+.btn-prev{
+	background-position: 0 -162px;
+}
+.btn-next{
+	background-position: 0 -258px;
+}
+.btn-buy, .btn-more{
+	width: 247px;
+	height: 55px;
+	line-height: 53px;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+	background: #dd3e3f;
+	border:1px solid #c2363d;
+	-webkit-border-radius: 2px;
+	        border-radius: 2px;
+	-webkit-box-shadow: 0 2px 1px rgba(4,0,0,0.1);
+	        box-shadow: 0 2px 1px rgba(4,0,0,0.1);
+}
+.btn-buy:hover, .btn-more:hover{
+	background: #e84145;
+	color: #fff;
+}
+.btn-buy:active, .btn-more:active{
+	background: #ce3a3d;
+}
+.btn-buy.disable, .btn-more.disable{
+	background: #999;
+	border: 2px solid #999;
+	-webkit-box-shadow:none;
+	        box-shadow:none;
+	cursor: not-allowed;
+}
+.btn-buy.border{
+	border:2px solid #dc3334;
+	background:#fff6f6;
+	height:40px;
+	line-height:40px;
+	color:#dc3334;
+}
+.btn-buy.soon{
+	background:#ff9000;
+	border:1px solid #ff9000;
+}
+.btn-buy.soon:hover{
+	background:#ff9812;
+}
+
+.btn-close{
+	width: 16px;
+	height: 0;
+	padding-top: 16px;
+	background: url(#{$bg-url}icon.png) no-repeat -101px 0;
+	overflow: hidden;
+	position: relative;
+}
+.btn-close:before{
+	content: '';
+	position: absolute;
+	left: -15px;
+	right: -15px;
+	top:-15px;
+	bottom:-15px;
+}
+.btn-close:hover{
+	background-position: -102px -19px;
+}
+
+.btn-goods, .btn-brand{
+	padding:0 6px;
+	height:28px;
+	line-height:28px;
+	border: 1px solid #BDBDBD;
+	color: #272541;
+	background: #fff;
+	position: relative;
+}
+.btn-goods.disable{
+	color: #ccc;
+	cursor: not-allowed;
+}
+.btn-goods.dashed{
+	border-style: dashed;
+}
+.btn-goods b{
+	display: inline-block;
+	vertical-align: middle;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #C6C6C6;
+	margin-right: 8px;
+}
+.btn-goods .icon{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+.btn-goods.active{
+	border-color: #dc3334;
+	-webkit-box-shadow:0 0 0 1px #dc3334;
+	        box-shadow:0 0 0 1px #dc3334;
+}
+.btn-goods.active .icon{
+	display: block;
+}
+
+
+.btn-goods-white b{
+	background: #fff;
+}
+.btn-goods-yellow b{
+	background: #FFFF00;
+}
+.btn-goods-gray b{
+	background: #686675;
+}
+.btn-num{
+	height: 32px;
+	line-height: 32px;
+	border:1px solid #C6C6C6;
+	overflow: hidden;
+	background: #fff;
+	text-align: center;
+}
+.btn-num a{
+	width: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	font-size:20px;
+	color:#999;
+}
+.btn-num a.disable{
+	color: #ccc;
+	cursor: not-allowed;
+}
+.btn-num-reduce{
+	float: left;
+	border-right:1px solid #C6C6C6;
+}
+.btn-num-add{
+	float: right;
+	border-left:1px solid #C6C6C6;
+}
+.btn-num input{
+	width: 49px;
+	height: 32px;
+	line-height: 32px;
+	border: none;
+	text-align: center;
+}
+
+.btn-select{
+	border: 1px solid #c6c6c6;
+	padding-right:5px;
+	background: #fff url(http://img0.sfht.com/sfht/img/btn-select.png) repeat-x;
+	cursor: pointer;
+	*display: inline;
+	*zoom:1;
+	position: relative;
+}
+.btn-select-num{
+	display: inline-block;
+	border: none;
+	width: 57px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 13px;
+	border-right: 1px solid #c6c6c6;
+	margin-right:5px;
+}
+.btn-select ul{
+	width: 88px;
+	border: 1px solid #c6c6c6;
+	position: absolute;
+	background: #fff;
+	color: #cdcdcd;
+	top: 23px;
+	left: -1px;
+	-webkit-border-radius: 2px;
+	        border-radius: 2px;
+	display: none;
+	-webkit-box-shadow: 3px 3px 5px rgba(4,0,0,0.15);
+	        box-shadow: 3px 3px 5px rgba(4,0,0,0.15);
+}
+.btn-select li{
+	border-bottom: 1px solid #c6c6c6;
+	padding-left: 12px;
+	height: 20px;
+	line-height: 20px;
+}
+.btn-select li:last-child{
+	border: none;
+}
+.btn-select label{
+	display: block;
+	cursor: pointer;
+	color: #272541;
+}
+.btn-select.active .icon16-1{
+	border-bottom-color:#272541;
+	border-top-color:transparent;
+	margin-top: -5px;
+}
+.btn-select-1{
+	background: url(http://img0.sfht.com/sfht/img/btn-select1.png) repeat-x;
+	z-index: map-get($z-index,btn-select-1);
+}
+.btn-select-1 .btn-select-num{
+	height: 39px;
+	line-height: 39px;
+}
+.btn-select-1 ul{
+	top: 42px;
+}
+.btn-send{
+	padding:0 15px;
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	background: #67b222;
+	-webkit-border-radius: 2px;
+	        border-radius: 2px;
+	-webkit-box-shadow: 0 2px 1px rgba(4,0,0,0.1);
+	        box-shadow: 0 2px 1px rgba(4,0,0,0.1);
+	border:1px solid #448509;
+}
+
+.btn-send:hover{
+	color: #fff;
+	background: #6ec125;
+}
+.btn-send:active{
+	background: #5fa620;
+}
+.btn-send.disable{
+	background: #ccc;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+	cursor: not-allowed;
+}
+.btn-register{
+	width: 100%;
+	text-align: center;
+	padding: 0;
+}
+.btn-brand{
+	*position: relative;
+	*z-index: map-get($z-index,btn-brand);
+	background: #272541;
+	color: #fff;
+}
+.btn-brand .detail{
+	border:1px solid #DEDDDE;
+	padding: 24px 27px;
+	width: 348px;
+	line-height: 18px;
+	-webkit-box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
+	        box-shadow: 1px 1px 5px rgba(4,0,0,0.16);
+	background: #f4f4f9;
+	position: absolute;
+	z-index: map-get($z-index,btn-brand-detail);
+	left: -48px;
+	top: 38px;
+	display: none;
+	color: #333840
+}
+
+.btn-brand.active .detail, .btn-brand:hover .detail{
+	display: block;
+}
+.btn-brand .icon16-3{
+	position: absolute;
+	left: 56px;
+	top: -27px;
+}
+.btn-add, .btn-cancel{
+	height: 34px;
+	line-height: 34px;
+	padding: 0 25px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;
+	background: #fff;
+	font-size: 14px;
+	color: #999;
+}
+
+
+.btn-normal, .btn-dashed, .btn-danger, .btn-warnning, .btn-success, .btn-soon, .btn-cart, .btn-black, .btn-disable{
+  display:inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  text-align: center;
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
+
+}
+
+
+
+.btn-normal{
+  background: #fff;
+  border:1px solid #c6c6c6;
+}
+.btn-normal:active{
+	background:#f9f9f9;
+}
+
+.btn-dashed{
+  background: #fff;
+  border:1px dotted #cfcfcf;
+}
+.btn-danger{
+  color:#fff !important;
+  background:#E73736;
+  border: 1px solid #dc3334;
+}
+.btn-danger:hover{
+	background:#E73736;
+	background: rgba(231,55,54,0.9);
+}
+.btn-danger:active{
+	-webkit-box-shadow:inset 0 1px 3px rgba(0,0,0,0.25);
+	        box-shadow:inset 0 1px 3px rgba(0,0,0,0.25);
+}
+.btn-warnning{
+  background: #1376ce;
+  color: #fff !important;
+  border: 1px solid #1376ce;
+}
+
+.btn-success{
+  background: #67b222;
+  color: #fff !important;
+  border: 1px solid #67b222;
+}
+.btn-success:hover{
+	background:#6ec125;
+}
+.btn-success:active{
+	background:#5fa620;
+}
+
+.btn-soon, .btn-cart{
+  background: #ff8140;
+  color: #fff !important;
+  border: 1px solid #ff9000;
+}
+.btn-soon:hover{
+	background:#ff9a40;
+}
+.btn-soon:active{
+	background:#f7661d;
+}
+.btn-black{
+  background: #3E3A39;
+  color: #fff !important;
+  border: 1px solid #3E3A39;
+}
+.btn-black:hover{
+	background: #3E3A39;
+	background: rgba(62,58,57,0.9);
+}
+.btn-black:active{
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+	        box-shadow: inset 0 1px 3px rgba(0,0,0,0.25);
+}
+.btn-disable{
+  color: #888888 !important;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+.btn-disable:hover{
+  background: #e8e8e8;
+}
+
+.btn-radius{
+  -webkit-border-radius: 22px;
+          border-radius: 22px;
+}
+
+.btn-small{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+}
+.btn-big{
+  width: 200px;
+  height: 48px;
+  line-height: 48px;
+}
+.btn-large{
+  width: 300px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.btn-search{
+	height: 23px;
+	line-height: 23px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 6px;
+	padding-right: 3px;
+	border:1px solid #e5e5e5;
+}
+.btn-search strong{
+	color: #dd3f45;
+	margin-right: 11px;
+}
+.btn-search-close{
+	width: 15px;
+	height: 15px;
+	background: #dd3f45;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.btn-search-close:hover:before{
+	-webkit-transform:rotate(180deg);
+	    -ms-transform:rotate(180deg);
+	        transform:rotate(180deg);
+}
+.btn-search-close:before{
+	content: '';
+	background: url(#{$bg-url}icon.png) no-repeat -207px -208px;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -4px;
+	margin-top: -4px;
+	-webkit-transition:all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	        transition:all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+} 
+.btn-outline.btn-danger{
+	background:#fff;
+	color:#E73736 !important;
+	border:1px solid #E73736;
+}
