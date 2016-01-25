@@ -3,21 +3,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>登陆顺丰海淘</title> 
+<title>登陆顺丰海淘</title>
 <link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<include src="../../modules/header/index.html"></include>
+  <include src="../../modules/header/index.html"></include>
   <div class="pm">
-  <!--[if IE 8]><div class="no-svg"><![endif]--> 
-  <include src="../../modules/crumbs/index.html"></include>
-  <include src="../../modules/goods-detail/index.html"></include>
-  <include src="../../modules/match/index.html"></include>
-  <include src="../../modules/recommends2/index.html"></include>
-  <include src="../../modules/detail/index.html"></include>
-  <!--[if IE 8]></div><![endif]-->
+    <!-- 商品详情 -->
+    <include src="../../modules/goods/index.html"></include>
+    <!-- 预付商品步骤 -->
+    <include src="../../modules/presell-steps/index.html"></include>
+    <!-- 精选搭配 -->
+    <include src="../../modules/match/index.html"></include>
+    <!-- 小编推荐 -->
+    <include src="../../modules/recommends2/index.html"></include>
+    <!-- 商品描述+评论 -->
+    <div class="detail">
+      <include src="../../modules/detail-h/index.html"></include>
+      <include src="../../modules/detail-tab/index.html"></include>
+      <div class="detail-tab-b active">
+        <div class="detail-b">
+          <include src="../../modules/flow/index.html"></include>
+          <include src="../../modules/detail-content/index.html"></include>
+          <!-- 评论部分开始 -->
+          <include src="../../modules/comment/index.html"></include>
+          <!-- 评论部分结束 -->
+          <!--比较-->
+          <include src="../../modules/comparison/index.html"></include>
+          <!--比较-->
+          <!--faq-->
+          <include src="../../modules/faq/index.html"></include>
+          <!--faq-->
+          <include src="../../modules/notify/index.html"></include>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <include src="../../modules/footer/index.html"></include>
+  <include src="../../modules/demo/index.html"></include>
 </body>
 </html>
-
