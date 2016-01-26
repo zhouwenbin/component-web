@@ -1,0 +1,17 @@
+.classify-icon {
+    font-size: 10px;
+}
+
+.classify-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/classify.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .classify-icon:before {
+    background-image: url("../svg/classify.png");
+}
+

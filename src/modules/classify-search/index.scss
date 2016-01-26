@@ -1,0 +1,133 @@
+.classify {
+  background: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 30px;
+}
+
+.classify h2 {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0 10px;
+}
+
+.classify h2 strong {
+  margin-right: 14px;
+}
+
+.classify label {
+  color: #848484;
+  display: inline-block;
+  width: 5em;
+  text-align: right;
+  vertical-align: middle;
+  margin-right: 23px;
+}
+
+.classify-list ul,
+.classify-list li li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.classify-list > li {
+  padding: 19px 0;
+  border-top: 1px dashed #d4d4d4;
+}
+
+.classify-logo ul {
+  width: 1008px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.classify .active ul {
+  height: auto;
+  padding-bottom: 1px;
+}
+
+.classify-logo li {
+  width: 98px;
+  height: 48px;
+  border: 1px solid #e5e5e5;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.classify-logo li:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.classify-logo li:hover img {
+  display: none;
+}
+
+.classify-logo img {
+  max-width: 98px;
+  max-height: 48px;
+  vertical-align: middle;
+}
+
+.classify-logo span {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+}
+
+.classify-text li {
+  margin-right: 42px;
+  line-height: 1.5;
+}
+
+.classify-text ul {
+  width: 1090px;
+}
+
+.classify-c2 {
+  padding-top: 13px;
+}
+
+.classify-c2 a {
+  color: #584a4c;
+}
+
+.classify .icon105 {
+  margin-left: 5px;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.classify .active .icon105 {
+  transform: rotate(180deg);
+}
+
+.classify-more:before {
+  content: '收起';
+}
+
+.classify .active .classify-more:before {
+  content: '展开';
+}
+
+.classify .btn-search {
+  margin-right: 10px;
+}
+
+.classify-select {
+  position: relative;
+}
+
+.classify-select .text-disabled {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.classify .classify-select {
+  height: 39px;
+  line-height: 39px;
+  padding: 0;
+}

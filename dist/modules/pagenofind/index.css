@@ -1,0 +1,18 @@
+.pagenofind,
+.pagenofind-goods {
+  background: #fff url(http://img0.sfht.com/sfht/1.1.258/img/404.png) no-repeat 150px 73px;
+  text-align: center;
+  margin-top: 44px;
+  margin-bottom: 74px;
+  padding-top: 327px;
+  padding-bottom: 80px;
+  margin-bottom: 20px; }
+
+.pagenofind a,
+.pagenofind-goods a {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 50px; }
+
+.pagenofind-goods {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/404-goods.jpg) no-repeat center; }

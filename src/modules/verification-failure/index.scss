@@ -1,0 +1,38 @@
+@import '../../utils/variables';
+.verification-failure{
+	background:#fff;
+	border-radius:4px;
+	padding:45px 37px 80px 366px;
+	margin-top:56px;
+	margin-bottom:137px;
+	position:relative;
+	font-size: 14px;
+}
+.verification-failure h1{
+	font-size: 18px;
+	margin-bottom: 38px;
+}
+.verification-failure-r2{
+	padding-left: 79px;
+	margin-top:10px;
+}
+.verification-failure .btn{
+	height: 34px;
+	line-height: 34px;
+	padding: 0 58px;
+	display: inline-block;
+	margin-right: 5px;
+	border-radius: 4px;
+}
+.verification-failure .btn-send{
+	margin-left: 25px;
+}
+.verification-failure .btn-add{
+	margin-left: 11px;
+}
+.verification-failure .icon26,
+.verification-failure .icon26-2{
+	height: 27px;
+	line-height: 27px;
+	border-radius: 4px;
+}
