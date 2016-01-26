@@ -1,0 +1,17 @@
+.buyer-reading-icon {
+    font-size: 10px;
+}
+
+.buyer-reading-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/buyer-reading.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .buyer-reading-icon:before {
+    background-image: url("../svg/buyer-reading.png");
+}
+

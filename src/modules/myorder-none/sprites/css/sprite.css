@@ -1,0 +1,17 @@
+.myorder-none-icon {
+    font-size: 10px;
+}
+
+.myorder-none-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/myorder-none.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .myorder-none-icon:before {
+    background-image: url("../svg/myorder-none.png");
+}
+

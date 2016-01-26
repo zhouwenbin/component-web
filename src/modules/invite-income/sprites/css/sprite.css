@@ -1,17 +1,17 @@
-.address-icon {
+.invite-income-icon {
     font-size: 10px;
 }
 
-.address-icon:before {
+.invite-income-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/address.svg");
+    background-image: url("../svg/invite-income.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .address-icon:before {
-    background-image: url("../svg/address.png");
+.no-svg .invite-income-icon:before {
+    background-image: url("../svg/invite-income.png");
 }
 

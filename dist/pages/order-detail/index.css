@@ -386,6 +386,7 @@
 .btn-refundtax {
     margin-left: 20px
 }
+<<<<<<< HEAD
 // 退税
 .order-createrefundtax {
     background: #fff;
@@ -478,6 +479,8 @@
     position: absolute;
     font-size: 16px
 }
+=======
+>>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .btn-refer-tax {
     margin: 20px 0 0 100px
 }

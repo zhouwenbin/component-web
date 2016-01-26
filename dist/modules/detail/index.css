@@ -567,6 +567,7 @@
   color: #666;
   line-height: 24px; }
 
+<<<<<<< HEAD
 /*
 @styleguide
 
@@ -660,6 +661,8 @@
   vertical-align: middle;
   margin-right: 8px; }
 
+=======
+>>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .detail {
   background: #fff;
   margin-bottom: 20px;

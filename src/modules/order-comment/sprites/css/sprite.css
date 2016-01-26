@@ -1,0 +1,17 @@
+.order-comment-icon {
+    font-size: 10px;
+}
+
+.order-comment-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/order-comment.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .order-comment-icon:before {
+    background-image: url("../svg/order-comment.png");
+}
+

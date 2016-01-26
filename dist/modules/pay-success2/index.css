@@ -1,0 +1,33 @@
+.pay-success2 {
+  background: #fff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 4px;
+          border-radius: 4px; }
+
+.pay-success2-h {
+  padding: 25px 20px;
+  border-bottom: 1px solid #ccc; }
+
+.pay-success2-h h2 {
+  color: #999;
+  font-weight: normal;
+  margin-bottom: 23px; }
+
+.pay-success2-h a {
+  margin: 0 15px; }
+
+.pay-success2-b h2 {
+  margin-bottom: 32px;
+  font-weight: normal; }
+
+.pay-success2-b {
+  padding: 37px 20px 70px; }
+
+.pay-success2-b li {
+  display: inline-block;
+  margin-right: 2px; }
+
+.pay-success2-bc2 {
+  width: 518px;
+  padding-left: 70px;
+  border-left: 1px solid #e5e5e5; }

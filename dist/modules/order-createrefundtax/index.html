@@ -1,0 +1,44 @@
+<div class="order-createrefundtax">
+  <h2>申请返还税金信息填写</h2>
+  <div class="order-createrefundtax-b1">
+    <div class="order-createrefundtax-b1-c1">
+      <label for="alipayaccount">税单编号：</label>
+      <input type="text" id="alipayaccount" />
+      <a href="javascript:" class="order-createrefundtax-help">?</a>
+      <span id="errorAlipayAccount" class="text-important hide">请输入正确的支付宝账户</span>
+    </div>
+    <div class="order-createrefundtax-b1-c1">
+      <label for="alipayaccount">退税金额：</label>
+      <input type="text" id="alipayaccount" />
+      <span id="errorAlipayAccount" class="text-important hide">请输入正确的支付宝账户</span>
+    </div>
+    <div class="order-createrefundtax-b1-c1">
+      <label for="alipayaccount">支付宝账户：</label>
+      <input type="text" id="alipayaccount" />
+      <span id="errorAlipayAccount" class="text-important hide">请输入正确的支付宝账户</span>
+    </div>
+    <div class="order-createrefundtax-b1-c1">
+      <label for="alipayname">账户真实姓名：</label>
+      <input type="text" id="alipayname" />
+      <span id="errorAlipayName" class="text-important hide">请输入账户真实姓名</span>
+    </div>
+    <div id="img" class="order-createrefundtax-b1-c2 clearfix">
+      <label class="" for="">税金缴纳证明：</label>
+
+      <label class="comment-add-img-add" id="pickbutton">上传照片
+        <input type="file" class="visuallyhidden" />
+      </label>
+
+      <p class="">返还税金需提供缴税证明，即中华人民共和国海关旅客行李、个人邮递物品进口税款缴纳证的正面照片。大小不超过5M，支持GIF,JPEG,JPG,PNG,BMP格式
+      </p>
+    </div>
+
+    <input type="hidden" name="imgs1" can-value="comment.input.img0">
+
+    <ul class="comment-add-img img-list-ul">
+
+    </ul>
+    <button class="btn btn-success btn-large btn-refer-tax">提交申请</button>
+    <div id="errorNoPicTips" class="text-important hide">请上传缴税证明照片</div>
+  </div>
+</div>
