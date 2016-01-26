@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 面包屑
+
+	<div class="crumbs">
+	    <a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴
+	</div>
+
+*/
+.crumbs {
+  margin: 20px 0;
+  color: #585758;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+.crumbs a {
+  color: #585758; }
+
+.crumbs span {
+  margin: 0 20px; }
+
+.nataral-shop-detail {
+  background: #fff;
+  padding-bottom: 36px; }
+
+.nataral-shop-detail img {
+  width: 650px;
+  height: 360px; }
+
+.nataral-shop-detail-inner {
+  display: inline-block;
+  width: 483px;
+  margin-left: 30px;
+  vertical-align: top; }
+
+.nataral-shop-detail h2 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 26px;
+  margin-top: 15px; }
+
+.nataral-shop-detail p {
+  color: #666;
+  margin-bottom: 17px;
+  line-height: 28px;
+  font-size: 14px; }
+
+.nataral-shop-detail .text-link {
+  font-size: 14px; }

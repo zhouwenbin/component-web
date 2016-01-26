@@ -1,52 +1,29 @@
-.topic-icon {
+.coopoverseasbug-logo-icon {
     font-size: 10px;
 }
 
-.topic-icon:before {
+.coopoverseasbug-logo-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
     background-image: url("../svg/coopoverseasbug-logo.svg");
     background-repeat: no-repeat;
-    background-size: 49.7em 19.8em;
+    background-size: 24.8em 12.1em;
 }
 
-.no-svg .topic-icon:before {
+.no-svg .coopoverseasbug-logo-icon:before {
     background-image: url("../svg/coopoverseasbug-logo.png");
 }
 
-.topic-icon.icon-logo1:before {
+.coopoverseasbug-logo-icon.icon-logo1:before {
     background-position: -1em -1em;
-    width: 47.7em;
-    height: 10em;
+    width: 22.8em;
+    height: 4.8em;
 }
 
-.topic-icon.icon-logo2:before {
-    background-position: -1em -13em;
-    width: 32.9em;
-    height: 5.8em;
-}
-
-5.8em;
-}
-
-;
-}
-
-ght: 5.8em;
-}
-
-;
-}
-
-ght: 5.8em;
-}
-
-: -1em -13em;
-    width: 32.9em;
-    height: 5.8em;
-}
-
-5.8em;
+.coopoverseasbug-logo-icon.icon-logo2:before {
+    background-position: -1em -7.8em;
+    width: 19em;
+    height: 3.3em;
 }
 

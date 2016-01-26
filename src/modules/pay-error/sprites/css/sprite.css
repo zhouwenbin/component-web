@@ -1,17 +1,17 @@
-.brand-icon {
+.pay-error-icon {
     font-size: 10px;
 }
 
-.brand-icon:before {
+.pay-error-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/brand.svg");
+    background-image: url("../svg/pay-error.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .brand-icon:before {
-    background-image: url("../svg/brand.png");
+.no-svg .pay-error-icon:before {
+    background-image: url("../svg/pay-error.png");
 }
 

@@ -1,0 +1,54 @@
+@import '../../utils/variables';
+.sort{
+	text-align: left;
+	margin-bottom: 30px;
+}
+.sort ul,
+.sort li{
+	display: inline-block;
+	vertical-align: middle;
+}
+.sort ul{
+	margin-left: 18px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #f3f3f3;
+}
+.sort li{
+	border-right: 1px solid #ccc;
+	
+}
+.sort li:last-child{
+	border: none;
+	border-radius:0 4px 4px 0;
+}
+.sort a{
+	width: 84px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	display: block;
+}
+.sort li.active{
+	background: #fff;
+}
+.sort .icon107{
+	margin-left: 3px;
+}
+.sort a.active .icon107{
+	transform:rotate(180deg);
+}
+.sort label{
+	height: 28px;
+	line-height: 28px;
+	padding-left: 30px;
+	input{
+		vertical-align: text-top;
+		margin-top: 2px;
+		margin-right: 5px;
+	}
+}
+.sf-b2c-mall-search-pagesShow .page{
+	text-align: center;
+	margin-bottom: 30px;
+}

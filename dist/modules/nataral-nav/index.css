@@ -1,0 +1,56 @@
+.nataral-nav {
+  border-bottom: 3px solid #32363F;
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 20px; }
+
+.nataral-nav li {
+  width: 73px;
+  height: 73px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: 22px;
+  text-align: center;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  background: #EAEAEA;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 90px;
+  position: relative; }
+
+.nataral-nav li:after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%; }
+
+.nataral-nav li a {
+  color: #999;
+  display: inline-block;
+  vertical-align: middle; }
+
+.nataral-nav li:before {
+  content: '';
+  border-width: 7px 5px;
+  border-style: solid;
+  border-color: transparent transparent #353942 transparent;
+  position: absolute;
+  bottom: -16px;
+  left: 33px;
+  display: none; }
+
+.nataral-nav li.active {
+  background: #E23E3F; }
+
+.nataral-nav li.active a {
+  color: #fff; }
+
+.nataral-nav li.active:before {
+  display: block; }
+
+.nataral-nav li .icon117 {
+  margin-bottom: 5px; }
+
+.nataral-nav li.active .icon117 {
+  background-position: -504px -424px; }

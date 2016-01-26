@@ -32,19 +32,25 @@ gulp.task("guild", function () {
 gulp.task("svg", function () {
   for(var i in modules) {
     if(modules[i] !== '.DS_Store') {
-      gulp.src("src/modules/"+modules[i]+"/svgs/*.svg")
+      gulp.src("src/modules/coopoverseasbug-logo/svgs/*.svg")
           .pipe(svgSprite({
               common: modules[i]+"-icon",
               selector: "icon-%f",
               padding:10,
               svg: {
-                  sprite: "svg/"+modules[i]+".svg"
+                  sprite: "svg/coopoverseasbug-logo.svg"
               }
           }))
-          .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(gulp.dest("src/modules/coopoverseasbug-logo/sprites/")) // Write the sprite-sheet + CSS + Preview
           .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
           .pipe(svg2png())           // Create a PNG
-          .pipe(gulp.dest("src/modules/"+modules[i]+"/sprites/"));
+          .pipe(gulp.dest("src/modules/coopoverseasbug-logo/sprites/"));
+    }
+  }
+});
+gulp.task("svg:copy", function () {
+  for(var i in modules) {
+    if(modules[i] !== '.DS_Store') {
       // 复制svg文件
       gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
           .pipe(gulp.dest("dist/pages/svg"))
