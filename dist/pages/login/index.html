@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if !IE 8]><html xmlns="http://www.w3.org/1999/xhtml"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-svg"><![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1280">
+<title>登陆顺丰海淘</title>
+<link href="../../../app/static/css/pages/common/common.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div class="pm">
+    <div class="ani ani1"></div>
+    <div class="ani ani1 ani1-1"></div>
+    <div class="ani ani2"></div>
+    <div class="ani ani3"></div>
+    <div class="ani ani4 ani4-1"></div>
+    <div class="ani ani4"></div>
+    <div class="ani ani5"></div>
+    <div class="ani ani6"></div>
+    <div class="ani ani6 ani6-1"></div>
+    <div class="ani ani7"></div>
+
+  </div>
+  <div class="login">
+    <!--[if IE 8]> <link href="../../../modules/login/sprites/css/sprite.css" rel="stylesheet" type="text/css" /> <![endif]-->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
+
+    <symbol id="icon-account" viewBox="0 0 15 15">
+            <title>icon-account</title><path d="M7.5 8.75s-5.455 0-7.5 4.375c0 0 3.416 1.25 7.5 1.25s7.5-1.25 7.5-1.25C12.955 8.75 7.5 8.75 7.5 8.75zm0-.625c2.045 0 3.41-1.875 3.41-5S7.5 0 7.5 0 4.09 0 4.09 3.125s1.365 5 3.41 5z" fill="#C5C5C5" fill-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="icon-alipay" viewBox="0 0 36 36">
+            <title>Clip 5 Copy</title><defs><path id="aba" d="M18 36c9.94 0 18-8.06 18-18S27.94 0 18 0 0 8.06 0 18s8.06 18 18 18z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#0AE" xlink:href="#aba"/><path d="M15.545 10.758V7.87h3.194v2.888h6.52v1.27l-6.52.043v1.795l5.383.043s-.098 1.007-.78 2.837c-.682 1.83-1.322 2.765-1.322 2.765l10.446 3.427s-.375.98-.826 1.84c-.452.86-1.08 1.784-1.08 1.784l-9.983-4.73s-1.888 2.086-3.813 3.006c-1.926.918-4.136 1.49-6.53.925-2.395-.563-4.094-2.094-3.802-4.92.293-2.828 3.314-3.802 5.8-3.802 2.485 0 7.2 1.61 7.2 1.61s.397-.888.782-1.903c.385-1.014.494-1.83.494-1.83H10.666v-1.007h4.88v-1.925l-6.083.044v-1.27h6.082zm2.686 9.904s-2.99 3.55-6.51 3.55c-3.524 0-4.264-1.685-4.264-2.9 0-1.213.732-2.532 3.73-2.722 2.997-.19 7.045 2.072 7.045 2.072z" fill="#FFF"/></g>
+    </symbol>
+
+    <symbol id="icon-close" viewBox="0 0 17 15">
+            <title>icon-close</title><g transform="translate(1)" stroke="#B5B5B5" fill="none" fill-rule="evenodd"><path d="M14.958.042L.042 14.958M14.958 14.958L.042.042"/></g>
+    </symbol>
+
+    <symbol id="icon-logo" viewBox="0 0 95 95">
+            <title>icon-logo</title><g fill="none" fill-rule="evenodd"><path d="M94.253 47.627c0 25.87-20.972 46.84-46.842 46.84-25.87 0-46.84-20.97-46.84-46.84C.57 21.757 21.54.787 47.41.787c25.87 0 46.843 20.97 46.843 46.84" fill="#DD3D42"/><path d="M61.377 82.284c-2.446 0-4.436-1.99-4.436-4.436v-7.853c0-.625.51-1.132 1.134-1.132.625 0 1.132.507 1.132 1.132v7.853c0 1.196.974 2.17 2.17 2.17 1.2 0 2.174-.974 2.174-2.17 0-.626.507-1.133 1.133-1.133.625 0 1.132.507 1.132 1.133 0 2.446-1.99 4.436-4.438 4.436M67.216 46.395c-.625 0-1.132-.506-1.132-1.133 0-1.43-1.163-2.593-2.592-2.593-1.43 0-2.592 1.163-2.592 2.592 0 .627-.508 1.133-1.133 1.133-.626 0-1.132-.506-1.132-1.133 0-2.677 2.18-4.857 4.857-4.857 2.678 0 4.856 2.18 4.856 4.857 0 .627-.506 1.133-1.132 1.133M35.12 46.395c-.624 0-1.13-.506-1.13-1.133 0-1.43-1.164-2.593-2.594-2.593s-2.592 1.163-2.592 2.592c0 .627-.507 1.133-1.132 1.133-.625 0-1.133-.506-1.133-1.133 0-2.677 2.178-4.857 4.856-4.857s4.858 2.18 4.858 4.857c0 .627-.507 1.133-1.133 1.133M43.855 82.296c-.625 0-1.13-.507-1.13-1.13v-9.25c0-.626.505-1.133 1.13-1.133.626 0 1.133.507 1.133 1.132v9.25c0 .624-.507 1.13-1.133 1.13M50.965 82.296c-.626 0-1.133-.507-1.133-1.13v-9.25c0-.626.507-1.133 1.133-1.133.624 0 1.132.507 1.132 1.132v9.25c0 .624-.508 1.13-1.132 1.13M33.556 82.284c-2.383 0-4.322-1.94-4.322-4.323 0-.626.507-1.132 1.132-1.132.626 0 1.132.506 1.132 1.133 0 1.135.924 2.058 2.058 2.058 1.135 0 2.058-.923 2.058-2.057v-7.965c0-.625.507-1.132 1.133-1.132.625 0 1.132.507 1.132 1.132v7.966c0 2.383-1.94 4.324-4.324 4.324M47.444 61.273c-3.766 0-6.83-3.065-6.83-6.83 0-3.766 3.064-6.83 6.83-6.83s6.83 3.064 6.83 6.83c0 3.765-3.064 6.83-6.83 6.83zm0-11.394c-2.517 0-4.565 2.046-4.565 4.562 0 2.518 2.047 4.565 4.564 4.565s4.565-2.047 4.565-4.565c0-2.516-2.05-4.563-4.566-4.563z" fill="#FFF"/><path d="M58.492 71.048l-.835-2.106c10.684-4.23 17.587-14.393 17.587-25.887 0-15.348-12.485-27.834-27.833-27.834-15.346 0-27.833 12.487-27.833 27.835 0 11.494 6.903 21.655 17.586 25.887l-.834 2.106c-5.546-2.197-10.28-5.96-13.686-10.885-3.49-5.04-5.332-10.956-5.332-17.108 0-16.597 13.503-30.098 30.1-30.098 16.596 0 30.097 13.5 30.097 30.098 0 6.152-1.844 12.07-5.332 17.11-3.408 4.922-8.14 8.687-13.686 10.883" fill="#FFF"/></g>
+    </symbol>
+
+    <symbol id="icon-password" viewBox="0 0 18 19">
+            <title>icon-password</title><path d="M7.875 11.613H6.187v-.034c-.185.018-.37.033-.562.033C2.52 11.613 0 9.095 0 5.988S2.52.363 5.625.363c3.106 0 5.625 2.518 5.625 5.625v2.25h.563V8.8h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563H18V17.8c0 .312-.25.563-.563.563h-2.25c-.31 0-.562-.25-.562-.563v-2.25h-2.813c-.31 0-.562-.25-.562-.562v-2.25H8.437l-.562-1.125zm-3.375-9c-1.243 0-2.25 1.007-2.25 2.25s1.007 2.25 2.25 2.25 2.25-1.007 2.25-2.25-1.007-2.25-2.25-2.25z" fill="#E5E5E5" fill-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="icon-reflash" viewBox="0 0 18 18">
+            <title>icon-reflash</title><path d="M18 6.75h-6.75l2.523-2.523C12.498 2.952 10.803 2.25 9 2.25c-1.803 0-3.498.702-4.773 1.977C2.952 5.502 2.25 7.197 2.25 9c0 1.803.702 3.498 1.977 4.773C5.502 15.048 7.197 15.75 9 15.75c1.803 0 3.498-.702 4.773-1.977.106-.106.208-.216.307-.328l1.693 1.48C14.123 16.81 11.7 18 9 18c-4.97 0-9-4.03-9-9s4.03-9 9-9c2.485 0 4.735 1.008 6.364 2.636L18 0v6.75z" fill="#E5E5E5" fill-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="icon-success" viewBox="0 0 17 14">
+            <title>icon-success</title><path d="M16.87.913L5.498 13.82 0 5.747l.855-.9 4.642 4.965L15.94 0l.93.913z" fill="#5BC2D8" fill-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="icon-username" viewBox="0 0 20 20">
+            <title>icon-username</title><path d="M10 12.03s-7.273 0-10 5.833c0 0 4.555 1.667 10 1.667s10-1.667 10-1.667c-2.727-5.833-10-5.833-10-5.833zm0-.834c2.727 0 4.545-2.5 4.545-6.666C14.545.363 10 .363 10 .363s-4.545 0-4.545 4.167c0 4.166 1.818 6.666 4.545 6.666z" fill="#E5E5E5" fill-rule="evenodd"/>
+    </symbol>
+
+    <symbol id="icon-webchat" viewBox="0 0 36 36">
+            <title>icon-webchat</title><g fill="none" fill-rule="evenodd"><path d="M18 0C8.064 0 0 8.06 0 18s8.064 18 18 18 17.996-8.06 17.996-18S27.936 0 18 0z" fill="#64B406"/><path d="M28.91 27.253l.773 2.568-2.817-1.543c-1.028.258-2.06.516-3.082.516-4.887 0-8.736-3.34-8.736-7.453 0-4.107 3.85-7.453 8.736-7.453 4.613 0 8.723 3.346 8.723 7.453 0 2.316-1.535 4.368-3.598 5.913z" fill="#FFF"/><path d="M13.76 23.656c-1.282 0-2.312-.262-3.597-.515l-3.59 1.8 1.026-3.09c-2.57-1.795-4.11-4.112-4.11-6.932 0-4.887 4.624-8.735 10.27-8.735 5.05 0 9.473 3.073 10.362 7.212-.325-.037-.655-.06-.988-.06-4.88 0-8.732 3.64-8.732 8.128 0 .746.116 1.465.316 2.153-.317.024-.636.04-.958.04z" fill="#FFF"/><path d="M20.75 17.253c-.49 0-.985.495-.985.985 0 .5.494.986.985.986.745 0 1.233-.487 1.233-.986 0-.49-.488-.985-1.233-.985M26.168 17.253c-.488 0-.978.495-.978.985 0 .5.49.986.978.986.738 0 1.233-.487 1.233-.986 0-.49-.494-.985-1.232-.985M10.653 10.11c-.738 0-1.483.486-1.483 1.228 0 .738.745 1.233 1.483 1.233.738 0 1.23-.494 1.23-1.232 0-.742-.492-1.23-1.23-1.23M17.547 12.57c.74 0 1.233-.494 1.233-1.232 0-.742-.492-1.23-1.233-1.23-.738 0-1.48.488-1.48 1.23 0 .738.742 1.233 1.48 1.233" fill="#64B406"/></g>
+    </symbol>
+    </svg>
+    <div class="login-inner">
+      <svg class="icon-logo"><use xlink:href="#icon-logo"></use></svg>
+      <!--[if IE 8]><span class="svg icon-logo"></span><![endif]-->
+      <a href=""><svg class="icon-close"><use xlink:href="#icon-close"></use></svg>
+      <!--[if IE 8]><span class="svg icon-close"></span><![endif]--></a>
+      <!--登录-->
+
+      <div class="login-form">
+        <h2><span>登录</span></h2>
+        <ul>
+         <li class="active">
+           <input class="input" placeholder="手机号/邮箱">
+           <svg class="icon-username"><use xlink:href="#icon-username"></use></svg>
+           <!--[if IE 8]><span class="svg icon-username"></span><![endif]-->
+           <div class="text-error">手机号不能为空</div>
+         </li>
+         <li>
+           <input class="input" placeholder="密码">
+           <svg class="icon-password"><use xlink:href="#icon-password"></use></svg>
+           <!--[if IE 8]><span class="svg icon-password"></span><![endif]-->
+           <div class="text-error">密码不能为空</div>
+         </li>
+         <li class="hide">
+          <input class="input" placeholder="输入右侧图形验证码，点击图片可刷新">
+          <img class="login-code" src="http://img0.sfht.com/cmsres/20151202/946602d5-5740-4859-9dbe-4c3d4c7a57e6.jpeg" alt="验证码">
+          <svg class="icon-reflash"><use xlink:href="#icon-reflash"></use></svg>
+          <!--[if IE 8]><span class="svg icon-reflash"></span><![endif]-->
+          <svg class="icon-success hide"><use xlink:href="#icon-success"></use></svg>
+          <!--[if IE 8]><span class="svg icon-success"></span><![endif]-->
+         </li>
+        </ul>
+        <div class="text-error hide">账号或密码不正确</div>
+        <div class="login-r1">
+         <div class="login-r1c1">
+           <button class="btn btn-danger">登录</button>不是会员？<a class="text-important" href="">去注册</a><a class="text-dark hide" href="">第三方账号登录</a>
+         </div>
+         <div class="login-r1c2">
+           <a class="text-dark" href="">忘记密码</a>
+         </div>
+        </div>
+        <div class="login-r2">
+         <a href=""><svg class="icon-webchat"><use xlink:href="#icon-webchat"></use></svg><!--[if IE 8]><span class="svg icon-webchat"></span><![endif]-->微信登录</a>
+         <a href=""><svg class="icon-alipay"><use xlink:href="#icon-alipay"></use></svg><!--[if IE 8]><span class="svg icon-alipay"></span><![endif]-->支付宝登录</a>
+        </div>
+      </div>
+      <!--微信登录-->
+      <div class="login-qrcode hide">
+        <h2><span>登录</span></h2>
+        <div class="icon-qrcode"></div>
+        <p>请用微信扫描二维码登录</p>
+        <div class="login-r1">
+         <div class="login-r1c1">
+           <a class="text-dark" href=""><svg class="icon-account"><use xlink:href="#icon-account"></use><!--[if IE 8]><span class="svg icon-account"></span><![endif]--></svg>用丰趣海淘账号登录</a>
+         </div>
+         <div class="login-r1c2">不是会员？<a class="text-important" href="">去注册</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+  <style type="text/css">
+  	.nav-demo{
+  		position: fixed;
+  		right: 0;
+  		top: 0;
+  		width: 150px;
+  		border-left: 1px solid #ccc;
+  		z-index: 9999;
+  	}
+  	.nav-demo li.title{
+  		background: #333;
+  		color: #fff;
+  	}
+  	.nav-demo li{
+  		height: 30px;
+  		line-height: 30px;
+  		border-bottom: 1px solid #ccc;
+  		background: #eee;
+  		padding-left: 10px;
+  		position: relative;
+  	}
+  	.nav-demo li:hover{
+  		background: #fff;
+  	}
+  	.nav-demo li.title:hover{
+  		background: #333;
+  	}
+  	
+  	.nav-demo a{
+  		display: block;
+  	}
+  	.nav-demo-page{
+  		left: 0;
+  		right: auto;
+  	}
+  	.nav-demo li ul{
+  		display: none;
+  		position: absolute;
+  		width: 150px;
+  		left:-150px;
+  		top: 0;
+  		z-index: 9999;
+  	}
+  	.nav-demo li:hover ul{
+  		display: block;
+  	}
+  	.nav-demo-page li ul{
+  		left:150px;
+  	}
+  </style>
+  <ul class="nav-demo nav-demo-page">
+  	<li class="title">页面列表</li>
+  	<li>
+  		用户
+  		<ul>
+  			<li><a href="../../pages/login/index.html">登录</a></li>
+  			<li><a href="../../pages/register/index.html">注册</a></li>
+  			
+  		</ul>
+  	</li>
+  	<li>
+  		个人中心
+  		<ul>
+  			<li><a href="../../pages/account-manage/index.html">账号管理</a></li>
+  			<li><a href="../../pages/address-manage/index.html">地址管理</a></li>
+  			<li><a href="../../pages/collect/index.html">我的收藏</a></li>
+  			<li><a href="../../pages/coupon/index.html">我的优惠券</a></li>
+  			<li><a href="../../pages/integral/index.html">积分管理</a></li>
+  			<li><a href="../../pages/invite/index.html">我的邀请</a></li>
+  			<li><a href="../../pages/message/index.html">消息中心</a></li>
+  			<li><a href="../../pages/myorder/index.html">我的订单</a></li>
+  			<li><a href="../../pages/myorder-search-none/index.html">订单搜索为空</a></li>
+  			<li><a href="../../pages/sale-management/index.html">售后管理</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		自助客服
+  		<ul>
+  			<li><a href="../../pages/service-index/index.html">客服首页</a></li>
+  			<li><a href="../../pages/orderSelect/index.html">订单选择</a></li>
+  			<li><a href="../../pages/announcementDetail/index.html">公告详情</a></li>
+  			<li><a href="../../pages/return-goods/index.html">申请退款</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		订单
+  		<ul>
+  			<li><a href="../../pages/order-detail/index.html">订单详情</a></li>
+  			<li><a href="../../pages/order-confirm/index.html">订单确认</a></li>
+  		</ul>
+  	</li>		
+  	<li>
+  		活动
+  		<ul>
+  			<li><a href="../../pages/activity-free/index.html">免单</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		cms
+  		<ul>
+  			<li><a href="../../pages/index/index.html">首页1</a></li>
+  			<li><a href="../../pages/index2/index.html">首页2</a></li>
+  			<li><a href="../../pages/index2-baby/index.html">母婴频道</a></li>
+  			<li><a href="../../pages/index2-digital/index.html">数码频道</a></li>
+  			<li><a href="../../pages/index2-health/index.html">健康频道</a></li>
+  			<li><a href="../../pages/index2-makeup/index.html">美妆频道</a></li>
+  		</ul>
+  	</li>	
+  	<li>
+  		关于我们
+  		<ul>
+  			<li><a href="../../pages/aboutus/index.html">关于我们</a></li>
+  			<li><a href="../../pages/contactus/index.html">联系我们</a></li>
+  			<li><a href="../../pages/policy/index.html">法律政策</a></li>
+  			<li><a href="../../pages/helpcenter-account-infomation/index.html">帮助中心-账户信息</a></li>
+  			<li><a href="../../pages/helpcenter-certification/index.html">帮助中心-实名认证</a></li>
+  			<li><a href="../../pages/helpcenter-cost/index.html">帮助中心-费用说明</a></li>
+  			<li><a href="../../pages/helpcenter-order-status/index.html">帮助中心-查询订单</a></li>
+  			<li><a href="../../pages/helpcenter-orderpay/index.html">帮助中心-订单支付</a></li>
+  			<li><a href="../../pages/helpcenter-overbooking/index.html">帮助中心-下单指南</a></li>
+  			<li><a href="../../pages/helpcenter-point/index.html">帮助中心-签收说明</a></li>
+  			<li><a href="../../pages/helpcenter-postage/index.html">帮助中心-满额包邮</a></li>
+  			<li><a href="../../pages/helpcenter-quality/index.html">帮助中心-正品保证</a></li>
+  			<li><a href="../../pages/helpcenter-register/index.html">帮助中心-免费注册</a></li>
+  			<li><a href="../../pages/helpcenter-saled-problem/index.html">帮助中心-售后问题</a></li>
+  			<li><a href="../../pages/helpcenter-shopping-link/index.html">帮助中心-购物环节</a></li>
+  			<li><a href="../../pages/helpcenter-shopping-time/index.html">帮助中心-配送时效</a></li>
+  			<li><a href="../../pages/helpcenter-shopping/index.html">帮助中心-购物流程</a></li>
+  			<li><a href="../../pages/helpcenter-signfor/index.html">帮助中心-签收说明</a></li>
+  			<li><a href="../../pages/helpcenter-size/index.html">帮助中心-尺码表</a></li>
+  			<li><a href="../../pages/helpcenter-transport-failure/index.html">帮助中心-运输时效</a></li>
+  		</ul>
+  	</li>
+  </ul>
+  <ul class="nav-demo">
+  	<li class="title">组件列表</li>
+
+  	<li>
+  		关于我们
+  		<ul>
+  			<li><a href="../../modules/aboutus/demo.html">关于我们</a></li>
+  			<li><a href="../../modules/contactus/demo.html">联系我们</a></li>
+  			<li><a href="../../modules/policy/demo.html">法律政策</a></li>
+  			<li><a href="../../modules/helpcenter-account-infomation/demo.html">帮助中心-账户信息</a></li>
+  			<li><a href="../../modules/helpcenter-certification/demo.html">帮助中心-实名认证</a></li>
+  			<li><a href="../../modules/helpcenter-cost/demo.html">帮助中心-费用说明</a></li>
+  			<li><a href="../../modules/helpcenter-order-status/demo.html">帮助中心-查询订单</a></li>
+  			<li><a href="../../modules/helpcenter-orderpay/demo.html">帮助中心-订单支付</a></li>
+  			<li><a href="../../modules/helpcenter-overbooking/demo.html">帮助中心-下单指南</a></li>
+  			<li><a href="../../modules/helpcenter-point/demo.html">帮助中心-签收说明</a></li>
+  			<li><a href="../../modules/helpcenter-postage/demo.html">帮助中心-满额包邮</a></li>
+  			<li><a href="../../modules/helpcenter-quality/demo.html">帮助中心-正品保证</a></li>
+  			<li><a href="../../modules/helpcenter-register/demo.html">帮助中心-免费注册</a></li>
+  			<li><a href="../../modules/helpcenter-saled-problem/demo.html">帮助中心-售后问题</a></li>
+  			<li><a href="../../modules/helpcenter-shopping-link/demo.html">帮助中心-购物环节</a></li>
+  			<li><a href="../../modules/helpcenter-shopping-time/demo.html">帮助中心-配送时效</a></li>
+  			<li><a href="../../modules/helpcenter-shopping/demo.html">帮助中心-购物流程</a></li>
+  			<li><a href="../../modules/helpcenter-signfor/demo.html">帮助中心-签收说明</a></li>
+  			<li><a href="../../modules/helpcenter-size/demo.html">帮助中心-尺码表</a></li>
+  			<li><a href="../../modules/helpcenter-transport-failure/demo.html">帮助中心-运输时效</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		弹窗
+  		<ul>
+  			<li><a href="../../modules/dialog/demo.html">弹窗</a></li>
+  			<li><a href="../../modules/dialog-browser/demo.html">浏览器提示</a></li>
+  			<li><a href="../../modules/dialog-qrcode/demo.html">分享散红包到微信</a></li>
+  			<li><a href="../../modules/dialog-stockout/demo.html">到货通知</a></li>
+  			<li><a href="../../modules/dialog-subscription/demo.html">订阅成功</a></li>
+  			<li><a href="../../modules/login-dialog/demo.html">登录</a></li>
+  			<li><a href="../../modules/register-dialog/demo.html">注册</a></li>
+  			<li><a href="../../modules/orderSelect-dialog/demo.html">申请退款</a></li>
+  			<li><a href="../../modules/account-dialog/demo.html">账户管理</a></li>
+  			<li><a href="../../modules/center-del-dialog/demo.html">删除收货人信息</a></li>
+  			<li><a href="../../modules/dialog-alipay/demo.html">绑定支付宝账号</a></li>
+  			<li><a href="../../modules/dialog-copy/demo.html">复制成功</a></li>
+  			<li><a href="../../modules/dialog-agreement/demo.html">服务同意条款</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		商品列表
+  		<ul>
+  			<li><a href="../../modules/product/demo.html">商品列表</a></li>
+  			<li><a href="../../modules/product-1/demo.html">商品列表</a></li>
+  			<li><a href="../../modules/product2/demo.html">每日上新</a></li>
+  			<li><a href="../../modules/product2-1/demo.html">每日上新</a></li>
+  			<li><a href="../../modules/products1/demo.html">商品列表1</a></li>
+  			<li><a href="../../modules/products2/demo.html">商品列表2</a></li>
+  			<li><a href="../../modules/products3/demo.html">商品列表3</a></li>
+  			<li><a href="../../modules/hotsale/demo.html">热销排行榜</a></li>
+  			<li><a href="../../modules/products4/demo.html">商品列表4</a></li>
+  			<li><a href="../../modules/products5/demo.html">商品列表5</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		小组件
+  		<ul>
+  			<li><a href="../../modules/btn/demo.html">按钮</a></li>
+  			<li><a href="../../modules/text/demo.html">文字样式</a></li>
+  			<li><a href="../../modules/tooltip/demo.html">提示</a></li>
+  			<li><a href="../../modules/coupon/demo.html">单个优惠券</a></li>
+  			<li><a href="../../modules/input/demo.html">输入框单选</a></li>
+  			<li><a href="../../modules/crumbs/demo.html">面包屑</a></li>
+  			<li><a href="../../modules/page/demo.html">分页</a></li>
+  			<li><a href="../../modules/label/demo.html">标签</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		头尾
+  		<ul>
+  			<li><a href="../../modules/header/demo.html">头部</a></li>
+  			<li><a href="../../modules/footer/demo.html">尾部</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		cms组件
+  		<ul>
+  			<li><a href="../../modules/brand/demo.html">品牌特卖</a></li>
+  			<li><a href="../../modules/flashsale/demo.html">限时特卖</a></li>
+  			<li><a href="../../modules/sidebar/demo.html">侧边栏</a></li>
+  			<li><a href="../../modules/slider/demo.html">侧边栏+幻灯</a></li>
+  			<li><a href="../../modules/topic/demo.html">专题列表</a></li>
+  			<li><a href="../../modules/index2-h2/demo.html">标题</a></li>
+  			<li><a href="../../modules/tab/demo.html">选项卡</a></li>
+  			<li><a href="../../modules/tab-baby/demo.html">选项卡-母婴</a></li>
+  			<li><a href="../../modules/nataral-top/demo.html">回到顶部</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		个人中心
+  		<ul>
+  			<li><a href="../../modules/account-manage/demo.html">账户管理</a></li>
+  			<li><a href="../../modules/mycoupon/demo.html">我的优惠券</a></li>
+  			<li><a href="../../modules/myorder-tab/demo.html">我的订单选项卡</a></li>
+  			<li><a href="../../modules/myorder-search/demo.html">我的订单搜索</a></li>
+  			<li><a href="../../modules/myorder-none/demo.html">订单为空</a></li>
+  			<li><a href="../../modules/myorder/demo.html">我的订单</a></li>
+  			<li><a href="../../modules/personal/demo.html">个人中心</a></li>
+  			<li><a href="../../modules/address-table/demo.html">地址表格</a></li>
+  			<li><a href="../../modules/collect/demo.html">收藏</a></li>
+  			<li><a href="../../modules/integral/demo.html">积分</a></li>
+  			<li><a href="../../modules/integral-tab/demo.html">积分选项卡</a></li>
+  			<li><a href="../../modules/invite/demo.html">邀请</a></li>
+  			<li><a href="../../modules/invite-rule/demo.html">邀请规则</a></li>
+  			<li><a href="../../modules/invite-open/demo.html">开启邀请</a></li>
+  			<li><a href="../../modules/invite-open/demo.html">我的邀请</a></li>
+  			<li><a href="../../modules/invite-account/demo.html">账户明细</a></li>
+  			<li><a href="../../modules/message/demo.html">消息</a></li>
+  			<li><a href="../../modules/sale-management/demo.html">售后管理</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		订单
+  		<ul>
+  			<li><a href="../../modules/address/demo.html">地址</a></li>
+  			<li><a href="../../modules/address-add/demo.html">添加地址</a></li>
+  			<li><a href="../../modules/cart/demo.html">去结算</a></li>
+  			<li><a href="../../modules/cart-coupon/demo.html">使用优惠券</a></li>
+  			<li><a href="../../modules/cart-table/demo.html">去结算表格</a></li>
+  			<li><a href="../../modules/order-confirm/demo.html">订单确认</a></li>
+  			<li><a href="../../modules/order-detail/demo.html">订单详情</a></li>
+  			<li><a href="../../modules/order-status/demo.html">订单状态</a></li>
+  			<li><a href="../../modules/order-success/demo.html">订单支付成功</a></li>
+  			<li><a href="../../modules/coupons/demo.html">多个优惠券</a></li>
+  			
+  		</ul>
+  	</li>
+  	<li>
+  		自助客服
+  		<ul>
+  			<li><a href="../../modules/orderSelect/demo.html">订单选择</a></li>
+  			<li><a href="../../modules/announcement/demo.html">公告</a></li>
+  			<li><a href="../../modules/announcementDetail/demo.html">公告详情</a></li>
+  			<li><a href="../../modules/commonProblem/demo.html">常见问题</a></li>
+  			<li><a href="../../modules/selfService/demo.html">自助服务</a></li>
+  			<li><a href="../../modules/onlineService/demo.html">在线客服</a></li>
+  			<li><a href="../../modules/returnGoods/demo.html">退货退款商品</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		详情
+  		<ul>
+  			<li><a href="../../modules/comparison/demo.html">海淘对比</a></li>
+  			<li><a href="../../modules/flow/demo.html">购买流程</a></li>
+  			<li><a href="../../modules/match/demo.html">精选搭配</a></li>
+  			<li><a href="../../modules/faq/demo.html">faq</a></li>
+  			<li><a href="../../modules/goods/demo.html">商品详情</a></li>
+  			<li><a href="../../modules/recommends2/demo.html">小编推荐</a></li>
+  			<li><a href="../../modules/comment-h/demo.html">评论头部</a></li>
+  			<li><a href="../../modules/comment-tab/demo.html">评论选项卡</a></li>
+  			<li><a href="../../modules/comment-list/demo.html">评论列表</a></li>
+  			<li><a href="../../modules/notify/demo.html">消费告客户书</a></li>
+  			<li><a href="../../modules/detail-tab/demo.html">详情页选项卡</a></li>
+  			<li><a href="../../modules/detail-h/demo.html">商品横向描述</a></li>
+  			<li><a href="../../modules/detail-content/demo.html">商品纵向描述</a></li>
+  			<li><a href="../../modules/presell-steps/demo.html">预付商品步骤</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		用户
+  		<ul>
+  			<li><a href="../../modules/login/demo.html">登录</a></li>
+  			<li><a href="../../modules/register/demo.html">注册</a></li>
+  		</ul>
+  	</li>
+  	<li>
+  		其他
+  		<ul>
+  			<li><a href="../../modules/feedback/demo.html">反馈</a></li>
+  			<li><a href="../../modules/gameover/demo.html">活动结束</a></li>
+  			<li><a href="../../modules/notify/demo.html">消费者告知书</a></li>
+  			<li><a href="../../modules/recommends/demo.html">相关商品</a></li>
+  		</ul>
+  	</li>	
+  	
+  </ul>
+
+</body>
+</html>

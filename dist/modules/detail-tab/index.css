@@ -1,0 +1,140 @@
+/*
+@styleguide
+
+# 详情页
+	
+*/
+.detail-tab-b{
+	display: none;
+}
+.detail-tab-b.active{
+	display: block;
+}
+.detail-tab-h li{
+	display: inline-block;
+	font-size:18px;
+	padding: 0 14px;
+	font-weight: normal;
+	margin-bottom: -2px;
+	margin-right: 10px;
+}
+.detail-tab-h li a{
+	color: #666;
+}
+.detail-tab-h li.active{
+	border-bottom:2px solid #dc3334;
+}
+.detail-tab-h li.active a{
+	color: #333;
+}
+.detail-tab-h span{
+	font-size: 14px;
+}
+.detail-h ul{
+	padding-top:30px;
+	margin: -2px 50px 0;
+}
+.detail-h li{
+	margin-bottom: 17px;
+	width: 33.3%;
+	float: left;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+.detail-tab-box{
+	height: 48px;
+	line-height: 48px;
+	border-bottom: 2px solid #eee;
+	margin: 0 50px;
+	background-color: #fff;
+}
+.detail-tab-r{
+	position: absolute;
+	right: 30px;
+	top: 0px;
+	display: none;
+}
+.detail-tab-box .btn{
+	width: 110px;
+	height: 48px;
+	-webkit-border-radius: 0;
+	        border-radius: 0;
+	border: 0 none;
+	margin-left: 16px;
+	vertical-align: top;
+	background-color: #E73736;
+}
+.detail-tab-r .text-important{
+	font-size: 20px;
+}
+.detail-tab-r .text-important em{
+	font-size: 14px;
+	font-weight: 400;
+	margin-right: 3px;
+}
+.detail-tab-r{
+	color: #999;
+	font-size: 12px;
+}
+.detail-tab-cart{
+	margin-left: 25px;
+	position: relative;
+}
+.detail-tab-cart .icon-cart{
+	width: 23px;
+	height: 20px;	
+}
+.detail-tab-dot{
+	position: absolute;
+	background-color: #E73736;
+	color: #fff;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	right: -10px;
+	top: -10px;
+}
+.detail-tab-fixed{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: 0px;
+	z-index: 1;
+	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,.1);
+	        box-shadow: 0 2px 3px rgba(0,0,0,.1);
+}
+.detail-tab-box.detail-tab-fixed{
+	border-bottom: 0 none;
+}
+.detail-tab-box-inner{
+	width: 1180px;
+	margin: 0 auto;
+	position: relative;
+}
+.detail-tab-fixed .detail-tab-r{
+	display: block;
+}
+.detail-tab-fixed .detail-tab-h li.active{
+	height: 45px;
+	border-bottom: 3px solid #E73736;
+}
+.detail-tab-fixed .detail-tab-h li{
+	padding: 0;
+	font-size: 14px;
+	margin-right: 40px;
+}
+.detail-tab-fixed .detail-tab-h{
+	padding-left: 20px;
+}
+.detail-tab-fixed .detail-tab-h li.active a{
+	color: #E73736;
+}
+.detail-tab-fixed .detail-tab-h li a{
+	color: #333;
+}

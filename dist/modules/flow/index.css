@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 流程
+
+<ul class="flow clearfix">
+  <li><div class="flow-r1"><div class="flow-icon1"></div></div><h3>海外正品采买</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon2"></div></div><h3>海外&保税仓库备货</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon3"></div></div><h3>海关检验检疫</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon4"></div></div><h3>客户订单支付</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon5"></div></div><h3>快速清关</h3><div class="flow-arrow flow-arrow-1"></div><div class="flow-arrow flow-arrow-2"></div></li>
+  <li><div class="flow-r1"><div class="flow-icon6"></div></div><h3>顶尖物流配送</h3></li>
+</ul>
+*/
+.flow {
+  background: url(http://img0.sfht.com/sfht/1.1.258/img/flow.png) no-repeat;
+  height: 164px;
+  text-indent: -999em;
+  margin: 13px 0 30px; }

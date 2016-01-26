@@ -1,0 +1,23 @@
+table{
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  margin-top: 10px;
+}
+th{
+  color: #ff8208;
+  font-size: 16px;
+  text-align: center;
+  height: 40px;
+}
+td{
+  height: 32px;
+  line-height: 32px;
+  border-right: 1px solid #eeeeee;
+}
+tbody tr:nth-child(even){
+  background: #fcf7ef;
+}
+tbody tr td:last-child{
+  border-right: none;
+}

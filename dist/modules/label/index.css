@@ -1,0 +1,62 @@
+/*
+@styleguide
+
+# 标签
+
+<span class="label label-success">success</span>
+<span class="label label-error">error</span>
+<span class="label label-waining">waining</span>
+<span class="label label-disabled">disabled</span>
+<span class="label label-soon">soon</span>
+
+	<span class="label label-success">success</span>
+	<span class="label label-error">error</span>
+	<span class="label label-waining">waining</span>
+	<span class="label label-disabled">disabled</span>
+	<span class="label label-soon">soon</span>
+	
+*/
+ .label-error, .label-success, .label-waining, .label-disabled, .label-important, .label-soon{
+ 	height: 21px;
+	line-height: 21px;
+	color: #fff;
+	text-align: center;
+	-webkit-border-radius: 2px;
+	        border-radius: 2px;
+	padding: 0 15px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+ }
+ .label:hover{
+ 	color: #fff;
+ }
+ .label-error{
+ 	background: #eb6877;
+ }
+ .label-success{
+ 	background: #67b222;
+ }
+ .label-waining{
+ 	background: #a1d0ed;
+ }
+ .label-disabled{
+ 	background: #aaa;
+ }
+ .label-important{
+ 	background:#ff9494;
+ }
+ .label-soon{
+ 	background:#f78e57;
+ }
+
+ .label i{
+ 	  border-width: 3px 3px;
+	  border-style: solid;
+	  border-color: transparent transparent transparent #ff9999;
+	  position: absolute;
+	  right: -6px;
+	  top: 50%;
+	  margin-top: -3px;
+ }
+ 

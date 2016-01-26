@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 账号管理
+
+*/
+.account-dialog {
+  position: absolute;
+  font-size: 14px;
+  color: #666;
+  background-color: #F2F2F2;
+  background-color: rgba(242, 242, 242, 0.9);
+  text-align: center;
+  left: 50%;
+  top: 50%; }
+
+.account-dialog-success {
+  width: 180px;
+  height: 60px;
+  line-height: 60px;
+  margin-left: -90px;
+  margin-top: -30px; }
+
+.account-dialog-close {
+  width: 360px;
+  height: 120px;
+  line-height: 120px;
+  margin-top: -60px;
+  margin-left: -180px; }
+
+.account-dialog-iclose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  color: #979797;
+  background: url(http://img0.sfht.com/cmsres/20151231/42d2fd51-e7e5-4a37-94a2-f2e10c532868.png) 0 0 no-repeat; }
+
+.account-dialog-iclose:hover {
+  /*color: #EE5151;*/
+  background: url(http://img0.sfht.com/cmsres/20151231/1a2033d8-edbe-4b9a-8eed-362e9cf221ca.png) 0 0 no-repeat; }
+
+/*.account-dialog-iclose i,
+.account-dialog-iclose i:before{
+	position: absolute;	
+	width: 20px;
+	height: 20px;
+}
+.account-dialog-iclose i{
+	top: 7px;
+	left: 7px;
+	line-height: 1;
+	transform: rotate(45deg);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865474, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865474, SizingMethod='auto expand')";
+	border-left: 1px solid;
+}
+.account-dialog-iclose i:before{
+	content: "";
+	border-top: 1px solid;
+	top: 10px;
+	right: 10px;
+}*/
+.account-dialog-btn {
+  width: 480px;
+  height: 135px;
+  padding-top: 65px;
+  margin-left: -240px;
+  margin-top: -100px; }
+
+.account-dialog-btn {
+  padding-top: 65px; }
+
+.account-dialog-btn-box {
+  margin-top: 30px; }
+
+.account-dialog-btn-box .btn {
+  margin: 0 20px;
+  font-size: 12px;
+  width: 90px; }
+
+.account-dialog-btn-box .btn-disable {
+  background-color: #999;
+  color: #fff !important; }

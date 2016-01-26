@@ -1,0 +1,125 @@
+/*
+@styleguide
+
+# 订单选择-弹窗
+
+*/
+.orderSelect-dialog-icon{
+	font-size: 10px;
+}
+.orderSelect-dialog-icon:before{
+	content: ' ';
+	vertical-align: middle;
+	display: inline-block;
+	background-image: url("../svg/orderSelect-dialog.svg");
+	background-repeat: no-repeat;
+	background-size: 9.3781em 12.9em;
+}
+.no-svg .orderSelect-dialog-icon:before{
+	background-image: url("../svg/orderSelect-dialog.png");
+}
+.orderSelect-dialog-icon.icon-close:before{
+	background-position: -1em -1em;
+	width: 1.4939999999999998em;
+	height: 1.5093000000000003em;
+}
+.orderSelect-dialog-icon.icon-success:before{
+	background-position: -1em -4.6em;
+	width: 7.378100000000001em;
+	height: 7.3em;
+}
+.mask{
+	display: block;
+}
+.orderSelect-dialog{
+	width: 512px;
+	height: 181px;
+	position: fixed;
+	background: #fff;
+	left:50%;
+	top:50%;
+	margin-left: -256px;
+	margin-top: -90px;
+	z-index: 999;
+	text-align: center;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+}
+.orderSelect-dialog.success{
+	width: 512px;
+	height: 250px;
+	margin-left: -256px;
+	margin-top: -125px;
+}
+
+.orderSelect-dialog .icon-close{
+	width: 14px;
+	height: 15px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+.orderSelect-dialog .icon-success{
+	width: 73px;
+	height: 73px;
+	display: inline-block;
+	margin-top: 55px;
+	margin-bottom: 36px;
+}
+.orderSelect-dialog-select{
+	position: relative;
+	display: inline-block;
+	margin-top: 50px;
+	margin-bottom: 21px;
+}
+.orderSelect-dialog select{
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	-webkit-appearance:none;
+	   -moz-appearance:none;
+	        appearance:none;
+	background: #fff;
+  border-width: 1px;
+  border-color: rgb(230, 229, 229);
+  border-style: solid;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+	color: #aaa;
+	padding-left: 10px;
+}
+.orderSelect-dialog-arrow{
+  border-width: 2px;
+  border-color: rgb(227, 227, 227);
+  border-style: solid;
+  background-color: rgb(227, 227, 227);
+  position: absolute;
+  width: 27px;
+  height: 36px;
+	right: 0;
+	top: 0;
+}
+.orderSelect-dialog-arrow i{
+	border-width: 4px;
+	border-color: #838383 transparent transparent transparent;
+	border-style: solid;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -4px;
+	margin-top: -2px;
+}
+.orderSelect-dialog .btn{
+	width: 149px;
+	height: 44px;
+	line-height: 44px;
+}
+.orderSelect-dialog p{
+	font-size: 14px;
+	line-height: 21px;
+}
+.orderSelect-dialog-input{
+	width: 440px;
+	margin-top: 50px;
+	margin-bottom: 21px;
+}

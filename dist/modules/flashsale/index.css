@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 限时特卖1
+
+	
+*/
+.flashsale {
+  margin-bottom: 40px; }
+
+.flashsale li {
+  padding: 9px;
+  background: #fff;
+  margin-bottom: 12px;
+  border: 1px solid #e5e5e5; }
+
+.flashsale-c1 {
+  width: 670px;
+  height: 340px;
+  text-align: center; }
+
+.flashsale-c1:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle; }
+
+.flashsale-c1 img {
+  max-width: 670px;
+  max-height: 340px;
+  vertical-align: middle; }
+
+.flashsale-c1 img:hover {
+  opacity: 0.85; }
+
+.flashsale-c2 {
+  overflow: hidden;
+  padding: 20px 30px 12px; }
+
+.flashsale-c2r1 {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 14px; }
+
+.flashsale-c2r1 .text-error {
+  font-size: 16px;
+  margin-right: 10px; }
+
+.flashsale-c2r2c1 {
+  color: #dc3334;
+  font-size: 18px; }
+
+.flashsale-c2r2c2 {
+  padding-top: 5px; }
+
+.flashsale-c2r2 strong {
+  font-size: 48px;
+  font-weight: normal;
+  margin-right: 6px; }
+
+.flashsale-c2r2 span {
+  font-size: 24px; }
+
+.flashsale h3 {
+  font-size: 20px;
+  line-height: 32px;
+  max-height: 64px;
+  overflow: hidden;
+  margin-bottom: 15px; }
+
+.flashsale h3:hover {
+  text-decoration: underline; }
+
+.flashsale p {
+  font-size: 14px;
+  line-height: 24px;
+  max-height: 72px;
+  overflow: hidden;
+  color: #666;
+  margin-bottom: 20px;
+  border-top: 1px dotted #ccc;
+  padding-top: 10px; }
+
+.flashsale .icon56 {
+  margin-right: 8px; }
+
+.flashsale .btn {
+  height: 44px;
+  line-height: 44px;
+  width: 135px; }
+
+.flashsale-address {
+  color: #999;
+  margin-bottom: 15px; }
+
+.flashsale-address img {
+  margin-right: 5px; }
+
+.flashsale-c2-inner {
+  height: 250px; }

@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 地址列表
+
+*/
+.invite-h3 {
+  width: 140px;
+  height: 38px;
+  line-height: 38px;
+  background: #E85254;
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  -webkit-border-radius: 5px 5px 5px 0;
+          border-radius: 5px 5px 5px 0;
+  margin-left: -10px;
+  margin-top: -10px;
+  position: relative; }
+
+.invite-h3:before {
+  content: '';
+  border-width: 5px;
+  border-style: solid;
+  border-color: #E85254 #E85254 transparent transparent;
+  position: absolute;
+  bottom: -10px;
+  left: 0px; }
+
+.invite-rule {
+  border: 1px solid #E56466;
+  margin-bottom: 49px;
+  padding-bottom: 15px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+          border-radius: 5px; }
+
+.invite-rule-bg {
+  background: url(http://img0.sfht.com/cmsres/20151225/5f9344e5-38be-440b-8b42-617b858d57cd.png) no-repeat center 55px;
+  height: 230px;
+  border-bottom: 1px dashed #E5E5E5;
+  margin-bottom: 15px; }
+
+.invite-rule .btn {
+  background: #50E3C2;
+  height: 38px;
+  line-height: 38px;
+  border-color: #50E3C2; }
+
+.invite-rule .btn:hover {
+  background: #1ac199;
+  border-color: #1ac199; }
+
+.invite-rule p {
+  display: inline-block;
+  color: #666;
+  margin-left: 20px; }

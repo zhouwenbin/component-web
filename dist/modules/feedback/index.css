@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 用户反馈
+
+	<div class="feedback">
+	  <h2>意见反馈</h2>
+	  <textarea placeholder="输入您对顺丰海淘的建议或意见，帮助我们做的更好"></textarea>
+	  <div class="feedback-r1">
+	    <label>验证码:<input type="text" /><img src="" alt="验证码" /></label>
+	  </div>
+	  <div class="feedback-r2">
+	    <a href="#" class="btn btn-send">提交</a>
+	  </div>
+	</div>
+	
+*/
+.feedback {
+  padding: 53px 158px;
+  background: #fff;
+  margin: 46px 0;
+  -webkit-border-radius: 10px;
+          border-radius: 10px; }
+
+.feedback h2 {
+  font-size: 18px;
+  margin-bottom: 30px; }
+
+.feedback textarea {
+  padding: 10px;
+  width: 838px;
+  height: 229px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px; }
+
+.feedback input {
+  width: 144px;
+  height: 33px;
+  margin: 0 10px; }
+
+.feedback .btn {
+  width: 110px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 14px;
+  text-align: center; }
+
+.feedback-r1 {
+  margin-bottom: 20px; }
+
+.feedback .justify {
+  width: 4em; }

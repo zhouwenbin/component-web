@@ -1,0 +1,83 @@
+.presell-steps-icon {
+    font-size: 10px;
+}
+
+.presell-steps-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("sprites/svg/presell-steps.svg");
+    background-repeat: no-repeat;
+    background-size: 7.5em 27.5em;
+}
+
+.no-svg .presell-steps-icon:before {
+    background-image: url("sprites/svg/presell-steps.png");
+}
+
+.presell-steps-icon.icon-presell01:before {
+    background-position: -1em -1em;
+    width: 4.7em;
+    height: 4.7em;
+}
+
+.presell-steps-icon.icon-presell02:before {
+    background-position: -1em -7.7em;
+    width: 5.5em;
+    height: 5.4em;
+}
+
+.presell-steps-icon.icon-presell03:before {
+    background-position: -1em -15.1em;
+    width: 4.7em;
+    height: 4.7em;
+}
+
+.presell-steps-icon.icon-presell04:before {
+    background-position: -1em -21.8em;
+    width: 4.7em;
+    height: 4.7em;
+}
+.presell-steps {
+  background-color: #fff;
+  margin-bottom: 20px;
+  border: 1px dashed #979797; }
+
+.presell-steps li {
+  float: left;
+  color: #969696;
+  width: 287px;
+  padding-right: 7px;
+  text-align: center;
+  height: 70px;
+  padding-top: 18px;
+  background: url(http://img0.sfht.com/cmsres/20160122/d95b5535-c629-4f62-a2ec-563c69f8cccf.png) right 0 no-repeat; }
+
+.presell-steps .presell-steps-last {
+  background: none; }
+
+.presell-steps-inner {
+  position: relative;
+  display: inline-block;
+  padding-left: 65px;
+  text-align: left;
+  height: 52px;
+  line-height: 1.3; }
+
+.presell-steps-icon {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 45px;
+  height: 45px; }
+
+.presell-steps h2 {
+  font-size: 14px; }
+
+.presell-steps p {
+  color: #969696;
+  font-size: 12px;
+  margin-bottom: 0; }
+
+.presell-steps02 h2 {
+  margin-top: 20px; }
