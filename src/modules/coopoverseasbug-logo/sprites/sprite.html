@@ -177,14 +177,14 @@
 
 <li title="icon-logo1">
             <div class="icon-box" id="icon-box-icon-logo1">
-                <div class="coopoverseasbug-logo-icon icon-logo1"></div>
+                <div class="topic-icon icon-logo1"></div>
             </div>
             <h2>icon-logo1</h2>
             <button onclick="showPopover('snippet-icon-logo1')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-logo1')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-logo1">
-                <pre><code>&lt;span class=&quot;coopoverseasbug-logo-icon icon-logo1&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;topic-icon icon-logo1&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -193,14 +193,14 @@
 
 <li title="icon-logo2">
             <div class="icon-box" id="icon-box-icon-logo2">
-                <div class="coopoverseasbug-logo-icon icon-logo2"></div>
+                <div class="topic-icon icon-logo2"></div>
             </div>
             <h2>icon-logo2</h2>
             <button onclick="showPopover('snippet-icon-logo2')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-logo2')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-logo2">
-                <pre><code>&lt;span class=&quot;coopoverseasbug-logo-icon icon-logo2&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;topic-icon icon-logo2&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -218,6 +218,18 @@
     var modeView = document.getElementById("mode-view");
     var icons = document.querySelectorAll(".icon");
 
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function setSize (fontSize) {
         for (var i = 0; i < icons.length; i++) {
             icons[i].style.fontSize = fontSize + 'px';
@@ -227,6 +239,7 @@
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id)
     }
     function hidePopover() {
 
@@ -243,4 +256,17 @@
     }
 </script>
 </body>
+</html>
+</html>
+ml>
+dy>
+</html>
+ml>
+dy>
+</html>
+ML = "SVG";
+    }
+</script>
+</body>
+</html>
 </html>

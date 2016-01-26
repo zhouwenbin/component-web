@@ -1,17 +1,17 @@
-.address-add-icon {
+.center-del-dialog-icon {
     font-size: 10px;
 }
 
-.address-add-icon:before {
+.center-del-dialog-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/address-add.svg");
+    background-image: url("../svg/center-del-dialog.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .address-add-icon:before {
-    background-image: url("../svg/address-add.png");
+.no-svg .center-del-dialog-icon:before {
+    background-image: url("../svg/center-del-dialog.png");
 }
 

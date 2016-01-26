@@ -1,0 +1,17 @@
+.dialog-copy-icon {
+    font-size: 10px;
+}
+
+.dialog-copy-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/dialog-copy.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .dialog-copy-icon:before {
+    background-image: url("../svg/dialog-copy.png");
+}
+

@@ -1,0 +1,36 @@
+.order-createrefundtax-dialog{
+	box-sizing: border-box;
+	width: 800px;
+	height: 580px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -400px;
+	margin-top: -290px;
+	z-index: 999;
+	background: #fff;
+	padding: 42px 86px 0;
+	font-size: 14px;
+}
+.order-createrefundtax-dialog h2{
+	margin-bottom: 28px;
+	font-size: 16px;
+}
+.order-createrefundtax-dialog p{
+	margin-bottom: 32px;
+}
+.order-createrefundtax-dialog li{
+	margin-top: 22px;
+}
+.order-createrefundtax-dialog-close{
+	background: #e5e5e5;
+	width: 29px;
+	height: 29px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 29px;
+	right: 11px;
+	top: 11px;
+	position: absolute;
+	font-size: 16px;
+}

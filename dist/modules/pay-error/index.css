@@ -1,0 +1,39 @@
+.pay-error {
+  text-align: center;
+  background: #fff;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  padding: 45px 37px 80px;
+  margin-top: 56px;
+  margin-bottom: 137px;
+  position: relative; }
+
+.pay-error h2 {
+  margin-top: 83px;
+  margin-bottom: 49px;
+  font-size: 18px;
+  padding-left: 0; }
+
+.pay-error .icon37 {
+  margin-right: 10px; }
+
+.pay-error h3 {
+  font-size: 14px;
+  margin-bottom: 34px;
+  margin-top: -36px; }
+
+.pay-error h3 a {
+  text-decoration: underline; }
+
+.pay-error .btn {
+  padding: 0;
+  width: 218px;
+  height: 64px;
+  line-height: 64px;
+  font-size: 18px;
+  margin: 0 7px; }
+
+.pay-error .icon33,
+.pay-error .icon32 {
+  margin-top: 24px;
+  margin-bottom: -34px; }

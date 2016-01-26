@@ -158,7 +158,7 @@
     <h4>Files Generated:</h4>
     <ol>
         <li><a href="css/sprite.css">css/sprite.css</a></li>
-        <li><a href="svg/orderSelect-dialog.svg">svg/orderSelect-dialog.svg</a></li>
+        <li><a href="svg/orderSelect-dialog-success.svg">svg/orderSelect-dialog-success.svg</a></li>
     </ol>
     <h4>Usage:</h4>
     <ol>
@@ -177,14 +177,14 @@
 
 <li title="icon-close">
             <div class="icon-box" id="icon-box-icon-close">
-                <div class="orderSelect-dialog-icon icon-close"></div>
+                <div class="orderSelect-dialog-success-icon icon-close"></div>
             </div>
             <h2>icon-close</h2>
             <button onclick="showPopover('snippet-icon-close')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-close')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-close">
-                <pre><code>&lt;span class=&quot;orderSelect-dialog-icon icon-close&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;orderSelect-dialog-success-icon icon-close&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -193,14 +193,14 @@
 
 <li title="icon-success">
             <div class="icon-box" id="icon-box-icon-success">
-                <div class="orderSelect-dialog-icon icon-success"></div>
+                <div class="orderSelect-dialog-success-icon icon-success"></div>
             </div>
             <h2>icon-success</h2>
             <button onclick="showPopover('snippet-icon-success')">Show Snippet</button>
             <br/>
             <button onclick="invertBackground('icon-box-icon-success')">Invert Background</button>
             <div class="snippet-popover" id="snippet-icon-success">
-                <pre><code>&lt;span class=&quot;orderSelect-dialog-icon icon-success&quot;&gt;&lt;/span&gt;</code></pre>
+                <pre><code>&lt;span class=&quot;orderSelect-dialog-success-icon icon-success&quot;&gt;&lt;/span&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -218,6 +218,18 @@
     var modeView = document.getElementById("mode-view");
     var icons = document.querySelectorAll(".icon");
 
+    function selectText(id) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(id +"-pre"));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(id +"-pre"));
+            window.getSelection().addRange(range);
+        }
+    }
+
     function setSize (fontSize) {
         for (var i = 0; i < icons.length; i++) {
             icons[i].style.fontSize = fontSize + 'px';
@@ -227,6 +239,7 @@
     function showPopover(id) {
         openSnippet = document.getElementById(id);
         openSnippet.classList.add("active");
+        selectText(id)
     }
     function hidePopover() {
 

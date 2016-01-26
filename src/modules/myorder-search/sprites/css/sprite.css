@@ -1,0 +1,17 @@
+.myorder-search-icon {
+    font-size: 10px;
+}
+
+.myorder-search-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/myorder-search.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .myorder-search-icon:before {
+    background-image: url("../svg/myorder-search.png");
+}
+

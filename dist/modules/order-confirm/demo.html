@@ -125,283 +125,633 @@
         </div>
         <h1>确认商品信息</h1>
         <!--购物车-->
+        <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <symbol id="svg-cart-delete" viewBox="0 0 16 18">
+                <path d="M14.909,1.44 L1.091,1.44 C0.488,1.44 0,1.924 0,2.52 L0,3.6 L16,3.6 L16,2.52 C16,1.924 15.511,1.44 14.909,1.44 L14.909,1.44 Z M4.363,6.48 L5.818,6.48 L5.818,15.84 L4.363,15.84 L4.363,6.48 Z M7.272,6.48 L8.726,6.48 L8.726,15.84 L7.272,15.84 L7.272,6.48 Z M10.181,6.48 L11.636,6.48 L11.636,15.84 L10.181,15.84 L10.181,6.48 Z M2.181,15.84 C2.181,17.033 3.158,18 4.363,18 L11.636,18 C12.841,18 13.818,17.033 13.818,15.84 L15.272,4.32 L0.727,4.32 L2.181,15.84 Z M9.454,0 L6.545,0 C6.143,0 5.818,1.44 5.818,1.44 L10.181,1.44 C10.181,1.44 9.856,0 9.454,0 L9.454,0 Z" id="Fill-1" fill="#CCCCCC"></path>
+            </symbol>
+            <symbol id="svg-cart-sale" viewBox="0 0 58 14">
+                <path d="M0,0 L51,0 L58,7 L51,14 L0,14 L0,0 Z M51,9 C52.1045695,9 53,8.1045695 53,7 C53,5.8954305 52.1045695,5 51,5 C49.8954305,5 49,5.8954305 49,7 C49,8.1045695 49.8954305,9 51,9 Z" id="Rectangle-4" fill="#FFC535"></path>
+                <text id="限时促销" font-family="Heiti SC" font-size="11" font-weight="260" fill="#FFFFFF">
+                    <tspan x="1" y="11">限时促销</tspan>
+                </text>
+            </symbol>
+            <symbol id="svg-cart-cut" viewBox="0 0 60 48">
+                <defs>
+                    <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                        <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                        <feGaussianBlur stdDeviation="0" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.056 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                        <feMerge>
+                            <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                            <feMergeNode in="SourceGraphic"></feMergeNode>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <path d="M18.105171,30.6539395 L58.0400286,25.1023487 C60.2205977,24.7992143 62,22.7621172 62,20.5543715 L62,3.58267313 C62,1.38073608 60.2270604,-0.168336746 58.0400286,0.135696031 L5.95997135,7.37566598 C3.77940234,7.67880033 2,9.7158975 2,11.9236432 L2,23.7861766 L2,48 L18.105171,30.6539395 Z" id="Rectangle-88" fill="#E96F01" filter="url(#filter-1)"></path>
+                <text id="满折减" transform="translate(23.402445, 16.657188) rotate(-8.000000) translate(-23.402445, -16.657188) " font-family="Heiti SC" font-size="9.72972973" font-weight="260" sketch:alignment="right" fill="#FFFFFF">
+                    <tspan x="17.2132553" y="20.1571876">满折减</tspan>
+                </text>
+            </symbol>
+            <symbol id="svg-cart-cut-gray" viewBox="0 0 60 48">
+                <defs>
+                    <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+                        <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                        <feGaussianBlur stdDeviation="0" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                        <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.056 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+                        <feMerge>
+                            <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                            <feMergeNode in="SourceGraphic"></feMergeNode>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <path d="M18.105171,30.6539395 L58.0400286,25.1023487 C60.2205977,24.7992143 62,22.7621172 62,20.5543715 L62,3.58267313 C62,1.38073608 60.2270604,-0.168336746 58.0400286,0.135696031 L5.95997135,7.37566598 C3.77940234,7.67880033 2,9.7158975 2,11.9236432 L2,23.7861766 L2,48 L18.105171,30.6539395 Z" id="Rectangle-88" fill="#9B9B9B" filter="url(#filter-1)"></path>
+                <text id="满折减" transform="translate(23.402445, 16.657188) rotate(-8.000000) translate(-23.402445, -16.657188) " font-family="Heiti SC" font-size="9.72972973" font-weight="260" sketch:alignment="right" fill="#FFFFFF">
+                    <tspan x="17.2132553" y="20.1571876">满折减</tspan>
+                </text>
+            </symbol>
+            <symbol id="svg-cart-save" viewBox="0 0 20 20">
+                <path d="M20,10 C20,4.4771525 15.5228475,0 10,0 C4.4771525,0 0,4.4771525 0,10 C0,15.5228475 4.4771525,20 10,20 L20,20 L20,10 Z" id="Oval-1" fill="#E73736"></path>
+                <text id="省" font-family="Heiti SC" font-size="12" font-weight="260" fill="#FFFFFF">
+                    <tspan x="4" y="14">省</tspan>
+                </text>
+            </symbol>
+            <symbol id="svg-cart-doubt" viewBox="0 0 16 16">
+                <circle id="Oval-2" stroke="#E73736" fill="#FFFFFF" cx="8" cy="8" r="8"></circle>
+                <text id="?" font-family="Heiti SC" font-size="12" font-weight="bold" fill="#E73736">
+                    <tspan x="5" y="13">?</tspan>
+                </text>
+            </symbol>
+        </svg>
         <div class="cart">
-            <div class="cart-table">
+            <div class="table">
                 <table>
                     <thead>
                         <tr>
-                            <th class="th1">商品信息</th>
-                            <th class="th2">重量（千克）</th>
+                            <th class="th1"><input type="checkbox">全选</th>
+                            <th class="th2">商品信息</th>
                             <th class="th3">单价（元）</th>
                             <th class="th4">数量</th>
-                            <th class="th5">金额（元）</th>
+                            <th class="th5">金额</th>
+                            <th class="th6">操作</th>
                         </tr>
                     </thead>
+                    <!-- 首单减提示 -->
                     <tbody>
-                        <tr>
-                            <th colspan="5">
-                                <span class="icon icon82"></span><span class="order-confirm-from">香港仓库发</span>
-                                <span class="order-confirm-time">预计6－12天到货</span>
-                                <span class="icon-etk">EMS配送 </span>
-                            </th>
+                        <tr class="sign-for-first">
+                            <td colspan="6">
+                                <span>首单减</span>活动期间全场用户首单减免￥15
+                            </td>
+
+                        </tr>
+                        <tr class="cart-choise">
+                            <td colspan="6">
+                                <span class="cart-choise-label">N元任选</span>再购<span class="text-important">4</span>件，立享【99元任选4件】<a href="">去凑单 &gt;</a>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="td1">
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                    <div class="godds-type">秒杀商品</div>
-                                </div>
-
+                            <td class="td1" colspan="2">
+                                <input type="checkbox"> 搭配优惠：商品名称不要在意我叫神马
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
-                            <td class="td4">1</td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <div><span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1"></span></div>
+                                <p class="text-error">限购 2 套</p>
+                            </td>
                             <td class="td5">
                                 <strong class="text-error">599.00</strong>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="td1">
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                </div>
-
+                            <td class="td6">
+                                <!-- <a class="icon icon72" href="">删除</a> -->
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
-                            <td class="td4">1</td>
+                        </tr>
+                        <tr class="cart-match cart-match1">
+                            <td class="td1">
+                                <span class="label label-disabled">已下架</span>
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <del>1099.00</del>
+                                <strong>599.00</strong>
+                                <!-- <div class="icon icon73">限时促销</div> -->
+                                <svg class="svg svg-cart-sale">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-sale"></use>
+                                        <foreignObject>
+                                            <i class="cart-sale-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                            </td>
+                            <td class="td4">
+                                <p class="text-error">限购 2 件</p>
+                            </td>
                             <td class="td5">
                                 <strong class="text-error">599.00</strong>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="td1">
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                </div>
-
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
-                            <td class="td4">1</td>
+                        </tr>
+                        <tr class="cart-match">
+                            <td class="td1">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <del>1099.00</del>
+                                <strong>599.00</strong>
+                                <svg class="svg svg-cart-sale">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-sale"></use>
+                                        <foreignObject>
+                                            <i class="cart-sale-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                            </td>
+                            <td class="td4">
+                                <p class="text-error">限购 2 件</p>
+                            </td>
                             <td class="td5">
                                 <strong class="text-error">599.00</strong>
                             </td>
-                        </tr>
-
-                        <!--杭州保税仓-->
-                        <tr>
-                            <th colspan="5">
-                                <span class="icon icon82"></span><span class="order-confirm-from">杭州保税仓发货</span><span class="order-confirm-time">预计6－12天到货</span>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="td1">
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                </div>
-
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
-                            <td class="td4">1</td>
+                        </tr>
+                        <tr class="cart-match">
+                            <td class="td1">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <del>1099.00</del>
+                                <strong>599.00</strong>
+                                <svg class="svg svg-cart-sale">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-sale"></use>
+                                        <foreignObject>
+                                            <i class="cart-sale-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                            </td>
+                            <td class="td4">
+                                <p class="text-error">限购 2 件</p>
+                            </td>
                             <td class="td5">
                                 <strong class="text-error">599.00</strong>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="td1">
-
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <div class="text-error">该商品超出活动数量，恢复原价</div>
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                </div>
-
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
-                            <td class="td4">1</td>
+                        </tr>
+                        <tr class="cart-cut">
+                            <td colspan="6">
+                                <svg class="svg svg-cart-cut"><switch><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-cut"></use><foreignObject><i class="cart-cut-icon01"></i></foreignObject></switch></svg>已满足2件8折 <span class="text-important">（已经减278)</span><a href="">继续凑单 &gt;</a>
+                            </td>
+                        </tr>
+                        <tr class="cart-cut-goods cart-cut-goods1">
+                            <td class="td1">
+                                <input type="checkbox">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <del>1099.00</del>
+                                <strong>599.00</strong>
+                                <svg class="svg svg-cart-sale">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-sale"></use>
+                                        <foreignObject>
+                                            <i class="cart-sale-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                            </td>
+                            <td class="td4">
+                                <p class="text-error">限购 2 件</p>
+                            </td>
                             <td class="td5">
                                 <strong class="text-error">599.00</strong>
                             </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
                         </tr>
-
-                        <!--以下商品超出可购买数量，无法购买-->
+                        <tr class="cart-cut-goods">
+                            <td class="td1">
+                                <input type="checkbox">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <del>1099.00</del>
+                                <strong>599.00</strong>
+                                <svg class="svg svg-cart-sale">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-sale"></use>
+                                        <foreignObject>
+                                            <i class="cart-sale-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                            </td>
+                            <td class="td4">
+                                <p class="text-error">限购 2 件</p>
+                            </td>
+                            <td class="td5">
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="cart-cut">
+                            <td colspan="6">
+                                <svg class="svg svg-cart-cut-gray"><switch><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-cut-gray"></use><foreignObject><i class="cart-cut-gray-icon01"></i></foreignObject></switch></svg>再购<span class="text-important">1</span>件，享2件8折<a href="">继续凑单 &gt;</a>
+                            </td>
+                        </tr>
+                        <tr class="cart-cut-goods cart-cut-goods1">
+                            <td class="td1">
+                                <input type="checkbox">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <p>限购 2 件</p>
+                            </td>
+                            <td class="td5">
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
                         <tr>
-                            <th colspan="5">
-                                <div class="text-error">以下商品超出可购买数量，无法购买</div>
-                            </th>
+                            <td class="td1">
+                                <input type="checkbox">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <div><span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1"></span></div>
+                            </td>
+                            <td class="td5">
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td1">
+                                <div class="cart-pos">
+                                    <input type="checkbox">
+                                    <a href=""><img src="http://placehold.it/75x75"></a>
+                                    <!-- <span class="icon icon74">满折减</span> -->
+                                    <svg class="svg svg-cart-cut">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-cut"></use>
+                                            <foreignObject>
+                                                <i class="cart-cut-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </div>
+
+                            </td>
+                            <td class="td2">
+                                <div class="text-error">已满足2件8折优惠 <a class="text-error">更多活动内容>  </a></div>
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <div><span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1"></span></div>
+                            </td>
+                            <td class="td5">
+                                <del>1099.00</del>
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td1">
+                                <div class="cart-pos">
+                                    <input type="checkbox">
+                                    <a href=""><img src="http://placehold.it/75x75"></a>
+                                    <!-- <span class="icon icon74">满折减</span> -->
+                                    <svg class="svg svg-cart-cut-gray">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-cut-gray"></use>
+                                            <foreignObject>
+                                                <i class="cart-cut-gray-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </div>
+
+                            </td>
+                            <td class="td2">
+                                <div class="text-error">已满足2件8折优惠 <a class="text-error">更多活动内容>  </a></div>
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <div><span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1"></span></div>
+                            </td>
+                            <td class="td5">
+                                <del>1099.00</del>
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td1">
+                                <input type="checkbox">
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">
+                                <div><span class="btn btn-num"><a class="btn-num-reduce" href="#">-</a><a class="btn-num-add" href="#">+</a><input type="text" value="1"></span></div>
+                            </td>
+                            <td class="td5">
+                                <del>1099.00</del>
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
                         </tr>
                         <tr class="cart-disable">
                             <td class="td1">
-                                <div class="label label-disabled">库存不足</div>
-                                <a href=""><img src="http://placehold.it/78x78"></a>
-                                <div class="order-confirm-info">
-                                    <div class="text-error">错误提示</div>
-                                    <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
-                                    <div class="cart-standard">蓝色 20com</div>
-                                </div>
+                                <input type="checkbox" disabled>
+                                <span class="label label-disabled">已下架</span>
+                                <a href=""><img src="http://placehold.it/75x75"></a>
                             </td>
-                            <td class="td2">0.92</td>
-                            <td class="td3">599.00</td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
                             <td class="td4">1</td>
                             <td class="td5">
+                                <del>1099.00</del>
                                 <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="cart-disable">
+                            <td class="td1">
+                                <input type="checkbox" disabled>
+                                <span class="label label-disabled">已下架</span>
+                                <a href=""><img src="http://placehold.it/75x75"></a>
+                            </td>
+                            <td class="td2">
+                                <h2><a href="">韩国Nature Republic自然乐园芦荟胶300ml/瓶x2</a></h2>
+                                <div class="cart-standard">蓝色 20com</div>
+                            </td>
+                            <td class="td3">
+                                <strong>599.00</strong>
+                            </td>
+                            <td class="td4">1</td>
+                            <td class="td5">
+                                <del>1099.00</del>
+                                <strong class="text-error">599.00</strong>
+                            </td>
+                            <td class="td6">
+                                <a href="">
+                                    <svg class="svg svg-cart-delete">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-delete"></use>
+                                            <foreignObject>
+                                                <i class="cart-delete-icon01"></i>
+                                            </foreignObject>
+                                        </switch>
+                                    </svg>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
-            <div class="cart-coupon">
-                <div class="cart-coupon-r1"><a href="javascript:" id="coupon-use">-</a>使用优惠券</div>
-                <div id="coupon-use-detail">
-                    <div class="coupon">
-                        <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                        <div class="coupon-r2">有效期至：2015/04/21</div>
-                        <span class="icon icon85"></span>
-                    </div>
-                    <!--无优惠券
-                    <p>此订单暂无可用的优惠券。您可以<a href="" class="text-link">查看优惠券</a>了解使用限制。</p>
-                    <-->
-                    <div class="cart-coupon-r2">
-                        <a href="javascript:" class="text-link" id="coupon-more"><span id="coupon-more-text">展开更多</span><span class="icon icon16-1"></span></a>
-                    </div>
-                    <div class="coupons" id="coupons">
-                        <ul class="coupons-tab">
-                            <li class="active"><a href="javascript:">可用优惠券</a></li>
-                            <li><a href="javascript:">不可用优惠券</a></li>
-                        </ul>
-                        <ul class="coupons-list active">
-                            <li>
-                                <div class="coupon">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="coupon">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="coupon">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="coupon">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="coupon">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="coupons-list">
-                            <li>
-                                <div class="coupon coupon-disable">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                                <div class="text-error">该优惠券不能用于该商品上!</div>
-                            </li>
-                            <li>
-                                <div class="coupon coupon-disable">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                                <div class="text-error">该优惠券不能用于该商品上!</div>
-                            </li>
-                            <li>
-                                <div class="coupon coupon-disable">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                                <div class="text-error">再买50元可用!</div>
-                            </li>
-                            <li>
-                                <div class="coupon coupon-disable">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                                <div class="text-error">该优惠券不能用于该商品上!</div>
-                            </li>
-                            <li>
-                                <div class="coupon coupon-disable">
-                                    <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                                    <div class="coupon-r2">有效期至：2015/04/21</div>
-                                </div>
-                                <div class="text-error">该优惠券不能用于该商品上!</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="cart-coupon-r3">or<a href="" class="text-link">兑换优惠券？</a></div>
-                    <div class="cart-coupon-r4">请输入您手中的兑换码：
-                        <input class="input" type="text" />
-                        <a class="btn btn-normal" href="">确定</a>
-                        <!--输入后显示
-                        <div class="coupon">
-                            <div class="coupon-r1"><b>¥</b><strong>30</strong>满299使用</div>
-                            <div class="coupon-r2">有效期至：2015/04/21</div>
-                            <span class="icon icon85"></span>
-                        </div>
-                        <-->
-                    </div>
-                </div>
-                <div class="cart-integral">
-                    <div class="cart-coupon-r1"><a href="javascript:" id="coupon-use">-</a>使用海淘积分</div>
-                    <div class="cart-integral-r1">
-                        <label><input type="checkbox">使用</label>
-                        <input type="text" class="input" />点
-                        <span class="text-important">-￥4.78</span>
-                    </div>
-                    <div class="cart-integral-r2">您有积分：50000点本，本次订单可用：<span class="text-important">47789点</span></div>
-                </div>
 
-            </div>
-            <div class="cart-footer clearfix">
-                <div class="cart-footer-c2 fr">
-                    <ul>
-                        <li class="li1">商品总计 :<span class="s1">¥1200</span></li>
+        	<div class="cart-footer cart-footer-fixed clearfix">
+        		<div class="cart-footer-c1 fl">
+        			<label><input type="checkbox" />全选</label>|
+        			<a href="">删除选中商品</a>
+        			<a href="">清除无效商品</a>
+        		</div>
+        		<div class="cart-footer-c2 fr">
+        			<ul>
                         <li class="li1">
-                            <div class="tooltip-cart tooltip-firstorder"><span class="text-error">若符合【活动期间全场用户首单减免￥15】的优惠条件，活动优惠将在提交订单后实现减免</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>活动优惠 :<span class="s1">- ¥ 100</span></span>
+                            <!-- <div class="tooltip-cart"><span class="icon icon77 fl"></span>您已经超过了海关<span class="text-error">限额¥1000</span>，请选择部分商品进行结算<span class="icon icon78"></span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div> -->
+                            <span class="text-important">【已满足满额包邮】</span>总价（含税费） :<span class="s1"><strong class="text-error">¥1100</strong></span>
                         </li>
-                        <li class="li1 text-important">优惠券 :<span class="s1">- ¥ 100</span></li>
-                        <li class="li1">
-                            <div class="tooltip-cart"><span class="icon icon83 fl"></span><span class="text-error">亲：我们已经任性的给您包邮啦！</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div><span class="text-important">支付尾款时收取</span> 运费 :<span class="s1">20</span>
-                        </li>
-                        <li class="li1">
-                            <div class="tooltip-cart"><span class="icon icon62 fl"></span><span class="text-error">定金支付将不再退还</span><span class="icon icon16-5"></span><span class="icon icon16-5 icon16-5-1"></span></div>预付定金（含税费）：<strong class="s1 text-important">¥40</strong>
-                        </li>
-                        <li class="li1">积分 :<span class="s1">110点</span></li>
-                        <li class="li1"><a class="text-link">返回购物车修改</a>总价（含税费） :<strong class="text-error s1">¥1100</strong></li>
+        				<li class="li1">
+        					<div class="tooltip-cart">
+                                <!-- <span class="icon icon77 fl"></span> -->
+                                <svg class="svg svg-cart-save">
+                                    <switch>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-save"></use>
+                                        <foreignObject>
+                                            <i class="cart-save-icon01"></i>
+                                        </foreignObject>
+                                    </switch>
+                                </svg>
+                                <span class="text-error">参加三个满减活动：省100</span>
 
-                        <li class="cart-footer-agree"><label><input type="checkbox" checked>本人同意并接受</label><a href="">《个人委托协议》</a><button class="btn btn-danger">提交订单</button></li>
-                    </ul>
+                                <div class="tooltip-pos">
+                                    <!-- <span class="icon icon78"></span> -->
+                                    <svg class="svg svg-cart-doubt">
+                                        <switch>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cart-doubt"></use>
+                                            <foreignObject><i class="cart-doubt-icon01"></i></foreignObject>
+                                        </switch>
+                                    </svg>
+                                    <div class="tooltip-outer">
+                                        <div class="tooltip tooltip-active">
+                                            <ul>
+                                                <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">100</span>活动</li>
+                                                <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">50</span>活动</li>
+                                                <li>满足指定商品满<span class="text-important">200</span>减<span class="text-important">10</span>活动</li>
+                                            </ul>
+                                            <span class="icon icon16-3"><span class="icon icon16-4"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="icon icon16-5"></span>
+                                <span class="icon icon16-5 icon16-5-1"></span>
+                            </div>已选商品 <span class="text-important">5</span> 件    已节省： :<span class="s1">¥ 100</span>
+        				</li>
+
+        			</ul>
+        			<button class="btn btn-disable">去结算</button>
 
 
-
-                </div>
-                <span class="icon icon75"></span>
-                <span class="icon icon76"></span>
-            </div>
+        		</div>
+        		<span class="icon icon75"></span>
+        		<span class="icon icon76"></span>
+        	</div>
         </div>
         <!--购物车-->
     </div>
@@ -495,6 +845,12 @@
     		<ul>
     			<li><a href="../../pages/order-detail/index.html">订单详情</a></li>
     			<li><a href="../../pages/order-confirm/index.html">订单确认</a></li>
+    			<li><a href="../../pages/cart/index.html">购物车</a></li>
+    			<li><a href="../../pages/cart-none/index.html">购物车为空</a></li>
+    			<li><a href="../../pages/comment/index.html">评论</a></li>
+    			<li><a href="../../pages/gotopay/index.html">去支付</a></li>
+    			<li><a href="../../pages/pay-success/index.html">支付成功</a></li>
+    			<li><a href="../../pages/pay-error/index.html">支付失败</a></li>
     		</ul>
     	</li>		
     	<li>
@@ -535,6 +891,7 @@
     			<li><a href="../../modules/dialog-alipay/demo.html">绑定支付宝账号</a></li>
     			<li><a href="../../modules/dialog-copy/demo.html">复制成功</a></li>
     			<li><a href="../../modules/dialog-agreement/demo.html">服务同意条款</a></li>
+    			<li><a href="../../modules/order-createrefundtax-dialog/demo.html">申请返还税金提示</a></li>
     			
     		</ul>
     	</li>
@@ -616,7 +973,8 @@
     		<ul>
     			<li><a href="../../modules/address/demo.html">地址</a></li>
     			<li><a href="../../modules/address-add/demo.html">添加地址</a></li>
-    			<li><a href="../../modules/cart/demo.html">去结算</a></li>
+    			<li><a href="../../modules/cart/demo.html">购物车</a></li>
+    			<li><a href="../../modules/cart-none/demo.html">购物车为空</a></li>
     			<li><a href="../../modules/cart-coupon/demo.html">使用优惠券</a></li>
     			<li><a href="../../modules/cart-table/demo.html">去结算表格</a></li>
     			<li><a href="../../modules/order-confirm/demo.html">订单确认</a></li>
@@ -624,7 +982,15 @@
     			<li><a href="../../modules/order-status/demo.html">订单状态</a></li>
     			<li><a href="../../modules/order-success/demo.html">订单支付成功</a></li>
     			<li><a href="../../modules/coupons/demo.html">多个优惠券</a></li>
-    			
+    			<li><a href="../../modules/buyer-reading/demo.html">购买须知</a></li>
+    			<li><a href="../../modules/order-comment/demo.html">评论</a></li>
+    			<li><a href="../../modules/satisfaction/demo.html">满意度评价</a></li>
+    			<li><a href="../../modules/comment-add/demo.html">添加评论</a></li>
+    			<li><a href="../../modules/gotopay/demo.html">去支付</a></li>
+    			<li><a href="../../modules/order-createrefundtax/demo.html">申请返还税金</a></li>
+    			<li><a href="../../modules/pay-success/demo.html">支付成功1</a></li>
+    			<li><a href="../../modules/pay-success2/demo.html">支付成功2</a></li>
+    			<li><a href="../../modules/pay-error/demo.html">支付失败</a></li>
     		</ul>
     	</li>
     	<li>
