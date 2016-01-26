@@ -1,0 +1,36 @@
+.aboutus-c1 {
+  width: 229px; }
+
+.aboutus-c1 h1 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 28px;
+  margin-top: 7px; }
+
+.aboutus-c1 h2 {
+  font-size: 18px;
+  text-align: center;
+  border-top: 5px solid #e03d40;
+  border-bottom: 1px dashed #ccc;
+  padding: 20px 0;
+  margin-bottom: 16px; }
+
+.aboutus-c1 li {
+  font-size: 14px;
+  margin-bottom: 41px;
+  text-align: center;
+  font-weight: bold;
+  position: relative; }
+
+.aboutus-c1 .icon38 {
+  margin-right: 17px;
+  vertical-align: 2px; }
+
+.aboutus-c1 li.active a {
+  color: #e03d40; }
+
+.aboutus-c1 li:hover .icon38 {
+  background-position: -130px 0; }
+
+.aboutus-c1 li.active .icon16-5 {
+  display: block; }

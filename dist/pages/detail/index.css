@@ -5,6 +5,19 @@
 # 详情页
 	
 */
+<<<<<<< HEAD
+/*
+@styleguide
+
+# 面包屑
+
+	<div class="crumbs">
+	    <a href="http://www.sfht.com/index.html">首页</a><span>&gt;</span>2014秋冬新款UGG羊皮毛一体短筒蝴蝶结保暖雪地靴
+	</div>
+
+*/
+=======
+>>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .detail-icon {
     font-size: 10px;
 }
@@ -27,6 +40,22 @@
     width: 2.3em;
     height: 2em;
 }
+<<<<<<< HEAD
+.crumbs {
+  margin: 20px 0;
+  color: #585758;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+.crumbs a {
+  color: #585758; }
+
+.crumbs span {
+  margin: 0 20px; }
+
+=======
+>>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .goods {
   background: #fff;
   padding: 30px 20px;

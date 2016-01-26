@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 专题列表
+
+*/
+.aboutus-crumbs,
+.aboutus-crumbs a {
+  color: #585758; }
+
+.aboutus-crumbs {
+  margin-bottom: 86px; }
+
+.aboutus-crumbs span {
+  margin: 0 20px; }

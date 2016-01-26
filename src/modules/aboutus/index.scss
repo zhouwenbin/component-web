@@ -5,14 +5,8 @@
 
 */
 @import '../../utils/variables';
-.aboutus{
-	margin-top: 60px;
-}
 .aboutus-c1{
 	width: 229px;
-}
-.aboutus-c2{
-	width: 763px;
 }
 .aboutus-c1 h1{
 	font-size: 18px;
@@ -46,6 +40,9 @@
 .aboutus-c1 li:hover .icon38{
 	background-position: -130px 0;
 }
+.aboutus-c1 li.active .icon16-5{
+	display: block;
+}
 .aboutus-crumbs,
 .aboutus-crumbs a{
 	color: #585758;
@@ -55,6 +52,12 @@
 }
 .aboutus-crumbs span{
 	margin: 0 20px;
+}
+.aboutus{
+	margin-top: 60px;
+}
+.aboutus-c2{
+	width: 763px;
 }
 .aboutus-c2 p{
 	font-size: 14px;
