@@ -276,6 +276,48 @@
   left: -4px;
   top: 7px; }
 
+.myorder-step .td1 {
+  height: 30px;
+  position: relative; }
+
+.myorder-step .td1:before,
+.myorder-step .td1:after {
+  content: '';
+  border-width: 5px 5px;
+  border-style: solid;
+  position: absolute;
+  top: 10px; }
+
+.myorder-step .td1:before {
+  border-color: transparent transparent transparent #e5e5e5;
+  right: -10px; }
+
+.myorder-step .td1:after {
+  border-color: transparent transparent transparent #fff;
+  right: -9px; }
+
+.myorder-step.active .td1 {
+  background: #ff5b54;
+  color: #fff; }
+
+.myorder-step.active .td1:before {
+  border-color: transparent transparent transparent #ff5b54; }
+
+.myorder-step.active .td1:after {
+  display: none; }
+
+.myorder-step.active .myorder-step-pay {
+  color: #ff5b54; }
+
+.myorder .myorder-step-statue {
+  text-align: left;
+  padding-left: 33px; }
+
+.myorder-step-pay {
+  padding: 0 32px;
+  border-left: 1px solid #e5e5e5;
+  margin-left: 36px; }
+
 .sale-management table {
   table-layout: auto; }
 
