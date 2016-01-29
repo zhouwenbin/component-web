@@ -756,11 +756,11 @@
   display: none; }
 
 .comment-img-big-prev {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-prev.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/comment-img-prev.png) no-repeat;
   left: 19px; }
 
 .comment-img-big-next {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-next.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/comment-img-next.png) no-repeat;
   right: 19px; }
 
 .comment-img-del {
@@ -866,11 +866,11 @@
   display: none; }
 
 .comment-img-big-prev {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-prev.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/comment-img-prev.png) no-repeat;
   left: 19px; }
 
 .comment-img-big-next {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/comment-img-next.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/comment-img-next.png) no-repeat;
   right: 19px; }
 
 .comment-img-del {
@@ -1094,7 +1094,7 @@
 </ul>
 */
 .flow {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/flow.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/flow.png) no-repeat;
   height: 164px;
   text-indent: -999em;
   margin: 13px 0 30px; }
@@ -1371,7 +1371,7 @@
 	
 */
 .faq-icon1, .faq-icon2 {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/faq.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/faq.png) no-repeat;
   display: inline-block;
   vertical-align: middle;
   margin-right: 14px; }
@@ -1414,7 +1414,7 @@
 
 */
 .comparison-icon1, .comparison-icon2 {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/comparison.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/comparison.png) no-repeat;
   display: inline-block;
   vertical-align: middle; }
 
@@ -1493,7 +1493,7 @@
   list-style: inherit; }
 
 .notify-icon {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/notify-icon.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/notify-icon.png) no-repeat;
   width: 20px;
   height: 20px;
   display: inline-block;

@@ -381,6 +381,11 @@
   border-left: 1px solid #e5e5e5;
   margin-left: 36px; }
 
+.order-step-shipment {
+  color: #ff5b54;
+  display: inline-block;
+  width: 8em; }
+
 .sale-management table {
   table-layout: auto; }
 

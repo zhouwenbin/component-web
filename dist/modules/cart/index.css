@@ -18,23 +18,23 @@
   position: relative;
   height: 58px;
   padding-left: 11px;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/coupon-normal.png) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/coupon-normal.png) no-repeat;
   margin-right: 11px; }
 
 .coupon:after {
   content: '';
   width: 11px;
   height: 100%;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/coupon-normal.png) no-repeat right bottom;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/coupon-normal.png) no-repeat right bottom;
   position: absolute;
   right: -11px;
   top: 0; }
 
 .coupon-disable {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/coupon-disable.png) no-repeat; }
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/coupon-disable.png) no-repeat; }
 
 .coupon-disable:after {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/coupon-disable.png) no-repeat right bottom; }
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/coupon-disable.png) no-repeat right bottom; }
 
 .coupon .icon85 {
   position: absolute;
