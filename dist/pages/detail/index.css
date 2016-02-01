@@ -5,7 +5,6 @@
 # 详情页
 	
 */
-<<<<<<< HEAD
 /*
 @styleguide
 
@@ -16,8 +15,6 @@
 	</div>
 
 */
-=======
->>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .detail-icon {
     font-size: 10px;
 }
@@ -40,7 +37,6 @@
     width: 2.3em;
     height: 2em;
 }
-<<<<<<< HEAD
 .crumbs {
   margin: 20px 0;
   color: #585758;
@@ -54,8 +50,6 @@
 .crumbs span {
   margin: 0 20px; }
 
-=======
->>>>>>> a03d4c7fadb04823d032c1ab09faeea1ef29673f
 .goods {
   background: #fff;
   padding: 30px 20px;
