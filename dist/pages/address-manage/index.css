@@ -130,13 +130,13 @@
   height: 152px;
   border: 1px solid #e5e5e5;
   position: relative;
-  background: #fff url(http://img0.sfht.com/sfht/1.1.258/img/adress-li.png) no-repeat -5px top;
+  background: #fff url(//img0.fengqucdn.com/sfht/1.1.258/img/adress-li.png) no-repeat -5px top;
   padding-top: 5px;
   -webkit-border-radius: 4px;
           border-radius: 4px; }
 
 .address li.active {
-  background: #fff url(http://img0.sfht.com/sfht/1.1.258/img/adress-li-active.png) no-repeat -5px top; }
+  background: #fff url(//img0.fengqucdn.com/sfht/1.1.258/img/adress-li-active.png) no-repeat -5px top; }
 
 .address li.add {
   background: #f5f5f5;

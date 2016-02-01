@@ -15,7 +15,7 @@
   filter: alpha(opacity=30); }
 
 .icon-loading {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/icon-loading.gif) no-repeat center;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading.gif) no-repeat center;
   width: 32px;
   height: 32px;
   position: absolute;
@@ -37,11 +37,11 @@
   position: absolute;
   width: 128px;
   height: 0px;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/icon-loading1.png) no-repeat bottom;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading1.png) no-repeat bottom;
   bottom: 0; }
 
 .icon-loading2 {
   position: absolute;
   width: 128px;
   height: 156px;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/icon-loading2.png) no-repeat bottom; }
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading2.png) no-repeat bottom; }

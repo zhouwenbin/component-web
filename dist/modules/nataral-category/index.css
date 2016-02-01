@@ -155,10 +155,10 @@
   position: absolute; }
 
 .product-new {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/product-new.png) no-repeat; }
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/product-new.png) no-repeat; }
 
 .product-hot {
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/product-hot.png) no-repeat; }
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/product-hot.png) no-repeat; }
 
 .product-r2c2 {
   width: 35px;
@@ -202,13 +202,13 @@
 .nataral-category-bc1 {
   width: 237px;
   height: 349px;
-  background: url(http://img0.sfht.com/sfht/1.1.258/img/nataral-category1.jpg) no-repeat;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/nataral-category1.jpg) no-repeat;
   background-size: cover;
   text-align: center;
   font-size: 0; }
 
 .nataral-category1 .nataral-category-bc1 {
-  background-image: url(http://img0.sfht.com/sfht/1.1.258/img/nataral-category2.jpg); }
+  background-image: url(//img0.fengqucdn.com/sfht/1.1.258/img/nataral-category2.jpg); }
 
 .nataral-category-bc1:before {
   content: '';
