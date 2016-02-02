@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/*
+@styleguide
+
+# 去支付
+	
+*/
+.pay-crumbs {
+  position: relative;
+  padding-top: 50px; }
+
+.pay-crumbs-title {
+  font-size: 18px;
+  color: #333; }
+
+.pay-crumbs-tips {
+  font-size: 14px;
+  margin-top: 15px;
+  color: #666; }
+
+.pay-crumbs .pay-num {
+  position: absolute;
+  right: 0;
+  top: 75px;
+  font-size: 14px; }
+
+.pay-crumbs .pay-num .text-important {
+  font-size: 24px; }
+
+.pay-ct {
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 55px 138px 29px 40px; }
+
+.pay-ct .fl {
+  width: 550px;
+  text-align: center; }
+
+.pay-link {
+  margin-top: 73px;
+  color: #666;
+  text-align: left; }
+
+.pay-ct01 {
+  margin-top: 15px; }
+
+.pay-qcode {
+  margin-top: 25px; }
+
+.pay-ct .fr {
+  border-left: 1px solid #E5E5E5;
+  width: 451px;
+  text-align: right; }

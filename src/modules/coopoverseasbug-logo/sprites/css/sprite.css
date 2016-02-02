@@ -1,8 +1,8 @@
-.coopoverseasbug-logo-icon {
+.verification-failure-resend-icon {
     font-size: 10px;
 }
 
-.coopoverseasbug-logo-icon:before {
+.verification-failure-resend-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
@@ -11,19 +11,22 @@
     background-size: 24.8em 12.1em;
 }
 
-.no-svg .coopoverseasbug-logo-icon:before {
+.no-svg .verification-failure-resend-icon:before {
     background-image: url("../svg/coopoverseasbug-logo.png");
 }
 
-.coopoverseasbug-logo-icon.icon-logo1:before {
+.verification-failure-resend-icon.icon-logo1:before {
     background-position: -1em -1em;
     width: 22.8em;
     height: 4.8em;
 }
 
-.coopoverseasbug-logo-icon.icon-logo2:before {
+.verification-failure-resend-icon.icon-logo2:before {
     background-position: -1em -7.8em;
     width: 19em;
     height: 3.3em;
+}
+
+  height: 3.3em;
 }
 
