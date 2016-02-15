@@ -149,14 +149,6 @@ gulp.task('serve', function () {
             baseDir: "./"
         }
     });
-    for(var i in pages) {
-      gulp.watch("src/pages/"+ pages[i] +"/*.html").on("change", browserSync.reload);
-      gulp.watch("src/pages/"+ pages[i] +"/*.css").on("change", browserSync.reload);
-    }
-    for(var i in modules) {
-      gulp.watch("src/modules/"+ modules[i] +"/*.html").on("change", browserSync.reload);
-      gulp.watch("src/modules/"+ modules[i] +"/*.css").on("change", browserSync.reload);
-    }
 });
 
 gulp.task('sass', function () {
