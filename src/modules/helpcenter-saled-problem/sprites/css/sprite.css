@@ -1,0 +1,17 @@
+.helpcenter-saled-problem-icon {
+    font-size: 10px;
+}
+
+.helpcenter-saled-problem-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-saled-problem.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-saled-problem-icon:before {
+    background-image: url("../svg/helpcenter-saled-problem.png");
+}
+

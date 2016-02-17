@@ -1,0 +1,17 @@
+.helpcenter-certification-icon {
+    font-size: 10px;
+}
+
+.helpcenter-certification-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-certification.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-certification-icon:before {
+    background-image: url("../svg/helpcenter-certification.png");
+}
+

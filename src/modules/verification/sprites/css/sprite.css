@@ -1,17 +1,17 @@
-.classify-icon {
+.verification-icon {
     font-size: 10px;
 }
 
-.classify-icon:before {
+.verification-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/classify.svg");
+    background-image: url("../svg/verification.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .classify-icon:before {
-    background-image: url("../svg/classify.png");
+.no-svg .verification-icon:before {
+    background-image: url("../svg/verification.png");
 }
 

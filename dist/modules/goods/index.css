@@ -292,7 +292,7 @@
 .goods-activity-c1 {
   position: absolute;
   right: 17px;
-  top: 0px; }
+  top: 12px; }
 
 .goods-activity-c1 a {
   color: #666; }
@@ -460,3 +460,18 @@
   height: 43px;
   line-height: 43px;
   color: #666; }
+
+.goods-over,
+.goods-steal {
+  width: 76px;
+  height: 63px;
+  text-indent: -999em;
+  position: absolute;
+  left: 339px;
+  top: -10px; }
+
+.goods-over {
+  background: url(http://img0.fengqucdn.com/cmsres/20160217/3a32bb25-4915-4c34-99d2-db6d15830694.png) no-repeat; }
+
+.goods-steal {
+  background: url(http://img0.fengqucdn.com/cmsres/20160217/7a3ca683-582d-42f6-a929-7e33a879bce5.png) no-repeat; }

@@ -1,17 +1,17 @@
-.coupons-icon {
+.search-page-icon {
     font-size: 10px;
 }
 
-.coupons-icon:before {
+.search-page-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/coupons.svg");
+    background-image: url("../svg/search-page.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .coupons-icon:before {
-    background-image: url("../svg/coupons.png");
+.no-svg .search-page-icon:before {
+    background-image: url("../svg/search-page.png");
 }
 

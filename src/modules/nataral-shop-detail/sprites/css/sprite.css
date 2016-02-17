@@ -1,17 +1,17 @@
-.coupons-icon {
+.nataral-shop-detail-icon {
     font-size: 10px;
 }
 
-.coupons-icon:before {
+.nataral-shop-detail-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/coupons.svg");
+    background-image: url("../svg/nataral-shop-detail.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .coupons-icon:before {
-    background-image: url("../svg/coupons.png");
+.no-svg .nataral-shop-detail-icon:before {
+    background-image: url("../svg/nataral-shop-detail.png");
 }
 

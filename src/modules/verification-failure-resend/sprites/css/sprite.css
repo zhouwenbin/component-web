@@ -1,17 +1,17 @@
-.classify-icon {
+.verification-failure-resend-icon {
     font-size: 10px;
 }
 
-.classify-icon:before {
+.verification-failure-resend-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/classify.svg");
+    background-image: url("../svg/verification-failure-resend.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .classify-icon:before {
-    background-image: url("../svg/classify.png");
+.no-svg .verification-failure-resend-icon:before {
+    background-image: url("../svg/verification-failure-resend.png");
 }
 

@@ -1,17 +1,17 @@
-.products5-icon {
+.products5-1-icon {
     font-size: 10px;
 }
 
-.products5-icon:before {
+.products5-1-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/products5.svg");
+    background-image: url("../svg/products5-1.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .products5-icon:before {
-    background-image: url("../svg/products5.png");
+.no-svg .products5-1-icon:before {
+    background-image: url("../svg/products5-1.png");
 }
 

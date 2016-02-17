@@ -1,17 +1,17 @@
-.cart-coupon-icon {
+.loading-icon {
     font-size: 10px;
 }
 
-.cart-coupon-icon:before {
+.loading-icon:before {
     content:' ';
     vertical-align:middle;
     display: inline-block;
-    background-image: url("../svg/cart-coupon.svg");
+    background-image: url("../svg/loading.svg");
     background-repeat: no-repeat;
     background-size: 0em 0em;
 }
 
-.no-svg .cart-coupon-icon:before {
-    background-image: url("../svg/cart-coupon.png");
+.no-svg .loading-icon:before {
+    background-image: url("../svg/loading.png");
 }
 

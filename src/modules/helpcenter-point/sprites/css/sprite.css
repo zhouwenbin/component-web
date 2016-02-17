@@ -1,0 +1,17 @@
+.helpcenter-point-icon {
+    font-size: 10px;
+}
+
+.helpcenter-point-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-point.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-point-icon:before {
+    background-image: url("../svg/helpcenter-point.png");
+}
+

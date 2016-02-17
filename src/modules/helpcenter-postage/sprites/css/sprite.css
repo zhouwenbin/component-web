@@ -1,0 +1,17 @@
+.helpcenter-postage-icon {
+    font-size: 10px;
+}
+
+.helpcenter-postage-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-postage.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-postage-icon:before {
+    background-image: url("../svg/helpcenter-postage.png");
+}
+
