@@ -431,6 +431,12 @@
 .cart-footer-agree a:hover {
   text-decoration: underline; }
 
+.cart-footer-agree-c1 {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  line-height: 1.5; }
+
 .cart {
   margin-top: 20px; }
 
