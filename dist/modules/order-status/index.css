@@ -73,7 +73,10 @@
 	color: #333;
 }
 .order-status-step{
-	margin-left: 69px;
 	margin-right: 29px;
 }
 
+.order-status-price{
+	display: inline-block;
+	width: 100px;
+}
