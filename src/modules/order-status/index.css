@@ -9,6 +9,8 @@
 	margin-right: 24px;
 	position: relative;
 	z-index: 1;
+	width: 27px;
+	display: inline-block;
 }
 .order-status-icon.icon-step-active:before{
 	width: 2.3em;
