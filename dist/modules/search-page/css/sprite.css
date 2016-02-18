@@ -1,0 +1,17 @@
+.search-page-icon {
+    font-size: 10px;
+}
+
+.search-page-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/search-page.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .search-page-icon:before {
+    background-image: url("../svg/search-page.png");
+}
+

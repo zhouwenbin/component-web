@@ -1,0 +1,17 @@
+.pay-success2-icon {
+    font-size: 10px;
+}
+
+.pay-success2-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/pay-success2.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .pay-success2-icon:before {
+    background-image: url("../svg/pay-success2.png");
+}
+

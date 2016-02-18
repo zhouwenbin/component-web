@@ -1,0 +1,29 @@
+.orderSelect-dialog-reason-icon {
+    font-size: 10px;
+}
+
+.orderSelect-dialog-reason-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/orderSelect-dialog-reason.svg");
+    background-repeat: no-repeat;
+    background-size: 9.3781em 12.9em;
+}
+
+.no-svg .orderSelect-dialog-reason-icon:before {
+    background-image: url("../svg/orderSelect-dialog-reason.png");
+}
+
+.orderSelect-dialog-reason-icon.icon-close:before {
+    background-position: -1em -1em;
+    width: 1.4939999999999998em;
+    height: 1.5093000000000003em;
+}
+
+.orderSelect-dialog-reason-icon.icon-success:before {
+    background-position: -1em -4.6em;
+    width: 7.378100000000001em;
+    height: 7.3em;
+}
+

@@ -1,0 +1,17 @@
+.phone-veri-icon {
+    font-size: 10px;
+}
+
+.phone-veri-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/phone-veri.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .phone-veri-icon:before {
+    background-image: url("../svg/phone-veri.png");
+}
+

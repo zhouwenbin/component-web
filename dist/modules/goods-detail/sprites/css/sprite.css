@@ -1,0 +1,41 @@
+.goods-detail-icon {
+    font-size: 10px;
+}
+
+.goods-detail-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/goods-detail.svg");
+    background-repeat: no-repeat;
+    background-size: 7.5em 27.5em;
+}
+
+.no-svg .goods-detail-icon:before {
+    background-image: url("../svg/goods-detail.png");
+}
+
+.goods-detail-icon.icon-icon-presell01:before {
+    background-position: -1em -1em;
+    width: 4.7em;
+    height: 4.7em;
+}
+
+.goods-detail-icon.icon-icon-presell02:before {
+    background-position: -1em -7.7em;
+    width: 5.5em;
+    height: 5.4em;
+}
+
+.goods-detail-icon.icon-icon-presell03:before {
+    background-position: -1em -15.1em;
+    width: 4.7em;
+    height: 4.7em;
+}
+
+.goods-detail-icon.icon-icon-presell04:before {
+    background-position: -1em -21.8em;
+    width: 4.7em;
+    height: 4.7em;
+}
+

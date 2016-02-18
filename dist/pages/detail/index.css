@@ -15,28 +15,6 @@
 	</div>
 
 */
-.detail-icon {
-    font-size: 10px;
-}
-
-.detail-icon:before {
-    content:' ';
-    vertical-align:middle;
-    display: inline-block;
-    background-image: url("sprites/svg/detail.svg");
-    background-repeat: no-repeat;
-    background-size: 4.3em 4em;
-}
-
-.no-svg .detail-icon:before {
-    background-image: url("sprites/svg/detail.png");
-}
-
-.detail-icon.icon-cart:before {
-    background-position: -1em -1em;
-    width: 2.3em;
-    height: 2em;
-}
 .crumbs {
   margin: 20px 0;
   color: #585758;
@@ -344,7 +322,7 @@
 .goods-activity-c1 {
   position: absolute;
   right: 17px;
-  top: 12px; }
+  top: 0; }
 
 .goods-activity-c1 a {
   color: #666; }
@@ -527,6 +505,40 @@
 
 .goods-steal {
   background: url(http://img0.fengqucdn.com/cmsres/20160217/7a3ca683-582d-42f6-a929-7e33a879bce5.png) no-repeat; }
+
+.presell-steps-icon {
+  font-size: 10px; }
+
+.presell-steps-icon:before {
+  content: ' ';
+  vertical-align: middle;
+  display: inline-block;
+  background-image: url("../svg/presell-steps.svg");
+  background-repeat: no-repeat;
+  background-size: 7.5em 27.5em; }
+
+.no-svg .presell-steps-icon:before {
+  background-image: url("../svg/presell-steps.png"); }
+
+.presell-steps-icon.icon-presell01:before {
+  background-position: -1em -1em;
+  width: 4.7em;
+  height: 4.7em; }
+
+.presell-steps-icon.icon-presell02:before {
+  background-position: -1em -7.7em;
+  width: 5.5em;
+  height: 5.4em; }
+
+.presell-steps-icon.icon-presell03:before {
+  background-position: -1em -15.1em;
+  width: 4.7em;
+  height: 4.7em; }
+
+.presell-steps-icon.icon-presell04:before {
+  background-position: -1em -21.8em;
+  width: 4.7em;
+  height: 4.7em; }
 
 .presell-steps {
   background-color: #fff;

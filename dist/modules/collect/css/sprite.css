@@ -1,0 +1,17 @@
+.collect-icon {
+    font-size: 10px;
+}
+
+.collect-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/collect.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .collect-icon:before {
+    background-image: url("../svg/collect.png");
+}
+

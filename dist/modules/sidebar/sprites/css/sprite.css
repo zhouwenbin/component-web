@@ -1,0 +1,41 @@
+.sidebar-icon {
+    font-size: 10px;
+}
+
+.sidebar-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/sidebar.svg");
+    background-repeat: no-repeat;
+    background-size: 3.6em 13.1em;
+}
+
+.no-svg .sidebar-icon:before {
+    background-image: url("../svg/sidebar.png");
+}
+
+.sidebar-icon.icon-baby:before {
+    background-position: -1em -1em;
+    width: 1.2em;
+    height: 1.5em;
+}
+
+.sidebar-icon.icon-health:before {
+    background-position: -1em -4.5em;
+    width: 1.3em;
+    height: 1.5em;
+}
+
+.sidebar-icon.icon-makeup:before {
+    background-position: -1em -8em;
+    width: 1.6em;
+    height: 1em;
+}
+
+.sidebar-icon.icon-trend:before {
+    background-position: -1em -11em;
+    width: 1.3em;
+    height: 1.1em;
+}
+

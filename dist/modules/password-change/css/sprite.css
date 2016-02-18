@@ -1,0 +1,17 @@
+.password-change-icon {
+    font-size: 10px;
+}
+
+.password-change-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/password-change.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .password-change-icon:before {
+    background-image: url("../svg/password-change.png");
+}
+

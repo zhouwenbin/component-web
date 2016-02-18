@@ -55,8 +55,8 @@ gulp.task("svg:copy", function () {
       gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
           .pipe(gulp.dest("dist/pages/svg"))
 
-      gulp.src("src/modules/"+modules[i]+"/sprites/svg/*")
-          .pipe(gulp.dest("dist/modules/svg"))
+      gulp.src("src/modules/"+modules[i]+"/sprites/**")
+          .pipe(gulp.dest("dist/modules/"+modules[i]+"/sprites/"))
     }
   }
 });

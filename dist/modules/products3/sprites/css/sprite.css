@@ -1,0 +1,17 @@
+.products3-icon {
+    font-size: 10px;
+}
+
+.products3-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/products3.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .products3-icon:before {
+    background-image: url("../svg/products3.png");
+}
+

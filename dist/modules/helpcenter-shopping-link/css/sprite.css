@@ -1,0 +1,17 @@
+.helpcenter-shopping-link-icon {
+    font-size: 10px;
+}
+
+.helpcenter-shopping-link-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-shopping-link.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-shopping-link-icon:before {
+    background-image: url("../svg/helpcenter-shopping-link.png");
+}
+

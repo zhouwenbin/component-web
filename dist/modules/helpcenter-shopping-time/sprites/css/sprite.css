@@ -1,0 +1,17 @@
+.helpcenter-shopping-time-icon {
+    font-size: 10px;
+}
+
+.helpcenter-shopping-time-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-shopping-time.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-shopping-time-icon:before {
+    background-image: url("../svg/helpcenter-shopping-time.png");
+}
+

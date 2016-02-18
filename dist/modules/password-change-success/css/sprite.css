@@ -1,0 +1,17 @@
+.password-change-success-icon {
+    font-size: 10px;
+}
+
+.password-change-success-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/password-change-success.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .password-change-success-icon:before {
+    background-image: url("../svg/password-change-success.png");
+}
+

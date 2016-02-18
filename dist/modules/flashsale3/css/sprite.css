@@ -1,0 +1,17 @@
+.flashsale3-icon {
+    font-size: 10px;
+}
+
+.flashsale3-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/flashsale3.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .flashsale3-icon:before {
+    background-image: url("../svg/flashsale3.png");
+}
+

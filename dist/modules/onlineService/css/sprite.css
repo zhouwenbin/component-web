@@ -1,0 +1,107 @@
+.onlineService-icon {
+    font-size: 10px;
+}
+
+.onlineService-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/onlineService.svg");
+    background-repeat: no-repeat;
+    background-size: 7.8em 117em;
+}
+
+.no-svg .onlineService-icon:before {
+    background-image: url("../svg/onlineService.png");
+}
+
+.onlineService-icon.icon-onlineService1:before {
+    background-position: -1em -1em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService10:before {
+    background-position: -1em -8.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService11:before {
+    background-position: -1em -16.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService12:before {
+    background-position: -1em -24.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService13:before {
+    background-position: -1em -32.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService14:before {
+    background-position: -1em -40em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService15:before {
+    background-position: -1em -47.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService2:before {
+    background-position: -1em -55.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService3:before {
+    background-position: -1em -63.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService4:before {
+    background-position: -1em -71.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService5:before {
+    background-position: -1em -79em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService6:before {
+    background-position: -1em -86.8em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService7:before {
+    background-position: -1em -94.6em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService8:before {
+    background-position: -1em -102.4em;
+    width: 5.8em;
+    height: 5.8em;
+}
+
+.onlineService-icon.icon-onlineService9:before {
+    background-position: -1em -110.2em;
+    width: 5.8em;
+    height: 5.8em;
+}
+

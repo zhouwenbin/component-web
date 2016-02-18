@@ -1,0 +1,17 @@
+.tooltip-icon {
+    font-size: 10px;
+}
+
+.tooltip-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/tooltip.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .tooltip-icon:before {
+    background-image: url("../svg/tooltip.png");
+}
+

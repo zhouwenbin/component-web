@@ -1,0 +1,17 @@
+.nataral-product-icon {
+    font-size: 10px;
+}
+
+.nataral-product-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/nataral-product.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .nataral-product-icon:before {
+    background-image: url("../svg/nataral-product.png");
+}
+

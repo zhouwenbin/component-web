@@ -1,0 +1,17 @@
+.classify-search-icon {
+    font-size: 10px;
+}
+
+.classify-search-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/classify-search.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .classify-search-icon:before {
+    background-image: url("../svg/classify-search.png");
+}
+

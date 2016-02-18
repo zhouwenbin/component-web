@@ -1,0 +1,17 @@
+.helpcenter-signfor-icon {
+    font-size: 10px;
+}
+
+.helpcenter-signfor-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/helpcenter-signfor.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .helpcenter-signfor-icon:before {
+    background-image: url("../svg/helpcenter-signfor.png");
+}
+

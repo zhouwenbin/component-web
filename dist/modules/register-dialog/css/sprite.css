@@ -1,0 +1,17 @@
+.register-dialog-icon {
+    font-size: 10px;
+}
+
+.register-dialog-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/register-dialog.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .register-dialog-icon:before {
+    background-image: url("../svg/register-dialog.png");
+}
+

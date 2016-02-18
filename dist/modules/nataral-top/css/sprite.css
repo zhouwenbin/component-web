@@ -1,0 +1,17 @@
+.nataral-top-icon {
+    font-size: 10px;
+}
+
+.nataral-top-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/nataral-top.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .nataral-top-icon:before {
+    background-image: url("../svg/nataral-top.png");
+}
+

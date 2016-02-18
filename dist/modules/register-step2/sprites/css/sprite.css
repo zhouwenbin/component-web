@@ -1,0 +1,17 @@
+.register-step2-icon {
+    font-size: 10px;
+}
+
+.register-step2-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/register-step2.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .register-step2-icon:before {
+    background-image: url("../svg/register-step2.png");
+}
+

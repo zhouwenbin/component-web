@@ -1,0 +1,17 @@
+.comment-h-icon {
+    font-size: 10px;
+}
+
+.comment-h-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/comment-h.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .comment-h-icon:before {
+    background-image: url("../svg/comment-h.png");
+}
+

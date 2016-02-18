@@ -1,0 +1,23 @@
+.pay-icon {
+    font-size: 10px;
+}
+
+.pay-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/pay.svg");
+    background-repeat: no-repeat;
+    background-size: 15em 5.6em;
+}
+
+.no-svg .pay-icon:before {
+    background-image: url("../svg/pay.png");
+}
+
+.pay-icon.icon-wechatpay:before {
+    background-position: -1em -1em;
+    width: 13em;
+    height: 3.6em;
+}
+

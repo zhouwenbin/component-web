@@ -1,0 +1,17 @@
+.verification-failure-icon {
+    font-size: 10px;
+}
+
+.verification-failure-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/verification-failure.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .verification-failure-icon:before {
+    background-image: url("../svg/verification-failure.png");
+}
+

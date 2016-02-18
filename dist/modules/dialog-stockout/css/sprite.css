@@ -1,0 +1,17 @@
+.dialog-stockout-icon {
+    font-size: 10px;
+}
+
+.dialog-stockout-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/dialog-stockout.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .dialog-stockout-icon:before {
+    background-image: url("../svg/dialog-stockout.png");
+}
+

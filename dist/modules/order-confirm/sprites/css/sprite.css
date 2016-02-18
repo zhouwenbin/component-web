@@ -1,0 +1,17 @@
+.order-confirm-icon {
+    font-size: 10px;
+}
+
+.order-confirm-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/order-confirm.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .order-confirm-icon:before {
+    background-image: url("../svg/order-confirm.png");
+}
+

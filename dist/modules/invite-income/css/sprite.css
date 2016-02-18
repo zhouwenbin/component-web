@@ -1,0 +1,17 @@
+.invite-income-icon {
+    font-size: 10px;
+}
+
+.invite-income-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/invite-income.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .invite-income-icon:before {
+    background-image: url("../svg/invite-income.png");
+}
+
