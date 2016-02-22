@@ -393,3 +393,18 @@
   display: inline-block;
   width: 430px;
   vertical-align: middle; }
+
+.myorder-none {
+  text-align: center;
+  margin-bottom: 48px; }
+
+.myorder-none a {
+  margin-top: 10px;
+  display: inline-block; }
+
+.myorder-none p {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+  text-align: left;
+  color: #666; }
