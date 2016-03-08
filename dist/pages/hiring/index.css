@@ -1,0 +1,45 @@
+.header2 {
+    text-align: center;
+    padding-top: 412px;
+    padding-bottom: 32px;
+    background: url(http://img0.fengqucdn.com/cmsres/20160308/bff6bb16-356c-4406-9f6e-3b9a87c8d6a9.jpeg) center top no-repeat
+}
+.header2 ul {
+    overflow: hidden;
+    display: inline-block
+}
+.header2 li {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    float: left;
+    font-size: 14px
+}
+.header2 a {
+    display: block
+}
+.header2 li.active {
+    background: #e23f3f
+}
+.header2 li.active a {
+    color: #fff
+}
+.hiring {
+    background: #fff;
+    padding-bottom: 115px;
+    padding-top: 23px
+}
+.hiring table {
+    width: 100%
+}
+.hiring td {
+    height: 79px;
+    line-height: 79px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #999
+}
+.hiring a {
+    color: #03a0f2
+}

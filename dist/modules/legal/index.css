@@ -1,0 +1,16 @@
+.legal{
+	font-size: 14px;
+	line-height: 24px;
+	padding: 81px 0;
+	background: #fff;
+}
+.legal h2{
+	margin: 25px 0;
+	font-weight: normal;
+}
+.legal hr{
+	height: 1px;
+	background: #aaa;
+	border: none;
+	margin: 48px 0;
+}

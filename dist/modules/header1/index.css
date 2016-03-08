@@ -1,0 +1,17 @@
+.header1 ul{
+	overflow: hidden;
+}
+.header1 li{
+	width:120px;
+	height:40px;
+	line-height: 40px;
+	background: #fff;
+	float: left;
+}
+
+.header1 li.active{
+	background:#e23f3f;
+}
+.header1 li.active a{
+	color:#fff;
+}
