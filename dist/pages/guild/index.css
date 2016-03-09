@@ -1,0 +1,99 @@
+.header2 {
+    text-align: center;
+    padding-top: 412px;
+    padding-bottom: 32px;
+    background: url(http://img0.fengqucdn.com/cmsres/20160308/bff6bb16-356c-4406-9f6e-3b9a87c8d6a9.jpeg) center top no-repeat
+}
+.header2 ul {
+    overflow: hidden;
+    display: inline-block
+}
+.header2 li {
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    float: left;
+    font-size: 14px
+}
+.header2 a {
+    display: block
+}
+.header2 li.active {
+    background: #e23f3f
+}
+.header2 li.active a {
+    color: #fff
+}
+.guild {
+    background: #fff;
+    padding-top: 50px
+}
+.guild .pm {
+    overflow: hidden
+}
+.guild-nav {
+    float: left;
+    text-align: center;
+    margin-right: 73px
+}
+.guild-nav h2 {
+    font-size: 36px;
+    position: relative;
+    margin-bottom: 50px;
+    font-weight: normal
+}
+.guild-nav h2:before {
+    content: '';
+    width: 31px;
+    height: 5px;
+    background: #e23f3f;
+    position: absolute;
+    bottom: -19px;
+    left: 50%;
+    margin-left: -15px
+}
+.guild-nav h3 {
+    font-weight: normal;
+    font-size: 24px;
+    margin-bottom: 13px
+}
+.guild-nav ul {
+    margin-bottom: 61px
+}
+.guild-nav li {
+    width: 126px;
+    height: 31px;
+    line-height: 31px;
+    margin: 0 auto
+}
+.guild-nav a {
+    display: block
+}
+.guild-nav li.active {
+    background: #e23f3f
+}
+.guild-nav li.active a {
+    color: #fff
+}
+.guild-content {
+    overflow: hidden
+}
+.guild-content h1 {
+    font-size: 21px;
+    font-weight: normal;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #5c5c5c;
+    margin-bottom: 25px
+}
+.guild-content h2, .guild-content p {
+    font-size: 14px;
+    line-height: 24px
+}
+.guild-content p {
+    margin-bottom: 31px
+}
+.guild-content li {
+    line-height: 48px;
+    font-size: 14px
+}

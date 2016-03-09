@@ -1,0 +1,18 @@
+.hiring{
+	background: #fff;
+	padding-bottom: 115px;
+	padding-top: 23px;
+}
+.hiring table{
+	width: 100%;
+}
+.hiring td{
+	height: 79px;
+	line-height: 79px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+	color: #999;
+}
+.hiring a{
+	color: #03a0f2;
+}
