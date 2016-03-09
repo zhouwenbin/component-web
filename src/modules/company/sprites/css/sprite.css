@@ -1,0 +1,17 @@
+.contactus-icon {
+    font-size: 10px;
+}
+
+.contactus-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/contactus.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .contactus-icon:before {
+    background-image: url("../svg/contactus.png");
+}
+
