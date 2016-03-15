@@ -1,108 +1,64 @@
-@charset "UTF-8";
-/*
-@styleguide
+.header2 {
+  text-align: center;
+  padding-top: 412px;
+  padding-bottom: 32px;
+  background: url(http://img0.fengqucdn.com/cmsres/20160308/bff6bb16-356c-4406-9f6e-3b9a87c8d6a9.jpeg) center top no-repeat; }
 
-# 专题列表
+.header2 ul {
+  overflow: hidden;
+  display: inline-block; }
 
-*/
-.aboutus-c1 {
-  width: 229px; }
+.header2 li {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background: #fff;
+  float: left;
+  font-size: 14px; }
 
-.aboutus-c1 h1 {
-  font-size: 18px;
+.header2 a {
+  display: block; }
+
+.header2 li.active {
+  background: #e23f3f; }
+
+.header2 li.active a {
+  color: #fff; }
+
+.guild {
+  background: #fff;
+  padding-top: 50px; }
+
+.guild .pm {
+  overflow: hidden; }
+
+.guild-content {
+  overflow: hidden; }
+
+.guild-content h1 {
+  font-size: 21px;
   font-weight: normal;
-  margin-bottom: 28px;
-  margin-top: 7px; }
+  padding-bottom: 16px;
+  border-bottom: 1px solid #5c5c5c;
+  margin-bottom: 25px; }
 
-.aboutus-c1 h2 {
-  font-size: 18px;
-  text-align: center;
-  border-top: 5px solid #e03d40;
-  border-bottom: 1px dashed #ccc;
-  padding: 20px 0;
-  margin-bottom: 16px; }
-
-.aboutus-c1 li {
+.guild-content h2,
+.guild-content p {
   font-size: 14px;
-  margin-bottom: 41px;
-  text-align: center;
-  font-weight: bold;
-  position: relative; }
+  line-height: 24px; }
 
-.aboutus-c1 .icon38 {
-  margin-right: 17px;
-  vertical-align: 2px; }
+.guild-content p {
+  margin-bottom: 31px; }
 
-.aboutus-c1 li.active a {
-  color: #e03d40; }
+.guild-content li {
+  line-height: 48px;
+  font-size: 14px; }
 
-.aboutus-c1 li:hover .icon38 {
-  background-position: -130px 0; }
-
-.aboutus-c1 li.active .icon16-5 {
-  display: block; }
-
-.aboutus-crumbs,
-.aboutus-crumbs a {
-  color: #585758; }
-
-.aboutus-crumbs {
-  margin-bottom: 86px; }
-
-.aboutus-crumbs span {
-  margin: 0 20px; }
-
-.aboutus {
-  margin-top: 60px; }
-
-.aboutus-c2 {
-  width: 763px; }
-
-.aboutus-c2 p {
-  font-size: 14px;
-  line-height: 22px;
-  margin-bottom: 24px; }
-
-.aboutus-c2 .p2 {
-  color: #7a7a7a; }
-
-.aboutus-c2 .p2 a {
-  color: #004eff; }
-
-.aboutus .icon16-5 {
-  display: none;
-  position: absolute;
-  right: -10px;
-  top: 4px; }
-
-.aboutus-c1 li.active .icon16-5 {
-  display: block; }
-
-.aboutus-c2 h2 {
-  font-size: 18px;
-  margin-bottom: 20px; }
-
-.aboutus-c2 h3 {
-  font-size: 16px;
-  margin-bottom: 18px; }
-
-.aboutus-c2 h3 strong {
-  font-size: 30px;
-  margin-left: 10px;
-  margin-right: 17px; }
-
-.aboutus-c2 img {
-  margin-bottom: 28px;
-  max-width: 100%; }
-
-.aboutus-c2 strong {
-  color: #e13b3a; }
-
-.aboutus-c2 table {
+.guild-content table {
   width: 100%;
   margin-bottom: 19px; }
 
-.aboutus-c2 th {
+.guild-content th {
   height: 41px;
   line-height: 41px;
   background: #de3f45;
@@ -110,25 +66,62 @@
   text-align: center;
   border-right: 1px solid #fff; }
 
-.aboutus-c2 th:last-child {
+.guild-content th:last-child {
   border-color: #de3f45; }
 
-.aboutus-c2 td {
+.guild-content td {
   height: 36px;
   line-height: 36px;
   text-align: center;
   border: 1px solid #de3f45; }
 
-.aboutus-c2 .star {
+.guild-content .star {
   display: inline-block;
   width: 16px;
   height: 15px;
   background: url(//img0.fengqucdn.com/sfht/1.1.258/img/helpcenter-star.png) no-repeat;
   margin-right: 10px; }
 
-.table-refundpostage tr td {
-  border: 1px solid #333; }
+.guild-nav {
+  float: left;
+  text-align: center;
+  margin-right: 73px; }
 
-/*关于我们*/
-body {
-  background: #fff; }
+.guild-nav h2 {
+  font-size: 36px;
+  position: relative;
+  margin-bottom: 50px;
+  font-weight: normal; }
+
+.guild-nav h2:before {
+  content: '';
+  width: 31px;
+  height: 5px;
+  background: #e23f3f;
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  margin-left: -15px; }
+
+.guild-nav h3 {
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 13px; }
+
+.guild-nav ul {
+  margin-bottom: 61px; }
+
+.guild-nav li {
+  width: 126px;
+  height: 31px;
+  line-height: 31px;
+  margin: 0 auto; }
+
+.guild-nav a {
+  display: block; }
+
+.guild-nav li.active {
+  background: #e23f3f; }
+
+.guild-nav li.active a {
+  color: #fff; }

@@ -1,10 +1,3 @@
-.guild{
-	background: #fff;
-	padding-top: 50px;
-}
-.guild .pm{
-	overflow: hidden;
-}
 .guild-nav{
 	float: left;
 	text-align: center;
@@ -48,28 +41,4 @@
 }
 .guild-nav li.active a{
 	color: #fff;
-}
-
-
-.guild-content{
-	overflow: hidden;
-}
-.guild-content h1{
-	font-size: 21px;
-	font-weight: normal;
-	padding-bottom: 16px;
-	border-bottom: 1px solid #5c5c5c;
-	margin-bottom: 25px;    
-}
-.guild-content h2,
-.guild-content p{
-	font-size: 14px;
-	line-height: 24px;
-}
-.guild-content p{
-	margin-bottom: 31px;
-}
-.guild-content li{
-	line-height: 48px;
-	font-size: 14px;
 }
