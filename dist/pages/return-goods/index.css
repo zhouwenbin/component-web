@@ -297,3 +297,14 @@
     top: -11px;
     background: url(http://img0.sfht.com/cmsres/20151224/84b3b815-bfbb-423c-bfc4-be08aac11b8a.png) 0 0 no-repeat
 }
+.return-goods-explanation {
+    line-height: 21px;
+    color: #aaaaaa;
+    margin-left: 108px;
+    border-top: 1px solid #e5e6e2;
+    padding-top: 14px;
+    margin-top: 21px
+}
+.return-goods-explanation h2 {
+    color: #555
+}

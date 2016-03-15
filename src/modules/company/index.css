@@ -31,11 +31,26 @@
 }
 .company-icon{
 	position: relative;
-	width: 11px;
-	height: 11px;
+	width: 12px;
+	height: 12px;
 	border-radius: 50%;
 	background-color: #ea0c28;
 	margin: 3px;
+}
+.company-icon:before{
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 50%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	border: 1px solid #ea0c28;
+	border-radius: 50%;
+	
+}
+.company-icon:hover:before{
+	animation:company-icon-ani 0.5s linear forwards;
 }
 .company-icon:hover{
 	cursor: pointer;
@@ -44,18 +59,12 @@ div[class^="company-country"]{
 	position: absolute;
 }
 .company-country-sh .company-icon:before{
-	content: "";
-	position: absolute;
-	width: 17px;
-	height: 17px;
-	left: -4px;
-	top: -4px;
-	border: 1px solid #ea0c28;
-	border-radius: 50%;
+	width: 18px;
+	height: 18px;
 }
+
 div[class^="company-country0"] .company-icon:hover{
 	box-shadow: 0 1px 6px rgba(234,12,40,0.8);
-	animation: company-icon-ani 3s linear infinite;
 }
 .company-city{
 	position: absolute;
@@ -97,6 +106,7 @@ div[class^="company-country0"] .company-icon:hover{
 	background-image: none;
 	width: auto;
 	height: auto;
+	
 	bottom: -18px;
 }
 .company-country-sh .company-city img{
@@ -168,13 +178,9 @@ div[class^="company-country0"] .company-city{
 }
 
 @keyframes company-icon-ani{
-  10%,30%,50%{
-    width: 11px;
-    height: 11px;
-  }
-  20%,40%{
-    width: 19px;
-    height: 19px;
+  100%{
+    width: 18px;
+    height: 18px;
   }
 }
 

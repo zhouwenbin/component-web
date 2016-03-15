@@ -31,6 +31,10 @@
   height: 15px;
 }
 
+.icon-close:hover {
+  stroke: #666;
+}
+
 .icon-password {
   fill: #E5E5E5;
   width: 18px;
@@ -154,6 +158,13 @@
   height: 54px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+  font-size: 13px;
+}
+
+.login-inner input:focus {
+  border-color: #5BC2D8;
 }
 
 .login-inner .input1 {
@@ -249,7 +260,7 @@
 .login-code {
   position: absolute;
   top: 12px;
-  right: 55px;
+  left: 290px;
 }
 
 .login input::-ms-clear {

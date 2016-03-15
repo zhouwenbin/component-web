@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
 
 <symbol id="icon-account" viewBox="0 0 15 15">
-        <title>icon-account</title><path d="M7.5 8.75s-5.455 0-7.5 4.375c0 0 3.416 1.25 7.5 1.25s7.5-1.25 7.5-1.25C12.955 8.75 7.5 8.75 7.5 8.75zm0-.625c2.045 0 3.41-1.875 3.41-5S7.5 0 7.5 0 4.09 0 4.09 3.125s1.365 5 3.41 5z" fill="#C5C5C5" fill-rule="evenodd"/>
+        <title>icon-account</title><path d="M7.5 8.75s-5.455 0-7.5 4.375c0 0 3.416 1.25 7.5 1.25s7.5-1.25 7.5-1.25C12.955 8.75 7.5 8.75 7.5 8.75zm0-.625c2.045 0 3.41-1.875 3.41-5S7.5 0 7.5 0 4.09 0 4.09 3.125s1.365 5 3.41 5z" fill-rule="evenodd"/>
 </symbol>
 
 <symbol id="icon-alipay" viewBox="0 0 36 36">
@@ -9,7 +9,7 @@
 </symbol>
 
 <symbol id="icon-close" viewBox="0 0 17 15">
-        <title>icon-close</title><g transform="translate(1)" stroke="#B5B5B5" fill="none" fill-rule="evenodd"><path d="M14.958.042L.042 14.958M14.958 14.958L.042.042"/></g>
+        <title>icon-close</title><g transform="translate(1)" fill="none" fill-rule="evenodd"><path d="M14.958.042L.042 14.958M14.958 14.958L.042.042"/></g>
 </symbol>
 
 <symbol id="icon-logo" viewBox="0 0 95 95">
@@ -17,7 +17,7 @@
 </symbol>
 
 <symbol id="icon-password" viewBox="0 0 18 19">
-        <title>icon-password</title><path d="M7.875 11.613H6.187v-.034c-.185.018-.37.033-.562.033C2.52 11.613 0 9.095 0 5.988S2.52.363 5.625.363c3.106 0 5.625 2.518 5.625 5.625v2.25h.563V8.8h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563H18V17.8c0 .312-.25.563-.563.563h-2.25c-.31 0-.562-.25-.562-.563v-2.25h-2.813c-.31 0-.562-.25-.562-.562v-2.25H8.437l-.562-1.125zm-3.375-9c-1.243 0-2.25 1.007-2.25 2.25s1.007 2.25 2.25 2.25 2.25-1.007 2.25-2.25-1.007-2.25-2.25-2.25z" fill="#E5E5E5" fill-rule="evenodd"/>
+        <title>icon-password</title><path d="M7.875 11.613H6.187v-.034c-.185.018-.37.033-.562.033C2.52 11.613 0 9.095 0 5.988S2.52.363 5.625.363c3.106 0 5.625 2.518 5.625 5.625v2.25h.563V8.8h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563h.562v.562h.563v.563h.562v.563h.563v.563H18V17.8c0 .312-.25.563-.563.563h-2.25c-.31 0-.562-.25-.562-.563v-2.25h-2.813c-.31 0-.562-.25-.562-.562v-2.25H8.437l-.562-1.125zm-3.375-9c-1.243 0-2.25 1.007-2.25 2.25s1.007 2.25 2.25 2.25 2.25-1.007 2.25-2.25-1.007-2.25-2.25-2.25z" fill-rule="evenodd"/>
 </symbol>
 
 <symbol id="icon-reflash" viewBox="0 0 18 18">
@@ -29,7 +29,7 @@
 </symbol>
 
 <symbol id="icon-username" viewBox="0 0 20 20">
-        <title>icon-username</title><path d="M10 12.03s-7.273 0-10 5.833c0 0 4.555 1.667 10 1.667s10-1.667 10-1.667c-2.727-5.833-10-5.833-10-5.833zm0-.834c2.727 0 4.545-2.5 4.545-6.666C14.545.363 10 .363 10 .363s-4.545 0-4.545 4.167c0 4.166 1.818 6.666 4.545 6.666z" fill="#E5E5E5" fill-rule="evenodd"/>
+        <title>icon-username</title><path d="M10 12.03s-7.273 0-10 5.833c0 0 4.555 1.667 10 1.667s10-1.667 10-1.667c-2.727-5.833-10-5.833-10-5.833zm0-.834c2.727 0 4.545-2.5 4.545-6.666C14.545.363 10 .363 10 .363s-4.545 0-4.545 4.167c0 4.166 1.818 6.666 4.545 6.666z" fill-rule="evenodd"/>
 </symbol>
 
 <symbol id="icon-webchat" viewBox="0 0 36 36">

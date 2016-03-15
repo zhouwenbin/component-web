@@ -1,212 +1,222 @@
-@charset "UTF-8";
 /*
 @styleguide
 
 # 专题列表
 
 */
-.company {
-  background: #effcfe;
-  text-align: center;
-  color: #333;
-  font-size: 16px;
-  padding-bottom: 85px;
-  overflow-x: hidden; }
+.company{
+	background: #effcfe;
+	text-align: center;
+	color: #333;
+	font-size: 16px;
+	padding-bottom: 85px;
+	overflow-x: hidden;
+}
+.company h2{
+	padding-top: 67px;
+	padding-bottom: 54px;
+	font-size: 36px;
+	color: #333;
+}
+.company p{
+	line-height: 1.5;
+}
+.company-pic{
+	background: #effcfe url(http://img0.fengqucdn.com/cmsres/20160308/d5755957-ff3e-4177-a4dc-6936cb7743a8.png) center 0 no-repeat;
+	height: 547px;
+	position: relative;
+	width: 1180px;
+	margin-top: 60px;
+	margin-bottom: 35px;
+}
+.company-icon{
+	position: relative;
+	width: 12px;
+	height: 12px;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	background-color: #ea0c28;
+	margin: 3px;
+}
+.company-icon:before{
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 50%;
+	top: 50%;
+	-webkit-transform:translate(-50%,-50%);
+	    -ms-transform:translate(-50%,-50%);
+	        transform:translate(-50%,-50%);
+	border: 1px solid #ea0c28;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	
+}
+.company-icon:hover:before{
+	-webkit-animation:company-icon-ani 0.5s linear forwards;
+	        animation:company-icon-ani 0.5s linear forwards;
+}
+.company-icon:hover{
+	cursor: pointer;
+}
+div[class^="company-country"]{
+	position: absolute;
+}
+.company-country-sh .company-icon:before{
+	width: 18px;
+	height: 18px;
+}
 
-.company h2 {
-  padding-top: 67px;
-  padding-bottom: 54px;
-  font-size: 36px;
-  color: #333; }
+div[class^="company-country0"] .company-icon:hover{
+	-webkit-box-shadow: 0 1px 6px rgba(234,12,40,0.8);
+	        box-shadow: 0 1px 6px rgba(234,12,40,0.8);
+}
+.company-city{
+	position: absolute;
+	font-weight: 700;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
+	color: #484747;
+	white-space: nowrap;
+	background-color: #fff;
+	padding: 10px 23px 7px 30px;
+	-webkit-box-shadow: 0 0 6px rgba(69,69,69,0.1);
+	        box-shadow: 0 0 6px rgba(69,69,69,0.1);
+	top: -70px;
+}
+.company-city span{
+	margin-left: 9px;
+	vertical-align: middle;
+}
+.company-city:after{
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -11px;
+	margin-left: -4px;
+	background: url(http://img0.fengqucdn.com/cmsres/20160309/2c022e98-c0c3-4317-a4aa-29d573f2e95e.png) 0 0 no-repeat;
+	width: 18px;
+	height: 11px;
+}
+.company-country-sh .company-city{
+	top: -200px;
+	left: -140px;
+	background-color: #000000;
+	background-color: rgba(0,0,0,0.7);
+	width: 227px;
+	height: 153px;	
+	text-align: center;
+	color: #fff;
+}
+.company-country-sh .company-city:after{
+	border: 9px dashed transparent;
+	border-top-color: rgba(0,0,0,0.7);
+	background-image: none;
+	width: auto;
+	height: auto;
+	
+	bottom: -18px;
+}
+.company-country-sh .company-city img{
+	margin-top: 25px;
+}
+.company-country-sh .company-city span{
+	display: block;
+	margin-top: 20px;
+}
+div[class^="company-country0"] .company-city{
+	display: none;
+}
+.company-icon:hover .company-city{
+	display: block;
+}
+.company table{
+	width: 660px;
+	margin: 60px auto 0;
+	text-align: center;
+}
+.company table td{
+	padding: 20px 0;
+}
+.company-num{
+	font-size: 36px;
+	position: relative;
+}
+.company-num:after{
+	position: absolute;
+	content: "";
+	width: 17px;
+	border-top: 3px solid #333;
+	bottom: -10px;
+	left: 50%;
+	margin-left: -8px;
+}
+.company-pic-list{
+	border-top: 1px solid #ccc;	
+	width: 3960px;
+}
+.company-pic-list li{
+	float: left;
+}
+.company-contactus{
+	margin-top: 80px;
+}
+.company-contactus h3{
+	font-size: 36px;
+	font-weight: 400;
+}
+.company-contactus01{
+	width: 664px;
+	text-align: left;
+	margin-left: -10px;
+}
+.company-contactus01 li{
+	width: 282px;
+	float: left;
+	padding: 0 40px 0 10px;
+	margin-top: 30px;
+}
+.company-contactus01 .text-disabled{
+	padding-left: 10px;
+	font-size: 12px;
+	margin-top: 15px;
+}
+.company-contactus02{
+	padding-top: 35px;
+}
 
-.company p {
-  line-height: 1.5; }
+@-webkit-keyframes company-icon-ani{
+  100%{
+    width: 18px;
+    height: 18px;
+  }
+}
 
-.company-pic {
-  background: #effcfe url(http://img0.fengqucdn.com/cmsres/20160308/d5755957-ff3e-4177-a4dc-6936cb7743a8.png) center 0 no-repeat;
-  height: 547px;
-  position: relative;
-  width: 1180px;
-  margin-top: 60px;
-  margin-bottom: 35px; }
-
-.company-icon {
-  position: relative;
-  width: 11px;
-  height: 11px;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
-  background-color: #ea0c28;
-  margin: 3px; }
-
-.company-icon:hover {
-  cursor: pointer; }
-
-div[class^="company-country"] {
-  position: absolute; }
-
-.company-country-sh .company-icon:before {
-  content: "";
-  position: absolute;
-  width: 17px;
-  height: 17px;
-  left: -4px;
-  top: -4px;
-  border: 1px solid #ea0c28;
-  -webkit-border-radius: 50%;
-          border-radius: 50%; }
-
-div[class^="company-country0"] .company-icon:hover {
-  -webkit-box-shadow: 0 1px 6px rgba(234, 12, 40, 0.8);
-          box-shadow: 0 1px 6px rgba(234, 12, 40, 0.8);
-  -webkit-animation: company-icon-ani 3s linear infinite;
-          animation: company-icon-ani 3s linear infinite; }
-
-.company-city {
-  position: absolute;
-  font-weight: 700;
-  -webkit-border-radius: 6px;
-          border-radius: 6px;
-  color: #484747;
-  white-space: nowrap;
-  background-color: #fff;
-  padding: 10px 23px 7px 30px;
-  -webkit-box-shadow: 0 0 6px rgba(69, 69, 69, 0.1);
-          box-shadow: 0 0 6px rgba(69, 69, 69, 0.1);
-  top: -70px; }
-
-.company-city span {
-  margin-left: 9px;
-  vertical-align: middle; }
-
-.company-city:after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -11px;
-  margin-left: -4px;
-  background: url(http://img0.fengqucdn.com/cmsres/20160309/2c022e98-c0c3-4317-a4aa-29d573f2e95e.png) 0 0 no-repeat;
-  width: 18px;
-  height: 11px; }
-
-.company-country-sh .company-city {
-  top: -200px;
-  left: -140px;
-  background-color: #000000;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 227px;
-  height: 153px;
-  text-align: center;
-  color: #fff; }
-
-.company-country-sh .company-city:after {
-  border: 9px dashed transparent;
-  border-top-color: rgba(0, 0, 0, 0.7);
-  background-image: none;
-  width: auto;
-  height: auto;
-  bottom: -18px; }
-
-.company-country-sh .company-city img {
-  margin-top: 25px; }
-
-.company-country-sh .company-city span {
-  display: block;
-  margin-top: 20px; }
-
-div[class^="company-country0"] .company-city {
-  display: none; }
-
-.company-icon:hover .company-city {
-  display: block; }
-
-.company table {
-  width: 660px;
-  margin: 60px auto 0;
-  text-align: center; }
-
-.company table td {
-  padding: 20px 0; }
-
-.company-num {
-  font-size: 36px;
-  position: relative; }
-
-.company-num:after {
-  position: absolute;
-  content: "";
-  width: 17px;
-  border-top: 3px solid #333;
-  bottom: -10px;
-  left: 50%;
-  margin-left: -8px; }
-
-.company-pic-list {
-  border-top: 1px solid #ccc;
-  width: 3960px; }
-
-.company-pic-list li {
-  float: left; }
-
-.company-contactus {
-  margin-top: 80px; }
-
-.company-contactus h3 {
-  font-size: 36px;
-  font-weight: 400; }
-
-.company-contactus01 {
-  width: 664px;
-  text-align: left;
-  margin-left: -10px; }
-
-.company-contactus01 li {
-  width: 282px;
-  float: left;
-  padding: 0 40px 0 10px;
-  margin-top: 30px; }
-
-.company-contactus01 .text-disabled {
-  padding-left: 10px;
-  font-size: 12px;
-  margin-top: 15px; }
-
-.company-contactus02 {
-  padding-top: 35px; }
-
-@-webkit-keyframes company-icon-ani {
-  10%, 30%, 50% {
-    width: 11px;
-    height: 11px; }
-  20%, 40% {
-    width: 19px;
-    height: 19px; } }
-
-@keyframes company-icon-ani {
-  10%, 30%, 50% {
-    width: 11px;
-    height: 11px; }
-  20%, 40% {
-    width: 19px;
-    height: 19px; } }
+@keyframes company-icon-ani{
+  100%{
+    width: 18px;
+    height: 18px;
+  }
+}
 
 /*需要js计算位置的代码，可以拿掉*/
-.company-country-sh {
-  left: 500px;
-  top: 200px; }
-
-.company-country01 {
-  left: 1029px;
-  top: 375px; }
-
-.company-country01 .company-city {
-  left: -114px; }
-
-.company-country02 {
-  left: 200px;
-  top: 300px; }
-
-.company-country02 .company-city {
-  left: -100px; }
-
+.company-country-sh{
+	left: 500px;
+	top: 200px;
+}
+.company-country01{
+	left: 1029px;
+	top: 375px;
+}
+.company-country01 .company-city{
+	left: -114px;
+}
+.company-country02{
+	left: 200px;
+	top: 300px;
+}
+.company-country02 .company-city{
+	left: -100px;
+}
 /*需要js计算位置的代码，可以拿掉*/
