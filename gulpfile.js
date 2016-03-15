@@ -66,11 +66,13 @@ gulp.task('watch', function() {
     gulp.watch("src/pages/"+ pages[i] +"/**.html",["html"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.scss",["scss"]);
     gulp.watch("src/pages/"+ pages[i] +"/**.css",["css"]);
+    gulp.watch("src/pages/"+ pages[i] +"/**.js",["js"]);
   }
   for(var i in modules) {
     gulp.watch("src/modules/"+ modules[i] +"/**.html",["html"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.scss",["scss"]);
     gulp.watch("src/modules/"+ modules[i] +"/**.css",["css"]);
+    gulp.watch("src/modules/"+ modules[i] +"/**.js",["js"]);
   }
 });
 
@@ -169,4 +171,21 @@ gulp.task('slim', function() {
     .pipe(gulp.dest("./app/static/html/pages/"));
 });
 
-gulp.task('default', ['watch', 'css', 'html', 'serve','scss']);
+gulp.task('js', function () {
+  for(var i in pages){
+    gulp.src("src/pages/"+ pages[i] +"/**.js")
+    .pipe(gulp.dest("dist/pages/"+ pages[i]));
+
+  }
+  for(var i in modules) {
+    if(modules[i] !== ".DS_Store") {
+      gulp.src("src/modules/"+ modules[i] +"/**.js")
+      .pipe(gulp.dest("dist/modules/"+ modules[i]));
+    }
+      
+  }
+  gulp.src("src/vender/**.js")
+  .pipe(gulp.dest("dist/vender/"));
+});
+
+gulp.task('default', ['watch', 'css', 'html', 'serve','scss', 'js']);

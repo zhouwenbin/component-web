@@ -178,7 +178,8 @@ div[class^="company-country0"] .company-city {
 }
 .company-pic-list {
     border-top: 1px solid #ccc;
-    width: 3960px
+    width: 3960px;
+    position: relative
 }
 .company-pic-list li {
     float: left
