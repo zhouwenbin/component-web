@@ -1,0 +1,27 @@
+
+.open-footer{
+	background: #404244;
+	text-align: center;
+	padding-bottom: 26px;
+	padding-top: 25px;
+}
+.open-footer ul{
+	margin-bottom: 21px;
+}
+.open-footer li{
+	display: inline;
+	font-size: 14px;
+	color: #aaa;
+}
+.open-footer li a{
+	color: #eee;
+	margin: 0 44px;
+}
+.open-footer li a:hover{
+	color: #CCCCCC;
+	color: rgba(204, 204, 204, 0.8);
+}
+
+.open-footer p{
+	color: #999;
+}

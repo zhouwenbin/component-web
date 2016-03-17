@@ -1,0 +1,17 @@
+.news-icon {
+    font-size: 10px;
+}
+
+.news-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/news.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .news-icon:before {
+    background-image: url("../svg/news.png");
+}
+

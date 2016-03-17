@@ -1,0 +1,17 @@
+.guild-icon {
+    font-size: 10px;
+}
+
+.guild-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/guild.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .guild-icon:before {
+    background-image: url("../svg/guild.png");
+}
+

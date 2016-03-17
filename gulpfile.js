@@ -48,6 +48,21 @@ gulp.task("svg", function () {
     }
   }
 });
+gulp.task("open-header", function () {
+  gulp.src("src/modules/open-header/svgs/*.svg")
+          .pipe(svgSprite({
+              common: "open-header-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/open-header.svg"
+              }
+          }))
+          .pipe(gulp.dest("src/modules/open-header/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("src/modules/open-header/sprites/"));
+});
 gulp.task("svg:copy", function () {
   for(var i in modules) {
     if(modules[i] !== '.DS_Store') {

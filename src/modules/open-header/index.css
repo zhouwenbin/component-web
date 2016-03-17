@@ -1,0 +1,22 @@
+@import 'sprites/css/sprite.css';
+.open-header{
+	background: #fff;
+}
+.open-header-c1{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.open-header-c2{
+	padding-top: 37px;
+	padding-right: 15px;
+}
+.open-header-c2 .open-header-icon{
+	vertical-align: 1px;
+}
+.open-header-c2 .open-header-icon:before{
+	margin-left: 20px;
+	margin-right: 8px;
+}
+.open-header-welcome{
+	margin-right: 10px;
+}

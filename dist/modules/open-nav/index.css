@@ -1,0 +1,22 @@
+
+.open-nav{
+	background: #404244;
+}
+.open-nav ul{
+	overflow: hidden;
+}
+.open-nav li{
+	height: 32px;
+	line-height: 32px;
+	float: left;
+	font-size: 14px;
+	padding: 0 7px;
+	text-align: center;
+	margin-right: 59px;
+}
+.open-nav li.active, .open-nav li:hover{
+	border-bottom: 3px solid #E73936;
+}
+.open-nav a{
+	color: #fff;
+}

@@ -1,0 +1,17 @@
+.open-footer-icon {
+    font-size: 10px;
+}
+
+.open-footer-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../svg/open-footer.svg");
+    background-repeat: no-repeat;
+    background-size: 0em 0em;
+}
+
+.no-svg .open-footer-icon:before {
+    background-image: url("../svg/open-footer.png");
+}
+
