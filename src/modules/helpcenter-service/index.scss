@@ -1,0 +1,15 @@
+@import '../guild/index';
+.guild-service li{
+	font-size: 14px;
+	padding-left: 85px;
+	line-height: 24px;
+	margin-bottom: 10px;
+}
+.guild-service .text-error{
+	font-size: 18px;
+}
+.guild-service span{
+	display: inline-block;
+	margin-left: -85px;
+	width: 85px;
+}
