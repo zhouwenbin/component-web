@@ -48,6 +48,9 @@
 .open-header-welcome {
     margin-right: 10px
 }
+.open-header-c2 a:hover {
+    text-decoration: underline
+}
 .open-nav {
     background: #404244
 }
@@ -129,8 +132,18 @@
     margin-bottom: 12px;
     margin-top: 17px
 }
+.open-main h2:hover {
+    text-decoration: underline
+}
 .open-main p {
     font-size: 14px
+}
+.open-main-icon {
+    position: relative
+}
+.open-main-icon:hover {
+    left: 1px;
+    top: 1px
 }
 .open-main-icon.icon-platform:hover:before {
     background-position: -1em -19.2em
@@ -142,7 +155,8 @@
     background: #404244;
     text-align: center;
     padding-bottom: 26px;
-    padding-top: 25px
+    padding-top: 25px;
+    margin-top: 30px
 }
 .open-footer ul {
     margin-bottom: 21px

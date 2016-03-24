@@ -1,0 +1,51 @@
+.open-sideber-list1>li{
+	background: #F2F2F2;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 3px;
+	font-size: 14px;
+	position: relative;
+}
+.open-sideber-list1>li>a{
+	display: block;
+	margin-left: 20px;
+}
+.open-sideber-list1>li.active{
+	background: #f9f9f9;
+}
+.open-sideber-list1>li.active>a{
+	color: #E73836;
+	
+}
+.open-sideber-list1 li.active:before{
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -10px;
+	height: 20px;
+	width: 3px;
+	background: #E73836;
+}
+.open-sideber-list2{
+	background: #F9F9F9;
+	padding: 10px 2px;
+}
+.open-sideber-list2>li{
+	padding: 5px 0 5px 31px;
+	line-height: 18px;
+	position: relative;
+}
+.open-sideber-list2>li.active{
+	background: #fff;
+}
+.open-sideber-list2>li.active:before{
+	right: -3px;
+}
+.open-sideber-list2>li.active a{
+	color: #E73836;
+}
+.open-sideber-list2 li:hover{
+	text-decoration: underline;
+	background: #fff;
+}

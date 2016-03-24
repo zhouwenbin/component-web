@@ -1,0 +1,233 @@
+.open-header-icon {
+    font-size: 12px
+}
+.open-header-icon:before {
+    content: ' ';
+    vertical-align: middle;
+    display: inline-block;
+    background-image: url("../svg/open-header.svg");
+    background-repeat: no-repeat;
+    background-size: 25.416666666666668em 12.166666666666666em
+}
+.no-svg .open-header-icon:before {
+    background-image: url("../svg/open-header.png")
+}
+.open-header-icon.icon-chinese:before {
+    background-position: -0.8333333333333334em -0.8333333333333334em;
+    width: 2.25em;
+    height: 1.5em
+}
+.open-header-icon.icon-english:before {
+    background-position: -0.8333333333333334em -4em;
+    width: 2.25em;
+    height: 1.5em
+}
+.open-header-icon.icon-logo:before {
+    background-position: -0.8333333333333334em -7.166666666666666em;
+    width: 23.75em;
+    height: 4.166666666666667em
+}
+.open-header {
+    background: #fff
+}
+.open-header-c1 {
+    padding-top: 20px;
+    padding-bottom: 20px
+}
+.open-header-c2 {
+    padding-top: 37px;
+    padding-right: 15px
+}
+.open-header-c2 .open-header-icon {
+    vertical-align: 1px
+}
+.open-header-c2 .open-header-icon:before {
+    margin-left: 20px;
+    margin-right: 8px
+}
+.open-header-welcome {
+    margin-right: 10px
+}
+.open-header-c2 a:hover {
+    text-decoration: underline
+}
+.open-nav {
+    background: #404244
+}
+.open-nav ul {
+    overflow: hidden
+}
+.open-nav li {
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    font-size: 14px;
+    padding: 0 7px;
+    text-align: center;
+    margin-right: 59px
+}
+.open-nav li.active, .open-nav li:hover {
+    border-bottom: 3px solid #E73936
+}
+.open-nav a {
+    color: #fff
+}
+.open-breadcrumbs {
+    margin: 20px 0 20px -5px
+}
+.open-breadcrumbs a {
+    margin: 0 5px
+}
+.open-sideber-list1>li {
+    background: #F2F2F2;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    position: relative
+}
+.open-sideber-list1>li>a {
+    display: block;
+    margin-left: 20px
+}
+.open-sideber-list1>li.active {
+    background: #f9f9f9
+}
+.open-sideber-list1>li.active>a {
+    color: #E73836
+}
+.open-sideber-list1 li.active:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -10px;
+    height: 20px;
+    width: 3px;
+    background: #E73836
+}
+.open-sideber-list2 {
+    background: #F9F9F9;
+    padding: 10px 2px
+}
+.open-sideber-list2>li {
+    padding: 5px 0 5px 31px;
+    line-height: 18px;
+    position: relative
+}
+.open-sideber-list2>li.active {
+    background: #fff
+}
+.open-sideber-list2>li.active:before {
+    right: -3px
+}
+.open-sideber-list2>li.active a {
+    color: #E73836
+}
+.open-sideber-list2 li:hover {
+    text-decoration: underline;
+    background: #fff
+}
+.open-detail {
+    border: 1px solid #E5E5E5;
+    background: #fff
+}
+.open-detail h1 {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 20px;
+    font-weight: normal;
+    padding-left: 20px
+}
+.open-detail h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 20px
+}
+.open-detail h3 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px
+}
+.open-detail>section {
+    padding: 20px;
+    border-bottom: 1px solid #E5E5E5
+}
+.open-detail>section>section {
+    padding: 0 20px
+}
+.open-detail table {
+    width: 100%;
+    margin-top: 10px
+}
+.open-detail th {
+    background: #DBEFF6;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 30px
+}
+.open-detail td {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 30px;
+    background: #F9F9F9
+}
+.open-detail tr:nth-child(even) td {
+    background: #F2F2F2
+}
+.open-detail a {
+    color: #008CBA
+}
+.open-detail hr {
+    height: 1px;
+    background: #E5E5E5;
+    margin: 20px 0;
+    border: none
+}
+.open-detail-btn {
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    background: #1494BF;
+    color: #fff !important;
+    text-align: center;
+    display: inline-block
+}
+.open-footer {
+    background: #404244;
+    text-align: center;
+    padding-bottom: 26px;
+    padding-top: 25px;
+    margin-top: 30px
+}
+.open-footer ul {
+    margin-bottom: 21px
+}
+.open-footer li {
+    display: inline;
+    font-size: 14px;
+    color: #aaa
+}
+.open-footer li a {
+    color: #eee;
+    margin: 0 44px
+}
+.open-footer li a:hover {
+    color: #CCCCCC;
+    color: rgba(204, 204, 204, 0.8)
+}
+.open-footer p {
+    color: #999
+}
+body {
+    background: #fff
+}
+.open-grid-c1 {
+    width: 270px;
+    float: left;
+    margin-right: 20px
+}
+.open-grid-c2 {
+    overflow: hidden
+}

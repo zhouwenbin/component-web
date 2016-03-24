@@ -1,0 +1,23 @@
+<article class="open-article">
+	<h1>API Integration process for merchant shipper</h1>
+	<pre>Version：0.1</pre>
+	<h2>1. Summary</h2>
+	<p>This document mainly introduces merchant shipper how to integrate Fengqu Open API interface.</p>
+	<h2>2. Business Flow</h2>
+	<p>API integration with merchant shipper is mainly in order to support the development of overseas Direction Mail business, merchant shipper is very important role and take up the high responsibility in the international transportation, the specific process is as following:</p>
+	<ol>
+		<li>(1). When domestic consumers have taken a order on fengqu, Fengqu will push the order information to overseas suppliers</li>
+		<li>(2). Overseas Supplier will transfer the set of goods with parcel/package manner to merchant shipper.</li>
+		<li>(3). After receiving the packeage, Merchant shipper will scan the parcel and put in storage.</li>
+	</ol>
+	<p>the appointed place by Fengqu through international trunk line transportation, then hand over them to the local receiver designated by Fengqu.</p>
+	<h2>3. API Integration Flow</h2>
+	<p>In view of the above business process, merchant shipper need to integrate the APIs according to the following data flow. (Figure 3.1).</p>
+	<ul>
+		<li>i.	Queary the pre-alert of orders: the corresponding interface <a href="">twsOpenApi.getOrderList</a>.</li>
+		<li>i.	Scan the package and send Stock In message back: the corresponding interface twsOpenApi.sendIn.</li>
+		<li>i.	Weight the package and send back: the corresponding interface twsOpenApi.sendWeight.</li>
+		<li>i.	Stock out and send message back: the corresponding interface twsOpenApi.sendOut.</li>
+		<li>i.	Send the International Route information back: the corresponding interface twsOpenApi.sendRoute.</li>
+	</ul>
+</article>

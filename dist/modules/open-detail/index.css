@@ -1,0 +1,67 @@
+.open-detail{
+	border:1px solid #E5E5E5;
+	background: #fff;
+	
+}
+.open-detail h1{
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #E5E5E5;
+	font-size: 20px;
+	font-weight: normal;
+	padding-left: 20px;
+}
+.open-detail h2{
+	font-size: 20px;
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+.open-detail h3{
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+.open-detail>section{
+	padding: 20px;
+	border-bottom: 1px solid #E5E5E5;
+}
+.open-detail>section>section{
+	padding: 0 20px;
+}
+.open-detail table{
+	width: 100%;
+	margin-top: 10px;
+}
+.open-detail th{
+	background: #DBEFF6;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 30px;
+}
+.open-detail td{
+	height: 32px;
+	line-height: 32px;
+	padding-left: 30px;
+	background: #F9F9F9;
+}
+.open-detail tr:nth-child(even) td{
+	background: #F2F2F2;
+}
+.open-detail a{
+	color: #008CBA;
+}
+.open-detail hr{
+	height: 1px;
+	background: #E5E5E5;
+	margin: 20px 0;
+	border: none;
+}
+.open-detail-btn{
+	width: 120px;
+	height: 32px;
+	line-height: 32px;
+	background: #1494BF;
+	color: #fff !important;
+	text-align: center;
+	display: inline-block;
+}

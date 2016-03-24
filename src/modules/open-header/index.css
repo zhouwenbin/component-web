@@ -20,3 +20,6 @@
 .open-header-welcome{
 	margin-right: 10px;
 }
+.open-header-c2 a:hover{
+	text-decoration: underline;
+}
