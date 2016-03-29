@@ -1,6 +1,5 @@
 .open-sideber-list1>li{
 	background: #F2F2F2;
-	height: 50px;
 	line-height: 50px;
 	margin-bottom: 3px;
 	font-size: 14px;
@@ -32,9 +31,10 @@
 	padding: 10px 2px;
 }
 .open-sideber-list2>li{
-	padding: 5px 0 5px 31px;
+	padding: 5px 15px 5px 31px;
 	line-height: 18px;
 	position: relative;
+	word-break:break-word;
 }
 .open-sideber-list2>li.active{
 	background: #fff;

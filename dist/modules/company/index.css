@@ -13,8 +13,8 @@
 	overflow-x: hidden;
 }
 .company h2{
-	padding-top: 67px;
-	padding-bottom: 54px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	font-size: 36px;
 	color: #333;
 }
@@ -85,9 +85,12 @@ div[class^="company-country0"] .company-icon:hover{
 	-webkit-box-shadow: 0 0 6px rgba(69,69,69,0.1);
 	        box-shadow: 0 0 6px rgba(69,69,69,0.1);
 	top: -70px;
-	left: -105px;
-	width: 194px;
+	left: -50%;
+	-webkit-transform:translate(-50%,0);
+	    -ms-transform:translate(-50%,0);
+	        transform:translate(-50%,0);
 	height: 42px;
+	padding-right: 23px;
 	text-align: left;
 	padding-left: 13px;
 	padding-top: 10px;
@@ -123,7 +126,7 @@ div[class^="company-country0"] .company-icon:hover{
 }
 .company-country-sh .company-city{
 	top: -174px;
-	left: -115px;
+	left: 50%;
 	background-color: #000000;
 	background-color: rgba(0,0,0,0.7);
 	width: 227px;

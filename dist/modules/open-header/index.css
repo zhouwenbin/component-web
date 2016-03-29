@@ -7,7 +7,7 @@
 	display: inline-block;
 	background-image: url("../svg/open-header.svg");
 	background-repeat: no-repeat;
-	background-size: 25.416666666666668em 12.166666666666666em;
+	background-size: 37em 18em;
 }
 .no-svg .open-header-icon:before{
 	background-image: url("../svg/open-header.png");
@@ -25,6 +25,11 @@
 .open-header-icon.icon-logo:before{
 	background-position: -0.8333333333333334em -7.166666666666666em;
 	width: 23.75em;
+	height: 4.166666666666667em;
+}
+.open-header-icon.icon-logo-english:before{
+	background-position: -0.8333333333333334em -13em;
+	width: 35.333333333333336em;
 	height: 4.166666666666667em;
 }
 .open-header{
