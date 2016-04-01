@@ -5,8 +5,8 @@
 
 */
 @import "../../utils/variables";
+@import "sprites/css/sprite.css";
 %header-icon{
-	background:url(http://img0.sfht.com/cmsres/20151013/287d7c27-1494-4e00-8d69-5520ff497bad.png) no-repeat;
 	vertical-align:middle;
 	display:inline-block;
 }
@@ -27,57 +27,22 @@
 .header1-c2 a{
 	margin-left: 20px;
 }
-.header-icon01{
-	@extend %header-icon;
-	width:203px;
-	height:67px;
-	font-size: 0;
+.header1-c2>ul>li{
+	display:inline-block;
 }
-.header-icon02{
+.header-c2 .header-icon{
 	@extend %header-icon;
-	width:20px;
-	height:24px;
 	margin-right:4px;
-	background-position:-268px 0px;
 }
-.header-icon03{
+.header-icon.icon-cart-black{
 	@extend %header-icon;
-	width:20px;
-	height:25px;
-	margin-right:4px;
-	background-position:-300px 0px;
-}
-.header-icon04{
-	@extend %header-icon;
-	width:20px;
-	height:25px;
-	margin-right:4px;
-	background-position:-336px 0px;
-}
-.header-icon05{
-	@extend %header-icon;
-	margin-top: 6px;
-	width: 25px;
-	height:22px;	
-	background-position:-384px 0;
+	margin-right: 5px;
 	position: relative;
 }
-.header-icon06{
-	@extend %header-icon;
-	background-position: -245px 0;
-	width: 9px;
-	height: 12px;
-	margin-left: 10px;
+.header-icon.icon-arrow-right{
+	margin-left:10px;
 }
-.header-icon07{
-	@extend %header-icon;
-	background-position: -413px -34px;
-	width: 25px;
-	height: 24px;
-	float:left;
-	margin-left:-30px;
-	margin-top:6px;
-}
+
 .nav-c2{
 	margin-left: 22px;
 }
@@ -125,7 +90,7 @@
 	margin-right: 8px;
 }
 .header1 a{
-	color: #ccc;
+	color: #fff;
 	&:hover{
 		color:rgba(204,204,204,0.8);
 	}
@@ -146,48 +111,52 @@
 	z-index: map-get($z-index,header1-qrcode-img);
 	display: none;
 }
+.header1-focus{
+	position:relative;
+}
+.header1-focus img{
+	display:none;
+	position: absolute;
+	left:-104px;
+	top:- 4px;
+}
+.header1-focus ul{
+	display:none;
+	position: absolute;
+	right:0;
+	top:100%;
+	z-index:2;
+	background:#2F2E2E;
+	padding:0 15px;
+}
+.header1-focus li{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #3E3A39;
+	width:70px;
+	white-space:nowrap;
+}
+.header1-focus li:hover img{
+	display:block;
+}
+.header1-focus li:last-child{
+	border-bottom:none;
+}
+.header1-focus li a{
+	margin-left:0;
+}
+.header1-focus li span{
+	margin-right:4px;
+}
+.header1-focus .icon-arrow-down{
+	margin-left:3px;
+}
+.header1-focus:hover ul{
+	display:block;
+}
 .header,
 .nav{
 	background-color: #fff;
 }
-.svg-header-logo-big{
-	width:181px;
-	height:66px;
-}
-.svg-header2{
-	width:20px;
-	height:24px;
-	margin-right:7px;
-}
-.svg-header3{
-	width:20px;
-	height:24px;
-	margin-right:7px;
-}
-.svg-header4{
-	width:20px;
-	height:24px;
-	margin-right:7px;
-}
-.svg-header5{
-	width:22px;
-	height:19px;
-}
-.svg-header6{
-	width:8px;
-	height:13px;
-	margin-left:12px;
-}
-.svg-header-cart-red{
-	width:25px;
-	height:22px;
-}
-.svg-header-logo{
-	width:149px;
-	height:36px;
-}
-.svg-ashbin{
-	width:16px;
-	height:16px;
-}
+
 @import 'headersearchbox';

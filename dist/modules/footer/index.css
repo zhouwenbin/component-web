@@ -5,6 +5,76 @@
 # 尾部
 
 */
+.footer-icon {
+    font-size: 12px;
+}
+
+.footer-icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("sprites/svg/footer.svg");
+    background-repeat: no-repeat;
+    background-size: 13.916666666666666em 42.916666666666664em;
+}
+
+.no-svg .footer-icon:before {
+    background-image: url("sprites/svg/footer.png");
+}
+
+.footer-icon.icon-car:before {
+    background-position: -0.8333333333333334em -0.8333333333333334em;
+    width: 3.3333333333333335em;
+    height: 2.5833333333333335em;
+}
+
+.footer-icon.icon-cart:before {
+    background-position: -0.8333333333333334em -5.083333333333333em;
+    width: 3em;
+    height: 3.3333333333333335em;
+}
+
+.footer-icon.icon-earth:before {
+    background-position: -0.8333333333333334em -10.083333333333334em;
+    width: 3.0833333333333335em;
+    height: 3em;
+}
+
+.footer-icon.icon-list:before {
+    background-position: -0.8333333333333334em -14.75em;
+    width: 2.25em;
+    height: 2.75em;
+}
+
+.footer-icon.icon-logo:before {
+    background-position: -0.8333333333333334em -19.166666666666664em;
+    width: 12.25em;
+    height: 3.4166666666666665em;
+}
+
+.footer-icon.icon-logo-big:before {
+    background-position: -0.8333333333333334em -24.25em;
+    width: 12.166666666666666em;
+    height: 4.75em;
+}
+
+.footer-icon.icon-package:before {
+    background-position: -0.8333333333333334em -30.666666666666664em;
+    width: 3em;
+    height: 2.75em;
+}
+
+.footer-icon.icon-webchat:before {
+    background-position: -0.8333333333333334em -35.083333333333336em;
+    width: 2.6666666666666665em;
+    height: 2.6666666666666665em;
+}
+
+.footer-icon.icon-weibo:before {
+    background-position: -0.8333333333333334em -39.41666666666667em;
+    width: 2.6666666666666665em;
+    height: 2.6666666666666665em;
+}
 .footer1 {
   height: 54px;
   line-height: 54px;
@@ -95,6 +165,29 @@
 .footer2-c1 {
   margin-right: 88px; }
 
+.footer2-c1 a {
+  position: relative; }
+
+.footer2-c1 img {
+  display: none;
+  position: absolute;
+  top: -119px;
+  left: -38px; }
+
+.footer2-c1 a:hover img {
+  display: block; }
+
+.footer2-c1 p {
+  margin-top: 14px;
+  color: #3E3A39;
+  font-size: 12px; }
+
+.footer2-c1 p span {
+  margin-right: 14px; }
+
+.footer2-c1 .footer-icon {
+  margin-right: 11px; }
+
 .footer2-c2 {
   margin-left: -98px; }
 
@@ -124,32 +217,17 @@
   font-size: 12px;
   color: #999; }
 
-[class*="svg-footer"] {
-  font-size: 40px; }
-
-.svg-footer1 {
-  font-size: 37px;
+.footer-icon.icon-earth {
   margin-right: 25px; }
 
-.svg-footer2 {
-  font-size: 40px;
+.footer-icon.icon-cart {
   margin-right: 20px; }
 
-.svg-footer3 {
-  font-size: 40px;
+.footer-icon.icon-list {
   margin-right: 7px; }
 
-.svg-footer4 {
-  font-size: 40px;
+.footer-icon.icon-car {
   margin-right: 24px; }
 
-.svg-footer5 {
-  font-size: 36px;
+.footer-icon.icon-package {
   margin-right: 18px; }
-
-.svg-footer6 {
-  width: 147px;
-  height: 41px; }
-
-.svg-avatar {
-  margin-right: 10px; }

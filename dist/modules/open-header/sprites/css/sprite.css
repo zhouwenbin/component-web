@@ -1,5 +1,5 @@
 .open-header-icon {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .open-header-icon:before {
@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/open-header.svg");
     background-repeat: no-repeat;
-    background-size: 30.5em 14.6em;
+    background-size: 37em 18em;
 }
 
 .no-svg .open-header-icon:before {
@@ -16,20 +16,26 @@
 }
 
 .open-header-icon.icon-chinese:before {
-    background-position: -1em -1em;
-    width: 2.7em;
-    height: 1.8em;
+    background-position: -0.8333333333333334em -0.8333333333333334em;
+    width: 2.25em;
+    height: 1.5em;
 }
 
 .open-header-icon.icon-english:before {
-    background-position: -1em -4.8em;
-    width: 2.7em;
-    height: 1.8em;
+    background-position: -0.8333333333333334em -4em;
+    width: 2.25em;
+    height: 1.5em;
 }
 
 .open-header-icon.icon-logo:before {
-    background-position: -1em -8.6em;
-    width: 28.5em;
-    height: 5em;
+    background-position: -0.8333333333333334em -7.166666666666666em;
+    width: 23.75em;
+    height: 4.166666666666667em;
+}
+
+.open-header-icon.icon-logo-english:before {
+    background-position: -0.8333333333333334em -13em;
+    width: 35.333333333333336em;
+    height: 4.166666666666667em;
 }
 

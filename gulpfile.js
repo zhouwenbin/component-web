@@ -48,6 +48,7 @@ gulp.task("svg", function () {
     }
   }
 });
+
 gulp.task("open-header", function () {
   gulp.src("src/modules/open-header/svgs/*.svg")
           .pipe(svgSprite({
@@ -63,6 +64,39 @@ gulp.task("open-header", function () {
           .pipe(svg2png())           // Create a PNG
           .pipe(gulp.dest("src/modules/open-header/sprites/"));
 });
+
+gulp.task("header", function () {
+  gulp.src("src/modules/header/svgs/*.svg")
+          .pipe(svgSprite({
+              common: "header-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/header.svg"
+              }
+          }))
+          .pipe(gulp.dest("src/modules/header/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("src/modules/header/sprites/"));
+});
+
+gulp.task("footer", function () {
+  gulp.src("src/modules/footer/svgs/*.svg")
+          .pipe(svgSprite({
+              common: "footer-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/footer.svg"
+              }
+          }))
+          .pipe(gulp.dest("src/modules/footer/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("src/modules/footer/sprites/"));
+});
+
 gulp.task("svg:copy", function () {
   for(var i in modules) {
     if(modules[i] !== '.DS_Store') {
