@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../svg/header.svg");
     background-repeat: no-repeat;
-    background-size: 17.75em 42.416666666666664em;
+    background-size: 17.75em 49.083333333333336em;
 }
 
 .no-svg .header-icon:before {
@@ -27,62 +27,74 @@
     height: 1.0833333333333333em;
 }
 
-.header-icon.icon-cart-black:before {
+.header-icon.icon-ashbin:before {
     background-position: -0.8333333333333334em -5.583333333333333em;
+    width: 1.3333333333333333em;
+    height: 1.3333333333333333em;
+}
+
+.header-icon.icon-bubble:before {
+    background-position: -0.8333333333333334em -8.583333333333334em;
+    width: 1.9166666666666667em;
+    height: 2em;
+}
+
+.header-icon.icon-cart-black:before {
+    background-position: -0.8333333333333334em -12.25em;
     width: 1.8333333333333333em;
     height: 1.5833333333333333em;
 }
 
 .header-icon.icon-cart-red:before {
-    background-position: -0.8333333333333334em -8.833333333333334em;
+    background-position: -0.8333333333333334em -15.5em;
     width: 2.0833333333333335em;
     height: 1.8333333333333333em;
 }
 
 .header-icon.icon-kuai:before {
-    background-position: -0.8333333333333334em -12.333333333333334em;
+    background-position: -0.8333333333333334em -19em;
     width: 1.6666666666666667em;
     height: 2em;
 }
 
 .header-icon.icon-logo:before {
-    background-position: -0.8333333333333334em -16em;
+    background-position: -0.8333333333333334em -22.666666666666664em;
     width: 12.416666666666666em;
     height: 3em;
 }
 
 .header-icon.icon-logo-big:before {
-    background-position: -0.8333333333333334em -20.666666666666664em;
+    background-position: -0.8333333333333334em -27.333333333333332em;
     width: 16.083333333333332em;
     height: 4.75em;
 }
 
 .header-icon.icon-mian:before {
-    background-position: -0.8333333333333334em -27.083333333333332em;
+    background-position: -0.8333333333333334em -33.75em;
     width: 1.6666666666666667em;
     height: 2em;
 }
 
 .header-icon.icon-num:before {
-    background-position: -0.8333333333333334em -30.75em;
+    background-position: -0.8333333333333334em -37.41666666666667em;
     width: 1.9166666666666667em;
     height: 2em;
 }
 
 .header-icon.icon-webchat:before {
-    background-position: -0.8333333333333334em -34.41666666666667em;
+    background-position: -0.8333333333333334em -41.083333333333336em;
     width: 1.1666666666666667em;
     height: 1em;
 }
 
 .header-icon.icon-weibo:before {
-    background-position: -0.8333333333333334em -37.083333333333336em;
+    background-position: -0.8333333333333334em -43.75em;
     width: 1em;
     height: 0.8333333333333334em;
 }
 
 .header-icon.icon-zheng:before {
-    background-position: -0.8333333333333334em -39.583333333333336em;
+    background-position: -0.8333333333333334em -46.25em;
     width: 1.6666666666666667em;
     height: 2em;
 }

@@ -6,6 +6,8 @@
 */
 @import "../../utils/variables";
 @import "sprites/css/sprite.css";
+@import 'headersearchbox';
+@import 'nav';
 %header-icon{
 	vertical-align:middle;
 	display:inline-block;
@@ -32,7 +34,6 @@
 }
 .header-c2 .header-icon{
 	@extend %header-icon;
-	margin-right:4px;
 }
 .header-icon.icon-cart-black{
 	@extend %header-icon;
@@ -42,7 +43,9 @@
 .header-icon.icon-arrow-right{
 	margin-left:10px;
 }
+.header-icon.icon-ashbin{
 
+}
 .nav-c2{
 	margin-left: 22px;
 }
@@ -63,18 +66,17 @@
 	display:inline-block;
 	vertical-align:middle;
 }
-.cart-num-inner{
+.icon-bubble{
 	@extend %header-icon;
-	background-position: -416px 0;
-	width: 22px;
-	height: 24px;
-	line-height: 22px;
-	margin-left: -1px;
-	font-size: 12px;
-	overflow: hidden;
 	position: absolute;
 	top: -16px;
-	left: 17px;	
+	left: 19px;	
+}
+.header-bubble-num{
+	position: absolute;
+	left:0;
+	right:0;
+	top:5px;
 }
 .cart-item{
 	width: 123px;
@@ -159,4 +161,3 @@
 	background-color: #fff;
 }
 
-@import 'headersearchbox';
