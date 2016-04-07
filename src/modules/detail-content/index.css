@@ -1,6 +1,64 @@
 .detail-content{
-	font-size: 14px;	
-	line-height: 1.7;
-	word-wrap: break-word;
-	word-break: break-all;
+	width: 750px;
+	margin: 0 auto;
+}
+.detail-content h2{
+	background: url(http://img0.fengqucdn.com/cmsres/20160406/be035ab7-4cb8-4334-9d2c-b736bf9828a4.jpeg) no-repeat;
+	font-size: 28px;
+	color: #fff;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-weight: normal;
+}
+.detail-content-parameter{
+	padding-top: 4px;
+	font-size: 14px;
+	overflow: hidden;
+	margin-bottom: 23px;
+}
+.detail-content-parameter img{
+	float: left;
+	margin-right: 71px;
+}
+.detail-content-parameter dl{
+	margin-bottom: 10px;
+	line-height: 20px;
+	overflow: hidden;
+}
+.detail-content-parameter dt{
+	color: #9B9B9B;
+	float: left;
+}
+.detail-content-parameter dt span{
+	display: inline-block;
+	width: 4em;
+	text-align: justify;
+	vertical-align: middle;
+}
+.detail-content-parameter dt span:after{
+	width: 100%;
+	height: 0;
+	display: inline-block;
+	content: '';
+}
+.detail-content-parameter dd{
+	overflow: hidden;
+}
+.detail-content-parameter p{
+	color: #FF6963;
+	margin-top: 41px;
+	line-height: 21px;
+}
+.detail-content-parameter-c2{
+	overflow: hidden;
+	padding-top: 4px;
+}
+.detail-content-text{
+	font-size: 14px;
+	line-height: 24px;
+	margin: 10px 0;
+}
+.detail-content-img{
+	width: 100%;
 }

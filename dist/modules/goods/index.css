@@ -76,10 +76,7 @@
 
 .goods h1 {
   font-size: 18px;
-  margin-bottom: 17px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden; }
+  margin-bottom: 17px; }
 
 .goods p {
   color: #686675;

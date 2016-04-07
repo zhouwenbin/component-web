@@ -35,6 +35,9 @@
 .comment-list .col3{
 	width: 140px;
 }
+.comment-list .col4{
+	position: relative;
+}
 .comment-list .col4 p{
 	margin-bottom: 14px;
 }
@@ -52,4 +55,30 @@
 }
 .comment-list .p4{
 	text-align: center;
+}
+.comment-list-expose{
+	background:#FFFAFA;
+}
+.comment-list-tag{
+	background:#FF3465;
+	height:20px;
+	line-height:20px;
+	color: #fff;
+	padding-left:18px;
+	padding-right:8px;
+	position: absolute;
+	right:0;
+	top:24px;
+}
+.comment-list-tag:before{
+	content:'';
+	position: absolute;
+	left:0;
+	top:0;
+	border-style:solid;
+	border-color:transparent transparent transparent #FFFAFA;
+	border-width:10px 8px;
+}
+.comment-list-link{
+	color:#3496F1;
 }
