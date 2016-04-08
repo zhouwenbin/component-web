@@ -65,6 +65,22 @@ gulp.task("open-header", function () {
           .pipe(gulp.dest("src/modules/open-header/sprites/"));
 });
 
+gulp.task("open-main", function () {
+  gulp.src("src/modules/open-main/svgs/*.svg")
+          .pipe(svgSprite({
+              common: "open-main-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/open-main.svg"
+              }
+          }))
+          .pipe(gulp.dest("src/modules/open-main/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("src/modules/open-main/sprites/"));
+});
+
 gulp.task("header", function () {
   gulp.src("src/modules/header/svgs/*.svg")
           .pipe(svgSprite({

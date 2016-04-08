@@ -78,7 +78,7 @@
     color: #fff
 }
 .open-main-icon {
-    font-size: 10px
+    font-size: 12px
 }
 .open-main-icon:before {
     content: ' ';
@@ -86,30 +86,40 @@
     display: inline-block;
     background-image: url("../svg/open-main.svg");
     background-repeat: no-repeat;
-    background-size: 18.2em 72.8em
+    background-size: 15.166666666666666em 91em
 }
 .no-svg .open-main-icon:before {
     background-image: url("../svg/open-main.png")
 }
 .open-main-icon.icon-platform:before {
-    background-position: -1em -1em;
-    width: 16.2em;
-    height: 16.2em
+    background-position: -0.8333333333333334em -0.8333333333333334em;
+    width: 13.5em;
+    height: 13.5em
 }
 .open-main-icon.icon-platform-hover:before {
-    background-position: -1em -19.2em;
-    width: 16.2em;
-    height: 16.2em
+    background-position: -0.8333333333333334em -16em;
+    width: 13.5em;
+    height: 13.5em
 }
 .open-main-icon.icon-setofgoods:before {
-    background-position: -1em -37.4em;
-    width: 16.2em;
-    height: 16.2em
+    background-position: -0.8333333333333334em -31.166666666666664em;
+    width: 13.5em;
+    height: 13.5em
 }
 .open-main-icon.icon-setofgoods-hover:before {
-    background-position: -1em -55.6em;
-    width: 16.2em;
-    height: 16.2em
+    background-position: -0.8333333333333334em -46.333333333333336em;
+    width: 13.5em;
+    height: 13.5em
+}
+.open-main-icon.icon-supplier:before {
+    background-position: -0.8333333333333334em -61.5em;
+    width: 13.5em;
+    height: 13.5em
+}
+.open-main-icon.icon-supplier-hover:before {
+    background-position: -0.8333333333333334em -76.66666666666666em;
+    width: 13.5em;
+    height: 13.5em
 }
 .open-main {
     background: #fff;
@@ -130,7 +140,7 @@
 }
 .open-main li {
     display: inline-block;
-    width: 50%
+    width: 33%
 }
 .open-main h2 {
     font-size: 20px;
@@ -141,7 +151,8 @@
     text-decoration: underline
 }
 .open-main p {
-    font-size: 14px
+    font-size: 14px;
+    line-height: 24px
 }
 .open-main-icon {
     position: relative
@@ -151,10 +162,13 @@
     top: 1px
 }
 .open-main-icon.icon-platform:hover:before {
-    background-position: -1em -19.2em
+    background-position: -0.8333333333333334em -16em
 }
 .open-main-icon.icon-setofgoods:hover:before {
-    background-position: -1em -55.6em
+    background-position: -0.8333333333333334em -46.333333333333336em
+}
+.open-main-icon.icon-supplier:hover:before {
+    background-position: -0.8333333333333334em -76.66666666666666em
 }
 .open-footer {
     background: #404244;

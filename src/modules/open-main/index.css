@@ -18,7 +18,7 @@
 }
 .open-main li{
 	display: inline-block;
-	width: 50%;
+	width: 33%;
 }
 .open-main h2{
 	font-size: 20px;
@@ -30,6 +30,7 @@
 }
 .open-main p{
 	font-size: 14px;
+	line-height: 24px;
 }
 .open-main-icon{
 	position: relative;
@@ -39,8 +40,11 @@
 	top: 1px;
 }
 .open-main-icon.icon-platform:hover:before{
-	background-position: -1em -19.2em;
+	background-position: -0.8333333333333334em -16em;
 }
 .open-main-icon.icon-setofgoods:hover:before{
-	background-position:  -1em -55.6em;
+	background-position: -0.8333333333333334em -46.333333333333336em;
+}
+.open-main-icon.icon-supplier:hover:before{
+	background-position: -0.8333333333333334em -76.66666666666666em;
 }
