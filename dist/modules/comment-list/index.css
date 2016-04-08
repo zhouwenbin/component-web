@@ -189,7 +189,14 @@
   position: relative; }
 
 .comment-list .col4 p {
-  margin-bottom: 14px; }
+  margin-bottom: 14px;
+  line-height: 1.5; }
+
+.comment-list .col4 a {
+  color: #999; }
+
+.comment-list .col4 a:hover {
+  text-decoration: underline; }
 
 .comment-list .p1 {
   margin-bottom: 10px;
@@ -228,6 +235,3 @@
   border-style: solid;
   border-color: transparent transparent transparent #FFFAFA;
   border-width: 10px 8px; }
-
-.comment-list-link {
-  color: #3496F1; }
