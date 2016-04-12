@@ -399,4 +399,33 @@
 .order-detail-c101{
 	margin-bottom: 10px;
 }
-
+.order-detail-cancle{
+	background: #fff7d1;
+	padding: 11px 72px;
+	text-align: justify;
+	position: relative;
+}
+.order-detail-cancle:after{
+	content: '';
+	width: 100%;
+	height: 0;
+	display: inline-block;
+}
+.order-detail-cancle-icon{
+	background: url(http://img0.fengqucdn.com/cmsres/20160412/0da97970-5427-44c5-9ef3-2527ee6c6770.png);
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	margin-left: -36px;
+	top: 50%;
+	margin-top: -9px;
+}
+.order-detail-cancle p{
+	line-height: 16px;
+	color: #523a00;
+	display: inline-block;
+	vertical-align: middle;
+}
+.order-detail-cancle .btn{
+	
+}

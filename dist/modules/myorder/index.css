@@ -330,3 +330,34 @@
   display: inline-block;
   width: 430px;
   vertical-align: middle; }
+
+.myorder-cancle {
+  position: relative; }
+
+.myorder-cancle {
+  padding: 9px;
+  color: #db3f40;
+  border: 1px solid #db3f40;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  line-height: 1.2;
+  width: 5em;
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  margin: 10px 0; }
+
+.myorder-cancle:before,
+.myorder-cancle:after {
+  content: '';
+  border-width: 10px 5px;
+  border-style: solid;
+  border-color: #db3f40 transparent transparent transparent;
+  position: absolute;
+  left: 50%;
+  margin-left: -5px;
+  bottom: -20px; }
+
+.myorder-cancle:after {
+  border-color: #fff transparent transparent transparent;
+  bottom: -18px; }
