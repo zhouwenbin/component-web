@@ -2534,3 +2534,203 @@ a[title="站长统计"] {
   width: 1em;
   height: 1em;
   fill: currentColor; }
+
+/*
+@styleguide
+
+# 弹窗
+
+
+*/
+.dialog-center {
+  width: 482px;
+  left: 50%;
+  top: 50%;
+  margin-left: -307px;
+  margin-top: -163px;
+  position: fixed;
+  background: #fff;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  z-index: 3;
+  text-align: center;
+  display: none;
+  padding-bottom: 16px; }
+
+.dialog-center.show {
+  display: block; }
+
+.dialog-center .btn-close {
+  position: absolute;
+  right: 17px;
+  top: 17px; }
+
+.dialog-center p {
+  padding-top: 53px;
+  margin-bottom: 37px;
+  font-size: 14px; }
+
+.dialog-r1 .btn {
+  margin: 0 5px; }
+
+.dialog-f {
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  padding-right: 40px;
+  text-align: right; }
+
+.dialog-f .btn {
+  margin-left: 20px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 26px;
+  font-size: 14px; }
+
+.dialog h2,
+.dialog-h {
+  height: 54px;
+  line-height: 54px;
+  background: #eee;
+  color: #999;
+  padding-left: 40px;
+  text-align: left;
+  font-size: 16px;
+  -webkit-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0; }
+
+.dialog-coupon {
+  padding-bottom: 59px; }
+
+.dialog-coupon .icon37 {
+  margin-right: 5px; }
+
+.dialog-coupon .btn-success {
+  padding: 0 30px; }
+
+/*
+@styleguide
+
+# 文字
+
+<span class="text-success">success</span>
+<span class="text-error">error</span>
+<span class="text-waining">waining</span>
+<span class="text-disabled">disabled</span>
+<span class="text-link">link</span>
+<span class="text-orange">orange</span>
+
+	<span class="text-success">success</span>
+	<span class="text-error">error</span>
+	<span class="text-waining">waining</span>
+	<span class="text-disabled">disabled</span>
+	<span class="text-link">link</span>
+	<span class="text-orange">orange</span>
+  
+*/
+.text-success {
+  color: #67b222; }
+
+.text-error,
+.text-important {
+  color: #dc3334; }
+
+.text-waining {
+  color: #a1d0ed; }
+
+.text-disabled {
+  color: #ccc; }
+
+.text-link {
+  color: #1376ce; }
+
+.text-orange {
+  color: #F38612; }
+
+.text-dark {
+  color: #999; }
+
+.text-dark:hover {
+  color: #666; }
+
+.text-dark:hover svg {
+  fill: #999; }
+
+/*
+@styleguide
+
+# input
+
+<input type="text" class="input" />
+<h2 class="index-h2">radio</h2>
+<a href="#" class="icon radio"></a>
+<a href="#" class="icon radio active"></a>
+
+	<input type="text" class="input" />
+	<h2 class="index-h2">radio</h2>
+	<a href="#" class="icon radio"></a>
+	<a href="#" class="icon radio active"></a>
+	
+*/
+.input {
+  vertical-align: middle;
+  padding: 12px 0 12px 16px;
+  border: 1px solid #CCCCCC;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  height: 18px;
+  color: #999; }
+
+.input:focus {
+  border-color: #66afe9;
+  color: #333; }
+
+:-ms-input-placeholder {
+  color: #999; }
+
+.u-loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; }
+
+.u-loading-bg {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  filter: alpha(opacity=30); }
+
+.icon-loading {
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading.gif) no-repeat center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px; }
+
+.u-loading-icon {
+  width: 128px;
+  height: 156px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -64px;
+  margin-top: -78px; }
+
+.icon-loading1 {
+  position: absolute;
+  width: 128px;
+  height: 0px;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading1.png) no-repeat bottom;
+  bottom: 0; }
+
+.icon-loading2 {
+  position: absolute;
+  width: 128px;
+  height: 156px;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/icon-loading2.png) no-repeat bottom; }
