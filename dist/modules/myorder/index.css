@@ -118,7 +118,8 @@
   width: 99px; }
 
 .myorder .td6 span {
-  margin: 10px 0; }
+  margin: 10px 0;
+  display: block; }
 
 .myorder .th7,
 .myorder .td7 {
