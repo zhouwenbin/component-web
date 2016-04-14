@@ -136,6 +136,9 @@
     margin-right: 5px;
     position: relative
 }
+.order-detail-tab li .order-detail-cancle-icon {
+    margin-left: 5px
+}
 .order-detail-tab li a {
     display: block;
     font-size: 14px;
@@ -488,14 +491,18 @@
     height: 0;
     display: inline-block
 }
-.order-detail-cancle-icon {
-    background: url(http://img0.fengqucdn.com/cmsres/20160412/0da97970-5427-44c5-9ef3-2527ee6c6770.png);
+.order-detail-cancle .order-detail-cancle-icon {
     position: absolute;
-    width: 18px;
-    height: 18px;
     margin-left: -36px;
     top: 50%;
     margin-top: -9px
+}
+.order-detail-cancle-icon {
+    background: url(http://img0.fengqucdn.com/cmsres/20160412/0da97970-5427-44c5-9ef3-2527ee6c6770.png);
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px
 }
 .order-detail-cancle p {
     line-height: 16px;
