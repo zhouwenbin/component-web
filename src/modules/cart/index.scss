@@ -64,7 +64,7 @@
 .cart h2{
 	line-height: 19px;
 	margin-bottom: 8px;
-	font-weight: normal;
+	font-weight: bolder;
 }
 .cart-standard{
 	color: #aaa;
@@ -208,4 +208,125 @@
 .cart-cut-goods1 .td1:before{
 	height: 50%;
   top: 0;
+}
+.nav{
+	display: none;
+}
+.header{
+	border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+    padding-bottom: 23px;
+}
+
+.tooltip-outer{
+	bottom: 100%;
+	top: auto;
+	margin-top: 0;
+	margin-bottom: 13px;
+}
+.cart-integral{
+	margin-top: 30px;
+}
+.cart-integral-r1{
+	margin-top: -15px;
+	padding-bottom: 7px;
+	border-bottom:1px dashed #aaa;
+	margin-bottom: 13px;
+}
+.cart-integral-r1 .input{
+	margin-left: 10px;
+	margin-right: 6px;
+}
+.cart-integral-r1 .text-important{
+	margin-left: 20px;
+	font-size: 14px;
+}
+.cart-integral-r1 input[type="checkbox"]{
+	margin-right: 10px;
+}
+
+.cart-match td{
+	background: #f9f3f5;
+}
+.cart-match .td1:before{
+	content: '';
+	width: 8px;
+	height: 8px;
+	background: #ccc;
+	border-radius: 50%;
+	position: absolute;
+	left: 25px;
+	top: 50%;
+	margin-top: -6px;
+}
+.cart-match .td1{
+	position: relative;
+	padding-left: 83px;
+}
+.cart-match .td1:after{
+	content: '';
+	position: absolute;
+	left: 29px;
+	height: 100%;
+	width: 1px;
+	background: #ccc;
+	top: -50%;
+}
+.cart-match1 .td1:after{
+	height: 75%;
+  	top: -28%;
+}
+.cart-match .label{
+
+}
+.cart-delete-icon01,
+.cart-sale-icon01,
+.cart-cut-icon01{
+	display: inline-block;
+}
+.cart-delete-icon01{	
+	background: url(#{$bg-url}/icon/cart-delete-icon01.png) no-repeat;
+}
+.cart-sale-icon01{
+	background: url(#{$bg-url}/icon/cart-sale-icon01.png) no-repeat;
+}
+.cart-cut-icon01{
+	background: url(#{$bg-url}/icon/cart-cut-icon01.png) no-repeat;
+}
+.cart-save-icon01{
+	background: url(#{$bg-url}/icon/cart-save-icon01.png) no-repeat;
+	margin-left: -30px;
+	margin-top: 4px;
+}
+.svg-cart-delete,
+.cart-delete-icon01{
+	width: 16px;
+	height: 18px;
+}
+.svg-cart-sale,
+.cart-sale-icon01{
+	width: 58px;
+	height: 14px;
+}
+.cart-cut-icon01,
+.svg-cart-cut,
+.svg-cart-cut-gray,
+.cart-cut-gray-icon01{
+	width: 60px;
+	height: 48px;
+	position: absolute;
+    left: 56px;
+    top: -10px;
+}
+.svg-cart-save{
+	width: 20px;
+	height: 20px;
+	margin: -1px 4px 0 -24px;
+}
+.svg-cart-doubt{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	left: 6px;
+	top: -1px;
 }
