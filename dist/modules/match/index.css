@@ -107,7 +107,7 @@
 	bottom: -2px;
 	cursor: not-allowed;
 }
-.match-c2 .tag-black{
+/*.match-c2 .tag-black{
 	display: inline-block;
 	background: #525252;
 	color: #fff;
@@ -117,7 +117,8 @@
 	padding-left: 9px;
 	padding-right: 4px;
 }
-.match-c2 .tag-black:before, .match-c2 .tag-black:after{
+.match-c2 .tag-black:before,
+.match-c2 .tag-black:after{
 	position: absolute;
 	content: "";
 	font-size: 0;
@@ -125,8 +126,7 @@
 .match-c2 .tag-black:before{
 	width: 4px;
 	height: 4px;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 	background: #fff;
 	left: 0;
 	top: 9px;
@@ -137,4 +137,4 @@
 	top: 0;
 	border: 11px dashed transparent;
 	border-right: 11px solid #525252;
-}
+}*/
