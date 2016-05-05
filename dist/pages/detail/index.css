@@ -1296,10 +1296,25 @@
   border-bottom: 2px solid #eee;
   margin: 0 50px; }
 
+.match-c1 {
+  width: 805px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 225px;
+  font-size: 0;
+  letter-spacing: -0.5em; }
+
+.match-c1 li:first-child {
+  margin-left: 0; }
+
 .match-c1 li {
-  float: left;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: normal;
+  white-space: normal;
   width: 140px;
-  margin-right: 80px;
+  margin-left: 80px;
   position: relative; }
 
 .match-icon {
@@ -1323,11 +1338,7 @@
   margin-right: 18px; }
 
 .match-b {
-  padding: 25px 50px;
-  width: 1080px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap; }
+  padding: 25px 50px; }
 
 .match-r1 {
   margin-bottom: 30px; }
@@ -1359,6 +1370,51 @@
 .match-c2 .match-icon {
   right: auto;
   left: -54px; }
+
+.match-none .match-r2 {
+  position: relative; }
+
+.match-none .match-r2:before {
+  position: absolute;
+  content: "";
+  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.5);
+  left: -2px;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  cursor: not-allowed; }
+
+.match-c2 .tag-black {
+  display: inline-block;
+  background: #525252;
+  color: #fff;
+  position: relative;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 9px;
+  padding-right: 4px; }
+
+.match-c2 .tag-black:before,
+.match-c2 .tag-black:after {
+  position: absolute;
+  content: "";
+  font-size: 0; }
+
+.match-c2 .tag-black:before {
+  width: 4px;
+  height: 4px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  background: #fff;
+  left: 0;
+  top: 9px; }
+
+.match-c2 .tag-black:after {
+  left: -22px;
+  top: 0;
+  border: 11px dashed transparent;
+  border-right: 11px solid #525252; }
 
 .recommend {
   background: #fff;
