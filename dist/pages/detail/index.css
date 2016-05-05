@@ -1323,7 +1323,11 @@
   margin-right: 18px; }
 
 .match-b {
-  padding: 25px 50px; }
+  padding: 25px 50px;
+  width: 1080px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap; }
 
 .match-r1 {
   margin-bottom: 30px; }
