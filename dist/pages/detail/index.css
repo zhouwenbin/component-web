@@ -618,6 +618,10 @@
   margin-left: 80px;
   position: relative; }
 
+.match-c1 li a {
+  display: inline-block;
+  position: relative; }
+
 .match-icon {
   font-size: 48px;
   color: #ccc;
