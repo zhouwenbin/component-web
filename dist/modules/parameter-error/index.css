@@ -1,0 +1,44 @@
+.parameter-error-icon{
+	font-size: 12px;
+}
+.parameter-error-icon:before{
+	content: ' ';
+	vertical-align: middle;
+	display: inline-block;
+	background-image: url("../svg/parameter-error.svg");
+	background-repeat: no-repeat;
+	background-size: 8.333333333333334em 9.833333333333334em;
+}
+.no-svg .parameter-error-icon:before{
+	background-image: url("../svg/parameter-error.png");
+}
+.parameter-error-icon.icon-error:before{
+	background-position: -0.8333333333333334em -0.8333333333333334em;
+	width: 6.666666666666667em;
+	height: 8.166666666666666em;
+}
+.parameter-error{
+	padding: 178px 0;
+	text-align: center;
+}
+.parameter-error-text{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+}
+.parameter-error h2{
+  font-size: 21px;
+	margin-bottom: 15px;
+	font-weight: normal;
+}
+.parameter-error p{
+	font-size: 14px;
+	color: #555;
+}
+.parameter-error a{
+	color: #6D9FCF;
+	margin: 0 5px;
+}
+.parameter-error-icon{
+	margin-right: 45px;
+}

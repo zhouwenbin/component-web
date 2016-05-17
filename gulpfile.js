@@ -113,6 +113,22 @@ gulp.task("footer", function () {
           .pipe(gulp.dest("src/modules/footer/sprites/"));
 });
 
+gulp.task("parameter-error", function () {
+  gulp.src("src/modules/parameter-error/svgs/*.svg")
+          .pipe(svgSprite({
+              common: "parameter-error-icon",
+              selector: "icon-%f",
+              padding:10,
+              svg: {
+                  sprite: "svg/parameter-error.svg"
+              }
+          }))
+          .pipe(gulp.dest("src/modules/parameter-error/sprites/")) // Write the sprite-sheet + CSS + Preview
+          .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
+          .pipe(svg2png())           // Create a PNG
+          .pipe(gulp.dest("src/modules/parameter-error/sprites/"));
+});
+
 gulp.task("svg:copy", function () {
   for(var i in modules) {
     if(modules[i] !== '.DS_Store') {

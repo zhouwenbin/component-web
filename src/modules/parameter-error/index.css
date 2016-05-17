@@ -1,0 +1,26 @@
+@import "sprites/css/sprite.css";
+.parameter-error{
+	padding: 178px 0;
+	text-align: center;
+}
+.parameter-error-text{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+}
+.parameter-error h2{
+  font-size: 21px;
+	margin-bottom: 15px;
+	font-weight: normal;
+}
+.parameter-error p{
+	font-size: 14px;
+	color: #555;
+}
+.parameter-error a{
+	color: #6D9FCF;
+	margin: 0 5px;
+}
+.parameter-error-icon{
+	margin-right: 45px;
+}

@@ -1,0 +1,56 @@
+.guild {
+  background: #fff;
+  padding-top: 50px; }
+
+.guild .pm {
+  overflow: hidden; }
+
+.guild-content {
+  overflow: hidden; }
+
+.guild-content h1 {
+  font-size: 21px;
+  font-weight: normal;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #5c5c5c;
+  margin-bottom: 25px; }
+
+.guild-content h2,
+.guild-content p {
+  font-size: 14px;
+  line-height: 24px; }
+
+.guild-content p {
+  margin-bottom: 31px; }
+
+.guild-content li {
+  line-height: 48px;
+  font-size: 14px; }
+
+.guild-content table {
+  width: 100%;
+  margin-bottom: 19px; }
+
+.guild-content th {
+  height: 41px;
+  line-height: 41px;
+  background: #de3f45;
+  color: #fff;
+  text-align: center;
+  border-right: 1px solid #fff; }
+
+.guild-content th:last-child {
+  border-color: #de3f45; }
+
+.guild-content td {
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border: 1px solid #de3f45; }
+
+.guild-content .star {
+  display: inline-block;
+  width: 16px;
+  height: 15px;
+  background: url(//img0.fengqucdn.com/sfht/1.1.258/img/helpcenter-star.png) no-repeat;
+  margin-right: 10px; }
